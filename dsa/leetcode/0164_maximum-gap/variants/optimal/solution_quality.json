@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_164",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The current and immutable native bucket-assignment loops introduce the prohibited local variable named index. The inert app-local candidate preserves the verified bucket algorithm exactly while using the conventional bucket position i."
+      },
+      {
+        "category": "complexity",
+        "severity": "material",
+        "reason": "The former 32/512/4096 tiers only marginally separated a pure Python comparison merge sort. The recalibrated legal 8/256/4096 modular permutations pass the linear bucket candidate and reject that correct O(n log n) control only on scaling with a clearer growth margin."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "77152e41a7105535b68f949f2bf7caf882368d902c69528d7287f1392da924a7",
+    "native_source_sha256": "721f611b1a82116f508e1bb3e6212f25d95bf0e2e4ac0d753bbcfda8b377677a",
+    "approach_sha256": "7dab755f5fb9a8ebf5918d620a1a5b5adbd7c7f50f74b61084d26895b065796c",
+    "solution_variants_sha256": "f494c2967b9a8797135bb8c0928408b31c11d60edba502109826c93936c66a0d",
+    "complexity_evidence_sha256": "2d6fee36215a7a5f235a1768e0a9d1432ea7ebbade5ff468034499abf5a2dd43",
+    "candidate_source_sha256": "9ad9f456775a8f45b832a47b027b4ac00a1b0a411029159762ccab9cca527473"
+  }
+}

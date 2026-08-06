@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2345",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution converts peaks to base interval tuples (x - y, x + y), sorts by (left_endpoint, -right_endpoint), and tracks maximum rightmost endpoint seen so far while skipping duplicate intervals. The interval containment algorithm runs in O(n log n) time and O(n) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Converting peaks (x, y) to base intervals [x - y, x + y] simplifies containment to interval enclosure. Sorting by increasing left endpoint and decreasing right endpoint ensures any containing interval precedes smaller contained intervals. Duplicate checking drops identical peaks as invisible."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Converting coordinates and sorting n intervals takes O(n log n) time. Scanning the sorted array takes O(n) time. Total time complexity is O(n log n) with O(n) space for intervals. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts peaks list of [x, y] coordinates, handles duplicate peaks correctly, and returns the count of visible non-contained mountain peaks."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details interval mapping [x - y, x + y], sorting tie-break strategy (left ASC, right DESC), frontier tracking, and O(n log n) time / O(n) space bounds. Alternatives and edge cases cover pairwise comparisons, incorrect tie-break sorting, duplicate peaks, border containment, and non-containing overlaps."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the exact same interval transformation and sorting frontier algorithm with SHA-256 digests 6c85764b5e88f3abfffedb4ce0e7e5e5ec348925aed4e115a87cff111357087a and 149c5d7e6336c8f08021c6357d3afe9263929062f563a26d704cf00323dec823. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed peaks interface, two examples, three constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "6c85764b5e88f3abfffedb4ce0e7e5e5ec348925aed4e115a87cff111357087a",
+    "native_source_sha256": "149c5d7e6336c8f08021c6357d3afe9263929062f563a26d704cf00323dec823",
+    "approach_sha256": "5ca8e8723a86f1355c5796d1f2edbd5815ebf19597f2496470abb1d80c05d327",
+    "solution_variants_sha256": "3cf09308274e36e40eb5e6579834e056050658789ffb785f12405d5343cdf481",
+    "complexity_evidence_sha256": "ad850b0a26d86c11fa42ec238194a634243e945d94cd599d2194f8a3f23f2422"
+  }
+}

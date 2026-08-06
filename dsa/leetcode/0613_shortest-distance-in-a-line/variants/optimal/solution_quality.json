@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_613",
+  "language": "sql",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is concise and interview-ready. The ordered_points CTE names the only derived relation, previous_x states the window value's role, and the outer aggregate exposes the adjacent-gap reduction without incidental machinery."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "LAG over ascending x pairs every position except the first with its immediate predecessor. Any nonadjacent pair contains at least one adjacent gap no larger than its own distance, so the global closest pair appears among those differences. Primary-key uniqueness makes all retained gaps positive, the two-row guarantee supplies at least one gap, and MIN returns exactly the requested shortest distance."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 613 and SQL as its sole application language. The query consumes Point(x), ignores physical row order in favor of ORDER BY x, and returns one column named shortest."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected application SQL and immutable MySQL source bound to verified submission 2065473514 are byte-identical. The reviewed target therefore preserves the exact window ordering, predecessor state, null exclusion, adjacent subtraction, minimum aggregation, and output alias of the remotely Accepted source."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three authored reverse-ordered workloads grow from 64 to 512 positions and require sorting plus a complete adjacent-gap pass. The exact protected source passed all seven correctness cases and all three performance tiers. A correct all-pairs self-join passed every correctness and benchmark output but failed only performance with relative growth exponent +1.09 and a 14.48x largest runtime ratio, distinguishing the O(P log P) window method from quadratic pair enumeration."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach precisely matches the current query's sorted-neighbor argument, LAG state, first-row exclusion, difference aggregation, and uniqueness boundary. Its O(P log P) time and O(P) database execution-space bounds correctly account for the required window ordering."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The modular Reference is bound to the authenticated Premium statement's rendered-content hash. It preserves the Point schema and primary key, x-axis interpretation, shortest-distance objective, at-least-two-row guarantee, complete example and explanation, ascending-order follow-up, and all three source tables."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium source example remains first with the exact Point rows [-1,0,2], result 1, explanation facts, and an explicit source-example tag.",
+      "Both invented samples were relabelled as trials, and both formerly hidden wide-range and interior-gap checks are now visible trials.",
+      "Contract boundaries cover the at-least-two-row minimum, exactly two positions, primary-key uniqueness, positive, zero, and negative integer positions, and the required one-row shortest alias.",
+      "Material semantics cover tied minimum gaps, an all-negative table, physical rows outside sorted order, a closest pair within a wide range, a minimum away from both extremes, and the proof-critical fact that only sorted neighbors need comparison.",
+      "An independent sorted-adjacent-gap oracle and SQLite execution of both byte-identical protected queries verified all seven cases, all three benchmark outputs, 4,082 exhaustive unique position subsets, and 500 deterministic randomized unsorted sets.",
+      "All seven ordinary correctness cases are visible samples or trials; the unchanged 64-, 256-, and 512-position reverse-ordered workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "aff848294c4c60fb85ecc8d39df098c317c5e4d3ba2a2428bf2fbe9f1589499a",
+    "native_source_sha256": "aff848294c4c60fb85ecc8d39df098c317c5e4d3ba2a2428bf2fbe9f1589499a",
+    "approach_sha256": "c7561b2b5a20ec4473a2ee204e9c6fbad0cc4e2c5ea38bb1dc8e607a0d85527b",
+    "solution_variants_sha256": "4da81b680b105faf839fed6240cef46879c2dde0d2b08c9017520f43af113517",
+    "complexity_evidence_sha256": "ce4947af9f2acb13a3f7f1af817f006b95324bba5440d28d1b77c30e587940f1",
+    "cases_sha256": "05645717484af84da49a27e9a5ec81c6771feac53083a196e55cbc1322d42110"
+  }
+}

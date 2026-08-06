@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_36",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both exact source examples in source order",
+      "an empty board and a complete valid board",
+      "a sparse valid board spanning every row, column, and box band",
+      "isolated row, column, and sub-box duplicate violations",
+      "a duplicate introduced at the final scanned cell",
+      "all 3,240 equal-digit cell pairs checked against unit membership in both protected sources",
+      "an 81-cell bounded-work proof used because the legal board cannot scale"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "ecb935dbb5b5a684e134b5f38def69a6aa601de413bcbc63b2919fd8dcc220bd",
+    "native_source_sha256": "5460feee8184f2538007989245c67de521bea46b185b82fd930d785f04fcd3ad",
+    "approach_sha256": "db0aa10295e1ca176fed53a044b8df6f1eefceebc5052bba61463d234d47a385",
+    "solution_variants_sha256": "20ec3c0eb685378caf3277d6a758d666bccbb3dcbbf5d2fb95f784061dba8979",
+    "cases_sha256": "595c0f36369a95d0b5720ec5708312c9404dd766bdd25ff10cde6f7d0e5a1b0e",
+    "complexity_evidence_sha256": "4a7dfd8d0a22111111a4784b75ef68494bbd635205e41380d838d89d9d04181b"
+  }
+}

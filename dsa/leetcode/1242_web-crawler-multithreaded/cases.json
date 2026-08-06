@@ -2,12 +2,212 @@
   "schema_version": 1,
   "challenge_id": "lc_1242",
   "cases": [
-    {"id":"sample-yahoo","name":"sample: concurrently crawl reachable Yahoo pages","kind":"sample","visible":true,"input":{"urls":["http://news.yahoo.com","http://news.yahoo.com/news","http://news.yahoo.com/news/topics/","http://news.google.com","http://news.yahoo.com/us"],"edges":[[2,0],[2,1],[3,2],[3,1],[0,4]],"start_url":"http://news.yahoo.com/news/topics/"},"expected":{"urls":["http://news.yahoo.com/news/topics/","http://news.yahoo.com","http://news.yahoo.com/news","http://news.yahoo.com/us"],"properties":["same-host-only","unique","all-fetches-finish"]},"validator":{"kind":"crawler_concurrency"},"tags":["sample","hostname-filter"]},
-    {"id":"sample-google","name":"sample: reject all cross-host links","kind":"sample","visible":true,"input":{"urls":["http://news.yahoo.com","http://news.yahoo.com/news","http://news.yahoo.com/news/topics/","http://news.google.com"],"edges":[[0,2],[2,1],[3,2],[3,1],[3,0]],"start_url":"http://news.google.com"},"expected":{"urls":["http://news.google.com"],"properties":["no-off-host-fetch"]},"validator":{"kind":"crawler_concurrency"},"tags":["sample","cross-host"]},
-    {"id":"trial-cycle","name":"same-host cycle schedules every page once","kind":"trial","visible":true,"input":{"urls":["http://a.com","http://a.com/x","http://a.com/y"],"edges":[[0,1],[1,2],[2,0]],"start_url":"http://a.com"},"expected":{"properties":["unique-task-per-url","no-deadlock","complete"]},"validator":{"kind":"crawler_concurrency"},"tags":["cycle"]},
-    {"id":"trial-wide-frontier","name":"independent child pages can fetch concurrently","kind":"trial","visible":true,"input":{"width":8,"shape":"star","hostname":"a.com"},"expected":{"properties":["overlapping-parser-calls","bounded-workers","complete"]},"validator":{"kind":"crawler_concurrency"},"tags":["parallelism","wide-frontier"]},
-    {"id":"real-duplicate-edges","name":"hidden: duplicate edges create one fetch","kind":"real","visible":false,"input":{"shape":"duplicate-edges"},"expected":{"properties":["exactly-once-scheduling","unique-output"]},"validator":{"kind":"crawler_concurrency"},"tags":["hidden","duplicates"]},
-    {"id":"real-off-host-bridge","name":"hidden: another host cannot bridge back","kind":"real","visible":false,"input":{"shape":"off-host-bridge"},"expected":{"properties":["off-host-never-fetched","same-host-only"]},"validator":{"kind":"crawler_concurrency"},"tags":["hidden","hostname"]},
-    {"id":"real-random-delays","name":"hidden: randomized completion order preserves reachability","kind":"real","visible":false,"input":{"nodes":100,"delay_order":"random"},"expected":{"properties":["scheduler-independent","no-deadlock","complete","unique"]},"validator":{"kind":"crawler_concurrency"},"tags":["hidden","randomized","stress"]}
+    {
+      "id": "sample-yahoo",
+      "name": "sample: concurrently crawl reachable Yahoo pages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://news.yahoo.com",
+          "http://news.yahoo.com/news",
+          "http://news.yahoo.com/news/topics/",
+          "http://news.google.com",
+          "http://news.yahoo.com/us"
+        ],
+        "edges": [[2, 0], [2, 1], [3, 2], [3, 1], [0, 4]],
+        "start_url": "http://news.yahoo.com/news/topics/"
+      },
+      "expected": {
+        "urls": [
+          "http://news.yahoo.com",
+          "http://news.yahoo.com/news",
+          "http://news.yahoo.com/news/topics/",
+          "http://news.yahoo.com/us"
+        ],
+        "properties": ["same-host-only", "unique", "all-fetches-finish"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["sample", "hostname-filter", "concurrency"]
+    },
+    {
+      "id": "sample-google",
+      "name": "sample: reject all cross-host links",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://news.yahoo.com",
+          "http://news.yahoo.com/news",
+          "http://news.yahoo.com/news/topics/",
+          "http://news.google.com"
+        ],
+        "edges": [[0, 2], [2, 1], [3, 2], [3, 1], [3, 0]],
+        "start_url": "http://news.google.com"
+      },
+      "expected": {
+        "urls": ["http://news.google.com"],
+        "properties": ["no-off-host-fetch", "unique", "all-fetches-finish"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["sample", "cross-host"]
+    },
+    {
+      "id": "trial-no-links",
+      "name": "one maximum-length URL with no links is returned alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "edges": [],
+        "start_url": "http://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "expected": {
+        "urls": [
+          "http://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "properties": ["complete", "unique", "all-fetches-finish"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["no-links", "minimum-url-count", "maximum-url-length", "maximum-hostname-label"]
+    },
+    {
+      "id": "trial-cycle-duplicate-links",
+      "name": "cycle and duplicate links schedule every page once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": ["http://a.com", "http://a.com/x", "http://a.com/y"],
+        "edges": [[0, 1], [0, 1], [1, 2], [2, 0], [2, 1]],
+        "start_url": "http://a.com"
+      },
+      "expected": {
+        "urls": ["http://a.com", "http://a.com/x", "http://a.com/y"],
+        "properties": ["unique-task-per-url", "no-deadlock", "complete"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["cycle", "duplicate-links", "exactly-once-scheduling"]
+    },
+    {
+      "id": "trial-lookalike-host",
+      "name": "hostname lookalike is rejected by exact comparison",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": ["http://a.com", "http://a.com.evil/x", "http://a.com/good"],
+        "edges": [[0, 1], [0, 2], [1, 2]],
+        "start_url": "http://a.com"
+      },
+      "expected": {
+        "urls": ["http://a.com", "http://a.com/good"],
+        "properties": ["off-host-never-fetched", "same-host-only", "unique"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["hostname-boundary", "lookalike-host"]
+    },
+    {
+      "id": "trial-off-host-bridge",
+      "name": "another host cannot bridge back to the starting host",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": ["http://a.com", "http://b.com/x", "http://a.com/hidden"],
+        "edges": [[0, 1], [1, 2]],
+        "start_url": "http://a.com"
+      },
+      "expected": {
+        "urls": ["http://a.com"],
+        "properties": ["off-host-never-fetched", "same-host-only", "complete"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["off-host-bridge", "unreachable-same-host"]
+    },
+    {
+      "id": "trial-wide-frontier",
+      "name": "independent child pages overlap their blocking parser calls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://wide.com",
+          "http://wide.com/1",
+          "http://wide.com/2",
+          "http://wide.com/3",
+          "http://wide.com/4",
+          "http://wide.com/5",
+          "http://wide.com/6",
+          "http://wide.com/7",
+          "http://wide.com/8"
+        ],
+        "edges": [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8]],
+        "start_url": "http://wide.com"
+      },
+      "expected": {
+        "urls": [
+          "http://wide.com",
+          "http://wide.com/1",
+          "http://wide.com/2",
+          "http://wide.com/3",
+          "http://wide.com/4",
+          "http://wide.com/5",
+          "http://wide.com/6",
+          "http://wide.com/7",
+          "http://wide.com/8"
+        ],
+        "properties": ["overlapping-parser-calls", "bounded-workers", "complete", "unique"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["parallelism", "wide-frontier", "bounded-workers"]
+    },
+    {
+      "id": "trial-converging-frontier",
+      "name": "concurrent branches converge without duplicate scheduling",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://merge.com",
+          "http://merge.com/a",
+          "http://merge.com/b",
+          "http://merge.com/c",
+          "http://merge.com/shared",
+          "http://merge.com/end"
+        ],
+        "edges": [[0, 1], [0, 2], [0, 3], [1, 4], [2, 4], [3, 4], [4, 5], [5, 0]],
+        "start_url": "http://merge.com"
+      },
+      "expected": {
+        "urls": [
+          "http://merge.com",
+          "http://merge.com/a",
+          "http://merge.com/b",
+          "http://merge.com/c",
+          "http://merge.com/shared",
+          "http://merge.com/end"
+        ],
+        "properties": ["scheduler-independent", "unique-task-per-url", "no-deadlock", "complete"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["converging-frontier", "scheduler-order", "cycle"]
+    },
+    {
+      "id": "trial-trailing-slash",
+      "name": "trailing slash distinguishes two same-host URLs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": ["http://slash.com", "http://slash.com/", "http://slash.com/path"],
+        "edges": [[0, 1], [1, 2], [2, 0]],
+        "start_url": "http://slash.com"
+      },
+      "expected": {
+        "urls": ["http://slash.com", "http://slash.com/", "http://slash.com/path"],
+        "properties": ["unique-task-per-url", "complete", "same-host-only"]
+      },
+      "validator": {"kind": "crawler_concurrency"},
+      "tags": ["trailing-slash", "distinct-urls", "cycle"]
+    }
   ]
 }

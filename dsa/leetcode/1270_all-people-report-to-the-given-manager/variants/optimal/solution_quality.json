@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1270",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is a compact, conventional fixed-depth hierarchy solution. Its candidate, direct_manager, and upper_manager aliases expose the complete data flow, the two joins correspond directly to successive manager lookups, and the final predicates state both head exclusion and reachability. No candidate would materially improve its clarity or asymptotic behavior."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For each candidate row, the joins bind its direct manager and that manager's manager. Requiring upper_manager.manager_id = 1 proves a three-link path to the head. Because employee 1 manages itself, one- and two-link paths pad the remaining joins with the head and satisfy the same predicate. Unique employee_id values make every lookup single-valued, employee 1 is explicitly removed, and chains rooted elsewhere cannot pass."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent Python oracle followed manager_id at most three times from every non-head employee. It, the protected and byte-identical native SQL, an independently structured recursive-CTE control, and a deliberately Cartesian slower control agreed on all six visible cases, all three benchmark tiers, and all 2,442 six-employee functional hierarchies whose components reach a self-managed root within three links. Input fixtures remained unchanged."
+      },
+      {
+        "category": "randomized_and_boundary_coverage",
+        "severity": "verified",
+        "reason": "Another 10,000 deterministic legal hierarchies generated with seed 1270 matched the oracle, with direct protected/native/recursive SQL execution on the first 2,000 and Cartesian-control execution on the first 200. They included one head-only database, 9,894 with direct reports, 9,490 with two-link reports, 8,915 with three-link reports, 9,448 with a separate self-managed root, 9,981 with branching, 9,683 with duplicate names, and 9,904 with shuffled row order."
+      },
+      {
+        "category": "benchmark_calibration",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers define size as Employees row count at n = 16, 64, and 256, a 16x span, and populate repeating branches that exercise every permitted depth. Across three repeated paired runs, protected SQL passed with extra-growth exponents from -0.01 to +0.01 and the recursive same-class control passed from -0.02 to -0.00. The correct index-defeating Cartesian control produced every output but failed only scaling in all runs at +0.72 to +0.75. No benchmark edit was warranted."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "Only the authenticated mixed-hierarchy fixture is a source example. Its employee name Jhon and output row sequence are now exact source literals; the invented head-only row was reclassified as a trial, and the two hidden correctness rows became visible trials. All six ordinary fixtures are now visible samples or trials and cover empty output, direct reporting, the maximum three-link path, separate roots, branching, and all permitted depths."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1270, SQL as the sole language, and query as the verified native entrypoint. Fresh authenticated evidence confirms the Employees column names and types, unique employee_id values, manager_id semantics, head employee_id = 1, direct-or-indirect reporting, a maximum three-manager relation, and unrestricted output order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected sql.sql and immutable leetcode.sql remain byte-for-byte identical and bound to verified submission 2068251502. Both use the same two indexed self-joins, head exclusion, and upper-manager predicate. submission.json and both SQL sources remain unchanged."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach accurately derives the bounded self-join chain, head-self-reference padding, soundness and completeness, indexed O(n) logical time, O(n) result/join state, and all material alternatives and edge cases. Its former claim that the app-local query orders identifiers was false because the protected SQL has no ORDER BY; the corrected bullet now explains that unrestricted order avoids an unnecessary sort."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the complete Employees schema, unique-key statement, direct-manager row meaning, head ID, direct and indirect inclusion rule, three-manager bound, unrestricted order, and the sole source example with every input/output row and every explanation step."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed one explained example, three semantic source tables, and no separate constraints, hints, images, notes, or follow-up. source_fidelity.json binds all four modular Reference files to live-content SHA-256 6471ec0bbb5565ab9e69770093c0036708e65f4f299a96cba29a65eccffd81b5 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first visible sample preserves the sole authenticated source example exactly, including all Employees rows, the source spelling Jhon, output row sequence, and every explanation step.",
+      "Six visible ordinary fixtures cover a head-only empty result, one direct report, the maximum three-manager chain, a disconnected self-managed root, branching, shuffled rows, and qualifying employees at every permitted depth.",
+      "The independent manager-chain oracle and three SQL formulations agree on all fixed inputs and 2,442 exhaustive bounded six-employee hierarchies. Ten thousand seeded legal random hierarchies were oracle-checked, with protected/native/recursive SQL executed on 2,000 and the slower control on 200.",
+      "The three unchanged hidden performance-only tiers use n = 16, 64, and 256. Repeated paired trials accept protected and independent same-class controls, while the correct Cartesian control passes every output and consistently fails scaling."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "76ca0b47a611f398cc06beb6ff7fbbb42adcf763e86d5248a4f11d9a730ea2b6",
+    "native_source_sha256": "76ca0b47a611f398cc06beb6ff7fbbb42adcf763e86d5248a4f11d9a730ea2b6",
+    "approach_sha256": "2ce4ee36c8e1e34f0278b27985d7a5458145014194f182b0c28baf7f0642c0cf",
+    "solution_variants_sha256": "fc02309987b0ff576cf06a125cfbfeea61475b6ed57b24f5223d195ad7d64839",
+    "complexity_evidence_sha256": "56d700439f96f8dc7b4a8642d97750223fef81dc5e6780524313846f29b546b3",
+    "cases_sha256": "f7305ac5bafe7169d17c3da1513c8ee91db1f1bb13dc3f607f7d23fdb170122e"
+  }
+}

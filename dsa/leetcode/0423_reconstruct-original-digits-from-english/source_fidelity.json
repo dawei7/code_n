@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_423",
+    "frontend_id": "423",
+    "title_slug": "reconstruct-original-digits-from-english",
+    "url": "https://leetcode.com/problems/reconstruct-original-digits-from-english/description/",
+    "paid_only": false,
+    "content_sha256": "5fe7c87f2b9e4c702d8c3802b5a19e6b9a1cbcfffd46ac6dbb2b47984308dd74",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"owoztneoer\"", "output": "\"012\"", "has_explanation": false},
+      {"ordinal": 2, "input": "s = \"fviefuro\"", "output": "\"45\"", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "658c4ff95393824e843c622cb30a15eae97a9a1d4f20f217fe24a6acf958f9b4",
+      "reference/contract.md": "572bacd9d8e2781bdd0fc4d09e4f0daa8b62b0d173fdb6e45ff79a7c95721680",
+      "reference/examples.md": "78143effd95db7f35bd45cf7c05eeab9d9ea97c83ab8fe7171493b5e495622ad",
+      "reference/constraints.md": "23bfed0321f9894fbc93675f687a1f0a546a6ffc5d847901a42864f38d2c749d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

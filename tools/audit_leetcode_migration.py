@@ -52,6 +52,8 @@ BASE_REFERENCE_HEADINGS = (
 )
 MIN_GOAL_WORDS = 60
 MIN_GOAL_PARAGRAPHS = 2
+
+
 def _load_json(path: Path) -> Any:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -74,16 +76,8 @@ def _doc_status(path: Path) -> dict[str, Any]:
     reference_dir = path.parent / "reference"
     source_fidelity = validate_source_fidelity(path.parent)
     reviewed_manifest = _load_json(path.parent / "source_fidelity.json")
-    reviewed_structure = (
-        reviewed_manifest.get("structure")
-        if isinstance(reviewed_manifest, dict)
-        else None
-    )
-    reviewed_sections = (
-        reviewed_structure.get("sections")
-        if isinstance(reviewed_structure, dict)
-        else None
-    )
+    reviewed_structure = reviewed_manifest.get("structure") if isinstance(reviewed_manifest, dict) else None
+    reviewed_sections = reviewed_structure.get("sections") if isinstance(reviewed_structure, dict) else None
     if source_fidelity.verified and isinstance(reviewed_sections, list):
         reference_filenames: list[str] = []
         for raw_section in reviewed_sections:
@@ -97,18 +91,11 @@ def _doc_status(path: Path) -> dict[str, Any]:
         uses_reference_sections = (
             reference_dir.is_dir()
             and all(section.is_file() for section in reference_paths)
-            and all(
-                required in reference_filenames
-                for required in ("description.md", "contract.md", "examples.md")
-            )
+            and all(required in reference_filenames for required in ("description.md", "contract.md", "examples.md"))
         )
     else:
-        reference_paths = tuple(
-            reference_dir / filename for filename, _heading in REFERENCE_SECTION_FILES
-        )
-        uses_reference_sections = reference_dir.is_dir() and all(
-            section.is_file() for section in reference_paths
-        )
+        reference_paths = tuple(reference_dir / filename for filename, _heading in REFERENCE_SECTION_FILES)
+        uses_reference_sections = reference_dir.is_dir() and all(section.is_file() for section in reference_paths)
     if uses_reference_sections:
         text = "\n\n".join(section.read_text(encoding="utf-8") for section in reference_paths)
         required_sections = BASE_REFERENCE_HEADINGS
@@ -124,30 +111,18 @@ def _doc_status(path: Path) -> dict[str, Any]:
     complete = bool(text) and not any(marker in text for marker in PLACEHOLDERS)
     complete = complete and all(position >= 0 for position in positions)
     complete = complete and positions == sorted(positions)
-    shared_sections_only = (
-        "### Required Complexity" not in text
-        and "<summary>Approach</summary>" not in text
-    )
+    shared_sections_only = "### Required Complexity" not in text and "<summary>Approach</summary>" not in text
     complete = complete and shared_sections_only
     goal_match = re.search(narrative_pattern, text, flags=re.MULTILINE | re.DOTALL)
     goal_text = goal_match.group(1).strip() if goal_match else ""
-    goal_paragraphs = [
-        paragraph.strip()
-        for paragraph in re.split(r"\n\s*\n", goal_text)
-        if paragraph.strip()
-    ]
+    goal_paragraphs = [paragraph.strip() for paragraph in re.split(r"\n\s*\n", goal_text) if paragraph.strip()]
     goal_word_count = len(re.findall(r"[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)*", goal_text))
-    goal_narrative_complete = (
-        goal_word_count >= MIN_GOAL_WORDS
-        and len(goal_paragraphs) >= MIN_GOAL_PARAGRAPHS
-    )
+    goal_narrative_complete = goal_word_count >= MIN_GOAL_WORDS and len(goal_paragraphs) >= MIN_GOAL_PARAGRAPHS
     complete = complete and goal_narrative_complete
     result = {
         "complete": complete,
         "missing_sections": [
-            section
-            for section, position in zip(required_sections, positions, strict=True)
-            if position < 0
+            section for section, position in zip(required_sections, positions, strict=True) if position < 0
         ],
         "has_placeholder": any(marker in text for marker in PLACEHOLDERS),
         "shared_sections_only": shared_sections_only,
@@ -165,11 +140,21 @@ def _doc_status(path: Path) -> dict[str, Any]:
 def _cases_status(path: Path) -> dict[str, Any]:
     rows = _case_rows(_load_json(path))
     counts = Counter(str(row.get("kind") or "") for row in rows)
-    complete = all(counts[kind] > 0 for kind in ("sample", "trial", "real"))
-    complete = complete and all(
+    legacy_hidden_complete = all(counts[kind] > 0 for kind in ("sample", "trial", "real")) and all(
         row.get("visible") is False for row in rows if row.get("kind") == "real"
     )
-    return {"complete": complete, "total": len(rows), "kinds": dict(sorted(counts.items()))}
+    visible_correctness_complete = (
+        counts["sample"] > 0
+        and counts["trial"] > 0
+        and counts["real"] == 0
+        and all(row.get("visible") is True for row in rows)
+    )
+    return {
+        "complete": legacy_hidden_complete or visible_correctness_complete,
+        "total": len(rows),
+        "kinds": dict(sorted(counts.items())),
+        "visibility_model": "all_visible" if visible_correctness_complete else "legacy_hidden",
+    }
 
 
 def _benchmark_status(path: Path) -> dict[str, Any]:
@@ -345,11 +330,7 @@ def _default_variant_root(package: Path, metadata: dict[str, Any]) -> Path | Non
     if not default_variant or not isinstance(rows, list):
         return None
     row = next(
-        (
-            item
-            for item in rows
-            if isinstance(item, dict) and str(item.get("id") or "") == default_variant
-        ),
+        (item for item in rows if isinstance(item, dict) and str(item.get("id") or "") == default_variant),
         None,
     )
     if row is None:
@@ -368,11 +349,7 @@ def _default_variant_root(package: Path, metadata: dict[str, Any]) -> Path | Non
 
 def _submission_status(package: Path, metadata: dict[str, Any]) -> dict[str, Any]:
     variant_root = _default_variant_root(package, metadata)
-    submission_root = (
-        variant_root
-        if variant_root is not None
-        else package / "__missing_optimal_variant__"
-    )
+    submission_root = variant_root if variant_root is not None else package / "__missing_optimal_variant__"
     manifest = _load_json(submission_root / "submission.json")
     if not isinstance(manifest, dict):
         return {"complete": False, "status": "missing", "paid_only": bool(metadata.get("paid_only"))}
@@ -398,11 +375,7 @@ def _load_blockers() -> dict[str, dict[str, Any]]:
     payload = _load_json(BLOCKERS_JSON)
     if not isinstance(payload, dict) or not isinstance(payload.get("blockers"), dict):
         return {}
-    return {
-        str(key): value
-        for key, value in payload["blockers"].items()
-        if isinstance(value, dict)
-    }
+    return {str(key): value for key, value in payload["blockers"].items() if isinstance(value, dict)}
 
 
 def _write_blockers(blockers: dict[str, dict[str, Any]]) -> None:
@@ -441,8 +414,7 @@ def build_report() -> dict[str, Any]:
             "leetcode_submission": _submission_status(package, metadata),
         }
         local_complete = all(
-            checks[name]["complete"]
-            for name in ("doc", "cases", "complexity", "solution_variants", "optimal_solution")
+            checks[name]["complete"] for name in ("doc", "cases", "complexity", "solution_variants", "optimal_solution")
         )
         complete = local_complete and checks["leetcode_submission"]["complete"]
         blocker = blockers.get(frontend_id)
@@ -468,26 +440,16 @@ def build_report() -> dict[str, Any]:
     }
     for name in ("doc", "cases", "benchmarks", "optimal_solution", "leetcode_submission"):
         counts[f"{name}_complete"] = sum(entry["checks"][name]["complete"] for entry in entries)
-    counts["complexity_certified"] = sum(
-        entry["checks"]["complexity_certificate"]["complete"] for entry in entries
-    )
+    counts["complexity_certified"] = sum(entry["checks"]["complexity_certificate"]["complete"] for entry in entries)
     counts["complexity_complete"] = sum(entry["checks"]["complexity"]["complete"] for entry in entries)
-    counts["solution_variant_packages"] = sum(
-        entry["checks"]["solution_variants"]["configured"] for entry in entries
-    )
+    counts["solution_variant_packages"] = sum(entry["checks"]["solution_variants"]["configured"] for entry in entries)
     counts["solution_variant_packages_complete"] = sum(
-        entry["checks"]["solution_variants"]["configured"]
-        and entry["checks"]["solution_variants"]["complete"]
+        entry["checks"]["solution_variants"]["configured"] and entry["checks"]["solution_variants"]["complete"]
         for entry in entries
     )
     first_incomplete = next((entry for entry in entries if not entry["complete"] and not entry["blocked"]), None)
     first_unverified_submission = next(
-        (
-            entry
-            for entry in entries
-            if not entry["checks"]["leetcode_submission"]["complete"]
-            and not entry["blocked"]
-        ),
+        (entry for entry in entries if not entry["checks"]["leetcode_submission"]["complete"] and not entry["blocked"]),
         None,
     )
     return {
@@ -496,7 +458,9 @@ def build_report() -> dict[str, Any]:
         "scope": "All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.",
         "exemplar": "dsa/leetcode/0001_two-sum",
         "counts": counts,
-        "first_actionable_incomplete": None if first_incomplete is None else {
+        "first_actionable_incomplete": None
+        if first_incomplete is None
+        else {
             "frontend_id": first_incomplete["frontend_id"],
             "title": first_incomplete["title"],
             "package": first_incomplete["package"],
@@ -529,7 +493,7 @@ def _write_report(report: dict[str, Any]) -> None:
         "",
         "## Completion criteria",
         "",
-        "A package is locally complete only when its shared canonical document (including a source-like Goal narrative of at least two paragraphs and 60 words), visible/hidden cases, complexity verification, optimal app-local solution, and mandatory Optimal-first branch topology pass the audit. Every published non-default branch must satisfy the Elo policy where applicable, keep its approach and sources separated, and carry exact Accepted evidence. Complexity verification normally requires exactly three ordered benchmark tiers; a strictly validated `complexity_certificate.json` replaces scaling only when the legal source domain cannot support an honest scaling verdict. Full completion additionally requires the exact platform-native Optimal source to be recorded as remotely Accepted in `variants/optimal/submission.json`.",
+        "A package is locally complete only when its shared canonical document (including a source-like Goal narrative of at least two paragraphs and 60 words), correctness cases, complexity verification, optimal app-local solution, and mandatory Optimal-first branch topology pass the audit. Correctness cases may retain the legacy visible/hidden layout until their quality review migrates them to the all-visible model; performance benchmarks remain hidden. Every published non-default branch must satisfy the Elo policy where applicable, keep its approach and sources separated, and carry exact Accepted evidence. Complexity verification normally requires exactly three ordered benchmark tiers; a strictly validated `complexity_certificate.json` replaces scaling only when the legal source domain cannot support an honest scaling verdict. Full completion additionally requires the exact platform-native Optimal source to be recorded as remotely Accepted in `variants/optimal/submission.json`.",
         "",
         "## Counts",
         "",
@@ -586,9 +550,7 @@ def main() -> int:
         json.dumps(
             {
                 "counts": report["counts"],
-                "first_unverified_optimal_submission": report[
-                    "first_unverified_optimal_submission"
-                ],
+                "first_unverified_optimal_submission": report["first_unverified_optimal_submission"],
                 "first_actionable_incomplete": report["first_actionable_incomplete"],
             },
             indent=2,

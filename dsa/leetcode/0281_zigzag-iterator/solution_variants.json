@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Zigzag Iterator and meets the required complexity bound.",
+      "summary": "Rotates only nonempty vectors through a deque, advancing one saved position per iterator call.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

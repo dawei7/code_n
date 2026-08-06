@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1216",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already expert-interview quality. `minimum_removals`, `left`, `right`, `diagonal`, and `previous_row` make the interval state and rolling-row dependencies explicit without helper or abstraction overhead. The two recurrence branches mirror the semantic choice exactly, and the final at-most comparison is direct. No material solution change justifies a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For matching endpoints, an optimal palindrome can retain both and inherits the minimum removals of the interior. For different endpoints, every palindromic subsequence must omit at least one endpoint, so one plus the cheaper adjacent interval is exact. Processing left endpoints downward and right endpoints upward makes `minimum_removals[right]`, `minimum_removals[right - 1]`, and `diagonal` the two adjacent intervals and interior required by that recurrence. The last cell is therefore the minimum deletions for all of `s`, and comparison with `k` implements the at-most contract."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent oracle computed longest common subsequence length between `s` and its reversal, while a separately written slower control stored an actual longest palindromic subsequence for every interval. Oracle, protected app source, immutable native source, and slower control agreed on all 12 ordinary cases and all three benchmark tiers. All implementations also agreed on 73,812 exhaustive `(s, k)` inputs over alphabet `{a,b,c}` for lengths 1 through 8 and on 5,000 deterministic schema-valid inputs generated with seed 1216."
+      },
+      {
+        "category": "boundary_and_string_semantics",
+        "severity": "verified",
+        "reason": "The fixed suite covers both authenticated source examples, the one-character lower bound, `k = 1`, an already palindromic string, an endpoint deletion, equality with the minimum required removals, insufficient budgets, matching outer characters around a still-invalid interior, one fewer than the required near-full budget, `k = n`, and the 1,000-character maximum. The seeded set included 1,000 each of random, palindromic, one-insertion near-palindromic, uniform, and alternating constructions; 1,012 used `k = 1`, 929 used `k = n`, 67 hit the exact minimum budget, and 337 returned false."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1216, Python, and native entrypoint `Solution.isValidPalindrome`. Fresh authenticated evidence confirms that deletions may use at most `k` characters, that the input has 1 through 1,000 lowercase English letters, and that `k` ranges from 1 through the string length."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native artifact remains bound to verified submission 2067944129 and is unchanged. Apart from the required `Solution.isValidPalindrome` wrapper, it and the protected app source share the exact allocation, loop order, saved diagonal, matching and mismatching transitions, overwrite order, and final budget comparison."
+      },
+      {
+        "category": "runner_safety",
+        "severity": "verified",
+        "reason": "The legal 1,000-character ordinary boundary initially exposed the generic 100,000-line-event safety guard before the accepted quadratic DP could terminate. The package now uses the established 10,000,000-event terminating-workload override, with a focused regression proving the protected source completes that exact visible boundary. This corrects runner classification without changing the solution, benchmark, native source, or submission evidence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers use string length as `size`, scale uniform palindromes from 24 through 48 to 96, and span 4x. Across three fresh real-test runs, protected passed every output and scaling at largest-tier ratios 1.00x, 1.02x, and 1.01x; an independent rolling-LCS implementation also passed at 1.31x. The explicit-copy subsequence-table control passed all 12 ordinary and three benchmark outputs but failed only scaling in three runs at 22.74x, 23.26x, and 24.61x, with extra growth exponents from +0.97 to +1.06."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach matches the protected source's minimum-removal interval state, endpoint recurrence, rightward overwrite order, saved diagonal, final at-most comparison, and O(n^2)-time/O(n)-space bounds. It also distinguishes longest-palindromic-subsequence formulations, full-table space, exponential recursion, and the material deletion semantics."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the exact k-palindrome definition, deletion and order semantics, both source examples in source order, the first example's deletion explanation and the second example's lack of one, all three constraints, and all four hints. The legacy false example is retained only under the explicitly separate Additional Examples heading."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples, one explanation, three constraints, four hints, and no statement image, table, diagram, note, or follow-up. `source_fidelity.json` binds all five modular files to live statement hash 2c159930cc92db2170d3adc64ef8e8f17c2928bf43927fede6398a30f5ae304d and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples are the two authenticated source examples in source order with every string, budget, and output literal preserved exactly. Only the first carries an explanation because the source supplies none for Example 2.",
+      "All 12 ordinary fixtures are visible samples or trials. They cover the exact length and budget bounds, no-removal palindromes, endpoint deletion, exact and insufficient budgets, matching-endpoint interval semantics, distinct-character failure near the full allowance, and the maximum 1,000-character string.",
+      "The independent LCS oracle recomputed every authored and benchmark expectation. Protected source, immutable native source, and the explicit-copy slower control agreed on all fixed fixtures, 73,812 exhaustive small inputs, and 5,000 seeded random legal inputs spanning random, palindromic, near-palindromic, uniform, and alternating strings plus lower, upper, exact, and insufficient budgets.",
+      "The three unchanged hidden performance tiers keep `size` equal to string length and span 24 through 96. Protected passed three repeated scaling runs near 1x, the independent rolling-LCS same-class control passed at 1.31x, and the correct explicit-copy O(n^3) control preserved every output but failed only the scaling verdict in all three runs."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "83a0b11676eea6e45cf9746ceb224b89e9edbf6a353dfbf05505824df8ef4102",
+    "native_source_sha256": "2e8f93a0b3632941ffbf51ab2e5e07ee8f1bd77b7a80ebefee6545cb7c9e66dd",
+    "approach_sha256": "27b39b603f65a3e15fa1378a8998f51fc92dc49a7a3d1037a0fe79369b6551a9",
+    "solution_variants_sha256": "959b556dfed1fa1a0c2538095ba14a9346fe7ba7ecdb9026fd8f21e6bfcdfe16",
+    "complexity_evidence_sha256": "ed0117b13d4280fc4c22722d43ef59f0b70afe893cf442d795d7ee031e00262d",
+    "cases_sha256": "69391e4e23f17516ebefeb38ce85c6eee40392e9dc15d999f1c4775681bc9b83"
+  }
+}

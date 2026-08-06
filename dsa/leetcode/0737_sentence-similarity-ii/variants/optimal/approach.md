@@ -16,7 +16,7 @@ Reject unequal sentence lengths. At each aligned position, identical strings pas
 Every union joins exactly the endpoints of a declared similarity edge, so all words given one representative are connected by a chain of declared pairs and are similar by transitivity. Conversely, processing every edge causes all vertices on any such chain to be merged, so similar words obtain the same representative. The aligned checks therefore accept exactly the word pairs allowed by the relationship.
 
 ## Complexity detail
-Let `n` be the sentence length, `p` the number of pairs, and `w` the number of distinct paired words. Union by size with path compression makes all unions and finds take $O((n+p) \alpha(w))$ time, where `α` is the inverse Ackermann function. The parent and size maps use $O(w)$ space.
+Let `n` be the sentence length, `p` the number of pairs, and `w` the number of distinct paired words. Union by size with path compression makes all unions and finds take $O((n+p) \alpha(w))$ time, where $\alpha$ is the inverse Ackermann function. The parent and size maps use $O(w)$ space.
 
 ## Alternatives and edge cases
 - **One component traversal up front:** build adjacency sets and label every connected component once; this also takes linear graph time and supports constant-time aligned checks.

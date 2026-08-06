@@ -3,9 +3,13 @@
   "cases": [
     {"id": "sample-1", "name": "sample: literal too short", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "a"}, "expected": false, "tags": ["sample"]},
     {"id": "sample-2", "name": "sample: star consumes all", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "*"}, "expected": true, "tags": ["sample", "star"]},
-    {"id": "trial-question-mismatch", "name": "question mark then wrong literal", "kind": "trial", "visible": true, "input": {"s": "cb", "p": "?a"}, "expected": false, "tags": ["question"]},
+    {"id": "sample-3", "name": "sample: question mark then wrong literal", "kind": "sample", "visible": true, "input": {"s": "cb", "p": "?a"}, "expected": false, "tags": ["sample", "question"]},
     {"id": "trial-multiple-stars", "name": "stars consume separated regions", "kind": "trial", "visible": true, "input": {"s": "adceb", "p": "*a*b"}, "expected": true, "tags": ["star"]},
-    {"id": "real-ambiguous-failure", "name": "hidden: plausible star split cannot finish", "kind": "real", "visible": false, "input": {"s": "acdcb", "p": "a*c?b"}, "expected": false, "tags": ["hidden", "backtracking"]},
-    {"id": "real-empty-star", "name": "hidden: star matches empty string", "kind": "real", "visible": false, "input": {"s": "", "p": "***"}, "expected": true, "tags": ["hidden", "empty"]}
+    {"id": "trial-ambiguous-failure", "name": "plausible star split cannot finish", "kind": "trial", "visible": true, "input": {"s": "acdcb", "p": "a*c?b"}, "expected": false, "tags": ["backtracking", "failure"]},
+    {"id": "trial-empty-star", "name": "stars match the empty string", "kind": "trial", "visible": true, "input": {"s": "", "p": "***"}, "expected": true, "tags": ["empty", "star"]},
+    {"id": "trial-both-empty", "name": "empty pattern matches empty string", "kind": "trial", "visible": true, "input": {"s": "", "p": ""}, "expected": true, "tags": ["boundary", "empty"]},
+    {"id": "trial-empty-string-literal", "name": "literal cannot match an empty string", "kind": "trial", "visible": true, "input": {"s": "", "p": "a*"}, "expected": false, "tags": ["empty", "literal"]},
+    {"id": "trial-empty-pattern", "name": "empty pattern cannot match a nonempty string", "kind": "trial", "visible": true, "input": {"s": "a", "p": ""}, "expected": false, "tags": ["empty", "whole-match"]},
+    {"id": "trial-single-question", "name": "question mark consumes exactly one character", "kind": "trial", "visible": true, "input": {"s": "z", "p": "?"}, "expected": true, "tags": ["question", "single-character"]}
   ]
 }

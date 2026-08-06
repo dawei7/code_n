@@ -2,13 +2,15 @@
   "schema_version": 1,
   "provider": "leetcode.com",
   "status": "verified",
-  "question_id": "1068",
+  "question_id": "1067",
   "frontend_id": "1067",
   "title_slug": "digit-count-in-range",
   "paid_only": true,
   "language": "python3",
   "source": "solutions/leetcode.py",
-  "native_entrypoint": "Solution.digitsCount",
-  "verified_submission_id": "2067482233",
-  "verified_at": "2026-07-14T14:41:30.598407+00:00"
+  "verified_submission_id": "2065541810",
+  "verified_at": "2026-07-12T22:24:11.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T15:42:00.000000+00:00"
 }

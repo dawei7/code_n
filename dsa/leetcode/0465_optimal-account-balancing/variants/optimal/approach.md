@@ -1,28 +1,28 @@
 ## General
-**Discard transaction history after netting balances**
 
-For each payment, subtract the amount from the payer's balance and add it to the recipient's. Only these final net debts and credits matter for settlement; people whose balance is already zero need no further transaction and are removed. The remaining `k` balances sum to zero.
+**Discard transaction history after netting accounts**
 
-**Settle the first unfinished balance**
+Subtract each amount from its giver and add it to its recipient. Once all $n$ records have been processed, only the final balance of each of the $p$ participants matters: any settlement that cancels those balances also settles the original history. Remove zero balances and place the remaining $k$ values in `balances`; their sum is zero.
 
-Advance past leading zeros. Pair the first nonzero balance with each later balance of the opposite sign. One new transfer can combine them, modeled by adding the first balance into the later one, then recursively settle the remaining suffix. Restore the balance after each branch and take the fewest transfers.
+**Settle the first unfinished balance completely**
 
-**Why exploring opposite signs is complete**
+At recursion position `start`, skip balances that earlier transfers have reduced to zero. If none remain, the current branch has settled everyone. Otherwise, pair `balances[start]` with every later balance of the opposite sign. One transaction can clear the first balance completely; adding it to the partner records whatever amount that partner still owes or is owed. The recursion therefore continues at `start + 1`, and restoring the partner afterward makes the mutation local to that branch.
 
-In some optimal settlement, the first debtor or creditor must transfer with an opposite-signed account. Combining that first transfer leaves the same residual amount represented by the updated partner balance, so every possible optimal first counterparty appears among the recursive branches. Same-signed transfers cannot reduce either side's outstanding obligation and are unnecessary.
+This branching is complete because the first unfinished account must transact with an opposite-signed account in any settlement. Choosing its counterparty determines exactly the residual balance represented by the mutation, so one branch models the first transaction of every potentially optimal settlement. A same-signed transfer cannot clear the first account and is unnecessary.
 
-**Prune equivalent and exact matches**
+**Remove equivalent branches without changing the answer**
 
-At one recursion level, partners with equal balances create identical residual multisets, so try that value once. If a partner exactly cancels the first balance, that one transaction settles both accounts; no alternative partner can settle the first account using fewer than one transaction, so stop considering further branches at that level.
+Partners holding the same balance create identical residual multisets, so `tried` explores that value only once at the current depth. If a partner exactly cancels the first balance, an exchange argument guarantees an optimal settlement containing that direct transaction: any settlement that routes the two equal-and-opposite obligations through other accounts can redirect that amount between this pair without adding an edge among the remaining accounts. After evaluating the exact-cancellation branch, the loop can therefore stop. The minimum over the remaining distinct branches is the optimal transaction count.
 
 ## Complexity detail
-In the worst case, each unfinished balance can branch to many opposite-signed partners, giving $O(k!)$ time for `k` nonzero net balances, though duplicate and exact-match pruning substantially reduce common cases. Recursion and the mutable balance list use $O(k)$ space.
+
+Building the net-balance map costs $O(n)$ time and $O(p)$ space. In the worst case, the backtracking tree explores factorially many counterparty orders, so total time is $O(n + k!)$. The balance list and recursion use $O(k)$ space. Each active recursion frame also owns a `tried` set; across a depth-$k$ call path these sets can hold $O(k^2)$ values in total, giving $O(p + k^2)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Bitmask subset DP:** partitions balances into zero-sum groups in exponential state space and can offer more predictable bounds, at the cost of larger tables.
-- **Unpruned backtracking:** is correct but repeats equal residual states and explores alternatives after exact cancellation.
-- **Greedily match largest debt and credit:** can settle balances but does not always minimize the number of transactions.
-- **No transactions or all-zero net balances:** requires zero settlement transfers.
-- **Repeated equal balances:** symmetry pruning is essential to avoid permuting equivalent partners.
-- **Exact opposite pair:** one transfer settles both and justifies an early branch cutoff.
-- **Person identifiers:** may be sparse; aggregate them in a map rather than allocating by maximum identifier.
+
+- **Bitmask subset dynamic programming:** can maximize the number of disjoint zero-sum groups in exponential state space, but requires a larger state table.
+- **Unpruned backtracking:** remains correct, but repeatedly explores equal partner balances and continues after an exact cancellation; those redundant branches cause the benchmark control to exceed the runtime limit.
+- **Greedily match the largest debt and credit:** produces a valid settlement but can use more transactions than necessary.
+- **All balances cancel during aggregation:** leaves `balances` empty and correctly returns zero.
+- **Repeated equal balances:** are interchangeable at one recursion depth, which is why value-based symmetry pruning is safe.
+- **Sparse person identifiers:** belong in a map rather than an array sized by the largest identifier.

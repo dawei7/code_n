@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in their original order",
+      "odd and even combined lengths",
+      "either input array being empty",
+      "the first array being longer and requiring a swap",
+      "cuts at the start and end of the shorter array",
+      "duplicate values straddling the partition",
+      "values at both numeric constraint bounds",
+      "three hidden interleaved-array tiers that reject linear merging"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "c4afc2266d099b2b99cdba0ab418724ccbd7f35f38644d826f52a4bf0aa55de5",
+    "native_source_sha256": "2d367b4108a2d763930acb015805a5723bd65d0a02506f8645850aa671e47743",
+    "approach_sha256": "de003cfd4c26b2b5bef69eac094d97f6757e46b5faa4e4a49cd82d4dd356cd7e",
+    "solution_variants_sha256": "d3d40f388b36c9804aafdcfbdad1fe97ffde5c88247d378731a65a8a22d09855",
+    "cases_sha256": "505ced9949256640bc1110742f6a985ab6a4ae378ea6fa2c3463a0f0c939e414",
+    "complexity_evidence_sha256": "67212e27debf45d2afab8cf77765a50852ed9415986803e585d7bea8679b942d"
+  }
+}

@@ -10,8 +10,8 @@ class Solution:
             if available == 0:
                 break
             take = min(available, n - copied)
-            for index in range(take):
-                buf[copied + index] = temporary[index]
+            for i in range(take):
+                buf[copied + i] = temporary[i]
             copied += take
             if available < 4:
                 break

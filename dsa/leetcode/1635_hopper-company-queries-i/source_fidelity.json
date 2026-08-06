@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1635",
+    "frontend_id": "1635",
+    "title_slug": "hopper-company-queries-i",
+    "url": "https://leetcode.com/problems/hopper-company-queries-i/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`Drivers` table:",
+        "output": "| month | active_drivers | accepted_rides |",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 7,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 7,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "19cdc2a3e14b804ac0f4e2f10db98e72d475c9403dee364e3ebfc7985c7d6536",
+      "reference/contract.md": "01165200f64e3fe575e58576167de04f16f6363beb5d7ade15aa5cc611aa7fa1",
+      "reference/examples.md": "3935ab9c7a4dd17b9aef7b765c23ecbc55cde91a402321387e32e95a27ca865a",
+      "reference/constraints.md": "f683ff795750d6788eee8d798375c95436266b3ee838eb48c789a67d47fb3ff2"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

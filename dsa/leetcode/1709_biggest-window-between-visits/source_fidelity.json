@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1709",
+    "frontend_id": "1709",
+    "title_slug": "biggest-window-between-visits",
+    "url": "https://leetcode.com/problems/biggest-window-between-visits/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`UserVisits = [[1, \"2020-10-20\"], [1, \"2020-11-28\"], [1, \"2020-12-03\"], [2, \"2020-10-05\"], [2, \"2020-12-09\"], [3, \"2020-11-11\"]]`",
+        "output": "`[[1, 39], [2, 65], [3, 51]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`user 2 visits on 2020-10-05 and 2020-12-09`",
+        "output": "`(2, 65)`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`user 3 visits only on 2020-11-11`",
+        "output": "`(3, 51)`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 2,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9280251761ad3bb16c819b9763fd6e6f3e7a40f55973c6a1ccee1ece580e6276",
+      "reference/contract.md": "d8818a6bf9da535a50f37a49fd8e18071a39f592fde5f6f0feb8679510af9e81",
+      "reference/examples.md": "82d4f979342a8319a2242354e924b5ea65351d4dd36e5ee6ca895d855c1429cc",
+      "reference/constraints.md": "531351a604af9b6a9a8e4df001436d8599d038fad394d61bd75b28dc621236b7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

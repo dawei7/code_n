@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_569",
+    "frontend_id": "569",
+    "title_slug": "median-employee-salary",
+    "url": "https://leetcode.com/problems/median-employee-salary/description/",
+    "paid_only": true,
+    "content_sha256": "b8d47346ff6abe09eb09e531407ebe6a6d0469fb04a19b25b0b54bbd76f62731",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": [
+      "employee_table",
+      "description",
+      "examples",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Employee = [[1,\"A\",2341],[2,\"A\",341],[3,\"A\",15],[4,\"A\",15314],[5,\"A\",451],[6,\"A\",513],[7,\"B\",15],[8,\"B\",13],[9,\"B\",1154],[10,\"B\",1345],[11,\"B\",1221],[12,\"B\",234],[13,\"C\",2345],[14,\"C\",2645],[15,\"C\",2645],[16,\"C\",2652],[17,\"C\",65]]",
+        "output": "[[5,\"A\",451],[6,\"A\",513],[12,\"B\",234],[9,\"B\",1154],[14,\"C\",2645]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 6,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 6,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/employee_table.md": "816026cd4babdda95a12f3e7b65af6c14fe830980f68816d83a2b88a1d680ec7",
+      "reference/description.md": "6e822af4d866741ccf8427990e88e55bf3b91fd83b1e22c046c908ba3dceeee4",
+      "reference/contract.md": "31e98dba31ca631d336ee6745c659746da143716f0cc85be03f8b72ab48eb550",
+      "reference/examples.md": "30bff316d8aa90a7b901fa0c6b68920d33ab5468aa0ad86334067cb8f5e0eb10",
+      "reference/follow_up.md": "a61c4acb9a3b8154c5362b9ae267ff0d234313350a2533d2d9283ed9e8c4ed62"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

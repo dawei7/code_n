@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_414",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical three-slot distinct-ranking scan. Its first, second, and third concepts make the invariant explicit, absence markers safely cover the full integer range, and the update chain is concise. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 414 and its Python thirdMax surface. The Reference preserves distinct ranking and fallback semantics, all three source examples with complete rank explanations, both constraints, and the linear-time follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064744396. Its three absent slots, duplicate rejection, ordered shifts, third-slot insertion, and fallback return are exactly the protected app-local algorithm apart from the LeetCode wrapper and annotations."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 64-, 192-, and 512-value reverse-ordered tiers span 8x and keep every value distinct. The current source passes all 11 executions at -0.00 relative growth and 0.99x; correct ascending insertion sort of all distinct values passes every output but fails only scaling at +1.29 and 186.86x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach derives the ordered three-slot insertion invariant, duplicate handling, safe absence markers, and the fewer-than-three fallback, and proves the maintained prefix ranks. It accurately states O(n) time with O(1) space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference retains the distinct-maximum contract, all three source examples in order with every explanation complete, both constraints, the O(n) follow-up, and the absence of source visuals or tables."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "d764940ad2422d9a70bb705d7f32b5328688ea140b43273843e2e4904db1b962",
+    "native_source_sha256": "b1a321709c10294b81796b755415e4754ca66cb40727cc5ab00d0c6a8dd2f426",
+    "approach_sha256": "0baf4f3452b23018d149e10da8cc366172261ce5d580cee533d369091949defa",
+    "solution_variants_sha256": "04c6cb9f00f456a9b90a9217e2bfe29de6950ab8806b9e391baa1e170fa696d2",
+    "complexity_evidence_sha256": "cf876ff30b9d6e76d6b6f259f480b9f09c6cab80a9cb5781ff54717b1f281e1d"
+  }
+}

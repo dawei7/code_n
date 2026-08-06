@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Range Sum Query 2D - Immutable and meets the required complexity bound.",
+      "summary": "Precomputes a zero-bordered 2D prefix matrix for constant-time inclusion-exclusion queries.",
       "time_complexity": "O(mn + q)",
       "space_complexity": "O(mn)"
     }

@@ -1,22 +1,25 @@
 ## General
 **Let each subtree report the surviving target path**
 
-Depth-first search returns a target node when it encounters one. Otherwise it recursively searches both children.
+A completed subtree reports `None` when it contains neither target, a target when only that target's path survives, or the LCA after two target paths have met. A node equal to `p` or `q` reports itself immediately because the other target, guaranteed to exist in the full tree, can only make that node remain the answer or meet it above.
+
+**Simulate recursive postorder with explicit frames**
+
+Store `(node, state, left)` frames. State zero schedules the left subtree, state one saves its report and schedules the right subtree, and state two combines both reports. A single `result` register carries the report from the most recently completed child into its parent frame.
+
+At every loop boundary, `result` is the complete report of the subtree whose frame was most recently removed. All frames still on the stack are unfinished ancestors, and each saved `left` value is exactly the report needed when that ancestor's right subtree finishes.
 
 **Two non-null child reports meet at the answer**
 
-If both child searches return a match, the current node is the first place their paths meet and is the LCA. If only one child returns a match, propagate it upward.
+When both child reports are non-null, the current node is their first meeting point and becomes the report. When only one is non-null, propagate it unchanged. When neither exists, preserve `None`.
 
-For every completed recursive call, its return value is null when its subtree contains neither target; otherwise it is the target or LCA that must be propagated to the caller.
-
-A target node correctly represents a subtree already containing that target and possibly the other below it. When non-null results arrive from both children, no descendant can contain both targets, so the current node is the lowest common ancestor. A single result remains the only possible answer in that subtree and is safely propagated.
-
-When the current node is itself a target, returning it also handles the case where the other target lies below it: ancestors propagate this target unless a separate branch report proves that an even higher node is required. With both targets guaranteed to exist, the report that reaches the root is exactly their lowest common ancestor.
+No descendant of a node with two non-null child reports can contain both targets, so that node is their lowest common ancestor. A single report is the only possible target path in that subtree and remains valid higher up. Because the explicit states perform the same left, right, then combine order for every node, the report returned after the root frame completes is exactly the LCA.
 
 ## Complexity detail
-In the worst case every node is visited once, giving $O(n)$ time. Recursion occupies one root-to-leaf path, or $O(h)$ space.
+Each of the $n$ nodes enters a constant number of frame states, giving $O(n)$ time. The stack stores only unfinished ancestors and at most one pending sibling frame per level, so it uses $O(h)$ space without relying on Python's call stack.
 
 ## Alternatives and edge cases
-- **Parent map plus ancestor set:** is iterative but uses $O(n)$ space.
-- **Two root-to-target paths:** traverses more than once and stores both paths.
-- One target may itself be the ancestor; targets can occur in opposite or identical-side subtrees.
+- **Recursive postorder:** expresses the same recurrence more briefly but can exceed Python's recursion limit on a legal deeply skewed tree.
+- **Parent map plus ancestor set:** is iterative but uses $O(n)$ space even when the tree height is small.
+- **Ancestor target:** returning a target immediately correctly handles the other target lying below it.
+- **Opposite or same-side targets:** postorder reports combine at the first common ancestor regardless of tree shape or target placement.

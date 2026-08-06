@@ -6,9 +6,11 @@
     {"id":"sample-two-per-square","name":"sample: two ones per constrained square","kind":"sample","visible":true,"input":{"width":3,"height":3,"sideLength":2,"maxOnes":2},"expected":6,"tags":["sample","greedy"]},
     {"id":"trial-zero-ones","name":"zero allowed ones","kind":"trial","visible":true,"input":{"width":5,"height":4,"sideLength":2,"maxOnes":0},"expected":0,"tags":["boundary","zero"]},
     {"id":"trial-single-cell-tile","name":"side length one fills the whole matrix","kind":"trial","visible":true,"input":{"width":4,"height":3,"sideLength":1,"maxOnes":1},"expected":12,"tags":["boundary","unit-tile"]},
-    {"id":"real-unequal-frequencies","name":"hidden: partial width makes residue values unequal","kind":"real","visible":false,"input":{"width":5,"height":4,"sideLength":2,"maxOnes":1},"expected":6,"tags":["hidden","partial-tiles"]},
-    {"id":"real-several-classes","name":"hidden: choose several highest frequencies","kind":"real","visible":false,"input":{"width":7,"height":5,"sideLength":3,"maxOnes":4},"expected":20,"tags":["hidden","frequency-order"]},
-    {"id":"real-all-classes","name":"hidden: allowing every residue fills the matrix","kind":"real","visible":false,"input":{"width":5,"height":6,"sideLength":3,"maxOnes":9},"expected":30,"tags":["hidden","all-classes"]},
-    {"id":"real-overlapping-squares","name":"hidden: overlapping full-size windows","kind":"real","visible":false,"input":{"width":4,"height":3,"sideLength":3,"maxOnes":5},"expected":8,"tags":["hidden","overlap"]}
+    {"id":"trial-unequal-frequencies","name":"partial width makes residue values unequal","kind":"trial","visible":true,"input":{"width":5,"height":4,"sideLength":2,"maxOnes":1},"expected":6,"tags":["partial-tiles","frequency-order"]},
+    {"id":"trial-several-classes","name":"choose several highest-frequency residue classes","kind":"trial","visible":true,"input":{"width":7,"height":5,"sideLength":3,"maxOnes":4},"expected":20,"tags":["partial-tiles","frequency-order"]},
+    {"id":"trial-all-classes","name":"allowing every residue class fills the matrix","kind":"trial","visible":true,"input":{"width":5,"height":6,"sideLength":3,"maxOnes":9},"expected":30,"tags":["boundary","all-classes"]},
+    {"id":"trial-overlapping-squares","name":"overlapping full-height square windows","kind":"trial","visible":true,"input":{"width":4,"height":3,"sideLength":3,"maxOnes":5},"expected":8,"tags":["overlap","rectangular"]},
+    {"id":"trial-extreme-rectangle","name":"minimum height with maximum width","kind":"trial","visible":true,"input":{"width":100,"height":1,"sideLength":1,"maxOnes":1},"expected":100,"tags":["boundary","extreme-rectangle"]},
+    {"id":"trial-maximum-bounds","name":"maximum square dimensions, side length, and allowance","kind":"trial","visible":true,"input":{"width":100,"height":100,"sideLength":100,"maxOnes":10000},"expected":10000,"tags":["boundary","maximum"]}
   ]
 }

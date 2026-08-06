@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find K Pairs with Smallest Sums and meets the required complexity bound.",
+      "summary": "Treats each first-array value as a sorted row of pair sums and heap-merges only the needed row fronts.",
       "time_complexity": "O(k \\log \\min(k,m))",
       "space_complexity": "O(\\min(k,m))"
     }

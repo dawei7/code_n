@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_464",
+    "frontend_id": "464",
+    "title_slug": "can-i-win",
+    "url": "https://leetcode.com/problems/can-i-win/description/",
+    "paid_only": false,
+    "content_sha256": "911a90a7eff18c5f92bbcb11994edcd56111490a5e625151642955ad6426f1f7",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "maxChoosableInteger = 10, desiredTotal = 11",
+        "output": "false",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "maxChoosableInteger = 10, desiredTotal = 0",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "maxChoosableInteger = 10, desiredTotal = 1",
+        "output": "true",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e095738e12e8d3f70df7f628f651b38eca6abed9bc8e6ba92690ccdfc2359981",
+      "reference/contract.md": "3ef5511afd8093729201a0e532c8f55ea51cf042ddda6bd802674918fef150d2",
+      "reference/examples.md": "5afc8ace75950056be0cf42be2c990f9d9f1400bb65866eb912df88d43e8b0eb",
+      "reference/constraints.md": "25270891f07a29d3968b9cc5eb321c484266877b48540d9fe402a81b12b8b63c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

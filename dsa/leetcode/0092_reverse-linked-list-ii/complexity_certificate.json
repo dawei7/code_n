@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_92",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Reversing the full list changes every internal next edge, so a linear number of pointer updates is unavoidable. The current bounded reversal visits the prefix and segment once and matches that bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Use the legal case left = 1 and right = n. The original list has n - 1 forward edges between consecutive nodes, while the required result has all n - 1 of those edges reversed; producing it therefore requires Omega(n) link changes. The current algorithm advances at most left - 1 times to the segment, reverses exactly right - left + 1 nodes, and performs constant reconnection work, for O(n) total time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "A full-list reversal replaces the direction of each of the n - 1 internal next edges, requiring a linear number of pointer mutations."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The prefix-location and bounded-reversal loops together execute at most 2n iterations, followed by constant boundary reconnection work."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover an internal segment and the one-node no-op boundary; black-box real-test execution verifies all existing ordinary checks without inspecting their definitions."
+    }
+  ]
+}

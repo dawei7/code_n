@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1188",
+    "frontend_id": "1188",
+    "title_slug": "design-bounded-blocking-queue",
+    "url": "https://leetcode.com/problems/design-bounded-blocking-queue/description/",
+    "paid_only": true,
+    "content_sha256": "e10a5defa7f88f38ba50d91f3fbdff468f0bcbc88318c9c3a3e0a573fcb9c3b1",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "1, 1, [\"BoundedBlockingQueue\",\"enqueue\",\"dequeue\",\"dequeue\",\"enqueue\",\"enqueue\",\"enqueue\",\"enqueue\",\"dequeue\"], [[2],[1],[],[],[0],[2],[3],[4],[]]",
+        "output": "[1,0,2,2]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "3, 4, [\"BoundedBlockingQueue\",\"enqueue\",\"enqueue\",\"enqueue\",\"dequeue\",\"dequeue\",\"dequeue\",\"enqueue\"], [[3],[1],[0],[2],[],[],[],[3]]",
+        "output": "[1,0,2,1]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e12f0dbd386b40ef51bd1a95c15ff33e6d9d4f2fdaa26eaf4d7bc660005d9307",
+      "reference/contract.md": "eb5b65f251ba1f41b67493f0b0161fbb9cd8088d03fbd01eea2d404c83bac3c1",
+      "reference/note.md": "cbd92b8a4b3a276437e024ef18feb10b495105a97b20c211afa84adcbde1b38a",
+      "reference/examples.md": "caa13587da736cf54157db032963b8f624595e134dbc6c2b24860c517aabd86c",
+      "reference/constraints.md": "dc6c8905d4af88e6dbda92979a6e563ce4f177cabe86097ae0cba99b58d689b8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

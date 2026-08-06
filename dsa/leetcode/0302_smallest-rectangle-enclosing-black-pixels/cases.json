@@ -18,6 +18,7 @@
       "expected": 6,
       "tags": [
         "sample",
+        "source-example",
         "component"
       ]
     },
@@ -36,13 +37,14 @@
       "expected": 1,
       "tags": [
         "sample",
+        "source-example",
         "boundary"
       ]
     },
     {
-      "id": "sample-horizontal",
-      "name": "sample: horizontal component",
-      "kind": "sample",
+      "id": "trial-horizontal",
+      "name": "horizontal component",
+      "kind": "trial",
       "visible": true,
       "input": {
         "image": [
@@ -53,7 +55,6 @@
       },
       "expected": 3,
       "tags": [
-        "sample",
         "one-row"
       ]
     },
@@ -96,10 +97,10 @@
       ]
     },
     {
-      "id": "real-asymmetric",
-      "name": "hidden: asymmetric component inside white border",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-asymmetric",
+      "name": "asymmetric component inside a white border",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "image": [
           "00000",
@@ -112,9 +113,113 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
-        "asymmetric"
+        "asymmetric",
+        "white-border"
       ]
+    },
+    {
+      "id": "trial-top-left-edge",
+      "name": "component touches the top and left edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": ["11000","10000","10000"],
+        "x": 0,
+        "y": 0
+      },
+      "expected": 6,
+      "tags": ["top-edge","left-edge","corner-anchor"]
+    },
+    {
+      "id": "trial-bottom-right-edge",
+      "name": "component touches the bottom and right edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": ["0000","0001","0011"],
+        "x": 2,
+        "y": 3
+      },
+      "expected": 4,
+      "tags": ["bottom-edge","right-edge","exclusive-boundary"]
+    },
+    {
+      "id": "trial-interior-singleton",
+      "name": "single black pixel inside a white border",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": ["00000","00000","00100","00000"],
+        "x": 2,
+        "y": 2
+      },
+      "expected": 1,
+      "tags": ["single-pixel","white-border","interior"]
+    },
+    {
+      "id": "trial-full-rectangle",
+      "name": "every pixel is black in a rectangular image",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": ["1111","1111","1111"],
+        "x": 1,
+        "y": 2
+      },
+      "expected": 12,
+      "tags": ["dense-component","all-edges","rectangle"]
+    },
+    {
+      "id": "trial-l-shape",
+      "name": "thin connected L spans its full bounding box",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": ["1000","1000","1111"],
+        "x": 2,
+        "y": 1
+      },
+      "expected": 12,
+      "tags": ["thin-component","left-edge","bottom-edge"]
+    },
+    {
+      "id": "trial-cross",
+      "name": "connected cross leaves white corners inside its rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": ["00100","01110","00100"],
+        "x": 1,
+        "y": 2
+      },
+      "expected": 9,
+      "tags": ["interior-whitespace","cross","projection"]
+    },
+    {
+      "id": "trial-maximum-width",
+      "name": "maximum-width one-row component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": ["1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"],
+        "x": 0,
+        "y": 99
+      },
+      "expected": 100,
+      "tags": ["maximum-width","one-row","right-edge"]
+    },
+    {
+      "id": "trial-maximum-height",
+      "name": "maximum-height one-column component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+        "x": 99,
+        "y": 0
+      },
+      "expected": 100,
+      "tags": ["maximum-height","one-column","bottom-edge"]
     }
   ]
 }

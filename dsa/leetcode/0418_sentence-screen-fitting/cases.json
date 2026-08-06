@@ -18,6 +18,7 @@
       "expected": 1,
       "tags": [
         "sample",
+        "source-example",
         "two-words"
       ]
     },
@@ -38,6 +39,7 @@
       "expected": 2,
       "tags": [
         "sample",
+        "source-example",
         "wrap"
       ]
     },
@@ -59,6 +61,7 @@
       "expected": 1,
       "tags": [
         "sample",
+        "source-example",
         "narrow"
       ]
     },
@@ -99,10 +102,10 @@
       ]
     },
     {
-      "id": "hidden-cycle",
-      "name": "hidden: repeated starting state permits cycles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle",
+      "name": "trial: repeated starting state permits cycles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": [
           "ab",
@@ -113,15 +116,15 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
+        "trial",
         "cycle"
       ]
     },
     {
-      "id": "hidden-long-short",
-      "name": "hidden: mixed word lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-short",
+      "name": "trial: mixed word lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": [
           "abcdef",
@@ -133,15 +136,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
+        "trial",
         "mixed-lengths"
       ]
     },
     {
-      "id": "hidden-one-row",
-      "name": "hidden: several completions in one wide row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-row",
+      "name": "trial: several completions in one wide row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": [
           "a",
@@ -152,8 +155,85 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
+        "trial",
         "wide"
+      ]
+    },
+    {
+      "id": "trial-minimum-screen",
+      "name": "trial: one-letter word exactly fills the smallest screen",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "a"
+        ],
+        "rows": 1,
+        "cols": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-word-too-wide",
+      "name": "trial: a word wider than the screen cannot be placed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "ab"
+        ],
+        "rows": 3,
+        "cols": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary",
+        "unplaceable"
+      ]
+    },
+    {
+      "id": "trial-maximum-word-length",
+      "name": "trial: ten-letter word exactly fills each row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "abcdefghij"
+        ],
+        "rows": 2,
+        "cols": 10
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "boundary",
+        "maximum-word-length"
+      ]
+    },
+    {
+      "id": "trial-maximum-screen",
+      "name": "trial: one-letter sentence fills the maximum square screen",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "a"
+        ],
+        "rows": 20000,
+        "cols": 20000
+      },
+      "expected": 200000000,
+      "tags": [
+        "trial",
+        "boundary",
+        "maximum-screen",
+        "cycle"
       ]
     }
   ]

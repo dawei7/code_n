@@ -1,9 +1,96 @@
-{"schema_version":1,"challenge_id":"lc_663","cases":[
-{"id":"sample-1","name":"sample: right subtree is half","kind":"sample","visible":true,"input":{"root":[5,10,10,null,null,2,3]},"expected":true,"tags":["sample","partition"]},
-{"id":"sample-2","name":"sample: no half-sum subtree","kind":"sample","visible":true,"input":{"root":[1,2,10,null,null,2,20]},"expected":false,"tags":["sample","invalid"]},
-{"id":"sample-3","name":"sample: proper zero subtree","kind":"sample","visible":true,"input":{"root":[0,0]},"expected":true,"tags":["sample","zero"]},
-{"id":"trial-1","name":"trial: single zero root is not a cut","kind":"trial","visible":true,"input":{"root":[0]},"expected":false,"tags":["trial","boundary","zero"]},
-{"id":"trial-2","name":"trial: zero total without zero subtree","kind":"trial","visible":true,"input":{"root":[0,-1,1]},"expected":false,"tags":["trial","zero-total"]},
-{"id":"hidden-1","name":"hidden: two-node equal split","kind":"real","visible":false,"input":{"root":[1,1]},"expected":true,"tags":["hidden","small"]},
-{"id":"hidden-2","name":"hidden: negative mirror of valid tree","kind":"real","visible":false,"input":{"root":[-5,-10,-10,null,null,-2,-3]},"expected":true,"tags":["hidden","negative"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_663",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample 1: right subtree is half of the total",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [5, 10, 10, null, null, 2, 3]},
+      "expected": true,
+      "tags": ["sample", "source-example", "partition"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample 2: no edge produces equal sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [1, 2, 10, null, null, 2, 20]},
+      "expected": false,
+      "tags": ["sample", "source-example", "no-partition"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: a single zero root has no removable edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0]},
+      "expected": false,
+      "tags": ["trial", "minimum-nodes", "root-exclusion", "zero"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: two equal nodes form the smallest valid cut",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, 1]},
+      "expected": true,
+      "tags": ["trial", "two-nodes", "partition"]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: proper zero-sum subtree",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0, 0]},
+      "expected": true,
+      "tags": ["trial", "zero-total", "proper-subtree"]
+    },
+    {
+      "id": "trial-4",
+      "name": "trial: zero total without a proper zero-sum subtree",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0, -1, 1]},
+      "expected": false,
+      "tags": ["trial", "zero-total", "root-exclusion"]
+    },
+    {
+      "id": "trial-5",
+      "name": "trial: negative mirror of a valid source tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [-5, -10, -10, null, null, -2, -3]},
+      "expected": true,
+      "tags": ["trial", "negative-values", "partition"]
+    },
+    {
+      "id": "trial-6",
+      "name": "trial: odd total cannot be split equally",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, 1, 1]},
+      "expected": false,
+      "tags": ["trial", "odd-total", "parity"]
+    },
+    {
+      "id": "trial-7",
+      "name": "trial: minimum and maximum node values do not create a zero cut",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0, -100000, 100000]},
+      "expected": false,
+      "tags": ["trial", "minimum-value", "maximum-value", "zero-total"]
+    },
+    {
+      "id": "trial-8",
+      "name": "trial: detachable half-sum subtree begins below the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, 2, 3, 2]},
+      "expected": true,
+      "tags": ["trial", "internal-subtree", "partition"]
+    }
+  ]
+}

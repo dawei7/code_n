@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_297",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is an expert-quality iterative preorder codec. Explicit null tokens make the grammar reversible, a right-before-left serialization stack preserves preorder, and parent-slot frames deserialize without recursion-depth risk. The local TreeNode and round-trip adapter satisfy the app contract cleanly, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 297 and its Python Codec design surface plus round-trip tree adapter. The Reference preserves the representation freedom and level-order clarification, both source examples without explanations, both constraints, and an accessible text equivalent of the source tree image."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native Codec remains tied to verified submission 2064355841. It and the protected app-local Codec have identical token grammar, iterative traversal, null handling, parent-slot reconstruction, and integer parsing; the local TreeNode definition and solve round trip are app-only adapters."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 16/64/192-node left-skewed tiers span 12x, exercise every null marker and parent-slot transition, and stress repeated work on long remaining subtrees. The current source passes at +0.00 relative exponent and 0.98x largest ratio; a correct codec that recounts each remaining subtree before serialization passes all outputs but fails only scaling at +0.92 and 16.90x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now defines node count n and height h, derives the exact 2n + 1 token count, separates total linear storage from O(h) stack depth, and explicitly covers empty trees plus signed and multi-digit token values."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains verified against its reviewed source evidence, preserving both examples without explanations, both constraints, the source-native clarification, and the informational equivalent of the sole source image."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "972640d1e0dac6a2e9a4add004d87fd7d85d69268efe313fd713361df8602499",
+    "native_source_sha256": "2ec3e8804aef2916be08ed5d6058abccc6be14a25ff79e679c3c52a3b487eac4",
+    "approach_sha256": "32a9709343ecd75d933d53b399cfb8056b2e35341f85c1b5add87abf2cf063f6",
+    "solution_variants_sha256": "c4de0add925c5be511643d0e4a2dd78162bd2ec7f6983eeedf486e3bc5ec664c",
+    "complexity_evidence_sha256": "d52248cfaf91370842683a93774c139ed4699a3289ebcd7e16d9da438dfc0414"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_614",
+  "language": "sql",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is clear and interview-ready. The active_followers CTE isolates role eligibility once, relationships names the rows being counted, and the final grouping states the required follower count and alphabetical order directly."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "SELECT DISTINCT gives one eligibility row for every user who follows someone, regardless of how many accounts they follow. Joining that set to relationships.followee retains exactly users who are also followed; each retained Follow row is one distinct direct follower because the source primary key makes relationships unique. Grouping therefore returns every and only second-degree follower with the correct count, without multiplication from the outgoing side."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 614 and SQL as its sole application language. The query consumes Follow(followee, follower), returns the required follower and num columns, and orders identifiers alphabetically."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected application SQL and immutable MySQL source bound to verified submission 2065474435 are byte-identical. The reviewed target therefore preserves the exact role deduplication, eligibility join, direct-follower count, grouping, projection, and ordering of the remotely Accepted source."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three authored cyclic workloads grow from 64 to 512 relationships and make every user appear in both roles. The exact protected source passed all seven correctness cases and all three performance tiers. A correct query that performed a correlated role-membership scan for each relationship passed every correctness and benchmark output but failed only performance with relative growth exponent +0.77 and a 5.19x largest runtime ratio, distinguishing set materialization and grouping from quadratic rescanning."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach precisely matches the current query's distinct outgoing-role relation, join to incoming relationships, grouped count, prevention of multiplicative self-join effects, and output ordering. Its O(R log R) general database time and O(R) execution-space bounds correctly cover distinct extraction, joining, grouping, and sorting."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The modular Reference is bound to the authenticated Premium statement's rendered-content hash. It preserves the Follow schema and composite primary key, no-self-follow guarantee, both role requirements, direct-follower count, alphabetical ordering, complete example and all three explanatory cases, and all three source tables."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium source example remains first with all four exact Follow relationships, exact Bob and Donald counts, explanation facts, and an explicit source-example tag.",
+      "Both invented samples were relabelled as trials, and both formerly hidden mixed-cycle and lexical-order checks are now visible trials.",
+      "Contract boundaries cover the composite relationship primary key, the no-self-follow guarantee, users appearing in only one role, an empty result, and the required follower and num output columns in ascending identifier order.",
+      "Material semantics cover two- and three-user cycles, unequal direct-follower counts, middle users in a chain, role intersection, a user following several accounts without count multiplication, followee-only exclusion, and lexical ordering.",
+      "An independent directed-graph role oracle and SQLite execution of both byte-identical protected queries verified all seven cases, all three benchmark outputs, all 4,096 directed graphs on four users, and 500 deterministic randomized unique no-self-follow graphs.",
+      "All seven ordinary correctness cases are visible samples or trials; the unchanged 64-, 256-, and 512-relationship cyclic workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "c4677ca0a1e1257012a2287377b4615adc7453f48e98c9cf48026c3c765a263c",
+    "native_source_sha256": "c4677ca0a1e1257012a2287377b4615adc7453f48e98c9cf48026c3c765a263c",
+    "approach_sha256": "2ede4737731b406117b037935ae0c314e0e9dff747d8527cd20f632580174422",
+    "solution_variants_sha256": "37a80182d904ba5239059ff81e8095961c561742a3a25c44068da97e5b2ff09d",
+    "complexity_evidence_sha256": "aa55859bc05d730f8bd16828e023c843255b1fbe58b503b1b683a064f445aa27",
+    "cases_sha256": "447b29c804ad9c45d1f14070fe21d05379f0d28e5999c24db509ac19e6d91bbe"
+  }
+}

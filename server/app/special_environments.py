@@ -490,19 +490,58 @@ def run_1188(module, data):
     target = module.BoundedBlockingQueue(int(data["capacity"]))
     dequeued = []
     calls = []
-    wants_size = False
-    for operation in data["operations"]:
+    for operation_index, operation in enumerate(data["operations"]):
         if operation[0] == "enqueue":
             value = int(operation[1])
-            calls.append(lambda value=value: target.enqueue(value))
+            calls.append((operation_index, lambda value=value: target.enqueue(value)))
         elif operation[0] == "dequeue":
-            calls.append(lambda: dequeued.append(target.dequeue()))
+            calls.append((operation_index, lambda: dequeued.append(target.dequeue())))
         elif operation[0] == "size":
-            wants_size = True
+            continue
         else:
             raise ValueError(f"unknown operation: {operation!r}")
-    run_threads(calls, stagger=bool(data.get("stagger", True)))
-    return {"dequeued": dequeued, "final_size": target.size() if wants_size else target.size()}
+
+    raw_checks = data.get("blocking_checks", [])
+    checks = {
+        int(check["operation_index"]): tuple(int(index) for index in check.get("after_completed", []))
+        for check in raw_checks
+    }
+    errors = []
+    violations = []
+    completed = {operation_index: threading.Event() for operation_index, _ in calls}
+    threads = []
+
+    def guarded(operation_index, call):
+        try:
+            call()
+        except BaseException:
+            errors.append(traceback.format_exc())
+        finally:
+            completed[operation_index].set()
+
+    stagger = bool(data.get("stagger", True))
+    for operation_index, call in calls:
+        for prerequisite in checks.get(operation_index, ()):
+            event = completed.get(prerequisite)
+            if event is None or not event.wait(0.5):
+                violations.append(f"blocking-check-prerequisite-{prerequisite}-did-not-complete")
+        thread = threading.Thread(target=guarded, args=(operation_index, call), daemon=True)
+        threads.append(thread)
+        thread.start()
+        if operation_index in checks:
+            time.sleep(0.01)
+            if completed[operation_index].is_set():
+                violations.append(f"operation-{operation_index}-did-not-block")
+        elif stagger:
+            time.sleep(0.0005)
+
+    for thread in threads:
+        thread.join(2.0)
+    if any(thread.is_alive() for thread in threads):
+        raise RuntimeError("worker threads did not finish; probable deadlock")
+    if errors:
+        raise RuntimeError(errors[0])
+    return {"dequeued": dequeued, "final_size": target.size(), "violations": violations}
 
 
 def run_1195(module, data):

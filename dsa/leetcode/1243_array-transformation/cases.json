@@ -7,186 +7,83 @@
       "name": "sample: one valley rises once",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr": [
-          6,
-          2,
-          3,
-          4
-        ]
-      },
-      "expected": [
-        6,
-        3,
-        3,
-        4
-      ],
-      "tags": [
-        "sample",
-        "valley"
-      ]
+      "input": {"arr": [6, 2, 3, 4]},
+      "expected": [6, 3, 3, 4],
+      "tags": ["sample", "valley", "single-day"]
     },
     {
       "id": "sample-multiple-rounds",
       "name": "sample: peaks and valleys stabilize together",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr": [
-          1,
-          6,
-          3,
-          4,
-          3,
-          5
-        ]
-      },
-      "expected": [
-        1,
-        4,
-        4,
-        4,
-        4,
-        5
-      ],
-      "tags": [
-        "sample",
-        "multiple-rounds"
-      ]
+      "input": {"arr": [1, 6, 3, 4, 3, 5]},
+      "expected": [1, 4, 4, 4, 4, 5],
+      "tags": ["sample", "multiple-days", "simultaneous-updates"]
     },
     {
       "id": "trial-increasing",
-      "name": "increasing array is already stable",
+      "name": "strictly increasing array is already stable",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "expected": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "tags": [
-        "stable",
-        "monotone"
-      ]
+      "input": {"arr": [1, 2, 3, 4, 5]},
+      "expected": [1, 2, 3, 4, 5],
+      "tags": ["stable", "monotone"]
     },
     {
       "id": "trial-flat",
       "name": "equal values never form strict extrema",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "arr": [
-          4,
-          4,
-          4,
-          4
-        ]
-      },
-      "expected": [
-        4,
-        4,
-        4,
-        4
-      ],
-      "tags": [
-        "stable",
-        "equal"
-      ]
+      "input": {"arr": [4, 4, 4, 4]},
+      "expected": [4, 4, 4, 4],
+      "tags": ["stable", "equal-values", "strict-comparison"]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: alternating extrema may reverse direction",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          1,
-          4,
-          1,
-          4,
-          1,
-          4,
-          1
-        ]
-      },
-      "expected": [
-        1,
-        2,
-        2,
-        2,
-        2,
-        2,
-        1
-      ],
-      "tags": [
-        "hidden",
-        "alternating"
-      ]
+      "id": "trial-direction-reversal",
+      "name": "an interior value may reverse direction on a later day",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [1, 2, 1, 2, 1]},
+      "expected": [1, 1, 1, 1, 1],
+      "tags": ["direction-reversal", "alternating-extrema", "simultaneous-updates"]
     },
     {
-      "id": "real-fixed-endpoints",
-      "name": "hidden: endpoints remain unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          9,
-          1,
-          9
-        ]
-      },
-      "expected": [
-        9,
-        9,
-        9
-      ],
-      "tags": [
-        "hidden",
-        "endpoints"
-      ]
+      "id": "trial-fixed-endpoints",
+      "name": "minimum-length array keeps boundary values fixed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [100, 1, 100]},
+      "expected": [100, 100, 100],
+      "tags": ["minimum-length", "fixed-endpoints", "value-bounds", "many-days"]
     },
     {
-      "id": "real-long-slope",
-      "name": "hidden: mixed plateau and slope",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-plateau-and-slope",
+      "name": "plateaus block strict changes beside an active slope",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [2, 7, 7, 3, 1, 5, 5, 8]},
+      "expected": [2, 7, 7, 3, 3, 5, 5, 8],
+      "tags": ["plateau", "strict-comparison", "mixed-shape"]
+    },
+    {
+      "id": "trial-one-equal-neighbor",
+      "name": "equality with one neighbor prevents a strict update",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [5, 2, 2, 4, 1]},
+      "expected": [5, 2, 2, 2, 1],
+      "tags": ["one-sided-equality", "strict-comparison", "peak"]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "maximum-length monotone array is stable",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "arr": [
-          2,
-          7,
-          7,
-          3,
-          1,
-          5,
-          5,
-          8
-        ]
+        "arr": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
       },
-      "expected": [
-        2,
-        7,
-        7,
-        3,
-        3,
-        5,
-        5,
-        8
-      ],
-      "tags": [
-        "hidden",
-        "plateau"
-      ]
+      "expected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100],
+      "tags": ["maximum-length", "value-bounds", "stable", "monotone"]
     }
   ]
 }

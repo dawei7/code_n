@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_428",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "correctness",
+        "severity": "material",
+        "reason": "Under Python's default recursion limit, direct execution of both protected recursive codecs raises RecursionError on a legal height-1000 chain. The inert candidate emits the identical stateless preorder value/count format and preserves O(n) time while replacing both recursive traversals with explicit stacks that pass the explicit height and 10,000-node maxima without relying on runner tracing behavior."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "reviewed",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 428 and its Python Codec surface. The Reference preserves serialization's purpose, unrestricted format choice, both suggested encodings, all three authenticated source examples, all four constraints, and two accessible parent/children tables equivalent to the two live source diagrams. The input wording selects the N-ary adapter without colliding with the generic binary-tree heuristic."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064789260 and remains aligned with the protected app-local recursive codec. The candidate is inert and retains the same empty marker and exact preorder value/count byte stream, but uses explicit serialization and reconstruction stacks; promotion would still require separately Accepted native evidence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 32-, 96-, and 256-node star tiers span 8x and stress token parsing across a wide ordered child list. A fresh exact-candidate run passes all 14 executions at +0.04 extra growth and a 1.70x largest-tier reference ratio. An independently correct control that repeatedly copies the token buffer for each cursor access passes all 14 outputs but fails only the scaling verdict at +0.24 extra growth and 5.26x on the largest tier."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach now describes the candidate exactly: preorder value/count encoding, reversed-child serialization stack, shared-position reconstruction stack, unique interpretation, stateless calls, and O(n) time with O(n) tokens plus O(h) traversal stacks. It identifies the protected recursion-limit failure."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The authenticated Premium statement was reviewed directly in Chrome. The modular Reference preserves the complete codec contract, both suggested encodings, all three unexplained source examples, all four constraints including statelessness, and every ordered parent/child relationship from the two source diagrams through two equivalently complete accessible tables. source_fidelity.json is verified with live-content SHA-256 e3f63a5f9634a4330c15f147eac9cb4040980ac47c9a183633c945fbec905380 and current hashes for every composed Reference section."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "All three authenticated Premium source examples appear first and in source order, including the 14-node tree, with exact ordered structure, empty-tree facts, and no invented explanations; the additional leaf is correctly labelled a trial.",
+      "Visible cases cover empty and single-node trees, values 0 and 10000, chains, wide roots, repeated values, nested branching, and deliberately non-sorted sibling order.",
+      "Two explicit record-form visible fixtures cover a 10,000-node star and a height-1000 chain without unparseably deep JSON nesting, preventing both node-count and interpreter-recursion regressions.",
+      "Independent preorder value/count signatures verified all eleven authored cases, all three benchmarks, 3,000 randomized ordered trees, stateless reuse of one codec, fresh reconstructed identities, exact protected-format bytes on overlapping inputs, and both maximum constructions.",
+      "All eleven correctness cases are visible samples or trials; the unchanged 32-, 96-, and 256-node star workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "55dbe87f0c044b9e90555b291ce866cd602c22c54da3eb309d13943c95873cb8",
+    "native_source_sha256": "05c8728f715bf5aa7d902c7beb949ff91bfe32cca537b7662fbaa1664c24d11a",
+    "approach_sha256": "5edf1dac5b85a139fef1f19c920b516733d532616a91833abd310660c8d250b9",
+    "solution_variants_sha256": "25d0afe25db7f0c11c3984272cc9de40398a206efbdf8b84a123f48c9e7c3310",
+    "complexity_evidence_sha256": "7daea5479928da92b8969e635ca3dbb95c0107f71297fdf03badff0ce1730a82",
+    "cases_sha256": "a23b2e4441d0453d7d87203fb56d879c9be3bdc52359e874eceeb5aea1a46f19",
+    "candidate_source_sha256": "9bec9123688f0101a78cc5bca9855e26f1f50396afe6990e2737aaad6effac7e"
+  }
+}

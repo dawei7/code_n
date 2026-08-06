@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_225",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The source contract permits at most 100 stack-method calls, so no legal command family can provide an honest unbounded scaling verdict for the per-operation design bound.",
+  "workload_bound": {
+    "symbol": "q",
+    "maximum": 100,
+    "unit": "push, pop, top, and empty calls",
+    "source_constraint": "The source-fidelity-verified constraint permits at most 100 calls across all four stack methods."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "With n older values, push performs one enqueue and exactly n front-to-back rotations, proving O(n) time. Pop, top, and empty are O(1); storage is O(n). Across q <= 100 calls, at most q pushes can produce O(q^2) total rotation work, which is contract-bounded and matches the documented aggregate qualification."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Black-box real-test execution verifies every existing ordinary command stream without inspecting its definition, including LIFO observations and legal reuse of the structure."
+    }
+  ]
+}

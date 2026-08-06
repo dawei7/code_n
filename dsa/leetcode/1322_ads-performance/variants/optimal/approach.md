@@ -1,19 +1,30 @@
 ## General
-**Count only the two rate-bearing actions**
 
-Group rows by `ad_id`. Conditional sums count `Clicked` rows and `Viewed` rows; ignored rows still ensure that an all-ignored advertisement remains present, but they add to neither count.
+**Reduce each advertisement to the two counts in the formula**
 
-Compute `100.0 * clicks / (clicks + views)`. Use `NULLIF` on the denominator to avoid division by zero, then `COALESCE` the resulting null to 0 and round to two decimal places. Finally, order the grouped rows by the computed rate descending and `ad_id` ascending.
+The output has one row per `ad_id`, so group the input by that identifier. Within each group, one conditional sum counts `Clicked` rows and another counts all rate-bearing interactions—`Clicked` or `Viewed`. An `Ignored` row adds to neither sum, but it remains in the group; this is essential because an advertisement with only ignored actions must still appear.
 
-Each source row contributes to exactly one advertisement's two counters. The formula therefore uses precisely the specified numerator and denominator, including the separately defined zero-denominator case, so every grouped rate is correct.
+Multiply the click count by `100.0` before division so the percentage uses decimal rather than integer arithmetic. `NULLIF` converts a zero click-plus-view denominator to null, `COALESCE` maps that one exceptional result to the required zero, and `ROUND(..., 2)` produces the reported CTR.
+
+For a fixed advertisement, every click contributes one to both numerator and denominator, every view contributes only to the denominator, and every ignored action contributes to neither. If the denominator is positive, the expression is therefore exactly $100C/(C+V)$; if it is zero, the expression follows the separately defined zero branch. Grouping preserves one result for every represented advertisement, proving both the values and result membership.
+
+**Apply the contract's order to the reported rate**
+
+Sort by the rounded `ctr` alias descending, then by `ad_id` ascending. This orders the values actually returned and deterministically resolves equal rates.
 
 ## Complexity detail
-Grouping scans $r$ rows and stores $a$ aggregates. Sorting the result costs $O(a\log a)$, giving $O(r+a\log a)$ time and $O(a)$ intermediate space in the general model.
+
+Let $r$ be the number of rows in `Ads` and $a$ the number of distinct advertisements. A hash-based grouping pass takes expected $O(r)$ time and $O(a)$ aggregate space. Sorting the $a$ result rows takes $O(a\log a)$ time, for total expected time $O(r+a\log a)$ and $O(a)$ working space.
 
 ## Alternatives and edge cases
-- **Correlated subqueries:** Counting clicks and views separately for every distinct ad is correct but can rescan the full table $a$ times and take $O(ar)$ time.
-- **Average of a click indicator:** Filter out ignored rows and average 1 for clicks and 0 for views, but an outer advertisement list is still needed to retain all-ignored ads.
-- **Only ignored actions:** The denominator is zero, and the reported CTR must be 0 rather than null or an error.
-- **No clicks:** A positive number of views still yields 0.
-- **No views:** At least one click yields 100.
-- **Equal rates:** Resolve the tie with ascending `ad_id`.
+
+- **Correlated counts:** Starting from the distinct advertisements and separately counting clicks and views for each one is correct, but it can rescan all $r$ rows for every advertisement and take $O(ar)$ time.
+- **Average a click indicator:** After excluding ignored rows, averaging `1` for clicks and `0` for views gives the same positive-denominator rate, but a separate advertisement relation or outer join is needed to retain all-ignored advertisements.
+- **Filtering ignored rows before grouping:** This silently removes advertisements whose only actions are ignored, violating required result membership.
+- **Integer division:** Using an integer numerator can truncate every non-integral rate before multiplication or rounding; `100.0` forces decimal arithmetic.
+- **Zero denominator:** An all-ignored advertisement must produce numeric zero rather than null or a division error.
+- **Clicks only and views only:** A positive click count with no views yields `100.00`; views with no clicks yield `0.00` without taking the zero-denominator branch.
+- **All three actions:** Ignored rows leave the click-to-click-plus-view ratio unchanged even when clicks and views are both present.
+- **Tied rounded rates:** Equal reported CTR values are ordered by ascending `ad_id`.
+- **Empty input:** With no advertisement rows, there are no groups and therefore no output rows.
+- **Composite-key scope:** A `user_id` may occur under several advertisements; only the (`ad_id`, `user_id`) pair is unique, and grouping depends solely on `ad_id`.

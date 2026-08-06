@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1538",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected implementation classifies each index relative to reference index 3 by comparing reader.query(0, 1, 2, i) with baseline query(0, 1, 2, 3), and classifies indices 0, 1, 2 using three anchor replacement queries. It uses exactly n queries (<= 2n limit), O(n) time, and O(1) auxiliary space to return a majority index or -1 on ties; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Sharing three index parameters between queries isolates whether the single replaced index has the same bit value as the reference index. Summing counts of the reference equivalence class vs the opposite class correctly identifies which bit is in the majority."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Making exactly n queries and doing constant local work per query takes O(n) time. Storing only scalar counters and representative indices takes O(1) auxiliary space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Handles the minimum length n = 5 up to n = 10^5, stays strictly within 2n queries (using exactly n), and returns any valid majority index or -1 when zero and one counts tie."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details relative equivalence partitioning around a reference index, recovering the first three indices using anchor replacements, and proving O(n) time and O(1) space bounds. Alternatives and edge cases cover full array reconstruction, unoriented queries, n=5 edge cases, tie handling (-1), and output index flexibility."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the exact same n-query relative equivalence algorithm with SHA-256 digests 6f48b0a4120c7a0c335d64c0a0c9e15ab349bd1b5394c35efbd9c40d5e2f89e2 and ec639962c795b93a83696609d5cb86f900c0ea1051e319bada9d5c573ccde7eb. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed ArrayReader query model, three examples, three constraints, and one hint. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "6f48b0a4120c7a0c335d64c0a0c9e15ab349bd1b5394c35efbd9c40d5e2f89e2",
+    "native_source_sha256": "ec639962c795b93a83696609d5cb86f900c0ea1051e319bada9d5c573ccde7eb",
+    "approach_sha256": "4c2391adf2349711cdbefde8811838c41dff0a8e055eb6f59090d439074ab6df",
+    "solution_variants_sha256": "96b9f5e89c7a03cc017caedd21be80b1975a370dcbd2a4f7de12cfbeaddfb25b",
+    "complexity_evidence_sha256": "8303697bd3d6220edef720ca2de80ce02d7f5679c198522a80e3cc6cb140fe3d"
+  }
+}

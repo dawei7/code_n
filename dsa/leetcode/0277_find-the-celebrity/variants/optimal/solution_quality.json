@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_277",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already the canonical two-pass celebrity algorithm. Each relationship query eliminates one possible celebrity, and the survivor is then checked against every other person in both required directions. Candidate and person are genuine domain concepts, the adapter is minimal, and no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium interactive LeetCode problem 277 and its Python interface. The Reference distinguishes the native knows API from the offline knows_matrix adapter, preserves both examples and explanations, all four constraints, and the 3n-query follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is tied to verified submission 2064301091. Its reviewed alignment with the app-local source is hash-current: the only material structural difference is the unavoidable deterministic matrix adapter for the judge-supplied knows predicate; elimination, verification, names, data flow, and query complexity match."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The previous benchmark used a 256-person tier above n <= 100 and set every diagonal entry false despite graph[i][i] == 1. Legal 16/40/100-person fixtures now place the celebrity last and preserve a 6.25x span. The current source passes at +0.03 relative exponent and 1.02x largest ratio; a correct all-pairs verifier passes every output but fails only scaling at +1.23 and 29.38x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now explains why either answer eliminates one endpoint, proves that a real celebrity survives, gives the exact maximum of 3(n - 1) queries, and distinguishes no-celebrity, mutual-acquaintance, and defensive one-person behavior."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Premium Reference remains verified against authenticated source evidence. Both source images now have accessible Mermaid relationship diagrams that preserve the exact example edges, and both examples, both explanations, all four constraints, and the follow-up remain in source order."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated source examples appear first, in source order, with the exact 3-by-3 relationship matrices and expected outputs.",
+      "The previous four rows all violated graph[i][i] == 1, the n = 1 row violated n >= 2, the second source example was replaced by an unrelated 2-by-2 graph, and one correctness row was hidden; every replacement is source-legal and visible.",
+      "The suite covers n = 2 and n = 100, square-matrix integrity, true diagonal entries, celebrity labels at the first, middle, and last positions, and the no-celebrity sentinel -1.",
+      "No-celebrity cases include a directed cycle, mutual acquaintance, a disconnected pair, a survivor who knows someone, and a survivor whom someone does not know, exercising both verification directions.",
+      "Dense unrelated edges verify that relationships among non-celebrities do not affect the answer, while first- and last-position fixtures exercise candidate survival and repeated replacement.",
+      "Expected outputs were independently derived from the two celebrity predicates and checked against the source for all 12 authored fixtures; exhaustive enumeration of all 4,164 valid matrices for n = 2, 3, and 4 also matched the source.",
+      "All 12 correctness cases are visible samples or trials; the legal 16-, 40-, and 100-person scaling fixtures remain hidden performance-only rows in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "0e68deaafff296011ef3e5fe71d3f1c22d9cc0a17a604f8cac2a35a801f3c831",
+    "native_source_sha256": "f23899025dda3d36210d72ff88dbeabd6fef96371d659a2ead1501f55a2e0d94",
+    "approach_sha256": "10f0edd77d95559157a65365a9ee5215c8bf5a1c61a200fa3503098448ae5c5f",
+    "solution_variants_sha256": "244b3b637300ab2a5efe2473c9bb780d2501024c61a1180a4d7e423c2daf8df8",
+    "complexity_evidence_sha256": "9e036d5cbacc2e74262e93a5a08bad0f8a6fdf377f22ec0cb6ac73e42d8ab081",
+    "cases_sha256": "235b062428e62f347c13c21f1e16acdb1c3c38263a4d16589d3c845b9aef8c3f"
+  }
+}

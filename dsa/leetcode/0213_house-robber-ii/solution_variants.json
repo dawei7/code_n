@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for House Robber II and meets the required complexity bound.",
+      "summary": "Runs rolling linear dynamic programs that respectively exclude the last and first houses.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

@@ -9,4 +9,4 @@ Let $sz$ be the number of nodes in `head`.
 
 **Return value**
 
-Return the list after removing its $n$th node from the end.
+Return the head of the linked list after removing its $n$th node from the end.

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Patching Array and meets the required complexity bound.",
+      "summary": "Tracks the first uncovered sum and patches with that value whenever the next input cannot close the gap.",
       "time_complexity": "O(m + \\log n)",
       "space_complexity": "O(1)"
     }

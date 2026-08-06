@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_548",
+    "frontend_id": "548",
+    "title_slug": "split-array-with-equal-sum",
+    "url": "https://leetcode.com/problems/split-array-with-equal-sum/description/",
+    "paid_only": true,
+    "content_sha256": "5229a5c4a91987f534183ba8cf1a3e9d7514613a1f1bbf0a9145c0a2ab5d6240",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,1,2,1,2,1]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,1,2,1,2,1,2]",
+        "output": "false",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "fa5140ba73889addf6da1fd882638ba23f7f8cee209f9b00020986d9afc6811b",
+      "reference/contract.md": "850f0d5b51504410daa770e1d5c8343071131444c7c185d3bfed473e33be6886",
+      "reference/examples.md": "4bdf57364e294cd441151c33d54c5b76e86b376502cf243fdd1cf26dec62f0aa",
+      "reference/constraints.md": "b009aabd8930840e4b902d908aecc27d5587d1c9a7631e07fbf1f16290360dbd"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

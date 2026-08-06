@@ -1,7 +1,7 @@
 ## General
 **Pack the longest consecutive word prefix that fits**
 
-Starting at the next unused word, keep adding words while their total letter count plus one mandatory space for each existing gap remains at most `maxWidth`. When considering another word, the fit test must include the new gap before that word. Stop immediately before the first word that would exceed the width.
+Starting with `i` at the next unused word, keep adding words while their total letter count plus one mandatory space for each existing gap remains at most `maxWidth`. When considering another word, the fit test must include the new gap before that word. Stop immediately before the first word that would exceed the width.
 
 This packing decision is independent of later space distribution. The problem explicitly requires greedy line breaks, so a shorter aesthetically balanced line is not an alternative.
 
@@ -13,7 +13,7 @@ For a nonfinal line with at least two words, let `spaces = maxWidth - total_lett
 base, extra = divmod(spaces, gaps)
 ```
 
-Every gap receives `base` spaces, and the first `extra` gaps receive one additional space. This uses every required space, keeps gap sizes within one of each other, and places larger gaps on the left exactly as required.
+Every gap receives `base` spaces, and the first `extra` gaps receive one additional space. The candidate walks those gaps with `j`. This uses every required space, keeps gap sizes within one of each other, and places larger gaps on the left exactly as required.
 
 **Last and single-word lines follow a different rule**
 

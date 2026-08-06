@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_248", "frontend_id": "248", "title_slug": "strobogrammatic-number-iii", "url": "https://leetcode.com/problems/strobogrammatic-number-iii/description/", "paid_only": true, "content_sha256": "95fd3245654b5e69cb32cd60212ff0a1320493b69623df543c67bb3394cc4df3", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "low = \"50\", high = \"100\"", "output": "3", "has_explanation": false}, {"ordinal": 2, "input": "low = \"0\", high = \"0\"", "output": "1", "has_explanation": false}],
-    "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_248",
+    "frontend_id": "248",
+    "title_slug": "strobogrammatic-number-iii",
+    "url": "https://leetcode.com/problems/strobogrammatic-number-iii/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "2eb72cfedb936802263043c5d77a6a3711fcb35ce2cd4375d256704035876632", "reference/contract.md": "e97389d8c6917d39e69e66fb4b3aeafa913ba163cabc3ec59883a931165e9c67", "reference/examples.md": "58327b671422c020b579055d38ae1dc4031ffafe147ed342c2e3172bbf12b759", "reference/constraints.md": "82333cd37b17440a4f5c7056c03b4878699f1e8b5a6eee8f7e96bd1575cf1394"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`low = \"50\"`, `high = \"100\"`",
+        "output": "`3`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`low = \"0\"`, `high = \"0\"`",
+        "output": "`1`",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7e6e7b10ea77b9474145575e1c052bd3ba95af4d87e0318973c72877b9e27ca4",
+      "reference/contract.md": "20157cb8c402332daf0e76af6d3b1854671d05ebe4e7cb28ed3fdb39e8f4f5bf",
+      "reference/examples.md": "8119f9e4d334882130a8396d031dd52fe75f77b3c33887df1b4054543a42b4f6",
+      "reference/constraints.md": "a957bfdba9f117f6b572556e4c2faca4aaef07a7e314ccf7c673426de75cf657"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

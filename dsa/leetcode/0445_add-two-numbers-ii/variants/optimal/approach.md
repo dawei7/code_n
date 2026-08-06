@@ -9,7 +9,7 @@ Repeatedly pop one digit from each nonempty stack, add them with the carry, and 
 
 **Prepend each computed digit**
 
-Digits are computed least-significant first but the result must be forward ordered. In the native linked form, create each new result node with the current head as its `next`. The app-local list adaptation collects reverse digits and reverses them once at the end.
+Digits are computed least-significant first but the result must be forward ordered. In both the native and app-local linked forms, create each new result node with the current head as its `next`. Prepending every computed digit therefore leaves the final chain in most-significant-first order without a reversal pass.
 
 **Why the produced digits equal the arithmetic sum**
 

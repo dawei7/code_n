@@ -1133,8 +1133,8 @@ ORDER BY activity.player_id;
 
     def test_real_test_reports_custom_failure_without_rejecting_submission(self) -> None:
         source = LC_153_SOURCE.replace(
-            "def solve(nums):\n",
-            "def solve(nums):\n    if nums == [42, 1]:\n        return -1\n",
+            "def findMin(self, nums: List[int]) -> int:\n",
+            "def findMin(self, nums: List[int]) -> int:\n        if nums == [42, 1]:\n            return -1\n",
         )
         response = self.client.post(
             "/api/challenges/lc_153/run",
@@ -1158,7 +1158,7 @@ ORDER BY activity.player_id;
     def test_real_test_continues_after_failures_and_redacts_hidden_failure(self) -> None:
         response = self.client.post(
             "/api/challenges/lc_153/run",
-            json={"source": "def solve(nums):\n    return None\n", "mode": "real_test"},
+            json={"source": "class Solution:\n    def findMin(self, nums):\n        return None\n", "mode": "real_test"},
         )
         self.assertEqual(response.status_code, 200, response.text)
         body = response.json()
@@ -1177,8 +1177,8 @@ ORDER BY activity.player_id;
 
     def test_hidden_only_failure_has_no_hidden_evidence_side_channel(self) -> None:
         source = LC_153_SOURCE.replace(
-            "def solve(nums):\n",
-            "def solve(nums):\n    if nums == [8, 9, 10, 11, 12, 3, 4, 5, 6, 7]:\n        return -1\n",
+            "def findMin(self, nums: List[int]) -> int:\n",
+            "def findMin(self, nums: List[int]) -> int:\n        if nums == [8, 9, 10, 11, 12, 3, 4, 5, 6, 7]:\n            return -1\n",
         )
         response = self.client.post(
             "/api/challenges/lc_153/run",
@@ -1647,23 +1647,23 @@ def solve(rows, cols, rCenter, cCenter):
         self.assertTrue(body["passed"], body)
 
     def test_distant_barcodes_validator_accepts_alternate_arrangement(self) -> None:
-        source = '''
-from collections import Counter
-from heapq import heappop, heappush, heapify
+        source = '''from collections import Counter
+from typing import List
 
-def solve(barcodes):
-    heap = [(-count, -value) for value, count in Counter(barcodes).items()]
-    heapify(heap)
-    previous = None
-    result = []
-    while heap:
-        count, value = heappop(heap)
-        value = -value
-        result.append(value)
-        if previous is not None:
-            heappush(heap, previous)
-        previous = (count + 1, -value) if count + 1 < 0 else None
-    return result
+class Solution:
+    def rearrangeBarcodes(self, barcodes: List[int]) -> List[int]:
+        counts = Counter(barcodes)
+        most_common = counts.most_common()
+        n = len(barcodes)
+        res = [0] * n
+        idx = 0
+        for val, count in most_common:
+            for _ in range(count):
+                res[idx] = val
+                idx += 2
+                if idx >= n:
+                    idx = 1
+        return res
 '''
         response = self.client.post(
             "/api/challenges/lc_1054/run",
@@ -1748,17 +1748,20 @@ def solve(barcodes):
 
 
     def test_group_people_validator_accepts_alternate_group_order(self) -> None:
-        source = '''
-def solve(groupSizes):
-    buckets = {}
-    groups = []
-    for index, size in enumerate(groupSizes):
-        bucket = buckets.setdefault(size, [])
-        bucket.append(index)
-        if len(bucket) == size:
-            groups.append(list(reversed(bucket)))
-            buckets[size] = []
-    return list(reversed(groups))
+        source = '''from collections import defaultdict
+from typing import List
+
+class Solution:
+    def groupThePeople(self, groupSizes: List[int]) -> List[List[int]]:
+        buckets = defaultdict(list)
+        groups = []
+        for index, size in enumerate(groupSizes):
+            bucket = buckets[size]
+            bucket.append(index)
+            if len(bucket) == size:
+                groups.append(list(reversed(bucket)))
+                buckets[size] = []
+        return list(reversed(groups))
 '''
         response = self.client.post(
             "/api/challenges/lc_1282/run",

@@ -1,7 +1,7 @@
 ## General
 **Search directly for the lower-bound insertion point**
 
-Initialize the half-open unknown interval `[left, right)` as `[0, len(nums))`. When `nums[mid] < target`, every index through the midpoint is too small, so set `left = mid + 1`. Otherwise the midpoint is a possible insertion position, but an earlier position might also work, so retain it by setting `right = mid`.
+Initialize the half-open unknown interval `[left, right)` as `[0, len(nums))`. When `nums[middle] < target`, every position through the midpoint is too small, so set `left = middle + 1`. Otherwise the midpoint is a possible insertion position, but an earlier position might also work, so retain it by setting `right = middle`.
 
 Stop when the interval is empty. The shared boundary is the lower-bound insertion position.
 
@@ -20,7 +20,7 @@ Throughout lower-bound search, every discarded index left of `left` holds a valu
 If that position contains target, it is the target's index. Otherwise all earlier values are smaller and all later values are no smaller, so inserting at the boundary is the unique placement that preserves sorted order.
 
 ## Complexity detail
-The unknown half-open interval is at least halved on every iteration, giving $O(\log n)$ time. Only `left`, `right`, and `mid` are stored, so auxiliary space is $O(1)$.
+The unknown half-open interval is at least halved on every iteration, giving $O(\log n)$ time. Only `left`, `right`, and `middle` are stored, so auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
 - **Linear scan:** finds the boundary directly but requires $O(n)$ time.

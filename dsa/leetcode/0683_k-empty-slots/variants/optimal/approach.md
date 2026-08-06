@@ -5,7 +5,7 @@ Build `days[position]`, the day that position's bulb turns on. For endpoints `le
 
 **Slide endpoints while invalidating windows early**
 
-Begin with the first possible endpoint pair. Scan interior positions. If an interior bulb blooms before either endpoint pair is complete, the current window is invalid. That interior position can become the next left endpoint: any window starting between the old left and this earlier bulb would still contain that bulb, which blooms too soon, so those starts can be skipped.
+Begin with the first possible endpoint pair and advance `scan_position` through the window. If an interior bulb blooms before either endpoint pair is complete, the current window is invalid. That interior position can become the next left endpoint: any window starting between the old left and this earlier bulb would still contain that bulb, which blooms too soon, so those starts can be skipped.
 
 **Recognize a window when the scan reaches its right endpoint**
 

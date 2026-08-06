@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_216",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected app-local and Accepted native sources implement concise increasing-choice backtracking over digits 1 through 9. They prevent reuse and permutation duplicates by advancing the next candidate, stop once candidates exceed the remaining sum, and copy only exact length-k zero-remainder paths. The fixed domain makes stronger pruning a non-material optimization, so no candidate is justified."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The former benchmark used synthetic 8/64/256 search units and included k = 1 outside the source contract. Scaling cannot be honest because every input searches the same fixed nine-digit universe. A verified bounded-domain certificate now proves at most 2^9 subset states, O(2^9 k) time including output copies, and O(k) auxiliary path depth."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The approach formerly attributed available-slot and minimum/maximum achievable-sum pruning to sources that implement none of those checks. It now describes the exact increasing recursion and value-greater-than-remaining break, moves stronger bounds to alternatives, and states a safe whole-search complexity bound."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "4326ae35b47b96cbd0ef9aee16fb8f4ae31f9e9e495c64e34c188c07e5642473",
+    "native_source_sha256": "b0cf3da5666c3c2614e0666f4509649830de901fe8c02ed6f6929643bc4bc8c0",
+    "approach_sha256": "c4880132599a763da71b15e59faa9d658fca09e8bbcf34eac8a98972fdd9fed3",
+    "solution_variants_sha256": "341197f67840d003adb3cd31d5f47c9df0083c12974a04b2722ca75ac45da58f",
+    "complexity_evidence_sha256": "67052148483aa48fa5165434ccd327e95156faaa6a3fb47f4b083338b9dc6b15"
+  }
+}

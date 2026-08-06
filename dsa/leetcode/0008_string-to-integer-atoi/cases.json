@@ -2,10 +2,19 @@
   "challenge_id": "lc_8",
   "cases": [
     {"id": "sample-1", "name": "sample: positive integer", "kind": "sample", "visible": true, "input": {"s": "42"}, "expected": 42, "tags": ["sample"]},
-    {"id": "sample-2", "name": "sample: spaces sign and leading zero", "kind": "sample", "visible": true, "input": {"s": "   -042"}, "expected": -42, "tags": ["sample", "negative"]},
-    {"id": "trial-stops-at-text", "name": "parsing stops at first nondigit", "kind": "trial", "visible": true, "input": {"s": "1337c0d3"}, "expected": 1337, "tags": ["terminator"]},
-    {"id": "trial-no-prefix", "name": "text before digits yields zero", "kind": "trial", "visible": true, "input": {"s": "words and 987"}, "expected": 0, "tags": ["invalid-prefix"]},
-    {"id": "real-positive-overflow", "name": "hidden: positive overflow clamps", "kind": "real", "visible": false, "input": {"s": "91283472332"}, "expected": 2147483647, "tags": ["hidden", "overflow"]},
-    {"id": "real-sign-after-digit", "name": "hidden: sign ends digit parsing", "kind": "real", "visible": false, "input": {"s": "0-1"}, "expected": 0, "tags": ["hidden", "terminator"]}
+    {"id": "sample-2", "name": "sample: leading space sign and zero", "kind": "sample", "visible": true, "input": {"s": " -042"}, "expected": -42, "tags": ["sample", "negative"]},
+    {"id": "sample-3", "name": "sample: parsing stops at text", "kind": "sample", "visible": true, "input": {"s": "1337c0d3"}, "expected": 1337, "tags": ["sample", "terminator"]},
+    {"id": "sample-4", "name": "sample: sign after a digit stops parsing", "kind": "sample", "visible": true, "input": {"s": "0-1"}, "expected": 0, "tags": ["sample", "terminator"]},
+    {"id": "sample-5", "name": "sample: text before digits yields zero", "kind": "sample", "visible": true, "input": {"s": "words and 987"}, "expected": 0, "tags": ["sample", "invalid-prefix"]},
+    {"id": "trial-empty", "name": "empty string", "kind": "trial", "visible": true, "input": {"s": ""}, "expected": 0, "tags": ["boundary", "no-digits"]},
+    {"id": "trial-spaces-only", "name": "spaces without a numeric prefix", "kind": "trial", "visible": true, "input": {"s": "   "}, "expected": 0, "tags": ["whitespace", "no-digits"]},
+    {"id": "trial-sign-without-digits", "name": "sign without following digits", "kind": "trial", "visible": true, "input": {"s": "+-12"}, "expected": 0, "tags": ["sign", "no-digits"]},
+    {"id": "trial-leading-zeroes", "name": "positive sign and leading zeroes", "kind": "trial", "visible": true, "input": {"s": "   +00000123"}, "expected": 123, "tags": ["sign", "leading-zeroes"]},
+    {"id": "trial-decimal-point", "name": "decimal point terminates integer parsing", "kind": "trial", "visible": true, "input": {"s": "3.14159"}, "expected": 3, "tags": ["terminator", "decimal-point"]},
+    {"id": "trial-positive-limit", "name": "exact positive 32-bit limit", "kind": "trial", "visible": true, "input": {"s": "2147483647"}, "expected": 2147483647, "tags": ["boundary", "positive"]},
+    {"id": "trial-negative-limit", "name": "exact negative 32-bit limit", "kind": "trial", "visible": true, "input": {"s": "-2147483648"}, "expected": -2147483648, "tags": ["boundary", "negative"]},
+    {"id": "trial-positive-overflow", "name": "positive overflow clamps", "kind": "trial", "visible": true, "input": {"s": "91283472332"}, "expected": 2147483647, "tags": ["overflow", "positive"]},
+    {"id": "trial-negative-overflow", "name": "negative overflow clamps", "kind": "trial", "visible": true, "input": {"s": "-91283472332"}, "expected": -2147483648, "tags": ["overflow", "negative"]},
+    {"id": "trial-max-length", "name": "maximum-length string", "kind": "trial", "visible": true, "input": {"s": "                                                                                                                                                                                                       7"}, "expected": 7, "tags": ["boundary", "whitespace"]}
   ]
 }

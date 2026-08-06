@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1244",
+    "frontend_id": "1244",
+    "title_slug": "design-a-leaderboard",
+    "url": "https://leetcode.com/problems/design-a-leaderboard/description/",
+    "paid_only": true,
+    "content_sha256": "2ebccd4e0201b2af6a149fff0932264da622090cbd3255be5dfb0d0abcd5847e",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "hint"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "commands = [\"Leaderboard\",\"addScore\",\"addScore\",\"addScore\",\"addScore\",\"addScore\",\"top\",\"reset\",\"reset\",\"addScore\",\"top\"], arguments = [[],[1,73],[2,56],[3,39],[4,51],[5,4],[1],[1],[2],[2,51],[3]]",
+        "output": "[null,null,null,null,null,null,73,null,null,null,141]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a887a06b2ac521eeef461a12b1db7b69609425fb039d5ee0dd3bdd0726913be5",
+      "reference/contract.md": "7b74cd046036cb46e6718292507ecdb14ea47dc62e9153d3e805c4ba10638612",
+      "reference/examples.md": "0756ec1c1de198bde0f6479269c0678cfc0136ad799ee9f30c4e3593d689dd7c",
+      "reference/constraints.md": "2fa4804e2f4de9f8e03a72668e267015e43dd9fa2d6de37590bd7348c2aab5e6",
+      "reference/hint.md": "8bf845848c75bacbc10dad55247f7d7fad4f9c515905d2780e2c6d49210c12e3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

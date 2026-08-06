@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_269",
-  "measurement_note": "Size is total input characters; repeated prefixed words preserve one unique alphabet chain while all-pairs word comparison grows quadratically.",
+  "measurement_note": "Size is total input characters; adjacent comparison is linear in the sorted prefixed words while comparing every earlier/later word pair is quadratic in word count.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 26 prefixed dictionary words",
+      "name": "benchmark: 20 sorted prefixed dictionary words",
       "kind": "benchmark",
       "visible": false,
-      "size": 104,
+      "size": 80,
       "input": {
         "words": [
           "mmma",
@@ -30,17 +30,13 @@
           "mmmq",
           "mmmr",
           "mmms",
-          "mmmt",
-          "mmmu",
-          "mmmv",
-          "mmmw",
-          "mmmx",
-          "mmmy",
-          "mmmz"
+          "mmmt"
         ]
       },
-      "expected": "abcdefghijklmnopqrstuvwxyz",
-      "validator": {"kind": "alien_dictionary_order"},
+      "expected": "abcdefghijklmnopqrst",
+      "validator": {
+        "kind": "alien_dictionary_order"
+      },
       "tags": [
         "benchmark",
         "scale-small",
@@ -49,10 +45,10 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: 52 prefixed dictionary words",
+      "name": "benchmark: 50 sorted prefixed dictionary words",
       "kind": "benchmark",
       "visible": false,
-      "size": 208,
+      "size": 200,
       "input": {
         "words": [
           "mmma",
@@ -104,13 +100,13 @@
           "mmmx",
           "mmmx",
           "mmmy",
-          "mmmy",
-          "mmmz",
-          "mmmz"
+          "mmmy"
         ]
       },
-      "expected": "abcdefghijklmnopqrstuvwxyz",
-      "validator": {"kind": "alien_dictionary_order"},
+      "expected": "abcdefghijklmnopqrstuvwxy",
+      "validator": {
+        "kind": "alien_dictionary_order"
+      },
       "tags": [
         "benchmark",
         "scale-medium",
@@ -119,10 +115,10 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: 104 prefixed dictionary words",
+      "name": "benchmark: 100 sorted prefixed dictionary words",
       "kind": "benchmark",
       "visible": false,
-      "size": 416,
+      "size": 400,
       "input": {
         "words": [
           "mmma",
@@ -224,15 +220,13 @@
           "mmmy",
           "mmmy",
           "mmmy",
-          "mmmy",
-          "mmmz",
-          "mmmz",
-          "mmmz",
-          "mmmz"
+          "mmmy"
         ]
       },
-      "expected": "abcdefghijklmnopqrstuvwxyz",
-      "validator": {"kind": "alien_dictionary_order"},
+      "expected": "abcdefghijklmnopqrstuvwxy",
+      "validator": {
+        "kind": "alien_dictionary_order"
+      },
       "tags": [
         "benchmark",
         "scale-large",

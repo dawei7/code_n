@@ -9,7 +9,7 @@
       "visible": true,
       "input": {"grid": [[1, 0, 2, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]},
       "expected": 7,
-      "tags": ["sample"]
+      "tags": ["sample", "source-example"]
     },
     {
       "id": "sample-2",
@@ -18,7 +18,7 @@
       "visible": true,
       "input": {"grid": [[1, 0]]},
       "expected": 1,
-      "tags": ["sample", "boundary"]
+      "tags": ["sample", "source-example", "boundary"]
     },
     {
       "id": "sample-3",
@@ -27,13 +27,13 @@
       "visible": true,
       "input": {"grid": [[1]]},
       "expected": -1,
-      "tags": ["sample", "impossible"]
+      "tags": ["sample", "source-example", "impossible"]
     },
     {
       "id": "trial-between-buildings",
       "name": "trial: one cell between two buildings",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {"grid": [[1, 0, 1]]},
       "expected": 2,
       "tags": ["trial", "multiple-buildings"]
@@ -42,37 +42,82 @@
       "id": "trial-open-corners",
       "name": "trial: opposite corners in an open grid",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {"grid": [[1, 0, 0], [0, 0, 0], [0, 0, 1]]},
       "expected": 4,
       "tags": ["trial", "open-grid"]
     },
     {
-      "id": "hidden-isolated-building",
-      "name": "hidden: one building is sealed off",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-isolated-building",
+      "name": "one building is sealed off",
+      "kind": "trial",
+      "visible": true,
       "input": {"grid": [[1, 2, 0], [2, 2, 1], [0, 0, 0]]},
       "expected": -1,
-      "tags": ["hidden", "disconnected"]
+      "tags": ["disconnected", "obstacles"]
     },
     {
-      "id": "hidden-four-buildings",
-      "name": "hidden: four buildings share a corridor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-buildings",
+      "name": "four buildings share a corridor",
+      "kind": "trial",
+      "visible": true,
       "input": {"grid": [[1, 2, 1], [0, 0, 0], [1, 2, 1]]},
       "expected": 8,
-      "tags": ["hidden", "obstacles"]
+      "tags": ["multiple-buildings", "obstacles"]
     },
     {
-      "id": "hidden-detour",
-      "name": "hidden: obstacle forces a detour",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-detour",
+      "name": "obstacle forces a detour",
+      "kind": "trial",
+      "visible": true,
       "input": {"grid": [[1, 0, 2, 0], [0, 0, 2, 1], [0, 0, 0, 0]]},
       "expected": 6,
-      "tags": ["hidden", "detour"]
+      "tags": ["obstacles", "detour"]
+    },
+    {
+      "id": "trial-building-wall",
+      "name": "a building blocks access to another building behind it",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,0]]},
+      "expected": -1,
+      "tags": ["buildings-impassable","one-row","impossible"]
+    },
+    {
+      "id": "trial-private-partial-land",
+      "name": "private land near one building is not a valid common site",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0,1,2],[2,0,1],[0,0,0]]},
+      "expected": 2,
+      "tags": ["partial-reachability","reach-count","obstacles"]
+    },
+    {
+      "id": "trial-surrounded-common-cell",
+      "name": "one empty cell is adjacent to four buildings",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[2,1,2],[1,0,1],[2,1,2]]},
+      "expected": 4,
+      "tags": ["single-candidate","four-buildings","obstacles"]
+    },
+    {
+      "id": "trial-maximum-width",
+      "name": "maximum-width row with buildings at both endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]},
+      "expected": 49,
+      "tags": ["maximum-width","one-row","multiple-optima"]
+    },
+    {
+      "id": "trial-maximum-height",
+      "name": "maximum-height column with buildings at both endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[1]]},
+      "expected": 49,
+      "tags": ["maximum-height","one-column","multiple-optima"]
     }
   ]
 }

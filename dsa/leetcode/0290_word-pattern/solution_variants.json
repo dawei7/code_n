@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Word Pattern and meets the required complexity bound.",
+      "summary": "Maintains inverse character-to-word and word-to-character maps to enforce a bijection in one pass.",
       "time_complexity": "O(n)",
-      "space_complexity": "O(k)"
+      "space_complexity": "O(n)"
     }
   ]
 }

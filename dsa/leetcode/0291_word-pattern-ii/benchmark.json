@@ -1,37 +1,58 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_291",
-  "measurement_note": "Size is target-string length. Repeated-symbol failures reward incremental consistency pruning over enumerating all complete partitions.",
+  "measurement_note": "Size is target-string length; repeated-symbol failures reward immediate assignment checks over enumerating every complete nonempty partition before validating consistency.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: inconsistent repeated symbol at n=12",
+      "name": "benchmark: inconsistent repeated symbol at n=4",
       "kind": "benchmark",
       "visible": false,
-      "size": 12,
-      "input": {"pattern": "aaaa", "s": "aaaaaaaaaaab"},
+      "size": 4,
+      "input": {
+        "pattern": "aa",
+        "s": "aaab"
+      },
       "expected": false,
-      "tags": ["benchmark", "scale-small", "pruning"]
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "pruning"
+      ]
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: inconsistent repeated symbol at n=24",
+      "name": "benchmark: inconsistent repeated symbol at n=8",
       "kind": "benchmark",
       "visible": false,
-      "size": 24,
-      "input": {"pattern": "aaaa", "s": "aaaaaaaaaaaaaaaaaaaaaaab"},
+      "size": 8,
+      "input": {
+        "pattern": "aaaa",
+        "s": "aaaaaaab"
+      },
       "expected": false,
-      "tags": ["benchmark", "scale-medium", "pruning"]
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "pruning"
+      ]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: inconsistent repeated symbol at n=48",
+      "name": "benchmark: inconsistent repeated symbol at n=20",
       "kind": "benchmark",
       "visible": false,
-      "size": 48,
-      "input": {"pattern": "aaaa", "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},
+      "size": 20,
+      "input": {
+        "pattern": "aaaaaa",
+        "s": "aaaaaaaaaaaaaaaaaaab"
+      },
       "expected": false,
-      "tags": ["benchmark", "scale-large", "pruning"]
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "pruning"
+      ]
     }
   ]
 }

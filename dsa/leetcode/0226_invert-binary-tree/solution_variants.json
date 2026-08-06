@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Invert Binary Tree and meets the required complexity bound.",
+      "summary": "Traverses every node once with an explicit stack and swaps its left and right child references in place.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_240",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected app-local and Accepted native sources implement the canonical top-right staircase search. Each comparison either returns or eliminates one complete remaining row or column, so the clear iterative source uses O(m + n) time and O(1) space; no candidate is justified."
+      },
+      {
+        "category": "alignment",
+        "severity": "verified",
+        "reason": "The app-local function and native class method have identical empty-guard robustness, top-right initialization, equality check, column decrement, row increment, and false return. Their only difference is the required LeetCode class wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 8/32/128-square tiers use an absent odd target between adjacent even diagonals, forcing a full staircase while size denotes each dimension. The protected source passes at -0.01 relative exponent; a correct full-cell scan passes every output and fails only scaling at +0.92 with a 13.37x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach correctly proves every row and column elimination and the O(m + n) move bound. The summary is now problem-specific, the out-of-contract empty-matrix claim was removed, and single-dimension plus duplicate/sign behavior are labeled precisely."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "3b373cd35f3628cbf26d28f260871b07841ac580b7c45d4ac01afebb084397ad",
+    "native_source_sha256": "bbba9298c1df8539685039b5dd3c5f15b0d0f4137feca224e161910660f8c3f9",
+    "approach_sha256": "bc594249499520c177bb1fe5b931ecd31b3c530125f4fc4755580f92cc173697",
+    "solution_variants_sha256": "8089185762468f91fa7f0019ba738a580236eb1035430476be8097c798742904",
+    "complexity_evidence_sha256": "f1088b35ae1ca4f925a946ac4d12cc80decfc7078e1464df949ef9391bbb6fa9"
+  }
+}

@@ -1,64 +1,37 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_301",
-  "measurement_note": "A fixed ambiguous parenthesis core with growing retained text isolates per-character work without favoring DFS over BFS; size is total string length.",
+  "measurement_note": "Size is total string length. Interleaved unmatched closings make removal budgets force one path while breadth-first deletion retains every distinct subset until the minimum-removal level.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: ambiguous core with retained text at n=28",
+      "name": "benchmark: 2 interleaved unmatched closings",
       "kind": "benchmark",
       "visible": false,
-      "size": 28,
-      "input": {
-        "s": "()())()aaaaaaaaaaaaaaaaaaaaa"
-      },
-      "expected": [
-        "(())()aaaaaaaaaaaaaaaaaaaaa",
-        "()()()aaaaaaaaaaaaaaaaaaaaa"
-      ],
-      "tags": [
-        "benchmark",
-        "scale-small",
-        "retained-text"
-      ]
+      "size": 4,
+      "input": {"s": ")a)a"},
+      "expected": ["aa"],
+      "tags": ["benchmark", "scale-small", "forced-removals"]
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: ambiguous core with retained text at n=56",
+      "name": "benchmark: 6 interleaved unmatched closings",
       "kind": "benchmark",
       "visible": false,
-      "size": 56,
-      "input": {
-        "s": "()())()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      },
-      "expected": [
-        "(())()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "()()()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      ],
-      "tags": [
-        "benchmark",
-        "scale-medium",
-        "retained-text"
-      ]
+      "size": 12,
+      "input": {"s": ")a)a)a)a)a)a"},
+      "expected": ["aaaaaa"],
+      "tags": ["benchmark", "scale-medium", "forced-removals"]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: ambiguous core with retained text at n=112",
+      "name": "benchmark: 12 interleaved unmatched closings",
       "kind": "benchmark",
       "visible": false,
-      "size": 112,
-      "input": {
-        "s": "()())()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      },
-      "expected": [
-        "(())()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "()()()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      ],
-      "tags": [
-        "benchmark",
-        "scale-large",
-        "retained-text"
-      ]
+      "size": 24,
+      "input": {"s": ")a)a)a)a)a)a)a)a)a)a)a)a"},
+      "expected": ["aaaaaaaaaaaa"],
+      "tags": ["benchmark", "scale-large", "forced-removals"]
     }
   ]
 }

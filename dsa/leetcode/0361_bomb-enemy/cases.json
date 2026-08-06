@@ -32,36 +32,45 @@
       "expected": 3,
       "tags": [
         "sample",
+        "source-example",
         "wall"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: two crossing enemies",
+      "name": "sample: a wall row separates empty cells from enemies",
       "kind": "sample",
       "visible": true,
       "input": {
         "grid": [
           [
+            "W",
+            "W",
+            "W"
+          ],
+          [
             "0",
-            "E"
+            "0",
+            "0"
           ],
           [
             "E",
-            "0"
+            "E",
+            "E"
           ]
         ]
       },
-      "expected": 2,
+      "expected": 1,
       "tags": [
         "sample",
-        "cross"
+        "source-example",
+        "wall"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no empty placement",
-      "kind": "sample",
+      "id": "trial-no-empty-placement",
+      "name": "trial: no empty placement",
+      "kind": "trial",
       "visible": true,
       "input": {
         "grid": [
@@ -77,7 +86,7 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
+        "trial",
         "no-empty"
       ]
     },
@@ -128,10 +137,10 @@
       ]
     },
     {
-      "id": "hidden-single-enemy",
-      "name": "hidden: enemy adjacent to one empty cell",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-enemy",
+      "name": "trial: enemy adjacent to one empty cell",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -142,15 +151,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
+        "trial",
         "boundary"
       ]
     },
     {
-      "id": "hidden-cross-wall",
-      "name": "hidden: walls isolate a stronger lower segment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cross-wall",
+      "name": "trial: walls isolate vertical blast segments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -172,22 +181,83 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
+        "trial",
         "walls"
       ]
     },
     {
-      "id": "hidden-empty-grid",
-      "name": "hidden: empty grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-empty-cell",
+      "name": "trial: one empty cell has no targets",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "grid": []
+        "grid": [
+          [
+            "0"
+          ]
+        ]
       },
       "expected": 0,
       "tags": [
-        "hidden",
+        "trial",
         "boundary"
+      ]
+    },
+    {
+      "id": "trial-crossing-enemies",
+      "name": "trial: one placement reaches crossing row and column enemies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "0",
+            "E"
+          ],
+          [
+            "E",
+            "0"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "cross"
+      ]
+    },
+    {
+      "id": "trial-single-column-segments",
+      "name": "trial: walls split a single column into unequal segments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "E"
+          ],
+          [
+            "0"
+          ],
+          [
+            "W"
+          ],
+          [
+            "0"
+          ],
+          [
+            "E"
+          ],
+          [
+            "E"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "segments",
+        "single-column"
       ]
     }
   ]

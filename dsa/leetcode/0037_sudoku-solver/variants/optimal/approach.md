@@ -3,17 +3,17 @@
 
 Build nine row masks, column masks, and box masks from the clues. Bit $d - 1$ is set when digit `d` is already used. For cell `(row, col)`, flatten its 3×3 box coordinates to `(row // 3) * 3 + col // 3`.
 
-Let `FULL = (1 << 9) - 1`. The legal-candidate mask for an empty cell is:
+Let `full = (1 << 9) - 1`. The legal-candidate mask for an empty cell is:
 
 ```text
-FULL & ~(row_mask[row] | col_mask[col] | box_mask[box])
+full & ~(rows[row] | columns[column] | boxes[box])
 ```
 
-The union identifies every forbidden digit, complementing exposes unused digits, and the final `FULL` mask discards irrelevant higher bits. A candidate digit can be extracted one at a time with `bit = candidates & - candidates` and removed with `candidates -= bit`.
+The union identifies every forbidden digit, complementing exposes unused digits, and the final `full` mask discards irrelevant higher bits. A candidate digit can be extracted one at a time with `bit = candidates & -candidates` and removed with `candidates ^= bit`.
 
 **Branch on the cell with the fewest legal candidates**
 
-Collect the empty coordinates once. At recursion depth `position`, inspect only coordinates from `position` onward and compute each candidate mask. Select the cell with the fewest set bits and swap it into `empties[position]`. This **minimum remaining values** heuristic does not remove any choice; it merely chooses the order in which variables are assigned.
+Collect the coordinates in `empty_cells` once. At recursion depth `position`, inspect positions `i` from `position` onward and compute each candidate mask. Store the location with the fewest set bits in `best_position`, then swap that cell into `empty_cells[position]`. This **minimum remaining values** heuristic does not remove any choice; it merely chooses the order in which variables are assigned.
 
 A zero-candidate cell proves the current partial assignment impossible and should fail immediately. A one-candidate cell is forced and avoids unnecessary branching. These early discoveries are why MRV is much faster than always taking the first empty cell on difficult boards.
 

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1112",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is direct, conventional expert-interview SQL. The ranked CTE exposes the per-student selection relation, position names the window result clearly, and the two ordering keys encode the problem's preference without extra joins or grouping stages. The final projection and required ordering are easy to verify, so a candidate would be cosmetic rather than material."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "PARTITION BY student_id ranks each student's enrollments independently. Descending grade places every maximum first, and ascending course_id places the smallest course first within a maximum-grade tie. The composite primary key makes that preference total within a student, so ROW_NUMBER assigns exactly one position 1. The final ORDER BY student_id supplies the separate required output order."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1112, SQL/MySQL, and the native query entrypoint. Authenticated source evidence confirms the three integer columns, composite student/course primary key, non-NULL grades, maximum-grade priority, smallest-course tie break, exact three-column projection, one selected enrollment per student, and ascending student ordering."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql is byte-for-byte identical to immutable leetcode.sql bound to verified submission 2067700944. Both use the same ranked CTE, ROW_NUMBER window, partition key, descending grade key, ascending course tie-break key, position filter, projection, and final ordering; there is no adapter semantic gap."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers grow through 128, 512, and 2048 enrollment rows with four tied grades per student in descending course order, forcing both ranking keys. The protected query passed at a 1.01x largest runtime ratio and +0.01 relative growth exponent. An independently correct anti-dominance control preserved every output but failed only scaling at 22.26x and +0.93, distinguishing one sort-based window pass from repeated relation scans."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the lexicographic grade/course preference, independent student partitions, unique ROW_NUMBER winner, and separate result ordering. Its conventional O(R log R) time and O(R) execution-space bounds match the branch manifest and query, and it covers aggregate/join and anti-dominance alternatives, grade-only ranking, singleton students, maximum ties, lower-grade smaller courses, input order, and output order."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the exact Enrollments schema, composite primary key, grade non-nullability, highest-grade selection, smallest-course tie rule, exact output columns, ascending student order, and the sole source example without inventing an explanation."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review verified exactly one source example without explanation, three source tables, and no constraints, hints, notes, follow-up, images, or diagrams. source_fidelity.json binds every composed local section to live content hash 11e9de75d7b2128057f1aaefe34dbf7186a9a1c25665c2750870cd0a1f5cc4f4."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly one example and no explanation. sample-1 preserves all seven input enrollments and the three output rows in the required ascending student order.",
+      "All eight ordinary fixtures are visible samples or trials. They cover a singleton enrollment, all grades tied, a higher grade paired with a larger course ID, shuffled student input, zero grades, a tie only at the maximum grade, multiple students, and an empty Enrollments table.",
+      "Every nonempty fixture respects the composite primary key and uses non-NULL integer grades. Expected outputs contain exactly one row per represented student and are explicitly ordered by ascending student_id.",
+      "An independent Python oracle compares enrollment tuples using maximum grade followed by minimum course ID and then emits winners by sorted student ID. It shares neither the SQL window function nor the correlated control's anti-dominance predicate.",
+      "The oracle, protected app-local query, byte-identical immutable native query, and independently correct anti-dominance control agreed on all eight ordinary cases, all three benchmark tiers, and 5000 databases generated with seed 1112.",
+      "Randomized databases preserved unique student/course keys and non-NULL grades while covering empty input, up to 25 shuffled students, one through eight courses per student, course IDs from 1 through 100, grades from 0 through 100, singleton partitions, and forced grade ties.",
+      "The 128-, 512-, and 2048-row workloads remain hidden and performance-only, use R consistently as size, and span 16x. The protected query passed scaling at +0.01 and 1.01x; the correct anti-dominance control failed only scaling at +0.93 and 22.26x. benchmark.json required no edit."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "30956e0d498c12178257c9be4f6ba97dd4400bfc0c93eea788e7292ecb4458d8",
+    "native_source_sha256": "30956e0d498c12178257c9be4f6ba97dd4400bfc0c93eea788e7292ecb4458d8",
+    "approach_sha256": "e68a723581837d68470ee3075e04568245c49e9b53ac6a14fed9eeee7aa6b2df",
+    "solution_variants_sha256": "b31a6001d5387102d0f1f3c014076bb6387e06eeb5d5ed500496de653733bd85",
+    "complexity_evidence_sha256": "5c700fb129707e13c965f384b1d35018aa7bfb9ca14c6129a735ff0049d55e40",
+    "cases_sha256": "b104de209a53bb702ac6f576dcd352243130ad720b87f28d055dc34c0bee848d"
+  }
+}

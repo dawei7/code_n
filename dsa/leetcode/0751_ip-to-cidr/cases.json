@@ -2,13 +2,113 @@
   "schema_version": 1,
   "challenge_id": "lc_751",
   "cases": [
-    {"id": "sample-1", "name": "sample: unaligned ten-address range", "kind": "sample", "visible": true, "input": {"ip": "255.0.0.7", "n": 10}, "expected": ["255.0.0.7/32", "255.0.0.8/29", "255.0.0.16/32"], "tags": ["sample", "unaligned"]},
-    {"id": "sample-2", "name": "sample: one aligned block", "kind": "sample", "visible": true, "input": {"ip": "0.0.0.0", "n": 4}, "expected": ["0.0.0.0/30"], "tags": ["sample", "aligned"]},
-    {"id": "trial-1", "name": "trial: singleton range", "kind": "trial", "visible": true, "input": {"ip": "10.1.2.3", "n": 1}, "expected": ["10.1.2.3/32"], "tags": ["trial", "singleton"]},
-    {"id": "trial-2", "name": "trial: unaligned three-address range", "kind": "trial", "visible": true, "input": {"ip": "0.0.0.1", "n": 3}, "expected": ["0.0.0.1/32", "0.0.0.2/31"], "tags": ["trial", "unaligned"]},
-    {"id": "trial-3", "name": "trial: private-network aligned block", "kind": "trial", "visible": true, "input": {"ip": "192.168.1.0", "n": 4}, "expected": ["192.168.1.0/30"], "tags": ["trial", "aligned"]},
-    {"id": "hidden-1", "name": "hidden: unaligned start followed by block", "kind": "real", "visible": false, "input": {"ip": "192.168.1.3", "n": 5}, "expected": ["192.168.1.3/32", "192.168.1.4/30"], "tags": ["hidden", "boundary"]},
-    {"id": "hidden-2", "name": "hidden: cross final octet boundary", "kind": "real", "visible": false, "input": {"ip": "10.0.0.254", "n": 4}, "expected": ["10.0.0.254/31", "10.0.1.0/31"], "tags": ["hidden", "octet-carry"]},
-    {"id": "hidden-3", "name": "hidden: final two IPv4 addresses", "kind": "real", "visible": false, "input": {"ip": "255.255.255.254", "n": 2}, "expected": ["255.255.255.254/31"], "tags": ["hidden", "upper-boundary"]}
+    {
+      "id": "sample-1",
+      "name": "sample: unaligned ten-address range",
+      "kind": "sample",
+      "visible": true,
+      "input": {"ip": "255.0.0.7", "n": 10},
+      "expected": ["255.0.0.7/32", "255.0.0.8/29", "255.0.0.16/32"],
+      "tags": ["sample", "unaligned"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: range split around two alignment boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {"ip": "117.145.102.62", "n": 8},
+      "expected": ["117.145.102.62/31", "117.145.102.64/30", "117.145.102.68/31"],
+      "tags": ["sample", "unaligned"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: zero address begins one aligned block",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "0.0.0.0", "n": 4},
+      "expected": ["0.0.0.0/30"],
+      "tags": ["trial", "aligned", "minimum-ip-length"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: singleton range",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "10.1.2.3", "n": 1},
+      "expected": ["10.1.2.3/32"],
+      "tags": ["trial", "count-boundary", "singleton"]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: unaligned three-address range",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "0.0.0.1", "n": 3},
+      "expected": ["0.0.0.1/32", "0.0.0.2/31"],
+      "tags": ["trial", "unaligned"]
+    },
+    {
+      "id": "trial-4",
+      "name": "trial: private-network aligned block",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "192.168.1.0", "n": 4},
+      "expected": ["192.168.1.0/30"],
+      "tags": ["trial", "aligned"]
+    },
+    {
+      "id": "trial-5",
+      "name": "trial: one singleton precedes an aligned block",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "192.168.1.3", "n": 5},
+      "expected": ["192.168.1.3/32", "192.168.1.4/30"],
+      "tags": ["trial", "alignment-boundary"]
+    },
+    {
+      "id": "trial-6",
+      "name": "trial: range crosses the final-octet boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "10.0.0.254", "n": 4},
+      "expected": ["10.0.0.254/31", "10.0.1.0/31"],
+      "tags": ["trial", "octet-carry"]
+    },
+    {
+      "id": "trial-7",
+      "name": "trial: final two IPv4 addresses",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "255.255.255.254", "n": 2},
+      "expected": ["255.255.255.254/31"],
+      "tags": ["trial", "upper-address-boundary"]
+    },
+    {
+      "id": "trial-8",
+      "name": "trial: carry crosses the third-octet boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "10.0.255.254", "n": 4},
+      "expected": ["10.0.255.254/31", "10.1.0.0/31"],
+      "tags": ["trial", "multi-octet-carry"]
+    },
+    {
+      "id": "trial-9",
+      "name": "trial: maximum count ends at the IPv4 ceiling",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "255.255.252.24", "n": 1000},
+      "expected": ["255.255.252.24/29", "255.255.252.32/27", "255.255.252.64/26", "255.255.252.128/25", "255.255.253.0/24", "255.255.254.0/23"],
+      "tags": ["trial", "count-boundary", "upper-address-boundary"]
+    },
+    {
+      "id": "trial-10",
+      "name": "trial: final IPv4 address as a singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {"ip": "255.255.255.255", "n": 1},
+      "expected": ["255.255.255.255/32"],
+      "tags": ["trial", "maximum-ip-length", "singleton"]
+    }
   ]
 }

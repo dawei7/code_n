@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1216",
+    "frontend_id": "1216",
+    "title_slug": "valid-palindrome-iii",
+    "url": "https://leetcode.com/problems/valid-palindrome-iii/description/",
+    "paid_only": true,
+    "content_sha256": "2c159930cc92db2170d3adc64ef8e8f17c2928bf43927fede6398a30f5ae304d",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "hint"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"abcdeca\", k = 2",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"abbababa\", k = 1",
+        "output": "true",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ba0d642cf5bb1f2c00bb95b7c44d9769f476f0ed30ae541f869b94a123146535",
+      "reference/contract.md": "7e00edf008b63d2b65063f93737cacf1ad70d204509907b52054c52061140d09",
+      "reference/examples.md": "6ce5714f7d9017dce49512196fb5e61552c60720cd354ec30ce2d629699c508c",
+      "reference/constraints.md": "29411ce70aa14488e8f238d02ab6d55cfbadcd490fa13d1674303f3c563b14e0",
+      "reference/hint.md": "c9f072a16173f761eb5122454c3fe758a3a1804d78ee0030dad7f55f9d4723a5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

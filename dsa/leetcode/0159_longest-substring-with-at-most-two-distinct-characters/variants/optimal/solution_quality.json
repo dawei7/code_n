@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_159",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution uses a sliding window with left and right pointers and a character count map. As right advances, it inserts characters into the map; while len(counts) > 2, it decrements counts[s[left]] and deletes zero-count keys while advancing left. The maximum window length right - left + 1 is tracked. The algorithm runs in O(n) time and O(1) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Maintaining character frequency counts in a sliding window and contracting left whenever distinct key count exceeds 2 ensures every considered window contains at most 2 distinct characters, correctly finding the global maximum."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Each character enters and leaves the sliding window at most once, yielding O(n) total time. Auxiliary space is O(1) since the count map holds at most 3 distinct characters at any time for English letters. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts string s and returns the integer maximum length of a valid substring."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details sliding window expansion, key deletion upon zero frequency, left pointer contraction, and O(n) time / O(1) space bounds. Alternatives and edge cases cover quadratic un-optimised restart scans, last-occurrence tracking trade-offs, character pair enumeration overhead, single-character strings, 1-2 distinct character full-string limits, and rapid multi-character oscillation handling."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the identical sliding window frequency map algorithm with SHA-256 digests 561473ef189a29808ee90782b947f18a50397fa3585905b5909657d21bb39c7c and 510dc01518d7350b1c4d09440c3acf4558e2c6a64254a00d743e0615068bfcda. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed s interface, two examples, two constraints, and 0 diagrams. Bound to content SHA-256 d9261ac562ff5beb587bdc54b72024205bcd56087c7b41fed22433c2d5c9c45d."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "510dc01518d7350b1c4d09440c3acf4558e2c6a64254a00d743e0615068bfcda",
+    "native_source_sha256": "510dc01518d7350b1c4d09440c3acf4558e2c6a64254a00d743e0615068bfcda",
+    "approach_sha256": "15331d41eb79078853a0b940ab8df0050e4c75dff20bd2bac33a5c3f589ce032",
+    "solution_variants_sha256": "b1f489a43f7f6d82178cc3315a3754c346aee367481d0aa9631bdb00347f5cb3",
+    "complexity_evidence_sha256": "b0ad94c6cb85e32ef1ca07a4551d540f8eb5c915876516b5ec205dcd5dd61d00"
+  }
+}

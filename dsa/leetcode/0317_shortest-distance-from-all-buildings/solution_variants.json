@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shortest Distance from All Buildings and meets the required complexity bound.",
+      "summary": "Runs one BFS per building and accumulates shortest distances and reach counts on empty cells.",
       "time_complexity": "O(bmn)",
       "space_complexity": "O(mn)"
     }

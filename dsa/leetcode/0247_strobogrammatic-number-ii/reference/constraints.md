@@ -1,3 +1,3 @@
 ## Constraints
 
-- $1 \le n \le 14$
+- $1 \le n \le 14$.

@@ -1,446 +1,194 @@
 {
-    "schema_version":  1,
-    "challenge_id":  "lc_1355",
-    "cases":  [
-                  {
-                      "id":  "sample-one-middle",
-                      "name":  "sample: one activity between extremes",
-                      "kind":  "sample",
-                      "visible":  true,
-                      "input":  {
-                                    "tables":  {
-                                                   "Activities":  [
-                                                                      {
-                                                                          "id":  1,
-                                                                          "name":  "Eating"
-                                                                      },
-                                                                      {
-                                                                          "id":  2,
-                                                                          "name":  "Singing"
-                                                                      },
-                                                                      {
-                                                                          "id":  3,
-                                                                          "name":  "Horse Riding"
-                                                                      }
-                                                                  ],
-                                                   "Friends":  [
-                                                                   {
-                                                                       "id":  1,
-                                                                       "name":  "Jonathan",
-                                                                       "activity":  "Eating"
-                                                                   },
-                                                                   {
-                                                                       "id":  2,
-                                                                       "name":  "Bob",
-                                                                       "activity":  "Singing"
-                                                                   },
-                                                                   {
-                                                                       "id":  3,
-                                                                       "name":  "Winston",
-                                                                       "activity":  "Singing"
-                                                                   },
-                                                                   {
-                                                                       "id":  4,
-                                                                       "name":  "Luis",
-                                                                       "activity":  "Eating"
-                                                                   },
-                                                                   {
-                                                                       "id":  5,
-                                                                       "name":  "Alice",
-                                                                       "activity":  "Eating"
-                                                                   },
-                                                                   {
-                                                                       "id":  6,
-                                                                       "name":  "Mike",
-                                                                       "activity":  "Horse Riding"
-                                                                   }
-                                                               ]
-                                               }
-                                },
-                      "expected":  {
-                                       "columns":  [
-                                                       "activity"
-                                                   ],
-                                       "rows":  [
-                                                    [
-                                                        "Singing"
-                                                    ]
-                                                ]
-                                   },
-                      "tags":  [
-                                   "sample",
-                                   "aggregation"
-                               ],
-                      "validator":  {
-                                        "kind":  "unordered_table"
-                                    }
-                  },
-                  {
-                      "id":  "trial-all-equal",
-                      "name":  "trial: all activities tie",
-                      "kind":  "trial",
-                      "visible":  true,
-                      "input":  {
-                                    "tables":  {
-                                                   "Activities":  [
-                                                                      {
-                                                                          "id":  1,
-                                                                          "name":  "A"
-                                                                      },
-                                                                      {
-                                                                          "id":  2,
-                                                                          "name":  "B"
-                                                                      },
-                                                                      {
-                                                                          "id":  3,
-                                                                          "name":  "C"
-                                                                      }
-                                                                  ],
-                                                   "Friends":  [
-                                                                   {
-                                                                       "id":  1,
-                                                                       "name":  "One",
-                                                                       "activity":  "A"
-                                                                   },
-                                                                   {
-                                                                       "id":  2,
-                                                                       "name":  "Two",
-                                                                       "activity":  "B"
-                                                                   },
-                                                                   {
-                                                                       "id":  3,
-                                                                       "name":  "Three",
-                                                                       "activity":  "C"
-                                                                   }
-                                                               ]
-                                               }
-                                },
-                      "expected":  {
-                                       "columns":  [
-                                                       "activity"
-                                                   ],
-                                       "rows":  [
-
-                                                ]
-                                   },
-                      "tags":  [
-                                   "trial",
-                                   "equal-counts"
-                               ],
-                      "validator":  {
-                                        "kind":  "unordered_table"
-                                    }
-                  },
-                  {
-                      "id":  "trial-zero-minimum",
-                      "name":  "trial: activity with no participants defines minimum",
-                      "kind":  "trial",
-                      "visible":  true,
-                      "input":  {
-                                    "tables":  {
-                                                   "Activities":  [
-                                                                      {
-                                                                          "id":  1,
-                                                                          "name":  "A"
-                                                                      },
-                                                                      {
-                                                                          "id":  2,
-                                                                          "name":  "B"
-                                                                      },
-                                                                      {
-                                                                          "id":  3,
-                                                                          "name":  "C"
-                                                                      },
-                                                                      {
-                                                                          "id":  4,
-                                                                          "name":  "D"
-                                                                      }
-                                                                  ],
-                                                   "Friends":  [
-                                                                   {
-                                                                       "id":  1,
-                                                                       "name":  "B1",
-                                                                       "activity":  "B"
-                                                                   },
-                                                                   {
-                                                                       "id":  2,
-                                                                       "name":  "B2",
-                                                                       "activity":  "B"
-                                                                   },
-                                                                   {
-                                                                       "id":  3,
-                                                                       "name":  "C1",
-                                                                       "activity":  "C"
-                                                                   },
-                                                                   {
-                                                                       "id":  4,
-                                                                       "name":  "C2",
-                                                                       "activity":  "C"
-                                                                   },
-                                                                   {
-                                                                       "id":  5,
-                                                                       "name":  "C3",
-                                                                       "activity":  "C"
-                                                                   },
-                                                                   {
-                                                                       "id":  6,
-                                                                       "name":  "D1",
-                                                                       "activity":  "D"
-                                                                   },
-                                                                   {
-                                                                       "id":  7,
-                                                                       "name":  "D2",
-                                                                       "activity":  "D"
-                                                                   },
-                                                                   {
-                                                                       "id":  8,
-                                                                       "name":  "D3",
-                                                                       "activity":  "D"
-                                                                   }
-                                                               ]
-                                               }
-                                },
-                      "expected":  {
-                                       "columns":  [
-                                                       "activity"
-                                                   ],
-                                       "rows":  [
-                                                    [
-                                                        "B"
-                                                    ]
-                                                ]
-                                   },
-                      "tags":  [
-                                   "trial",
-                                   "zero-participants"
-                               ],
-                      "validator":  {
-                                        "kind":  "unordered_table"
-                                    }
-                  },
-                  {
-                      "id":  "trial-two-levels",
-                      "name":  "trial: only minimum and maximum levels",
-                      "kind":  "trial",
-                      "visible":  true,
-                      "input":  {
-                                    "tables":  {
-                                                   "Activities":  [
-                                                                      {
-                                                                          "id":  1,
-                                                                          "name":  "Low"
-                                                                      },
-                                                                      {
-                                                                          "id":  2,
-                                                                          "name":  "High"
-                                                                      }
-                                                                  ],
-                                                   "Friends":  [
-                                                                   {
-                                                                       "id":  1,
-                                                                       "name":  "L",
-                                                                       "activity":  "Low"
-                                                                   },
-                                                                   {
-                                                                       "id":  2,
-                                                                       "name":  "H1",
-                                                                       "activity":  "High"
-                                                                   },
-                                                                   {
-                                                                       "id":  3,
-                                                                       "name":  "H2",
-                                                                       "activity":  "High"
-                                                                   }
-                                                               ]
-                                               }
-                                },
-                      "expected":  {
-                                       "columns":  [
-                                                       "activity"
-                                                   ],
-                                       "rows":  [
-
-                                                ]
-                                   },
-                      "tags":  [
-                                   "trial",
-                                   "two-levels"
-                               ],
-                      "validator":  {
-                                        "kind":  "unordered_table"
-                                    }
-                  },
-                  {
-                      "id":  "hidden-tied-maximum",
-                      "name":  "hidden: tied maxima are both excluded",
-                      "kind":  "real",
-                      "visible":  false,
-                      "input":  {
-                                    "tables":  {
-                                                   "Activities":  [
-                                                                      {
-                                                                          "id":  1,
-                                                                          "name":  "Zero"
-                                                                      },
-                                                                      {
-                                                                          "id":  2,
-                                                                          "name":  "Middle"
-                                                                      },
-                                                                      {
-                                                                          "id":  3,
-                                                                          "name":  "Top A"
-                                                                      },
-                                                                      {
-                                                                          "id":  4,
-                                                                          "name":  "Top B"
-                                                                      }
-                                                                  ],
-                                                   "Friends":  [
-                                                                   {
-                                                                       "id":  1,
-                                                                       "name":  "M",
-                                                                       "activity":  "Middle"
-                                                                   },
-                                                                   {
-                                                                       "id":  2,
-                                                                       "name":  "A1",
-                                                                       "activity":  "Top A"
-                                                                   },
-                                                                   {
-                                                                       "id":  3,
-                                                                       "name":  "A2",
-                                                                       "activity":  "Top A"
-                                                                   },
-                                                                   {
-                                                                       "id":  4,
-                                                                       "name":  "B1",
-                                                                       "activity":  "Top B"
-                                                                   },
-                                                                   {
-                                                                       "id":  5,
-                                                                       "name":  "B2",
-                                                                       "activity":  "Top B"
-                                                                   }
-                                                               ]
-                                               }
-                                },
-                      "expected":  {
-                                       "columns":  [
-                                                       "activity"
-                                                   ],
-                                       "rows":  [
-                                                    [
-                                                        "Middle"
-                                                    ]
-                                                ]
-                                   },
-                      "tags":  [
-                                   "hidden",
-                                   "tie"
-                               ],
-                      "validator":  {
-                                        "kind":  "unordered_table"
-                                    }
-                  },
-                  {
-                      "id":  "hidden-several-middle-levels",
-                      "name":  "hidden: several activities between bounds",
-                      "kind":  "real",
-                      "visible":  false,
-                      "input":  {
-                                    "tables":  {
-                                                   "Activities":  [
-                                                                      {
-                                                                          "id":  1,
-                                                                          "name":  "A"
-                                                                      },
-                                                                      {
-                                                                          "id":  2,
-                                                                          "name":  "B"
-                                                                      },
-                                                                      {
-                                                                          "id":  3,
-                                                                          "name":  "C"
-                                                                      },
-                                                                      {
-                                                                          "id":  4,
-                                                                          "name":  "D"
-                                                                      }
-                                                                  ],
-                                                   "Friends":  [
-                                                                   {
-                                                                       "id":  1,
-                                                                       "name":  "A1",
-                                                                       "activity":  "A"
-                                                                   },
-                                                                   {
-                                                                       "id":  2,
-                                                                       "name":  "B1",
-                                                                       "activity":  "B"
-                                                                   },
-                                                                   {
-                                                                       "id":  3,
-                                                                       "name":  "B2",
-                                                                       "activity":  "B"
-                                                                   },
-                                                                   {
-                                                                       "id":  4,
-                                                                       "name":  "C1",
-                                                                       "activity":  "C"
-                                                                   },
-                                                                   {
-                                                                       "id":  5,
-                                                                       "name":  "C2",
-                                                                       "activity":  "C"
-                                                                   },
-                                                                   {
-                                                                       "id":  6,
-                                                                       "name":  "C3",
-                                                                       "activity":  "C"
-                                                                   },
-                                                                   {
-                                                                       "id":  7,
-                                                                       "name":  "D1",
-                                                                       "activity":  "D"
-                                                                   },
-                                                                   {
-                                                                       "id":  8,
-                                                                       "name":  "D2",
-                                                                       "activity":  "D"
-                                                                   },
-                                                                   {
-                                                                       "id":  9,
-                                                                       "name":  "D3",
-                                                                       "activity":  "D"
-                                                                   },
-                                                                   {
-                                                                       "id":  10,
-                                                                       "name":  "D4",
-                                                                       "activity":  "D"
-                                                                   }
-                                                               ]
-                                               }
-                                },
-                      "expected":  {
-                                       "columns":  [
-                                                       "activity"
-                                                   ],
-                                       "rows":  [
-                                                    [
-                                                        "B"
-                                                    ],
-                                                    [
-                                                        "C"
-                                                    ]
-                                                ]
-                                   },
-                      "tags":  [
-                                   "hidden",
-                                   "multiple-results"
-                               ],
-                      "validator":  {
-                                        "kind":  "unordered_table"
-                                    }
-                  }
-              ]
+  "schema_version": 1,
+  "challenge_id": "lc_1355",
+  "cases": [
+    {
+      "id": "sample-source-example",
+      "name": "sample: source example with one intermediate activity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {"id": 1, "name": "Jonathan D.", "activity": "Eating"},
+            {"id": 2, "name": "Jade W.", "activity": "Singing"},
+            {"id": 3, "name": "Victor J.", "activity": "Singing"},
+            {"id": 4, "name": "Elvis Q.", "activity": "Eating"},
+            {"id": 5, "name": "Daniel A.", "activity": "Eating"},
+            {"id": 6, "name": "Bob B.", "activity": "Horse Riding"}
+          ],
+          "Activities": [
+            {"id": 1, "name": "Eating"},
+            {"id": 2, "name": "Singing"},
+            {"id": 3, "name": "Horse Riding"}
+          ]
+        }
+      },
+      "expected": {"columns": ["activity"], "rows": [["Singing"]]},
+      "tags": ["sample", "source-exact", "aggregation"],
+      "validator": {"kind": "unordered_table"}
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all activities tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {"id": 1, "name": "One", "activity": "A"},
+            {"id": 2, "name": "Two", "activity": "B"},
+            {"id": 3, "name": "Three", "activity": "C"}
+          ],
+          "Activities": [{"id": 1, "name": "A"}, {"id": 2, "name": "B"}, {"id": 3, "name": "C"}]
+        }
+      },
+      "expected": {"columns": ["activity"], "rows": []},
+      "tags": ["trial", "equal-counts", "empty-result"],
+      "validator": {"kind": "unordered_table"}
+    },
+    {
+      "id": "trial-tied-maximum",
+      "name": "trial: every activity tied at the maximum is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {"id": 1, "name": "L1", "activity": "Low"},
+            {"id": 2, "name": "M1", "activity": "Middle"},
+            {"id": 3, "name": "M2", "activity": "Middle"},
+            {"id": 4, "name": "A1", "activity": "Top A"},
+            {"id": 5, "name": "A2", "activity": "Top A"},
+            {"id": 6, "name": "A3", "activity": "Top A"},
+            {"id": 7, "name": "B1", "activity": "Top B"},
+            {"id": 8, "name": "B2", "activity": "Top B"},
+            {"id": 9, "name": "B3", "activity": "Top B"}
+          ],
+          "Activities": [
+            {"id": 1, "name": "Low"},
+            {"id": 2, "name": "Middle"},
+            {"id": 3, "name": "Top A"},
+            {"id": 4, "name": "Top B"}
+          ]
+        }
+      },
+      "expected": {"columns": ["activity"], "rows": [["Middle"]]},
+      "tags": ["trial", "tied-maximum", "positive-minimum"],
+      "validator": {"kind": "unordered_table"}
+    },
+    {
+      "id": "trial-two-levels",
+      "name": "trial: only minimum and maximum popularity levels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {"id": 1, "name": "L", "activity": "Low"},
+            {"id": 2, "name": "H1", "activity": "High"},
+            {"id": 3, "name": "H2", "activity": "High"}
+          ],
+          "Activities": [{"id": 1, "name": "Low"}, {"id": 2, "name": "High"}]
+        }
+      },
+      "expected": {"columns": ["activity"], "rows": []},
+      "tags": ["trial", "two-levels", "empty-result"],
+      "validator": {"kind": "unordered_table"}
+    },
+    {
+      "id": "trial-tied-minimum",
+      "name": "trial: every activity tied at the minimum is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {"id": 1, "name": "L1", "activity": "Low A"},
+            {"id": 2, "name": "L2", "activity": "Low B"},
+            {"id": 3, "name": "M1", "activity": "Middle"},
+            {"id": 4, "name": "M2", "activity": "Middle"},
+            {"id": 5, "name": "H1", "activity": "High"},
+            {"id": 6, "name": "H2", "activity": "High"},
+            {"id": 7, "name": "H3", "activity": "High"}
+          ],
+          "Activities": [
+            {"id": 1, "name": "Low A"},
+            {"id": 2, "name": "Low B"},
+            {"id": 3, "name": "Middle"},
+            {"id": 4, "name": "High"}
+          ]
+        }
+      },
+      "expected": {"columns": ["activity"], "rows": [["Middle"]]},
+      "tags": ["trial", "tied-minimum", "positive-counts"],
+      "validator": {"kind": "unordered_table"}
+    },
+    {
+      "id": "trial-several-middle-levels",
+      "name": "trial: several activities lie strictly between the bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {"id": 1, "name": "A1", "activity": "A"},
+            {"id": 2, "name": "B1", "activity": "B"},
+            {"id": 3, "name": "B2", "activity": "B"},
+            {"id": 4, "name": "C1", "activity": "C"},
+            {"id": 5, "name": "C2", "activity": "C"},
+            {"id": 6, "name": "C3", "activity": "C"},
+            {"id": 7, "name": "D1", "activity": "D"},
+            {"id": 8, "name": "D2", "activity": "D"},
+            {"id": 9, "name": "D3", "activity": "D"},
+            {"id": 10, "name": "D4", "activity": "D"}
+          ],
+          "Activities": [{"id": 1, "name": "A"}, {"id": 2, "name": "B"}, {"id": 3, "name": "C"}, {"id": 4, "name": "D"}]
+        }
+      },
+      "expected": {"columns": ["activity"], "rows": [["B"], ["C"]]},
+      "tags": ["trial", "multiple-results", "several-middle-levels"],
+      "validator": {"kind": "unordered_table"}
+    },
+    {
+      "id": "trial-single-activity",
+      "name": "trial: one activity is both popularity extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {"id": 1, "name": "One", "activity": "Solo"},
+            {"id": 2, "name": "Two", "activity": "Solo"}
+          ],
+          "Activities": [{"id": 1, "name": "Solo"}]
+        }
+      },
+      "expected": {"columns": ["activity"], "rows": []},
+      "tags": ["trial", "single-activity", "equal-extremes"],
+      "validator": {"kind": "unordered_table"}
+    },
+    {
+      "id": "trial-repeated-friend-names",
+      "name": "trial: participant rows count despite repeated friend names",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {"id": 1, "name": "Sam", "activity": "A"},
+            {"id": 2, "name": "Sam", "activity": "B"},
+            {"id": 3, "name": "Sam", "activity": "B"},
+            {"id": 4, "name": "Sam", "activity": "C"},
+            {"id": 5, "name": "Sam", "activity": "C"},
+            {"id": 6, "name": "Sam", "activity": "C"}
+          ],
+          "Activities": [{"id": 1, "name": "A"}, {"id": 2, "name": "B"}, {"id": 3, "name": "C"}]
+        }
+      },
+      "expected": {"columns": ["activity"], "rows": [["B"]]},
+      "tags": ["trial", "duplicate-names", "count-rows"],
+      "validator": {"kind": "unordered_table"}
+    }
+  ]
 }

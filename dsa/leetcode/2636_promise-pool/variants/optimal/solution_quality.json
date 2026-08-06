@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2636",
+  "language": "javascript",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected JavaScript solution implements a promise pool using min(n, functions.length) worker functions. Each worker continuously claims a unique function index from a shared nextIndex counter and awaits its completion before claiming another until all functions are processed. Promise.all(workers) resolves when all worker promises complete. The solution runs in O(m) scheduling overhead and O(min(m, n)) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Creating min(n, functions.length) workers guarantees at most n promises are pending at any instant. Synchronous index increment inside workers preserves start-order execution without race conditions."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Scheduling m functions takes O(m) total overhead with O(min(m, n)) auxiliary space for active worker promises. Complexity evidence is certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts functions array and pool limit n, returning a promise that resolves when all functions have resolved under bounded concurrency."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details shared nextIndex claiming, worker loop await mechanics, concurrency bound enforcement, and O(m) overhead / O(min(m, n)) space bounds. Alternatives and edge cases cover Promise.race active-set loops, Promise.all batching idle slots, unconstrained Promise.all execution, serial loops, empty function arrays, limit exceeding work count, equal resolution times, and rejection-free domain guarantees."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App JavaScript and native JavaScript solutions both execute the identical worker loop promise pool design with SHA-256 digests e3fe9361c4566743b49dc89b9b938e5c9c4312a424e653b4ca8012ef56f53eaa and e3602126e985e35a73eb69f682bc986ab5417c9a174af720b8f3b6b2507bf96f. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed functions and n interface, three examples, two constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "e3fe9361c4566743b49dc89b9b938e5c9c4312a424e653b4ca8012ef56f53eaa",
+    "native_source_sha256": "e3602126e985e35a73eb69f682bc986ab5417c9a174af720b8f3b6b2507bf96f",
+    "approach_sha256": "0212e7640dfbe1211454843a948247bef3cd1937042bbe8c6c4ba4f08325c9fb",
+    "solution_variants_sha256": "cfbb2eb37cc125babed7962f29c3a21fd03d1abf1d0fbd81bafe25f7dba067c8",
+    "complexity_evidence_sha256": "f656b2ed5cad4389cc7f879b1a53f7857aeede6e79b4dcb0f5660f83ac2fe175"
+  }
+}

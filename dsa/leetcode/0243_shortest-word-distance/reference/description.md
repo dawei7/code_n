@@ -1,5 +1,3 @@
 ## Description
 
-The string array `wordsDict` contains two specified, different words: `word1` and `word2`.
-
-Return the smallest distance between an occurrence of `word1` and an occurrence of `word2` in the array. Distance is measured by the difference between their indices.
+Given an array of strings `wordsDict` and two different strings that already exist in the array `word1` and `word2`, return *the shortest distance between these two words in the list*.

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_80",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The scaling benchmark accepted a correct repeated-deletion quadratic implementation. A direct input-inspection lower bound and the current one-pass write-pointer upper bound certify linear-time optimality without overstating measured separation.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "An unchecked element can begin a new value run or become a forbidden third copy, changing both the returned length and retained prefix. Every element must therefore be inspected in the worst case, giving Omega(n). The current solution reads each value once and performs at most one write for it, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Changing an unread value from the current run value to a larger sorted value changes whether it is retained and therefore changes k and the required prefix."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The loop visits every input value exactly once, compares it with at most one retained value, and advances the write boundary only for retained occurrences."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a third duplicate and a longer run with later values under the custom prefix judge; black-box real-test execution passed all five existing ordinary correctness checks."
+    }
+  ]
+}

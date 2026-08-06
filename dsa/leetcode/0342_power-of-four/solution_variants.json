@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Power of Four and meets the required complexity bound.",
+      "summary": "Combines the one-set-bit test with a fixed mask that admits only even bit positions.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

@@ -19,6 +19,5 @@ Each `move` updates and checks at most four integers, taking $O(1)$ time. Replay
 ## Alternatives and edge cases
 - **Store and rescan the board:** takes $O(n)$ time per move and $O(n^2)$ storage.
 - **Separate counters per player:** also supports $O(1)$ moves but uses twice as many arrays; signed totals encode both players together.
-- On a `1 x 1` board, the first move wins immediately.
 - The center of an odd-sized board belongs to both diagonals and must update both diagonal counters.
 - A move outside both diagonals changes only one row and one column.

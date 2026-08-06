@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2676",
+    "frontend_id": "2676",
+    "title_slug": "throttle",
+    "url": "https://leetcode.com/problems/throttle/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`t = 100`, `calls = [{\"t\": 20, \"inputs\": [1]}]`",
+        "output": "`[{\"t\": 20, \"inputs\": [1]}]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`t = 50`, `calls = [{\"t\": 50, \"inputs\": [1]}, {\"t\": 75, \"inputs\": [2]}]`",
+        "output": "`[{\"t\": 50, \"inputs\": [1]}, {\"t\": 100, \"inputs\": [2]}]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`t = 70`, `calls = [{\"t\": 50, \"inputs\": [1]}, {\"t\": 75, \"inputs\": [2]}, {\"t\": 90, \"inputs\": [8]}, {\"t\": 140, \"inputs\": [5, 7]}, {\"t\": 300, \"inputs\": [9, 4]}]`",
+        "output": "`[{\"t\": 50, \"inputs\": [1]}, {\"t\": 120, \"inputs\": [8]}, {\"t\": 190, \"inputs\": [5, 7]}, {\"t\": 300, \"inputs\": [9, 4]}]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "afcb08a33ff1bec6174008ca4bedb9523c827e4f2420454333f873e87bec16c2",
+      "reference/contract.md": "66975b74c3aafd9c67e120b30160d71acc7247da53afb0d233c442395cbbf760",
+      "reference/examples.md": "2e261e1a91331718b0c3f92c23070df5026a74cc82cc79b71ca5a192ee45bd36",
+      "reference/constraints.md": "e4baf20e8675fa306f38c789526ffec8ee71adeefff4dcece3ee5d1c6e0685e6"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

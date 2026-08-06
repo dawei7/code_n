@@ -1,29 +1,54 @@
 ## General
-**Model complete rolls as weighted edges**
 
-The ball may choose a new direction only after it stops. Treat each open cell that can be reached as a stopping state, and connect it to the stopping cell obtained by rolling left, right, up, or down. The weight of an edge is the number of cells crossed. A route's total edge weight is therefore exactly its traveled distance.
+**Turn complete rolls into weighted edges**
 
-**Precompute every wall-bounded endpoint**
+The ball may choose a direction only while stopped. Treat each reachable stopping cell as a graph vertex and each
+complete roll as an edge to another stopping cell. The edge weight is the number of cells crossed, so the sum of a
+route's edge weights is exactly the distance defined by the problem. Passing through the destination does not create
+a vertex visit; the ball must end a roll there.
 
-Four linear sweeps record the farthest open cell reachable from each cell in each direction. In a left-to-right row sweep, a cell inherits its predecessor's left endpoint when that predecessor is open; otherwise it is its own endpoint. Reverse the sweep for right endpoints and repeat by column for up and down. This makes each later graph transition constant time instead of rescanning a corridor.
+**Precompute all four wall-bounded endpoints**
 
-**Use Dijkstra because rolls have unequal lengths**
+Sweep every row from left to right. An open cell shares its predecessor's left endpoint when that predecessor is
+open; otherwise the cell begins a new segment. A reverse sweep gives right endpoints, and the corresponding column
+sweeps give up and down endpoints. The four tables make every later roll transition and its coordinate distance
+available in constant time.
 
-Store the best known distance to every cell and process `(distance, row, column)` entries from a min-heap. From a current cell, relax the four precomputed endpoints using their coordinate difference as the edge weight. Ignore stale heap entries whose distance no longer matches the table.
+**Run Dijkstra over stopping cells**
 
-**Why the first popped destination is optimal**
+Initialize the start cell's distance to zero and store `(distance, row, col)` in a min-heap. When a current entry is
+popped, relax the four precomputed endpoints. A shorter route replaces that endpoint's distance and adds a new heap
+entry; an entry whose distance no longer matches the table is stale and is discarded.
 
-Every edge weight is nonnegative. Dijkstra removes states in nondecreasing route distance, so when the destination's current entry is removed, no unprocessed route can reach it more cheaply. Each relaxed edge represents one legal complete roll, and every legal sequence of rolls is a path in this graph. If the heap empties first, no sequence can stop there; merely rolling through the destination never creates a destination state.
+Every moving roll has positive weight. Dijkstra therefore finalizes stopping cells in nondecreasing route distance,
+so the first current entry for the destination is optimal. Conversely, every legal sequence of rolls is a path in
+this graph. If the heap empties without finalizing the destination, no valid stopping route reaches it.
+
+**Why the finite sentinel is safe**
+
+The code uses `2 * rows * cols` as its unreachable value. A shortest route can be chosen without repeating a
+stopping vertex and therefore without repeating a maximal horizontal or vertical segment edge. The total lengths of
+all such distinct edges equal the number of open horizontal adjacencies plus open vertical adjacencies, which is
+strictly less than `2 * rows * cols`. Thus every finite shortest distance is below the sentinel.
 
 ## Complexity detail
-The four endpoint sweeps take $O(rows \cdot cols)$ time. The graph has at most `rows * cols` states and four outgoing edges per state; heap relaxations take $O(rows \cdot cols \log(rows \cdot cols))$ time. Endpoint tables, distances, and the heap use $O(rows \cdot cols)$ space.
+
+Let $V = rows \cdot cols$. The four endpoint sweeps take $O(V)$ time. The stopping-cell graph has at most $V$
+vertices and four outgoing edges per vertex, so heap-based relaxation takes $O(V \log V)$ time. The endpoint tables,
+distance table, and heap use $O(V)$ space.
 
 ## Alternatives and edge cases
-- **Roll step by step during Dijkstra:** is correct and commonly used, but can rescan long corridors from many stopping states.
-- **Linear-scan Dijkstra:** preserves correctness but selecting the next unsettled state can take quadratic time in the number of reachable cells.
-- **Breadth-first search:** minimizes the number of rolls rather than their unequal traveled lengths, so it can return a nonminimum distance.
-- **Queue-based repeated relaxation:** can be correct but lacks Dijkstra's efficient nondecreasing-distance finalization.
-- **Start equals destination:** has distance `0` without a roll.
-- **Pass through destination:** does not count unless the ball stops there.
-- **Unreachable stopping cell:** requires returning `-1` even if it is open.
-- **Zero-length direction:** an endpoint equal to the current cell adds no useful edge.
+
+- **Step-by-step rolling during Dijkstra:** is correct and common, but it may rescan the same long corridor from
+  several stopping states.
+- **Linear-scan Dijkstra:** preserves correctness but can spend quadratic time repeatedly selecting the next
+  unsettled cell.
+- **Breadth-first search:** minimizes the number of rolls, not the sum of their unequal traveled lengths.
+- **Queue-based repeated relaxation:** can converge to the correct distances but lacks Dijkstra's efficient
+  nondecreasing-distance finalization.
+- **Pass through the destination:** does not count unless a wall makes the ball stop there.
+- **Unreachable destination:** return `-1` after the heap is exhausted.
+- **Zero-length direction:** an endpoint equal to the current cell cannot improve its distance and adds no heap
+  entry.
+- **Coincident positions outside the source contract:** initialization would return `0`, although the source
+  guarantees distinct starting and destination cells.

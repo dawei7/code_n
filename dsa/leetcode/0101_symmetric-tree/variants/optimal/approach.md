@@ -30,5 +30,5 @@ Every node participates in at most one mirrored comparison, giving $O(n)$ time. 
 - **Queue of mirrored pairs:** avoids recursion and remains $O(n)$ time, but may store $O(w)$ nodes at a wide level.
 - **Compare ordinary traversals:** fails unless one traversal reverses child directions and preserves null positions.
 - **Compare only level values:** can miss asymmetric child placement when values repeat.
-- Empty and one-node trees are symmetric. Repeated values do not remove the need to compare exact mirrored structure.
+- A one-node tree is symmetric. Repeated values do not remove the need to compare exact mirrored structure.
 - Recursion uses $O(h)$ stack space; an iterative mirrored-pair queue may use width-proportional space instead.

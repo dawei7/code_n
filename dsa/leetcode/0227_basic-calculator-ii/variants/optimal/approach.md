@@ -1,24 +1,26 @@
 ## General
-**Reduce high-precedence work before storing additive terms**
+**Reduce high-precedence work before committing an additive term**
 
-Scan left to right while building the current number. Keep a stack of signed additive terms. Addition and subtraction start new terms, while multiplication and division immediately combine the preceding term with the current number.
+Scan left to right while building the current number. Keep `total` for additive terms that can no longer change and `term` for the one term that multiplication or division may still extend. Addition and subtraction commit `term` to `total` before starting the next signed term, while multiplication and division update `term` in place.
 
 **Let the previous operator consume the completed number**
 
-Store the previously seen operator. When the scan reaches the next operator or the end of the string, apply that stored operator to the completed number. This avoids special parsing for the first number and ensures multi-digit values are consumed as a unit.
+Store the previously seen operator. When the scan reaches the next operator or the end of the string, apply that stored operator to the completed number. Starting with `operator = "+"` lets the first number follow the same rule as every later number and ensures multi-digit values are consumed as a unit.
 
-After each operator boundary, the stack sums to the value of the fully processed expression prefix after all multiplication and division inside that prefix have been resolved. The current number and pending operator describe the only unfinished term.
+After each operator boundary, `total + term` is the value of the processed prefix after all multiplication and division seen so far have been resolved. Only `term` can still change because a following `*` or `/` has higher precedence than a following `+` or `-`.
 
 **Multiplication changes the most recent term, not the whole sum**
 
-For `3+2*2`, push `3`, then push `2`. When the final `2` is complete, replace the preceding `2` with $2 \cdot 2 = 4$. Summing `[3, 4]` gives `7`.
+For `3+2*2`, the `+` boundary commits `3` and starts `term = 2`. The final multiplication changes that term to $2 \cdot 2 = 4$, so `total + term` is $3 + 4 = 7$.
 
-Every number is consumed exactly once by the operator before it. Immediate replacement for `*` and `/` keeps an entire multiplicative chain inside one additive term, while `+` and `-` begin new signed terms. At end of input all terms are complete, so their sum is the expression's value under the required precedence rules.
+Every number is consumed exactly once by the operator before it. Immediate updates for `*` and `/` keep an entire multiplicative chain inside `term`, while `+` and `-` finalize the preceding chain. At end of input, returning `total + term` therefore gives the expression's value under the required precedence rules.
 
 ## Complexity detail
-Each character is inspected once, for $O(n)$ time. In an expression consisting mostly of additions or subtractions, the stack contains $O(n)$ terms.
+Each of the $n$ characters is inspected once, for $O(n)$ time. The parser retains a fixed number of integers and characters, so it uses $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Recursive-descent parsing:** is extensible to parentheses but unnecessary here.
+- **Stack of signed terms:** also evaluates precedence in $O(n)$ time, but stores up to $O(n)$ additive terms instead of folding finalized terms into one sum.
 - **Repeatedly searching for high-precedence operators:** can become quadratic.
-- Spaces may occur anywhere between tokens, a number may contain many digits, and division of a negative intermediate term must truncate toward zero rather than toward negative infinity.
+- **Spaces and multi-digit numbers:** spaces may occur between tokens, and all consecutive digits must be accumulated before applying the pending operator.
+- **Negative division:** a negative intermediate term must be divided with truncation toward zero rather than Python's floor-division result.

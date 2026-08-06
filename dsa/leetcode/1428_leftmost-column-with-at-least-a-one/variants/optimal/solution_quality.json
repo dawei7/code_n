@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1428",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is the canonical expert-interview staircase: it starts at the top-right cell, discards one row after a zero or one column after a one, and records the best feasible column. Its O(m+n) interface-call bound, O(1) state, naming, and control flow are direct and easy to defend, so no material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "At (row, col), a zero proves every cell to its left in that row is zero, so moving down cannot discard an answer. A one proves col is feasible while leaving only earlier columns as possible improvements, so recording col and moving left is safe. The remaining search region is always the lower-left rectangle; columns are witnessed from right to left, making the final recorded value the smallest feasible index, or -1 when no one is observed."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent direct-matrix oracle scanned columns from left to right. It, the protected app solution, exact immutable native Solution.leftMostColumnWithOne implementation, a separately written staircase control, and a correct row-wise binary-search control agreed on all nine visible cases and all three benchmark tiers through read-only counting interfaces."
+      },
+      {
+        "category": "randomized_validation",
+        "severity": "verified",
+        "reason": "Seed 1428 generated 5,000 source-valid row-sorted matrices totaling 7,123,070 cells. Coverage included 504 single cells, 1,057 single-row, 1,056 single-column, 2,219 tall, 2,255 wide, 526 square, 784 all-zero, 825 all-one, 830 last-column, and 2,438 varying-boundary matrices. Both staircases used at most 184 get calls and row-wise binary search at most 601; every implementation matched the oracle."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "Across three real-test repetitions, the protected solution passed all nine ordinary cases, all three benchmark outputs, and scaling with extra growth exponent -0.00 through +0.02 and largest-tier ratio 1.00x through 1.04x. The independent staircase also passed. Row-wise O(m log n) binary search passed every output and stayed within the query limit but failed only scaling each time, at +0.48 through +0.49 over the +0.15 limit."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "verified",
+        "reason": "All three benchmark tiers remain hidden and performance-only, use legal square dimensions 5, 20, and 100 with positive sizes S=m+n of 10, 40, and 200 for a 20x span, and place each row's only one in the final column. The staircase needs m+1 calls while row-wise binary search reaches 601 calls at the largest tier, remains under the source's 1,000-call limit, and reliably fails only scaling; benchmark.json was not edited."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach now derives both safe discard moves, identifies the remaining lower-left search rectangle, proves why the last recorded column is globally leftmost, and establishes the exact m+n-1 call bound of at most 199 under source constraints. It covers row-wise binary search, exhaustive access, forbidden storage access, all-zero and all-one matrices, single rows and columns, and non-square shapes."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "All nine ordinary cases are visible samples or trials. The three authenticated source examples remain exact and correctly have no invented explanations. Former hidden cases are visible, and trials cover a multi-boundary staircase, both one-cell values, a tall matrix whose boundary reaches column zero late, an all-one matrix, and one wide row with a middle transition."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode interactive matrix problem 1428 and Python as the active language. The reviewed artifacts preserve binary values, row-wise non-decreasing order, dimensions from 1 through 100, zero-based interface access, the leftmost-any-row quantifier, -1 absence result, hidden storage, and the hard 1,000-get-call limit."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected solve.py and immutable leetcode.py bound to verified submission 2069069965 use the same dimensions call, top-right indices, answer state, staircase decisions, and return value, differing only in the required local interface equivalent and native wrapper. Both sources and submission.json remain byte-for-byte unchanged, no candidate exists, and no remote-Accepted evidence was altered or inferred."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed the row-sorted binary definition, requested zero-based column, -1 absence rule, both BinaryMatrix methods, hidden-storage and custom-test semantics, 1,000-call and anti-circumvention rules, exactly three examples without explanations, five constraints, and two hints, with no tables, images, diagrams, notes, or follow-up. source_fidelity.json binds five modular Reference files to live-content SHA-256 6c4953c1936cbc7ad024459640e918e09f654abdf52a651b780d66d4c2b02a38 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three authenticated source examples exactly, without adding explanations absent from the source",
+      "a staircase of different row boundaries and a tall matrix reaching column zero late",
+      "single-cell zero and one matrices, an all-one matrix, and one wide row",
+      "square, tall, wide, single-row, single-column, all-zero, all-one, last-column, and varying-boundary shapes",
+      "5,000 seeded source-valid matrices with independently counted interface calls and no direct-access dependence",
+      "three hidden performance-only tiers spanning S=10 through S=200 with proven legal O(m log n) discrimination below the 1,000-call cap"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "7cae0c675a00d6a8327bd020f40abb8b1f7d34d137b7a2a7b1633cc97fbd21d4",
+    "native_source_sha256": "e03488494c70bb1ad89be0a8a7b07a5c7fc66963e5da613ead93b05382685fc4",
+    "approach_sha256": "cd5992854daffc3d36b155c6cbed55679eebc596c9e69dc137d0c4ac847d6d0e",
+    "solution_variants_sha256": "025e892f0a16ff2e4349c9a75ebe70582df0e780f39b32ba44ae1bc7f20513c4",
+    "complexity_evidence_sha256": "cb0479500e87a0366664d6113cbb5224cb8e89c5886a621e8d9e97763586240b",
+    "cases_sha256": "3727500061f9bcb1746c9a258443fe6ffffb98443e48f7467253078654496a71"
+  }
+}

@@ -4,54 +4,6 @@
   "measurement_note": "Size is the total region-name occurrences in two equally deep root branches. A parent map plus ancestor walks is linear; scanning every hierarchy list to discover each successive parent revisits the hierarchy at every depth and is quadratic.",
   "cases": [
     {
-      "id": "benchmark-scale-15",
-      "name": "benchmark: two branches of depth 4",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "regions": [
-          [
-            "Root",
-            "A1",
-            "B1"
-          ],
-          [
-            "A1",
-            "A2"
-          ],
-          [
-            "B1",
-            "B2"
-          ],
-          [
-            "A2",
-            "A3"
-          ],
-          [
-            "B2",
-            "B3"
-          ],
-          [
-            "A3",
-            "A4"
-          ],
-          [
-            "B3",
-            "B4"
-          ]
-        ],
-        "region1": "A4",
-        "region2": "B4"
-      },
-      "expected": "Root",
-      "tags": [
-        "benchmark",
-        "scale-small",
-        "deep-branches"
-      ],
-      "size": 15
-    },
-    {
       "id": "benchmark-scale-63",
       "name": "benchmark: two branches of depth 16",
       "kind": "benchmark",
@@ -60,137 +12,137 @@
         "regions": [
           [
             "Root",
-            "A1",
-            "B1"
+            "Aa",
+            "Ba"
           ],
           [
-            "A1",
-            "A2"
+            "Aa",
+            "Ab"
           ],
           [
-            "B1",
-            "B2"
+            "Ba",
+            "Bb"
           ],
           [
-            "A2",
-            "A3"
+            "Ab",
+            "Ac"
           ],
           [
-            "B2",
-            "B3"
+            "Bb",
+            "Bc"
           ],
           [
-            "A3",
-            "A4"
+            "Ac",
+            "Ad"
           ],
           [
-            "B3",
-            "B4"
+            "Bc",
+            "Bd"
           ],
           [
-            "A4",
-            "A5"
+            "Ad",
+            "Ae"
           ],
           [
-            "B4",
-            "B5"
+            "Bd",
+            "Be"
           ],
           [
-            "A5",
-            "A6"
+            "Ae",
+            "Af"
           ],
           [
-            "B5",
-            "B6"
+            "Be",
+            "Bf"
           ],
           [
-            "A6",
-            "A7"
+            "Af",
+            "Ag"
           ],
           [
-            "B6",
-            "B7"
+            "Bf",
+            "Bg"
           ],
           [
-            "A7",
-            "A8"
+            "Ag",
+            "Ah"
           ],
           [
-            "B7",
-            "B8"
+            "Bg",
+            "Bh"
           ],
           [
-            "A8",
-            "A9"
+            "Ah",
+            "Ai"
           ],
           [
-            "B8",
-            "B9"
+            "Bh",
+            "Bi"
           ],
           [
-            "A9",
-            "A10"
+            "Ai",
+            "Aj"
           ],
           [
-            "B9",
-            "B10"
+            "Bi",
+            "Bj"
           ],
           [
-            "A10",
-            "A11"
+            "Aj",
+            "Ak"
           ],
           [
-            "B10",
-            "B11"
+            "Bj",
+            "Bk"
           ],
           [
-            "A11",
-            "A12"
+            "Ak",
+            "Al"
           ],
           [
-            "B11",
-            "B12"
+            "Bk",
+            "Bl"
           ],
           [
-            "A12",
-            "A13"
+            "Al",
+            "Am"
           ],
           [
-            "B12",
-            "B13"
+            "Bl",
+            "Bm"
           ],
           [
-            "A13",
-            "A14"
+            "Am",
+            "An"
           ],
           [
-            "B13",
-            "B14"
+            "Bm",
+            "Bn"
           ],
           [
-            "A14",
-            "A15"
+            "An",
+            "Ao"
           ],
           [
-            "B14",
-            "B15"
+            "Bn",
+            "Bo"
           ],
           [
-            "A15",
-            "A16"
+            "Ao",
+            "Ap"
           ],
           [
-            "B15",
-            "B16"
+            "Bo",
+            "Bp"
           ]
         ],
-        "region1": "A16",
-        "region2": "B16"
+        "region1": "Ap",
+        "region2": "Bp"
       },
       "expected": "Root",
       "tags": [
         "benchmark",
-        "scale-medium",
+        "scale-small",
         "deep-branches"
       ],
       "size": 63
@@ -204,516 +156,2580 @@
         "regions": [
           [
             "Root",
-            "A1",
-            "B1"
+            "Aa",
+            "Ba"
           ],
           [
-            "A1",
-            "A2"
+            "Aa",
+            "Ab"
           ],
           [
-            "B1",
-            "B2"
+            "Ba",
+            "Bb"
           ],
           [
-            "A2",
-            "A3"
+            "Ab",
+            "Ac"
           ],
           [
-            "B2",
-            "B3"
+            "Bb",
+            "Bc"
           ],
           [
-            "A3",
-            "A4"
+            "Ac",
+            "Ad"
           ],
           [
-            "B3",
-            "B4"
+            "Bc",
+            "Bd"
           ],
           [
-            "A4",
-            "A5"
+            "Ad",
+            "Ae"
           ],
           [
-            "B4",
-            "B5"
+            "Bd",
+            "Be"
           ],
           [
-            "A5",
-            "A6"
+            "Ae",
+            "Af"
           ],
           [
-            "B5",
-            "B6"
+            "Be",
+            "Bf"
           ],
           [
-            "A6",
-            "A7"
+            "Af",
+            "Ag"
           ],
           [
-            "B6",
-            "B7"
+            "Bf",
+            "Bg"
           ],
           [
-            "A7",
-            "A8"
+            "Ag",
+            "Ah"
           ],
           [
-            "B7",
-            "B8"
+            "Bg",
+            "Bh"
           ],
           [
-            "A8",
-            "A9"
+            "Ah",
+            "Ai"
           ],
           [
-            "B8",
-            "B9"
+            "Bh",
+            "Bi"
           ],
           [
-            "A9",
-            "A10"
+            "Ai",
+            "Aj"
           ],
           [
-            "B9",
-            "B10"
+            "Bi",
+            "Bj"
           ],
           [
-            "A10",
-            "A11"
+            "Aj",
+            "Ak"
           ],
           [
-            "B10",
-            "B11"
+            "Bj",
+            "Bk"
           ],
           [
-            "A11",
-            "A12"
+            "Ak",
+            "Al"
           ],
           [
-            "B11",
-            "B12"
+            "Bk",
+            "Bl"
           ],
           [
-            "A12",
-            "A13"
+            "Al",
+            "Am"
           ],
           [
-            "B12",
-            "B13"
+            "Bl",
+            "Bm"
           ],
           [
-            "A13",
-            "A14"
+            "Am",
+            "An"
           ],
           [
-            "B13",
-            "B14"
+            "Bm",
+            "Bn"
           ],
           [
-            "A14",
-            "A15"
+            "An",
+            "Ao"
           ],
           [
-            "B14",
-            "B15"
+            "Bn",
+            "Bo"
           ],
           [
-            "A15",
-            "A16"
+            "Ao",
+            "Ap"
           ],
           [
-            "B15",
-            "B16"
+            "Bo",
+            "Bp"
           ],
           [
-            "A16",
-            "A17"
+            "Ap",
+            "Aq"
           ],
           [
-            "B16",
-            "B17"
+            "Bp",
+            "Bq"
           ],
           [
-            "A17",
-            "A18"
+            "Aq",
+            "Ar"
           ],
           [
-            "B17",
-            "B18"
+            "Bq",
+            "Br"
           ],
           [
-            "A18",
-            "A19"
+            "Ar",
+            "As"
           ],
           [
-            "B18",
-            "B19"
+            "Br",
+            "Bs"
           ],
           [
-            "A19",
-            "A20"
+            "As",
+            "At"
           ],
           [
-            "B19",
-            "B20"
+            "Bs",
+            "Bt"
           ],
           [
-            "A20",
-            "A21"
+            "At",
+            "Au"
           ],
           [
-            "B20",
-            "B21"
+            "Bt",
+            "Bu"
           ],
           [
-            "A21",
-            "A22"
+            "Au",
+            "Av"
           ],
           [
-            "B21",
-            "B22"
+            "Bu",
+            "Bv"
           ],
           [
-            "A22",
-            "A23"
+            "Av",
+            "Aw"
           ],
           [
-            "B22",
-            "B23"
+            "Bv",
+            "Bw"
           ],
           [
-            "A23",
-            "A24"
+            "Aw",
+            "Ax"
           ],
           [
-            "B23",
-            "B24"
+            "Bw",
+            "Bx"
           ],
           [
-            "A24",
-            "A25"
+            "Ax",
+            "Ay"
           ],
           [
-            "B24",
-            "B25"
+            "Bx",
+            "By"
           ],
           [
-            "A25",
-            "A26"
+            "Ay",
+            "Az"
           ],
           [
-            "B25",
-            "B26"
+            "By",
+            "Bz"
           ],
           [
-            "A26",
-            "A27"
+            "Az",
+            "Aaa"
           ],
           [
-            "B26",
-            "B27"
+            "Bz",
+            "Baa"
           ],
           [
-            "A27",
-            "A28"
+            "Aaa",
+            "Aab"
           ],
           [
-            "B27",
-            "B28"
+            "Baa",
+            "Bab"
           ],
           [
-            "A28",
-            "A29"
+            "Aab",
+            "Aac"
           ],
           [
-            "B28",
-            "B29"
+            "Bab",
+            "Bac"
           ],
           [
-            "A29",
-            "A30"
+            "Aac",
+            "Aad"
           ],
           [
-            "B29",
-            "B30"
+            "Bac",
+            "Bad"
           ],
           [
-            "A30",
-            "A31"
+            "Aad",
+            "Aae"
           ],
           [
-            "B30",
-            "B31"
+            "Bad",
+            "Bae"
           ],
           [
-            "A31",
-            "A32"
+            "Aae",
+            "Aaf"
           ],
           [
-            "B31",
-            "B32"
+            "Bae",
+            "Baf"
           ],
           [
-            "A32",
-            "A33"
+            "Aaf",
+            "Aag"
           ],
           [
-            "B32",
-            "B33"
+            "Baf",
+            "Bag"
           ],
           [
-            "A33",
-            "A34"
+            "Aag",
+            "Aah"
           ],
           [
-            "B33",
-            "B34"
+            "Bag",
+            "Bah"
           ],
           [
-            "A34",
-            "A35"
+            "Aah",
+            "Aai"
           ],
           [
-            "B34",
-            "B35"
+            "Bah",
+            "Bai"
           ],
           [
-            "A35",
-            "A36"
+            "Aai",
+            "Aaj"
           ],
           [
-            "B35",
-            "B36"
+            "Bai",
+            "Baj"
           ],
           [
-            "A36",
-            "A37"
+            "Aaj",
+            "Aak"
           ],
           [
-            "B36",
-            "B37"
+            "Baj",
+            "Bak"
           ],
           [
-            "A37",
-            "A38"
+            "Aak",
+            "Aal"
           ],
           [
-            "B37",
-            "B38"
+            "Bak",
+            "Bal"
           ],
           [
-            "A38",
-            "A39"
+            "Aal",
+            "Aam"
           ],
           [
-            "B38",
-            "B39"
+            "Bal",
+            "Bam"
           ],
           [
-            "A39",
-            "A40"
+            "Aam",
+            "Aan"
           ],
           [
-            "B39",
-            "B40"
+            "Bam",
+            "Ban"
           ],
           [
-            "A40",
-            "A41"
+            "Aan",
+            "Aao"
           ],
           [
-            "B40",
-            "B41"
+            "Ban",
+            "Bao"
           ],
           [
-            "A41",
-            "A42"
+            "Aao",
+            "Aap"
           ],
           [
-            "B41",
-            "B42"
+            "Bao",
+            "Bap"
           ],
           [
-            "A42",
-            "A43"
+            "Aap",
+            "Aaq"
           ],
           [
-            "B42",
-            "B43"
+            "Bap",
+            "Baq"
           ],
           [
-            "A43",
-            "A44"
+            "Aaq",
+            "Aar"
           ],
           [
-            "B43",
-            "B44"
+            "Baq",
+            "Bar"
           ],
           [
-            "A44",
-            "A45"
+            "Aar",
+            "Aas"
           ],
           [
-            "B44",
-            "B45"
+            "Bar",
+            "Bas"
           ],
           [
-            "A45",
-            "A46"
+            "Aas",
+            "Aat"
           ],
           [
-            "B45",
-            "B46"
+            "Bas",
+            "Bat"
           ],
           [
-            "A46",
-            "A47"
+            "Aat",
+            "Aau"
           ],
           [
-            "B46",
-            "B47"
+            "Bat",
+            "Bau"
           ],
           [
-            "A47",
-            "A48"
+            "Aau",
+            "Aav"
           ],
           [
-            "B47",
-            "B48"
+            "Bau",
+            "Bav"
           ],
           [
-            "A48",
-            "A49"
+            "Aav",
+            "Aaw"
           ],
           [
-            "B48",
-            "B49"
+            "Bav",
+            "Baw"
           ],
           [
-            "A49",
-            "A50"
+            "Aaw",
+            "Aax"
           ],
           [
-            "B49",
-            "B50"
+            "Baw",
+            "Bax"
           ],
           [
-            "A50",
-            "A51"
+            "Aax",
+            "Aay"
           ],
           [
-            "B50",
-            "B51"
+            "Bax",
+            "Bay"
           ],
           [
-            "A51",
-            "A52"
+            "Aay",
+            "Aaz"
           ],
           [
-            "B51",
-            "B52"
+            "Bay",
+            "Baz"
           ],
           [
-            "A52",
-            "A53"
+            "Aaz",
+            "Aba"
           ],
           [
-            "B52",
-            "B53"
+            "Baz",
+            "Bba"
           ],
           [
-            "A53",
-            "A54"
+            "Aba",
+            "Abb"
           ],
           [
-            "B53",
-            "B54"
+            "Bba",
+            "Bbb"
           ],
           [
-            "A54",
-            "A55"
+            "Abb",
+            "Abc"
           ],
           [
-            "B54",
-            "B55"
+            "Bbb",
+            "Bbc"
           ],
           [
-            "A55",
-            "A56"
+            "Abc",
+            "Abd"
           ],
           [
-            "B55",
-            "B56"
+            "Bbc",
+            "Bbd"
           ],
           [
-            "A56",
-            "A57"
+            "Abd",
+            "Abe"
           ],
           [
-            "B56",
-            "B57"
+            "Bbd",
+            "Bbe"
           ],
           [
-            "A57",
-            "A58"
+            "Abe",
+            "Abf"
           ],
           [
-            "B57",
-            "B58"
+            "Bbe",
+            "Bbf"
           ],
           [
-            "A58",
-            "A59"
+            "Abf",
+            "Abg"
           ],
           [
-            "B58",
-            "B59"
+            "Bbf",
+            "Bbg"
           ],
           [
-            "A59",
-            "A60"
+            "Abg",
+            "Abh"
           ],
           [
-            "B59",
-            "B60"
+            "Bbg",
+            "Bbh"
           ],
           [
-            "A60",
-            "A61"
+            "Abh",
+            "Abi"
           ],
           [
-            "B60",
-            "B61"
+            "Bbh",
+            "Bbi"
           ],
           [
-            "A61",
-            "A62"
+            "Abi",
+            "Abj"
           ],
           [
-            "B61",
-            "B62"
+            "Bbi",
+            "Bbj"
           ],
           [
-            "A62",
-            "A63"
+            "Abj",
+            "Abk"
           ],
           [
-            "B62",
-            "B63"
+            "Bbj",
+            "Bbk"
           ],
           [
-            "A63",
-            "A64"
+            "Abk",
+            "Abl"
           ],
           [
-            "B63",
-            "B64"
+            "Bbk",
+            "Bbl"
           ]
         ],
-        "region1": "A64",
-        "region2": "B64"
+        "region1": "Abl",
+        "region2": "Bbl"
+      },
+      "expected": "Root",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "deep-branches"
+      ],
+      "size": 255
+    },
+    {
+      "id": "benchmark-scale-1023",
+      "name": "benchmark: two branches of depth 256",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "regions": [
+          [
+            "Root",
+            "Aa",
+            "Ba"
+          ],
+          [
+            "Aa",
+            "Ab"
+          ],
+          [
+            "Ba",
+            "Bb"
+          ],
+          [
+            "Ab",
+            "Ac"
+          ],
+          [
+            "Bb",
+            "Bc"
+          ],
+          [
+            "Ac",
+            "Ad"
+          ],
+          [
+            "Bc",
+            "Bd"
+          ],
+          [
+            "Ad",
+            "Ae"
+          ],
+          [
+            "Bd",
+            "Be"
+          ],
+          [
+            "Ae",
+            "Af"
+          ],
+          [
+            "Be",
+            "Bf"
+          ],
+          [
+            "Af",
+            "Ag"
+          ],
+          [
+            "Bf",
+            "Bg"
+          ],
+          [
+            "Ag",
+            "Ah"
+          ],
+          [
+            "Bg",
+            "Bh"
+          ],
+          [
+            "Ah",
+            "Ai"
+          ],
+          [
+            "Bh",
+            "Bi"
+          ],
+          [
+            "Ai",
+            "Aj"
+          ],
+          [
+            "Bi",
+            "Bj"
+          ],
+          [
+            "Aj",
+            "Ak"
+          ],
+          [
+            "Bj",
+            "Bk"
+          ],
+          [
+            "Ak",
+            "Al"
+          ],
+          [
+            "Bk",
+            "Bl"
+          ],
+          [
+            "Al",
+            "Am"
+          ],
+          [
+            "Bl",
+            "Bm"
+          ],
+          [
+            "Am",
+            "An"
+          ],
+          [
+            "Bm",
+            "Bn"
+          ],
+          [
+            "An",
+            "Ao"
+          ],
+          [
+            "Bn",
+            "Bo"
+          ],
+          [
+            "Ao",
+            "Ap"
+          ],
+          [
+            "Bo",
+            "Bp"
+          ],
+          [
+            "Ap",
+            "Aq"
+          ],
+          [
+            "Bp",
+            "Bq"
+          ],
+          [
+            "Aq",
+            "Ar"
+          ],
+          [
+            "Bq",
+            "Br"
+          ],
+          [
+            "Ar",
+            "As"
+          ],
+          [
+            "Br",
+            "Bs"
+          ],
+          [
+            "As",
+            "At"
+          ],
+          [
+            "Bs",
+            "Bt"
+          ],
+          [
+            "At",
+            "Au"
+          ],
+          [
+            "Bt",
+            "Bu"
+          ],
+          [
+            "Au",
+            "Av"
+          ],
+          [
+            "Bu",
+            "Bv"
+          ],
+          [
+            "Av",
+            "Aw"
+          ],
+          [
+            "Bv",
+            "Bw"
+          ],
+          [
+            "Aw",
+            "Ax"
+          ],
+          [
+            "Bw",
+            "Bx"
+          ],
+          [
+            "Ax",
+            "Ay"
+          ],
+          [
+            "Bx",
+            "By"
+          ],
+          [
+            "Ay",
+            "Az"
+          ],
+          [
+            "By",
+            "Bz"
+          ],
+          [
+            "Az",
+            "Aaa"
+          ],
+          [
+            "Bz",
+            "Baa"
+          ],
+          [
+            "Aaa",
+            "Aab"
+          ],
+          [
+            "Baa",
+            "Bab"
+          ],
+          [
+            "Aab",
+            "Aac"
+          ],
+          [
+            "Bab",
+            "Bac"
+          ],
+          [
+            "Aac",
+            "Aad"
+          ],
+          [
+            "Bac",
+            "Bad"
+          ],
+          [
+            "Aad",
+            "Aae"
+          ],
+          [
+            "Bad",
+            "Bae"
+          ],
+          [
+            "Aae",
+            "Aaf"
+          ],
+          [
+            "Bae",
+            "Baf"
+          ],
+          [
+            "Aaf",
+            "Aag"
+          ],
+          [
+            "Baf",
+            "Bag"
+          ],
+          [
+            "Aag",
+            "Aah"
+          ],
+          [
+            "Bag",
+            "Bah"
+          ],
+          [
+            "Aah",
+            "Aai"
+          ],
+          [
+            "Bah",
+            "Bai"
+          ],
+          [
+            "Aai",
+            "Aaj"
+          ],
+          [
+            "Bai",
+            "Baj"
+          ],
+          [
+            "Aaj",
+            "Aak"
+          ],
+          [
+            "Baj",
+            "Bak"
+          ],
+          [
+            "Aak",
+            "Aal"
+          ],
+          [
+            "Bak",
+            "Bal"
+          ],
+          [
+            "Aal",
+            "Aam"
+          ],
+          [
+            "Bal",
+            "Bam"
+          ],
+          [
+            "Aam",
+            "Aan"
+          ],
+          [
+            "Bam",
+            "Ban"
+          ],
+          [
+            "Aan",
+            "Aao"
+          ],
+          [
+            "Ban",
+            "Bao"
+          ],
+          [
+            "Aao",
+            "Aap"
+          ],
+          [
+            "Bao",
+            "Bap"
+          ],
+          [
+            "Aap",
+            "Aaq"
+          ],
+          [
+            "Bap",
+            "Baq"
+          ],
+          [
+            "Aaq",
+            "Aar"
+          ],
+          [
+            "Baq",
+            "Bar"
+          ],
+          [
+            "Aar",
+            "Aas"
+          ],
+          [
+            "Bar",
+            "Bas"
+          ],
+          [
+            "Aas",
+            "Aat"
+          ],
+          [
+            "Bas",
+            "Bat"
+          ],
+          [
+            "Aat",
+            "Aau"
+          ],
+          [
+            "Bat",
+            "Bau"
+          ],
+          [
+            "Aau",
+            "Aav"
+          ],
+          [
+            "Bau",
+            "Bav"
+          ],
+          [
+            "Aav",
+            "Aaw"
+          ],
+          [
+            "Bav",
+            "Baw"
+          ],
+          [
+            "Aaw",
+            "Aax"
+          ],
+          [
+            "Baw",
+            "Bax"
+          ],
+          [
+            "Aax",
+            "Aay"
+          ],
+          [
+            "Bax",
+            "Bay"
+          ],
+          [
+            "Aay",
+            "Aaz"
+          ],
+          [
+            "Bay",
+            "Baz"
+          ],
+          [
+            "Aaz",
+            "Aba"
+          ],
+          [
+            "Baz",
+            "Bba"
+          ],
+          [
+            "Aba",
+            "Abb"
+          ],
+          [
+            "Bba",
+            "Bbb"
+          ],
+          [
+            "Abb",
+            "Abc"
+          ],
+          [
+            "Bbb",
+            "Bbc"
+          ],
+          [
+            "Abc",
+            "Abd"
+          ],
+          [
+            "Bbc",
+            "Bbd"
+          ],
+          [
+            "Abd",
+            "Abe"
+          ],
+          [
+            "Bbd",
+            "Bbe"
+          ],
+          [
+            "Abe",
+            "Abf"
+          ],
+          [
+            "Bbe",
+            "Bbf"
+          ],
+          [
+            "Abf",
+            "Abg"
+          ],
+          [
+            "Bbf",
+            "Bbg"
+          ],
+          [
+            "Abg",
+            "Abh"
+          ],
+          [
+            "Bbg",
+            "Bbh"
+          ],
+          [
+            "Abh",
+            "Abi"
+          ],
+          [
+            "Bbh",
+            "Bbi"
+          ],
+          [
+            "Abi",
+            "Abj"
+          ],
+          [
+            "Bbi",
+            "Bbj"
+          ],
+          [
+            "Abj",
+            "Abk"
+          ],
+          [
+            "Bbj",
+            "Bbk"
+          ],
+          [
+            "Abk",
+            "Abl"
+          ],
+          [
+            "Bbk",
+            "Bbl"
+          ],
+          [
+            "Abl",
+            "Abm"
+          ],
+          [
+            "Bbl",
+            "Bbm"
+          ],
+          [
+            "Abm",
+            "Abn"
+          ],
+          [
+            "Bbm",
+            "Bbn"
+          ],
+          [
+            "Abn",
+            "Abo"
+          ],
+          [
+            "Bbn",
+            "Bbo"
+          ],
+          [
+            "Abo",
+            "Abp"
+          ],
+          [
+            "Bbo",
+            "Bbp"
+          ],
+          [
+            "Abp",
+            "Abq"
+          ],
+          [
+            "Bbp",
+            "Bbq"
+          ],
+          [
+            "Abq",
+            "Abr"
+          ],
+          [
+            "Bbq",
+            "Bbr"
+          ],
+          [
+            "Abr",
+            "Abs"
+          ],
+          [
+            "Bbr",
+            "Bbs"
+          ],
+          [
+            "Abs",
+            "Abt"
+          ],
+          [
+            "Bbs",
+            "Bbt"
+          ],
+          [
+            "Abt",
+            "Abu"
+          ],
+          [
+            "Bbt",
+            "Bbu"
+          ],
+          [
+            "Abu",
+            "Abv"
+          ],
+          [
+            "Bbu",
+            "Bbv"
+          ],
+          [
+            "Abv",
+            "Abw"
+          ],
+          [
+            "Bbv",
+            "Bbw"
+          ],
+          [
+            "Abw",
+            "Abx"
+          ],
+          [
+            "Bbw",
+            "Bbx"
+          ],
+          [
+            "Abx",
+            "Aby"
+          ],
+          [
+            "Bbx",
+            "Bby"
+          ],
+          [
+            "Aby",
+            "Abz"
+          ],
+          [
+            "Bby",
+            "Bbz"
+          ],
+          [
+            "Abz",
+            "Aca"
+          ],
+          [
+            "Bbz",
+            "Bca"
+          ],
+          [
+            "Aca",
+            "Acb"
+          ],
+          [
+            "Bca",
+            "Bcb"
+          ],
+          [
+            "Acb",
+            "Acc"
+          ],
+          [
+            "Bcb",
+            "Bcc"
+          ],
+          [
+            "Acc",
+            "Acd"
+          ],
+          [
+            "Bcc",
+            "Bcd"
+          ],
+          [
+            "Acd",
+            "Ace"
+          ],
+          [
+            "Bcd",
+            "Bce"
+          ],
+          [
+            "Ace",
+            "Acf"
+          ],
+          [
+            "Bce",
+            "Bcf"
+          ],
+          [
+            "Acf",
+            "Acg"
+          ],
+          [
+            "Bcf",
+            "Bcg"
+          ],
+          [
+            "Acg",
+            "Ach"
+          ],
+          [
+            "Bcg",
+            "Bch"
+          ],
+          [
+            "Ach",
+            "Aci"
+          ],
+          [
+            "Bch",
+            "Bci"
+          ],
+          [
+            "Aci",
+            "Acj"
+          ],
+          [
+            "Bci",
+            "Bcj"
+          ],
+          [
+            "Acj",
+            "Ack"
+          ],
+          [
+            "Bcj",
+            "Bck"
+          ],
+          [
+            "Ack",
+            "Acl"
+          ],
+          [
+            "Bck",
+            "Bcl"
+          ],
+          [
+            "Acl",
+            "Acm"
+          ],
+          [
+            "Bcl",
+            "Bcm"
+          ],
+          [
+            "Acm",
+            "Acn"
+          ],
+          [
+            "Bcm",
+            "Bcn"
+          ],
+          [
+            "Acn",
+            "Aco"
+          ],
+          [
+            "Bcn",
+            "Bco"
+          ],
+          [
+            "Aco",
+            "Acp"
+          ],
+          [
+            "Bco",
+            "Bcp"
+          ],
+          [
+            "Acp",
+            "Acq"
+          ],
+          [
+            "Bcp",
+            "Bcq"
+          ],
+          [
+            "Acq",
+            "Acr"
+          ],
+          [
+            "Bcq",
+            "Bcr"
+          ],
+          [
+            "Acr",
+            "Acs"
+          ],
+          [
+            "Bcr",
+            "Bcs"
+          ],
+          [
+            "Acs",
+            "Act"
+          ],
+          [
+            "Bcs",
+            "Bct"
+          ],
+          [
+            "Act",
+            "Acu"
+          ],
+          [
+            "Bct",
+            "Bcu"
+          ],
+          [
+            "Acu",
+            "Acv"
+          ],
+          [
+            "Bcu",
+            "Bcv"
+          ],
+          [
+            "Acv",
+            "Acw"
+          ],
+          [
+            "Bcv",
+            "Bcw"
+          ],
+          [
+            "Acw",
+            "Acx"
+          ],
+          [
+            "Bcw",
+            "Bcx"
+          ],
+          [
+            "Acx",
+            "Acy"
+          ],
+          [
+            "Bcx",
+            "Bcy"
+          ],
+          [
+            "Acy",
+            "Acz"
+          ],
+          [
+            "Bcy",
+            "Bcz"
+          ],
+          [
+            "Acz",
+            "Ada"
+          ],
+          [
+            "Bcz",
+            "Bda"
+          ],
+          [
+            "Ada",
+            "Adb"
+          ],
+          [
+            "Bda",
+            "Bdb"
+          ],
+          [
+            "Adb",
+            "Adc"
+          ],
+          [
+            "Bdb",
+            "Bdc"
+          ],
+          [
+            "Adc",
+            "Add"
+          ],
+          [
+            "Bdc",
+            "Bdd"
+          ],
+          [
+            "Add",
+            "Ade"
+          ],
+          [
+            "Bdd",
+            "Bde"
+          ],
+          [
+            "Ade",
+            "Adf"
+          ],
+          [
+            "Bde",
+            "Bdf"
+          ],
+          [
+            "Adf",
+            "Adg"
+          ],
+          [
+            "Bdf",
+            "Bdg"
+          ],
+          [
+            "Adg",
+            "Adh"
+          ],
+          [
+            "Bdg",
+            "Bdh"
+          ],
+          [
+            "Adh",
+            "Adi"
+          ],
+          [
+            "Bdh",
+            "Bdi"
+          ],
+          [
+            "Adi",
+            "Adj"
+          ],
+          [
+            "Bdi",
+            "Bdj"
+          ],
+          [
+            "Adj",
+            "Adk"
+          ],
+          [
+            "Bdj",
+            "Bdk"
+          ],
+          [
+            "Adk",
+            "Adl"
+          ],
+          [
+            "Bdk",
+            "Bdl"
+          ],
+          [
+            "Adl",
+            "Adm"
+          ],
+          [
+            "Bdl",
+            "Bdm"
+          ],
+          [
+            "Adm",
+            "Adn"
+          ],
+          [
+            "Bdm",
+            "Bdn"
+          ],
+          [
+            "Adn",
+            "Ado"
+          ],
+          [
+            "Bdn",
+            "Bdo"
+          ],
+          [
+            "Ado",
+            "Adp"
+          ],
+          [
+            "Bdo",
+            "Bdp"
+          ],
+          [
+            "Adp",
+            "Adq"
+          ],
+          [
+            "Bdp",
+            "Bdq"
+          ],
+          [
+            "Adq",
+            "Adr"
+          ],
+          [
+            "Bdq",
+            "Bdr"
+          ],
+          [
+            "Adr",
+            "Ads"
+          ],
+          [
+            "Bdr",
+            "Bds"
+          ],
+          [
+            "Ads",
+            "Adt"
+          ],
+          [
+            "Bds",
+            "Bdt"
+          ],
+          [
+            "Adt",
+            "Adu"
+          ],
+          [
+            "Bdt",
+            "Bdu"
+          ],
+          [
+            "Adu",
+            "Adv"
+          ],
+          [
+            "Bdu",
+            "Bdv"
+          ],
+          [
+            "Adv",
+            "Adw"
+          ],
+          [
+            "Bdv",
+            "Bdw"
+          ],
+          [
+            "Adw",
+            "Adx"
+          ],
+          [
+            "Bdw",
+            "Bdx"
+          ],
+          [
+            "Adx",
+            "Ady"
+          ],
+          [
+            "Bdx",
+            "Bdy"
+          ],
+          [
+            "Ady",
+            "Adz"
+          ],
+          [
+            "Bdy",
+            "Bdz"
+          ],
+          [
+            "Adz",
+            "Aea"
+          ],
+          [
+            "Bdz",
+            "Bea"
+          ],
+          [
+            "Aea",
+            "Aeb"
+          ],
+          [
+            "Bea",
+            "Beb"
+          ],
+          [
+            "Aeb",
+            "Aec"
+          ],
+          [
+            "Beb",
+            "Bec"
+          ],
+          [
+            "Aec",
+            "Aed"
+          ],
+          [
+            "Bec",
+            "Bed"
+          ],
+          [
+            "Aed",
+            "Aee"
+          ],
+          [
+            "Bed",
+            "Bee"
+          ],
+          [
+            "Aee",
+            "Aef"
+          ],
+          [
+            "Bee",
+            "Bef"
+          ],
+          [
+            "Aef",
+            "Aeg"
+          ],
+          [
+            "Bef",
+            "Beg"
+          ],
+          [
+            "Aeg",
+            "Aeh"
+          ],
+          [
+            "Beg",
+            "Beh"
+          ],
+          [
+            "Aeh",
+            "Aei"
+          ],
+          [
+            "Beh",
+            "Bei"
+          ],
+          [
+            "Aei",
+            "Aej"
+          ],
+          [
+            "Bei",
+            "Bej"
+          ],
+          [
+            "Aej",
+            "Aek"
+          ],
+          [
+            "Bej",
+            "Bek"
+          ],
+          [
+            "Aek",
+            "Ael"
+          ],
+          [
+            "Bek",
+            "Bel"
+          ],
+          [
+            "Ael",
+            "Aem"
+          ],
+          [
+            "Bel",
+            "Bem"
+          ],
+          [
+            "Aem",
+            "Aen"
+          ],
+          [
+            "Bem",
+            "Ben"
+          ],
+          [
+            "Aen",
+            "Aeo"
+          ],
+          [
+            "Ben",
+            "Beo"
+          ],
+          [
+            "Aeo",
+            "Aep"
+          ],
+          [
+            "Beo",
+            "Bep"
+          ],
+          [
+            "Aep",
+            "Aeq"
+          ],
+          [
+            "Bep",
+            "Beq"
+          ],
+          [
+            "Aeq",
+            "Aer"
+          ],
+          [
+            "Beq",
+            "Ber"
+          ],
+          [
+            "Aer",
+            "Aes"
+          ],
+          [
+            "Ber",
+            "Bes"
+          ],
+          [
+            "Aes",
+            "Aet"
+          ],
+          [
+            "Bes",
+            "Bet"
+          ],
+          [
+            "Aet",
+            "Aeu"
+          ],
+          [
+            "Bet",
+            "Beu"
+          ],
+          [
+            "Aeu",
+            "Aev"
+          ],
+          [
+            "Beu",
+            "Bev"
+          ],
+          [
+            "Aev",
+            "Aew"
+          ],
+          [
+            "Bev",
+            "Bew"
+          ],
+          [
+            "Aew",
+            "Aex"
+          ],
+          [
+            "Bew",
+            "Bex"
+          ],
+          [
+            "Aex",
+            "Aey"
+          ],
+          [
+            "Bex",
+            "Bey"
+          ],
+          [
+            "Aey",
+            "Aez"
+          ],
+          [
+            "Bey",
+            "Bez"
+          ],
+          [
+            "Aez",
+            "Afa"
+          ],
+          [
+            "Bez",
+            "Bfa"
+          ],
+          [
+            "Afa",
+            "Afb"
+          ],
+          [
+            "Bfa",
+            "Bfb"
+          ],
+          [
+            "Afb",
+            "Afc"
+          ],
+          [
+            "Bfb",
+            "Bfc"
+          ],
+          [
+            "Afc",
+            "Afd"
+          ],
+          [
+            "Bfc",
+            "Bfd"
+          ],
+          [
+            "Afd",
+            "Afe"
+          ],
+          [
+            "Bfd",
+            "Bfe"
+          ],
+          [
+            "Afe",
+            "Aff"
+          ],
+          [
+            "Bfe",
+            "Bff"
+          ],
+          [
+            "Aff",
+            "Afg"
+          ],
+          [
+            "Bff",
+            "Bfg"
+          ],
+          [
+            "Afg",
+            "Afh"
+          ],
+          [
+            "Bfg",
+            "Bfh"
+          ],
+          [
+            "Afh",
+            "Afi"
+          ],
+          [
+            "Bfh",
+            "Bfi"
+          ],
+          [
+            "Afi",
+            "Afj"
+          ],
+          [
+            "Bfi",
+            "Bfj"
+          ],
+          [
+            "Afj",
+            "Afk"
+          ],
+          [
+            "Bfj",
+            "Bfk"
+          ],
+          [
+            "Afk",
+            "Afl"
+          ],
+          [
+            "Bfk",
+            "Bfl"
+          ],
+          [
+            "Afl",
+            "Afm"
+          ],
+          [
+            "Bfl",
+            "Bfm"
+          ],
+          [
+            "Afm",
+            "Afn"
+          ],
+          [
+            "Bfm",
+            "Bfn"
+          ],
+          [
+            "Afn",
+            "Afo"
+          ],
+          [
+            "Bfn",
+            "Bfo"
+          ],
+          [
+            "Afo",
+            "Afp"
+          ],
+          [
+            "Bfo",
+            "Bfp"
+          ],
+          [
+            "Afp",
+            "Afq"
+          ],
+          [
+            "Bfp",
+            "Bfq"
+          ],
+          [
+            "Afq",
+            "Afr"
+          ],
+          [
+            "Bfq",
+            "Bfr"
+          ],
+          [
+            "Afr",
+            "Afs"
+          ],
+          [
+            "Bfr",
+            "Bfs"
+          ],
+          [
+            "Afs",
+            "Aft"
+          ],
+          [
+            "Bfs",
+            "Bft"
+          ],
+          [
+            "Aft",
+            "Afu"
+          ],
+          [
+            "Bft",
+            "Bfu"
+          ],
+          [
+            "Afu",
+            "Afv"
+          ],
+          [
+            "Bfu",
+            "Bfv"
+          ],
+          [
+            "Afv",
+            "Afw"
+          ],
+          [
+            "Bfv",
+            "Bfw"
+          ],
+          [
+            "Afw",
+            "Afx"
+          ],
+          [
+            "Bfw",
+            "Bfx"
+          ],
+          [
+            "Afx",
+            "Afy"
+          ],
+          [
+            "Bfx",
+            "Bfy"
+          ],
+          [
+            "Afy",
+            "Afz"
+          ],
+          [
+            "Bfy",
+            "Bfz"
+          ],
+          [
+            "Afz",
+            "Aga"
+          ],
+          [
+            "Bfz",
+            "Bga"
+          ],
+          [
+            "Aga",
+            "Agb"
+          ],
+          [
+            "Bga",
+            "Bgb"
+          ],
+          [
+            "Agb",
+            "Agc"
+          ],
+          [
+            "Bgb",
+            "Bgc"
+          ],
+          [
+            "Agc",
+            "Agd"
+          ],
+          [
+            "Bgc",
+            "Bgd"
+          ],
+          [
+            "Agd",
+            "Age"
+          ],
+          [
+            "Bgd",
+            "Bge"
+          ],
+          [
+            "Age",
+            "Agf"
+          ],
+          [
+            "Bge",
+            "Bgf"
+          ],
+          [
+            "Agf",
+            "Agg"
+          ],
+          [
+            "Bgf",
+            "Bgg"
+          ],
+          [
+            "Agg",
+            "Agh"
+          ],
+          [
+            "Bgg",
+            "Bgh"
+          ],
+          [
+            "Agh",
+            "Agi"
+          ],
+          [
+            "Bgh",
+            "Bgi"
+          ],
+          [
+            "Agi",
+            "Agj"
+          ],
+          [
+            "Bgi",
+            "Bgj"
+          ],
+          [
+            "Agj",
+            "Agk"
+          ],
+          [
+            "Bgj",
+            "Bgk"
+          ],
+          [
+            "Agk",
+            "Agl"
+          ],
+          [
+            "Bgk",
+            "Bgl"
+          ],
+          [
+            "Agl",
+            "Agm"
+          ],
+          [
+            "Bgl",
+            "Bgm"
+          ],
+          [
+            "Agm",
+            "Agn"
+          ],
+          [
+            "Bgm",
+            "Bgn"
+          ],
+          [
+            "Agn",
+            "Ago"
+          ],
+          [
+            "Bgn",
+            "Bgo"
+          ],
+          [
+            "Ago",
+            "Agp"
+          ],
+          [
+            "Bgo",
+            "Bgp"
+          ],
+          [
+            "Agp",
+            "Agq"
+          ],
+          [
+            "Bgp",
+            "Bgq"
+          ],
+          [
+            "Agq",
+            "Agr"
+          ],
+          [
+            "Bgq",
+            "Bgr"
+          ],
+          [
+            "Agr",
+            "Ags"
+          ],
+          [
+            "Bgr",
+            "Bgs"
+          ],
+          [
+            "Ags",
+            "Agt"
+          ],
+          [
+            "Bgs",
+            "Bgt"
+          ],
+          [
+            "Agt",
+            "Agu"
+          ],
+          [
+            "Bgt",
+            "Bgu"
+          ],
+          [
+            "Agu",
+            "Agv"
+          ],
+          [
+            "Bgu",
+            "Bgv"
+          ],
+          [
+            "Agv",
+            "Agw"
+          ],
+          [
+            "Bgv",
+            "Bgw"
+          ],
+          [
+            "Agw",
+            "Agx"
+          ],
+          [
+            "Bgw",
+            "Bgx"
+          ],
+          [
+            "Agx",
+            "Agy"
+          ],
+          [
+            "Bgx",
+            "Bgy"
+          ],
+          [
+            "Agy",
+            "Agz"
+          ],
+          [
+            "Bgy",
+            "Bgz"
+          ],
+          [
+            "Agz",
+            "Aha"
+          ],
+          [
+            "Bgz",
+            "Bha"
+          ],
+          [
+            "Aha",
+            "Ahb"
+          ],
+          [
+            "Bha",
+            "Bhb"
+          ],
+          [
+            "Ahb",
+            "Ahc"
+          ],
+          [
+            "Bhb",
+            "Bhc"
+          ],
+          [
+            "Ahc",
+            "Ahd"
+          ],
+          [
+            "Bhc",
+            "Bhd"
+          ],
+          [
+            "Ahd",
+            "Ahe"
+          ],
+          [
+            "Bhd",
+            "Bhe"
+          ],
+          [
+            "Ahe",
+            "Ahf"
+          ],
+          [
+            "Bhe",
+            "Bhf"
+          ],
+          [
+            "Ahf",
+            "Ahg"
+          ],
+          [
+            "Bhf",
+            "Bhg"
+          ],
+          [
+            "Ahg",
+            "Ahh"
+          ],
+          [
+            "Bhg",
+            "Bhh"
+          ],
+          [
+            "Ahh",
+            "Ahi"
+          ],
+          [
+            "Bhh",
+            "Bhi"
+          ],
+          [
+            "Ahi",
+            "Ahj"
+          ],
+          [
+            "Bhi",
+            "Bhj"
+          ],
+          [
+            "Ahj",
+            "Ahk"
+          ],
+          [
+            "Bhj",
+            "Bhk"
+          ],
+          [
+            "Ahk",
+            "Ahl"
+          ],
+          [
+            "Bhk",
+            "Bhl"
+          ],
+          [
+            "Ahl",
+            "Ahm"
+          ],
+          [
+            "Bhl",
+            "Bhm"
+          ],
+          [
+            "Ahm",
+            "Ahn"
+          ],
+          [
+            "Bhm",
+            "Bhn"
+          ],
+          [
+            "Ahn",
+            "Aho"
+          ],
+          [
+            "Bhn",
+            "Bho"
+          ],
+          [
+            "Aho",
+            "Ahp"
+          ],
+          [
+            "Bho",
+            "Bhp"
+          ],
+          [
+            "Ahp",
+            "Ahq"
+          ],
+          [
+            "Bhp",
+            "Bhq"
+          ],
+          [
+            "Ahq",
+            "Ahr"
+          ],
+          [
+            "Bhq",
+            "Bhr"
+          ],
+          [
+            "Ahr",
+            "Ahs"
+          ],
+          [
+            "Bhr",
+            "Bhs"
+          ],
+          [
+            "Ahs",
+            "Aht"
+          ],
+          [
+            "Bhs",
+            "Bht"
+          ],
+          [
+            "Aht",
+            "Ahu"
+          ],
+          [
+            "Bht",
+            "Bhu"
+          ],
+          [
+            "Ahu",
+            "Ahv"
+          ],
+          [
+            "Bhu",
+            "Bhv"
+          ],
+          [
+            "Ahv",
+            "Ahw"
+          ],
+          [
+            "Bhv",
+            "Bhw"
+          ],
+          [
+            "Ahw",
+            "Ahx"
+          ],
+          [
+            "Bhw",
+            "Bhx"
+          ],
+          [
+            "Ahx",
+            "Ahy"
+          ],
+          [
+            "Bhx",
+            "Bhy"
+          ],
+          [
+            "Ahy",
+            "Ahz"
+          ],
+          [
+            "Bhy",
+            "Bhz"
+          ],
+          [
+            "Ahz",
+            "Aia"
+          ],
+          [
+            "Bhz",
+            "Bia"
+          ],
+          [
+            "Aia",
+            "Aib"
+          ],
+          [
+            "Bia",
+            "Bib"
+          ],
+          [
+            "Aib",
+            "Aic"
+          ],
+          [
+            "Bib",
+            "Bic"
+          ],
+          [
+            "Aic",
+            "Aid"
+          ],
+          [
+            "Bic",
+            "Bid"
+          ],
+          [
+            "Aid",
+            "Aie"
+          ],
+          [
+            "Bid",
+            "Bie"
+          ],
+          [
+            "Aie",
+            "Aif"
+          ],
+          [
+            "Bie",
+            "Bif"
+          ],
+          [
+            "Aif",
+            "Aig"
+          ],
+          [
+            "Bif",
+            "Big"
+          ],
+          [
+            "Aig",
+            "Aih"
+          ],
+          [
+            "Big",
+            "Bih"
+          ],
+          [
+            "Aih",
+            "Aii"
+          ],
+          [
+            "Bih",
+            "Bii"
+          ],
+          [
+            "Aii",
+            "Aij"
+          ],
+          [
+            "Bii",
+            "Bij"
+          ],
+          [
+            "Aij",
+            "Aik"
+          ],
+          [
+            "Bij",
+            "Bik"
+          ],
+          [
+            "Aik",
+            "Ail"
+          ],
+          [
+            "Bik",
+            "Bil"
+          ],
+          [
+            "Ail",
+            "Aim"
+          ],
+          [
+            "Bil",
+            "Bim"
+          ],
+          [
+            "Aim",
+            "Ain"
+          ],
+          [
+            "Bim",
+            "Bin"
+          ],
+          [
+            "Ain",
+            "Aio"
+          ],
+          [
+            "Bin",
+            "Bio"
+          ],
+          [
+            "Aio",
+            "Aip"
+          ],
+          [
+            "Bio",
+            "Bip"
+          ],
+          [
+            "Aip",
+            "Aiq"
+          ],
+          [
+            "Bip",
+            "Biq"
+          ],
+          [
+            "Aiq",
+            "Air"
+          ],
+          [
+            "Biq",
+            "Bir"
+          ],
+          [
+            "Air",
+            "Ais"
+          ],
+          [
+            "Bir",
+            "Bis"
+          ],
+          [
+            "Ais",
+            "Ait"
+          ],
+          [
+            "Bis",
+            "Bit"
+          ],
+          [
+            "Ait",
+            "Aiu"
+          ],
+          [
+            "Bit",
+            "Biu"
+          ],
+          [
+            "Aiu",
+            "Aiv"
+          ],
+          [
+            "Biu",
+            "Biv"
+          ]
+        ],
+        "region1": "Aiv",
+        "region2": "Biv"
       },
       "expected": "Root",
       "tags": [
@@ -721,7 +2737,7 @@
         "scale-large",
         "deep-branches"
       ],
-      "size": 255
+      "size": 1023
     }
   ]
 }

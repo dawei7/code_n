@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1213",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already clear, conventional, and expert-interview quality. `first`, `second`, and `third` identify the three current positions; `left`, `middle`, and `right` expose the compared values; and `current_maximum` makes the catch-up rule explicit. The loop contains no redundant pass, opaque helper, or avoidable state, so no material improvement justifies a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "When all three pointed values match, that strictly increasing value belongs to the intersection and advancing all three pointers cannot skip another occurrence. Otherwise, any pointed value below the current maximum cannot match at its current position because another array has already reached the larger value and can only increase. Advancing every smaller pointer is therefore safe; exhaustion of any array proves no later triple can exist, and monotone pointers preserve sorted output."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent Python oracle computed `sorted(set(arr1) & set(arr2) & set(arr3))`. It agreed with the protected app source, immutable native source, and a separately written membership control on all eight ordinary cases and all three benchmark tiers. The protected and native implementations also agreed with the oracle on all 29,791 ordered triples of nonempty strictly increasing arrays over values 1 through 5 and on 5,000 deterministic random schema-valid triples generated with seed 1213."
+      },
+      {
+        "category": "boundary_and_set_semantics",
+        "severity": "verified",
+        "reason": "Random validation included 52 singleton triples, 4,891 unequal-length triples, 4,868 empty intersections, 56 intersections with multiple common values, 108 triples sharing every value, 108 containing the minimum legal value in the intersection, and 56 containing the maximum sampled value in the intersection; all 5,000 inputs remained strictly increasing. Fixed cases separately cover both exact source examples, minimum and maximum array lengths, minimum and maximum values, all-common input, a value present in only two arrays, unequal lengths, late matches, and the maximum legal length of 1,000 for every array."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1213, Python, and native entrypoint `Solution.arraysIntersection`. Fresh authenticated evidence confirms three nonempty arrays, strict increasing order, independent length bounds from 1 through 1,000, values from 1 through 2,000, inclusion only when a value occurs in all three arrays, and a sorted returned array."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native artifact remains bound to verified submission 2067939837 and is unchanged. Apart from the required `Solution.arraysIntersection` wrapper and type syntax, it and the protected app source use the same three pointer initialization, loop guard, pointed-value extraction, equality emission, current-maximum calculation, independent smaller-pointer advances, and final return, with identical algorithm and data flow."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers use equal array lengths 32, 128, and 512 and span 16x; odd first and third arrays against an even second array force the three-pointer merge to consume the relevant inputs without finding a common value. Across three fresh runs, protected passed every output and scaling at largest-tier ratios 0.98x, 1.03x, and 0.98x. An independently correct control that linearly restarts a search of the third array for each first-array value, then binary-searches the second, passed all eight ordinary and three benchmark outputs but failed only scaling at 17.74x, 17.83x, and 18.49x with extra growth exponents from +0.94 to +0.96. This supports O(n_1+n_2+n_3) time and O(1) auxiliary space apart from the returned list."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly matches the protected source's three current pointers, equality emission, maximum-value catch-up rule, simultaneous advancement of all smaller pointers, output-order argument, and exhaustion condition. Its per-pointer advancement accounting proves O(n_1+n_2+n_3) time, and its O(1) auxiliary-space statement correctly excludes the required output."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the three arrays, strict increasing guarantee, exact length and value bounds, all-three membership rule, sorted output, both exact source examples in order, and an explanation only for the first example. It separately preserves both source hints and adds no source-absent note, follow-up, image, table, or diagram."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples with explanation flags true then false, two constraints, two hints, and no notes, follow-up, images, tables, or diagrams. `source_fidelity.json` binds every modular section to live statement hash 0bcaa33e7e42a1963fd905263f92cf2309ee435e89c68867903a4fd9770e5ff0 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples are the two authenticated source examples in source order with every input and output literal preserved exactly. Only the first sample has an explanation because the source supplies no explanation for the second.",
+      "All eight ordinary fixtures are visible samples or trials. They cover two and zero common values, unequal lengths, singleton minimum lengths, every value common, exclusion of a value present in only two arrays, minimum and maximum legal values, and three maximum-length arrays whose only common value occurs at the end.",
+      "The independent set-intersection oracle recomputed every authored and benchmark expectation. Protected source, immutable native source, and an independent membership control agreed on all fixed fixtures; protected and native also agreed with the oracle on 29,791 exhaustive small triples and 5,000 seeded random legal triples covering singleton arrays, unequal lengths, empty and multi-value intersections, all-common inputs, and sampled endpoints.",
+      "The three unchanged hidden performance tiers keep `size` equal to each array length and span 32 through 512. Protected passed three repeated scaling runs near 1x; the correct restarted-search control preserved every output but failed only the scaling verdict in all three runs."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "83bc146f690ad3a01532d97b276c9b1c1a92279b2dd164c94ac219096fb000fe",
+    "native_source_sha256": "71aec9b80e79d087b5f45f5408da78da2e6cfe11c298d8ac7554323121aa487a",
+    "approach_sha256": "869b6b9e335ae3b56b380714e1d6ef2ce534d3b91fbbd23155d1f200d625d8c9",
+    "solution_variants_sha256": "5d81d61f15394009b21c3dae0d5be7ed7fd609801f266a0694a163da506d9144",
+    "complexity_evidence_sha256": "49bd8b1102402d0dfe4d64a00b6a34151733c341580b87883dabc3a4c3701e35",
+    "cases_sha256": "9bf1f0fa4aa89ace73ec7bf3c8617a64881d800f0848af0d37cd4fd41be1407f"
+  }
+}

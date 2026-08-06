@@ -8,8 +8,8 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Output Contest Matches and meets the required complexity bound.",
-      "time_complexity": "O(n \\log n)",
+      "summary": "Pairs symmetric strength-ordered bracket strings until one fully nested contest remains.",
+      "time_complexity": "O(n \\log^2 n)",
       "space_complexity": "O(n \\log n)"
     }
   ]

@@ -6,8 +6,8 @@
   "hashes": {
     "app_sha256": "0e68deaafff296011ef3e5fe71d3f1c22d9cc0a17a604f8cac2a35a801f3c831",
     "native_sha256": "f23899025dda3d36210d72ff88dbeabd6fef96371d659a2ead1501f55a2e0d94",
-    "solution_variants_sha256": "216605adab2602df4597c0e8c310f97bd39edbbb56aa4c0c87592557d647ec09",
-    "approach_sha256": "1cf0f169495dd3ae6a8730798abd4befc25fdfbdf1775f8d51858c8401d61fde"
+    "solution_variants_sha256": "244b3b637300ab2a5efe2473c9bb780d2501024c61a1180a4d7e423c2daf8df8",
+    "approach_sha256": "10f0edd77d95559157a65365a9ee5215c8bf5a1c61a200fa3503098448ae5c5f"
   },
   "classifications": [
     "judge_environment",

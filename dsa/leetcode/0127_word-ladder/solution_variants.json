@@ -9,8 +9,8 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Word Ladder and meets the required complexity bound.",
-      "time_complexity": "O(NLA)",
-      "space_complexity": "O(NL)"
+      "time_complexity": "O(N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

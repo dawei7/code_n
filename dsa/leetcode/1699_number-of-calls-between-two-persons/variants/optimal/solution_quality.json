@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1699",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution canonicalizes each call pair into (person1, person2) using CASE expressions (assigning smaller ID to person1 and larger ID to person2), then groups by person1 and person2 to calculate COUNT(*) AS call_count and SUM(duration) AS total_duration. The single-pass aggregation query is optimal, elegant, and concise; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "CASE WHEN from_id < to_id THEN from_id ELSE to_id END maps calls in either direction (A->B or B->A) to the identical canonical key (min(A,B), max(A,B)). Grouping by this key aggregates all call records between the pair without needing UNION ALL or deduplication."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "A single-pass hash aggregation over R call rows takes expected O(R) time and O(R) auxiliary space. Complexity evidence is certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs columns person1, person2, call_count, and total_duration, enforces person1 < person2, and correctly includes duplicate source call rows."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details canonical direction normalization via CASE expressions, grouping without DISTINCT, and relational complexity bounds. Alternatives and edge cases cover UNION ALL duplication traps, directed ID grouping errors, correlated subqueries, duplicate source rows, reverse-only calls, multi-partner interactions, and unordered result flexibility."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical with SHA-256 digest 3ed36f0da3d3358bf37a1ac51f6d673e5e97df84edc78664739107991b9e6929. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Calls schema, three examples, three constraints, and 3 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "3ed36f0da3d3358bf37a1ac51f6d673e5e97df84edc78664739107991b9e6929",
+    "native_source_sha256": "3ed36f0da3d3358bf37a1ac51f6d673e5e97df84edc78664739107991b9e6929",
+    "approach_sha256": "a93f861668e859f6c1f7df3f0718b5b04ad50a06d4c428a9474e374776c68ef0",
+    "solution_variants_sha256": "e77ead36285cd07d0d66896ef9f73afa2d944f1b512ac5d0455e1edef9966522",
+    "complexity_evidence_sha256": "fefe840fd23fa2a542d721de534f3e1f0b7c9ec35c9aeee7f116c6c496b205f6"
+  }
+}

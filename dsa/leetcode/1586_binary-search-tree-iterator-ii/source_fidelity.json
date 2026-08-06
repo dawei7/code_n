@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1586",
+    "frontend_id": "1586",
+    "title_slug": "binary-search-tree-iterator-ii",
+    "url": "https://leetcode.com/problems/binary-search-tree-iterator-ii/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`root = [7,3,15,null,null,9,20], operations = [\"BSTIterator\",\"next\",\"next\",\"prev\",\"next\"]`",
+        "output": "`[null, 3, 7, 3, 7]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`root = [1], operations = [\"BSTIterator\",\"hasNext\",\"next\",\"hasPrev\",\"hasNext\"]`",
+        "output": "`[null, true, 1, false, false]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`root = [2,1,3], operations = [\"BSTIterator\",\"next\",\"next\",\"next\",\"prev\",\"next\"]`",
+        "output": "`[null, 1, 2, 3, 2, 3]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "883004fea8f4928caa037397b38ddcf005fdf6abe5644f9789120e2fad131a72",
+      "reference/contract.md": "71d8838688971d2ebd93dc69633bdbe27915bff1fa234244d6b2554a46229bc8",
+      "reference/examples.md": "3748d213193001e915467625b4b61f62ed8e3bd337270c66ef3552abbb148e8d",
+      "reference/constraints.md": "d6fe553e5e3f25ca96fd2f6533a2199eaef0186b08be31fd99efa75733a21fed"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_94",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "approach_accuracy",
+        "severity": "material",
+        "reason": "The approach repeatedly described a nonexistent `current` local and an imprecise root-to-current stack; it now uses the source's `node` state and accurately describes the pending-ancestor stack."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "material",
+        "reason": "A validated asymptotic-optimality certificate now records the mandatory n-element traversal output and the iterative source's matching one-push, one-pop O(n) upper bound."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "26c401453c141f864a4b52c26f73cb0625d74e8b50fc9d39f575950f722ebf59",
+    "native_source_sha256": "7ddb33220335b97bceb70143a609ffcb3d1dceb35bf539f0497cf4742463c089",
+    "approach_sha256": "7590bd3d4b2e65465c72551bca6b9ade3126eb711dc9891b13d278652809a609",
+    "solution_variants_sha256": "c7630cf0a21410584529bbe860a03de1e3a554450b42bab254d1ea460d0d6e69",
+    "complexity_evidence_sha256": "c5408e655f45af4aeee7bd16874773b2a50a35e0e951b8516bf77c9798885999"
+  }
+}

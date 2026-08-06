@@ -1,21 +1,21 @@
 ## General
 **Lexicographic prefixes occupy equal factorial-sized blocks**
 
-With $r$ sorted digits remaining, each possible next digit heads a contiguous block of $(r - 1)!$ permutations. Convert the one-based rank to `rank = k - 1` before division. Then `floor(rank / block_size)` is a zero-based digit-list index and `rank % block_size` is the rank within that chosen prefix block.
+With $r$ sorted digits remaining, each possible next digit heads a contiguous block of $(r - 1)!$ permutations. Convert the one-based rank to `rank = k - 1` before division. Then `floor(rank / block_size)` is the zero-based digit-list position `i`, and `rank % block_size` is the rank within that chosen prefix block.
 
 The zero-based conversion is essential at exact block boundaries. For example, one-based rank $(r - 1)!$ still belongs to the first block, whereas dividing it directly would incorrectly select the second block.
 
 **Remove the selected digit and recurse into its block**
 
-Keep unused digits in sorted order. Pop the selected index and append that digit to the answer. After one digit is fixed, update the block size from $(r - 1)!$ to $(r - 2)!$ and repeat with the remainder rank. When only one digit remains, its block size is one and it is selected directly.
+Keep unused digits in sorted order. Pop position `i` and append that digit to the answer. After one digit is fixed, update the block size from $(r - 1)!$ to $(r - 2)!$ and repeat with the remainder rank. When only one digit remains, its block size is one and it is selected directly.
 
 **Rank is always relative to the current fixed prefix**
 
-Before each selection, the answer is the fixed prefix of the desired permutation, the digit list contains exactly its unused symbols in order, and `k` is the zero-based rank among permutations sharing that prefix.
+Before each selection, the answer is the fixed prefix of the desired permutation, the digit list contains exactly its unused symbols in order, and `rank` is the zero-based rank among permutations sharing that prefix.
 
 **Trace quotient and remainder choices**
 
-For $n = 4, k = 9$, use zero-based rank 8. Blocks have size 6, so index 1 selects `2` and leaves rank 2. Blocks then have size 2, so index 1 selects `3`; the remaining rank 0 selects `1` and then `4`, producing `2314`.
+For $n = 4, k = 9$, use zero-based rank 8. Blocks have size 6, so `i = 1` selects `2` and leaves rank 2. Blocks then have size 2, so `i = 1` selects `3`; the remaining rank 0 selects `1` and then `4`, producing `2314`.
 
 **Factorial blocks turn rank into digit choices**
 

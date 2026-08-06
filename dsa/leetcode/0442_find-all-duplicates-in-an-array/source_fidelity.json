@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_442",
+    "frontend_id": "442",
+    "title_slug": "find-all-duplicates-in-an-array",
+    "url": "https://leetcode.com/problems/find-all-duplicates-in-an-array/description/",
+    "paid_only": false,
+    "content_sha256": "1ab336d4b4478fc2834dd2b757f559d3bccab2cd32f6a767c5515e31c399af4f",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [4,3,2,7,8,2,3,1]",
+        "output": "[2,3]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,1,2]",
+        "output": "[1]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1]",
+        "output": "[]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a026df06572789c65323e3403d9ac2769b93979cc91f7f61325569055ee31d72",
+      "reference/contract.md": "ccca3c9537b937ef3f6d8d131084974318cb11c4338166c21f3babd16a26c28f",
+      "reference/examples.md": "188379e22dbcc51f4602c52f8054ecce8ee06dcfdf7040fa3a900166b502ce2e",
+      "reference/constraints.md": "29881455b7bb918b38b4eaae31104e9ca5804642bf0cf7c261665acdbf88b58b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

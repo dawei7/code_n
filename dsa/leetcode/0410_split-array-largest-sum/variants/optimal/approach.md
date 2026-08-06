@@ -1,7 +1,9 @@
 ## General
 **Search the possible largest sum**
 
-No group limit can be below `max(nums)`, because every element belongs to some group. A limit of `sum(nums)` always works as one group and therefore also permits at most `k` groups. Binary-search this inclusive numeric interval, whose width is denoted by `S`.
+No group limit can be below `max(nums)`, because every element belongs to some group. A limit of `sum(nums)` always
+works as one group and therefore also permits at most `k` groups. Binary-search this inclusive numeric interval. Let
+$S = \texttt{sum(nums)} - \texttt{max(nums)} + 1$ be the number of integer candidate limits in it.
 
 **Greedily count groups under a candidate limit**
 

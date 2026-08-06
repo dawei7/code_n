@@ -22,5 +22,5 @@ The transpose visits $n(n - 1) / 2$ pairs and row reversal visits all $n^{2}$ ce
 - **Build a second matrix:** is simple and has optimal $O(n^2)$ time, but violates the platform's $O(1)$ in-place requirement.
 - **Rotate four cells per layer:** also achieves $O(n^2)$ time and $O(1)$ space, though its index arithmetic is less direct.
 - **Repeatedly move rows and columns:** creates unnecessary copying and can become cubic depending on the data structure.
-- A 1×1 matrix is unchanged by both operations. Odd-sized matrices keep the center cell fixed while all other cells move.
+- A $1 \times 1$ matrix is unchanged by both operations. Odd-sized matrices keep the center cell fixed while all other cells move.
 - The square shape is essential: transposition in place followed by row reversal does not represent the same operation for a rectangular matrix with different dimensions.

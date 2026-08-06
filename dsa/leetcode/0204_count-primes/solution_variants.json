@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Primes and meets the required complexity bound.",
+      "summary": "Uses a bytearray Sieve of Eratosthenes and marks each prime's multiples from its square.",
       "time_complexity": "O(n \\log \\log n)",
       "space_complexity": "O(n)"
     }

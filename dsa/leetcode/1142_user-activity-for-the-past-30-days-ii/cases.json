@@ -23,6 +23,12 @@
               "activity_type": "scroll_down"
             },
             {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-20",
+              "activity_type": "end_session"
+            },
+            {
               "user_id": 2,
               "session_id": 4,
               "activity_date": "2019-07-20",
@@ -35,6 +41,12 @@
               "activity_type": "send_message"
             },
             {
+              "user_id": 2,
+              "session_id": 4,
+              "activity_date": "2019-07-21",
+              "activity_type": "end_session"
+            },
+            {
               "user_id": 3,
               "session_id": 2,
               "activity_date": "2019-07-21",
@@ -48,15 +60,39 @@
             },
             {
               "user_id": 3,
+              "session_id": 2,
+              "activity_date": "2019-07-21",
+              "activity_type": "end_session"
+            },
+            {
+              "user_id": 3,
               "session_id": 5,
               "activity_date": "2019-07-21",
               "activity_type": "open_session"
+            },
+            {
+              "user_id": 3,
+              "session_id": 5,
+              "activity_date": "2019-07-21",
+              "activity_type": "scroll_down"
+            },
+            {
+              "user_id": 3,
+              "session_id": 5,
+              "activity_date": "2019-07-21",
+              "activity_type": "end_session"
             },
             {
               "user_id": 4,
               "session_id": 3,
               "activity_date": "2019-06-25",
               "activity_type": "open_session"
+            },
+            {
+              "user_id": 4,
+              "session_id": 3,
+              "activity_date": "2019-06-25",
+              "activity_type": "end_session"
             }
           ]
         }
@@ -73,12 +109,13 @@
       },
       "tags": [
         "sample",
-        "per-user-average"
+        "per-user-average",
+        "exact-source-table"
       ]
     },
     {
-      "id": "trial-empty",
-      "name": "empty qualifying window returns zero",
+      "id": "trial-empty-window",
+      "name": "no qualifying activity returns zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,11 +148,12 @@
       },
       "tags": [
         "trial",
-        "empty"
+        "empty-window",
+        "date-exclusion"
       ]
     },
     {
-      "id": "trial-duplicates",
+      "id": "trial-duplicate-events",
       "name": "duplicate events do not duplicate sessions",
       "kind": "trial",
       "visible": true,
@@ -149,18 +187,19 @@
         ],
         "rows": [
           [
-            1.0
+            1
           ]
         ]
       },
       "tags": [
         "trial",
-        "duplicates"
+        "duplicates",
+        "distinct-session"
       ]
     },
     {
-      "id": "trial-boundaries",
-      "name": "sessions on both endpoints qualify",
+      "id": "trial-date-boundaries",
+      "name": "sessions on both date endpoints qualify",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,6 +216,18 @@
               "session_id": 2,
               "activity_date": "2019-07-27",
               "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 3,
+              "activity_date": "2019-06-27",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 4,
+              "activity_date": "2019-07-28",
+              "activity_type": "open_session"
             }
           ]
         }
@@ -187,20 +238,21 @@
         ],
         "rows": [
           [
-            2.0
+            2
           ]
         ]
       },
       "tags": [
         "trial",
-        "boundaries"
+        "inclusive-boundaries",
+        "outside-neighbors"
       ]
     },
     {
-      "id": "real-unweighted-users",
-      "name": "hidden: users receive equal average weight",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-user-weight",
+      "name": "users receive equal average weight",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activity": [
@@ -237,20 +289,21 @@
         ],
         "rows": [
           [
-            2.0
+            2
           ]
         ]
       },
       "tags": [
-        "real",
-        "user-grain"
+        "trial",
+        "user-grain",
+        "equal-weight"
       ]
     },
     {
-      "id": "real-session-several-dates",
-      "name": "hidden: one session across dates counts once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-session-across-dates",
+      "name": "one session across qualifying dates counts once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activity": [
@@ -281,20 +334,21 @@
         ],
         "rows": [
           [
-            1.0
+            1
           ]
         ]
       },
       "tags": [
-        "real",
-        "session-dedup"
+        "trial",
+        "session-dedup",
+        "multiple-dates"
       ]
     },
     {
-      "id": "real-outside-session",
-      "name": "hidden: outside-only session is excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-outside-only-sessions",
+      "name": "outside-only sessions are excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activity": [
@@ -331,13 +385,116 @@
         ],
         "rows": [
           [
-            1.0
+            1
           ]
         ]
       },
       "tags": [
-        "real",
-        "date-filter"
+        "trial",
+        "date-filter",
+        "inactive-session"
+      ]
+    },
+    {
+      "id": "trial-any-activity-type",
+      "name": "any qualifying activity type establishes a session",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 10,
+              "activity_date": "2019-07-05",
+              "activity_type": "scroll_down"
+            },
+            {
+              "user_id": 2,
+              "session_id": 20,
+              "activity_date": "2019-07-06",
+              "activity_type": "end_session"
+            },
+            {
+              "user_id": 2,
+              "session_id": 21,
+              "activity_date": "2019-07-06",
+              "activity_type": "send_message"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            1.5
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "activity-enum",
+        "no-open-event"
+      ]
+    },
+    {
+      "id": "trial-rounding",
+      "name": "final average rounds to two decimal places",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-10",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 2,
+              "session_id": 2,
+              "activity_date": "2019-07-10",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 2,
+              "session_id": 3,
+              "activity_date": "2019-07-10",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 3,
+              "session_id": 4,
+              "activity_date": "2019-07-10",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 3,
+              "session_id": 5,
+              "activity_date": "2019-07-10",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            1.67
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "rounding",
+        "fractional-average"
       ]
     }
   ]

@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_751",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is concise, conventional, and interview-ready. Names such as current, aligned_size, remaining_size, block_size, and prefix_length describe the integer-address state and each CIDR restriction directly; no generic local named index obscures a semantic role."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Parsing the four octets by repeated eight-bit shifts preserves the IPv4 address as one 32-bit integer. At each first uncovered address, current & -current gives its largest aligned power-of-two block, with zero correctly treated as aligned to the full 32-bit space; capping that size by the greatest power of two no larger than remaining prevents overshoot. The emitted prefix therefore covers exactly the next legal interval, and advancing current and decreasing remaining maintains gap-free, nonoverlapping exact coverage until no address remains. Any larger first block would be misaligned or too long, while replacing the chosen block with smaller blocks cannot use fewer entries, so the repeated greedy choice is minimum-length."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 751, Python, and the native ipToCIDR(ip, n) interface. Authenticated source evidence confirms a valid 7-to-15-character dotted-decimal IPv4 address with four octets from 0 through 255, a count from 1 through 1000 whose full implied range remains inside IPv4, inclusive exact coverage of [ip, ip + n - 1], CIDR prefix semantics, exclusion of every outside address, and a shortest-list return with any minimum answer permitted."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065917992 are algorithmically identical: both parse octets with the same shifts, derive alignment and remaining power-of-two limits, emit the same dotted address and prefix, advance by the chosen block, and return the accumulated strings. Their only structural differences are the required Solution.ipToCIDR wrapper, List typing dialect, and the app-local return annotation."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged three authored workloads grow aligned power-of-two ranges from 4 to 64 requested addresses, for which the greedy method emits one block while a singleton-first construction performs linear work. The exact protected source passed all twelve visible correctness cases and all three performance tiers with relative growth exponent -0.00 and a 1.01x largest runtime ratio. An independent recursive prefix-trie implementation also passed, with exponent +0.00 and a 2.49x largest ratio. A correct control that enumerates singleton addresses and merges aligned siblings matched every output but failed only performance with relative growth exponent +0.61, distinguishing logarithmic block decomposition from linear enumeration."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives integer-address conversion, low-bit alignment, the remaining-count cap, zero handling, prefix conversion, and the greedy minimum-cover argument. Its O(log n) time and output-space claims match the protected implementation and branch manifest, with constant auxiliary state apart from the returned block list."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "reviewed",
+        "reason": "The modular Reference preserves the detailed 32-bit IPv4 representation, the CIDR prefix definition and binary pattern example, exact inclusive coverage, shortest-list requirement, both source examples, the complete ten-address binary explanation for Example 1, all four constraints, and the source hint. It also identifies and corrects the source's technically imprecise claim about the range covered by 255.0.0.0/28 while preserving the intended warning that the block is invalid."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated live Premium evidence confirms exactly two examples in source order, an explanation only for Example 1, four constraints, one hint, no source visuals or tables, and no additional source-native section. The modular Reference and every composed section are hash-bound by a verified source_fidelity.json against live statement content hash 89178c936106d6950f14a6f46278488d9f2d8185f0f67f8c37eef2dda1890c8c."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact start addresses, counts, and ordered CIDR outputs now appear first in source order; the former invented zero-address sample was retained as a visible trial and replaced by the real 117.145.102.62 source example.",
+      "All twelve ordinary correctness checks are visible samples or trials. The former hidden alignment, final-octet carry, and upper-address behaviors were exposed without changing their valid expected covers.",
+      "Authored contract boundaries cover 7- and 15-character IPv4 strings, octets 0 and 255, n equal to 1 and 1000, address zero, the final IPv4 address, and a maximum-count range ending exactly at 255.255.255.255. Separate generated checks exercise maximum count from both the IPv4 floor and ceiling.",
+      "Material behavior covers aligned and unaligned starts, singleton /32 blocks, progressively larger prefixes, a small suffix before a larger aligned block, exact remaining-count caps, final-octet and third-octet carries, and exact coverage without gaps, overlap, overshoot, or outside addresses.",
+      "Expected results were checked against an independent full 32-level binary-prefix-trie decomposition for all fifteen authored correctness-plus-benchmark inputs, 65536 exhaustive low-address ranges with counts through 64, 5000 deterministic random legal IPv4 ranges, and two maximum-count boundaries. The protected app adapter and immutable native Solution matched the unique maximal-block decomposition throughout.",
+      "The unchanged 4, 16, and 64-address aligned workloads remain hidden and performance-only in benchmark.json, span 16x, and make the correct singleton-then-merge control fail only the scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "2d90ad8a7976104c0575ccbe1b2e045b66f6c2459d8a2e5065f4b6743c445931",
+    "native_source_sha256": "1e7406594683feae189e51e0617b0c8ab9d8cf873027381549cdc83e46e86962",
+    "approach_sha256": "b3cb89192f7392e0baff037e61cdb243f92c0690d94cc223cda329fa36bc4ae4",
+    "solution_variants_sha256": "3ef5c3153c1d19d8ba3e9fe9d292ddfa2a0ee02a449396ddbdd886edbe01a819",
+    "complexity_evidence_sha256": "9ce26349cb9bc174f27f59da8109ec139245a5231cd34411aa45d19448502f01",
+    "cases_sha256": "251c805e78b91e4e5244ef5ef9c7a1007e460860ef94bd0701ddab01f76966bb"
+  }
+}

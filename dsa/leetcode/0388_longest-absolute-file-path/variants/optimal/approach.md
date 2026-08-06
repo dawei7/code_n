@@ -1,7 +1,7 @@
 ## General
 **Parse one encoded entry at a time**
 
-Walk through the input string without first materializing every line. Count leading tabs to obtain the entry depth, then scan its name until the next newline while recording its length and whether it contains a dot. Under the problem's encoding, a dot identifies a file.
+Walk through the input string with the conventional character cursor `i` without first materializing every line. Count leading tabs to obtain the entry depth, then scan its name until the next newline while recording its length and whether it contains a dot. Under the problem's encoding, a dot identifies a file.
 
 **Store cumulative directory prefixes by depth**
 

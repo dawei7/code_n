@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Range Sum Query 2D - Mutable and meets the required complexity bound.",
+      "summary": "Maintains point assignments and rectangle sums with a two-dimensional Fenwick tree.",
       "time_complexity": "O((mn + q) \\log m \\log n)",
       "space_complexity": "O(mn)"
     }

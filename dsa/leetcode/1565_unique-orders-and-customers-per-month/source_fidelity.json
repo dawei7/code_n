@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1565",
+    "frontend_id": "1565",
+    "title_slug": "unique-orders-and-customers-per-month",
+    "url": "https://leetcode.com/problems/unique-orders-and-customers-per-month/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Qualifying orders in September, October, and December 2020 and January 2021, together with invoices of `20` or less.",
+        "output": "| month | order_count | customer_count |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "Three qualifying orders from one customer in the same month.",
+        "output": "| month | order_count | customer_count |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "Only orders whose invoices are at most `20`.",
+        "output": "An empty table with headers `month`, `order_count`, `customer_count`.",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "44fdf1b981e473195ce91b3d90d7d7f80312cca9a60a740390dd2643debffc02",
+      "reference/contract.md": "d1fdd7e3db1b468d0d1ebc805d4cc36cc4415d7d30a5762affa260236f2f3446",
+      "reference/examples.md": "8f4087b47f3d7b4422971f4809afb6fef83fff0f68a682563318182014644cea",
+      "reference/constraints.md": "9dc83f5478acf9df124ab9643b93700968994dc47e76335b38510307b8e4e17d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

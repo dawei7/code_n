@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_40",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "Both protected sources use the prohibited generic local name `index` for the candidate position; the inert candidate preserves the accepted sorted, use-once backtracking and same-depth duplicate skipping exactly while using the conventional loop variable `i`."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order with duplicate candidate values",
+      "all candidates above the target and a value that cannot be reused",
+      "separate duplicate positions supporting distinct legal multiplicities",
+      "an exact candidate match, the maximum target 30, and the maximum 100-position input",
+      "5,532 independently generated frequency-count properties checked against the current source, immutable native source, and candidate",
+      "three hidden performance-only distinct-subset tiers spanning n = 4 through n = 16 with 2, 13, and 149 exact combinations",
+      "a correct O(n^2 * 2^n) path-recomputation search that passes every output and fails only scaling growth (+0.73 > +0.15)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "15ed0fc393684fd3c073a69ed8d26273fb3cb1da29aa35fb3a03bef4908bebfe",
+    "native_source_sha256": "e3190c32c6e5ab8fc8f6fdcd67d0f16096f9fe80fe0639341b5650ac8f9f1856",
+    "approach_sha256": "4161aa6d73d54094d6aa9e761ca95fb411bd134ad440bf592f4f8e16667c740f",
+    "solution_variants_sha256": "5d25e97943f444dde03fed2b4a32c2907c97024dfb3aa9560657c95e16ddfbce",
+    "cases_sha256": "1a965f14eaa5104c29136fb3374d417677a7c4502f12b65ed85a8ccd98ba1089",
+    "complexity_evidence_sha256": "b7394ff53c5b05c9dc6be8be6652acdb1af22f0dee66bfeda51c190aa17a1f66",
+    "candidate_source_sha256": "8e390416cb6ffb4a4c3f25c0e14c1add9e8aa8cc4b78f711123b7a2c147837c2"
+  }
+}

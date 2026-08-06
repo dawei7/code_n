@@ -120,14 +120,17 @@
         ],
         "rows": [
           [
-            75.0
+            75
           ]
         ]
       },
       "tags": [
         "sample",
         "daily-average"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "trial-all-removed",
@@ -170,14 +173,17 @@
         ],
         "rows": [
           [
-            100.0
+            100
           ]
         ]
       },
       "tags": [
         "trial",
         "hundred-percent"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "trial-none-removed",
@@ -216,14 +222,17 @@
         ],
         "rows": [
           [
-            0.0
+            0
           ]
         ]
       },
       "tags": [
         "trial",
         "zero-percent"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "trial-duplicate-reports",
@@ -276,20 +285,23 @@
         ],
         "rows": [
           [
-            50.0
+            50
           ]
         ]
       },
       "tags": [
         "trial",
         "duplicates"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
-      "id": "real-unweighted-days",
-      "name": "hidden: daily percentages are averaged equally",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unweighted-days",
+      "name": "trial: daily percentages are averaged equally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Actions": [
@@ -345,15 +357,18 @@
         ]
       },
       "tags": [
-        "real",
+        "trial",
         "unweighted-average"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
-      "id": "real-same-post-two-days",
-      "name": "hidden: same post participates on two dates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-post-two-days",
+      "name": "trial: same post participates on two dates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Actions": [
@@ -386,20 +401,23 @@
         ],
         "rows": [
           [
-            100.0
+            100
           ]
         ]
       },
       "tags": [
-        "real",
+        "trial",
         "multiple-dates"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
-      "id": "real-filter-action",
-      "name": "hidden: spam text on a non-report action is excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-filter-action",
+      "name": "trial: spam text on a non-report action is excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Actions": [
@@ -443,13 +461,116 @@
         ],
         "rows": [
           [
-            50.0
+            50
           ]
         ]
       },
       "tags": [
-        "real",
+        "trial",
         "action-filter"
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
+    },
+    {
+      "id": "trial-removal-date-irrelevant",
+      "name": "a removal predating the report still counts as removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 70,
+              "action_date": "2024-05-05",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 71,
+              "action_date": "2024-05-05",
+              "action": "report",
+              "extra": "spam"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 70,
+              "remove_date": "2020-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "trial",
+        "removal-date-irrelevant",
+        "fifty-percent"
+      ]
+    },
+    {
+      "id": "trial-no-spam-reports",
+      "name": "no date contains a spam report",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 80,
+              "action_date": "2024-06-06",
+              "action": "report",
+              "extra": "racism"
+            },
+            {
+              "user_id": 2,
+              "post_id": 81,
+              "action_date": "2024-06-06",
+              "action": "view",
+              "extra": "spam"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 80,
+              "remove_date": "2024-07-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            null
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "trial",
+        "no-qualifying-days",
+        "null-average"
       ]
     }
   ]

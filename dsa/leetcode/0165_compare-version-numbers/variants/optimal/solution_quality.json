@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_165",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The current and immutable native revision loops introduce the prohibited local variable named index. The inert app-local candidate preserves the normalized-string comparison exactly while using the conventional position i."
+      },
+      {
+        "category": "complexity",
+        "severity": "material",
+        "reason": "The former 256-revision tier produced 511-character inputs beyond the verified maximum length of 500. The legal 8/64/240 replacement passes the candidate and rejects a correct prefix-reparsing implementation only on scaling."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "9c65f0e1cdba6580e6c4e44aac66d1d793e8ad2d777f6edc8cea154ac96ea0a4",
+    "native_source_sha256": "cf4f994447c7952bcbe7cb198e475568d1d79aa4959133dac618b7e7f62cb4a6",
+    "approach_sha256": "0552d366893c23991de36e4c62b87af2877661d33a01df2d649ac4fd23e24334",
+    "solution_variants_sha256": "b4020b6a14e700dd496a8aadfbfb4f777804c8593e3c74677a71167fa4beb4db",
+    "complexity_evidence_sha256": "c9917dfb3d2d50b6d4b8c1e38b94d486a1bd056ea98d6b2d7fcc21917459ea5f",
+    "candidate_source_sha256": "6e7f73593838b10d65711caac36563909c7e40ab1a83387d356551e877925b9c"
+  }
+}

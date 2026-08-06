@@ -1,10 +1,10 @@
 ## General
 **Map each binary rank directly to its reflected Gray code**
 
-For each integer rank `i` from `0` through $2^{n} - 1$, emit:
+For each integer `value` from `0` through $2^{n} - 1$, emit:
 
 ```text
-gray(i) = i ^ (i >> 1)
+gray(value) = value ^ (value >> 1)
 ```
 
 At each bit position, this records whether two adjacent bits of the binary rank differ. The transform produces the same order as recursively reflecting the previous Gray-code list and prefixing a new high bit, but computes each output independently.
@@ -26,7 +26,7 @@ The transform is invertible: recover the highest binary bit from the highest Gra
 The consecutive-rank argument proves adjacency throughout the list. The final binary rank is `11...1`; XORing it with its right shift yields `10...0`, which differs from initial Gray value zero in exactly the high bit. Thus the output also closes into a valid cycle.
 
 ## Complexity detail
-Exactly $2^{n}$ required outputs are computed in constant time each, giving $O(2^n)$ time. Excluding the returned list, only the loop rank uses $O(1)$ space.
+Exactly $2^{n}$ required outputs are computed in constant time each, giving $O(2^n)$ time. Excluding the returned list, only the loop value uses $O(1)$ space.
 
 ## Alternatives and edge cases
 - **Reflect and prefix:** builds each Gray-code level from the previous one and has the same output complexity.

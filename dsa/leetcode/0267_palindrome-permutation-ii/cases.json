@@ -1,6 +1,125 @@
-{"challenge_id":"lc_267","cases":[
-{"id":"sample-aabb","name":"sample: two palindromic permutations","kind":"sample","visible":true,"input":{"s":"aabb"},"expected":["abba","baab"],"validator":{"kind":"unordered_list"},"tags":["sample","backtracking"]},
-{"id":"sample-impossible","name":"sample: multiple odd counts","kind":"sample","visible":true,"input":{"s":"abc"},"expected":[],"validator":{"kind":"unordered_list"},"tags":["sample","impossible"]},
-{"id":"trial-odd-center","name":"one forced center character","kind":"trial","visible":true,"input":{"s":"aaa"},"expected":["aaa"],"validator":{"kind":"unordered_list"},"tags":["center"]},
-{"id":"real-empty","name":"hidden: empty string has one permutation","kind":"real","visible":false,"input":{"s":""},"expected":[""],"validator":{"kind":"unordered_list"},"tags":["hidden","boundary"]}
-]}
+{
+  "challenge_id": "lc_267",
+  "cases": [
+    {
+      "id": "sample-aabb",
+      "name": "sample: two palindromic permutations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabb"
+      },
+      "expected": ["abba", "baab"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "multiple-results"]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: multiple odd counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one character is the complete palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": ["z"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["minimum-length", "maximum-letter", "odd-center"]
+    },
+    {
+      "id": "trial-single-pair",
+      "name": "one pair has exactly one palindromic permutation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aa"
+      },
+      "expected": ["aa"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["minimum-even-length", "single-result"]
+    },
+    {
+      "id": "trial-two-odd-counts",
+      "name": "two boundary letters cannot both occupy the center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az"
+      },
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["alphabet-boundaries", "two-odd-counts", "impossible"]
+    },
+    {
+      "id": "trial-forced-center",
+      "name": "one odd character is shared by two distinct results",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbc"
+      },
+      "expected": ["abcba", "bacab"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["odd-center", "multiple-results"]
+    },
+    {
+      "id": "trial-duplicate-half-characters",
+      "name": "repeated half characters produce no duplicate answers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabb"
+      },
+      "expected": ["aabbaa", "abaaba", "baaaab"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["duplicate-suppression", "multiset-backtracking"]
+    },
+    {
+      "id": "trial-four-distinct-pairs",
+      "name": "four distinct pairs generate all twenty-four half permutations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbccdd"
+      },
+      "expected": ["abcddcba", "abdccdba", "acbddbca", "acdbbdca", "adbccbda", "adcbbcda", "bacddcab", "badccdab", "bcaddacb", "bcdaadcb", "bdaccadb", "bdcaacdb", "cabddbac", "cadbbdac", "cbaddabc", "cbdaadbc", "cdabbadc", "cdbaabdc", "dabccbad", "dacbbcad", "dbaccabd", "dbcaacbd", "dcabbacd", "dcbaabcd"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["output-growth", "distinct-results", "unordered-output"]
+    },
+    {
+      "id": "trial-maximum-length-single-result",
+      "name": "sixteen equal characters have one distinct result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaa"
+      },
+      "expected": ["aaaaaaaaaaaaaaaa"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["maximum-length", "duplicate-suppression", "single-result"]
+    },
+    {
+      "id": "trial-maximum-length-impossible",
+      "name": "sixteen distinct characters have too many odd counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnop"
+      },
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["maximum-length", "multiple-odd-counts", "impossible"]
+    }
+  ]
+}

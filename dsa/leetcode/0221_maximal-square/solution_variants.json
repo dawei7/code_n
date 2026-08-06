@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximal Square and meets the required complexity bound.",
+      "summary": "Runs the square-side recurrence across the longer dimension while storing one DP line for the shorter dimension.",
       "time_complexity": "O(mn)",
-      "space_complexity": "O(n)"
+      "space_complexity": "O(\\min(m,n))"
     }
   ]
 }

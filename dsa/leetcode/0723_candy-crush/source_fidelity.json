@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_723",
+    "frontend_id": "723",
+    "title_slug": "candy-crush",
+    "url": "https://leetcode.com/problems/candy-crush/description/",
+    "paid_only": true,
+    "content_sha256": "507f6864853feb40a668a359f3449048628f4407056e25caf8aff420cd55b2f3",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "board = [[110,5,112,113,114],[210,211,5,213,214],[310,311,3,313,314],[410,411,412,5,414],[5,1,512,3,3],[610,4,1,613,614],[710,1,2,713,714],[810,1,2,1,1],[1,1,2,2,2],[4,1,4,4,1014]]",
+        "output": "[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[110,0,0,0,114],[210,0,0,0,214],[310,0,0,113,314],[410,0,0,213,414],[610,211,112,313,614],[710,311,412,613,714],[810,411,512,713,1014]]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "board = [[1,3,5,5,2],[3,4,3,3,1],[3,2,4,5,2],[2,4,4,5,5],[1,4,4,1,1]]",
+        "output": "[[1,3,0,0,0],[3,4,0,5,2],[3,2,0,3,1],[2,4,0,5,2],[1,4,3,1,1]]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 1,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 3
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4cae9873bc8a3821d1c0dfdd8e436bf7bbb998956d1fb0ce79ea50b9ac13a74a",
+      "reference/contract.md": "63877bf306bccd0f2f1e2b6c7824e88a8174f0ea77a1a40e7e8276b0a189f0e9",
+      "reference/examples.md": "000d3437994a4fb53f8f973f6d51b8eee2f26c801ff69ccee8f68992887e5fda",
+      "reference/constraints.md": "64507421ea2559172e2a5633585a74c8c042d4e48ced7bfc381cd343ce321ed1",
+      "reference/hint.md": "7d6e4a4fd07c285cbae3145aa162cace03e05651bc18460003abb63643660f38"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

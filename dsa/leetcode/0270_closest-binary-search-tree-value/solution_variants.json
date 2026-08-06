@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Closest Binary Search Tree Value and meets the required complexity bound.",
+      "summary": "Tracks the best distance and tie value while following the sole BST branch that can improve it.",
       "time_complexity": "O(h)",
       "space_complexity": "O(1)"
     }

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Inorder Successor in BST II and meets the required complexity bound.",
+      "summary": "Uses child and parent identities to find the inorder successor without reading node values.",
       "time_complexity": "O(h)",
       "space_complexity": "O(1)"
     }

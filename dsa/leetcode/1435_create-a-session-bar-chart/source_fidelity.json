@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1435",
+    "frontend_id": "1435",
+    "title_slug": "create-a-session-bar-chart",
+    "url": "https://leetcode.com/problems/create-a-session-bar-chart/description/",
+    "paid_only": true,
+    "content_sha256": "0757a06c4ad69dd45f703d71ea00730745ad42ec9bd1fbe2adac43590f267d53",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "sessions_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Sessions = [[1,30],[2,199],[3,299],[4,580],[5,1000]]",
+        "output": "[[\"[0-5>\",3],[\"[5-10>\",1],[\"[10-15>\",0],[\"15 or more\",1]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/sessions_table.md": "cb1b0728225423e2df5e4c560dc50d5bed51fdadad49b45410f721320840e166",
+      "reference/description.md": "e0975559967e91f9aac17ec0e70d9fc743e64066f7344af0e17d5904dfaa12a4",
+      "reference/contract.md": "6123fcdd0524abe08cae477b1b5ba20631398c9b415c79aa81887b0003e45a83",
+      "reference/examples.md": "bf97cadc5297b2efd7afbd52d23227dea84f060fd58ca0f0de724e5e983aadbc"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

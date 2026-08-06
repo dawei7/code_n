@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_9",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order with their exact input and output facts",
+      "zero and a positive single-digit palindrome",
+      "the negative-number and nonzero-trailing-zero rejection paths",
+      "successful odd- and even-length half comparisons",
+      "an odd-length mirrored-pair mismatch",
+      "an even-length palindrome containing internal zeroes",
+      "the minimum and maximum signed 32-bit input boundaries",
+      "a large ten-digit palindrome near the upper boundary",
+      "a ten-digit bounded-domain certificate backed by an independent decimal-string oracle"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "0cd119bc69628af6afaefc82f59bdc26414227c2206114d9027dd742604c7cdf",
+    "native_source_sha256": "a1602905103b9fdc55d6c62c996ddaa005a294e1ce72404a92dc1388734ecb62",
+    "approach_sha256": "fb53b255b86875f09b9c1cfa08798de0cf3c66dcc2456cb49ad929fd21133e32",
+    "solution_variants_sha256": "4068169713aabe8da3d69e9a278d5497730ddcdf22e107001950e3e273e5b524",
+    "cases_sha256": "beda7a80e74837396e02e49437a6a53faa758f61fcb22484dd543e0caddb1cb2",
+    "complexity_evidence_sha256": "3ed24f7355201f27d4f7fc667c176183bb320b15c457b8b201395fba2bab794b"
+  }
+}

@@ -5,8 +5,10 @@ invents synthetic ``n``/``seed`` inputs for the HTTP run path; if a challenge
 has no case suite, the route reports that directly.
 
 Runtime benchmarks are deliberately explicit sidecar files. A normal
-``<suite>.json`` contains sample, trial, and hidden real cases. Its optional
-``<suite>.benchmark.json`` sibling contains benchmark cases only.
+``<suite>.json`` contains correctness cases. Its optional
+``<suite>.benchmark.json`` sibling contains hidden performance cases only.
+The legacy ``real`` kind remains readable while packages migrate to entirely
+visible correctness suites, but a real-test run no longer requires it.
 """
 
 from __future__ import annotations
@@ -97,9 +99,7 @@ def _load_case_file(path: Path, challenge_id: str, *, benchmark_sidecar: bool) -
     payload = json.loads(path.read_text(encoding="utf-8"))
     payload_challenge_id = payload.get("challenge_id")
     if payload_challenge_id is not None and str(payload_challenge_id) != challenge_id:
-        raise NoValidatedCases(
-            f"{path}: challenge_id {payload_challenge_id!r} does not match {challenge_id!r}."
-        )
+        raise NoValidatedCases(f"{path}: challenge_id {payload_challenge_id!r} does not match {challenge_id!r}.")
     cases = payload.get("cases")
     if not isinstance(cases, list):
         raise NoValidatedCases(f"{path}: validated case file has no cases list.")
@@ -114,9 +114,7 @@ def _load_case_file(path: Path, challenge_id: str, *, benchmark_sidecar: bool) -
         if kind not in {"sample", "trial", "real", "benchmark", "custom"}:
             raise NoValidatedCases(f"{path}: case {raw.get('id')!r} has invalid kind {kind!r}.")
         if benchmark_sidecar and kind != "benchmark":
-            raise NoValidatedCases(
-                f"{path}: benchmark sidecar case {raw.get('id')!r} must use kind 'benchmark'."
-            )
+            raise NoValidatedCases(f"{path}: benchmark sidecar case {raw.get('id')!r} must use kind 'benchmark'.")
         if not benchmark_sidecar and kind == "benchmark":
             benchmark_path = _benchmark_case_path(path)
             raise NoValidatedCases(
@@ -124,12 +122,8 @@ def _load_case_file(path: Path, challenge_id: str, *, benchmark_sidecar: bool) -
                 f"{benchmark_path.name if benchmark_path else '<suite>.benchmark.json'}."
             )
         raw_size = raw.get("size")
-        if raw_size is not None and (
-            isinstance(raw_size, bool) or not isinstance(raw_size, int) or raw_size <= 0
-        ):
-            raise NoValidatedCases(
-                f"{path}: benchmark size for case {raw.get('id')!r} must be a positive integer."
-            )
+        if raw_size is not None and (isinstance(raw_size, bool) or not isinstance(raw_size, int) or raw_size <= 0):
+            raise NoValidatedCases(f"{path}: benchmark size for case {raw.get('id')!r} must be a positive integer.")
         result.append(
             ValidatedCase(
                 id=str(raw.get("id") or f"case-{len(result) + 1}"),
@@ -146,18 +140,12 @@ def _load_case_file(path: Path, challenge_id: str, *, benchmark_sidecar: bool) -
         )
     if benchmark_sidecar and len(result) >= 2:
         if any(case.size is None or case.size <= 0 for case in result):
-            raise NoValidatedCases(
-                f"{path}: multi-tier benchmark cases require a positive integer size."
-            )
+            raise NoValidatedCases(f"{path}: multi-tier benchmark cases require a positive integer size.")
         sizes = [int(case.size or 0) for case in result]
         if sizes != sorted(set(sizes)):
-            raise NoValidatedCases(
-                f"{path}: benchmark sizes must be unique and ordered from smallest to largest."
-            )
+            raise NoValidatedCases(f"{path}: benchmark sizes must be unique and ordered from smallest to largest.")
         if sizes[-1] < sizes[0] * 4:
-            raise NoValidatedCases(
-                f"{path}: benchmark tiers must span at least 4x from smallest to largest."
-            )
+            raise NoValidatedCases(f"{path}: benchmark tiers must span at least 4x from smallest to largest.")
     return result
 
 
@@ -219,9 +207,7 @@ def select_cases_for_run(
     system_ids = {case.id for case in suite}
     collisions = system_ids & {case.id for case in user_cases}
     if collisions:
-        raise InvalidCustomCase(
-            f"Custom case ids cannot replace system cases: {', '.join(sorted(collisions))}."
-        )
+        raise InvalidCustomCase(f"Custom case ids cannot replace system cases: {', '.join(sorted(collisions))}.")
     if not suite and not user_cases:
         raise NoValidatedCases(
             f"{challenge_id} has no validated test cases yet. Add cases.json to its canonical LeetCode package before running."
@@ -231,15 +217,11 @@ def select_cases_for_run(
         visible = [case for case in suite if case.visible and case.kind in {"sample", "trial"}]
         hidden = [case for case in suite if case.kind == "real"]
         certificate_complete = leetcode_complexity_certificate_status(challenge_id).complete
-        benchmark_cases = (
-            [] if certificate_complete else [case for case in suite if case.kind == "benchmark"]
-        )
-        if not hidden:
-            raise NoValidatedCases(f"{challenge_id} has no hidden real-test cases.")
+        benchmark_cases = [] if certificate_complete else [case for case in suite if case.kind == "benchmark"]
+        if not visible and not hidden:
+            raise NoValidatedCases(f"{challenge_id} has no correctness cases.")
         if not benchmark_cases and not certificate_complete:
-            raise NoValidatedCases(
-                f"{challenge_id} has neither benchmark cases nor a verified complexity certificate."
-            )
+            raise NoValidatedCases(f"{challenge_id} has neither benchmark cases nor a verified complexity certificate.")
         run_cases = [*visible, *user_cases, *hidden, *benchmark_cases]
         return run_cases, benchmark_cases
 

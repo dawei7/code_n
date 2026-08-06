@@ -1,7 +1,7 @@
 ## General
 **Index intervals instead of allocating recursive substrings**
 
-Represent a subproblem by `(start1, start2, length)`. Cache whether those equal-length intervals are scrambles so different higher-level split histories never recompute the same state. Indexing also avoids creating new substring objects at every recursive edge.
+Represent a subproblem by `(first_start, second_start, size)`. Cache whether those equal-length intervals are scrambles so different higher-level split histories never recompute the same state. Integer boundaries also avoid creating new substring objects at every recursive edge.
 
 **Unequal character inventories prove failure before any split**
 
@@ -20,7 +20,7 @@ Both child pairs must succeed in either orientation. Stop at the first successfu
 
 **A memo state asks exactly one recursive-tree equivalence question**
 
-`scramble(a, b, length)` is true exactly when the specified intervals have recursive scramble trees with the same leaves. Every recursive call uses strictly shorter intervals, and memo entries record final answers for those interval pairs.
+`scramble(first_start, second_start, size)` is true exactly when the specified intervals have recursive scramble trees with the same leaves. Every recursive call uses strictly shorter intervals, and memo entries record final answers for those interval pairs.
 
 **Trace a swapped top-level child**
 
@@ -39,5 +39,5 @@ There are $O(n^3)$ interval-pair states and up to $O(n)$ split positions per sta
 - **Unmemoized recursion:** repeats interval states exponentially.
 - **Bottom-up three-dimensional DP:** has the same asymptotic bounds but requires more indexing machinery.
 - **Anagram equality alone:** is necessary but not sufficient; some equal-inventory strings have incompatible recursive split structure.
-- One-character intervals succeed exactly when their characters match. Different full-string lengths fail immediately before interval recursion.
+- One-character intervals succeed exactly when their characters match. The function contract guarantees equal full-string lengths before interval recursion begins.
 - Prefix counts rely on the lowercase alphabet constraint; a broader alphabet can use maps or compressed character indexing.

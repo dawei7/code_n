@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2340",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution scans nums once to identify minimum_index (first occurrence of minimum) and maximum_index (last occurrence of maximum). It calculates swaps as minimum_index + len(nums) - 1 - maximum_index - (minimum_index > maximum_index). The single-pass greedy solution is canonical, optimal, and concise; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Choosing the leftmost minimum and rightmost maximum minimizes distance to endpoints. If minimum_index > maximum_index, moving minimum to index 0 and maximum to index n-1 causes them to cross once, reducing total required adjacent swaps by 1."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "A single linear pass finds both target indices in O(n) time and O(1) auxiliary space. Complexity evidence is certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts nums array, handles single-element arrays (returning 0), handles duplicate extremes correctly, and returns minimum required adjacent swaps."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details extreme index identification, crossing correction deduction, and O(n) time / O(1) space bounds. Alternatives and edge cases cover swap simulations, arbitrary duplicate choices, crossing correction double-counting, single-element arrays, and all-equal arrays."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the exact same single-pass extreme index calculation with SHA-256 digests 20ca17468fd7e1734d5b149f461bd09998179b4eac3826fe91276cd0946ddf09 and e572a544097ee6e4e317057bcecad1fd46cdf78a1a6db8634b7452c3927e0d6a. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed nums interface, two examples, two constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "20ca17468fd7e1734d5b149f461bd09998179b4eac3826fe91276cd0946ddf09",
+    "native_source_sha256": "e572a544097ee6e4e317057bcecad1fd46cdf78a1a6db8634b7452c3927e0d6a",
+    "approach_sha256": "74c3f77c5595c2a31f64fc6fa8e95dfa39e6490b13f974e353e3713987de8610",
+    "solution_variants_sha256": "14f455d7dca1d83a051579018f601bd3218262e8171637fcd432687e041275cb",
+    "complexity_evidence_sha256": "a540a90a17fc810fd26d4208055d3ba4a21bb3e5158fc3418c48fcc6fdcbae85"
+  }
+}

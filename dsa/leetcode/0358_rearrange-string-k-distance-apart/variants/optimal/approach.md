@@ -23,6 +23,6 @@ Let `n` be the string length and `a` the number of distinct lowercase letters. E
 - **Backtracking over permutations:** explores choices directly but has factorial worst-case growth and repeats equivalent states created by identical letters.
 - **Block-by-block greedy selection:** choosing up to `k` distinct letters per round can also work, but careful handling is needed for a final partial block and exhausted counts.
 - When $k \le 1$, every ordering already satisfies the separation rule.
-- A one-character string is valid even when `k` is larger than the string length.
+- A one-character string is valid for either legal value of `k`, zero or one.
 - If the heap empties while cooldown entries remain, returning a partial string would violate the contract; the required result is `""`.
 - Heap tie-breaking may produce a different valid permutation from the examples, so correctness depends on multiplicities and distances rather than exact serialization.

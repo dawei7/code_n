@@ -3,8 +3,14 @@
   "cases": [
     {"id": "sample-1", "name": "sample: odd-length palindrome", "kind": "sample", "visible": true, "input": {"x": 121}, "expected": true, "tags": ["sample", "odd"]},
     {"id": "sample-2", "name": "sample: negative number", "kind": "sample", "visible": true, "input": {"x": -121}, "expected": false, "tags": ["sample", "negative"]},
-    {"id": "trial-trailing-zero", "name": "nonzero trailing zero", "kind": "trial", "visible": true, "input": {"x": 10}, "expected": false, "tags": ["zero"]},
-    {"id": "trial-zero", "name": "zero is a palindrome", "kind": "trial", "visible": true, "input": {"x": 0}, "expected": true, "tags": ["boundary"]},
-    {"id": "real-even-boundary", "name": "hidden: large even-length palindrome", "kind": "real", "visible": false, "input": {"x": 2147447412}, "expected": true, "tags": ["hidden", "even", "boundary"]}
+    {"id": "sample-3", "name": "sample: nonzero trailing zero", "kind": "sample", "visible": true, "input": {"x": 10}, "expected": false, "tags": ["sample", "trailing-zero"]},
+    {"id": "trial-zero", "name": "zero is a palindrome", "kind": "trial", "visible": true, "input": {"x": 0}, "expected": true, "tags": ["boundary", "zero"]},
+    {"id": "trial-single-digit", "name": "positive single digit", "kind": "trial", "visible": true, "input": {"x": 7}, "expected": true, "tags": ["single-digit", "odd"]},
+    {"id": "trial-even-palindrome", "name": "even-length palindrome", "kind": "trial", "visible": true, "input": {"x": 1221}, "expected": true, "tags": ["even"]},
+    {"id": "trial-odd-mismatch", "name": "odd-length non-palindrome", "kind": "trial", "visible": true, "input": {"x": 1231}, "expected": false, "tags": ["odd", "mismatch"]},
+    {"id": "trial-internal-zeroes", "name": "palindrome with internal zeroes", "kind": "trial", "visible": true, "input": {"x": 1001}, "expected": true, "tags": ["even", "zero"]},
+    {"id": "trial-minimum", "name": "minimum signed 32-bit integer", "kind": "trial", "visible": true, "input": {"x": -2147483648}, "expected": false, "tags": ["boundary", "negative"]},
+    {"id": "trial-maximum", "name": "maximum signed 32-bit integer", "kind": "trial", "visible": true, "input": {"x": 2147483647}, "expected": false, "tags": ["boundary", "mismatch"]},
+    {"id": "trial-large-even-palindrome", "name": "large even-length palindrome", "kind": "trial", "visible": true, "input": {"x": 2147447412}, "expected": true, "tags": ["even", "boundary"]}
   ]
 }

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_588",
+    "frontend_id": "588",
+    "title_slug": "design-in-memory-file-system",
+    "url": "https://leetcode.com/problems/design-in-memory-file-system/description/",
+    "paid_only": true,
+    "content_sha256": "ade5788626a2449201c0a31bb4c24cbdd8291bba5bc93ff6c4c1f55159412bf1",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "operations = [\"FileSystem\",\"ls\",\"mkdir\",\"addContentToFile\",\"ls\",\"readContentFromFile\"], arguments = [[],[\"/\"],[\"/a/b/c\"],[\"/a/b/c/d\",\"hello\"],[\"/\"],[\"/a/b/c/d\"]]",
+        "output": "[null,[],null,null,[\"a\"],\"hello\"]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "528ae77c419fb75855272f0706e051e3b6655bb4d790e5e70c941fcbe66c42bb",
+      "reference/contract.md": "42618442af99495bbbed03916595498fb6155ea288d28a00a1d74e3fa0857ebc",
+      "reference/examples.md": "dab3b76b72e9c60ea57c560bae3396eb322cf9425784e3e6b463636d51094ef0",
+      "reference/constraints.md": "d18ba4131b92437f40f5ca8cdf88157f8d3521cd94512b6b5be15dc743a38021"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,28 +1,40 @@
 ## General
-**Treat each completed group as one remaining seed**
 
-Start with the strings `"1"` through `"n"` in strength order. After a round is formatted, each match string represents the winner that will advance from that part of the bracket. The list of these strings remains ordered by the best original seed each group contains.
+**Represent every remaining seed or bracket as a string**
 
-**Pair symmetric positions**
+Begin with the strings `"1"` through `"n"` in strength order. After a round, each new string represents the complete
+sub-bracket whose winner advances from that position. The list remains ordered by the strongest original seed in
+each group.
 
-For a round containing `m` groups, combine group `i` with group $m - 1 - i$ for every $i < m / 2$. This places the strongest available group against the weakest, exactly matching the seeding rule. Build a fresh list so indexing stays constant-time and no unprocessed position shifts.
+**Pair symmetric positions using conventional indices**
 
-**Repeat until the whole bracket is one string**
+For `count` remaining groups, candidate loop variable `i` pairs `groups[i]` with
+`groups[count - 1 - i]` for every $0 \le i < count / 2$. This places the strongest group against the weakest, the
+second strongest against the second weakest, and so on. A fresh list preserves constant-time indexing while the
+current round is read.
 
-Each round halves the number of groups. When only one group remains, it contains every team and every match in the required nesting order.
+**Repeat until one complete contest remains**
 
-**Why the nesting preserves every prescribed match**
-
-Initially, symmetric positions are precisely the required first-round seed pairs. Suppose the current strings correctly represent the groups that may advance to some round and are ordered strongest to weakest. Pairing symmetric positions gives each stronger group its prescribed weaker opponent. The newly formed strings therefore correctly represent the next round in the same order. By induction, the final string contains exactly the complete seeded tournament.
+Every round halves the group count. Initially, symmetric positions are exactly the required first-round seed pairs.
+If the current strings correctly represent one round's strength-ordered advancing groups, symmetric pairing gives
+each stronger group its prescribed weaker opponent and produces the next strength-ordered group list. By induction,
+the sole final string contains every team and every required match in the correct nesting order.
 
 ## Complexity detail
-There are `log n` rounds. Across a round, the algorithm copies bracket text whose total length is bounded by the final output length. Team labels contain up to $O(\log n)$ digits, so the returned string has $O(n \log n)$ characters; constructing it over all rounds takes $O(n \log n)$ time under the same character-cost model. The current and next group lists together store $O(n \log n)$ characters.
+
+There are $log n$ rounds. The final output has $O(n \log n)$ characters because it contains all team labels, whose
+decimal lengths are at most $O(\log n)$, plus $O(n)$ punctuation. With immutable strings, every round recopies the
+label text already present in all groups. Charging those copies gives $O(n \log^2 n)$ total time. The old and new
+group lists coexist during a comprehension but contain $O(n \log n)$ characters in total, so auxiliary construction
+space, including the returned string, is $O(n \log n)$.
 
 ## Alternatives and edge cases
-- **Recursive interval construction:** can encode the same seeding recurrence, but correctly mapping ranks through later rounds is less direct than pairing an ordered group list.
-- **Deque from both ends:** also obtains each outer pair in constant time and has the same asymptotic cost.
-- **Rescan for both extreme seeds:** works even if group order is discarded, but finding the strongest and weakest before every match takes $O(n^2)$ time.
-- **Minimum tournament:** when $n = 2$, one pair is already the complete answer.
-- **Power-of-two guarantee:** ensures every round has an even number of groups and ends with exactly one bracket.
-- **Multi-digit labels:** must remain intact; the algorithm stores them as complete strings rather than individual characters.
-- **Formatting:** no spaces are inserted, and the stronger group appears before the weaker group in every pair.
+
+- **Structured bracket plus one token serialization:** can reduce character copying to output-linear time, but its
+  extra Python-level traversal does not satisfy this package's calibrated runtime gate.
+- **Deque from both ends:** obtains the same symmetric pairs and has the same immutable-string asymptotics.
+- **Rescan for extreme seeds:** remains correct after discarding order but takes quadratic selection work.
+- **Minimum tournament:** when $n = 2$, the first pair is already the final output.
+- **Power-of-two guarantee:** makes every round even and guarantees termination at one bracket.
+- **Multi-digit labels:** remain complete strings rather than separate characters.
+- **Formatting:** every pair omits spaces and places its stronger group first.

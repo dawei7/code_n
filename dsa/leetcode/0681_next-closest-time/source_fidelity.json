@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_681",
+    "frontend_id": "681",
+    "title_slug": "next-closest-time",
+    "url": "https://leetcode.com/problems/next-closest-time/description/",
+    "paid_only": true,
+    "content_sha256": "325eca6c36730f5af5471ce8f4b1b3623b994e56a27127073f4bb3391da55a02",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "time = \"19:34\"",
+        "output": "\"19:39\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "time = \"23:59\"",
+        "output": "\"22:22\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "422d7b580cf301b719525e4d370377d2bb2913181418ab4f29238c5977da0823",
+      "reference/contract.md": "1c0bcab919507d4f3c91e1c644b59a6c5ac511fe02f206de887b34aea76221f3",
+      "reference/examples.md": "f6b26c3495374ecc46fe60febda13515405a4bfc2e2bcdfd4a5b5026a0251a27",
+      "reference/constraints.md": "c1700caa6ba2472bb481e230333a3f722423a7221623dfe932fefda00c0bae40"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

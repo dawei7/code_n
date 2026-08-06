@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1645",
+    "frontend_id": "1645",
+    "title_slug": "hopper-company-queries-ii",
+    "url": "https://leetcode.com/problems/hopper-company-queries-ii/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Sample `Drivers`, `Rides`, and `AcceptedRides` tables for 2020.",
+        "output": "| month | working_percentage |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "One driver joined prior to 2020 completing 1 accepted ride in January.",
+        "output": "| month | working_percentage |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "Single driver completes multiple accepted rides in the same month.",
+        "output": "| month | working_percentage |",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c241bd5d98a4090dac96a676c028d7f6d61e79c53e09b16529df43504269d6ed",
+      "reference/contract.md": "253bac6a2950f664d72de48f6c7cc873eb49d93b719d0ddf6e5c8825b6fb59e1",
+      "reference/examples.md": "b883f1fa3f7062443a61284e86c25fbd0e5134b01336a1aed98f411e72f0da5a",
+      "reference/constraints.md": "bf42cb0cbd5b941287e687ae6822c85fef545dbe1b398427a982d077e6a38310"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

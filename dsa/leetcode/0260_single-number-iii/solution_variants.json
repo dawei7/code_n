@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Single Number III and meets the required complexity bound.",
+      "summary": "XORs all values, isolates one differing bit, and cancels pairs independently in the resulting two groups.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

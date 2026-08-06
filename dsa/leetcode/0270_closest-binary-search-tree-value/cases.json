@@ -1,7 +1,137 @@
-{"challenge_id":"lc_270","cases":[
-{"id":"sample-near-root","name":"sample: root is closest","kind":"sample","visible":true,"input":{"root":[4,2,5,1,3],"target":3.714286},"expected":4,"tags":["sample","bst"]},
-{"id":"sample-single","name":"sample: single-node tree","kind":"sample","visible":true,"input":{"root":[1],"target":4.428571},"expected":1,"tags":["sample","boundary"]},
-{"id":"trial-left","name":"closest value lies in left subtree","kind":"trial","visible":true,"input":{"root":[2,1,3],"target":1.2},"expected":1,"tags":["search"]},
-{"id":"trial-tie","name":"equal distance chooses smaller value","kind":"trial","visible":true,"input":{"root":[2,1,3],"target":2.5},"expected":2,"tags":["tie"]},
-{"id":"real-exact","name":"hidden: exact target value","kind":"real","visible":false,"input":{"root":[8,4,12,2,6,10,14],"target":10.0},"expected":10,"tags":["hidden","exact"]}
-]}
+{
+  "challenge_id": "lc_270",
+  "cases": [
+    {
+      "id": "sample-near-root",
+      "name": "sample: root is closest",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [4, 2, 5, 1, 3],
+        "target": 3.714286
+      },
+      "expected": 4,
+      "tags": ["sample", "binary-search-tree"]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: single-node tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [1],
+        "target": 4.428571
+      },
+      "expected": 1,
+      "tags": ["sample", "minimum-nodes"]
+    },
+    {
+      "id": "trial-left-subtree",
+      "name": "closest value lies in the left subtree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [2, 1, 3],
+        "target": 1.2
+      },
+      "expected": 1,
+      "tags": ["left-branch"]
+    },
+    {
+      "id": "trial-root-tie",
+      "name": "equal distance chooses the smaller root value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [2, 1, 3],
+        "target": 2.5
+      },
+      "expected": 2,
+      "tags": ["tie", "smaller-value"]
+    },
+    {
+      "id": "trial-exact-match",
+      "name": "an exact target value returns immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [8, 4, 12, 2, 6, 10, 14],
+        "target": 10.0
+      },
+      "expected": 10,
+      "tags": ["exact-match", "early-return"]
+    },
+    {
+      "id": "trial-right-subtree",
+      "name": "closest value lies at the right boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [8, 4, 12, 2, 6, 10, 14],
+        "target": 13.2
+      },
+      "expected": 14,
+      "tags": ["right-branch", "maximum-node"]
+    },
+    {
+      "id": "trial-sparse-tree",
+      "name": "search passes a missing child in a sparse BST",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [8, 4, 12, null, 6, 10, 14],
+        "target": 6.4
+      },
+      "expected": 6,
+      "tags": ["sparse-tree", "level-order-fixture"]
+    },
+    {
+      "id": "trial-minimum-boundaries",
+      "name": "minimum target selects the zero-valued node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [10, 0, 15],
+        "target": -1000000000.0
+      },
+      "expected": 0,
+      "tags": ["minimum-target", "minimum-node-value", "below-range"]
+    },
+    {
+      "id": "trial-maximum-boundaries",
+      "name": "maximum target exactly matches the maximum-valued node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [10, 5, 1000000000],
+        "target": 1000000000.0
+      },
+      "expected": 1000000000,
+      "tags": ["maximum-target", "maximum-node-value", "exact-match"]
+    },
+    {
+      "id": "trial-deeper-tie",
+      "name": "a deeper tie chooses five instead of six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [4, 2, 6, 1, 3, 5, 7],
+        "target": 5.5
+      },
+      "expected": 5,
+      "tags": ["tie", "smaller-value", "path-update"]
+    },
+    {
+      "id": "trial-right-skewed",
+      "name": "a right-skewed BST follows every level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [1, null, 2, null, 3, null, 4],
+        "target": 3.6
+      },
+      "expected": 4,
+      "tags": ["skewed-tree", "right-branch", "height"]
+    }
+  ]
+}

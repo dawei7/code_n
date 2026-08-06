@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1246",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "approach_target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "material",
+        "reason": "The protected implementation uses the explicitly prohibited local name `index` while initializing singleton intervals. The inert candidate preserves the exact accepted interval-DP algorithm and app-local `solve(arr)` contract while replacing only that loop variable with conventional interview notation `i`. This is the smallest material correction required by the repository standard; protected app source, immutable native source, and verified submission remain untouched."
+      },
+      {
+        "category": "candidate_quality",
+        "severity": "good",
+        "reason": "The candidate is direct and interview-ready. `length`, `dp`, `width`, `left`, `right`, `middle`, and `suffix` identify the array size, interval state, traversal order, matching partner, and remaining interval without abstraction or code golf. Conventional `i` is used only for the obvious diagonal initialization loop."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For each original interval, the recurrence first covers plans that remove the left value without a later equal partner. If the next value matches, the adjacent pair can leave in one move before the suffix. For every later equal value, optimally clearing the strict interior makes the two copies adjacent; the left copy can join the removal containing the right copy, leaving only the suffix cost. Every optimal plan falls into one of these cases, and increasing interval width guarantees all referenced states are complete."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "The table contains O(n^2) intervals. Each interval scans at most O(n) potential matching positions, giving O(n^3) time. The interval table uses O(n^2) space, and all other local storage is lower order."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent shortest-path search treated every remaining tuple as a state and generated every currently palindromic contiguous removal. That oracle, protected source, immutable native source, candidate, an independently derived split-based cubic DP, and the correct unmemoized recurrence agreed on all nine ordinary cases, all three benchmark tiers, 9,840 exhaustive arrays of lengths one through eight over values 1 through 3, and 5,000 deterministic schema-valid random arrays generated with seed 1246. Every app-local implementation preserved its input."
+      },
+      {
+        "category": "randomized_and_boundary_coverage",
+        "severity": "verified",
+        "reason": "The exhaustive set included 240 palindromes, 9,075 arrays with adjacent equals, 9,762 with nonadjacent repeats, 240 one-move answers, and all 15 arrays whose distinct values force one move per element. The random set included 542 palindromes, 954 adjacent-equal inputs, 1,837 nonadjacent-repeat inputs, 2,642 answers equal to array length, and more than 1,100 arrays containing each value bound. Exact length-100 checks covered all-equal, alternating-bound, and seeded non-palindromic arrays; the last used all 20 values and had oracle answer 47."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "The three hidden `real` rows were replaced by visible trials and two additional visible trials were added. All nine ordinary cases are now samples or trials with `visible` true. They preserve both exact source examples and cover minimum length, whole-array palindromes, all-distinct values, adjacent equal pairs, nested equal values, both value bounds, newly adjacent values after a removal, overlapping palindromes, and a repeated-value greedy trap."
+      },
+      {
+        "category": "benchmark_calibration",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers use all-equal arrays of lengths 3, 6, and 12, exposing many matching recurrence branches while retaining the one-move answer. Protected, candidate, and independent split DP passed scaling in three runs each. The conventional unmemoized recurrence preserved all twelve outputs but failed only the scaling verdict in all three runs, with no timeout, safety-cap, or correctness failure."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1246, Python as the primary language, and native entrypoint `Solution.minimumMoves`. Fresh authenticated evidence confirms contiguous palindromic removal, gap closing after every move, minimization over complete removal sequences, nonempty arrays of length 1 through 100, and values 1 through 20."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native source remains bound to verified submission 2067993608 and is unchanged. Protected and native sources share the same table, singleton bases, width order, left-alone bound, adjacent-equal case, later-match merge, suffix handling, and O(n^3)/O(n^2) behavior. The candidate changes only the prohibited diagonal-loop name and therefore retains exact algorithmic alignment."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach was reviewed against the candidate and exactly describes its interval state, base cases, left-alone transition, adjacent-pair transition, later matching partner transition, increasing-width dependency order, exhaustive optimal-plan argument, and complexity. Its recursive, greedy, palindromic-enumeration, singleton, whole-palindrome, distinct-value, and adjacent-pair discussions cover the material alternatives and traps."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the nonempty integer array, contiguous palindromic selection, inclusive i-through-j range, gap-closing semantics, minimization goal, both source examples in order, explanation only on Example 2, both constraints, and all three source hints. The third hint explicitly retains the source's literal `S` notation and `dp(i + 1, j + 1)` expression instead of silently rewriting provider facts."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples, explanation only on Example 2, two constraints, three hints, and no source visuals or tables. `source_fidelity.json` binds all five modular Reference files to live statement hash 007d34f40524b697df3a339f1e029a4e31f1dec2b7f326184dae50db5d9b37a7 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples preserve both authenticated source inputs and outputs in source order. Only Example 2 carries its source explanation and exact three-removal sequence.",
+      "All nine ordinary fixtures are visible samples or trials covering singleton and whole-array palindromes, distinct values, adjacent pairs, nested equality, both value bounds, gap-created adjacency, overlapping palindromes, and repeated-value greedy traps.",
+      "The independent state-space oracle recomputed every fixed expectation. Protected, native, candidate, independent split DP, and unmemoized recurrence agreed on all fixed fixtures, 9,840 exhaustive arrays, 5,000 seeded legal arrays, and three exact length-100 boundaries without input mutation.",
+      "The unchanged hidden tiers use all-equal arrays at n = 3, 6, and 12. Protected, candidate, and independently structured cubic DP pass scaling, while the correct unmemoized recurrence preserves every output and fails only the scaling verdict in three repeated runs."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "4710976f588fa2160d696398090398388c90d4662d3798ac8ea60d436b636534",
+    "native_source_sha256": "7b11975e72e623eeee73081e4870fdcbd0a40fd7dc0d3b2425f19b5263447078",
+    "approach_sha256": "bc544dc5d192972e89465d5c9ba63c0126ae567d7467cf4a7d2209a440d711ff",
+    "solution_variants_sha256": "aa06530b3f470966d920e2a103acc953f35295555b8602cd833a764d80ff9810",
+    "complexity_evidence_sha256": "1eb17220f963e96456d38b31a10a34823207860cd49e8a6ffffeb262c5c5ae01",
+    "cases_sha256": "5d704901be9d7778353238a16de8cfe30ad3098a2930b5933cb568edb619192a",
+    "candidate_source_sha256": "7d5a544713e97792bcb5a08ec74f4ccbac42035602f005affcafb183efa6bdfa"
+  }
+}

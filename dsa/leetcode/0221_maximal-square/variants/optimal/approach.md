@@ -1,24 +1,37 @@
 ## General
-Describe a square by its bottom-right corner. Let the state at `(row, column)` be the side length of the largest all-one square ending there. A zero cell cannot end such a square, so its state is zero. For a one cell, extending to side length `q` requires side length at least $q - 1$ immediately above, immediately left, and diagonally above-left. The limiting neighbor determines the extension:
+Describe a square by its bottom-right corner. For a one-cell, the largest ending square has side length
 
-`state = 1 + min(above, left, diagonal)`.
+`1 + min(above, left, diagonal)`.
 
-The diagonal term is essential. Above and left may each support long strips while the interior corner contains a zero; without the diagonal constraint, those strips would be mistaken for a filled square.
+All three neighbors are necessary: the top and left states alone can describe two long strips whose shared interior
+corner contains a zero. A zero-cell instead has state zero because no all-one square can end there.
 
-For a one-cell whose three neighboring states are `2`, `3`, and `2`, the largest ending square has side `3`. The two size-two squares plus the current row and column certify the complete three-by-three region, while the minimum prevents claiming a fourth layer unsupported by every direction.
+Only the previous logical line is needed. Before updating `dp[c]`, it is the state above the current cell;
+`dp[c - 1]` has already become the current line's left state. Preserve the overwritten value as `diagonal` for the next
+position. A leading zero sentinel removes boundary branches. Track the largest side length and square it at the end
+because the requested result is area.
 
-**Compressing the table to one row**
+**Choose the compressed dimension**
 
-Process the matrix row by row and keep `dp[column]`. Before updating a position, that entry is the state from above; `dp[column - 1]` is already the current row's left state. Preserve the old previous-column value in a separate `diagonal` variable before it is overwritten. A leading zero sentinel removes first-row and first-column branches.
+The recurrence is symmetric under matrix transposition. The candidate traverses the original rows when the column count
+is no larger than the row count. For a wider matrix, `zip(*matrix)` exposes its columns as logical lines instead. In both
+orientations, the DP line spans the shorter matrix dimension, reducing storage without materializing a transposed matrix.
 
-After each update, the stored value is exactly the largest square ending at that cell: any larger square would require all three neighboring states to be larger, while the minimum-sized neighbor squares together with the current one-cell construct the claimed square. Track the maximum side encountered and square it only at the end because the requested result is area.
+After each update, `dp[c]` is exactly the largest all-one square ending at that logical cell. Any larger square would
+require all three predecessor states to be larger. Conversely, predecessor squares of the minimum side length, together
+with the current one-cell, cover the complete claimed square. Transposition preserves square shape, area, and adjacency,
+so choosing either traversal orientation preserves the recurrence and the maximum.
 
 ## Complexity detail
-Every one of the $m \cdot n$ cells is processed once, giving $O(mn)$ time. A DP row of $n + 1$ integers plus constant state uses $O(n)$ space; choosing the shorter matrix dimension for compression can reduce this to $O(\min(m,n))$ when traversal is adapted.
+Every one of the $m \cdot n$ cells is processed once, giving $O(mn)$ time. The DP line, its sentinel, and at most one
+logical line produced by `zip` contain $O(\min(m,n))$ values, so auxiliary space is $O(\min(m,n))$.
 
 ## Alternatives and edge cases
-- A full two-dimensional DP table is easier to inspect but uses $O(mn)$ space.
-- Expanding a candidate square from every cell can repeatedly inspect the same area and become cubic or worse.
-- Histogram/stack logic for maximal rectangles solves a different shape constraint and is unnecessary here.
-- An all-zero matrix returns zero; one isolated `"1"` yields area one.
-- A full square of side `q` yields $q^{2}$, not side length `q`.
+- **Fixed column compression:** It has the same recurrence and time bound but uses $O(n)$ space even when the matrix is
+  much wider than tall.
+- **Full DP table:** It is easier to inspect but uses $O(mn)$ space.
+- **Square expansion:** Expanding a candidate from every cell repeatedly inspects the same regions and can be cubic or
+  worse.
+- **Maximal-rectangle stack:** Histogram logic solves a different shape constraint and is unnecessary here.
+- **Boundary contents:** An all-zero matrix returns zero, while one isolated `"1"` yields area one.
+- **Area versus side:** A full square of side $q$ returns $q^2$, not $q$.

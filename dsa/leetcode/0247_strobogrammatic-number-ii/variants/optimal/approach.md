@@ -18,4 +18,5 @@ The output family grows exponentially with roughly five choices per digit pair; 
 
 ## Alternatives and edge cases
 - **Enumerate all $10^{n}$ numerals then test:** explores overwhelmingly invalid candidates.
-- One digit has exactly three answers; internal zeros remain allowed.
+- **One digit:** has exactly the three self-rotating answers `0`, `1`, and `8`.
+- **Internal zeros:** remain valid because only the final outer wrapper is prohibited from using `00`.

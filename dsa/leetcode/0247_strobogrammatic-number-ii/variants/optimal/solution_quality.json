@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_247",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution generates all strobogrammatic numbers of length n using a center-outward recursive construction. Base cases handle length 0 ([\"\"]) and length 1 ([\"0\", \"1\", \"8\"]); for larger lengths, valid character pairs (\"00\", \"11\", \"69\", \"88\", \"96\") wrap around center strings of length n - 2, omitting \"00\" only for the outermost pair when length == n. The solution runs in O(n * 5^(n/2)) time and space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Building outward from valid center seeds and appending/prepending valid 180-degree rotation pairs guarantees that every generated string is strobogrammatic and has length n. Excluding leading zero pairs '00' at the outermost level prevents invalid numbers."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Generating 5^(n/2) strobogrammatic strings of length n takes O(n * 5^(n/2)) time and space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts integer n, returning a list of strings containing all strobogrammatic numbers of length n without invalid leading zeros."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details center-outward recursive construction, base cases for even and odd lengths, leading-zero restriction for the outermost wrapper, and O(n * 5^(n/2)) time and space bounds. Alternatives and edge cases cover full n-digit brute-force enumeration, single-digit seeds, and internal zero-pair validity."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the identical center-outward recursive strobogrammatic generation algorithm with SHA-256 digests b1686999410d782d81abc49bcc523a5e890ffd42301d3e48a10674e1e8d3ce35 and 311948992e42da87ffa5cc245afad04c7ed8feb52f191a4a48323b45bedbcee9. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed n interface, two examples, one constraint, and 0 diagrams. Bound to content SHA-256 d9c4376238f538d2309e8b43ff7945bef4abe87b0b93be5f7a3ec844e0a097c9."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "311948992e42da87ffa5cc245afad04c7ed8feb52f191a4a48323b45bedbcee9",
+    "native_source_sha256": "311948992e42da87ffa5cc245afad04c7ed8feb52f191a4a48323b45bedbcee9",
+    "approach_sha256": "8cbc1ea6b481a3851f7ce9775dfd1099ffa9ba304ed5efc16fb607285591a837",
+    "solution_variants_sha256": "cf957b08c1296e15f7abdd2e0a09440b2a23ed98d454ef5abc0df704da82595b",
+    "complexity_evidence_sha256": "3353f58093c130962f6da50f6e1f655191deb6ce0ab45d297290672d26957030"
+  }
+}

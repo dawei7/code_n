@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1245",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already expert-level interview code. `vertex_count`, `adjacency`, `distances`, `queue`, `endpoint`, and `farthest` expose the graph representation and two-sweep BFS directly. The empty-edge return handles the one-node tree, both edge directions are explicit, and the nested helper keeps traversal state local. No candidate would materially improve correctness, asymptotic complexity, clarity, naming, or contract fidelity."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The adjacency lists represent every undirected tree edge in both directions. In each BFS, the distance sentinel discovers each node exactly once and queue order is non-decreasing by distance, so the last removed node is farthest from the start. A farthest node from an arbitrary tree node is a valid diameter endpoint; the second BFS therefore reaches an opposite endpoint at exactly the diameter distance. Distances count edges, matching the requested unit."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Building adjacency lists and each of the two BFS traversals process O(n) vertices and O(n) tree edges. Total time is O(n). The adjacency lists, distance array, and queue are each O(n), so total auxiliary storage is O(n)."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent all-pairs BFS oracle computed the maximum shortest-path distance without using the two-sweep theorem. Oracle, protected app source, immutable native source, an independently written two-sweep iterative DFS, and the correct all-pairs BFS control agreed on all nine ordinary cases, all three benchmark tiers, every one of the 18,249 labeled trees through seven nodes, and 5,000 deterministic schema-valid random trees generated with seed 1245. Every implementation preserved its input edges."
+      },
+      {
+        "category": "randomized_and_boundary_coverage",
+        "severity": "verified",
+        "reason": "The seeded random set included 96 one-node trees, 71 two-node trees, 4,647 branching trees, 257 paths, 137 stars, 3,463 trees with multiple diameter endpoint pairs, 395 trees where node 0 is a leaf, 4,509 where node 0 is internal, 4,460 shuffled edge lists, and 74,254 reversed edge rows. Separate exact-maximum tests covered 10,000-node path, star, and seeded random trees with diameters 9,999, 2, and 33."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "The three hidden `real` rows were converted to visible trials and two material trials were added. All nine ordinary cases are now visible samples or trials. They preserve both exact source examples and cover one and two nodes, maximum possible diameter for a fixed n, a star with tied endpoints, balanced branches, a diameter that excludes the apparent starting node, shuffled and reversed undirected edges, and a lopsided off-center branching chain."
+      },
+      {
+        "category": "benchmark_calibration",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers are path trees with n = 16, 64, and 256 and oracle diameters 15, 63, and 255. Protected BFS and independent iterative DFS passed the scaling verdict in three runs each. The conventional O(n^2) all-pairs BFS preserved all twelve outputs but failed only the scaling verdict in all three runs, with no timeout, safety-cap, or correctness failure."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode graph problem 1245, Python as the primary language, and native entrypoint `Solution.treeDiameter`. Fresh authenticated evidence confirms an undirected tree of n consecutively labeled nodes, exactly n-1 edges, diameter measured in edges, n from 1 through 10000, valid distinct endpoints, and the exact source inputs and outputs."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native source remains bound to verified submission 2067991109 and is unchanged. Protected and native sources share the same empty-tree boundary, vertex count, bidirectional adjacency construction, distance-sentinel BFS, last-removed endpoint selection, two traversal starts, returned distance, and O(n) behavior. The app-local differences are typing and the direct `solve(edges)` adapter only."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach was reviewed against both protected implementations and retains exactly the required three headings. It now makes BFS removal order explicit, connects the first sweep to the farthest-vertex tree property, and explains why the second maximum distance is exactly the diameter. Its O(n) bounds, all-pairs and postorder alternatives, and single-node, path, star, and input-order boundaries match the implementation and contract."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the diameter definition, undirected consecutively labeled tree model, n-1 edge relation, exact requested return value, both source examples and explanations in order, all four constraints, and all three source hints. Two accessible Mermaid graphs independently reproduce the exact node-edge relationships shown by the two source images. The authenticated statement contains no table, note, or follow-up section."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two explained examples, four constraints, three hints, two source images, and no source tables. `source_fidelity.json` binds all five modular Reference files to live statement hash a4c50647e84a30fd0c09ae5bc5035d6692560b9bb413334f521d1e3f3efa7bf3 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples preserve both authenticated source edge arrays and outputs in source order, together with the exact longest-path facts from their explanations.",
+      "All nine ordinary fixtures are visible samples or trials covering n = 1 and n = 2, paths, stars, balanced and lopsided branches, tied diameter endpoints, a diameter away from node 0, edge orientation, and input order.",
+      "The independent all-pairs oracle recomputed every fixed expectation. Protected source, immutable native source, independent iterative DFS, and all-pairs BFS agreed on all fixed fixtures, 18,249 exhaustive labeled trees, 5,000 seeded random trees, and three exact-maximum 10,000-node boundary trees without input mutation.",
+      "The unchanged hidden tiers use path trees at n = 16, 64, and 256. Protected and independently structured two-sweep traversal pass scaling, while the correct all-pairs BFS preserves every output and fails only the scaling verdict in three repeated runs."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "570fa2ac1808e57d90b26a4f3b2ba1278366e98297a3949757756c0252eecbe7",
+    "native_source_sha256": "3c3a3b19af4fc12dcd1037bea74c154c77640448b5569d93a86a4f951f026038",
+    "approach_sha256": "41672c246d9d12a41b323b8ee3a616eaaa73e23f08271b9a3d718c307b730885",
+    "solution_variants_sha256": "e646c07272d2a94ce8138ce52c399ee19ebad8bcfff37342d9c4277a6010d67d",
+    "complexity_evidence_sha256": "7a63fc54da3905add91f4dd7de939c864440515ebc1c171b6d12bf96e2f1c7ac",
+    "cases_sha256": "a40f4fbb9c5550102be15a192225683b52c1500830653143f411a0484c05a5a9"
+  }
+}

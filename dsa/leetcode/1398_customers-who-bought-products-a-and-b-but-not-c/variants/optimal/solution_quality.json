@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1398",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is the canonical expert-interview solution: one customer-to-orders join, one customer-local grouping operation, and three explicit conditional aggregates implement the two required presences and forbidden absence directly. Its selected columns, aliases, grouping keys, and required ordering match the contract without obscure syntax, unnecessary relations, or avoidable control flow. No material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "After the join, every group contains all and only the orders of one customer. Positive A and B conditional sums are equivalent to existence of those purchases, while a zero C sum is equivalent to absence of C. Other names add zero, repeated purchases preserve positivity, aggregation emits one row per surviving customer, and ordering by customer_id satisfies the presentation contract."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent Python oracle built a set of purchased product names per customer and selected IDs whose sets contained A and B but excluded C. It, the protected app query, exact immutable native query, a separately written grouped-MAX control, and a correct de-indexed correlated EXISTS/NOT EXISTS control agreed exactly on all six visible cases and all three benchmark tiers."
+      },
+      {
+        "category": "randomized_validation",
+        "severity": "verified",
+        "reason": "Seed 1398 generated 5,000 source-valid databases totaling 150,782 Orders rows and 4,343 qualifying output rows. Coverage included 315 empty Customers tables, 354 databases without orders, 2,648 with at least one no-order customer, 3,903 with duplicate customer names, 3,572 with repeated A purchases, 3,469 with repeated B purchases, 4,401 with C purchases, 4,563 with unrelated products, 1,174 with several qualifiers, and shuffled storage order; every implementation matched the oracle."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "Across three real-test repetitions, the protected query passed all six ordinary cases, all three benchmark outputs, and scaling with extra growth exponent -0.02 through +0.01 and largest-tier ratio 0.97x through 1.00x. The independent grouped control passed at -0.01 and 0.96x through 0.98x. The de-indexed correlated control passed every output but failed only scaling each time, at +0.51 through +0.56 and 3.92x through 4.15x."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "verified",
+        "reason": "All three benchmark cases remain explicitly hidden and performance-only, use positive unique sizes 24, 96, and 384 for a 16x span, and define size consistently as combined Customers and Orders rows. Their 8/32/128 customers each have exactly one A and one B order, forcing complete qualification and ordered output while the correct de-indexed correlated predicates repeatedly fail only growth. Calibration is sound, so benchmark.json was not edited."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach now derives all three conditional aggregates from the customer-local joined group, proves both directions of the HAVING filter and one-row-per-customer output, explains the inner-join no-order behavior, and states O(C + O + R) time and O(C) space. Alternatives and edge cases cover correlated predicates, self-joins, invalid set-cardinality shortcuts, repeats, C, unrelated products, missing products, no orders, and duplicate customer names."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "All six ordinary cases are visible samples or trials. The sole authenticated source example is restored exactly with four Customers rows, nine Orders rows, Elizabeth as the only output, and the complete mixed-outcome explanation. Three invented samples were relabeled or replaced by trials, the former hidden case is visible in stronger coverage, and the suite exercises repeats, unrelated products, C disqualification, only-A, only-B, unrelated-only, no-order, output ordering, multiple qualifiers, and duplicate names."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1398 and SQL/MySQL as the native environment. The query respects unique customer_id and order_id values, order ownership by customer_id, exact product-name predicates, repeated and unrelated purchases, exclusion after any C purchase, the two requested source columns, one row per qualifying customer, and ascending customer_id order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2068872192 are canonically identical and remain byte-for-byte unchanged, as does submission.json. solution_variants.json continues to select that protected source, no candidate file exists, and no remote-Accepted evidence was altered or inferred."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed both table schemas and unique-key statements, order-to-customer purchase meaning, exact A-and-B-without-C task, recommendation context, ascending customer order, one exact example with its complete explanation, five source tables, and no separate constraints, hints, notes, images, diagrams, or follow-up. source_fidelity.json binds five modular Reference files to live-content SHA-256 887c569ad7fd87880e1e682915cec58da29c6ce86bf61f7b7b3e846d43a718dd and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "the sole authenticated source example with exact four-customer and nine-order inputs, Elizabeth as the only result, and every customer's qualification outcome explained",
+      "the minimal A-and-B qualifier plus repeated A and B purchases",
+      "an unrelated product remaining harmless and one C purchase overriding otherwise qualifying A and B purchases",
+      "only A, only B, an unrelated product only, and a customer with no orders",
+      "several qualifying customers returned by ascending ID while equal customer names remain separate",
+      "5,000 seeded random source-valid databases with empty inputs, no-order customers, duplicate names, repeated required purchases, forbidden and unrelated products, multiple qualifiers, and shuffled rows",
+      "three hidden performance-only tiers spanning 24 through 384 combined rows with proven de-indexed correlated-rescan discrimination"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "a7ea9b7bf725436b21662e1737b86a84d4b119edafef103ddb4aae834997b63c",
+    "native_source_sha256": "a7ea9b7bf725436b21662e1737b86a84d4b119edafef103ddb4aae834997b63c",
+    "approach_sha256": "b31a7aef02dc6e7103cd4154f6d1bac0f73a457694a9bc29e77bb0a93d21207b",
+    "solution_variants_sha256": "f4151f1f34bfcf04ff714c4dcae36b491fb8e347953a1758e10c49f790aad8d0",
+    "complexity_evidence_sha256": "de8a72d592e2a7b63a04f8b616474cc376af77c63c320dfbbbb5eaaee73f8cfa",
+    "cases_sha256": "b9d3c292953e084ac9b5c1ea1982296a947ee4eb47df971321123a66471d8cf3"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1102",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "material",
+        "reason": "The protected maximum-bottleneck Dijkstra is mathematically correct and remotely Accepted, but it unconditionally pushes every not-yet-finalized neighbor. Duplicate heap states cause cOde(n) to stop it after 100001 Python steps on a legal 100 by 100 all-maximum grid, so it does not complete the full app-local contract. The inert candidate keeps only improving per-cell scores and returns the endpoint upper bound immediately when the matrix-wide minimum reaches it; it completes that maximum boundary without weakening semantics."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "candidate_improves",
+        "reason": "The candidate is conventional expert-interview code for maximum-bottleneck Dijkstra. endpoint_cap exposes the absolute bound, best_score states the relaxation invariant, heap retains the maximum-priority frontier, and candidate names the bottleneck after extension. Dominated states are discarded explicitly, only improvements are inserted, and the shortcut has a short mathematical proof rather than being an input-specific special case."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Every path includes both corners, so endpoint_cap is an upper bound. If the global minimum meets it, every cell supports a cardinal route at that score and the bound is attained. Otherwise extending a path uses min(previous score, neighbor value), exactly its new bottleneck. best_score stores the strongest discovered bottleneck per cell; weaker heap entries are dominated. Since heap scores are removed from greatest to least and extension cannot increase a bottleneck, the first current destination entry cannot be improved and is the optimal answer."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1102, Python as the user-facing language, and native Solution.maximumMinimumPath. Authenticated source evidence confirms an m by n integer grid, top-left and bottom-right endpoints, four cardinal directions, path score as its minimum cell value, maximization over paths, both dimension equalities, 1 <= m,n <= 100, and 0 <= grid[i][j] <= 10^9. The candidate solve(grid) preserves every part of that contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected solve.py and immutable leetcode.py bound to verified submission 2067644786 remain byte-for-byte unchanged and have identical executable bodies apart from their wrapper and annotation. The materially improved best-score/endpoint-bound candidate is deliberately app-local and inert; it has no remote Accepted evidence and must not replace either protected source or submission.json during this proposal-only review."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden workloads grow square grids through 16, 64, and 256 cells, with value-V regions separated by a full value-one barrier. The candidate passed all ten visible cases and all three tiers with relative growth exponent +0.02 and a 1.34x largest runtime ratio. An independently correct repeated-integer-threshold control used the same valid endpoint shortcut, preserved every output including the maximum-value boundary, and failed only scaling at +1.00 and 129.15x, distinguishing O(V log V) heap processing from pseudopolynomial repeated reachability."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach derives the endpoint upper bound and matrix-minimum attainment shortcut, maximum-bottleneck relaxation, per-cell best scores, dominated-entry rejection, heap ordering, and destination finalization. It defines V, proves O(V log V) time and O(V) space, and covers union-find activation, threshold binary search, integer-threshold scanning, unconditional duplicate pushes, one cell, and cardinal-only movement."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves corner endpoints, four cardinal directions, minimum-along-path scoring, maximization, the illustrative 8-to-4-to-5-to-9 score, all three exact examples, and all four constraints. Three accessible Markdown grids reproduce every highlighted cell from the three authenticated source images, including the first example's explained maximum-score path, without copying provider artwork."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement and its three bundled visual assets verified exactly three examples, only the first with prose explanation, four constraints, three source images, and no hints, notes, follow-up, tables, or diagrams. source_fidelity.json binds the modular Reference to live content hash 0017ed6e182770cb6d13019f64287d9a5b8f9c2f11070e092d771bbdf35d3e67 and records three informationally equivalent local tables."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly three examples. Their exact matrices and outputs appear first and in source order; sample-1 preserves its highlighted maximum-score path and explanation, while samples 2 and 3 preserve their visual markings without inventing source prose explanations.",
+      "All ten ordinary correctness fixtures are visible samples or trials. They cover the three source paths, one cell, a disconnected high diagonal, a longer stronger detour, score zero, forced one-row and one-column routes, maximum dimensions 100 by 100, and maximum cell value 10^9.",
+      "Every fixture is nonempty, rectangular, at most 100 by 100, and contains only values from 0 through 10^9. The maximum-bound fixture contains exactly 10000 cells and attains the endpoint upper bound of 10^9.",
+      "An independent oracle enumerates distinct cell values from greatest to least and runs breadth-first reachability through cells meeting each threshold. It shares neither the candidate's heap ordering, best-score relaxation, nor endpoint-bound shortcut.",
+      "The oracle, candidate, protected app-local function under direct execution, immutable native Solution method, and independently correct threshold control agreed on all thirteen authored outputs. The first four also agreed on 5000 deterministic random grids and six explicit boundaries; random grids covered one through six rows and columns, values zero through twenty, single cells, forced corridors, endpoint bottlenecks, detours, ties, and disconnected high-value regions.",
+      "Only the candidate completes the full cOde(n) real-test: the protected and native algorithms remain mathematically correct, but the protected app execution stops at 100001 steps on the legal maximum visible case. The candidate passes all ten correctness cases and all three benchmark tiers.",
+      "The 16-, 64-, and 256-cell workloads remain hidden and performance-only, use size consistently as V, and span 16x. The integer-threshold control failed only scaling at +1.00 and 129.15x, while the candidate passed at +0.02 and 1.34x; benchmark calibration is fit and benchmark.json was not edited."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "46df2ab8c6ca5a18933fc065dd30c09683a06a7da6dbc60ae9345b0c171a6ebc",
+    "native_source_sha256": "48cd4a96cb520b5c2a18b8eae310758e750c32fc2913c7d60165430f83dd22b1",
+    "approach_sha256": "524ef2412c4ea042164a0eb8889d65ea4f59c3bebcd4d06f184a5bb690632f64",
+    "solution_variants_sha256": "5be535142e79c6daa44fdf13577f4b38205abd701ff0806066b4e97a5537c52c",
+    "complexity_evidence_sha256": "a870eb2c4953878f804b62b0b0a00446a453a27114588cece757180b8f68b5c2",
+    "candidate_source_sha256": "58b369cc6ccbedcae531aa0bb5530407ec026ba6e41bd8b2d39d16f0aaf5fd0b",
+    "cases_sha256": "d6cb514e1c51290a3ca247773e852e9f099bc4908373faaef616e7347329113e"
+  }
+}

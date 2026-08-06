@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2082",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution selects COUNT(DISTINCT customer_id) AS rich_count FROM Store WHERE amount > 500. The single-table filter and distinct aggregation query is canonical, concise, and optimal; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "WHERE amount > 500 filters for bills strictly exceeding 500. COUNT(DISTINCT customer_id) ensures that each customer with at least one qualifying bill is counted exactly once."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Scanning B bill rows and performing distinct customer aggregation takes O(B log B) or expected O(B) time and O(C) working space for C qualifying distinct customers. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs single column rich_count, excludes amount = 500, and deduplicates multiple qualifying bills for the same customer."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details filtering by strict threshold amount > 500, deduplicating via COUNT(DISTINCT customer_id), and relational complexity bounds. Alternatives and edge cases cover group-then-count subqueries, non-distinct row counting errors, conditional distinct aggregation, amount = 500 boundary values, mixed bills for a customer, and empty/zero results."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical with SHA-256 digest 328d1f29a40f57b05e862815f37579d6c58a41214c29a82b291ee6cb0921921c. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Store schema, three examples, two constraints, and 3 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "328d1f29a40f57b05e862815f37579d6c58a41214c29a82b291ee6cb0921921c",
+    "native_source_sha256": "328d1f29a40f57b05e862815f37579d6c58a41214c29a82b291ee6cb0921921c",
+    "approach_sha256": "afa2bbb6489f77ced742ddea6686f186e9d1c4191009fb53105ee425dece193f",
+    "solution_variants_sha256": "b337d7ac5cbd9dacf63f922ec39d6e76f594c847a6e988d655d317992022c0b1",
+    "complexity_evidence_sha256": "adc834fa6b330f86836ea29dbde9a6405ad591628c736dac5a242e35064745f3"
+  }
+}

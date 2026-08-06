@@ -5,7 +5,7 @@ There is one encoding of length zero, two encodings of length one, four of lengt
 
 Shift the input by one. The binary strings for $q=1,2,3,\ldots$ are `"1"`, `"10"`, `"11"`, `"100"`, and so forth. Removing the leading `"1"` yields `""`, `"0"`, `"1"`, `"00"`, exactly the required encoding sequence. The leading bit identifies the length group, while the remaining bits identify the position within that group.
 
-Therefore compute the ordinary binary representation of `num + 1` and return every bit after its leading `"1"`. This also handles zero naturally because the binary form of one consists only of the removed leading bit.
+Therefore compute the ordinary binary representation of `num + 1` and return every bit after its leading `"1"`. In Python, `bin(q)` begins with the two-character prefix `"0b"`, so `[3:]` skips that prefix and the leading data bit together. This also handles zero naturally because the binary form of one consists only of the removed leading bit.
 
 ## Complexity detail
 The binary representation of $q$ contains $\lfloor\log_2 q\rfloor+1$ bits. Producing and slicing it therefore takes $O(\log q)$ time, and the returned string occupies $O(\log q)$ space.

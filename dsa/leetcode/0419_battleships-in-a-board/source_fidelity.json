@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_419",
+    "frontend_id": "419",
+    "title_slug": "battleships-in-a-board",
+    "url": "https://leetcode.com/problems/battleships-in-a-board/description/",
+    "paid_only": false,
+    "content_sha256": "ef7a806b22a8fdf215a8245a6fabd524a1709948e41af58d8d969a0024371a53",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "board = [[\"X\",\".\",\".\",\"X\"],[\".\",\".\",\".\",\"X\"],[\".\",\".\",\".\",\"X\"]]",
+        "output": "2",
+        "has_explanation": false
+      },
+      {"ordinal": 2, "input": "board = [[\".\"]]", "output": "0", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3be1c422c2ed2dfd5c6e6ffd1f8824bbee80f63fbe67559fd5f33cf20f241c03",
+      "reference/contract.md": "ba41a10244cde545fcb64f5c0740e29fd40ba1c5be8e067dfcfab6972ebeb748",
+      "reference/examples.md": "a4bd478dfe1c5cb3bf9480e9bf45ba77732fd831a0314f8fb203d0ccdfb8ad6b",
+      "reference/constraints.md": "6e12c7da1d8d92423c1496f5b82ef93b4a16c3d910dfed06687cc4d73c0eab72",
+      "reference/follow_up.md": "5678aa0d8820a9c076cf713011a1e90ef6b13190527f6f5d2a1d243b80c35bdf"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

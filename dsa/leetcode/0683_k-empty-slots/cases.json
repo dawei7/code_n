@@ -4,166 +4,93 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one dark slot",
+      "name": "sample 1: one unlit bulb remains between the endpoints",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "bulbs": [
-          1,
-          3,
-          2
-        ],
-        "k": 1
-      },
+      "input": {"bulbs": [1, 3, 2], "k": 1},
       "expected": 2,
-      "tags": [
-        "sample",
-        "reachable"
-      ]
+      "tags": ["sample", "source-example", "reachable"]
     },
     {
       "id": "sample-2",
-      "name": "sample: middle bulb blooms too early",
+      "name": "sample 2: the middle bulb turns on too early",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "bulbs": [
-          1,
-          2,
-          3
-        ],
-        "k": 1
-      },
+      "input": {"bulbs": [1, 2, 3], "k": 1},
       "expected": -1,
-      "tags": [
-        "sample",
-        "no-solution"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: adjacent lit bulbs",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "bulbs": [
-          2,
-          1,
-          3
-        ],
-        "k": 0
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "zero-gap"
-      ]
+      "tags": ["sample", "source-example", "no-solution"]
     },
     {
       "id": "trial-1",
-      "name": "trial: earliest pair surrounds position two",
+      "name": "trial: one bulb cannot form an endpoint pair",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "bulbs": [
-          3,
-          1,
-          5,
-          4,
-          2
-        ],
-        "k": 1
-      },
-      "expected": 2,
-      "tags": [
-        "trial",
-        "multiple-candidates"
-      ]
+      "input": {"bulbs": [1], "k": 0},
+      "expected": -1,
+      "tags": ["trial", "minimum-n", "minimum-k", "no-pair"]
     },
     {
       "id": "trial-2",
-      "name": "trial: two empty positions",
+      "name": "trial: zero empty slots means adjacent endpoints",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "bulbs": [
-          1,
-          4,
-          2,
-          3
-        ],
-        "k": 2
-      },
+      "input": {"bulbs": [2, 1, 3], "k": 0},
       "expected": 2,
-      "tags": [
-        "trial",
-        "wide-gap"
-      ]
+      "tags": ["trial", "minimum-k", "adjacent-endpoints"]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: known longer sequence",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "bulbs": [
-          6,
-          5,
-          8,
-          9,
-          7,
-          1,
-          10,
-          2,
-          3,
-          4
-        ],
-        "k": 2
-      },
-      "expected": 8,
-      "tags": [
-        "hidden",
-        "late-answer"
-      ]
+      "id": "trial-3",
+      "name": "trial: the widest fitting gap uses both boundary positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bulbs": [1, 5, 2, 3, 4], "k": 3},
+      "expected": 2,
+      "tags": ["trial", "widest-fitting-gap", "boundary-positions"]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: valid pair after an invalid window",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "bulbs": [
-          4,
-          1,
-          3,
-          2
-        ],
-        "k": 1
-      },
-      "expected": 3,
-      "tags": [
-        "hidden",
-        "window-reset"
-      ]
-    },
-    {
-      "id": "hidden-3",
-      "name": "hidden: gap does not fit",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "bulbs": [
-          1,
-          2
-        ],
-        "k": 2
-      },
+      "id": "trial-4",
+      "name": "trial: maximum k cannot fit between two positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bulbs": [2, 1], "k": 20000},
       "expected": -1,
-      "tags": [
-        "hidden",
-        "oversized-gap"
-      ]
+      "tags": ["trial", "maximum-k", "oversized-gap"]
+    },
+    {
+      "id": "trial-5",
+      "name": "trial: choose the earliest of multiple qualifying pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bulbs": [3, 1, 5, 4, 2], "k": 1},
+      "expected": 2,
+      "tags": ["trial", "multiple-candidates", "earliest-day"]
+    },
+    {
+      "id": "trial-6",
+      "name": "trial: a valid pair appears after an invalid window",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bulbs": [4, 1, 3, 2], "k": 1},
+      "expected": 3,
+      "tags": ["trial", "window-reset", "later-answer"]
+    },
+    {
+      "id": "trial-7",
+      "name": "trial: longer permutation delays the first valid pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bulbs": [6, 5, 8, 9, 7, 1, 10, 2, 3, 4], "k": 2},
+      "expected": 8,
+      "tags": ["trial", "late-answer", "interior-state"]
+    },
+    {
+      "id": "trial-8",
+      "name": "trial: a geometrically fitting gap can still have no answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bulbs": [5, 1, 3, 2, 4], "k": 2},
+      "expected": -1,
+      "tags": ["trial", "no-solution", "interior-blooms-early"]
     }
   ]
 }
-

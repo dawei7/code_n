@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1194",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected query is already clear, conventional, and expert-interview quality. `score_rows`, `totals`, and `maximums` name the three logical phases precisely; `UNION ALL` visibly preserves every match contribution; and the final grouped `MIN` states the tie rule without relying on an opaque window trick. No material simplification or correctness improvement justifies a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "`score_rows` emits one point contribution for each participant in every match. The left join and per-player grouping sum both participant roles while retaining players with no score rows at total zero. `maximums` computes the greatest total independently within each group; joining on both group and total retains exactly the tied leaders, and `MIN(player_id)` selects the required lowest identifier. The final grouping produces exactly one winner per group."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "A Python oracle initialized every player at zero, added each match's two scores independently, found each group's maximum, and selected the minimum tied identifier. It agreed with protected SQL, immutable native SQL, and a separately written correlated-subquery control on all nine ordinary cases, all three benchmark tiers, and 120 deterministic random schema-valid databases generated with seed 1194, for 396 implementation runs."
+      },
+      {
+        "category": "boundary_and_relational_semantics",
+        "severity": "verified",
+        "reason": "Random validation included 99 multi-group databases, 62 with singleton groups, 76 with a group having no matches, 101 with at least one unmatched player, 43 with a maximum-score tie, 73 with a zero score, and 22 with repeated opponents. Fixed cases separately isolate both participant roles, repeated-match accumulation, exact and zero-total ties, group isolation, completely empty Matches, an unmatched player winning a zero tie, a singleton group, sparse group identifiers, and arbitrary result order."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1194, SQL, and native query entrypoint. Fresh authenticated evidence confirms both table schemas and primary keys, the same-group opponent guarantee, accumulation of maximum total points within each group, lowest-`player_id` tie breaking, exactly one winner per group, result columns `group_id` and `player_id`, and unrestricted result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The app-local and immutable native SQL remain byte-identical and the native artifact remains bound to verified submission 2067917500. They share the exact role-normalization stream, player aggregation, null-to-zero behavior, group maximum join, tied-leader reduction, output columns, and ordering without adapter or dialect divergence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers consistently scale both players and matches from 16 through 64 to 256 in one tied cycle, exercise every player, and span 16x. Protected passed every output and the runtime verdict at a 0.98x largest-tier reference ratio. The independently correct correlated-subquery control passed all nine ordinary and three benchmark outputs but failed only scaling at 4.39x, demonstrating the intended separation between O(p+m) aggregation and repeated match rescans. `benchmark.json` remained byte-for-byte unchanged."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly matches the protected query's `UNION ALL` role normalization, complete left-joined player totals, per-group maximum calculation, join back to tied leaders, and smallest-ID reduction. It defines p, m, and g through the Reference and correctly qualifies O(p+m) logical time under hash joins and aggregation with O(p+m) normalized and grouped state."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves both exact source schemas, every column type, both primary-key facts, the same-group match guarantee, both score-column meanings, maximum-total winner rule, lowest-ID tie break, any-order result contract, and the sole exact source example with all five tabular blocks. It adds no source-absent example, explanation, constraint, hint, note, follow-up, image, or diagram."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two schema tables, one example without an explanation, five meaningful source tables in total, and no constraints, hints, notes, follow-up, images, or diagrams. `source_fidelity.json` binds every modular section to live content hash 07c847fa5f2fb81a2d662a660c89c76ef3f9b86be1a5ab8289aed5eae8a35562 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first visible sample is the sole authenticated source example in source order, preserving every Players and Matches row plus the exact three-row output. The source has no example explanation, constraints, hints, notes, or follow-up, so none were fabricated as source cases or sections.",
+      "All nine ordinary fixtures are visible samples or trials and use an unordered-table validator because the source explicitly permits any result order. Material contract cases cover exact and zero-score ties, the lowest identifier rule, scores from both match roles, repeated opponents, independent and sparse groups, a completely empty Matches table, unmatched players, a zero-total unmatched winner, a nonempty group with no matches, and a singleton group.",
+      "A separate Python totals oracle recomputed every authored and benchmark expectation. Protected, immutable native, and the independent correlated control agreed on all fixed cases and 120 seeded random databases covering multiple groups, singleton groups, absent matches, unmatched players, ties, zeros, repeated opponents, and both participant roles.",
+      "The three unchanged hidden performance tiers keep `size` equal to both the player and match count, span 16 to 256, and make every player participate in a tied cycle. Protected passed at 0.98x on the largest tier; the correct correlated control preserved every output but failed only the scaling verdict at 4.39x."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "7232c8e62e56321a5773e32bbbc921a333d7a449fd1b31333e0a332381e903bb",
+    "native_source_sha256": "7232c8e62e56321a5773e32bbbc921a333d7a449fd1b31333e0a332381e903bb",
+    "approach_sha256": "18a6239d63611b9a88ae7433c8d6c83e4793bf0655e19d58a567779f125277ff",
+    "solution_variants_sha256": "74652d171daa6a79b12459253df00733dcfbfbdc02a15e0d278a085329b8c626",
+    "complexity_evidence_sha256": "57b3cf27e7d906860cf841f4473bca7a37e33aa26062208776cdb1a65216e842",
+    "cases_sha256": "21a50317ee0960c98e10307b99a57e91a08dbd069750edc167d0437f3eddf6d7"
+  }
+}

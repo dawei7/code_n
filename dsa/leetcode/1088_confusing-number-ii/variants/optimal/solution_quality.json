@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1088",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "material",
+        "reason": "The protected valid-digit DFS is mathematically correct and remotely Accepted, but it visits about 1.95 million candidates at the legal maximum n = 10^9. The cOde(n) real-test stops it after 100001 Python steps, so it cannot complete the full app-local contract. The sole inert candidate counts rotatable values and unchanged rotations by decimal prefix in O(D^2) time and passes the maximum boundary without weakening the contract."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "candidate_improves",
+        "reason": "The candidate is conventional expert-interview code for the combinatorial formulation. ROTATABLE_DIGITS, NONZERO_ROTATABLE_DIGITS, UNCHANGED_CENTER_DIGITS, count_rotatable, choices_at, count_unchanged, remaining_combinations, and half_length expose the two counted sets and their prefix products directly. Each helper has one mathematical responsibility, and no prohibited generic index name, packed state, or unnecessary mutation obscures the reasoning."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For each shorter length, count_rotatable uses four legal leading choices and five choices thereafter. At the current length, every smaller legal prefix contributes all 5^remaining suffixes, and traversal continues only while n's own prefix is legal. count_unchanged counts each shorter strobogrammatic value from its unique left half, then ranks current-length left halves against n's prefix; if the equal prefix is legal, its forced mapped mirror is included exactly when it is at most n. Unchanged rotations are a subset of rotatable values, so subtracting their exact counts leaves precisely the confusing numbers."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1088, Python as the user-facing language, and native Solution.confusingNumberII. Authenticated source evidence confirms the complete 180-degree mapping, invalid digits 2, 3, 4, 5, and 7, reversal of digit positions, ignored leading zeros such as 8000 to 0008 to 8, the must-change predicate, the inclusive range, and 1 <= n <= 10^9. The candidate solve(n: int) adapter preserves every part of that contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected solve.py and immutable leetcode.py bound to verified submission 2067567251 remain byte-for-byte unchanged and have identical executable DFS bodies apart from the required wrapper. The materially different combinatorial candidate is deliberately app-local and inert; it has no remote Accepted evidence and must not replace either protected source or submission.json during this proposal-only review."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden workloads grow n from 64 through 4096 and retain size as the inclusive bound. The candidate passed all eleven visible cases and all three tiers with relative growth exponent -0.50 and a 0.12x largest runtime ratio. A correct scan-every-integer control passed a representative correctness case and every benchmark output but failed only the focused scaling verdict at +0.43 and 13.46x. A separate valid-candidate rescan control independently matched all fourteen authored outputs, including n = 10^9; benchmark.json required no edit."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach derives rotatable-minus-unchanged counting, shorter-length products, same-length decimal-prefix ranking, left-half choice rules, forced mirroring, the set-subtraction proof, and O(D^2) time with O(D) auxiliary space. Its exact bounds match the updated branch manifest, and its alternatives explain valid-digit enumeration, exhaustive scanning, explicit unchanged generation, leading zeros, unchanged values, center digits, and the inclusive maximum."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the complete valid and invalid digit sets, every rotation mapping, full-number reversal, ignored leading zeros with the source's 8000 example, the must-change condition, and inclusive counting. Both source examples appear first with exact literals and explanations preserving every listed value and every conversion step; the sole constraint and both hints are present, with no tables or visuals invented."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified exactly two explained examples, one constraint, two hints, and no notes or follow-up. source_fidelity.json binds the independently written modular Reference to live statement hash b66fad0fc1a882db90b99ce9563216b9dbd65af4bc3a81c230e28460d94a6574."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact inputs, outputs, and explanations appear first in source order: sample-1 preserves all six confusing values and all six conversions, while sample-2 preserves the complete nineteen-value list.",
+      "All eleven ordinary correctness fixtures are visible samples or trials. They cover the minimum n = 1, an invalid-digit-only gap, the first confusing value and inclusive inclusion of n, unchanged 1 and 11, the 6/9 swap with unchanged 69, a partial two-digit bound, all values through 999, the source's leading-zero rotation semantics at 8000, and the legal maximum n = 10^9.",
+      "An independent oracle enumerates every legal digit product for lengths one through nine with itertools.product, rotates each completed decimal string independently, adds the sole legal ten-digit endpoint, and stores the sorted confusing values for binary-search queries. It independently derives 1950627 confusing numbers at the maximum and shares neither the reviewed prefix combinatorics nor the protected carried-rotation DFS.",
+      "The oracle, protected app-local function, candidate, immutable native Solution method, and a valid-candidate string-rescan control agreed on all fourteen authored correctness-plus-benchmark outputs under direct execution. They also agreed on 5000 deterministic random bounds from 1 through 5000 and thirteen explicit boundaries including 999999999 and 1000000000.",
+      "The candidate alone completes the full cOde(n) real-test: all eleven correctness cases and all three benchmark tiers pass. The protected and native DFS remain mathematically correct but the protected app execution stops at the 100001-step guard on the maximum visible case, which is the material defect motivating the inert candidate.",
+      "The 64-, 512-, and 4096-bound workloads remain hidden and performance-only, define size consistently as n, and span 64x. The focused exhaustive-integer control matched their outputs but failed only scaling at +0.43 and 13.46x, while the candidate passed at -0.50 and 0.12x; benchmark.json was not edited."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "dfe392567c30b96d6d37d3db291539542e61370d834923718e9aac20972e977e",
+    "native_source_sha256": "875360ef675beeb3ed7f0a358cdf1e3135d45ed596ab8cb99d674108324f7bf2",
+    "approach_sha256": "344480052a6a4519c7e4a11329795f2cd0d3dc83ff9668ed1f07cd9c0408e798",
+    "solution_variants_sha256": "d75a43e4e4c93cb7e1e75dc7857161a891547454f3719c7fff0f7b3cc710f1e1",
+    "complexity_evidence_sha256": "cb1a45200a5efaef8e2c034b3036501d2db86d9877ea1cd50982c2d8cb95f0c5",
+    "candidate_source_sha256": "a1ba1b5753b1dcda3d4c208f6328e0262e0b82b4df11570382994a61b09c9897",
+    "cases_sha256": "d5af70d3bf488e2a39743de67b38a67ad7e728131fc9f6e417f6db6b34a33518"
+  }
+}

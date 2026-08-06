@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2459",
+    "frontend_id": "2459",
+    "title_slug": "sort-array-by-moving-items-to-empty-space",
+    "url": "https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums = [4, 2, 0, 3, 1]`",
+        "output": "`3`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums = [1, 2, 3, 4, 0]`",
+        "output": "`0`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`nums = [1, 0, 2, 4, 3]`",
+        "output": "`2`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "dceb2f11a9a177edcd6b7c17b31c061f3f2cf0c5f3ed0be7303596c6fe1086d7",
+      "reference/contract.md": "6f4893d77c30352750fbbf8b09269d492e3fb218911c0227e5923f819460a0b0",
+      "reference/examples.md": "9b4dedffab94e5c090f75209f43c3ea5a7a28601038bc78eb7290499c5706a28",
+      "reference/constraints.md": "2bb97fb3ece69a21d8f3c02d87142b866ecacd3255de09b444443d881eba29ba"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2519",
+    "frontend_id": "2519",
+    "title_slug": "count-the-number-of-k-big-indices",
+    "url": "https://leetcode.com/problems/count-the-number-of-k-big-indices/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums = [2, 3, 6, 5, 2, 3], k = 2`",
+        "output": "`2`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums = [1, 1, 1], k = 3`",
+        "output": "`0`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "52d101bba9010e2c3354bcfa2f886d2afc54e719987c5b99b3dd7357532f61b5",
+      "reference/contract.md": "27061947cd63f48fb1b9042a3e057871b05a6f63a8c9dab788ee6cbb5167745f",
+      "reference/examples.md": "dd9cfedc063b732640c6903357409241241b71bc4205b491e5023e3bde780e16",
+      "reference/constraints.md": "dd27b2737db07ccd947d1c99651fbd27a813fa88a59bd7454636ade2a3f495c2"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

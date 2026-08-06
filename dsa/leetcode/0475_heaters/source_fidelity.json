@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_475",
+    "frontend_id": "475",
+    "title_slug": "heaters",
+    "url": "https://leetcode.com/problems/heaters/description/",
+    "paid_only": false,
+    "content_sha256": "64cbfbd1a6d5185c8d00f16e993d5b5ae99d5daa2fb5fd95033a2bcf6de8bfb5",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "houses = [1,2,3], heaters = [2]",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "houses = [1,2,3,4], heaters = [1,4]",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "houses = [1,5], heaters = [2]",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c485f443437b05aa7d06faf3a4735312a3d817f7565413c50974d6120a3c25aa",
+      "reference/contract.md": "4022ed485fb375d9979fe0fdfcca6567a80683f1e99edcda15adff9fe0c2a085",
+      "reference/examples.md": "51a2cb11fdc4795b73fd18f6f8eaa68887c1762b3f3580942418a7f66c5baccb",
+      "reference/constraints.md": "b46a648575e1421a0e97a51ba0de7ef7781697df81c337758c01b8ba11be2777"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

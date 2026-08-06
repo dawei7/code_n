@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1086",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected app-local solution is concise, conventional, and interview-ready. student_id, score, scores, and best clearly expose the grouping and bounded-heap state; standard heap primitives retain only values that can affect the result, and the final comprehension expresses the average and required ordering directly. There are no opaque bindings or prohibited generic index names, so a candidate would not provide a material improvement."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For each student, the min-heap accepts the first five scores. Thereafter, a score no greater than the heap minimum cannot improve that student's top-five multiset, while a larger score replaces exactly the smallest retained value. By induction the heap contains the five greatest scores seen for that student; equal scores remain valid separate records. The at-least-five guarantee makes every final heap length five, sum(heap) // 5 applies the required integer division, and sorted(best) emits one row per student in increasing identifier order."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1086, Python as the user-facing language, and native Solution.highFive. Authenticated source evidence confirms 1 through 1000 score records, two integers per record, identifiers from 1 through 1000, scores from 0 through 100, at least five scores per represented identifier, independent top-five averaging, integer division, and increasing output order. The solve(items: list[list[int]]) adapter preserves that complete contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local solve.py and immutable leetcode.py bound to verified submission 2067558275 use the same defaultdict grouping, size-five min-heaps, push and conditional replacement rules, sum-and-floor average, and sorted output comprehension. Differences are limited to the required app solve function versus LeetCode Solution.highFive method, native List annotations/import, and an app-local dictionary type annotation; algorithm and data flow remain aligned."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden workloads grow one student's mixed-order score history from 16 through 200 records, exercising continued bounded-heap updates while keeping output size fixed. The exact protected source passed all ten visible correctness fixtures and all three performance tiers with relative growth exponent -0.01 and a 0.99x largest runtime ratio. An independently correct insertion-sort control matched every output, including the 1000-record visible boundary, but failed only the scaling verdict at +1.17 and 38.30x, distinguishing the stated O(N+S log S) method from quadratic per-student ordering."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives a size-five min-heap per student, proves why discarding the smallest of six candidates is safe, and explains final integer averaging and identifier ordering. It correctly reduces each heap operation to O(log 5)=O(1), supports the branch manifest's O(N+S log S) time and O(S) auxiliary-space bounds, and covers full sorting, quadratic selection, averaging all scores, exact-five input, duplicates, truncation, and arbitrary input order."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the pair semantics, top-five definition, integer-division rule, and increasing identifier order; both source examples occur first in exact order with exact literals. Example 1 retains both students' score histories, selected sums, 87 result, and 88.6-to-88 truncation, while Example 2 correctly has no invented explanation. All five constraints and all three source hints are present, with no tables or visuals invented."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified exactly two examples, only the first explained, five constraints, three hints, and no notes or follow-up. source_fidelity.json binds the independently written modular Reference to live content hash 84d292413c8e1defca223b1a88cd04dfa2f2ebd14a77ce71d3c63107a141c477 and validates with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact inputs and outputs appear first as sample-1 and sample-2 in source order; sample-1 preserves both top-five calculations and integer truncation, while sample-2 remains correctly unexplained.",
+      "All ten ordinary correctness fixtures are visible samples or trials. They cover interleaved students, two exact-five perfect-score groups, one exact-five varied group, exclusion of a sixth low score, non-divisible averaging, increasing output order, duplicate top scores, late low scores, minimum and maximum identifiers and scores, and the maximum legal record count.",
+      "Every pair has exactly two values, every identifier lies from 1 through 1000, every score lies from 0 through 100, and every represented student has at least five records. The 1000-record trial exercises the upper items.length boundary while still requiring only the five highest values to contribute.",
+      "An independent Python oracle groups all scores, fully sorts each student's complete score list in descending order, slices the first five, applies integer division, and sorts result identifiers. It shares neither the protected solution's bounded heaps nor its incremental replacement decisions.",
+      "The oracle, protected app-local function, and immutable native Solution method agreed on all 13 authored correctness-plus-benchmark fixtures. They also agreed on 5000 deterministic random legal inputs with one through eight students, five through 30 scores per student, shuffled records, duplicate scores, and full identifier and score ranges, plus six explicit legal boundary inputs.",
+      "The 16-, 64-, and 200-record workloads remain hidden and performance-only, use size consistently as score-record count, and span 12.5x. The correct O(N^2) insertion-sort control completed every visible boundary and benchmark output but failed only scaling at +1.17 and 38.30x, while the protected bounded-heap solution passed at -0.01 and 0.99x; benchmark.json was not edited."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "f3c44cff694d0ad1e478eeec47c457bb60a4a959cd6d6eeb3935b95b0a5068c5",
+    "native_source_sha256": "4d37851f83c04c0d0d92ec100c0a01a8a613c709cd9077b15c8c628c2b43e457",
+    "approach_sha256": "2428c900d62a7ec50f5c1b275c824e50e5b57e12134b4cbd1aeae043596c84ad",
+    "solution_variants_sha256": "8cbc5051fde59e370f600cf2620ab659acf3ba30902594624f9fe24a934d776c",
+    "complexity_evidence_sha256": "89afc44919fa39fd63e21cf1973a9e03d0d0fe71d66680a2fabbef41c0266ca4",
+    "cases_sha256": "a84179088974aba83ff8e5c416fc35b42f77e7442c82c1daceea9c6c1b8f032b"
+  }
+}

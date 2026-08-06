@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1060",
+    "frontend_id": "1060",
+    "title_slug": "missing-element-in-sorted-array",
+    "url": "https://leetcode.com/problems/missing-element-in-sorted-array/description/",
+    "paid_only": true,
+    "content_sha256": "cfbcd7928a76fa625adee54d6dd08333e893c055afc09fa1c94bd40d86f525c1",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [4,7,9,10], k = 1",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,7,9,10], k = 3",
+        "output": "8",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,2,4], k = 3",
+        "output": "6",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ae0fa0d1959e2a385fd62d7dde177be73038a1a2c6e64a64927ebf88250a8cc3",
+      "reference/contract.md": "e031c0b9a357ae48d0801d55d1a4e1b7205130dc195bed0c82ea2b4ebb068ba3",
+      "reference/examples.md": "9f2f1298afe6ca6d50486ed5a227ba21af86646e587beaa88d252ad7a1a612d2",
+      "reference/constraints.md": "757c0fe808a7bc7207af3412802257c03810d5ca07b779dd0f45b444087484db",
+      "reference/follow_up.md": "6f0f93e04a5229d777063e2d6c0b9cccd13d027344ed3234e67ac7bf98b01b33",
+      "reference/hint.md": "e279a55b882c7a1d8b921a470a718cd58c7d5d1b66b07ab526a8cff997dbd29b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

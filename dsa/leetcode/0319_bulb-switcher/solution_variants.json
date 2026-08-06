@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Bulb Switcher and meets the required complexity bound.",
+      "summary": "Counts perfect-square positions directly with an exact integer square root.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

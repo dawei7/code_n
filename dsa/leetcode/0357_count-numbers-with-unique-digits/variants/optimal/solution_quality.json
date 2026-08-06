@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_357",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {"correct": true, "required_complexity": true, "clear_and_concise": true, "conventional_structure": true, "interview_quality_naming": true, "app_contract_preserved": true, "approach_matches_target": true},
+    "findings": [
+      {"category": "solution_quality", "severity": "good", "reason": "The protected source is the conventional rolling permutation recurrence. It handles n=0 explicitly, carries the exact-length product forward once per digit length, and accumulates disjoint counts with precise concept-level names. No candidate is justified."},
+      {"category": "metadata_and_contract", "severity": "verified", "reason": "Metadata consistently identifies public LeetCode problem 357 and its Python countNumbersWithUniqueDigits surface. The Reference preserves the half-open range, decimal uniqueness, both source examples and the first explanation, and the complete 0-through-8 constraint."},
+      {"category": "submission_and_alignment", "severity": "verified", "reason": "The immutable native source remains tied to verified submission 2064573170. Its zero guard, total, exact-length product, available-digit recurrence, loop bounds, and return are exactly the protected app-local algorithm apart from the required Solution wrapper."},
+      {"category": "complexity_evidence", "severity": "verified", "reason": "The legal maximum-length tiers 1, 4, and 8 span the complete bounded domain. The current source passes all nine executions at +0.02 relative growth and 1.04x; correct recomputation of every permutation product passes all three benchmark outputs but fails only scaling at +0.15 and 1.40x."},
+      {"category": "approach_accuracy", "severity": "verified", "reason": "The Approach accurately derives leading and subsequent digit choices, the rolling product, the two-digit trace, exact counting in both directions, O(n) time, O(1) space, and the n=0 boundary."},
+      {"category": "source_fidelity", "severity": "verified", "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples in order, the first complete exclusion explanation, the half-open numeric range, and the sole source constraint."}
+    ],
+    "validation": {"mode": "real_test", "correctness_cases_passed": 6, "correctness_cases_total": 6, "performance_cases_passed": 3, "performance_cases_total": 3, "complexity_method": "benchmark", "complexity_passed": true}
+  },
+  "hashes": {
+    "current_source_sha256": "924d39e50d7f45b86eaa2c782c76cbfadda3a2ca773849baa56944ac109e2092",
+    "native_source_sha256": "4dd0cdcc7b504bbe6d26549ffc2934908f67c0de857c4a2282896b15d3bee732",
+    "approach_sha256": "17900ad4d8e04199443ac5f02b47e6d6e85d9cec066c7397a4811937afc4d694",
+    "solution_variants_sha256": "211964ef6875a70750724f43dbf9f2fe95da190684af66d579391feac535a729",
+    "complexity_evidence_sha256": "81309b24212c1311c845b054b8bdc06575288d556dd0beb25ba93a256829a7ef"
+  }
+}

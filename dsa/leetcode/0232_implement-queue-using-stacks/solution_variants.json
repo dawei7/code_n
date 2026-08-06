@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Implement Queue using Stacks and meets the required complexity bound.",
+      "summary": "Uses incoming and outgoing stacks so each queued value is transferred at most once.",
       "time_complexity": "O(1)",
       "space_complexity": "O(n)"
     }

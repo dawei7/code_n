@@ -7,72 +7,108 @@
       "name": "sample: topmost duplicate maximum",
       "kind": "sample",
       "visible": true,
-      "input": {"operations": [["push",5],["push",1],["push",5],["top"],["popMax"],["top"],["peekMax"],["pop"],["top"]]},
-      "expected": [5,5,1,5,1,5],
-      "tags": ["sample", "duplicate-maximum"]
+      "input": {"operations": [["push", 5], ["push", 1], ["push", 5], ["top"], ["popMax"], ["top"], ["peekMax"], ["pop"], ["top"]]},
+      "expected": [5, 5, 1, 5, 1, 5],
+      "tags": ["sample", "duplicate-maximum", "source-example"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: maximum below current top",
-      "kind": "sample",
-      "visible": true,
-      "input": {"operations": [["push",7],["push",7],["push",3],["peekMax"],["popMax"],["top"],["pop"],["top"]]},
-      "expected": [7,7,3,3,7],
-      "tags": ["sample", "interior-removal"]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: negative duplicate maximum",
-      "kind": "sample",
-      "visible": true,
-      "input": {"operations": [["push",-2],["push",-5],["push",-2],["popMax"],["peekMax"],["top"]]},
-      "expected": [-2,-2,-5],
-      "tags": ["sample", "negative-values"]
-    },
-    {
-      "id": "trial-1",
-      "name": "trial: ordinary pop leaves stale heap entry",
+      "id": "trial-interior-duplicate-maximum",
+      "name": "remove the topmost of two interior maxima",
       "kind": "trial",
       "visible": true,
-      "input": {"operations": [["push",9],["push",12],["pop"],["peekMax"],["popMax"],["push",4],["top"]]},
-      "expected": [12,9,9,4],
-      "tags": ["trial", "lazy-deletion"]
+      "input": {"operations": [["push", 7], ["push", 7], ["push", 3], ["peekMax"], ["popMax"], ["top"], ["pop"], ["top"]]},
+      "expected": [7, 7, 3, 3, 7],
+      "tags": ["trial", "duplicate-maximum", "interior-removal"]
     },
     {
-      "id": "trial-2",
-      "name": "trial: maximum at stack bottom",
+      "id": "trial-negative-duplicates",
+      "name": "duplicate maximum among negative values",
       "kind": "trial",
       "visible": true,
-      "input": {"operations": [["push",10],["push",4],["push",6],["popMax"],["top"],["peekMax"]]},
-      "expected": [10,6,6],
-      "tags": ["trial", "bottom-maximum"]
+      "input": {"operations": [["push", -2], ["push", -5], ["push", -2], ["popMax"], ["peekMax"], ["top"]]},
+      "expected": [-2, -2, -5],
+      "tags": ["trial", "negative-values", "duplicate-maximum"]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: repeated duplicate removals",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations": [["push",2],["push",8],["push",8],["push",1],["popMax"],["top"],["popMax"],["peekMax"],["top"]]},
-      "expected": [8,1,8,2,1],
-      "tags": ["hidden", "duplicates"]
+      "id": "trial-stale-after-pop",
+      "name": "ordinary pop leaves a stale heap entry",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 9], ["push", 12], ["pop"], ["peekMax"], ["popMax"], ["push", 4], ["top"]]},
+      "expected": [12, 9, 9, 4],
+      "tags": ["trial", "lazy-deletion", "stale-heap-root"]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: popped maxima are skipped",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations": [["push",3],["push",11],["push",7],["push",13],["pop"],["pop"],["peekMax"],["popMax"],["top"]]},
-      "expected": [13,7,11,11,3],
-      "tags": ["hidden", "multiple-stale-roots"]
+      "id": "trial-bottom-maximum",
+      "name": "remove a maximum from the stack bottom",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 10], ["push", 4], ["push", 6], ["popMax"], ["top"], ["peekMax"]]},
+      "expected": [10, 6, 6],
+      "tags": ["trial", "bottom-maximum", "interior-removal"]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: single element lifecycle",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations": [["push",0],["top"],["peekMax"],["popMax"],["push",-10000000],["pop"]]},
-      "expected": [0,0,0,-10000000],
-      "tags": ["hidden", "single-element", "boundary-value"]
+      "id": "trial-repeated-duplicate-removals",
+      "name": "remove duplicate maxima from topmost to bottommost",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 2], ["push", 8], ["push", 8], ["push", 1], ["popMax"], ["top"], ["popMax"], ["peekMax"], ["top"]]},
+      "expected": [8, 1, 8, 2, 1],
+      "tags": ["trial", "duplicates", "topmost-tie"]
+    },
+    {
+      "id": "trial-multiple-stale-roots",
+      "name": "several ordinary pops leave stale heap roots",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 3], ["push", 11], ["push", 7], ["push", 13], ["pop"], ["pop"], ["peekMax"], ["popMax"], ["top"]]},
+      "expected": [13, 7, 11, 11, 3],
+      "tags": ["trial", "lazy-deletion", "multiple-stale-roots"]
+    },
+    {
+      "id": "trial-minimum-value-lifecycle",
+      "name": "single-element lifecycle reaches the minimum value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 0], ["top"], ["peekMax"], ["popMax"], ["push", -10000000], ["pop"]]},
+      "expected": [0, 0, 0, -10000000],
+      "tags": ["trial", "single-element", "minimum-value"]
+    },
+    {
+      "id": "trial-maximum-value-duplicates",
+      "name": "maximum legal value occurs at several depths",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 10000000], ["push", -10000000], ["push", 10000000], ["push", 0], ["popMax"], ["top"], ["peekMax"], ["popMax"], ["top"]]},
+      "expected": [10000000, 0, 10000000, 10000000, 0],
+      "tags": ["trial", "minimum-value", "maximum-value", "duplicate-maximum"]
+    },
+    {
+      "id": "trial-interleaved-duplicate-ties",
+      "name": "duplicate maximum removals preserve survivor order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 5], ["push", 1], ["push", 5], ["push", 2], ["push", 5], ["popMax"], ["pop"], ["popMax"], ["top"]]},
+      "expected": [5, 2, 5, 1],
+      "tags": ["trial", "topmost-tie", "relative-order"]
+    },
+    {
+      "id": "trial-nonmutating-reads",
+      "name": "repeated top and maximum reads do not mutate",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 4], ["push", 9], ["push", 6], ["top"], ["top"], ["peekMax"], ["peekMax"], ["pop"], ["top"], ["peekMax"]]},
+      "expected": [6, 6, 9, 9, 6, 9, 9],
+      "tags": ["trial", "nonmutating-reads", "interior-maximum"]
+    },
+    {
+      "id": "trial-ordinary-pop-duplicate",
+      "name": "ordinary pop removes only the current top duplicate",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push", 3], ["push", 7], ["push", 3], ["pop"], ["top"], ["peekMax"], ["popMax"], ["top"]]},
+      "expected": [3, 7, 7, 7, 3],
+      "tags": ["trial", "ordinary-pop", "duplicates", "relative-order"]
     }
   ]
 }

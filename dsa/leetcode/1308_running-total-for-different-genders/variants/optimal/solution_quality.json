@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1308",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is the canonical expert-interview solution: one explicitly framed SUM window computes an independent chronological prefix for each gender while preserving every score row, and one final sort enforces the required output order. Its projection and total alias match the contract exactly, with no unnecessary CTE, join, or repeated work. No material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For a row with gender g and date d, PARTITION BY excludes the other gender, ORDER BY day places same-gender rows chronologically, and the unbounded-preceding through current-row frame includes exactly the dates at most d. SUM therefore equals the required cumulative score. The (gender, day) primary key makes each frame endpoint unique, window aggregation preserves one result per source row, and the outer sort establishes the mandated ascending gender/day order."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent Python oracle sorted rows by gender and ISO date and accumulated each partition without using SQL window semantics. It, the protected app query, immutable native query, a separately written correlated-prefix query, and an independently written self-join-and-group query agreed in exact required order on all nine visible cases and all three benchmark tiers."
+      },
+      {
+        "category": "exhaustive_and_randomized_validation",
+        "severity": "verified",
+        "reason": "All 1,093 score sequences of length zero through six over {-2, 0, 3}, each paired with a fixed opposite-gender control partition and reverse insertion order, matched every implementation. Seed 1308 then generated 5,000 schema-valid databases totaling 186,192 rows, including 72 empty inputs, 755 one-gender inputs, 4,888 databases with duplicate player names, 55,886 negative scores, 37,207 zero scores, 165,452 date gaps, and 4,889 shuffled insertion orders."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden workloads contain 32, 128, and 512 score rows, a 16x span with two balanced chronological partitions. Across three real-test repetitions, both protected and native queries passed all nine ordinary outputs, all three benchmark outputs, and scaling, with extra growth exponent -0.01 through +0.00 and largest-tier ratio 0.99x through 1.01x. The correlated prefix query passed every output but failed only scaling in all three repetitions, at +0.79 through +0.81 extra exponent and 10.45x through 10.97x largest-tier ratio."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "verified",
+        "reason": "All three benchmark cases remain hidden and performance-only, use positive unique sizes 32, 128, and 512, and preserve a consistent row-count size definition. Their expected rows exactly follow the source-required ascending gender/day order. Repeated optimal and quadratic-control measurements prove the existing calibration discriminates the intended classes, so benchmark.json was not edited."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The complete Approach derives the cumulative-prefix target before selecting a window aggregate, explains partition, chronological order, explicit frame, row preservation, and final presentation order, and proves the result for every row. It states O(n log n) time and O(n) working space under sort-based execution and covers correlated and self-join alternatives, the daily-grouping trap, missing partition or final order, empty input, singleton partitions, date gaps, signed scores, and repeated names."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "All nine ordinary cases are now visible samples or trials. The sole source example remains first with its exact nine input rows and exact ordered output. Three formerly hidden cases are visible, and new trials cover a completely empty typed Scores table plus zero and negative contributions, repeated player names, both partitions, and non-chronological insertion."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1308 and SQL/MySQL as the native environment. The query uses only the source-defined F and M partitions, respects uniqueness of (gender, day), ignores player_name for accumulation, retains every recorded date, includes the current score, and returns gender, day, and total in the required ascending order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2068448664 remain byte-for-byte identical and unchanged, as does submission.json. Their projection, partition, chronological order, explicit ROWS frame, total alias, and final ordering are exactly aligned."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed the four-column Scores schema, composite primary key, F/M meanings, per-day cumulative-score task, mandatory ascending gender/day order, one exact nine-row example with its nine-row output and complete two-team explanation, three source tables, and no constraints, hints, notes, or follow-up. source_fidelity.json binds all four composed Reference files to live-content SHA-256 dea12bf9f2b51d24106c88e298263db246dbb85701552e4b3724b1953e8a2b9e and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "the sole authenticated source example with all nine Scores rows, all nine cumulative outputs, and exact required order",
+      "one-row and one-gender partitions plus independent resets between F and M",
+      "non-chronological insertion and same dates occurring legally in different gender partitions",
+      "large date gaps without synthetic calendar rows",
+      "a completely empty typed Scores table",
+      "zero and negative score contributions and repeated player names",
+      "1,093 exhaustive short score sequences and 5,000 seeded random schema-valid databases",
+      "three hidden performance-only tiers spanning 32 through 512 rows with proven quadratic discrimination"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "079b6430142452e436c349476eba476bb789410a73456e61e8836ec0ba7ad12c",
+    "native_source_sha256": "079b6430142452e436c349476eba476bb789410a73456e61e8836ec0ba7ad12c",
+    "approach_sha256": "8bf10e8b057c523b67361a0de732e272ccc776e53ed703d3c741056dde935e90",
+    "solution_variants_sha256": "d97b89428d5ff6a25f598c65aa244b0be5eedb7a3e142c09a4bbb0226b78f4f3",
+    "complexity_evidence_sha256": "b83d013a6a1a58f717551adc2ea5f9a2be16fded3187515eef63802bdcaf97e3",
+    "cases_sha256": "b0e4606b7f3093a7b2d80c72c1d5975947b77f0529a88bcaad1c7a286679d78f"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_353",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical deque-plus-occupancy-set design. It resolves walls and food in game order, removes a departing tail before collision testing, keeps both body views synchronized, and persists game-over state. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 353 and its Python SnakeGame surface. The Reference preserves board coordinates, ordered food appearance, growth, scoring, wall and body loss, the app adapter, the fully explained source example, and all eight constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064560307. Its direction map, head calculation, wall guard, ordered-food check, tail removal, occupancy collision, body update, score, and game-over handling align exactly with the protected app-local class; only the solve dispatcher and annotations differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The former food-growth benchmark could not reject body scanning, which legitimately remains O(q) because the source caps food at 50 and passed at -0.04 relative growth. The replacement asymptotic-optimality certificate proves an Omega(q) input/output lower bound and the protected expected O(q) upper bound; four independent scenarios verify food growth, wall loss, non-tail collision, departing-tail legality, and persistent game-over results."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the deque and set roles, the simultaneous tail-movement ordering, body-state invariant, expected O(1) per move, O(q) total time, and O(f) state."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound authenticated Premium Reference remains source-fidelity verified, including the complete source example and explanation, all eight constraints, ordered food and collision semantics, and the independent local movement diagram."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The sole authenticated Premium operation-sequence example appears first with its exact board, ordered food, directions, scores, and wall-loss result.",
+      "The two invented samples are now trials, every formerly hidden correctness row is visible, and three illegal empty-food inputs were replaced because the source requires at least one food item.",
+      "Visible trials cover minimum width and height, maximum 10,000-by-10,000 dimensions, maximum food coordinates, and all 50 permitted food items; a separate legal run verifies the 10,000-call bound.",
+      "Ordered food appearance, pending later food, score growth, normal tail movement, legal entry into a departing tail, non-tail self-collision, four-direction wall loss, and persistent post-game -1 results exercise every state transition.",
+      "An independent list-body simulator verified all eleven authored results; the protected source also matched it on 10,000 deterministic randomized legal games and a 10,000-call boundary sequence.",
+      "All eleven correctness cases are visible samples or trials. No benchmark file remains: performance evidence is exclusively the reviewed asymptotic-optimality certificate, so correctness cases and performance evidence stay separate."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "e94f0a09380aaac4c885571f453fc04a1f449bbadb4e6d1ed7b9d90e205cdba0",
+    "native_source_sha256": "e460fa49015903b981c8814806fa1148452be47ad65a48c4e238c565355955b4",
+    "approach_sha256": "d409df188fa8ad88396aa883f9a59bd12af08a807f564fe40aecdc6bbffc62ab",
+    "solution_variants_sha256": "0eecc1a47953bb15c8d32a450793b4f27ccc24f35dd890d19d2959b8c88bfd33",
+    "complexity_evidence_sha256": "03016f0b8c15c724fed4c542f5e2b516288120be2fd2ea0a6f8b8bb99693415b",
+    "cases_sha256": "adf4007ef1ac636da6543fb3eb84f69df8c3f8b7281a692973348d67bc4433c4"
+  }
+}

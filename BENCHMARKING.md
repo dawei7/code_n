@@ -204,7 +204,8 @@ For each LeetCode package:
 
 1. Confirm the required time complexity in metadata and `doc.md`.
 2. Confirm the package has a correct same-language optimal reference.
-3. Keep ordinary samples, trials, and hidden correctness cases in `cases.json`.
+3. Keep every ordinary correctness case in `cases.json` as a visible `sample`
+   or `trial`. Keep only performance workloads hidden in `benchmark.json`.
 4. Author three representative, increasing benchmark tiers in
    `benchmark.json` with a consistent `size` definition and at least a `4x`
    total span. Only when the contract meets one of the reviewed non-scaling

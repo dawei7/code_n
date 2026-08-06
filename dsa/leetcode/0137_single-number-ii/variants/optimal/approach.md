@@ -1,42 +1,21 @@
 ## General
-**Every bit position follows the same three-state counter**
+**Two masks encode every bit count modulo three**
 
-For each bit independently, only its count modulo three matters. Encode state zero as absence from both masks, state one as membership in `ones`, and state two as membership in `twos`. The masks operate on all integer bit positions in parallel.
+Treat each bit position independently while updating all positions in parallel. A bit absent from both masks has residue zero, a bit in `ones` has residue one, and a bit in `twos` has residue two. The two masks remain disjoint, so these are the only reachable states.
 
-**Ordered Boolean updates implement `0 -> 1 -> 2 -> 0`**
+For each `value`, update `ones` with `(ones ^ value) & ~twos`, then update `twos` with `(twos ^ value) & ~ones`. The second expression deliberately uses the new `ones`. For an input bit equal to one, these ordered updates advance its state through zero, one, two, and back to zero; an input bit equal to zero leaves the state unchanged.
 
-For each value, update:
+**Every triple disappears and the singleton remains**
 
-```text
-ones = (ones XOR value) AND NOT twos
-twos = (twos XOR value) AND NOT ones
-```
-
-The second expression intentionally uses the newly updated `ones`. For a current input bit of one, a state-zero bit enters `ones`; a state-one bit leaves `ones` and enters `twos`; a state-two bit is blocked from `ones` and toggled out of `twos`. A current input bit of zero leaves its state unchanged.
-
-Masking against the other register keeps `ones` and `twos` disjoint, so the impossible “both set” encoding never appears.
-
-**Masks equal the processed bit-frequency residues**
-
-For every bit position, membership in `ones` or `twos` exactly represents its total occurrence count modulo three across the processed prefix.
-
-**Trace one bit through three repeated occurrences**
-
-Suppose a repeated number has some bit set. Its first occurrence places that bit in `ones`; its second moves it to `twos`; its third clears it from both. The unique number contributes its set bits only once, so after every triple has completed, exactly its bit pattern remains in `ones`.
-
-**Each bit cycles through counts modulo three**
-
-For every bit position, membership in neither mask, `ones`, or `twos` represents occurrence count zero, one, or two modulo three. The mask updates advance a set input bit through those states and return it to neither mask on the third occurrence.
-
-Every tripled value therefore contributes zero modulo three at every position. The unique value contributes once, leaving exactly its set bits in `ones`, including the fixed-width sign bit representation.
+After any processed prefix, the masks represent every bit's occurrence count modulo three. Each value that appears three times therefore returns all of its set bits to residue zero. The unique value advances its set bits only once, so its complete bit pattern remains in `ones` after the scan. Python's signed bitwise operations preserve the same cancellation property for negative integers, because equal signed values undergo identical transitions.
 
 ## Complexity detail
-Each of `n` values performs constant bitwise work, giving $O(n)$ time. Two integer masks use $O(1)$ space.
+Each of the $n$ values performs a constant number of bitwise operations, giving $O(n)$ time. `ones` and `twos` are the only algorithmic state, so auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
-- **Count each fixed-width bit:** is also linear with constant space but requires explicit signed conversion.
-- **Frequency map:** is simpler but uses $O(n)$ space.
-- **Plain XOR:** is insufficient because $x \oplus x \oplus x = x$, so triple values do not cancel.
-- Zero and negative integers obey the same mask transitions.
-- A one-element array leaves that value directly in `ones`.
-- In languages with fixed-width integers, the masks naturally preserve the unique signed bit pattern. Language-specific arbitrary-width signed bit operations should be verified against the platform semantics.
+- **Count each fixed-width bit modulo three:** also meets the bounds but needs explicit reconstruction of a negative signed result.
+- **Frequency map:** is simpler but requires $O(n)$ extra space.
+- **Sort and inspect runs:** costs $O(n \log n)$ time and may mutate the input.
+- **Plain XOR:** does not cancel triples because $x \oplus x \oplus x = x$.
+- Zero and negative values follow the same mask transitions, and a one-element array leaves its sole value in `ones`.
+- The state machine is specific to multiplicity three; other repetition counts require different residue logic.

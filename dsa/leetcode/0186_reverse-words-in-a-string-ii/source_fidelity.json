@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_186", "frontend_id": "186", "title_slug": "reverse-words-in-a-string-ii", "url": "https://leetcode.com/problems/reverse-words-in-a-string-ii/description/", "paid_only": true, "content_sha256": "98b5c6fb40a249b4e3201f7af77602d6d3e2436a14b09c91e8f8dbd70f131497", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "s = [\"t\",\"h\",\"e\",\" \",\"s\",\"k\",\"y\",\" \",\"i\",\"s\",\" \",\"b\",\"l\",\"u\",\"e\"]", "output": "[\"b\",\"l\",\"u\",\"e\",\" \",\"i\",\"s\",\" \",\"s\",\"k\",\"y\",\" \",\"t\",\"h\",\"e\"]", "has_explanation": false}, {"ordinal": 2, "input": "s = [\"a\"]", "output": "[\"a\"]", "has_explanation": false}],
-    "constraint_count": 5,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_186",
+    "frontend_id": "186",
+    "title_slug": "reverse-words-in-a-string-ii",
+    "url": "https://leetcode.com/problems/reverse-words-in-a-string-ii/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "881b918a4b2d533c66d47df760488ed07b49cdd6128ef37be59d2662a68fbcf8", "reference/contract.md": "f72a3714ec120d151b35c8f3f7bdbe37cff4274cddc4cb56b44e4001b5efedd6", "reference/examples.md": "2cedc39b3dc746888f15a0f1a3e6eef3961dde471eb5a205690966efceefef02", "reference/constraints.md": "93a1483e423177abfacffb0e81700a7333447a2835c9af7c8cf7f0e85ac742c0"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`s = [\"t\",\"h\",\"e\",\" \",\"s\",\"k\",\"y\",\" \",\"i\",\"s\",\" \",\"b\",\"l\",\"u\",\"e\"]`",
+        "output": "`[\"b\",\"l\",\"u\",\"e\",\" \",\"i\",\"s\",\" \",\"s\",\"k\",\"y\",\" \",\"t\",\"h\",\"e\"]`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "`s = [\"a\"]`",
+        "output": "`[\"a\"]`",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9e3220ed886cd04157a5eea988d85c5ff66c536c08d54067573421908ce9349d",
+      "reference/contract.md": "5b106ecd54eb79955f15b08ebcae0876e6861d5e596cd2c8ff3013c02195dea7",
+      "reference/examples.md": "cc2407561de6fdec22af3a3af980d3dd85c6fb71e23b9fc97a8b300b4bdd7d47",
+      "reference/constraints.md": "b719511208747484cec6a01c8bbd80795f74e1df6eb2705acd0f7f344355e323"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_450",
-  "measurement_note": "Size is the number of nodes in a perfect BST. The missing key follows one search path, while level-order input and output conversion visit each node once; a correct implementation that repeatedly copies its growing output performs quadratic work.",
+  "measurement_note": "Size is the number of nodes in a perfect BST. The missing key follows one search path, while level-order input and output conversion visit each node once. A correct clone-by-preorder-insertion alternative performs O(n log n) work on these balanced tiers and has O(n^2) worst-case growth on a skewed tree.",
   "cases": [
     {
       "id": "benchmark-scale-1",

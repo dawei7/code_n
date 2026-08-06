@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1127",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL is clear, conventional, and expert-interview ready. user_days names its one-row-per-user-date classification, platforms names the complete date-category grid, and amount, total_amount, and total_users distinguish the two aggregation levels. The CTE pipeline separates classification, completeness, and reporting without opaque aliases or redundant work, so no candidate is warranted."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Grouping on user_id and spend_date creates one user-day. The authenticated two-value enum and composite primary key prove that COUNT(*) = 2 means both platforms and otherwise MAX(platform) is the sole platform. SUM(amount) combines both purchases while retaining one user-day. Three UNION ALL branches produce every date/category cell, the left join preserves empty cells, SUM and COUNT aggregate each user once, and COALESCE supplies the required zero amount."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1127 and SQL/MySQL. Authenticated source evidence confirms the Spending columns and types, unique user-date-platform grain, exact desktop/mobile enum, three independent per-date categories, combined both-platform amount, total user count, four output columns, zero-valued missing categories, and unrestricted result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2067777769 are byte-for-byte identical. They share the same user-day grouping and classification, three-branch grid, left-join keys, null-to-zero conversion, non-null user count, output grouping, aliases, and projection, leaving no adapter gap or material candidate improvement."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers grow from 96 through 1536 Spending rows and include both-platform user-days whose rows arrive mobile-first. The protected query passed every output and scaling at a 0.95x largest runtime ratio and -0.01 relative growth exponent. A correct correlated counterpart-lookup control passed every ordinary and performance output but failed only scaling at 108.79x and +1.13."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach matches the target precisely: aggregate each user-date once, construct the complete date/category grid with three UNION ALL branches, then left join and aggregate with COUNT plus COALESCE. Its conservative O(R log R) time and O(R) execution-space analysis matches the manifest and query, and its alternatives cover full independent branches, correlated lookup, both-platform counting, missing categories, and date-local classification."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the exact Spending schema, composite key, enum domain, three per-date categories, both-platform sum and one-user semantics, mandatory zero cells, output schema, unrestricted order, and the single source example. Its explanation retains every user classification on both dates."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review confirmed one example with an explanation, no constraints, hints, notes, or follow-up, and three logical source tables: schema, example input, and example output. source_fidelity.json binds every local section to live statement hash e7067776dbf9077def711d88a9ac3c9fc914e91634fa841c0a9345488ad5729e."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "sample-1 preserves the authenticated statement's exact six Spending rows, six output rows, source ordering of facts, and complete two-date explanation. Its unordered-table validator matches the unrestricted output order.",
+      "All eight ordinary fixtures are visible samples or trials with unordered-table validation. They cover every single-platform and both-platform category, mandatory zero cells, multiple users in one category, a user changing category by date, both amounts summed while the user counts once, three independent dates, input platform order, and zero-amount users who still count.",
+      "An independent Python oracle classifies explicit platform sets per user-date and then materializes all three categories per represented date. A cross-join grid query and a separately structured correlated counterpart-lookup query provide two independent SQL controls.",
+      "The oracle, protected query, byte-identical native query, cross-join control, and correlated control agreed on all eight ordinary cases, all three benchmark tiers, and 5000 composite-key-valid randomized Spending databases generated with seed 1127.",
+      "Random databases varied date and user counts independently, omitted arbitrary user-days, selected desktop-only, mobile-only, both, or neither per user-date, shuffled platform row order, included zero and positive amounts, and exercised empty logical datasets and complete zero-result grids.",
+      "The 96-, 384-, and 1536-row workloads remain hidden and performance-only, use R consistently as size, and span 16x. The protected query passed scaling at -0.01 and 0.95x; the correlated control failed only scaling at +1.13 and 108.79x. benchmark.json required no edit."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "b5d3f02ea52619e8acbf30e32b5785d41060a673612494cb8b3a6379de3391d2",
+    "native_source_sha256": "b5d3f02ea52619e8acbf30e32b5785d41060a673612494cb8b3a6379de3391d2",
+    "approach_sha256": "45b5d59c2d786afda736076ab9aabced0a3f3ce7c6aad2c87b0173c4d32c3d05",
+    "solution_variants_sha256": "eef51d2e88a811eaf0861963c97998a4ee017915d0fdec871e4f9e77878e1adb",
+    "complexity_evidence_sha256": "22de62aef0f9930ba3a5cd24df10e2b4ce764c4733216f299b8821b3ddf90122",
+    "cases_sha256": "2c920c320e036de713b96078a686d8fa8a59e9e0ae091dc0d5e25fa85fd6ea12"
+  }
+}

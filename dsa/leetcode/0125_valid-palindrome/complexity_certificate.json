@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_125",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "A mismatch can occur at the final normalized pair examined, so palindrome recognition requires inspecting all n characters in the worst case. The two-pointer scan visits each position at most once.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "On a normalized palindrome, a correct algorithm must rule out a mismatch at every mirrored position; changing an unread alphanumeric character can make the string non-palindromic while preserving all inspected characters. Thus the worst-case lower bound is Omega(n). The current pointers move only inward and cross the input at most once, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An unread mirrored position can contain the only mismatch, so a correct worst-case palindrome decision must inspect the complete normalized content."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each pointer advances monotonically, and no raw string position is revisited by the same pointer."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover ignored punctuation and case, a mismatch, and normalization to empty; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

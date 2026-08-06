@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_191",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The approach previously discussed zero and 2^32 - 1 even though the verified source domain is 1 through 2^31 - 1. The explanation and edge cases now use the exact maximum of 31 set bits."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The previous synthetic 8/64/256 tiers included the illegal input 2^32 - 1 and did not represent a scalable legal domain. A bounded-domain certificate now proves the exact b <= 31 iteration bound."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "f6ce79a3b34234272e3fc7f0ee1f66a0cc18399dcf05a4dc44d10d31d4f2ccfd",
+    "native_source_sha256": "92d7de2c4b1878abec1112b3a32151559b2a514936dc6a058ded14cbc7f744f9",
+    "approach_sha256": "d78d3922658a7eb2caa7955007e01e083ac5b363f795f8c9683b75e10cfa9426",
+    "solution_variants_sha256": "06126c5ce6e7663e585cd47ab0cb7369b10957ee441856855a2947c48c7397f3",
+    "complexity_evidence_sha256": "0f129ef0f4153b271b776d8e194402b45e95f2916f812d899a432da9fcc19155"
+  }
+}

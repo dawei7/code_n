@@ -7,8 +7,9 @@
       "name": "sample: insert inside rotated cycle",
       "kind": "sample",
       "visible": true,
-      "input": {"head": {"values": [3,4,1], "pos": 0}, "insertVal": 2},
-      "expected": [3,4,1,2],
+      "input": {"head": {"values": [3, 4, 1], "pos": 0}, "insertVal": 2},
+      "expected": [3, 4, 1, 2],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
       "tags": ["sample", "rotated-head"]
     },
     {
@@ -18,7 +19,8 @@
       "visible": true,
       "input": {"head": {"values": [], "pos": 0}, "insertVal": 1},
       "expected": [1],
-      "tags": ["sample", "empty"]
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["sample", "empty", "minimum-length"]
     },
     {
       "id": "sample-3",
@@ -26,53 +28,99 @@
       "kind": "sample",
       "visible": true,
       "input": {"head": {"values": [1], "pos": 0}, "insertVal": 0},
-      "expected": [1,0],
+      "expected": [1, 0],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
       "tags": ["sample", "single-node"]
     },
     {
-      "id": "trial-1",
-      "name": "trial: insert new minimum at wrap",
+      "id": "trial-new-minimum",
+      "name": "insert a new minimum at the wrap",
       "kind": "trial",
       "visible": true,
-      "input": {"head": {"values": [3,5,1], "pos": 0}, "insertVal": 0},
-      "expected": [3,5,0,1],
-      "tags": ["trial", "new-minimum"]
+      "input": {"head": {"values": [3, 5, 1], "pos": 0}, "insertVal": 0},
+      "expected": [3, 5, 0, 1],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "new-minimum", "wrap-gap"]
     },
     {
-      "id": "trial-2",
-      "name": "trial: insert new maximum at wrap",
+      "id": "trial-new-maximum",
+      "name": "insert a new maximum at the wrap",
       "kind": "trial",
       "visible": true,
-      "input": {"head": {"values": [3,5,1], "pos": 0}, "insertVal": 6},
-      "expected": [3,5,6,1],
-      "tags": ["trial", "new-maximum"]
+      "input": {"head": {"values": [3, 5, 1], "pos": 0}, "insertVal": 6},
+      "expected": [3, 5, 6, 1],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "new-maximum", "wrap-gap"]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: all values equal",
-      "kind": "real",
-      "visible": false,
-      "input": {"head": {"values": [2,2,2], "pos": 0}, "insertVal": 5},
-      "expected": [2,5,2,2],
-      "tags": ["hidden", "uniform"]
+      "id": "trial-uniform-cycle",
+      "name": "insert a distinct value into a uniform cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": {"values": [2, 2, 2], "pos": 0}, "insertVal": 5},
+      "expected": [2, 5, 2, 2],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "uniform", "multiple-valid-placements"]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: insert duplicate",
-      "kind": "real",
-      "visible": false,
-      "input": {"head": {"values": [1,2,4], "pos": 0}, "insertVal": 2},
-      "expected": [1,2,2,4],
-      "tags": ["hidden", "duplicate"]
+      "id": "trial-duplicate",
+      "name": "insert a duplicate into an ordinary gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": {"values": [1, 2, 4], "pos": 0}, "insertVal": 2},
+      "expected": [1, 2, 2, 4],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "duplicate", "multiple-valid-placements"]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: head points above minimum",
-      "kind": "real",
-      "visible": false,
-      "input": {"head": {"values": [4,1,3], "pos": 0}, "insertVal": 2},
-      "expected": [4,1,2,3],
-      "tags": ["hidden", "rotated-head"]
+      "id": "trial-rotated-head",
+      "name": "head points above the cycle minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": {"values": [4, 1, 3], "pos": 0}, "insertVal": 2},
+      "expected": [4, 1, 2, 3],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "rotated-head", "ordinary-gap"]
+    },
+    {
+      "id": "trial-interior-gap",
+      "name": "insert inside a later ordinary gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": {"values": [3, 5, 7, 1], "pos": 0}, "insertVal": 6},
+      "expected": [3, 5, 6, 7, 1],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "rotated-head", "ordinary-gap"]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "insert the same value into a uniform cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": {"values": [2, 2, 2], "pos": 0}, "insertVal": 2},
+      "expected": [2, 2, 2, 2],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "uniform", "duplicate", "multiple-valid-placements"]
+    },
+    {
+      "id": "trial-minimum-value",
+      "name": "insert the minimum legal value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": {"values": [0, 1000000, -1000000], "pos": 0}, "insertVal": -1000000},
+      "expected": [0, 1000000, -1000000, -1000000],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "minimum-value", "duplicate", "wrap-gap"]
+    },
+    {
+      "id": "trial-maximum-value",
+      "name": "insert the maximum legal value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": {"values": [0, 1000000, -1000000], "pos": 0}, "insertVal": 1000000},
+      "expected": [0, 1000000, 1000000, -1000000],
+      "validator": {"kind": "circular_sorted_insertion", "head_param": "head", "value_param": "insertVal"},
+      "tags": ["trial", "maximum-value", "duplicate", "wrap-gap"]
     }
   ]
 }

@@ -29,6 +29,10 @@ class DynamicDocsTest(conftest._Base):
         text = "### Required Complexity\n- **Time:** $O(k^n)$\n- **Space:** $O(k+n)$"
         self.assertEqual(_parse_complexity(text), ComplexityClass.O_KN)
 
+    def test_numeric_base_exponential_complexity_is_not_misclassified_as_linear(self) -> None:
+        text = "### Required Complexity\n- **Time:** $O(9^E)$\n- **Space:** $O(E)$"
+        self.assertEqual(_parse_complexity(text), ComplexityClass.O_KN)
+
     def test_reference_doc_resolves_from_challenge_package(self) -> None:
         response = self.client.get("/api/docs/by-id/lc_1")
         self.assertEqual(response.status_code, 200, response.text)

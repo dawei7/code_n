@@ -1,7 +1,7 @@
 ## General
 **Create an upper bound without knowing the length**
 
-Start with candidate indices `0` and `1`. While the value at the right index is smaller than `target`, every index through that point is too small because the data is sorted. Move the left boundary past it and double the right index.
+The candidate's app-local `ArrayReader` exposes only the source-native `get` operation needed by this problem. Start with candidate positions `0` and `1`. While the value at the right position is smaller than `target`, every position through that point is too small because the data is sorted. Move the left boundary past it and double the right position.
 
 **Let the sentinel stop expansion**
 

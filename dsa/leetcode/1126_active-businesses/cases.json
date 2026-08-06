@@ -61,7 +61,10 @@
       "tags": [
         "sample",
         "strict-average"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "trial-single-row",
@@ -88,7 +91,10 @@
       "tags": [
         "trial",
         "single-row"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "trial-equal-averages",
@@ -130,7 +136,10 @@
       "tags": [
         "trial",
         "strict-comparison"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "trial-one-qualifying-type",
@@ -172,13 +181,16 @@
       "tags": [
         "trial",
         "one-qualifier"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
-      "id": "real-two-active",
-      "name": "hidden: two active businesses",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-active",
+      "name": "trial: two active businesses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Events": [
@@ -244,15 +256,18 @@
         ]
       },
       "tags": [
-        "real",
+        "trial",
         "multiple-businesses"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
-      "id": "real-missing-event-rows",
-      "name": "hidden: averages include only recorded businesses",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-missing-event-rows",
+      "name": "trial: averages include only recorded businesses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Events": [
@@ -295,15 +310,18 @@
         ]
       },
       "tags": [
-        "real",
+        "trial",
         "sparse-events"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
-      "id": "real-three-qualifiers",
-      "name": "hidden: one business qualifies in three groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-qualifiers",
+      "name": "trial: one business qualifies in three groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Events": [
@@ -351,9 +369,12 @@
         ]
       },
       "tags": [
-        "real",
+        "trial",
         "three-qualifiers"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     }
   ]
 }

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1149",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL is concise, conventional, and expert-interview ready. viewer_id and view_date state the qualification grain directly, COUNT(DISTINCT article_id) states the semantic counting unit, and id is the exact requested output alias. The final DISTINCT and ORDER BY make cross-date uniqueness and ascending output explicit without an unnecessary subquery, join, or opaque alias; no material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Grouping by viewer_id and view_date isolates each person's activity on one calendar date, so different dates cannot combine. COUNT(DISTINCT article_id) neutralizes duplicate events and repeated views of one article, while HAVING greater than one retains exactly the qualifying viewer-date groups. SELECT DISTINCT then collapses several qualifying dates to one person row, and ORDER BY id supplies the required ascending order. Author identity is correctly absent from the predicate."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1149, SQL/MySQL, and the native query entrypoint. Authenticated source evidence confirms the four Views columns and types, duplicate-row allowance, same-person author/viewer interpretation, more-than-one-article threshold within one date, unique id output, and ascending ordering. The protected query preserves every one of those semantics."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql is byte-for-byte identical to immutable leetcode.sql bound to verified submission 2067848017. Both use the same viewer/date grouping, distinct article count, strict threshold, final viewer deduplication, id alias, and ascending ordering, so there is no adapter semantic gap and no candidate replacement to propose."
+      },
+      {
+        "category": "complexity_claim",
+        "severity": "verified",
+        "reason": "A comparison-based grouping and distinct-count plan can sort R rows in O(R log R) time and retain O(R) grouping state, matching the branch manifest. Hash aggregation or indexes may improve the physical execution plan without weakening the conservative logical bound."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers grow one viewer-date from 64 through 512 distinct articles. The protected grouped query passed every output and scaling with a 1.02x largest runtime ratio and -0.01 relative growth exponent. An independently correct different-article self-join passed all 7 ordinary cases and all three benchmark outputs but failed only scaling at 49.06x and +1.25, confirming that benchmark.json distinguishes the intended class without acting as a hidden correctness suite."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives viewer/date grouping, distinct-article rather than event counting, the strict two-article qualification threshold, final cross-date viewer deduplication, and explicit ascending output. Its O(R log R) time and O(R) space match the implementation and manifest, and its alternatives cover the slower self-join and every material semantic trap."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the complete Views schema, duplicate-row allowance, same-person author/viewer fact, single-date and distinct-article semantics, one-row-per-person output, id alias, and ascending order. It reproduces all eight source input rows and both output rows without inventing an explanation, constraints, hints, notes, or follow-up section."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review confirmed exactly one unexplained example, no separate constraints or hints, no images or diagrams, and three logical source tables: schema, example input, and output. source_fidelity.json binds every local section to live statement hash fb1905e8aae757b69c12c55e590424e92cdbf57821c89cdf4df13c96e700bf6a."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "sample-1 preserves all eight authenticated Views rows in source order and the exact [[5],[6]] output, including a legal duplicate row and the two distinct same-date articles for each qualifying viewer.",
+      "All 7 ordinary fixtures are visible samples or trials. They cover duplicate views of one article, distinct articles split across dates, the exact two-article threshold, several qualifying dates collapsing to one viewer, ascending output across viewers, equal author and viewer identity, author irrelevance, and an empty typed Views table.",
+      "An independent Python oracle builds a distinct article set for each (viewer_id, view_date), selects every set larger than one, and sorts the unique viewers. It agreed with all authored expected results, the protected app-local query, immutable native query, and slower different-article self-join.",
+      "Another 600 deterministic schema-valid randomized databases generated with seed 1149 covered varied viewers, articles, authors, dates, duplicate rows, repeated articles, same-person author/viewer rows, multiple qualifying dates, and empty tables; four forced boundary fixtures supplemented the random sample.",
+      "The hidden performance-only tiers use R consistently as size, span 8x from 64 through 512, and place R distinct articles in one viewer-date group. The protected query passed scaling at -0.01 and 1.02x; the correct self-join passed every output and failed only scaling at +1.25 and 49.06x. benchmark.json required no edit."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "b993065f15f2302f9d4871ec67f72397e4dc481b82731f19960d53c5dc40bbe5",
+    "native_source_sha256": "b993065f15f2302f9d4871ec67f72397e4dc481b82731f19960d53c5dc40bbe5",
+    "approach_sha256": "28f4868954796de9e2b130c4fbe3275b2cd2bd9ccb46c849a24383c9bcac063e",
+    "solution_variants_sha256": "ee30d24715810cd3cc8ad83d4345d6dc78acbb4de864d8b23e34e0645e6c1482",
+    "complexity_evidence_sha256": "1d06b19567dc7f8a9ee8a6bbe7d09848fc54d7c67d87278c4282134035358b23",
+    "cases_sha256": "6f6f6a301cd9febe388c2bfc72e1472644dfee6751831be68b0ef5cffa9be98a"
+  }
+}

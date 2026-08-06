@@ -1,10 +1,125 @@
-{"challenge_id":"lc_269","cases":[
-{"id":"sample-order","name":"sample: unique alien order","kind":"sample","visible":true,"input":{"words":["wrt","wrf","er","ett","rftt"]},"expected":"wertf","validator": {"kind": "alien_dictionary_order"},
-      "tags":["sample","topological-sort"]},
-{"id":"sample-cycle","name":"sample: cyclic constraints","kind":"sample","visible":true,"input":{"words":["z","x","z"]},"expected":"","validator": {"kind": "alien_dictionary_order"},
-      "tags":["sample","cycle"]},
-{"id":"trial-prefix","name":"longer word cannot precede its prefix","kind":"trial","visible":true,"input":{"words":["abc","ab"]},"expected":"","validator": {"kind": "alien_dictionary_order"},
-      "tags":["invalid-prefix"]},
-{"id":"real-chain","name":"hidden: simple unique chain","kind":"real","visible":false,"input":{"words":["a","b","c","d"]},"expected":"abcd","validator": {"kind": "alien_dictionary_order"},
-      "tags":["hidden","chain"]}
-]}
+{
+  "challenge_id": "lc_269",
+  "cases": [
+    {
+      "id": "sample-order",
+      "name": "sample: unique alien order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": ["wrt", "wrf", "er", "ett", "rftt"]
+      },
+      "expected": "wertf",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["sample", "topological-sort"]
+    },
+    {
+      "id": "sample-two-letters",
+      "name": "sample: one precedence edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": ["z", "x"]
+      },
+      "expected": "zx",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["sample", "single-edge"]
+    },
+    {
+      "id": "sample-cycle",
+      "name": "sample: cyclic constraints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": ["z", "x", "z"]
+      },
+      "expected": "",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["sample", "cycle"]
+    },
+    {
+      "id": "trial-invalid-prefix",
+      "name": "longer word cannot precede its exact prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": ["abc", "ab"]
+      },
+      "expected": "",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["invalid-prefix"]
+    },
+    {
+      "id": "trial-unique-chain",
+      "name": "four one-letter words determine one chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": ["a", "b", "c", "d"]
+      },
+      "expected": "abcd",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["unique-order", "chain"]
+    },
+    {
+      "id": "trial-isolated-letters",
+      "name": "letters in one word have no inferred precedence edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": ["abc"]
+      },
+      "expected": "abc",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["isolated-letters", "multiple-valid-orders"]
+    },
+    {
+      "id": "trial-valid-prefix",
+      "name": "a word may legally precede its longer extension",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": ["ab", "abc"]
+      },
+      "expected": "abc",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["valid-prefix", "multiple-valid-orders"]
+    },
+    {
+      "id": "trial-duplicate-edge",
+      "name": "the same inferred edge increments indegree only once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": ["za", "zb", "ca", "cb"]
+      },
+      "expected": "zacb",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["duplicate-edge", "indegree", "disconnected-components"]
+    },
+    {
+      "id": "trial-maximum-word-length",
+      "name": "one hundred characters expose every lowercase letter as isolated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": ["abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv"]
+      },
+      "expected": "abcdefghijklmnopqrstuvwxyz",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["maximum-word-length", "maximum-alphabet", "isolated-letters"]
+    },
+    {
+      "id": "trial-maximum-word-count",
+      "name": "one hundred repeated one-letter words add no edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
+      },
+      "expected": "a",
+      "validator": {"kind": "alien_dictionary_order"},
+      "tags": ["maximum-word-count", "repeated-words", "minimum-word-length"]
+    }
+  ]
+}

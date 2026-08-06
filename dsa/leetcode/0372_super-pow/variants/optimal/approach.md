@@ -5,7 +5,7 @@ Suppose the processed prefix represents exponent `E` and the next digit is `x`. 
 
 $a^{(10E + x)} = (a^{E})^{10} \cdot a^{x}$.
 
-Maintain `result = a ** E % 1337`. For each digit, replace it with `result ** 10 * a ^ digit % 1337`. Both exponents used in this update are at most ten, so each digit costs constant work.
+Maintain `result` so that $\texttt{result} \equiv a^E \pmod{1337}$. After reducing the base once, process each digit `x` with `result = pow(result, 10, 1337) * pow(base, x, 1337) % 1337`. Both exponents used in this update are at most ten, so each digit costs constant work.
 
 **Reduce after every multiplication**
 
@@ -26,7 +26,6 @@ Let `d` be the number of exponent digits. Each digit performs modular powers wit
 - **Right-to-left digit processing:** can maintain successive powers $a^{10^i}$ and is also $O(d)$.
 - **Recompute every decimal prefix from the beginning:** remains correct but repeats work and costs $O(d^2)$.
 - **Materialize the full exponent:** requires arbitrary-precision storage and defeats the digit-streaming contract, even if modular exponentiation follows.
-- Exponent zero returns one, including when the base is divisible by 1337.
 - A base divisible by 1337 returns zero for every positive exponent.
 - The base may be reduced modulo 1337 before processing any digit.
 - Internal zero digits still multiply the prior exponent by ten and cannot simply be skipped.

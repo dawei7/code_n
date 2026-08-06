@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1495",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL implementation inner joins Content and TVProgram on content_id and applies filters for Kids_content = 'Y', content_type = 'Movies', and June 2020 stream dates. Using half-open interval comparison for dates ensures indexability and portability across MySQL and SQLite. The query is concise and canonical; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The inner join ensures matching content and schedule records. Filtering program_date >= '2020-06-01' AND program_date < '2020-07-01' correctly covers the full month of June 2020 inclusive of all time components. SELECT DISTINCT c.title deduplicates titles without dropping distinct qualifying titles."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Under a hash or index join execution, scanning P program rows and C content rows takes O(P + C) expected time, and deduplicating T titles takes O(T log T) time. Space complexity is O(C + T) for hash tables and result sets. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Returns the exact required column name 'title', filters by kid-friendly movies, covers June 2020 accurately, and supports arbitrary or deterministic title output ordering."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details joining metadata with stream schedules, half-open interval date filtering, title deduplication, and relational complexity bounds. Alternatives and edge cases cover correlated EXISTS, month/year functions, DATE_FORMAT, join on title, missing DISTINCT, month boundaries, non-movie content, and empty result sets."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical at SHA-256 digest 261836b336436142a93b24473157f95cc65b95587d1d50013c281d71a8cf4d87. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed TVProgram and Content schemas, three examples, three constraints, and 5 tables in reference mode. Bound to content SHA-256 566530599892c299eaafe64ed1ff4ec2280edfa8da31c4584ff85d9e5ca99442."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "261836b336436142a93b24473157f95cc65b95587d1d50013c281d71a8cf4d87",
+    "native_source_sha256": "261836b336436142a93b24473157f95cc65b95587d1d50013c281d71a8cf4d87",
+    "approach_sha256": "e51c4a1e9d70d662d9907e73d852c2a40df2f8f2c679c3e9f05c528d9d7db974",
+    "solution_variants_sha256": "c8ae2d4bb89f977de69081130bbf0610ea4bb49c4ee5ba204af9f160a76a2d99",
+    "complexity_evidence_sha256": "edb161a71bf0027cbf1273c496171c193848fb8557b51c06dc9f7f0f0c38ac42"
+  }
+}

@@ -1,11 +1,131 @@
 {
   "challenge_id": "lc_298",
   "cases": [
-    {"id": "sample-right-run", "name": "sample: consecutive run in right subtree", "kind": "sample", "visible": true, "input": {"root": [1,null,3,2,4,null,null,null,5]}, "expected": 3, "tags": ["sample", "right"]},
-    {"id": "sample-reset", "name": "sample: shorter consecutive edge", "kind": "sample", "visible": true, "input": {"root": [2,null,3,2,null,1]}, "expected": 2, "tags": ["sample", "reset"]},
-    {"id": "sample-empty", "name": "sample: empty tree", "kind": "sample", "visible": true, "input": {"root": []}, "expected": 0, "tags": ["sample", "boundary"]},
-    {"id": "trial-root-run", "name": "three-node run from root", "kind": "trial", "visible": true, "input": {"root": [3,2,4,1,null,null,5]}, "expected": 3, "tags": ["direction"]},
-    {"id": "trial-decreasing", "name": "decreasing chain does not count", "kind": "trial", "visible": true, "input": {"root": [5,4,null,3,null,2]}, "expected": 1, "tags": ["direction", "reset"]},
-    {"id": "real-two-branches", "name": "hidden: equal runs in separate branches", "kind": "real", "visible": false, "input": {"root": [10,5,11,6,null,null,12,7]}, "expected": 3, "tags": ["hidden", "branches"]}
+    {
+      "id": "sample-right-run",
+      "name": "sample: consecutive run in right subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [1,null,3,2,4,null,null,null,5]},
+      "expected": 3,
+      "tags": ["sample","source-example","right-subtree","internal-start"]
+    },
+    {
+      "id": "sample-reset",
+      "name": "sample: decreasing descendants reset the run",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [2,null,3,2,null,1]},
+      "expected": 2,
+      "tags": ["sample","source-example","direction","reset"]
+    },
+    {
+      "id": "trial-single-minimum-value",
+      "name": "single node at the minimum allowed value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [-30000]},
+      "expected": 1,
+      "tags": ["minimum-node-count","minimum-value","boundary"]
+    },
+    {
+      "id": "trial-single-maximum-value",
+      "name": "single node at the maximum allowed value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [30000]},
+      "expected": 1,
+      "tags": ["minimum-node-count","maximum-value","boundary"]
+    },
+    {
+      "id": "trial-root-run",
+      "name": "three-node run from the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [3,2,4,1,null,null,5]},
+      "expected": 3,
+      "tags": ["root-start","right-branch","reset"]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "a decreasing chain never extends",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [5,4,null,3,null,2]},
+      "expected": 1,
+      "tags": ["left-skewed","direction","reset"]
+    },
+    {
+      "id": "trial-two-branches",
+      "name": "equal runs in separate branches remain independent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [10,5,11,6,null,null,12,7]},
+      "expected": 3,
+      "tags": ["separate-branches","internal-start","multiple-optima"]
+    },
+    {
+      "id": "trial-no-upward-bridge",
+      "name": "a path cannot climb from one child through the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [2,1,3]},
+      "expected": 2,
+      "tags": ["parent-to-child-only","semantic-trap","siblings"]
+    },
+    {
+      "id": "trial-duplicates-reset",
+      "name": "equal-valued edges all reset",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [5,5,5,5,5,5,5]},
+      "expected": 1,
+      "tags": ["duplicate-values","balanced-tree","reset"]
+    },
+    {
+      "id": "trial-skipped-values",
+      "name": "increasing edges that skip a value reset",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1,3,2,4]},
+      "expected": 2,
+      "tags": ["exact-plus-one","skipped-value","reset"]
+    },
+    {
+      "id": "trial-internal-longest",
+      "name": "the longest run begins below a nonconsecutive root",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [10,5,20,6,null,null,21,7]},
+      "expected": 3,
+      "tags": ["internal-start","sparse-tree","left-branch"]
+    },
+    {
+      "id": "trial-parallel-zero-branches",
+      "name": "parallel runs below a zero-valued root cannot be joined",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0,1,1,2,null,null,2,3,null,null,3]},
+      "expected": 4,
+      "tags": ["zero-parent","parallel-branches","parent-to-child-only"]
+    },
+    {
+      "id": "trial-negative-through-zero",
+      "name": "a negative consecutive run crosses zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [-2,-1,10,0,null,null,11,1]},
+      "expected": 4,
+      "tags": ["negative-values","zero-value","internal-reset"]
+    },
+    {
+      "id": "trial-extreme-endpoints",
+      "name": "valid edges can touch both value-range endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [29999,-30000,30000,-29999]},
+      "expected": 2,
+      "tags": ["minimum-value","maximum-value","separate-runs"]
+    }
   ]
 }

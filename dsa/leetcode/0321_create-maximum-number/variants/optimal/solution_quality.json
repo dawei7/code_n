@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_321",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source cleanly decomposes the hard problem into feasible source counts, monotonic-stack maximum subsequences, and suffix-aware greedy merging. It handles equal leading runs correctly, preserves both source orders, and uses descriptive names only for genuine split and suffix concepts. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 321 and its Python maxNumber surface. The Reference preserves the two digit-array model, exact k-length output, internal-order constraint, lexicographic maximization, all three source examples, all six constraints, and the no-leading-zero guarantee."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064381540. Its helpers and Solution.maxNumber body structurally align with the protected app-local helpers and solve body despite legacy List and inferred collection annotations: split bounds, subsequence selection, suffix comparison, merge, and best-candidate update are identical."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The legal equal-prefix tiers now use n=k values 6, 15, and 30, spanning 5x while exercising every split and worst-case suffix ties. The current source passes all nine executions at +0.04 relative growth and 1.03x; a correct implementation that recomputes a full DP merge at every emitted digit passes every output but fails only scaling at +0.75 and 10.16x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now defines n and m before the manifest bound and consistently treats k mathematically. Its split coverage, deletion-budget proof, full-suffix tie rule, merge induction, combined global proof, O(k(n+m+k^2)) time, and O(k) auxiliary space match the protected source exactly."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including all three source examples, all six constraints, exact output length, within-source order preservation, and digit-array semantics."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "e77ed572b44bb9a9c57d269d7464f195fa254bfcaa07406c100d507c30c86894",
+    "native_source_sha256": "a675a9fc8bf4696ffea84b7722ecda5841569409ed653d83c2dcc1d2f30d16aa",
+    "approach_sha256": "72ab4c084b0f8313f9778ed130a1859f78006d3efa4bb91286fdf9e45cef8e7e",
+    "solution_variants_sha256": "939491f7904a097d5ca89a855bbed62ef299d80dc34ad5ec5345dd91f8ddc0b2",
+    "complexity_evidence_sha256": "16c6afc5feb32ed2cb8fc6d9229a64ba6d63a61d65ce9c19cf18ee8c617038e2"
+  }
+}

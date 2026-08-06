@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1555",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution computes final bank account balances by projecting transactions as signed changes (-amount for paid_by, +amount for paid_to) using UNION ALL, grouping by user_id to sum net changes, and performing a LEFT JOIN with the Users table. It adds starting credit to COALESCE(net_change, 0) and sets credit_limit_breached to 'Yes' if final credit < 0 and 'No' otherwise. The query runs in O(N log N) time and O(N) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Using UNION ALL ensures duplicate transfers are preserved. LEFT JOIN to Users retains users with no transactions, and COALESCE handles null aggregate sums correctly. CASE expression strictly checks final credit < 0 for breach status."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "UNION ALL creates 2t signed rows. Grouping, joining, and sorting N total rows takes O(N log N) upper bound time and O(N) auxiliary space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts Users and Transactions tables and returns columns user_id, user_name, credit, and credit_limit_breached."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details signed balance change projection via UNION ALL, net change aggregation, LEFT JOIN user retention, COALESCE default handling, CASE breach logic, and O(N log N) time / O(N) space bounds. Alternatives and edge cases cover two separate aggregate joins, correlated subquery overhead, inner join pitfalls, zero balance non-breaches, one-sided transaction histories, multiple transfer retention, transaction date independence, UNION deduplication traps, and non-unique user names."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions both execute the identical UNION ALL LEFT JOIN balance aggregation query with SHA-256 digest e2b4aac70ee47f0406de27dc5dd1f0cdff48231dc71d9944af5b43e0c2dcf5b5. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Users and Transactions interface, three examples, three constraints, and 3 local tables. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "e2b4aac70ee47f0406de27dc5dd1f0cdff48231dc71d9944af5b43e0c2dcf5b5",
+    "native_source_sha256": "e2b4aac70ee47f0406de27dc5dd1f0cdff48231dc71d9944af5b43e0c2dcf5b5",
+    "approach_sha256": "b7b3b40a3425abb608e6ea98badc7786968297a0397a9164526a3c3a1c18b0ca",
+    "solution_variants_sha256": "c7d7838cb74f04fd45e8c0e2c316274630e364a02418b799334a2a263fcfd535",
+    "complexity_evidence_sha256": "e0718bacb910dd7b5dc8524691d70c7047844a3fbbe1022ede2800f984df8108"
+  }
+}

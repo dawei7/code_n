@@ -6,4 +6,4 @@
 
 **Return value**
 
-Mutate `nums` in place to its next lexicographic permutation. The function has no separate return value.
+No value is returned. Mutate `nums` in place to its next lexicographic permutation.

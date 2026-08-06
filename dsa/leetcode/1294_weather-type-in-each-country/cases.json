@@ -131,26 +131,29 @@
         ],
         "rows": [
           [
-            "Australia",
+            "USA",
             "Cold"
           ],
           [
-            "China",
-            "Warm"
-          ],
-          [
-            "Morocco",
-            "Hot"
+            "Australia",
+            "Cold"
           ],
           [
             "Peru",
             "Hot"
           ],
           [
-            "USA",
-            "Cold"
+            "Morocco",
+            "Hot"
+          ],
+          [
+            "China",
+            "Warm"
           ]
         ]
+      },
+      "validator": {
+        "kind": "unordered_table"
       },
       "tags": [
         "sample",
@@ -196,6 +199,9 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "trial",
         "boundary"
@@ -239,6 +245,9 @@
             "Hot"
           ]
         ]
+      },
+      "validator": {
+        "kind": "unordered_table"
       },
       "tags": [
         "trial",
@@ -284,6 +293,9 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "trial",
         "warm"
@@ -323,16 +335,19 @@
         ],
         "rows": []
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "trial",
         "empty"
       ]
     },
     {
-      "id": "hidden-negative",
-      "name": "hidden: negative cold average",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative",
+      "name": "trial: negative cold average beside a hot country",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Countries": [
@@ -380,16 +395,19 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
-        "hidden",
+        "trial",
         "negative"
       ]
     },
     {
-      "id": "hidden-date-boundaries",
-      "name": "hidden: both November endpoint dates count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-date-boundaries",
+      "name": "trial: both November endpoint dates count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Countries": [
@@ -429,9 +447,126 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
-        "hidden",
+        "trial",
         "dates"
+      ]
+    },
+    {
+      "id": "trial-empty-tables",
+      "name": "trial: no countries and no observations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Countries": {
+            "columns": [
+              "country_id",
+              "country_name"
+            ],
+            "rows": []
+          },
+          "Weather": {
+            "columns": [
+              "country_id",
+              "weather_state",
+              "day"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "trial",
+        "empty-tables"
+      ]
+    },
+    {
+      "id": "trial-duplicate-country-names",
+      "name": "trial: distinct country identifiers share a name",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Countries": [
+            {
+              "country_id": 1,
+              "country_name": "Shared"
+            },
+            {
+              "country_id": 2,
+              "country_name": "Shared"
+            },
+            {
+              "country_id": 3,
+              "country_name": "Absent"
+            }
+          ],
+          "Weather": [
+            {
+              "country_id": 1,
+              "weather_state": 10,
+              "day": "2019-11-03"
+            },
+            {
+              "country_id": 1,
+              "weather_state": 20,
+              "day": "2019-11-27"
+            },
+            {
+              "country_id": 2,
+              "weather_state": 20,
+              "day": "2019-11-04"
+            },
+            {
+              "country_id": 2,
+              "weather_state": 30,
+              "day": "2019-11-28"
+            },
+            {
+              "country_id": 3,
+              "weather_state": 40,
+              "day": "2019-10-31"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": [
+          [
+            "Shared",
+            "Cold"
+          ],
+          [
+            "Shared",
+            "Hot"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "trial",
+        "grouping-key",
+        "duplicate-names"
       ]
     }
   ]

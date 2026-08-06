@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2628",
+    "frontend_id": "2628",
+    "title_slug": "json-deep-equal",
+    "url": "https://leetcode.com/problems/json-deep-equal/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`o1 = {\"x\": 1, \"y\": 2}, o2 = {\"x\": 1, \"y\": 2}`",
+        "output": "`true`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`o1 = {\"y\": 2, \"x\": 1}, o2 = {\"x\": 1, \"y\": 2}`",
+        "output": "`true`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`o1 = {\"x\": null, \"L\": [1, 2, 3]}, o2 = {\"x\": null, \"L\": [\"1\", \"2\", \"3\"]}`",
+        "output": "`false`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 4,
+        "input": "`o1 = true, o2 = false`",
+        "output": "`false`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "50ebbb2156538e1de72aaea3959bb87ae862408bc0a6bbe6d22914828863aec6",
+      "reference/contract.md": "bcfb1d036472926681b7b9cf7374826ee8715dee01318142028ca2b749e9261b",
+      "reference/examples.md": "a95650bb32d306d26db30ae872765fdefdbe890a1af3d5c591a8ba4c177c13eb",
+      "reference/constraints.md": "f0e0082a08d20f881867e7275679cdfdd8fd26ee877701a2c6327acb99511576"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

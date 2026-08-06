@@ -1,10 +1,143 @@
 {
   "challenge_id": "lc_3",
   "cases": [
-    {"id": "sample-1", "name": "sample: repeating blocks", "kind": "sample", "visible": true, "input": {"s": "abcabcbb"}, "expected": 3, "tags": ["sample"]},
-    {"id": "sample-2", "name": "sample: one repeated character", "kind": "sample", "visible": true, "input": {"s": "bbbbb"}, "expected": 1, "tags": ["sample", "duplicates"]},
-    {"id": "trial-empty", "name": "empty string", "kind": "trial", "visible": true, "input": {"s": ""}, "expected": 0, "tags": ["empty"]},
-    {"id": "trial-stale-index", "name": "previous occurrence is outside the window", "kind": "trial", "visible": true, "input": {"s": "tmmzuxt"}, "expected": 5, "tags": ["stale-index"]},
-    {"id": "real-overlapping-window", "name": "hidden: overlap after a duplicate", "kind": "real", "visible": false, "input": {"s": "dvdf"}, "expected": 3, "tags": ["hidden", "window"]}
+    {
+      "id": "sample-1",
+      "name": "sample: repeating blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcabcbb"
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one repeated character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bbbbb"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: substring must remain contiguous",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "pwwkew"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "substring"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "empty string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ""
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "x"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "entire string is distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": 6,
+      "tags": [
+        "full-window"
+      ]
+    },
+    {
+      "id": "trial-stale-occurrence",
+      "name": "previous occurrence is outside the window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "tmmzuxt"
+      },
+      "expected": 5,
+      "tags": [
+        "stale-occurrence",
+        "window"
+      ]
+    },
+    {
+      "id": "trial-overlapping-window",
+      "name": "best window overlaps a duplicate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "dvdf"
+      },
+      "expected": 3,
+      "tags": [
+        "overlap",
+        "window"
+      ]
+    },
+    {
+      "id": "trial-no-backward-move",
+      "name": "stale occurrence cannot move left backward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abba"
+      },
+      "expected": 2,
+      "tags": [
+        "stale-occurrence",
+        "window"
+      ]
+    },
+    {
+      "id": "trial-character-classes",
+      "name": "spaces symbols and letter case are distinct characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a A!a"
+      },
+      "expected": 4,
+      "tags": [
+        "space",
+        "symbol",
+        "case-sensitive"
+      ]
+    }
   ]
 }

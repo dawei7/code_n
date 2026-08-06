@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_11",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order with their exact input and output facts",
+      "minimum-length arrays at zero and maximum legal heights",
+      "equal endpoint heights and the permitted tie discard",
+      "an adjacent inner pair that beats every wider container",
+      "strictly descending and ascending inputs that drive opposite pointers",
+      "interleaved zero-height walls and the width-height tradeoff",
+      "equal-height scaling tiers that reject exhaustive pair enumeration"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "a9b02940e6cb7d65cbb80a40295e34009a9d9368afb431a2aa5358325c7924f9",
+    "native_source_sha256": "243fe3857b79d3b4a58d4e9262bf11e71bb9261c04933f442364b650867a5b0c",
+    "approach_sha256": "1396e3d7caa77a78d86e01236b3fdbae779d6a2caf4bca5a989c7b645299a982",
+    "solution_variants_sha256": "baf35c01b3cfcbce2f324fce50f5b18542986b7dae87c4dcc2f2b6f275f8f7c4",
+    "cases_sha256": "b20d34520f7735a1d412304dc4d2b9af54ca468c93edc5bc66a020530c4353ac",
+    "complexity_evidence_sha256": "b4adf5052534e41d8550db5b1e62ced54095d9e2523082c69227e3b5609e566c"
+  }
+}

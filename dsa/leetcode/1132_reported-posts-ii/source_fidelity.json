@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1132",
+    "frontend_id": "1132",
+    "title_slug": "reported-posts-ii",
+    "url": "https://leetcode.com/problems/reported-posts-ii/description/",
+    "paid_only": true,
+    "content_sha256": "c869133d3c8e89155e047f6381bc4e2ec881ad340ec0c7bc983c9439cb4ae6e6",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "actions_table",
+      "removals_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Actions = [[1,1,\"2019-07-01\",\"view\",null],[1,1,\"2019-07-01\",\"like\",null],[1,1,\"2019-07-01\",\"share\",null],[2,2,\"2019-07-04\",\"view\",null],[2,2,\"2019-07-04\",\"report\",\"spam\"],[3,4,\"2019-07-04\",\"view\",null],[3,4,\"2019-07-04\",\"report\",\"spam\"],[4,3,\"2019-07-02\",\"view\",null],[4,3,\"2019-07-02\",\"report\",\"spam\"],[5,2,\"2019-07-03\",\"view\",null],[5,2,\"2019-07-03\",\"report\",\"racism\"],[5,5,\"2019-07-03\",\"view\",null],[5,5,\"2019-07-03\",\"report\",\"racism\"]], Removals = [[2,\"2019-07-20\"],[3,\"2019-07-18\"]]",
+        "output": "[[75.00]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/actions_table.md": "2e92d2d5619e55c311195f7f5f7791a2fb4cc9e24816fa2d8a4b0781060c1b0c",
+      "reference/removals_table.md": "9fefdeb126a49080d3e5d90fef04832e800b0c05e0fcaa2bd90ceb9b567e5e10",
+      "reference/description.md": "61f3711831254fe90c2f1d60a41be26bc89f4b645d5fd15570636ce763ffcb40",
+      "reference/contract.md": "1feae86d0909c4f8710069160b6ae0d640691ab2751dd272a35e8bb188604c15",
+      "reference/examples.md": "9fda17e631b53ea1bad53c533f82981e3b316d804b4288040ca7c70fc132e744"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

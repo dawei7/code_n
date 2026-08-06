@@ -1,6 +1,113 @@
-{"challenge_id":"lc_286","cases":[
-{"id":"sample-grid","name":"sample: walls and two gates","kind":"sample","visible":true,"input":{"rooms":[[2147483647,-1,0,2147483647],[2147483647,2147483647,2147483647,-1],[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]]},"expected":[[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]],"tags":["sample","multi-source-bfs"]},
-{"id":"sample-row","name":"sample: adjacent empty room","kind":"sample","visible":true,"input":{"rooms":[[0,2147483647]]},"expected":[[0,1]],"tags":["sample","boundary"]},
-{"id":"trial-no-gate","name":"no gate leaves infinity unchanged","kind":"trial","visible":true,"input":{"rooms":[[2147483647]]},"expected":[[2147483647]],"tags":["no-gate"]},
-{"id":"real-blocked","name":"hidden: wall blocks an empty room","kind":"real","visible":false,"input":{"rooms":[[0,-1,2147483647]]},"expected":[[0,-1,2147483647]],"tags":["hidden","unreachable"]}
-]}
+{
+  "challenge_id": "lc_286",
+  "cases": [
+    {
+      "id": "sample-grid",
+      "name": "sample: walls and two gates",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rooms": [[2147483647, -1, 0, 2147483647], [2147483647, 2147483647, 2147483647, -1], [2147483647, -1, 2147483647, -1], [0, -1, 2147483647, 2147483647]]},
+      "expected": [[3, -1, 0, 1], [2, 2, 1, -1], [1, -1, 2, -1], [0, -1, 3, 4]],
+      "tags": ["sample", "source-example", "multi-source-bfs"]
+    },
+    {
+      "id": "sample-single-wall",
+      "name": "sample: single wall remains unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rooms": [[-1]]},
+      "expected": [[-1]],
+      "tags": ["sample", "source-example", "minimum-dimensions", "wall"]
+    },
+    {
+      "id": "trial-single-gate",
+      "name": "single gate remains zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[0]]},
+      "expected": [[0]],
+      "tags": ["minimum-dimensions", "gate", "no-op"]
+    },
+    {
+      "id": "trial-single-empty-no-gate",
+      "name": "single empty room without a gate remains INF",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[2147483647]]},
+      "expected": [[2147483647]],
+      "tags": ["minimum-dimensions", "no-gate", "unreachable"]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "distances increase across one row",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[0, 2147483647, 2147483647, 2147483647]]},
+      "expected": [[0, 1, 2, 3]],
+      "tags": ["single-row", "single-gate"]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "distances increase up one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[2147483647], [2147483647], [0]]},
+      "expected": [[2], [1], [0]],
+      "tags": ["single-column", "single-gate"]
+    },
+    {
+      "id": "trial-wall-blocked",
+      "name": "wall leaves the room beyond it unreachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[0, -1, 2147483647]]},
+      "expected": [[0, -1, 2147483647]],
+      "tags": ["wall", "unreachable"]
+    },
+    {
+      "id": "trial-multiple-gates",
+      "name": "each room uses the nearest of multiple gates",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[2147483647, 0, 2147483647], [2147483647, 2147483647, 2147483647], [0, 2147483647, 2147483647]]},
+      "expected": [[1, 0, 1], [1, 1, 2], [0, 1, 2]],
+      "tags": ["multiple-gates", "nearest-source", "tie-distance"]
+    },
+    {
+      "id": "trial-wall-detour",
+      "name": "walls force a longer route to the nearest gate",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[0, -1, 2147483647, 2147483647], [2147483647, -1, 2147483647, -1], [2147483647, 2147483647, 2147483647, -1], [2147483647, -1, 2147483647, 0]]},
+      "expected": [[0, -1, 4, 5], [1, -1, 3, -1], [2, 3, 2, -1], [3, -1, 1, 0]],
+      "tags": ["walls", "detour", "multiple-gates"]
+    },
+    {
+      "id": "trial-only-gates-and-walls",
+      "name": "grid with no empty rooms remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[0, -1, 0], [-1, -1, -1], [0, -1, 0]]},
+      "expected": [[0, -1, 0], [-1, -1, -1], [0, -1, 0]],
+      "tags": ["all-gates-or-walls", "no-op"]
+    },
+    {
+      "id": "trial-no-gates-with-walls",
+      "name": "walls and empty rooms without gates remain unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[2147483647, -1, 2147483647], [2147483647, -1, 2147483647]]},
+      "expected": [[2147483647, -1, 2147483647], [2147483647, -1, 2147483647]],
+      "tags": ["no-gate", "walls", "unreachable"]
+    },
+    {
+      "id": "trial-rectangular-grid",
+      "name": "rectangular grid preserves four-direction distances",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rooms": [[2147483647, 2147483647, 0, 2147483647, 2147483647], [2147483647, -1, 2147483647, -1, 2147483647]]},
+      "expected": [[2, 1, 0, 1, 2], [3, -1, 1, -1, 3]],
+      "tags": ["rectangular", "walls", "single-gate"]
+    }
+  ]
+}

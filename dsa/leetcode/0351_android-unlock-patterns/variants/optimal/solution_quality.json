@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_351",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "improvement",
+        "reason": "The protected memoized search is logically correct and Accepted, but its separate remaining-length state exceeds the repository's 100,001-step limit on the maximum legal range. The sole inert candidate performs one forward pass over weighted (visited, current) states, merges prefixes with identical futures, and reduces the bound from O(K^3 * 2^K) to O(K^2 * 2^K)."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 351 and its Python numberOfPatterns surface. The Reference preserves the 3 x 3 keypad, uniqueness and crossed-key rules, all illustrated valid and invalid sequences, both source examples, and the 1-through-9 length constraint."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064554984 and structurally aligns with the protected app-local memoized search apart from the required wrapper. The materially different forward-DP candidate remains app-local and inert; it has no remote evidence and must not replace either protected source without exact-byte Accepted verification."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The former size-one tier made the relative-growth verdict timing-noise sensitive. The replacement legal cumulative tiers 2, 4, and 8 span 4x, and three consecutive candidate calibrations passed with substantial headroom; the recorded run reports -0.24 relative growth and 0.66x. Independent geometry enumeration verifies every tier total and all 45 legal m-through-n ranges. Plain uncached backtracking reaches the execution safety cap before yielding comparable largest-tier timings, so it is not misreported as an incorrect hidden answer or cited as clean measured evidence."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The candidate-targeted Approach now exactly derives the symmetric skip table, weighted corner/edge/center starts, forward state-count propagation, multiplicity-preserving state merges, correctness, O(K^2 * 2^K) time, and O(K * 2^K) auxiliary space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound authenticated Premium Reference remains source-fidelity verified, including both source examples, the complete keypad rule, every illustrated valid and invalid pattern, the sole constraint, and the independent local grid diagram."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples appear first, in source order, with their exact inclusive length ranges and counts.",
+      "The invented exact-length-two row is now a trial, and every formerly hidden exact-length or cumulative-range check is visible.",
+      "Exact lengths one, two, three, four, and nine cover both input bounds and the no-repeated-key maximum; additional ranges cover short, middle, long, maximum, and full 1-through-9 accumulation.",
+      "A coordinate-midpoint backtracking oracle derives skipped-key requirements directly from the 3x3 geometry and reproduces exact-length totals 9, 56, 320, 1624, 7152, 26016, 72912, 140704, and 140704.",
+      "That independent oracle verified all ten authored results, all three benchmark results, the corrected full-range total 389497, and both repository implementations across all 45 legal m-through-n ranges.",
+      "All ten correctness cases are visible samples or trials; the corrected 2-, 4-, and 8-length cumulative workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "f89d9f6ddb1ad1358fa3dd67e48e68a3d827be93f6bfbd4e7f86d47928051729",
+    "native_source_sha256": "13bb78d339dd2cf2e1c33b0ee445ed33b81a302f91debce756e758be6bb6d33a",
+    "approach_sha256": "334105f38acc1ef0459d2f1f8f4158fdd0034e5347bff88d680c1a3ceb7e6c2d",
+    "solution_variants_sha256": "aad712c1acb9b6b8dceaf0fc9daca26f6d85848fe1694674165147f4fa2abcdd",
+    "complexity_evidence_sha256": "3b2bb11935a82aec4070360f330e52253e49898d7642cb1a767c30f5591fbdec",
+    "candidate_source_sha256": "97e689a301ead27875f241495f474111abd6fca70cc361017cb852a50c789083",
+    "cases_sha256": "4a6536d6051e88fdf5523af41b77bf72d9daacddfe0b6b732ff1dd6ea15bdfcd"
+  }
+}

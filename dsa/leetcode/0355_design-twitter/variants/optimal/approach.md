@@ -23,4 +23,4 @@ Posting and relationship changes take expected $O(1)$ time. For `F` feed sources
 - Following an already-followed user and unfollowing a missing relationship are idempotent.
 - Self-following must not duplicate the user's own tweets.
 - A user with no available tweets receives an empty feed.
-- Globally unique timestamps determine order even when tweet IDs repeat.
+- Tweet IDs are globally unique, but timestamps rather than their numeric values determine recency order.

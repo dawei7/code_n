@@ -9,90 +9,20 @@
       "visible": true,
       "input": {
         "operations": [
-          [
-            "addScore",
-            [
-              1,
-              73
-            ]
-          ],
-          [
-            "addScore",
-            [
-              2,
-              56
-            ]
-          ],
-          [
-            "addScore",
-            [
-              3,
-              39
-            ]
-          ],
-          [
-            "addScore",
-            [
-              4,
-              51
-            ]
-          ],
-          [
-            "addScore",
-            [
-              5,
-              4
-            ]
-          ],
-          [
-            "top",
-            [
-              1
-            ]
-          ],
-          [
-            "reset",
-            [
-              1
-            ]
-          ],
-          [
-            "reset",
-            [
-              2
-            ]
-          ],
-          [
-            "addScore",
-            [
-              2,
-              51
-            ]
-          ],
-          [
-            "top",
-            [
-              3
-            ]
-          ]
+          ["addScore", [1, 73]],
+          ["addScore", [2, 56]],
+          ["addScore", [3, 39]],
+          ["addScore", [4, 51]],
+          ["addScore", [5, 4]],
+          ["top", [1]],
+          ["reset", [1]],
+          ["reset", [2]],
+          ["addScore", [2, 51]],
+          ["top", [3]]
         ]
       },
-      "expected": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        73,
-        null,
-        null,
-        null,
-        141
-      ],
-      "tags": [
-        "sample",
-        "design"
-      ]
+      "expected": [null, null, null, null, null, 73, null, null, null, 141],
+      "tags": ["sample", "full-interface", "reset-readd"]
     },
     {
       "id": "trial-accumulate",
@@ -101,36 +31,13 @@
       "visible": true,
       "input": {
         "operations": [
-          [
-            "addScore",
-            [
-              1,
-              10
-            ]
-          ],
-          [
-            "addScore",
-            [
-              1,
-              15
-            ]
-          ],
-          [
-            "top",
-            [
-              1
-            ]
-          ]
+          ["addScore", [1, 10]],
+          ["addScore", [1, 15]],
+          ["top", [1]]
         ]
       },
-      "expected": [
-        null,
-        null,
-        25
-      ],
-      "tags": [
-        "accumulation"
-      ]
+      "expected": [null, null, 25],
+      "tags": ["accumulation", "existing-player"]
     },
     {
       "id": "trial-tie",
@@ -139,36 +46,14 @@
       "visible": true,
       "input": {
         "operations": [
-          [
-            "addScore",
-            [
-              1,
-              20
-            ]
-          ],
-          [
-            "addScore",
-            [
-              2,
-              20
-            ]
-          ],
-          [
-            "top",
-            [
-              2
-            ]
-          ]
+          ["addScore", [1, 20]],
+          ["addScore", [2, 20]],
+          ["addScore", [3, 5]],
+          ["top", [2]]
         ]
       },
-      "expected": [
-        null,
-        null,
-        40
-      ],
-      "tags": [
-        "tie"
-      ]
+      "expected": [null, null, null, 40],
+      "tags": ["tie", "top-cutoff"]
     },
     {
       "id": "trial-top-all",
@@ -177,204 +62,100 @@
       "visible": true,
       "input": {
         "operations": [
-          [
-            "addScore",
-            [
-              1,
-              3
-            ]
-          ],
-          [
-            "addScore",
-            [
-              2,
-              7
-            ]
-          ],
-          [
-            "top",
-            [
-              2
-            ]
-          ]
+          ["addScore", [1, 3]],
+          ["addScore", [2, 7]],
+          ["top", [2]],
+          ["top", [2]]
         ]
       },
-      "expected": [
-        null,
-        null,
-        10
-      ],
-      "tags": [
-        "top-all"
-      ]
+      "expected": [null, null, 10, 10],
+      "tags": ["top-all", "read-only-query", "repeated-top"]
     },
     {
-      "id": "real-reset-readd",
-      "name": "hidden: reset then add starts a fresh total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reset-readd",
+      "name": "reset then add starts a fresh total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
-          [
-            "addScore",
-            [
-              7,
-              90
-            ]
-          ],
-          [
-            "reset",
-            [
-              7
-            ]
-          ],
-          [
-            "addScore",
-            [
-              7,
-              5
-            ]
-          ],
-          [
-            "top",
-            [
-              1
-            ]
-          ]
+          ["addScore", [7, 90]],
+          ["reset", [7]],
+          ["addScore", [7, 5]],
+          ["top", [1]]
         ]
       },
-      "expected": [
-        null,
-        null,
-        null,
-        5
-      ],
-      "tags": [
-        "hidden",
-        "reset"
-      ]
+      "expected": [null, null, null, 5],
+      "tags": ["reset", "readd", "fresh-total"]
     },
     {
-      "id": "real-ranking-change",
-      "name": "hidden: accumulation changes the leader set",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ranking-change",
+      "name": "accumulation changes the leader set",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
-          [
-            "addScore",
-            [
-              1,
-              8
-            ]
-          ],
-          [
-            "addScore",
-            [
-              2,
-              10
-            ]
-          ],
-          [
-            "addScore",
-            [
-              1,
-              5
-            ]
-          ],
-          [
-            "top",
-            [
-              1
-            ]
-          ],
-          [
-            "top",
-            [
-              2
-            ]
-          ]
+          ["addScore", [1, 8]],
+          ["addScore", [2, 10]],
+          ["addScore", [1, 5]],
+          ["top", [1]],
+          ["top", [2]]
         ]
       },
-      "expected": [
-        null,
-        null,
-        null,
-        13,
-        23
-      ],
-      "tags": [
-        "hidden",
-        "ranking"
-      ]
+      "expected": [null, null, null, 13, 23],
+      "tags": ["ranking-change", "accumulation", "multiple-k"]
     },
     {
-      "id": "real-multiple-resets",
-      "name": "hidden: reset different active players",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-resets",
+      "name": "resetting different active players changes later top queries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
-          [
-            "addScore",
-            [
-              1,
-              4
-            ]
-          ],
-          [
-            "addScore",
-            [
-              2,
-              9
-            ]
-          ],
-          [
-            "addScore",
-            [
-              3,
-              6
-            ]
-          ],
-          [
-            "reset",
-            [
-              2
-            ]
-          ],
-          [
-            "top",
-            [
-              2
-            ]
-          ],
-          [
-            "reset",
-            [
-              1
-            ]
-          ],
-          [
-            "top",
-            [
-              1
-            ]
-          ]
+          ["addScore", [1, 4]],
+          ["addScore", [2, 9]],
+          ["addScore", [3, 6]],
+          ["reset", [2]],
+          ["top", [2]],
+          ["reset", [1]],
+          ["top", [1]]
         ]
       },
-      "expected": [
-        null,
-        null,
-        null,
-        null,
-        10,
-        null,
-        6
-      ],
-      "tags": [
-        "hidden",
-        "multiple-resets"
-      ]
+      "expected": [null, null, null, null, 10, null, 6],
+      "tags": ["multiple-resets", "active-player-count"]
+    },
+    {
+      "id": "trial-identifier-score-bounds",
+      "name": "minimum and maximum identifiers and added scores are accepted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          ["addScore", [1, 1]],
+          ["addScore", [10000, 100]],
+          ["addScore", [10000, 100]],
+          ["top", [1]],
+          ["top", [2]]
+        ]
+      },
+      "expected": [null, null, null, 200, 201],
+      "tags": ["identifier-bounds", "score-bounds", "accumulated-total"]
+    },
+    {
+      "id": "trial-tie-at-cutoff",
+      "name": "a tie at the cutoff still yields the correct sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          ["addScore", [11, 50]],
+          ["addScore", [12, 50]],
+          ["addScore", [13, 40]],
+          ["addScore", [14, 40]],
+          ["top", [3]]
+        ]
+      },
+      "expected": [null, null, null, null, 140],
+      "tags": ["tie", "cutoff", "distinct-players"]
     }
   ]
 }

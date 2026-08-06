@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1783",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution unpivots the four tournament winner columns (Wimbledon, Fr_open, US_open, Au_open) from Championships using UNION ALL into a normalized winners CTE/subquery, inner joins Players on player_id, and groups by player_id and player_name to count titles AS grand_slams_count. Using UNION ALL preserves multiple titles won by the same player in a single year. The solution is canonical, optimal, and concise; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "UNION ALL extracts four winner rows per year without deduplicating titles won in the same year. Inner joining Players attaches player names while automatically dropping players with 0 titles. Grouping by player_id and player_name sums COUNT(*) correctly per winning player."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Unpivoting C championship rows yields 4C winner entries. Joining against P players and grouping K winning players takes O(C + K) time and O(C + K) space. Complexity evidence is certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs columns player_id, player_name, and grand_slams_count, handles players winning multiple titles in one year, and excludes players with 0 titles."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details column unpivoting via UNION ALL, inner join filtering of nonwinners, title counting per player, and relational complexity bounds. Alternatives and edge cases cover four separate joins with additions, conditional self-join predicates, correlated subqueries, multi-title years, nonwinner exclusion, tied totals, noncontiguous IDs, and result ordering flexibility."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical with SHA-256 digest 3bf0ae1f40dee8c4b1590f048c727c2c9066e44f086e284976465bfd95febf09. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Players and Championships schemas, three examples, two constraints, and 5 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "3bf0ae1f40dee8c4b1590f048c727c2c9066e44f086e284976465bfd95febf09",
+    "native_source_sha256": "3bf0ae1f40dee8c4b1590f048c727c2c9066e44f086e284976465bfd95febf09",
+    "approach_sha256": "e28810822ccd3d17f6350828b50d651fd2bb71f803070376dd8d2e10ad18b7f0",
+    "solution_variants_sha256": "52256ad0d4e2891a176764cc1b08eed43fb758f1f4966fc979b791d5e734ee09",
+    "complexity_evidence_sha256": "19a96b4cb7b87f37c1d13ea7e885dea7bae68e350e02394a060eb8a38a04af8f"
+  }
+}

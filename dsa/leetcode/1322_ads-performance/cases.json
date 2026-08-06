@@ -207,10 +207,10 @@
       ]
     },
     {
-      "id": "hidden-tied-rates",
-      "name": "hidden: equal rates sort by id",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tied-rates",
+      "name": "trial: equal rates sort by id",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Ads": [
@@ -254,15 +254,15 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "tie-order"
       ]
     },
     {
-      "id": "hidden-third-rate",
-      "name": "hidden: rounding a one-third rate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-third-rate",
+      "name": "trial: rounding a one-third rate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Ads": [
@@ -297,15 +297,15 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "rounding"
       ]
     },
     {
-      "id": "hidden-all-actions",
-      "name": "hidden: ignored rows do not change rate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-actions",
+      "name": "trial: ignored rows do not change rate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Ads": [
@@ -349,8 +349,100 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "ignored-actions"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no advertisement actions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Ads": {
+            "columns": [
+              "ad_id",
+              "user_id",
+              "action"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-signed-identifiers-and-cross-ad-user",
+      "name": "trial: signed ad ids tie while one user appears under several ads",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 0,
+              "user_id": 2,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": -2,
+              "user_id": 0,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 7,
+              "user_id": 0,
+              "action": "Ignored"
+            },
+            {
+              "ad_id": 0,
+              "user_id": 0,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": -2,
+              "user_id": 1,
+              "action": "Viewed"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            -2,
+            50
+          ],
+          [
+            0,
+            50
+          ],
+          [
+            7,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "signed-identifiers",
+        "tie-order",
+        "composite-key"
       ]
     }
   ]

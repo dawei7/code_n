@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Bulls and Cows and meets the required complexity bound.",
+      "summary": "Counts exact matches first, then intersects fixed digit-frequency arrays for the remaining matches.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

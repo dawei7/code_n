@@ -17,8 +17,9 @@ This formula is exact because the intersection of two axis-aligned rectangles is
 The calculation uses a fixed number of comparisons, subtractions, and multiplications, so time and auxiliary space are both $O(1)$.
 
 ## Alternatives and edge cases
-- A coordinate sweep or plane subdivision is useful for many rectangles but unnecessary for two.
-- Omitting the zero clamp can produce a positive-looking or negative overlap contribution for disjoint rectangles.
-- Adding the individual areas without subtraction double-counts the intersection.
-- Identical and nested rectangles reduce to the larger rectangle's area.
-- Edge- and point-touching rectangles have zero overlap area; fixed-width implementations may need a wider type for coordinate products.
+- **Coordinate sweep:** It is useful for many rectangles but unnecessary for exactly two.
+- **Unclamped overlap:** A negative interval length corrupts the union calculation for disjoint rectangles.
+- **Area sum only:** Adding the individual areas without subtraction double-counts the intersection.
+- **Identical or nested rectangles:** Inclusion-exclusion reduces correctly to the larger rectangle's area.
+- **Touching boundaries:** Edge- and point-touching rectangles have zero overlap area.
+- **Fixed-width arithmetic:** Coordinate differences and area products may require a wider integer type.

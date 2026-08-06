@@ -15,4 +15,5 @@ Each step moves left or down, with at most `n` left moves and `m` down moves, fo
 ## Alternatives and edge cases
 - **Search every cell:** costs $O(mn)$.
 - **Binary-search every row:** costs $O(m \log n)$.
-- Empty matrices return false; one row, one column, duplicates, and negative values preserve the same invariant.
+- **Single dimension:** one-row and one-column matrices use the same elimination rule.
+- **Duplicates and negative values:** ordering, rather than distinctness or sign, is all the invariant requires.

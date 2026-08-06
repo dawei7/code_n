@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_284",
-  "measurement_note": "Size is operation count; one-value caching is constant per call while rescanning or deleting the front of remaining data causes quadratic total work.",
+  "measurement_note": "Size is operation count; one-value caching is constant per call while deleting the front of remaining data causes quadratic total shifting work.",
   "cases": [
     {
       "id": "benchmark-scale-1",
@@ -11,7 +11,6 @@
       "size": 65,
       "input": {
         "iterator_data": [
-          0,
           1,
           2,
           3,
@@ -42,7 +41,8 @@
           28,
           29,
           30,
-          31
+          31,
+          32
         ],
         "operations": [
           "peek",
@@ -113,8 +113,6 @@
         ]
       },
       "expected": [
-        0,
-        0,
         1,
         1,
         2,
@@ -177,6 +175,8 @@
         30,
         31,
         31,
+        32,
+        32,
         false
       ],
       "tags": [
@@ -193,7 +193,6 @@
       "size": 257,
       "input": {
         "iterator_data": [
-          0,
           1,
           2,
           3,
@@ -320,7 +319,8 @@
           124,
           125,
           126,
-          127
+          127,
+          128
         ],
         "operations": [
           "peek",
@@ -583,8 +583,6 @@
         ]
       },
       "expected": [
-        0,
-        0,
         1,
         1,
         2,
@@ -839,6 +837,8 @@
         126,
         127,
         127,
+        128,
+        128,
         false
       ],
       "tags": [
@@ -849,13 +849,12 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: peek and consume 512 values",
+      "name": "benchmark: peek and consume 499 values",
       "kind": "benchmark",
       "visible": false,
-      "size": 1025,
+      "size": 999,
       "input": {
         "iterator_data": [
-          0,
           1,
           2,
           3,
@@ -1354,47 +1353,9 @@
           496,
           497,
           498,
-          499,
-          500,
-          501,
-          502,
-          503,
-          504,
-          505,
-          506,
-          507,
-          508,
-          509,
-          510,
-          511
+          499
         ],
         "operations": [
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
-          "peek",
-          "next",
           "peek",
           "next",
           "peek",
@@ -2397,8 +2358,6 @@
         ]
       },
       "expected": [
-        0,
-        0,
         1,
         1,
         2,
@@ -3397,30 +3356,6 @@
         498,
         499,
         499,
-        500,
-        500,
-        501,
-        501,
-        502,
-        502,
-        503,
-        503,
-        504,
-        504,
-        505,
-        505,
-        506,
-        506,
-        507,
-        507,
-        508,
-        508,
-        509,
-        509,
-        510,
-        510,
-        511,
-        511,
         false
       ],
       "tags": [

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Search a 2D Matrix II and meets the required complexity bound.",
+      "summary": "Walks from the top-right corner, eliminating one row or column after every comparison.",
       "time_complexity": "O(m + n)",
       "space_complexity": "O(1)"
     }

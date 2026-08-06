@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_422",
+    "frontend_id": "422",
+    "title_slug": "valid-word-square",
+    "url": "https://leetcode.com/problems/valid-word-square/description/",
+    "paid_only": true,
+    "content_sha256": "86e2a21219bca90c59a22d815932b2d752d72fffdc357c06ad07ca97456f0bfc",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "words = [\"abcd\",\"bnrt\",\"crmy\",\"dtye\"]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "words = [\"abcd\",\"bnrt\",\"crm\",\"dt\"]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "words = [\"ball\",\"area\",\"read\",\"lady\"]",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 3,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "70c060a2f71e15f1d16c80a3c2e7ab2c48a1305c746c846a5e7731ba6b386adf",
+      "reference/contract.md": "8d67f5e2f1282e4c7e8cac94d7ab50e4a1238d0e2b29705abd48b76e5d47d250",
+      "reference/examples.md": "5d1f20ffa39e967120ef94c1c2ef13f784bb1c8d30ce65365b78ca1e0315c132",
+      "reference/constraints.md": "fd9f8a58f2aa33bd6250258251fe46ca47cb10150af4df12d9ace29092b5c916"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Range Sum Query - Immutable and meets the required complexity bound.",
+      "summary": "Precomputes one leading-zero prefix array so every inclusive range sum is a constant-time subtraction.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n)"
     }

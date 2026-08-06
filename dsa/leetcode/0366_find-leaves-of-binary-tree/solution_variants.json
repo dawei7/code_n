@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Leaves of Binary Tree and meets the required complexity bound.",
+      "summary": "Assigns each node its postorder height from the leaves and groups equal heights into removal rounds.",
       "time_complexity": "O(n)",
       "space_complexity": "O(h)"
     }

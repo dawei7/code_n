@@ -1,28 +1,69 @@
 ## General
-**Solve every substring as an interval state**
 
-Let `best[i][j]` be a shortest encoding of `s[i:j + 1]`. Process intervals from short to long so every proper subinterval already has its optimum. Initialize each state with its literal substring, which guarantees a valid fallback.
+**Separate optimization from reconstruction**
 
-**Consider every concatenation boundary**
+For each interval `s[left:right + 1]`, store its minimum encoded length in `encoded_length[left][right]` and the
+decision that attains that length in `decision[left][right]`. Process widths from one through $n$, so every proper
+subinterval needed by a transition is already optimal. The literal interval, whose cost equals its width, is the
+initial choice.
 
-For each split `k`, concatenate `best[i][k]` and `best[k + 1][j]`. If that is shorter, keep it. This covers optimal encodings whose outermost structure is a concatenation, including a repeated prefix followed by unrelated text.
+Storing only a length and a compact decision is important in Python. Concatenating candidate strings during all
+$O(n^3)$ split transitions would copy their characters repeatedly. Deferring text construction avoids that extra
+factor.
 
-**Detect a repeated whole interval**
+**Test every possible outermost form**
 
-For interval text `t`, search for `t` inside $(t + t)$ starting after position zero. A match position smaller than `len(t)` is its shortest period. When that period divides the length, the interval consists of repeated copies of its prefix. Form `repeat_count[best encoding of that prefix]`, allowing nested compression inside the repeated unit.
+For each split position `split`, the interval can be represented by the optimal encoding of
+`s[left:split + 1]` followed by that of `s[split + 1:right + 1]`. Their stored lengths make this candidate an $O(1)$
+calculation.
 
-**Why the recurrence is complete**
+The interval may instead be repetitions of one shorter unit. For its text `t`, the first occurrence of `t` within
+`t + t` after position zero gives the shortest period. If that position is smaller than the interval width and
+divides the width, the repetition candidate consists of the decimal repeat count, two brackets, and the already
+optimal encoding of the period-length prefix.
 
-The outermost form of any valid encoding is either literal text, a concatenation of two encoded substrings, or one repetition wrapper around a shorter decoded block. The transition examines all three forms, and induction on interval length makes every inner encoding shortest. Selecting the shortest candidate therefore yields a global optimum.
+Only a strictly shorter candidate replaces the current choice. This matches the source contract and preserves the
+implementation's deterministic order among tied minimum encodings: literal first, then earlier split decisions,
+then repetition.
+
+**Why these decisions produce a shortest encoding**
+
+Induct on interval width. A one-character interval must remain literal. For a longer interval, any valid shortest
+representation is either literal, has an outermost concatenation boundary, or has one outermost repetition wrapper.
+The transitions inspect the literal form, every boundary, and the interval's shortest repeating unit. By the
+induction hypothesis, every referenced subinterval already has minimum encoded length, including the unit inside a
+repetition. The selected decision therefore has minimum length for the interval.
+
+After the table is complete, recursively follow the decision for the whole string. Literal decisions append one
+slice, split decisions emit both children, and repetition decisions emit the count and brackets around the unit.
+Collecting pieces and joining once constructs exactly the encoding represented by the optimal decisions without
+reintroducing repeated concatenation costs.
 
 ## Complexity detail
-There are $O(n^2)$ intervals. Trying all split points and performing linear periodicity work costs $O(n)$ per interval, for $O(n^3)$ time. The interval table has $O(n^2)$ entries; stored output strings add implementation-dependent character storage beyond the state count.
+
+Let $n = \lvert \texttt{s} \rvert$. There are $O(n^2)$ intervals. Across them, all split positions take $O(n^3)$
+time. Creating each interval slice and finding its shortest period are linear in the interval width, contributing
+another $O(n^3)$ total. Reconstruction visits the selected decision tree and emits an $O(n)$-length result, so the
+overall time complexity is $O(n^3)$.
+
+The two interval tables contain $O(n^2)$ entries. The recursion stack and emitted result use $O(n)$ additional
+space, for $O(n^2)$ auxiliary space overall.
 
 ## Alternatives and edge cases
-- **Top-down memoization:** uses the same recurrence and asymptotic bounds while evaluating only reached intervals.
-- **Try every candidate period manually:** is correct but repeated character comparisons can add another factor of `n`.
-- **Greedy longest repetition:** can miss a shorter encoding formed by splitting or by nesting a compressed unit.
-- **Short repetition:** keep literal text when brackets and count are not shorter.
-- **Nested pattern:** use the already optimal encoding of the repeated unit inside brackets.
-- **Tied minimum encodings:** any shortest equivalent representation satisfies the contract; deterministic strict improvements keep a stable choice.
-- **Partial repeated prefix:** concatenation states handle compressed regions followed by unmatched suffixes.
+
+- **Eager encoded-string table:** the protected and immutable Accepted implementations use the same recurrence but
+  concatenate strings inside every split transition. In Python that copying raises actual time to $O(n^4)$ and
+  total stored characters to $O(n^3)$ in the worst case.
+- **Top-down memoization:** can evaluate the same interval states recursively, but all intervals are reachable from
+  the full recurrence and recursion adds control overhead without improving the asymptotic bounds.
+- **Manual period enumeration:** checking every possible unit length character by character is correct, but can add
+  another linear factor on near-uniform intervals.
+- **Greedy repetition selection:** choosing a locally attractive repeated block can miss a shorter concatenation or
+  a repetition whose unit is itself encoded.
+- **Short repetition:** leave a region literal whenever the count and brackets do not make it strictly shorter.
+- **Nested encoding:** the repetition cost and reconstruction use the optimal decision for the repeated unit, not
+  its raw text.
+- **Partial repeated prefix:** split transitions allow a compressible prefix or middle region to coexist with an
+  unmatched suffix or surrounding literals.
+- **Tied answers:** any minimum-length representation is valid; strict comparisons retain a stable choice without
+  affecting optimality.

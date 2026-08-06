@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_416",
+    "frontend_id": "416",
+    "title_slug": "partition-equal-subset-sum",
+    "url": "https://leetcode.com/problems/partition-equal-subset-sum/description/",
+    "paid_only": false,
+    "content_sha256": "1097eb64291e0ef210d6a700171a36323acd40d2fcf4814b15e9ec5f3c537f8f",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,5,11,5]", "output": "true", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [1,2,3,5]", "output": "false", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "bb06eae7cabf341c3a444c00a23d976031d00fca250875453b561f35271e0386",
+      "reference/contract.md": "16f156b462893181bbb634343d068e303c134fa5463a76077044726feaeb849c",
+      "reference/examples.md": "a5680c58f8d76781e9010818dda345f31938373a8772ca6dccf1c4dc12d3a8b0",
+      "reference/constraints.md": "789ddd462d447ff3b6b02139eeb3b537d5ff64bc931480d1bb275408c8a78b58"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

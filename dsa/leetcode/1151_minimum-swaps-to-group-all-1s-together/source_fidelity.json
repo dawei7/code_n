@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1151",
+    "frontend_id": "1151",
+    "title_slug": "minimum-swaps-to-group-all-1s-together",
+    "url": "https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/description/",
+    "paid_only": true,
+    "content_sha256": "31201a62a43f989375b931bb288649818c5e7a2b8f59a125478fbaf9e2e55ff8",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "data = [1,0,1,0,1]",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "data = [0,0,0,1,0]",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "data = [1,0,1,0,1,0,0,1,1,0,1]",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "302865bd6416f115dbb10f38a998ad6b6394ff535bab6842e8f1b24980175a7a",
+      "reference/contract.md": "b02eeb207101f12d2aa93dd56c6e1b36e344b8e29af36a7fe976c49c82fa9feb",
+      "reference/examples.md": "2ea9c4f2d1949e0fdd7929cf339ffda72f1d8e31d8763325ca4458fb76969857",
+      "reference/constraints.md": "571a8f130b93010d2c8784878aee1971434a5a83bcbee0f74407fc89e79ac5bd",
+      "reference/hints.md": "c1461f8857be4020fefe2243ab845b2a751ad9ca606a4223d6ad188e64b2371e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

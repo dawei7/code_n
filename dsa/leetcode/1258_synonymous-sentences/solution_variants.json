@@ -9,7 +9,7 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Synonymous Sentences and meets the required complexity bound.",
-      "time_complexity": "O(P\\alpha(V)+KW)",
+      "time_complexity": "O(P\\alpha(V)+V\\log V+KW)",
       "space_complexity": "O(V+KW)"
     }
   ]

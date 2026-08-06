@@ -1,4 +1,5 @@
 ## General
+
 **Treat zeros and ones as two knapsack resources**
 
 Let `best[z][o]` be the largest number of processed strings selectable with at most `z` zeros and `o` ones. Count the zeros and ones of each string to obtain its two resource costs.
@@ -12,9 +13,15 @@ For a string costing `(zeros, ones)`, iterate zero capacity from `m` down to `ze
 For every capacity pair, an optimal subset either excludes the current string and keeps the old value, or includes it and combines the string with an optimal subset under the remaining budgets. The maximum of those exhaustive cases is optimal by induction over processed strings.
 
 ## Complexity detail
-For `k` strings, each update visits at most $(m + 1)(n + 1)$ capacity pairs, giving $O(k \cdot m \cdot n)$ time. The two-dimensional table uses $O(m \cdot n)$ space.
+
+Let $k = \lvert \texttt{strs} \rvert$ and let $S$ be the total number of characters across the strings. Counting their
+zeros and ones takes $O(S)$ time. Each string then visits at most $(m + 1)(n + 1)$ capacity pairs, for
+$O(S + k \cdot m \cdot n)$ total time. Because every source string has at most 100 characters and $m,n \ge 1$, this
+simplifies to the manifest bound $O(k \cdot m \cdot n)$ on the legal source domain. The two-dimensional table uses
+$O(m \cdot n)$ auxiliary space.
 
 ## Alternatives and edge cases
+
 - **Three-dimensional DP:** stores a layer per string and is easier to derive, but uses $O(k \cdot m \cdot n)$ space.
 - **Memoized include/exclude recursion:** explores the same states with $O(k \cdot m \cdot n)$ bounds and recursion overhead.
 - **Enumerate every subset:** is correct but takes $O(2^k)$ choices before budget checking.

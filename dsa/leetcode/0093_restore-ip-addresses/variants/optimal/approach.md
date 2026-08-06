@@ -1,7 +1,7 @@
 ## General
 **Each recursion level chooses one IPv4 segment boundary**
 
-Backtrack from the current string index with a path of completed segments. The next segment can contain one, two, or three digits. Accumulate its numeric value incrementally and stop once it exceeds `255`, since adding another digit can only increase it.
+Backtrack from the current string position `i` with a path of completed segments. The next segment can contain one, two, or three digits. Parse each candidate and stop once its value exceeds `255`, since adding another digit can only increase it.
 
 If the segment begins with `0`, allow the one-character segment `"0"` and stop before trying a longer length. This rejects noncanonical forms such as `"00"` and `"01"` without rejecting zero itself.
 
@@ -9,11 +9,11 @@ If the segment begins with `0`, allow the one-character segment `"0"` and stop b
 
 If `r = 4 - len(path)` segments remain, the unconsumed suffix must contain at least `r` digits and at most `3r`. Fewer digits cannot give every segment one character; more digits cannot fit under the three-character limit. Reject either state before parsing candidates.
 
-Emit only when four segments have been chosen and the index is exactly at the string end. Reaching four segments early or consuming all digits with fewer than four segments is not a valid address.
+Emit only when four segments have been chosen and `i == len(s)`. Reaching four segments early or consuming all digits with fewer than four segments is not a valid address.
 
 **The path represents the source prefix without losing digits**
 
-The path contains valid canonical segments whose concatenated digit text equals exactly `s[:index]`. Every recursive branch chooses a different next boundary, and popping after recursion restores the parent prefix. No branch reorders, inserts, or discards a source digit.
+The path contains valid canonical segments whose concatenated digit text equals exactly `s[:i]`. Every recursive branch chooses a different next boundary, and popping after recursion restores the parent prefix. No branch reorders, inserts, or discards a source digit.
 
 **Trace leading-zero pruning**
 

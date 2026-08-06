@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_336",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "improvement",
+        "reason": "The protected split-and-hash implementation is clear and Accepted but repeats slicing, reversal, and palindrome scans, taking O(nk^2 + P) rather than the Reference's required linear work in total characters. The sole inert candidate precomputes exact palindromic boundaries with delimiter-expanded Manacher and queries a reverse trie in O(S + P), while also replacing exact local index names with conventional i and j."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 336 and its Python palindromePairs surface. The Reference preserves distinct lowercase words including the empty string, ordered distinct-index pairs, all three explained source examples, all three constraints, and the stated total-character runtime requirement."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064449306 and structurally aligns with the protected app-local split implementation apart from the required class wrapper and legacy List annotations. The materially different candidate remains app-local and inert; it has no remote submission evidence and must not replace either protected source without exact-byte Accepted verification."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The rebuilt legal tiers contain 400, 3,200, and 19,200 total characters and jointly grow word count and length without producing output pairs. The candidate passes all nine executions at -0.00 relative growth and 6.94x; correct all-pairs concatenation passes all three benchmark outputs but fails only scaling at +0.24. Exhaustive boundary checks over 255 binary strings and differential checks over 1,200 distinct-word sets independently validate the candidate's linear preprocessing and pair logic."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The candidate-targeted Approach now exactly derives delimiter-expanded Manacher boundary flags, reverse-trie insertion annotations, terminal and longer-partner query cases, empty-string handling, completeness, and O(S + P) time and space with S defined as total input characters."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including all three source examples and explanations in order, all three constraints, distinct-word and empty-string semantics, and the source's total-character runtime requirement."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "460813e1979fadf00dcdb741c5f6b57d828a7211361411fe5da6ed696b4bfbcc",
+    "native_source_sha256": "e08ea71424e2118e193ab5a351f1486c31d30742023c413de90147eea92cf48f",
+    "approach_sha256": "2c7bf384464aa3c9f8c0ea4a2606df565d7671a2426a8fa62d16d8773fedebac",
+    "solution_variants_sha256": "d54f6903cd4a6504b0dc366fa3ac06b6b22cfb51341d686989fc57383f30599d",
+    "complexity_evidence_sha256": "50f32054f6e2b01380cfb3198cd4c420b517eca845985649f820c9948c3c1c04",
+    "candidate_source_sha256": "1c2c1c828fbdb2e494ad213d96dc9d41a11323a483964df8c06af8d3c5f4ef4e"
+  }
+}

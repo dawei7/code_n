@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_202",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The removed benchmark used synthetic 8/64/256 digit-work sizes even though legal inputs have at most ten decimal digits. A bounded-domain certificate now proves that the first transition examines at most ten digits, every later state lies in 1..810, Floyd's traversal uses constant auxiliary state, and no honest legal scaling dimension exists."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "76e10e4a2759fe482c6d52f57ed746e52a1b5a4db06a7e3334548d17ecdbc22d",
+    "native_source_sha256": "f9fa70b82bbedb164cad3bcd485bd322726722607ff5b8d1917b0651caf987d0",
+    "approach_sha256": "33efb080b82d881d3378c88c2bd2a95c60b2bc163dad6b9ff80a6ab7a73af1dc",
+    "solution_variants_sha256": "64ee86a280bdcc8a6e2e26f935957f72c342d938edec084ec67480df1b63db79",
+    "complexity_evidence_sha256": "67086ddcc909f26c4b4d5839a8e2e91facc4f174176a68ae434bdf4eb037fe9b"
+  }
+}

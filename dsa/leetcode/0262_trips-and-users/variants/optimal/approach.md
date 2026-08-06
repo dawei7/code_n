@@ -14,9 +14,15 @@ After participant and date filtering, every remaining row represents one eligibl
 The client and driver joins attach both ban flags to each trip, so the `WHERE` clause retains exactly trips whose two participants are unbanned and whose date is in range. Each surviving row contributes one to its day's denominator and contributes one to the numerator exactly when its status is cancelled. Averaging the indicator and rounding therefore produces the requested rate for each eligible date group.
 
 ## Complexity detail
-With indexed user identifiers, two participant lookups per trip cost $O(t \log u)$ and user indexes occupy $O(u)$ space. Database optimizers may implement equivalent hash joins in expected linear time.
+
+Scanning `Trips` and performing two indexed participant lookups per row takes $O(t \log u)$ time. Filtering and
+conditional aggregation add $O(t)$ work. At most three date groups survive the fixed range, so the final ordering is
+$O(1)$. The user indexes occupy $O(u)$ space, while the aggregate state for the three dates is $O(1)$. A database
+optimizer may instead choose equivalent hash joins with expected $O(t + u)$ time and $O(u)$ space.
 
 ## Alternatives and edge cases
+
 - **Filter only clients:** incorrectly includes trips driven by banned users.
 - **Integer division:** can collapse fractional rates; averaging numeric indicators avoids it.
-- Dates without eligible trips do not produce a row, and completed trips contribute zero.
+- **Dates without eligible trips:** filtering removes every row, so no group and therefore no output row is produced.
+- **Completed trips:** each contributes zero to the conditional average but still contributes to the denominator.

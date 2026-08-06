@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Flip Game and meets the required complexity bound.",
+      "summary": "Scans adjacent pairs and materializes exactly one next-state string for each legal flip.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n^2)"
     }

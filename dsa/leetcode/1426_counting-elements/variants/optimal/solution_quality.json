@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1426",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is the canonical expert-interview implementation: one set records successor membership and one generator expression scans every original occurrence, preserving multiplicity while keeping the code direct and explainable. It meets the required expected O(n) time and O(n) space without unnecessary state or control flow, so no material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For each original array position, membership of value + 1 in the set is true exactly when that occurrence satisfies the contract. Python Boolean values sum as one or zero, so the result counts every qualifying occurrence exactly once. Scanning arr retains duplicate values, while the set's discarded multiplicity correctly reflects that successor presence—not pairing or successor frequency—is decisive."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent nested-search oracle checked each occurrence against every candidate successor. It, the protected app solution, exact immutable native Solution.countElements implementation, a separately written frequency-map control, and the correct repeated-list-membership control agreed on all eight visible cases and all three benchmark tiers."
+      },
+      {
+        "category": "randomized_validation",
+        "severity": "verified",
+        "reason": "Seed 1426 generated 5,000 source-valid arrays totaling 201,700 values and 79,746 qualifying occurrences. Coverage included 50 singletons, 1,442 arrays containing zero, 563 containing 1000, 3,527 with duplicates, 1,272 with duplicate qualifying values, 1,260 with duplicate successors, 1,711 with no qualifying occurrence, and 3,289 mixed-result arrays; every implementation matched the independent oracle."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "Across three real-test repetitions, the protected solution passed all eight ordinary cases, all three benchmark outputs, and scaling with extra growth exponent -0.06 through -0.00 and largest-tier ratio 0.97x through 1.00x. The independent frequency-map control also passed. The repeated-list-membership control passed every output but failed only scaling each time, with relative growth exponent +0.80 through +0.87 over the +0.15 limit."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "verified",
+        "reason": "All three benchmark tiers remain explicitly hidden and performance-only, use legal array lengths 250, 500, and 1000 for a 4x span, and define size consistently as n. Their even-only values make every searched odd successor absent, forcing repeated list membership to scan the entire array for every occurrence while the set solution remains linear. Calibration is discriminatory, so benchmark.json was not edited."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach now derives the separation between set membership and original-array multiplicity, explains why successor occurrences are not consumed, and ties the Boolean sum directly to the contract. It states expected O(n) time and O(n) auxiliary space and covers frequency maps, quadratic membership, sorting, duplicate values, duplicate successors, singleton input, and both value bounds."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "All eight ordinary cases are now visible samples or trials. The authenticated source has exactly two examples and both remain exact; the obsolete third sample is correctly labelled as an additional trial. Former hidden cases are visible, and distinct trials make the ambiguous duplicate-value and duplicate-successor semantics explicit while covering singleton, lower-bound, upper-bound, mixed-order, and successor-reuse behavior."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1426 and Python as the active language. The reviewed implementation and cases respect the integer-array contract, 1 through 1000 length bound, 0 through 1000 value bound, occurrence-based counting, and presence-only successor rule."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected solve.py and immutable leetcode.py bound to verified submission 2074388648 use the same set construction and Boolean-sum data flow, differing only in the required wrapper. Both sources and submission.json remain byte-for-byte unchanged, no candidate exists, and no remote-Accepted evidence was altered or inferred."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed the occurrence-counting rule, duplicate semantics, exactly two examples with explanations, two exact constraints, and two source-native hints, with no tables, images, diagrams, notes, or follow-up. source_fidelity.json binds five modular Reference files to live-content SHA-256 09f84406fd59dc36f96efe0950dc7d2baef4783764fb43429a43876e31d2ab09 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both authenticated source examples exactly, including their qualifying-value and no-successor explanations",
+      "a mixed-order chain containing the lower bound zero",
+      "duplicate qualifying values sharing a single successor",
+      "duplicate successors not multiplying one qualifying occurrence",
+      "singleton input, one successor qualifying many equal values, and the upper value bound",
+      "5,000 seeded source-valid arrays with bounds, duplicates, reused successors, consecutive chains, no-successor sets, all-equal values, and shuffled order",
+      "three hidden performance-only tiers spanning n=250 through n=1000 with proven repeated-list-membership discrimination"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "30c4ec1b5059c32a819cd437e2af83c4b883feeaf53cecfe7b8c9b0e486b1ac2",
+    "native_source_sha256": "205c0ca54e149a015c12378f7a276fdc9fc00804f119b2093ca8c63ca07ab301",
+    "approach_sha256": "48e2ff143e0d281abe96281d46fe8608e1821f4a11f64b962521758a48a12566",
+    "solution_variants_sha256": "a11f489c51a541f7e0fdba6a0e57c5b95b2bc30ef29ef61f97c5b59c739b7c0a",
+    "complexity_evidence_sha256": "a227e22f8431851c93c87436b2baddf44736802e9323b6a4d3c004f8965ebc5b",
+    "cases_sha256": "48dbf48f8bc1b529ce81eeedab7daa3e7ac16ab83657df0f1851fb0cccec6b3e"
+  }
+}

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Closest Binary Search Tree Value II and meets the required complexity bound.",
+      "summary": "Lazily merges predecessor and successor BST iterators, selecting the nearer stack top k times.",
       "time_complexity": "O(h + k)",
       "space_complexity": "O(h)"
     }

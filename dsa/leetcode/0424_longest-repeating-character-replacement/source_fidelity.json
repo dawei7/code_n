@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_424",
+    "frontend_id": "424",
+    "title_slug": "longest-repeating-character-replacement",
+    "url": "https://leetcode.com/problems/longest-repeating-character-replacement/description/",
+    "paid_only": false,
+    "content_sha256": "25cd47508ef3bc115aa1404c2d30065a5145c053ebebd15ada7803f5bbc23707",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"ABAB\", k = 2", "output": "4", "has_explanation": true},
+      {"ordinal": 2, "input": "s = \"AABABBA\", k = 1", "output": "4", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5d751ac769533622a884c976df5e5f85e5dcfa7cf13fc90ab0eb8472aa746208",
+      "reference/contract.md": "21d7bed1adb19a7a428b47104613ea955f6bfdafa7b37e57fa8e2eaabffbbbbc",
+      "reference/examples.md": "b0804b25ec4bcb9f80cd750b6c88f155c7f1487d9b32177152ce2246c348f2e4",
+      "reference/constraints.md": "dfff0b0473a873ef30c02c5c147b8af0a11223da263a3bd1b97f59ebe8f8f9d5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Smallest Rectangle Enclosing Black Pixels and meets the required complexity bound.",
+      "summary": "Binary-searches the four monotone row and column projection boundaries around a known black pixel.",
       "time_complexity": "O(m \\log n + n \\log m)",
       "space_complexity": "O(1)"
     }

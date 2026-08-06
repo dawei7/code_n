@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1085",
+    "frontend_id": "1085",
+    "title_slug": "sum-of-digits-in-the-minimum-number",
+    "url": "https://leetcode.com/problems/sum-of-digits-in-the-minimum-number/description/",
+    "paid_only": true,
+    "content_sha256": "e0b7030f3c527c3389c7a5748b27adcdc6f2ab003f074d902dfed458aa8137b3",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [34,23,1,24,75,33,54,8]",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [99,77,33,66,55]",
+        "output": "1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "52f7a8e3ef6d6311cb46984a260c96184f03156a8ef576ed95d5d897dcf1a4a3",
+      "reference/contract.md": "bd8d96dd9aaa50ad3e0fc25f910351ed5a8b2dd6d75cc8ddc1fdff6b5f3f4c64",
+      "reference/examples.md": "8f2f763f5554c20a3617c37a0604b71462a698f2902bf80559f0dc99feb4980a",
+      "reference/constraints.md": "277c33d0595b03228694d02a75381e2bfbd7692e7bb95c411f8e6a50476477f1",
+      "reference/hints.md": "b5e9092dfd0d1ad528fd92c04c99ce86b69481abd02b024011e31c0a2640b1f9"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

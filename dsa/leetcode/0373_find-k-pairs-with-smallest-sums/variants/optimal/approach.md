@@ -9,6 +9,8 @@ Only the first `min(k, len(nums1))` rows can matter: before any later row's firs
 
 Seed the heap with pair `(i,0)` from each relevant row, keyed by its sum. Repeatedly remove the smallest heap entry and output its two values. If that row has another column, push `(i,j+1)`. Stop after `k` removals or when the heap is empty.
 
+The candidate uses conventional `i` for the row-seeding comprehension; the stored left and right positions retain descriptive names because they are distinct heap-state concepts.
+
 **Why every popped pair is globally next**
 
 The heap contains the smallest not-yet-output pair from every active row. Any later pair in a row is no smaller than that row's front, so none can precede the minimum heap entry. After popping one front, advancing only its row restores this condition. Induction proves that the heap emits pair sums in global nondecreasing order, including duplicate index pairs with equal values.
@@ -24,7 +26,7 @@ Let `m = len(nums1)` and $h = \min(k,m)$. Heap initialization uses $O(h)$ entrie
 - **Generate and sort every pair:** costs $O(mn \log(mn))$ time and $O(mn)$ space even when `k` is small.
 - **Binary-search a sum threshold:** can count qualifying pairs efficiently, but reconstructing exactly `k` pairs around ties adds complexity.
 - **Seed one heap row per second-array value:** is symmetric and may be preferable when `nums2` is shorter.
-- Empty input arrays produce no pairs.
-- If `k` exceeds the Cartesian-product size, every index pair is returned.
+- When `k = 1`, the first pair contains the first value from each sorted array.
+- When `k` equals the Cartesian-product size, every index pair is returned.
 - Duplicate values represent distinct index combinations and must retain their available multiplicity.
 - Negative values and tied sums require no special heap logic.

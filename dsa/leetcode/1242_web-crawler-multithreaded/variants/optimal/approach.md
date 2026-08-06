@@ -6,7 +6,9 @@
 **Continue until no work remains.** A future is removed when its links are consumed, and every accepted new URL creates one replacement future. When the pending set becomes empty, every scheduled page has completed and no undiscovered same-host edge remains. Every returned URL is reachable by construction, and induction along reachability paths shows that every valid page is eventually scheduled.
 
 ## Complexity detail
-Each of the $V$ accepted pages is scheduled once and each of the $E$ outgoing links is inspected once, so total computational work is $O(V+E)$. Blocking parser latency overlaps across a bounded number of workers. The visited set, pending futures, and returned URLs require $O(V)$ space.
+Each of the $V$ accepted pages is scheduled once and each of the $E$ outgoing links is inspected once, so total computational work is $O(V+E)$ because the source bounds every URL to at most 300 characters. Without treating URL length as bounded, the exact work also includes the characters scanned while extracting each neighbor's hostname.
+
+The fixed eight-worker pool overlaps blocking parser latency; it improves elapsed time when independent fetches are available without changing the $O(V+E)$ total-work bound. The visited set, pending futures, and returned URLs require $O(V)$ bookkeeping space, and at most eight parser calls are active concurrently.
 
 ## Alternatives and edge cases
 - **Single-threaded traversal:** It is functionally correct but serializes every blocking parser call and does not satisfy the concurrency objective.

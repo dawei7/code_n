@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1069",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL is minimal, conventional, and interview-ready. product_id states the output grain, SUM(quantity) expresses the requested measure directly, total_quantity matches the required alias, and ORDER BY product_id stabilizes local execution without changing the result set. There are no opaque table aliases, unnecessary joins, or generic index bindings."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "GROUP BY product_id partitions every Sales row into exactly the group for its sold product. SUM(quantity) contributes each row's quantity once to that group, so the query emits one row per product represented in Sales and the exact total across all sale identifiers and years. Products without a Sales row have no group and are correctly absent. The Product table and price column cannot affect either requested column, and the final ordering is compatible with the contract's unrestricted result order."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1069, SQL/MySQL, and the native query entrypoint. Authenticated source evidence confirms the five Sales columns, composite (sale_id, year) primary key, product_id foreign key, per-unit price semantics, the two Product columns, and Product.product_id primary key. The app-local query preserves grouping solely by sold product_id, summation across years and sale identifiers, the required product_id and total_quantity columns, omission of unsold Product rows, and unrestricted result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2067489362 are byte-for-byte identical. Both select product_id, compute SUM(quantity) AS total_quantity, group only by product_id, and order by product_id; there is no adapter or dialect divergence to reconcile."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden database workloads grow Sales from 64 through 1024 rows with a distinct product per row. Grouped aggregation processes the relation once apart from ordering, while a scalar correlated sum executes a matching scan for every outer sale row. The exact protected query passed all eight visible correctness fixtures and all three performance tiers with relative growth exponent -0.01 and a 0.98x largest runtime ratio. An independently correct DISTINCT plus correlated-subquery control matched every correctness and benchmark output but failed only the calibrated complexity verdict at +0.72 and 10.89x, distinguishing the stated O(R log R) sort-based grouping bound from O(R^2) rescanning."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the per-product grouping grain, quantity aggregation, required alias, and absence of any need to join Product. It correctly qualifies sort-based O(R log R) and expected hash-aggregation O(R) physical plans and covers multiple years, composite sale identifiers, unsold products, single sales, and irrelevant price. The branch manifest's conservative time and space bounds are supported."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the Sales and Product schemas, all key and foreign-key relationships, the per-unit meaning of price, the output grain and aliases, aggregation across every sale row for a product, and unrestricted source order. Its sole unexplained source example retains both input tables and the output as three complete Markdown tables, while the two schema definitions are retained as two additional tables."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified two schema tables, the total-quantity request, unrestricted output order, exactly one source example without an explanation, five source table structures, and no constraints, hints, notes, or follow-up. source_fidelity.json binds the independently written modular Reference to live content hash 9980c2ebac8bbf3ab803be6dc9e77b73254b76579342102b973d1f87c2e39cda and validates with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly one example. Its exact Sales rows, Product rows, product_id totals, required output columns, and omission of unsold product 300 appear first as sample-1.",
+      "All eight ordinary correctness fixtures are visible samples or trials. They cover one sale, several product groups, different products sold in the same year, the same sale_id in different years under the composite key, irrelevant price variation, unsorted product identifiers, duplicate product names, and an empty Sales relation with an unsold Product row.",
+      "Every nonempty fixture respects unique Product.product_id values, unique (sale_id, year) pairs, and the Sales.product_id foreign key. The empty Sales boundary uses the runtime's explicit columns-plus-rows table encoding so all five source columns remain available to the query.",
+      "An independent Python oracle iterates Sales once, accumulates quantity by product_id, omits Product rows with no sales, and sorts only its canonical fixture representation. It does not execute SQL or join Product.",
+      "The oracle, protected app-local query, immutable native query, and correlated-subquery control agreed on all 11 authored correctness-plus-benchmark fixtures. The oracle and all three SQL queries also agreed on 5000 deterministic random databases with valid composite keys, foreign keys, multiple years, arbitrary prices and quantities, duplicate names, unsold products, and zero through 30 Sales rows, plus three explicit boundary databases.",
+      "The 64-, 256-, and 1024-row workloads remain hidden and performance-only, use size consistently as the Sales row count, and span 16x. The correct O(R^2) correlated control failed only scaling at +0.72 and 10.89x, while the protected grouped aggregation passed at -0.01 and 0.98x."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "16ee7180dcd0d1e4e403c8b181318bf94437b1ef7ef6fb778275080c48253018",
+    "native_source_sha256": "16ee7180dcd0d1e4e403c8b181318bf94437b1ef7ef6fb778275080c48253018",
+    "approach_sha256": "8bc9f4a40295e707f54884b258b05366e7adf9c0e18b5fa950a8ea025cff397f",
+    "solution_variants_sha256": "6da1cd173c35395e269bb803db8059ae2118ab7ca86ef8b0ff0c37015d2fcd85",
+    "complexity_evidence_sha256": "405b7446b558492bc6d70574ec6fba7a83f60db624e38b4407fd0cc56930e133",
+    "cases_sha256": "7a94ec419aa6a4a67658a3ba111a5d09f1b5142d79aa6e7f9cc1370119ad554d"
+  }
+}

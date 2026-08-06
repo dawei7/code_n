@@ -5,7 +5,7 @@ If the first character is not `[`, the entire valid serialization is a signed in
 
 **Let the stack represent open lists**
 
-For a list input, scan left to right. Each opening bracket creates an empty `NestedInteger`, adds it to its parent when one exists, and pushes it as the current container. A closing bracket finishes any number immediately before it and then pops the completed container. The stack therefore mirrors the unmatched opening brackets at every position.
+For a list input, scan left to right with the conventional character position `i`. Each opening bracket creates an empty `NestedInteger`, adds it to its parent when one exists, and pushes it as the current container. A closing bracket finishes any number immediately before it and then pops the completed container. The stack therefore mirrors the unmatched opening brackets at every position.
 
 **Recognize numbers by their source interval**
 

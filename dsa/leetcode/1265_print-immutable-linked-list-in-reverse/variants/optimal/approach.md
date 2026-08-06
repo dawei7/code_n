@@ -15,7 +15,8 @@ The forward traversal visits all $n$ nodes, and the pop phase processes those sa
 ## Alternatives and edge cases
 - **Recursion:** Recurse on `getNext()` and call `printValue()` while unwinding; it has the same asymptotic bounds, but a long list can exceed the language's call-stack limit.
 - **Constant-space repeated scans:** Find the last unprinted position by walking from `head` each time; it respects immutability and uses $O(1)$ extra space, but takes $O(n^2)$ time.
-- **Block checkpoints:** Saving selected node interfaces reduces storage, but reconstructing reverse order within each block requires repeated forward scans and worsens the time bound.
+- **Block checkpoints:** Saving selected node interfaces can use less than linear space, but reconstructing reverse order within each block requires repeated forward scans and makes the running time superlinear.
+- **Follow-up tradeoff:** With only a forward successor operation, an interface that is neither retained nor reachable from a retained checkpoint has no backward path. Constant space is possible through repeated scans, but avoiding every such rescan in $O(n)$ total time requires retaining all $n$ node interfaces; the strict model therefore does not provide both linear time and sublinear auxiliary space.
 - **Single node:** The stack contains only `head`, whose `printValue()` is called once.
 - **Duplicate or negative values:** Node identity and position determine output order; values need not be distinct or positive.
 - **Immutable interface:** Accessing fields such as `val` or `next`, assigning links, or printing by another mechanism violates the source-native contract.

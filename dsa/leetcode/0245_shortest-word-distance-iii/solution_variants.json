@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shortest Word Distance III and meets the required complexity bound.",
+      "summary": "Tracks latest compatible occurrences in one scan, with a consecutive-occurrence path for equal targets.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

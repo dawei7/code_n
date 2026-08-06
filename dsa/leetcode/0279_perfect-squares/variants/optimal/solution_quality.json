@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_279",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already the expert number-theoretic solution. It classifies perfect squares, applies the factor-of-four reduction and Legendre condition, exhausts possible first roots for the two-square case, and returns the only remaining classification. Integer square roots and the genuine concepts reduced, first_root, and remainder make it precise and interview-quality, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 279 and its Python positive-integer-to-integer contract. The Reference preserves the definition of a perfect square, both source examples and explanations, and the complete bound 1 <= n <= 10^4."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is tied to verified submission 2064305285. It and the app-local source have identical square detection, factor-of-four loop, modulo-eight classification, integer-root scan, remainder test, and fallback; only typing and the LeetCode class wrapper differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 66/513/4098 inputs all require answer three, so the current method exhausts its two-square scan while the standard dynamic program fills every state and square transition. The current source passes at +0.03 relative exponent and 1.01x largest ratio; the correct O(n sqrt n) control passes every output but fails only scaling at +1.26 and 848.73x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now accounts for the factor-removal work as well as the dominant root scan, states the bounded-integer assumption behind constant-time isqrt checks, explains why the perfect-square case precedes a possible zero remainder, and distinguishes dynamic programming, breadth-first search, four-square classification, and integer-rounding traps."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains verified against its reviewed source evidence, preserving both examples in order with both explanations, the single source constraint, the perfect-square definition and contrasting literals, and the zero-visual structure."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "1764f26aab708e7983b93152cfe2ced2e7b519063f0ecbc4f0daba1ef88fc9ac",
+    "native_source_sha256": "b741037f917f38f174c2e3a091d31bc245ec34c06f8dedffec0cde7f505bdb1a",
+    "approach_sha256": "560b35485411aa27df3425100473c444f06568b1014ed22971723563fe7c77ad",
+    "solution_variants_sha256": "53378ec1e1227d10ee9f978bbcdc45d7761246a8ed7356218cdbc79289df3e15",
+    "complexity_evidence_sha256": "0f99b7f579970c9b185d2de30d1ad35c4ab35085c78fe26e1eeed71346b10788"
+  }
+}

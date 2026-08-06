@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Logger Rate Limiter and meets the required complexity bound.",
+      "summary": "Maps each message to its next eligible timestamp and updates that threshold only after acceptance.",
       "time_complexity": "O(1)",
       "space_complexity": "O(m)"
     }

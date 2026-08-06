@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_220",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected app-local and Accepted native sources implement the conventional bucketed sliding window. Width valueDiff + 1 makes same-bucket matches immediate, adjacent buckets receive explicit difference checks, Python floor division handles negatives correctly, and post-comparison eviction retains distance exactly indexDiff. The expected O(n)-time and O(min(n,indexDiff))-space solution needs no candidate."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 8/64/256-value tiers bind size to n, set indexDiff = n, and separate values enough to force every same- and adjacent-bucket check without a match. The protected source passes; a correct scan of every active-window value passes all outputs and fails only scaling (+0.91 relative exponent; 23.10x largest runtime ratio)."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The bucket proof, window timing, negative-value semantics, and complexity analysis already match the protected sources. Out-of-contract indexDiff = 0 claims were removed, alternatives and boundaries now have explicit labels, and the Optimal summary states the exact bucket width and neighbor checks."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "c7f5a7c5a4dc4e7332f99129ea208dac1e7f65dfc628dc1d8d8cb4ed127301c4",
+    "native_source_sha256": "ca16b6f73b4ce7e6c09b20ab304d5213ff653c4e645a9f809dd57f090376851a",
+    "approach_sha256": "ac692de139f5028fdc920d747f79cd218837ec231784ba780a2e90366f90f7df",
+    "solution_variants_sha256": "13d0d2056f2fe2cced62eeb7035127ccc414e14d21d8d6daf98cecf0eef34d6e",
+    "complexity_evidence_sha256": "de12947bdfd5ec7ef1dc37d8e6a10f33de155bb2d3d4527e43aff2f7329cb334"
+  }
+}

@@ -2,13 +2,15 @@
   "schema_version": 1,
   "provider": "leetcode.com",
   "status": "verified",
-  "question_id": "1082",
+  "question_id": "1085",
   "frontend_id": "1085",
   "title_slug": "sum-of-digits-in-the-minimum-number",
   "paid_only": true,
   "language": "python3",
   "source": "solutions/leetcode.py",
-  "native_entrypoint": "Solution.sumOfDigits",
-  "verified_submission_id": "2067554714",
-  "verified_at": "2026-07-14T15:45:44.346084+00:00"
+  "verified_submission_id": "2065551810",
+  "verified_at": "2026-07-12T22:34:11.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T15:56:00.000000+00:00"
 }

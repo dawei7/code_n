@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1548",
+    "frontend_id": "1548",
+    "title_slug": "the-most-similar-path-in-a-graph",
+    "url": "https://leetcode.com/problems/the-most-similar-path-in-a-graph/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`n = 5, roads = [[0,2],[0,3],[1,2],[1,3],[1,4],[2,4]], names = [\"ATL\",\"PEK\",\"LAX\",\"DXB\",\"HND\"], targetPath = [\"ATL\",\"DXB\",\"HND\",\"LAX\"]`",
+        "output": "`[0, 2, 4, 2]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`n = 5, roads = [[0,2],[0,3],[1,2],[1,3],[1,4],[2,4]], names = [\"ATL\",\"PEK\",\"LAX\",\"DXB\",\"HND\"], targetPath = [\"ATL\",\"LAX\",\"PEK\"]`",
+        "output": "`[0, 2, 1]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`n = 2, roads = [[0,1]], names = [\"A\",\"B\"], targetPath = [\"B\",\"A\",\"B\"]`",
+        "output": "`[1, 0, 1]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "dd67cdf40dcad32f02c27820ad5a975bff9fe56d27391395042d4f9c3fbd9cc6",
+      "reference/contract.md": "62ccbf07fe597922d705920c6fa4340698a98070b9839bcedb8cf6981c47c613",
+      "reference/examples.md": "f8e17944b6c0985838bfd9444ad2b375e07b38fbf2af0d7a71611f202b47362b",
+      "reference/constraints.md": "590130c13f271e047a3bda7f928886a78656eb542cfc7a0730274f6584e97e08"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

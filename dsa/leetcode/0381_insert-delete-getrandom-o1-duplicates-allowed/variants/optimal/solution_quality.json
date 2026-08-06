@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_381",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical occurrence array plus value-to-position-set design. It exposes duplicate insertion semantics directly, removes one arbitrary occurrence with a guarded tail swap, correctly handles a moved value equal to the removed value, and samples occurrences uniformly. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 381 and its Python RandomizedCollection surface. The Reference preserves multiset semantics, all return conditions, uniform selection over occurrences, probability proportional to multiplicity, the average-O(1) requirement, the source-native nonempty note, the complete example, and all three constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064653512. Its occurrence array, defaultdict of index sets, insertion, guarded swap deletion, empty-set cleanup, and random choice are preserved exactly in the protected app-local class; solve is only the operation-stream adapter."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 128, 1024, and 8192 tiers span 64x in occurrence count and exercise equal insertion and arbitrary-removal batches within the total-call limit. The current source passes all 11 executions at +0.00 relative growth and 1.01x; a correct plain-list multiset passes every benchmark output but fails only scaling at +0.28."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives occurrence-weighted random access, the per-value position sets, the tail-swap updates and equal-value corner case, the inverse-structure invariant, state-aware random validation, average O(1) operations, and O(n) space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including duplicate behavior, occurrence-weighted probability, the complete source example and probabilities, the source-native note, the signed-value range, total-call limit, and nonempty-random-call guarantee."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "c69c04b865328d1e5fcef9e6350bf3086e12e48aa33725797bae78b7c5b840e6",
+    "native_source_sha256": "acb099cc3cb41c439fcbb92dbf50005ab7863c2901683dc7876263bb62a9f8d5",
+    "approach_sha256": "457ee1d69a0c00c52c7ef121b958865c436b6a1df194baef4fa11975e40f8ec4",
+    "solution_variants_sha256": "f9669d1e9fa340ac65811a6b891d9b50f954cdff971b6675ef40e747505e96f9",
+    "complexity_evidence_sha256": "420c602eda04567d283653c4f303eaee3db21f6e96a4dfbe43a85b5e5f635e10"
+  }
+}

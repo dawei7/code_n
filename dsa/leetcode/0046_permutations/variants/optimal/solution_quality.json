@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_46",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "Both protected sources use the prohibited generic local name `index` for the suffix position selected at each depth; the inert candidate preserves the accepted in-place swap/backtrack search exactly while using the conventional loop variable `i`."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order, including the one-element minimum input",
+      "negative values and the legal value endpoints -10 and 10",
+      "all 24 exact permutations of a four-value input as a visible factorial-output case",
+      "1,236 distinct arrays checked with an independent permutation oracle against the current source, immutable native source, and candidate",
+      "input restoration after backtracking verified for every authored and generated array",
+      "three hidden performance-only tiers covering 1!, 3!, and the maximum legal 6! outputs",
+      "a correct n^n sequence generator with repeat filtering that passes every output and fails only scaling growth (+1.61 > +0.15; 23.12x > 8x)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "3a6732b342a37fa454496447fbd62e6b95b3dac0c29c24c9273de89e2b952e04",
+    "native_source_sha256": "30a8574a77ec32729804d13a159c4c3f9715c039724dde6b085aa2a5c1c8505e",
+    "approach_sha256": "5194e23d57da868f517878cd0c1a23b08576a9e90f909ea7a5e9dd2add0ae931",
+    "solution_variants_sha256": "79066dd56cf5aede4ddc02ac5449b36005b0844dd7663ca241b263cdc5cfe12f",
+    "cases_sha256": "2466c2c00cd39a040cf1b45915cfa8f2711a470c57b02d7bc12c751d6dccaf45",
+    "complexity_evidence_sha256": "9fa9b517d2a7e6fdf1cc376356c812a6fb4d64caa7289ec5bdc1198517a07cbe",
+    "candidate_source_sha256": "c73c5e1918c8a2a9cf0766fa3c746c6c1e10624a2a7b7cbf348289b1b22e867c"
+  }
+}

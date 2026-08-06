@@ -6,8 +6,10 @@
     {"id":"sample-narrow","name":"sample: narrow two-digit interval","kind":"sample","visible":true,"input":{"low":10,"high":15},"expected":[10,12],"tags":["sample","narrow"]},
     {"id":"trial-single-digit","name":"single qualifying endpoint","kind":"trial","visible":true,"input":{"low":7,"high":7},"expected":[7],"tags":["single-digit","endpoint"]},
     {"id":"trial-empty","name":"interval contains no stepping number","kind":"trial","visible":true,"input":{"low":14,"high":20},"expected":[],"tags":["empty"]},
-    {"id":"real-zero-only","name":"hidden: zero is handled without a leading-zero branch","kind":"real","visible":false,"input":{"low":0,"high":0},"expected":[0],"tags":["hidden","zero"]},
-    {"id":"real-cross-hundred","name":"hidden: generation crosses a power of ten","kind":"real","visible":false,"input":{"low":90,"high":105},"expected":[98,101],"tags":["hidden","three-digit"]},
-    {"id":"real-several-prefixes","name":"hidden: several three-digit prefixes qualify","kind":"real","visible":false,"input":{"low":100,"high":130},"expected":[101,121,123],"tags":["hidden","ordered"]}
+    {"id":"trial-zero-only","name":"minimum legal interval contains only zero","kind":"trial","visible":true,"input":{"low":0,"high":0},"expected":[0],"tags":["zero","minimum-boundary"]},
+    {"id":"trial-cross-hundred","name":"generation crosses a power of ten","kind":"trial","visible":true,"input":{"low":90,"high":105},"expected":[98,101],"tags":["three-digit","boundary-digits","inclusive"]},
+    {"id":"trial-several-prefixes","name":"several three-digit prefixes qualify in order","kind":"trial","visible":true,"input":{"low":100,"high":130},"expected":[101,121,123],"tags":["three-digit","ordered"]},
+    {"id":"trial-large-stepping-endpoint","name":"a ten-digit stepping number is included exactly","kind":"trial","visible":true,"input":{"low":1010101010,"high":1010101010},"expected":[1010101010],"tags":["ten-digit","inclusive-endpoint","large-value"]},
+    {"id":"trial-maximum-bound","name":"maximum legal singleton interval has no result","kind":"trial","visible":true,"input":{"low":2000000000,"high":2000000000},"expected":[],"tags":["maximum-boundary","empty"]}
   ]
 }

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1273",
+    "frontend_id": "1273",
+    "title_slug": "delete-tree-nodes",
+    "url": "https://leetcode.com/problems/delete-tree-nodes/description/",
+    "paid_only": true,
+    "content_sha256": "fb909451f8c4d4dfbb001795e5ec21a98c0132fc482e721ce54879b9f7db4fda",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-1]",
+        "output": "2",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-2]",
+        "output": "6",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d5d68a9b774dd889a1e14a4dc5ad923f6c28d2a2cfcffebba299c020b767e423",
+      "reference/contract.md": "4558a704a6f22d84fb0b6227c649ea60e7b6e3a5087ed9bfc046ceaf3762cf59",
+      "reference/examples.md": "ff047b0337dbcd92e509f49ae5107391d7e3a9c932bca2167262915c5fc0b510",
+      "reference/constraints.md": "9f971656f7d70ba9fb33d1725c61ec8fc9c344dea348547f8a61a2b2b6ae735f",
+      "reference/hints.md": "d021d7750b887e6f5cfffc47cc3344fdd0967adc5edd0b23fa69a08cb4674fd0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

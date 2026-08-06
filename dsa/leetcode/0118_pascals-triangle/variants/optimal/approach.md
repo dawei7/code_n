@@ -1,15 +1,15 @@
 ## General
 **Allocate each row with its boundary coefficients already fixed**
 
-For zero-based row index `i`, allocate $i + 1$ entries initialized to `1`. Pascal's boundary identity $\binom{i}{0} = \binom{i}{i} = 1$ means the first and last entries need no recurrence calculation.
+For zero-based `row_index`, allocate `row_index + 1` entries initialized to `1`. Pascal's boundary identity $\binom{i}{0} = \binom{i}{i} = 1$ means the first and last entries need no recurrence calculation.
 
 **Every interior coefficient has exactly two parents**
 
-For each `j` from `1` through $i - 1$, assign `previous[j - 1] + previous[j]`. These are the two diagonally adjacent entries above the new position. Only the immediately preceding row is needed for computation, while older rows remain because the output contract requires the full triangle.
+For each `column` from `1` through `row_index - 1`, assign `triangle[-1][column - 1] + triangle[-1][column]`. These are the two diagonally adjacent entries above the new position. Only the immediately preceding row is needed for computation, while older rows remain because the output contract requires the full triangle.
 
 **Completed rows are immutable inputs to the next row**
 
-Before constructing row `i`, every earlier row is complete and satisfies Pascal's recurrence. After filling the interior, row `i` has correct boundaries and every interior sum, extending the invariant.
+Before constructing `row_index`, every earlier row is complete and satisfies Pascal's recurrence. After filling the interior, that row has correct boundaries and every interior sum, extending the invariant.
 
 **Trace the fifth row from its two-parent sums**
 

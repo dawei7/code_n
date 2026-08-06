@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_469",
+    "frontend_id": "469",
+    "title_slug": "convex-polygon",
+    "url": "https://leetcode.com/problems/convex-polygon/description/",
+    "paid_only": true,
+    "content_sha256": "60321a61a75631338ca6be87190ad7063249f09d304934e893e51fba8c995f42",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "points = [[0,0],[0,5],[5,5],[5,0]]",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "points = [[0,0],[0,10],[10,10],[10,0],[5,5]]",
+        "output": "false",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "146e522def1fb0454127a14fa46ca4fc57b065e9cd846a6a243ca1a5f707555d",
+      "reference/contract.md": "0a81543b6209dbcfa5fd39aa0ff749572a32e84ad63e814dd56c88e9c211e4c7",
+      "reference/examples.md": "3718ba5d5dfa997be7f66781712ed8e25b21de9ac1c202bfdaba7163fd08b033",
+      "reference/constraints.md": "902d8f5698deb84316514c27574eb41c683c57ddabf7c647fc43fcef6f035ead"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_401",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the conventional exhaustive solution for this fixed watch. Its comprehension visits each of the 720 valid hour-minute pairs once, filters by the combined bit count, formats minutes correctly, and uses clear algorithmic names. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 401 and its Python readBinaryWatch surface. The Reference preserves the four-hour/six-minute LED model, valid clock ranges, formatting rules, arbitrary output order, both source examples in order, the source visual's 4:51 information, and the complete 0-through-10 constraint."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064711580. Its nested hour-minute enumeration, combined bit-count predicate, formatting, and result construction are exactly the protected app-local algorithm apart from the LeetCode wrapper and annotation."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The playbook-mandated bounded-domain certificate is valid: turnedOn has exactly 11 legal values and the physical watch has at most 1,024 LED masks, while the source enumerates only 720 valid times. The exhaustive regression checks every turnedOn value from 0 through 10 against an independent clock enumeration, and real-test passes all 8 executions with runtime timing disabled and the bounded_domain certificate accepted."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly explains the finite 12-by-60 display domain, the separate hour and minute bit counts, formatting only accepted pairs, completeness and uniqueness, the maximum eight lit LEDs on a valid display, and O(1) time and auxiliary space under the fixed hardware contract."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples, every formatting and range rule, the AM/PM exclusion, and an independently authored text representation carrying the source watch image's LED weights and 4:51 relationship."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "04fc0552829cc9ce78f04825ba54788a04315c80bad8aa80f8bf5c69f6939bbf",
+    "native_source_sha256": "75b730e4975de1cc7861b4cd53f0e3193304440bdf8ea3b93638acaafb851a67",
+    "approach_sha256": "f4c11f558911c15f7f9b4889eaf8ab4d8e4ddf98084e136357717290b8f1c362",
+    "solution_variants_sha256": "e53d77099f13471ab8b4106773927623d324dcd26162f76d994d609f48eec1dc",
+    "complexity_evidence_sha256": "bac35bdb7d18132716f911019def20696feedc7e610afd4f8cc88fdf867bc4ae"
+  }
+}

@@ -10,8 +10,13 @@ Binary search keeps every possible first feasible index in `[left, right]`. A fe
 Binary search locates the first index `left` satisfying `citations[left] >= n - left`. The suffix then contains `n - left` papers, each with at least that many citations. If a preceding index exists, its failure proves the larger candidate associated with that longer suffix is impossible. Therefore `n - left` is exactly maximal.
 
 ## Complexity detail
-The search interval halves each iteration for $O(\log n)$ time. Two boundaries and a midpoint use $O(1)$ space.
+
+Each iteration halves the half-open search interval `[left, right)`, so the boundary is found in $O(\log n)$ time.
+The two boundaries, midpoint, and paper count use $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
+
 - **Linear scan:** ignores the sorted-input advantage and takes $O(n)$.
-- Empty input returns zero; an h-index may equal the complete paper count.
+- **Empty input:** the app-local half-open search returns zero defensively, although the native contract requires at least one paper.
+- **Every paper qualifies:** the first feasible position is zero, so the result can equal the complete paper count.
+- **No positive threshold qualifies:** the boundary reaches `n`, yielding an h-index of zero.

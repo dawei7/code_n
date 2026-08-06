@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Paint House and meets the required complexity bound.",
+      "summary": "Carries the cheapest valid prefix ending in each color through one constant-state dynamic-programming pass.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

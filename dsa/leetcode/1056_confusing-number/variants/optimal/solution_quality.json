@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1056",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is concise, conventional, and interview-ready. The rotated_digit, original, rotated, digit, and n names expose the valid mapping, preserved input, accumulating result, and consumed suffix directly, with no generic local named index."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The map contains exactly the five digits that remain valid under 180-degree rotation and assigns 6 and 9 to each other while fixing 0, 1, and 8. Extracting n from right to left accounts for the reversal of display positions: each mapped least-significant original digit is appended as the next most-significant digit of rotated through rotated * 10 + mapping[digit]. Encountering any unmapped digit makes the complete rotation invalid. Integer construction naturally discards leading zeros in the rotated display. For n = 0, the loop correctly leaves both values zero. After all valid digits are consumed, rotated differs from original exactly when the number is confusing."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1056, Python, and the native confusingNumber(n) interface. Authenticated source evidence confirms the inclusive 0 through 10^9 domain; the exact mappings 0->0, 1->1, 6->9, 8->8, and 9->6; invalidity of 2, 3, 4, 5, and 7; positional reversal under a 180-degree rotation; ignored leading zeros in the rotated value; and the requirement that every digit remain valid and the rotated number differ. The app-local adapter preserves that boolean contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2067436636 are algorithmically identical: both use the same five-entry mapping, preserve original, consume decimal digits with modulo and integer division, reject unmapped digits, append mapped digits to rotated, and compare the final numeric value. Their only structural difference is the required Solution.confusingNumber wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The authenticated contract caps every input at ten decimal digits, so its former 1-, 4-, and 10-digit tiers could not provide a stable runtime trend between linear digit processing and repeated prefix rebuilding; the marginal +0.19 result was not honest asymptotic evidence. A strict bounded-domain certificate now records D <= 10 and proves that the protected loop removes one digit per constant-time iteration with constant auxiliary storage. Its permanent independent regression checks every integer below 100000, every invalid digit at every legal position through nine digits, 10000 deterministic values across the full bound, all authored cases, and both protected source forms. The exact app source also passed all 10 correctness cases through the full real-test path with the certificate reported explicitly and no runtime benchmark claim."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately defines valid digit rotation, derives right-to-left extraction and numeric-order accumulation, explains invalid digits, strobogrammatic equality, zero, leading rotated zeros, and the upper bound. Its O(D) time and O(1) auxiliary-space claims match the protected implementation and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the confusing-number definition, complete valid and invalid digit sets, positional reversal, leading-zero interpretation with the 8000-to-0008-to-8 illustration, boolean inequality requirement, inclusive input bound, all three explained source examples, and the single source hint. Three independent accessible Mermaid diagrams reproduce the complete information in the source's three example images."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review verified exactly three explained examples in source order, one constraint, one hint, three example images, and no tables or follow-up. The modular files are hash-bound in source_fidelity.json to source content hash 308a90266d73c8b7c416fd8b7585895393c6054cf3952fb7cde403d92e980bb2, and the direct fidelity validator returns verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly three examples. All exact input and output literals now appear first in source order, including 6 rotating to 9, 89 rotating to 68, and unchanged 11 returning false.",
+      "All 10 ordinary correctness cases are visible samples or trials. They cover both contract boundaries 0 and 10^9, every valid digit across the suite, invalidity after partial valid processing, and numeric interpretation after rotated leading zeros are discarded.",
+      "Material behavior includes one- and multi-digit inputs, a changed valid rotation, fixed digits, a symmetric 6/9 value that remains unchanged, a longer strobogrammatic value, mixed valid digits, invalid-digit rejection, and the maximum value rotating to 1.",
+      "An independent string oracle reverses the decimal text, applies the authenticated digit mapping, rejects any unmapped character, removes leading zeros by numeric conversion, and recomputed every authored expected result without using the protected arithmetic accumulator.",
+      "The oracle, protected app source, and immutable native Solution agreed on all 10 authored cases, every integer from 0 through 99999, every invalid digit at every position through nine digits, and 10000 deterministic random legal values across the full source range; the protected app source also passed the complete real-test path.",
+      "The package has no scaling benchmark because the source domain contains at most ten digits. The misleading tiny-domain tiers were removed, and a strict bounded-domain certificate plus permanent property regression now supplies the required complexity evidence without placing performance workloads in cases.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "d39885334fd4358ef0d19f9dc84edd0748b5934b766edd7f4799090f50c1e0f0",
+    "native_source_sha256": "88169158c8a3f75fdb8afd1e3dee344f6c8c47912cf1b9397e63b44f835f0d6e",
+    "approach_sha256": "2b7fbebe8bcab056ac0291cc7331f514b445fc98edeb1e374983f7925ad3c686",
+    "solution_variants_sha256": "e69e872026217f1f9825176b29c596b11fbafd238fd5d9bf6b4fd3a969cfc9d9",
+    "complexity_evidence_sha256": "70cc6da1689e0cd8960ab8553f6645d9db2ee0b6e2f2fb496e8bffbf67b35543",
+    "cases_sha256": "6693e35b8115daa9658e3eb783e6c74d8ece455f710d1eec7097c2ef9a5e9def"
+  }
+}

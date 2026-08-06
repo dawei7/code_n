@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Unique Substrings in Wraparound String and meets the required complexity bound.",
+      "summary": "Counts each valid substring once through the longest cyclic run ending at each letter.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

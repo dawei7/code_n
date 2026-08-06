@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_78",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n \\cdot 2^n)",
+  "summary": "The complete power set has 2^n lists whose aggregate element count is n * 2^(n - 1), so output construction directly matches the required bound. The candidate's binary decision tree meets that lower bound.",
+  "optimality": {
+    "symbol": "n * 2^n",
+    "lower_bound": "Omega(n * 2^n)",
+    "upper_bound": "O(n * 2^n)",
+    "argument": "Across the power set, each of the n distinct input values appears in exactly half of the 2^n subsets, so the returned lists contain n * 2^(n - 1) integers in total. Writing them requires Omega(n * 2^n) time. The candidate visits one leaf per subset and copies at most n values there, giving O(n * 2^n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Each input value appears in exactly 2^(n - 1) returned subsets, so every valid explicit power set contains n * 2^(n - 1) element occurrences."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The candidate makes one exclude/include decision per depth, reaches exactly 2^n leaves, and copies a path of length at most n at each leaf."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a three-value power set and the one-value boundary; black-box real-test execution passed all five existing ordinary correctness checks."
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: standard Sudoku puzzle",
+      "name": "sample: solve the source puzzle",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -210,18 +210,15 @@
           "9"
         ]
       ],
-      "validator": {
-        "kind": "sudoku_solution"
-      },
       "tags": [
         "sample",
-        "backtracking"
+        "branching"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: one missing digit",
-      "kind": "sample",
+      "id": "trial-one-empty",
+      "name": "one forced final cell",
+      "kind": "trial",
       "visible": true,
       "input": {
         "board": [
@@ -427,17 +424,14 @@
           "9"
         ]
       ],
-      "validator": {
-        "kind": "sudoku_solution"
-      },
       "tags": [
-        "sample",
+        "boundary",
         "forced"
       ]
     },
     {
       "id": "trial-already-solved",
-      "name": "already solved board",
+      "name": "already solved board is unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -644,16 +638,14 @@
           "9"
         ]
       ],
-      "validator": {
-        "kind": "sudoku_solution"
-      },
       "tags": [
-        "boundary"
+        "boundary",
+        "no-empty-cells"
       ]
     },
     {
       "id": "trial-nine-empties",
-      "name": "one empty cell per row",
+      "name": "one forced cell in each row",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -860,18 +852,16 @@
           "9"
         ]
       ],
-      "validator": {
-        "kind": "sudoku_solution"
-      },
       "tags": [
-        "forced"
+        "forced",
+        "multiple-units"
       ]
     },
     {
-      "id": "real-sparse",
-      "name": "hidden: sparse solvable board",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sparse",
+      "name": "sparse puzzle with broader search",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -1076,14 +1066,225 @@
           "9"
         ]
       ],
-      "validator": {
-        "kind": "sudoku_solution"
-      },
       "tags": [
-        "hidden",
-        "mrv"
+        "sparse",
+        "branching"
+      ]
+    },
+    {
+      "id": "trial-remapped-solution",
+      "name": "digit-remapped solution with nine forced holes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "5",
+            "7",
+            "6",
+            "4",
+            "3",
+            "2",
+            "1",
+            "9",
+            "."
+          ],
+          [
+            "4",
+            "3",
+            "8",
+            "9",
+            "1",
+            "5",
+            "7",
+            ".",
+            "2"
+          ],
+          [
+            "9",
+            "1",
+            "2",
+            "7",
+            "6",
+            "8",
+            ".",
+            "4",
+            "3"
+          ],
+          [
+            "2",
+            "5",
+            "1",
+            "3",
+            "4",
+            ".",
+            "6",
+            "8",
+            "7"
+          ],
+          [
+            "6",
+            "8",
+            "4",
+            "2",
+            ".",
+            "7",
+            "3",
+            "1",
+            "9"
+          ],
+          [
+            "3",
+            "9",
+            "7",
+            ".",
+            "8",
+            "6",
+            "2",
+            "5",
+            "4"
+          ],
+          [
+            "1",
+            "4",
+            ".",
+            "5",
+            "7",
+            "3",
+            "8",
+            "2",
+            "6"
+          ],
+          [
+            "8",
+            ".",
+            "3",
+            "6",
+            "9",
+            "1",
+            "4",
+            "7",
+            "5"
+          ],
+          [
+            ".",
+            "6",
+            "5",
+            "8",
+            "2",
+            "4",
+            "9",
+            "3",
+            "1"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "5",
+          "7",
+          "6",
+          "4",
+          "3",
+          "2",
+          "1",
+          "9",
+          "8"
+        ],
+        [
+          "4",
+          "3",
+          "8",
+          "9",
+          "1",
+          "5",
+          "7",
+          "6",
+          "2"
+        ],
+        [
+          "9",
+          "1",
+          "2",
+          "7",
+          "6",
+          "8",
+          "5",
+          "4",
+          "3"
+        ],
+        [
+          "2",
+          "5",
+          "1",
+          "3",
+          "4",
+          "9",
+          "6",
+          "8",
+          "7"
+        ],
+        [
+          "6",
+          "8",
+          "4",
+          "2",
+          "5",
+          "7",
+          "3",
+          "1",
+          "9"
+        ],
+        [
+          "3",
+          "9",
+          "7",
+          "1",
+          "8",
+          "6",
+          "2",
+          "5",
+          "4"
+        ],
+        [
+          "1",
+          "4",
+          "9",
+          "5",
+          "7",
+          "3",
+          "8",
+          "2",
+          "6"
+        ],
+        [
+          "8",
+          "2",
+          "3",
+          "6",
+          "9",
+          "1",
+          "4",
+          "7",
+          "5"
+        ],
+        [
+          "7",
+          "6",
+          "5",
+          "8",
+          "2",
+          "4",
+          "9",
+          "3",
+          "1"
+        ]
+      ],
+      "tags": [
+        "forced",
+        "different-solution",
+        "digit-remapping"
       ]
     }
   ]
 }
-

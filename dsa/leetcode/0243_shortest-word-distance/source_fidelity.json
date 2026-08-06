@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_243", "frontend_id": "243", "title_slug": "shortest-word-distance", "url": "https://leetcode.com/problems/shortest-word-distance/description/", "paid_only": true, "content_sha256": "4d2acf8091c685c6c73bf48fa41ffe9c68ebd233dec681cc3790cfa9e9148425", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "wordsDict = [\"practice\",\"makes\",\"perfect\",\"coding\",\"makes\"], word1 = \"coding\", word2 = \"practice\"", "output": "3", "has_explanation": false}, {"ordinal": 2, "input": "wordsDict = [\"practice\",\"makes\",\"perfect\",\"coding\",\"makes\"], word1 = \"makes\", word2 = \"coding\"", "output": "1", "has_explanation": false}],
-    "constraint_count": 5,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_243",
+    "frontend_id": "243",
+    "title_slug": "shortest-word-distance",
+    "url": "https://leetcode.com/problems/shortest-word-distance/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "98e22f351164ece802e34c3a359e9dcca868ed3f44163815616ae4d4e269c705", "reference/contract.md": "faaee9cd24ab0a2e8af2e5b1317bfb93b4741ffebf714a6a1837b46c0b6fae78", "reference/examples.md": "6644d18c1e6eebcb5ae046c63a796f4ee656e7d90570b0a69c82910b2b95cdf9", "reference/constraints.md": "5c2c2219d20d1ed091f7504644afc7b569b4598583eaeaae06cecae0f3d5b488"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"]`, `word1 = \"coding\"`, `word2 = \"practice\"`",
+        "output": "`3`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "`wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"]`, `word1 = \"makes\"`, `word2 = \"coding\"`",
+        "output": "`1`",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a0dfaddd92514433e7e74ddce5c1b1cb0e95af9275549c50ee83cea94ae42438",
+      "reference/contract.md": "1678ece67353c285dc912e9a1ab33b6a20965d153461654bfb6b9a4a931c5980",
+      "reference/examples.md": "b7839a5b0522d46e6ed7462bcc222f04475cc5f0fc60253d635e555c54d0c452",
+      "reference/constraints.md": "afddcb19d932da77673244c2506a4fde996fa3d2b3a918e17f0c4c77b257d283"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

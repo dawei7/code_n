@@ -18,4 +18,6 @@ For maximum bound length $d$, the search explores $O(5^{d/2})$ pair assignments.
 
 ## Alternatives and edge cases
 - **Scan every integer in the range:** depends on numeric magnitude rather than digit length.
-- Single-value ranges, zero, and bounds with different lengths require inclusive handling.
+- **Single-value ranges:** contribute one exactly when that bound is itself strobogrammatic.
+- **Zero:** is a valid one-digit result even though leading zeroes are forbidden in longer numerals.
+- **Different bound lengths:** require lexical comparison only for candidates matching the length of one of the bounds.

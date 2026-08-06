@@ -17,4 +17,5 @@ Two linear passes take $O(n)$ time. The total XOR, mask, and two accumulators us
 ## Alternatives and edge cases
 - **Frequency map:** takes linear time but $O(n)$ extra space.
 - **Count every candidate:** can take $O(n^2)$.
-- XOR and the lowest-set-bit operation work for zero and negative Python integers as well.
+- **Zero:** participates normally because XOR cancellation and bit partitioning do not require nonzero values.
+- **Negative integers:** Python's bitwise operations still make `combined & -combined` isolate the least significant set bit.

@@ -5,8 +5,7 @@ Scan the grid with a global visited set. At every unvisited land cell, run a fou
 
 **Generate all eight rigid orientations**
 
-For each relative point `(x, y)`, the combinations
-`(±x, ±y)` and `(±y, ±x)` describe the four rotations and their reflected forms. Build the transformed point set for each of these eight coordinate rules.
+For each relative point `(x, y)`, the coordinate rules $(\pm x, \pm y)$ and $(\pm y, \pm x)$ describe the four rotations and their reflected forms. The candidate places each resulting point into its explicit `orientation_slot`, building one point set for each of the eight rules.
 
 **Remove translation after every transform**
 

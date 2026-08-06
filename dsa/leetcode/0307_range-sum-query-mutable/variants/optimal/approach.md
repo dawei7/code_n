@@ -7,7 +7,7 @@ A prefix sum therefore follows parent links `i -= i & -i` while accumulating ent
 
 **Point assignment becomes a propagated delta**
 
-The public update sets a value rather than adding one, so retain the current array values. Compute `delta = new_value - old_value`, store the new value, and add the delta to every Fenwick range containing that index by following `i += i & -i`.
+The public update sets a value rather than adding one, so retain the current array values. For its zero-based position `i`, compute `delta = new_value - old_value`, store the new value, shift `i` to its one-based Fenwick position, and add the delta to every containing range by following `i += i & -i`.
 
 Only those ancestors contain the changed position. Updating them adjusts every affected prefix representation without touching unrelated ranges.
 

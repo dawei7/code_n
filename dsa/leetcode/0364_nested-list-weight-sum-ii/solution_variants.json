@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Nested List Weight Sum II and meets the required complexity bound.",
+      "summary": "Accumulates integer totals by depth in one DFS, then applies weights derived from the deepest integer level.",
       "time_complexity": "O(N)",
       "space_complexity": "O(D)"
     }

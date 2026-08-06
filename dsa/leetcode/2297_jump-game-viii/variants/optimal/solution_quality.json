@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2297",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution uses dynamic programming with two monotonic stacks (non-increasing and increasing) to discover valid jump edges in linear O(n) time. As elements are popped from either stack, the cost array best[index] is relaxed. The single-pass monotonic stack DP solution is optimal and concise; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The non-increasing stack pops when encountering a larger or equal value nums[index] >= nums[top], ensuring all intervening elements are strictly smaller (Condition 1). The increasing stack pops when encountering a strictly smaller value nums[index] < nums[top], ensuring all intervening elements are greater or equal (Condition 2). Relaxing best[index] at these exact pop boundaries guarantees all valid paths are evaluated."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Each index is pushed and popped at most once per monotonic stack, yielding O(n) time and O(n) auxiliary space for the best DP array and monotonic stacks. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts nums and costs arrays, returns 0 for n = 1, and correctly computes minimum landing cost to index n - 1."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details DAG shortest path formulation, monotonic stack jump edge discovery for rising and falling conditions, and linear O(n) time / O(n) space bounds. Alternatives and edge cases cover pair enumeration, full graph construction, equal values, adjacent positions, single positions, zero landing costs, and 64-bit cost totals."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both use the identical monotonic stack DP algorithm with SHA-256 digests 141373398ab4277d6747c2f8e8b4be1b3101652f6a78ab484ec379ed8169b890 and e7c4290345d3e6b4aef1250f65227283d8fddce306912fae11ec3249e7cf126f. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed nums and costs interfaces, three examples, three constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "141373398ab4277d6747c2f8e8b4be1b3101652f6a78ab484ec379ed8169b890",
+    "native_source_sha256": "e7c4290345d3e6b4aef1250f65227283d8fddce306912fae11ec3249e7cf126f",
+    "approach_sha256": "8d574e714a87aa427c963b3c1669276b74306685093d87bb4d5e40eac2310fa3",
+    "solution_variants_sha256": "f31c0ba523e41a9f92e4c50659d83c1db95c3bdd452ef7ffcec009bba1de92ff",
+    "complexity_evidence_sha256": "7addfbaf97ef958b0c1201d1c7c20e6b376a2d87fa59c355e38324010f12781a"
+  }
+}

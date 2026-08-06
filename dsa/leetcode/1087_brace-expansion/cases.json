@@ -1,1 +1,192 @@
-{"schema_version":1,"challenge_id":"lc_1087","cases":[{"id":"sample-1","name":"sample: two brace groups with fixed letters","kind":"sample","visible":true,"input":{"s":"{a,b}c{d,e}f"},"expected":["acdf","acef","bcdf","bcef"],"tags":["sample","cartesian-product"]},{"id":"sample-2","name":"sample: expression without braces","kind":"sample","visible":true,"input":{"s":"abcd"},"expected":["abcd"],"tags":["sample","fixed"]},{"id":"trial-one-group","name":"one group between fixed letters","kind":"trial","visible":true,"input":{"s":"a{b,c}d"},"expected":["abd","acd"],"tags":["trial","single-group"]},{"id":"trial-unsorted","name":"sort alternatives lexicographically","kind":"trial","visible":true,"input":{"s":"{c,a,b}x"},"expected":["ax","bx","cx"],"tags":["trial","ordering"]},{"id":"real-adjacent-groups","name":"hidden: adjacent groups combine independently","kind":"real","visible":false,"input":{"s":"{b,a}{d,c}"},"expected":["ac","ad","bc","bd"],"tags":["hidden","adjacent"]},{"id":"real-fixed-boundaries","name":"hidden: preserve fixed prefix and suffix","kind":"real","visible":false,"input":{"s":"p{z,x,y}q"},"expected":["pxq","pyq","pzq"],"tags":["hidden","fixed"]},{"id":"real-three-groups","name":"hidden: three binary choices","kind":"real","visible":false,"input":{"s":"{a,b}x{c,d}{e,f}"},"expected":["axce","axcf","axde","axdf","bxce","bxcf","bxde","bxdf"],"tags":["hidden","multiple-groups"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1087",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two brace groups with fixed letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "{a,b}c{d,e}f"
+      },
+      "expected": [
+        "acdf",
+        "acef",
+        "bcdf",
+        "bcef"
+      ],
+      "tags": [
+        "sample",
+        "cartesian-product"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: expression without braces",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": [
+        "abcd"
+      ],
+      "tags": [
+        "sample",
+        "fixed"
+      ]
+    },
+    {
+      "id": "trial-one-group",
+      "name": "one group between fixed letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a{b,c}d"
+      },
+      "expected": [
+        "abd",
+        "acd"
+      ],
+      "tags": [
+        "trial",
+        "single-group"
+      ]
+    },
+    {
+      "id": "trial-unsorted",
+      "name": "sort alternatives lexicographically",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "{c,a,b}x"
+      },
+      "expected": [
+        "ax",
+        "bx",
+        "cx"
+      ],
+      "tags": [
+        "trial",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-adjacent-groups",
+      "name": "adjacent groups combine independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "{b,a}{d,c}"
+      },
+      "expected": [
+        "ac",
+        "ad",
+        "bc",
+        "bd"
+      ],
+      "tags": [
+        "trial",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "trial-fixed-boundaries",
+      "name": "preserve a fixed prefix and suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "p{z,x,y}q"
+      },
+      "expected": [
+        "pxq",
+        "pyq",
+        "pzq"
+      ],
+      "tags": [
+        "trial",
+        "fixed"
+      ]
+    },
+    {
+      "id": "trial-three-groups",
+      "name": "three independent brace groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "{a,b}x{c,d}{e,f}"
+      },
+      "expected": [
+        "axce",
+        "axcf",
+        "axde",
+        "axdf",
+        "bxce",
+        "bxcf",
+        "bxde",
+        "bxdf"
+      ],
+      "tags": [
+        "trial",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "trial-minimum-length",
+      "name": "minimum-length fixed expression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": [
+        "a"
+      ],
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "maximum-length expression with many unsorted alternatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z{x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a}"
+      },
+      "expected": [
+        "za",
+        "zb",
+        "zc",
+        "zd",
+        "ze",
+        "zf",
+        "zg",
+        "zh",
+        "zi",
+        "zj",
+        "zk",
+        "zl",
+        "zm",
+        "zn",
+        "zo",
+        "zp",
+        "zq",
+        "zr",
+        "zs",
+        "zt",
+        "zu",
+        "zv",
+        "zw",
+        "zx"
+      ],
+      "tags": [
+        "trial",
+        "maximum-length",
+        "ordering"
+      ]
+    }
+  ]
+}

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Range Sum Query - Mutable and meets the required complexity bound.",
+      "summary": "Maintains point assignments and inclusive range sums with a one-based Fenwick tree.",
       "time_complexity": "O((n + q) \\log n)",
       "space_complexity": "O(n)"
     }

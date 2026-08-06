@@ -23,4 +23,5 @@ With `n` operators there are Catalan-number `C_n` output structures, each requir
 ## Alternatives and edge cases
 - **Recursion without memoization:** recomputes identical substrings.
 - **Precedence evaluation:** produces only one interpretation, not all trees.
-- A number-only expression has one result; multi-digit numbers and duplicate results must be preserved.
+- **Number-only expression:** a substring with no operator contributes its parsed integer exactly once.
+- **Multi-digit and duplicate results:** number parsing must consume every digit, and equal values from distinct trees remain separate entries.

@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1058",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is concise, conventional, and interview-ready. The names fraction_counts, floor_sum, floor_error, non_integer_count, round_up_needed, fraction, take, and error expose the exact fixed-point representation, feasibility calculation, greedy selection, and formatted result directly. It has no exact generic local named index."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Parsing every three-digit fractional field as integer thousandths makes all arithmetic exact. Rounding every value down establishes floor_sum and floor_error; changing one non-integral value to its ceiling raises the rounded sum by one and changes its error by 1000 - 2 * fraction. Thus target - floor_sum is exactly the required number of upward roundings, and it is feasible precisely when it lies between zero and the non-integral count. Consuming the largest fractions first minimizes each exchange cost, while integral prices correctly supply neither error nor an upward choice. The final nonnegative thousandths total is formatted with exactly three fractional digits."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1058, Python, and the native minimizeError(prices, target) interface. Authenticated source evidence confirms one through 500 prices; price strings representing values from 0.0 through 1000.0 with exactly three decimal places; an inclusive target range from 0 through 10^6; an independent floor-or-ceiling choice for every price; exact equality of the rounded sum to target; minimization of the total absolute error; the string sentinel \"-1\" when impossible; and exactly three digits after the decimal in a feasible result. The app-local solve adapter preserves that contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2067448225 are algorithmically identical: both use scale 1000, split every price into whole and fractional text, accumulate the same floor baseline and fractional frequencies, perform the same feasibility bounds, consume fractions from 999 down to 1, apply the same error delta, and format the same three-decimal result. Their only structural differences are the required Solution.minimizeError wrapper and native typing syntax."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden workloads grow the number of non-integral prices from 30 through 480, a 16x span within the source maximum of 500, and exercise exact parsing plus the upward-round selection while keeping every output feasible. In the final independent run, the exact protected source passed all 12 visible correctness cases and all three performance tiers with relative growth exponent -0.01 and a 0.98x largest runtime ratio. An independently correct dynamic program over every attainable upward-round count matched every correctness and benchmark output but failed only the calibrated complexity verdict with exponent +1.62 and a 110.58x largest ratio, cleanly distinguishing O(N+K) frequency processing from O(N^2) state transitions."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives fixed-point thousandths arithmetic, the exact number of required ceilings, the infeasible target bounds, the per-choice error delta, and the descending-fraction greedy order with a valid exchange argument. It also covers integral prices, boundary targets, ties, and floating-point hazards. Its O(N+K) time and O(K) auxiliary-space claims match the protected implementation and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the independent floor-or-ceiling choices, exact target condition, absolute-error formula, impossible sentinel, three-decimal formatting, price-count and numeric bounds, all three source examples with the source's exact explanation presence, and the full three-hint reduction-to-DP progression."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review verified exactly three examples in source order with explanations only on the first two, three constraints, three hints, and no images, tables, diagrams, or follow-up. The modular files are hash-bound in source_fidelity.json to source content hash 4167951e7aeb9c43df90c628584546a1ba8006d4ddc17cc6a22e04f1f4b4f853, and the direct fidelity validator returns verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly three examples. Their exact price strings, targets, and output strings appear first in source order, including the mixed floor/ceiling construction, an impossible target above the ceiling sum, and the all-ceilings result.",
+      "All 12 ordinary correctness cases are visible samples or trials. They cover price-count boundaries 1 and 500, price endpoints 0.000 and 1000.000, target endpoints 0 and 10^6, integral and non-integral prices, and exact three-decimal feasible output formatting.",
+      "Material behavior includes all-floor and all-ceiling selections, zero error for integers, mixed integral and fractional inputs, choosing the largest fractions, equal-fraction ties, thousandths near both 0 and 1, a target below the floor sum, a target above the ceiling sum, and the \"-1\" sentinel.",
+      "An independent sorting oracle computes the all-floor baseline and sorts every individual ceiling-versus-floor error delta, while a separate brute-force oracle enumerates every floor/ceiling combination for small inputs. Both recomputed authored expectations without using the protected 1000-slot frequency array.",
+      "The two oracles, protected app source, and immutable native Solution agreed on all 15 authored correctness-plus-benchmark inputs, 14516 exhaustive cases over one through four prices and every legal target surrounding their feasible interval, and 5000 deterministic random legal cases with up to nine prices.",
+      "The 30-, 120-, and 480-price workloads remain hidden and performance-only, use size consistently as N, span 16x, stay inside the 500-price source limit, and make every fraction 0.500 so all upward-round counts remain feasible. A correct O(N^2) dynamic-programming control passed every output and failed only scaling against the O(N+K) protected solution."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "8ae33612a15b4766fee54924e6c74d64b04aad52a285a15671a8e32db0fb4b5f",
+    "native_source_sha256": "074d1153a633008c90aff2c1a704dab3cdc5692bfe33c7b07e6dc95d14ea3b77",
+    "approach_sha256": "058dc85f81feeabe2ea1f710a5d5f2093991666739960cba0c9c95e4e3c891ef",
+    "solution_variants_sha256": "08480e272a0753bdf56ff96f8b5b7f07588d11950589b46c7d13254a285ce664",
+    "complexity_evidence_sha256": "56a71b6b2b2bc4ae0900a96b677f1da20f5655fa81e2250e91732555f7b5aec2",
+    "cases_sha256": "37dd44f8c6c248147a687415444617cbc46f010497915ac0b9552f83a1b267a9"
+  }
+}

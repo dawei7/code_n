@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_285",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already the canonical root-based BST successor search. It retains each greater ancestor as a candidate, moves left to improve it, and otherwise moves right to discard values that cannot qualify. Node and successor are genuine tree concepts, the app defines the required local TreeNode model, and no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 285 and its Python TreeNode-pair-to-optional-TreeNode contract. The Reference explains the JSON node-resolution adapter and preserves both source examples and explanations, all three constraints, unique values, and strict-greater successor semantics."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is tied to verified submission 2064308523. It and the app-local source have identical successor initialization, one-path BST loop, value comparison, candidate update, child choices, and return; the app-local TreeNode definition and native judge-injected model are the only interface difference."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 31/127/511-node balanced BST tiers target a high node whose successor remains near the end of inorder order, forcing a complete traversal while the current source follows one logarithmic path. The current source passes at -0.02 relative exponent and 0.98x largest ratio; a correct full inorder control passes every output but fails only scaling at +0.74 and 20.01x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now compares node.val with p.val exactly, defines h before the manifest bound, proves why each discarded subtree cannot improve the candidate, and covers right-subtree, ancestor-successor, maximum-node, balanced, and skewed-tree behavior."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Premium Reference remains verified against authenticated source evidence. Both source tree images now have accessible Mermaid equivalents preserving the exact topology and target node, while both examples and explanations and all three constraints remain in source order."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated source examples appear first, in source order, with the exact level-order trees, target values, and displayed successor values.",
+      "The previous hidden successor case was replaced by visible trials; every correctness row is now a source-legal sample or trial with a node_value validator.",
+      "The suite covers a one-node tree, the minimum and maximum allowed node values, the minimum and maximum nodes of nontrivial trees, a root target, and the None result.",
+      "Successors are exercised as an immediate right child, a deeper leftmost node in the target's right subtree, an immediate ancestor, and a greater ancestor several levels above.",
+      "Balanced, sparse, left-skewed, and right-skewed BST shapes verify that tree height and target position do not change strict-greater semantics.",
+      "Each authored expected value was independently derived from the sorted inorder sequence of a validated unique-value BST; the protected source also matched that oracle on 10,000 seeded random BSTs with up to 80 nodes.",
+      "All 12 correctness cases are visible; the unchanged 31-, 127-, and 511-node balanced-tree rows remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "8e4e1b53dbaf4f50da5e4a5e6d6b56189828e5fc14d26aad11f4125f5c2d28dc",
+    "native_source_sha256": "a19a228a03cd4b0cdf380ef987c9b42a7303ef4c0994ceacb53c00fca2732fca",
+    "approach_sha256": "7c5958136140f473383b87066427d91cdbc507e5aa74cd1c157b122c5d74a0f8",
+    "solution_variants_sha256": "282d52e8d6e4769b3fce2a8c31d5349131cb2569922bb80c24106ba2df8f84c9",
+    "complexity_evidence_sha256": "7b70d7d2c4ff2fd723a3fdbaad3bc71cd0e8838ff2c2cd9c65476b539baf1eca",
+    "cases_sha256": "a53460368a0f09dde985d343c0f627d40a805aa64096e9bef68c2a8b91da1196"
+  }
+}

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Paint Fence and meets the required complexity bound.",
+      "summary": "Counts same-color and different-color endings with a two-state constant-space recurrence.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

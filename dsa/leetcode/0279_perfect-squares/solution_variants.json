@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Perfect Squares and meets the required complexity bound.",
+      "summary": "Classifies one- and four-square cases, then scans integer roots to distinguish two from three.",
       "time_complexity": "O(\\sqrt{n})",
       "space_complexity": "O(1)"
     }

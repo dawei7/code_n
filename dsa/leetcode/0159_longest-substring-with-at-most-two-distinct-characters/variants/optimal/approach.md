@@ -1,34 +1,35 @@
 ## General
-**Right expansion considers every possible ending position**
 
-Move `right` through the string and increment the included character's count. The interval `[left,right]` is the current candidate ending at `right`; before normalization it may temporarily contain a third character type.
+**Maintain the longest valid window ending at each position**
 
-**Left contraction stops at the earliest valid boundary**
+Move `right` across the string and count the new `character` inside the current window `[left, right]`. Adding one
+character may temporarily introduce a third distinct value.
 
-While the count map has more than two keys, decrement `s[left]`, delete its key exactly when the count reaches zero, and advance `left`. Stop immediately once only two types remain, then update the best length.
+While the count map has more than two keys, remove `s[left]` and advance `left`. Delete a key exactly when its count
+reaches zero; otherwise the map would incorrectly treat a character outside the live window as still present. Stop
+as soon as the window is valid again, then update `best` with its length.
 
-Deleting zero-count keys is essential: retaining them would make map size overstate the number of distinct characters still inside the window.
+The left boundary moves only when validity requires it. After contraction, moving `left` backward would restore the
+third character that forced the shrink, so the maintained interval is the longest valid substring ending at the
+current `right`. Every candidate substring has some right endpoint, and taking the maximum of these per-endpoint
+optima yields the global answer.
 
-**After contraction, the window is maximal for its right endpoint**
-
-After shrinking, the window contains at most two distinct characters and is the longest valid window ending at the current right boundary: moving its left edge backward would restore the third character that forced shrinking.
-
-**Trace the third character forcing an eviction**
-
-For `eceba`, the window grows to `ece`. Adding `b` creates three character types, so the left edge moves through `e` then `c` until the window is valid again. The recorded maximum remains three.
-
-**The leftmost valid window is best for each right endpoint**
-
-After adding a character at `right`, the left boundary advances only while the window contains more than two distinct characters. When shrinking stops, the window is valid and its boundary is the farthest left one that remains compatible with this right endpoint; any earlier boundary would still include the third character that forced the shrink.
-
-Every candidate substring has some right endpoint. The maintained window is the longest valid candidate for that endpoint, so taking the maximum over all endpoints yields the global optimum.
+Both boundaries move monotonically. A character can enter through `right` once and leave through `left` once, even
+when frequent changes among three letters cause several removals in one iteration.
 
 ## Complexity detail
-Each character enters and leaves the window at most once, giving $O(n)$ time. The map contains at most three keys transiently and at most two after shrinking, so space is $O(1)$ relative to input length.
+
+Each of the $n$ characters enters and leaves the sliding window at most once, giving $O(n)$ time. The map has at
+most three keys before contraction and at most two afterward. Because the source alphabet is fixed to English
+letters, this is $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Start a scan at every index:** is simple but costs $O(n^2)$.
-- **Store last positions of only two characters:** can also work but needs careful handling when choosing which character to evict.
-- **Enumerate character pairs:** multiplies work by the alphabet and still requires repeated scans.
-- Empty input returns zero. A string with one or two distinct characters is entirely valid.
-- Frequent transitions among three characters may trigger many shrink iterations, but each left position is removed only once overall.
+
+- **Restart a scan at every position:** is correct but takes $O(n^2)$ time when long suffixes remain valid.
+- **Track last positions for two characters:** can also achieve linear time but requires careful selection of the
+  character whose most recent occurrence is earlier.
+- **Enumerate character pairs:** repeats work across the fixed alphabet and is less direct than one sliding window.
+- A one-character string is entirely valid.
+- A string containing only one or two distinct characters returns its full length.
+- Rapid alternation among three or more characters can trigger repeated contraction, but no left position is removed
+  twice.

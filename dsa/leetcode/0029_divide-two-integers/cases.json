@@ -1,10 +1,17 @@
 {
   "challenge_id": "lc_29",
   "cases": [
-    {"id": "sample-1", "name": "sample: positive truncation", "kind": "sample", "visible": true, "input": {"dividend": 10, "divisor": 3}, "expected": 3, "tags": ["sample", "truncate"]},
-    {"id": "sample-2", "name": "sample: negative truncation toward zero", "kind": "sample", "visible": true, "input": {"dividend": 7, "divisor": -3}, "expected": -2, "tags": ["sample", "negative"]},
-    {"id": "trial-overflow", "name": "only overflowing quotient clamps", "kind": "trial", "visible": true, "input": {"dividend": -2147483648, "divisor": -1}, "expected": 2147483647, "tags": ["overflow", "boundary"]},
-    {"id": "trial-zero-dividend", "name": "zero dividend", "kind": "trial", "visible": true, "input": {"dividend": 0, "divisor": 5}, "expected": 0, "tags": ["zero"]},
-    {"id": "real-minimum-divisor", "name": "hidden: equal minimum magnitudes", "kind": "real", "visible": false, "input": {"dividend": -2147483648, "divisor": -2147483648}, "expected": 1, "tags": ["hidden", "boundary"]}
+    {"id": "sample-1", "name": "sample: positive quotient truncates", "kind": "sample", "visible": true, "input": {"dividend": 10, "divisor": 3}, "expected": 3, "tags": ["sample", "truncation"]},
+    {"id": "sample-2", "name": "sample: negative quotient truncates", "kind": "sample", "visible": true, "input": {"dividend": 7, "divisor": -3}, "expected": -2, "tags": ["sample", "negative", "truncation"]},
+    {"id": "trial-overflow", "name": "sole positive overflow clamps", "kind": "trial", "visible": true, "input": {"dividend": -2147483648, "divisor": -1}, "expected": 2147483647, "tags": ["overflow", "boundary"]},
+    {"id": "trial-zero-dividend", "name": "zero divided by the maximum divisor", "kind": "trial", "visible": true, "input": {"dividend": 0, "divisor": 2147483647}, "expected": 0, "tags": ["zero", "boundary"]},
+    {"id": "trial-minimum-divisor", "name": "minimum dividend divided by itself", "kind": "trial", "visible": true, "input": {"dividend": -2147483648, "divisor": -2147483648}, "expected": 1, "tags": ["boundary", "exact"]},
+    {"id": "trial-minimum-by-one", "name": "minimum dividend remains representable", "kind": "trial", "visible": true, "input": {"dividend": -2147483648, "divisor": 1}, "expected": -2147483648, "tags": ["boundary", "negative", "exact"]},
+    {"id": "trial-maximum-by-one", "name": "maximum dividend by one", "kind": "trial", "visible": true, "input": {"dividend": 2147483647, "divisor": 1}, "expected": 2147483647, "tags": ["boundary", "exact"]},
+    {"id": "trial-maximum-negative", "name": "maximum dividend with negative unit divisor", "kind": "trial", "visible": true, "input": {"dividend": 2147483647, "divisor": -1}, "expected": -2147483647, "tags": ["boundary", "negative", "exact"]},
+    {"id": "trial-opposite-extremes", "name": "minimum dividend by maximum divisor", "kind": "trial", "visible": true, "input": {"dividend": -2147483648, "divisor": 2147483647}, "expected": -1, "tags": ["boundary", "truncation"]},
+    {"id": "trial-smaller-magnitude", "name": "dividend magnitude is smaller", "kind": "trial", "visible": true, "input": {"dividend": -1, "divisor": 2147483647}, "expected": 0, "tags": ["zero-quotient", "truncation"]},
+    {"id": "trial-both-negative", "name": "two negatives produce a positive quotient", "kind": "trial", "visible": true, "input": {"dividend": -7, "divisor": -3}, "expected": 2, "tags": ["sign", "truncation"]},
+    {"id": "trial-exact-power-of-two", "name": "minimum dividend divided exactly by two", "kind": "trial", "visible": true, "input": {"dividend": -2147483648, "divisor": 2}, "expected": -1073741824, "tags": ["boundary", "power-of-two", "exact"]}
   ]
 }

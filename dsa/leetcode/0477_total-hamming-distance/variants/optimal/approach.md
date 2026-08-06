@@ -1,4 +1,5 @@
 ## General
+
 **Count pair contributions one bit at a time**
 
 At one bit position, let `ones` numbers contain a one and `zeros = n - ones` contain a zero. A pair contributes one Hamming-distance unit at this position exactly when it chooses one member from each group.
@@ -12,9 +13,14 @@ There are `ones * zeros` unordered cross-group pairs. Add that product for every
 The counting argument aggregates all pairs sharing a bit difference. This replaces quadratic pair enumeration with one scan of the array per fixed-width bit position.
 
 ## Complexity detail
-For `b` relevant bits, counting ones across `n` values takes $O(n \cdot b)$ time. Under the problem's 31-bit bound, `b` is constant. Only counters are stored, giving $O(1)$ auxiliary space.
+
+Let $n = \lvert \texttt{nums} \rvert$ and let $b$ be the greatest significant bit width among its values. Counting
+ones across all $n$ values at each of those $b$ positions takes $O(n \cdot b)$ time. The source value bound makes
+$b \le 30$, so it is constant bounded. Only the width, loop positions, and scalar counters are stored, giving
+$O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
+
 - **Enumerate every pair:** XOR and population count are simple but take $O(n^2 \cdot b)$ conceptual time.
 - **Accumulate bit counts in one value scan:** maintains a fixed array of `b` counters, using $O(b)$ constant-bounded space.
 - **One value:** has no pair and contributes zero.

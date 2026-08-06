@@ -1,47 +1,47 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_211",
-  "measurement_note": "Growing command streams exercise trie insertion and exact/wildcard frontier search.",
+  "measurement_note": "Size is the total number of processed characters. Legal five-character commands combine one two-dot frontier search with exact searches; trie traversal stays linear in the stream here, while scanning every stored word grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 8 operations",
+      "name": "benchmark: 40 processed characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 8,
+      "size": 40,
       "input": {
         "operations": [
           [
             "addWord",
-            "w0000"
+            "aaaaa"
           ],
           [
             "addWord",
-            "w0001"
+            "abaab"
           ],
           [
             "addWord",
-            "w0002"
+            "acaac"
           ],
           [
             "addWord",
-            "w0003"
+            "adaad"
           ],
           [
             "search",
-            "w0000"
+            "..aad"
           ],
           [
             "search",
-            "w0001"
+            "abaab"
           ],
           [
             "search",
-            "w0002"
+            "acaac"
           ],
           [
             "search",
-            "w0003"
+            "adaad"
           ]
         ]
       },
@@ -53,272 +53,273 @@
       ],
       "tags": [
         "benchmark",
-        "scale-small"
+        "scale-small",
+        "exact-and-wildcard"
       ]
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: 64 operations",
+      "name": "benchmark: 320 processed characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 320,
       "input": {
         "operations": [
           [
             "addWord",
-            "w0000"
+            "aaaaa"
           ],
           [
             "addWord",
-            "w0001"
+            "abaab"
           ],
           [
             "addWord",
-            "w0002"
+            "acaac"
           ],
           [
             "addWord",
-            "w0003"
+            "adaad"
           ],
           [
             "addWord",
-            "w0004"
+            "aeaae"
           ],
           [
             "addWord",
-            "w0005"
+            "afaaf"
           ],
           [
             "addWord",
-            "w0006"
+            "agaag"
           ],
           [
             "addWord",
-            "w0007"
+            "ahaah"
           ],
           [
             "addWord",
-            "w0008"
+            "aiaai"
           ],
           [
             "addWord",
-            "w0009"
+            "ajaaj"
           ],
           [
             "addWord",
-            "w0010"
+            "akaak"
           ],
           [
             "addWord",
-            "w0011"
+            "alaal"
           ],
           [
             "addWord",
-            "w0012"
+            "amaam"
           ],
           [
             "addWord",
-            "w0013"
+            "anaan"
           ],
           [
             "addWord",
-            "w0014"
+            "aoaao"
           ],
           [
             "addWord",
-            "w0015"
+            "apaap"
           ],
           [
             "addWord",
-            "w0016"
+            "aqaaq"
           ],
           [
             "addWord",
-            "w0017"
+            "araar"
           ],
           [
             "addWord",
-            "w0018"
+            "asaas"
           ],
           [
             "addWord",
-            "w0019"
+            "ataat"
           ],
           [
             "addWord",
-            "w0020"
+            "auaau"
           ],
           [
             "addWord",
-            "w0021"
+            "avaav"
           ],
           [
             "addWord",
-            "w0022"
+            "awaaw"
           ],
           [
             "addWord",
-            "w0023"
+            "axaax"
           ],
           [
             "addWord",
-            "w0024"
+            "ayaay"
           ],
           [
             "addWord",
-            "w0025"
+            "azaaz"
           ],
           [
             "addWord",
-            "w0026"
+            "baaba"
           ],
           [
             "addWord",
-            "w0027"
+            "bbabb"
           ],
           [
             "addWord",
-            "w0028"
+            "bcabc"
           ],
           [
             "addWord",
-            "w0029"
+            "bdabd"
           ],
           [
             "addWord",
-            "w0030"
+            "beabe"
           ],
           [
             "addWord",
-            "w0031"
+            "bfabf"
           ],
           [
             "search",
-            "w0000"
+            "..abf"
           ],
           [
             "search",
-            "w0001"
+            "abaab"
           ],
           [
             "search",
-            "w0002"
+            "acaac"
           ],
           [
             "search",
-            "w0003"
+            "adaad"
           ],
           [
             "search",
-            "w0004"
+            "aeaae"
           ],
           [
             "search",
-            "w0005"
+            "afaaf"
           ],
           [
             "search",
-            "w0006"
+            "agaag"
           ],
           [
             "search",
-            "w0007"
+            "ahaah"
           ],
           [
             "search",
-            "w0008"
+            "aiaai"
           ],
           [
             "search",
-            "w0009"
+            "ajaaj"
           ],
           [
             "search",
-            "w0010"
+            "akaak"
           ],
           [
             "search",
-            "w0011"
+            "alaal"
           ],
           [
             "search",
-            "w0012"
+            "amaam"
           ],
           [
             "search",
-            "w0013"
+            "anaan"
           ],
           [
             "search",
-            "w0014"
+            "aoaao"
           ],
           [
             "search",
-            "w0015"
+            "apaap"
           ],
           [
             "search",
-            "w0016"
+            "aqaaq"
           ],
           [
             "search",
-            "w0017"
+            "araar"
           ],
           [
             "search",
-            "w0018"
+            "asaas"
           ],
           [
             "search",
-            "w0019"
+            "ataat"
           ],
           [
             "search",
-            "w0020"
+            "auaau"
           ],
           [
             "search",
-            "w0021"
+            "avaav"
           ],
           [
             "search",
-            "w0022"
+            "awaaw"
           ],
           [
             "search",
-            "w0023"
+            "axaax"
           ],
           [
             "search",
-            "w0024"
+            "ayaay"
           ],
           [
             "search",
-            "w0025"
+            "azaaz"
           ],
           [
             "search",
-            "w0026"
+            "baaba"
           ],
           [
             "search",
-            "w0027"
+            "bbabb"
           ],
           [
             "search",
-            "w0028"
+            "bcabc"
           ],
           [
             "search",
-            "w0029"
+            "bdabd"
           ],
           [
             "search",
-            "w0030"
+            "beabe"
           ],
           [
             "search",
-            "w0031"
+            "bfabf"
           ]
         ]
       },
@@ -358,1040 +359,1041 @@
       ],
       "tags": [
         "benchmark",
-        "scale-medium"
+        "scale-medium",
+        "exact-and-wildcard"
       ]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: 256 operations",
+      "name": "benchmark: 1280 processed characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 256,
+      "size": 1280,
       "input": {
         "operations": [
           [
             "addWord",
-            "w0000"
+            "aaaaa"
           ],
           [
             "addWord",
-            "w0001"
+            "abaab"
           ],
           [
             "addWord",
-            "w0002"
+            "acaac"
           ],
           [
             "addWord",
-            "w0003"
+            "adaad"
           ],
           [
             "addWord",
-            "w0004"
+            "aeaae"
           ],
           [
             "addWord",
-            "w0005"
+            "afaaf"
           ],
           [
             "addWord",
-            "w0006"
+            "agaag"
           ],
           [
             "addWord",
-            "w0007"
+            "ahaah"
           ],
           [
             "addWord",
-            "w0008"
+            "aiaai"
           ],
           [
             "addWord",
-            "w0009"
+            "ajaaj"
           ],
           [
             "addWord",
-            "w0010"
+            "akaak"
           ],
           [
             "addWord",
-            "w0011"
+            "alaal"
           ],
           [
             "addWord",
-            "w0012"
+            "amaam"
           ],
           [
             "addWord",
-            "w0013"
+            "anaan"
           ],
           [
             "addWord",
-            "w0014"
+            "aoaao"
           ],
           [
             "addWord",
-            "w0015"
+            "apaap"
           ],
           [
             "addWord",
-            "w0016"
+            "aqaaq"
           ],
           [
             "addWord",
-            "w0017"
+            "araar"
           ],
           [
             "addWord",
-            "w0018"
+            "asaas"
           ],
           [
             "addWord",
-            "w0019"
+            "ataat"
           ],
           [
             "addWord",
-            "w0020"
+            "auaau"
           ],
           [
             "addWord",
-            "w0021"
+            "avaav"
           ],
           [
             "addWord",
-            "w0022"
+            "awaaw"
           ],
           [
             "addWord",
-            "w0023"
+            "axaax"
           ],
           [
             "addWord",
-            "w0024"
+            "ayaay"
           ],
           [
             "addWord",
-            "w0025"
+            "azaaz"
           ],
           [
             "addWord",
-            "w0026"
+            "baaba"
           ],
           [
             "addWord",
-            "w0027"
+            "bbabb"
           ],
           [
             "addWord",
-            "w0028"
+            "bcabc"
           ],
           [
             "addWord",
-            "w0029"
+            "bdabd"
           ],
           [
             "addWord",
-            "w0030"
+            "beabe"
           ],
           [
             "addWord",
-            "w0031"
+            "bfabf"
           ],
           [
             "addWord",
-            "w0032"
+            "bgabg"
           ],
           [
             "addWord",
-            "w0033"
+            "bhabh"
           ],
           [
             "addWord",
-            "w0034"
+            "biabi"
           ],
           [
             "addWord",
-            "w0035"
+            "bjabj"
           ],
           [
             "addWord",
-            "w0036"
+            "bkabk"
           ],
           [
             "addWord",
-            "w0037"
+            "blabl"
           ],
           [
             "addWord",
-            "w0038"
+            "bmabm"
           ],
           [
             "addWord",
-            "w0039"
+            "bnabn"
           ],
           [
             "addWord",
-            "w0040"
+            "boabo"
           ],
           [
             "addWord",
-            "w0041"
+            "bpabp"
           ],
           [
             "addWord",
-            "w0042"
+            "bqabq"
           ],
           [
             "addWord",
-            "w0043"
+            "brabr"
           ],
           [
             "addWord",
-            "w0044"
+            "bsabs"
           ],
           [
             "addWord",
-            "w0045"
+            "btabt"
           ],
           [
             "addWord",
-            "w0046"
+            "buabu"
           ],
           [
             "addWord",
-            "w0047"
+            "bvabv"
           ],
           [
             "addWord",
-            "w0048"
+            "bwabw"
           ],
           [
             "addWord",
-            "w0049"
+            "bxabx"
           ],
           [
             "addWord",
-            "w0050"
+            "byaby"
           ],
           [
             "addWord",
-            "w0051"
+            "bzabz"
           ],
           [
             "addWord",
-            "w0052"
+            "caaca"
           ],
           [
             "addWord",
-            "w0053"
+            "cbacb"
           ],
           [
             "addWord",
-            "w0054"
+            "ccacc"
           ],
           [
             "addWord",
-            "w0055"
+            "cdacd"
           ],
           [
             "addWord",
-            "w0056"
+            "ceace"
           ],
           [
             "addWord",
-            "w0057"
+            "cfacf"
           ],
           [
             "addWord",
-            "w0058"
+            "cgacg"
           ],
           [
             "addWord",
-            "w0059"
+            "chach"
           ],
           [
             "addWord",
-            "w0060"
+            "ciaci"
           ],
           [
             "addWord",
-            "w0061"
+            "cjacj"
           ],
           [
             "addWord",
-            "w0062"
+            "ckack"
           ],
           [
             "addWord",
-            "w0063"
+            "clacl"
           ],
           [
             "addWord",
-            "w0064"
+            "cmacm"
           ],
           [
             "addWord",
-            "w0065"
+            "cnacn"
           ],
           [
             "addWord",
-            "w0066"
+            "coaco"
           ],
           [
             "addWord",
-            "w0067"
+            "cpacp"
           ],
           [
             "addWord",
-            "w0068"
+            "cqacq"
           ],
           [
             "addWord",
-            "w0069"
+            "cracr"
           ],
           [
             "addWord",
-            "w0070"
+            "csacs"
           ],
           [
             "addWord",
-            "w0071"
+            "ctact"
           ],
           [
             "addWord",
-            "w0072"
+            "cuacu"
           ],
           [
             "addWord",
-            "w0073"
+            "cvacv"
           ],
           [
             "addWord",
-            "w0074"
+            "cwacw"
           ],
           [
             "addWord",
-            "w0075"
+            "cxacx"
           ],
           [
             "addWord",
-            "w0076"
+            "cyacy"
           ],
           [
             "addWord",
-            "w0077"
+            "czacz"
           ],
           [
             "addWord",
-            "w0078"
+            "daada"
           ],
           [
             "addWord",
-            "w0079"
+            "dbadb"
           ],
           [
             "addWord",
-            "w0080"
+            "dcadc"
           ],
           [
             "addWord",
-            "w0081"
+            "ddadd"
           ],
           [
             "addWord",
-            "w0082"
+            "deade"
           ],
           [
             "addWord",
-            "w0083"
+            "dfadf"
           ],
           [
             "addWord",
-            "w0084"
+            "dgadg"
           ],
           [
             "addWord",
-            "w0085"
+            "dhadh"
           ],
           [
             "addWord",
-            "w0086"
+            "diadi"
           ],
           [
             "addWord",
-            "w0087"
+            "djadj"
           ],
           [
             "addWord",
-            "w0088"
+            "dkadk"
           ],
           [
             "addWord",
-            "w0089"
+            "dladl"
           ],
           [
             "addWord",
-            "w0090"
+            "dmadm"
           ],
           [
             "addWord",
-            "w0091"
+            "dnadn"
           ],
           [
             "addWord",
-            "w0092"
+            "doado"
           ],
           [
             "addWord",
-            "w0093"
+            "dpadp"
           ],
           [
             "addWord",
-            "w0094"
+            "dqadq"
           ],
           [
             "addWord",
-            "w0095"
+            "dradr"
           ],
           [
             "addWord",
-            "w0096"
+            "dsads"
           ],
           [
             "addWord",
-            "w0097"
+            "dtadt"
           ],
           [
             "addWord",
-            "w0098"
+            "duadu"
           ],
           [
             "addWord",
-            "w0099"
+            "dvadv"
           ],
           [
             "addWord",
-            "w0100"
+            "dwadw"
           ],
           [
             "addWord",
-            "w0101"
+            "dxadx"
           ],
           [
             "addWord",
-            "w0102"
+            "dyady"
           ],
           [
             "addWord",
-            "w0103"
+            "dzadz"
           ],
           [
             "addWord",
-            "w0104"
+            "eaaea"
           ],
           [
             "addWord",
-            "w0105"
+            "ebaeb"
           ],
           [
             "addWord",
-            "w0106"
+            "ecaec"
           ],
           [
             "addWord",
-            "w0107"
+            "edaed"
           ],
           [
             "addWord",
-            "w0108"
+            "eeaee"
           ],
           [
             "addWord",
-            "w0109"
+            "efaef"
           ],
           [
             "addWord",
-            "w0110"
+            "egaeg"
           ],
           [
             "addWord",
-            "w0111"
+            "ehaeh"
           ],
           [
             "addWord",
-            "w0112"
+            "eiaei"
           ],
           [
             "addWord",
-            "w0113"
+            "ejaej"
           ],
           [
             "addWord",
-            "w0114"
+            "ekaek"
           ],
           [
             "addWord",
-            "w0115"
+            "elael"
           ],
           [
             "addWord",
-            "w0116"
+            "emaem"
           ],
           [
             "addWord",
-            "w0117"
+            "enaen"
           ],
           [
             "addWord",
-            "w0118"
+            "eoaeo"
           ],
           [
             "addWord",
-            "w0119"
+            "epaep"
           ],
           [
             "addWord",
-            "w0120"
+            "eqaeq"
           ],
           [
             "addWord",
-            "w0121"
+            "eraer"
           ],
           [
             "addWord",
-            "w0122"
+            "esaes"
           ],
           [
             "addWord",
-            "w0123"
+            "etaet"
           ],
           [
             "addWord",
-            "w0124"
+            "euaeu"
           ],
           [
             "addWord",
-            "w0125"
+            "evaev"
           ],
           [
             "addWord",
-            "w0126"
+            "ewaew"
           ],
           [
             "addWord",
-            "w0127"
+            "exaex"
           ],
           [
             "search",
-            "w0000"
+            "..aex"
           ],
           [
             "search",
-            "w0001"
+            "abaab"
           ],
           [
             "search",
-            "w0002"
+            "acaac"
           ],
           [
             "search",
-            "w0003"
+            "adaad"
           ],
           [
             "search",
-            "w0004"
+            "aeaae"
           ],
           [
             "search",
-            "w0005"
+            "afaaf"
           ],
           [
             "search",
-            "w0006"
+            "agaag"
           ],
           [
             "search",
-            "w0007"
+            "ahaah"
           ],
           [
             "search",
-            "w0008"
+            "aiaai"
           ],
           [
             "search",
-            "w0009"
+            "ajaaj"
           ],
           [
             "search",
-            "w0010"
+            "akaak"
           ],
           [
             "search",
-            "w0011"
+            "alaal"
           ],
           [
             "search",
-            "w0012"
+            "amaam"
           ],
           [
             "search",
-            "w0013"
+            "anaan"
           ],
           [
             "search",
-            "w0014"
+            "aoaao"
           ],
           [
             "search",
-            "w0015"
+            "apaap"
           ],
           [
             "search",
-            "w0016"
+            "aqaaq"
           ],
           [
             "search",
-            "w0017"
+            "araar"
           ],
           [
             "search",
-            "w0018"
+            "asaas"
           ],
           [
             "search",
-            "w0019"
+            "ataat"
           ],
           [
             "search",
-            "w0020"
+            "auaau"
           ],
           [
             "search",
-            "w0021"
+            "avaav"
           ],
           [
             "search",
-            "w0022"
+            "awaaw"
           ],
           [
             "search",
-            "w0023"
+            "axaax"
           ],
           [
             "search",
-            "w0024"
+            "ayaay"
           ],
           [
             "search",
-            "w0025"
+            "azaaz"
           ],
           [
             "search",
-            "w0026"
+            "baaba"
           ],
           [
             "search",
-            "w0027"
+            "bbabb"
           ],
           [
             "search",
-            "w0028"
+            "bcabc"
           ],
           [
             "search",
-            "w0029"
+            "bdabd"
           ],
           [
             "search",
-            "w0030"
+            "beabe"
           ],
           [
             "search",
-            "w0031"
+            "bfabf"
           ],
           [
             "search",
-            "w0032"
+            "bgabg"
           ],
           [
             "search",
-            "w0033"
+            "bhabh"
           ],
           [
             "search",
-            "w0034"
+            "biabi"
           ],
           [
             "search",
-            "w0035"
+            "bjabj"
           ],
           [
             "search",
-            "w0036"
+            "bkabk"
           ],
           [
             "search",
-            "w0037"
+            "blabl"
           ],
           [
             "search",
-            "w0038"
+            "bmabm"
           ],
           [
             "search",
-            "w0039"
+            "bnabn"
           ],
           [
             "search",
-            "w0040"
+            "boabo"
           ],
           [
             "search",
-            "w0041"
+            "bpabp"
           ],
           [
             "search",
-            "w0042"
+            "bqabq"
           ],
           [
             "search",
-            "w0043"
+            "brabr"
           ],
           [
             "search",
-            "w0044"
+            "bsabs"
           ],
           [
             "search",
-            "w0045"
+            "btabt"
           ],
           [
             "search",
-            "w0046"
+            "buabu"
           ],
           [
             "search",
-            "w0047"
+            "bvabv"
           ],
           [
             "search",
-            "w0048"
+            "bwabw"
           ],
           [
             "search",
-            "w0049"
+            "bxabx"
           ],
           [
             "search",
-            "w0050"
+            "byaby"
           ],
           [
             "search",
-            "w0051"
+            "bzabz"
           ],
           [
             "search",
-            "w0052"
+            "caaca"
           ],
           [
             "search",
-            "w0053"
+            "cbacb"
           ],
           [
             "search",
-            "w0054"
+            "ccacc"
           ],
           [
             "search",
-            "w0055"
+            "cdacd"
           ],
           [
             "search",
-            "w0056"
+            "ceace"
           ],
           [
             "search",
-            "w0057"
+            "cfacf"
           ],
           [
             "search",
-            "w0058"
+            "cgacg"
           ],
           [
             "search",
-            "w0059"
+            "chach"
           ],
           [
             "search",
-            "w0060"
+            "ciaci"
           ],
           [
             "search",
-            "w0061"
+            "cjacj"
           ],
           [
             "search",
-            "w0062"
+            "ckack"
           ],
           [
             "search",
-            "w0063"
+            "clacl"
           ],
           [
             "search",
-            "w0064"
+            "cmacm"
           ],
           [
             "search",
-            "w0065"
+            "cnacn"
           ],
           [
             "search",
-            "w0066"
+            "coaco"
           ],
           [
             "search",
-            "w0067"
+            "cpacp"
           ],
           [
             "search",
-            "w0068"
+            "cqacq"
           ],
           [
             "search",
-            "w0069"
+            "cracr"
           ],
           [
             "search",
-            "w0070"
+            "csacs"
           ],
           [
             "search",
-            "w0071"
+            "ctact"
           ],
           [
             "search",
-            "w0072"
+            "cuacu"
           ],
           [
             "search",
-            "w0073"
+            "cvacv"
           ],
           [
             "search",
-            "w0074"
+            "cwacw"
           ],
           [
             "search",
-            "w0075"
+            "cxacx"
           ],
           [
             "search",
-            "w0076"
+            "cyacy"
           ],
           [
             "search",
-            "w0077"
+            "czacz"
           ],
           [
             "search",
-            "w0078"
+            "daada"
           ],
           [
             "search",
-            "w0079"
+            "dbadb"
           ],
           [
             "search",
-            "w0080"
+            "dcadc"
           ],
           [
             "search",
-            "w0081"
+            "ddadd"
           ],
           [
             "search",
-            "w0082"
+            "deade"
           ],
           [
             "search",
-            "w0083"
+            "dfadf"
           ],
           [
             "search",
-            "w0084"
+            "dgadg"
           ],
           [
             "search",
-            "w0085"
+            "dhadh"
           ],
           [
             "search",
-            "w0086"
+            "diadi"
           ],
           [
             "search",
-            "w0087"
+            "djadj"
           ],
           [
             "search",
-            "w0088"
+            "dkadk"
           ],
           [
             "search",
-            "w0089"
+            "dladl"
           ],
           [
             "search",
-            "w0090"
+            "dmadm"
           ],
           [
             "search",
-            "w0091"
+            "dnadn"
           ],
           [
             "search",
-            "w0092"
+            "doado"
           ],
           [
             "search",
-            "w0093"
+            "dpadp"
           ],
           [
             "search",
-            "w0094"
+            "dqadq"
           ],
           [
             "search",
-            "w0095"
+            "dradr"
           ],
           [
             "search",
-            "w0096"
+            "dsads"
           ],
           [
             "search",
-            "w0097"
+            "dtadt"
           ],
           [
             "search",
-            "w0098"
+            "duadu"
           ],
           [
             "search",
-            "w0099"
+            "dvadv"
           ],
           [
             "search",
-            "w0100"
+            "dwadw"
           ],
           [
             "search",
-            "w0101"
+            "dxadx"
           ],
           [
             "search",
-            "w0102"
+            "dyady"
           ],
           [
             "search",
-            "w0103"
+            "dzadz"
           ],
           [
             "search",
-            "w0104"
+            "eaaea"
           ],
           [
             "search",
-            "w0105"
+            "ebaeb"
           ],
           [
             "search",
-            "w0106"
+            "ecaec"
           ],
           [
             "search",
-            "w0107"
+            "edaed"
           ],
           [
             "search",
-            "w0108"
+            "eeaee"
           ],
           [
             "search",
-            "w0109"
+            "efaef"
           ],
           [
             "search",
-            "w0110"
+            "egaeg"
           ],
           [
             "search",
-            "w0111"
+            "ehaeh"
           ],
           [
             "search",
-            "w0112"
+            "eiaei"
           ],
           [
             "search",
-            "w0113"
+            "ejaej"
           ],
           [
             "search",
-            "w0114"
+            "ekaek"
           ],
           [
             "search",
-            "w0115"
+            "elael"
           ],
           [
             "search",
-            "w0116"
+            "emaem"
           ],
           [
             "search",
-            "w0117"
+            "enaen"
           ],
           [
             "search",
-            "w0118"
+            "eoaeo"
           ],
           [
             "search",
-            "w0119"
+            "epaep"
           ],
           [
             "search",
-            "w0120"
+            "eqaeq"
           ],
           [
             "search",
-            "w0121"
+            "eraer"
           ],
           [
             "search",
-            "w0122"
+            "esaes"
           ],
           [
             "search",
-            "w0123"
+            "etaet"
           ],
           [
             "search",
-            "w0124"
+            "euaeu"
           ],
           [
             "search",
-            "w0125"
+            "evaev"
           ],
           [
             "search",
-            "w0126"
+            "ewaew"
           ],
           [
             "search",
-            "w0127"
+            "exaex"
           ]
         ]
       },
@@ -1527,7 +1529,8 @@
       ],
       "tags": [
         "benchmark",
-        "scale-large"
+        "scale-large",
+        "exact-and-wildcard"
       ]
     }
   ]

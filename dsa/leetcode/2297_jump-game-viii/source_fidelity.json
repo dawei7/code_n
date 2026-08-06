@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2297",
+    "frontend_id": "2297",
+    "title_slug": "jump-game-viii",
+    "url": "https://leetcode.com/problems/jump-game-viii/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums = [3, 2, 4, 4, 1], costs = [3, 7, 6, 4, 2]`",
+        "output": "`8`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums = [0, 1, 2], costs = [1, 1, 1]`",
+        "output": "`2`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`nums = [7], costs = [100]`",
+        "output": "`0`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "56ebe2d6a42a3b361958a73fe30392020874c3acfdc0c9f192fa8a6d7ffe3e5d",
+      "reference/contract.md": "690934387cea73d49cf3f29ea5277399350cb5a051a92d6b9b7f53b67527b539",
+      "reference/examples.md": "0c625f234b55ff44fa1091e60c64d8fdc27abc6541134a7000a4f29ff19fbd62",
+      "reference/constraints.md": "0c4d6963ce86c1f254b185f52818acda87fddf342f710c9faf5cbef993f3bdef"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

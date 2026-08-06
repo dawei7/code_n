@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_480",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "space_complexity",
+        "severity": "material",
+        "reason": "The protected Accepted implementation's lazy-deletion heaps do not satisfy the branch's O(k) auxiliary-space claim in Python. Buried tombstones can remain in heap arrays indefinitely, and prune decrements Counter entries to zero without deleting their keys. A monotone n = 5000, k = 127 diagnostic ended with 5000 physical heap entries and 4873 delayed keys, demonstrating growth with n rather than k."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "improved",
+        "reason": "The inert candidate preserves the proven dual-heap partition and value-counted lazy deletion, deletes exhausted counter keys, and compacts both physical heaps whenever their combined length exceeds 2 * k. Compaction consumes exactly the pending multiplicities, heapifies the retained live window, and rebalances equal boundary values, making the O(k) auxiliary-space bound real without changing solve(nums, k)."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The candidate maintains small_size equal to large_size or one larger, keeps every valid lower-half value no greater than every valid upper-half value, and prunes delayed roots before reading a median. Equal occurrences are interchangeable, so consuming an equal tombstone from either heap during compaction preserves the window multiset; resetting exact physical sizes and rebalancing restores the side-size invariant."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 480 and its Python medianSlidingWindow(nums, k) interface. The candidate preserves the app-local solve(nums, k) contract, returns one float per window in left-to-right order, and uses floating-point division for even windows across the full signed 32-bit value range."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2064997042 are algorithmically identical: both insert relative to the lower root, track logical side sizes, lazily erase by value multiplicity, rebalance the two heaps, and derive the median from their roots. The candidate adds bounded cleanup around that same data flow and remains separate from both protected artifacts."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three authored workloads span array sizes 64 through 1024, keep k at half the array length, and exercise repeated updates on scrambled values. The exact candidate passed all 10 opaque correctness executions and all three performance tiers at 1.46x the calibrated reference runtime. A correct control that sorted every complete window passed every opaque output but failed only the performance verdict."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach explains logical versus physical heap sizes, lazy multiplicity, rebalancing, the monotone tombstone trap, and the 2 * k rebuild threshold. It accounts for O(k) rebuilds only after Omega(k) accumulated tombstones, proving O(n log k) amortized time and O(k) auxiliary space in agreement with the branch manifest."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the live public statement. It preserves the odd- and even-length median definitions, window movement, 1e-5 tolerance, both examples in order, the full first-example window trace, and both constraints without retaining provider prose or HTML."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "d3876c7f476c572e3ed03f99d4a2050d2af6c2c6151921c880f6b61e792e56f4",
+    "native_source_sha256": "07ea2fbb8d51705fc702c97a0117c16798fd14f8992435a82739f387dcd1236c",
+    "approach_sha256": "b080b6a50a4d4fa93bc2866533ca3accc6b14cf2c2dcf454ae647ff75bb59ca8",
+    "solution_variants_sha256": "1467695efd718c079ba64aa5e4277e17bf15702b6f15dd4df48a0e953633613f",
+    "complexity_evidence_sha256": "d6c04bbc2f2748b90344337506f6132a474099a501e8e652f05ce0f8a5568781",
+    "candidate_source_sha256": "71d4d48a451bd69e5ac8b7a87caab8f022b99bcb37bc6396059e570f3e678e46"
+  }
+}

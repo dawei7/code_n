@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1501",
+    "frontend_id": "1501",
+    "title_slug": "countries-you-can-safely-invest-in",
+    "url": "https://leetcode.com/problems/countries-you-can-safely-invest-in/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`Person = [[1, \"Rachel\", \"212-7484074\"], [2, \"Finley\", \"070-6980802\"], [3, \"Daniel\", \"051-8800922\"], [4, \"Bob\", \"051-1234567\"], [5, \"Stella\", \"051-9999999\"], [6, \"Jonathan\", \"972-1234567\"]], Country = [[\"Peru\", \"051\"], [\"Israel\", \"972\"], [\"Morocco\", \"212\"]], Calls = [[1, 2, 33], [2, 1, 4], [3, 4, 59], [3, 5, 102], [4, 3, 330], [4, 5, 5], [5, 4, 13], [5, 3, 3], [6, 1, 1], [1, 6, 7]]`",
+        "output": "`[[\"Peru\"]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`Person = [[1, \"A\", \"001-0000001\"], [2, \"B\", \"002-0000002\"], [3, \"C\", \"002-0000003\"]], Country = [[\"Alpha\", \"001\"], [\"Beta\", \"002\"]], Calls = [[1, 2, 10], [2, 3, 30]]`",
+        "output": "`[[\"Beta\"]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`Person = [[1, \"A\", \"001-0000001\"], [2, \"B\", \"002-0000002\"]], Country = [[\"Alpha\", \"001\"], [\"Beta\", \"002\"], [\"Unused\", \"003\"]], Calls = [[1, 2, 7]]`",
+        "output": "`[]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 4,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 7,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d9770ec4bd648b9e3db42339748603f8802879cacfe5d7e2f0b4027a5373db47",
+      "reference/contract.md": "be3867a9fd22760e458800975f7aa65b52b01fad325b0a3aba14468b1d65263a",
+      "reference/examples.md": "50ca301a08171c60bf3a5f6604c9eb56640a40276be494ce87e0d760103b9a44",
+      "reference/constraints.md": "8b8f8d491be5541cabcdb09c93586bab4a986d7051a1b744f472e64f1af809a8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_571",
+    "frontend_id": "571",
+    "title_slug": "find-median-given-frequency-of-numbers",
+    "url": "https://leetcode.com/problems/find-median-given-frequency-of-numbers/description/",
+    "paid_only": true,
+    "content_sha256": "75a20a8dbc9d6d0701c4cbf86a6aebdeb20d56bf8509de9b8d8eb2192234d66e",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": [
+      "numbers_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Numbers = [[0,7],[1,1],[2,3],[3,1]]",
+        "output": "[[0.0]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/numbers_table.md": "7ab5a1f13a54ca4b1e20605d78a344f1ad0b762e9f4e44dff8be4d3dce563e93",
+      "reference/description.md": "ac4abe93fe59c93df19a1feb2245cc5042fffb9707e8e6593d13c5b1b38a5d54",
+      "reference/contract.md": "f0dc3342975b87086ed564ccd96d270cefbe33b7742d61310659aed814eb0c04",
+      "reference/examples.md": "17935a495e1d7fc79c58ab1ec8b43b574e161dd748b7431499777755eaed5c2f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

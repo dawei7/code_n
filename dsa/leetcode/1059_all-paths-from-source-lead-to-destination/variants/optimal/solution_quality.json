@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1059",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is concise, conventional, and interview-ready. The names graph, state, stack, node, next_index, and neighbor clearly expose adjacency, three-color status, the explicit DFS frame, and edge traversal. next_index is a semantic compound describing the frame cursor, and there is no exact generic local named index."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The destination out-degree check enforces that a path ends upon reaching the required node. DFS starts only from source, so irrelevant unreachable components are ignored. An unseen reachable terminal is accepted exactly when it is destination; any other terminal supplies a forbidden path. Marking a node visiting while its outgoing edges are active makes an edge to another visiting node a reachable cycle, which permits a nonterminating path. A node becomes safe only after every outgoing neighbor has already been proved safe. Therefore a completed search establishes an acyclic reachable subgraph whose only terminal is destination, so at least one finite path reaches destination and every source path ends there."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1059, Python, and the native leadsToDestination(n, edges, source, destination) interface. Authenticated source evidence confirms a directed graph with 1 <= n <= 10^4, zero through 10^4 two-node edge rows, valid node indices, valid source and destination indices, and explicit self-loop and parallel-edge support. The answer is true exactly when at least one source-to-destination path exists, every path from source that reaches a node with no outgoing edges ends at destination, and the number of possible source-to-destination paths is finite. The app-local solve adapter preserves that Boolean contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2067451290 are algorithmically identical: both build the same adjacency lists, reject destination out-degree, use the same unseen/visiting/safe states, store the same node-and-next-neighbor DFS frames, reject wrong terminals and back edges, memoize completed nodes, and return true only after the source-reachable search completes. Their only structural differences are the required Solution.leadsToDestination wrapper, native typing syntax, and harmless whitespace."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden workloads grow directed chains from 32 through 512 nodes, a 16x span, and exercise adjacency construction plus full iterative traversal while remaining well inside the source bounds. The exact protected source passed all 12 visible correctness cases and all three performance tiers with relative growth exponent +0.00 and a 1.00x largest runtime ratio. An independently correct DFS that rescans the complete edge list to obtain every node's outgoing neighbors matched every correctness and benchmark output but failed only the calibrated complexity verdict with exponent +0.95 and a 76.36x largest ratio, cleanly distinguishing O(V+E) adjacency traversal from O(VE) edge-list rescanning."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the destination terminal check, reachable-only three-state DFS, cycle detection, wrong-terminal rejection, safe-subgraph memoization, and explicit-stack recursion avoidance. Its converse argument correctly combines acyclicity with the unique reachable terminal, and its edge-case discussion covers unreachable cycles, self-loops, parallel edges, source equal to destination, and wrong dead ends. The O(V+E) time and space claims match the protected implementation and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the directed-graph model, all three path-validity conditions, the exact source examples and explanation presence, all seven rendered constraints, all three hints, and the three source graph images as independently authored accessible Mermaid diagrams. It also records the live provider's two wording defects without propagating them: the row-shape line renders edges.length == 2 although the surrounding definition makes each edges[i] a pair, and Hint 3 says indegree where the terminal condition requires outdegree."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The authenticated live Premium statement directly verified exactly three examples in source order with exact n, edges, source, destination, and outputs; explanation presence on the first two examples only; all three path-validity conditions; seven rendered constraints; explicit self-loop and parallel-edge legality; three graph images; and three hints. source_fidelity.json binds those facts and every composed local section to the reviewed statement hash 562644c0cd4fa13b7fe9208e3f2136aa3a1465b417e0c781666c023740338169."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly three examples. Their exact n, edge arrays, source, destination, and Boolean outputs appear first in source order, covering a wrong reachable terminal, a reachable cycle, and converging acyclic paths to the destination.",
+      "All 12 ordinary correctness cases are visible samples or trials. They cover the minimum one-node graph, the maximum n value 10^4 and node index 9999, the maximum 10^4-edge bound with parallel two-node rows, zero edges, source equal to destination, distinct isolated source and destination nodes, and legal directed edge-pair shape.",
+      "Material behavior includes explicit absence of any source-to-destination path, a destination with outgoing edges, reachable wrong terminals, converging paths, reachable and unreachable cycles, a self-loop, parallel edges, a deep invalid branch, zero-length source-equals-destination behavior, and finite-path enforcement.",
+      "An independent oracle first computes the source-reachable subgraph, requires destination reachability and destination-only reachable terminals, then uses Kahn's algorithm with parallel-edge-aware indegrees to reject every reachable cycle. It recomputed authored expectations without using DFS colors or the protected explicit stack.",
+      "The oracle, protected app source, and immutable native Solution agreed on all 15 authored correctness-plus-benchmark inputs, 4674 exhaustive simple directed graphs with every source/destination pair through three nodes, 5000 deterministic random multigraphs with up to nine nodes, and explicit legal-bound databases including a 10000-node chain and 10000 parallel edges.",
+      "The legal maximum-edge correctness case originally crossed the generic 100000-line execution guard by one traced event despite terminating quickly. A challenge-specific 1000000-step safety allowance now lets the accepted linear traversal exercise that source boundary, with an API regression proving the case passes rather than being mislabeled as nonterminating.",
+      "The 32-, 128-, and 512-node chain workloads remain hidden and performance-only, use size consistently as V with E = V - 1, span 16x, and force full source-to-destination traversal. A correct O(VE) edge-rescan DFS passed every output and failed only scaling against the O(V+E) protected solution."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "6999371e88124e353fa590d1201328639b17a9fb45dcfbe1ae0ca29931a386b9",
+    "native_source_sha256": "35ad2b7742878fc150cf1cc91d46f739f4ac3bafba64926166bd409056da184f",
+    "approach_sha256": "87af98900ec3046bf7a38d4604b53abb1adb6d2c7921f59fed7e47b084c2a263",
+    "solution_variants_sha256": "961165fbb37b10c6caaa61d837918ec0c928e3fa190f6fdf30d17ef823d33551",
+    "complexity_evidence_sha256": "7fd937ec0f209ac2320607c19d636cd362c4aa8b0936621598fccb933b246cd7",
+    "cases_sha256": "dd1f86c5ca1e9ec0aa73ccb0ec8e9df3de18898914a11f7367e3d83428053fdc"
+  }
+}

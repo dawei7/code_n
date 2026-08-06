@@ -1,34 +1,25 @@
 ## General
 **Total net fuel decides whether any circuit can exist**
 
-Let `gain[i] = gas[i] - cost[i]`. Completing the circuit consumes and receives every station amount exactly once, regardless of start. If `sum(gain) < 0`, final fuel would be negative from every start, so return `-1`. A nonnegative total is necessary and, together with the reset argument, sufficient.
+At station $i$, define the net change as `gas[i] - cost[i]`. A complete circuit visits every station once, so its final tank balance is the sum of all net changes regardless of the chosen start. A negative total makes every start impossible.
 
-**One failed candidate eliminates its whole scanned prefix**
+**A failed candidate eliminates the whole interval just scanned**
 
-Scan gains while maintaining fuel accumulated from `candidate`. If it first becomes negative after station `i`, the candidate fails. Every prefix from candidate through a station before `i` was nonnegative before this first failure. Starting at any such later station discards that nonnegative amount, leaving fuel to `i` no greater than the already-negative total. Thus every start in `[candidate,i]` fails.
+Scan from left to right while `tank` holds the accumulated net fuel since `start`. Suppose it first becomes negative at station $i$. Every proper prefix from `start` through a station before $i$ had nonnegative balance; beginning at any such later station would discard that nonnegative prefix and therefore leave no more fuel upon reaching $i$. Thus every start from `start` through $i$ is impossible, and the next possible candidate is $i + 1$.
 
-Set the next candidate to $i + 1$ and reset the local tank to zero. Keep a separate global total so discarded deficits still participate in final feasibility.
+The candidate resets `tank` to zero after such a failure but keeps `total`, because the discarded deficit still determines whether the entire circuit has enough fuel. The candidate implementation performs this update directly while enumerating paired gas and cost values.
 
-**Candidate and total track different questions**
+**The final surviving candidate completes the wraparound segment**
 
-The current candidate can traverse every processed edge since its last reset without negative fuel, and every earlier index has been eliminated. The local tank measures feasibility from that candidate; the total gain measures feasibility of the complete circle.
-
-**Trace an initial deficit block and wraparound surplus**
-
-Starting candidates `0`, `1`, and `2` fail within the initial deficit region. Resetting selects station `3`; its surplus carries the car through stations `4`, `0`, `1`, and `2`.
-
-**One deficit eliminates an entire candidate interval**
-
-Suppose a candidate first reaches negative tank at station `i`. Before that failure, every prefix from the candidate had nonnegative balance. Starting at any intermediate station discards such a nonnegative prefix, leaving no more fuel for the remaining trip to `i`, so every start in that interval also fails.
-
-Resetting to $i + 1$ therefore skips only impossible candidates. If the total circuit balance is negative, no start can succeed. Otherwise the final noneliminated candidate's forward segment plus the global surplus covers the wraparound segment, so it completes the circuit.
+After the scan, every earlier start has been eliminated and the local balance from the final `start` through station $n - 1$ never becomes negative. If `total` is nonnegative, the surplus on that suffix is large enough to absorb the net balance of the skipped prefix, so the candidate can also traverse the wraparound segment. Therefore return `start` exactly when `total >= 0`; otherwise return `-1`.
 
 ## Complexity detail
-Each of `n` stations is processed once, giving $O(n)$ time. Total, tank, and candidate are scalar state, so space is $O(1)$.
+Each of the $n$ stations is processed once, giving $O(n)$ time. `total`, `tank`, `start`, and the loop values are scalar state, so auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
-- **Simulate from every station:** can take $O(n^2)$ time.
-- **Choose the station with most gas:** ignores outgoing costs and accumulated deficits.
-- **Track every prefix in an array:** works but uses unnecessary $O(n)$ storage.
-- A single station succeeds exactly when its gas covers its outgoing cost. Zero total gain may still have a valid candidate.
-- The platform guarantees uniqueness when a solution exists; the greedy proof finds the final noneliminated valid start.
+- **Simulate from every station:** is straightforward but can require $O(n^2)$ time.
+- **Choose the station with the most gas:** ignores outgoing costs and accumulated deficits.
+- **Store all prefix sums:** can recover a valid rotation but uses unnecessary $O(n)$ space.
+- A single station succeeds exactly when its gas covers its outgoing cost.
+- Zero total gain can still produce a valid circuit; only a negative total rules every start out.
+- The platform guarantees that a feasible start is unique, so returning the final noneliminated candidate is unambiguous.

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1543",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution normalizes product_name using LOWER(TRIM(product_name)) and extracts YYYY-MM month from sale_date using strftime('%Y-%m', sale_date). It groups by both normalized expressions, calculates COUNT(*) as total, and orders by product_name ASC, sale_date ASC. The query runs in O(r log r) time and O(g) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Applying TRIM before LOWER eliminates leading/trailing whitespace before lowercasing, ensuring case and whitespace variants map to the same product group. Formatting sale_date as YYYY-MM correctly aggregates sales by calendar month."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Normalization is O(1) per row for r rows. Grouping and sorting g distinct groups takes O(r log r) upper bound time and O(g) auxiliary aggregation space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts Sales table and produces columns product_name, sale_date (YYYY-MM format), and total with correct ascending sort order."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details string trimming/lowercasing order, date formatting (YYYY-MM), GROUP BY aggregation, and O(r log r) time / O(g) space bounds. Alternatives and edge cases cover pre-normalized computed columns, correlated count subquery overhead, whitespace removal boundaries, case-sensitivity rules, multi-month separation, zero-padded month formatting, and product-first sorting priority."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL (SQLite strftime) and native SQL (MySQL DATE_FORMAT) solutions both execute the identical LOWER TRIM GROUP BY aggregation logic with SHA-256 digests 7746da68e89f66086bbca2e83122fb83baca1a8f924578abf854ea3825c2dcb9 and 977abbfba65aeb7def912d7830916a8a7b15de0a615a2694ae350d07ed97b324. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Sales table interface, three examples, three constraints, and 3 local tables. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "7746da68e89f66086bbca2e83122fb83baca1a8f924578abf854ea3825c2dcb9",
+    "native_source_sha256": "977abbfba65aeb7def912d7830916a8a7b15de0a615a2694ae350d07ed97b324",
+    "approach_sha256": "36d2d62d35e45d7a59758dfb613f2e0d3a1d9eb680c71d23d77948c0576fec29",
+    "solution_variants_sha256": "cacda9ad50e9be65766e03fd5015bde11c2c0d05be1d47a66587d33153c34fc9",
+    "complexity_evidence_sha256": "2ac8d7541dfe1de7a89954fc4f35d66a4f863b9e2d4d0748ea82abd548fe8d22"
+  }
+}

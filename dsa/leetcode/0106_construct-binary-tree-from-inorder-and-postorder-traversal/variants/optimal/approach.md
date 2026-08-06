@@ -1,11 +1,11 @@
 ## General
 **Inorder still provides the subtree boundaries**
 
-Map every distinct value to its unique inorder index. Once a root is known, that index divides the current interval into exactly the keys of its left and right subtrees, with no scanning or copied slices.
+Map every distinct value to its unique inorder position in `position`. Once a root `x` is known, `middle = position[x]` divides the current interval into exactly the keys of its left and right subtrees, with no scanning or copied slices.
 
 **Reverse postorder exposes root, then right subtree, then left**
 
-Postorder is left-right-root. A cursor moving backward sees root-right-left. Consume the current postorder value as the root, recursively build its right inorder interval, and only then build its left interval. Reversing this recursive order would consume right-subtree values while trying to place them in the left interval.
+Postorder is left-right-root. The shared cursor `i` moves backward and sees root-right-left. Consume `postorder[i]` as the root, recursively build its right inorder interval, and only then build its left interval. Reversing this recursive order would consume right-subtree values while trying to place them in the left interval.
 
 An empty interval returns null without moving the shared cursor.
 
@@ -30,5 +30,5 @@ Building the index map takes $O(n)$ time, and every node is created once with co
 - **Search inorder for each root:** becomes $O(n^2)$ on skewed inputs.
 - **Copy array slices recursively:** adds repeated allocation and can become quadratic.
 - **Build left before right while reading backward:** consumes nodes in the wrong order and constructs an incorrect tree.
-- Empty traversals produce an empty tree. Distinct values make each inorder split unique.
+- A one-node input builds the root with two empty child intervals. Distinct values make each inorder split unique.
 - The approach assumes both traversals describe the same valid tree; input consistency validation is outside the stated contract.

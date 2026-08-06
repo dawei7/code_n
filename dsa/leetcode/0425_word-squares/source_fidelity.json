@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_425",
+    "frontend_id": "425",
+    "title_slug": "word-squares",
+    "url": "https://leetcode.com/problems/word-squares/description/",
+    "paid_only": true,
+    "content_sha256": "0bc8a3b5b8d6041868dcbb080cde21a55a768bbe13742b5a830c423aecca63fc",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "words = [\"area\",\"lead\",\"wall\",\"lady\",\"ball\"]",
+        "output": "[[\"ball\",\"area\",\"lead\",\"lady\"],[\"wall\",\"area\",\"lead\",\"lady\"]]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "words = [\"abat\",\"baba\",\"atan\",\"atal\"]",
+        "output": "[[\"baba\",\"abat\",\"baba\",\"atal\"],[\"baba\",\"abat\",\"baba\",\"atan\"]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "21dd1b50358195913fa39ebb07b7862ff45482c2d16b0d3efd2843c5c55c9498",
+      "reference/contract.md": "e72139fc37fb5a6c0aa00347ebce43485a75fe05f2c47d1f040b9f82e7f3dc51",
+      "reference/examples.md": "e5411afa922967b738a1b273bbe3c6bf7ed6a6359eed256e46265445967fa37b",
+      "reference/constraints.md": "aa5672f578c18b9a48aa64d933f39a608a1a6b62e4d51636eeccedddef7ee22e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

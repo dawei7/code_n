@@ -4,75 +4,129 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: horizontal and vertical dominoes",
+      "name": "sample: L islands match after a half-turn",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1,1,0,1],[0,0,0,1]]},
+      "input": {"grid": [[1, 1, 0, 0, 0], [1, 0, 0, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 1, 1]]},
       "expected": 1,
-      "tags": ["sample", "rotation"]
+      "tags": ["sample", "rotation", "source-example"]
     },
     {
       "id": "sample-2",
-      "name": "sample: reflected corner shapes",
+      "name": "sample: two congruent squares",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1,0,0,1,1],[1,1,0,0,1]]},
+      "input": {"grid": [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 0, 1, 1], [0, 0, 0, 1, 1]]},
       "expected": 1,
-      "tags": ["sample", "reflection"]
+      "tags": ["sample", "translation", "source-example"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: line and corner differ",
-      "kind": "sample",
+      "id": "trial-domino-rotation",
+      "name": "horizontal and vertical dominoes match",
+      "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1,1,1,0,1,0],[0,0,0,0,1,1]]},
+      "input": {"grid": [[1, 1, 0, 1], [0, 0, 0, 1]]},
+      "expected": 1,
+      "tags": ["trial", "rotation"]
+    },
+    {
+      "id": "trial-corner-reflection",
+      "name": "corner shapes match after a reflection",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 0, 0, 1, 1], [1, 1, 0, 0, 1]]},
+      "expected": 1,
+      "tags": ["trial", "reflection"]
+    },
+    {
+      "id": "trial-noncongruent-shapes",
+      "name": "a line and a corner remain distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1, 1, 0, 1, 0], [0, 0, 0, 0, 1, 1]]},
       "expected": 2,
-      "tags": ["sample", "noncongruent"]
+      "tags": ["trial", "same-area", "noncongruent"]
     },
     {
-      "id": "trial-1",
-      "name": "trial: repeated isolated cells",
+      "id": "trial-isolated-cells",
+      "name": "repeated isolated cells share one shape",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1,0,1],[0,0,0],[1,0,1]]},
+      "input": {"grid": [[1, 0, 1], [0, 0, 0], [1, 0, 1]]},
       "expected": 1,
-      "tags": ["trial", "single-cell"]
+      "tags": ["trial", "single-cell", "translation"]
     },
     {
-      "id": "trial-2",
-      "name": "trial: all water",
+      "id": "trial-all-water",
+      "name": "an all-water grid has no islands",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0,0,0],[0,0,0]]},
+      "input": {"grid": [[0, 0, 0], [0, 0, 0]]},
       "expected": 0,
       "tags": ["trial", "no-islands"]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: square and four-cell line",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1,1,0,1,1,1,1],[1,1,0,0,0,0,0]]},
+      "id": "trial-square-and-line",
+      "name": "equal-area square and line are distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1, 0, 1, 1, 1, 1], [1, 1, 0, 0, 0, 0, 0]]},
       "expected": 2,
-      "tags": ["hidden", "same-area", "noncongruent"]
+      "tags": ["trial", "same-area", "noncongruent"]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: one irregular island",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1,1,0],[0,1,1],[0,0,1]]},
+      "id": "trial-irregular-island",
+      "name": "one irregular component contributes one shape",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1, 0], [0, 1, 1], [0, 0, 1]]},
       "expected": 1,
-      "tags": ["hidden", "single-component"]
+      "tags": ["trial", "single-component", "irregular"]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: rotated T shapes",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1,1,1,0,0,1,0],[0,1,0,0,0,1,1],[0,0,0,0,0,1,0]]},
+      "id": "trial-rotated-t-shapes",
+      "name": "branched T shapes match after rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1, 1, 0, 0, 1, 0], [0, 1, 0, 0, 0, 1, 1], [0, 0, 0, 0, 0, 1, 0]]},
       "expected": 1,
-      "tags": ["hidden", "rotation", "branched"]
+      "tags": ["trial", "rotation", "branched"]
+    },
+    {
+      "id": "trial-single-land",
+      "name": "minimum grid containing land",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1]]},
+      "expected": 1,
+      "tags": ["trial", "minimum-dimensions", "single-cell"]
+    },
+    {
+      "id": "trial-single-water",
+      "name": "minimum all-water grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0]]},
+      "expected": 0,
+      "tags": ["trial", "minimum-dimensions", "no-islands"]
+    },
+    {
+      "id": "trial-diagonal-separation",
+      "name": "diagonal land cells are separate but congruent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 0], [0, 1]]},
+      "expected": 1,
+      "tags": ["trial", "four-directional", "diagonal-separation"]
+    },
+    {
+      "id": "trial-mirrored-f-shapes",
+      "name": "chiral F shapes match only when reflection is allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0, 1, 1, 0, 1, 1, 0], [1, 1, 0, 0, 0, 1, 1], [0, 1, 0, 0, 0, 1, 0]]},
+      "expected": 1,
+      "tags": ["trial", "reflection", "chiral"]
     }
   ]
 }

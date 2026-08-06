@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1271",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected implementation is direct, conventional, and expert-interview ready. `value`, `digit`, `characters`, and `letters` expose the base-conversion state without unnecessary abstraction; the `divmod` loop states one hexadecimal-digit step exactly; and each valid mapping or invalid early return is visible at the decision point. No material clarity, correctness, or complexity improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Each `divmod(value, 16)` remainder is the next hexadecimal digit from right to left, while the quotient contains precisely the unprocessed prefix. Remainders 0 and 1 map to O and I, remainders 10 through 15 map to A through F, and remainders 2 through 9 prove the representation invalid. Reversing the accumulated valid characters restores most-significant-first order, so the method returns exactly the required Hexspeak string or ERROR."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent oracle used Python's uppercase hexadecimal formatter followed by the two prescribed substitutions and a valid-alphabet check. It, the protected app source, the immutable native source, and a separately written positional-subtraction converter agreed on all nine visible cases and 46,362 distinct legal values."
+      },
+      {
+        "category": "randomized_and_boundary_coverage",
+        "severity": "verified",
+        "reason": "Validation exhaustively covered 1 through 4096, hexadecimal powers and their preceding values through 16^9, all 32,767 pronounceable hexadecimal forms of one through five digits, both 10^12 - 1 and 10^12, and 10,000 deterministic random legal values generated with seed 1271. The combined set contained 32,781 valid representations and 13,581 ERROR results."
+      },
+      {
+        "category": "complexity_certificate",
+        "severity": "verified",
+        "reason": "The protected loop processes one hexadecimal digit per iteration, giving O(log n) time and O(log n) output-buffer space. The unchanged verified bounded-domain certificate correctly proves that n <= 10^12 limits every legal input to at most ten hexadecimal digits and binds that proof to an independent boundary/property regression. The focused certificate regression passed, so no benchmark or certificate change was warranted."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "The two authenticated source examples remain first and exact. The invented 2827 example is correctly presented as an additional example and a trial, and four hidden real rows were converted to visible trials without changing their inputs or expected results. All nine ordinary cases are now visible samples or trials and cover the minimum, maximum, every hexadecimal letter, zero and one substitution, powers of sixteen, and forbidden digits in multiple positions."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1271, Python as the app language, and Solution.toHexspeak as the verified native entrypoint. Fresh authenticated evidence confirms a decimal string input, uppercase hexadecimal conversion, the exact valid alphabet, ERROR behavior, length 1 through 12, no leading zeros, and integer range 1 through 10^12."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app and immutable Accepted native sources have identical conversion state, mapping branches, invalid early return, reversal, and result construction; their only structural difference is the required app function versus LeetCode class-method wrapper. submission.json remains bound to verified submission 2068259331, and both sources and the manifest remain unchanged."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The complete Approach matches the protected implementation exactly. It derives the least-significant-first divmod traversal, all valid mappings, forbidden-digit rejection, final reversal, soundness and completeness, O(log n) bounds, the ten-digit certificate limit, plausible alternatives, and all material boundaries without leaking unrelated abstractions."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the complete conversion rule, exact valid alphabet, requested return behavior, both authenticated examples in source order, the first example's explanation, all three constraints, and all three source hints. The useful 2827 example is separately labelled as additional rather than being misrepresented as a third source example."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples, one explanation, three constraints, three hints, and no source tables, images, diagrams, notes, or follow-up. source_fidelity.json binds all five modular Reference files to live-content SHA-256 5608b100e2a846c99d7f71038f2bd24a54642a2322d62af157da0dc4519cd12a and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples preserve both authenticated source examples in exact order, with num = 257 producing IOI and num = 3 producing ERROR.",
+      "Nine visible ordinary fixtures cover n = 1, the maximum n = 10^12, valid single-letter and multi-letter forms, internal and trailing zero mappings, hexadecimal one mappings, powers of sixteen, and forbidden digits at distinct positions.",
+      "The protected and immutable native sources matched two independent converters on all fixed cases and 46,362 distinct legal values, including exhaustive, constructed pronounceable, boundary, and seeded-random inputs.",
+      "The package correctly uses a verified bounded-domain certificate instead of hidden benchmark tiers; no performance workload appears in cases.json and no benchmark sidecar is present."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "93b191e9f023efeecfee414b10bc7edd03c4b7bdbeadfb391c340c72695874d8",
+    "native_source_sha256": "6b1f3bc4f43a4217cb61bbb5a22b2e18bbcea3418202862a0911ee7500e0a647",
+    "approach_sha256": "47df8cd428d6866b1bc3324bb88173c1f481be69205b81f369f568c73065eebf",
+    "solution_variants_sha256": "03daf4025e303dfc4740dc7997274180a084ffe39154bfa21b29884b25df3026",
+    "complexity_evidence_sha256": "67fcb4dc4ae593125b36345fa7e6bbe7b4a4a1429e68cdada948a02ab76967c0",
+    "cases_sha256": "082c33b7399aef8272e16d863dc00ba15f327d36b8524a2cb3676140e82e7dc4"
+  }
+}

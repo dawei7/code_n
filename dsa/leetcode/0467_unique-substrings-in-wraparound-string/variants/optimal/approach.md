@@ -1,24 +1,25 @@
 ## General
+
 **Track the current cyclic run**
 
-Scan `p` from left to right. If the current letter follows the previous one modulo 26, extend the valid run; otherwise reset its length to one. The modulo test treats `z -> a` as consecutive alongside ordinary alphabet neighbors.
+Scan `p` from left to right. At position `i`, compare the current character with `p[i - 1]`. Their character-code difference modulo 26 equals one exactly when the current character is the cyclic successor of the previous one, including the `z`-to-`a` transition. Extend `run` in that case; otherwise reset it to one because the current character alone is still valid.
 
-**Summarize substrings by their ending letter**
+**Summarize valid substrings by their final letter**
 
-For each of the 26 letters, store the longest valid run seen that ends with that letter. A run of length `L` ending in letter `c` contributes exactly one valid substring of each length `1` through `L` ending in `c`.
+For each lowercase letter, `longest` stores the greatest valid run length seen with that ending letter. If a valid run of length $L$ ends in a letter, its suffixes contribute one qualifying substring of every length from $1$ through $L$ with that same final letter.
 
-**Why only the maximum is needed**
-
-In the infinite wraparound sequence, an ending letter and a length uniquely determine the substring: preceding characters are forced by cyclic order. Therefore a shorter run ending at the same letter contributes only strings already included by a longer run. Taking the maximum avoids duplicates, and summing the 26 maxima counts every distinct valid substring exactly once by its final letter.
+An ending letter and length uniquely determine the substring in `base`, because every preceding character is forced by cyclic alphabet order. Consequently, a shorter run ending at the same letter adds no text that the longest run did not already include. Updating only the maximum removes duplicates, and summing the 26 maxima counts every distinct qualifying substring exactly once.
 
 ## Complexity detail
-The scan performs constant work for each of `n` characters, giving $O(n)$ time. The table has exactly 26 entries, so auxiliary space is $O(1)$ relative to input length.
+
+Let $n = \lvert\texttt{p}\rvert$. The candidate performs constant work for each character, so it runs in $O(n)$ time. `longest` always has 26 entries and every other value is scalar, giving $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Enumerate valid substrings in a set:** is direct but creates quadratically many substring occurrences and stores many strings.
-- **Dictionary by ending character:** expresses the same dynamic program with $O(26)$ keys instead of an array.
-- **Suffix trie:** deduplicates substrings but is far larger than needed because cyclic order makes characters deterministic.
-- **Empty string:** contains no nonempty substring and returns zero.
-- **Repeated occurrence:** only a longer run for the same ending letter can add new strings.
-- **`z` followed by `a`:** must extend the run through modular adjacency.
-- **Broken adjacency:** reset to length one because the current character itself remains a valid substring.
+
+- **Materialize valid substrings in a set:** is direct, but enumerates quadratically many occurrences and repeatedly constructs substring objects on a long cyclic run.
+- **Dictionary keyed by ending letter:** implements the same recurrence with at most 26 keys, but an array expresses the fixed alphabet more directly.
+- **Suffix trie:** deduplicates substring texts but stores far more structure than cyclic determinism requires.
+- **Single character:** starts a run of one and contributes exactly that character.
+- **Repeated occurrence:** changes the answer only when it creates a longer run for its ending letter.
+- **`z` followed by `a`:** extends the run because adjacency is computed modulo 26.
+- **Broken adjacency:** resets the run to one rather than zero because the current character remains a valid substring.

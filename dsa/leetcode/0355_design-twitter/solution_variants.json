@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Twitter and meets the required complexity bound.",
+      "summary": "Retains ten posts per user and heap-merges the newest entries from the requested feed sources.",
       "time_complexity": "O(1) / O(F + 10 \\log F)",
       "space_complexity": "O(U + E)"
     }

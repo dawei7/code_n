@@ -4,8 +4,87 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two of four pairs accepted",
+      "name": "sample: source overall acceptance rate",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 1,
+              "send_to_id": 2,
+              "request_date": "2016/06/01"
+            },
+            {
+              "sender_id": 1,
+              "send_to_id": 3,
+              "request_date": "2016/06/01"
+            },
+            {
+              "sender_id": 1,
+              "send_to_id": 4,
+              "request_date": "2016/06/01"
+            },
+            {
+              "sender_id": 2,
+              "send_to_id": 3,
+              "request_date": "2016/06/02"
+            },
+            {
+              "sender_id": 3,
+              "send_to_id": 4,
+              "request_date": "2016/06/09"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 2,
+              "accept_date": "2016/06/03"
+            },
+            {
+              "requester_id": 1,
+              "accepter_id": 3,
+              "accept_date": "2016/06/08"
+            },
+            {
+              "requester_id": 2,
+              "accepter_id": 3,
+              "accept_date": "2016/06/08"
+            },
+            {
+              "requester_id": 3,
+              "accepter_id": 4,
+              "accept_date": "2016/06/09"
+            },
+            {
+              "requester_id": 3,
+              "accepter_id": 4,
+              "accept_date": "2016/06/10"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            0.8
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "distinct-pairs"
+      ]
+    },
+    {
+      "id": "trial-two-of-four",
+      "name": "trial: two of four pairs accepted",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -56,14 +135,14 @@
         ]
       },
       "tags": [
-        "sample",
+        "trial",
         "ratio"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: duplicate requests count once",
-      "kind": "sample",
+      "id": "trial-duplicate-requests",
+      "name": "trial: duplicate requests count once",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -94,19 +173,19 @@
         ],
         "rows": [
           [
-            1
+            1.0
           ]
         ]
       },
       "tags": [
-        "sample",
-        "duplicates"
+        "trial",
+        "duplicate-requests"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: round two thirds",
-      "kind": "sample",
+      "id": "trial-round-two-thirds",
+      "name": "trial: round two thirds",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -152,12 +231,12 @@
         ]
       },
       "tags": [
-        "sample",
-        "ratio"
+        "trial",
+        "rounding"
       ]
     },
     {
-      "id": "trial-1",
+      "id": "trial-one-of-four",
       "name": "trial: one of four accepted",
       "kind": "trial",
       "visible": true,
@@ -206,11 +285,11 @@
       },
       "tags": [
         "trial",
-        "ratio"
+        "fractional-rate"
       ]
     },
     {
-      "id": "trial-2",
+      "id": "trial-directed-orientation",
       "name": "trial: directed pair orientation matters",
       "kind": "trial",
       "visible": true,
@@ -249,14 +328,14 @@
       },
       "tags": [
         "trial",
-        "ratio"
+        "directed-pairs"
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: duplicate events in both tables",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates-both-tables",
+      "name": "trial: duplicate events in both tables",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "FriendRequest": [
@@ -316,15 +395,16 @@
         ]
       },
       "tags": [
-        "real",
-        "duplicates"
+        "trial",
+        "duplicates",
+        "dates-ignored"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: round three fifths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-round-three-fifths",
+      "name": "trial: round three fifths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "FriendRequest": [
@@ -384,8 +464,92 @@
         ]
       },
       "tags": [
-        "real",
-        "ratio"
+        "trial",
+        "rounding"
+      ]
+    },
+    {
+      "id": "trial-no-requests",
+      "name": "trial: no requests returns zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "FriendRequest": {
+            "columns": [
+              "sender_id",
+              "send_to_id",
+              "request_date"
+            ],
+            "rows": []
+          },
+          "RequestAccepted": [
+            {
+              "requester_id": 9,
+              "accepter_id": 10,
+              "accept_date": "2024-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            0.0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "empty-request-table",
+        "zero-denominator"
+      ]
+    },
+    {
+      "id": "trial-accepted-without-request",
+      "name": "trial: accepted pair need not appear in requests",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 1,
+              "send_to_id": 2,
+              "request_date": "2024-02-01"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 2,
+              "accept_date": "2024-02-02"
+            },
+            {
+              "requester_id": 9,
+              "accepter_id": 10,
+              "accept_date": "2024-02-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            2.0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "independent-numerator",
+        "rate-above-one"
       ]
     }
   ]

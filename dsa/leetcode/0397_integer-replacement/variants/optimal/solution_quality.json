@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_397",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the conventional greedy bit solution. It halves even values, uses the low two bits to choose the odd adjustment, handles three explicitly, and tracks only the current value and step count with concise interview-quality names. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 397 and its Python integerReplacement surface. The Reference preserves both legal parity-dependent operations, the minimum-operation objective, all three source examples in order with both supplied explanations complete, and the full positive 32-bit input constraint."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064700916. Its parity branch, low-two-bit test, special handling of three, updates, and step count are exactly the protected app-local algorithm apart from the LeetCode wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 5-, 15-, and 29-bit alternating-value tiers span 5.8x, repeatedly exercise odd decisions, and remain within the signed 32-bit bound. The current source passes all 11 executions at -0.00 relative growth and 1.01x; correct explicit bit reconstruction passes every benchmark output but fails only scaling at +0.60 and 3.54x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach derives the low-bit greedy choices and the special case for three. Its complexity proof now accurately bounds one odd adjustment between halvings and the single possible leading-bit carry, rather than claiming every two operations always reduce bit length, and establishes O(log n) time with O(1) space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including the parity-dependent replacement rules, minimum-step objective, all three source examples in order, both source explanations, and the exact input range."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "cd7b6d5da6d50b84410cbe1f666c379c8beb57e332cbe894ea7b4da28200fec9",
+    "native_source_sha256": "ce66c63d42a95184fbc8e2e62f7b156048be724fff0778df2ed48e51a14fd004",
+    "approach_sha256": "a180c8bda54ad4a0c14e798a8485693f93e93947704cd9b9469384900cc56b47",
+    "solution_variants_sha256": "1ea14c05e79cb602ab8c1519227e2b7e7c5072aef389b7f3114b7af936ba60d3",
+    "complexity_evidence_sha256": "db7bdc6d629716f1adb1ec4eb8552213b3f4c4138a3a7199928e3ab3f457ae8c"
+  }
+}

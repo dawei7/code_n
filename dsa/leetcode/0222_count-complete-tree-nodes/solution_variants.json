@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Complete Tree Nodes and meets the required complexity bound.",
-      "time_complexity": "O(\\\\log^{2} n)",
-      "space_complexity": "O(\\log n)"
+      "summary": "Iteratively counts one perfect child subtree per level and descends only into the incomplete side.",
+      "time_complexity": "O(\\log^{2} n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

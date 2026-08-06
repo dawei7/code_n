@@ -1,32 +1,17 @@
 ## General
-**XOR treats each bit position as parity**
+**XOR records parity independently at every bit position**
 
-At each bit position, XOR records whether the number of set occurrences is odd. It is associative and commutative, so input order and conceptual pair grouping do not matter. Equal integers cancel because $x \oplus x = 0$, and zero is the identity.
+Fold the array into `answer` with XOR. The operation is associative and commutative, so values may be regrouped conceptually without changing the result. Each pair cancels because $x \oplus x = 0$, and zero is the identity.
 
-**The accumulator contains exactly the odd-frequency prefix values**
-
-After processing any prefix, the accumulator is the XOR of values with odd occurrence parity in that prefix. Encountering a value toggles all its bit contributions; the second identical occurrence toggles them back off.
-
-**The frequency guarantee leaves one uncancelled value**
-
-At the end, every paired value has even count and vanishes. Only the single value has odd count one, so it remains in the accumulator.
-
-**Trace cancellation independent of ordering**
-
-Reordering conceptually groups $1 \oplus 1$ and $2 \oplus 2$ into zeros; the result is $4 \oplus 0 \oplus 0 = 4$.
-
-**Pair cancellation leaves the unmatched bit pattern**
-
-XOR is associative and commutative, so input order may be regrouped conceptually. Every duplicated value contributes $x \oplus x = 0$, and zero changes no accumulator.
-
-The frequency guarantee leaves exactly one value without a partner. All pairs cancel independently, so the final accumulator is precisely that unmatched value's bit pattern.
+After any processed prefix, `answer` is the XOR of exactly those bit patterns whose occurrence parity in that prefix is odd. Reading another value toggles its bits; reading its equal partner toggles the same bits back off. Once the full array has been processed, every duplicated value has disappeared and the promised singleton is the only remaining bit pattern. This reasoning also covers negative integers because two equal signed values have identical representations and therefore cancel.
 
 ## Complexity detail
-One XOR per input gives $O(n)$ time. A single integer accumulator gives $O(1)$ space.
+The fold performs one XOR for each of the $n$ input values, giving $O(n)$ time. `answer` is the only algorithmic state, so auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
-- **Frequency map:** is linear time but uses $O(n)$ space.
-- **Sort then compare pairs:** uses $O(n \log n)$ time.
-- **Arithmetic set formula:** risks overflow in fixed-width languages.
-- Negative integers work under the language's fixed-width or signed bitwise semantics because identical bit patterns still cancel.
-- The method depends on every nonanswer value appearing exactly twice; different repetition counts require other bit-counting techniques.
+- **Frequency map:** also takes $O(n)$ time but violates the constant-extra-space requirement.
+- **Sort and compare adjacent pairs:** uses $O(n \log n)$ time and may mutate the input.
+- **Arithmetic set formula:** needs extra storage and can overflow in fixed-width languages.
+- A one-element array returns that element directly through the same fold.
+- Negative values require no special handling because equal bit patterns still cancel.
+- The cancellation proof relies on every nonsingleton appearing exactly twice; other repetition counts require a different bit-counting method.

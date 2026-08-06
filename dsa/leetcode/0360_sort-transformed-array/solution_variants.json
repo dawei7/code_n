@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sort Transformed Array and meets the required complexity bound.",
+      "summary": "Compares transformed endpoints and fills the output from the parabola's current extreme inward.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

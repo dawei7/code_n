@@ -5,7 +5,7 @@ The requirement “every present character occurs at least `k` times” is not d
 
 **Track distinct and sufficiently frequent characters separately**
 
-For each target from one through the number of distinct letters in `s`, scan with a frequency array. `unique` counts positive frequencies, while `qualified` counts frequencies at least `k`. Adding or removing one character updates these counters exactly when its count crosses zero or `k`.
+For each target from one through the number of distinct letters in `s`, scan with a frequency array. `unique` counts positive frequencies, while `qualified` counts frequencies at least `k`. The candidate stores the entering and leaving characters' alphabet offsets in `i` and `j`; adding or removing one character updates the counters exactly when its count crosses zero or `k`.
 
 **Recognize a valid window without rescanning it**
 

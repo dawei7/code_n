@@ -15,4 +15,5 @@ Three constant-time transitions are performed per house for $O(n)$ time. Three s
 ## Alternatives and edge cases
 - **Enumerate colorings:** explores exponentially many assignments.
 - **Recompute every prefix:** remains correct but can cost $O(n^2)$.
-- An empty input costs zero; a single house uses its cheapest color.
+- **Single house:** uses its cheapest of the three color costs, matching the minimum legal input size.
+- **Simultaneous assignment:** all three new totals must use only the previous row's state; Python tuple assignment preserves that separation.

@@ -9,7 +9,8 @@
       "visible": true,
       "input": {"s": "aaa"},
       "expected": "aaa",
-      "tags": ["sample", "literal"]
+      "tags": ["sample", "source-example", "literal"],
+      "validator": {"kind": "shortest_string_encoding"}
     },
     {
       "id": "sample-single-repeat",
@@ -18,16 +19,18 @@
       "visible": true,
       "input": {"s": "aaaaa"},
       "expected": "5[a]",
-      "tags": ["sample", "repeat"]
+      "tags": ["sample", "source-example", "repeat"],
+      "validator": {"kind": "shortest_string_encoding"}
     },
     {
-      "id": "sample-prefix-repeat",
-      "name": "sample: compressed prefix plus literal suffix",
+      "id": "sample-ten-copies",
+      "name": "sample: ten copies have several tied shortest encodings",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aabcaabcd"},
-      "expected": "2[aabc]d",
-      "tags": ["sample", "split"]
+      "input": {"s": "aaaaaaaaaa"},
+      "expected": "10[a]",
+      "tags": ["sample", "source-example", "multi-digit", "tied-output"],
+      "validator": {"kind": "shortest_string_encoding"}
     },
     {
       "id": "trial-multi-character-unit",
@@ -36,34 +39,58 @@
       "visible": true,
       "input": {"s": "abcabcabc"},
       "expected": "3[abc]",
-      "tags": ["trial", "repeat"]
+      "tags": ["trial", "repeat", "multi-character-unit"],
+      "validator": {"kind": "shortest_string_encoding"}
     },
     {
-      "id": "trial-ten-copies",
-      "name": "trial: multi-digit repeat count",
+      "id": "trial-prefix-repeat",
+      "name": "trial: compressed prefix plus literal suffix",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aaaaaaaaaa"},
-      "expected": "a9[a]",
-      "tags": ["trial", "multi-digit"]
+      "input": {"s": "aabcaabcd"},
+      "expected": "2[aabc]d",
+      "tags": ["trial", "split", "literal-suffix"],
+      "validator": {"kind": "shortest_string_encoding"}
     },
     {
-      "id": "hidden-nested",
-      "name": "hidden: repeated unit benefits from nested encoding",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested",
+      "name": "trial: repeated unit benefits from nested encoding",
+      "kind": "trial",
+      "visible": true,
       "input": {"s": "abbbabbbcabbbabbbc"},
       "expected": "2[2[abbb]c]",
-      "tags": ["hidden", "nested"]
+      "tags": ["trial", "nested"],
+      "validator": {"kind": "shortest_string_encoding"}
     },
     {
-      "id": "hidden-no-repeat",
-      "name": "hidden: distinct letters remain literal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-repeat",
+      "name": "trial: distinct letters remain literal",
+      "kind": "trial",
+      "visible": true,
       "input": {"s": "abcdefgh"},
       "expected": "abcdefgh",
-      "tags": ["hidden", "literal"]
+      "tags": ["trial", "literal", "no-repeat"],
+      "validator": {"kind": "shortest_string_encoding"}
+    },
+    {
+      "id": "trial-minimum-length",
+      "name": "trial: one lowercase character cannot be shortened",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": "a",
+      "tags": ["trial", "boundary", "minimum-length", "alphabet-start"],
+      "validator": {"kind": "shortest_string_encoding"}
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "trial: 150 copies use a three-digit repeat count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"},
+      "expected": "150[z]",
+      "tags": ["trial", "boundary", "maximum-length", "alphabet-end", "three-digit-count"],
+      "validator": {"kind": "shortest_string_encoding"}
     }
   ]
 }

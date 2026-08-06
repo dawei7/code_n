@@ -1,34 +1,36 @@
 ## General
-Fix one distinguished person. If that person shakes hands with another position, their segment divides the remaining circle into two independent arcs. A noncrossing arrangement is possible only when each arc contains an even number of people, because everyone within an arc must pair internally.
 
-**Catalan recurrence from the first handshake**
-
-Let `dp[k]` count noncrossing arrangements for `k` pairs, with `dp[0] = 1` for the empty interior. When the distinguished person leaves `i` complete pairs on one side of their handshake, the other side contains `k - 1 - i` pairs. The two sides can be arranged independently, contributing `dp[i] * dp[k - 1 - i]` possibilities.
-
-Summing over $0 \le i < k$ gives the Catalan recurrence
+Fix one person in a noncrossing arrangement. Their handshake divides the remaining people into two disjoint arcs, and every person on either arc must be paired within that same arc. If one side contains $i$ pairs, the other contains $p-1-i$ pairs. Therefore the count is the $p$th Catalan number:
 
 $$
-\textit{dp}[k]=\sum_{i=0}^{k-1}\textit{dp}[i]\,\textit{dp}[k-1-i].
+C_p=\sum_{i=0}^{p-1}C_iC_{p-1-i},
+\qquad C_0=1.
 $$
 
-Every noncrossing pairing has one unique partner for the distinguished person and therefore appears in exactly one split. Conversely, combining any two valid subarrangements across a split cannot introduce a crossing because they lie on opposite sides of the fixed segment.
+Every valid arrangement has one unique partner for the fixed person, so it belongs to exactly one split in this sum. Conversely, combining valid arrangements from the two arcs cannot introduce a crossing because their handshake segments remain on opposite sides of the fixed segment.
 
-**Evaluate successive Catalan numbers directly**
+**Use the closed form with one modular division**
 
-Rather than summing every earlier split for every state, use the equivalent ratio
+The equivalent Catalan closed form is
 
 $$
-C_{k+1}=C_k\frac{2(2k+1)}{k+2}.
+C_p=\frac{1}{p+1}\binom{2p}{p}
+=\frac{(2p)!}{p!\,p!\,(p+1)}.
 $$
 
-Division modulo the prime $M=10^9+7$ is multiplication by $(k+2)^{M-2}\bmod M$, using Fermat's little theorem. Starting from $C_0=1$, apply this update for $k=0$ through $p-1$. All denominators are smaller than $M$, so each has an inverse.
+Scan the integers through $2p$, maintaining their factorial product modulo $M$. Retain $p!$ when the scan reaches $p$—with the initialized value $1$ already representing $1!$ in the minimum case—and finish with $(2p)!$. Their quotient gives the desired Catalan number.
+
+Division modulo the prime $M=10^9+7$ means multiplying by the denominator raised to $M-2$, by Fermat's little theorem. Since $2p\le1000<M$, none of the denominator factors is divisible by $M$, so the inverse exists. This modular evaluation is algebraically equal to the integer closed form and hence to the noncrossing-arrangement recurrence.
 
 ## Complexity detail
-There are $p$ updates. Each modular inverse is computed by binary exponentiation in $O(\log M)$ time, giving $O(p\log M)$ total time. Only the current Catalan value and loop counters are retained, so auxiliary space is $O(1)$.
+
+The factorial scan takes $O(p)$ time, and the single modular inverse takes $O(\log M)$ time by binary exponentiation. Total time is $O(p+\log M)$. The algorithm retains only the two factorial values, the denominator, and loop counters, so auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
-- **Naive recursive splitting:** It follows the same proof but recomputes identical pair counts exponentially many times without memoization.
-- **Quadratic Catalan DP:** Directly evaluating every split is straightforward and uses $O(p^2)$ time, which is slower under the app runner's full boundary case.
-- **Factorial formula:** $C_p=\frac{1}{p+1}\binom{2p}{p}$ can be evaluated with factorial tables and modular inverses, but uses $O(p)$ storage.
-- **Two people:** The sole possible handshake is noncrossing, matching the base transition from `dp[0]`.
-- **Modulo arithmetic:** Reduce every multiplication so implementations with fixed-width integers do not overflow.
+
+- **Quadratic Catalan DP:** Directly evaluating every split closely follows the combinatorial proof but takes $O(p^2)$ time and $O(p)$ space.
+- **Successive Catalan ratios:** Updating $C_{k+1}=C_k\frac{2(2k+1)}{k+2}$ is compact, but computing each inverse separately costs $O(p\log M)$ time.
+- **Precomputed modular inverses:** All required inverses can be prepared in linear time, but the table uses $O(p)$ space that the factorial form avoids.
+- **Two people:** Here $p=1$, and the formula returns the single possible handshake.
+- **Invertible denominator:** The source bound keeps every factor below $M$; without that guarantee, the factorial quotient would require different modular arithmetic.
+- **Modulo reduction:** Reduce every multiplication so the method remains valid in languages with fixed-width integer types.

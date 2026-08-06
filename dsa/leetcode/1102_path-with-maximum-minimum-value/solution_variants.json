@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Path With Maximum Minimum Value and meets the required complexity bound.",
+      "summary": "Uses maximum-bottleneck Dijkstra with improving relaxations and an endpoint-bound shortcut.",
       "time_complexity": "O(V \\log V)",
       "space_complexity": "O(V)"
     }

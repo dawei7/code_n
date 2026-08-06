@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1479",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is the conventional static-pivot solution: start from Items, left join Orders, conditionally sum one expression per fixed weekday, group once by category, and order explicitly. The item and order aliases and seven weekday columns make the report shape obvious, while avoiding dynamic SQL or repeated subqueries. No material improvement warrants an inert candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Every order joins to exactly its item category and exactly one weekday predicate, so its quantity contributes once to the correct category-day total and zero to the other six. Starting from Items with a left join preserves categories whose items have no orders; their null joined fields match no weekday and contribute seven zeros. Grouping only by item_category combines all items in the category, and ORDER BY establishes the required category sequence."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "With indexed or hash join and grouping execution, scanning I item rows and O order rows costs O(I + O), while sorting C category aggregates costs O(C log C). Seven fixed totals per category require O(C) aggregate state, matching the declared O(I + O + C log C) time and O(C) space. The complexity artifact is inherited, hash-bound identity only; this accelerated review did not inspect or recalibrate it and did not claim a fresh runtime verdict."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "The query returns Category followed by Monday through Sunday, sums quantities across every item in the category, uses zero for missing sales, retains the unsold T-Shirt category shown by the source, and sorts categories ascending. All weekday mappings are explicit, including Sunday, so no physical row-order or locale assumption affects the report."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The complete Approach accurately explains category preservation, seven-way conditional aggregation, null joined rows, category-level grouping, and the SQLite-versus-MySQL weekday index shift. Its complexity claims match the protected query and manifest, and its alternatives and edge cases cover correlated subqueries, inner joins, premature item grouping, dynamic pivots, no orders, multiple items and orders, Sunday mapping, and output order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "The protected SQLite source and immutable native MySQL source remain unchanged at canonical SHA-256 values f289215568034e0f99827d353bb82c67d6140fca6a16c64eb15247081e103f51 and 57115f7c8d2bf04e14f46812114c86236761b07e0d8c2647b4074f6f7722d9ca. Their only material syntax difference is the dialect-specific weekday extraction and corresponding index literals already recorded by the alignment review; verified submission 2074756849 remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated Premium evidence confirmed both table schemas, the per-category weekday report and category ordering, one exact fixture with nine Orders rows and six Items rows, four output categories, and every day-by-day explanation step. The modular Reference preserves all five logical source tables, the source spelling of every item name, each weekday subtotal and date, the unsold Saturday and T-Shirt facts, and contains no invented examples or ancillary sections. It is bound to live content SHA-256 31d427d737433f510df280753a6cd9492ac8489bfb336140d79f5112ef6646b6."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "f289215568034e0f99827d353bb82c67d6140fca6a16c64eb15247081e103f51",
+    "native_source_sha256": "57115f7c8d2bf04e14f46812114c86236761b07e0d8c2647b4074f6f7722d9ca",
+    "approach_sha256": "843ec84a58bb666e5559b90b221d81add57b7f19da5461efd81ee30293825e76",
+    "solution_variants_sha256": "1a73ca450237e986f169ff1d848d7df01365e847e3696c146faa6341b23d1129",
+    "complexity_evidence_sha256": "53cfd96bdf6b98f9a8107ce1420530335d4e4fd387e25cf653570d005e19ad04"
+  }
+}

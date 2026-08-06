@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_259",
-  "measurement_note": "Size is array length; mixed signed values require complete pair sweeps while cubic enumeration examines every triple.",
+  "measurement_note": "Size is legal array length; mixed signed values require complete pair sweeps while redundant whole-array work exposes a cubic implementation.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 16 mixed values",
+      "name": "benchmark: 16 mixed signed values",
       "kind": "benchmark",
       "visible": false,
       "size": 16,
@@ -28,23 +28,30 @@
           6,
           7
         ],
-        "target": 3
+        "target": 25
       },
-      "expected": 389,
+      "expected": 560,
       "tags": [
         "benchmark",
-        "scale-small",
-        "two-pointers"
+        "scale-small"
       ]
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: 48 mixed values",
+      "name": "benchmark: 64 mixed signed values",
       "kind": "benchmark",
       "visible": false,
-      "size": 48,
+      "size": 64,
       "input": {
         "nums": [
+          -32,
+          -31,
+          -30,
+          -29,
+          -28,
+          -27,
+          -26,
+          -25,
           -24,
           -23,
           -22,
@@ -92,25 +99,64 @@
           20,
           21,
           22,
-          23
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
         ],
-        "target": 9
+        "target": 25
       },
-      "expected": 11354,
+      "expected": 32756,
       "tags": [
         "benchmark",
-        "scale-medium",
-        "two-pointers"
+        "scale-medium"
       ]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: 128 mixed values",
+      "name": "benchmark: 192 mixed signed values",
       "kind": "benchmark",
       "visible": false,
-      "size": 128,
+      "size": 192,
       "input": {
         "nums": [
+          -96,
+          -95,
+          -94,
+          -93,
+          -92,
+          -91,
+          -90,
+          -89,
+          -88,
+          -87,
+          -86,
+          -85,
+          -84,
+          -83,
+          -82,
+          -81,
+          -80,
+          -79,
+          -78,
+          -77,
+          -76,
+          -75,
+          -74,
+          -73,
+          -72,
+          -71,
+          -70,
+          -69,
+          -68,
+          -67,
+          -66,
+          -65,
           -64,
           -63,
           -62,
@@ -238,15 +284,46 @@
           60,
           61,
           62,
-          63
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95
         ],
         "target": 25
       },
-      "expected": 222132,
+      "expected": 698228,
       "tags": [
         "benchmark",
-        "scale-large",
-        "two-pointers"
+        "scale-large"
       ]
     }
   ]

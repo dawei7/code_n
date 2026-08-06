@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_162",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity",
+        "severity": "material",
+        "reason": "The former largest benchmark contained 4096 values despite the verified maximum array length of 1000. The replacement 16/128/1000 increasing tiers remain legal, pass the current logarithmic slope search, and reject a correct linear maximum scan only on scaling."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "f76096d3429e668b223a4f0ee375c37c553e5d4bdf20c06c3727e11c85bbc520",
+    "native_source_sha256": "f66681d9532d95d958103cccffa5e08d8237cd4391f51a9b9f2ad9115169e5f8",
+    "approach_sha256": "73e6d279e5c36cdfb6de3ebde5b9d81cc63af36a5ccf66b6034c7802f61635de",
+    "solution_variants_sha256": "815909e9b11123560ba8cd5ec4ded425f7e682b0c186e9083ed689f0a6a9b1e4",
+    "complexity_evidence_sha256": "a0e4b602fa5e086f673ad3d57dd36ff4b4505efdf80f2e7a5f86a2614cf0519a"
+  }
+}

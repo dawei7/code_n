@@ -1,11 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_157", "frontend_id": "157", "title_slug": "read-n-characters-given-read4", "url": "https://leetcode.com/problems/read-n-characters-given-read4/description/", "paid_only": true, "content_sha256": "cf5a6fceaa064543799b2dc26c8029f11b7825c75a79a86cc7de7f484c1a4002", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "method_read4", "definition_of_read4", "read4_example", "method_read", "definition_of_read", "note", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "file = \"abc\", n = 4", "output": "3", "has_explanation": true}, {"ordinal": 2, "input": "file = \"abcde\", n = 5", "output": "5", "has_explanation": true}, {"ordinal": 3, "input": "file = \"abcdABCD1234\", n = 12", "output": "12", "has_explanation": true}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_157",
+    "frontend_id": "157",
+    "title_slug": "read-n-characters-given-read4",
+    "url": "https://leetcode.com/problems/read-n-characters-given-read4/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "99a45a240b9be902e50c6021925e56402bf2f4918a750a72b1a4fd3bdc9a234e", "reference/contract.md": "c51103093465dcd1ab1a8e39d6359d051e4c7b1d198230f5f46da4789cb324a5", "reference/method_read4.md": "bb40f31a422e7c6280aa7fda358af9e30272449d3f832efe74b3c94f7b2c9950", "reference/definition_of_read4.md": "c9ccfddb31cfd2ebcf6520dc615e0af6542a444c4f421e1ac7d7e78b6895227f", "reference/read4_example.md": "0c5676514cd410ed3609c7166794b19aa930fec5b5cb95bc47c2ef34013f868b", "reference/method_read.md": "3953857b94ec5295983ba362a844f030ff0b3d2ecc22d202fae4e9bad28b043f", "reference/definition_of_read.md": "beff4ae546392ef74784e5ec3dce4116105f771f65aa345040e084483a33368c", "reference/note.md": "a58d0c9aa4b91fcbd1f144203529dc79174a6abde6f74e95a9848d1f885fa0ed", "reference/examples.md": "c914d3e0b6e98c5744f3a730aa56fd2d5e9bb1bb5791412c201b9a23489a0255", "reference/constraints.md": "a8d15fa1d87e577e1151cbf68fd6519b432331cda259c6a2712d532a52b35e6c"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`file = \"abc\"`, `n = 4`",
+        "output": "`3`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`file = \"abcde\"`, `n = 5`",
+        "output": "`5`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`file = \"abcdABCD1234\"`, `n = 12`",
+        "output": "`12`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9806cc2813de3783c4b79ad0cde3ac1ea5f9a9193670acfd7ae3494ed4b68acd",
+      "reference/contract.md": "85eb7f659e21233f45310deebdc431441a4843ebafa69a76ffe91d51ab67c914",
+      "reference/examples.md": "4fa1c8df098bbfcbbe043316c1bf7d6b0ef438f02b121fa093d0778eb22cfaeb",
+      "reference/constraints.md": "9f55f85726f6b2cf4de70fd1e9140272d55bf501601b12c6c352d51408aa774a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Integer Break and meets the required complexity bound.",
+      "summary": "Uses the optimal product structure: take as many threes as possible without leaving a remainder of one.",
       "time_complexity": "O(\\log n)",
       "space_complexity": "O(1)"
     }

@@ -1,14 +1,14 @@
 ## General
 **Count transitions into non-space text**
 
-A segment begins exactly where the current character is not a space and either it is at index zero or the previous character is a space. Count positions satisfying that condition during one left-to-right scan.
+A segment begins exactly where the current character `c` is not a space and either its position `i` is zero or the previous character is a space. During one left-to-right scan, increment `segments` at every position satisfying that condition.
 
 **Why one transition represents one whole segment**
 
 Every maximal non-space run has one first character, and that character satisfies the start condition. No later character in the same run satisfies it because its predecessor is non-space. Conversely, every counted position begins a nonempty run that continues until a space or the string end, so the count is neither missing nor duplicating segments.
 
 ## Complexity detail
-The scan performs constant work for each of `n` characters, giving $O(n)$ time. A single integer counter uses $O(1)$ auxiliary space.
+The scan performs constant work for each of `n` characters, giving $O(n)$ time. Apart from `i`, `c`, and the integer `segments`, it allocates no storage, for $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Built-in split:** splitting on spaces and discarding empty pieces is concise but materializes $O(n)$ additional text.

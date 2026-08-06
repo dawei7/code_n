@@ -8,7 +8,7 @@
 Before processing a log, union-find's sets are exactly the connected components formed by earlier events. A successful union adds the current edge between two such components; a redundant edge leaves them unchanged. This invariant means the first moment the count becomes one is both sufficient for universal acquaintance and earlier than any later possible answer.
 
 ## Complexity detail
-Sorting $m$ logs costs $O(m \log m)$. With path compression and union by size, the $m$ union-find operations cost $O(m\alpha(n))$, where $\alpha$ is the inverse Ackermann function. The sorted log copy uses $O(m)$ space and the parent and size arrays use $O(n)$.
+Initializing the parent and size arrays costs $O(n)$ time. Sorting $m$ logs costs $O(m \log m)$. With path compression and union by size, the $m$ union-find operations cost $O(m\alpha(n))$, where $\alpha$ is the inverse Ackermann function. The total time is $O(n + m \log m + m\alpha(n))$. The sorted log copy uses $O(m)$ space and the parent and size arrays use $O(n)$.
 
 ## Alternatives and edge cases
 - **Graph traversal after every event:** Rebuilding reachability is correct but can require $O(m(m+n))$ time.

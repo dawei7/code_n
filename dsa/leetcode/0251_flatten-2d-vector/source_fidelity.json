@@ -1,11 +1,56 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_251", "frontend_id": "251", "title_slug": "flatten-2d-vector", "url": "https://leetcode.com/problems/flatten-2d-vector/description/", "paid_only": true, "content_sha256": "ce0a324e2be149beb2d33996c7b65e2832799f441c048fe13680523ed793c49a", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "[\"Vector2D\",\"next\",\"next\",\"next\",\"hasNext\",\"hasNext\",\"next\",\"hasNext\"], [[[[1,2],[3],[4]]],[],[],[],[],[],[],[]]", "output": "[null,1,2,3,true,true,4,false]", "has_explanation": true}],
-    "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_251",
+    "frontend_id": "251",
+    "title_slug": "flatten-2d-vector",
+    "url": "https://leetcode.com/problems/flatten-2d-vector/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "3f6e69e79490bfd615af984584bbcf1f20d5c733766bcae272666d537751a59a", "reference/contract.md": "4ade1283ed5c0be4814981783d4ce30a7058adb48ced45d3f0c93bb0487833ab", "reference/examples.md": "8c5f009cf09589abd5f58fce43d7375dc37b133a55008d205725c831466dd083", "reference/constraints.md": "2c12ea55cc180f209ce07ea97b17d5f4bba9daf51e039a6f11f4ffb37748b751", "reference/follow_up.md": "0b08e3702858b8e7627d95c972e2ee63c6ed5541f1a586a6d68038b9a2ffed4c"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`[\"Vector2D\", \"next\", \"next\", \"next\", \"hasNext\", \"hasNext\", \"next\", \"hasNext\"]`, `[[[[1, 2], [3], [4]]], [], [], [], [], [], [], []]`",
+        "output": "`[null, 1, 2, 3, true, true, 4, false]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b42718b369f48c7e0582bee7b856c5c686bcc0335ee872a83008f3b7f422814d",
+      "reference/contract.md": "af95895ce28a6a399989c185a525ba2739f43d84d3e163b7013dd44ca2a4236a",
+      "reference/examples.md": "40a9499e274f57adbc4b4417a125c89e0b682522f5bad67dd3ab7f38436ad3f5",
+      "reference/constraints.md": "e2d8013acbeabbafcd5b22f66fad4c5a40a303029f25b6e0dfe9d183643d9c50",
+      "reference/follow_up.md": "72be568fac57192154f16b9e397f244ef2e367606bb80649414d0f04d51624d0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

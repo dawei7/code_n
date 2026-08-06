@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_470",
+    "frontend_id": "470",
+    "title_slug": "implement-rand10-using-rand7",
+    "url": "https://leetcode.com/problems/implement-rand10-using-rand7/description/",
+    "paid_only": false,
+    "content_sha256": "1124f9ae603ae085135617045aee14d3c1b58228750dcaf6c39ae237977c440a",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 1",
+        "output": "[2]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 2",
+        "output": "[2,8]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 3",
+        "output": "[3,8,10]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4b4dd0f6bc42fe145ff33ca8985735395438f04d1bb3741918dc238dafd83655",
+      "reference/contract.md": "f006649a40bae7962c7856296054ca9d66f1a833fe3d1a5df85aab002f5c35e5",
+      "reference/examples.md": "49d54cd10b311a2bee345a3d9764b893262904f18af4d1cdd7302ecba18dec40",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428",
+      "reference/follow_up.md": "facfb1a63891724defd1f9b2f763bc544935d970f32b1e9f0f5a9c3306d062c3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

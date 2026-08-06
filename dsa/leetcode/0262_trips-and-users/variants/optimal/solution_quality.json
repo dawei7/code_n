@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_262",
+  "language": "sql",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected query is already the direct interview-quality solution: join each trip to its client and driver, exclude either banned participant in the join predicates, restrict the three requested dates, and average a cancellation indicator per day. Its SQL structure and aliases are conventional, its denominator is exact, and no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies database problem 262 with SQL as its sole language. The Reference preserves both table schemas, the inclusive date window, eligible-request rule, two-column result, rounding, and order freedom; the contract now defines t and u before the branch complexity bound uses them."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The native query is immutable evidence for verified MySQL submission 2064285477. Its bytes match the app-local SQL exactly, including both participant joins, ban filters, date predicate, conditional average, grouping, aliases, rounding, and deterministic optional ordering."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The hidden 16/64/256-trip tiers preserve both participant lookups and all daily aggregation work. The current query passes every workload at -0.04 relative exponent and 0.97x largest ratio; a correct query with an added per-trip full-table existence scan passes all outputs but fails only scaling at +0.29 relative exponent."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach follows the protected query exactly and now accounts separately for the Trips scan, two indexed Users lookups, fixed three-date grouping and ordering, index storage, and the optimizer's possible hash-join plan. It also states the no-row and completed-trip semantics explicitly."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains verified against the reviewed source structure, preserving both schemas, all five source tables, the single factual example and its full three-day explanation, the absence of a constraints section, and the exact cancellation-rate semantics."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "339806053cb4195274f021ed89929e799ab9a0d94ce3c80f08dc5e310b687fc2",
+    "native_source_sha256": "339806053cb4195274f021ed89929e799ab9a0d94ce3c80f08dc5e310b687fc2",
+    "approach_sha256": "351cbaa85dda130e50e7c539fbc14964ebb9bc539425d01b3340fa545dfc02f4",
+    "solution_variants_sha256": "f3788a82139adf1b7f916793e01db1ff1367e20325844b2ba66f78164bdb1916",
+    "complexity_evidence_sha256": "8c440aed73ffd84731db1164010a967656178a766643044ac3af2620e284e681"
+  }
+}

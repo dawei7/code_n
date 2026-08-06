@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_82",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Determining whether the final sorted-list run is unique requires reaching the tail in the worst case, so linear time is unavoidable. The current run scan visits each node once and matches that lower bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Consider two sorted lists that agree through their first n - 1 nodes, with those nodes holding distinct values. The last node can either introduce another distinct value or duplicate the preceding value, which changes whether that preceding node remains in the result. Any correct algorithm must reach the last node to distinguish the lists, establishing an Omega(n) worst-case lower bound. The current algorithm advances its current pointer monotonically through every run and performs constant work per node, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Two legal sorted lists can share an n - 1 node prefix yet require different retention of the penultimate value because only the final node reveals whether that value is duplicated."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The nested loops do not revisit nodes: current advances within a run and then resumes at next_run, so all loop iterations total O(n) with constant pointer work."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover separated duplicate runs and a duplicate run at the head; black-box real-test execution verifies the existing ordinary checks without inspecting their definitions."
+    }
+  ]
+}

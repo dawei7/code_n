@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_614",
+    "frontend_id": "614",
+    "title_slug": "second-degree-follower",
+    "url": "https://leetcode.com/problems/second-degree-follower/description/",
+    "paid_only": true,
+    "content_sha256": "e5b6dc47a58df0f57d3887050e6d0fe62f3c8be88ee3257bd9e5c6240a3182fc",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": [
+      "follow_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Follow = [[\"Alice\",\"Bob\"],[\"Bob\",\"Cena\"],[\"Bob\",\"Donald\"],[\"Donald\",\"Edward\"]]",
+        "output": "[[\"Bob\",2],[\"Donald\",1]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/follow_table.md": "83c282be47d4a79c9ef1210b9500f711b379ea3ab73e81c09fbf09f86235ff91",
+      "reference/description.md": "88d93706d177d15acb72496cb7a916bee0d12b04fe5a6c41b1d422e76f7b9d21",
+      "reference/contract.md": "3e89476c98363eb00762e532812d3b989d43f2487ee844c62229b5d7086bcfbf",
+      "reference/examples.md": "e0c2b7a254072c65837be526b8f847d693ee28170f0394f03cc7743b0c79e7be"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

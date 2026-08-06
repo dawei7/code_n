@@ -1,204 +1,132 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1428",
   "cases": [
     {
-      "id": "sample-left-edge",
-      "name": "sample: one in the first column",
+      "id": "sample-source-example-1",
+      "name": "sample: exact source with a one in the first column",
       "kind": "sample",
       "visible": true,
       "input": {
         "binaryMatrix": {
-          "matrix": [
-            [
-              0,
-              0
-            ],
-            [
-              1,
-              1
-            ]
-          ],
+          "matrix": [[0, 0], [1, 1]],
           "max_queries": 1000
         }
       },
       "expected": 0,
-      "tags": [
-        "sample",
-        "left-edge"
-      ]
+      "tags": ["sample", "source-example", "left-edge"]
     },
     {
-      "id": "sample-last-column",
-      "name": "sample: one only in the last column",
+      "id": "sample-source-example-2",
+      "name": "sample: exact source with a one only in the last column",
       "kind": "sample",
       "visible": true,
       "input": {
         "binaryMatrix": {
-          "matrix": [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              1
-            ]
-          ],
+          "matrix": [[0, 0], [0, 1]],
           "max_queries": 1000
         }
       },
       "expected": 1,
-      "tags": [
-        "sample",
-        "last-column"
-      ]
+      "tags": ["sample", "source-example", "last-column"]
     },
     {
-      "id": "sample-all-zero",
-      "name": "sample: matrix has no one",
+      "id": "sample-source-example-3",
+      "name": "sample: exact source with no one",
       "kind": "sample",
       "visible": true,
       "input": {
         "binaryMatrix": {
-          "matrix": [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ],
+          "matrix": [[0, 0], [0, 0]],
           "max_queries": 1000
         }
       },
       "expected": -1,
-      "tags": [
-        "sample",
-        "absent"
-      ]
+      "tags": ["sample", "source-example", "all-zero"]
     },
     {
       "id": "trial-staircase",
-      "name": "multiple row boundaries",
+      "name": "trial: row boundaries move left in a staircase",
       "kind": "trial",
       "visible": true,
       "input": {
         "binaryMatrix": {
-          "matrix": [
-            [
-              0,
-              0,
-              0,
-              1
-            ],
-            [
-              0,
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              1,
-              1,
-              1
-            ]
-          ],
+          "matrix": [[0, 0, 0, 1], [0, 0, 1, 1], [0, 1, 1, 1]],
           "max_queries": 1000
         }
       },
       "expected": 1,
-      "tags": [
-        "trial",
-        "staircase"
-      ]
+      "tags": ["trial", "staircase", "non-square"]
     },
     {
       "id": "trial-single-one",
-      "name": "single cell containing one",
+      "name": "trial: a single cell contains one",
       "kind": "trial",
       "visible": true,
       "input": {
         "binaryMatrix": {
-          "matrix": [
-            [
-              1
-            ]
-          ],
+          "matrix": [[1]],
           "max_queries": 1000
         }
       },
       "expected": 0,
-      "tags": [
-        "trial",
-        "boundary"
-      ]
+      "tags": ["trial", "single-cell", "all-one"]
     },
     {
-      "id": "real-single-zero",
-      "name": "hidden: single zero cell",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-zero",
+      "name": "trial: a single cell contains zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "binaryMatrix": {
-          "matrix": [
-            [
-              0
-            ]
-          ],
+          "matrix": [[0]],
           "max_queries": 1000
         }
       },
       "expected": -1,
-      "tags": [
-        "hidden",
-        "boundary"
-      ]
+      "tags": ["trial", "single-cell", "all-zero"]
     },
     {
-      "id": "real-tall",
-      "name": "hidden: earliest one appears late",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tall-boundaries",
+      "name": "trial: the earliest one appears after several tall rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "binaryMatrix": {
-          "matrix": [
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              1
-            ],
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              1,
-              1,
-              1
-            ]
-          ],
+          "matrix": [[0, 0, 0], [0, 0, 0], [0, 0, 1], [0, 1, 1], [1, 1, 1]],
           "max_queries": 1000
         }
       },
       "expected": 0,
-      "tags": [
-        "hidden",
-        "tall"
-      ]
+      "tags": ["trial", "tall", "non-square", "late-left-edge"]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: every cell is one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "binaryMatrix": {
+          "matrix": [[1, 1, 1], [1, 1, 1]],
+          "max_queries": 1000
+        }
+      },
+      "expected": 0,
+      "tags": ["trial", "all-one", "left-moves"]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: one wide row has a middle boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "binaryMatrix": {
+          "matrix": [[0, 0, 1, 1]],
+          "max_queries": 1000
+        }
+      },
+      "expected": 2,
+      "tags": ["trial", "single-row", "wide", "row-boundary"]
     }
   ]
 }

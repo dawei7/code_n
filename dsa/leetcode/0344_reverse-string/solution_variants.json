@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Reverse String and meets the required complexity bound.",
+      "summary": "Swaps mirrored characters with two inward-moving pointers, modifying the array in place.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

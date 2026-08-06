@@ -10,5 +10,8 @@
   "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.leadsToDestination",
   "verified_submission_id": "2067451290",
-  "verified_at": "2026-07-14T14:13:36.721310+00:00"
+  "verified_at": "2026-07-14T14:13:36.721310+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T07:46:00.000000+00:00"
 }

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Contains Duplicate and meets the required complexity bound.",
+      "summary": "Scans once with a set of prior values and returns immediately when a value repeats.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

@@ -1,7 +1,7 @@
 ## General
 **Sorting turns the remaining pair sum into a monotone search**
 
-After sorting, fix one value at index `i`. The remaining task is to find two values to its right summing to `-values[i]`. Put one pointer immediately after `i` and one at the end.
+After sorting, enumerate each fixed value at position `i`. The remaining task is to find two values to its right summing to `-nums[i]`. Put one pointer immediately after `i` and one at the end.
 
 If the total is too small, moving the right pointer left cannot help: it replaces the largest remaining value with an equal or smaller one. Only moving the left pointer right can increase the sum. Symmetrically, if the total is too large, only moving the right pointer left can decrease it. This direction rule eliminates an entire row or column of candidate pairs at each step.
 
@@ -13,7 +13,7 @@ If the fixed value is positive, all values to its right are also positive, so no
 
 **What pointer movement proves impossible**
 
-For a fixed index, every pair outside the current pointer interval has either been examined or ruled out by monotonicity. Moving left after a small sum discards only pairs with an even smaller or equal left value; moving right after a large sum discards only pairs with an even larger or equal right value.
+For a fixed position, every pair outside the current pointer interval has either been examined or ruled out by monotonicity. Moving left after a small sum discards only pairs with an even smaller or equal left value; moving right after a large sum discards only pairs with an even larger or equal right value.
 
 Duplicate skipping removes only value-identical candidates, never a new triplet.
 

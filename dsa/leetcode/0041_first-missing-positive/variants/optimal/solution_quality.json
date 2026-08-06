@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_41",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "Both protected sources use the prohibited generic local name `index` in the placement and final scans; the inert candidate preserves the accepted cyclic-placement algorithm exactly while using the conventional position variable `i`."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order, including zero, negative values, disorder, and a missing 1",
+      "duplicate placement and a duplicate-heavy swap chain",
+      "a complete positive prefix returning n + 1 and the minimum-length complete prefix",
+      "the signed 32-bit minimum and maximum value boundaries",
+      "37,448 exhaustive small arrays checked with a set-based oracle against the current source, immutable native source, and candidate",
+      "three hidden performance-only reversed-prefix tiers spanning n = 32 through n = 512",
+      "a correct quadratic membership scan that passes every output and fails only scaling growth (+1.02 > +0.15; 43.07x > 8x)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "fcd6f12e68e9046af99756e83c5180c46be5cb58307a6873dfe1ed9cc950bfbc",
+    "native_source_sha256": "bd372a49dce0ab98fe5d2f317463b7db11a0812af48ea2b779119544f6b48990",
+    "approach_sha256": "abba18d90ec7bb16bc796f7e1c19c3e4ec9ecdda84b1dcbb4aa1d8d8521c26f5",
+    "solution_variants_sha256": "7baf212f7d881e093f527bb14fba7dae1bed7ab53a775c1e6388d738834e06c2",
+    "cases_sha256": "7861d3fe48a2111c83ea99b3cff454c9ceee8989fc9144644ddea9f044cf0792",
+    "complexity_evidence_sha256": "a3a0184be6cfa27b2afa25970ac720227a9f02a04571eb60241beaa141e89d6f",
+    "candidate_source_sha256": "d2cd4f58b20389d6d5f59ef4cc5235dca34cdcadca583829daa23bb0097304c6"
+  }
+}

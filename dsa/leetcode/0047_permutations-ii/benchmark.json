@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_47",
-  "measurement_note": "All-equal inputs isolate duplicate pruning: the optimal search emits one result, while generate-then-deduplicate explores n! index orderings.",
+  "measurement_note": "Repeated-value inputs exercise duplicate pruning while retaining multiple outputs. The optimal search emits each unique permutation once, while a correct source-position sequence generator that filters invalid repeated-position leaves performs n^n work, strictly slower than the required O(n * n!) bound.",
   "cases": [
     {
       "id": "benchmark-scale-1",
@@ -16,23 +16,39 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: four equal values",
+      "name": "benchmark: three values with one repeated pair",
       "kind": "benchmark",
       "visible": false,
-      "size": 4,
-      "input": {"nums": [1, 1, 1, 1]},
-      "expected": [[1, 1, 1, 1]],
+      "size": 3,
+      "input": {"nums": [1, 1, 2]},
+      "expected": [[1, 1, 2], [1, 2, 1], [2, 1, 1]],
       "validator": {"kind": "unordered_list"},
       "tags": ["benchmark", "scale-medium", "duplicate-pruning"]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: eight equal values",
+      "name": "benchmark: six values with four equal and two equal",
       "kind": "benchmark",
       "visible": false,
-      "size": 8,
-      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1]},
-      "expected": [[1, 1, 1, 1, 1, 1, 1, 1]],
+      "size": 6,
+      "input": {"nums": [1, 1, 1, 1, 2, 2]},
+      "expected": [
+        [1, 1, 1, 1, 2, 2],
+        [1, 1, 1, 2, 1, 2],
+        [1, 1, 1, 2, 2, 1],
+        [1, 1, 2, 1, 1, 2],
+        [1, 1, 2, 1, 2, 1],
+        [1, 1, 2, 2, 1, 1],
+        [1, 2, 1, 1, 1, 2],
+        [1, 2, 1, 1, 2, 1],
+        [1, 2, 1, 2, 1, 1],
+        [1, 2, 2, 1, 1, 1],
+        [2, 1, 1, 1, 1, 2],
+        [2, 1, 1, 1, 2, 1],
+        [2, 1, 1, 2, 1, 1],
+        [2, 1, 2, 1, 1, 1],
+        [2, 2, 1, 1, 1, 1]
+      ],
       "validator": {"kind": "unordered_list"},
       "tags": ["benchmark", "scale-large", "duplicate-pruning"]
     }

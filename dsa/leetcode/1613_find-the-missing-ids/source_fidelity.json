@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1613",
+    "frontend_id": "1613",
+    "title_slug": "find-the-missing-ids",
+    "url": "https://leetcode.com/problems/find-the-missing-ids/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`Customers` containing IDs `[1, 4, 5]`",
+        "output": "| ids |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`Customers` containing IDs `[1, 2, 3]`",
+        "output": "| ids |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`Customers` containing only ID `[5]`",
+        "output": "| ids |",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "09313dab47f79d8fde7ac82ee361dacf82843abfc986a67969f1ba330ad95e0b",
+      "reference/contract.md": "f7a95f0e656b1d0577954327df47c91098597e7fc52c47d390053e6637b93f55",
+      "reference/examples.md": "4510302ead3634980a13679e9974a7fc5ccab643141c65b0f1021196f4dde869",
+      "reference/constraints.md": "9e3f687af44ba1d521a6a9efd1ed10c71cb52882d1be7b141ab34f655fd6f2a7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

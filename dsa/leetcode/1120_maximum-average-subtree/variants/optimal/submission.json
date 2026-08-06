@@ -9,6 +9,9 @@
   "language": "python3",
   "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maximumAverageSubtree",
-  "verified_submission_id": "2067741808",
-  "verified_at": "2026-07-14T18:04:20.915657+00:00"
+  "verified_submission_id": "2067444832",
+  "verified_at": "2026-07-14T18:04:20.915657+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T08:09:00.000000+00:00"
 }

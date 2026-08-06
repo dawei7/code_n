@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_35",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order",
+      "insertion before the first value, between values, and after the last value",
+      "singleton arrays with targets before, equal to, and after the value",
+      "targets equal to the first and last array elements",
+      "both legal value bounds and target bounds",
+      "the exact length-10,000 boundary",
+      "1,143 exhaustive small insertion searches checked against `bisect_left` in both protected sources",
+      "legal scaling tiers that reject linear scanning only on complexity"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "481bf2251996e01abe137f34028fa82df333fe679007acbdb07f78d8dbedf7be",
+    "native_source_sha256": "73d790f16e25b8cd605eecf842a35efde979c9a982342462b73a00dace603084",
+    "approach_sha256": "d90008178d5a40fa6815f37ed4b0339e0799f70718826479f55e47c31a5d7263",
+    "solution_variants_sha256": "fe4c1a5e31f0619f82bf41f4a98d42dd05d5394d3001d1563fc998066d6b02f7",
+    "cases_sha256": "711e357ff0bc98bab300fcd20e73af2b03110874171029790ab1eb83e701b4a1",
+    "complexity_evidence_sha256": "1ef61b4312800e8c27804e3e0a37a197a978aad781c01937cf652a7c9a00cb5e"
+  }
+}

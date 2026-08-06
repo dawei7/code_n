@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_331",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "improvement",
+        "reason": "The protected source already gives the optimal constant-space character scan and exposes the slot invariant directly. The inert candidate makes the sole code correction required by this campaign, renaming the forbidden character cursor index to conventional i without changing any token or slot operation."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 331 and its Python isValidSerialization surface. The Reference preserves valid token formatting, preorder null markers, whole-tree consumption, the no-reconstruction note, all three source examples, both constraints, and the source tree diagram."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064412258 and its method body structurally aligns with the protected app-local solve body. The candidate preserves the exact slot and delimiter scan, changing only the local cursor name."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 32, 64, and 128-node left-skewed tiers span 4x and retain many unfinished prefixes. The candidate passes all nine executions at +0.01 relative growth and 0.96x; a correct validator that recomputes slot balance for every prefix passes all three benchmark outputs but fails only scaling at +1.05 and 34.20x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The candidate-targeted Approach exactly proves the child-slot invariant, early exhaustion and final balance conditions, constant-space delimiter scan, and O(L) time. It now respects the 0-through-100 token contract rather than discussing out-of-contract negative values."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including the note section, all three source examples in order, both constraints, valid-format guarantee, and an independent diagram corresponding to the source visual."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "9d966926183131a7b0b0220cbda4f0aae450d462aaa2b3af1b7feb3e49a8c45b",
+    "native_source_sha256": "7064cd4e40d727fd39aa5297eeab8cb35f659dbe77a27c0059286477775f23b8",
+    "approach_sha256": "f67d92293719ca2d4bb82f090931c9dc16890a330ed0e0f1b5b4154226f27dae",
+    "solution_variants_sha256": "f0dbe2edab655acd556af7e6a4e857fb8f445ed258269bd920d3357a5447a67f",
+    "complexity_evidence_sha256": "09cece66c5d20705cb616753044d224f731dbc3900c5fea4dd2d64217ce09c31",
+    "candidate_source_sha256": "eb24c6964aac32e6911f1a460a5075663990b12d8bdc65bafd8f2259692e72a5"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_307",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "candidate",
+        "reason": "The protected Fenwick-tree implementation is correct, concise, and conventional, but it repeatedly declares the explicitly disallowed local name index. The sole inert candidate preserves the class, solve contract, tree operations, and control flow while renaming only those positions to i; protected sources remain unchanged."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 307 and its Python NumArray surface. The Reference accurately separates native construction, point assignment, and inclusive range sum from the app adapter's arr/n/queries/q batch contract, and preserves the source operation trace with explanation and all six constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native NumArray remains tied to verified submission 2064365044. Its copied values, one-based Fenwick storage, delta propagation, prefix traversal, and range subtraction structurally match the protected app-local class; solve is the permitted batch adapter. The candidate changes identifiers only."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 128, 1024, and 4096-element tiers span 32x and pair each size with 2n alternating wide queries and point assignments, staying below value, length, and call limits. The candidate passes all nine executions at +0.02 relative growth and 1.00x; a correct direct-range-sum implementation passes every output but fails only scaling at +0.39."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now describes the candidate's zero-based i, one-based shift, delta computation, and Fenwick ancestor propagation exactly. Its suffix-ownership invariant, prefix tiling argument, operation costs, adapter-wide bound, and boundary notes match the candidate."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, preserving the class operations, the sole source example and its state-changing explanation, all six constraints, and inclusive endpoint semantics."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "3fb21e5bebcd82bb7faf0f6393c104dff5f6225236d3841879fe97e67c605f66",
+    "native_source_sha256": "29aa0369ac92566ad0e1a4a8960549bf47100f1ed9a43fe391cfe49ac08ea550",
+    "approach_sha256": "d7754f29a36f70905f693c4717bd13b349246ed9f8483b54132ca79b34a13e95",
+    "solution_variants_sha256": "bc0ad03f6df5fe5baa04da4a372a9f8431b2c9b8bfb6ad21b136bec05b9938f0",
+    "complexity_evidence_sha256": "8e6952d2acb0114629fcc7f1ea24835416678d0381fb5ff392f1cd189b999f95",
+    "candidate_source_sha256": "8eb4c261f2bb3b4cc07333b69fdfb2c17cddbaa44eaba4b4f24da6ce39d62e0a"
+  }
+}

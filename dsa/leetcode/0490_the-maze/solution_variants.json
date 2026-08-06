@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for The Maze and meets the required complexity bound.",
+      "summary": "Precomputes every row and column stopping endpoint, then searches the stop-position graph.",
       "time_complexity": "O(rows \\cdot cols)",
       "space_complexity": "O(rows \\cdot cols)"
     }

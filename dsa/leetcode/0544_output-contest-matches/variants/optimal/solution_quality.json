@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_544",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected and immutable sources use the local name `index`, which the campaign's explicit interview-naming standard forbids. The inert candidate preserves the proven algorithm byte-for-byte in structure while replacing that generic name with conventional loop variable `i`; no protected or submission evidence is changed."
+      },
+      {
+        "category": "complexity_claim",
+        "severity": "material",
+        "reason": "The former O(n log n) time claim counted only final output length and omitted repeated copying of immutable bracket strings across log n rounds. The reviewed manifest and candidate-targeted Approach now state the exact O(n log^2 n) character-cost time and O(n log n) space while retaining the conventional calibrated implementation."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 544 and its Python power-of-two-team-count to bracket-string contract. The candidate includes every rank once, pairs symmetric strength positions each round, places the stronger group first, emits only the prescribed punctuation, and terminates at one complete bracket."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains bound to verified submission 2065329132 and is algorithmically identical to the protected app source. The inert candidate changes only the comprehension variable from `index` to `i`; seed initialization, group count, symmetric positions, fresh-list construction, loop termination, formatting, and return value are unchanged."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The bracket workloads contain 32, 128, and 512 teams, span 16x, and exercise every pairing round. The protected source and inert candidate each passed all 7 refreshed correctness cases and all three performance tiers. A correct extreme-selection control matched every authored output independently but failed only the traced benchmark verdict with relative growth exponent +1.24 and a 389.46x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach exactly describes the strength-ordered string groups, conventional `i` symmetry, fresh list per round, induction over bracket nesting, and precise immutable-string character costs. It also records why a more structurally output-linear transient formulation was not eligible under the calibrated runtime gate."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves rank meaning, stronger-versus-weaker strategy, exact parenthesis/comma representation, both source examples, every round of both explanations, the power-of-two constraint, and source order."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples now appear first and in source order with the exact n = 4 and n = 8 contest strings.",
+      "The invented n = 2 sample was correctly relabelled as a trial, and the formerly hidden n = 32 and n = 64 correctness checks are now visible trials rather than opaque ordinary cases.",
+      "Contract boundaries cover the minimum 2-team contest and maximum 4096-team contest, with intermediate powers of two exercising two through six rounds and multi-digit seed labels.",
+      "Material semantics cover symmetric strongest-versus-weakest pairing, stronger groups on the left, complete balanced nesting, one occurrence of every seed from 1 through n, comma and parenthesis formatting without spaces, and progressive round depth.",
+      "An independent seed-order recurrence, adjacent-bracket serializer, and recursive structure parser verified all seven correctness cases and all three benchmark outputs. The protected app source, immutable native source, and inert candidate also matched the oracle on the complete 12-value legal input domain.",
+      "All seven correctness cases are visible samples or trials; the unchanged 32-, 128-, and 512-team scaling workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "524a18c63fa04de2f3fa6e294ec9216e1682d3e8e86935c6820eb24b55e4e34e",
+    "native_source_sha256": "4c012e32365b2bd50dda64f0db71278febe9b250ec0a8d6b692613fc7acb834b",
+    "approach_sha256": "360c007a48f5b1d0188d6fe8938b379d97b19d05abe62b302bbecc770e170575",
+    "solution_variants_sha256": "d67f2047119d8a432b594b67989e398c9811c572920a85dde2092b2b2ad0a3ce",
+    "complexity_evidence_sha256": "8b0850eb837b2c9f30520600506634d41d4911acc1e3e37e475d5b2186113dee",
+    "cases_sha256": "b6fc5507705ca6a0c5423036af18dc746fc899074796e1513cd4625422a7cbb3",
+    "candidate_source_sha256": "41e4320447f0e23b2d1debd53d397a81d74d985f96f6bd6f6063d36528176725"
+  }
+}

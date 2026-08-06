@@ -9,7 +9,7 @@ Advance slow once and fast twice through the validated successor function. If ei
 
 **Erase failed paths for amortized linear work**
 
-After a failed search, follow the start's same-direction path again and set each visited entry to zero. No valid same-direction cycle can include those nodes: the deterministic path already ended at an invalid edge or joined a path known not to contain one. Later starts skip cleared nodes, so each index participates in only constant many pointer or cleanup operations.
+After a failed search, reuse a local cursor `i` to follow the start's same-direction path and set each visited entry to zero. No valid same-direction cycle can include those nodes: the deterministic path already ended at an invalid edge or joined a path known not to contain one. Later starts skip cleared nodes, so each position participates in only constant many pointer or cleanup operations.
 
 **Wrap negative jumps correctly**
 

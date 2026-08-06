@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_439",
+    "frontend_id": "439",
+    "title_slug": "ternary-expression-parser",
+    "url": "https://leetcode.com/problems/ternary-expression-parser/description/",
+    "paid_only": true,
+    "content_sha256": "13f17424e30ab6efb06e7e3a7410024eb65c64cf1ae27aa0fc9df8e095963b40",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "expression = \"T?2:3\"",
+        "output": "\"2\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "expression = \"F?1:T?4:5\"",
+        "output": "\"4\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "expression = \"T?T?F:5:3\"",
+        "output": "\"F\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4f6660e50a192c279921d62cb8c759a65851b1d95a790d4ff521cdf02ac7f96f",
+      "reference/contract.md": "7b5b5ee30da4ca2ca8fdcca2cfe06fc7762921a7ed00395bbcd4d5fc1d79127e",
+      "reference/examples.md": "9aafe2169324c72514be58531ef2dfab63a7abd735dd9b58771fb4b22324650f",
+      "reference/constraints.md": "2a3f44c561a7bf5abdedddf86592731dfc4135be76b562b0bf66b2bc94f74a30"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

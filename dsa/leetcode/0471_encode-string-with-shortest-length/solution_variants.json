@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Encode String with Shortest Length and meets the required complexity bound.",
+      "summary": "Uses interval dynamic programming over encoded lengths and reconstructs one shortest representation.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n^2)"
     }

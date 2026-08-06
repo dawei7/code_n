@@ -5,13 +5,13 @@ Treat each legal one-character transformation as an unweighted graph edge. Start
 
 **Generate neighbors without building the full quadratic graph**
 
-For each dequeued word, replace each of its `L` positions with each of `A` alphabet characters and test set membership. This generates only potential outgoing neighbors on demand rather than comparing every pair of dictionary words.
+For each dequeued `word`, the candidate enumerates its positions with `i`, replaces that character with each lowercase English letter, and tests membership in `unvisited`. This generates only potential outgoing neighbors on demand rather than comparing every pair of dictionary words.
 
 If `endWord` is absent from the dictionary, return zero immediately under the contract that every post-start word must be listed.
 
 **First discovery fixes a word's minimum distance**
 
-Delete a candidate from the unvisited set as soon as it is enqueued. BFS guarantees this first discovery uses the minimum number of edges. A later route to the same word is no shorter and is irrelevant when only the final minimum length—not every path—is requested.
+Delete a candidate from the unvisited set as soon as it is enqueued. BFS guarantees this first discovery uses the minimum number of edges. A later route to the same word is no shorter and is irrelevant when only the final minimum length, rather than every path, is requested.
 
 **Every queued length is already optimal**
 
@@ -24,7 +24,9 @@ Each generated neighbor differs in exactly one character and belongs to the allo
 The first discovery of `endWord` therefore supplies a shortest ladder; no later layer can improve it. Marking words visited after discovery prevents redundant longer routes without losing a shorter one. If the queue empties, every reachable dictionary word has been explored and no ladder exists.
 
 ## Complexity detail
-For at most `N` visited words, `L` positions and alphabet size `A` generate $O(NLA)$ candidates. Stored words and the queue use $O(NL)$ space.
+Let $N$ be the number of dictionary words. The source contract limits word length to at most ten and fixes the alphabet at 26 letters, so each visited word generates only constant legal work. Every word is enqueued at most once, giving $O(N)$ time. The word set and queue contain at most $O(N)$ word references.
+
+If word length $L$ and alphabet size $A$ were generalized beyond this source contract, Python substring construction and hashing would make neighbor generation $O(NAL^2)$ rather than $O(NLA)$, with $O(NL)$ storage for copied word data.
 
 ## Alternatives and edge cases
 - **Depth-first search:** may explore many long ladders before finding the shortest.

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_39",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "Both protected sources use the prohibited generic local name `index` for the candidate position; the inert candidate preserves the accepted sorted backtracking and pruning exactly while using the conventional loop variable `i`."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order, including reuse, multiple combinations, and no solution",
+      "single-candidate reuse and several overlapping combinations",
+      "unsorted candidates, an exact candidate match, and sorted-order pruning",
+      "the maximum 30-candidate input length and the maximum target 40",
+      "1,960 independently generated small-domain properties checked against the current source, immutable native source, and candidate",
+      "three hidden performance-only tiers spanning target 8 through 32 with independently verified outputs",
+      "a correct slower search with repeated path-sum recomputation that passes every output and fails only scaling growth (+0.86 > +0.15)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "20a433287b6532b15e62cd202d71df497586440c402a06fa13568f7272e4d948",
+    "native_source_sha256": "2ced53894329c4c28d2c69a973e6ac6c3efde2c3e69d5719eeeeaf9b0d3d729a",
+    "approach_sha256": "2659bba9fe2bc58085849f2b570debc9299b13752e9fe913b128b4fb46f7bc36",
+    "solution_variants_sha256": "cca7e6c4ff1852b2fc86f65300da377780435a6663854e53eda85996cffed696",
+    "cases_sha256": "1e64cbc0f36e07e4326e99cd306deea1a97c804180e6cb7528f45548ab8b9a23",
+    "complexity_evidence_sha256": "51ad6595f6cca0317d8a58a5954fc83dc60310795d5f261969343b26fc838c39",
+    "candidate_source_sha256": "9285753803888c62188495fc09f603f3243a65db62aeb5a223ce57fe49740dfb"
+  }
+}

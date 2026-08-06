@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2510",
+    "frontend_id": "2510",
+    "title_slug": "check-if-there-is-a-path-with-equal-number-of-0s-and-1s",
+    "url": "https://leetcode.com/problems/check-if-there-is-a-path-with-equal-number-of-0s-and-1s/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`grid = [[0, 1, 0, 0], [0, 1, 0, 0], [1, 0, 1, 0]]`",
+        "output": "`true`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`grid = [[1, 1, 0], [0, 0, 1], [1, 0, 0]]`",
+        "output": "`false`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "2272df3c042401c1fd749267bc46f5cfced56a74969f9e2c78fe95ba955d6620",
+      "reference/contract.md": "146da1e29a510b583fb3ca1946d4162dc4cfa1f30585af07460fcefcab6bec22",
+      "reference/examples.md": "fd24144d4c7638b51e2f0c1058a3e783ca451b83a61aae8265329c110b2bfdb3",
+      "reference/constraints.md": "081962c25f1d881d88193571b26de3aa74dcde4c51b2f8c384ff385af227721e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

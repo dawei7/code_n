@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_17",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The current recursive helper uses the prohibited generic local parameter `index`; the candidate preserves the accepted depth-first backtracking algorithm and app-local contract while using the conventional interview variable `i`."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order with order-insensitive output validation",
+      "minimum-length three-way and four-way keys",
+      "two four-way keys and all 16 combinations",
+      "repeated digit positions",
+      "mixed three-way and four-way branching",
+      "maximum legal length with mappings for digits 4, 5, 6, and 8",
+      "all eight digit mappings across the visible suite",
+      "the complete legal input domain checked by an independent Cartesian-product oracle"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "8b8fc6cdaa3bd31bfe70325a82094cbd6a6ac309f42971685f2a49a0fb2dc098",
+    "native_source_sha256": "fb01012c4fb7d9b845bd461de0107d2e145c7ba2bbf3d7fe147e3c058a0592bd",
+    "approach_sha256": "9b187e412a0fbcfeea0be54e35b13e27044d06f869176329aa0029130a81d053",
+    "solution_variants_sha256": "f32a00b6b2bda3b4c46d7822ed51f7db12c353218889236b0edf23d45712ff16",
+    "cases_sha256": "76023ee1016bf0c45ed81691ff414e58944ccf3bbf27b15fde2fa840d5e4aad3",
+    "complexity_evidence_sha256": "279866a262ab67a31adf9cc94013e89243285da3205c931e90a6f6969d9c2e49",
+    "candidate_source_sha256": "231b52090979d874769ef14f4ac17af9685f8262776d78f577c67028fe312314"
+  }
+}

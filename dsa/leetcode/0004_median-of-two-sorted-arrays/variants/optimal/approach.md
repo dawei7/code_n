@@ -1,51 +1,43 @@
 ## General
 **Reformulate the median as a balanced cut**
 
-The median separates the combined sorted multiset into a lower half and an upper half. Instead of locating the median value directly, choose a cut in each input so that:
+The median separates the combined sorted multiset into a lower half and an upper half. Instead of locating the median value directly, choose a cut in each input so that the combined left side has the required size and every left-side value is no greater than every right-side value.
 
-- the combined left side contains exactly half the elements, with the extra element on the left when the total is odd;
-- every value on the left is at most every value on the right.
-
-Let `A` be the shorter array and `B` the longer one. If `i` elements of `A` go left, the required left-half size fixes the other cut:
-
-`j = (m + n + 1) // 2 - i`.
-
-There is only one independent choice, `i`, and it ranges from zero through `m`.
+The active solution first swaps the arrays when necessary so that `nums1` is no longer than `nums2`. Let $m$ and $n$ be their lengths after that swap. The lower half must contain `left_size = (m + n + 1) // 2` values. If `cut1` values come from `nums1`, the other cut is forced to be `cut2 = left_size - cut1`. Only `cut1` is independent, and `low` and `high` binary-search its legal range from 0 through $m$.
 
 **Only four boundary values matter**
 
-Because each array is already sorted, internal elements cannot violate the combined partition. Define:
+Because both arrays are sorted, only values adjacent to the cuts can violate the combined order:
 
-- `Aleft = A[i - 1]` and `Aright = A[i]`;
-- `Bleft = B[j - 1]` and `Bright = B[j]`.
+- `left1` is `nums1[cut1 - 1]`, or negative infinity when `cut1 == 0`;
+- `right1` is `nums1[cut1]`, or positive infinity when `cut1 == m`;
+- `left2` and `right2` are defined symmetrically around `cut2` in `nums2`.
 
-The cut is valid exactly when `Aleft <= Bright` and `Bleft <= Aright`. Treat a missing left boundary as negative infinity and a missing right boundary as positive infinity. These sentinels let empty sides use the same comparisons as interior cuts.
+The partition is valid exactly when `left1 <= right2` and `left2 <= right1`. The sentinels make cuts before the first element and after the last element obey the same comparisons as interior cuts.
 
-**Why binary search knows which direction to move**
+**Why the binary-search updates are forced**
 
-If `Aleft > Bright`, too many large values from `A` were placed on the left. Decreasing `i` moves `Aleft` downward and, because `j` increases, moves `Bright` upward; cuts farther right cannot repair the violation.
+If `left1 > right2`, `nums1` contributes too many large values to the lower half. Setting `high = cut1 - 1` moves its cut left; because `cut2` then increases, the opposing boundary in `nums2` moves right. Any larger `cut1` would only worsen the failed inequality.
 
-If `Bleft > Aright`, the cut in `A` is too far left. Increasing `i` moves `Aright` upward and decreases `j`, moving `Bleft` downward. Cuts farther left cannot repair this violation.
+Otherwise the only invalid possibility is `left2 > right1`, so `nums1` contributes too few lower-half values. Setting `low = cut1 + 1` moves its cut right and forces `cut2` left. Any smaller `cut1` cannot repair that violation.
 
-Those monotone failures justify discarding half the remaining cuts at each step. Searching the shorter array is essential: it gives the required logarithmic bound and keeps the complementary cut `j` within the longer array.
+These failures are monotone, so each update discards half the remaining cut positions. Searching the shorter array both gives the required bound and keeps `cut2` within the longer array.
 
 **Recover the median from a valid partition**
 
-Once both cross-boundary inequalities hold, the left side contains exactly the lower half of the combined order. Its largest value is `max(Aleft, Bleft)`. If the total length is odd, that value is the median because the left side owns the extra element.
+When both inequalities hold, `max(left1, left2)` is the greatest value in the lower half. If `total` is odd, the lower half owns the extra element and this value is returned as a float.
 
-For an even total, the smallest upper-half value is `min(Aright, Bright)`, and the median is the average of those two boundary values.
+For an even `total`, `min(right1, right2)` is the least value in the upper half. Averaging those two boundary values gives the median. For `nums1 = [1, 2]` and `nums2 = [3, 4]`, the valid cuts are `cut1 = 2` and `cut2 = 0`, so the central values are 2 and 3 and the result is 2.5.
 
-For `A = [1, 2]` and `B = [3, 4]`, the valid cuts are $i = 2$ and $j = 0$. The boundaries are `2`, positive infinity, negative infinity, and `3`. The central values are therefore `2` and `3`, giving `2.5`.
-
-**Why the partition proof is sufficient**
-
-The size equation guarantees the correct number of elements on each side. Within each array, sorted order already places left elements before right elements. The two cross comparisons add the only missing relationships between arrays. Therefore every left-side element is at most every right-side element, so the cut lies exactly at the combined median rank.
+The size equation fixes the rank of the cut. Sorted order inside each array supplies the within-array comparisons, and the two tested inequalities supply the cross-array comparisons. Therefore a valid partition places every lower-half value before every upper-half value and identifies the exact combined median.
 
 ## Complexity detail
-Binary search considers $m + 1$ cuts in the shorter array, taking $O(\log(\min(m, n)))$ time. It stores only cut indices and four boundary values, so auxiliary space is $O(1)$.
+Let $m$ and $n$ be the original input lengths. Binary search considers $min(m,n)+1$ cuts in the shorter array, taking $O(\log(\min(m,n)))$ time. The algorithm stores only search bounds, two cut positions, and four boundary values, so its auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
-- **Fully merge:** is straightforward but costs $O(m + n)$ time and additional output-sized space.
-- **Two-pointer selection:** can stop after reaching the middle and use constant space, but still takes linear time.
-- **Search the numeric value domain:** complicates duplicate counting and depends on value range; partition search works directly on ranks.
-- One input may be empty, duplicate values may straddle the cut, and odd/even totals use different final formulas. Sentinels handle empty partition sides without a separate algorithm.
+- **Fully merge:** is straightforward but costs $O(m+n)$ time and $O(m+n)$ additional space.
+- **Two-pointer selection:** can stop after reaching the middle and use constant auxiliary space, but still takes linear time.
+- **Search the numeric value domain:** complicates duplicate counting and depends on the value range; partition search works directly on ranks.
+- **One empty input:** swapping makes `nums1` empty, and infinity sentinels select the middle value or values entirely from `nums2`.
+- **Duplicate boundary values:** non-strict inequalities allow equal values to appear on both sides of a valid cut.
+- **Invalid contract input:** the final exception is unreachable for legal sorted arrays with a non-empty combined length.

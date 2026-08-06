@@ -2,13 +2,113 @@
   "schema_version": 1,
   "challenge_id": "lc_750",
   "cases": [
-    {"id": "sample-1", "name": "sample: one rectangle in a sparse grid", "kind": "sample", "visible": true, "input": {"grid": [[1,0,0,1,0],[0,0,1,0,1],[0,0,0,1,0],[1,0,1,0,1]]}, "expected": 1, "tags": ["sample", "sparse"]},
-    {"id": "sample-2", "name": "sample: dense three by three grid", "kind": "sample", "visible": true, "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]}, "expected": 9, "tags": ["sample", "dense"]},
-    {"id": "trial-1", "name": "trial: two rows and three columns", "kind": "trial", "visible": true, "input": {"grid": [[1,1,1],[1,1,1]]}, "expected": 3, "tags": ["trial", "minimum-rows"]},
-    {"id": "trial-2", "name": "trial: no shared column pair", "kind": "trial", "visible": true, "input": {"grid": [[1,1,0],[0,1,1],[1,0,1]]}, "expected": 0, "tags": ["trial", "no-rectangle"]},
-    {"id": "trial-3", "name": "trial: repeated column pair across three rows", "kind": "trial", "visible": true, "input": {"grid": [[1,0,1,0],[1,1,1,0],[1,0,1,1]]}, "expected": 3, "tags": ["trial", "pair-frequency"]},
-    {"id": "hidden-1", "name": "hidden: single row", "kind": "real", "visible": false, "input": {"grid": [[1,1,1,1]]}, "expected": 0, "tags": ["hidden", "boundary"]},
-    {"id": "hidden-2", "name": "hidden: single column", "kind": "real", "visible": false, "input": {"grid": [[1],[1],[1],[1]]}, "expected": 0, "tags": ["hidden", "boundary"]},
-    {"id": "hidden-3", "name": "hidden: two separate column pairs", "kind": "real", "visible": false, "input": {"grid": [[1,1,0,0],[1,1,0,0],[0,0,1,1],[0,0,1,1]]}, "expected": 2, "tags": ["hidden", "disconnected"]}
+    {
+      "id": "sample-1",
+      "name": "sample: one rectangle in a sparse grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,0,0,1,0],[0,0,1,0,1],[0,0,0,1,0],[1,0,1,0,1]]},
+      "expected": 1,
+      "tags": ["sample", "sparse"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: dense three by three grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]},
+      "expected": 9,
+      "tags": ["sample", "dense"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one row cannot provide four distinct corners",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1,1,1]]},
+      "expected": 0,
+      "tags": ["sample", "single-row", "distinct-corners"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: minimum one-cell grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1]]},
+      "expected": 0,
+      "tags": ["trial", "dimension-boundary", "one-count-boundary"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one column cannot provide two corner columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1],[1],[1],[1]]},
+      "expected": 0,
+      "tags": ["trial", "single-column", "distinct-corners"]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: two dense rows choose any two columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,1],[1,1,1]]},
+      "expected": 3,
+      "tags": ["trial", "minimum-row-pair", "transpose"]
+    },
+    {
+      "id": "trial-4",
+      "name": "trial: every row has a different column pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,0],[0,1,1],[1,0,1]]},
+      "expected": 0,
+      "tags": ["trial", "no-rectangle"]
+    },
+    {
+      "id": "trial-5",
+      "name": "trial: one column pair recurs in three rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,1,0],[1,1,1,0],[1,0,1,1]]},
+      "expected": 3,
+      "tags": ["trial", "pair-frequency", "overlap"]
+    },
+    {
+      "id": "trial-6",
+      "name": "trial: disconnected column pairs form separate rectangles",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,0,0],[1,1,0,0],[0,0,1,1],[0,0,1,1]]},
+      "expected": 2,
+      "tags": ["trial", "disconnected"]
+    },
+    {
+      "id": "trial-7",
+      "name": "trial: interior and non-corner ones are irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,0,1],[0,1,1,0],[1,0,0,1]]},
+      "expected": 1,
+      "tags": ["trial", "interior-irrelevant", "sparse"]
+    },
+    {
+      "id": "trial-8",
+      "name": "trial: wide sparse rows exercise transposed orientation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,1,0,1],[1,0,1,0,1]]},
+      "expected": 3,
+      "tags": ["trial", "wide-grid", "transpose"]
+    },
+    {
+      "id": "trial-9",
+      "name": "trial: rectangles may share a corner",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,1],[1,1,0],[1,0,1]]},
+      "expected": 2,
+      "tags": ["trial", "shared-corner", "overlap"]
+    }
   ]
 }

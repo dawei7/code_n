@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Palindrome Permutation II and meets the required complexity bound.",
+      "summary": "Backtracks over remaining half-character counts, then mirrors each distinct half around the forced center.",
       "time_complexity": "O(n + p \\cdot n)",
       "space_complexity": "O(n)"
     }

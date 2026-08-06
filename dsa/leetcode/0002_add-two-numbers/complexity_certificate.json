@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(\\max(n, m))",
+  "summary": "Legal lists contain at most 100 nodes, and every result must materialize at least as many nodes as the longer input, so measured scaling is both too narrow and unnecessary once the matching linear lower and upper bounds are established.",
+  "optimality": {
+    "symbol": "max(n, m)",
+    "lower_bound": "Omega(max(n, m))",
+    "upper_bound": "O(max(n, m))",
+    "argument": "The sum of two non-negative integers with n and m reverse-order digits has max(n, m) or max(n, m) + 1 result digits. Returning a newly constructed list therefore requires Omega(max(n, m)) node creations, while the reference advances each input pointer once and creates each result node once."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Every legal result contains at least max(n, m) nodes, and the contract requires a newly constructed linked list, so those nodes must all be created."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The current solution performs constant work per digit column, advances each input pointer once, and appends at most one final carry node."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Visible cases cover both zero operands, unequal lengths in both directions, carry and no-carry exhaustion, a final carry, the full source carry chain, and a legal 100-node maximum-length carry chain."
+    }
+  ]
+}
+

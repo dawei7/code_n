@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_411",
+    "frontend_id": "411",
+    "title_slug": "minimum-unique-word-abbreviation",
+    "url": "https://leetcode.com/problems/minimum-unique-word-abbreviation/description/",
+    "paid_only": true,
+    "content_sha256": "b5d1b3a63156ee73ea9ddee233a29d51568d1ed83ea660b513b779a097f8932e",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "target = \"apple\", dictionary = [\"blade\"]",
+        "output": "\"a4\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "target = \"apple\", dictionary = [\"blade\",\"plain\",\"amber\"]",
+        "output": "\"1p3\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 8,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "04344e9ea3b380be4f40fdc48165a9d254df60743a53b4a5d1cad2491defe5a2",
+      "reference/contract.md": "0dfc2245ffa6180dfa1258dde27891ee882c9d73de97c1722b5a295078cc425b",
+      "reference/examples.md": "f209b715cf0cbdaa2589b79ebcb980807cf68e562d21cb1f31ad1d71457f7413",
+      "reference/constraints.md": "62189063f7eaaa8750049aa8258e76470af03fb2322f44cce50d25835d3d96b8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

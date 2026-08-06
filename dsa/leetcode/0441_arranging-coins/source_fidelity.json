@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_441",
+    "frontend_id": "441",
+    "title_slug": "arranging-coins",
+    "url": "https://leetcode.com/problems/arranging-coins/description/",
+    "paid_only": false,
+    "content_sha256": "49890b4ed8be9e8e566eae9d94f4e9f1630099524d025e6176b06e6e61ade9fd",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 5",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 8",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c99cdb569581b541baeb298857fc08a3e5e3984218c310d8a6a407225b941b05",
+      "reference/contract.md": "c61a3ed2cf2a32181b46b4cd8ba5471ff01135d336e38a648017e0de95972f02",
+      "reference/examples.md": "7e7250fea5b2f0d6b5b397c013b251918578185b82f3c569b91738e34d7af117",
+      "reference/constraints.md": "78ed0e9bf8addba7e831daa7ddef64a619514f952467b8805ee3f393fde47068"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

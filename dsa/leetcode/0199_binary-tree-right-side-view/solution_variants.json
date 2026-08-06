@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Binary Tree Right Side View and meets the required complexity bound.",
+      "summary": "Processes the tree level by level and records the final node in each left-to-right queue group.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

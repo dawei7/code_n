@@ -1,27 +1,35 @@
 ## General
-**Count columns and whole-row patterns**
 
-Scan each row, add its black pixels to the column counts, and represent the entire row as an immutable pattern. Only patterns containing exactly `target` black cells can satisfy the row condition; count how many times each such pattern occurs.
+**Count columns and relevant whole-row patterns**
 
-**Recognize the required block of identical rows**
+Scan every row once. Convert the row to an immutable tuple, count its black pixels, and increment the global count
+for each black column. Only a row containing exactly `target` black cells can satisfy the first source rule, so record
+the frequency of only those row patterns.
 
-If a qualifying pattern occurs exactly `target` times, each black position in that pattern appears in all of those rows. A column at that position is valid precisely when its total black count is also `target`; then no additional, different row can contain a black pixel in that column.
+**Recognize a complete block of identical rows**
 
-**Count pixels by groups rather than individually**
+Suppose a qualifying pattern occurs exactly `target` times. Every black position in that pattern appears in those
+same `target` identical rows. If that position's global column count is also `target`, no additional different row can
+contain a black pixel in the column. Both source rules then hold for all `target` pixels at that position.
 
-For every pattern occurring `target` times, inspect its black positions. Each position whose column count is `target` contributes all `target` pixels from the identical rows at once.
-
-**Why the grouped count is exact**
-
-Every contributed column has exactly the `target` identical pattern rows as its black rows, so every contributed pixel meets all conditions. Conversely, a valid pixel's row pattern has `target` black cells, its column has `target` black cells, and all black rows in that column are identical; therefore that pattern occurs exactly `target` times and the grouped calculation includes the pixel.
+For each pattern with frequency `target`, inspect its black positions. Every position whose column count is `target`
+contributes all `target` pixels at once. Conversely, any valid pixel has a row with `target` black cells, a column with
+`target` black cells, and identical rows at all those column positions. Its pattern must therefore occur exactly
+`target` times, so this grouped calculation includes every valid pixel and no invalid one.
 
 ## Complexity detail
-Creating patterns, counting columns, and inspecting qualifying patterns process $O(rows \cdot cols)$ characters. Stored row-pattern keys can occupy $O(rows \cdot cols)$ space, while column counts use $O(cols)$.
+
+Creating row tuples, counting black cells and columns, and scanning qualifying patterns process
+$O(rows \cdot cols)$ characters. Stored row-pattern keys can occupy $O(rows \cdot cols)$ space, and column counts use
+$O(cols)$ additional space, for $O(rows \cdot cols)$ total auxiliary space.
 
 ## Alternatives and edge cases
-- **Validate every black pixel directly:** repeatedly counts axes and compares rows, which can become polynomially slower on a dense picture.
-- **Group row indices by serialized row:** is equivalent to pattern frequencies but retains unnecessary index lists.
+
+- **Validate every black pixel directly:** repeatedly counts axes and compares whole rows, which can become
+  polynomially slower on a dense picture.
+- **Store row-index lists per pattern:** is equivalent to frequencies but retains identities the final count does not
+  need.
 - **Correct row count but wrong column count:** contributes nothing.
-- **Correct counts with differing rows:** violates the identical-row condition even if every axis total matches.
-- **Pattern occurring more than `target` times:** makes each of its black columns exceed the target count.
-- **No qualifying pattern:** returns zero without any special case.
+- **Correct counts with differing rows:** violates the second rule even when both axis totals match.
+- **Pattern occurring more than `target` times:** makes each of that pattern's black columns exceed the target count.
+- **No qualifying pattern:** naturally leaves the answer at zero.

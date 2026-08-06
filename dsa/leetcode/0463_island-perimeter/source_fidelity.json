@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_463",
+    "frontend_id": "463",
+    "title_slug": "island-perimeter",
+    "url": "https://leetcode.com/problems/island-perimeter/description/",
+    "paid_only": false,
+    "content_sha256": "b8fd138e7b9b162473b85638787ac0e3dfb84af41ddccdaa775d19016e9048ed",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]",
+        "output": "16",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[1]]",
+        "output": "4",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "grid = [[1,0]]",
+        "output": "4",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "dcc6630a3326df53fbf50aa9413ad6a5cacb204b3931923725ebd9d268952938",
+      "reference/contract.md": "533fd183990b4cd4c4dfb1249180593c7f3ae0970a82c8eea402264332906d19",
+      "reference/examples.md": "07684ec573411bb859b4cc8fe995bd73f0d285489f15c91eefbe24b970d391a7",
+      "reference/constraints.md": "f1092f653871fce4d822f29f2e18deb9c3eabc6fbd02c84a2f5f002267d5e9b1"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

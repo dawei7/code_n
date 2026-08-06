@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Course Schedule and meets the required complexity bound.",
+      "summary": "Uses Kahn's indegree queue to remove every course unlocked by completed prerequisites.",
       "time_complexity": "O(V + E)",
       "space_complexity": "O(V + E)"
     }

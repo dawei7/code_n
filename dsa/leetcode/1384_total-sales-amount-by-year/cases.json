@@ -97,9 +97,9 @@
       ]
     },
     {
-      "id": "sample-leap-day",
-      "name": "sample: one leap day",
-      "kind": "sample",
+      "id": "trial-leap-day",
+      "name": "trial: one leap day",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -136,14 +136,14 @@
         ]
       },
       "tags": [
-        "sample",
+        "trial",
         "leap-day"
       ]
     },
     {
-      "id": "sample-boundary",
-      "name": "sample: two dates in different years",
-      "kind": "sample",
+      "id": "trial-year-boundary",
+      "name": "trial: two inclusive dates in adjacent years",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -186,7 +186,7 @@
         ]
       },
       "tags": [
-        "sample",
+        "trial",
         "boundary"
       ]
     },
@@ -235,8 +235,8 @@
       ]
     },
     {
-      "id": "trial-two-periods",
-      "name": "trial: periods aggregate within one year",
+      "id": "trial-all-three-years",
+      "name": "trial: one interval covers every report year",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -244,21 +244,15 @@
           "Product": [
             {
               "product_id": 4,
-              "product_name": "Split"
+              "product_name": "Three Years"
             }
           ],
           "Sales": [
             {
               "product_id": 4,
-              "period_start": "2019-01-01",
-              "period_end": "2019-01-10",
+              "period_start": "2018-01-01",
+              "period_end": "2020-12-31",
               "average_daily_sales": 3
-            },
-            {
-              "product_id": 4,
-              "period_start": "2019-02-01",
-              "period_end": "2019-02-05",
-              "average_daily_sales": 4
             }
           ]
         }
@@ -273,22 +267,34 @@
         "rows": [
           [
             4,
-            "Split",
+            "Three Years",
+            "2018",
+            1095
+          ],
+          [
+            4,
+            "Three Years",
             "2019",
-            50
+            1095
+          ],
+          [
+            4,
+            "Three Years",
+            "2020",
+            1098
           ]
         ]
       },
       "tags": [
         "trial",
-        "aggregate"
+        "all-years"
       ]
     },
     {
-      "id": "hidden-unsold-product",
-      "name": "hidden: product without sales is omitted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsold-product",
+      "name": "trial: product without sales is omitted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Product": [
@@ -328,8 +334,59 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "no-sales"
+      ]
+    },
+    {
+      "id": "trial-zero-daily-sales",
+      "name": "trial: zero daily sales across a year boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Product": [
+            {
+              "product_id": 7,
+              "product_name": "Free"
+            }
+          ],
+          "Sales": [
+            {
+              "product_id": 7,
+              "period_start": "2018-12-31",
+              "period_end": "2019-01-01",
+              "average_daily_sales": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "report_year",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            7,
+            "Free",
+            "2018",
+            0
+          ],
+          [
+            7,
+            "Free",
+            "2019",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-sales",
+        "cross-year"
       ]
     }
   ]

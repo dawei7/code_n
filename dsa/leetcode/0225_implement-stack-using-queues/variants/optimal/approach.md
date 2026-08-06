@@ -15,7 +15,8 @@ Because that order is the exact LIFO removal order, reading or removing the queu
 Push costs $O(n)$ and other operations $O(1)$; storage is $O(n)$. Across a command stream, worst-case total time is quadratic in pushes.
 
 ## Alternatives and edge cases
-- **Two queues:** can make either push or pop costly.
-- **Use a list as a stack:** violates the queue-only design constraint.
-- **Skip rotation:** yields FIFO behavior.
-- The specification calls `pop` and `top` only when the structure is nonempty. After the last element is removed, later pushes start a valid new stack state.
+- **Two queues:** They can make either push or pop costly while preserving LIFO order.
+- **List used as a stack:** It violates the queue-only design constraint.
+- **Skipped rotation:** Leaving each new value at the back yields FIFO behavior.
+- **Valid removals:** The source guarantees `pop` and `top` only on a nonempty structure.
+- **Reuse after emptying:** A later push begins a valid new stack state after the last element has been removed.

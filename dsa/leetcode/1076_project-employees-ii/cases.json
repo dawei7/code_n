@@ -1,1 +1,185 @@
-{"schema_version":1,"challenge_id":"lc_1076","cases":[{"id":"sample-1","name":"sample: one largest project","kind":"sample","visible":true,"input":{"tables":{"Project":[{"project_id":1,"employee_id":1},{"project_id":1,"employee_id":2},{"project_id":1,"employee_id":3},{"project_id":2,"employee_id":1},{"project_id":2,"employee_id":4}],"Employee":[{"employee_id":1,"name":"Khaled","experience_years":3},{"employee_id":2,"name":"Ali","experience_years":2},{"employee_id":3,"name":"John","experience_years":1},{"employee_id":4,"name":"Doe","experience_years":2}]}},"expected":{"columns":["project_id"],"rows":[[1]]},"tags":["sample","maximum"]},{"id":"trial-tied-maximum","name":"all projects tied at maximum","kind":"trial","visible":true,"input":{"tables":{"Project":[{"project_id":1,"employee_id":1},{"project_id":1,"employee_id":2},{"project_id":3,"employee_id":1},{"project_id":3,"employee_id":3}],"Employee":[{"employee_id":1,"name":"Shared","experience_years":5},{"employee_id":2,"name":"Two","experience_years":2},{"employee_id":3,"name":"Three","experience_years":3}]}},"expected":{"columns":["project_id"],"rows":[[1],[3]]},"tags":["trial","ties"]},{"id":"trial-single-project","name":"single represented project","kind":"trial","visible":true,"input":{"tables":{"Project":[{"project_id":8,"employee_id":4},{"project_id":8,"employee_id":9}],"Employee":[{"employee_id":4,"name":"Four","experience_years":4},{"employee_id":9,"name":"Nine","experience_years":9}]}},"expected":{"columns":["project_id"],"rows":[[8]]},"tags":["trial","single"]},{"id":"real-several-tied","name":"hidden: retain every tied winner","kind":"real","visible":false,"input":{"tables":{"Project":[{"project_id":7,"employee_id":1},{"project_id":7,"employee_id":2},{"project_id":7,"employee_id":3},{"project_id":2,"employee_id":1},{"project_id":2,"employee_id":4},{"project_id":2,"employee_id":5},{"project_id":9,"employee_id":6}],"Employee":[{"employee_id":1,"name":"A","experience_years":1},{"employee_id":2,"name":"B","experience_years":2},{"employee_id":3,"name":"C","experience_years":3},{"employee_id":4,"name":"D","experience_years":4},{"employee_id":5,"name":"E","experience_years":5},{"employee_id":6,"name":"F","experience_years":6}]}},"expected":{"columns":["project_id"],"rows":[[2],[7]]},"tags":["hidden","ties","ordering"]},{"id":"real-shared-employee","name":"hidden: shared employee counts per project","kind":"real","visible":false,"input":{"tables":{"Project":[{"project_id":4,"employee_id":1},{"project_id":5,"employee_id":1},{"project_id":5,"employee_id":2}],"Employee":[{"employee_id":1,"name":"Same","experience_years":10},{"employee_id":2,"name":"Peer","experience_years":1}]}},"expected":{"columns":["project_id"],"rows":[[5]]},"tags":["hidden","shared"]},{"id":"real-attributes-irrelevant","name":"hidden: employee attributes do not affect counts","kind":"real","visible":false,"input":{"tables":{"Project":[{"project_id":6,"employee_id":10},{"project_id":6,"employee_id":11},{"project_id":3,"employee_id":12}],"Employee":[{"employee_id":10,"name":"Duplicate","experience_years":1},{"employee_id":11,"name":"Duplicate","experience_years":99},{"employee_id":12,"name":"Other","experience_years":50}]}},"expected":{"columns":["project_id"],"rows":[[6]]},"tags":["hidden","attributes"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1076",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one largest project",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Project": [
+            {"project_id": 1, "employee_id": 1},
+            {"project_id": 1, "employee_id": 2},
+            {"project_id": 1, "employee_id": 3},
+            {"project_id": 2, "employee_id": 1},
+            {"project_id": 2, "employee_id": 4}
+          ],
+          "Employee": [
+            {"employee_id": 1, "name": "Khaled", "experience_years": 3},
+            {"employee_id": 2, "name": "Ali", "experience_years": 2},
+            {"employee_id": 3, "name": "John", "experience_years": 1},
+            {"employee_id": 4, "name": "Doe", "experience_years": 2}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["project_id"],
+        "rows": [[1]]
+      },
+      "tags": ["sample", "unique-maximum"]
+    },
+    {
+      "id": "trial-tied-maximum",
+      "name": "all represented projects tie at the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Project": [
+            {"project_id": 1, "employee_id": 1},
+            {"project_id": 1, "employee_id": 2},
+            {"project_id": 3, "employee_id": 1},
+            {"project_id": 3, "employee_id": 3}
+          ],
+          "Employee": [
+            {"employee_id": 1, "name": "Shared", "experience_years": 5},
+            {"employee_id": 2, "name": "Two", "experience_years": 2},
+            {"employee_id": 3, "name": "Three", "experience_years": 3}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["project_id"],
+        "rows": [[1], [3]]
+      },
+      "tags": ["trial", "all-tied"]
+    },
+    {
+      "id": "trial-single-assignment",
+      "name": "one assignment is the only represented project",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Project": [
+            {"project_id": 8, "employee_id": 4}
+          ],
+          "Employee": [
+            {"employee_id": 4, "name": "Four", "experience_years": 4},
+            {"employee_id": 9, "name": "Unassigned", "experience_years": 9}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["project_id"],
+        "rows": [[8]]
+      },
+      "tags": ["trial", "single-assignment", "unassigned-employee"]
+    },
+    {
+      "id": "trial-several-tied",
+      "name": "multiple tied winners exclude a lower-count project",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Project": [
+            {"project_id": 7, "employee_id": 1},
+            {"project_id": 7, "employee_id": 2},
+            {"project_id": 7, "employee_id": 3},
+            {"project_id": 2, "employee_id": 1},
+            {"project_id": 2, "employee_id": 4},
+            {"project_id": 2, "employee_id": 5},
+            {"project_id": 9, "employee_id": 6}
+          ],
+          "Employee": [
+            {"employee_id": 1, "name": "A", "experience_years": 1},
+            {"employee_id": 2, "name": "B", "experience_years": 2},
+            {"employee_id": 3, "name": "C", "experience_years": 3},
+            {"employee_id": 4, "name": "D", "experience_years": 4},
+            {"employee_id": 5, "name": "E", "experience_years": 5},
+            {"employee_id": 6, "name": "F", "experience_years": 6}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["project_id"],
+        "rows": [[2], [7]]
+      },
+      "tags": ["trial", "partial-tie", "lower-count-project"]
+    },
+    {
+      "id": "trial-shared-employee",
+      "name": "one employee counts once in each assigned project",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Project": [
+            {"project_id": 4, "employee_id": 1},
+            {"project_id": 5, "employee_id": 1},
+            {"project_id": 5, "employee_id": 2}
+          ],
+          "Employee": [
+            {"employee_id": 1, "name": "Same", "experience_years": 10},
+            {"employee_id": 2, "name": "Peer", "experience_years": 1}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["project_id"],
+        "rows": [[5]]
+      },
+      "tags": ["trial", "shared-employee"]
+    },
+    {
+      "id": "trial-attributes-irrelevant",
+      "name": "employee names and experience do not affect counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Project": [
+            {"project_id": 6, "employee_id": 10},
+            {"project_id": 6, "employee_id": 11},
+            {"project_id": 3, "employee_id": 12}
+          ],
+          "Employee": [
+            {"employee_id": 10, "name": "Duplicate", "experience_years": 1},
+            {"employee_id": 11, "name": "Duplicate", "experience_years": 99},
+            {"employee_id": 12, "name": "Other", "experience_years": 50}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["project_id"],
+        "rows": [[6]]
+      },
+      "tags": ["trial", "attributes-irrelevant"]
+    },
+    {
+      "id": "trial-no-project-assignments",
+      "name": "no assignments produce no project rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Project": {
+            "columns": ["project_id", "employee_id"],
+            "rows": []
+          },
+          "Employee": [
+            {"employee_id": 42, "name": "Unassigned", "experience_years": 7}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["project_id"],
+        "rows": []
+      },
+      "tags": ["trial", "empty-project", "unassigned-employee"]
+    }
+  ]
+}

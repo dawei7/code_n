@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_86",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "approach_accuracy",
+        "severity": "material",
+        "reason": "The approach alternated between higher/other terminology while the current source consistently uses the `upper_*` chain; it now names the implemented pointers and detach-before-append behavior exactly."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "material",
+        "reason": "The largest scaling workload contained 300 nodes despite the verified 200-node maximum; a validated certificate now records the final-node Omega(n) lower bound and the two-chain traversal's matching O(n) upper bound."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "11b7973854f69833a2ae492fb4ad0f694b87739e76d0861653d6662be67a1dc1",
+    "native_source_sha256": "ba424c3e914f7f85aae8c3490d08ee113a5f560bcd7693eaaeef82b1a0fc6236",
+    "approach_sha256": "96c08540c8cb95bb355563324497fcbbe9b0532a2301f0993d4996476e8ec5f9",
+    "solution_variants_sha256": "c501b1e08161341f343de4e3646b591985e51da166f86fa0f85692b112b08129",
+    "complexity_evidence_sha256": "51e7a8d956db9b0c0bf1149a6af9cc206240c822dad43901d5fa254c4349a45e"
+  }
+}

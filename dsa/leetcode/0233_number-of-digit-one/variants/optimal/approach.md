@@ -25,4 +25,5 @@ The factor is multiplied by ten per iteration, producing $O(\log n)$ iterations 
 ## Alternatives and edge cases
 - **Convert every number to a string:** costs `Theta(n log n)` total digit work.
 - **Digit DP:** generalizes to richer digit constraints but stores unnecessary state here.
-- Zero contributes no digit one; powers of ten exercise the partial-cycle boundary.
+- **Zero:** no decimal position is processed, so zero contributes no digit one.
+- **Powers of ten:** these inputs exercise the boundary between a complete cycle and the next position's partial cycle.

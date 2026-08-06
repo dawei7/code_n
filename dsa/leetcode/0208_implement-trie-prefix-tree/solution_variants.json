@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Implement Trie (Prefix Tree) and meets the required complexity bound.",
+      "summary": "Stores one hash-map edge per character and a terminal sentinel at complete-word endpoints.",
       "time_complexity": "O(L)",
       "space_complexity": "O(T)"
     }

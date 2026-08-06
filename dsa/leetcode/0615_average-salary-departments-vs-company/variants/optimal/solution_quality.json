@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_615",
+  "language": "sql",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is structured and interview-ready. salary_rows establishes the month, department, amount, and company baseline once; department_averages performs the second aggregation; and the final CASE cleanly exposes the three-way classification."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Joining Salary to Employee attaches exactly one department to each payment. The month-partitioned window average weights every company payment equally, while grouping by month and department computes the corresponding department average. company_average is constant inside each month, so MAX carries it through grouping without changing it. Comparing the unrounded values yields higher, lower, or same for every represented department-month and never mixes months."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 615 and SQL as its sole application language. The query consumes Salary and Employee, emits pay_month in YYYY-MM form, department_id, and comparison, and its deterministic ordering is compatible with the source's unrestricted result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable MySQL source is bound to verified submission 2065475508. Its reviewed app adapter differs only by replacing MySQL DATE_FORMAT(pay_date, '%Y-%m') with SQLite strftime('%Y-%m', pay_date); the current hash-bound alignment review confirms identical joins, window partition, aggregation, grouping, comparison, ordering, schema, and complexity."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three authored workloads grow from 64 to 512 salary rows and one-employee departments, producing one output group per payment. The exact protected source passed all seven correctness cases and all three performance tiers. A correct control that recomputed the monthly company average through correlated salary scans passed every correctness and benchmark output but failed only performance with relative growth exponent +1.12 and a 48.75x largest runtime ratio, distinguishing shared window aggregation from quadratic rescanning."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach precisely matches the current source's month derivation, employee join, month-wide window average, department grouping, constant-value carry-through, and exact three-way comparison. Its O((S + E) log(S + E)) general database time and O(S + E) execution-space bounds account for joining, partitioning, grouping, and ordering."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The modular Reference is bound to the authenticated Premium statement's rendered-content hash. It preserves both schemas and key relationships, month-specific department-versus-company comparison, all three output labels, unrestricted ordering, the complete example and every explanation calculation, and all five source tables."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium source example remains first with every exact Salary and Employee row, amount, identifier, month, department, comparison, and explanation calculation; only slash-form source dates are normalized to ISO dates for SQLite strftime, and the unrestricted source output is placed in deterministic month-and-department order.",
+      "Both invented samples were relabelled as trials, and both formerly hidden weighted-average and all-equal checks are now visible trials.",
+      "Contract boundaries cover primary-key uniqueness, the employee foreign-key mapping, a single represented department, employees and departments without a payment in a month, multiple months, different days in one month, and one result per represented department-month.",
+      "Material semantics cover higher, lower, and same outcomes, fractional unrounded averages, unequal department sizes, payment-weighted company averages rather than averages of department averages, exact equality across several departments, and month-isolated comparisons.",
+      "An independent exact-Fraction oracle verified the protected SQLite source and the immutable native algorithm after its sole reviewed DATE_FORMAT-to-strftime dialect substitution on all seven cases, all three benchmark outputs, 1,728 exhaustive department/month/pay combinations, and 500 deterministic randomized datasets.",
+      "All seven ordinary correctness cases are visible samples or trials; the unchanged 64-, 256-, and 512-payment one-department-per-employee workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "35c686750b164854dec68173f7e26f3c58abd73ad8cc2bd119435ab8140d536e",
+    "native_source_sha256": "f4406ef31e24fbcddddec526f29e3781f34093e6857817010bd29ec6edfa40f7",
+    "approach_sha256": "c0f89bb6541eff1109737e8eda59995c676b20b27329d46eb547e94b5743e0fb",
+    "solution_variants_sha256": "ce75c9a5a04c837d78c9134884fc4b6fd02f4644d444d116d0218e73ddf314b1",
+    "complexity_evidence_sha256": "22570cbf0b08287d389241aed4b478eca0a69e3c3e197cabe96964d5d48a9ac0",
+    "cases_sha256": "a861cd85d2c1645bca25f0d3567b86159d736c222af5782a762ab19e3a41e061"
+  }
+}

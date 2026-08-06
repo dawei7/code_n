@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_428",
+    "frontend_id": "428",
+    "title_slug": "serialize-and-deserialize-n-ary-tree",
+    "url": "https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/description/",
+    "paid_only": true,
+    "content_sha256": "e3f63a5f9634a4330c15f147eac9cb4040980ac47c9a183633c945fbec905380",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]",
+        "output": "[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [1,null,3,2,4,null,5,6]",
+        "output": "[1,null,3,2,4,null,5,6]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "root = []",
+        "output": "[]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8b0790ff9556411bf8d4eaea70e11aed916b3c1a36dce51387410943ee9d8d49",
+      "reference/contract.md": "b220e95320bef4968a27cc31f3919783de6b9dad555395ce6365af30dfdbd4c1",
+      "reference/examples.md": "45c9d42ef24a260e7f28fef3cba95a3468ff3391caf74d75b4c3fd5884d8a912",
+      "reference/constraints.md": "ce62f8e25bc710f40e86e154eb078021a17baefa79001582d1b3cb0f303f45b6"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

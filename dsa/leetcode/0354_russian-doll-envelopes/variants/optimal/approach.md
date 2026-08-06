@@ -24,5 +24,4 @@ Sorting `n` envelopes costs $O(n \log n)$. Each of the `n` heights performs one 
 - **Quadratic dynamic programming:** compares every earlier envelope with every later one, taking $O(n^2)$ time and $O(n)$ space.
 - **Sort equal widths by ascending height:** is incorrect because LIS could select multiple envelopes with the same width.
 - **Unsorted pairwise chain search:** can be correct but repeatedly explores the same predecessor relationships.
-- An empty input has answer zero.
 - Duplicate envelopes and envelopes sharing either dimension cannot nest because both dimensions must increase strictly.

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_404",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is a clean iterative depth-first traversal. It carries the parent-edge direction with each node, distinguishes leaves before expansion, counts each qualifying value once, and defines the required local TreeNode equivalent explicitly. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 404 and its Python sumOfLeftLeaves surface. The Reference precisely distinguishes a leaf from a left leaf, preserves the nonempty tree and value bounds, both source examples in order with the supplied explanation complete, and the level-order app representation."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064719528. Its empty guard, `(node, is_left)` stack, leaf predicate, signed accumulation, child-direction flags, and traversal order are exactly the protected app-local algorithm apart from the local model and LeetCode wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 15-, 63-, and 255-node perfect-tree tiers span 17x and expose many left and right leaves. The current source passes all 11 executions at -0.01 relative growth and 1.02x; correct leaf collection followed by a full parent rescan for every leaf passes every output but fails only scaling at +1.19 and 163.91x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly explains the direction flag, leaf-before-expansion rule, one-parent uniqueness argument, root and nonleaf traps, and O(n) time with O(h) depth-first stack space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples, the complete contributing-node explanation, both constraints, and an independently authored text tree preserving the source illustration's structure and highlighted left leaves."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "c34f4ca04e435f96904285aedb2d4f44b26845b64d0bc29e984b685e8ccf85ca",
+    "native_source_sha256": "9b04fe705fb54e9f3b4e4718092bc19388cad3e2898d3980fd7edac675aa9af4",
+    "approach_sha256": "b48e597fb0202e80678bf5964987b98df4ac6a6124cff05a248b5707ce60ab9a",
+    "solution_variants_sha256": "5def50ca2b0879698349bcf833809d244084a80615dd5164b85dc4ee06c7d878",
+    "complexity_evidence_sha256": "fa803562fdcaf721c2285ab0a5643a9c42ac47424a3d56c0c9ec4d514ba206af"
+  }
+}

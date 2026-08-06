@@ -1,32 +1,27 @@
 ## General
-**First obtain any meeting point inside the cycle**
+**First obtain a meeting point inside the cycle**
 
-Run Floyd's one-step/two-step pointers exactly as in cycle detection. Reaching a null fast path proves there is no entry. A meeting does not generally occur at the entry; it only provides a cycle position with the distance relationship needed for phase two.
+Advance `slow` by one edge and `fast` by two while both fast-pointer hops exist. Reaching null proves that the list is acyclic. If the pointers meet, the meeting node lies somewhere in the cycle but is not necessarily its entry.
 
-**Equal-speed pointers from head and meeting converge at the entry**
+**Equal-speed pointers from head and the meeting converge at the entry**
 
-After the first meeting, place `entry` at `head` and leave `slow` at the meeting node. Move both one edge per iteration. In the app adapter, count `entry`'s moves; because it begins at list index zero, that count is the zero-based entry index when identities match.
+Let $a$ be the prefix length before the entry, $b$ the distance from entry to the first meeting, and $c$ the remaining distance around the cycle. At that meeting, `slow` has traveled $a + b$ edges and `fast` has traveled twice as far, differing by some integer number $k$ of complete cycles:
 
-**Distance algebra explains the second convergence**
+$$
+2(a + b) = a + b + k(b + c).
+$$
 
-Let prefix length be `a`, entry-to-meeting distance be `b`, and the remaining cycle distance back to entry be `c`. At the first meeting, slow traveled $a + b$; fast traveled twice that and also differs by an integer number `k` of complete cycles:
+Rearranging gives $a = (k - 1)(b + c) + c$. A pointer starting at the meeting therefore reaches the entry after the same number of steps, modulo complete cycles, as a pointer starting at `head`. Reset `entry` to `head`, move it and `slow` one edge at a time, and return their first identical node.
 
-```text
-2(a + b) = a + b + k(b + c)
-```
-
-Thus $a = (k - 1)(b + c) + c$. Walking `a` steps from the meeting advances through some full cycles plus the final `c` edges to entry, exactly while a head pointer walks its `a`-edge prefix.
-
-**Phase-specific invariants connect identity and app index**
-
-During detection, `fast` has traversed twice as many edges as `slow`. During entry search, both pointers advance equally, preserving the modular-distance argument above. The app implementation also counts the head pointer's steps, which is the entry index.
+The candidate's app adapter then walks from `head` to that returned node and counts `position`, converting the native node identity into the required zero-based serialized result without changing the list.
 
 ## Complexity detail
-Detection and entry location each traverse at most a constant multiple of the list's distinct nodes, so total time is $O(n)$. Only a fixed number of pointers and one counter are stored.
+Detection and entry convergence each traverse at most a constant multiple of the $n$ reachable nodes. The app-local position conversion adds at most one prefix traversal, so total time remains $O(n)$. A fixed number of node references and one scalar counter use $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Visited-node map:** can return the first repeated node and its index, but requires $O(n)$ extra space.
-- **Compare values:** is invalid because separate nodes may contain equal values.
-- **Break or mark links:** mutates caller-owned structure and violates the contract.
-- Return `-1` for an empty or acyclic list. A self-loop has entry index `0`; a cycle may also begin after a long acyclic prefix.
-- The native platform returns the node object, while the app's counted head steps expose the serialized entry index without changing the pointer proof.
+- **Visited-node map:** can return the first repeated node and its position in $O(n)$ time but uses $O(n)$ auxiliary space.
+- **Compare stored values:** is invalid because distinct nodes may contain equal values.
+- **Break or mark links:** violates the requirement not to modify the list.
+- Empty and acyclic inputs return `-1` in the app and null natively.
+- A self-loop and a cycle entering at the head both produce app position `0`.
+- The first Floyd meeting need not be the entry; the equal-speed second phase is essential.

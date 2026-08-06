@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_89",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(2^n)",
+  "summary": "Every valid result contains exactly 2^n integers, so merely materializing the required output takes exponential time. The current direct Gray transform computes each output once and matches that bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(2^n)",
+    "upper_bound": "O(2^n)",
+    "argument": "The contract requires a list containing all 2^n distinct n-bit values, so any implementation must create 2^n output entries and takes Omega(2^n) time in the output model. The current list comprehension iterates over exactly those 2^n ranks and performs one shift and one XOR per rank, giving O(2^n) time. Excluding the required returned list, it keeps only constant scalar state."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "A valid Gray-code sequence has exactly 2^n entries by contract, and each entry must be materialized in the returned list."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The range has exactly 2^n values, and the comprehension applies a constant-time shift and XOR to each value once."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover the complete two-bit cycle and the minimum legal bit width; black-box real-test execution validates the existing semantic Gray-code checks without inspecting their definitions."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_29",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order",
+      "zero dividend and a quotient whose magnitude is below one",
+      "positive, negative, and double-negative sign combinations with truncation toward zero",
+      "exact division by one, negative one, and a power of two",
+      "both signed 32-bit operand boundaries and the sole clamped overflow case",
+      "85,796 dense, boundary, and deterministic full-range random pairs checked in both protected sources",
+      "a 32-binary-digit bounded-work proof used because legal bit lengths are too narrow for honest scaling"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "baf72f272a8e805f871de4069ca5f657bc580c9d23e0ebddf512826efa02434e",
+    "native_source_sha256": "89e86d18843205026935936ff44eb0d464dd57a02324a5805a94abac0bad8fd3",
+    "approach_sha256": "7cadbacdc053a5be04fadebd3bd193d910c716f89d3c40273df711464b70d7ff",
+    "solution_variants_sha256": "481e191e4234785f0d9f7448bcf12667863a8dede3b3b968e12e69858b1fecec",
+    "cases_sha256": "95f2af6ada48f2c7f70b4750dd8b668139a2f9d66500ecee26f028e8b5343a45",
+    "complexity_evidence_sha256": "59d1ff2d495eac47c40f462d2fb17f5e2468623e85ddc45a6a3caf24b53f0462"
+  }
+}

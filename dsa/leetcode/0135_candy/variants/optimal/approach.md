@@ -1,32 +1,21 @@
 ## General
-**Left-to-right propagation establishes every left-neighbor lower bound**
+**Each neighbor direction contributes an independent lower bound**
 
-Initialize every child with one candy, the unconditional minimum. Scan left to right; when `ratings[i] > ratings[i - 1]`, set `candies[i] = candies[i - 1] + 1`. Equal or lower ratings impose no requirement to exceed the left neighbor, so their current one-candy baseline remains sufficient for this direction.
+Initialize every child with one candy, the unconditional minimum. In a left-to-right pass, whenever `ratings[i] > ratings[i - 1]`, set `candies[i] = candies[i - 1] + 1`. This computes the smallest count forced by an increasing run from the left. Equal or lower ratings impose no left-neighbor increase.
 
-**Right-to-left propagation adds the opposite lower bound without erasing the first**
+Scan back from right to left to enforce the symmetric requirement. When `ratings[i] > ratings[i + 1]`, child $i$ needs at least `candies[i + 1] + 1`; take the maximum of that value and the amount already required by the left pass. The maximum is essential at a peak, where replacing the first value outright could break the longer slope on its other side.
 
-Scan right to left. When `ratings[i] > ratings[i + 1]`, the right-side rule requires at least `candies[i + 1] + 1`. Assign the maximum of this requirement and the existing left-pass value. Overwriting unconditionally could reduce a peak below the amount required by a longer rising slope on its left.
+**The pointwise maximum is the unique minimum contribution at every position**
 
-**Each child's final candy count is the maximum of two necessary bounds**
-
-After the first pass, all constraints from a lower-rated left neighbor hold with minimal directional counts. During the second pass, processed constraints from lower-rated right neighbors also hold. Taking maxima can only increase counts, so it cannot invalidate a previously satisfied inequality.
-
-**Trace a valley and a peak**
-
-The forward pass gives `[1,1,2]`. The backward comparison raises the first child above rating `0`, producing `[2,1,2]` and total five.
-
-**Two directional lower bounds meet at each child**
-
-The left-to-right pass computes the minimum candy count required by increasing rating runs from the left. The right-to-left pass supplies the analogous lower bound from the right.
-
-Any valid distribution must satisfy both bounds at every child, so their maximum is necessary. Assigning exactly that maximum also satisfies each neighboring inequality in its relevant direction. No position can be lowered without violating a bound, making the total minimal.
+Any valid distribution must meet both directional lower bounds for each child. The two passes assign exactly their maximum, so every strict rating comparison receives a corresponding strict candy comparison. Increasing a value is unnecessary, while decreasing any value below its computed bound would violate at least one adjacent requirement. Consequently the sum of the resulting array is globally minimal.
 
 ## Complexity detail
-Two scans and one sum take $O(n)$ time. The candy lower-bound array uses $O(n)$ space.
+The two directional scans and the final sum take $O(n)$ time. The `candies` lower-bound array uses $O(n)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Repeatedly repair violations:** may require $O(n^2)$ updates.
-- **Sort children by rating:** can work with indices but uses $O(n \log n)$ time.
-- **One-pass slope accounting:** can achieve $O(1)$ space but is more intricate around peaks and equal ratings.
-- Equal adjacent ratings impose no relative candy constraint. A one-child input returns one.
-- Strictly rising or falling ratings receive `1..n` in the appropriate direction; peaks must satisfy both slopes.
+- **Repeatedly repair violated neighbors:** eventually converges but can require $O(n^2)$ updates on a long slope.
+- **Process children by sorted rating:** can propagate from lower-rated neighbors but costs $O(n \log n)$ time and needs original positions.
+- **Track ascending and descending slopes in one pass:** achieves $O(1)$ auxiliary space but requires more delicate peak and plateau accounting.
+- Equal adjacent ratings impose no relative candy requirement.
+- A single child receives one candy.
+- Strictly rising or falling ratings receive counts `1..n` in the corresponding direction, while a peak must satisfy both slopes.

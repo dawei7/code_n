@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `strings`: An array of nonempty lowercase strings.
+- `strings`: A list of strings ($1 \le \text{strings.length} \le 200$).
 
 **Return value**
 
-Return all shifting-sequence groups, with arbitrary group and member order.
+Return a list of lists of strings, where each sublist contains all strings belonging to the same shifting sequence.

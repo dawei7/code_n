@@ -7,7 +7,7 @@ Insert the mapping before traversing neighbors. Then an edge back to the current
 
 **Reproduce adjacency entries using mapped clone endpoints**
 
-Depth-first or breadth-first traversal visits each original node. For every neighbor entry, obtain or create that neighbor's clone, recursively or iteratively ensure its adjacency is processed, and append the clone to the current clone's neighbor list. Processing entries rather than unique unordered pairs preserves neighbor-list ordering and any permitted parallel references.
+Depth-first or breadth-first traversal visits each original node. For every neighbor entry, obtain or create that neighbor's clone, recursively or iteratively ensure its adjacency is processed, and append the clone to the current clone's neighbor list. Processing entries rather than unique unordered pairs preserves the authored neighbor-list order.
 
 **The app adapter deep-copies the serialized adjacency form**
 
@@ -24,11 +24,11 @@ The map allocates exactly one clone for each reached original, so multiple edges
 For every original adjacency entry, processing appends the mapped clone of that neighbor, reproducing edge order and multiplicity. All mapped objects are newly allocated and contain only clone references, so the resulting component is structurally identical and deeply independent.
 
 ## Complexity detail
-Each of `V` nodes and `E` adjacency entries is visited once, giving $O(V+E)$ time. The map, traversal state, and cloned adjacency use $O(V+E)$ space including output.
+Let $V$ be the number of vertices and $E$ the number of undirected edges. Each vertex is created once, and each of the $2E$ neighbor entries is processed once, giving $O(V + E)$ time. The identity map and recursion stack use $O(V)$ auxiliary space; the cloned graph occupies $O(V + E)$ output space, so total space is $O(V + E)$.
 
 ## Alternatives and edge cases
 - **Clone recursively without a map:** loops forever on cycles and duplicates shared nodes.
 - **Return the original graph:** matches values but violates deep-copy identity.
 - **Copy only node values:** loses neighbor topology.
-- A null input returns null. A single isolated node still requires a distinct clone with an empty neighbor list.
-- Self-loops and cycles are handled because the original is mapped before its outgoing edges are explored.
+- A native null input returns null, while the app's empty adjacency list returns `[]`. A single isolated node still requires a distinct clone with an empty neighbor list.
+- Cycles terminate because the original is mapped before its outgoing edges are explored. Although the contract excludes self-loops, the same ordering would handle one safely.

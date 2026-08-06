@@ -1,22 +1,32 @@
 ## General
 **Store two generations in separate bits**
 
-Use each cell's low bit for its original state and a second bit for its next state. Count live neighbors using the low bit even after some cells have been annotated.
+Every cell initially contains `0` or `1`, so its low bit can preserve the original state while the next bit records the
+computed state. For each cell, inspect the eight neighboring coordinates that remain inside the board and add only
+their low bits. Previously annotated cells therefore still contribute their original states.
 
-During the first pass, every cell's low bit remains its original generation. A set second bit means the Game of Life rules make that cell live in the next generation.
+Set the next bit exactly when the live-neighbor count is three, or when the count is two and the cell's original low
+bit is set. This single condition represents both survival and birth; every other cell keeps a zero next bit and dies
+or remains dead.
 
 **Commit only after every next state is known**
 
-After all next-state bits are set, shift every cell right once. Because every decision read only original low bits, the resulting board is exactly a simultaneous update.
+After the first pass has annotated every cell, shift each value right once. The computed next bit becomes the new low
+bit, so the board is updated in place without retaining a copy.
 
-The neighbor count is correct by the invariant. Setting the next bit precisely for original-live cells with two or three neighbors and original-dead cells with three implements all four rules. The final shift selects those computed states for every cell at once.
-
-Because the low bit never changes during the first pass, earlier annotations cannot influence later neighbor counts. Every next-state bit is therefore computed from the same original generation, and the final shift exposes those decisions simultaneously.
+The low bit is never changed during the annotation pass. Consequently, every neighbor count is taken from the same
+original generation regardless of traversal order. The next-bit condition implements all four transition rules, and
+the final shifts expose all of those already-determined states simultaneously.
 
 ## Complexity detail
-Each of `mn` cells checks eight neighbors in constant time and is normalized once, giving $O(mn)$ time and $O(1)$ auxiliary space.
+Let $m$ be the number of rows and $n$ the number of columns. Each of the $mn$ cells checks at most eight neighbors
+and is shifted once, giving $O(mn)$ time. The two states share each existing integer, so the auxiliary space is
+$O(1)$.
 
 ## Alternatives and edge cases
-- **Copy the board:** is linear time but uses $O(mn)$ extra space.
-- **Recompute or copy the full board per cell:** can take $O((mn)^2)$.
-- Boundary cells simply ignore out-of-grid neighbors; a lone live cell dies.
+- **Copied original board:** computes the same simultaneous transition in $O(mn)$ time but uses $O(mn)$ auxiliary
+  space.
+- **Full-board rescanning per cell:** can remain correct but takes $O((mn)^2)$ time.
+- **Borders and corners:** ignore coordinates outside the matrix, so they have fewer than eight possible neighbors.
+- **Tiny or uniform boards:** the same rule handles a single cell, all-dead boards, and dense live regions without a
+  special case.

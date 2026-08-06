@@ -4,8 +4,77 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: clear winner among three candidates",
+      "name": "sample: source election with candidate B winning",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidate": [
+            {
+              "id": 1,
+              "Name": "A"
+            },
+            {
+              "id": 2,
+              "Name": "B"
+            },
+            {
+              "id": 3,
+              "Name": "C"
+            },
+            {
+              "id": 4,
+              "Name": "D"
+            },
+            {
+              "id": 5,
+              "Name": "E"
+            }
+          ],
+          "Vote": [
+            {
+              "id": 1,
+              "CandidateId": 2
+            },
+            {
+              "id": 2,
+              "CandidateId": 4
+            },
+            {
+              "id": 3,
+              "CandidateId": 3
+            },
+            {
+              "id": 4,
+              "CandidateId": 2
+            },
+            {
+              "id": 5,
+              "CandidateId": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Name"
+        ],
+        "rows": [
+          [
+            "B"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-clear-winner",
+      "name": "trial: clear winner among three candidates",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -62,14 +131,14 @@
         ]
       },
       "tags": [
-        "sample",
+        "trial",
         "aggregation"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: one candidate and one vote",
-      "kind": "sample",
+      "id": "trial-single-candidate",
+      "name": "trial: one candidate and one vote",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -98,14 +167,14 @@
         ]
       },
       "tags": [
-        "sample",
-        "minimum"
+        "trial",
+        "logical-minimum"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: later candidate wins",
-      "kind": "sample",
+      "id": "trial-later-candidate",
+      "name": "trial: later candidate wins",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -146,12 +215,12 @@
         ]
       },
       "tags": [
-        "sample",
-        "ordering"
+        "trial",
+        "candidate-order"
       ]
     },
     {
-      "id": "trial-1",
+      "id": "trial-nonconsecutive-identifiers",
       "name": "trial: winner has nonconsecutive identifier",
       "kind": "trial",
       "visible": true,
@@ -211,7 +280,7 @@
       ]
     },
     {
-      "id": "trial-2",
+      "id": "trial-zero-vote-candidate",
       "name": "trial: candidate with no votes is ignored",
       "kind": "trial",
       "visible": true,
@@ -263,10 +332,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: input votes are unsorted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-votes",
+      "name": "trial: input votes are unsorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Candidate": [
@@ -322,15 +391,16 @@
         ]
       },
       "tags": [
-        "hidden",
-        "unsorted"
+        "trial",
+        "unsorted",
+        "vote-ids"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: close but unique maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-close-unique-maximum",
+      "name": "trial: winner leads by one vote",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Candidate": [
@@ -418,8 +488,9 @@
         ]
       },
       "tags": [
-        "hidden",
-        "unique-maximum"
+        "trial",
+        "unique-maximum",
+        "near-tie"
       ]
     }
   ]

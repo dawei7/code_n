@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_364",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is a clear one-pass depth-first aggregation: it records integer totals by depth, tracks the deepest integer level, and applies inverse weights in one final expression. The local NestedInteger equivalent preserves the app contract, and no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 364 and its Python depthSumInverse surface. The Reference preserves recursive NestedInteger semantics, integer depth and inverse weighting, both source examples and explanations, all four constraints, and the app's JSON-to-interface adaptation."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064608985. Its depth buckets, maximum-integer-depth update, recursion, weighting expression, and return match the protected app-local algorithm; the explicit local NestedInteger class is the permitted app adapter for LeetCode's injected interface."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The former depths 64 and 256 exceeded the source maximum of 50 and were removed. The replacement legal tiers use 50 nonempty branches alternating between depths 4/3, 12/11, and 48/47, span 175 to 2375 visited entries, and stay within every source bound. The current source passes all 13 executions at +0.02 relative growth and 1.05x; a correct per-depth rescanner passes every benchmark output but fails only scaling at +1.00 and 52.65x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives integer-depth buckets, the deepest-level weight transformation, complete contribution accounting, and O(N) time with O(D) auxiliary space. Its alternatives now stay within the nonempty-list source contract and explain the breadth-first queue tradeoff precisely."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound authenticated Premium Reference remains source-fidelity verified, including both source examples and full explanations, independent text equivalents of both source illustrations, recursive depth semantics, and all four constraints."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples appear first and in source order with their exact nested values and weighted sums; the invented zero example is correctly labelled a trial.",
+      "Two rows containing source-forbidden empty lists were replaced by legal value-bound and all-deepest structures, so every list in every correctness case is nonempty.",
+      "Visible boundaries cover nestedList.length=1 and 50, integer values -100 and 100, and one integer at the maximum depth 50.",
+      "Mixed branch depths, equal deepest depths, zero, negative contributions, shallow-versus-deep weighting, and a sole deeply nested integer exercise the material inverse-weight semantics.",
+      "An independent depth-flattening oracle verified all ten authored results, all three benchmark results, and 10,000 generated legal nonempty structures while separately confirming width 50 and depth 50.",
+      "All ten correctness cases are visible samples or trials; the unchanged legal 175-, 575-, and 2,375-entry workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "34d6c6096a2ffc796b9656baf6817155f7f1f553057c6857918697c0f84e385f",
+    "native_source_sha256": "7b84154f0c76633832a3f79d52942f061db0149f3d211c164338221277fcab09",
+    "approach_sha256": "b7c18acb74fef84b8790ec2408ac744582d4e1d3299e11bd31cc31f15106e118",
+    "solution_variants_sha256": "468132a48212a9d26eba799b6163998bdecf8e74ff23da1a03fef21f08e59848",
+    "complexity_evidence_sha256": "abe88ba339653dcf85abe4f1480a18b78928e80b8d2e8f8f71d6751e0b8123b8",
+    "cases_sha256": "2e3dc45810fab0153c831d6a59be6654639f6cfa80c4814c23132f790359bcc6"
+  }
+}

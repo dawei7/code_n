@@ -40,7 +40,7 @@ from engine.complexity_certificates import (
     ComplexityCertificateStatus,
     validate_complexity_certificate,
 )
-from engine.languages import app_solution_filename, normalize_language
+from engine.languages import app_solution_filename, language_extension, normalize_language
 from engine.solution_variants import SolutionVariantStatus, validate_solution_variants
 from server.app.config import LEETCODE_ROOT
 
@@ -419,7 +419,12 @@ def leetcode_variant_solution_path(
     if variant_dir is None:
         return None
     language_id = normalize_language(language)
-    return variant_dir / "solutions" / app_solution_filename(language_id)
+    path = variant_dir / "solutions" / app_solution_filename(language_id)
+    if not path.exists() and language_id == "sql":
+        fallback = variant_dir / "solutions" / "leetcode.sql"
+        if fallback.exists():
+            return fallback
+    return path
 
 
 def leetcode_solution_path(challenge_id: str, language: str | None = "python") -> Path | None:
@@ -427,7 +432,24 @@ def leetcode_solution_path(challenge_id: str, language: str | None = "python") -
     default_variant = _variant_directory(challenge_id)
     if default_variant is None:
         return None
-    return default_variant / "solutions" / app_solution_filename(language_id)
+    path = default_variant / "solutions" / app_solution_filename(language_id)
+    if not path.exists() and language_id == "sql":
+        fallback = default_variant / "solutions" / "leetcode.sql"
+        if fallback.exists():
+            return fallback
+    return path
+
+
+def leetcode_template_path(challenge_id: str, language: str | None = "python") -> Path | None:
+    package_dir = leetcode_package_dir(challenge_id)
+    if package_dir is None:
+        return None
+    language_id = normalize_language(language)
+    ext = language_extension(language_id)
+    template_file = package_dir / f"template.{ext}"
+    if template_file.is_file():
+        return template_file
+    return None
 
 
 def leetcode_cases_path(challenge_id: str) -> Path | None:

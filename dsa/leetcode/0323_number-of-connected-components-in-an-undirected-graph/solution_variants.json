@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Connected Components in an Undirected Graph and meets the required complexity bound.",
+      "summary": "Starts with one component per vertex and decrements the count after each successful union by size.",
       "time_complexity": "O(n + e \\alpha(n))",
       "space_complexity": "O(n)"
     }

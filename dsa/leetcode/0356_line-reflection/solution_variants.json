@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Line Reflection and meets the required complexity bound.",
+      "summary": "Derives the unique axis from extreme x-coordinates and verifies every mirrored point by hash lookup.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

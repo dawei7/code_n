@@ -19,6 +19,7 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "multiple-valid"
       ]
     },
@@ -39,6 +40,7 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "impossible"
       ]
     },
@@ -59,6 +61,7 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "multiple-valid"
       ]
     },
@@ -83,13 +86,13 @@
       ]
     },
     {
-      "id": "trial-large-distance",
-      "name": "trial: distinct letters tolerate a large distance",
+      "id": "trial-maximum-distance",
+      "name": "trial: distinct letters tolerate the maximum legal distance",
       "kind": "trial",
       "visible": true,
       "input": {
         "s": "abcd",
-        "k": 10
+        "k": 4
       },
       "expected": "abcd",
       "validator": {
@@ -104,10 +107,10 @@
       ]
     },
     {
-      "id": "hidden-distance-one",
-      "name": "hidden: distance one permits adjacent copies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distance-one",
+      "name": "trial: distance one permits adjacent copies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaa",
         "k": 1
@@ -119,15 +122,15 @@
         "distance_param": "k"
       },
       "tags": [
-        "hidden",
+        "trial",
         "boundary"
       ]
     },
     {
-      "id": "hidden-tight-impossible",
-      "name": "hidden: two pairs cannot fit distance three",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tight-impossible",
+      "name": "trial: two pairs cannot fit distance three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabb",
         "k": 3
@@ -139,15 +142,15 @@
         "distance_param": "k"
       },
       "tags": [
-        "hidden",
+        "trial",
         "impossible"
       ]
     },
     {
-      "id": "hidden-tight-feasible",
-      "name": "hidden: alternating copies exactly meet distance two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tight-feasible",
+      "name": "trial: alternating copies exactly meet distance two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbc",
         "k": 2
@@ -159,9 +162,52 @@
         "distance_param": "k"
       },
       "tags": [
-        "hidden",
+        "trial",
         "tight",
         "multiple-valid"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character at its maximum distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "k": 1
+      },
+      "expected": "z",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "minimum-length",
+        "maximum-k"
+      ]
+    },
+    {
+      "id": "trial-alphabet-boundaries",
+      "name": "trial: alphabet endpoints alternate at the required distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azaz",
+        "k": 2
+      },
+      "expected": "azaz",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "tight"
       ]
     }
   ]

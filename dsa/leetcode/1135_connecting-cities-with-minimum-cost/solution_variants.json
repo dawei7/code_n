@@ -9,8 +9,8 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Connecting Cities With Minimum Cost and meets the required complexity bound.",
-      "time_complexity": "O(m\\log m)",
-      "space_complexity": "O(n)"
+      "time_complexity": "O(n + m\\log m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

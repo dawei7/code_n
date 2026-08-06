@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1067",
+    "frontend_id": "1067",
+    "title_slug": "digit-count-in-range",
+    "url": "https://leetcode.com/problems/digit-count-in-range/description/",
+    "paid_only": true,
+    "content_sha256": "197c7913c59c1da8a7d999b3e95c4a33d4b48b1b58ba699b13906e79754dbb02",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "d = 1, low = 1, high = 13",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "d = 3, low = 100, high = 250",
+        "output": "35",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "fd32a10d039b4bc3efee32ddabb04612e13a94ce38891e1ed985234c03290e3e",
+      "reference/contract.md": "1aa76884d6d1ee777de1901d798757c56488895972f128c4fb7f6bda633683db",
+      "reference/examples.md": "38fea4565a5355a0fcc8deb6d2c6b24a319a89cc0fb2a0d648d6746469d51117",
+      "reference/constraints.md": "623bcfabcd14f7d1ad01d924f8abd935f10bef21b6be6864dd963ff5df59df2d",
+      "reference/hint.md": "d96e23b1c28ac7895e4831423a4429fd86bfc7a0f5c8cdc144b226665a106b95"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

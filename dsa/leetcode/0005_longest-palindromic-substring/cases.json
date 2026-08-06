@@ -1,10 +1,158 @@
 {
   "challenge_id": "lc_5",
   "cases": [
-    {"id": "sample-1", "name": "sample: odd palindrome", "kind": "sample", "visible": true, "input": {"s": "babad"}, "expected": "bab", "tags": ["sample", "odd"]},
-    {"id": "sample-2", "name": "sample: even palindrome", "kind": "sample", "visible": true, "input": {"s": "cbbd"}, "expected": "bb", "tags": ["sample", "even"]},
-    {"id": "trial-single", "name": "single character", "kind": "trial", "visible": true, "input": {"s": "a"}, "expected": "a", "tags": ["boundary"]},
-    {"id": "trial-whole-string", "name": "whole string is a palindrome", "kind": "trial", "visible": true, "input": {"s": "racecar"}, "expected": "racecar", "tags": ["whole-string"]},
-    {"id": "real-long-even", "name": "hidden: even palindrome inside noise", "kind": "real", "visible": false, "input": {"s": "forgeeksskeegfor"}, "expected": "geeksskeeg", "tags": ["hidden", "even"]}
+    {
+      "id": "sample-1",
+      "name": "sample: tied odd palindromes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "babad"
+      },
+      "expected": "bab",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "sample",
+        "odd",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: even palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cbbd"
+      },
+      "expected": "bb",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "sample",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-tied-singletons",
+      "name": "either character is a valid longest palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ac"
+      },
+      "expected": "a",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "tie",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-whole-string",
+      "name": "whole string is an odd palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecar"
+      },
+      "expected": "racecar",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "whole-string",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-long-even",
+      "name": "even palindrome inside surrounding characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "forgeeksskeegfor"
+      },
+      "expected": "geeksskeeg",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "even",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-palindrome-at-end",
+      "name": "longest palindrome reaches the final character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xyzzy"
+      },
+      "expected": "yzzy",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "even",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-alphanumeric",
+      "name": "digits participate in the palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a1b1a"
+      },
+      "expected": "a1b1a",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "digit",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "trial-separated-ties",
+      "name": "equal longest palindromes occur at both ends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abacdfgdcaba"
+      },
+      "expected": "aba",
+      "validator": {
+        "kind": "longest_palindromic_substring"
+      },
+      "tags": [
+        "tie",
+        "odd"
+      ]
+    }
   ]
 }

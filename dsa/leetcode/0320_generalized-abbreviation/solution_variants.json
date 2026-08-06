@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Generalized Abbreviation and meets the required complexity bound.",
+      "summary": "Enumerates one position-choice mask per abbreviation and coalesces adjacent abbreviated runs.",
       "time_complexity": "O(n 2^n)",
       "space_complexity": "O(n 2^n)"
     }

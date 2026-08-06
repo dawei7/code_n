@@ -10,8 +10,13 @@ At every step, the current quotient times the removed factors equals the origina
 If the final quotient is one, the removed twos, threes, and fives reconstruct the original number, proving that no other prime factor is needed. If a quotient greater than one remains, unique prime factorization gives it some prime divisor. All factors `2`, `3`, and `5` were removed exhaustively, so that divisor is disallowed and the original number cannot be ugly.
 
 ## Complexity detail
-Every division reduces the positive quotient by at least a factor of two, so there are $O(\log n)$ divisions. Only the quotient and loop variables are stored.
+
+For a positive input, every successful division reduces the quotient by at least a factor of two, so there are
+$O(\log n)$ divisions in the worst case. A nonpositive input returns in $O(1)$ time. The factor tuple, current factor,
+and quotient occupy $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
+
 - **Trial-divide by every possible factor:** does unnecessary work up to the square root.
-- One is ugly as the empty product; zero and negative values are not.
+- **One:** it is the empty product of allowed primes, so the unchanged residual quotient is accepted.
+- **Zero and negative values:** the early guard rejects them before the divisibility loops.

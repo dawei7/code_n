@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Peeking Iterator and meets the required complexity bound.",
+      "summary": "Caches exactly one lookahead value so peek, next, and hasNext each remain constant time.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

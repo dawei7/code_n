@@ -5,7 +5,7 @@ Store a private copy of `nums` at construction. A reset returns a new copy of th
 
 **Commit one position at a time**
 
-To shuffle, copy the original array and process positions from left to right. At position $i$, choose an index uniformly from the still-uncommitted range $[i,n-1]$ and swap its value into position $i$. This is the Fisher-Yates shuffle.
+To shuffle, copy the original array and process positions from left to right. At position $i$, the candidate chooses `j` uniformly from the still-uncommitted range $[i,n-1]$ and swaps its value into position $i$. This is the Fisher-Yates shuffle.
 
 **Why every permutation has equal probability**
 
@@ -23,6 +23,6 @@ For an array of length `n`, either public operation copies `n` values. Shuffle a
 - **Repeatedly choose and remove from a shrinking list:** can be uniform, but middle removals make it $O(n^2)$.
 - **Random-key sorting:** costs $O(n \log n)$ and can introduce bias when random keys collide.
 - A one-element array has exactly one permutation.
-- Duplicate values must preserve their full multiplicities even though several position permutations look identical.
+- Canonical inputs contain distinct values, so each position permutation maps to a distinct returned ordering.
 - A shuffle may legally equal the original array.
 - Reset must return the original order after any number of shuffles and should not expose mutable internal storage.

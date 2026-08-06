@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_377",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical one-dimensional ordered-sum dynamic program. It seeds the empty internal subtotal, advances totals in increasing order, appends every usable value as a distinct final transition, and returns the exact target count. The implementation is concise and interview-quality, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 377 and its Python combinationSum4 surface. The Reference preserves ordered combination multiplicity, repeated value use, distinct positive inputs, the 32-bit result guarantee, both source examples and the complete first explanation, all four constraints, and the negative-value follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064640904. Its table allocation, zero-sum seed, subtotal order, value filter, recurrence update, and target lookup are exactly the protected app-local algorithm apart from the required LeetCode wrapper and annotations."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal fixed-[1,2,3] tiers use targets 4, 8, and 16, span 4x, and create exponentially many ordered recursive prefixes while keeping results within the source guarantee. The current source passes all 11 executions at -0.00 relative growth and 1.02x; correct uncached recursion passes every benchmark output but fails only scaling at +4.20 and 433.89x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately defines the subtotal state, derives the unique-final-value recurrence, explains why total-first loop order preserves sequence order, proves complete one-time counting, and states O(n * target) time with O(target) space. It now distinguishes the internal zero state from the positive input target."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples in order, all seven ordered sequences in the first explanation, order sensitivity, result guarantee, all four constraints, and the source-native negative-values follow-up."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "6eb2577af7438be1122142fff8c108ce67c551c20880dd0003aa5b29c5edab99",
+    "native_source_sha256": "1360c4a67622dbd7e04e2f593196d2002be7a22707da30ea730fd9e8f044d25e",
+    "approach_sha256": "b174f2af44231892b2e711cff8ab9574679d575ed4c180418d1da67fedec9f47",
+    "solution_variants_sha256": "1c447f6027e0a752bb6ad42a0f9e7479a5876744a10b9c4da5b3a9a11fb5489c",
+    "complexity_evidence_sha256": "d47dd0e4bc259f0e57e1eda3ae3a70d984ff944492516f4bda09ac7a85db27d8"
+  }
+}

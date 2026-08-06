@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `s`: A mutable character array containing one or more single-space-separated words.
+- `s`: A list of single-character strings representing characters ($1 \le \text{s.length} \le 10^5$).
 
 **Return value**
 
-Return nothing. Mutate `s` so its words appear in reverse order while each word's internal character order stays unchanged.
+Modify `s` in-place to reverse the word order; return `None`.

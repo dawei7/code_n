@@ -6,9 +6,7 @@ from dataclasses import dataclass
 from typing import Literal, get_args
 
 
-SupportedLanguage = Literal[
-    "python", "cpp", "java", "csharp", "javascript", "go", "kotlin", "sql", "bash"
-]
+SupportedLanguage = Literal["python", "cpp", "java", "csharp", "javascript", "go", "kotlin", "sql", "bash"]
 
 # The application exposes only the language family used by each problem's
 # verified LeetCode submission. The broader SupportedLanguage type remains for
@@ -42,9 +40,7 @@ SUPPORTED_LANGUAGES: dict[SupportedLanguage, LanguageInfo] = {
     "bash": LanguageInfo("bash", "Bash", "shell", "sh"),
 }
 
-FUNCTION_LANGUAGES: tuple[SupportedLanguage, ...] = (
-    "python", "cpp", "java", "csharp", "javascript", "go", "kotlin"
-)
+FUNCTION_LANGUAGES: tuple[SupportedLanguage, ...] = ("python", "cpp", "java", "csharp", "javascript", "go", "kotlin")
 
 LANGUAGE_ALIASES = {
     "py": "python",
@@ -84,9 +80,9 @@ def app_solution_filename(language: str | None) -> str:
     """Return the canonical app-local reference filename for a language."""
 
     language_id = normalize_language(language)
-    if language_id == "python":
-        return "solve.py"
-    return f"{language_id}.{SUPPORTED_LANGUAGES[language_id].extension}"
+    if language_id == "sql":
+        return "leetcode_sqlite.sql"
+    return f"leetcode.{SUPPORTED_LANGUAGES[language_id].extension}"
 
 
 def leetcode_solution_filename(language: str | None) -> str:
@@ -94,3 +90,10 @@ def leetcode_solution_filename(language: str | None) -> str:
 
     language_id = normalize_language(language)
     return f"leetcode.{SUPPORTED_LANGUAGES[language_id].extension}"
+
+
+def candidate_solution_filename(language: str | None) -> str:
+    """Return the inert app-contract review-candidate filename for a language."""
+
+    language_id = normalize_language(language)
+    return f"candidate.{SUPPORTED_LANGUAGES[language_id].extension}"

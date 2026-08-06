@@ -18,7 +18,7 @@ Construction adds every cell to precisely its row and column ancestors, establis
 Each prefix walk decomposes its target area into nonoverlapping Fenwick rectangles, counting every prefix cell once. Applying inclusion–exclusion to four exact prefixes cancels cells above or left of the requested rectangle and restores their doubly removed overlap. Thus every reported sum is correct after any update sequence.
 
 ## Complexity detail
-The straightforward construction performs one $O(\log m \log n)$ Fenwick addition per cell, taking $O(mn \log m \log n)$. Each update and rectangle query also takes $O(\log m \log n)$, so `q` operations give the stated $O((mn + q) \log m \log n)$ bound. Current values and the tree use $O(mn)$ space.
+Let $m$ and $n$ be the matrix dimensions and let $q$ be the number of operations. The straightforward construction performs one $O(\log m \log n)$ Fenwick addition per cell, taking $O(mn \log m \log n)$. Each update and rectangle query also takes $O(\log m \log n)$, so the operations give the stated $O((mn + q) \log m \log n)$ total bound. Current values and the tree use $O(mn)$ space.
 
 ## Alternatives and edge cases
 - **Mutate the matrix and rescan each rectangle:** gives constant-time updates but up to $O(mn)$ per query.

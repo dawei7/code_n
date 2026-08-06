@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_444",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source is a clear, conventional uniqueness-aware Kahn traversal. graph, indegree, observed, available, expected, and neighbor expose the proof state directly; set-valued adjacency deduplicates repeated constraints, and each condition has one contract-level purpose. No candidate would materially improve its correctness, asymptotic bounds, clarity, or interview quality."
+      },
+      {
+        "category": "correctness_reasoning",
+        "severity": "verified",
+        "reason": "Each adjacent pair in an evidence row becomes a precedence edge. Observing every target value proves that no shorter supersequence can omit a value and that nums already has minimum length n. Kahn's traversal then characterizes every shortest supersequence as a topological ordering: more than one available vertex permits another shortest order, while exactly one vertex equal to the next target value at every step forces nums and no other order."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Authenticated Premium source hash 9abc11621acb844581133259d183957cd87fee88ace6045a5156c91ef4f3b42c, repository metadata, the solve signature, the native sequenceReconstruction method, and the modular Reference agree on a permutation nums, distinct nonempty rows that are subsequences of nums, and the requirement that nums be both shortest and the only shortest supersequence."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064831549. App-local and native implementations construct the same set-valued adjacency map and indegrees, apply the same defensive value check, deduplicate the same edges, enforce the same observed-value coverage, and perform the identical one-choice queue traversal against nums; only imports, annotations, and the Solution wrapper differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged 64-, 192-, and 512-vertex forced-chain tiers span 8x and exercise complete graph construction and unique topological traversal. The protected source passes all 12 executions at +0.01 extra growth and a maximum observed tier ratio of 1.01x. A correct O(V^2 + E) remaining-indegree rescan control passes every output but fails only scaling at +0.19 extra growth and 1.38x on the largest tier."
+      },
+      {
+        "category": "runtime_contract",
+        "severity": "verified",
+        "reason": "The visible maximum case reaches all legal upper limits and showed that the accepted linear source crosses the generic 100,000 traced-line guard while reading 100,000 evidence values. The narrow lc_444 one-million-step allowance lets that terminating legal workload finish without changing correctness or performance thresholds, and a focused API regression binds the allowance to the exact maximum case."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach now connects observed-value coverage to the shortest-length requirement, connects one-choice Kahn traversal to uniqueness among shortest supersequences, accurately describes edge deduplication and O(V + E) bounds, and distinguishes legal source boundaries from impossible cycles, reversed rows, duplicate rows, and out-of-range values."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The authenticated statement contains a description with two illustrative comparisons, three explained examples, and nine constraints, with no images, tables, hints, notes, or follow-up. The modular Reference preserves those facts and order, every exact example input and output, every explanation step, all nine constraints, the definitions of subsequence and shortest supersequence, and the absence of visual material; source_fidelity.json validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The three authenticated Premium examples now appear first and in exact source order with their exact nums, sequences, and Boolean outputs. The previously omitted source example 2 was restored, the former example 2 moved to its source ordinal 3, and the invented singleton sample became an explicitly additional trial.",
+      "Every trial is legal under the authenticated schema. Impossible cycle and reversed-order rows were removed, and the duplicate-array fixture was replaced by two distinct subsequences that legitimately repeat the same adjacent edge.",
+      "The minimum trial simultaneously reaches n = 1, one sequence row, row length 1, and total evidence size 1. The maximum trial simultaneously reaches n = 10,000, 10,000 distinct sequence rows, row length 10,000, and total evidence size 100,000 while every row remains a subsequence of nums.",
+      "Visible cases additionally cover a missing target value that makes nums non-shortest, complete singleton evidence with ambiguous order, repeated-edge deduplication, and a uniquely forced non-sorted target permutation.",
+      "An independent adjacent-target-pair oracle verified all nine visible cases and all three benchmark outputs. A brute shortest-supersequence oracle additionally agreed with both protected implementations on all 762 nonempty collections of distinct nonempty subsequences for every three-value target permutation and on 2,000 deterministic randomized legal instances using seed 44420260804.",
+      "All nine correctness cases are visible samples or trials. The unchanged 64-, 192-, and 512-vertex forced chains remain hidden and performance-only in benchmark.json, and a correct quadratic control fails only their scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "16aa45c53c970e03ac5df3ac9e5b897fa7ada5a5069a952605c1830da5e39ca2",
+    "native_source_sha256": "cd36200c1bf707c64465ec0b70b7acab5f2919d01577334c75d312de2dc42976",
+    "approach_sha256": "07b4ce84b4bca6f4e14ab647e522637e79f4bc461640db9674d3ef383ddc4c8a",
+    "solution_variants_sha256": "97080f3c91cf1e9fdf773c457fdfb92f4bd5d5b2af0f15f58bdff65a2e18d85d",
+    "complexity_evidence_sha256": "543cd67ded6ed661b5cf0d421a507d4dcf52e21c96760101219df47725a2ecb5",
+    "cases_sha256": "cf248d8fb8e3e843063a87938e52dee31fb921cbe4246b4534e65a0eb91df293"
+  }
+}

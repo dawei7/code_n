@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1121",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "approach_target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "boundary_robustness",
+        "severity": "material",
+        "reason": "The protected source is asymptotically optimal and remotely Accepted, but its unconditional Python-level scan exceeded the app runner's 100001-step safety cap on the legal boundary of 100000 equal values. Because the sorted contract makes equal endpoints equivalent to an all-equal array, the candidate returns k == 1 immediately for that entire class. This is a correctness-relevant app-runtime improvement rather than a cosmetic rename; the protected source, immutable native source, and submission manifest remain untouched."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "candidate_improves",
+        "reason": "The candidate is concise and expert-interview ready. Its two-line boundary guard expresses a direct consequence of sortedness, while maximum_frequency, current_frequency, and index make the remaining run scan clear without extra collections or abstraction. The earlier index-to-position-only proposal was discarded because index is conventional and that rename was not material."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For equal endpoints, non-decreasing order implies every value is equal; strict increase then limits each subsequence to one element, so feasibility is exactly k == 1. Otherwise, equal values occupy contiguous runs and the scan finds the exact maximum multiplicity f. Any valid division needs at least f subsequences, hence at least f*k elements. Conversely, grouping positions by their remainder modulo f creates strictly increasing subsequences whose shortest length is floor(n/f), so n >= f*k is sufficient."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1121, Python/Python 3, and Solution.canDivideIntoSubsequences. Authenticated source evidence confirms 1 <= k <= nums.length <= 10^5, values from 1 through 10^5, non-decreasing input, disjoint increasing subsequences, and Boolean feasibility. The candidate preserves solve(nums, k) and every source-native semantic requirement."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native method bound to verified submission 2067746108 retain identical executable bodies and hashes. The candidate adds only the proven all-equal early result before that same maximum/current frequency scan and capacity inequality; it does not alter the protected or native evidence and preserves the accepted algorithm for every other input."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers grow from 256 through 4096 distinct sorted values, forcing the candidate's linear scan while repeated list.count calls rescan the array quadratically. The candidate passed every output and scaling at a 1.13x largest runtime ratio and +0.01 relative growth exponent. A separately correct repeated-count control passed every ordinary and performance output but failed only scaling at 14.35x and +0.88."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach now derives the all-equal endpoint guard, maximum-frequency lower bound, n >= f*k capacity test, and remainder-class sufficiency construction. Its O(n) worst-case time and O(1) auxiliary-space bounds match the candidate and manifest, and its alternatives distinguish counting maps, quadratic repeated scans, explicit construction, strict increase, and subsequence semantics."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves both source examples and explanations, all three constraints, all five hints, the sorted-input guarantee, disjoint use of every occurrence, order-preserving subsequences, strict increase, minimum length, and Boolean result."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review confirmed exactly two explained examples, three constraints, five hints, and no images, tables, diagrams, notes, or follow-up. source_fidelity.json binds every composed section to live statement hash 003d196f86eab8886fb95ce83c29f749b28dab2e3159bc2aca01fb1c418b9192."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "sample-1 and sample-2 preserve both authenticated examples' exact arrays, k values, Boolean outputs, source order, and explanation presence.",
+      "All twelve ordinary fixtures are visible samples or trials. They cover array lengths 1 and 100000, k = 1 and k = nums.length, values 1 and 100000, all-distinct and all-equal arrays, a maximum run at the end, exact f*k capacity, one-below capacity, and both outcomes when k equals the full length.",
+      "An independent oracle counts values with Counter and explicitly verifies the remainder-class construction, including each constructed sequence's length and strict increase. It does not share the protected adjacent-run scan.",
+      "The oracle, protected app-local source, candidate, immutable native Solution method, and correct repeated-count control agreed on all twelve ordinary cases, all three benchmark inputs, and 5000 deterministic non-decreasing arrays generated with seed 1121.",
+      "Random inputs contained 1 through 80 elements, k throughout 1 through n, arbitrary duplicate multiplicities, all-equal and all-distinct regimes, values throughout the legal range, exact and near capacity boundaries, and maximum runs at varied positions.",
+      "The 256-, 1024-, and 4096-element workloads remain hidden and performance-only, use n consistently as size, and span 16x. The candidate passed scaling at +0.01 and 1.13x; the repeated-count control failed only scaling at +0.88 and 14.35x. benchmark.json required no edit.",
+      "The exact maximum-length all-equal trial is the evidence that makes the candidate material: the protected source returns the right value outside the instrumented runner but hits its step cap, while the candidate returns the same proven answer immediately and passes the complete real-test."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "ab3e51c0e27dcfaede79f44ad6433fe39560901f758e705e3b89d63d5c9049cc",
+    "native_source_sha256": "dc919be5a02769868aa59fe99daafbe8c51540e29db1f44006df689e439cab70",
+    "approach_sha256": "8d51d2a109b164b9b862aa4d9715a52987d358e05a410d525cf2edbea6efd143",
+    "solution_variants_sha256": "7d8e3847f85cea9eba8ad3beba6868d9cfe5296ceab3ff8651551f07af67ffad",
+    "complexity_evidence_sha256": "9201dffbe5645910a8aada05aaadb97d4cb8545d2d6943569071a7c63aa30459",
+    "cases_sha256": "d4b651193a1bbb979f64692b4f41c85edadf26606107f8ee81dd1f760e0d5396",
+    "candidate_source_sha256": "efc598c9f610da30ade62e4d1fd1bd3ed2eda357a219c43136de736972956f23"
+  }
+}

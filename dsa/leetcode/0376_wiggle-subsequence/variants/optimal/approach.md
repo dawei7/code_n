@@ -5,6 +5,8 @@ Maintain `up`, the longest wiggle subsequence seen so far whose last difference 
 
 When the current value is greater than the previous value, it can follow the best downward-ending sequence, so set `up = down + 1`. When it is smaller, set `down = up + 1`. Equal adjacent values create no valid difference and leave both states unchanged.
 
+The candidate uses conventional `i` for this adjacent-position scan and keeps `up` and `down` as the two genuine dynamic-programming states.
+
 **Why adjacent comparisons are sufficient**
 
 Within a rising run, keeping the latest—and therefore highest—value is never worse than keeping an earlier lower endpoint: it gives at least as much room for the next required drop. Symmetrically, within a falling run, the latest lowest value is the best endpoint for a future rise. Updating only when the sign changes, or replacing an endpoint while the sign stays the same, preserves an optimal subsequence without examining every earlier index.
@@ -25,4 +27,4 @@ The algorithm scans the `n` values once and performs constant work per adjacent 
 - A strictly increasing or decreasing array has maximum length two when it has at least two values.
 - All-equal values produce length one.
 - Equal values between two trends may be skipped without changing the optimum.
-- Negative numbers require no special handling because only comparisons matter.
+- A one-value array returns one because it has no adjacent difference to violate alternation.

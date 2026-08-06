@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1607",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution selects seller.seller_name from Seller AS seller WHERE NOT EXISTS (SELECT 1 FROM Orders AS orders WHERE orders.seller_id = seller.seller_id AND orders.sale_date BETWEEN '2020-01-01' AND '2020-12-31') ORDER BY seller.seller_name. The anti-join structure is concise, optimal, and handles sellers with no orders correctly; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "NOT EXISTS checks that no matching row exists in Orders for that seller with sale_date between 2020-01-01 and 2020-12-31. Sellers with orders outside 2020 or no orders at all fail the subquery condition and are correctly included."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Scanning s sellers against index-supported 2020 order lookups or hash anti-joins takes O((s + r) log(s + r)) time overall, and sorting the qualifying names takes O(s log s) time. Working space is O(s + r). Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs single column seller_name, includes boundary dates 2020-01-01 and 2020-12-31, and sorts results by seller_name ASC."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details filtering 2020 sales, anti-joining Seller against Orders, preserving orderless sellers, and sorting by seller_name. Alternatives and edge cases cover correlated NOT EXISTS, NOT IN NULL traps, filtering all order history errors, boundary date inclusions, orderless sellers, multiple sales per seller, and sorting key correctness."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical with SHA-256 digest 547631e028635d26b1cc72e1f08d5382259eaab3fe1620d3b6f9fa2e494b81d4. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Customer, Seller, and Orders schemas, three examples, two constraints, and 7 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "547631e028635d26b1cc72e1f08d5382259eaab3fe1620d3b6f9fa2e494b81d4",
+    "native_source_sha256": "547631e028635d26b1cc72e1f08d5382259eaab3fe1620d3b6f9fa2e494b81d4",
+    "approach_sha256": "c9107ccbf631189f8416ce3f7408e8af889a412c4d9b72e5aedfda98dde97ba9",
+    "solution_variants_sha256": "c9d463067dc86d8b90f348b8808f64c1ef95f81fafc231060484cb1b6e3bdb38",
+    "complexity_evidence_sha256": "e0ae15d5e090c83ddc15914cc306d521cb0d8c47b90bdfced25d9420302632b4"
+  }
+}

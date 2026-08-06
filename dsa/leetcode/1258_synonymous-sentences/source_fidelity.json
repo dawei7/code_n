@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1258",
+    "frontend_id": "1258",
+    "title_slug": "synonymous-sentences",
+    "url": "https://leetcode.com/problems/synonymous-sentences/description/",
+    "paid_only": true,
+    "content_sha256": "2e2094f7db61a8035f25b27af269151c42b7bbc00d3f9aff37fcad8da6874174",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "synonyms = [[\"happy\",\"joy\"],[\"sad\",\"sorrow\"],[\"joy\",\"cheerful\"]], text = \"I am happy today but was sad yesterday\"",
+        "output": "[\"I am cheerful today but was sad yesterday\",\"I am cheerful today but was sorrow yesterday\",\"I am happy today but was sad yesterday\",\"I am happy today but was sorrow yesterday\",\"I am joy today but was sad yesterday\",\"I am joy today but was sorrow yesterday\"]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "synonyms = [[\"happy\",\"joy\"],[\"cheerful\",\"glad\"]], text = \"I am happy today but was sad yesterday\"",
+        "output": "[\"I am happy today but was sad yesterday\",\"I am joy today but was sad yesterday\"]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "624a4019c6e3c8b04b51e554a9b208f69035d30cdb65928e14f8c7ec92016370",
+      "reference/contract.md": "6aad271c3edcab063e3a62cfdd031202eeb3da09eef0917d040f8ea979f69108",
+      "reference/examples.md": "277f01c137c6f2fe7f7694575b58436b776d0d8bfb5318ec7482abbc67315e96",
+      "reference/constraints.md": "7fa4e37bcca060926a00d6e70fb8e8dee386ecc51cbcda175cb0b57cbfd6ff15",
+      "reference/hint.md": "5bb785fb3767ffe69b404f50204562b14fe4f34e7d0baace1c334b3abdfdece5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

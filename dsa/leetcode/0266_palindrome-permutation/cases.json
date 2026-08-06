@@ -1,6 +1,115 @@
-{"challenge_id":"lc_266","cases":[
-{"id":"sample-code","name":"sample: multiple odd counts","kind":"sample","visible":true,"input":{"s":"code"},"expected":false,"tags":["sample","odd-counts"]},
-{"id":"sample-aab","name":"sample: one odd count","kind":"sample","visible":true,"input":{"s":"aab"},"expected":true,"tags":["sample","palindrome"]},
-{"id":"trial-carerac","name":"rearrangeable longer string","kind":"trial","visible":true,"input":{"s":"carerac"},"expected":true,"tags":["permutation"]},
-{"id":"real-empty","name":"hidden: empty string","kind":"real","visible":false,"input":{"s":""},"expected":true,"tags":["hidden","boundary"]}
-]}
+{
+  "challenge_id": "lc_266",
+  "cases": [
+    {
+      "id": "sample-code",
+      "name": "sample: multiple odd counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "code"
+      },
+      "expected": false,
+      "tags": ["sample", "multiple-odd-counts"]
+    },
+    {
+      "id": "sample-aab",
+      "name": "sample: one odd count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aab"
+      },
+      "expected": true,
+      "tags": ["sample", "one-odd-count"]
+    },
+    {
+      "id": "sample-carerac",
+      "name": "sample: longer rearrangeable string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "carerac"
+      },
+      "expected": true,
+      "tags": ["sample", "palindrome-permutation"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one character occupies the palindrome center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": true,
+      "tags": ["minimum-length", "one-odd-count"]
+    },
+    {
+      "id": "trial-paired-maximum-letter",
+      "name": "a two-character pair has no odd counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zz"
+      },
+      "expected": true,
+      "tags": ["minimum-even-length", "maximum-letter", "all-even"]
+    },
+    {
+      "id": "trial-two-distinct",
+      "name": "two distinct characters create two odd counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az"
+      },
+      "expected": false,
+      "tags": ["minimum-false-length", "alphabet-boundaries", "two-odd-counts"]
+    },
+    {
+      "id": "trial-rearrangement-required",
+      "name": "the original string is not a palindrome but a permutation is",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabb"
+      },
+      "expected": true,
+      "tags": ["permutation", "all-even", "not-original-order"]
+    },
+    {
+      "id": "trial-one-center-among-pairs",
+      "name": "one unpaired character remains after two complete pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbc"
+      },
+      "expected": true,
+      "tags": ["one-odd-count", "odd-length"]
+    },
+    {
+      "id": "trial-all-lowercase-paired",
+      "name": "all twenty-six lowercase letters occur twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": true,
+      "tags": ["maximum-distinct-characters", "lowercase-alphabet", "all-even"]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "five thousand alternating boundary letters have even counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazaz"
+      },
+      "expected": true,
+      "tags": ["maximum-length", "alphabet-boundaries", "all-even"]
+    }
+  ]
+}

@@ -17,7 +17,7 @@ Each division removes one base-9 digit, so the algorithm performs $O(\log N)$ it
 ## Alternatives and edge cases
 - **Generate integers and reject those containing `9`:** follows the sequence definition directly, but examines every preceding candidate and takes time proportional to the answer rather than its digit count.
 - **Build a base-9 string:** is concise and still takes $O(\log N)$ time, but allocates $O(\log N)$ temporary string space.
-- **Digit dynamic programming plus binary search:** can count valid integers up to a bound, but is far more machinery than the direct order-preserving bijection.
+- **Meet-in-the-middle counting plus binary search:** can count valid integers by precomputing no-`9` decimal half-blocks, but needs $\Theta(\sqrt{N})$ preprocessing and far more machinery than the direct order-preserving bijection.
 - Ranks `1` through `8` map to themselves.
 - Rank `9` is the first carry and maps to decimal `10`.
 - Zero digits inside or at the end of the result are valid; only digit `9` is excluded.

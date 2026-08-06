@@ -4,7 +4,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: iterate the encoded LeetCode string",
+      "name": "sample: source constructor and iterator calls",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -29,9 +29,6 @@
             "next"
           ],
           [
-            "next"
-          ],
-          [
             "hasNext"
           ],
           [
@@ -39,9 +36,6 @@
           ],
           [
             "hasNext"
-          ],
-          [
-            "next"
           ]
         ]
       },
@@ -52,21 +46,20 @@
         "t",
         "C",
         "o",
-        "d",
         true,
-        "e",
-        false,
-        " "
+        "d",
+        true
       ],
       "tags": [
         "sample",
+        "source-example",
         "runs"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: multi-digit repetition count",
-      "kind": "sample",
+      "id": "trial-multi-digit-count",
+      "name": "trial: multi-digit repetition count",
+      "kind": "trial",
       "visible": true,
       "input": {
         "compressedString": "a12",
@@ -100,14 +93,14 @@
         "a"
       ],
       "tags": [
-        "sample",
+        "trial",
         "multi-digit"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: repeated availability checks do not consume",
-      "kind": "sample",
+      "id": "trial-repeated-has-next",
+      "name": "trial: repeated availability checks do not consume",
+      "kind": "trial",
       "visible": true,
       "input": {
         "compressedString": "x1y1",
@@ -141,13 +134,14 @@
         false
       ],
       "tags": [
-        "sample",
-        "has-next"
+        "trial",
+        "has-next",
+        "nonconsuming"
       ]
     },
     {
-      "id": "trial-1",
-      "name": "trial: exhausted iterator returns spaces",
+      "id": "trial-repeated-exhaustion",
+      "name": "trial: exhausted iterator returns spaces repeatedly",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,16 +169,17 @@
       ],
       "tags": [
         "trial",
-        "exhausted"
+        "exhausted",
+        "space-sentinel"
       ]
     },
     {
-      "id": "trial-2",
-      "name": "trial: cross several run boundaries",
+      "id": "trial-run-boundaries",
+      "name": "trial: cross mixed-case run boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
-        "compressedString": "a2b1c3",
+        "compressedString": "a2B1c3",
         "operations": [
           [
             "next"
@@ -212,7 +207,7 @@
       "expected": [
         "a",
         "a",
-        "b",
+        "B",
         "c",
         "c",
         "c",
@@ -220,14 +215,15 @@
       ],
       "tags": [
         "trial",
-        "boundaries"
+        "run-boundaries",
+        "mixed-case"
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: counts with zero digits inside multi-digit values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-digits-in-count",
+      "name": "trial: parse a count containing zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "compressedString": "m10n2",
         "operations": [
@@ -241,7 +237,43 @@
             "next"
           ],
           [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
             "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
           ]
         ]
       },
@@ -249,18 +281,32 @@
         "m",
         "m",
         "m",
-        true
+        "m",
+        "m",
+        "m",
+        "m",
+        "m",
+        "m",
+        "m",
+        true,
+        "n",
+        true,
+        "n",
+        false,
+        " "
       ],
       "tags": [
-        "hidden",
-        "count-parsing"
+        "trial",
+        "multi-digit",
+        "zero-digit",
+        "exhausted"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: hasNext changes only after final consumption",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-final-consumption",
+      "name": "trial: hasNext changes only after final consumption",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "compressedString": "p2",
         "operations": [
@@ -293,8 +339,482 @@
         " "
       ],
       "tags": [
-        "hidden",
-        "state"
+        "trial",
+        "state",
+        "final-consumption"
+      ]
+    },
+    {
+      "id": "trial-maximum-count",
+      "name": "trial: maximum repetition count remains lazy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressedString": "Z1000000000",
+        "operations": [
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        "Z",
+        "Z",
+        true,
+        "Z"
+      ],
+      "tags": [
+        "trial",
+        "maximum-count",
+        "lazy"
+      ]
+    },
+    {
+      "id": "trial-maximum-encoded-length-and-operations",
+      "name": "trial: maximum encoded length and operation count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressedString": "a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1a1B1",
+        "operations": [
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ]
+        ]
+      },
+      "expected": [
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B",
+        "a",
+        "B"
+      ],
+      "tags": [
+        "trial",
+        "maximum-encoded-length",
+        "maximum-operations",
+        "many-runs"
+      ]
+    },
+    {
+      "id": "trial-empty-operation-trace",
+      "name": "trial: constructor with no subsequent calls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressedString": "Q1",
+        "operations": []
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "empty-operation-trace",
+        "single-run"
       ]
     }
   ]

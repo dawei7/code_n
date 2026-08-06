@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Add Digits and meets the required complexity bound.",
+      "summary": "Applies the modulo-nine digital-root identity, with zero handled separately from positive multiples of nine.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

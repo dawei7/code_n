@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `intervals`: Meeting intervals represented as `[start, end]` pairs.
+- `intervals`: A list of interval pairs where each interval is `[start_i, end_i]` ($0 \le \text{intervals.length} \le 10^4$).
 
 **Return value**
 
-Return whether the intervals contain no overlap under the touching-endpoints rule.
+Return a boolean `True` if a person could attend all meetings without overlap, and `False` otherwise.

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_70",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity_evidence",
+        "severity": "material",
+        "reason": "The exponential control reached the runner step cap during an ordinary execution instead of failing only the complexity verdict; a validated bounded-domain certificate now records exhaustive agreement over n = 1..45 and the current loop's 43-iteration maximum."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "2a730d71ddcc07244e3c33d3e31a523920652386077f087c007a9f30db2593b4",
+    "native_source_sha256": "5fe8ff871e8ccd4806876c4457032d071212140d5f8de5530ffe4da8fe55c30b",
+    "approach_sha256": "6d3b52e21ee5e7e4e5a6b164d7f6bb65b6fb9faee770b22679857a077d28f2a9",
+    "solution_variants_sha256": "10fb75c94a156b4db347288925480b1ca75a73de81aecb5d705e4d9f672a69ed",
+    "complexity_evidence_sha256": "febd3f3eb055df2ed2f19240061b11d2d34fb2a8cde6c24358fd32b2595ad4b2"
+  }
+}

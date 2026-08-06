@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1364",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.sql",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "correctness",
+        "severity": "material",
+        "reason": "The authenticated schema guarantees only unique customer_id values; it does not make Customers.email unique. The protected query joins each contact directly to every customer row with the same email, so duplicate registered addresses multiply that one contact and inflate both contacts_cnt and trusted_contacts_cnt. The candidate first reduces registered addresses to a distinct membership set, restoring the contract's one count per contact row without changing the owner-summary design."
+      },
+      {
+        "category": "candidate_correctness",
+        "severity": "verified",
+        "reason": "Distinct customer_emails gives every contact at most one joined trust marker. COUNT(*) therefore counts each Contacts row exactly once, while COUNT(trusted.email) counts that row exactly when its address exists in Customers. Grouping by owner computes reusable counts once; the invoice-to-customer join supplies the requested name, the left summary join preserves zero-contact owners, COALESCE supplies numeric zeros, and ORDER BY produces ascending invoice IDs."
+      },
+      {
+        "category": "protected_solution",
+        "severity": "defect_confirmed",
+        "reason": "Protected and native queries still pass the exact source example, seven of eight visible cases, and all three benchmark outputs, but both return counts (2,2) instead of (1,1) for one contact email shared by two customer rows. They also disagreed with the independent oracle on 3,705 of 5,000 randomized source-valid databases. Their bytes and verified evidence were preserved; the corrective source exists only as an inert candidate."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent Python oracle formed a set of registered emails, counted Contacts rows by user_id, counted trusted rows by set membership, and emitted sorted invoice rows from an independent customer-ID map. It, the candidate, a separately written grouped-email control, and a correct slower correlated-EXISTS control agreed exactly on all eight visible cases, all three benchmark tiers, and every randomized database."
+      },
+      {
+        "category": "randomized_validation",
+        "severity": "verified",
+        "reason": "Seed 1364 generated 5,000 source-valid databases totaling 32,291 Customers rows, 113,227 Contacts rows, and 65,120 Invoices rows. Coverage included 4,557 databases with duplicate customer emails, 2,661 with customers lacking contacts, 4,456 with repeated invoice owners, 4,250 with trusted contacts, 4,945 with external contacts, 3,680 with self-email contacts, 337 with zero identifiers, signed identifiers, composite-key-valid contacts, and shuffled table order."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "Across three real-test repetitions, the candidate passed all eight ordinary cases, all three benchmark outputs, and scaling with extra growth exponent -0.02 through +0.01 and largest-tier ratio 1.08x through 1.16x. The independent grouped-email control passed at +0.02 through +0.03 and 1.02x through 1.05x. The de-indexed correlated counting control passed every output but failed only scaling each time, at +0.30 through +0.32 relative exponent and 1.62x through 1.68x largest-tier ratio."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "verified",
+        "reason": "All three benchmark cases remain explicitly hidden and performance-only, use positive unique sizes 12, 48, and 192 for a 16x span, and define size consistently as Customers plus Contacts plus Invoices rows. Their 4/16/64 rows per table force the final trusted-email match and complete ordered outputs. Candidate and an independent optimal-class control pass repeatedly, while the correct per-invoice rescans fail only growth, so benchmark.json was not edited."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach now targets the candidate and derives distinct email membership before owner aggregation. It proves both count semantics, invoice preservation, summary reuse, zero handling, and ordering; states O(N log N) time and O(N) space in defined symbols; and covers raw-join multiplication, correlated EXISTS, per-invoice grouping, external and self emails, name irrelevance, repeated invoices, and no-contact owners."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "All eight ordinary cases are visible samples or trials. The sole source example is restored exactly with four Customers rows, six Contacts rows, six unsorted Invoices rows, all six ordered outputs, and the four-customer explanation. Two invented samples were relabeled as trials, formerly hidden cases are visible, and a duplicate-registered-email trial now covers the unstated-uniqueness trap that exposes the protected defect."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1364 and SQL/MySQL as the native environment. The candidate respects unique customer and invoice IDs, the Contacts composite primary key, contact ownership, email-based trust membership, one output per invoice, repeated owners, zero-contact customers, the five exact output columns, and ascending invoice order without assuming email uniqueness."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2068725201 remain byte-for-byte identical and unchanged, as does submission.json. solution_variants.json still selects the protected Optimal source; candidate.sql is a separate, inert proposal and no Accepted evidence was altered or inferred for it."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed all three table schemas, unique customer_id and invoice_id values, the Contacts composite primary key, optional contact membership in Customers, all four requested derived fields, ascending invoice order, one exact example with its full explanation, seven source tables, and no constraints, hints, notes, images, diagrams, or follow-up. source_fidelity.json binds six modular Reference files to live-content SHA-256 c08cd54c10a978291a906f350a1026ce9538a34a1e6d2df24e03b346d5058bf4 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "the sole authenticated source example with exact Customers, Contacts, and Invoices rows, six ordered output rows, mixed trust, repeated invoice owners, and a zero-contact customer",
+      "all contacts external and an invoiced customer with no contacts",
+      "several invoices reusing one owner summary and ascending output independent of input order",
+      "email rather than contact name determining trust and an owner email counting as registered",
+      "duplicate Customers.email values producing one membership match per contact row rather than multiplied counts",
+      "5,000 seeded random source-valid databases with composite-key-valid contacts, duplicate registered emails, external and self contacts, repeated invoice owners, signed and zero identifiers, and shuffled tables",
+      "three hidden performance-only tiers spanning 12 through 192 total rows with proven correlated-rescan discrimination"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "f76347eecac5b5235dba2a0f8294f4749abdc9462cf367611a066f16c4da7b87",
+    "native_source_sha256": "f76347eecac5b5235dba2a0f8294f4749abdc9462cf367611a066f16c4da7b87",
+    "approach_sha256": "2fe3ee96195b13facbaff7c42f1fdc9ada222145085603033abab04b3fbba402",
+    "solution_variants_sha256": "7df3c4ae4bcfcb027f8d1fd63ff1a93f9e1a5edb0593957f4bf296070cfc9a20",
+    "complexity_evidence_sha256": "797b3ecacf0d8527cf50a06c75adf09adcf25c70d1e5d3f58c427320dc7e4e53",
+    "cases_sha256": "880ac7cfe21140cc739ace22f0f84495d6adcf1e1962dac942bd17830ee467aa",
+    "candidate_source_sha256": "1027eab2c0aac12f8f9068f70e9ad4fbc62c0b00f3d94fda8b02d1b24f2a01e6"
+  }
+}

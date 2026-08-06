@@ -21,4 +21,4 @@ Two linear scans take $O(n)$ time. Excluding the required output array, only two
 ## Alternatives and edge cases
 - **Division by the total product:** violates the contract and needs special handling for zeros.
 - **Recompute each product independently:** takes $O(n^2)$ time.
-- One or multiple zeros and negative signs are handled naturally by prefix/suffix multiplication.
+- **Zeros and negative values:** one or multiple zeros and any negative signs are handled naturally by prefix/suffix multiplication.

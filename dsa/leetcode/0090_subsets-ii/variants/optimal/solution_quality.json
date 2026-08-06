@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_90",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The current app and immutable native sources use the prohibited local name `index`; the inert candidate preserves the Accepted duplicate-skipping backtracking exactly while using the conventional loop position `i`."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "f31ad3d0fdd7ebbea5b95b8d19502a0cee5cea9729c6b0361fa259f9cfc1f059",
+    "native_source_sha256": "7779a6e2611452fdd743788dfb843a23a89ffc965329b2834b28033b8acb3df4",
+    "approach_sha256": "389c60d6f54bf85c9f52ad88702a38d2609a03c43402d4c5c3e7c324f6700915",
+    "solution_variants_sha256": "35753127c2e42cb4b4204b4488b1649c4bb390ce4656f3f706762c32214694fb",
+    "complexity_evidence_sha256": "6800631c1ec7582de929405033cedc42bc527be2c82b9ebf4913aa390dd55205",
+    "candidate_source_sha256": "449f64926924ee92b87bad6104d8ccc4cb2dc697baed92e41f27c0eff90c6060"
+  }
+}

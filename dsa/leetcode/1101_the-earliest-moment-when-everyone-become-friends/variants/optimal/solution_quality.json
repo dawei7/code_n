@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1101",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected app-local solution is direct, conventional, and interview-ready. parent, size, components, find, timestamp, first, second, and the root names expose the chronological union-find state clearly; path halving and union by size are standard; redundant edges are skipped explicitly; and the earliest successful union returns immediately. No material correctness, robustness, complexity, clarity, or maintainability defect justifies a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Sorting logs processes friendships chronologically. Initially each person is one component; find returns representatives while compressing paths, and a log with equal roots adds no connectivity. For different roots, attaching the smaller tree below the larger merges exactly two acquaintance groups and decrements components once. Thus after every log the sets are precisely the connected components of that chronological prefix. The first transition to one component is the earliest universal-acquaintance timestamp, while ending above one component correctly returns -1."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1101, Python as the user-facing language, and native Solution.earliestAcq. Authenticated source evidence confirms labels 0 through n-1, timestamped friendships, symmetry, transitive acquaintance, earliest universal connection, -1 when absent, and all eight constraints covering n, log count and width, timestamps, valid distinct endpoints, unique timestamps, and nonrepeated listed pairs."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local solve.py and immutable leetcode.py bound to verified submission 2067637663 have identical executable bodies: both initialize the same union-find arrays and component count, use the same path-halving find, sort the same logs, perform the same root checks and size-based union, decrement the same counter, and return at the same condition. Differences are limited to the app solve function versus LeetCode Solution.earliestAcq method and native List annotation/import."
+      },
+      {
+        "category": "complexity_claim",
+        "severity": "verified",
+        "reason": "The live branch manifest and Approach correctly include the O(n) parent/size initialization term as well as O(m log m) sorting and O(m alpha(n)) union-find operations, for total O(n + m log m + m alpha(n)) time. The sorted log copy plus union-find arrays require O(m+n) space. These bounds match the protected source even when m is smaller than n."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden workloads grow reverse-ordered chain histories through 20, 50, and 100 people, with n-1 logs and connectivity reached only by the final chronological edge. The protected source passed all seven visible cases and all three tiers with relative growth exponent +0.01 and a 1.02x largest runtime ratio. An independently correct traversal-after-every-event control preserved every output but failed only scaling at +1.07 and 21.81x, distinguishing union-find from repeated reachability reconstruction."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives chronological processing, union-find component representation, path compression, union by size, redundant-edge handling, component-count termination, and the earliest-prefix invariant. Its full time and space analysis matches the protected source and branch manifest, and it covers repeated graph traversal, binary search, redundant edges, unsorted logs, failure to connect, and the two-person boundary."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves labeled people, timestamped friendships, symmetry, transitive acquaintance, earliest complete connectivity, -1 fallback, both exact examples, every one of the first example's six explained group transitions, the second example's completion fact, and all eight source constraints. It adds no tables, diagrams, hints, notes, or follow-up absent from the source."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified exactly two explained examples, eight constraints, and no hints, notes, follow-up, tables, images, or diagrams. source_fidelity.json binds the independently written modular Reference to live content hash 780780e24c0755ba1edac7e65e0182711b4738c81022ccb4855f4fea2ff86ce6 and validates with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact logs and n inputs, outputs, all six explained group transitions in the first example, and the timestamp-3 completion explanation in the second appear first and in source order.",
+      "All seven ordinary correctness fixtures are visible samples or trials. They cover two source histories, permanent disconnection, the minimum two-person/one-log case, unsorted timestamps, a redundant transitive edge, maximum n = 100, maximum timestamp = 10^9, and a reverse-ordered maximum-size chain.",
+      "Every fixture uses length-three logs, labels inside [0,n-1], distinct endpoints, unique timestamps, and nonrepeated undirected friendship pairs. All log counts lie inside 1 through 10^4, and the maximum-bound case contains 99 distinct chain edges for 100 people.",
+      "An independent oracle sorts events, adds each friendship to an adjacency graph, and runs breadth-first reachability from person 0 after every event. It shares neither parent arrays, path compression, union by size, nor the component counter with the reviewed solution.",
+      "The oracle, protected app-local function, immutable native Solution method, and independently written repeated-connectivity control agreed on all ten authored correctness-plus-benchmark outputs, 5000 deterministic random schema-valid histories, and four explicit boundaries. Random histories covered two through 30 people, one through 80 unique undirected pairs, unique shuffled timestamps, connected and disconnected outcomes, transitive redundancy, and unsorted input.",
+      "The 20-, 50-, and 100-person workloads remain hidden and performance-only, use size consistently as n, contain n-1 reversed chain logs, and span 5x. The repeated-traversal control failed only scaling at +1.07 and 21.81x, while the protected union-find solution passed at +0.01 and 1.02x; benchmark calibration is fit and benchmark.json was not edited."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "478016c9fb2560ccdf671e320c241d3544ff024e56726bfc291e9278c9b68c09",
+    "native_source_sha256": "2383e2dca931826e7202757bd5178de4ea10af4e526b775128f006a1f003b875",
+    "approach_sha256": "041a11b0ffb43293f38efd8775ef0265e86cadb0341ac5bb340d11b6388ef254",
+    "solution_variants_sha256": "561f71bf96be8a57e82f7cae67a517ee668d0e5bfd1e7628c2f261ed2b8b171a",
+    "complexity_evidence_sha256": "45d70e6d0f716240753e1226672a826ca27982abe34c421fd172667c07e13e1e",
+    "cases_sha256": "f18159bb9d76e63b117809ec841c7e62c86c412e36e7880190138ce3993fb836"
+  }
+}

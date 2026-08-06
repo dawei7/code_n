@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Guess Number Higher or Lower and meets the required complexity bound.",
+      "summary": "Binary-searches the hidden value through the judge's three-way comparison responses.",
       "time_complexity": "O(\\log n)",
       "space_complexity": "O(1)"
     }

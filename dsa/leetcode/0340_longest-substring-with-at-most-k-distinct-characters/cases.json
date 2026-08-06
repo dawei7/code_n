@@ -9,7 +9,7 @@
       "visible": true,
       "input": {"s": "eceba", "k": 2},
       "expected": 3,
-      "tags": ["sample"]
+      "tags": ["sample", "source-example", "prefix"]
     },
     {
       "id": "sample-2",
@@ -18,61 +18,61 @@
       "visible": true,
       "input": {"s": "aa", "k": 1},
       "expected": 2,
-      "tags": ["sample", "repeated"]
+      "tags": ["sample", "source-example", "repeated"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: zero distinct characters allowed",
-      "kind": "sample",
+      "id": "trial-zero-k",
+      "name": "zero distinct characters allows no nonempty window",
+      "kind": "trial",
       "visible": true,
       "input": {"s": "a", "k": 0},
       "expected": 0,
-      "tags": ["sample", "boundary"]
+      "tags": ["zero-k", "minimum-length"]
     },
     {
-      "id": "trial-empty",
-      "name": "trial: empty string",
+      "id": "trial-maximum-k",
+      "name": "maximum distinct limit admits the whole string",
       "kind": "trial",
-      "visible": false,
-      "input": {"s": "", "k": 3},
-      "expected": 0,
-      "tags": ["trial", "empty"]
+      "visible": true,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyz", "k": 50},
+      "expected": 26,
+      "tags": ["maximum-k", "whole-string"]
     },
     {
-      "id": "trial-large-k",
-      "name": "trial: limit exceeds distinct count",
+      "id": "trial-counted-shrink",
+      "name": "repeated copies survive shrinking",
       "kind": "trial",
-      "visible": false,
-      "input": {"s": "abc", "k": 5},
-      "expected": 3,
-      "tags": ["trial", "large-k"]
-    },
-    {
-      "id": "hidden-counted-shrink",
-      "name": "hidden: repeated copies survive shrinking",
-      "kind": "real",
-      "visible": false,
+      "visible": true,
       "input": {"s": "abaccc", "k": 2},
       "expected": 4,
-      "tags": ["hidden", "frequency"]
+      "tags": ["frequency", "shrink"]
     },
     {
-      "id": "hidden-best-suffix",
-      "name": "hidden: best window is a suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-suffix",
+      "name": "best window is a suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {"s": "ccaabbb", "k": 2},
       "expected": 5,
-      "tags": ["hidden", "suffix"]
+      "tags": ["suffix", "window-boundary"]
     },
     {
-      "id": "hidden-several-shrinks",
-      "name": "hidden: several character evictions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-shrinks",
+      "name": "several distinct characters are evicted over the scan",
+      "kind": "trial",
+      "visible": true,
       "input": {"s": "aabacbebebe", "k": 3},
       "expected": 7,
-      "tags": ["hidden", "multiple-shrinks"]
+      "tags": ["multiple-shrinks", "interior"]
+    },
+    {
+      "id": "trial-fewer-than-k",
+      "name": "at most k permits fewer distinct characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "bbbb", "k": 3},
+      "expected": 4,
+      "tags": ["at-most", "whole-string", "repeated"]
     }
   ]
 }

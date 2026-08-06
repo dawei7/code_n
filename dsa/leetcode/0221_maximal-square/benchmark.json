@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_221",
-  "measurement_note": "Growing all-one matrices exercise every rolling DP state.",
+  "measurement_note": "Size is the legal cell count mn. Wide, square, and tall all-one matrices exercise every rolling-DP update and both dimension orientations.",
   "cases": [
     {
       "id": "benchmark-scale-1",

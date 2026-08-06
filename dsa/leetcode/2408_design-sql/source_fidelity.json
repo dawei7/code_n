@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2408",
+    "frontend_id": "2408",
+    "title_slug": "design-sql",
+    "url": "https://leetcode.com/problems/design-sql/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`[\"SQL\", \"ins\", \"sel\", \"ins\", \"exp\", \"rmv\", \"sel\", \"exp\"]`, `[[[\"one\", \"two\", \"three\"], [2, 3, 1]], [\"two\", [\"first\", \"second\", \"third\"]], [\"two\", 1, 3], [\"two\", [\"fourth\", \"fifth\", \"sixth\"]], [\"two\"], [\"two\", 1], [\"two\", 2, 2], [\"two\"]]`",
+        "output": "`[null, true, \"third\", true, [\"1,first,second,third\", \"2,fourth,fifth,sixth\"], null, \"fifth\", [\"2,fourth,fifth,sixth\"]]`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "`[\"SQL\", \"ins\", \"sel\", \"rmv\", \"sel\", \"ins\", \"ins\"]`, `[[[\"one\", \"two\", \"three\"], [2, 3, 1]], [\"two\", [\"first\", \"second\", \"third\"]], [\"two\", 1, 3], [\"two\", 1], [\"two\", 1, 2], [\"two\", [\"fourth\", \"fifth\"]], [\"two\", [\"fourth\", \"fifth\", \"sixth\"]]]`",
+        "output": "`[null, true, \"third\", null, \"<null>\", false, true]`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "`[\"SQL\", \"ins\", \"rmv\", \"ins\", \"exp\"]`, `[[[\"data\"], [1]], [\"data\", [\"alpha\"]], [\"data\", 1], [\"data\", [\"beta\"]], [\"data\"]]`",
+        "output": "`[null, true, null, true, [\"2,beta\"]]`",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "759afe09e04a1ee282718af5827ca133cb4d46c442eea444309f04216eeefcce",
+      "reference/contract.md": "5a49968274c8cb570a9e1cc34d61154fb520741659ca62aa5bf02eebdc88cf8d",
+      "reference/examples.md": "7e3340642c84b1ebc4da3a6cf5f5a74ab8971b46ed4dd8e326585324d1e4ec2d",
+      "reference/constraints.md": "bfdd7ecf4dbada8d5693e88cc35d60aac95cb8e0de76bffcc04693dc9d73ba80"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

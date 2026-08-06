@@ -1,23 +1,23 @@
 ## General
 **A Pascal row is one complete binomial-coefficient sequence**
 
-Entry `k` in zero-based row `n` is `C(n,k)`. Consecutive coefficients satisfy:
+Entry $k$ in zero-based row $n$ is $\binom{n}{k}$. Consecutive coefficients satisfy
 
-```text
-C(n,k) = C(n,k-1) * (n-k+1) / k
-```
+$$
+\binom{n}{k} = \binom{n}{k - 1} \frac{n - k + 1}{k}.
+$$
 
 This ratio derives by canceling common factors in the factorial definitions, so earlier Pascal rows are unnecessary.
 
 **Generate each next coefficient from the previous exact integer**
 
-Start with $\binom{n}{0} = 1$. For `k` from one through `n`, compute the next coefficient from the current one using the ratio and append it. Multiplication should occur before exact integer division in an arbitrary-precision implementation.
+Start with $\binom{n}{0} = 1$. For `column` from one through `rowIndex`, compute the next coefficient from `coefficient` using the ratio and append it. Multiplication occurs before exact integer division in the Python implementation.
 
 In a fixed-width language, intermediate multiplication can overflow even if a final coefficient fits; use the platform's guaranteed wider type or cancel factors safely.
 
 **The current value is always the finalized coefficient just appended**
 
-After iteration `k`, the result contains exactly `C(n, 0)` through `C(n, k)`, and the current value is the final integer coefficient `C(n, k)`.
+After iteration `column`, `row` contains exactly $\binom{n}{0}$ through $\binom{n}{\texttt{column}}$, and `coefficient` is the finalized value $\binom{n}{\texttt{column}}$.
 
 **Trace symmetry emerging without special handling**
 
@@ -27,7 +27,7 @@ Starting from `1`, the recurrence produces `5`, `10`, `10`, `5`, and `1`, yieldi
 
 Pascal row `n` consists of `C(n,0)` through `C(n,n)`, beginning with one. The identity
 
-$\binom{n}{k+1} = \binom{n}{k} \cdot (n-k) / (k+1)$
+$\binom{n}{k + 1} = \binom{n}{k} \cdot \frac{n - k}{k + 1}$
 
 maps each coefficient exactly to its successor; divisibility is guaranteed by the binomial formula. Repeating the ratio from $k = 0$ generates all $n + 1$ entries in order with no need for earlier rows.
 

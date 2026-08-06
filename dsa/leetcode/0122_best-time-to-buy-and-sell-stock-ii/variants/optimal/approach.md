@@ -1,7 +1,7 @@
 ## General
 **Every rising edge is independently realizable profit**
 
-Whenever today's price exceeds yesterday's, add that positive difference. It can be realized by holding stock across exactly that edge. A nonpositive edge contributes nothing because selling before the decline and buying afterward is never worse than holding through it.
+For each `i` from `1` through `len(prices) - 1`, the candidate adds `max(0, prices[i] - prices[i - 1])`. A positive difference is realized by holding stock across exactly that edge. A nonpositive edge contributes nothing because selling before the decline and buying afterward is never worse than holding through it.
 
 **Adjacent rising-edge profits telescope into valley-to-peak profit**
 

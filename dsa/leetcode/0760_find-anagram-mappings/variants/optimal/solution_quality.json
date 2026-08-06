@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_760",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "approach_target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "interview_quality_naming",
+        "severity": "material",
+        "reason": "The protected app source introduces the exact generic local name index for a coordinate in nums2. Although the compound index_by_value is semantic and acceptable, the standalone binding conceals which array it locates and violates the campaign's explicit naming standard. The inert candidate renames only that binding and its dictionary value to nums2_position; AST normalization proves there are no other changes, while both protected sources remain untouched."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "candidate_improves",
+        "reason": "With nums2_position, the two-line candidate is maximally concise, conventional, and interview-ready. The nums1, nums2, value, nums2_position, and index_by_value names expose the reverse-lookup direction directly, and no generic local named index remains."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Enumerating nums2 records an actual nums2 position for every value. If a value occurs repeatedly, later occurrences overwrite earlier ones, but the contract accepts any position containing the requested value and does not require distinct occurrence assignments. Because nums2 is an anagram of nums1, every nums1 value has a recorded key. Looking up each nums1 value in order therefore returns a same-length mapping whose entry always identifies an equal value in nums2."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 760, Python, and the native anagramMappings(nums1, nums2) interface. Authenticated source evidence confirms that nums2 is a reordering of nums1 with equal multiplicities, duplicates are permitted, mapping[i] is any nums2 index containing nums1[i], and any valid mapping may be returned. It also confirms equal array lengths from 1 through 100 and values from 0 through 100000."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065993222 are algorithmically identical: both enumerate nums2 into the same value-to-position table, permit later duplicate positions to overwrite earlier ones, and map nums1 through that table in order. The candidate preserves that exact data flow and differs from the app source only by the semantic nums2_position rename; native wrapper and typing differences remain the only protected structural adaptations."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged three authored workloads grow reverse-ordered arrays from 8 to 64 distinct values, forcing a separate linear scan of nums2 for each nums1 value to traverse the quadratic cross-product while hash construction and lookup remain linear. The protected source, rename-only candidate, and an independent first-occurrence hash-map peer passed all nine visible correctness cases and all three performance tiers; their relative growth exponents were +0.02, +0.01, and +0.06 respectively. An independently correct explicit nested-scan control matched every benchmark semantically but failed only performance with relative growth exponent +0.84, distinguishing expected O(n) hashing from O(n^2) repeated search."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately reverses the lookup direction, explains why one stored position per value is sufficient even with duplicates, proves every returned equality, and contrasts stronger one-to-one assignment machinery. Its expected O(n) time and O(n) space explanation matches the candidate algorithm and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "reviewed",
+        "reason": "The modular Reference now preserves the full authenticated anagram definition, output equality condition, first-array order, duplicate multiplicities, any-valid-answer rule, permission to reuse any matching duplicate position, both source examples in order, all four constraint items, and the separate hash-map hint. Example 1 retains each explanatory mapping step supplied by the source, while Example 2 correctly remains unexplained."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Fresh authenticated review on 2026-08-04 verified exactly two examples in source order, every input and output literal, one explained example, four constraint items, duplicate-value permission, any-valid-answer semantics, the definition of array anagram as reordering, and one separate hash-map hint. The statement has no images or tables. source_fidelity.json binds live description-content hash cd9bb92245ee59f69d66f77d4fa2a3e51c91e83f23cc9ab70fee2dd943d91698 and every composed Reference section hash, and the repository validator reports verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. The real [84,46] identity example now replaces the invented duplicate sample, while the duplicate input remains as a separately labelled visible trial. Both exact source examples appear first in source order.",
+      "The invalid negative-value trial was removed because source values must be nonnegative. All nine ordinary correctness cases are now visible samples or trials, including the formerly hidden all-duplicate, interleaved-duplicate, and reverse-order checks.",
+      "Authored and generated checks cover lengths 1 and 100, equal array lengths, values 0 and 100000, singleton, distinct, all-equal, and mixed-duplicate arrays, and preservation of the full value multiset under arbitrary reordering.",
+      "Material behavior covers identity and reverse mappings, source-order output, duplicate groups, reuse of a matching duplicate position, multiple valid outputs, interleaved duplicates, boundary values, and the required equality nums1[i] = nums2[mapping[i]] for every returned position.",
+      "Every authored expected mapping and every protected result was checked with an independent semantic validator for length, integer index bounds, and value equality rather than requiring one arbitrary duplicate assignment. A separate first-occurrence oracle, protected app source, immutable native Solution, and rename-only candidate were valid on all twelve authored correctness-plus-benchmark inputs, 40572 exhaustive small anagram pairs, 5000 deterministic random legal pairs, and two maximum-boundary inputs; all three protected forms also returned identical mappings.",
+      "The unchanged 8-, 32-, and 64-value reverse-order workloads remain hidden and performance-only in benchmark.json, span 8x, let the protected source, rename-only candidate, and independent hash-map peer pass, and make the correct nested-scan control fail only the scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "f024b6de712f992044b5daa468c49b05e2934c82bcaccc9b4ae5906f287cadc1",
+    "native_source_sha256": "42ad03e73477144be46be826bd7aa3476edbe124eb11c371883922e8b8019737",
+    "approach_sha256": "fea625944bf9393b689a8d77f7f444a4a280166d065d0b7732ca9ed361eb71c5",
+    "solution_variants_sha256": "cbcdee65263ffcd58100746f89ebae7496aab08f336351f145e572893a7af8b3",
+    "complexity_evidence_sha256": "4d6b48347c19e22b9117846cd1f5a343dd1803fd69ff50cfeef12df5b62e6f57",
+    "cases_sha256": "7a67ca0d0019a21b552919016eb53735a23d68b6ff13b12019e0cc1e0fa58d9d",
+    "candidate_source_sha256": "10e7f469177b800114cfa5d423a45f416f762f0887245dbfde6c572512ebf11e"
+  }
+}

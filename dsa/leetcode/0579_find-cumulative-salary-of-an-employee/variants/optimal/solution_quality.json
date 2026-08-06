@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_579",
+  "language": "sql",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is clear, compact, and interview-ready. Its salary_windows CTE computes both independent window facts before filtering, the numeric RANGE frame communicates calendar-month semantics precisely, and the outer relation expresses the exclusion and required ordering without duplication."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Partitioning by Id prevents employee histories from mixing. RANGE BETWEEN 2 PRECEDING AND CURRENT ROW includes exactly existing rows whose Month lies in the current three-calendar-month interval, so gaps contribute zero rather than admitting older records. MAX(Month) marks each employee's most recent record, and filtering only after window evaluation removes exactly that row while preserving every earlier sum."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 579 and SQL as its sole application language. The query consumes Employee(Id, Month, Salary), preserves the required result column labels, excludes unworked months and each employee's latest worked month, and returns the mandated Id-ascending, Month-descending order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected application SQL and immutable MySQL source bound to verified submission 2065428048 are byte-identical. The reviewed target therefore preserves the accepted partition keys, numeric window frame, maximum-month calculation, outer filter, projection, and ordering exactly."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three authored reverse-ordered workloads span 120 through 960 employee-month rows with twelve months per employee and require both partition ordering and latest-month exclusion. The exact protected source passed all eight correctness cases and all three benchmark outputs and performance tiers. A correct correlated range-sum and latest-month control passed every correctness and benchmark output but failed only scaling with relative growth exponent +0.97 and a 16.90x largest runtime ratio, separating window processing from repeated relation scans."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach precisely matches the current query's employee partition, calendar RANGE frame, independent maximum-month window, outer filtering, and final order. Its O(R log R) time and O(R) working-space bounds correctly describe conventional partition sorting and window-state materialization."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The modular Reference is bound to the authenticated Premium statement's rendered-content hash. It preserves the Employee schema and 2020 context, every cumulative-salary inclusion and exclusion rule, exact result ordering, the full example, all per-employee calculations and gap reasoning, and all six source tables."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium source example now appears first with all eleven exact Employee rows, the exact eight output rows in required order, and every per-employee gap and latest-month fact preserved.",
+      "All three invented samples were relabelled as trials, and the formerly hidden unsorted-sparse and different-latest-month checks are now visible trials.",
+      "Contract boundaries cover months 1 and 12 of 2020, one recorded month yielding no row, two and three months of available history, consecutive and widely separated months, the composite (Id, Month) key, and signed integer salary values.",
+      "Material semantics cover three calendar months rather than three prior rows, missing-month zero contributions, exclusion of each employee's own latest recorded month, independent partitions, shuffled input, and exact Id-ascending and Month-descending output order.",
+      "An independent employee-to-month-map oracle and SQLite execution of both byte-identical protected queries verified all eight correctness cases, all three benchmark outputs, 1,984 exhaustive small histories, and 500 deterministic randomized multi-employee histories.",
+      "All eight ordinary correctness cases are visible samples or trials; the unchanged 120-, 480-, and 960-row workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "32b11ad10c1b6dcdf9b8afb43e98384fdf03faf12efeb60baba16a803368996f",
+    "native_source_sha256": "32b11ad10c1b6dcdf9b8afb43e98384fdf03faf12efeb60baba16a803368996f",
+    "approach_sha256": "b8d763ecc7cc98a6c9aeb6724766ea68d92a86ad924fa8287d346c1671d07c4d",
+    "solution_variants_sha256": "d94a48fb975f612da27a3bd1825e83d38d6be140075b5d2071cb8d20c4b35866",
+    "complexity_evidence_sha256": "3be7ea20789ed928fb9d0792109e9137dad085644962f668bd4c84c821ea9883",
+    "cases_sha256": "91ef1d4036d7111fcd19de488252cc3e0512c75ad1d7fdd791c5e8ba8fce140a"
+  }
+}

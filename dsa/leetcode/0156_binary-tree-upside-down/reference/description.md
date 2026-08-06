@@ -1,9 +1,11 @@
 ## Description
 
-Given the root of a binary tree, turn the tree upside down and return its new root. Apply these changes one level at a time:
+Given the `root` of a binary tree, turn the tree upside down and return the new root.
 
-- The original left child becomes the new root of that level.
-- The original root becomes its new right child.
-- The original right child becomes its new left child.
+You can turn a binary tree upside down with the following steps:
 
-Every right child is guaranteed to have a left sibling with the same parent, and every right child is a leaf.
+1. The original left child becomes the new root.
+2. The original root becomes the new right child.
+3. The original right child becomes the new left child.
+
+The mentioned steps are done level by level. It is guaranteed that every right node has a sibling (a left node with the same parent) and has no children.

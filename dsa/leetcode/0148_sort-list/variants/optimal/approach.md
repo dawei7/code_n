@@ -1,34 +1,23 @@
 ## General
-**Iterative run widths remove recursive stack space**
+**Bottom-up run doubling avoids recursive stack space**
 
-Count the list length, then treat every node as a sorted run of width one. In a pass of width `w`, merge adjacent runs of at most `w` nodes and double `w` afterward. Once $w \ge n$, one sorted run covers the complete list. Iteration avoids the $O(\log n)$ call stack of top-down merge sort.
+Count the nodes, then regard each node as a sorted run of width one. For each `width`, scan the list from left to right, merge adjacent runs of at most that width, and double the width after the complete pass. Once `width >= length`, the list is one sorted run.
 
-**Cutting runs prevents one merge from consuming the next pair**
+**Cut each pair of runs before merging it**
 
-Starting from the unprocessed suffix, split off at most `w` nodes as `left`, then at most `w` nodes as `right`. Each split terminates its run with null and returns the first node after it. Save that remainder before merging so the next run pair stays reachable.
+`_split` advances through at most `width` nodes, null-terminates that run, and returns the first node after it. Split `left`, then `right`, and save the returned remainder as `current` before merging. These cuts keep a merge from consuming nodes that belong to the next pair.
 
-**Merge heads and return the merged tail for constant-time concatenation**
+`_merge` repeatedly appends the smaller run head, choosing `left` on equality so equal nodes remain stable. It attaches the nonempty remainder and returns both the merged head and tail, allowing the pass to connect the next merged run without rescanning the accumulated output.
 
-Compare run heads, append the smaller node to the pass output tail, and advance that run. When one run empties, append the other. Track or discover the merged tail once so the next pair can be connected without rescanning the entire accumulated output.
-
-Choosing the left node on equality makes the merge stable, although only sorted values are required.
-
-**Every width-doubling pass coalesces sorted adjacent runs**
-
-At the start of a pass of width `w`, the list consists of sorted runs of length at most `w`. Each merge produces a sorted run of length at most `2w`, so doubling the width establishes the next pass's invariant.
-
-**Merged run width doubles toward the whole list**
-
-Each pass begins with sorted runs of at most the current width. Merging two adjacent runs always selects the smaller remaining head, preserving every node and producing one sorted run of at most twice that width.
-
-One-node runs are trivially sorted. Doubling the width after every complete pass preserves the run invariant until a single run spans the list, at which point the entire chain is sorted.
+At the start of a width-$w$ pass, the list consists of sorted adjacent runs of length at most $w$. Merging each neighboring pair preserves all nodes and produces sorted runs of length at most $2w$, which establishes the invariant for the doubled width. Eventually one run spans the list, proving the returned chain is fully sorted.
 
 ## Complexity detail
-Each merge pass processes every node once, and there are $\lceil \log_2 n \rceil$ passes, giving $O(n \log n)$ time. Iteration uses only a dummy node and a constant number of pointers, so auxiliary space is $O(1)$.
+Every merge pass processes all $n$ nodes a constant number of times, and there are $\lceil\log_2 n\rceil$ passes, giving $O(n \log n)$ time. The iterative method retains only dummy nodes, counters, and a constant number of references, so auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
-- **Top-down merge sort:** is natural but consumes $O(\log n)$ recursion stack space.
-- **Insertion sort:** relinks in place but degrades to $O(n^2)$.
-- **Array sorting:** is concise but requires $O(n)$ storage for node references or values.
-- Empty and one-node lists return immediately. The final run in a pass may be shorter than the width or have no partner.
-- Pointer splitting must null-terminate runs; otherwise the merge can cross into later nodes and duplicate or cycle links.
+- **Top-down merge sort:** has the same time bound but consumes $O(\log n)$ recursion-stack space.
+- **Insertion sort:** relinks nodes in place but takes $O(n^2)$ time on an already ordered list with a forward insertion scan.
+- **Array sorting:** is concise but stores $O(n)$ node references or values.
+- Empty and one-node lists return immediately.
+- A final run may be shorter than `width` or have no right partner; `_split` and `_merge` handle both cases.
+- Null-terminating every split is essential to prevent a merge from crossing into later runs.

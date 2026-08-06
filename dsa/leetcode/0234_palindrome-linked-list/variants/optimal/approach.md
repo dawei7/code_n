@@ -13,6 +13,10 @@ Walk one pointer from the original head and another from the reversed suffix. Ev
 
 After `i` comparison steps, the first `i` values equal the last `i` original values in reverse order. Any mismatch proves the sequence is not a palindrome.
 
+**Restore the changed suffix**
+
+Remember the comparison result, reverse the same suffix again, and then return the saved Boolean. Because the node before the suffix still points to its original first node, the second reversal restores every original link without a separate reconnection step.
+
 Midpoint discovery partitions the list into equal comparison halves, ignoring only the unpaired middle value of an odd-length list. Reversal aligns symmetric positions, so all comparisons succeed exactly when every mirrored value pair is equal.
 
 ## Complexity detail
@@ -21,5 +25,5 @@ Midpoint discovery, reversal, and comparison are each linear, for $O(n)$ time. O
 ## Alternatives and edge cases
 - **Copy values into an array:** is simpler but uses $O(n)$ space.
 - **Recursive comparison:** uses $O(n)$ call-stack space.
-- **Restore the second half afterward:** may be desirable when callers expect the input structure to remain unchanged; it adds another linear pass but no asymptotic cost.
-- Empty and one-node lists are palindromes; both even and odd lengths require correct midpoint handling.
+- **One-node lists:** the single value matches itself, and reversal plus restoration leave the node unchanged.
+- **Even and odd lengths:** even lists begin the reversed suffix at the second half; odd lists include the unpaired middle, which never changes the comparison result.

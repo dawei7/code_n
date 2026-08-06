@@ -7,91 +7,90 @@
       "name": "sample: four-bit encoding",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "num": 23
-      },
+      "input": {"num": 23},
       "expected": "1000",
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "source-example-1"]
     },
     {
       "id": "sample-107",
       "name": "sample: six-bit encoding",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "num": 107
-      },
+      "input": {"num": 107},
       "expected": "101100",
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "source-example-2"]
     },
     {
-      "id": "sample-zero",
-      "name": "sample: zero uses the empty encoding",
-      "kind": "sample",
+      "id": "trial-zero",
+      "name": "zero uses the empty encoding",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "num": 0
-      },
+      "input": {"num": 0},
       "expected": "",
-      "tags": [
-        "sample"
-      ]
+      "tags": ["minimum-value", "empty-string"]
     },
     {
-      "id": "trial-first",
-      "name": "trial: first one-bit encoding",
+      "id": "trial-first-group",
+      "name": "one begins the one-bit group",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "num": 1
-      },
+      "input": {"num": 1},
       "expected": "0",
-      "tags": [
-        "trial"
-      ]
+      "tags": ["group-start", "one-bit"]
     },
     {
-      "id": "trial-group-boundary",
-      "name": "trial: start of a new length group",
+      "id": "trial-end-one-bit-group",
+      "name": "two ends the one-bit group",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "num": 7
-      },
+      "input": {"num": 2},
+      "expected": "1",
+      "tags": ["group-end", "one-bit"]
+    },
+    {
+      "id": "trial-two-bit-boundaries",
+      "name": "three begins the two-bit group",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": 3},
+      "expected": "00",
+      "tags": ["group-start", "leading-zeros", "two-bit"]
+    },
+    {
+      "id": "trial-three-bit-start",
+      "name": "seven begins the three-bit group",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": 7},
       "expected": "000",
-      "tags": [
-        "trial"
-      ]
+      "tags": ["group-start", "power-of-two-shift", "leading-zeros"]
     },
     {
-      "id": "real-before-boundary",
-      "name": "hidden: end of a length group",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "num": 62
-      },
+      "id": "trial-before-large-boundary",
+      "name": "sixty-two ends the five-bit group",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": 62},
       "expected": "11111",
-      "tags": [
-        "real"
-      ]
+      "tags": ["group-end", "all-ones"]
     },
     {
-      "id": "real-large",
-      "name": "hidden: large permitted value",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "num": 1000000000
-      },
+      "id": "trial-after-large-boundary",
+      "name": "sixty-three begins the six-bit group",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": 63},
+      "expected": "000000",
+      "tags": ["group-start", "leading-zeros", "six-bit"]
+    },
+    {
+      "id": "trial-maximum-value",
+      "name": "largest permitted input retains every suffix bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": 1000000000},
       "expected": "11011100110101100101000000001",
-      "tags": [
-        "real"
-      ]
+      "tags": ["maximum-value", "long-output"]
     }
   ]
 }

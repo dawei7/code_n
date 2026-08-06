@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_265",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already a clear O(nk) dynamic program: derive the smallest prior total, one color attaining it, and the second-smallest alternative, then build the next row with the one forbidden predecessor handled explicitly. Its tie behavior is correct, state is limited to one row, and no material candidate improvement is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies paid-only LeetCode problem 265 and its Python matrix contract. The Reference preserves the row-of-houses model, color restriction, cost semantics, both examples, all five shape and value constraints, and the source-native O(nk) follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is tied to verified submission 2064289447. It and the app-local source have identical empty-input guard, zero row, minimum and color selection, second-minimum exclusion, row transition, and final minimum; only typing, wrapper, and harmless line wrapping differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The previous largest benchmark illegally used 32 colors against the k <= 20 source constraint. The replacement 8x4, 32x10, and 100x20 tiers are all legal, span 32 to 2,000 matrix cells, and grow both dimensions. The current source passes at -0.00 relative exponent and 1.02x largest ratio; a correct O(nk^2) transition passes every output but fails only scaling at +0.47 and 9.39x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach matches the protected row transition and now accounts for each linear scan, explains why tied minima remain valid, and distinguishes the defensive empty-input path, one-house result, and native two-color guarantee."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound paid-only Reference remains verified against the reviewed source evidence, preserving both examples in order and their explanation presence, all five constraints, the O(nk) follow-up after Constraints, and the zero-visual structure."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source-fidelity-verified examples now appear first and in source order as visible samples with exact matrices and outputs; the invented one-house replacement sample was removed",
+      "the former empty-matrix trial was removed because the verified source requires at least one house",
+      "a one-house two-color row covers the minimum n and k dimensions together with both inclusive cost bounds 1 and 20",
+      "four rows sharing the same cheapest color at k = 2 force alternation and defeat independent row-wise greediness",
+      "a changing-minimum matrix exercises repeated best-versus-second-best selection, and a separate row distinguishes simultaneous transitions from sequential in-place updates",
+      "equal prior minima verify that excluding one minimum color still permits another equal minimum, while an all-tied matrix preserves many optimal colorings",
+      "a two-row twenty-color matrix reaches the exact k maximum and forces the optimal switch between color indices 19 and 18",
+      "one hundred two-color rows at cost 20 reach the exact n and cost maxima with an independently derived total of 2000",
+      "all ten expectations matched an independent O(nk^2) dynamic program, and the first nine also matched exhaustive valid-coloring enumeration",
+      "5,000 seeded random legal matrices matched the independent dynamic-programming oracle",
+      "the protected current source passed all ten correctness rows and all three unchanged benchmark tiers through the real-test engine; benchmark outputs and runtime scaling passed",
+      "all ten correctness rows are visible samples or trials, while the unchanged 8x4, 32x10, and 100x20 matrices remain hidden performance-only benchmarks"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "e4bac2da94be8e50b965916aab4714284633398fd46806a57c88090d43fa8547",
+    "native_source_sha256": "b4900bff117002a74d21ee84c141512a0e1c1c26d6b911bc27ca7072b396a52f",
+    "approach_sha256": "f646ffec0d57299b99af3c1c3e2fb02b1eff0acc94d5d7edac304d7c869722db",
+    "solution_variants_sha256": "b18bddd51646e4c90840504d4ee0c216a28326573ddd3a531549f1e4fc407721",
+    "complexity_evidence_sha256": "1657cab53144ed9ee6a3b9818153c258f8639a90730faac89e6dc4ec99cb0bc2",
+    "cases_sha256": "720bdbbe2a5b77f17a7bee54c24e076d85396d32dd39163ff5fb0e351ab5c135"
+  }
+}

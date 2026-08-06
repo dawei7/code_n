@@ -5,9 +5,9 @@ The search over all partitions disappears once we understand which part sizes ca
 
 Any part $x \ge 5$ should be split into `3` and $x - 3$, because
 
-$3(x - 3) \ge x$
+$3(x - 3) > x$
 
-for every $x \ge 5$, with a strict improvement beyond the boundary. Repeating this replacement eliminates all large parts. A part `1` is also never useful next to a part $x \ge 3$, since replacing $1 + x$ by $x + 1$ as a single part increases that local product from `x` to $x + 1$. Consequently, an optimal decomposition uses only `2`, `3`, and possibly `4`, where `4` may be viewed as $2 + 2$ without changing the product.
+for every integer $x \ge 5$. Repeating this strict improvement eliminates all large parts. A part `1` is also never optimal. When at least one other summand remains, merge $1 + x$ into $x + 1$ and increase the local factor from `x` to $x + 1$ without violating the required split. If the whole decomposition is just $1 + x$ with $x \ge 3$, replace it by $2 + (x - 1)$; its product $2(x - 1)$ is greater than `x`. Consequently, an optimal decomposition uses only `2`, `3`, and possibly `4`, where `4` may be viewed as $2 + 2$ without changing the product.
 
 **Prefer threes without leaving a one**
 

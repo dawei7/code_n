@@ -1,4 +1,5 @@
 ## General
+
 **Orient every intact block greedily**
 
 For each string, precompute the lexicographically larger of the original and its reversal. Once the final split lies in some other string, this string appears as one intact block at a fixed position. Replacing that block by its larger orientation can only improve the complete candidate at the first differing character.
@@ -20,9 +21,19 @@ For every cut position in the selected orientation, form `suffix + middle + pref
 Any legal result has one particular string containing its split, one of that string's two orientations, and one cut position. Every other string is intact, so changing it independently to its larger orientation cannot make the candidate smaller and is part of some optimum. The algorithm enumerates the split index, both orientations, and every cut, while using those optimal intact blocks, so it evaluates an optimal result and returns the largest evaluated string.
 
 ## Complexity detail
-Let `L` be the total number of characters. There are `L` cut positions across all split blocks, and constructing or comparing each candidate can inspect $O(L)$ characters, giving $O(L^2)$ time. The oriented blocks, middle text, and one candidate use $O(L)$ auxiliary space.
+
+Let
+
+$$
+L = \sum_{w \in \texttt{strs}} \lvert w \rvert.
+$$
+
+There are $L$ cut positions across all split blocks, and constructing or comparing each candidate can inspect
+$O(L)$ characters, giving $O(L^2)$ time. The oriented blocks, middle text, and one candidate use $O(L)$ auxiliary
+space.
 
 ## Alternatives and edge cases
+
 - **Enumerate every orientation vector:** tries $2^{m}$ choices for `m` strings before considering rotations and is exponential.
 - **Fix every string greedily, including the split block:** can miss the optimum because cutting changes which part of that block appears first.
 - **Build one loop and test rotations only:** ignores alternative orientations and is not generally correct.

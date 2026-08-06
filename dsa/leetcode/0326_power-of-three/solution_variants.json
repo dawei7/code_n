@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Power of Three and meets the required complexity bound.",
+      "summary": "Uses divisibility into the largest signed-32-bit power of three as a constant-work exact test.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

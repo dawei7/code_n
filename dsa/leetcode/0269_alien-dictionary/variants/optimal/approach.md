@@ -14,9 +14,15 @@ Every emitted character currently has no unmet predecessor. Removing it deletes 
 At the first unequal characters of adjacent words, the earlier word proves one directed precedence relation; later characters cannot add constraints because lexicographic comparison is already decided. If no difference exists, a longer word preceding its own prefix is impossible. For all other inputs, Kahn's algorithm emits only characters whose predecessors are already placed, so its complete result satisfies every edge. Failure to emit all nodes means the remaining constraints contain a cycle and no alphabet order exists.
 
 ## Complexity detail
-Adjacent comparisons inspect at most `c` total relevant characters, and graph processing is $O(a + e)$. Graph, indegree, and queue storage use $O(a + e)$ space.
+
+Across adjacent pairs, each word participates in at most two comparisons, so prefix checks and first-difference scans
+take $O(c)$ time. Kahn's algorithm processes each of the $a$ letters and $e$ distinct edges once, for
+$O(c + a + e) = O(c + e)$ total time because every observed letter contributes to $c$. The graph, indegree map, queue,
+and result use $O(a + e)$ space.
 
 ## Alternatives and edge cases
+
 - **Compare every word pair:** adds unnecessary quadratic work.
 - **Ignore the prefix rule:** incorrectly accepts `["abc","ab"]`.
-- Repeated words add no edge; isolated characters must still appear in the returned order.
+- **Repeated words:** they add no precedence edge and leave existing graph state unchanged.
+- **Isolated characters:** graph initialization records them even when no comparison creates an incident edge, so they still appear in the order.

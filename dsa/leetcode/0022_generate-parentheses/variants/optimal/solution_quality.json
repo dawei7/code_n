@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_22",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order with order-insensitive result validation",
+      "the minimum legal pair count",
+      "the exact maximum legal pair count and all 1,430 distinct outputs",
+      "intermediate Catalan sets for two, four, and five pairs",
+      "every legal n from one through eight checked against an independent Catalan-recurrence oracle",
+      "balanced-prefix validity, exact length, completeness, and uniqueness of every expected set",
+      "legal output-growth tiers that reject equal-count generate-and-filter enumeration only on complexity"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "9918aa37be33e394df4d68d00f85eed2d360800f6ed42aece0115d64ffbabe3b",
+    "native_source_sha256": "d0b992f069026163d72598bc8bd19e37551e5a6336164c6faf8ee19197e9dcd7",
+    "approach_sha256": "afe355baebba6086856312424cff35ddc37e62cef5bcd4ca1c4850307f95d049",
+    "solution_variants_sha256": "560635388f7a7a9f99d23db6314ca3fcdc671846dd59800942d37c7b1f8fbcc3",
+    "cases_sha256": "6c73370beb379777313879f06146bd2a22a237d1899ab5b9303a08c12b290a36",
+    "complexity_evidence_sha256": "2a7515605927312c10e7c299399f0b392dfc224ca85557d012e72e2f1c783082"
+  }
+}

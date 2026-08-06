@@ -5,7 +5,7 @@ Whether a position is unique cannot be decided from its prefix alone because the
 
 **Use the original order only after counts are known**
 
-Scan `s` again from left to right. The first position whose counter equals one is unique globally, and left-to-right inspection makes it the earliest such position. If the scan ends without finding one, every character occurs at least twice and the answer is `-1`.
+Scan `s` again from left to right, enumerating each position with the conventional variable `i`. The first position whose counter equals one is unique globally, and left-to-right inspection makes it the earliest such position. If the scan ends without finding one, every character occurs at least twice and the answer is `-1`.
 
 **Why two passes are sufficient**
 

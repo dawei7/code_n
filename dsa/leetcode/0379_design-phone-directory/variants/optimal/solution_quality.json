@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_379",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source uses a deque of allocatable numbers plus a direct availability table. Allocation, membership checks, exhaustion, safe release, and redundant release are all expressed plainly, and the two structures preserve a simple one-copy pool invariant. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 379 and its Python PhoneDirectory surface. The Reference defines the app-local operation-stream adapter without changing the native class semantics and preserves the three methods, arbitrary available-number choice, exhaustion result, source example, explanation sequence, and all three constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064645618. Its deque initialization, availability flags, get, check, and release behavior are preserved exactly in the protected app-local class; solve is only the required deterministic operation-stream adapter."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 64, 512, and 4096 tiers span 64x in directory capacity and allocation count, exercising the path that distinguishes constant-time pool removal from repeated scans. The current source passes all 11 executions at -0.01 relative growth and 1.00x; a correct list.index allocator passes every benchmark output but fails only scaling at +0.32."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately describes queue allocation, direct availability checks, idempotent release, the synchronization invariant, arbitrary allocation order, O(1) time per public operation, and O(maxNumbers) storage."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Premium Reference remains source-fidelity verified, including the full operation contract, the sole source example and its complete eight-step behavior, valid number range, capacity limit, and total-call limit."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The sole authenticated Premium source example now appears first as the complete seven-operation app trace, including release(2) and the final successful check that were previously missing.",
+      "A one-number directory covers minimum capacity, repeated exhaustion, and reuse; source and trial checks cover both endpoint numbers, while generated validation covers maxNumbers=10000 and the 20000-call limit.",
+      "Initial availability, allocation, stable exhaustion, allocation checks, release checks, middle-pool reuse, and redundant release exercise every public state transition.",
+      "Authored outputs and runtime outputs were validated independently because get may choose any available number; an independent queue/flag model also verified 23,878 exhaustive streams and 10,000 random suites.",
+      "All eight correctness cases are visible samples or trials; the unchanged 64-, 512-, and 4,096-allocation workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "4e5911144e0ee09f4dcae3f3c570ec9c82250c1902b7f5b010183e28cf61ea1b",
+    "native_source_sha256": "94d538f81e139be3347879538d34faf97549e6eebef1db4cfdc0817182e177a7",
+    "approach_sha256": "04ce73d45ec4f657cb7a11ff992642278ae9aec0b9dc9792358c2e50e175a2ed",
+    "solution_variants_sha256": "66375387faaa17f74444edff2552f56fb6b560f2bc6db457ecbb3198ac1acb9e",
+    "complexity_evidence_sha256": "ce63641869017b69fed6560be6531ee84ce8432a5320726eeda6fccce452e355",
+    "cases_sha256": "f0330f67c60c9e7b218f6d184586d9fe9d9ae0f08f28d3f865fdd03764a879fc"
+  }
+}

@@ -1,6 +1,118 @@
-{"challenge_id":"lc_265","cases":[
-{"id":"sample-two","name":"sample: two houses and three colors","kind":"sample","visible":true,"input":{"costs":[[1,5,3],[2,9,4]]},"expected":5,"tags":["sample","dp"]},
-{"id":"sample-one","name":"sample: one house chooses cheapest color","kind":"sample","visible":true,"input":{"costs":[[8,2,6,4]]},"expected":2,"tags":["sample","boundary"]},
-{"id":"trial-empty","name":"no houses","kind":"trial","visible":true,"input":{"costs":[]},"expected":0,"tags":["boundary","empty"]},
-{"id":"real-alternating","name":"hidden: cheapest color repeats and must be avoided","kind":"real","visible":false,"input":{"costs":[[1,4,6],[1,3,5],[2,1,4],[1,2,3]]},"expected":7,"tags":["hidden","second-minimum"]}
-]}
+{
+  "challenge_id": "lc_265",
+  "cases": [
+    {
+      "id": "sample-two-houses",
+      "name": "sample: two houses and three colors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "costs": [[1, 5, 3], [2, 9, 4]]
+      },
+      "expected": 5,
+      "tags": ["sample", "dynamic-programming"]
+    },
+    {
+      "id": "sample-two-colors",
+      "name": "sample: two houses and two colors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "costs": [[1, 3], [2, 4]]
+      },
+      "expected": 5,
+      "tags": ["sample", "minimum-colors"]
+    },
+    {
+      "id": "trial-single-house-boundaries",
+      "name": "one house includes both inclusive cost limits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[20, 1]]
+      },
+      "expected": 1,
+      "tags": ["minimum-houses", "minimum-colors", "minimum-cost", "maximum-cost"]
+    },
+    {
+      "id": "trial-two-colors-repeated-cheapest",
+      "name": "two colors must alternate when one stays cheapest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[1, 20], [1, 20], [1, 20], [1, 20]]
+      },
+      "expected": 42,
+      "tags": ["minimum-colors", "adjacency", "greedy-trap"]
+    },
+    {
+      "id": "trial-alternating-minima",
+      "name": "the cheapest predecessor color changes between rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[1, 4, 6], [1, 3, 5], [2, 1, 4], [1, 2, 3]]
+      },
+      "expected": 7,
+      "tags": ["second-minimum", "state-transitions"]
+    },
+    {
+      "id": "trial-tied-prior-minima",
+      "name": "excluding one minimum retains another equal minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[1, 1, 20], [1, 20, 20]]
+      },
+      "expected": 2,
+      "tags": ["ties", "second-minimum", "minimum-cost"]
+    },
+    {
+      "id": "trial-simultaneous-transition",
+      "name": "every next color must use the unchanged previous row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[8, 5, 7], [6, 7, 1]]
+      },
+      "expected": 6,
+      "tags": ["simultaneous-update", "state-isolation"]
+    },
+    {
+      "id": "trial-all-costs-tied",
+      "name": "all colors remain equivalent across every house",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[7, 7, 7, 7], [7, 7, 7, 7], [7, 7, 7, 7]]
+      },
+      "expected": 21,
+      "tags": ["ties", "multiple-optima"]
+    },
+    {
+      "id": "trial-maximum-colors",
+      "name": "twenty colors require switching between the last two indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 2, 1],
+          [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 2, 1]
+        ]
+      },
+      "expected": 3,
+      "tags": ["maximum-colors", "last-color", "second-minimum"]
+    },
+    {
+      "id": "trial-maximum-houses",
+      "name": "one hundred houses at the maximum cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20], [20, 20]]
+      },
+      "expected": 2000,
+      "tags": ["maximum-houses", "minimum-colors", "maximum-cost", "ties"]
+    }
+  ]
+}

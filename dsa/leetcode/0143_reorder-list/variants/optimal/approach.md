@@ -1,38 +1,25 @@
 ## General
-**Choose a split that leaves the first half at least as long**
+**Split so the front half keeps the middle node**
 
-Move slow one edge and fast two under a loop condition chosen so slow stops at the final node of the first half. For odd length, the first half contains the middle node; for even length, both halves have equal size. Save `second = slow.next` and set `slow.next = None` before reversal.
+Move `slow` one edge and `fast` two until `slow` is the last node of the front half. For odd length, that half includes the middle node; for even length, both halves have equal size. Save `slow.next` as `second`, then set `slow.next = None` so the halves are disjoint. Detaching here prevents a stale link from forming a cycle during the later weave.
 
-Detaching is essential: otherwise the original first-to-second link can survive the later weave and create a cycle.
+**Reverse the back half into the required tail order**
 
-**Reversal turns back-to-front order into a forward chain**
+Reverse `second` with the standard `previous`, `following`, and current-node updates. The resulting chain begins with the original tail, followed by the original second-to-last node, exactly the order in which those nodes must be inserted.
 
-Reverse the detached second half with standard saved-next pointer updates. Its head becomes the original tail, followed by the original second-last node, exactly the order that must be inserted between successive first-half nodes.
+**Weave one node from each disjoint chain**
 
-**Save both suffix pointers before each pair of rewires**
+Before changing links, save `first_next` and `second_next`. Connect the current front node to the current reversed-back node, connect that node to the saved front successor, and advance both pointers. Each iteration appends the next unused low-position node followed by the next unused high-position node, so the completed prefix always has the required order. The back half cannot be longer; when it is exhausted, an odd-length front half already leaves its middle node as the null-terminated tail.
 
-While the reversed second half remains, save `first_next` and `second_next`. Link `first.next = second`, then `second.next = first_next`, and advance to the saved nodes. The first half's extra middle node, when present, is already null-terminated and remains last.
-
-**The completed prefix alternates original low and high indices**
-
-Before every weave step, the completed prefix has the required front/back order, `first` begins the unused front segment, and `second` begins the unused reversed-back segment. Appending one of each preserves the invariant.
-
-**Trace even and odd endpoints**
-
-For `[1,2,3,4]`, split into `1,2` and `3,4`, reverse the latter to `4,3`, and weave `1,4,2,3`. For `[1,2,3,4,5]`, split after `3`; weaving `5,4` into `1,2,3` leaves middle node `3` at the end.
-
-**Reversing the back half exposes the required tail order**
-
-The midpoint split divides the list into the original front sequence and the back sequence. Reversing the latter changes it into `last, second-last, ...`, exactly the order in which tail nodes must be inserted.
-
-Alternating one node from each sequence produces `first, last, second, second-last, ...`. Detaching before reversal and terminating the weave prevents stale links and cycles. Both halves are disjoint and exhausted once, so every original node appears exactly once without changing values.
+Because the split partitions the original nodes, reversal preserves every node exactly once, and weaving consumes each half without allocating or changing values, the final list has precisely the requested identity order.
 
 ## Complexity detail
-Midpoint search, reversal, and weaving each process at most $O(n)$ nodes, so total time is $O(n)$. A fixed number of pointers gives $O(1)$ auxiliary space.
+Midpoint discovery, reversal, and weaving each process at most $n$ nodes, giving $O(n)$ total time. A fixed number of node references uses $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Array of node references:** makes indexing easy but requires $O(n)$ extra space.
-- **Repeated tail search:** uses constant space but takes $O(n^2)$ time.
-- **Copy values into a new list:** violates both node identity and the in-place contract.
-- Empty, one-node, and two-node lists need no meaningful rearrangement beyond preserving their links.
-- Node values are never exchanged; the required order is achieved entirely through link changes.
+- **Array of node references:** makes alternating endpoint access simple but uses $O(n)$ auxiliary space.
+- **Repeatedly search for the current tail:** retains constant space but takes $O(n^2)$ time.
+- **Create new nodes or exchange values:** violates the in-place node-identity contract.
+- One- and two-node legal inputs retain their existing order.
+- The implementation also safely returns for a null app-local head, although the source contract is nonempty.
+- Detaching the halves before reversal is essential to avoid stale links and cycles.

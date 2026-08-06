@@ -1,17 +1,22 @@
 ## General
-**Carry the array position with the traversal.** At a node paired with index `i`, fail immediately if the node is absent, `i` is outside the array, or `node.val != arr[i]`. No descendant of that state can repair a mismatched prefix.
 
-**Enforce the leaf endpoint.** If the current value matches and the node is a leaf, accept exactly when `i` is the final array index. This single condition enforces both sides of the contract: the array cannot stop at an internal node, and a leaf cannot be accepted while unconsumed values remain.
+**Use an explicit depth-first-search state.** The reviewed inert candidate stores `(node, position)` pairs on a stack, where `position` is the array entry that must match `node`. This represents one possible root-to-current-node prefix without relying on Python recursion depth. The root starts at position zero.
 
-**Explore only matching prefixes.** For a matching non-leaf node, recursively test the left and right children with `i + 1`. A successful branch describes a connected root-to-leaf path with every value aligned. Conversely, any valid path follows one of those child branches and survives every equality and endpoint check, so the traversal finds it.
+**Reject a branch at its first mismatch.** If `node.val != arr[position]`, no descendant can repair that prefix, so discard the state. If the value matches at the final array position, accept only when the node is a leaf. Continuing from an internal node would make the array too short, while accepting a leaf before the final position would leave array values unmatched.
+
+For a matching non-final state, push each existing child with the next array position. Every pushed state therefore represents a connected prefix whose earlier values already match. If the search returns `true`, its state history is an exact root-to-leaf realization of `arr`. Conversely, every valid realization follows one of the pushed child states and reaches its leaf at the final position, so the search cannot miss it.
 
 ## Complexity detail
-Each reachable node is examined at most once before its branch either fails or continues, giving $O(N)$ worst-case time. Recursive calls follow at most one root-to-current path at a time, so the stack uses $O(h)$ space.
+
+Let $N$ be the number of tree nodes and $h$ the tree height. Each reachable node is pushed and examined at most once, giving $O(N)$ worst-case time. Depth-first order keeps at most one pending sibling per level, so the explicit stack uses $O(h)$ space. Unlike the protected recursive implementation, the candidate does not consume the Python call stack and remains safe when a legal matching path is thousands of nodes deep.
 
 ## Alternatives and edge cases
-- **Materialize all root-to-leaf paths:** Comparing `arr` after copying every path is correct but can take $O(Nh)$ time and space on deep trees.
-- **Breadth-first search:** Queue pairs of nodes and array indices; it remains $O(N)$ time but can use $O(N)$ space at a wide level.
-- **Array ends at an internal node:** Return `false` even if every consumed value matched.
-- **Leaf reached too early:** Return `false` while array values remain.
-- **Single-node tree:** Return `true` only for a one-element array equal to the root value.
-- **Duplicate values:** Track structure and depth, not merely whether the values occur somewhere in the tree.
+
+- **Recursive depth-first search:** Carry the node and array position as function arguments. This is concise and algorithmically equivalent, but Python can raise `RecursionError` on a legal path approaching the 5,000-entry array limit.
+- **Breadth-first search:** Queue node-position pairs. It remains $O(N)$ time but can require $O(N)$ memory at a wide level instead of the depth-first $O(h)$ bound.
+- **Materialize every root-to-leaf path:** Comparing stored paths afterward is correct, but repeated path copying can take $O(Nh)$ time and space.
+- **Array ends at an internal node:** Reject even when every consumed value matched.
+- **Leaf reached before the array ends:** Reject because one or more target values remain.
+- **Single-node tree:** Accept only a one-element array equal to the root value.
+- **Duplicate values and branching:** Match both structure and depth; the existence of the same values elsewhere does not establish a valid path.
+- **Root mismatch:** The initial state is discarded immediately, so the result is `false`.

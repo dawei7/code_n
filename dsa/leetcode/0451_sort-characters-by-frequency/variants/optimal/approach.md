@@ -21,4 +21,4 @@ Counting and emitting account for $O(n)$ work. Scanning the $n + 1$ buckets is a
 - **Repeated full-string counting:** calling a linear count operation for every occurrence can degrade to $O(n^2)$.
 - **Equal frequencies:** any ordering among tied character groups is valid.
 - **Case sensitivity:** uppercase and lowercase characters are different keys.
-- **Single character or empty input:** return the input unchanged.
+- **Single-character input:** its only character already forms the required frequency ordering.

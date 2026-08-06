@@ -14,4 +14,5 @@ If `L` is the total number of input characters, building all keys and groups tak
 
 ## Alternatives and edge cases
 - **Shift each string until it starts with `a`:** is also linear but constructs another normalized string.
-- All one-character strings share the empty-difference key; wraparound such as `az` and `ba` is handled modulo 26.
+- **One-character strings:** all share the empty-difference key because any single letter can shift to any other.
+- **Alphabet wraparound:** is handled by reducing every adjacent difference modulo 26, so `az` and `ba` share a key.

@@ -1,7 +1,9 @@
 ## General
-**Count valid slices ending at the current index**
+**Count valid slices ending at the current position**
 
-Maintain `ending`, the number of arithmetic slices whose right endpoint is the previous index. When the newest adjacent difference equals the preceding one, the last three values form one new slice.
+The candidate scans right endpoints with `i` and maintains `ending`, the number of arithmetic slices whose right
+endpoint is `i - 1`. When the newest adjacent difference equals the preceding one, the last three values form one
+new slice.
 
 **Extend every prior ending slice**
 
@@ -16,7 +18,8 @@ If the two adjacent differences differ, no arithmetic slice ending at the curren
 Every valid contiguous arithmetic slice has one unique right endpoint. At that endpoint, repeated extensions from its three-element base contribute it to `ending`. The algorithm adds all such endings exactly at their endpoint and resets across invalid boundaries, so it neither misses nor duplicates a slice.
 
 ## Complexity detail
-The scan performs constant work at each index from two onward, giving $O(n)$ time. The ending count and total use $O(1)$ space.
+The scan performs constant work at each `i` from two onward, giving $O(n)$ time. The ending count and total use
+$O(1)$ space.
 
 ## Alternatives and edge cases
 - **Measure each maximal equal-difference run:** a run supporting `r` consecutive equal differences contributes $r(r - 1) / 2$ slices; this is another linear formulation.

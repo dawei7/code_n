@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Max Sum of Rectangle No Larger Than K and meets the required complexity bound.",
+      "summary": "Compresses boundary pairs on the smaller dimension and solves each constrained subarray with Fenwick successor queries.",
       "time_complexity": "O(s^2 l \\log l)",
       "space_complexity": "O(l)"
     }

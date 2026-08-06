@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1596",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution groups Orders by (customer_id, product_id) to count orders, applies DENSE_RANK() OVER (PARTITION BY customer_id ORDER BY order_count DESC) in a CTE, filters for frequency_rank = 1, and inner joins Products to retrieve product_name. Using DENSE_RANK guarantees that all products tied for a customer's maximum frequency are retained. The solution is canonical, optimal, and concise; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Grouping Orders by customer and product counts occurrences per pair. DENSE_RANK assigns rank 1 to all products matching the maximum count for that customer. Filtering frequency_rank = 1 retains all maximum-frequency products including ties, while customers with no orders are naturally omitted."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Grouping r order rows into g distinct customer-product pairs and ranking takes O(r log r) time, and joining Products takes O(g + p) time. Working space is O(g). Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs columns customer_id, product_id, and product_name, handles tied maximum product frequencies per customer, and excludes customers with zero orders."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details grouping orders per customer and product, applying DENSE_RANK for ties, joining Products post-ranking, and relational complexity bounds. Alternatives and edge cases cover correlated subqueries, ROW_NUMBER tie-loss bugs, per-customer MAX subquery CTEs, single products, ties, and orderless customers."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions both use the same CTE order counting, DENSE_RANK window function, Products join, and rank-1 filter with SHA-256 digests ca3fb01885178cbac2b461c07a9f06907c406c536e88faac92db45968f16acb4 and e2682530de9e880444ae9c7572015706930fb2f430e0bad869f27cc769ad4c68. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Customers, Orders, and Products schemas, three examples, two constraints, and 7 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "ca3fb01885178cbac2b461c07a9f06907c406c536e88faac92db45968f16acb4",
+    "native_source_sha256": "e2682530de9e880444ae9c7572015706930fb2f430e0bad869f27cc769ad4c68",
+    "approach_sha256": "4fc1e23bf2e0d18936e3fcffbc0c6ad8702dc68b33ebd87d6b1a023901fd485f",
+    "solution_variants_sha256": "85f15bc569064365d166105db08612253e9d9b2d6ac2f299b34fa30e19276063",
+    "complexity_evidence_sha256": "bb1425f0a1b96f845d0851204b60d6e17d7b0829a3e50a636933a5a852bd09c1"
+  }
+}

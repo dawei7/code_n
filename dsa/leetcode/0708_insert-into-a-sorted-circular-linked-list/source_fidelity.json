@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_708",
+    "frontend_id": "708",
+    "title_slug": "insert-into-a-sorted-circular-linked-list",
+    "url": "https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/description/",
+    "paid_only": true,
+    "content_sha256": "21ffd2538e1959a4f4b636f161c6d3ea20e8df0aed3986d885acc0c2bcc8d90b",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "head = [3,4,1], insertVal = 2",
+        "output": "[3,4,1,2]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "head = [], insertVal = 1",
+        "output": "[1]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "head = [1], insertVal = 0",
+        "output": "[1,0]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 2,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "203e10c95d0133f0e1949a120281b04b14f62174835a56ee27904f34411a6b56",
+      "reference/contract.md": "68eaeb3ef3cfa1431e3313a936eda7f76534d77325c9b5def46c26ac72f85c10",
+      "reference/examples.md": "edda2408a860ffada2fd9c292bda990d2e0d1d553062a715380789103c58a349",
+      "reference/constraints.md": "d71bdebfad06b8d8194985081f7df910f7ccdfb0f59a876f2a6d167c10e80c6d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

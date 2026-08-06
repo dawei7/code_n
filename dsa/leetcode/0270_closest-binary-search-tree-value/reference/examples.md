@@ -6,12 +6,14 @@
 
 The level-order input represents this BST:
 
-```text
-        4
-       / \
-      2   5
-     / \
-    1   3
+```mermaid
+flowchart TB
+    accTitle: Example 1 binary search tree
+    accDescr: Root 4 has left child 2 and right child 5. Node 2 has left child 1 and right child 3.
+    n4["4"] --> n2["2"]
+    n4 --> n5["5"]
+    n2 --> n1["1"]
+    n2 --> n3["3"]
 ```
 
 - Output: `4`

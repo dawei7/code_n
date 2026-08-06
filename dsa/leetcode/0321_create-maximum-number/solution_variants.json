@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Create Maximum Number and meets the required complexity bound.",
+      "summary": "Enumerates source splits, selects maximal subsequences greedily, and merges by complete suffix order.",
       "time_complexity": "O(k(n + m + k^2))",
       "space_complexity": "O(k)"
     }

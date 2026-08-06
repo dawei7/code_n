@@ -14,4 +14,5 @@ The two sorts cost $O(n \log n)$; the pointers each move at most `n` times. The 
 
 ## Alternatives and edge cases
 - **Check overlap at every time or against every interval:** can take $O(n^2)$ or depend on the coordinate range.
-- Meetings that end exactly when another starts can share a room; an empty schedule needs zero rooms.
+- **Touching endpoints:** a meeting ending exactly when another starts releases its room before the new allocation.
+- **Single meeting:** establishes a peak occupancy of one, matching the minimum legal input size.

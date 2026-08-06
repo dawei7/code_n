@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_429",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is the canonical deque-based level-order traversal. The answer, queue, level, and node names express the traversal state, capturing len(queue) cleanly fixes each frontier boundary, and no candidate would materially improve it."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 429 and its Python levelOrder surface. The Reference preserves level-order grouping, null-separated source serialization, both source examples, both constraints, and two accessible parent/children tables equivalent to the source tree images. The app-local contract selects the N-ary fixture adapter without colliding with binary-tree detection."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064792086. The app-local source adds only the required local Node definition and concrete annotations; both forms handle an empty root identically, initialize the same deque, process exactly the saved frontier length, append values in queue order, extend with children in stored order, and append each completed level."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 64-, 192-, and 512-node star tiers span 8x and place almost all nodes in one frontier, exposing front-removal costs. The current source passes all 10 executions at 1.00x the protected reference runtime; a correct control that rebuilds the remaining queue with a Python-level scan after every removal passes every output but fails only the runtime verdict at 118.49x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly explains the one-level queue invariant, saved frontier size, preservation of child order by induction, and O(n) time with O(w) queue space for maximum width w."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference preserves both exact source serializations and outputs, their absence of prose explanations, both constraints, and two accessible relationship tables that completely replace the source tree images."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "f84f36011e0ab297973c518feda376e8fd0c0ce1d0f8dcf4a49076a08e471343",
+    "native_source_sha256": "2047158ef02cebd515a5554dcc5c79f56af953ccb7df79cbf43c1275ef63ea90",
+    "approach_sha256": "0604e788d09f9862eade4ff9c50faf0962792ed218fbd312986a257bcfd64bcf",
+    "solution_variants_sha256": "a7001836e7e61b974e1cae32c56acd9a867e27c837b7e7174a7d98342ccffa44",
+    "complexity_evidence_sha256": "899f018dd0644c430898bc1addf60376e03dd9d88ade4609a13ba6f5f25491b0"
+  }
+}

@@ -2,9 +2,15 @@
   "challenge_id": "lc_15",
   "cases": [
     {"id": "sample-1", "name": "sample: two unique triplets", "kind": "sample", "visible": true, "input": {"nums": [-1, 0, 1, 2, -1, -4]}, "expected": [[-1, -1, 2], [-1, 0, 1]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "duplicates"]},
-    {"id": "sample-2", "name": "sample: no triplet", "kind": "sample", "visible": true, "input": {"nums": [0, 1, 1]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
-    {"id": "trial-all-zero", "name": "many zeroes produce one triplet", "kind": "trial", "visible": true, "input": {"nums": [0, 0, 0, 0]}, "expected": [[0, 0, 0]], "validator": {"kind": "unordered_list"}, "tags": ["duplicates", "zero"]},
-    {"id": "trial-duplicate-pairs", "name": "duplicate complements", "kind": "trial", "visible": true, "input": {"nums": [-2, 0, 0, 2, 2]}, "expected": [[-2, 0, 2]], "validator": {"kind": "unordered_list"}, "tags": ["duplicates"]},
-    {"id": "real-two-solutions", "name": "hidden: two combinations share a fixed value", "kind": "real", "visible": false, "input": {"nums": [-5, 1, 2, 3, 4]}, "expected": [[-5, 1, 4], [-5, 2, 3]], "validator": {"kind": "unordered_list"}, "tags": ["hidden"]}
+    {"id": "sample-2", "name": "sample: no triplet", "kind": "sample", "visible": true, "input": {"nums": [0, 1, 1]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["sample", "no-solution"]},
+    {"id": "sample-3", "name": "sample: three zeroes", "kind": "sample", "visible": true, "input": {"nums": [0, 0, 0]}, "expected": [[0, 0, 0]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "zero"]},
+    {"id": "trial-extra-zero", "name": "extra zero does not duplicate the triplet", "kind": "trial", "visible": true, "input": {"nums": [0, 0, 0, 0]}, "expected": [[0, 0, 0]], "validator": {"kind": "unordered_list"}, "tags": ["duplicates", "zero"]},
+    {"id": "trial-minimum-solution", "name": "minimum-length zero-sum input", "kind": "trial", "visible": true, "input": {"nums": [-1, 0, 1]}, "expected": [[-1, 0, 1]], "validator": {"kind": "unordered_list"}, "tags": ["boundary"]},
+    {"id": "trial-equal-complements", "name": "triplet requires two equal complements", "kind": "trial", "visible": true, "input": {"nums": [-2, 1, 1]}, "expected": [[-2, 1, 1]], "validator": {"kind": "unordered_list"}, "tags": ["duplicates"]},
+    {"id": "trial-duplicate-pairs", "name": "duplicate fixed values and complements", "kind": "trial", "visible": true, "input": {"nums": [-2, -2, 0, 0, 2, 2]}, "expected": [[-2, 0, 2]], "validator": {"kind": "unordered_list"}, "tags": ["duplicates"]},
+    {"id": "trial-two-solutions", "name": "two combinations share a fixed value", "kind": "trial", "visible": true, "input": {"nums": [-5, 1, 2, 3, 4]}, "expected": [[-5, 1, 4], [-5, 2, 3]], "validator": {"kind": "unordered_list"}, "tags": ["multiple-solutions"]},
+    {"id": "trial-all-positive", "name": "all-positive values trigger early termination", "kind": "trial", "visible": true, "input": {"nums": [1, 2, 3, 4]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["early-stop", "no-solution"]},
+    {"id": "trial-all-negative", "name": "all-negative values have no solution", "kind": "trial", "visible": true, "input": {"nums": [-4, -3, -2, -1]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["left-pointer", "no-solution"]},
+    {"id": "trial-value-boundaries", "name": "minimum and maximum values cancel", "kind": "trial", "visible": true, "input": {"nums": [-100000, 0, 100000]}, "expected": [[-100000, 0, 100000]], "validator": {"kind": "unordered_list"}, "tags": ["boundary"]}
   ]
 }

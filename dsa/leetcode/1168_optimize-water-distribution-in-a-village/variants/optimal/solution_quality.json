@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1168",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected implementation is a direct, expert-interview-quality Kruskal solution. `edges`, `parent`, `size`, `find`, `first_root`, `second_root`, `accepted`, and `total` expose the augmented graph and disjoint-set state without unnecessary abstraction. Path halving, union by size, and the accepted-edge stop are conventional, no prohibited local `index` binding appears, and no material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Adding virtual vertex `0` with one edge to house i at cost `wells[i - 1]` makes a selected well an ordinary connectivity choice. A feasible water plan is exactly a connected augmented subgraph; removing a maximum-cost edge from any cycle preserves connectivity without raising cost, so some optimum is a spanning tree. Kruskal accepts only the cheapest available edge crossing two current components, which is safe by the cut property, and exactly n accepted edges connect all n+1 vertices at minimum total cost."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independently written heap-Prim oracle, the protected source, the immutable native source, and a separately structured dense-Prim control agreed on all 10 authored cases and all three benchmark outputs. Exhaustive spanning-tree enumeration independently proved another 400 small valid graphs, and 5,000 deterministic random graphs with seed 1168 covered parallel offers, zero costs, disconnected pipe graphs, cycles, varied well choices, and multiple house counts; protected and native matched the oracle throughout."
+      },
+      {
+        "category": "disjoint_set",
+        "severity": "verified",
+        "reason": "`find` follows parent links and applies path halving without changing component identity. Union by `size` attaches the smaller root beneath the larger and updates only the surviving root's size. Equal roots are skipped before mutation, so accepted edges remain acyclic and `accepted` counts exactly successful unions. Parallel and zero-cost edges therefore need no special case beyond sorted order."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1168, Python, and native entrypoint `Solution.minCostToSupplyWater`. Authenticated source evidence confirms houses 1 through n, the 0-indexed well-cost mapping, bidirectional pipe offers, multiple connections between the same pair at different costs, indirect water delivery, legal zero costs, and the minimum all-house total. The live statement contains exactly two explained examples, eight constraints, five hints, and one informational image."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains bound to verified submission 2067881931. Apart from the required LeetCode class and method wrapper plus native `List` annotations, protected and native sources construct identical virtual-well and pipe edge tuples, sort them, initialize the same disjoint set, perform the same path-halving and union-by-size logic, accumulate the same accepted costs, and stop after n unions. solve.py, leetcode.py, and submission.json were not edited."
+      },
+      {
+        "category": "legal_boundary_runtime",
+        "severity": "verified",
+        "reason": "The accepted optimal source terminates correctly at the legal n = 10,000 boundary but crosses the runner's generic 100,000 traced-line safety guard while accepting the required 10,000 tree edges. The existing package-specific safety-cap mechanism now routes lc_1168 to the 1,000,000-event runtime cap, allowing the legal boundary to complete without weakening the complexity verdict or changing either protected solution."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers scale sparse chains from 32 through 64 to 128 houses, with e linear in n and a 4x total span. Protected passed every output with a 1.01x largest runtime ratio and +0.01 relative growth exponent. The independently correct adjacency-matrix Prim control passed all 10 ordinary and all three benchmark outputs but failed only the scaling verdict at 43.05x and +1.00, supporting the required O(e log e) time bound without changing benchmark.json."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach matches the reviewed source's virtual-source reduction, MST equivalence, edge sorting, disjoint-set cycle test, union operation, cost accumulation, and n-edge stopping condition. With e=n+p defined by the contract, its O(e log e) sorting bound and O(e) edge-plus-disjoint-set space bound are accurate, and its alternatives cover dense Prim, infeasible single-well assumptions, all-well overpayment, parallel offers, and zero-cost choices."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the full source contract, both exact examples and their complete explanations, all eight constraints, and all five hints in source order. Its independent Mermaid graph records all three example well costs and both pipe costs, providing an accessible informational equivalent for the single source image without copying a provider asset or introducing a source-absent example."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed exactly two explained examples, eight constraints, five hints, one source image, and no source tables or additional statement sections. source_fidelity.json binds every modular section to live statement hash 31bfc473e65a9cb7c026e108b35e33794e8b7f8957119606485e265090366518 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "sample-1 and sample-2 are the only authenticated source examples and preserve their exact n, wells, pipes, and output literals. The Reference retains the complete shared-well plan for Example 1 and all three equal-cost plans plus the cheaper-parallel-offer observation for Example 2.",
+      "All 10 ordinary fixtures are visible samples or trials. They cover n = 2 and n = 10000, pipes.length = 1 and pipes.length = 10000, costs 0 and 100000, all-well selection, a zero-cost network, disconnected pipe components, parallel offers, multiple necessary wells, minimum counts, and both maximum count dimensions. The narrow lc_1168 trace-cap override lets the accepted source exercise the exact legal maximum-house boundary normally.",
+      "A heap-Prim oracle recomputed every authored and benchmark expectation. A second dense-Prim implementation agreed with all 13 outputs, exhaustive spanning-tree enumeration covered 400 additional small graphs, and 5,000 deterministic random valid graphs with seed 1168 covered parallel edges, zero costs, disconnected pipe graphs, cycles, varied well choices, and multiple independent components. Protected and immutable native sources agreed throughout.",
+      "The three hidden performance-only tiers use number of houses consistently as size and span 32 through 128. Protected passed at +0.01 and 1.01x. The dense-Prim control passed all ordinary and benchmark outputs but failed only scaling at +1.00 and 43.05x. benchmark.json remained byte-for-byte unchanged."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "74035824b88cb5ad65994f4605c941ec35ef5b0f82a2e4b43300e4be42fb5564",
+    "native_source_sha256": "2662048cdd66798ac235b40c931d291e94e48f0f4521cf8af40142670338c07f",
+    "approach_sha256": "b48387e56a70286a8c0747e64c809be12b69166a11ab3e44f8d873835b5d97cf",
+    "solution_variants_sha256": "226da56c5675120ef99ab062f6012f0ada6b0f11061e7d287866a3870676d4b5",
+    "complexity_evidence_sha256": "0542e370bbabff68d6f94e7f0f73f4322afe1ff06dc5594f7d57cdd1cc1a2868",
+    "cases_sha256": "e09405af2057942d4d62dbd9ca409eb5c3614c96a5e05365631ee99c7ed61e6a"
+  }
+}

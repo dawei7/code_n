@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1150",
+    "frontend_id": "1150",
+    "title_slug": "check-if-a-number-is-majority-element-in-a-sorted-array",
+    "url": "https://leetcode.com/problems/check-if-a-number-is-majority-element-in-a-sorted-array/description/",
+    "paid_only": true,
+    "content_sha256": "7eae15f1a70896fafec275614e43239cf3d7effa73f6f59464738acc80d1348b",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [2,4,5,5,5,5,5,6,6], target = 5",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [10,100,101,101], target = 101",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "56f326291e7a600cab90a233a7d5bc696b6429639efaa82e81914bd6154d4260",
+      "reference/contract.md": "b9b7761b4c29fe01ce7b757aaf5f4a143c5f2cfe3d8f8fbfe008cbe3ddb6f7cd",
+      "reference/examples.md": "e403e974926123b2e5647df3851b64213d6c22a2d73a4710a14256877afb79b2",
+      "reference/constraints.md": "89d6cfb203c86355515e5f97d3aac3e051246f5f875256ac243e22b6b1a76951",
+      "reference/hints.md": "e87ae3f7fe62756ac1f65f3af4bf2f6ed006c2479dd1a8192278242d84f79e84"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

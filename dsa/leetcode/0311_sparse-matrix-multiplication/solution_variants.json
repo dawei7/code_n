@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sparse Matrix Multiplication and meets the required complexity bound.",
+      "summary": "Indexes nonzero entries of the right matrix and propagates only compatible nonzero products.",
       "time_complexity": "O(mk + kn + z)",
       "space_complexity": "O(kn)"
     }

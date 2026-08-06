@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_660",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is minimal, conventional, and interview-ready. Its result, decimal_place, and digit names make the base conversion explicit, while divmod performs the quotient and remainder step directly without temporary strings, recursion, or avoidable branching."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Each decimal position that excludes 9 has exactly nine choices, digits 0 through 8, so filtered positive integers are ordered exactly like positive base-nine numerals. Repeated divmod by nine extracts the rank's base-nine digits, and placing those same digits into decimal positions produces a number containing no 9. Reading any no-9 decimal number back as base nine reverses the mapping; equal-width lexicographic order and shorter-width precedence are preserved, so the mapped value is exactly the nth retained integer."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 660, Python, and the native newInteger(n) interface. The app-local solve(n) adapter preserves the positive one-based rank and returns the corresponding positive decimal integer without digit 9, including ranks one through eight and the first carry at rank nine."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065529738 are algorithmically identical: both repeatedly divide n by nine, accumulate each remainder at the current decimal place, advance that place by ten, and return the result. Their only structural difference is the required Solution.newInteger wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The recalibrated legal workloads grow the requested rank from 30 to 300000000, making arithmetic conversion scale only with base-nine digit count while a meet-in-the-middle counter precomputes no-9 half-blocks of widths one, three, and five before binary search. The exact protected source passed all 10 correctness cases and all three performance tiers with relative growth exponent +0.00 and a 1.01x largest runtime ratio. The independently correct meet-in-the-middle control handled the maximum visible rank and every benchmark output but failed only performance with relative growth exponent +0.34 and a 297.01x largest runtime ratio. The former 128/1024/8192 tiers were rejected after fresh evidence showed that the intended O(log^2 N) digit-count binary-search control passed scaling at +0.09."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach correctly derives the nine choices per digit, base-nine reinterpretation, the order-preserving bijection, and arithmetic reconstruction. Its O(log N) time and O(1) auxiliary-space claims match the number of divisions, current implementation, and branch manifest, and it accurately records the slower meet-in-the-middle counting alternative used for calibration."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "reviewed",
+        "reason": "The modular Reference preserves the positive-integer starting point, removal of every value containing decimal digit 9, the exact source sequence prefix, the one-based nth-value request, both source examples without invented explanations, and the single source constraint. The app-local function contract is separated from the source-native sections."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated Premium evidence established the three-paragraph statement structure, exact retained-sequence prefix, exactly two examples without explanations, and the sole bound 1 <= n <= 8 * 10^8. It also confirmed that there are no notes, hints, tables, visuals, or follow-up. The modular files are hash-bound in a verified source_fidelity.json to live description hash 087554b9848b5b0377cabce876262c6be71e7c7e34cc1afaeff2369954f3d512."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact n = 9 -> 10 and n = 10 -> 11 facts now appear first and in source order; the invented n = 1 and n = 18 samples were retained only as trials.",
+      "All ordinary correctness checks are visible samples or trials. The former hidden exact-power and mixed-digit checks were exposed, leaving no correctness behavior concealed in cases.json.",
+      "Contract boundaries cover the minimum n = 1 and maximum n = 800000000, the final one-digit rank n = 8, both sides of the first carry at n = 9 and n = 10, and a maximum-rank result that remains within the source contract.",
+      "Material values cover skipping decimal 9 and 19, the n = 17 -> 18 to n = 18 -> 20 transition, the final two-digit base-nine numeral, the 80 -> 81 rank rollover from decimal 88 to 100, zero digits, and mixed digits.",
+      "Expected results were checked by independent string-based base-nine conversion and the inverse-rank identity, enumeration of the first 20000 retained decimal integers, and 5000 seeded random legal ranks. Both protected app and immutable native forms agreed on all authored cases and benchmarks.",
+      "All ten ordinary cases are visible. The recalibrated rank-30, rank-30000, and rank-300000000 workloads remain hidden and performance-only in benchmark.json, span 10000000x, and make the correct maximum-safe meet-in-the-middle counting control fail only the performance verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "0f7cb84c33aecc79ebc58e1853d6585d03716263086591fe7991f90594affc90",
+    "native_source_sha256": "66f525abc97a9af9cc8b8804e586a92918016f7de5b31cb6d8eda52965eee37a",
+    "approach_sha256": "b1144143d607af90a55fccfd1158e58b3b735616c8e830e8400a532270734a19",
+    "solution_variants_sha256": "b3dba59b0be2b7cc0476b3caaccc6586b79eb1ee3f2c19f35ca4a707e0337083",
+    "complexity_evidence_sha256": "6ddd92d242cdfd3966c6308cc4f16750d2264caadebdb5a9a26f6c2f1b8c6679",
+    "cases_sha256": "f77b7ff917e0b0e513b8a412fea27580045e20d77643e65866d89048a9101c94"
+  }
+}

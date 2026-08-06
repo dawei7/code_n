@@ -9,7 +9,7 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Divide Chocolate and meets the required complexity bound.",
-      "time_complexity": "O\\left(n\\log\\frac{S}{k+1}\\right)",
+      "time_complexity": "O(n log(S / (k + 1)))",
       "space_complexity": "O(1)"
     }
   ]

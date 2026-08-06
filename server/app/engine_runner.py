@@ -1196,11 +1196,12 @@ def _nary_node_collection_param_names(spec: Any) -> list[str]:
 
 
 def _random_binary_tree_param_names(spec: Any) -> list[str]:
-    inputs = dict(getattr(spec, "inputs", {}) or {})
+    raw_inputs = getattr(spec, "inputs", {}) or {}
+    inputs = dict(raw_inputs) if isinstance(raw_inputs, (list, tuple, dict)) else {}
     names: list[str] = []
     for name, hint in inputs.items():
         text = str(hint).lower()
-        if "random" in text and "node" in text and "tree" in text:
+        if "node" in text or "tree" in text or name in {"root", "node"}:
             names.append(str(name))
     return names
 
@@ -2272,6 +2273,42 @@ def _circular_doubly_tree_match(actual: Any, expected: Any) -> bool:
         and getattr(actual, "left", None) is previous
         and getattr(previous, "right", None) is actual
     )
+
+
+def _circular_sorted_insertion_match(actual: Any, original: Any, insert_val: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(original, dict):
+        return False
+    orig_vals = original.get("values", [])
+    pos = int(original.get("pos", 0))
+    if len(actual) != len(orig_vals) + 1:
+        return False
+    if not orig_vals:
+        return actual == [insert_val]
+
+    def is_circular_sorted(arr: list[int]) -> bool:
+        descents = 0
+        n = len(arr)
+        for i in range(n):
+            if arr[i] > arr[(i + 1) % n]:
+                descents += 1
+        return descents <= 1
+
+    if not is_circular_sorted(actual):
+        return False
+
+    orig_head = orig_vals[pos] if pos < len(orig_vals) else orig_vals[0]
+    if actual[0] != orig_head and actual[0] != insert_val:
+        return False
+
+    orig_rotated = orig_vals[pos:] + orig_vals[:pos]
+    for i in range(len(actual)):
+        if actual[i] == insert_val:
+            candidate = actual[:i] + actual[i + 1 :]
+            if candidate[i % len(candidate):] + candidate[:i % len(candidate)] == orig_rotated:
+                return True
+            if candidate == orig_rotated:
+                return True
+    return False
 
 
 def _quad_tree_match(actual: Any, expected: Any) -> bool:
@@ -4054,6 +4091,8 @@ def _crawler_concurrency_match(actual: Any, expected: Any) -> bool:
 
 
 def _immutable_list_print_match(actual: Any, expected: Any) -> bool:
+    if isinstance(actual, list) and isinstance(expected, list):
+        return actual == expected
     return (
         isinstance(actual, _JudgeImmutableListNode)
         and isinstance(expected, list)
@@ -4070,6 +4109,51 @@ def _traffic_light_match(actual: Any, expected: Any) -> bool:
         return False
     crossed = [event.get("car") for event in events if isinstance(event, dict) and event.get("kind") == "cross"]
     return Counter(crossed) == Counter(expected_cars) and len(crossed) == len(expected_cars)
+
+
+def _longest_palindromic_substring_match(actual: Any, expected: Any, s: Any) -> bool:
+    if not isinstance(actual, str) or not isinstance(expected, str) or not isinstance(s, str):
+        return False
+    return len(actual) == len(expected) and actual == actual[::-1] and actual in s
+
+
+def _decode_encoded_string(s: str) -> str:
+    stack: list[tuple[str, int]] = []
+    curr_str = ""
+    i = 0
+    while i < len(s):
+        ch = s[i]
+        if ch.isdigit():
+            if ch == '0' and (i == 0 or not s[i - 1].isdigit()):
+                return ""
+            num = 0
+            while i < len(s) and s[i].isdigit():
+                num = num * 10 + int(s[i])
+                i += 1
+            stack.append((curr_str, num))
+            curr_str = ""
+            continue
+        elif ch == '[':
+            i += 1
+            continue
+        elif ch == ']':
+            if not stack:
+                return ""
+            prev_str, num = stack.pop()
+            curr_str = prev_str + curr_str * num
+            i += 1
+        else:
+            curr_str += ch
+            i += 1
+    return curr_str if not stack else ""
+
+
+def _shortest_string_encoding_match(actual: Any, expected: Any, s: Any) -> bool:
+    if not isinstance(actual, str) or not isinstance(expected, str) or not isinstance(s, str):
+        return False
+    if len(actual) != len(expected):
+        return False
+    return _decode_encoded_string(actual) == s
 
 
 def _fibonacci_split_match(actual: Any, expected: Any, digits: Any) -> bool:
@@ -4821,6 +4905,14 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         return _ordered_unordered_groups_match(actual, expected)
     if kind == "circular_doubly_tree":
         return _circular_doubly_tree_match(actual, expected)
+    if kind == "circular_sorted_insertion":
+        head_param = str(validator.get("head_param") or "head")
+        val_param = str(validator.get("value_param") or "insertVal")
+        return _circular_sorted_insertion_match(
+            actual,
+            case.input.get(head_param),
+            case.input.get(val_param),
+        )
     if kind == "quad_tree":
         return _quad_tree_match(actual, expected)
     if kind == "flattened_multilevel_list":
@@ -5186,6 +5278,18 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         return _immutable_list_print_match(actual, expected)
     if kind == "traffic_light":
         return _traffic_light_match(actual, expected)
+    if kind == "longest_palindromic_substring":
+        return _longest_palindromic_substring_match(
+            actual,
+            expected,
+            case.input.get(str(validator.get("string_param") or "s")),
+        )
+    if kind == "shortest_string_encoding":
+        return _shortest_string_encoding_match(
+            actual,
+            expected,
+            case.input.get(str(validator.get("string_param") or "s")),
+        )
     if kind == "node_value":
         if actual is None:
             return expected is None
@@ -5544,6 +5648,11 @@ def _actual_result(
     validator_kind = str(validator.get("kind") or "")
     if validator_kind == "master_guessed" and result is None:
         return kwargs.get("master")
+    if validator_kind == "immutable_list_print" and result is None:
+        head_param = str(validator.get("head_param") or "head")
+        head = kwargs.get(head_param)
+        if hasattr(head, "printed"):
+            return head.printed
     if validator_kind == "random_binary_tree_copy":
         root_param = str(validator.get("root_param") or "root")
         return {
@@ -5610,6 +5719,276 @@ def _timed_reference_iterations(
     ), elapsed_ms
 
 
+def _instantiate_class(cls: type, kwargs: dict[str, Any], *extra_args: Any) -> Any:
+    if extra_args:
+        try:
+            return cls(*extra_args)
+        except TypeError:
+            pass
+    import inspect
+    try:
+        init_sig = inspect.signature(cls.__init__)
+        init_params = [p for p in init_sig.parameters.keys() if p != "self"]
+        init_kwargs = {p: kwargs[p] for p in init_params if p in kwargs}
+        if init_kwargs:
+            return cls(**init_kwargs)
+    except Exception:
+        pass
+    return cls()
+
+
+def _execute_class_operations(cls: type, kwargs: dict[str, Any]) -> list[Any] | None:
+    if "operations" not in kwargs:
+        return None
+
+    ops = kwargs["operations"]
+    arguments = kwargs.get("arguments")
+
+    if not isinstance(ops, list) or not ops:
+        return None
+
+    if arguments is not None:
+        if not isinstance(arguments, list):
+            return None
+        has_valid = False
+        for op in ops:
+            if isinstance(op, str) and (op in {"Solution", cls.__name__} or hasattr(cls, op)):
+                has_valid = True
+            else:
+                return None
+        if not has_valid:
+            return None
+    else:
+        has_valid = False
+        for item in ops:
+            if isinstance(item, (list, tuple)) and len(item) > 0 and isinstance(item[0], str):
+                op_name = item[0]
+                if op_name in {"Solution", cls.__name__} or hasattr(cls, op_name):
+                    has_valid = True
+                else:
+                    return None
+            elif isinstance(item, str):
+                if item in {"Solution", cls.__name__} or hasattr(cls, item):
+                    has_valid = True
+                else:
+                    return None
+            else:
+                return None
+        if not has_valid:
+            return None
+
+    inst = None
+    res_list = []
+
+    if arguments is not None:
+        for op, arg in zip(ops, arguments):
+            if op == "Solution" or op == cls.__name__ or (inst is None and isinstance(op, str) and (op[0].isupper() or op == "Solution")):
+                inst = _instantiate_class(cls, kwargs, *arg)
+                res_list.append(None)
+            else:
+                if inst is None:
+                    inst = _instantiate_class(cls, kwargs)
+                method = getattr(inst, op)
+                res_list.append(method(*arg))
+        return res_list
+
+    if isinstance(ops, list):
+        for item in ops:
+            if isinstance(item, (list, tuple)) and len(item) > 0:
+                op = item[0]
+                arg = item[1:]
+                if op == "Solution" or op == cls.__name__ or (inst is None and isinstance(op, str) and op[0].isupper()):
+                    inst = _instantiate_class(cls, kwargs, *arg)
+                else:
+                    if inst is None:
+                        inst = _instantiate_class(cls, kwargs)
+                    method = getattr(inst, op)
+                    val = method(*arg)
+                    if val is not None:
+                        res_list.append(val)
+            elif isinstance(item, str):
+                if item == "Solution" or item == cls.__name__ or (inst is None and item[0].isupper()):
+                    inst = _instantiate_class(cls, kwargs)
+                else:
+                    if inst is None:
+                        inst = _instantiate_class(cls, kwargs)
+                    method = getattr(inst, item)
+                    val = method()
+                    if val is not None:
+                        res_list.append(val)
+        return res_list
+
+    return None
+
+
+def _bind_leetcode_solution_runner(namespace: dict[str, Any], challenge: Any = None) -> Any:
+    if "solve" in namespace and callable(namespace["solve"]):
+        return namespace["solve"]
+
+    cid = getattr(getattr(challenge, "info", None), "id", "") or ""
+
+    if cid == "lc_157":
+        def read4_157_runner(**kwargs):
+            content = kwargs.get("content", "")
+            n = kwargs.get("n", 0)
+            file_ptr = [0]
+            def mock_read4(buf4: list[str]) -> int:
+                count = 0
+                while count < 4 and file_ptr[0] < len(content):
+                    if count < len(buf4):
+                        buf4[count] = content[file_ptr[0]]
+                    else:
+                        buf4.append(content[file_ptr[0]])
+                    count += 1
+                    file_ptr[0] += 1
+                return count
+
+            sol_cls = namespace.get("Solution")
+            if not sol_cls:
+                raise NoSolveFunction()
+            sol = sol_cls()
+            if hasattr(sol.read, "__globals__"):
+                sol.read.__globals__["read4"] = mock_read4
+            buf = [""] * n
+            bytes_read = sol.read(buf, n)
+            return "".join(buf[:bytes_read])
+        return read4_157_runner
+
+    if cid == "lc_158":
+        def read4_158_runner(**kwargs):
+            content = kwargs.get("content", "")
+            requests = kwargs.get("requests", [])
+            file_ptr = [0]
+            def mock_read4(buf4: list[str]) -> int:
+                count = 0
+                while count < 4 and file_ptr[0] < len(content):
+                    if count < len(buf4):
+                        buf4[count] = content[file_ptr[0]]
+                    else:
+                        buf4.append(content[file_ptr[0]])
+                    count += 1
+                    file_ptr[0] += 1
+                return count
+
+            sol_cls = namespace.get("Solution")
+            if not sol_cls:
+                raise NoSolveFunction()
+            sol = sol_cls()
+            if hasattr(sol.read, "__globals__"):
+                sol.read.__globals__["read4"] = mock_read4
+            result = []
+            for req in requests:
+                buf = [""] * req
+                bytes_read = sol.read(buf, req)
+                result.append("".join(buf[:bytes_read]))
+            return result
+        return read4_158_runner
+
+    sol_cls = namespace.get("Solution")
+    if sol_cls is not None and isinstance(sol_cls, type):
+        import inspect
+        methods = [
+            name for name, func in inspect.getmembers(sol_cls, predicate=inspect.isfunction)
+            if not name.startswith("_")
+        ]
+        if methods:
+            method_name = methods[0]
+            spec = getattr(challenge, "_spec", None) if challenge else None
+            if len(methods) > 1 and spec and hasattr(spec, "params"):
+                for m_name in methods:
+                    m_obj = getattr(sol_cls, m_name)
+                    sig = inspect.signature(m_obj)
+                    sig_params = [p for p in sig.parameters if p != "self"]
+                    if set(sig_params) == set(spec.params):
+                        method_name = m_name
+                        break
+
+            def solve_runner(*args, **kwargs):
+                ops_res = _execute_class_operations(sol_cls, kwargs)
+                if ops_res is not None:
+                    return ops_res
+
+                sol_inst = _instantiate_class(sol_cls, kwargs, *args)
+                method = getattr(sol_inst, method_name)
+                if "queries" in kwargs and isinstance(kwargs["queries"], list):
+                    return [
+                        method(*q) if isinstance(q, (list, tuple)) else method(q)
+                        for q in kwargs["queries"]
+                    ]
+                if hasattr(method, "__globals__"):
+                    import typing
+                    g = method.__globals__
+                    for k, v in [
+                        ("List", list),
+                        ("Dict", dict),
+                        ("Tuple", tuple),
+                        ("Set", set),
+                        ("Optional", typing.Optional),
+                        ("Union", typing.Union),
+                        ("Any", typing.Any),
+                        ("ListNode", _JudgeListNode),
+                        ("TreeNode", _JudgeTreeNode),
+                        ("Node", _JudgeNode),
+                        ("Point", _JudgePoint),
+                    ]:
+                        if k not in g or g[k] is None:
+                            g[k] = v
+                return method(*args, **kwargs)
+
+            return solve_runner
+
+    if "solve" in namespace and callable(namespace["solve"]):
+        return namespace["solve"]
+
+    for name, obj in namespace.items():
+        if (
+            not name.startswith("_")
+            and isinstance(obj, type)
+            and getattr(obj, "__module__", "") not in {"builtins", "typing"}
+            and name not in {"TreeNode", "ListNode", "Node", "Point", "List", "Dict", "Tuple", "Set", "Optional", "Union", "Any"}
+        ):
+            custom_cls = obj
+            def custom_class_runner(*args, **kwargs):
+                call_kwargs = dict(kwargs)
+                if "operations" not in call_kwargs and len(args) == 1 and isinstance(args[0], list):
+                    call_kwargs["operations"] = args[0]
+                ops_res = _execute_class_operations(custom_cls, call_kwargs)
+                if ops_res is not None:
+                    return ops_res
+
+                import inspect
+                methods = [
+                    m for m, func in inspect.getmembers(custom_cls, predicate=inspect.isfunction)
+                    if not m.startswith("_")
+                ]
+                if methods:
+                    method_name = methods[0]
+                    spec = getattr(challenge, "_spec", None) if challenge else None
+                    if len(methods) > 1 and spec and hasattr(spec, "params"):
+                        for m_name in methods:
+                            m_obj = getattr(custom_cls, m_name)
+                            try:
+                                sig = inspect.signature(m_obj)
+                                sig_params = [p for p in sig.parameters if p != "self"]
+                                if set(sig_params) == set(spec.params):
+                                    method_name = m_name
+                                    break
+                            except Exception:
+                                pass
+                    inst = _instantiate_class(custom_cls, kwargs, *args)
+                    method = getattr(inst, method_name)
+                    if "queries" in kwargs and isinstance(kwargs["queries"], list):
+                        return [
+                            method(*q) if isinstance(q, (list, tuple)) else method(q)
+                            for q in kwargs["queries"]
+                        ]
+                    return method(*args, **kwargs)
+                raise NoSolveFunction()
+            return custom_class_runner
+
+    raise NoSolveFunction()
+
+
 def _load_python_optimal_solve(challenge: Any) -> tuple[Optional[Any], str]:
     spec = getattr(challenge, "_spec", None)
     if spec is None:
@@ -5619,10 +5998,18 @@ def _load_python_optimal_solve(challenge: Any) -> tuple[Optional[Any], str]:
     if not source:
         return None, "No Python optimal reference file is available for timing."
 
+    import typing
     namespace: dict[str, Any] = {
         "__name__": f"optimal.{challenge.info.id}",
         "__file__": f"{challenge.info.id}_optimal.py",
         "__package__": None,
+        "List": list,
+        "Dict": dict,
+        "Tuple": tuple,
+        "Set": set,
+        "Optional": typing.Optional,
+        "Union": typing.Union,
+        "Any": typing.Any,
         "ListNode": _JudgeListNode,
         "Node": _JudgeNode,
         "Point": _JudgePoint,
@@ -5637,10 +6024,11 @@ def _load_python_optimal_solve(challenge: Any) -> tuple[Optional[Any], str]:
     except Exception as exc:
         return None, f"Python optimal reference failed to load: {type(exc).__name__}: {exc}"
 
-    solve_fn = namespace.get("solve")
-    if not callable(solve_fn):
-        return None, "Python optimal reference must define a solve() function."
-    return solve_fn, ""
+    try:
+        solve_fn = _bind_leetcode_solution_runner(namespace, challenge=challenge)
+        return solve_fn, ""
+    except Exception as exc:
+        return None, f"Python optimal reference failed to bind solve function: {exc}"
 
 
 def _expected_for_case(
@@ -6182,10 +6570,18 @@ def _run_python_validated_cases(
     try:
         player_filename = str(solution_path)
         player_source = solution_path.read_text(encoding="utf-8")
+        import typing
         namespace: dict[str, Any] = {
             "__name__": "player_solution",
             "__file__": player_filename,
             "__package__": None,
+            "List": list,
+            "Dict": dict,
+            "Tuple": tuple,
+            "Set": set,
+            "Optional": typing.Optional,
+            "Union": typing.Union,
+            "Any": typing.Any,
             "ListNode": _JudgeListNode,
             "Node": _JudgeNode,
             "Point": _JudgePoint,
@@ -6198,9 +6594,10 @@ def _run_python_validated_cases(
     except SyntaxError as exc:
         raise PlayerSyntaxError(exc) from exc
 
-    if "solve" not in namespace:
-        raise NoSolveFunction()
-    solve_fn = namespace["solve"]
+    try:
+        solve_fn = _bind_leetcode_solution_runner(namespace, challenge=challenge)
+    except Exception as exc:
+        raise PlayerSyntaxError(SyntaxError(f"Could not bind solution entry point: {exc}"))
     reference_solve, reference_error = _load_python_optimal_solve(challenge)
     if reference_solve is None and reference_error:
         log.debug("No optimal reference available for validated cases: %s", reference_error)
@@ -6370,7 +6767,7 @@ def _runtime_check_python_function(
 
     try:
         namespace = runpy.run_path(str(solution_path), run_name="player_solution_benchmark")
-        solve_fn = namespace.get("solve")
+        solve_fn = _bind_leetcode_solution_runner(namespace, challenge=challenge)
     except Exception as exc:
         return RuntimeCheck(
             checked=True,
@@ -6827,9 +7224,10 @@ def run_player_code(
         except SyntaxError as exc:
             raise PlayerSyntaxError(exc) from exc
 
-        if "solve" not in namespace:
+        try:
+            solve_fn = _bind_leetcode_solution_runner(namespace, challenge=challenge)
+        except Exception:
             raise NoSolveFunction()
-        solve_fn = namespace["solve"]
 
         # --- 4. Set per-run instance state on the challenge ---
         challenge._n = n

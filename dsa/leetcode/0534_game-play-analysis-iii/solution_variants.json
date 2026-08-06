@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Game Play Analysis III and meets the required complexity bound.",
+      "summary": "Uses a player-partitioned chronological window sum to retain every login and add its running total.",
       "time_complexity": "O(A \\log A)",
       "space_complexity": "O(A)"
     }

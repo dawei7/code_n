@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_477",
+    "frontend_id": "477",
+    "title_slug": "total-hamming-distance",
+    "url": "https://leetcode.com/problems/total-hamming-distance/description/",
+    "paid_only": false,
+    "content_sha256": "488b5af651b8dee95b79c4c6e34c48b3564460497c53ba7fa59ffdb97f477cfe",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [4,14,2]",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,14,4]",
+        "output": "4",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "bcd8ab97c1813760956288473d9b6b281d07a5d612109c67c3362fb6e6df4c27",
+      "reference/contract.md": "256d73f911b4c699fd5c0a2f24a1fe439489ab69018d526cf4365c6798328f16",
+      "reference/examples.md": "51bc9a73e298c4a2a006e885da8e465661c5fdf120e6743e4f35b708fe17373a",
+      "reference/constraints.md": "266ab1798762710940bc363e43a1a29aa175439511f7667d4710bc320cfbf811"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

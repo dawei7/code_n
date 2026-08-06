@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_210",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity_evidence",
+        "severity": "clarified",
+        "reason": "The legal 8/64/256-course chain tiers now state that E = V - 1, so course count governs the required V + E workload. Kahn's order builder passes, while a correct builder that rescans every prerequisite for each remaining course passes every output and fails only scaling (+0.89 relative exponent and 22.97x largest ratio)."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "17bb7bc3f4072d0c093706b4d71c08552a05e22d8aacaa0e4c8f89eecded8047",
+    "native_source_sha256": "ad9b4fe4f06e6b7135138b184b8d8aa7010498f7f9badf968be90e0956bd261f",
+    "approach_sha256": "0dfb789ff7a356822e271b7f9bfb6427ef5e5dc4994d928ab311fd86a935e2c4",
+    "solution_variants_sha256": "388449f5bf8bd007fff81cec58df950c25bd2bc78faef66f2b1f82a5d0bb7641",
+    "complexity_evidence_sha256": "f9acd5a9b613c7a788204322e5c50d04546b57a4a5502b76435f3716c9bfc55b"
+  }
+}

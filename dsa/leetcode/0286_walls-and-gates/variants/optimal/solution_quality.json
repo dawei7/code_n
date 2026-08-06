@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_286",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already the canonical multi-source BFS. It seeds every gate, assigns an INF room on first arrival, and uses that assignment as both its shortest distance and visited marker. Queue, row, column, next_row, and next_column are genuine graph/grid concepts, and no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 286 and its Python in-place integer-grid contract. The Reference preserves all three cell meanings, four-direction distance semantics, both examples and explanation absence, all four source constraints, and the exact 32-bit INF sentinel."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is tied to verified submission 2064308656. It and the app-local source have identical empty-grid guard, INF value, all-gate queue initialization, dequeue order, four neighbors, bounds and unvisited test, distance assignment, and enqueue; only typing and the LeetCode class wrapper differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 4x4/8x8/16x16 open-grid tiers contain one gate, forcing full-grid distance assignment while a per-room method repeats breadth-first search. The current source passes at -0.00 relative exponent and 0.98x largest ratio; a correct per-room BFS passes every output but fails only scaling at +1.08 and 97.58x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now accounts separately for the initial O(mn) scan and one-time BFS visits, states the queue's worst-case space, and distinguishes per-room/per-gate searches, no-gate, all-gate-or-wall, unreachable-room, and defensive empty-grid behavior."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Premium Reference remains verified against authenticated source evidence, preserving both examples in order with no invented explanations, all four constraints, and an independent symbolic grid that carries the complete information from the sole source illustration."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated source examples appear first, in source order, with their exact input and output grids.",
+      "The previous suite omitted the single-wall source example, mislabeled an invented one-row input as a sample, and hid the only unreachable-room check; all replacement correctness rows are visible and accurately classified.",
+      "The suite covers 1-by-1 wall, gate, and INF grids, single-row and single-column propagation, rectangular dimensions, and every allowed cell sentinel.",
+      "No-gate, no-empty-room, fully wall-blocked, and detour fixtures verify that walls and unreachable rooms remain unchanged while reachable rooms receive shortest four-direction distances.",
+      "Multiple-gate fixtures exercise nearest-source selection and equal-distance frontiers, while single-gate fixtures verify monotone layer growth and in-place None-return behavior.",
+      "Every authored expected grid was independently computed by a per-room shortest-path oracle; the protected source matched that oracle on 20,514 exhaustive legal grids across six small rectangular shapes.",
+      "All 12 correctness cases are visible; the unchanged 4-by-4, 8-by-8, and 16-by-16 open grids remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "a88dae0c96706ba7febf09bee7c30927b501db23c7a3d730c7058a9c463df41f",
+    "native_source_sha256": "84f2d1c3ca3c83358024b9b628cfc7c37d07a0761610e24f25f97d3cd3c87e45",
+    "approach_sha256": "9f74224560ed4e4ac90eabd5aa9388b35f05d253f62385ee9449554505afff2b",
+    "solution_variants_sha256": "85521cf6615348e0622ac0d292b11f19b3538073d32ec842b6b6308ac3ac9151",
+    "complexity_evidence_sha256": "e171eaa15b63543551941b88c56b3db5ec7c6701299be94e9c4d2f54a94b9595",
+    "cases_sha256": "c0eafa6ceb948538c6001713a72046835a06971721079eff330479f8be015fce"
+  }
+}

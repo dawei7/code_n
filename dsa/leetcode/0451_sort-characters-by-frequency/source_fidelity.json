@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_451",
+    "frontend_id": "451",
+    "title_slug": "sort-characters-by-frequency",
+    "url": "https://leetcode.com/problems/sort-characters-by-frequency/description/",
+    "paid_only": false,
+    "content_sha256": "d6e1b70bdbf1ccc04df8ae690297edb76e95eacbe09f85d49b4a672dd1cc4d37",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"tree\"",
+        "output": "\"eert\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"cccaaa\"",
+        "output": "\"aaaccc\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"Aabb\"",
+        "output": "\"bbAa\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "610b2ad799766ca179a7455e74aea35673b093c21fdedd74c4651b1e69ffab0b",
+      "reference/contract.md": "fa808a0c98a7484474ceb87b71947239222888dd1268b70aa7d819c9a6783e4c",
+      "reference/examples.md": "487f1e12eb417a9775537c072b9104f6373883d06dfc24177b9d984061fd7d00",
+      "reference/constraints.md": "8adc1211d110dc6aac90fae1e3ba87bb1dec9ca4b09009a6f01f6f805977d603"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

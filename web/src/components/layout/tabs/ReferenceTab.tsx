@@ -676,19 +676,10 @@ function SolutionDisclosure({
           <VerifiedCodePanel
             challengeId={challengeId}
             variantId={variantId}
-            sourceKind="coden"
-            label="Verified cOde(n) submission"
-            language={selectedMeta}
-            source={codenSource}
-            theme={theme}
-          />
-          <VerifiedCodePanel
-            challengeId={challengeId}
-            variantId={variantId}
             sourceKind="leetcode"
             label="Verified LeetCode submission"
             language={selectedMeta}
-            source={leetcodeSource}
+            source={leetcodeSource || codenSource}
             theme={theme}
           />
         </div>

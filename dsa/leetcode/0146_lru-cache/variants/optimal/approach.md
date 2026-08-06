@@ -1,34 +1,25 @@
 ## General
-**Two data structures answer two independent constant-time questions**
+**The map and list answer different constant-time questions**
 
-Use a hash map `key -> node` for expected constant-time location. Store the same real nodes in a doubly linked list ordered from least recently used to most recently used. The map answers “where is this key?”, while the list answers “which key is oldest?” without scanning.
+Maintain a hash map from each cached key to its unique node, plus a doubly linked list ordered from least to most recently used. The map locates a key in expected constant time; the first real list node identifies the eviction victim without a scan.
 
-**Sentinels make removal and insertion uniform**
+Permanent `least` and `most` sentinels surround all real nodes. `_remove` reconnects a known node's two neighbors, and `_append_most_recent` inserts a node immediately before `most`. Because both neighbors always exist, neither helper needs empty-list or endpoint branches.
 
-Dummy `least` and `most` nodes remain permanently linked around all real entries. Removing a known node always reconnects `node.prev.next` and `node.next.prev`; appending most-recent always inserts immediately before `most`. No operation needs separate empty-list, head, or tail branches.
+**Every successful access moves exactly one key to the newest end**
 
-**`get` and `put` both count as recent use**
+On `get`, return `-1` without changing order when the key is absent. Otherwise unlink its mapped node, append it at the most-recent end, and return its value.
 
-For successful `get`, unlink the found node and append it at the most-recent end before returning its value. For `put` on an existing key, update or replace its node and make it most recent without increasing cache size. For a new key, append once; if size now exceeds capacity, remove `least.next` from both list and map.
+On `put`, remove the existing node when the key is already present, then install the new key-value node in both structures at the most-recent end. If this insertion makes the map exceed `capacity`, remove `least.next` and delete that same key from the map.
 
-A missing `get` returns `-1` and changes no recency.
-
-**Map membership and list membership must change atomically**
-
-The map contains exactly the real list nodes, every key appears once, and left-to-right list order is increasing recency. Every helper unlink/append preserves bidirectional links. Eviction must delete the same node from the map, or future lookup would return a detached stale entry.
-
-**Map identity and list order make eviction exact**
-
-The map locates the unique node for each stored key, while the doubly linked list orders those nodes from least to most recent. Every successful access or write moves exactly that node to the newest end; untouched nodes retain their relative age.
-
-When capacity is exceeded, the first real list node is therefore precisely the least recently used key. Removing that same node from both list and map preserves identity synchronization and makes all future lookups and evictions correct.
+The map therefore contains exactly the real list nodes, each key occurs once, and list order always increases from least to most recent. Moving only the accessed key preserves every untouched key's relative age, so after overflow `least.next` is precisely the required eviction victim. Updating the map and list together prevents detached stale nodes from remaining discoverable.
 
 ## Complexity detail
-Hash lookup, unlinking a known node, appending it, and removing the oldest node are all expected $O(1)$. At most `capacity` real nodes are stored, so space is $O(capacity)$.
+Each `get` or `put` performs a constant number of expected-$O(1)$ hash operations and pointer rewires, so its expected time is $O(1)$. For $q$ app operations, total processing time and the required result list are $O(q)$. The cache retains at most `capacity` real nodes, giving $O(\textit{capacity})$ cache space beyond the app output.
 
 ## Alternatives and edge cases
-- **List of key-value pairs:** makes recency explicit but lookup or movement costs $O(capacity)$.
-- **Hash map with timestamps:** gives quick lookup but finding the oldest timestamp costs $O(capacity)$ unless another ordered structure is added.
-- **Ordered-map library:** can satisfy the complexity concisely, but implementing map plus linked list demonstrates the required invariant directly.
-- Capacity may be one. Updating an existing key changes its value and recency without increasing size.
-- A successful `get` can change the next eviction victim; a failed `get` cannot.
+- **Linear list of key-value pairs:** makes recency visible but lookup and movement can cost $O(\textit{capacity})$ per operation.
+- **Hash map with timestamps only:** locates keys quickly but still needs an $O(\textit{capacity})$ scan to find the oldest timestamp.
+- **Ordered-map library:** can satisfy the same bounds concisely, though the explicit map-plus-list design exposes the invariant directly.
+- Capacity one must evict the former key on every distinct insertion.
+- Replacing an existing key changes its value and recency without increasing the number of cached keys.
+- A successful `get` changes the next eviction victim; a failed `get` leaves order untouched.

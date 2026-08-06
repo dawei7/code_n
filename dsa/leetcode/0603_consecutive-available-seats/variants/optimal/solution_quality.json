@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_603",
+  "language": "sql",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is explicit and interview-ready. Its neighbors CTE gives every row a readable previous/next identifier and availability state, while the outer predicate states the two qualifying adjacency cases directly and returns each seat only once."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Ordering the window by seat_id makes LAG and LEAD expose the nearest stored identifiers. Requiring the current row to be free and one neighbor to be both free and exactly one identifier away selects precisely the seats belonging to a consecutive available pair or longer run. Endpoints qualify through one side, interior run seats through either side, occupied seats and isolated free seats fail, and identifier gaps cannot create false adjacency."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 603 and SQL as its sole application language. The query consumes Cinema(seat_id, free), returns only seat_id, and applies the required ascending output order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected application SQL and immutable MySQL source bound to verified submission 2065459815 are byte-identical. The reviewed target therefore preserves all four window values, both numeric-adjacency checks, availability checks, projection, and final ordering exactly."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three authored reverse-ordered all-free runs span 128 through 1024 seats and force sorting plus complete neighbor evaluation. The exact protected source passed all seven correctness cases and all three performance tiers. A correct control using two correlated neighbor-existence searches per seat passed every correctness and benchmark output but failed only performance with relative growth exponent +0.88 and an 8.81x largest runtime ratio, distinguishing one window ordering from quadratic rescanning."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly matches the current query's ordered LAG/LEAD state, explicit identifier adjacency, free-seat predicate, run membership reasoning, and result order. Its O(n log n) time and O(n) working-space bounds correctly describe a conventional sorted window plan."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The modular Reference is bound to the authenticated Premium statement's rendered-content hash. It preserves the Cinema schema, availability encoding, consecutive-seat objective, ascending order, generated-test guarantee, complete example without inventing an explanation, and all three source tables."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium source example now appears first with the exact five Cinema rows, availability flags, and ascending output [[3],[4],[5]], without inventing an explanation absent from the source.",
+      "The former altered sample and unsupported sample labels were replaced by one exact source sample and six explicitly authored trials; no correctness case remains hidden.",
+      "Contract boundaries cover the boolean free flag, auto-increment seat identifiers, occupied breaks, endpoints of a run, stored rows in non-identifier order, and identifier gaps that must not imply numeric adjacency.",
+      "Material semantics cover isolated free seats, exactly two consecutive free seats, multiple separated runs, a full longer run, interior and endpoint membership, ascending output, and the source guarantee that every generated table contains more than two consecutive free seats.",
+      "An independent numeric-neighbor oracle and SQLite execution of both byte-identical protected queries verified all seven cases, all three benchmark outputs, 4,456 exhaustive legal availability patterns through twelve seats, and 500 deterministic randomized gapped and unsorted tables.",
+      "All seven ordinary correctness cases are visible samples or trials; the unchanged 128-, 512-, and 1,024-seat workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "00f7156116cf8dc6264be7d5cef456a8dd3d92f13bda6ac5e43dd15336b912cc",
+    "native_source_sha256": "00f7156116cf8dc6264be7d5cef456a8dd3d92f13bda6ac5e43dd15336b912cc",
+    "approach_sha256": "5bf29d29ab35052f46377302cefd99de0dab83e385d37843b7c5db0c0bee11aa",
+    "solution_variants_sha256": "a6de4f66c88cd672ab6f4bf06395abe228261297da1833b9923e759a783c015b",
+    "complexity_evidence_sha256": "31293ee19b53519b97492b1afd0a30999e63541e952597ff795e925ff4a57c60",
+    "cases_sha256": "aa718a010d7b3688f5db448ae5083fdc30f78cfbe04896bd5b2de375bfd09b85"
+  }
+}

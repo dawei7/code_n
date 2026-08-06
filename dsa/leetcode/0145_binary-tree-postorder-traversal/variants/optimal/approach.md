@@ -1,36 +1,19 @@
 ## General
-**The stack holds ancestors whose visit is deliberately deferred**
+**The stack defers each ancestor until both subtrees are complete**
 
-Push each node while following its left spine. Postorder cannot emit an ancestor yet because at least its left subtree—and possibly its right subtree—remains unfinished. When the descent reaches null, inspect the stack top without immediately popping it.
+Follow `current` down the left spine, pushing every node because postorder cannot emit it before its descendants. When `current` becomes null, inspect the stack top without immediately removing it.
 
-**A node is ready only after its right subtree is absent or completed**
+If that node has a right child other than `last_visited`, set `current` to the right child and perform the same left descent there. Otherwise its right subtree is absent or has just completed, while its left subtree completed before this inspection; the node is ready to pop and append. Record the popped node in `last_visited` so its parent can recognize the completed right subtree instead of entering it again.
 
-If the top node has a right child different from `last_visited`, set `current` to that child and descend its left spine. Otherwise the right subtree is absent or was the most recently completed subtree; the left subtree is already complete from the earlier descent, so pop and emit the parent.
-
-**`last_visited` distinguishes first inspection from return**
-
-After emitting a node, assign it to `last_visited`. When its parent next reaches the stack top, identity equality with `parent.right` proves that right subtree has just completed. Without this pointer, the algorithm would repeatedly descend into the same right subtree.
-
-**Stack, current, and last-completed subtree partition pending work**
-
-Nodes on the stack are ancestors whose own output is pending. Every value already in the result belongs to a fully completed subtree, and `last_visited` is the root of the most recently completed one.
-
-**Trace a right child with its own left child**
-
-For `[1,null,2,3]`, node `1` waits while the traversal enters right child `2`, whose left child `3` is emitted first. Node `2` is then emitted and becomes `last_visited`; returning to `1` now recognizes its right subtree as complete and emits `1`, producing `[3,2,1]`.
-
-**`last_visited` distinguishes descent from completed return**
-
-A stacked node is emitted only when it has no unprocessed right subtree: either no right child exists or that child is `last_visited`, proving the traversal has returned from it. Its left subtree was exhausted during the original left descent before this inspection.
-
-Both child subtrees therefore precede the node. Marking the popped node as last visited lets its parent recognize the same completion state. Every node is eventually popped once, yielding exactly left-right-root order.
+At every step, `result` contains complete subtrees in postorder, the stack holds ancestors whose own visits are pending, and `last_visited` identifies the most recently finished subtree. A node is appended only after both children, and every child transition is taken once, so the final sequence is exactly left-right-root order.
 
 ## Complexity detail
-Each node is pushed, inspected a constant number of times, and popped once, so time is $O(n)$. The stack contains at most one root-to-leaf path, or $O(h)$ nodes; the output list uses $O(n)$ required result space.
+Each of the $n$ nodes is pushed and popped once and inspected only a constant number of times, giving $O(n)$ time. The stack contains at most one root-to-leaf path, so auxiliary space is $O(h)$ for tree height $h$. The returned list uses $O(n)$ output space.
 
 ## Alternatives and edge cases
-- **Recursive DFS:** is shorter but consumes call-stack space and may overflow on deep inputs.
-- **Two stacks or reversed root-right-left:** is simple but stores $O(n)$ nodes rather than $O(h)$.
-- **Morris postorder:** can use constant auxiliary space but requires temporary threading and path reversal.
-- An empty tree returns an empty list. A single node is visited immediately, and skewed trees work in either direction without recursion.
-- Node identity, not value equality, must determine whether a right child was last visited.
+- **Recursive depth-first search:** is shorter but uses an $O(h)$ call stack and can hit recursion limits.
+- **Two stacks or reversed root-right-left:** is simple but can retain $O(n)$ nodes rather than $O(h)$.
+- **Morris postorder traversal:** achieves $O(1)$ auxiliary space but temporarily threads links and reverses paths.
+- An empty tree returns `[]`, and a singleton is emitted immediately after its null left descent.
+- Skewed trees remain linear in either direction.
+- Right-subtree completion must use node identity, not value equality, because distinct nodes may store equal values.

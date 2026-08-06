@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_392",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical greedy subsequence scan. The matched-prefix length is a genuine algorithmic concept, every source character is considered once, and the bounds check handles an empty or fully matched candidate without special branches. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 392 and its Python isSubsequence surface. The Reference preserves deletion-with-order semantics, both strings' empty boundaries, both source examples in order, all three constraints, and the billion-query same-source follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064686978. Its zero matched-prefix state, source scan, guarded equality, advancement, and final length comparison are exactly the protected app-local algorithm apart from the LeetCode wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal proportional tiers use candidate lengths 16, 40, and 96 with source strings twice as long, span 6x, and force successful ordered matching. The current source passes all 11 executions at -0.00 relative growth and 1.01x; correct longest-common-subsequence dynamic programming passes every benchmark output but fails only scaling at +1.44 and 111.52x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the matched-prefix pointer, proves the greedy earliest-match choice, explains the success and exhaustion conditions, states O(|t|) time with O(1) space, and identifies position preprocessing for the many-query follow-up."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples in order, the subsequence definition and contrasting example, all three constraints, and the full billion-query follow-up."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "ff3a286ef389752406e18a1778b7f5644e4f6315aefb738faef480fb7abbe756",
+    "native_source_sha256": "0584c9a4493eded76c009b22ee8b3043d0ce22b91f783f4a8085f7a12b3f9885",
+    "approach_sha256": "6a6533df7f48090af39af486e2ad3e0eef0a3f828297a022920ac208e06266e7",
+    "solution_variants_sha256": "771e79bf2fea298112901c8cf06c65be15379f8eaca86f1a6c063709139603a8",
+    "complexity_evidence_sha256": "ff55de53475b11c694531716ce8df1904b094e77efb09e2da7871806ef3820d9"
+  }
+}

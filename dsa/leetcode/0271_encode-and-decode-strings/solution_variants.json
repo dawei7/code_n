@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Encode and Decode Strings and meets the required complexity bound.",
+      "summary": "Prefixes every payload with its decimal character length and a separator, enabling one-pass decoding.",
       "time_complexity": "O(c)",
       "space_complexity": "O(c)"
     }

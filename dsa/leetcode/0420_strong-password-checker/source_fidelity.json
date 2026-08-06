@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_420",
+    "frontend_id": "420",
+    "title_slug": "strong-password-checker",
+    "url": "https://leetcode.com/problems/strong-password-checker/description/",
+    "paid_only": false,
+    "content_sha256": "7bd288e6bf1b5b1b8c1464d494820dc742d4ca8bf19fdb6042dc87e6156c87ad",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "password = \"a\"", "output": "5", "has_explanation": false},
+      {"ordinal": 2, "input": "password = \"aA1\"", "output": "3", "has_explanation": false},
+      {"ordinal": 3, "input": "password = \"1337C0d3\"", "output": "0", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "27fcfc72e090134e30bcfeb34d09c784fd6eac7891fb6021f31246237b4d796c",
+      "reference/contract.md": "affaa038af702a7a35660980e045b2d2e9faf1be390141fd01f8a3e9b13ace6f",
+      "reference/examples.md": "d8062e7be665e5c7d5ee6abeb3082cb85e9effd864f028e65b6c33e069ab25ca",
+      "reference/constraints.md": "2db65ba5d540a3bdf67d402d426aaffeaa5bd14460a0a8fb458b2a0d3c9c8a4c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1369",
+    "frontend_id": "1369",
+    "title_slug": "get-the-second-most-recent-activity",
+    "url": "https://leetcode.com/problems/get-the-second-most-recent-activity/description/",
+    "paid_only": true,
+    "content_sha256": "e705dd684f5695250ded1d3acc3c81c19494d1cc8b36f3e2def7567f585e5192",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "user_activity_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "UserActivity = [[\"Alice\",\"Travel\",\"2020-02-12\",\"2020-02-20\"],[\"Alice\",\"Dancing\",\"2020-02-21\",\"2020-02-23\"],[\"Alice\",\"Travel\",\"2020-02-24\",\"2020-02-28\"],[\"Bob\",\"Travel\",\"2020-02-11\",\"2020-02-18\"]]",
+        "output": "[[\"Alice\",\"Dancing\",\"2020-02-21\",\"2020-02-23\"],[\"Bob\",\"Travel\",\"2020-02-11\",\"2020-02-18\"]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/user_activity_table.md": "2cb77ae825241e52bd651c0cbd52350fb48ff0332d55df806a85db7f241b8d4a",
+      "reference/description.md": "20b21a841b2055d4dc10a0bae2447d0c93ca4e5e7ff1b205901b02b537e5b2c2",
+      "reference/contract.md": "81500671e600f66a0935dbbc76cdbba6efadba664cfc11a99a7b2f48dd6b1394",
+      "reference/examples.md": "6c0183648b4e4f76c97af055b972586a945539b00595b18cc7e614798288d5b0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

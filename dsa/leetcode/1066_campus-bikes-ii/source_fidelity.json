@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1066",
+    "frontend_id": "1066",
+    "title_slug": "campus-bikes-ii",
+    "url": "https://leetcode.com/problems/campus-bikes-ii/description/",
+    "paid_only": true,
+    "content_sha256": "6522c039a04db2674e4554f102dbceaf8fec43cfda251b4a391fbb7e628f663e",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "workers = [[0,0],[2,1]], bikes = [[1,2],[3,3]]",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "workers = [[0,0],[1,1],[2,0]], bikes = [[1,0],[2,2],[2,1]]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "workers = [[0,0],[1,0],[2,0],[3,0],[4,0]], bikes = [[0,999],[1,999],[2,999],[3,999],[4,999]]",
+        "output": "4995",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "2880aa45b2b3ef5a307afaba267032a190f159e8e28c96cf1ffd15cca2585629",
+      "reference/contract.md": "a7b86fcc61ef6e99150e700a769eb7315d0104e3a0facb9cb0ad6e4d800eb65c",
+      "reference/examples.md": "e586b49deca0e4cf3429c6969fc383843dad3f5026cc71e9956ab2ea344f0fcc",
+      "reference/constraints.md": "f54aad6f60762c3157c03dd7ccd7c21309e65f4f437acfd5b7f2995f6d182415",
+      "reference/hint.md": "acd5d13b22e80928b6932d8999ed5ec8177b55e3f6a1c7c6bcf8b16871a7b15c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

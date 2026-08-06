@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2041",
+    "frontend_id": "2041",
+    "title_slug": "accepted-candidates-from-the-interviews",
+    "url": "https://leetcode.com/problems/accepted-candidates-from-the-interviews/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`Candidates = [[11, \"Atticus\", 1, 101], [9, \"Ruben\", 6, 104], [6, \"Aliza\", 10, 109], [8, \"Alfredo\", 0, 107]], Rounds = [[101, 1, 8], [101, 2, 8], [104, 1, 10], [104, 2, 12], [109, 1, 5], [109, 2, 5], [107, 1, 3], [107, 2, 3]]`",
+        "output": "`[[9]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`one candidate with years_of_exp = 2 and round scores [8, 8]`",
+        "output": "`that candidate's ID`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`one experienced candidate with round scores [7, 8]`",
+        "output": "`empty result`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3579fb8b7f5d5e3bf775fbbd396e8eaf262a740e738ba7887e3fd0872d76b1cc",
+      "reference/contract.md": "76169094c38c3b862ff5f7188d6462367cb82ac29cd2e03518c5975c6303097c",
+      "reference/examples.md": "08544ff6d7db3557fb51a0f4624f268f5d1c1c00f3f749f386af7fba772ec034",
+      "reference/constraints.md": "ec8de16f9b4ae8b197f3d1e6e00fa50b502f3ae19fd8a8bed9341d36602fd869"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

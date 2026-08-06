@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Max Consecutive Ones II and meets the required complexity bound.",
+      "summary": "Maintains the longest sliding window containing at most one zero.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

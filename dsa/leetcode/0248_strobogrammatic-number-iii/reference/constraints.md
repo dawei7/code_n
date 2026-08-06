@@ -1,6 +1,6 @@
 ## Constraints
 
-- $1 \le \texttt{low.length}, \texttt{high.length} \le 15$
-- `low` and `high` consist only of decimal digits.
+- $1 \le \text{low.length}, \text{high.length} \le 15$.
+- `low` and `high` consist of only digits.
 - `low <= high`
-- Neither bound has a leading zero unless it is exactly `"0"`.
+- `low` and `high` do not contain any leading zeros except for the zero itself.

@@ -1,7 +1,7 @@
 ## General
 **Tickets are edges of an Eulerian trail**
 
-Every ticket must be used once, so the itinerary is an Eulerian trail in a directed multigraph, fixed to start at `JFK`. A simple greedy walk that permanently chooses the smallest next airport is unsafe: in the third example, choosing `KUL` immediately reaches a dead end and strands two tickets.
+Every ticket must be used once, so the itinerary is an Eulerian trail in a directed multigraph, fixed to start at `JFK`. A simple greedy walk that permanently chooses the smallest next airport is unsafe: with tickets `JFK -> KUL`, `JFK -> NRT`, and `NRT -> JFK`, choosing `KUL` immediately reaches a dead end and strands two tickets.
 
 Hierholzer's algorithm postpones committing airports to the final route. Walk through unused edges while possible. Only when the current airport has no outgoing ticket left is it appended to the route; then backtrack to the previous airport. Reversing this dead-end order produces the complete Eulerian itinerary.
 

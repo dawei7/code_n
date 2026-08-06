@@ -23,6 +23,6 @@ Each character enters the window once through `right` and leaves at most once th
 ## Alternatives and edge cases
 - **Restart from every left endpoint:** is correct but can take $O(n^2)$, especially when the whole string already uses at most `k` characters.
 - **Evict by last-seen position:** also supports a linear scan, but finding the least recent character needs a bounded map scan or an ordered structure.
-- If $k = 0$ or the string is empty, the answer is `0`.
+- If $k = 0$, the answer is `0`.
 - If `k` covers every distinct character in the string, the window never shrinks and the answer is `len(s)`.
 - Frequencies are essential: removing one leftmost copy must not delete a character that still occurs elsewhere in the window.

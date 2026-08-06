@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_448",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected final comprehension uses the campaign-prohibited generic local name index. The inert candidate changes only that enumeration position to conventional i, preserving the expression i + 1 and making no algorithmic or contract change."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "Apart from the prohibited local name, the sign-marking solution is already concise and optimal. The candidate keeps the two direct passes, idempotent negative markers, increasing output order, and descriptive number and marker locals; no broader rewrite is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 448 and its Python integer-array-to-array surface. The candidate retains the exact app solve signature and returns every absent value from 1 through n. The modular Reference preserves the value domain, both source examples, all three constraints, and the linear-time constant-extra-space follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064841302 and is algorithmically identical to the protected app source apart from annotations and the Solution wrapper. The candidate preserves the same absolute-value marker mapping, negative assignment, positive-marker filter, and value reconstruction; only the inert enumeration local changes from index to i."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The 64-, 192-, and 512-element tiers span 8x and use one repeated present value so both marking and the full missing-output scan execute. The candidate passed all 10 opaque correctness executions and all three performance tiers at 1.00x the reference runtime. A correct O(n^2) repeated-membership control passed every output but failed only the runtime verdict at 1.42x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach exactly describes value-minus-one sign markers, absolute-value recovery after mutation, idempotent duplicate marking, and the final left-to-right scan that emits i + 1 for each positive marker. Its O(n) time and O(1) auxiliary-space claims match the candidate."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Reference was checked against the live public statement. It preserves the [1, n] domain and requested missing values, both exact examples in source order without invented explanations, all three constraints, and the follow-up excluding the returned list from extra space. The fabricated legacy third example was removed because the source has exactly two examples."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "dab45a34cf707efffd3eae1ae3b3557e964f407865deaf63f98391ea619fc5e4",
+    "native_source_sha256": "7b4ce979f73f58e316bced20f6c18e3bbc7da7243c5a29425d9ea9c6c79778f5",
+    "approach_sha256": "6d56e84ce81d85e08f469d1323f9105bd0b49530301b43aff940baa6c00c877e",
+    "solution_variants_sha256": "bd4167cf37da4175470955f05ad753f46544daa4709471ee6a86cfdb138044c0",
+    "complexity_evidence_sha256": "0cdd5d5e9d54cfeea4156f34a236a1355161dbf969eaf977c213d24df90c458e",
+    "candidate_source_sha256": "d38f8fe646bc79da0691999456a609ccb2e2936b73a4a3f0c16029a44b618c97"
+  }
+}

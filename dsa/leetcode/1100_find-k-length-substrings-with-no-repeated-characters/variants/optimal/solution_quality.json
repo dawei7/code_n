@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1100",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected app-local solution is direct, conventional, and interview-ready. frequencies, valid_windows, right, character, and outgoing expose the complete sliding-window state; impossible lengths are rejected visibly; zero-count keys are removed promptly; and the full-window/distinct-key test is concise without obscuring its meaning. No material correctness, robustness, complexity, clarity, or maintainability defect justifies a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "If k exceeds the string length no complete window exists, and if k exceeds the 26-character lowercase alphabet no all-distinct window can exist. Otherwise each iteration adds s[right] and, once right >= k, removes exactly s[right-k], so the frequency map describes the suffix ending at right of length at most k; deleting zero counts makes its keys exactly the characters present. At right >= k-1 the suffix has length k, and len(frequencies) == k holds exactly when every position is distinct. Each endpoint corresponds to one start, so overlapping and text-identical windows are counted independently once."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1100, Python as the user-facing language, and native Solution.numKLenSubstrNoRepeats. Authenticated source evidence confirms a lowercase English string, exact length-k substrings, no repeated characters, count return, 1 <= s.length <= 10^4, 1 <= k <= 10^4, and the explicit possibility that k exceeds the string length. The solve(s, k) adapter preserves every part of that contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local solve.py and immutable leetcode.py bound to verified submission 2067632196 use the same impossible-length guards, frequency-map updates, outgoing-character removal, zero-key deletion, full-window boundary, distinct-key test, counter increment, and return. Differences are limited to the app solve function versus LeetCode Solution.numKLenSubstrNoRepeats method and the app-local dictionary annotation."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden workloads grow legal lowercase strings through 256, 1024, and 4096 characters with k = n/2, exercising the alphabet-impossibility guard while a correct set-per-window method performs repeated substring work. The protected source passed all ten visible cases and all three tiers with relative growth exponent +0.02 and a 1.04x largest runtime ratio. The independently correct control preserved every output but failed only scaling at +1.55 and 277.60x. The general non-guard path is separately exercised by visible and randomized cases and performs one insertion and at most one removal per character, satisfying O(n)."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives both impossible-length checks, one exact-length frequency window, outgoing-count maintenance, and the equivalence between k distinct keys and a repetition-free full window. Its O(n) expected time and O(min(k,26)) auxiliary-space bounds match the branch manifest and source, and its alternatives and edge cases cover per-window sets, a fixed alphabet array, k > n, k > 26, k = 1, and overlapping valid windows."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves lowercase input, exact contiguous window length, no-repeat qualification, positional counting, overlapping windows, zero when k exceeds the string length, both exact examples with all six listed valid substrings, and all three source constraints. It adds no tables, diagrams, hints, notes, or follow-up absent from the source."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified exactly two explained examples, three constraints, and no hints, notes, follow-up, tables, images, or diagrams. source_fidelity.json binds the independently written modular Reference to live content hash f9070879065931e340b5b05d026213f418b2bbb46ee7520fb0744836db154d3b and validates with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact s and k inputs, outputs 6 and 0, all six named valid windows, and the explanation that k may exceed the string length appear first and in source order as sample-1 and sample-2.",
+      "All ten ordinary correctness fixtures are visible samples or trials. They cover overlapping windows, repeated text counted by position at k = 1, the full 26-letter alphabet, k = 27 pigeonhole rejection, repetition entry and expiry, all-invalid repeated windows, maximum k = 10000, and maximum string length = 10000.",
+      "Every fixture respects lowercase-only input, 1 <= s.length <= 10^4, and 1 <= k <= 10^4. The maximum-length fixture contains exactly 10000 characters and expects all 10000 one-character positions to count.",
+      "An independent oracle constructs a Counter for every complete substring and requires exactly k keys each with frequency one. It shares neither the reviewed rolling frequency map nor its outgoing-character maintenance. A separate slower control reconstructs a set for every window.",
+      "The oracle, protected app-local function, immutable native Solution method, and slower control agreed on all thirteen authored correctness-plus-benchmark outputs, 5000 deterministic random legal inputs, and nine explicit boundaries. Random data covered lengths one through 200, k one through 250, overlapping valid windows, repeated characters, k > n, k > 26, and the complete lowercase alphabet, while explicit checks covered both legal maxima.",
+      "The 256-, 1024-, and 4096-character workloads remain hidden and performance-only, use size consistently as n, set k = n/2, and span 16x. The correct set-per-window control failed only scaling at +1.55 and 277.60x, while the protected guarded solution passed at +0.02 and 1.04x; benchmark calibration is fit and benchmark.json was not edited."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "aed749ac1dc635dbd20e3ca91ed18dbd08d0c2eb6ff15d736df27bc41149f959",
+    "native_source_sha256": "a12a78ef272f5c2bb50c77a2ba59c73e4402301f0e28bf3ba64b1254cc709d23",
+    "approach_sha256": "05372f120e1b4f0e3533ca22e166cc5cc29f83280d9118fcf3da9113c50f6107",
+    "solution_variants_sha256": "752aebbe634a0117775f42f61d1ceecec7cb38b09712f98451d22c6b64256b0a",
+    "complexity_evidence_sha256": "1778db4126552450f96cfb2c8e3c185aa3eeea6650aaf08e494b1af38f69737f",
+    "cases_sha256": "093e2b67824cfac767bcbd38d6c1a02c6c186b750ca436b4dc5e45d184269386"
+  }
+}

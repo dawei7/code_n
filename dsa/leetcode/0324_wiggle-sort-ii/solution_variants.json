@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Wiggle Sort II and meets the required complexity bound.",
+      "summary": "Quickselects the median, then three-way partitions through virtual positions to alternate valleys and peaks.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

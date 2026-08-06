@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1176",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "space_complexity",
+        "severity": "material",
+        "reason": "Both protected sources initialize the first window with `sum(calories[:k])`. Python slicing materializes `k` list references, so those exact implementations use O(k) auxiliary space rather than the Optimal branch's required O(1). The inert candidate traverses the same first `k` positions with a generator, retaining only constant-size iterator and accumulator state."
+      },
+      {
+        "category": "candidate_quality",
+        "severity": "improved",
+        "reason": "The candidate keeps the canonical fixed-width sliding window and changes only the first-window traversal needed to satisfy the promised space bound. `window_sum`, `score`, `position`, and `right` make the running total, accumulated points, bounded initialization, and entering edge explicit. The strict threshold branches and entering-minus-leaving update remain immediately explainable, with no unnecessary abstraction or prohibited generic `index` binding."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The candidate scores the complete first window once, then advances `right` from `k` through the final array position. Each update adds the entering value and subtracts the value exactly `k` positions behind, preserving the current consecutive-window sum. The first window plus all `n-k` slides covers every valid start exactly once; strict comparisons correctly leave totals equal to either inclusive threshold unchanged and permit a negative final score."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent Python oracle recomputed every window with nested position-by-position addition. The oracle, protected app source, immutable native source, exact candidate, and independently written resumming control agreed on all 10 authored cases, 867,624 exhaustive schema-valid small inputs, and 10,000 deterministic random inputs generated with seed 1176. Random coverage included 876 `k = 1` inputs, 893 `k = n` inputs, 781 equal-threshold inputs, 924 arrays containing zero, 599 arrays containing 20,000, and positive, negative, and neutral final scores."
+      },
+      {
+        "category": "contract_boundary_runtime",
+        "severity": "verified",
+        "reason": "The source permits 100,000 days, and the visible maximum case uses `n = k = 100000`. A constant-space Python traversal can exceed the generic 100,000 traced-line safety guard despite terminating linearly, so lc_1176 now receives the existing finite 1,000,000-step validated-case allowance. The exact candidate completes that boundary correctly; the override is a safety allowance, not a complexity waiver, and the scaling gate remains unchanged."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1176, Python, and native entrypoint `Solution.dietPlanPerformance`. Fresh authenticated evidence confirms exact-length consecutive windows, start positions from zero through `n-k`, zero initial points, strict below/above scoring, inclusive equality as neutral, possible negative results, three explained examples, three constraints, and one sliding-window hint."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native source remains bound to verified submission 2067893784 and is unchanged. It and the protected app source retain identical first-window slicing, strict scoring branches, sliding update, and return behavior. The candidate changes only the allocation behavior of the first-window traversal; its values, subsequent data flow, function contract, and algorithm remain aligned with the Accepted implementation."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers scale day count from 32 through 128 to 512 while setting `k` to half the array length, a 16x span that makes explicit independent window resumming quadratic. Candidate passed every ordinary and benchmark output at a 1.51x largest runtime ratio and +0.11 relative growth exponent; protected passed at 0.99x/+0.01. The explicit O(nk) control passed all 13 outputs but failed only scaling at 84.33x/+1.34. benchmark.json remained byte-for-byte unchanged."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach describes the candidate's generator-based first-window traversal, strict threshold scoring, entering-minus-leaving update, and complete window coverage. It derives O(n) time and O(1) auxiliary space from that exact data flow, distinguishes the protected O(k)-space slice from the candidate, and covers independent resumming, prefix sums, equality, one-day and whole-array windows, and zero calories."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the complete scoring contract, negative-result note, all three source examples with their exact inputs, outputs, and explanations, all three constraints, and the single source hint. It adds no source-absent example, note, image, table, diagram, or follow-up section."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed three explained examples, three constraint bullets, one hint, no images or tables, and no separate follow-up section. source_fidelity.json binds every modular section to live statement hash aecd02114ae10279d31d6815fd53046b2799f368abaf9c42d727b05218926e78 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first three visible sample cases are the three authenticated source examples in source order, with exact input and output literals. They respectively cover one-day windows whose losses and gains cancel, a single whole-array gain, and overlapping gain-neutral-loss windows.",
+      "All 10 ordinary fixtures are visible samples or trials. Exact contract boundaries include `n = k = 1`, zero calories, zero thresholds, the maximum calorie value 20,000, and a 100,000-day whole-array window. Additional cases cover `k = 1`, `k = n`, both threshold equalities, positive and negative scores, every overlapping window gaining, and a single neutral window.",
+      "A nested-addition oracle recomputed every authored and benchmark expectation. Protected, native, candidate, and explicit resumming control agreed on all fixed outputs, 867,624 exhaustive small inputs, and 10,000 deterministic random inputs with seed 1176. The maximum legal case also verified the package-scoped finite trace allowance required by a conventional linear Python traversal.",
+      "The three hidden performance-only tiers use day count consistently as `size`, span 32 through 512, and set `k` to half the array length. Candidate passed at +0.11 and 1.51x. The explicit O(nk) control passed every ordinary and benchmark output but failed only scaling at +1.34 and 84.33x. benchmark.json remained byte-for-byte unchanged."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "d19ffa22f1d70f121521df18150b5bd6ed2cea70a951c487e4fbef088e383f6e",
+    "native_source_sha256": "48ce5e19c4544845f6bc75822baea700083ec9bfb49e015a89818b246e2557a6",
+    "approach_sha256": "eae759678b47050141b82622eb64f2fcd69854c7fc0265495acf4ba774039ae9",
+    "solution_variants_sha256": "852d79fa23eaa29d049e77635e72869656068facb88ac3b06dc701df0dc34f50",
+    "complexity_evidence_sha256": "ec35b8ab90d0f650998291d898aa5b3457ff4bf1ae1f8b02114bf1a0aa2d59ba",
+    "candidate_source_sha256": "f7ce74f2306ae34125df09a0913a2712d57d42209e99ff0be7ccbe0090412984",
+    "cases_sha256": "6f9d687998971ae7120c6c25c481d70d1afde6fb5467eeda9caaebc5e4e6d256"
+  }
+}

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Range Addition and meets the required complexity bound.",
+      "summary": "Marks each inclusive update at its two difference boundaries, then reconstructs the array with one prefix scan.",
       "time_complexity": "O(length + q)",
       "space_complexity": "O(length)"
     }

@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1259",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "material_candidate",
+        "severity": "corrected",
+        "reason": "The protected source correctly advances successive Catalan values, but it computes a fresh O(log M) modular inverse in every one of p iterations. The candidate evaluates the equivalent factorial closed form with one inverse, improving the stated bound from O(p log M) to O(p + log M) while retaining O(1) auxiliary space. This is a material algorithmic improvement, so it is staged separately; the protected app source, immutable Accepted native source, and submission manifest remain unchanged."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "verified",
+        "reason": "The candidate is compact but explicit: pair_count names the mathematical state, factorial and pair_factorial distinguish (2p)! from p!, denominator mirrors the closed form, and the single loop and final modular division each have one purpose. It uses conventional modular arithmetic without code golf, unnecessary abstraction, prohibited index binding, or hidden state."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Fixing one person's partner partitions every noncrossing pairing uniquely into two independent noncrossing arcs, yielding the Catalan recurrence and therefore C_p. The candidate computes the equal closed form (2p)! divided by p! squared and p+1. All factors are below the prime modulus, so the denominator is nonzero modulo M and Fermat's theorem supplies its inverse. Thus the returned residue is exactly the required noncrossing-pairing count modulo 10^9+7."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent quadratic split-DP oracle computed every Catalan value through p = 500. It, an exact integer binomial oracle, protected app source, immutable native source, candidate, and an independently structured rising-product factorial control agreed on all eight visible cases, all three final benchmark tiers, and every one of the 500 legal even inputs from 2 through 1000. A separate interval-pairing recursion explicitly enumerated the arrangements through fourteen people."
+      },
+      {
+        "category": "randomized_and_boundary_coverage",
+        "severity": "verified",
+        "reason": "A further 10,000 deterministic legal samples generated with seed 1259 all agreed across both independent oracles and all three repository sources. They included 5 minimum inputs, 17 maximum inputs, 355 values before modular reduction becomes necessary, and 9,645 values at or beyond that boundary. Fixed cases cover both source examples, p = 1, consecutive small Catalan values, a moderate exact count, the first Catalan number exceeding the modulus, and p = 500."
+      },
+      {
+        "category": "benchmark_calibration",
+        "severity": "corrected",
+        "reason": "The legacy tiers used only 2, 4, and 8 pairs and described exponential recursion rather than the principal quadratic split recurrence, so they were too small and targeted the wrong slower class. The final hidden tiers define size as pair count p = 50, 200, and 500, spanning 10x and reaching the legal maximum. Three repeated real-test runs accept protected, candidate, and independent same-class factorial controls. A correct symmetry-optimized O(p^2) split-DP control passes all eleven outputs but fails only scaling in every run, with extra-growth exponents +1.00 through +1.05 and largest runtime ratios 50.26x through 51.31x."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "The invented numPeople = 2 row was reclassified from sample to trial, the authenticated numPeople = 4 and 6 examples were placed first in source order, and the two hidden correctness rows became visible trials. A new visible modular-boundary case checks the first Catalan number above 10^9+7. All eight ordinary cases are visible samples or trials and every expected result was independently recomputed."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1259, Python as the primary language, and native entrypoint Solution.numberOfWays. Fresh authenticated evidence confirms an even numPeople from 2 through 1000, exactly numPeople / 2 handshakes pairing all people around a circle, the no-crossing condition, and reduction modulo 10^9+7."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected solve.py and immutable leetcode.py remain byte-for-byte bound to verified submission 2068023630. They perform identical successive-Catalan updates with the same modular factors and inverses; their only substantive wrapper difference is the app-local function versus native Solution.numberOfWays entrypoint. The factorial candidate remains inert and does not alter that Accepted evidence."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach was reviewed against the candidate target. It derives the Catalan recurrence from the unique partner split, proves both directions of the noncrossing decomposition, transforms the recurrence to the exact factorial closed form, explains the single Fermat inverse and its source-bound precondition, and matches the code's p = 1 handling. Complexity is accurately stated as O(p + log M) time and O(1) auxiliary space, with meaningful alternatives and boundary traps."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the circle, perfect-pairing, no-crossing, and modulo requirements; both exact source examples; the first example's complete explanation; both constraints; and all three hints in source order. Two accessible Markdown tables independently encode every pairing shown across the two provider images, preserving their information without copying either asset."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples, an explanation only for the first, two constraints, three hints, two source images, and no source tables, notes, or follow-up. source_fidelity.json binds all five modular Reference files to live-content SHA-256 6ba72a7473c885613feed9700bff04b14abb68f1ef450a46fa56c7be46181ea6 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples preserve the authenticated numPeople = 4 and numPeople = 6 source examples in order. The first retains its two-pairing explanation, and accessible tables preserve all seven arrangements shown by the two source images.",
+      "All eight ordinary fixtures are visible samples or trials covering the minimum p = 1, consecutive small Catalan values, a moderate exact value, the first count requiring modular reduction, and the maximum p = 500.",
+      "Independent split-DP and exact-binomial oracles agreed with protected, native, and candidate sources on the fixed suite, every legal even input, 10,000 seeded legal samples, and explicit interval-pairing enumeration through fourteen people.",
+      "The three hidden performance-only tiers use pair count p = 50, 200, and 500. Three repeated runs accept protected, candidate, and independent same-class controls, while the correct quadratic split-DP control passes every output and fails only scaling."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "af9aff533b7920c2d7e8ed71b6b683c180a1d95e30b381582c523b922b21e37b",
+    "native_source_sha256": "0dabe7337bf5b846ca7d587b4e73676ca25238c2b44b3ef72ee95d8c072fc92d",
+    "approach_sha256": "8468cf5124495a381f1ba888809d582ccd48dfaac73939f481c749d56d0c3da5",
+    "solution_variants_sha256": "9380e3f058e855ffd10f31877320cecae08917232923952cb8c9f56a6dfcad3e",
+    "complexity_evidence_sha256": "e0e7b6309c875d3a71e936e6cf26baa6d5026dc10ac028708ff957e21a7938aa",
+    "cases_sha256": "cb353fa9cddc0313d13c573c05620abe5d07e0ef84aa496ae812d7763b95e1c9",
+    "candidate_source_sha256": "013f6530915c522c33a68876daf9258b8b82da18ecd51937f9586d85db40718e"
+  }
+}

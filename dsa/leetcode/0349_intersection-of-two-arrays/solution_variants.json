@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Intersection of Two Arrays and meets the required complexity bound.",
+      "summary": "Builds a set from the shorter array and deduplicates matches found while scanning the longer array.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(\\min(n, m))"
     }

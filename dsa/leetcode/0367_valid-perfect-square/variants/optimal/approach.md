@@ -16,7 +16,7 @@ The candidate interval is halved on every iteration, so the search performs $O(\
 
 ## Alternatives and edge cases
 - **Newton iteration:** converges quickly to the integer square root and also uses constant space, but its update and stopping conditions are less direct.
-- **Subtract consecutive odd numbers:** uses the identity $1 + 3 + \ldots + (2r - 1) = r ^{2}$ but takes $O(\sqrt{num})$ iterations.
+- **Subtract consecutive odd numbers:** uses the identity $1 + 3 + \ldots + (2r - 1) = r^{2}$ but takes $O(\sqrt{num})$ iterations.
 - **Linear candidate scan:** is correct but also requires $O(\sqrt{num})$ time.
 - Input `1` is the smallest positive perfect square.
 - Values immediately below or above a large square must return false.

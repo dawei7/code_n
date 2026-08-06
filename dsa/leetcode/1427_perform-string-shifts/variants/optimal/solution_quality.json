@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1427",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is the canonical expert-interview implementation: it combines every operation into one signed right offset, normalizes once, handles the zero-offset slicing trap explicitly, and constructs one final rotation. Its names, control flow, and O(n+q) data flow are concise and immediately explainable, so no material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Every right shift adds and every left shift subtracts the same cyclic displacement applied to every character. Rotations compose additively, so the signed total has the same final character indices as sequential execution. Modulo len(s) selects the equivalent nonnegative right rotation; the suffix-plus-prefix slice realizes exactly that rotation, while the explicit zero branch returns the unchanged string."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent oracle applied each operation sequentially with its own per-operation modulo and slices. It, the protected app solution, exact immutable native Solution.stringShift implementation, a separately signed net-left control, and the correct direct per-operation control agreed on all eight visible cases and all three benchmark tiers."
+      },
+      {
+        "category": "randomized_validation",
+        "severity": "verified",
+        "reason": "Seed 1427 generated 5,000 source-valid inputs totaling 223,544 characters and 251,699 operations. Coverage included 556 single-character strings, 2,276 inputs with zero amounts, 526 all-left, 534 all-right, 3,940 mixed-direction, 1,804 net-zero-modulo-length, 1,973 negative-total, 2,002 positive-total, 4,137 with an amount at least the string length, and 4,198 with repeated characters; every implementation matched the sequential oracle."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "Across three real-test repetitions after calibration repair, the protected solution passed all eight ordinary cases, all three benchmark outputs, and scaling with extra growth exponent -0.02 through +0.04 and largest-tier ratio 0.99x through 1.09x. The independent net-left control also passed. The direct O(nq) per-operation slicer passed every output but failed only scaling each time, at +0.18 through +0.19 over the +0.15 limit."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "corrected",
+        "reason": "All three benchmark tiers remain hidden and performance-only, retain sizes 50, 100, and 200 for a 4x span, and define size consistently as S=n+q with n=q. The prior amount 100 was a full rotation at every tier, letting a sensible per-operation implementation normalize each row to zero and pass at +0.11 through +0.14. Changing only those legal amounts to 99 keeps every expected string and tier size unchanged while forcing q nontrivial length-n copies; the repaired benchmark reliably rejects the principal O(nq) alternative."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach now derives additive rotation composition, Python's nonnegative modulo normalization, the single suffix-prefix rotation, and the zero-offset guard. It states O(n+q) time and O(n) returned-string space and covers per-operation slicing, unit shifts, deque simulation, cancellation, negative totals, large and zero amounts, net zero, and single-character input."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "All eight ordinary cases are now visible samples or trials. The authenticated source has exactly two examples and both remain exact with their complete transformation sequences; the obsolete third sample is correctly labelled as a trial. Former hidden cases are visible, and trials cover full rotations, cancellation, a single character, large positive and negative totals, and the previously omitted legal zero-amount boundary."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1427 and Python as the active language. The reviewed artifacts preserve lowercase strings, nonempty string and operation bounds, two-entry rows, direction 0 as left and 1 as right, legal amounts from 0 through 100, sequential semantics, and the final-string return contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected solve.py and immutable leetcode.py bound to verified submission 2069064960 use the same signed sum, modulo, zero branch, and final slice, differing only in the required wrapper and type syntax. Both sources and submission.json remain byte-for-byte unchanged, no candidate exists, and no remote-Accepted evidence was altered or inferred."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed the string and shift model, exact left/right unit definitions, sequential return rule, exactly two examples with complete stepwise explanations, six constraints including zero amount, and two source-native hints, with no tables, images, diagrams, notes, or follow-up. source_fidelity.json binds five modular Reference files to live-content SHA-256 c5ac15ed319bbc8e7a4e51e0f0295f85a3a217e24a946b612a2ef35dbbeac0ce and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both authenticated source examples exactly, including every intermediate transformation in their explanations",
+      "left and right composition, exact cancellation, and a net negative signed total",
+      "full rotations, totals larger than the string, and modulo normalization",
+      "the legal zero-amount boundary and a single-character string",
+      "5,000 seeded source-valid inputs with all-left, all-right, mixed, zero, positive, negative, cancelling, large-amount, repeated-character, and single-character coverage",
+      "three hidden performance-only tiers spanning S=50 through S=200 with proven direct O(nq) per-operation discrimination"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "bbaf2c076b99b093c3c315ed8ba5e284fd769ccf13ceb644c319cab1a9dc4ccf",
+    "native_source_sha256": "b57a2ba57a1e07e0c22361d49f6acb845755bcdfb32a76ff0bf436cdd011fce1",
+    "approach_sha256": "451d8709bdbe3da470f7e0cadb619df3887fe7c42436f735e8ecd01f5b8a1346",
+    "solution_variants_sha256": "1b4fbe90f4318d0a43c82e36e2f36926a3f75a1abe83494f80337a3bca99a341",
+    "complexity_evidence_sha256": "c7c2001e410efd3432e7a0a7bc00d8101752c9b1edbc6377b7d502b3feb30815",
+    "cases_sha256": "e7e3bfb7bc010d6e7f774c004bf7da475147a3e27175ac4cbdd09785d9a7b38c"
+  }
+}

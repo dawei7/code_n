@@ -1,12 +1,6 @@
 ## Function Contract
 
-The app presents the persistent class operations as one equivalent batch call.
+**Class Interface**
 
-**Inputs**
-
-- `wordsDict`: The fixed string array used to initialize the data structure.
-- `queries`: The ordered `[word1, word2]` calls to `shortest`; each pair contains different words present in `wordsDict`.
-
-**Return value**
-
-Return the shortest distance for every query in the same order.
+- `WordDistance(wordsDict: List[str])`: Initializes the object with the list of strings `wordsDict` ($1 \le \text{wordsDict.length} \le 3 \times 10^4$).
+- `shortest(word1: str, word2: str) -> int`: Returns the minimum index distance $\lvert i - j \rvert$ between `word1` at index $i$ and `word2` at index $j$, where `word1 != word2`.

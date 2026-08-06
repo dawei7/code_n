@@ -2,12 +2,404 @@
   "schema_version": 1,
   "challenge_id": "lc_618",
   "cases": [
-    {"id": "sample-1", "name": "sample: unequal geography counts", "kind": "sample", "visible": true, "input": {"tables": {"Student": [{"name": "Jane", "continent": "America"}, {"name": "Pascal", "continent": "Europe"}, {"name": "Xi", "continent": "Asia"}, {"name": "Jack", "continent": "America"}]}}, "expected": {"columns": ["America", "Asia", "Europe"], "rows": [["Jack", "Xi", "Pascal"], ["Jane", null, null]]}, "tags": ["sample", "unbalanced"]},
-    {"id": "sample-2", "name": "sample: only Asia has students", "kind": "sample", "visible": true, "input": {"tables": {"Student": [{"name": "Bo", "continent": "Asia"}, {"name": "Ada", "continent": "Asia"}]}}, "expected": {"columns": ["America", "Asia", "Europe"], "rows": [[null, "Ada", null], [null, "Bo", null]]}, "tags": ["sample", "missing-columns"]},
-    {"id": "sample-3", "name": "sample: one student per continent", "kind": "sample", "visible": true, "input": {"tables": {"Student": [{"name": "Amy", "continent": "America"}, {"name": "Chen", "continent": "Asia"}, {"name": "Erik", "continent": "Europe"}]}}, "expected": {"columns": ["America", "Asia", "Europe"], "rows": [["Amy", "Chen", "Erik"]]}, "tags": ["sample", "balanced"]},
-    {"id": "trial-1", "name": "trial: input order differs from name order", "kind": "trial", "visible": true, "input": {"tables": {"Student": [{"name": "Zoe", "continent": "America"}, {"name": "Anna", "continent": "America"}, {"name": "Yuki", "continent": "Asia"}, {"name": "Bao", "continent": "Asia"}, {"name": "Vera", "continent": "Europe"}, {"name": "Dora", "continent": "Europe"}]}}, "expected": {"columns": ["America", "Asia", "Europe"], "rows": [["Anna", "Bao", "Dora"], ["Zoe", "Yuki", "Vera"]]}, "tags": ["trial", "ordering"]},
-    {"id": "trial-2", "name": "trial: Europe has the longest list", "kind": "trial", "visible": true, "input": {"tables": {"Student": [{"name": "A", "continent": "America"}, {"name": "B", "continent": "Asia"}, {"name": "C", "continent": "Europe"}, {"name": "D", "continent": "Europe"}, {"name": "E", "continent": "Europe"}]}}, "expected": {"columns": ["America", "Asia", "Europe"], "rows": [["A", "B", "C"], [null, null, "D"], [null, null, "E"]]}, "tags": ["trial", "null-padding"]},
-    {"id": "hidden-1", "name": "hidden: America has the longest list", "kind": "real", "visible": false, "input": {"tables": {"Student": [{"name": "Mia", "continent": "America"}, {"name": "Ava", "continent": "America"}, {"name": "Lia", "continent": "America"}, {"name": "Kai", "continent": "Asia"}, {"name": "Leo", "continent": "Europe"}, {"name": "Ana", "continent": "Europe"}]}}, "expected": {"columns": ["America", "Asia", "Europe"], "rows": [["Ava", "Kai", "Ana"], ["Lia", null, "Leo"], ["Mia", null, null]]}, "tags": ["hidden", "long-america"]},
-    {"id": "hidden-2", "name": "hidden: several ranks with asymmetric counts", "kind": "real", "visible": false, "input": {"tables": {"Student": [{"name": "A3", "continent": "America"}, {"name": "A1", "continent": "America"}, {"name": "A2", "continent": "America"}, {"name": "S2", "continent": "Asia"}, {"name": "S1", "continent": "Asia"}, {"name": "E1", "continent": "Europe"}, {"name": "E4", "continent": "Europe"}, {"name": "E3", "continent": "Europe"}, {"name": "E2", "continent": "Europe"}]}}, "expected": {"columns": ["America", "Asia", "Europe"], "rows": [["A1", "S1", "E1"], ["A2", "S2", "E2"], ["A3", null, "E3"], [null, null, "E4"]]}, "tags": ["hidden", "multiple-ranks"]}
+    {
+      "id": "sample-1",
+      "name": "sample: source unequal geography counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "name": "Jane",
+              "continent": "America"
+            },
+            {
+              "name": "Pascal",
+              "continent": "Europe"
+            },
+            {
+              "name": "Xi",
+              "continent": "Asia"
+            },
+            {
+              "name": "Jack",
+              "continent": "America"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "America",
+          "Asia",
+          "Europe"
+        ],
+        "rows": [
+          [
+            "Jack",
+            "Xi",
+            "Pascal"
+          ],
+          [
+            "Jane",
+            null,
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "unbalanced"
+      ]
+    },
+    {
+      "id": "trial-only-america",
+      "name": "trial: only America has students",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "name": "Bo",
+              "continent": "America"
+            },
+            {
+              "name": "Ada",
+              "continent": "America"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "America",
+          "Asia",
+          "Europe"
+        ],
+        "rows": [
+          [
+            "Ada",
+            null,
+            null
+          ],
+          [
+            "Bo",
+            null,
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "missing-continents",
+        "america-longest"
+      ]
+    },
+    {
+      "id": "trial-balanced",
+      "name": "trial: one student per continent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "name": "Amy",
+              "continent": "America"
+            },
+            {
+              "name": "Chen",
+              "continent": "Asia"
+            },
+            {
+              "name": "Erik",
+              "continent": "Europe"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "America",
+          "Asia",
+          "Europe"
+        ],
+        "rows": [
+          [
+            "Amy",
+            "Chen",
+            "Erik"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-input-order",
+      "name": "trial: input order differs from alphabetic order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "name": "Zoe",
+              "continent": "America"
+            },
+            {
+              "name": "Anna",
+              "continent": "America"
+            },
+            {
+              "name": "Yuki",
+              "continent": "Asia"
+            },
+            {
+              "name": "Bao",
+              "continent": "Asia"
+            },
+            {
+              "name": "Vera",
+              "continent": "Europe"
+            },
+            {
+              "name": "Dora",
+              "continent": "Europe"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "America",
+          "Asia",
+          "Europe"
+        ],
+        "rows": [
+          [
+            "Anna",
+            "Bao",
+            "Dora"
+          ],
+          [
+            "Zoe",
+            "Yuki",
+            "Vera"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "ordering",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-duplicate-rows",
+      "name": "trial: duplicate Student rows remain duplicate names",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "name": "Alex",
+              "continent": "America"
+            },
+            {
+              "name": "Alex",
+              "continent": "America"
+            },
+            {
+              "name": "Mei",
+              "continent": "Asia"
+            },
+            {
+              "name": "Rene",
+              "continent": "Europe"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "America",
+          "Asia",
+          "Europe"
+        ],
+        "rows": [
+          [
+            "Alex",
+            "Mei",
+            "Rene"
+          ],
+          [
+            "Alex",
+            null,
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicate-rows",
+        "null-padding",
+        "america-longest"
+      ]
+    },
+    {
+      "id": "trial-america-longest",
+      "name": "trial: America has the longest list",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "name": "Mia",
+              "continent": "America"
+            },
+            {
+              "name": "Ava",
+              "continent": "America"
+            },
+            {
+              "name": "Lia",
+              "continent": "America"
+            },
+            {
+              "name": "Kai",
+              "continent": "Asia"
+            },
+            {
+              "name": "Leo",
+              "continent": "Europe"
+            },
+            {
+              "name": "Ana",
+              "continent": "Europe"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "America",
+          "Asia",
+          "Europe"
+        ],
+        "rows": [
+          [
+            "Ava",
+            "Kai",
+            "Ana"
+          ],
+          [
+            "Lia",
+            null,
+            "Leo"
+          ],
+          [
+            "Mia",
+            null,
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "null-padding",
+        "america-longest"
+      ]
+    },
+    {
+      "id": "trial-asymmetric-ranks",
+      "name": "trial: several ranks with asymmetric counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "name": "A3",
+              "continent": "America"
+            },
+            {
+              "name": "A1",
+              "continent": "America"
+            },
+            {
+              "name": "A2",
+              "continent": "America"
+            },
+            {
+              "name": "A4",
+              "continent": "America"
+            },
+            {
+              "name": "S2",
+              "continent": "Asia"
+            },
+            {
+              "name": "S1",
+              "continent": "Asia"
+            },
+            {
+              "name": "E1",
+              "continent": "Europe"
+            },
+            {
+              "name": "E3",
+              "continent": "Europe"
+            },
+            {
+              "name": "E2",
+              "continent": "Europe"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "America",
+          "Asia",
+          "Europe"
+        ],
+        "rows": [
+          [
+            "A1",
+            "S1",
+            "E1"
+          ],
+          [
+            "A2",
+            "S2",
+            "E2"
+          ],
+          [
+            "A3",
+            null,
+            "E3"
+          ],
+          [
+            "A4",
+            null,
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "multiple-ranks",
+        "asymmetric-counts",
+        "america-longest"
+      ]
+    }
   ]
 }

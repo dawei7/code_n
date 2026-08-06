@@ -23,7 +23,7 @@ Any complete order for an interval has exactly one last balloon. Removing that f
 Conversely, combining optimal left and right suborders followed by the selected last burst is a legal order whose reward equals the recurrence candidate. Maximizing these exact constructions proves every DP entry, including the full padded interval, optimal.
 
 ## Complexity detail
-There are $O(n^2)$ open intervals and each tries $O(n)$ possible final balloons, giving $O(n^3)$ time. The interval table contains $O(n^2)$ values. Padding and loop variables are lower-order space.
+Let $n$ be the number of balloons. There are $O(n^2)$ open intervals and each tries $O(n)$ possible final balloons, giving $O(n^3)$ time. The interval table contains $O(n^2)$ values. Padding and loop variables are lower-order space.
 
 ## Alternatives and edge cases
 - **Enumerate every burst order:** explores up to $n!$ permutations.

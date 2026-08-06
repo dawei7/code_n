@@ -1,4 +1,5 @@
 ## General
+
 **Evaluate children before their parent**
 
 Build a child list for every node from `parent`. Traverse the tree in postorder without recursion: first record a root-first order with a stack, then process that order in reverse. For each node, combine its own value with the already computed sums of all children. At the same time, combine one for the node itself with the retained counts of its children.

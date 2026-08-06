@@ -1,7 +1,7 @@
 ## General
 **Fix the pivot before grouping other points**
 
-For each point `i`, compute the squared distance to every other point. Square roots are unnecessary because equal Euclidean distances have equal squared distances, and integer arithmetic stays exact.
+For each pivot point, compute the squared distance to every point. This includes the pivot itself, whose unique zero-distance entry cannot form a pair because all input points are distinct. Square roots are unnecessary because equal Euclidean distances have equal squared distances, and integer arithmetic stays exact.
 
 **Count points sharing each squared distance**
 

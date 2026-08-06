@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_431",
+    "frontend_id": "431",
+    "title_slug": "encode-n-ary-tree-to-binary-tree",
+    "url": "https://leetcode.com/problems/encode-n-ary-tree-to-binary-tree/description/",
+    "paid_only": true,
+    "content_sha256": "7c17a994c3ca1c02c55a14c80c9ae6c308bb1efea9cd01c65a0c666361b68219",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [1,null,3,2,4,null,5,6]",
+        "output": "[1,null,3,2,4,null,5,6]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]",
+        "output": "[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]",
+        "has_explanation": false
+      },
+      {"ordinal": 3, "input": "root = []", "output": "[]", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5277eb25b59ba22c6cdeb6844eba6910cb06d7fed86c60a6377d9078274e8926",
+      "reference/contract.md": "b09e8dd05da7c0ded289a9c9b56f9d9db8f66ee0aca8a6e5d747a90d10365cff",
+      "reference/examples.md": "e2a3bdceb7020c9182d5694eb1c97d326fe37f9d29ba9cbce77cad7caa5856fb",
+      "reference/constraints.md": "ce62f8e25bc710f40e86e154eb078021a17baefa79001582d1b3cb0f303f45b6"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

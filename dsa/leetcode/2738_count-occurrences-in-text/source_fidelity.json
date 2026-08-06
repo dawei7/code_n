@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2738",
+    "frontend_id": "2738",
+    "title_slug": "count-occurrences-in-text",
+    "url": "https://leetcode.com/problems/count-occurrences-in-text/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Three files contain valid `bull` occurrences; the second and third also contain valid `bear` occurrences.",
+        "output": "| word | count |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`Files = [(\"one.txt\", \" a bull bull bear bear z \")]`",
+        "output": "| word | count |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`Files = [(\"edges.txt\", \"bull starts while bears and bull. fail bear\")]`",
+        "output": "| word | count |",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c12a05237a69bee3a8cf88537e4d0bb4446132a176e4d8ba9b5e09684f5ceeb6",
+      "reference/contract.md": "20e674796679a6851cb5a3e473e00f9a03e13061eec4bb9ec954957580f0380a",
+      "reference/examples.md": "522465d41f2feb90ac0ae02d418ffc38564cc5109d1dd0b14ab28f49f093aa78",
+      "reference/constraints.md": "834d195cd243d3c4629c5b470c008cae1ce886bedd52b550b614ad88d1244c3c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

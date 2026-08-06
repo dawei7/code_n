@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1565",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution filters orders with invoice > 20, formats order_date to YYYY-MM month strings, and computes COUNT(order_id) as order_count and COUNT(DISTINCT customer_id) as customer_count per month. The query runs in O(r log r) time and O(r) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "WHERE invoice > 20 strictly excludes orders with invoice <= 20 before grouping, ensuring months with no qualifying orders are omitted. COUNT(DISTINCT customer_id) accurately counts unique customers per monthly group."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Filtering takes O(r) time. Grouping and computing distinct aggregates over r rows has a portable upper bound of O(r log r) time and O(r) auxiliary space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts Orders table and returns columns month (YYYY-MM format), order_count, and customer_count."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details WHERE clause pre-filtering, YYYY-MM month formatting, COUNT vs COUNT(DISTINCT) aggregate separation, and O(r log r) time / O(r) space bounds. Alternatives and edge cases cover separate year/month extraction, correlated monthly subqueries, conditional aggregation without filtering, strict invoice threshold enforcement, multi-order per customer counting, cross-month customer tracking, year-month distinction, empty qualifying months, and result ordering independence."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL (SQLite strftime) and native SQL (MySQL DATE_FORMAT) solutions both execute the identical WHERE invoice > 20 GROUP BY month aggregation query with SHA-256 digests be8abd4d5d344c1f189580dd5c65eec718745cfe1d1877e427c085c2022eb476 and 809ee0ff0c0a63ca01588f4ba67f9c53be49cbd53f4657ef8031948b045f8322. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Orders table interface, three examples, three constraints, and 2 local tables. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "be8abd4d5d344c1f189580dd5c65eec718745cfe1d1877e427c085c2022eb476",
+    "native_source_sha256": "809ee0ff0c0a63ca01588f4ba67f9c53be49cbd53f4657ef8031948b045f8322",
+    "approach_sha256": "bbd027da1e5b634a0abaa55c897cff7130a0a8f64734cbeb0323074e81ff6764",
+    "solution_variants_sha256": "dd86f96d7a24ae8bfae9c559afa47168f265408e81eafc5f4505a69eb2929b52",
+    "complexity_evidence_sha256": "124120f1b71aaec6941f88bccb4362016e779623f0ff43b2f129befd217ebdcb"
+  }
+}

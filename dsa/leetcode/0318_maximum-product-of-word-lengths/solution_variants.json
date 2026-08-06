@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Product of Word Lengths and meets the required complexity bound.",
+      "summary": "Compresses each letter set into a bitmask and compares only the longest word for each mask.",
       "time_complexity": "O(C + n^2)",
       "space_complexity": "O(n)"
     }

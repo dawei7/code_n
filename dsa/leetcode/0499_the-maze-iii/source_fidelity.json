@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_499",
+    "frontend_id": "499",
+    "title_slug": "the-maze-iii",
+    "url": "https://leetcode.com/problems/the-maze-iii/description/",
+    "paid_only": true,
+    "content_sha256": "6700aa69292c68806569d0dff0b8212aae31d8fd96af050df3b217c061a49259",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [0,1]",
+        "output": "\"lul\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [3,0]",
+        "output": "\"impossible\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "maze = [[0,0,0,0,0,0,0],[0,0,1,0,0,1,0],[0,0,0,0,1,0,0],[0,0,0,0,0,0,1]], ball = [0,4], hole = [3,5]",
+        "output": "\"dldr\"",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 10,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e2d17e692b807a3866870e31e4ab9452a3e051036a3bab40f18006a1b1aa72d2",
+      "reference/contract.md": "9b21831749b9f4d24a7e9f3f20465cbdb1633c361724759ae18410e04f5548e4",
+      "reference/examples.md": "99edc69f24ba919e8c391b820b3234663bef596f8d7750ae06aa5fca54d8c9a8",
+      "reference/constraints.md": "69a27b33b2cbccce5a076a165c8a9c7204b72516fde8f12b03703501e976b964"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

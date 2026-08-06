@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1086",
+    "frontend_id": "1086",
+    "title_slug": "high-five",
+    "url": "https://leetcode.com/problems/high-five/description/",
+    "paid_only": true,
+    "content_sha256": "84d292413c8e1defca223b1a88cd04dfa2f2ebd14a77ce71d3c63107a141c477",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "items = [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]",
+        "output": "[[1,87],[2,88]]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "items = [[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100]]",
+        "output": "[[1,100],[7,100]]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "82778e3437ceb690e2e456fd07ef3b80dce0f5604e83486646a52bf87ed81ebe",
+      "reference/contract.md": "7b93db44e0d2deb33895b9cbeb331beb64d2abb399c1fe6aef1a130d4d4150b2",
+      "reference/examples.md": "e1c4bcb9aa4e430940088b6779268d3d435516d2995b4d64acba4258cc6be7b9",
+      "reference/constraints.md": "06ac3d136d005c8788f111a5eb082b9af419bc9f46dbc21ba6404083cb53c1c2",
+      "reference/hints.md": "01b383959db39bebbd6f3c4a0715daf24c7f093a4f681f72b18d79f7a51577c5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -7,6 +7,7 @@ same list, so switching views never requires another challenge request.
 """
 from __future__ import annotations
 
+import ast
 import json
 import urllib.error
 import urllib.request
@@ -25,6 +26,8 @@ from server.app.challenge_sets import (
 )
 from server.app.challenge_packages import (
     leetcode_guided_example_path,
+    leetcode_solution_path,
+    leetcode_template_path,
     leetcode_solution_variants_status,
     leetcode_submission_manifest_path,
 )
@@ -73,11 +76,53 @@ def _custom_starter_sources(reference_metadata: dict) -> dict[str, str]:
     }
 
 
+def extract_leetcode_starter(source: str, language: str = "python") -> str:
+    if not source or not source.strip():
+        return ""
+    if language != "python":
+        return source
+    try:
+        tree = ast.parse(source)
+    except SyntaxError:
+        return source
+    lines = source.splitlines()
+    solution_node = None
+    for node in tree.body:
+        if isinstance(node, ast.ClassDef) and node.name == "Solution":
+            solution_node = node
+            break
+    if not solution_node:
+        return source
+    prefix_lines = lines[:solution_node.lineno - 1]
+    solution_lines = [lines[solution_node.lineno - 1]]
+    for item in solution_node.body:
+        if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            fn_start = item.lineno - 1
+            fn_lines = []
+            for i in range(fn_start, len(lines)):
+                fn_lines.append(lines[i])
+                if lines[i].rstrip().endswith(":"):
+                    break
+            solution_lines.extend(fn_lines)
+            indent = " " * (item.body[0].col_offset if item.body else item.col_offset + 4)
+            solution_lines.append(f"{indent}pass")
+    return "\n".join(prefix_lines + solution_lines).strip() + "\n"
+
+
 def _starter_source_for(spec, language: str = "python") -> str:
     reference_metadata = getattr(spec, "reference_metadata", {}) or {}
     custom_sources = _custom_starter_sources(reference_metadata)
     if language in custom_sources:
         return custom_sources[language]
+    template_path = leetcode_template_path(spec.id, language)
+    if template_path and template_path.is_file():
+        return template_path.read_text(encoding="utf-8")
+    sol_path = leetcode_solution_path(spec.id, language)
+    if sol_path and sol_path.is_file():
+        source = sol_path.read_text(encoding="utf-8")
+        starter = extract_leetcode_starter(source, language)
+        if starter.strip():
+            return starter
     return _solution_template(
         spec.id,
         heading=f"{spec.id}: {spec.name}",
@@ -86,6 +131,7 @@ def _starter_source_for(spec, language: str = "python") -> str:
     )
 
 
+@lru_cache(maxsize=4096)
 def _submission_summary(challenge_id: str) -> tuple[str, str, bool]:
     path = leetcode_submission_manifest_path(challenge_id)
     if path is None or not path.is_file():
@@ -145,6 +191,12 @@ def _solution_variant_details(
         status.elo_source,
         status.simplified_elo_ceiling,
     )
+
+
+@lru_cache(maxsize=4096)
+def _has_guided_example(challenge_id: str) -> bool:
+    path = leetcode_guided_example_path(challenge_id)
+    return bool(path and path.is_file())
 
 
 def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
@@ -240,10 +292,7 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
         supported_languages=[primary_language],
         primary_language=primary_language,
         runnable_in_coden=category_is_runnable(reference_metadata),
-        has_guided_example=bool(
-            (guided_example_path := leetcode_guided_example_path(spec.id))
-            and guided_example_path.is_file()
-        ),
+        has_guided_example=_has_guided_example(spec.id),
         leetcode_submission_status=submission_status,
         leetcode_submission_language=submission_language,
         leetcode_submission_paid_only=submission_paid_only,

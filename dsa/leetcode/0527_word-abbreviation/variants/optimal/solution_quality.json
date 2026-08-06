@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_527",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source is an expert-quality linear trie solution: a precise collision signature partitions independent words, per-prefix counts locate the first distinguishing character, and one final omitted-length check implements the no-longer abbreviation rule. Its two-pass structure and algorithmic names are direct, so no inert candidate is materially justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 527 and its Python list-of-words to list-of-abbreviations contract. The source preserves input order, uses only the source's legal abbreviation shape, extends prefixes just enough for uniqueness, and returns the original word whenever no character is saved."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2065235829. It and the protected app source have identical TrieNode fields, `(length, first, last)` group roots, insertion counts, first-count-one traversal, omitted-character calculation, original-word threshold, formatted abbreviation, and output order; only the native class/type wrapper differs."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The single-signature workloads contain 16, 64, and 256 fixed-length words with long shared prefixes; total characters span 224 to 3584. The protected source passed all 10 correctness cases and all three performance tiers, including both legal 400 boundaries. A correct pairwise common-prefix control passed every output but failed only the runtime verdict with relative growth exponent +1.03 and a 43.21x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The current-targeted Approach exactly proves the collision signature, trie count meaning, minimal first-unique prefix, equivalence to repeated simultaneous extension, and safety of returning digit-free original words. It defines total input characters and accounts for grouping, both trie passes, output construction, and storage in O(S) time and space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves the three abbreviation rules in order, the shared-prefix progression example, both source input/output examples, all four constraints, distinct-word guarantee, and same-order output contract without inventing extra canonical examples."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples now appear first and in source order with their exact word lists and outputs. The missing [aa, aaa] example was restored.",
+      "The two invented samples were relabelled as trials, both formerly hidden correctness cases are now visible trials, and every dictionary contains distinct lowercase English words.",
+      "Boundaries cover one and 400 words, word lengths 2 and 400, a 398-character omitted count, singleton and multiword dictionaries, and unchanged versus abbreviated results.",
+      "Material semantics cover collision groups, different lengths and endpoints, a long common prefix that leaves no saving, minimal distinguishing prefixes, short words, multiple independent groups, unique output strings, and preservation of unsorted input order.",
+      "An independent grouped pairwise-prefix oracle verified all ten correctness cases and all three benchmark outputs. The protected implementation also agreed across 1,956 exhaustive collision dictionaries and 1,000 randomized legal dictionaries.",
+      "All ten correctness cases are visible samples or trials; the unchanged 224-, 896-, and 3,584-character single-signature workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "55381dee470d961cbe08f10e918deef88fad80b7d33578d45a6b67fea4fbad89",
+    "native_source_sha256": "a73524b4f9e263cf4c1597b36b2ab5013d0e9477e78bffec7ddf273a7c1ae38f",
+    "approach_sha256": "4c8edf18724327e5102276d52fe369ab6ca1c4515784d5ddadf52ec82a30071f",
+    "solution_variants_sha256": "1a2a8a4ed6a7dc18b717be12e3ebbd3b822a5ef7bdaef9fd4f11685f97dbad14",
+    "complexity_evidence_sha256": "000bab7f1fa2d2982ced3b22e28380102d2ea716c3510e8842d09e5055bd15ce",
+    "cases_sha256": "3f994829dff6ea641159d397a40344336804997d23cac06a84e58a4d437f5ce6"
+  }
+}

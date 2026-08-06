@@ -39,7 +39,9 @@
       },
       "expected": "North America",
       "tags": [
-        "sample"
+        "sample",
+        "source-example-1",
+        "cousins"
       ]
     },
     {
@@ -79,13 +81,15 @@
       },
       "expected": "Earth",
       "tags": [
-        "sample"
+        "sample",
+        "source-example-2",
+        "root-answer"
       ]
     },
     {
-      "id": "sample-ancestor",
-      "name": "sample: one query contains the other",
-      "kind": "sample",
+      "id": "trial-ancestor",
+      "name": "one query region contains the other",
+      "kind": "trial",
       "visible": true,
       "input": {
         "regions": [
@@ -119,12 +123,13 @@
       },
       "expected": "North America",
       "tags": [
-        "sample"
+        "ancestor-answer",
+        "self-containment"
       ]
     },
     {
-      "id": "trial-siblings",
-      "name": "trial: direct siblings",
+      "id": "trial-siblings-minimum-list-count",
+      "name": "direct siblings with the minimum number of region lists",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,6 +138,10 @@
             "A",
             "B",
             "C"
+          ],
+          [
+            "B",
+            "D"
           ]
         ],
         "region1": "B",
@@ -140,12 +149,14 @@
       },
       "expected": "A",
       "tags": [
-        "trial"
+        "direct-siblings",
+        "minimum-list-count",
+        "minimum-name-length"
       ]
     },
     {
-      "id": "trial-deep",
-      "name": "trial: unequal depths",
+      "id": "trial-unequal-depths",
+      "name": "ancestor answer with unequal query depths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -169,14 +180,15 @@
       },
       "expected": "B",
       "tags": [
-        "trial"
+        "unequal-depths",
+        "ancestor-answer"
       ]
     },
     {
-      "id": "real-spaces",
-      "name": "hidden: names containing spaces",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-names-with-spaces",
+      "name": "complete region names containing spaces remain opaque",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "regions": [
           [
@@ -194,14 +206,16 @@
       },
       "expected": "Whole World",
       "tags": [
-        "real"
+        "spaces",
+        "opaque-names",
+        "root-answer"
       ]
     },
     {
-      "id": "real-two-branches",
-      "name": "hidden: deeper independent branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep-independent-branches",
+      "name": "deep independent branches meet only at the root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "regions": [
           [
@@ -211,27 +225,155 @@
           ],
           [
             "A",
-            "A1"
+            "Aa"
           ],
           [
-            "A1",
-            "A2"
+            "Aa",
+            "Ab"
           ],
           [
             "B",
-            "B1"
+            "Ba"
           ],
           [
-            "B1",
-            "B2"
+            "Ba",
+            "Bb"
           ]
         ],
-        "region1": "A2",
-        "region2": "B2"
+        "region1": "Ab",
+        "region2": "Bb"
       },
       "expected": "R",
       "tags": [
-        "real"
+        "deep-branches",
+        "root-answer"
+      ]
+    },
+    {
+      "id": "trial-root-is-query",
+      "name": "the root itself is one queried region",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "Root",
+            "Left",
+            "Right"
+          ],
+          [
+            "Left",
+            "Leaf"
+          ]
+        ],
+        "region1": "Root",
+        "region2": "Leaf"
+      },
+      "expected": "Root",
+      "tags": [
+        "root-query",
+        "self-containment"
+      ]
+    },
+    {
+      "id": "trial-unordered-groups",
+      "name": "child groups may appear before their parent group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ],
+          [
+            "B",
+            "E"
+          ]
+        ],
+        "region1": "D",
+        "region2": "E"
+      },
+      "expected": "A",
+      "tags": [
+        "unordered-groups",
+        "cousins"
+      ]
+    },
+    {
+      "id": "trial-maximum-group-length",
+      "name": "a containing region has the maximum nineteen direct children",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "Root",
+            "Ca",
+            "Cb",
+            "Cc",
+            "Cd",
+            "Ce",
+            "Cf",
+            "Cg",
+            "Ch",
+            "Ci",
+            "Cj",
+            "Ck",
+            "Cl",
+            "Cm",
+            "Cn",
+            "Co",
+            "Cp",
+            "Cq",
+            "Cr",
+            "Cs"
+          ],
+          [
+            "Ca",
+            "Leaf"
+          ]
+        ],
+        "region1": "Cb",
+        "region2": "Cs"
+      },
+      "expected": "Root",
+      "tags": [
+        "maximum-group-length",
+        "wide-tree",
+        "direct-siblings"
+      ]
+    },
+    {
+      "id": "trial-maximum-name-length",
+      "name": "twenty-letter region names remain complete keys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "ABCDEFGHIJKLMNOPQRST",
+            "abcdefghijklmnopqrst",
+            "Z"
+          ],
+          [
+            "abcdefghijklmnopqrst",
+            "Leaf"
+          ]
+        ],
+        "region1": "abcdefghijklmnopqrst",
+        "region2": "Leaf"
+      },
+      "expected": "abcdefghijklmnopqrst",
+      "tags": [
+        "maximum-name-length",
+        "case-sensitive",
+        "ancestor-answer"
       ]
     }
   ]

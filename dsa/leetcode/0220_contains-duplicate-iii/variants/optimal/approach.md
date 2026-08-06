@@ -15,7 +15,9 @@ The explicit neighbor difference check is necessary because adjacent buckets can
 
 **Window timing**
 
-When processing index `i`, the active buckets contain earlier indices from `i - indexDiff` through $i - 1$, so distance exactly `indexDiff` is included. Removing `nums[i - indexDiff]` after the current comparisons keeps it available for index `i` but excludes it before index $i + 1$. For `indexDiff = 0`, each value is inserted and immediately removed, so no value can pair with itself.
+When processing index `i`, the active buckets contain earlier indices from `i - indexDiff` through $i - 1$, so distance
+exactly `indexDiff` is included. Removing `nums[i - indexDiff]` after the current comparisons keeps it available for
+index `i` but excludes it before index $i + 1$.
 
 Negative values require floor-consistent bucket ids. Python's `//` already floors; languages whose integer division truncates toward zero need an adjusted bucket formula, otherwise values around zero may be grouped inconsistently.
 
@@ -25,8 +27,10 @@ Every stored value has an index within the allowed window. If the algorithm acce
 Each index performs a constant number of expected $O(1)$ dictionary operations, giving expected $O(n)$ time. The active dictionary contains at most `indexDiff` prior values, bounded by `n`, so space is $O(\min(n, indexDiff))$.
 
 ## Alternatives and edge cases
-- An ordered multiset over the active window can find a value in `[x - valueDiff, x + valueDiff]` in $O(\log k)$ time.
-- Comparing against every active value costs $O(n \cdot indexDiff)$ in the worst case.
-- Truncating negative division without adjustment breaks bucket adjacency reasoning.
-- `valueDiff = 0` reduces to nearby equality; `indexDiff = 0` always returns false.
-- Use a wide enough numeric type for differences and `valueDiff + 1` in fixed-width languages.
+- **Ordered multiset:** Searching the active window for a value in `[x - valueDiff, x + valueDiff]` takes
+  $O(\log(\texttt{indexDiff}))$ time per position.
+- **Active-window scan:** Comparing against every active value costs $O(n \cdot \texttt{indexDiff})$ in the worst case.
+- **Negative division:** Truncating toward zero without adjustment breaks the bucket-adjacency reasoning.
+- **Zero value tolerance:** `valueDiff = 0` reduces the value condition to nearby equality.
+- **Smallest index window:** The legal minimum `indexDiff = 1` restricts comparisons to adjacent positions.
+- **Fixed-width arithmetic:** Differences and `valueDiff + 1` require a sufficiently wide numeric type.

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2676",
+  "language": "javascript",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected JavaScript solution implements function throttling with leading execution and latest-only trailing execution using state flags (waiting, pending) and setTimeout. The first call executes fn immediately and sets a timer for interval t. Calls during waiting store latest context and args in pending; when timer fires, if pending exists, fn is invoked with pending args and a new timer is scheduled. The solution runs in O(1) time per call and O(1) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Clearing pending before invoking fn ensures reentrant calls are not erased. Starting a new timer interval upon executing a trailing call satisfies the requirement that trailing executions begin a full new window."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Each invocation and timer callback executes in O(1) time and maintains O(1) auxiliary closure state. Complexity evidence is certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts function fn and throttle interval t, returning a throttled function with immediate leading and latest-only trailing execution semantics."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details closure state (waiting, pending), leading call execution, timer callback release logic, receiver forwarding, and O(1) time / O(1) space bounds. Alternatives and edge cases cover dropping blocked calls, queuing blocked calls, empty argument arrays, trailing execution interval resets, and receiver preservation."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App JavaScript and native JavaScript solutions both execute the identical throttle timer closure algorithm with SHA-256 digests 65d65e76f6eface7ee3840c50d68520dca232e18395e5eaa934cc2c4b55678f4 and b94368e0a2548257427af1387cc85a48e6acd51d18f31cfc09a3ee6d3959e89a. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed fn and t interface, three examples, four constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "65d65e76f6eface7ee3840c50d68520dca232e18395e5eaa934cc2c4b55678f4",
+    "native_source_sha256": "b94368e0a2548257427af1387cc85a48e6acd51d18f31cfc09a3ee6d3959e89a",
+    "approach_sha256": "16ac0d182e404cdc2c066dfe0e5ccf8154bc798652c2364dbcb079b54648968b",
+    "solution_variants_sha256": "8f90c41b3f9f14b112984b06bc0ccb6ff28dc0c792755d044aa16fcb29c5c684",
+    "complexity_evidence_sha256": "9ec7a97ca1ba01d1057894d500bc5486fb9bca956a64254a822d5d3080904cb8"
+  }
+}

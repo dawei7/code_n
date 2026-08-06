@@ -1,7 +1,7 @@
 ## General
 **Prove impossible multiplicities before exploring paths**
 
-Count characters in the board and target. If any target multiplicity exceeds the board's supply, no path can exist and exponential search is unnecessary. Also reject when the word is longer than the number of cells.
+Count characters in the board and target. If any target multiplicity exceeds the board's supply, no path can exist and exponential search is unnecessary. This comparison also rejects a word longer than the number of cells because its total required multiplicity cannot fit.
 
 A valid path can be traversed in reverse. Therefore, if the word's final character occurs less often on the board than its first character, reverse the search word. This preserves existence while reducing the number of starting cells and often the early branching factor.
 

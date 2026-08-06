@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_1272",
-  "measurement_note": "Size is the number n of input and retained output intervals. Appending during one sweep is linear; repeatedly inserting each retained interval at the front shifts the growing result and is quadratic.",
+  "measurement_note": "Size is the number n of input and retained output intervals. Appending during one sweep is linear; rebuilding the accumulated result with answer = answer + pieces copies a growing list per input interval and is quadratic.",
   "cases": [
     {
       "id": "benchmark-scale-512",

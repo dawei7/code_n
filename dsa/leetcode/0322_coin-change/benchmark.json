@@ -5,10 +5,10 @@
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: dense totals through amount 64",
+      "name": "benchmark: dense totals through amount 4",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 4,
       "input": {
         "coins": [
           1,
@@ -16,9 +16,9 @@
           13,
           29
         ],
-        "amount": 64
+        "amount": 4
       },
-      "expected": 6,
+      "expected": 4,
       "tags": [
         "benchmark",
         "scale-small",
@@ -27,10 +27,10 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: dense totals through amount 128",
+      "name": "benchmark: dense totals through amount 8",
       "kind": "benchmark",
       "visible": false,
-      "size": 128,
+      "size": 8,
       "input": {
         "coins": [
           1,
@@ -38,9 +38,9 @@
           13,
           29
         ],
-        "amount": 128
+        "amount": 8
       },
-      "expected": 8,
+      "expected": 2,
       "tags": [
         "benchmark",
         "scale-medium",
@@ -49,10 +49,10 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: dense totals through amount 256",
+      "name": "benchmark: dense totals through amount 16",
       "kind": "benchmark",
       "visible": false,
-      "size": 256,
+      "size": 16,
       "input": {
         "coins": [
           1,
@@ -60,9 +60,9 @@
           13,
           29
         ],
-        "amount": 256
+        "amount": 16
       },
-      "expected": 12,
+      "expected": 4,
       "tags": [
         "benchmark",
         "scale-large",

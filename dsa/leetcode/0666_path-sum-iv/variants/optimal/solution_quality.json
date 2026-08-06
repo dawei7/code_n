@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_666",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is compact, conventional, and interview-ready. Its values map directly represents the encoded tree, while depth, position, path_sum, left, and right expose every structural role without an unnecessary node class, recursion, or generic local names."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Decoding each number by depth and level-relative position gives every real node a unique key. The child formulas reproduce the full-binary-tree positions, and traversal begins at the root while carrying the sum of exactly the visited prefix. A node contributes only when neither child key exists, so every root-to-leaf path is added once at its unique leaf and no internal prefix is counted separately."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 666, Python, and the native pathSum(nums) interface. The app-local solve(nums) adapter preserves the sorted unique three-digit encoding, one-based depth and within-level position digits, node-value digit, connected binary-tree interpretation, and integer total of all root-to-leaf path sums."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065537389 are algorithmically identical: both decode the same key-value map, traverse from (1, 1) with an accumulated sum, derive the same child positions, identify leaves by absent child keys, and accumulate completed paths. Their only structural difference is the required Solution.pathSum wrapper and app-local annotation."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged three-tier workload covers the complete legal nontrivial tree scales from 3 through 15 encoded nodes, forcing every key and leaf path to be processed. A fresh real-test run of the exact protected source passed all 10 correctness cases and all three performance tiers with relative growth exponent -0.00 and a 1.01x largest runtime ratio. An independently written correct control that linearly rescans the encodings for every node and child passed all 13 outputs but failed only scaling with relative growth exponent +0.52. The existing calibration therefore distinguishes direct hash lookup from quadratic repeated search within the complete legal domain and was not edited."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the positional key, child formulas, carried path sum, leaf test, and one-contribution-per-leaf argument. Its expected O(N) time and O(N) storage claims match the hash-map traversal, protected implementation, and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "reviewed",
+        "reason": "The legacy document was replaced by a composition anchor and four modular Reference sections. The independent narrative preserves the depth-position-value encoding, ascending connected-tree guarantee, root-to-leaf aggregation, both source examples and explanations, all four constraints, and the information in both source tree images through accessible Mermaid diagrams."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated live Premium evidence verified the statement structure, encoding semantics, exactly two examples with explanations and diagrams, and all four constraints. The modular Reference is bound to source content hash ca49bb482ee8d05aef38bf49a92d2306aaa633369ad4a1cdb0e842b5671d4b01 and every composed local section through source_fidelity.json; direct validation returns verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact ascending encodings, outputs, explanations, and tree structures now appear first and in source order; the invented [111] example was removed from the source sample sequence and replaced by a stronger minimum-encoding trial.",
+      "All ordinary correctness checks are visible samples or trials. The former hidden zero-value and depth-four chain checks were exposed, leaving no correctness behavior concealed in cases.json.",
+      "Contract boundaries cover one and fifteen encoded nodes, the minimum 110 and maximum 489 encodings, depths one and four, within-level positions one and eight, and node values zero and nine. Every authored array is ascending and represents a valid connected tree.",
+      "Material structures cover zero-valued real nodes, complete trees, one-sided left and right chains, shared ancestors contributing to multiple paths, sparse branches on both sides, and leaves at unequal depths.",
+      "Expected results were checked by an independent leaf-to-root path reconstruction oracle across all 676 legal depth-four shapes, 2704 structured value assignments, and 5000 seeded random encodings. Both protected app and immutable native forms agreed on all authored cases and benchmarks.",
+      "All ten ordinary cases are visible. The unchanged complete 3, 7, and 15-node trees remain hidden and performance-only in benchmark.json, span 5x, and make the correct repeated-scan control fail only the scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "3a4e2c3f5d5c1c15f4fa02859a89f489dc3eb47e99c8a8a09270bc8219806978",
+    "native_source_sha256": "b655e73f44fa769032d92dd40028bed2d60f4ec4aaf521f44d87cbdbae3a7aef",
+    "approach_sha256": "6cb7a93b0eabd6737c5b5be8b6709d1419ffbb538d89369f914d9370720390bb",
+    "solution_variants_sha256": "2dbf7cf7b93d8c0057c82c504e8360062a5eaf5f6987e05f2ad43276465f38b2",
+    "complexity_evidence_sha256": "9fcfa901e0f8432909916b5d576a803d5a06023d9d4cfcb21bcc1ff4fc93d504",
+    "cases_sha256": "0bfb0ea98f3c0c7b49749a35b27cf098179492c7cfcf2383e2d66577ad40d122"
+  }
+}

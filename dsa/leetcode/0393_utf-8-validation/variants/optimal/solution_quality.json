@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_393",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical continuation-debt state machine. The remaining counter, ordered prefix masks, immediate rejection paths, and final zero-debt check map directly to the structural UTF-8 contract while using constant state. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 393 and its Python validUtf8 surface. The Reference preserves all one- through four-byte prefix shapes, continuation semantics, least-significant-eight-bit note, both source examples and explanations, the octet-pattern table, and both constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064689129. Its continuation handling, leader masks, debt assignments, invalid-prefix rejection, and final completeness check are exactly the protected app-local algorithm apart from the LeetCode wrapper and annotation."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 64-, 192-, and 512-byte ASCII tiers span 8x and force a complete accepting scan. The current source passes all 11 executions at -0.01 relative growth and 0.95x; a correct validator with explicit front-deletion shifts passes every benchmark output but fails only scaling at +1.12 and 175.45x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the continuation-byte debt, classifies every legal leader, proves complete partitioning through the final zero check, states O(n) time and O(1) space, and explicitly avoids stronger Unicode semantic checks outside the requested scope."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including the source octet-pattern table, both examples with full byte-level explanations, the least-significant-eight-bit note, structural-only validation scope, and both constraints."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "85550f0cebc6d205db611c6f0c809455a3c883d22e0965c180fbf44d60d02f31",
+    "native_source_sha256": "924781de13400ce68963d838b52d22007988539553af9ac570aa3ae0523977da",
+    "approach_sha256": "f4409c069e7c8c56ce3e8b03637550a39c81d09678d24e775d3a96d2a0e70cba",
+    "solution_variants_sha256": "77b085258285a4ab226b69496f543cb2aec4fd5b62238c32570066bc3493dda8",
+    "complexity_evidence_sha256": "d9473451f097bdb4a70cc2491a444d53855b96fde2d50023ef1bc673c51caebb"
+  }
+}

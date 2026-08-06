@@ -20,7 +20,7 @@ Every update performed by the algorithm corresponds to one triple `(i,t,j)` with
 Conversely, every nonzero term in the dense product has a nonzero first factor, so the outer scan reaches `(i,t)`, and a nonzero second factor, so `(j, mat2[t][j])` appears in that row's list. The algorithm adds every potentially nonzero term once. Omitted terms contain a zero factor and would add nothing, proving the resulting matrix exact.
 
 ## Complexity detail
-Scanning both inputs to find nonzero entries costs $O(mk + kn)$. Let `z` be the number of compatible nonzero factor pairs actually multiplied; propagation costs $O(z)$, for total $O(mk + kn + z)$. The second-matrix index uses at most $O(kn)$ auxiliary space; the required `m × n` result is output storage.
+Scanning both inputs to find nonzero entries costs $O(mk + kn)$. Let $z$ be the number of compatible nonzero factor pairs actually multiplied; propagation costs $O(z)$, for total $O(mk + kn + z)$. The second-matrix index uses at most $O(kn)$ auxiliary space; the required $m \times n$ result is output storage.
 
 ## Alternatives and edge cases
 - **Dense triple loop:** always performs $O(mkn)$ factor checks even when almost all entries are zero.

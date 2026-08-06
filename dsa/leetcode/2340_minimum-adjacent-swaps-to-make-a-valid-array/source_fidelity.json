@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2340",
+    "frontend_id": "2340",
+    "title_slug": "minimum-adjacent-swaps-to-make-a-valid-array",
+    "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to-make-a-valid-array/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums = [3, 4, 5, 5, 3, 1]`",
+        "output": "`6`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums = [9]`",
+        "output": "`0`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "65d90606dbab7a6bf07680189f92c29f67e9f1b67fe247e954a7443ce0e2b218",
+      "reference/contract.md": "2e26e220dedb664f76da02f8d3894b20ae29e9e00d9e47fd7c945b5eaa5fc861",
+      "reference/examples.md": "393dc5cf377c1da1bb8c5ed86b4ff6280a08e0be51c7d4a0626145abd4fb99bf",
+      "reference/constraints.md": "0e8124ac4b6e0ba49d83172384e3a4f78dea12449b363d746ea8cc64e73f4ed2"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

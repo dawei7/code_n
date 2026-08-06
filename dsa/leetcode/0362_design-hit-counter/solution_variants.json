@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Hit Counter and meets the required complexity bound.",
+      "summary": "Aggregates hits in a fixed 300-second timestamp ring, resetting slots when later cycles reuse them.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

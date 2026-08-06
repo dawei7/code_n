@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1294",
+    "frontend_id": "1294",
+    "title_slug": "weather-type-in-each-country",
+    "url": "https://leetcode.com/problems/weather-type-in-each-country/description/",
+    "paid_only": true,
+    "content_sha256": "17eaf1a3868e7377c019d26b67fbe7bd8b0d80aa08ebef2c0d65f06b83942e45",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "countries_table",
+      "weather_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Countries = [[2,\"USA\"],[3,\"Australia\"],[7,\"Peru\"],[5,\"China\"],[8,\"Morocco\"],[9,\"Spain\"]], Weather = [[2,15,\"2019-11-01\"],[2,12,\"2019-10-28\"],[2,12,\"2019-10-27\"],[3,-2,\"2019-11-10\"],[3,0,\"2019-11-11\"],[3,3,\"2019-11-12\"],[5,16,\"2019-11-07\"],[5,18,\"2019-11-09\"],[5,21,\"2019-11-23\"],[7,25,\"2019-11-28\"],[7,22,\"2019-12-01\"],[7,20,\"2019-12-02\"],[8,25,\"2019-11-05\"],[8,27,\"2019-11-15\"],[8,31,\"2019-11-25\"],[9,7,\"2019-10-23\"],[9,3,\"2019-12-23\"]]",
+        "output": "[[\"USA\",\"Cold\"],[\"Australia\",\"Cold\"],[\"Peru\",\"Hot\"],[\"Morocco\",\"Hot\"],[\"China\",\"Warm\"]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/countries_table.md": "7ad3652856dc5ec9c3d6c9daafa1de01b2043a4aeade8486ccf306ecc9942321",
+      "reference/weather_table.md": "41196967b22d5873ff823e916e094af7ae7db4fe90837315eb1b9f1101509940",
+      "reference/description.md": "d07f2d047935542aa8188f6fbaa90f033452a5d227831cc60ddc3d0503921d4a",
+      "reference/contract.md": "3c80e88151c287ab4fb9a8ace683a24bd5bcf47ea79ae0b604cd400e6c2bd6e0",
+      "reference/examples.md": "8ab6d225e8f56c13158f85dd3c1a14c393956cde7d6b503eaa2df22c75c71879"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

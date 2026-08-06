@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Super Ugly Number and meets the required complexity bound.",
+      "summary": "Merges one monotonically increasing product stream per allowed prime while removing duplicate heads.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(n + k)"
     }

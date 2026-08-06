@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Ugly Number II and meets the required complexity bound.",
+      "summary": "Merges the monotone 2x, 3x, and 5x product streams with three pointers over generated ugly numbers.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

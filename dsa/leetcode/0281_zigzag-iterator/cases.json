@@ -1,6 +1,113 @@
-{"challenge_id":"lc_281","cases":[
-{"id":"sample-unequal","name":"sample: alternate then drain longer vector","kind":"sample","visible":true,"input":{"v1":[1,2],"v2":[3,4,5,6]},"expected":[1,3,2,4,5,6],"tags":["sample","round-robin"]},
-{"id":"sample-second-empty","name":"sample: second vector empty","kind":"sample","visible":true,"input":{"v1":[1],"v2":[]},"expected":[1],"tags":["sample","boundary"]},
-{"id":"trial-first-empty","name":"first vector empty","kind":"trial","visible":true,"input":{"v1":[],"v2":[7,8]},"expected":[7,8],"tags":["boundary"]},
-{"id":"real-both-empty","name":"hidden: both vectors empty","kind":"real","visible":false,"input":{"v1":[],"v2":[]},"expected":[],"tags":["hidden","empty"]}
-]}
+{
+  "challenge_id": "lc_281",
+  "cases": [
+    {
+      "id": "sample-unequal",
+      "name": "sample: alternate then drain the longer second vector",
+      "kind": "sample",
+      "visible": true,
+      "input": {"v1": [1, 2], "v2": [3, 4, 5, 6]},
+      "expected": [1, 3, 2, 4, 5, 6],
+      "tags": ["sample", "source-example", "round-robin", "second-longer"]
+    },
+    {
+      "id": "sample-second-empty",
+      "name": "sample: second vector empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {"v1": [1], "v2": []},
+      "expected": [1],
+      "tags": ["sample", "source-example", "minimum-total-length", "second-empty"]
+    },
+    {
+      "id": "sample-first-empty",
+      "name": "sample: first vector empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {"v1": [], "v2": [1]},
+      "expected": [1],
+      "tags": ["sample", "source-example", "minimum-total-length", "first-empty"]
+    },
+    {
+      "id": "trial-first-empty-drain",
+      "name": "drain a multi-value second vector",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [], "v2": [7, 8]},
+      "expected": [7, 8],
+      "tags": ["first-empty", "drain"]
+    },
+    {
+      "id": "trial-second-empty-drain",
+      "name": "drain a multi-value first vector",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [-3, -2, -1], "v2": []},
+      "expected": [-3, -2, -1],
+      "tags": ["second-empty", "drain", "negative-values"]
+    },
+    {
+      "id": "trial-balanced",
+      "name": "equal-length vectors alternate to the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [1, 2, 3], "v2": [4, 5, 6]},
+      "expected": [1, 4, 2, 5, 3, 6],
+      "tags": ["equal-length", "round-robin"]
+    },
+    {
+      "id": "trial-first-longer",
+      "name": "drain the first vector after the second is exhausted",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [1, 2, 3, 4], "v2": [9]},
+      "expected": [1, 9, 2, 3, 4],
+      "tags": ["first-longer", "exhaustion"]
+    },
+    {
+      "id": "trial-second-longer",
+      "name": "drain the second vector after the first is exhausted",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [1], "v2": [9, 8, 7, 6]},
+      "expected": [1, 9, 8, 7, 6],
+      "tags": ["second-longer", "exhaustion"]
+    },
+    {
+      "id": "trial-integer-boundaries",
+      "name": "alternate the minimum and maximum integer values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [-2147483648], "v2": [2147483647]},
+      "expected": [-2147483648, 2147483647],
+      "tags": ["minimum-value", "maximum-value", "numeric-boundary"]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicate values are yielded once per stored position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [5, 5, 5], "v2": [5, 5]},
+      "expected": [5, 5, 5, 5, 5],
+      "tags": ["duplicates", "position-preservation"]
+    },
+    {
+      "id": "trial-negative-sequences",
+      "name": "preserve order while alternating negative sequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [-1, -3, -5], "v2": [-2, -4]},
+      "expected": [-1, -2, -3, -4, -5],
+      "tags": ["negative-values", "relative-order", "first-longer"]
+    },
+    {
+      "id": "trial-second-extra-tail",
+      "name": "retain the second vector's final unpaired value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"v1": [0, 2], "v2": [1, 3, 4]},
+      "expected": [0, 1, 2, 3, 4],
+      "tags": ["second-longer", "relative-order", "tail"]
+    }
+  ]
+}

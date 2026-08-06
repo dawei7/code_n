@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Meeting Rooms II and meets the required complexity bound.",
+      "summary": "Sweeps separately sorted start and end times, tracking the peak number of simultaneously active meetings.",
       "time_complexity": "O(n \\log n)",
       "space_complexity": "O(n)"
     }

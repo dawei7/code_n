@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Delete Node in a Linked List and meets the required complexity bound.",
+      "summary": "Copies the successor value into the supplied node and bypasses that successor in constant time.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

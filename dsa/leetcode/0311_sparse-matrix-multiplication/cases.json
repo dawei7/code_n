@@ -51,27 +51,24 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "sparse"
       ]
     },
     {
       "id": "sample-zero",
-      "name": "sample: zero left matrix",
+      "name": "sample: one-by-one zero matrices",
       "kind": "sample",
       "visible": true,
       "input": {
         "mat1": [
           [
-            0,
             0
           ]
         ],
         "mat2": [
           [
-            1
-          ],
-          [
-            2
+            0
           ]
         ]
       },
@@ -82,13 +79,14 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "zero"
       ]
     },
     {
-      "id": "sample-diagonal",
-      "name": "sample: diagonal times identity",
-      "kind": "sample",
+      "id": "trial-diagonal",
+      "name": "diagonal matrix times identity",
+      "kind": "trial",
       "visible": true,
       "input": {
         "mat1": [
@@ -123,7 +121,6 @@
         ]
       ],
       "tags": [
-        "sample",
         "identity"
       ]
     },
@@ -206,10 +203,10 @@
       ]
     },
     {
-      "id": "real-mixed",
-      "name": "hidden: mixed sparse rows and columns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "mixed sparse rows and columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat1": [
           [
@@ -256,9 +253,80 @@
         ]
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
+    },
+    {
+      "id": "trial-zero-right",
+      "name": "nonzero left matrix times a zero right matrix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat1": [[1,-2],[3,4]],
+        "mat2": [[0,0,0],[0,0,0]]
+      },
+      "expected": [[0,0,0],[0,0,0]],
+      "tags": ["zero-right","rectangular","zero-result"]
+    },
+    {
+      "id": "trial-outer-product",
+      "name": "single shared dimension forms a rectangular outer product",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat1": [[2],[-1],[0]],
+        "mat2": [[3,0,-4,5]]
+      },
+      "expected": [[6,0,-8,10],[-3,0,4,-5],[0,0,0,0]],
+      "tags": ["single-inner-dimension","outer-product","zero-row"]
+    },
+    {
+      "id": "trial-maximum-rows",
+      "name": "maximum row count with sparse endpoint values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat1": [[100],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[-100]],
+        "mat2": [[-1]]
+      },
+      "expected": [[-100],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[100]],
+      "tags": ["maximum-rows","minimum-inner-dimension","value-boundaries"]
+    },
+    {
+      "id": "trial-maximum-columns",
+      "name": "maximum column count with sparse endpoint values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat1": [[-1]],
+        "mat2": [[100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-100]]
+      },
+      "expected": [[-100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]],
+      "tags": ["maximum-columns","minimum-inner-dimension","value-boundaries"]
+    },
+    {
+      "id": "trial-maximum-inner",
+      "name": "maximum inner dimension accumulates dense extreme products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat1": [[100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]],
+        "mat2": [[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100],[100]]
+      },
+      "expected": [[1000000]],
+      "tags": ["maximum-inner-dimension","maximum-value","accumulation"]
+    },
+    {
+      "id": "trial-nonzeros-miss",
+      "name": "nonzero factors on different shared indices contribute nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat1": [[1,0]],
+        "mat2": [[0],[2]]
+      },
+      "expected": [[0]],
+      "tags": ["incompatible-nonzeros","shared-index","zero-result"]
     }
   ]
 }

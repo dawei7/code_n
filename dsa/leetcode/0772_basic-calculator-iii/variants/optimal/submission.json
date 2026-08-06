@@ -10,5 +10,8 @@
   "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.calculate",
   "verified_submission_id": "2066058059",
-  "verified_at": "2026-07-13T11:24:03.410819+00:00"
+  "verified_at": "2026-07-13T11:24:03.410819+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T07:35:00.000000+00:00"
 }

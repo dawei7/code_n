@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_197",
-  "measurement_note": "Growing daily histories exercise calendar adjacency and temperature comparisons.",
+  "measurement_note": "Size is the Weather row count. Daily histories preserve calendar adjacency; the immutable two-sided date-function join defines the quadratic acceptance boundary, while nested repeated work grows by another linear factor.",
   "cases": [
     {
       "id": "benchmark-scale-1",

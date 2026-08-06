@@ -1,7 +1,7 @@
 ## General
 **Separate searchable starts from original positions**
 
-Create `(start, original_index)` pairs and sort them by start. The original interval order remains untouched, while the sorted starts form the monotone search space needed for every query.
+Create `(start, i)` pairs, where `i` is the original interval position, and sort them by start. The original interval order remains untouched, while the sorted starts form the monotone search space needed for every query.
 
 **Find the lower bound of each end**
 

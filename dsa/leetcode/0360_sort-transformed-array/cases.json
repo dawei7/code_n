@@ -26,6 +26,7 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "convex"
       ]
     },
@@ -53,13 +54,14 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "concave"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: decreasing linear transform",
-      "kind": "sample",
+      "id": "trial-decreasing-linear",
+      "name": "trial: decreasing linear transform",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -79,7 +81,7 @@
         17
       ],
       "tags": [
-        "sample",
+        "trial",
         "linear"
       ]
     },
@@ -140,10 +142,10 @@
       ]
     },
     {
-      "id": "hidden-vertex-offset",
-      "name": "hidden: vertex lies inside input range",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-vertex-offset",
+      "name": "trial: vertex lies inside input range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -164,15 +166,15 @@
         97
       ],
       "tags": [
-        "hidden",
+        "trial",
         "vertex"
       ]
     },
     {
-      "id": "hidden-concave-tie",
-      "name": "hidden: concave endpoint tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-concave-tie",
+      "name": "trial: concave endpoint tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -191,15 +193,15 @@
         2
       ],
       "tags": [
-        "hidden",
+        "trial",
         "tie"
       ]
     },
     {
-      "id": "hidden-single",
-      "name": "hidden: one input value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single",
+      "name": "trial: one input value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6
@@ -212,8 +214,87 @@
         -101
       ],
       "tags": [
-        "hidden",
+        "trial",
         "boundary"
+      ]
+    },
+    {
+      "id": "trial-increasing-linear-bounds",
+      "name": "trial: increasing linear transform at value and coefficient bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100,
+          0,
+          100
+        ],
+        "a": 0,
+        "b": 100,
+        "c": -100
+      },
+      "expected": [
+        -10100,
+        -100,
+        9900
+      ],
+      "tags": [
+        "trial",
+        "boundary",
+        "linear"
+      ]
+    },
+    {
+      "id": "trial-concave-coefficient-bounds",
+      "name": "trial: concave transform at negative coefficient bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100,
+          0,
+          100
+        ],
+        "a": -100,
+        "b": -100,
+        "c": 100
+      },
+      "expected": [
+        -1009900,
+        -989900,
+        100
+      ],
+      "tags": [
+        "trial",
+        "boundary",
+        "concave"
+      ]
+    },
+    {
+      "id": "trial-convex-coefficient-bound",
+      "name": "trial: maximum quadratic coefficient preserves equal endpoint transforms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100,
+          0,
+          100
+        ],
+        "a": 100,
+        "b": 0,
+        "c": 0
+      },
+      "expected": [
+        0,
+        1000000,
+        1000000
+      ],
+      "tags": [
+        "trial",
+        "boundary",
+        "convex",
+        "tie"
       ]
     }
   ]

@@ -11,7 +11,7 @@ When a pair matches locally, compare left with left and right with right. Both c
 
 **Each call decides equality of exactly two rooted subtrees**
 
-Each recursive call returns true exactly when the two subtrees rooted at its arguments are identical. No node outside those subtrees affects the decision.
+Each recursive `solve(p, q)` call returns true exactly when the two subtrees rooted at its arguments are identical. No node outside those subtrees affects the decision. The candidate calls `solve` directly for the two child pairs, avoiding an app-local wrapper class that adds no algorithmic role.
 
 **Trace equal values in different shapes**
 

@@ -1,5 +1,5 @@
 ## Description
 
-A strobogrammatic number still looks identical when viewed after a $180$-degree rotation, or upside down.
+Given a string `num` which represents an integer, return `true` *if* `num` *is a **strobogrammatic number***.
 
-Given the decimal string `num`, return `true` when it is strobogrammatic and `false` otherwise.
+A **strobogrammatic number** is a number that looks the same when rotated 180 degrees (looked at upside down).

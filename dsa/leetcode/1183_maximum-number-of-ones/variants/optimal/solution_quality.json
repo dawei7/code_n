@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1183",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected solution is already concise and expert-interview quality. `row_counts`, `column_counts`, and `frequencies` expose the residue-class contribution calculation directly; the two bounded comprehensions, descending sort, and sum of the selected prefix contain no unnecessary abstraction, obscure trick, excessive state, or prohibited exact `index` binding. No inert candidate is materially justified."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Every contiguous sideLength-by-sideLength square contains exactly one cell from each row-and-column residue pair, so selecting at most `maxOnes` residue classes yields a feasible periodic matrix. For residue r, the arithmetic formula counts exactly r, r + sideLength, and subsequent coordinates within the relevant dimension; multiplying row and column counts gives that class's complete contribution, including partial boundary tiles. Selecting the `maxOnes` greatest independent contributions therefore realizes the global optimum."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "A literal binary-matrix oracle enumerated every matrix and checked every contiguous constrained square for all 48 legal parameter combinations with width and height through three. A separate oracle scanned every full-matrix coordinate into residue frequencies without using the protected arithmetic formula. Both agreed with protected and immutable native sources on all ten authored cases, all three benchmark outputs, 13,026 legal combinations with width and height through twelve, and 10,000 deterministic random inputs generated with seed 1183."
+      },
+      {
+        "category": "boundary_and_shape_semantics",
+        "severity": "verified",
+        "reason": "Random validation included 711 zero-allowance inputs, 697 full-residue allowances, 863 unit side lengths, 7,837 partial-width tiles, 7,794 partial-height tiles, 9,903 rectangles, 97 squares, 107 maximum widths, 106 maximum heights, and 831 cases whose side length equaled the smaller dimension. Fixed cases separately cover width or height 1, dimensions 100 by 100, sideLength 100, and maxOnes 10,000."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1183, Python, and native entrypoint `Solution.maximumNumberOfOnes`. Fresh authenticated evidence confirms a binary width-by-height matrix, the restriction on every contiguous square submatrix, inclusive at-most semantics, maximum-total return, two explained examples with their exact constructions, three constraints, and four hints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native source remains bound to verified submission 2067903026 and is unchanged. Apart from the required class-method wrapper and type syntax, it and the protected app source use the same row-residue counts, column-residue counts, Cartesian frequency products, descending in-place sort, largest-`maxOnes` slice, and sum, with identical parameter order and return behavior."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers scale both matrix dimensions from 8 through 16 to 32, set sideLength to half the dimension, and select half the residue classes. Protected passed all ten ordinary and three benchmark outputs at a 0.96x largest runtime ratio and -0.01 relative growth exponent. An independently correct control that scans the full matrix and repeatedly rescans remaining frequencies for their maximum passed every output but failed only scaling at 7.28x and +0.93. benchmark.json remained byte-for-byte unchanged."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach precisely derives the periodic residue-pair model, constant-time row and column occurrence counts, frequency products, greedy selection by descending sort, and treatment of incomplete boundary tiles. Its O(s^2 log s) time and O(s^2) space analysis matches the protected source, and its alternatives accurately distinguish full-matrix counting and heap selection."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves width and height orientation, binary-cell semantics, every contiguous square restriction, the inclusive `maxOnes` limit, maximum-count-only return, both exact source inputs and outputs, both complete matrix explanations, all three constraints, and all four independently worded hints. It adds no source-absent example, note, image, table, diagram, or follow-up."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples with explanations, three constraints, four hints, no images or tables, and no separate note or follow-up. source_fidelity.json binds every modular section to live statement hash c996b0d5e955574f24f804810fbaae1318b0d64aaccd0f93452e22a6273049e8 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible sample cases are the two authenticated source examples in source order with exact scalar inputs and outputs. Their explanations preserve every source fact and reproduce each source matrix row exactly: four corner ones for maxOnes = 1 and two filled columns for maxOnes = 2.",
+      "All ten ordinary fixtures are visible samples or trials. Exact boundaries cover width and height 1 and 100, sideLength 1 and 100, maxOnes 0 and 10,000, and the full-residue allowance. Material cases cover square and extreme rectangular matrices, partial boundary tiles with unequal frequencies, several selected classes, overlapping windows, a side length equal to the smaller dimension, and filling the complete matrix.",
+      "A literal matrix-enumeration oracle checked all local windows for 48 small legal contracts. A distinct full-matrix residue counter recomputed every authored and benchmark expectation and agreed with protected/native on 13,026 bounded combinations plus 10,000 random inputs with seed 1183, including zero/full allowances, unit/maximal sides, partial tiles, squares, rectangles, and maximum dimensions.",
+      "The three unchanged hidden performance tiers use matrix dimension consistently as `size`, span 8 through 32, and grow the residue workload from sideLength 4 to 16 while selecting half its classes. Protected passed at -0.01 and 0.96x. The correct repeated-maximum control passed every ordinary and benchmark output but failed only scaling at +0.93 and 7.28x."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "51b6a2286223be7f7b57eb1824d13430e13c0d93d792209b6f097ed2568d2f29",
+    "native_source_sha256": "bad9a4ce7595fe8bbb02e711ec1609194cb263a0218daa00ccf7bb4ed4ffe6dc",
+    "approach_sha256": "fa1d7a23c83005a58689e5f3dc8dc34a1b0bb4cfe2adad5e3d5ac939a5d51a64",
+    "solution_variants_sha256": "260861386bcd7afe7cafe355ba34cc18a5b8a1580a0b26c032c31623082bd222",
+    "complexity_evidence_sha256": "870f1063a78f46cafbe687fae20dc5aeeaf692663c52eca50cb6cb3521823c90",
+    "cases_sha256": "ed9594a21247f9fba0d73112085dc1082c6b91d3bcee9f2e54cb0a3b9723ada5"
+  }
+}

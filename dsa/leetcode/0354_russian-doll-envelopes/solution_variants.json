@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Russian Doll Envelopes and meets the required complexity bound.",
+      "summary": "Sorts equal widths by descending height, then finds a strictly increasing height subsequence.",
       "time_complexity": "O(n \\log n)",
       "space_complexity": "O(n)"
     }

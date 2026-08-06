@@ -1,11 +1,125 @@
 {
   "challenge_id": "lc_293",
   "cases": [
-    {"id": "sample-overlap", "name": "sample: three overlapping moves", "kind": "sample", "visible": true, "input": {"currentState": "++++"}, "expected": ["--++", "+--+", "++--"], "tags": ["sample", "overlap"]},
-    {"id": "sample-too-short", "name": "sample: no adjacent pair", "kind": "sample", "visible": true, "input": {"currentState": "+"}, "expected": [], "tags": ["sample", "boundary"]},
-    {"id": "sample-one-move", "name": "sample: exactly one pair", "kind": "sample", "visible": true, "input": {"currentState": "++"}, "expected": ["--"], "tags": ["sample"]},
-    {"id": "trial-no-move", "name": "alternating symbols have no move", "kind": "trial", "visible": true, "input": {"currentState": "+-+-"}, "expected": [], "tags": ["none"]},
-    {"id": "trial-middle", "name": "one pair surrounded by minuses", "kind": "trial", "visible": true, "input": {"currentState": "-++-"}, "expected": ["----"], "tags": ["single"]},
-    {"id": "real-separated", "name": "hidden: separated legal pairs", "kind": "real", "visible": false, "input": {"currentState": "++--++"}, "expected": ["----++", "++----"], "tags": ["hidden", "separated"]}
+    {
+      "id": "sample-overlap",
+      "name": "sample: three overlapping moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {"currentState": "++++"},
+      "expected": ["--++", "+--+", "++--"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "source-example", "overlap"]
+    },
+    {
+      "id": "sample-too-short",
+      "name": "sample: one symbol has no adjacent pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"currentState": "+"},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "source-example", "minimum-length", "no-move"]
+    },
+    {
+      "id": "trial-one-move",
+      "name": "exactly one pair produces one state",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "++"},
+      "expected": ["--"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["single-move", "minimum-pair-length"]
+    },
+    {
+      "id": "trial-all-minus",
+      "name": "all minus symbols produce no move",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "----"},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["no-move", "all-minus"]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "alternating symbols have no adjacent plus pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+-+-"},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["no-move", "alternating"]
+    },
+    {
+      "id": "trial-middle-pair",
+      "name": "one pair surrounded by minus symbols",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "-++-"},
+      "expected": ["----"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["single-move", "middle-pair"]
+    },
+    {
+      "id": "trial-separated-pairs",
+      "name": "separated pairs produce independent moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "++--++"},
+      "expected": ["----++", "++----"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["separated-pairs", "multiple-moves"]
+    },
+    {
+      "id": "trial-two-overlapping-pairs",
+      "name": "three plus symbols contain two overlapping moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+++"},
+      "expected": ["--+", "+--"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["overlap", "multiple-moves"]
+    },
+    {
+      "id": "trial-long-plus-run",
+      "name": "every adjacent position in a plus run is legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+++++"},
+      "expected": ["--+++", "+--++", "++--+", "+++--"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["overlap", "complete-enumeration", "plus-run"]
+    },
+    {
+      "id": "trial-pair-at-start",
+      "name": "legal pair begins at the first position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "++---"},
+      "expected": ["-----"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["pair-at-start", "single-move"]
+    },
+    {
+      "id": "trial-pair-at-end",
+      "name": "legal pair begins at the final possible position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "---++"},
+      "expected": ["-----"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["pair-at-end", "single-move"]
+    },
+    {
+      "id": "trial-overlap-and-separated",
+      "name": "one state combines overlapping and separated pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+++--++"},
+      "expected": ["--+--++", "+----++", "+++----"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["overlap", "separated-pairs", "multiple-moves"]
+    }
   ]
 }

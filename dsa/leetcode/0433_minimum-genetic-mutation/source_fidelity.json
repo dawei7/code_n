@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_433",
+    "frontend_id": "433",
+    "title_slug": "minimum-genetic-mutation",
+    "url": "https://leetcode.com/problems/minimum-genetic-mutation/description/",
+    "paid_only": false,
+    "content_sha256": "e94314ef57dc5afe6d53298f549e82b3d1be8a6b1cdef015e5747a849a28c6d0",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "startGene = \"AACCGGTT\", endGene = \"AACCGGTA\", bank = [\"AACCGGTA\"]",
+        "output": "1",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "startGene = \"AACCGGTT\", endGene = \"AAACGGTA\", bank = [\"AACCGGTA\",\"AACCGCTA\",\"AAACGGTA\"]",
+        "output": "2",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c320db928cba55722c65f6ff406e5fea8fccf3b2de1c608205a170b2177f49c6",
+      "reference/contract.md": "949d4bac3350a62b686e5be38915432f4a937d81ce7125a05cb46955a92510c0",
+      "reference/examples.md": "2204917fe0845b72a89e1a61479659ff23465f29614c35aef93bab52a3059797",
+      "reference/constraints.md": "a33c06874912497bc5fabc58762fc8a4570ebb290413d70ca041e504d4f13796"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

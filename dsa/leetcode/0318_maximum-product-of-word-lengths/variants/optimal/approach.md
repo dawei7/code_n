@@ -18,10 +18,10 @@ Every letter present in a word sets its unique bit. Therefore a shared letter pr
 For each mask, replacing all its words by the longest preserves every possible compatibility relationship and dominates their products. Thus the maximum over retained compatible mask pairs equals the maximum over all original compatible word pairs.
 
 ## Complexity detail
-Let `C` be the total number of input characters, `n` the number of words, and `u` the number of distinct masks. Mask construction costs $O(C)$, and comparing retained pairs costs $O(u^2)$, which is at most $O(n^2)$. The mask-to-maximum-length table uses $O(u)$ and therefore $O(n)$ space.
+Let $C$ be the total number of input characters, $n$ the number of words, and $u$ the number of distinct masks. Mask construction costs $O(C)$, and comparing retained pairs costs $O(u^2)$, which is at most $O(n^2)$. The mask-to-maximum-length table uses $O(u)$ and therefore $O(n)$ space.
 
 ## Alternatives and edge cases
-- **Build character sets inside the pair loop:** is correct but can repeatedly scan long words, taking $O(n^2 L)$ time for length `L`.
+- **Build character sets inside the pair loop:** is correct but can repeatedly scan long words, taking $O(n^2 L)$ time when $L$ is the maximum word length.
 - **Precompute a set per word:** meets the same broad bound for a fixed 26-letter alphabet, but bitwise intersections are smaller and simpler.
 - **Compare only word lengths:** cannot determine whether a pair shares a letter.
 - Repeated letters do not change a mask. Equal masks retain only their longest word, and an input with no disjoint pair leaves the answer at zero.

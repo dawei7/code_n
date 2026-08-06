@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1430",
+    "frontend_id": "1430",
+    "title_slug": "check-if-a-string-is-a-valid-sequence-from-root-to-leaves-path-in-a-binary-tree",
+    "url": "https://leetcode.com/problems/check-if-a-string-is-a-valid-sequence-from-root-to-leaves-path-in-a-binary-tree/description/",
+    "paid_only": true,
+    "content_sha256": "ee99ff47d5f18567ed33a25dd1817eb061de9dd4774fe2f5eab40a9b1b94de44",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,1,0,1]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,0,1]",
+        "output": "false",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,1,1]",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 3,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 3
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a792279433221666a247a6bddebdab478f8866b757dcb29231d6d115b461ccb4",
+      "reference/contract.md": "d1cc096b4320dfa335580a9eb618a2483b04ff1614153b99cfee66159a44e7f4",
+      "reference/examples.md": "20bb2af10d0ffc1467ad1996ec5f31a2bb064dc0d4fbcb1b2776a82e8579af46",
+      "reference/constraints.md": "8ad7543308c588348b4858ce9ce1d7e57695715dd4de9e3e14df2606d30ad981",
+      "reference/hints.md": "bdaacbf88d169c736b73f9a54b3efd2f98a8c275901c09d948bf95b76f076e93"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

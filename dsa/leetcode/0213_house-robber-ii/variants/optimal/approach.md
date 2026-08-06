@@ -16,8 +16,8 @@ Every valid circular selection excludes the first house or excludes the last hou
 Each linear helper scans at most $n - 1$ houses, so two passes take $O(n)$ time. Rolling prefix values use $O(1)$ auxiliary space; avoid materializing slices if strict constant space is required.
 
 ## Alternatives and edge cases
-- Running the linear recurrence once over the full array can illegally select both endpoints.
-- Full DP arrays are correct but use $O(n)$ space instead of rolling state.
-- Greedily selecting the largest remaining house can block a better combination.
-- One house returns its value; two houses return the larger value.
-- Zero-valued houses do not affect the optimum.
+- **One unrestricted linear pass:** Running the recurrence once over the full array can illegally select both endpoints.
+- **Full DP arrays:** Storing every prefix optimum is correct but uses $O(n)$ space instead of rolling state.
+- **Largest-first selection:** Greedily taking the largest remaining house can block a better combination.
+- **Short streets:** One house returns its value, while two houses return the larger value.
+- **Zero amounts:** Zero-valued houses do not affect the optimum or the recurrence.

@@ -1,17 +1,17 @@
 ## General
 **A mismatch can reuse a border of the matched pattern prefix**
 
-Knuth-Morris-Pratt matching stores, for every pattern prefix ending at index `i`, the length of its longest proper prefix that is also a suffix. A **proper** prefix is shorter than the whole prefix. This `lps` value identifies how many already-matched pattern characters can remain useful after a mismatch.
+Knuth-Morris-Pratt matching stores, for every pattern prefix ending at position `i`, the length of its longest proper prefix that is also a suffix. A **proper** prefix is shorter than the whole prefix. This `lps` value identifies how many already-matched pattern characters can remain useful after a mismatch.
 
-Build the array with `candidate`, the length of the border currently being tested. If `needle[i] = needle[candidate]`, extend the border and record its new length. On a mismatch with a nonzero candidate, replace it by `lps[candidate - 1]` and test the same `needle[i]` again. If the candidate is zero, record zero and advance `i`.
+Build the array with `border`, the length of the proper border currently being tested. If `needle[i] == needle[border]`, extend the border and record its new length. On a mismatch with a nonzero border, replace it by `lps[border - 1]` and test the same `needle[i]` again. If the border is zero, leave the current LPS entry at zero and advance `i`.
 
 The fallback follows borders of borders. Those are exactly the shorter prefixes that could also be suffixes; restarting at every intermediate length would repeat comparisons and lose the linear bound.
 
 **Scan the haystack without ever rewinding it**
 
-Maintain `matched`, the number of leading needle characters matching the current haystack suffix. On a mismatch with `matched > 0`, fall back to `lps[matched - 1]` and compare the same haystack character again. Only when `matched = 0` may the haystack index advance past a mismatch. On a match, advance both positions.
+Maintain `matched`, the number of leading needle characters matching the current haystack suffix. On a mismatch with `matched > 0`, fall back to `lps[matched - 1]` and compare the same haystack character again. Only when `matched == 0` may the scan advance past a mismatch. On a match, increase `matched`; the `for` loop then advances `i` to the next haystack character.
 
-When `matched` reaches the needle length, the complete occurrence ends at the current haystack position. Its start is `haystack_index - len(needle)` if indices were advanced after matching, or equivalently `current_index - len(needle) + 1` in a for-loop formulation.
+When `matched` reaches the needle length at position `i`, the complete occurrence ends there, so the candidate returns `i - len(needle) + 1`.
 
 **What remains true after every fallback**
 
@@ -30,7 +30,7 @@ On mismatch, the LPS fallback keeps the longest proper pattern prefix already kn
 The haystack index never moves backward; only the amount of matched pattern is shortened. When the pattern first becomes complete, all earlier text endpoints have already been processed without a complete match. Its computed start is therefore the smallest valid occurrence index.
 
 ## Complexity detail
-During LPS construction, the pattern index advances at most `m` times and each fallback shortens `candidate`; the total is $O(m)$. During matching, the haystack index never decreases, and each fallback decreases `matched`, so the scan is $O(n)$. Combined time is $O(n + m)$, and the LPS array uses $O(m)$ auxiliary space.
+Let `n = len(haystack)` and `m = len(needle)`. During LPS construction, `i` advances through the pattern once; `border` can increase at most $m$ times in total, and every fallback decreases it, so this phase is $O(m)$. During matching, `i` advances through the haystack once; `matched` likewise has only linearly many increases and fallback decreases, so this phase is $O(n)$. Combined time is $O(n + m)$, and the LPS array uses $O(m)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Try the pattern at every start:** simple but can repeat almost the entire pattern at many positions and require $O(nm)$ time.

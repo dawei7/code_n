@@ -2,13 +2,15 @@
   "schema_version": 1,
   "provider": "leetcode.com",
   "status": "verified",
-  "question_id": "1154",
+  "question_id": "1069",
   "frontend_id": "1069",
   "title_slug": "product-sales-analysis-ii",
   "paid_only": true,
   "language": "mysql",
   "source": "solutions/leetcode.sql",
-  "native_entrypoint": "query",
-  "verified_submission_id": "2067489362",
-  "verified_at": "2026-07-14T14:48:01.953561+00:00"
+  "verified_submission_id": "2065543810",
+  "verified_at": "2026-07-12T22:26:11.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T15:45:00.000000+00:00"
 }

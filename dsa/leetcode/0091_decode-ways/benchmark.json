@@ -1,54 +1,54 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_91",
-  "measurement_note": "All-one strings maximize one-versus-two-digit choices across the legal range; constant-space DP stays linear while unmemoized recursion follows exponentially many decompositions.",
+  "measurement_note": "Repeated 10 tokens span the full legal length with a 32-bit-safe answer and force every digit to be classified; rolling DP stays linear while repeated full-string work grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 1 ambiguous digits",
+      "name": "benchmark: 4 forced digits",
       "kind": "benchmark",
       "visible": false,
-      "size": 1,
+      "size": 4,
       "input": {
-        "s": "1"
+        "s": "1010"
       },
       "expected": 1,
       "tags": [
         "benchmark",
         "scale-small",
-        "exponential-separator"
+        "quadratic-separator"
       ]
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: 10 ambiguous digits",
+      "name": "benchmark: 20 forced digits",
       "kind": "benchmark",
       "visible": false,
-      "size": 10,
+      "size": 20,
       "input": {
-        "s": "1111111111"
+        "s": "10101010101010101010"
       },
-      "expected": 89,
+      "expected": 1,
       "tags": [
         "benchmark",
         "scale-medium",
-        "exponential-separator"
+        "quadratic-separator"
       ]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: 45 ambiguous digits",
+      "name": "benchmark: 100 forced digits",
       "kind": "benchmark",
       "visible": false,
-      "size": 45,
+      "size": 100,
       "input": {
-        "s": "111111111111111111111111111111111111111111111"
+        "s": "1010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010"
       },
-      "expected": 1836311903,
+      "expected": 1,
       "tags": [
         "benchmark",
         "scale-large",
-        "exponential-separator"
+        "quadratic-separator"
       ]
     }
   ]

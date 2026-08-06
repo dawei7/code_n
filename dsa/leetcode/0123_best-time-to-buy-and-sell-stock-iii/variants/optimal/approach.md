@@ -40,4 +40,4 @@ Each of `n` prices performs four constant-time updates, giving $O(n)$ time. Four
 - **General `k`-transaction DP:** is flexible but stores more state than needed for fixed $k=2$.
 - **Sum every positive rise:** allows unlimited transactions and can overstate the answer.
 - Fewer than two profitable opportunities naturally leave `sell2` equal to the best zero- or one-transaction result.
-- Empty or decreasing inputs return zero through the sale-state initialization.
+- A decreasing input returns zero through the sale-state initialization.

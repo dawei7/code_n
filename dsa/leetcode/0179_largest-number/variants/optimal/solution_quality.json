@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_179",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The previous largest benchmark used 256 values despite the source limit of 100. The recalibrated legal 8/64/100 tiers preserve the mixed-width comparator workload and reject a correct quadratic insertion-sort implementation."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "6d593d66f1aeb4198ea39e29acb612be70cc324f10967a98beb1e0ada2fb12f6",
+    "native_source_sha256": "efd260e5aad80207e3b06dcdb5b5c54e2891926fbf8f6dcd4bd485aafeb99cc1",
+    "approach_sha256": "a1c5201a10f950c7d955757b31e3bda82ab046c18b8ddf5ad07ca1ba170bfc27",
+    "solution_variants_sha256": "f57b7210bf483ed74a98236cdb1be14758d6dd28461e91fb1e28f2fcb56ff001",
+    "complexity_evidence_sha256": "2c230b1ea56612e01c9b3f3ea24367df931dfb4181d1818a67ce541f4101e182"
+  }
+}

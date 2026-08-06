@@ -7,7 +7,7 @@ Increasing heights remain unresolved because a future bar may let them extend fa
 
 **Pop exactly when a right boundary becomes known**
 
-Set `start` to the current index. While the stack top height exceeds the current height, pop `(previous_start, previous_height)` and compute area `previous_height * (index - previous_start)`. The current bar is the first shorter bar on the right, so this width is final.
+Set `start` to `i`, the current position. While the stack top height exceeds the current height, pop `(previous_start, previous_height)` and compute area `previous_height * (i - previous_start)`. The current bar is the first shorter bar on the right, so this width is final.
 
 Assign `start = previous_start` after each pop. The current shorter height can extend across every bar that supported the popped taller rectangle, so it inherits the earliest popped start before being pushed. A final zero-height sentinel supplies a shorter right boundary for every remaining positive candidate.
 

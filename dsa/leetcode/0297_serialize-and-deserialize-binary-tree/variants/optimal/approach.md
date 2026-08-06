@@ -38,10 +38,13 @@ Preorder guarantees that a real child's entire subtree is consumed before the pa
 At every real-node token, the next two complete encodings are uniquely its left and right subtrees; null markers are complete encodings of empty subtrees. This recursive grammar has only one parse. The deserializer fills child slots in exactly that grammar order, so it reconstructs the same values and the same missing-child structure. Serializing the result therefore yields the identical token sequence.
 
 ## Complexity detail
-A binary tree with `n` nodes has $n + 1$ null child pointers. Serialization and deserialization each process $2n + 1$ tokens once, giving $O(n)$ time. Tokens, output text, and explicit stacks require $O(n)$ space; stack depth alone is $O(h)$.
+Let $n$ be the number of real nodes and $h$ the tree height. A binary tree has $n + 1$ null child pointers, so
+serialization and deserialization each process exactly $2n + 1$ tokens once, giving $O(n)$ time. Tokens, output
+text, and the explicit stacks require $O(n)$ total space; each stack alone has $O(h)$ depth.
 
 ## Alternatives and edge cases
 - **Breadth-first encoding:** is equally valid when null placeholders are retained consistently; it may keep up to a full tree level in memory.
 - **Traversal values without null markers:** cannot distinguish different shapes.
 - **Recursive concatenation and front-removal from token arrays:** can degrade to $O(n^2)$ on skewed trees.
-- The empty tree is encoded as a single null marker. Delimiters make negative and multi-digit values safe.
+- **Empty tree:** is encoded as the single null marker `#` and decodes back to `None`.
+- **Signed and multi-digit values:** remain unambiguous because commas delimit complete integer tokens.

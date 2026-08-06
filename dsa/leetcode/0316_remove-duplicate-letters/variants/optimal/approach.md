@@ -3,7 +3,7 @@
 
 Build the result from left to right in a stack. When a new letter is smaller than the stack top, placing it earlier would improve the lexicographic result. Removing the top is safe only if another occurrence of that removed letter still lies ahead; otherwise removing it would make the required distinct-letter set impossible to complete.
 
-Precompute each letter's last index. For a new letter at index `i`, repeatedly pop a larger stack top while that top's last occurrence is greater than `i`. Stop as soon as the top is smaller, equal, or no longer available later. Then append the new letter.
+Precompute each letter's last position. For a new letter at position `i`, repeatedly pop a larger stack top while that top's recorded last position is greater than `i`. Stop as soon as the top is smaller, equal, or no longer available later. Then append the new letter.
 
 **One membership set prevents duplicate output letters**
 

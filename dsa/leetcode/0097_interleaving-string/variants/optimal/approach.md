@@ -33,7 +33,7 @@ Any nonempty interleaving prefix ends by consuming either the next character fro
 The transition tests exactly those two cases with character equality. Starting from the three empty prefixes, the DP therefore marks all and only reachable prefix pairs, including the complete strings.
 
 ## Complexity detail
-The algorithm visits each of the $(m + 1)(n + 1)$ prefix pairs once, giving $O(mn)$ time. The row has one entry per character of the shorter source, giving $O(\min(m, n))$ auxiliary space.
+Let $m = \lvert\texttt{s1}\rvert$ and $n = \lvert\texttt{s2}\rvert$. The algorithm visits each of the $(m + 1)(n + 1)$ prefix pairs once, giving $O(mn)$ time. The row has one entry per character of the shorter source, giving $O(\min(m, n))$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Greedy matching:** fails when the same target character could validly come from either source.

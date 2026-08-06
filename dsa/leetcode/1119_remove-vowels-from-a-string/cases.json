@@ -2,12 +2,77 @@
   "schema_version": 1,
   "challenge_id": "lc_1119",
   "cases": [
-    {"id":"sample-1","name":"sample: vowels throughout a sentence-like string","kind":"sample","visible":true,"input":{"s":"leetcodeisacommunityforcoders"},"expected":"ltcdscmmntyfrcdrs","tags":["sample","mixed"]},
-    {"id":"sample-2","name":"sample: one occurrence of every vowel","kind":"sample","visible":true,"input":{"s":"aeiou"},"expected":"","tags":["sample","all-vowels"]},
-    {"id":"trial-no-vowels","name":"trial: consonants including y are preserved","kind":"trial","visible":true,"input":{"s":"rhythm"},"expected":"rhythm","tags":["trial","no-vowels"]},
-    {"id":"trial-single-vowel","name":"trial: minimum input removed","kind":"trial","visible":true,"input":{"s":"a"},"expected":"","tags":["trial","minimum"]},
-    {"id":"real-single-consonant","name":"hidden: minimum retained input","kind":"real","visible":false,"input":{"s":"z"},"expected":"z","tags":["hidden","minimum"]},
-    {"id":"real-alternating","name":"hidden: alternating consonants and vowels","kind":"real","visible":false,"input":{"s":"abecidofug"},"expected":"bcdfg","tags":["hidden","alternating"]},
-    {"id":"real-repeated-vowels","name":"hidden: repeated vowels around consonants","kind":"real","visible":false,"input":{"s":"aaabooookeeeper"},"expected":"bkpr","tags":["hidden","repetition"]}
+    {
+      "id": "sample-1",
+      "name": "sample: vowels throughout a sentence-like string",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "leetcodeisacommunityforcoders"},
+      "expected": "ltcdscmmntyfrcdrs",
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one occurrence of every vowel",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aeiou"},
+      "expected": "",
+      "tags": ["sample", "all-vowels"]
+    },
+    {
+      "id": "trial-no-vowels",
+      "name": "consonants including y are preserved in order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "rhythm"},
+      "expected": "rhythm",
+      "tags": ["no-vowels", "letter-y"]
+    },
+    {
+      "id": "trial-single-vowel",
+      "name": "a one-character vowel is removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": "",
+      "tags": ["minimum-length", "all-vowels"]
+    },
+    {
+      "id": "trial-single-consonant",
+      "name": "a one-character consonant is retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "z"},
+      "expected": "z",
+      "tags": ["minimum-length", "no-vowels"]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "alternating consonants and vowels preserve consonant order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abecidofug"},
+      "expected": "bcdfg",
+      "tags": ["alternating", "stable-order"]
+    },
+    {
+      "id": "trial-repeated-vowels",
+      "name": "repeated vowel runs around consonants are fully removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaabooookeeeper"},
+      "expected": "bkpr",
+      "tags": ["repeated-vowels", "mixed"]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "a maximum-length consonant string is retained unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+      "expected": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "tags": ["maximum-length", "no-vowels"]
+    }
   ]
 }

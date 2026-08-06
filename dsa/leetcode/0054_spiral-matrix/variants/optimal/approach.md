@@ -9,10 +9,6 @@ Shrinking immediately after each edge means its corner cells are excluded from t
 
 After consuming the top and right edges, the rectangle may have become empty. Check `top <= bottom` before traversing a bottom edge and `left <= right` before traversing a left edge. These guards prevent duplicating a lone row or column.
 
-**Every perimeter removal leaves a smaller rectangle**
-
-At the start of each loop, every cell outside the boundary rectangle has been emitted exactly once in spiral order, and no cell inside it has been emitted. Walking its perimeter and shrinking all visited sides preserves the invariant.
-
 **Trace a rectangular, not merely square, matrix**
 
 For a 3-by-4 matrix, emit the first row, the remaining right column, the bottom row in reverse, and the remaining left column upward. The boundaries then surround `[6,7]`, which forms the final top edge.

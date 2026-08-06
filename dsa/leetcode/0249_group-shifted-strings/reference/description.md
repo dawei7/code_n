@@ -1,14 +1,13 @@
 ## Description
 
-Apply either of these operations to every character of a string at once:
+Perform the following shift operations on a string:
 
-- **Right shift:** Replace each letter with its next English letter, wrapping `z` to `a`. For example, `"abc"` becomes `"bcd"`, and `"xyz"` becomes `"yza"`.
-- **Left shift:** Replace each letter with its preceding English letter, wrapping `a` to `z`. Thus `"bcd"` becomes `"abc"`, and `"yza"` becomes `"xyz"`.
+- **Right shift**: Replace every letter with the **successive** letter of the English alphabet, where `'z'` is replaced by `'a'`. For example, `"abc"` can be right-shifted to `"bcd"` or `"xyz"` can be right-shifted to `"yza"`.
+- **Left shift**: Replace every letter with the **preceding** letter of the English alphabet, where `'a'` is replaced by `'z'`. For example, `"bcd"` can be left-shifted to `"abc"` or `"yza"` can be left-shifted to `"xyz"`.
 
-Repeating shifts in either direction produces an endless shifting sequence. For example:
+We can keep shifting the string in both directions to form an **endless shifting sequence**.
 
-`... <-> "abc" <-> "bcd" <-> ... <-> "xyz" <-> "yza" <-> ...`
+- For example, shift `"abc"` to form the sequence: `... <-> "abc" <-> "bcd" <-> ... <-> "xyz" <-> "yza" <-> ...`
+- `... <-> "zab" <-> "abc" <-> ...`
 
-Likewise, `... <-> "zab" <-> "abc" <-> ...` belongs to the same sequence.
-
-Given the array `strings`, group entries that belong to the same shifting sequence. The groups and their members may be returned in any order.
+You are given an array of strings `strings`, group together all `strings[i]` that belong to the same shifting sequence. You may return the answer in **any order**.

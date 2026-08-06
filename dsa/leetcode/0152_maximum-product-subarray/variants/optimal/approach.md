@@ -1,34 +1,19 @@
 ## General
-**A negative factor can turn the worst ending product into the best**
+**A negative factor can exchange the best and worst ending products**
 
-For every position, retain both maximum and minimum products among nonempty subarrays ending exactly there. A large negative minimum is not dominated: multiplying it by a later negative value can make it the next large positive maximum.
+After each position, keep `high` and `low`, the maximum and minimum products among nonempty subarrays ending exactly there. The minimum is necessary because multiplying a large negative product by a later negative value can make it the next maximum.
 
-**Every ending product either restarts or extends one previous extreme**
+For a new `value`, every ending subarray either starts at that value or extends a subarray ending one position earlier. Thus the only candidates for the new extremes are `value`, `high * value`, and `low * value` using the previous state. When `value < 0`, swap `high` and `low` first because multiplication reverses their order; then update `high = max(value, high * value)` and `low = min(value, low * value)`.
 
-For current `x`, candidates are `x`, `previous_high * x`, and `previous_low * x`. Taking their maximum and minimum is the direct recurrence. An equivalent optimized form swaps high and low when $x < 0$, then computes `high = max(x, high * x)` and `low = min(x, low * x)`.
-
-Both updates must use the previous extremes; swapping first or saving old values prevents an updated high from contaminating the low calculation.
-
-**Endpoint extrema and global optimum have separate meanings**
-
-After processing index `i`, `high` and `low` are respectively the maximum and minimum products of all nonempty subarrays ending at `i`, while `best` is the maximum product over every ending position through `i`.
-
-**Trace two negatives converting the minimum into the maximum**
-
-For `[-2,3,-4]`, the ending extremes become `(-2,-2)`, then `(3,-6)`. Multiplying by `-4` turns the previous low `-6` into high `24`, which becomes the global answer.
-
-**Both product extremes are necessary after a sign change**
-
-Every subarray ending at the current position either consists only of the current number or extends a subarray ending one position earlier. Among those extensions, only the previous maximum and minimum products can become new extremes: a positive multiplier preserves their order, while a negative multiplier reverses it. Zero is handled by the single-element candidate and restarts both ranges.
-
-The recurrence therefore captures the maximum and minimum product of every possible ending subarray. Updating the global answer from each ending maximum considers every nonempty subarray exactly when its right endpoint is processed.
+Initialize `high`, `low`, and `best` from the first element so a negative singleton remains eligible. After each recurrence, update `best` from `high`. The ending-state argument covers every subarray when its right endpoint is processed, so the largest ending maximum seen over the scan is the global optimum. A zero is handled by the single-value candidate and naturally resets both ending extremes.
 
 ## Complexity detail
-Each number causes constant arithmetic and comparisons once, giving $O(n)$ time. Three running products provide $O(1)$ auxiliary space.
+Each of the $n$ values causes a constant number of arithmetic operations and comparisons, giving $O(n)$ time. Three scalar products use $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Enumerate all subarrays:** is straightforward but costs $O(n^2)$ time.
-- **Prefix and suffix products:** can also solve the problem linearly, but the two-extreme recurrence states the negative-sign effect directly.
-- **Track only the maximum:** fails when a large negative product later meets another negative number.
-- A one-element array returns that element, including a negative value. Initialize from the first element rather than one or zero.
-- Zero naturally makes both ending extrema zero and permits a fresh subarray to begin at the next position.
+- **Enumerate all subarrays:** is direct but takes $O(n^2)$ time.
+- **Prefix and suffix products:** can also achieve linear time but expresses zero and sign behavior less directly.
+- **Track only the ending maximum:** fails when a negative minimum later becomes positive through another negative factor.
+- A one-element array returns that element, including when it is negative.
+- Zero can be the global answer and allows a fresh nonempty subarray to begin afterward.
+- The recurrence always uses the previous extrema; swapping before multiplication prevents an updated value from contaminating the other state.

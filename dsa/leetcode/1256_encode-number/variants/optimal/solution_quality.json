@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1256",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected one-line implementation is the canonical shifted-binary solution and is expert-interview ready. It exposes the mathematical identity directly, has no unnecessary state or control flow, uses the contract name num, and preserves the app-local solve(num) interface. A candidate would add ceremony without materially improving clarity, correctness, or complexity, so none was created."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Positive binary integers partition into groups with one leading bit followed by every fixed-width suffix. Replacing num by q = num + 1 selects the corresponding positive binary integer; deleting its leading one therefore returns precisely the offset within the correct length group. For num = 0, q is one and deleting that sole data bit correctly returns the empty string."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent repeated-division oracle, an independently derived length-group/offset construction, a separate per-bit construction control, the protected app source, and the immutable native source agreed on all ten visible cases, every num from 0 through 1,000,000, and 50,060 deterministic random and boundary values. The latter set included both legal endpoints and every shifted power-of-two group start and group end through the maximum output width."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The former three-tier benchmark was defective: a correct O((log q)^2) bit-position control passed its output checks and scaling verdict, while the documented O(q log q) enumeration alternative cannot reasonably finish the required visible num = 10^9 boundary. Because legal outputs contain at most 29 bits, timing cannot provide an honest trend. The benchmark was replaced by a strictly validated asymptotic-optimality certificate: every result has floor(log2(q)) characters for q > 1, giving an output lower bound of Omega(log q), and the protected single conversion plus slice gives the matching O(log q) upper bound."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1256, Python as the primary language, and native entrypoint Solution.encode. Fresh authenticated evidence confirms a non-negative integer input, an encoding deduced from the exact zero-through-seven mapping, the two exact source examples, and the inclusive 0 through 10^9 domain."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local solve.py and immutable leetcode.py remain bound to verified submission 2068014912 and were not modified. Both compute num + 1, use Python's binary representation, and take the identical [3:] suffix; their only structural difference is the required app function versus native Solution.encode wrapper."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach accurately derives the 2^k length groups, shifted positive-binary sequence, leading-bit removal, zero behavior, O(log q) output construction, enumeration and group-subtraction alternatives, power-of-two boundaries, and significant leading zeros. One precision gap was corrected: it now explicitly states that bin(q) starts with 0b, so [3:] removes that prefix and the leading data bit together."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "The ordinary suite now contains ten visible samples or trials. It preserves both authenticated source examples in order and covers the empty encoding, both sides of the one-bit group, two later group starts with meaningful leading zeros, a group end of all ones, the following group start, and the maximum legal input with its exact 29-character result. No correctness evidence is hidden."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the short source narrative, all eight zero-through-seven mapping rows, both examples without invented explanations, the sole constraint, and both source hints. The source's image-only table is recreated as an accessible Markdown table with identical facts."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples, no example explanations, one constraint, two hints, one source image containing the mapping table, and no note or follow-up. source_fidelity.json binds all five modular Reference files to live-content SHA-256 9bd5841b4812fc5187c8eac48dfd30aac3c62218fc06b29440666abb439e6a34 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples preserve both authenticated source inputs and quoted string outputs in source order; neither source example has an explanation.",
+      "All ten ordinary fixtures are visible samples or trials covering the empty result, one-bit boundaries, later power-of-two group starts, leading zeros, an all-one group end, and the maximum legal num value.",
+      "A repeated-division oracle independently recomputed every expectation. It, a length-group/offset control, a separate per-bit control, the protected source, and the immutable native source agreed on all fixed fixtures, 1,000,001 exhaustive inputs, and 50,060 seeded random and boundary inputs.",
+      "Complexity evidence is isolated in complexity_certificate.json and contributes no hidden correctness case or runtime tier; real-test reports the asymptotic-optimality method explicitly and passes all ten visible cases."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "e12ede945b7b3ff719b5656011cdc83f335f172c661b5d8c493212b1f6b090c7",
+    "native_source_sha256": "c30d9452b70eae6007c070401a474805dec0b5cce021717171449a4ea3ff5d34",
+    "approach_sha256": "eaf736f828b54fbaafa2611885e91fa877fd828cbe601f67bde3202ff9fb240b",
+    "solution_variants_sha256": "6872240b84a4dd85c69b1f8050f22f7fcfbc2debe34f4336f71dc678af76f9cf",
+    "complexity_evidence_sha256": "2051be4bbdc150bb44807400600b85977d21a43032b05039b7722c5cd2387389",
+    "cases_sha256": "ba691fc3a47e275b74711313665b5f3864b7922f13bc4af4bd469fa01750b650"
+  }
+}

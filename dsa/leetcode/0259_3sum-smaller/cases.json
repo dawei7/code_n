@@ -1,6 +1,125 @@
-{"challenge_id":"lc_259","cases":[
-{"id":"sample-two","name":"sample: two qualifying triples","kind":"sample","visible":true,"input":{"nums":[-2,0,1,3],"target":2},"expected":2,"tags":["sample","two-pointers"]},
-{"id":"sample-empty","name":"sample: empty input","kind":"sample","visible":true,"input":{"nums":[],"target":0},"expected":0,"tags":["sample","boundary"]},
-{"id":"trial-duplicates","name":"one duplicate-valued index triple","kind":"trial","visible":true,"input":{"nums":[0,0,0],"target":1},"expected":1,"tags":["duplicates"]},
-{"id":"real-strict","name":"hidden: sums equal to target are excluded","kind":"real","visible":false,"input":{"nums":[-1,1,2,2],"target":3},"expected":2,"tags":["hidden","strict"]}
-]}
+{
+  "challenge_id": "lc_259",
+  "cases": [
+    {
+      "id": "sample-two",
+      "name": "sample: two qualifying triples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [-2, 0, 1, 3],
+        "target": 2
+      },
+      "expected": 2,
+      "tags": ["sample", "two-pointers"]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: empty input",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [],
+        "target": 0
+      },
+      "expected": 0,
+      "tags": ["sample", "empty-array"]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [0],
+        "target": 0
+      },
+      "expected": 0,
+      "tags": ["sample", "single-value"]
+    },
+    {
+      "id": "trial-two-values",
+      "name": "two values cannot form an index triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [-100, 100],
+        "target": 0
+      },
+      "expected": 0,
+      "tags": ["short-array", "minimum-value", "maximum-value"]
+    },
+    {
+      "id": "trial-duplicate-multiplicity",
+      "name": "equal values count every distinct index triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [0, 0, 0, 0, 0],
+        "target": 1
+      },
+      "expected": 10,
+      "tags": ["duplicates", "index-multiplicity"]
+    },
+    {
+      "id": "trial-strict-equality",
+      "name": "sums equal to target are excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [-1, 1, 2, 2],
+        "target": 3
+      },
+      "expected": 2,
+      "tags": ["strict-inequality", "duplicates"]
+    },
+    {
+      "id": "trial-unsorted-mixed-signs",
+      "name": "unsorted mixed signs require both pointer directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [5, -4, 2, -1, 0],
+        "target": 2
+      },
+      "expected": 6,
+      "tags": ["unsorted", "mixed-signs", "pointer-movement"]
+    },
+    {
+      "id": "trial-all-valid",
+      "name": "every index triple qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [-5, -4, -3, -2],
+        "target": 100
+      },
+      "expected": 4,
+      "tags": ["all-valid", "maximum-target"]
+    },
+    {
+      "id": "trial-minimum-target-boundary",
+      "name": "minimum target keeps only the strictly smaller triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [-100, -100, -100, 100],
+        "target": -100
+      },
+      "expected": 1,
+      "tags": ["minimum-target", "minimum-value", "maximum-value", "strict-inequality"]
+    },
+    {
+      "id": "trial-maximum-target-boundary",
+      "name": "maximum target excludes boundary-equal sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [-100, 0, 100, 100],
+        "target": 100
+      },
+      "expected": 2,
+      "tags": ["maximum-target", "minimum-value", "maximum-value", "strict-inequality"]
+    }
+  ]
+}

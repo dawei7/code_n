@@ -1,20 +1,20 @@
 ## General
-For each email group, the survivor is defined uniquely: the row with minimum `id`. A row is therefore deletable exactly when another row has the same email and a smaller id.
+The candidate separates the task into identifying the survivor of every email group and deleting everything else. The survivor set is computed once by grouping on `email` and taking `MIN(id)` from each group. The outer `DELETE` then removes every row whose `id` is not in that set.
 
-The native MySQL form expresses that predicate with a multi-table self-join deletion. Alias one copy as the deletion target and one as a possible keeper; join on equal email and require `duplicate.id > keeper.id`. The target alias is the only table named after `DELETE`, so matching keeper rows are never deleted merely because they participate in the join.
+For `(1,a), (2,b), (3,a), (4,a)`, grouping produces keeper ids `1` and `2`. Rows 3 and 4 are outside that set and are deleted, while rows 1 and 2 remain. A group with one row contributes that row's id, so already-unique emails are unchanged.
 
-For `(1,a), (2,b), (3,a), (4,a)`, rows 3 and 4 each match row 1 and are deleted. Row 1 has no same-email row with a smaller id, and row 2 has no duplicate at all, so both survive. It does not matter that row 4 may match multiple smaller rows; deletion remains idempotent for that target row.
+Every retained id is the minimum id of its email group and is therefore the required representative. Conversely, every nonminimum row is absent from the keeper set and is deleted. Because `id` is a non-null primary key and each email is non-null, the subquery cannot introduce a `NULL` that would make `NOT IN` indeterminate. Thus exactly one row, with the smallest original id, remains for every email.
 
-The local SQLite adapter uses a correlated `EXISTS` predicate because SQLite does not support MySQL's joined-delete syntax. Delete a row exactly when another `Person` row has the same email and a smaller id. This is the same duplicate-versus-keeper relation as the native self-join.
-
-Every deleted row matches a same-email row with smaller id, so it cannot be the required representative. Conversely, every nonminimum row has the group's minimum-id row as a smaller same-email match and is deleted. The minimum row has no smaller match and survives, while a unique-email row also has no match. Hence exactly the minimum-id row remains for each distinct email.
+The final `SELECT` is only the app-local observation adapter: LeetCode observes the table after mutation, whereas the local SQLite runner needs a result set to compare. The immutable Accepted MySQL source uses a joined delete with the same survivor rule; the candidate is intentionally staged separately and is not submission evidence.
 
 ## Complexity detail
-A sort/group or indexed self-join plan generally costs $O(n \log n)$ logical work and up to $O(n)$ temporary or index state. An index on `(email, id)` can make duplicate and minimum lookup substantially more efficient. Mutation cost and exact planning are database-dependent.
+The grouping scan builds the minimum-id survivor set in $O(n \log n)$ logical work under SQLite's sort-based grouping plan. Testing membership and deleting the other rows requires another linear scan. The temporary grouping structure and survivor set use $O(n)$ space in the worst case. Exact physical costs remain database- and index-dependent.
 
 ## Alternatives and edge cases
-- Grouping by email to compute `MIN(id)` and deleting every other id is explicit and portable with dialect-specific mutation wrapping.
-- `ROW_NUMBER() OVER (PARTITION BY email ORDER BY id)` clearly labels duplicates, but deleting through the ranked result requires dialect-specific CTE support.
-- Deleting an arbitrary row from each duplicate group violates the minimum-id requirement.
-- Already-distinct data is unchanged. Groups of any size retain one row, independent of physical row order.
-- The schema's id uniqueness ensures each group has one unambiguous minimum.
+- **Correlated `EXISTS`:** Deleting a row when a smaller same-email row exists mirrors the native predicate, but without an email index SQLite can repeat a growing search for every row and take quadratic time.
+- **Joined delete:** The immutable Accepted MySQL source names duplicate and keeper aliases directly, but SQLite does not support MySQL's multi-table `DELETE` syntax.
+- **Window ranking:** `ROW_NUMBER() OVER (PARTITION BY email ORDER BY id)` labels every non-survivor clearly, but deleting through the ranked result requires dialect-specific CTE support.
+- **Minimum-id rule:** Deleting an arbitrary member of each duplicate group violates the contract even if one row per email remains.
+- **Already-distinct data:** Every id appears in the survivor set, so the candidate deletes nothing.
+- **Large duplicate groups:** One minimum id is retained regardless of group size or physical row order.
+- **Null semantics:** The schema guarantees non-null primary keys and emails, which makes `NOT IN` safe here.

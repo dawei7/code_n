@@ -14,6 +14,7 @@
       "expected": true,
       "tags": [
         "sample",
+        "source-example",
         "multi-token"
       ]
     },
@@ -29,13 +30,14 @@
       "expected": false,
       "tags": [
         "sample",
+        "source-example",
         "mismatch"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: multi-digit skip",
-      "kind": "sample",
+      "id": "trial-multi-digit-skip",
+      "name": "trial: multi-digit skip",
+      "kind": "trial",
       "visible": true,
       "input": {
         "word": "substitution",
@@ -43,7 +45,7 @@
       },
       "expected": true,
       "tags": [
-        "sample",
+        "trial",
         "multi-digit"
       ]
     },
@@ -78,48 +80,64 @@
       ]
     },
     {
-      "id": "hidden-overshoot",
-      "name": "hidden: skip exceeds remaining word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overshoot",
+      "name": "trial: skip exceeds remaining word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "hello",
         "abbr": "6"
       },
       "expected": false,
       "tags": [
-        "hidden",
+        "trial",
         "overshoot"
       ]
     },
     {
-      "id": "hidden-exact-literals",
-      "name": "hidden: abbreviation contains only matching letters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-exact-literals",
+      "name": "trial: abbreviation contains only matching letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "testing",
         "abbr": "testing"
       },
       "expected": true,
       "tags": [
-        "hidden",
+        "trial",
         "literal"
       ]
     },
     {
-      "id": "hidden-unconsumed-word",
-      "name": "hidden: abbreviation ends too early",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unconsumed-word",
+      "name": "trial: abbreviation ends too early",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "testing",
         "abbr": "t5"
       },
       "expected": false,
       "tags": [
-        "hidden",
+        "trial",
         "unconsumed"
+      ]
+    },
+    {
+      "id": "trial-maximum-integer-token",
+      "name": "trial: maximum signed integer token overshoots a one-letter word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a",
+        "abbr": "2147483647"
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "boundary",
+        "overshoot"
       ]
     }
   ]

@@ -19,4 +19,5 @@ Each index enters and leaves the deque at most once, giving $O(n)$ time. At most
 ## Alternatives and edge cases
 - **Scan every window:** costs $O(nk)$ time.
 - **Heap with lazy deletion:** costs $O(n \log n)$ and retains stale entries.
-- Width one returns the input values; width `n` returns one maximum; duplicates require index-based expiry.
+- **Extreme widths:** width one returns the input values, while width `n` returns one maximum.
+- **Duplicate values:** retaining indices rather than only values makes expiry unambiguous; the newest equal value safely dominates the older one.

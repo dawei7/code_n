@@ -2,13 +2,15 @@
   "schema_version": 1,
   "provider": "leetcode.com",
   "status": "verified",
-  "question_id": "743",
+  "question_id": "742",
   "frontend_id": "742",
   "title_slug": "closest-leaf-in-a-binary-tree",
   "paid_only": true,
   "language": "python3",
   "source": "solutions/leetcode.py",
-  "native_entrypoint": "Solution.findClosestLeaf",
-  "verified_submission_id": "2065860138",
-  "verified_at": "2026-07-13T08:09:32.811806+00:00"
+  "verified_submission_id": "2065508112",
+  "verified_at": "2026-07-12T21:46:12.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T15:05:00.000000+00:00"
 }

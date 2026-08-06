@@ -14,4 +14,5 @@ Traversal visits `n` nodes and constructing returned strings costs their output 
 
 ## Alternatives and edge cases
 - **Search from the root separately for every leaf:** repeats traversal and can take $O(n^2)$.
-- An empty tree returns no paths; negative and multi-digit values use their normal decimal form.
+- **Single-node tree:** emits the root value as the sole root-to-leaf path.
+- **Signed and multi-digit values:** use their normal decimal representation inside the arrow-delimited string.

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Basic Calculator and meets the required complexity bound.",
+      "summary": "Scans once while saving each outer result and sign as a stack context for parenthesized expressions.",
       "time_complexity": "O(n)",
       "space_complexity": "O(d)"
     }

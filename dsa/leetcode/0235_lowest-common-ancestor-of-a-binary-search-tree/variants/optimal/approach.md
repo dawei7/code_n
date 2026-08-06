@@ -17,4 +17,5 @@ The search follows one root-to-node path, taking $O(h)$ time and $O(1)$ iterativ
 ## Alternatives and edge cases
 - **General binary-tree LCA:** works but may inspect every node and ignores ordering.
 - **Stored root paths:** uses $O(h)$ extra space.
-- One target may be an ancestor of the other; target order does not matter.
+- **Ancestor target:** one target may be an ancestor of the other and is then the answer.
+- **Target order:** swapping `p` and `q` does not change any same-side or split comparison.

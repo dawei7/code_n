@@ -3,389 +3,262 @@
   "challenge_id": "lc_1440",
   "cases": [
     {
-      "id": "sample-three-operators",
-      "name": "sample: evaluate all supported operators",
+      "id": "sample-source-example",
+      "name": "source example: evaluate all six expressions",
       "kind": "sample",
       "visible": true,
       "input": {
         "tables": {
           "Variables": [
-            {
-              "name": "x",
-              "value": 66
-            },
-            {
-              "name": "y",
-              "value": 77
-            }
+            {"name": "x", "value": 66},
+            {"name": "y", "value": 77}
           ],
           "Expressions": [
-            {
-              "left_operand": "x",
-              "operator": ">",
-              "right_operand": "y"
-            },
-            {
-              "left_operand": "x",
-              "operator": "<",
-              "right_operand": "y"
-            },
-            {
-              "left_operand": "x",
-              "operator": "=",
-              "right_operand": "y"
-            }
+            {"left_operand": "x", "operator": ">", "right_operand": "y"},
+            {"left_operand": "x", "operator": "<", "right_operand": "y"},
+            {"left_operand": "x", "operator": "=", "right_operand": "y"},
+            {"left_operand": "y", "operator": ">", "right_operand": "x"},
+            {"left_operand": "y", "operator": "<", "right_operand": "x"},
+            {"left_operand": "x", "operator": "=", "right_operand": "x"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "left_operand",
-          "operator",
-          "right_operand",
-          "value"
-        ],
+        "columns": ["left_operand", "operator", "right_operand", "value"],
         "rows": [
-          [
-            "x",
-            "<",
-            "y",
-            "true"
-          ],
-          [
-            "x",
-            "=",
-            "y",
-            "false"
-          ],
-          [
-            "x",
-            ">",
-            "y",
-            "false"
-          ]
+          ["x", ">", "y", "false"],
+          ["x", "<", "y", "true"],
+          ["x", "=", "y", "false"],
+          ["y", ">", "x", "true"],
+          ["y", "<", "x", "false"],
+          ["x", "=", "x", "true"]
         ]
       },
-      "tags": [
-        "sample",
-        "operators"
-      ]
-    },
-    {
-      "id": "sample-equal-values",
-      "name": "sample: different names have equal values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Variables": [
-            {
-              "name": "a",
-              "value": 5
-            },
-            {
-              "name": "b",
-              "value": 5
-            }
-          ],
-          "Expressions": [
-            {
-              "left_operand": "a",
-              "operator": "=",
-              "right_operand": "b"
-            },
-            {
-              "left_operand": "a",
-              "operator": "<",
-              "right_operand": "b"
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "left_operand",
-          "operator",
-          "right_operand",
-          "value"
-        ],
-        "rows": [
-          [
-            "a",
-            "<",
-            "b",
-            "false"
-          ],
-          [
-            "a",
-            "=",
-            "b",
-            "true"
-          ]
-        ]
-      },
-      "tags": [
-        "sample",
-        "equality"
-      ]
-    },
-    {
-      "id": "sample-negative",
-      "name": "sample: compare negative and positive values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Variables": [
-            {
-              "name": "low",
-              "value": -2
-            },
-            {
-              "name": "high",
-              "value": 3
-            }
-          ],
-          "Expressions": [
-            {
-              "left_operand": "high",
-              "operator": ">",
-              "right_operand": "low"
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "left_operand",
-          "operator",
-          "right_operand",
-          "value"
-        ],
-        "rows": [
-          [
-            "high",
-            ">",
-            "low",
-            "true"
-          ]
-        ]
-      },
-      "tags": [
-        "sample",
-        "negative"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "source-example", "all-operators"]
     },
     {
       "id": "trial-same-operand",
-      "name": "same variable appears on both sides",
+      "name": "one variable appears on both sides of every operator",
       "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Variables": [
-            {
-              "name": "z",
-              "value": 10
-            }
+            {"name": "z", "value": 10}
           ],
           "Expressions": [
-            {
-              "left_operand": "z",
-              "operator": "=",
-              "right_operand": "z"
-            },
-            {
-              "left_operand": "z",
-              "operator": ">",
-              "right_operand": "z"
-            },
-            {
-              "left_operand": "z",
-              "operator": "<",
-              "right_operand": "z"
-            }
+            {"left_operand": "z", "operator": "=", "right_operand": "z"},
+            {"left_operand": "z", "operator": ">", "right_operand": "z"},
+            {"left_operand": "z", "operator": "<", "right_operand": "z"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "left_operand",
-          "operator",
-          "right_operand",
-          "value"
-        ],
+        "columns": ["left_operand", "operator", "right_operand", "value"],
         "rows": [
-          [
-            "z",
-            "<",
-            "z",
-            "false"
-          ],
-          [
-            "z",
-            "=",
-            "z",
-            "true"
-          ],
-          [
-            "z",
-            ">",
-            "z",
-            "false"
-          ]
+          ["z", "<", "z", "false"],
+          ["z", "=", "z", "true"],
+          ["z", ">", "z", "false"]
         ]
       },
-      "tags": [
-        "trial",
-        "same-operand"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "same-operand", "unordered-result"]
     },
     {
-      "id": "trial-mixed",
-      "name": "mixed true and false relations",
+      "id": "trial-equal-values",
+      "name": "different names store equal values",
       "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Variables": [
-            {
-              "name": "p",
-              "value": 1
-            },
-            {
-              "name": "q",
-              "value": 2
-            },
-            {
-              "name": "r",
-              "value": 3
-            }
+            {"name": "a", "value": 5},
+            {"name": "b", "value": 5}
           ],
           "Expressions": [
-            {
-              "left_operand": "p",
-              "operator": "<",
-              "right_operand": "q"
-            },
-            {
-              "left_operand": "r",
-              "operator": "=",
-              "right_operand": "q"
-            },
-            {
-              "left_operand": "r",
-              "operator": ">",
-              "right_operand": "p"
-            }
+            {"left_operand": "a", "operator": "=", "right_operand": "b"},
+            {"left_operand": "a", "operator": "<", "right_operand": "b"},
+            {"left_operand": "a", "operator": ">", "right_operand": "b"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "left_operand",
-          "operator",
-          "right_operand",
-          "value"
-        ],
+        "columns": ["left_operand", "operator", "right_operand", "value"],
         "rows": [
-          [
-            "p",
-            "<",
-            "q",
-            "true"
-          ],
-          [
-            "r",
-            "=",
-            "q",
-            "false"
-          ],
-          [
-            "r",
-            ">",
-            "p",
-            "true"
-          ]
+          ["a", ">", "b", "false"],
+          ["a", "=", "b", "true"],
+          ["a", "<", "b", "false"]
         ]
       },
-      "tags": [
-        "trial",
-        "mixed"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "equal-values", "different-names"]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: signed values and equality",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-signed-and-zero",
+      "name": "negative, zero, and positive values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Variables": [
-            {
-              "name": "min",
-              "value": -100
-            },
-            {
-              "name": "zero",
-              "value": 0
-            },
-            {
-              "name": "max",
-              "value": 100
-            }
+            {"name": "low", "value": -7},
+            {"name": "zero", "value": 0},
+            {"name": "high", "value": 11}
           ],
           "Expressions": [
-            {
-              "left_operand": "min",
-              "operator": "<",
-              "right_operand": "zero"
-            },
-            {
-              "left_operand": "max",
-              "operator": ">",
-              "right_operand": "zero"
-            },
-            {
-              "left_operand": "min",
-              "operator": "=",
-              "right_operand": "max"
-            }
+            {"left_operand": "low", "operator": "<", "right_operand": "zero"},
+            {"left_operand": "high", "operator": ">", "right_operand": "zero"},
+            {"left_operand": "zero", "operator": ">", "right_operand": "low"},
+            {"left_operand": "zero", "operator": "<", "right_operand": "high"},
+            {"left_operand": "low", "operator": "=", "right_operand": "high"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "left_operand",
-          "operator",
-          "right_operand",
-          "value"
-        ],
+        "columns": ["left_operand", "operator", "right_operand", "value"],
         "rows": [
-          [
-            "max",
-            ">",
-            "zero",
-            "true"
-          ],
-          [
-            "min",
-            "<",
-            "zero",
-            "true"
-          ],
-          [
-            "min",
-            "=",
-            "max",
-            "false"
-          ]
+          ["zero", "<", "high", "true"],
+          ["zero", ">", "low", "true"],
+          ["low", "=", "high", "false"],
+          ["low", "<", "zero", "true"],
+          ["high", ">", "zero", "true"]
         ]
       },
-      "tags": [
-        "hidden",
-        "signed"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "negative", "zero", "positive", "unordered-result"]
+    },
+    {
+      "id": "trial-value-not-name-order",
+      "name": "comparison uses stored values rather than variable names",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {"name": "alpha", "value": 50},
+            {"name": "zeta", "value": -50}
+          ],
+          "Expressions": [
+            {"left_operand": "alpha", "operator": ">", "right_operand": "zeta"},
+            {"left_operand": "zeta", "operator": "<", "right_operand": "alpha"},
+            {"left_operand": "alpha", "operator": "<", "right_operand": "zeta"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["left_operand", "operator", "right_operand", "value"],
+        "rows": [
+          ["alpha", "<", "zeta", "false"],
+          ["alpha", ">", "zeta", "true"],
+          ["zeta", "<", "alpha", "true"]
+        ]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "value-comparison", "name-order-trap"]
+    },
+    {
+      "id": "trial-integer-extremes",
+      "name": "signed integer endpoints compare without arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {"name": "minimum", "value": -2147483648},
+            {"name": "maximum", "value": 2147483647}
+          ],
+          "Expressions": [
+            {"left_operand": "minimum", "operator": "<", "right_operand": "maximum"},
+            {"left_operand": "maximum", "operator": ">", "right_operand": "minimum"},
+            {"left_operand": "minimum", "operator": "=", "right_operand": "maximum"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["left_operand", "operator", "right_operand", "value"],
+        "rows": [
+          ["maximum", ">", "minimum", "true"],
+          ["minimum", "=", "maximum", "false"],
+          ["minimum", "<", "maximum", "true"]
+        ]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "integer-boundaries", "signed"]
+    },
+    {
+      "id": "trial-unreferenced-variables",
+      "name": "variables absent from Expressions do not create output rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {"name": "used_left", "value": 4},
+            {"name": "used_right", "value": 9},
+            {"name": "unused_equal", "value": 4},
+            {"name": "unused_other", "value": 100}
+          ],
+          "Expressions": [
+            {"left_operand": "used_left", "operator": "<", "right_operand": "used_right"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["left_operand", "operator", "right_operand", "value"],
+        "rows": [
+          ["used_left", "<", "used_right", "true"]
+        ]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "unreferenced-variables", "one-row-per-expression"]
+    },
+    {
+      "id": "trial-single-expression",
+      "name": "minimum populated input with one self-equality",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {"name": "only", "value": 0}
+          ],
+          "Expressions": [
+            {"left_operand": "only", "operator": "=", "right_operand": "only"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["left_operand", "operator", "right_operand", "value"],
+        "rows": [
+          ["only", "=", "only", "true"]
+        ]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "single-expression", "zero"]
+    },
+    {
+      "id": "trial-empty-expressions",
+      "name": "no expression rows produce an empty result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {"name": "unused", "value": 3}
+          ],
+          "Expressions": {
+            "columns": ["left_operand", "operator", "right_operand"],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": ["left_operand", "operator", "right_operand", "value"],
+        "rows": []
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "empty-expressions", "empty-output"]
     }
   ]
 }

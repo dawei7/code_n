@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_625",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is compact, conventional, and interview-ready. Its names distinguish the remaining factor, accumulated result, decimal place, and candidate digit; the control flow directly mirrors the greedy derivation and contains no unnecessary helpers, mutable collections, or obscure tricks. No candidate would materially improve correctness, complexity, clarity, naming, or structure."
+      },
+      {
+        "category": "correctness_reasoning",
+        "severity": "verified",
+        "reason": "For a multi-digit result, useful factors are exactly decimal digits 2 through 9. Descending extraction compresses compatible prime factors into the fewest digits and resolves equal-length groupings toward the smaller ascending digit sequence; placing discoveries from the units position outward makes later, smaller factors more significant. A leftover value other than 1 is unrepresentable, one-digit inputs are already minimal, and rejecting the constructed minimum above 2^31 - 1 correctly rejects every larger representation as well."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Authenticated Premium source hash 14c405bd674498438499c20f89de304bbac4d7f43e13b5e01d066f8948d3a99a, repository metadata, the app adapter, and the native interface agree on one positive integer input, the minimum positive integer with the requested digit product, the zero sentinel for impossibility or signed-32-bit result overflow, and the input range 1 through 2^31 - 1. The app-local name a faithfully corresponds to source-native num."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source retain SHA-256 values 1da937e3a2078982146ff2722a8f6c280ce208e8953b4a91167887eabf8bfef5 and dcb5e783e933265e50c46ac15c32e51a8b037bdda71459989ff7fd0674fcb3e0. Both use the same one-digit guard, descending digit loop, repeated division, right-to-left decimal construction, leftover-factor test, and overflow test; their only structural difference is the required Solution.smallestFactorization wrapper bound to verified submission 2065487948."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged exponent-3, exponent-6, and exponent-12 power-of-two tiers span 4x in the declared workload size and exercise increasing successful divisions. The exact protected source passes all fifteen executions with -0.01 extra growth and a 1.00x largest observed tier ratio. An independently correct guarded candidate-enumeration control passes every output but fails only scaling at +4.37 extra growth and 424.53x on the largest tier."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The refreshed Approach explains why only digits 2 through 9 are useful, how composite digits compress prime factors, why descending extraction plus right-to-left construction yields the minimum, how leftovers and result overflow are handled, and why the protected implementation uses O(log a) time and O(1) auxiliary space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The authenticated statement contains one description paragraph, exactly two examples without explanations, and exactly one constraint, with no tables, images, diagrams, follow-up, hints, or notes. The modular Reference preserves the source-native num literals, both example pairs in order, the signed-32-bit condition, the sole input bound, and the absence of explanations or additional sections; source_fidelity.json validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The two authenticated source examples appear first in source order with exact facts: num = 48 returns 68 and num = 15 returns 35. Neither source example has an explanation, and 13 returning 0 is correctly labelled as an additional trial rather than an invented third sample.",
+      "Visible boundary trials cover the minimum input 1, the largest one-digit input 9, the first multi-digit input 10, the maximum signed-32-bit input, the largest possible in-range minimum representation 999999999, and a factorable target whose minimum result overflows signed 32-bit.",
+      "Material semantics cover an unsupported prime factor, valid prime digit 7 through 42 returning 67, repeated-prime compression through 36 returning 49, use of factors 2, 3, 5, 6, 7, 8, and 9 across the suite, ascending result digits, impossible factorization, and result overflow.",
+      "An independent constructive oracle enumerated 24,309 nondecreasing digit numbers that fit signed 32-bit and retained the minimum representation for each of 3,024 attainable products. It verified both protected forms on all twelve visible cases, all three benchmark outputs, every input from 1 through 100,000, and 500 deterministic full-range inputs using seed 62520260804.",
+      "All twelve correctness cases are visible samples or trials. The unchanged size-3, size-6, and size-12 workloads remain hidden and performance-only in benchmark.json, and the independently correct guarded enumeration control fails only their scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "1da937e3a2078982146ff2722a8f6c280ce208e8953b4a91167887eabf8bfef5",
+    "native_source_sha256": "dcb5e783e933265e50c46ac15c32e51a8b037bdda71459989ff7fd0674fcb3e0",
+    "approach_sha256": "81c7ae6556e3ca46790ec4cd947a5d171827f56bcb7ffac50ceb57bf9733b4a5",
+    "solution_variants_sha256": "caf69260e773d1acbe7288dadc893c04d6c657fadb42ea431d41cd7b11a1e5bf",
+    "complexity_evidence_sha256": "d2b6d882aca73691b1d1741e3b096e3d1803b9c94b07bba62eff32d7b2ae5ae4",
+    "cases_sha256": "257d483667547c1832e59f5c51e1b6607670fb95fd74a459c967145df8faed15"
+  }
+}

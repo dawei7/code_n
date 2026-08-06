@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1228",
+    "frontend_id": "1228",
+    "title_slug": "missing-number-in-arithmetic-progression",
+    "url": "https://leetcode.com/problems/missing-number-in-arithmetic-progression/description/",
+    "paid_only": true,
+    "content_sha256": "352d0277ad186ecd2d98f5073609bcd0dfb2496b6c9ee4b0293b8c41432dff92",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "hint"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "arr = [5,7,11,13]",
+        "output": "9",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "arr = [15,13,12]",
+        "output": "14",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3ba72042ab2356212e940f089749605753071bff566c03c181e4aae9f15379cc",
+      "reference/contract.md": "cb0a357bf5e6eec39e36d01a22cc5e4a282f38cca4cab4b7be0f8ff2acf6770d",
+      "reference/examples.md": "ba85cefcd664800a6f634dd694ad16db4e77a8d98506c78e11d5cc33c4bf56df",
+      "reference/constraints.md": "3345423ab351b9b1b8f4c191c3c8a64e4a79de825822d8603e337517a7b45009",
+      "reference/hint.md": "60eda7eaa37275178756df63b73cbff7865ec0158e27cdf82402ac29c843acef"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

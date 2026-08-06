@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Additive Number and meets the required complexity bound.",
+      "summary": "Enumerates the first two number boundaries, then verifies each uniquely forced sum in place.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n)"
     }

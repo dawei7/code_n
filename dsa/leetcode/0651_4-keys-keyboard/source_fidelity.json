@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_651",
+    "frontend_id": "651",
+    "title_slug": "4-keys-keyboard",
+    "url": "https://leetcode.com/problems/4-keys-keyboard/description/",
+    "paid_only": true,
+    "content_sha256": "ad9b0ab0c972aa3b7cf00eab064b55c8b0a4d0773dce3dcd0495c51232ea4d94",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 3",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 7",
+        "output": "9",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8b0c22a2d696ac1ab9f6d789e70357adad9d7272522f080d3aaedd7a34d244f5",
+      "reference/contract.md": "6733e8b81d4fdb83d857d7d96986bbbb2047c2ea1fa133d4f395f810c8e99ddb",
+      "reference/examples.md": "0da6fa42a366f7f9dd2f41cfc9474ece469c23f1d8cc3123fc710c6a9ddbeff0",
+      "reference/constraints.md": "a815ef7d6dfc884fa5f0ad464fccc6dced68f0c84d80d92332b1dca6a4a26748"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_533",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source is a concise expert solution: one scan records global column counts and frequencies of only relevant immutable row patterns, then one grouped calculation counts all valid pixels without revisiting coordinates. The algorithmic names and direct proof structure make an inert candidate materially unjustified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 533 and its Python picture/target-to-integer contract. The implementation enforces exactly `target` black pixels in a row and column, checks complete row-pattern equality through tuple keys, counts each qualifying coordinate, and handles rectangular dimensions."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2065266169. It and the protected app source have identical column counts, tuple row patterns, per-row black count, qualifying-pattern Counter, exact-frequency filter, column-count filter, grouped multiplication by `target`, and return value; only the native class/type wrapper and Counter annotation differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The all-black workloads contain 16, 64, and 256 cells, span 16x, and make every pixel qualify while forcing a direct validator to repeat row, column, and pattern work. The protected source passed all 10 correctness cases and all three performance tiers, including the legal 200 by 200 picture with target 200. A correct per-pixel validator passed every output but failed only the runtime verdict with relative growth exponent +0.61 and a 12.40x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The current-targeted Approach exactly derives relevant row-pattern frequencies, global column counts, the exact-frequency implication, grouped pixel contribution, and both directions of the correctness argument. Its O(rows * cols) time and space bounds include tuple construction, stored pattern keys, column counts, and final scans."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves both qualifying rules, coordinate-count semantics, both source examples, the complete first explanation, all five constraints, and source order. Both source images were independently recreated as accessible tables with the same pixels, highlighted qualifying cells, and row-pattern relationships."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples now appear first and in source order with their exact pictures, target values, and counts. The missing three-row black-column example was restored.",
+      "The two invented samples were relabelled as trials, the formerly hidden all-white case is visible, and the illegal one-column target-3 fixture was replaced with a legal target-1 case.",
+      "Boundaries cover 1 by 1 black and white pictures, one-column input, rectangular input, target 1, and the legal 200 by 200 maximum with target 200. Every target satisfies 1 <= target <= min(rows, cols).",
+      "Material semantics cover exact row and column black counts, identical-row requirements, correct counts with different patterns, a pattern occurring too many times, an overloaded column, all-white input, and positive contributions of one, four, and six pixels.",
+      "An independent per-pixel rule checker verified all ten correctness cases and all three benchmark outputs. The protected implementation also agreed on 1,850 exhaustive small-picture/target combinations and 1,000 randomized legal combinations.",
+      "All ten correctness cases are visible samples or trials; the unchanged 16-, 64-, and 256-cell all-black workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "dfa6eb4151959d044d85e0d097abb39effd34db7c2eaa9ce6d98758295c0bca5",
+    "native_source_sha256": "8f708308d026faf21c51acdb1e805d84c9e6b637a8c590e0f6ad85460984f297",
+    "approach_sha256": "bab1ae6ddcbddb71b6bdb6ff06b679f4d72fa44f8556c832e1e6a3665b7bb126",
+    "solution_variants_sha256": "bfe27d2dde83cd8cc0a004310128cdf2f562caab0b5c2b07e6c2b804b2d20f7f",
+    "complexity_evidence_sha256": "8124531ce4ba52d0d05ebf0217a97490d5d56ae9c6f540e8d7f4441387d84cf5",
+    "cases_sha256": "5c23157b286903c92145b7fdca84c9d5ec6eeee0bdad9498734c520d512ac9d5"
+  }
+}

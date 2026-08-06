@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2046",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution traverses the linked list starting at head. When current.next is negative, it detaches current.next and prepends it to head (updating head), while keeping current on non-negative nodes. This sorts the linked list in linear time O(N) and O(1) auxiliary space without comparison sorting; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Since nodes are given sorted by absolute value, non-negative nodes are already in non-decreasing order, while negative nodes encountered later have larger magnitudes (more negative values). Prepending each negative node to head reverses the negative nodes into correct non-decreasing signed order ahead of the non-negative chain."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Each node is inspected and relinked at most once in a single pass, using O(N) time and O(1) auxiliary space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts a ListNode head sorted by absolute value, relinks existing nodes in-place, and returns the head of the sorted list."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details relative sign ordering, prepending negative nodes to head, and O(N) time / O(1) space bounds. Alternatives and edge cases cover collecting/sorting values, insertion sort, non-negative lists, all-negative lists, equal absolute value ties, zero placement, duplicate values, and single-node lists."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the exact same single-pass negative node prepending algorithm with SHA-256 digests 45fc7d0c04a8e93ecc14847b02396f41f18cf93d6cb4d220164b06115eec0c10 and 096e7a173fae82bf7e1fbb06c40c2467a05e3aeb695d3214d65c3c2f63e308be. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed ListNode class interface, three examples, three constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "45fc7d0c04a8e93ecc14847b02396f41f18cf93d6cb4d220164b06115eec0c10",
+    "native_source_sha256": "096e7a173fae82bf7e1fbb06c40c2467a05e3aeb695d3214d65c3c2f63e308be",
+    "approach_sha256": "9d6683ca70902e9585ced1228e6b760b4ab4f4222bf6856c28896571c470c7aa",
+    "solution_variants_sha256": "2316ad8bb8eab756970cd6752b97090fb106d1c6329c9c39c0465ac748138b4c",
+    "complexity_evidence_sha256": "ac50dd2f95fbf2bf9b2b0a561dfb333dc4c269c89997abc08f6eb49ef5aecf4e"
+  }
+}

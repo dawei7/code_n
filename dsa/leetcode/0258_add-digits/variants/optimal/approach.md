@@ -14,4 +14,5 @@ One comparison and constant-count arithmetic operations take $O(1)$ time and spa
 
 ## Alternatives and edge cases
 - **Simulate digit sums:** is correct but processes digits repeatedly rather than using the number-theoretic invariant.
-- Zero must not be mapped to nine; positive multiples of nine must be.
+- **Zero:** must remain zero rather than being mapped to the positive residue representative nine.
+- **Positive multiples of nine:** have remainder zero but digital root nine.

@@ -3,7 +3,7 @@
 
 Scan from left to right while tracking `farthest`, the greatest index reachable using positions already processed. Since a jump may use any distance up to its maximum, reachability through `farthest` is a contiguous prefix rather than a sparse set.
 
-If the current index exceeds this frontier, it is unreachable, so its jump length cannot be used and no earlier position can cross the gap. Otherwise extend the frontier with `index + nums[index]`. Return early once it reaches the final index.
+If the current position `i` exceeds this frontier, it is unreachable, so its jump length cannot be used and no earlier position can cross the gap. Otherwise the candidate extends the frontier with `i + jump`. Return early once it reaches the final position.
 
 **Only reachable positions may extend the frontier**
 

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_478",
+    "frontend_id": "478",
+    "title_slug": "generate-random-point-in-a-circle",
+    "url": "https://leetcode.com/problems/generate-random-point-in-a-circle/description/",
+    "paid_only": false,
+    "content_sha256": "800ae4b364a4cd9a6972bd3e8b7daca59da029f5a705711d778f703d70c29a73",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "operations = [\"Solution\",\"randPoint\",\"randPoint\",\"randPoint\"], arguments = [[1.0,0.0,0.0],[],[],[]]",
+        "output": "[null,[-0.02493,-0.38077],[0.82314,0.38945],[0.36572,0.17248]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "cb20eca24fb0002a86534a47f0dfe75c27b40d52ebf093de6b1cb1f2cb3aa208",
+      "reference/contract.md": "1b7758dbf39045a4bd58983cffbbafc8e6c610aab16fec6a6912c9619ca49b22",
+      "reference/examples.md": "d059ba91062f24fefdcfb309918173cfbb7f3ac577f9ba917e46b58cce3881cd",
+      "reference/constraints.md": "3e7609eaa000518c3b64ce01ea36935c33e3e2cc9d4172aa9766ea7a3fcb0f40"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

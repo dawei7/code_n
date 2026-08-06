@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1645",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution calculates monthly working percentages of active drivers for 2020 using a WITH RECURSIVE Months CTE (1 to 12). For each month, correlated subqueries calculate distinct working drivers (from AcceptedRides JOIN Rides) and active drivers (Drivers with join_date before the start of next month). It handles zero active drivers via IFNULL/NULLIF and rounds percentages to 2 decimal places. The query runs in O(d + r + a) time and O(a) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Correlated distinct driver count over monthly ride requested_at date ranges divided by cumulative active driver count up to month-end accurately produces percentage for each 2020 month."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Fixed 12-month spine evaluates 12 constant subquery pairs over d drivers, r rides, and a accepted rides in O(d + r + a) total time and O(a) space for distinct driver hash sets. Complexity evidence is bounded-domain certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts Drivers, Rides, and AcceptedRides tables, returning 12 rows with columns month and working_percentage."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details 12-month recursive CTE generation, correlated distinct working driver counts, month-end cumulative active driver counts, NULLIF/IFNULL zero division handling, and O(d + r + a) time / O(a) space bounds. Alternatives and edge cases cover accepted ride row counting traps, all-driver denominator inaccuracies, ride-only month grouping omission risk, pre-2020 driver join eligibility, month-end join date boundaries, rejected request exclusion, non-2020 ride exclusions, and zero active driver safety."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions both execute the identical 12-month recursive CTE with correlated active/working driver queries with SHA-256 digests dae9e7514873f539f48be2065ea85d0960fb96dd7eea3a5f35891b01ef330b6d and d5e191bc3803fa70ae885582ad734362329054a726b6590af6f6e6f9962d9048. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Drivers, Rides, and AcceptedRides interface, three examples, four constraints, and 3 local tables. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "dae9e7514873f539f48be2065ea85d0960fb96dd7eea3a5f35891b01ef330b6d",
+    "native_source_sha256": "d5e191bc3803fa70ae885582ad734362329054a726b6590af6f6e6f9962d9048",
+    "approach_sha256": "7251ca3a9290c1cfcca07d484881855a8b74b53b8b1451e5e7139928da8bef2f",
+    "solution_variants_sha256": "67fc6d5257442f7d12a5e0c2428bd0732f1925771dbe6283d385781bbe7c1af5",
+    "complexity_evidence_sha256": "28660300a0e2320c75d60a4f0426958af1c7788d34bf8a9ce4285680e1c5c4bf"
+  }
+}

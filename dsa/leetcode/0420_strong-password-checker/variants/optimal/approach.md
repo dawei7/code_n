@@ -1,7 +1,11 @@
 ## General
 **Measure missing character classes and repeat repairs**
 
-Count how many of lowercase, uppercase, and digit are absent. Also scan maximal equal-character runs. A run of length `L` needs $\lfloor L/3 \rfloor$ replacements when length is already valid, because one changed character can break one block of three.
+The candidate stores the password length as `n`, counts how many of lowercase, uppercase, and digit are absent, and
+scans maximal equal-character runs with `i` and `j`. A run of length $L$ needs $\lfloor L/3 \rfloor$ replacements
+when length is already valid, because one changed character can break one block of three. During the same scan, it
+accumulates that replacement total and counts only runs whose lengths have remainder zero or one modulo three; it
+does not retain the individual run lengths.
 
 **Handle passwords shorter than six**
 

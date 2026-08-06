@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Top K Frequent Elements and meets the required complexity bound.",
+      "summary": "Counts values into frequency buckets, then scans those buckets downward until k values are emitted.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

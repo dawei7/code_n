@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1076",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL is concise, conventional, and interview-ready. The project_counts CTE and employee_count alias make the grouped grain and comparison measure explicit; the scalar maximum and equality filter express tie preservation directly. ORDER BY project_id stabilizes local output without changing the result set, and there are no opaque aliases or generic index bindings."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Grouping Project by project_id creates one row per represented project, and COUNT(*) equals that project's assigned-employee count because the composite primary key prevents duplicate employee assignments within a project. MAX(employee_count) identifies the global largest group size. Filtering every grouped row by equality with that scalar returns all and only projects attaining the maximum, including every tie exactly once. Employee attributes cannot affect assignment counts, and ascending output order is compatible with the contract's unrestricted order."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1076, SQL/MySQL, and the native query entrypoint. Authenticated source evidence confirms the two Project columns, composite (project_id, employee_id) primary key, employee_id foreign key, three Employee columns, and Employee.employee_id primary key. The app-local query preserves one count per represented project, maximum-cardinality selection, full tie retention, a single project_id output column, irrelevance of Employee attributes, and unrestricted result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2067516991 are byte-for-byte identical. Both materialize the same grouped project_counts relation, compute the same scalar maximum, retain every equal count, select only project_id, and order by project_id; there is no adapter or dialect divergence to reconcile."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden database workloads grow Project from 64 through 1024 assignments, with one employee per project so every project ties and the complete result must be retained. Grouped counting processes the relation once apart from ordering, while a correlated count executes a matching Project scan for every outer assignment. The exact protected query passed all seven visible correctness fixtures and all three performance tiers with relative growth exponent +0.01 and a 1.01x largest runtime ratio. An independently correct DISTINCT plus correlated-count control matched every correctness and benchmark output but failed only the calibrated complexity verdict at +0.78 and 12.16x, distinguishing the stated O(R log R) grouping bound from O(R^2) rescanning."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives counting at project grain, use of the composite key, comparison with one maximum, equality-based tie preservation, and the absence of any need to join Employee. It correctly qualifies sort-based and hash-aggregation physical plans and covers tied maxima, employees shared across projects, irrelevant employee attributes, the correlated alternative, and the incorrect LIMIT 1 shortcut. The branch manifest's conservative time and space bounds are supported."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves both schemas and all key relationships, the project-assignment semantics, maximum employee-count selection, full tie retention, the project_id-only output, and unrestricted result order. Its sole source example retains the exact Project and Employee rows, including John's one experience year, the output, and the three-versus-two explanation across three complete example tables; the two schema definitions supply the other two source-equivalent tables."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified two schema tables, the request for every project with the most employees, unrestricted output order, exactly one explained source example, five source table structures, and no constraints, hints, notes, or follow-up. source_fidelity.json binds the independently written modular Reference to live content hash 601700de4458a9f3c7ee85291f880177d0561ae540e3fb7f1f3e4de7d968f245 and validates with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly one example. Its exact Project rows, Employee rows, unique winning project, and three-versus-two explanation appear first as sample-1.",
+      "All seven ordinary correctness fixtures are visible samples or trials. They cover a unique maximum, every represented project tied, one assignment with an unassigned Employee row, several tied winners plus a lower-count project, an employee shared across projects, irrelevant names and experience, and an empty Project relation.",
+      "Every nonempty fixture respects unique Employee.employee_id values, unique (project_id, employee_id) pairs, and the Project.employee_id foreign key. The empty Project boundary uses the runtime's explicit columns-plus-rows table encoding so both source columns remain available to the query.",
+      "An independent Python oracle counts Project rows by project_id, finds the maximum count once, retains every equal project, and returns no rows for an empty assignment relation. It neither executes SQL nor reads Employee attributes.",
+      "The oracle, protected app-local query, immutable native query, and correlated-count control agreed on all 10 authored correctness-plus-benchmark fixtures. The oracle and all three SQL queries also agreed on 5000 deterministic random databases with valid composite keys and foreign keys, zero through eight represented projects, shared employees, unassigned employees, duplicate names, and varied experience values, plus four explicit boundary databases.",
+      "The 64-, 256-, and 1024-assignment workloads remain hidden and performance-only, use size consistently as the Project row count, and span 16x. The correct O(R^2) correlated control failed only scaling at +0.78 and 12.16x, while the protected grouped query passed at +0.01 and 1.01x."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "22744f427d5e9fdfd596c0bcbee01b7722d4a237adeb049f3a61dce9f3d2e6c5",
+    "native_source_sha256": "22744f427d5e9fdfd596c0bcbee01b7722d4a237adeb049f3a61dce9f3d2e6c5",
+    "approach_sha256": "75f2f4e966807519b33b8bb6a5713c22a8250ffe5dc23c8f8cfd8c933d61e9d3",
+    "solution_variants_sha256": "c09eaa75581d99da0d49c62a586004c5d89fc93aec6346f23b43909dc83b4d59",
+    "complexity_evidence_sha256": "02de583f13b8738c005f3d75a5cbac3729bfd553385592f8936ceee91b222ef1",
+    "cases_sha256": "b15c61e61f77a680d6790bb51bd79f76cc6131f9866efcd40352096c650af598"
+  }
+}

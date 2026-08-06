@@ -10,301 +10,199 @@
       "input": {
         "tables": {
           "Actions": [
-            {
-              "user_id": 1,
-              "post_id": 1,
-              "action_date": "2019-07-01",
-              "action": "view",
-              "extra": null
-            },
-            {
-              "user_id": 1,
-              "post_id": 1,
-              "action_date": "2019-07-01",
-              "action": "like",
-              "extra": null
-            },
-            {
-              "user_id": 2,
-              "post_id": 4,
-              "action_date": "2019-07-04",
-              "action": "view",
-              "extra": null
-            },
-            {
-              "user_id": 2,
-              "post_id": 4,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "spam"
-            },
-            {
-              "user_id": 3,
-              "post_id": 4,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "spam"
-            },
-            {
-              "user_id": 4,
-              "post_id": 3,
-              "action_date": "2019-07-02",
-              "action": "report",
-              "extra": "spam"
-            },
-            {
-              "user_id": 5,
-              "post_id": 2,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "racism"
-            },
-            {
-              "user_id": 5,
-              "post_id": 5,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "racism"
-            }
+            {"user_id": 1, "post_id": 1, "action_date": "2019-07-01", "action": "view", "extra": null},
+            {"user_id": 1, "post_id": 1, "action_date": "2019-07-01", "action": "like", "extra": null},
+            {"user_id": 1, "post_id": 1, "action_date": "2019-07-01", "action": "share", "extra": null},
+            {"user_id": 2, "post_id": 4, "action_date": "2019-07-04", "action": "view", "extra": null},
+            {"user_id": 2, "post_id": 4, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 3, "post_id": 4, "action_date": "2019-07-04", "action": "view", "extra": null},
+            {"user_id": 3, "post_id": 4, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 4, "post_id": 3, "action_date": "2019-07-02", "action": "view", "extra": null},
+            {"user_id": 4, "post_id": 3, "action_date": "2019-07-02", "action": "report", "extra": "spam"},
+            {"user_id": 5, "post_id": 2, "action_date": "2019-07-04", "action": "view", "extra": null},
+            {"user_id": 5, "post_id": 2, "action_date": "2019-07-04", "action": "report", "extra": "racism"},
+            {"user_id": 5, "post_id": 5, "action_date": "2019-07-04", "action": "view", "extra": null},
+            {"user_id": 5, "post_id": 5, "action_date": "2019-07-04", "action": "report", "extra": "racism"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "report_reason",
-          "report_count"
-        ],
-        "rows": [
-          [
-            "racism",
-            2
-          ],
-          [
-            "spam",
-            1
-          ]
-        ]
+        "columns": ["report_reason", "report_count"],
+        "rows": [["spam", 1], ["racism", 2]]
       },
-      "tags": [
-        "sample",
-        "distinct-posts"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "distinct-posts", "source-exact"]
     },
     {
       "id": "trial-one-report",
-      "name": "trial: one report row",
+      "name": "one report produces one reason with one post",
       "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Actions": [
-            {
-              "user_id": 1,
-              "post_id": 10,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "spam"
-            }
+            {"user_id": 7, "post_id": 11, "action_date": "2019-07-04", "action": "report", "extra": "other"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "report_reason",
-          "report_count"
-        ],
-        "rows": [
-          [
-            "spam",
-            1
-          ]
-        ]
+        "columns": ["report_reason", "report_count"],
+        "rows": [["other", 1]]
       },
-      "tags": [
-        "trial",
-        "minimum"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["single-report", "single-group"]
     },
     {
       "id": "trial-same-post-different-reasons",
-      "name": "trial: one post appears in two reason groups",
+      "name": "one post contributes once to each different reason",
       "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Actions": [
-            {
-              "user_id": 1,
-              "post_id": 7,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "spam"
-            },
-            {
-              "user_id": 2,
-              "post_id": 7,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "abuse"
-            }
+            {"user_id": 1, "post_id": 20, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 2, "post_id": 20, "action_date": "2019-07-04", "action": "report", "extra": "abuse"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "report_reason",
-          "report_count"
-        ],
-        "rows": [
-          [
-            "abuse",
-            1
-          ],
-          [
-            "spam",
-            1
-          ]
-        ]
+        "columns": ["report_reason", "report_count"],
+        "rows": [["spam", 1], ["abuse", 1]]
       },
-      "tags": [
-        "trial",
-        "reason-groups"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["reason-groups", "same-post"]
     },
     {
-      "id": "real-ignore-nonreports",
-      "name": "hidden: target-day non-report actions are ignored",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-reporters",
+      "name": "duplicate rows and multiple reporters count one post once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Actions": [
-            {
-              "user_id": 1,
-              "post_id": 1,
-              "action_date": "2019-07-04",
-              "action": "view",
-              "extra": null
-            },
-            {
-              "user_id": 1,
-              "post_id": 1,
-              "action_date": "2019-07-04",
-              "action": "comment",
-              "extra": "spam"
-            },
-            {
-              "user_id": 2,
-              "post_id": 2,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "spam"
-            }
+            {"user_id": 1, "post_id": 30, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 1, "post_id": 30, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 2, "post_id": 30, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 3, "post_id": 31, "action_date": "2019-07-04", "action": "report", "extra": "spam"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "report_reason",
-          "report_count"
-        ],
-        "rows": [
-          [
-            "spam",
-            1
-          ]
-        ]
+        "columns": ["report_reason", "report_count"],
+        "rows": [["spam", 2]]
       },
-      "tags": [
-        "hidden",
-        "action-filter"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["duplicate-rows", "distinct-posts", "multiple-reporters"]
     },
     {
-      "id": "real-ignore-other-days",
-      "name": "hidden: reports outside the target day are ignored",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ignore-nonreports",
+      "name": "all five non-report actions on the target date are ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Actions": [
-            {
-              "user_id": 1,
-              "post_id": 1,
-              "action_date": "2019-07-03",
-              "action": "report",
-              "extra": "spam"
-            },
-            {
-              "user_id": 2,
-              "post_id": 2,
-              "action_date": "2019-07-05",
-              "action": "report",
-              "extra": "spam"
-            },
-            {
-              "user_id": 3,
-              "post_id": 3,
-              "action_date": "2019-07-04",
-              "action": "report",
-              "extra": "abuse"
-            }
+            {"user_id": 1, "post_id": 40, "action_date": "2019-07-04", "action": "view", "extra": "spam"},
+            {"user_id": 2, "post_id": 41, "action_date": "2019-07-04", "action": "like", "extra": "spam"},
+            {"user_id": 3, "post_id": 42, "action_date": "2019-07-04", "action": "reaction", "extra": "wow"},
+            {"user_id": 4, "post_id": 43, "action_date": "2019-07-04", "action": "comment", "extra": "spam"},
+            {"user_id": 5, "post_id": 44, "action_date": "2019-07-04", "action": "share", "extra": "spam"},
+            {"user_id": 6, "post_id": 45, "action_date": "2019-07-04", "action": "report", "extra": "valid"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "report_reason",
-          "report_count"
-        ],
-        "rows": [
-          [
-            "abuse",
-            1
-          ]
-        ]
+        "columns": ["report_reason", "report_count"],
+        "rows": [["valid", 1]]
       },
-      "tags": [
-        "hidden",
-        "date-filter"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["action-filter", "enum-domain"]
     },
     {
-      "id": "real-no-target-reports",
-      "name": "hidden: schema-bearing rows produce an empty result",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ignore-other-days",
+      "name": "reports immediately before and after yesterday are ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Actions": [
-            {
-              "user_id": 1,
-              "post_id": 1,
-              "action_date": "2019-07-04",
-              "action": "share",
-              "extra": null
-            },
-            {
-              "user_id": 2,
-              "post_id": 2,
-              "action_date": "2019-07-03",
-              "action": "report",
-              "extra": "spam"
-            }
+            {"user_id": 1, "post_id": 50, "action_date": "2019-07-03", "action": "report", "extra": "spam"},
+            {"user_id": 2, "post_id": 51, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 3, "post_id": 52, "action_date": "2019-07-05", "action": "report", "extra": "spam"}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "report_reason",
-          "report_count"
-        ],
+        "columns": ["report_reason", "report_count"],
+        "rows": [["spam", 1]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["date-filter", "adjacent-dates", "yesterday"]
+    },
+    {
+      "id": "trial-optional-extra",
+      "name": "a null optional extra value forms its own report group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {"user_id": 1, "post_id": 60, "action_date": "2019-07-04", "action": "report", "extra": null},
+            {"user_id": 2, "post_id": 60, "action_date": "2019-07-04", "action": "report", "extra": null},
+            {"user_id": 3, "post_id": 61, "action_date": "2019-07-04", "action": "report", "extra": null}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["report_reason", "report_count"],
+        "rows": [[null, 2]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["optional-extra", "null-group", "distinct-posts"]
+    },
+    {
+      "id": "trial-multiple-reasons",
+      "name": "independent reasons receive independent distinct-post counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {"user_id": 1, "post_id": 70, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 2, "post_id": 71, "action_date": "2019-07-04", "action": "report", "extra": "spam"},
+            {"user_id": 3, "post_id": 72, "action_date": "2019-07-04", "action": "report", "extra": "abuse"},
+            {"user_id": 4, "post_id": 73, "action_date": "2019-07-04", "action": "report", "extra": "copyright"},
+            {"user_id": 5, "post_id": 74, "action_date": "2019-07-04", "action": "report", "extra": "copyright"},
+            {"user_id": 6, "post_id": 75, "action_date": "2019-07-04", "action": "report", "extra": "copyright"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["report_reason", "report_count"],
+        "rows": [["spam", 2], ["abuse", 1], ["copyright", 3]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["aggregation", "multiple-groups"]
+    },
+    {
+      "id": "trial-empty-actions",
+      "name": "an empty Actions table produces an empty result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": {
+            "columns": ["user_id", "post_id", "action_date", "action", "extra"],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": ["report_reason", "report_count"],
         "rows": []
       },
-      "tags": [
-        "hidden",
-        "empty-result"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["empty-table", "empty-result"]
     }
   ]
 }

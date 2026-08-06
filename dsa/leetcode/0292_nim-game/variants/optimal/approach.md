@@ -13,6 +13,8 @@ If `n` is not divisible by four, the first player removes $n \bmod 4$ stones and
 Testing $n \bmod 4$ uses constant time and space regardless of the pile size.
 
 ## Alternatives and edge cases
-- Dynamic programming can label every pile from `1` through `n`, but costs $O(n)$ time and space to rediscover the same pattern.
-- A recursive game tree repeats equivalent pile sizes and is much more expensive without memoization.
-- The contract begins with a positive pile, so there is no zero-stone case to define.
+- **Dynamic programming:** can label every pile from `1` through `n`, but costs $O(n)$ time and space to rediscover
+  the same pattern.
+- **Recursive game tree:** repeats equivalent pile sizes and is much more expensive without memoization.
+- **Smallest piles:** `n = 1`, `2`, or `3` is immediately winning because the first player takes the final stone.
+- **Positive-domain boundary:** the contract excludes an empty pile, so no zero-stone game outcome is needed.

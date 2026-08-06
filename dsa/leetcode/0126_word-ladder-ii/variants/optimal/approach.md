@@ -1,7 +1,7 @@
 ## General
 **BFS determines the shortest-distance subgraph before paths are built**
 
-Treat words as graph vertices and one-character transformations as edges. Breadth-first search processes an entire distance layer at a time. For each word, replace every one of its `L` positions with each alphabet character and keep candidates found in the unvisited dictionary.
+Treat words as graph vertices and one-character transformations as edges. Breadth-first search processes an entire distance layer at a time. For each `word`, the candidate enumerates its positions with `i`, replaces that character with each lowercase English letter, and keeps candidates found in `unvisited`.
 
 If `endWord` is absent from the dictionary, no valid sequence exists because every transformed word after the start must belong to it.
 
@@ -26,7 +26,9 @@ Breadth-first search assigns each discovered level the minimum transformation di
 Removing the level afterward prevents any longer path from adding parents to an already reached word. Parent edges therefore always decrease distance by one toward the start. Backtracking this acyclic graph enumerates all and only paths whose length equals the minimum ending level.
 
 ## Complexity detail
-For `N` words of length `L` and alphabet size `A`, neighbor generation costs $O(NLA)$ before the ending level. Writing `P` returned paths costs $O(PL)$. The word sets, parent graph, and output use $O(NL + PL)$ space.
+Let $N$ be the number of dictionary words and $R$ the total number of word positions across all returned sequences. The source contract limits word length to at most five and fixes the alphabet at 26 letters, so the candidate generates only constant legal work per visited word. BFS plus output construction therefore takes $O(N + R)$ time. The word sets and bounded-degree parent DAG use $O(N)$ space, while the returned paths use $O(R)$, for $O(N + R)$ total space.
+
+If word length $L$ and alphabet size $A$ were generalized beyond this source contract, Python substring construction and hashing would make neighbor generation $O(NAL^2)$ rather than $O(NLA)$, and the parent DAG could contain $O(NLA)$ references.
 
 ## Alternatives and edge cases
 - **Store complete paths in the BFS queue:** duplicates prefixes heavily and consumes much more memory.

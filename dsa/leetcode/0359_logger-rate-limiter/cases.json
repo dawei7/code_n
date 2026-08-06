@@ -51,13 +51,14 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "window"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: exact ten-second boundary",
-      "kind": "sample",
+      "id": "trial-exact-boundary",
+      "name": "trial: exact ten-second boundary",
+      "kind": "trial",
       "visible": true,
       "input": {
         "operations": [
@@ -78,14 +79,14 @@
         true
       ],
       "tags": [
-        "sample",
+        "trial",
         "boundary"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: same-timestamp messages",
-      "kind": "sample",
+      "id": "trial-same-timestamp",
+      "name": "trial: same-timestamp messages",
+      "kind": "trial",
       "visible": true,
       "input": {
         "operations": [
@@ -112,7 +113,7 @@
         false
       ],
       "tags": [
-        "sample",
+        "trial",
         "independent"
       ]
     },
@@ -191,10 +192,10 @@
       ]
     },
     {
-      "id": "hidden-repeated-boundaries",
-      "name": "hidden: successive accepted boundary events",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-boundaries",
+      "name": "trial: successive accepted boundary events",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -226,15 +227,15 @@
         true
       ],
       "tags": [
-        "hidden",
+        "trial",
         "boundary"
       ]
     },
     {
-      "id": "hidden-interleaved",
-      "name": "hidden: interleaved independent cooldowns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved",
+      "name": "trial: interleaved independent cooldowns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -272,30 +273,30 @@
         true
       ],
       "tags": [
-        "hidden",
+        "trial",
         "interleaved"
       ]
     },
     {
-      "id": "hidden-large-time",
-      "name": "hidden: large timestamp remains ordinary arithmetic",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-timestamp",
+      "name": "trial: cooldown reaches the maximum legal timestamp",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
             "shouldPrintMessage",
+            999999990,
+            "z"
+          ],
+          [
+            "shouldPrintMessage",
+            999999999,
+            "z"
+          ],
+          [
+            "shouldPrintMessage",
             1000000000,
-            "z"
-          ],
-          [
-            "shouldPrintMessage",
-            1000000009,
-            "z"
-          ],
-          [
-            "shouldPrintMessage",
-            1000000010,
             "z"
           ]
         ]
@@ -306,8 +307,59 @@
         true
       ],
       "tags": [
-        "hidden",
-        "boundary"
+        "trial",
+        "boundary",
+        "maximum-timestamp"
+      ]
+    },
+    {
+      "id": "trial-maximum-message-length",
+      "name": "trial: maximum-length message follows the same cooldown",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            0,
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          [
+            "shouldPrintMessage",
+            9,
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          [
+            "shouldPrintMessage",
+            10,
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "trial",
+        "boundary",
+        "maximum-message-length"
+      ]
+    },
+    {
+      "id": "trial-no-calls",
+      "name": "trial: an unused logger produces no decisions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": []
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "boundary",
+        "empty-stream"
       ]
     }
   ]

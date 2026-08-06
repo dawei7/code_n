@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_462",
+    "frontend_id": "462",
+    "title_slug": "minimum-moves-to-equal-array-elements-ii",
+    "url": "https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/description/",
+    "paid_only": false,
+    "content_sha256": "74420ee5e99ec3e62cd7f5a72af2dcc3de0486593c167da0c9ae979ed44fd67c",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,10,2,9]",
+        "output": "16",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b220c99d12ccaef76bb1030b3e58f00f86ea8fd941a15c7674fc639a2cdc5772",
+      "reference/contract.md": "8c2b9b730077b84c207cdba77a2d6923a1cb8a0b6868441efa3b01b79a37a4a0",
+      "reference/examples.md": "44e2610e010f3724af18bc80c54360e0896cdcd4788402a06f51daa187a81965",
+      "reference/constraints.md": "8669fd0b5eb71a8c83abf59f3f567c1c644eb9d6f78a3b812d0a65d2e0de1f3f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_634",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is concise, conventional, and interview-ready. The rolling-state names expose the two recurrence dependencies, the loop variable identifies the current permutation size, and the single transition performs modular reduction without unnecessary storage, branches, helpers, or obscure arithmetic. No candidate would materially improve its correctness, complexity, clarity, or structure."
+      },
+      {
+        "category": "correctness_reasoning",
+        "severity": "verified",
+        "reason": "The seeds represent D(0) = 1 and D(1) = 0. For every size at least two, a distinguished value has size - 1 non-original destinations. If the displaced value returns to the distinguished position, the remaining values contribute D(size - 2); otherwise the unresolved positions contribute D(size - 1). These disjoint cases give D(size) = (size - 1)(D(size - 1) + D(size - 2)), and simultaneous assignment shifts the two exact modular states forward."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Authenticated Premium source hash 44fadb13a9eeae62a7eb43b95b60bb19898bd5bc1ca79102a82657f51b2d17da, repository metadata, the app adapter, and the native interface agree on the ascending array [1, ..., n], fixed-point-free permutation count, modulo 10^9 + 7 return, and complete input range 1 through 10^6."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source retain SHA-256 values 98c204e0cc285ef1db7ea1de732ca86d83bf5e4eb792506ece68076698c0871d and 3b170fd1b315fcb78e85b24523265867b11013d1c044d3be34bf963263af7fe5. Both use the same modulus, D(0)/D(1) seeds, size range, recurrence, simultaneous state shift, and return value; their only structural difference is the Solution.findDerangement wrapper bound to verified submission 2065497955."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged n = 64, 256, and 512 tiers span 8x and exercise the complete linear recurrence. The exact protected source passes all fourteen executions at -0.03 extra growth and a 0.96x largest observed tier ratio. A correct guarded repeated-addition control passes every output but fails only scaling at +1.40 extra growth and 511.13x on the largest tier."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The refreshed Approach derives the two exhaustive placement cases, displays the exact recurrence, explains modular validity and rolling-state compression, identifies the first modular boundary, and matches the protected implementation's O(n) time and O(1) auxiliary-space bounds."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The authenticated statement contains two description paragraphs, exactly two examples, an explanation only for Example 1, and exactly one constraint, with no notes, tables, images, diagrams, follow-up, or hints. The modular Reference preserves the ascending-array model, derangement definition, modulus, both example pairs in order, both enumerated Example 1 permutations, Example 2's lack of explanation, and the exact input bound; source_fidelity.json validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The two authenticated source examples appear first in exact order with exact facts: n = 3 returns 2 and n = 2 returns 1. Example 1 retains its explanation and both listed derangements [2,3,1] and [3,1,2]; Example 2 remains unexplained. The invented n = 1 sample is correctly classified as an additional trial.",
+      "Visible contract boundaries cover the minimum n = 1, the maximum n = 1,000,000, both recurrence seeds, and the first exact derangement count that exceeds the modulus at n = 13.",
+      "Material values cover consecutive transitions through n = 6, odd and even sizes, a larger exact pre-modulus count at n = 10, the first modular reduction, sustained modular recurrence at n = 20 and n = 100, and the exact maximum-domain result.",
+      "Independent evidence enumerated 409,113 permutations across n = 1 through 9, evaluated the distinct first-order identity D(n) = nD(n - 1) + (-1)^n through all one million states, and verified both protected forms on all eleven visible cases, all three benchmarks, every n from 1 through 1,000, 100 deterministic inputs through 5,000 using seed 63420260804, and n = 1,000,000.",
+      "All eleven correctness cases are visible samples or trials. The unchanged n = 64, 256, and 512 workloads remain hidden and performance-only in benchmark.json, span 8x, and make the correct quadratic repeated-addition control fail only scaling."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "98c204e0cc285ef1db7ea1de732ca86d83bf5e4eb792506ece68076698c0871d",
+    "native_source_sha256": "3b170fd1b315fcb78e85b24523265867b11013d1c044d3be34bf963263af7fe5",
+    "approach_sha256": "896b803065039bdce1c7f058d5de6695252678b16b869f2b2a8874743fff0c64",
+    "solution_variants_sha256": "acbcdeb03caebbf13917ca1e1893bcf3722b2255b7d836478a9fe6f5ff535d78",
+    "complexity_evidence_sha256": "e46a5c298a7ae6231fdcaf95e10295827136aaa47624921068f71b157332fdaf",
+    "cases_sha256": "2507d0e73ae03df57e41ae5333cd0c9ca098674185a01cc46587780b82eb381e"
+  }
+}

@@ -20,6 +20,7 @@ There are $n(n - 1) / 2$ ordered index pairs, each with average constant-time ha
 
 ## Alternatives and edge cases
 - **Three-index predecessor scan:** store pair states but scan every still-earlier index to find matching differences; this is correct but takes $O(n^3)$ time.
+- **Repeated prefix sorting:** sort and search the predecessor prefix anew for every endpoint pair; this stays correct but takes superquadratic time because the same prefixes are rebuilt repeatedly.
 - **Enumerate all subsequences:** tests the condition directly but takes exponential time.
 - **Equal values:** difference zero is an ordinary map key and may create many valid subsequences.
 - **Duplicate values at different indices:** form distinct subsequences and must retain multiplicity.

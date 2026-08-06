@@ -7,7 +7,7 @@
     "app_sha256": "a831713221194da6078a1d15d85e9247216a26bbb241ec669ad62da1b66044e0",
     "native_sha256": "65cac629b5350bbadc9c30afb663341dea148bfc3905e251e978e42c71894390",
     "solution_variants_sha256": "5ea55b88077b4f672ee0a2675ef675c93433f10ede34d54d0f960f888db4acdb",
-    "approach_sha256": "6d3494ef49bf74fdee90387ece10a2e44dd9e4608f85e11eb65aa22feee35695"
+    "approach_sha256": "a6551ba4947748cdd60559aeed38e07f932a0de7928b70486b6ff73cf084ca17"
   },
   "classifications": [
     "judge_environment",

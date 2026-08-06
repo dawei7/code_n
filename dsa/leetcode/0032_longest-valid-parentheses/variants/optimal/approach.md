@@ -26,7 +26,7 @@ In the forward scan, a prefix with more closers than openers can never be repair
 Excess openers have the symmetric problem, but they may remain at the end of a forward segment and hide a valid suffix. The backward scan turns that condition into excess closers in reverse and resets at the corresponding hard right boundary. Every maximal valid substring is bounded by these imbalance points and reaches equal counts in at least one direction. Every recorded segment has equal counts without a forbidden prefix in that direction, so the maximum is exact.
 
 ## Complexity detail
-Each of the two scans visits every character once and performs constant work, so total time is $O(n)$. Four counters/indices and the best length are stored, giving $O(1)$ auxiliary space.
+Each of the two scans visits every character once and performs constant work, so total time is $O(n)$. The opening and closing counters plus the best length use $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Stack of unmatched indices:** also runs in $O(n)$ time and directly measures boundaries, but uses $O(n)$ space.

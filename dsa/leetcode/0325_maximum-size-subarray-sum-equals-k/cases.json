@@ -19,7 +19,8 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "source-example"
       ]
     },
     {
@@ -39,13 +40,14 @@
       "expected": 2,
       "tags": [
         "sample",
+        "source-example",
         "negative"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no matching sum",
-      "kind": "sample",
+      "id": "trial-no-match",
+      "name": "no subarray reaches the target",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -57,7 +59,6 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
         "impossible"
       ]
     },
@@ -65,7 +66,7 @@
       "id": "trial-zero-target",
       "name": "trial: whole alternating array sums to zero",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -85,7 +86,7 @@
       "id": "trial-negative-target",
       "name": "trial: repeated negative values",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -101,10 +102,10 @@
       ]
     },
     {
-      "id": "hidden-whole-array",
-      "name": "hidden: whole array is optimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-whole-array",
+      "name": "whole array is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -116,15 +117,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "whole-array"
       ]
     },
     {
-      "id": "hidden-zero-prefixes",
-      "name": "hidden: repeated equal prefix sums",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-prefixes",
+      "name": "repeated equal prefix sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -135,15 +135,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
     {
-      "id": "hidden-single",
-      "name": "hidden: single matching element",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single",
+      "name": "single matching element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7
@@ -152,9 +151,35 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
+    },
+    {
+      "id": "trial-value-extremes",
+      "name": "alternating element extrema give a full zero-sum array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums":[10000,-10000,10000,-10000],"k":0},
+      "expected": 4,
+      "tags": ["minimum-element","maximum-element","zero-target"]
+    },
+    {
+      "id": "trial-maximum-target",
+      "name": "maximum target is unreachable by a short bounded array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums":[10000,-10000,5],"k":1000000000},
+      "expected": 0,
+      "tags": ["maximum-target","no-match","value-boundaries"]
+    },
+    {
+      "id": "trial-minimum-target",
+      "name": "minimum target is unreachable by a short bounded array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums":[-10000,10000,-5],"k":-1000000000},
+      "expected": 0,
+      "tags": ["minimum-target","no-match","value-boundaries"]
     }
   ]
 }

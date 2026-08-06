@@ -21,4 +21,5 @@ Two linear passes give $O(n)$ time. Candidate values, counters, and the at-most-
 ## Alternatives and edge cases
 - **Frequency hash table:** is linear but uses $O(n)$ auxiliary space.
 - **Sorting:** can count runs but costs $O(n \log n)$ time or mutates the input.
-- A one- or two-element array can return every distinct value; duplicate candidate slots must not produce duplicate output.
+- **Short arrays:** a one- or two-element array can return every distinct value.
+- **Candidate deduplication:** the two candidate slots must not produce duplicate output when they hold the same value.

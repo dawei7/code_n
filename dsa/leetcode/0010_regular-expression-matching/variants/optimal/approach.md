@@ -63,5 +63,5 @@ There are `m` nonempty string rows and `n` pattern columns, and every cell perfo
 - **Naive recursive backtracking:** mirrors the definition but may explore exponentially many ways to divide repeated characters among adjacent stars.
 - **Memoized recursion:** has the same $O(mn)$ state count and is correct, but uses recursion and a full memo table.
 - **General regex engine:** supports a different, much larger syntax and may not enforce this problem's exact whole-string contract transparently.
-- Empty strings require the special `element*` initialization. A pattern like `.*` can consume any sequence, but `.` alone consumes exactly one character.
+- Empty string prefixes require the special `element*` initialization. A pattern like `.*` can consume any sequence, but `.` alone consumes exactly one character.
 - Consecutive or leading stars are excluded by the valid-pattern contract; an implementation need not invent semantics for them.

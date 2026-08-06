@@ -6,7 +6,7 @@
 Every scheduled URL is reachable through a chain of same-host links, so the traversal never adds an invalid page. Conversely, whenever a reachable same-host page has a predecessor that is processed, its link is inspected and the page is scheduled unless already visited. Induction along a reachability path therefore shows that the final visited set contains every and only required URL.
 
 ## Complexity detail
-Each of the $V$ visited URLs is processed once, and all $E$ outgoing links from those pages are inspected once, giving $O(V+E)$ time. The visited set and traversal stack hold at most $V$ URLs, so auxiliary space is $O(V)$.
+Each of the $V$ visited URLs is processed once, and all $E$ outgoing links from those pages are inspected once, giving $O(V+E)$ time because the source bounds every URL to at most 300 characters. Without treating URL length as bounded, the exact bound additionally includes the characters scanned while extracting hostnames. The visited set and traversal stack hold at most $V$ URLs, so auxiliary space is $O(V)$.
 
 ## Alternatives and edge cases
 - **Breadth-first search:** A queue provides the same $O(V+E)$ guarantees; traversal order is irrelevant because any result order is accepted.

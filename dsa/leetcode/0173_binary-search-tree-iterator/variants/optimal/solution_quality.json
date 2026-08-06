@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_173",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The prior benchmark note incorrectly said a right-skewed tree exercises a height-sized stack. The workload actually keeps the lazy stack small while exercising every inorder advancement, and it rejects a correct iterator that retraverses the tree for each next call."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "12e75fca877b0bfef28a98e80807b163e5382b3dced91ae92a3c51c045f7ec59",
+    "native_source_sha256": "885f4d52cade4d05d785ff0107dfc2e22f6794d268e80e5af02c95adb2ab5ef0",
+    "approach_sha256": "785b9ad8539e681e62d976ab4e8414af8e1785fa7ba0d235d6420074c51218be",
+    "solution_variants_sha256": "890f1f3d808ad68cbdc27f4f4d4326b3fabf748c2d58f4c089b653b4d0b0563f",
+    "complexity_evidence_sha256": "ce6f0e031f0da083240718280a8894ab12f3b5c27182d8e587903ad20751a429"
+  }
+}

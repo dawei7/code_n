@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1831",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution applies RANK() OVER (PARTITION BY DATE(day) ORDER BY amount DESC) inside a CTE to rank transactions by amount per calendar day, filters for amount_rank = 1, and orders the output by transaction_id ASC. Using RANK() guarantees that tied daily maximum amounts are all preserved. The solution is canonical, concise, and optimal; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Partitioning by DATE(day) correctly isolates full calendar dates regardless of time-of-day. RANK() assigns rank 1 to all transactions matching the maximum amount on that date, so filtering amount_rank = 1 retains all daily maxima including ties."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Partitioned window ranking over r transaction rows takes O(r log r) time, and sorting qualifying IDs takes O(r log r) time. Working space is O(r). Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs single column transaction_id, preserves tied daily maximum amounts, and sorts the output by transaction_id ASC."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details partitioning by DATE(day), using RANK() for co-maxima, and relational complexity bounds. Alternatives and edge cases cover MAX aggregation joins, correlated NOT EXISTS queries, ROW_NUMBER tie-loss bugs, DAY(day) month-merging errors, timestamps on one date vs midnight boundaries, tied maxima, single transactions per date, and output sorting."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical with SHA-256 digest 3c86edc0960e4fbbb0c66bb5a933d4b332aa9bd92e6e18615cface0ed95da4f4. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Transactions schema, three examples, two constraints, and 3 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "3c86edc0960e4fbbb0c66bb5a933d4b332aa9bd92e6e18615cface0ed95da4f4",
+    "native_source_sha256": "3c86edc0960e4fbbb0c66bb5a933d4b332aa9bd92e6e18615cface0ed95da4f4",
+    "approach_sha256": "7a09536d51ccb1eeb35fd0e1ac0c33e9afdb0770b99210512c697a6cfc63baf2",
+    "solution_variants_sha256": "0ad83a1191c693169b234eb6985a6d17f9db5dbaec5388a72215b91a783643c9",
+    "complexity_evidence_sha256": "892281eb1afb6f88799a9400662be1b8693bc063b0eb39e890febadfb4118d45"
+  }
+}

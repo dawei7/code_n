@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_468",
-  "measurement_note": "Size is the candidate string length within the problem's input bound. A single structural scan is linear, while reparsing every growing prefix to recount delimiters repeats prior character work and becomes quadratic.",
+  "measurement_note": "Size is the candidate string length. A single structural scan is linear, while reparsing every growing prefix to recount delimiters repeats prior character work and becomes quadratic.",
   "cases": [
     {
       "id": "benchmark-scale-1",

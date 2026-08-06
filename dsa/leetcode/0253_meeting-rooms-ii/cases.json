@@ -1,6 +1,93 @@
-{"challenge_id":"lc_253","cases":[
-{"id":"sample-two","name":"sample: two rooms required","kind":"sample","visible":true,"input":{"intervals":[[0,30],[5,10],[15,20]]},"expected":2,"tags":["sample","overlap"]},
-{"id":"sample-one","name":"sample: one room is enough","kind":"sample","visible":true,"input":{"intervals":[[7,10],[2,4]]},"expected":1,"tags":["sample","compatible"]},
-{"id":"trial-empty","name":"empty schedule","kind":"trial","visible":true,"input":{"intervals":[]},"expected":0,"tags":["boundary"]},
-{"id":"real-three","name":"hidden: three simultaneous meetings","kind":"real","visible":false,"input":{"intervals":[[1,5],[2,6],[3,7],[7,9]]},"expected":3,"tags":["hidden","peak"]}
-]}
+{
+  "challenge_id": "lc_253",
+  "cases": [
+    {
+      "id": "sample-two",
+      "name": "sample: two rooms required",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [[0, 30], [5, 10], [15, 20]]
+      },
+      "expected": 2,
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "sample-one",
+      "name": "sample: one room is enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [[7, 10], [2, 4]]
+      },
+      "expected": 1,
+      "tags": ["sample", "compatible", "unsorted"]
+    },
+    {
+      "id": "trial-single-full-time-domain",
+      "name": "one meeting spans both inclusive time limits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[0, 1000000]]
+      },
+      "expected": 1,
+      "tags": ["single-meeting", "time-boundaries"]
+    },
+    {
+      "id": "trial-unsorted-touching-chain",
+      "name": "touching meetings reuse one room",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[4, 1000000], [1, 3], [0, 1], [3, 4]]
+      },
+      "expected": 1,
+      "tags": ["touching-endpoints", "unsorted"]
+    },
+    {
+      "id": "trial-three-simultaneous",
+      "name": "three simultaneous meetings establish the peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[1, 5], [2, 6], [3, 7], [7, 9]]
+      },
+      "expected": 3,
+      "tags": ["peak-concurrency", "touching-distractor"]
+    },
+    {
+      "id": "trial-nested-meetings",
+      "name": "four nested meetings require four rooms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[30, 70], [0, 100], [20, 80], [10, 90]]
+      },
+      "expected": 4,
+      "tags": ["nesting", "maximum-overlap"]
+    },
+    {
+      "id": "trial-equal-starts",
+      "name": "meetings starting together all need separate rooms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[5, 10], [5, 6], [5, 7]]
+      },
+      "expected": 3,
+      "tags": ["equal-start", "simultaneous-starts"]
+    },
+    {
+      "id": "trial-staggered-peak",
+      "name": "end-before-start ties surround a later three-room peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[8, 9], [0, 10], [5, 7], [1, 5], [6, 8]]
+      },
+      "expected": 3,
+      "tags": ["staggered-events", "touching-endpoints", "peak-concurrency"]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2313",
+    "frontend_id": "2313",
+    "title_slug": "minimum-flips-in-binary-tree-to-get-result",
+    "url": "https://leetcode.com/problems/minimum-flips-in-binary-tree-to-get-result/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`root = [3, 5, 4, 2, null, 1, 1, 1, 0], result = true`",
+        "output": "`2`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`root = [0], result = false`",
+        "output": "`0`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "860c55799d71515fae96936e121cd55932475bd2a95376a7b764728aa664ad14",
+      "reference/contract.md": "d64deba5dfe5b4d71634793947a0b8926c44e13fe2ee71deec00504f0e297d0a",
+      "reference/examples.md": "868f8d7a630e2a8eed3332d42fa3370b527cca7b3e5f16b402c72c186480fb44",
+      "reference/constraints.md": "cb0e1871a28fb529fa720514599b2f69b07c1c324da257ba5fa407e2c65e018c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,12 +1,131 @@
 {
   "challenge_id": "lc_294",
   "cases": [
-    {"id": "sample-four", "name": "sample: winning four-plus run", "kind": "sample", "visible": true, "input": {"currentState": "++++"}, "expected": true, "tags": ["sample", "grundy"]},
-    {"id": "sample-short", "name": "sample: no legal move", "kind": "sample", "visible": true, "input": {"currentState": "+"}, "expected": false, "tags": ["sample", "boundary"]},
-    {"id": "sample-pair", "name": "sample: take the only pair", "kind": "sample", "visible": true, "input": {"currentState": "++"}, "expected": true, "tags": ["sample"]},
-    {"id": "trial-five-loss", "name": "five consecutive pluses are losing", "kind": "trial", "visible": true, "input": {"currentState": "+++++"}, "expected": false, "tags": ["mex"]},
-    {"id": "trial-cancel", "name": "equal independent games cancel", "kind": "trial", "visible": true, "input": {"currentState": "++--++"}, "expected": false, "tags": ["xor", "segments"]},
-    {"id": "real-unequal-runs", "name": "hidden: unequal independent runs", "kind": "real", "visible": false, "input": {"currentState": "++++--++"}, "expected": true, "tags": ["hidden", "xor"]},
-    {"id": "real-no-pair", "name": "hidden: separated single pluses", "kind": "real", "visible": false, "input": {"currentState": "+-+-+-+"}, "expected": false, "tags": ["hidden", "none"]}
+    {
+      "id": "sample-four",
+      "name": "sample: winning four-plus run",
+      "kind": "sample",
+      "visible": true,
+      "input": {"currentState": "++++"},
+      "expected": true,
+      "tags": ["sample", "source-example", "winning-move"]
+    },
+    {
+      "id": "sample-short",
+      "name": "sample: one plus has no legal move",
+      "kind": "sample",
+      "visible": true,
+      "input": {"currentState": "+"},
+      "expected": false,
+      "tags": ["sample", "source-example", "minimum-length", "terminal"]
+    },
+    {
+      "id": "trial-single-minus",
+      "name": "one minus has no legal move",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "-"},
+      "expected": false,
+      "tags": ["minimum-length", "terminal"]
+    },
+    {
+      "id": "trial-only-pair",
+      "name": "taking the only pair wins immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "++"},
+      "expected": true,
+      "tags": ["single-move", "run-length-two"]
+    },
+    {
+      "id": "trial-three-plus",
+      "name": "either move from three pluses ends the game",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+++"},
+      "expected": true,
+      "tags": ["overlapping-moves", "run-length-three"]
+    },
+    {
+      "id": "trial-five-loss",
+      "name": "five consecutive pluses form a losing position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+++++"},
+      "expected": false,
+      "tags": ["grundy-zero", "run-length-five"]
+    },
+    {
+      "id": "trial-equal-pairs-cancel",
+      "name": "two equal pair games cancel under xor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "++--++"},
+      "expected": false,
+      "tags": ["xor-cancellation", "separate-runs"]
+    },
+    {
+      "id": "trial-unequal-runs-win",
+      "name": "four-plus and two-plus components have nonzero xor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "++++--++"},
+      "expected": true,
+      "tags": ["nonzero-xor", "unequal-runs"]
+    },
+    {
+      "id": "trial-separated-singles",
+      "name": "separated single pluses contain no legal pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+-+-+-+"},
+      "expected": false,
+      "tags": ["terminal", "no-pair", "separate-runs"]
+    },
+    {
+      "id": "trial-equal-triples-cancel",
+      "name": "two three-plus components cancel under xor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+++--+++"},
+      "expected": false,
+      "tags": ["xor-cancellation", "run-length-three"]
+    },
+    {
+      "id": "trial-unequal-length-equal-grundy",
+      "name": "different run lengths can still have equal Grundy values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+++--++"},
+      "expected": false,
+      "tags": ["xor-cancellation", "semantic-trap", "unequal-runs"]
+    },
+    {
+      "id": "trial-three-pairs",
+      "name": "three identical pair components leave nonzero xor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "++--++--++"},
+      "expected": true,
+      "tags": ["nonzero-xor", "three-components"]
+    },
+    {
+      "id": "trial-pair-with-padding",
+      "name": "surrounding minus symbols do not affect the pair game",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "--++--"},
+      "expected": true,
+      "tags": ["single-component", "minus-padding"]
+    },
+    {
+      "id": "trial-maximum-length-no-pair",
+      "name": "maximum-length alternating state has no move",
+      "kind": "trial",
+      "visible": true,
+      "input": {"currentState": "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-"},
+      "expected": false,
+      "tags": ["maximum-state-length", "terminal", "no-pair"]
+    }
   ]
 }

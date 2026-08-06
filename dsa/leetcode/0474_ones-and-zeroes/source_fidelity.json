@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_474",
+    "frontend_id": "474",
+    "title_slug": "ones-and-zeroes",
+    "url": "https://leetcode.com/problems/ones-and-zeroes/description/",
+    "paid_only": false,
+    "content_sha256": "15567f53b8777aca1dbeb274473f68a9e1a123c2e6403f841a4352f5180a7f50",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "strs = [\"10\",\"0001\",\"111001\",\"1\",\"0\"], m = 5, n = 3",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "strs = [\"10\",\"0\",\"1\"], m = 1, n = 1",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f3e11c5da4e85eefd0892445efa5c62fc6d79aabdecb6a633a680761fafbeb4d",
+      "reference/contract.md": "31c309ca5ba000e15fa7c5f330171a754e90c2e351018af3356ca4c9729919e5",
+      "reference/examples.md": "0d0e7b43aa28f2271f5471e403e57ab1cfe15e6aee6b056f67ba0d5bcc3100f4",
+      "reference/constraints.md": "e4b811af2ceb45d2cfcc6ff5b0f24cce35aaea10d5d8ff521b87dc2215dfaf9c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,34 +1,33 @@
 ## General
-**The original left spine becomes the new right spine in reverse**
 
-Initialize `current = root`, `parent = None`, and `parent_right = None`. At each current node, save `next_left = current.left` and `next_right = current.right` before overwriting either pointer. `next_left` continues the spine and the final nonnull current becomes the new root.
+**Reverse the original left spine in place**
 
-**Two carried references encode the new children of the next spine node**
+The deepest node on the original left spine becomes the new root. While walking down that spine, carry `parent`,
+the portion already flipped, and `parent_right`, the previous node's original right child.
 
-Set `current.left = parent_right` and `current.right = parent`. Then advance `parent = current`, `parent_right = next_right`, and `current = next_left`. On the next iteration, the previous parent's right sibling becomes the new left child, while the flipped parent chain becomes the new right child.
+Before changing a node, save its original left child in `following`. Then assign `current.left = parent_right` and
+`current.right = parent`. The first assignment moves the original sibling into its required new left position; the
+second makes the former parent the new right child. Save the current node as the next `parent`, carry its untouched
+original right child in `parent_right`, and continue through `following`.
 
-Saving both original children first prevents the remaining spine or sibling subtree from becoming unreachable.
-
-**Processed and unprocessed portions stay reachable through separate variables**
-
-Before processing `current`, `parent` is the already flipped upper chain that must attach on the right, and `parent_right` is the sibling subtree that must attach on the left. No pointer needed by the unprocessed left spine has been lost.
-
-**Trace two spine rotations**
-
-For `[1,2,3,4,5]`, processing `1` carries right sibling `3`; processing `2` makes `3` its eventual left attachment and carries `5`; processing `4` attaches `5` left and flipped chain `2 -> 1` right, producing root `4`.
-
-**The flipped prefix is final before the walk advances**
-
-Before an iteration, `parent` is the already flipped prefix and `parent_right` is the sibling that must become the current node's new left child. Saving the current left child and right sibling first prevents either unprocessed link from being lost. Assigning `root.left = parent_right` and `root.right = parent` then gives the current node its final two outgoing links.
-
-Advancing down the saved left child extends the finalized prefix by one node. At the end, the deepest original left child heads the complete flipped structure and is therefore the new root.
+At the start of each iteration, `parent` is a completely rewired prefix and `parent_right` is exactly the sibling
+that must become the current node's new left child. Saving the original left link before overwriting pointers keeps
+the unprocessed spine reachable. Consequently each completed node has its final two outgoing links, and the last
+processed spine node is the root of the entire transformed tree.
 
 ## Complexity detail
-The walk visits each left-spine node once; under the input structure, every other node is its attached right leaf, so all tree nodes are handled in $O(n)$ time. Only a fixed set of pointers is stored.
+
+The loop visits every node on the left spine once. Under the contract, every node outside that spine is a right leaf
+handled through its parent's pointer update, so the total time is $O(n)$. The fixed set of carried references uses
+$O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Recursive flip:** closely follows the tree definition but uses $O(h)$ call-stack space.
-- **Construct a new tree:** is easier to visualize but loses node identity and uses $O(n)$ memory.
-- **General tree rotation logic:** is unnecessary because the problem guarantees the right-child structure.
-- Empty and one-node trees return unchanged. A pure left chain becomes a pure right chain, while paired right leaves become left children after the flip.
-- The transformation relies on the stated right-child restriction; arbitrary right subtrees would not fit this local sibling-to-left mapping.
+
+- **Recursive flip:** mirrors the structural definition but consumes $O(h)$ call-stack space for tree height $h$.
+- **Construct a new tree:** uses $O(n)$ extra space and fails to preserve the original node identities.
+- **General tree rotation:** is unnecessary because every right child is guaranteed to be a leaf with a left
+  sibling.
+- An empty or one-node tree is returned unchanged.
+- A pure left chain becomes a pure right chain.
+- Each original right leaf becomes the left child of its former left sibling after the flip.
+- The local rewiring relies on the source's right-child restriction and is not valid for arbitrary right subtrees.

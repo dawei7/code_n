@@ -1,11 +1,7 @@
 ## Function Contract
 
-The app exposes the native iterator through an equivalent batch adapter.
+**Class Interface**
 
-**Inputs**
-
-- `vec`: A two-dimensional integer vector whose rows may be empty.
-
-**Return value**
-
-Return all values in the order produced by repeatedly calling `next`. The native interface instead constructs `Vector2D(vec)` and preserves the incremental `next` and `hasNext` operations.
+- `Vector2D(vec: List[List[int]])`: Initializes the 2D vector iterator ($0 \le \text{vec.length} \le 200$, $0 \le \text{vec}[i].\text{length} \le 500$).
+- `next() -> int`: Returns the next integer element in 2D vector order and advances the iterator.
+- `hasNext() -> bool`: Returns `True` if there are remaining unread elements, and `False` otherwise.

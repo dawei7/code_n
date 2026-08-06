@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_467",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected scan uses the campaign-prohibited local name index. The inert candidate changes only that loop position to the conventional variable i; enumeration, predecessor access, cyclic-difference arithmetic, run updates, ending-letter lookup, maximum update, and final sum are otherwise unchanged."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "With that narrow naming correction, the candidate is the canonical longest-cyclic-run dynamic program. It exploits the fact that final letter and length uniquely identify a substring of the wraparound sequence, making the code clear, minimal, and expert interview quality without an algorithmic rewrite."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 467 and its one-string Python contract; the app-local parameter p corresponds to the live statement's s. One constant-time update per character and a fixed 26-entry table establish the manifest's O(n) time and O(1) auxiliary-space claims."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2064959755 and is algorithmically identical to the protected app source. The candidate preserves every operation and data-flow dependency from both accepted forms and changes only the prohibited local name index to i in inert code."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The continuous cyclic runs of lengths 31, 127, and 255 span more than 8x and exercise maximum growth for every ending letter. The exact candidate passed all 7 opaque correctness executions and all three performance tiers at 1.01x the reference runtime. A correct substring-materialization control passed every opaque correctness execution and every benchmark output but failed only the runtime verdict at 60.60x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach now follows position i exactly, derives modular adjacency, explains why every suffix of a valid run contributes and why only the maximum per ending letter is new, proves the sum counts each text once, and matches the stated O(n) time and fixed-alphabet space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the live public statement. It preserves the explicit infinite base illustration, the unique nonempty contiguous-substring objective, all three examples and their complete substring enumerations, both constraints, and the distinction between source parameter s and app parameter p."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "d872ac382aa1ec1513125770044764e92bada425e2cf18791d92d877a4f2c59a",
+    "native_source_sha256": "33af83389146f7d8ae89b7759c4bf1722576b910172cb534fc9d50823deea3e0",
+    "approach_sha256": "2e37e2b980a260a3d23dccee57774805cda306b32a9320515f9d5c6245f5a442",
+    "solution_variants_sha256": "6202d8db52f37ef2b2d34639753bf1df18285e0e920bfb3fcc214aa424c704c6",
+    "complexity_evidence_sha256": "81292e48ff0b5aa28d9215481186a87e37309d1beb5dd2df51d00043d389ebc2",
+    "candidate_source_sha256": "bea5f28762af1360a9dcac339ba16c3eb682abd2fd3d42fe59f82c149e676592"
+  }
+}

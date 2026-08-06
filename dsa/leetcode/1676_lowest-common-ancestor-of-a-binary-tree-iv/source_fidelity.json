@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1676",
+    "frontend_id": "1676",
+    "title_slug": "lowest-common-ancestor-of-a-binary-tree-iv",
+    "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`root = [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], nodes = [4, 7]`",
+        "output": "`2`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`root = [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], nodes = [1]`",
+        "output": "`1`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`root = [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], nodes = [7, 6, 2, 4]`",
+        "output": "`5`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 3,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 3
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d1af582dd7cc0b40028809c652f74d8cadd2eff8922ae03387a8be1e9ee22ff0",
+      "reference/contract.md": "5f6576bacce87a8d8333f099c4dabe64dc09fdb12062a9a61a501a4244df6bfb",
+      "reference/examples.md": "aa556d330a6bf22a2f242f4c8b2d17dad479ee36a75e7d84bd7a5ae37b2829da",
+      "reference/constraints.md": "bcf440bab6913ae78a0c0299e16410965dd89e9903310b2226e745e29576de74"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

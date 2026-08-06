@@ -5,7 +5,7 @@ The strings contain only lowercase English letters, so a fixed array of 26 count
 
 **Consume one occurrence for each requirement**
 
-Scan `ransomNote` and inspect the corresponding supply counter. If it is zero, every available occurrence of that character has already been used, so construction is impossible. Otherwise decrement it to reserve exactly one occurrence for the current position.
+Scan `ransomNote`, store the current character's alphabet offset in the conventional array position variable `i`, and inspect the corresponding supply counter. If it is zero, every available occurrence of that character has already been used, so construction is impossible. Otherwise decrement it to reserve exactly one occurrence for the current position.
 
 **Why completing the scan is sufficient**
 
@@ -18,7 +18,7 @@ Let `r` and `m` be the lengths of `ransomNote` and `magazine`. Each string is sc
 - **Hash-map or Counter comparison:** expresses multiplicity directly and remains $O(r + m)$, but its storage scales with the number of distinct characters in a general alphabet.
 - **Sort both strings:** can compare grouped characters but costs $O(r \log r + m \log m)$ time.
 - **Search and remove per character:** is straightforward but repeated linear searches or string rebuilding can take $O(rm)$ time.
-- An empty ransom note can always be constructed.
+- Canonical inputs are nonempty; the same loop structure would also return true for a hypothetical empty ransom note.
 - A shorter magazine cannot supply a longer ransom note.
 - Repeated letters must be counted by occurrence, not merely checked for membership.
 - Extra magazine characters do not affect a successful result.

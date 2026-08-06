@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_44",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "Both protected sources use the prohibited generic local name `index` for pattern columns; the inert candidate preserves the accepted row-compressed dynamic program exactly while using the conventional DP column variable `j`."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order with whole-match, star, and question-mark semantics",
+      "multiple separated stars and an ambiguous split that cannot finish",
+      "both strings empty, an empty pattern, and empty strings matched by only stars or rejected by a literal",
+      "a single question mark consuming exactly one character",
+      "21,483 exhaustive small string/pattern pairs checked with an independent recursive oracle against the current source, immutable native source, and candidate",
+      "three hidden performance-only ambiguous-star tiers spanning two through eight stars",
+      "a correct naive star-branching search that passes every output and fails only scaling growth (+1.57 > +0.15; 9.43x > 8x)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "f11009951d448f77eaf9086546f8eb225659ceeb29a9bf82c19d8110ec8c7340",
+    "native_source_sha256": "9af034eb491a123da01c4a07c1662fc9b6551a989e5c4357ad16b509dfa2667e",
+    "approach_sha256": "46fe17cd3050b417c1c23047779905e72e5ca1fb57f5bd2704e35adfd41d3848",
+    "solution_variants_sha256": "d19edca5bed36746e30e97510b370b93c0de1a66711b4a95c2b38d600a9e5306",
+    "cases_sha256": "9c8f33235fd4a25722ecbe0bdabc97520dae73b13c396aad60b41381646862cd",
+    "complexity_evidence_sha256": "1b4ce7af08fa185b0c738d7daf2ee260ecca0cd620771debdac3f7bc9e2d954e",
+    "candidate_source_sha256": "5332cc60bcbadd921510c3b53fad1e2396b6d01c5ad73fd75810888dab1f682e"
+  }
+}

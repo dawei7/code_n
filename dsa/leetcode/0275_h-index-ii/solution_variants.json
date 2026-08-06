@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for H-Index II and meets the required complexity bound.",
+      "summary": "Binary-searches the first sorted position whose citation count supports the suffix length as h.",
       "time_complexity": "O(\\log n)",
       "space_complexity": "O(1)"
     }

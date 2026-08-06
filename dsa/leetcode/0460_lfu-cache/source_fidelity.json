@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_460",
+    "frontend_id": "460",
+    "title_slug": "lfu-cache",
+    "url": "https://leetcode.com/problems/lfu-cache/description/",
+    "paid_only": false,
+    "content_sha256": "e5ea751155a71ba34a8b885b7e51ea693115dbc94436aa7c7a8fb918793066a1",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "operations = [\"LFUCache\",\"put\",\"put\",\"get\",\"put\",\"get\",\"get\",\"put\",\"get\",\"get\",\"get\"], arguments = [[2],[1,1],[2,2],[1],[3,3],[2],[3],[4,4],[1],[3],[4]]",
+        "output": "[null,null,null,1,null,-1,3,null,-1,3,4]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5d199b19f8aebfa6ff02eff39b2912d7c3dcc777d82100ec8a19121b9a7da97a",
+      "reference/contract.md": "56132a2759d3f237dc79fe82657e7a0eda0a11293c43166912d09c445ee43c67",
+      "reference/examples.md": "b060a43cd5da6c804dc3cfd85a76fcf5606bfb1ef2b6cf06f40b5223037b87d0",
+      "reference/constraints.md": "672baf9e04d639da7f4e594345534288a5c5eb012ff6a19e3004b8c05e3a4c15"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

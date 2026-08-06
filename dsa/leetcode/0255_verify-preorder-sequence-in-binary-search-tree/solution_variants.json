@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Verify Preorder Sequence in Binary Search Tree and meets the required complexity bound.",
+      "summary": "Reuses the consumed input prefix as a monotonic ancestor stack while enforcing the latest right-subtree lower bound.",
       "time_complexity": "O(n)",
-      "space_complexity": "O(n)"
+      "space_complexity": "O(1)"
     }
   ]
 }

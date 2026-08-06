@@ -6,4 +6,4 @@
 
 **Return value**
 
-Modify the tree so its nodes form the required right-child chain. The app exposes the mutated tree in level-order form.
+Return `None`; modify the tree rooted at `root` so its nodes form the required right-child chain. The app runner serializes the mutated root in level order.

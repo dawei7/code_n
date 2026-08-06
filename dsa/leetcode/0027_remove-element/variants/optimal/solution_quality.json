@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_27",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order",
+      "empty and single-element inputs",
+      "minimum and maximum array values plus minimum and maximum target values",
+      "all-target, target-absent, scattered-target, and repeated-retained-value paths",
+      "the exact length-100 boundary with an interior target value",
+      "4,877 legal and representative input-target pairs checked against both protected sources",
+      "a matching linear lower and upper bound used because the legal domain is too narrow for honest scaling"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "701086d842a6379ae9e35baa4eb20e8369f990b134bb19aa3a2f986af7beccf6",
+    "native_source_sha256": "497b5d9c0422faf4cf4f3e20d80686226b7a2a7d5a9a69e653eae4c02cdd11d1",
+    "approach_sha256": "74263727b51e9e6ef50f363f1b9273e2be2e1439617f5575c3d2ae9112fd87f6",
+    "solution_variants_sha256": "2ecd6064ce798ddf5ec4ec97803954ac2e8415310b532ce3c8cd8240d971e8ea",
+    "cases_sha256": "9ecd37110139eeddfc28eaf1f9d942a6acc1423b3e55707ad32ce3913897bcf1",
+    "complexity_evidence_sha256": "605752fa08fa0ed51b8381025cec992392e65b477a96826b7ead009c47812ab8"
+  }
+}

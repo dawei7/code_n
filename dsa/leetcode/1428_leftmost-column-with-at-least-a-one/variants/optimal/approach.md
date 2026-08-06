@@ -1,17 +1,22 @@
 ## General
-**Start where either move discards a region.** Begin at the top-right cell. If it is `0`, row sorting proves that every cell to its left in the same row is also `0`, so advance to the next row. If it is `1`, record that column implicitly by moving left; there may be an earlier `1`, but no column to the right can improve the answer.
 
-**Walk only left or down.** Continue until the row index reaches $m$ or the column index becomes negative. The current column moves only left and the current row moves only down, so no cell is queried twice and at most $m+n$ interface calls are needed.
+**Start at the top-right corner.** At `(row, col)`, a `0` proves that every cell to its left in the same row is also `0`, because that row is non-decreasing. No cell in that row can improve the answer, so move down. A `1` proves that `col` is feasible, but an earlier feasible column may still exist, so record `col` and move left.
 
-**Why the last feasible column is leftmost.** Whenever the scan moves down, the discarded row has no `1` at or left of the current column. Whenever it moves left, the observed `1` proves the current column is feasible. Therefore, after the walk ends, the last feasible column is the smallest one containing a `1`; if no feasible column was observed, the column remains $n-1$ after all rows are exhausted and the answer is `-1`.
+**Discard one boundary on every query.** After moving down, the completed row contains no `1` at or left of the current search boundary. After moving left, the recorded column contains a witnessed `1`, while every column to its right is irrelevant to finding a smaller index. The only cells that can still improve the answer lie in the remaining lower-left rectangle. Repeating the same decision therefore never discards a possible smaller answer.
+
+The walk stops after passing the final row or moving left of column zero. `answer` is updated on every observed `1`, and columns are visited from right to left, so its final value is the smallest witnessed feasible column. If no `1` was observed, it remains `-1`. Because each query is followed by one left or downward move, at most $m+n-1$ calls to `get` are made; with $m,n \le 100$, this is at most $199$, safely below the source limit of 1,000.
 
 ## Complexity detail
-The staircase walk makes at most $m$ downward moves and $n$ leftward moves, so it uses $O(m+n)$ time and `get` calls. Only row and column indices are stored, giving $O(1)$ auxiliary space.
+
+Let $m$ and $n$ be the row and column counts. The row index increases at most $m$ times and the column index decreases at most $n$ times, so the staircase walk takes $O(m+n)$ time and `get` calls. It stores only indices and the best column, using $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Binary search each row:** Finding each row's first `1` independently takes $O(m\log n)$ time and interface calls, which is slower when many rows must be examined.
-- **Inspect every cell:** A full scan takes $O(mn)$ calls and can exceed the judge's query limit.
-- **All zeroes:** The walk reaches the bottom without moving left and returns `-1`.
-- **All ones:** The walk moves across the entire first row and returns column `0`.
-- **Single row or column:** The same directional rules reduce to a one-dimensional scan.
-- **Hidden storage:** Use only `get` and `dimensions`; the underlying matrix is not directly accessible.
+
+- **Binary search each row:** Finding every row's first `1` independently takes $O(m\log n)$ calls. It fits the source limit at the stated bounds but is asymptotically slower than the staircase walk.
+- **Inspect every cell:** A full $O(mn)$ scan can make 10,000 `get` calls and violate the 1,000-call contract.
+- **Direct matrix access:** Reading fixture storage instead of using `get` and `dimensions` violates the hidden-interface contract.
+- **All zeroes:** Every query causes a downward move, no feasible column is recorded, and the result is `-1`.
+- **All ones:** The first row drives the pointer all the way left and records column `0`.
+- **Single row:** The walk moves left across its trailing ones or ends after discovering that the rightmost value is zero.
+- **Single column:** Each zero advances downward until a `1` is found or all rows are exhausted.
+- **Non-square matrix:** The proof and call bound depend independently on $m$ downward moves and $n$ leftward moves, not on equal dimensions.

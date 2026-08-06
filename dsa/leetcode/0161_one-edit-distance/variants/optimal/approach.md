@@ -1,25 +1,38 @@
 ## General
-The important phrase is **exactly one edit**. Equal strings must be rejected, and a length difference greater than one is immediately impossible because a single insertion or deletion changes the length by only one.
 
-Assume `s` is no longer than `t`; swapping the names does not change the question. Walk from the beginning until the first position `i` where the characters differ. Everything before `i` already agrees, so any valid transformation must spend its one edit at that first mismatch.
+**Normalize insertion and deletion into one direction**
 
-What happens next is forced by the lengths:
+A single edit can change the length by at most one, so reject a larger length difference immediately. If `s` is
+longer, swap the strings. From then on, `s` is the shorter or equal-length string, and a length-changing edit is
+always handled as inserting one character into `s`.
 
-- If the strings have equal length, the only possible edit is a replacement. Skip `s[i]` and `t[i]`, then require the remaining suffixes to be identical.
-- If `t` is one character longer, the only possible edit is inserting `t[i]` into `s` (equivalently, deleting it from `t`). Skip only `t[i]`, then require `s[i:]` to equal `t[i + 1:]`.
+Walk `first` through `s` and `second` through `t`. Matching characters advance both pointers. At a mismatch,
+increment `edits`; a second mismatch proves that more than one edit is required. For equal lengths, the only
+possible edit is replacement, so advance both pointers. When `t` is longer, skip only `t[second]`, representing the
+one insertion into `s`.
 
-There is one subtle case: the scan may reach the end of the shorter string without finding a mismatch. Then the transformation is valid only if the longer string has exactly one trailing character. Thus `"ab"` and `"abc"` are one edit apart, while `"ab"` and `"ab"` are zero edits apart.
+If the shared scan ends with one character still remaining in `t`, count that trailing insertion. The final check
+requires `edits == 1`, which deliberately rejects equal strings that need zero edits.
 
-For example, compare `"cab"` with `"crab"`. The common prefix is `"c"`; the first mismatch is `a` versus `r`, and the second string is longer. Ignoring only `r` aligns the remaining suffixes `"ab"` and `"ab"`, so one insertion suffices. By contrast, `"cab"` and `"crop"` still disagree after that skip, proving that a second edit would be needed.
-
-Before the first mismatch, the prefixes are identical and therefore require no edit. At the mismatch, the length relationship uniquely determines the only edit type that can restore alignment: replacement for equal lengths, or insertion/deletion for a one-character length difference. If the suffixes match after that forced skip, exactly one edit transforms one string into the other. If they do not match, another edit would be necessary. If no mismatch occurs, exactly one unmatched trailing character is both necessary and sufficient. These cases cover every possible location and type of a single edit.
+Before each comparison, the consumed prefixes can be made equal using exactly `edits` operations. A mismatch forces
+the only alignment change permitted by the length relationship, so either that one edit restores alignment or a
+later mismatch correctly rejects the pair. Reaching the end with exactly one counted mismatch or trailing character
+is therefore both necessary and sufficient.
 
 ## Complexity detail
-Finding the first mismatch and comparing the remaining suffixes examines at most $O(m + n)$ characters. An index-based implementation uses $O(1)$ auxiliary space; languages where slicing copies strings should compare by index rather than materializing suffixes to preserve that bound.
+
+The pointers advance monotonically and inspect each string position at most once, giving $O(m + n)$ time for lengths
+$m$ and $n$. The two pointers and edit counter use $O(1)$ auxiliary space; the implementation does not create suffix
+slices.
 
 ## Alternatives and edge cases
-- Full edit-distance dynamic programming is unnecessary here: it solves arbitrary edit distance in $O(mn)$ time instead of exploiting the distance-one limit.
-- Generating all strings reachable by one edit creates avoidable temporary strings and may require iterating over an alphabet.
-- `""` and `""` are zero edits apart and return `False`; `""` and `"x"` return `True`.
+
+- **Full edit-distance dynamic programming:** solves a more general problem in $O(mn)$ time and unnecessary extra
+  space.
+- **Generate every one-edit result:** creates many temporary strings and repeats work across the alphabet.
+- **Compare suffix slices after the first mismatch:** is logically valid, but copying slices can use linear auxiliary
+  space in Python.
+- Two empty strings are zero edits apart and return `False`.
+- An empty string and a one-character string are exactly one insertion apart.
 - Character comparison is case-sensitive, so `"a"` and `"A"` differ by one replacement.
-- Swapping the inputs when the first is longer lets one insertion case represent deletion symmetrically.
+- A sole trailing character is counted only after all aligned prefix characters match.

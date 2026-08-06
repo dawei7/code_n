@@ -48,12 +48,8 @@ def _get_starter(challenge, language: str | None = "python") -> str:
         )
         if environment_starter and normalize_language(language) == environment_starter[0]:
             return environment_starter[1]
-        return _solution_template(
-            spec.id,
-            heading=f"{spec.id}: {spec.name}",
-            description=spec.description,
-            language=language,
-        )
+        from server.app.routes.challenges import _starter_source_for
+        return _starter_source_for(spec, language or "python")
     return ""
 
 

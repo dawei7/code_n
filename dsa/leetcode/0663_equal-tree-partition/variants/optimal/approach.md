@@ -3,7 +3,7 @@
 
 Cutting the edge above a non-root node separates that node's entire subtree from the rest. If its sum is `s` and the whole tree sums to `T`, the two components are equal exactly when $s = T - s$, or $s = T / 2$.
 
-Use postorder traversal to compute each subtree sum after both child sums are known. Store every computed sum, including duplicates because distinct nodes represent distinct possible cuts.
+The candidate defines `TreeNode` as the app-local equivalent of LeetCode's injected model, so the executable contract is self-contained. Use postorder traversal to compute each subtree sum after both child sums are known, treating a missing child as sum zero. Store every computed sum in a list; duplicate values may remain because the final decision needs only a membership test.
 
 **Exclude the whole tree from cut candidates**
 
@@ -11,7 +11,7 @@ The root's computed sum is `T`, but no edge lies above the root. Remove that fin
 
 **Why the half-sum test is complete**
 
-If a valid edge exists, its child-side subtree is proper and has sum $T / 2$, so postorder records it. Conversely, any recorded proper subtree with that sum has a real parent edge; cutting it leaves sum $T - T/2 = T/2$. An odd total cannot split into two equal integer sums and is rejected immediately.
+If a valid edge exists, its child-side subtree is proper and has sum $T / 2$, so postorder records it. Conversely, any recorded proper subtree with that sum has a real parent edge; cutting it leaves sum $T - T/2 = T/2$. An odd total cannot split into two equal integer sums, so the final parity test rejects it.
 
 ## Complexity detail
 Postorder visits each of the `N` nodes once and performs constant work, giving $O(N)$ time. The stored subtree sums and recursion stack use $O(N)$ space in the worst case.

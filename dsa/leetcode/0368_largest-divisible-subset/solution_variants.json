@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Largest Divisible Subset and meets the required complexity bound.",
+      "summary": "Sorts the values, builds the longest divisible chain ending at each position, and reconstructs one optimum.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
     }

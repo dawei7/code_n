@@ -5,15 +5,15 @@
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 32 posts with three colors",
+      "name": "benchmark: 10 posts with two colors",
       "kind": "benchmark",
       "visible": false,
-      "size": 32,
+      "size": 10,
       "input": {
-        "n": 32,
-        "k": 3
+        "n": 10,
+        "k": 2
       },
-      "expected": 109807018278912,
+      "expected": 178,
       "tags": [
         "benchmark",
         "scale-small",
@@ -22,15 +22,15 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: 128 posts with three colors",
+      "name": "benchmark: 20 posts with two colors",
       "kind": "benchmark",
       "visible": false,
-      "size": 128,
+      "size": 20,
       "input": {
-        "n": 128,
-        "k": 3
+        "n": 20,
+        "k": 2
       },
-      "expected": 87811656984269669721804383180848259655147848855948623872,
+      "expected": 21892,
       "tags": [
         "benchmark",
         "scale-medium",
@@ -39,15 +39,15 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: 512 posts with three colors",
+      "name": "benchmark: 40 posts with two colors",
       "kind": "benchmark",
       "visible": false,
-      "size": 512,
+      "size": 40,
       "input": {
-        "n": 512,
-        "k": 3
+        "n": 40,
+        "k": 2
       },
-      "expected": 35912072251348234687370183935259049569112872792544360685841627663554495020271801180233149729839356059853379467655735899219951353007933505660748611045707913488203264885369427195447496782841663429579567899213803175193935347712,
+      "expected": 331160282,
       "tags": [
         "benchmark",
         "scale-large",

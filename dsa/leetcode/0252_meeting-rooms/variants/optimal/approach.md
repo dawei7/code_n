@@ -14,4 +14,5 @@ Sorting costs $O(n \log n)$ and the scan costs $O(n)$. Python's in-place list so
 
 ## Alternatives and edge cases
 - **Compare every pair:** is correct but takes $O(n^2)$ time.
-- Empty and one-meeting schedules are valid; touching endpoints do not overlap.
+- **Empty or singleton schedules:** are valid because no pair can overlap.
+- **Touching endpoints:** are compatible, so equality between the previous end and next start must be accepted.

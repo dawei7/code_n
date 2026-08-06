@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1102",
+    "frontend_id": "1102",
+    "title_slug": "path-with-maximum-minimum-value",
+    "url": "https://leetcode.com/problems/path-with-maximum-minimum-value/description/",
+    "paid_only": true,
+    "content_sha256": "0017ed6e182770cb6d13019f64287d9a5b8f9c2f11070e092d771bbdf35d3e67",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "grid = [[5,4,5],[1,2,6],[7,4,6]]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[2,2,1,2,2,2],[1,2,2,2,1,2]]",
+        "output": "2",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "grid = [[3,4,6,3,4],[0,2,1,1,7],[8,8,3,2,7],[3,2,4,9,8],[4,1,2,0,0],[4,6,5,4,3]]",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 3,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "34efe1a75dbe2aa35f6d488800f814b360b85895000373680a4c564317e1f4d5",
+      "reference/contract.md": "ed4066cf65e56f6e47208bf5291fbedc7e0d3e66b754e86eb5ab356e7c11e3fd",
+      "reference/examples.md": "cc18928467158afd02b133f8556d47edfed81eade438e08139ecca135f8e78b1",
+      "reference/constraints.md": "fa6252f2b52e35da962e1e41026949adf60444bf4f15e7a7a319f75c2bba8d04"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

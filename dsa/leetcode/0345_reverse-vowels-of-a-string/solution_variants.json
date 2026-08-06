@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Reverse Vowels of a String and meets the required complexity bound.",
+      "summary": "Finds vowel pairs with two inward-moving pointers and swaps them in one mutable character buffer.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

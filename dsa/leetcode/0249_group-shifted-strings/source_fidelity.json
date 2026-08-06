@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_249", "frontend_id": "249", "title_slug": "group-shifted-strings", "url": "https://leetcode.com/problems/group-shifted-strings/description/", "paid_only": true, "content_sha256": "0e41f0aa95517b337046741df70844355c4f940e94429d8433c8c984b561e433", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "strings = [\"abc\",\"bcd\",\"acef\",\"xyz\",\"az\",\"ba\",\"a\",\"z\"]", "output": "[[\"acef\"],[\"a\",\"z\"],[\"abc\",\"bcd\",\"xyz\"],[\"az\",\"ba\"]]", "has_explanation": false}, {"ordinal": 2, "input": "strings = [\"a\"]", "output": "[[\"a\"]]", "has_explanation": false}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_249",
+    "frontend_id": "249",
+    "title_slug": "group-shifted-strings",
+    "url": "https://leetcode.com/problems/group-shifted-strings/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "2acf4e81ce8a35594b3b81c159cb56f7722478dfbf1eab2e5fdeda82f95a16a1", "reference/contract.md": "382abe6913cbc29a530b29d4713ccb41d37ce6aa6da0e2f22de8f82ca44b4b96", "reference/examples.md": "d1bb9f09d0daf7ac4a0314a573fbefb757b3e4134b5ae2fd133f444fdfb06ad2", "reference/constraints.md": "07b3217477c7fc62e11d40f243c100cc844cba9c99993648b38ee28b43bf9bac"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`strings = [\"abc\",\"bcd\",\"acef\",\"xyz\",\"az\",\"ba\",\"a\",\"z\"]`",
+        "output": "`[[\"acef\"],[\"a\",\"z\"],[\"abc\",\"bcd\",\"xyz\"],[\"az\",\"ba\"]]`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "`strings = [\"a\"]`",
+        "output": "`[[\"a\"]]`",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c99e85b84e88642e557f8dbc55fb3c2517ba02e4fa6761e04301c3f4783ca94f",
+      "reference/contract.md": "436bba213d0ec4f101f9a03f14794df125f1a4c0151e2b8486cdde58d47325c4",
+      "reference/examples.md": "16241235e6ec3b7a69263bb81ac26af6899eca159873c3ece8b77ea0f54732fd",
+      "reference/constraints.md": "6b8d8f5f1f258fe5761e66373da49881ef4691d7db618be86c79c1e3d3d9e9d3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

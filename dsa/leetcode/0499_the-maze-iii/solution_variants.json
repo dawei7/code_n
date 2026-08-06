@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for The Maze III and meets the required complexity bound.",
-      "time_complexity": "O(rows \\cdot cols \\log(rows \\cdot cols))",
-      "space_complexity": "O(rows \\cdot cols)"
+      "summary": "Precomputes roll endpoints and uses lexicographically keyed Dijkstra search to find the required route.",
+      "time_complexity": "O(rows \\cdot cols \\cdot p \\log(rows \\cdot cols))",
+      "space_complexity": "O(rows \\cdot cols \\cdot p)"
     }
   ]
 }

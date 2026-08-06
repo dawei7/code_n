@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_434",
+    "frontend_id": "434",
+    "title_slug": "number-of-segments-in-a-string",
+    "url": "https://leetcode.com/problems/number-of-segments-in-a-string/description/",
+    "paid_only": false,
+    "content_sha256": "904cfeb1eda6b63696796d89deca06dc76114b12693cb4634c603ca19c97eab7",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"Hello, my name is John\"",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"Hello\"",
+        "output": "1",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "eb2e6e858ca983b8f6b9a37add5da4631f8238a83c211eddf0674c8375b6acde",
+      "reference/contract.md": "33e9929d22f4dbe81340a0f02f62a280da265a10fc378a81de6f7014bcf79575",
+      "reference/examples.md": "242731945b9b9875e321376d59b0bf11ca7bab79949f307d521ad8c6f890fc2a",
+      "reference/constraints.md": "74d35ba8a030b179a022f2a51b5f6078db9c05dc2127ec2b4040f059f6227483"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_436",
+    "frontend_id": "436",
+    "title_slug": "find-right-interval",
+    "url": "https://leetcode.com/problems/find-right-interval/description/",
+    "paid_only": false,
+    "content_sha256": "11be6b8db251740dc446377d0c7842a5f2b98124d33dfb062f87ad0de8f42710",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "intervals = [[1,2]]",
+        "output": "[-1]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "intervals = [[3,4],[2,3],[1,2]]",
+        "output": "[-1,0,1]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "intervals = [[1,4],[2,3],[3,4]]",
+        "output": "[-1,2,-1]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9e2c18d32385d88031f541a9d2be7f8f789531140a2bc3c85aff67716d652375",
+      "reference/contract.md": "e199753139e59367bac3cca69dcb6d82bb9d425b38ff37f96c6b89e791c17395",
+      "reference/examples.md": "edf689c5668276d84eebae44a68842408f7679c5abf746df6071a970713acc80",
+      "reference/constraints.md": "c88ff1f67cc2efd62a9eb9840017faeb77a64898adadea98f140e1dfd5b83b46"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

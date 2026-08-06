@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Missing Number and meets the required complexity bound.",
+      "summary": "Subtracts the observed array sum from the arithmetic sum of the complete range 0 through n.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

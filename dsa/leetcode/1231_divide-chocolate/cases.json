@@ -7,7 +7,10 @@
     {"id":"sample-equal-groups","name":"sample: three equal-sweetness groups","kind":"sample","visible":true,"input":{"sweetness":[1,2,2,1,2,2,1,2,2],"k":2},"expected":5,"tags":["sample","equal-groups"]},
     {"id":"trial-no-cuts","name":"no cuts retain the whole chocolate bar","kind":"trial","visible":true,"input":{"sweetness":[2,3,5],"k":0},"expected":10,"tags":["no-cuts"]},
     {"id":"trial-equal-chunks","name":"equal chunks split into two balanced pieces","kind":"trial","visible":true,"input":{"sweetness":[5,5,5,5],"k":1},"expected":10,"tags":["balanced"]},
-    {"id":"real-dominant-middle","name":"hidden: a dominant middle chunk cannot balance both sides","kind":"real","visible":false,"input":{"sweetness":[1,2,100,1,2],"k":1},"expected":3,"tags":["hidden","uneven"]},
-    {"id":"real-two-people","name":"hidden: choose the strongest boundary for two people","kind":"real","visible":false,"input":{"sweetness":[6,3,2,8,7,5],"k":1},"expected":12,"tags":["hidden","boundary-choice"]}
+    {"id":"trial-dominant-middle","name":"a dominant middle chunk cannot balance both sides","kind":"trial","visible":true,"input":{"sweetness":[1,2,100,1,2],"k":1},"expected":3,"tags":["uneven","order-sensitive"]},
+    {"id":"trial-two-people","name":"choose the strongest boundary for two people","kind":"trial","visible":true,"input":{"sweetness":[6,3,2,8,7,5],"k":1},"expected":12,"tags":["boundary-choice"]},
+    {"id":"trial-surplus-greedy-pieces","name":"surplus qualifying pieces can be merged","kind":"trial","visible":true,"input":{"sweetness":[2,2,2,2,2],"k":1},"expected":4,"tags":["surplus-pieces","merge"]},
+    {"id":"trial-maximum-chunk-sweetness","name":"a maximum-value single chunk preserves the numeric bound","kind":"trial","visible":true,"input":{"sweetness":[100000],"k":0},"expected":100000,"tags":["maximum-value","minimum-length","no-cuts"]},
+    {"id":"trial-single-minimum-chunk","name":"a one-chunk bar with no cuts returns that chunk","kind":"trial","visible":true,"input":{"sweetness":[1],"k":0},"expected":1,"tags":["minimum-length","minimum-value","no-cuts"]}
   ]
 }

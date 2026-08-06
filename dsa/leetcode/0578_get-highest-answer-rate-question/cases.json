@@ -4,8 +4,67 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: higher fraction beats more exposure",
+      "name": "sample: source question 285 has the highest answer rate",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 5,
+              "action": "show",
+              "question_id": 285,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 123
+            },
+            {
+              "id": 5,
+              "action": "answer",
+              "question_id": 285,
+              "answer_id": 124124,
+              "q_num": 1,
+              "timestamp": 124
+            },
+            {
+              "id": 5,
+              "action": "show",
+              "question_id": 369,
+              "answer_id": null,
+              "q_num": 2,
+              "timestamp": 125
+            },
+            {
+              "id": 5,
+              "action": "skip",
+              "question_id": 369,
+              "answer_id": null,
+              "q_num": 2,
+              "timestamp": 126
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            285
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "answer-rate"
+      ]
+    },
+    {
+      "id": "trial-higher-fraction",
+      "name": "trial: higher fraction beats more exposure",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -128,14 +187,14 @@
         ]
       },
       "tags": [
-        "sample",
-        "rate"
+        "trial",
+        "fractional-rate"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: equal rates choose smaller identifier",
-      "kind": "sample",
+      "id": "trial-equal-rate-tie",
+      "name": "trial: equal rates choose smaller identifier",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -202,14 +261,14 @@
         ]
       },
       "tags": [
-        "sample",
-        "tie"
+        "trial",
+        "tie-break"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one question with no answers",
-      "kind": "sample",
+      "id": "trial-single-zero-rate",
+      "name": "trial: one question with no answers",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -252,12 +311,13 @@
         ]
       },
       "tags": [
-        "sample",
-        "zero-rate"
+        "trial",
+        "zero-rate",
+        "logical-minimum"
       ]
     },
     {
-      "id": "trial-1",
+      "id": "trial-skip-actions",
       "name": "trial: skip rows do not change rate",
       "kind": "trial",
       "visible": true,
@@ -351,11 +411,11 @@
       },
       "tags": [
         "trial",
-        "skip"
+        "skip-actions"
       ]
     },
     {
-      "id": "trial-2",
+      "id": "trial-raw-total-trap",
       "name": "trial: raw answer total is misleading",
       "kind": "trial",
       "visible": true,
@@ -441,14 +501,15 @@
       },
       "tags": [
         "trial",
-        "denominator"
+        "denominator",
+        "integer-division"
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: unsorted question rows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-rows",
+      "name": "trial: question rows are unsorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "SurveyLog": [
@@ -530,15 +591,15 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "unsorted"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: three-way zero-rate tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-way-zero-tie",
+      "name": "trial: three-way zero-rate tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "SurveyLog": [
@@ -588,8 +649,76 @@
         ]
       },
       "tags": [
-        "hidden",
-        "tie"
+        "trial",
+        "zero-rate",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-duplicate-rows",
+      "name": "trial: duplicate show rows count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 7,
+              "action": "show",
+              "question_id": 10,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 20
+            },
+            {
+              "id": 7,
+              "action": "answer",
+              "question_id": 10,
+              "answer_id": 701,
+              "q_num": 1,
+              "timestamp": 21
+            },
+            {
+              "id": 9,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 2,
+              "timestamp": 30
+            },
+            {
+              "id": 9,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 2,
+              "timestamp": 30
+            },
+            {
+              "id": 9,
+              "action": "answer",
+              "question_id": 2,
+              "answer_id": 901,
+              "q_num": 2,
+              "timestamp": 31
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            10
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicate-rows",
+        "denominator"
       ]
     }
   ]

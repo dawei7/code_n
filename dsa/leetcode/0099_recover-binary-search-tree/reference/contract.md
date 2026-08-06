@@ -6,4 +6,4 @@
 
 **Return value**
 
-The native LeetCode method repairs the tree in place and returns no value. The app adapter returns the recovered tree serialization for validation.
+Return `None`; repair the supplied tree rooted at `root` in place. The app runner serializes the mutated root for validation.

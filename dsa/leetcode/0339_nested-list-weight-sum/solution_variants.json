@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Nested List Weight Sum and meets the required complexity bound.",
+      "summary": "Carries depth through one recursive traversal and adds each integer's depth-weighted contribution.",
       "time_complexity": "O(N)",
       "space_complexity": "O(D)"
     }

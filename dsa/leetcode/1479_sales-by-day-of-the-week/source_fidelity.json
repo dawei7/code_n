@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1479",
+    "frontend_id": "1479",
+    "title_slug": "sales-by-day-of-the-week",
+    "url": "https://leetcode.com/problems/sales-by-day-of-the-week/description/",
+    "paid_only": true,
+    "content_sha256": "31d427d737433f510df280753a6cd9492ac8489bfb336140d79f5112ef6646b6",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "orders_table",
+      "items_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Orders = [[1,1,\"2020-06-01\",\"1\",10],[2,1,\"2020-06-08\",\"2\",10],[3,2,\"2020-06-02\",\"1\",5],[4,3,\"2020-06-03\",\"3\",5],[5,4,\"2020-06-04\",\"4\",1],[6,4,\"2020-06-05\",\"5\",5],[7,5,\"2020-06-05\",\"1\",10],[8,5,\"2020-06-14\",\"4\",5],[9,5,\"2020-06-21\",\"3\",5]], Items = [[\"1\",\"LC Alg. Book\",\"Book\"],[\"2\",\"LC DB. Book\",\"Book\"],[\"3\",\"LC SmarthPhone\",\"Phone\"],[\"4\",\"LC Phone 2020\",\"Phone\"],[\"5\",\"LC SmartGlass\",\"Glasses\"],[\"6\",\"LC T-Shirt XL\",\"T-Shirt\"]]",
+        "output": "[[\"Book\",20,5,0,0,10,0,0],[\"Glasses\",0,0,0,0,5,0,0],[\"Phone\",0,0,5,1,0,0,10],[\"T-Shirt\",0,0,0,0,0,0,0]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/orders_table.md": "8db92b907ecec4b13c9b34dd8dd4282fe58c872b975d5267626f6293e3f54610",
+      "reference/items_table.md": "2a7c286851e86293cd9c8ae626dfb6bf2da9c03ee20b7aab179c4dea4df842cc",
+      "reference/description.md": "aafc912e916f3eea5619bb1d8310447a1dfdc97253287f672c4898d1e1159509",
+      "reference/contract.md": "632b4512c950105b9d8378db5a9df7ce3f9819787331084e100aef7b6ef8da3a",
+      "reference/examples.md": "ed602bcaf17c7022d9b5bc965ec93e43f80dc16cb154416c50ab844435ee4201"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,32 +1,35 @@
 ## General
-**Each stack entry snapshots the minimum for its complete prefix**
 
-For every pushed value, store `(value, minimum_through_here)`. The first entry uses its own value as the minimum. Because stack pop always removes a suffix, the minimum snapshot beneath it immediately becomes correct again without recomputation.
+**Store the minimum for every stack prefix**
 
-**Push needs only the previous top snapshot**
+Represent each entry as `(value, prefix_minimum)`, where `prefix_minimum` is the smallest value from the bottom of
+the stack through that entry. The first pushed value is its own prefix minimum. Every later push stores the smaller
+of the new value and the previous top entry's prefix minimum.
 
-When pushing $x$, read the current top minimum when present and store `min(x, current_min)`. All older values are already summarized by that single field. `top` returns the value field; `getMin` returns the minimum field.
+This representation makes each query local. `top` reads the value in the final pair, while `getMin` reads its
+prefix minimum. A pop removes one complete pair, exposing an earlier pair whose stored minimum is already correct
+for the shortened stack. Repeated minimum values are safe because each depth carries its own snapshot.
 
-**Duplicated minima are represented independently at every depth**
+The prefix property holds after every push by construction. A pop cannot invalidate it for any remaining entry, so
+the final pair always describes both the current top and the minimum of the entire live stack.
 
-At every position, the stored minimum equals the minimum of values from the bottom through that entry. Equal minimum values create separate entries with the same snapshot, so popping one copy still exposes another correct minimum.
-
-**Trace a minimum being popped**
-
-After pushes `-2, 0, -3`, snapshots are `-2, -2, -3`. Popping `-3` exposes the entry `(0,-2)`, so the minimum returns to `-2` in constant time without scanning.
-
-**Each entry carries the minimum of its entire prefix**
-
-For every stored pair `(value, prefix_min)`, `prefix_min` is the smallest value from the bottom of the stack through that entry. A push preserves this property by recording the smaller of the new value and the previous top's minimum. A pop removes one complete prefix snapshot, so the newly exposed pair already contains the minimum of the shortened stack.
-
-Consequently `top` reads the current value and `getMin` reads the current prefix minimum without any search.
+The app-local `solve` function adapts the operation stream to the same `MinStack` methods used by the native source
+and records one output for each operation.
 
 ## Complexity detail
-Each operation performs a fixed number of list and comparison operations, so all are $O(1)$. One pair is stored per stack value, giving $O(n)$ space.
+
+Every class operation performs a constant number of list accesses, comparisons, or updates, so `push`, `pop`,
+`top`, and `getMin` each take $O(1)$ time. For $n$ live values, the stored pairs use $O(n)$ space. Processing a
+sequence of $q$ operations consequently takes $O(q)$ total time.
 
 ## Alternatives and edge cases
-- **Compute the minimum on demand:** Evaluating `min(stack)` makes `getMin` take $O(n)$ time and violates the contract.
-- **Separate minimum stack:** has the same asymptotic bounds and can store only new minima, but synchronized duplicate handling needs care.
-- **Encode differences in one integer stack:** can reduce fields but is less transparent and risks fixed-width overflow in some languages.
-- Repeated minima must survive until every copy is popped. Values may be negative.
-- Valid operation sequences never call `pop`, `top`, or `getMin` on an empty stack; a broader API would need explicit error behavior.
+
+- **Compute the minimum on demand:** `min(stack)` makes each `getMin` call take $O(n)$ time and violates the
+  per-operation contract.
+- **Separate value and minimum stacks:** has the same asymptotic bounds but must keep duplicate minima synchronized
+  correctly during pushes and pops.
+- **Encode the minimum through arithmetic differences:** can store one integer per depth, but is less direct and can
+  overflow in fixed-width languages.
+- Equal minimum values need independent snapshots so one copy remains available after another is popped.
+- Values may be negative or at either 32-bit boundary; comparisons require no sentinel.
+- The contract guarantees that `pop`, `top`, and `getMin` are never called on an empty stack.

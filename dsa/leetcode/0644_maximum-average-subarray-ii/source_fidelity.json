@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_644",
+    "frontend_id": "644",
+    "title_slug": "maximum-average-subarray-ii",
+    "url": "https://leetcode.com/problems/maximum-average-subarray-ii/description/",
+    "paid_only": true,
+    "content_sha256": "50c812c16593ec2a1528d445da8a54cffc37be606e966d691479b75ccaa10392",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,12,-5,-6,50,3], k = 4",
+        "output": "12.75000",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [5], k = 1",
+        "output": "5.00000",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "652da4c178d668b4cac8760fddb8f3316af4ba78da4af2c58d850087e0ed5669",
+      "reference/contract.md": "9874109761b866e5dc6814481bc3d804162a7ec45fac8843f91f4ae50833b6ef",
+      "reference/examples.md": "f77a0299e7c14604da52a987b6242d9ea774b9a583a562b554d062a02f407e52",
+      "reference/constraints.md": "65ad1fa2c28f1cb112e423e51aa6abd3c887573b2ef696878d6712cae15aa889"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

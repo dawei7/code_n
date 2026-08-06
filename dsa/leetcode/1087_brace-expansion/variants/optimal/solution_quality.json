@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1087",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "approach_target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "interview_quality_naming",
+        "severity": "material",
+        "reason": "The protected app source uses the prohibited generic local name index for its parser cursor. The inert candidate renames it to source_position and renames end to closing_brace_position, making the consumed source location and delimiter boundary explicit. A direct source diff confirms these two consistent renames are the only executable changes; solve.py, leetcode.py, and submission.json remain untouched."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "candidate_improves",
+        "reason": "The candidate is direct, conventional, and interview-ready. source_position and closing_brace_position expose the parser state precisely, while groups, result, path, position, and choice clearly describe the parsed Cartesian-product positions and depth-first construction. The recursion and mutable path are justified by the output-generation structure, and no unnecessary abstraction or obscure operation remains."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The scan converts every fixed letter into a one-choice group and every valid non-nested brace segment into one sorted alternatives group, then advances past exactly the consumed source segment. Depth-first traversal selects one letter from every group and emits only at full depth, so each path is one valid expansion and every independent selection is reached exactly once. At the first differing position, the smaller sorted choice is exhausted first, which proves the direct output order is lexicographical."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1087, Python as the user-facing language, and native Solution.expand. Authenticated source evidence confirms strings of length 1 through 50, valid lowercase-letter, brace, and comma syntax, no nested braces, distinct characters within each brace pair, independent alternatives, complete expansion, and lexicographically sorted output. The candidate solve(s: str) adapter preserves that contract."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2067562451 use the same left-to-right group parser, per-group sorting, path-based depth-first Cartesian product, append/visit/pop transitions, and direct ordered return. The candidate preserves that exact algorithm and data flow and differs from solve.py only in the parser-position renames; the native Solution.expand wrapper and List annotations are protected interface adaptations."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden workloads grow reverse-listed binary brace groups from 8 through 128 generated expansions, exercising direct lexicographical traversal while a generate-then-insertion-sort control performs increasing shifts and string comparisons. The exact candidate passed all nine visible cases and all three tiers with relative growth exponent -0.01 and a 1.01x largest runtime ratio. The independently correct control matched every expected output but failed only scaling at +1.02 and 21.67x, distinguishing O(n+RL) generation from quadratic result ordering."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives parsing fixed letters and brace groups into positions, sorting each alternatives group before expansion, and backtracking over one choice per position. Its completeness and lexicographical-order arguments match the candidate, its O(n+RL) time and O(n+RL) total-space bounds agree with the branch manifest, and it covers global sorting, insertion sorting, breadth-first products, no braces, adjacent groups, unsorted alternatives, and fixed affixes."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the list-of-words model, fixed letters, distinct brace alternatives, independent choices, complete expansion, and lexicographical ordering. Both source examples appear first in exact order with exact literals and no invented explanations; all five constraints and both source hints are present, with no tables or visuals invented."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified exactly two unexplained examples, five constraints, two hints, and no notes or follow-up. source_fidelity.json binds the independently written modular Reference to live statement hash a3df5baaaed53b0d4b53d47c74a2d07185042d967b92585056c9bbade032e176."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact inputs and outputs appear first as sample-1 and sample-2 in source order, and neither case invents an explanation absent from the source.",
+      "All nine ordinary correctness fixtures are visible samples or trials. They cover two separated groups, no braces, one group between fixed letters, unsorted alternatives, adjacent groups, fixed prefix and suffix letters, three independent groups, the minimum length of 1, and a maximum-length expression of 50 characters with 24 reverse-listed distinct alternatives.",
+      "Every fixture uses only valid lowercase letters, braces, and commas; no braces nest, and every brace group contains distinct alternatives. The length-50 trial exercises the upper syntax boundary and output ordering, while the one-letter trial exercises the lower boundary and direct fixed-letter path.",
+      "An independent Python oracle splits the expression into literal and brace segments with a regular expression, converts literals into singleton positions, enumerates the Cartesian product with itertools.product, and globally sorts the completed strings. It shares neither the reviewed parser loop nor its ordered depth-first traversal.",
+      "The oracle, protected app-local function, candidate, immutable native Solution method, and independently correct slower control agreed on all 12 authored correctness-plus-benchmark fixtures. They also agreed on 5000 deterministic random legal expressions with fixed positions, adjacent and separated groups, two through four shuffled distinct alternatives, one through fourteen output positions, up to six groups and 256 expansions, plus seven explicit legal boundary inputs.",
+      "The 8-, 32-, and 128-expansion workloads remain hidden and performance-only, define size consistently as generated expansion count, and span 16x. The correct insertion-sort control passed every ordinary and benchmark output but failed only scaling at +1.02 and 21.67x, while the candidate passed at -0.01 and 1.01x and the protected source at +0.01 and 1.00x; benchmark.json was not edited."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "d2cd38b69969ef6b4e1babf7f343234b3e20354e48bb1617511a44286c624fd8",
+    "native_source_sha256": "8f66b6b2f760a92190b99c57bea8b1c60f1b0490868fe4542ee7600998d9ea1b",
+    "approach_sha256": "a33f01273a04eaf8d14b4735a0b5ef374e76784d23e649b59418167a8f976d4d",
+    "solution_variants_sha256": "d4be21101ef1d2172e1b6fd7498e2cbb6f083d5dc3fb780d2e3a0bd2983c0ace",
+    "complexity_evidence_sha256": "35856879bc1304f0da09f95f21df9f67f86bf5a1856b54e34e27476be9665adc",
+    "candidate_source_sha256": "be0459581f0460f6c93f547bb4ffad9b8f22726641834c8dd46cda354460450f",
+    "cases_sha256": "6905d1bbf94cb6ce5343bab26e4cf1f4dbf8abd2a2a14db0d82d181a6298fda7"
+  }
+}

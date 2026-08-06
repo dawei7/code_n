@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_110",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "A balanced tree forces inspection of every node because an unseen descendant could introduce the first imbalance. The postorder sentinel method computes each height once and uses height-proportional stack space.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "On a balanced n-node input, changing the presence of descendants below the last unexamined node can create the first height difference above one. A correct algorithm must therefore inspect all nodes in the worst case, giving Omega(n) time. The current postorder helper computes each node's height once and propagates failure immediately, so it performs O(n) total work and uses O(h) recursion space."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An unexamined descendant can be extended to introduce a previously hidden imbalance, so a balanced input requires a complete worst-case inspection."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each node contributes one postorder height computation, and the -1 sentinel prevents any subtree from being recomputed."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover balanced, internally unbalanced, and empty trees; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

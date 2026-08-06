@@ -2,9 +2,13 @@
   "challenge_id": "lc_12",
   "cases": [
     {"id": "sample-1", "name": "sample: several decimal places", "kind": "sample", "visible": true, "input": {"num": 3749}, "expected": "MMMDCCXLIX", "tags": ["sample", "subtractive"]},
-    {"id": "sample-2", "name": "sample: repeated units", "kind": "sample", "visible": true, "input": {"num": 58}, "expected": "LVIII", "tags": ["sample"]},
-    {"id": "trial-multiple-subtractive-pairs", "name": "subtractive pair in three places", "kind": "trial", "visible": true, "input": {"num": 1994}, "expected": "MCMXCIV", "tags": ["subtractive"]},
+    {"id": "sample-2", "name": "sample: repeated units", "kind": "sample", "visible": true, "input": {"num": 58}, "expected": "LVIII", "tags": ["sample", "repetition"]},
+    {"id": "sample-3", "name": "sample: subtractive pairs in three places", "kind": "sample", "visible": true, "input": {"num": 1994}, "expected": "MCMXCIV", "tags": ["sample", "subtractive"]},
     {"id": "trial-smallest", "name": "smallest legal value", "kind": "trial", "visible": true, "input": {"num": 1}, "expected": "I", "tags": ["boundary"]},
-    {"id": "real-largest", "name": "hidden: largest legal value", "kind": "real", "visible": false, "input": {"num": 3999}, "expected": "MMMCMXCIX", "tags": ["hidden", "boundary"]}
+    {"id": "trial-largest", "name": "largest legal value", "kind": "trial", "visible": true, "input": {"num": 3999}, "expected": "MMMCMXCIX", "tags": ["boundary", "subtractive"]},
+    {"id": "trial-four-hundreds", "name": "four-based subtraction in three places", "kind": "trial", "visible": true, "input": {"num": 444}, "expected": "CDXLIV", "tags": ["subtractive"]},
+    {"id": "trial-longest-form", "name": "maximum canonical repetition pattern", "kind": "trial", "visible": true, "input": {"num": 3888}, "expected": "MMMDCCCLXXXVIII", "tags": ["repetition", "bounded-output"]},
+    {"id": "trial-base-symbols", "name": "every base symbol in descending order", "kind": "trial", "visible": true, "input": {"num": 1666}, "expected": "MDCLXVI", "tags": ["base-symbols"]},
+    {"id": "trial-unit-repetition", "name": "three repeated unit symbols", "kind": "trial", "visible": true, "input": {"num": 3}, "expected": "III", "tags": ["repetition"]}
   ]
 }

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_432",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is the conventional average-O(1) design: a count-ordered doubly linked list of nonempty key buckets plus a hash map from each key to its bucket. The Bucket and AllOne classes keep the state and pointer operations explicit, and the current, destination, target, previous, and location names expose genuine algorithmic roles. No inert candidate would materially improve its clarity, structure, or complexity."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 432 and Python as the app language. The executable adapter accepts an ordered operation trace, constructs one AllOne instance, returns retrieval results only, and preserves the source guarantee that dec names an existing key. The native artifact retains the required constructor plus inc, dec, getMaxKey, and getMinKey methods."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064801369. Its Bucket and AllOne implementations are structurally identical to the protected app-local classes: both create and unlink the same neighboring count buckets, move keys through the same sets, delete zero-count keys, and read extrema from the same sentinel-adjacent buckets. The app-local source adds only the operation-trace solve adapter."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The 64-, 192-, and 512-key tiers span 8x and repeatedly query both extrema while the live-key set grows, isolating the required endpoint access from a full map scan. The protected source passed all 10 opaque correctness executions and all three performance tiers at 1.01x the reference runtime. A correct full-scan control passed every output, including all benchmark outputs, but failed only the runtime verdict at 1.43x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly describes the reviewed current source: strictly ordered nonempty count buckets, key-to-bucket lookup, adjacent creation for count plus or minus one, immediate removal of empty buckets, endpoint retrieval, average O(1) operations, and O(k) storage for k live keys."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked against the live public statement. It preserves the class surface and operation semantics, the average-O(1) note in its source position, the single source example with its complete explanation, all four constraints, empty-structure behavior, arbitrary tie handling, and the guarantee on dec. The statement contains no images, tables, or diagrams."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "9a58f88cdd14feb9ed0add8363ee5d72bd4ff0c125bd5e332bfce883f6be29b3",
+    "native_source_sha256": "e4a203d3531f11275da98cb1ac364cabb89e05fa6f55b2d363af146772c8e221",
+    "approach_sha256": "3b19f139e0137571af3d2a90e7ef760083add10b1ece9b7abb0a106479f168f9",
+    "solution_variants_sha256": "217a70e07d8a6c62471c51dd27ac726abf677f7e039561d555f0c1badc2ea1b7",
+    "complexity_evidence_sha256": "35f9bb134f46a0bc1b72fcf857a8861b187a69f7e15033a05d7f8ffd5de52248"
+  }
+}

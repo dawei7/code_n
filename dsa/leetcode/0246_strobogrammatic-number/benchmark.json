@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_246",
-  "measurement_note": "Size is numeral length; valid rotating pairs force comparison through the center.",
+  "measurement_note": "Size is legal numeral length; valid rotating pairs force comparison through the center.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 8 digits",
+      "name": "benchmark: 4 digits",
       "kind": "benchmark",
       "visible": false,
-      "size": 8,
+      "size": 4,
       "input": {
-        "num": "69696969"
+        "num": "6969"
       },
       "expected": true,
       "tags": [
@@ -20,12 +20,12 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: 64 digits",
+      "name": "benchmark: 16 digits",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 16,
       "input": {
-        "num": "6969696969696969696969696969696969696969696969696969696969696969"
+        "num": "6969696969696969"
       },
       "expected": true,
       "tags": [
@@ -35,12 +35,12 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: 256 digits",
+      "name": "benchmark: 48 digits",
       "kind": "benchmark",
       "visible": false,
-      "size": 256,
+      "size": 48,
       "input": {
-        "num": "6969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969"
+        "num": "696969696969696969696969696969696969696969696969"
       },
       "expected": true,
       "tags": [

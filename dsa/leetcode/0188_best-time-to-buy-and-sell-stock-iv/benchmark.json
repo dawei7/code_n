@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_188",
-  "measurement_note": "Growing price histories and transaction limits exercise the O(nk) bounded dynamic program.",
+  "measurement_note": "Size is n * k, the number of bounded-DP state updates. Growing price histories and binding transaction limits exercise the O(nk) path.",
   "cases": [
     {
       "id": "benchmark-scale-1",
@@ -33,7 +33,7 @@
       "name": "benchmark: 64 price days",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 512,
       "input": {
         "k": 8,
         "prices": [
@@ -114,7 +114,7 @@
       "name": "benchmark: 256 price days",
       "kind": "benchmark",
       "visible": false,
-      "size": 256,
+      "size": 8192,
       "input": {
         "k": 32,
         "prices": [

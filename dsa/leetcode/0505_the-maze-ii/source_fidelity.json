@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_505",
+    "frontend_id": "505",
+    "title_slug": "the-maze-ii",
+    "url": "https://leetcode.com/problems/the-maze-ii/description/",
+    "paid_only": true,
+    "content_sha256": "9a886b9d4f9444bcdc03fa613ed56cb37f37fc6b0b3fa22be2aa8125666cbfc7",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [4,4]",
+        "output": "12",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [3,2]",
+        "output": "-1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]",
+        "output": "-1",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 10,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ecd6ac34f28f42dd68806e3a586f6ddda271909cd6ea75821f42b815db05e13a",
+      "reference/contract.md": "173cae31369e0be878b8f2fd6ec2ee9955f841e8cc0e0141b6caaecedb0ce6b7",
+      "reference/examples.md": "7a7c81b40c64eb75160c717090b0f1aa92d2533cd5571922b3c75c6c50fa4951",
+      "reference/constraints.md": "6d20629cfa2838b1af95bfd02857679adb521b0a2308e2b7a0a3bce7bd3b8397"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

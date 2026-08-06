@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_413",
+    "frontend_id": "413",
+    "title_slug": "arithmetic-slices",
+    "url": "https://leetcode.com/problems/arithmetic-slices/description/",
+    "paid_only": false,
+    "content_sha256": "ec107a5d8f8f5ba3189d8edb3ec3b75efd4fd9076e4da6f5934b2a3b560ebcc1",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,2,3,4]", "output": "3", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [1]", "output": "0", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0373911b10bacc72a6a6e6b13eb35737669f979f627bd70f001e42d5f53b4955",
+      "reference/contract.md": "7b0a261b23a9dc3a86a50b539ed0325bb496f79074c39532dd3e218a2c8ac999",
+      "reference/examples.md": "42dbf0e8632c0a4905fedc0c434e28034e281ce2ea862c7e7c607335dfe48ab0",
+      "reference/constraints.md": "5339ca5ac5dc2d1f7f27e1cc6604435a8a5e7c4d2c51c4a557b2562c9c5c4213"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

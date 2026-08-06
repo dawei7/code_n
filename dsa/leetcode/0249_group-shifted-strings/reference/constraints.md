@@ -1,5 +1,5 @@
 ## Constraints
 
-- $1 \le \texttt{strings.length} \le 200$
-- $1 \le \texttt{strings[i].length} \le 50$
-- Every `strings[i]` consists only of lowercase English letters.
+- $1 \le \text{strings.length} \le 200$.
+- $1 \le \text{strings}[i].\text{length} \le 50$.
+- `strings[i]` consists of lowercase English letters.

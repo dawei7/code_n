@@ -3,8 +3,11 @@
   "cases": [
     {"id": "sample-1", "name": "sample: several basins", "kind": "sample", "visible": true, "input": {"height": [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]}, "expected": 6, "tags": ["sample"]},
     {"id": "sample-2", "name": "sample: one irregular basin", "kind": "sample", "visible": true, "input": {"height": [4, 2, 0, 3, 2, 5]}, "expected": 9, "tags": ["sample", "basin"]},
-    {"id": "trial-empty", "name": "empty elevation map", "kind": "trial", "visible": true, "input": {"height": []}, "expected": 0, "tags": ["empty"]},
-    {"id": "trial-monotone", "name": "monotone bars trap nothing", "kind": "trial", "visible": true, "input": {"height": [1, 2, 3, 4]}, "expected": 0, "tags": ["monotone"]},
-    {"id": "real-flat-bottom", "name": "hidden: flat basin bottom", "kind": "real", "visible": false, "input": {"height": [5, 0, 0, 0, 5]}, "expected": 15, "tags": ["hidden", "basin"]}
+    {"id": "trial-singleton", "name": "minimum-length elevation map", "kind": "trial", "visible": true, "input": {"height": [0]}, "expected": 0, "tags": ["boundary", "singleton"]},
+    {"id": "trial-increasing", "name": "increasing bars trap nothing", "kind": "trial", "visible": true, "input": {"height": [1, 2, 3, 4]}, "expected": 0, "tags": ["monotone", "left-pointer"]},
+    {"id": "trial-decreasing", "name": "decreasing bars trap nothing", "kind": "trial", "visible": true, "input": {"height": [4, 3, 2, 1]}, "expected": 0, "tags": ["monotone", "right-pointer"]},
+    {"id": "trial-flat-bottom", "name": "flat basin bottom", "kind": "trial", "visible": true, "input": {"height": [5, 0, 0, 0, 5]}, "expected": 15, "tags": ["basin", "plateau-bottom"]},
+    {"id": "trial-flat-plateau", "name": "equal-height plateau traps nothing", "kind": "trial", "visible": true, "input": {"height": [3, 3, 3]}, "expected": 0, "tags": ["plateau", "equal-boundaries"]},
+    {"id": "trial-maximum-height", "name": "maximum-height walls bound one cell", "kind": "trial", "visible": true, "input": {"height": [100000, 0, 100000]}, "expected": 100000, "tags": ["boundary", "maximum-height", "basin"]}
   ]
 }

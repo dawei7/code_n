@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_268",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected source declares the explicitly prohibited local loop variable `index`. The inert candidate needs only the conventional mathematical variable `n` and contains no positional local at all."
+      },
+      {
+        "category": "control_flow",
+        "severity": "material",
+        "reason": "Python's exact integers make the complete-range arithmetic identity a simpler app-local formulation than maintaining an XOR accumulator and pairing every position with every value. The candidate expresses the proof directly as complete sum minus observed sum while preserving the same optimal bounds."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 268 and its Python list-to-integer contract. The Reference preserves the distinct [0,n] domain, exactly-one-missing guarantee, all three examples and explanations, all four constraints, and the source-native linear-time constant-space follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local and native XOR sources remain structurally aligned and the immutable native source remains tied to verified submission 2064293658. The arithmetic candidate is separate, inert, locally validated evidence and has not been submitted or represented as Accepted."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 64/512/4,096-value tiers omit the upper endpoint and force a full linear sum. The candidate passes every workload at -0.64 relative exponent and 0.04x largest ratio; a correct candidate-by-candidate list-membership scan passes every output but fails only scaling at +0.68 and 18.78x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now targets the candidate exactly: arithmetic-series total, observed-sum subtraction, algebraic cancellation proof, Python overflow safety, linear scan cost, constant auxiliary state, and endpoint behavior."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains verified against its reviewed source evidence, preserving all three examples and explanations in order, all four constraints, the follow-up after Constraints, and the zero-visual structure."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "718eeb68c348c1320649f598d1b653987254c61b3617eea1950d59a15cad21c2",
+    "native_source_sha256": "dcaf0527257bbd90fb01f1551eb0f61ce85fcf9a173fae55a959d7e2138118cb",
+    "approach_sha256": "824f67e10c5d54db497fa8b637b2b3784526c3837246dc845024b50f9c25ad31",
+    "solution_variants_sha256": "4beba1e211afbbefd6dfa188484cfc063bf06f7f998d0251a4b506b5f1d0903a",
+    "complexity_evidence_sha256": "e40e666b0f607af8f1be52df4cd917a3ebf5ae2643d260fdf9b72e0abe9472d3",
+    "candidate_source_sha256": "6fd782e8b758ed400c6ad5fce81412512503b9709a47551969d38ae0bf405b49"
+  }
+}

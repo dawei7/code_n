@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_750",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is clear, conventional, and interview-ready. Its rows, columns, one_columns, left/right positions, pair_counts, and rectangles names expose the orientation and accumulation roles directly, while the optional transpose applies the same core loop to the smaller quadratic dimension."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "For each working row, every pair of columns containing 1 can be the two later corners of a rectangle. pair_counts records exactly how many earlier rows contained that same pair, so adding its current value creates one rectangle for each valid earlier row before the current row is recorded. Every rectangle has one unique later row and one unique corner-column pair, hence is added exactly once, and every addition guarantees all four corners are 1. Transposition preserves this row-pair/column-pair correspondence."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 750, Python, and the native countCornerRectangles(grid) interface. Authenticated source evidence confirms a rectangular binary matrix with each dimension from 1 through 200 and between 1 and 6000 one-cells, four distinct 1-valued intersections on two rows and two columns, axis alignment, irrelevant non-corner cells, overlapping rectangles, and the integer count of coordinate choices."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065912912 are algorithmically identical: both orient by transposing when columns exceed rows, enumerate 1-valued columns per row, visit every ordered column pair once, add its prior frequency, increment that frequency, and return the accumulated count. Their only structural differences are the required Solution.countCornerRectangles wrapper and Python typing dialect."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged three authored workloads grow all-one square matrices from 9 to 144 cells, forcing every row to generate every column pair. The exact protected source passed all twelve visible correctness cases and all three performance tiers with relative growth exponent -0.01 and a 0.98x largest runtime ratio. An independent row-pair intersection implementation from the required class also passed, with exponent -0.29 and a 0.30x largest ratio. A correct control that explicitly tries every row pair and column pair matched every output but failed only performance with relative growth exponent +0.47, distinguishing cubic pair-frequency accumulation in the side length from quartic four-corner enumeration."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the prior-row frequency invariant, orientation around the smaller dimension, and the bidirectional exact-once rectangle proof. Its O(mn min(m,n)) time and O(min(m,n)^2) auxiliary-space claims match the protected implementation and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "reviewed",
+        "reason": "The modular Reference preserves the binary-matrix contract, four distinct 1-valued corners, axis alignment, irrelevant non-corner cells, the exact three source examples and explanations, all five constraints, and the source hint. Its three accessible matrix tables preserve the complete information in the source's three matrix images without copying provider assets."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated live Premium evidence confirms exactly three explained examples in source order, five constraints, one hint, three matrix images, no source tables, and no additional source-native sections. The modular Reference and every composed section are hash-bound by a verified source_fidelity.json against live statement content hash 2c15892fbbc1a948caf645bba3dc69c49dee7c8c8eaf3e4e210da35ae0e563a2."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly three examples. Their exact matrices, outputs, and explanation facts now appear first in source order; the former hidden single-row case was restored as source Example 3 rather than left mislabeled as an opaque boundary.",
+      "All twelve ordinary correctness checks are visible samples or trials. The former hidden single-column and disconnected-pair behaviors were exposed, and every authored matrix respects the live requirement that at least one cell equals 1.",
+      "Authored contract boundaries cover a 1-by-1 grid, one row, one column, binary values, and the minimum one-count. Separate generated checks exercise a 200-by-200 grid with exactly 6000 ones plus 1-by-200 and 200-by-1 grids with exactly one 1.",
+      "Material behavior covers insufficient distinct rows or columns, no repeated column pair, one pair recurring across three rows, disconnected rectangles, dense combinatorial counts, sparse and wide transposed orientation, irrelevant interior cells, overlapping rectangles, and rectangles that share a corner.",
+      "Expected results were checked against an independent row-pair intersection oracle for all fifteen authored correctness-plus-benchmark inputs, all 74938 nonempty binary matrices with dimensions through 4 by 4, 5000 deterministic random legal matrices, and three maximum-dimension or one-count boundaries. The protected app adapter and immutable native Solution agreed throughout.",
+      "The unchanged 9, 36, and 144-cell all-one workloads remain hidden and performance-only in benchmark.json, span 16x, and make the correct four-corner enumeration control fail only the scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "6683f357554b1a9c62d28d677bd4e8c18d7287eb3860844928597a47ac30a666",
+    "native_source_sha256": "ca070beb61167265d76810931eb63e36ba50fa7bd71d182414b54bdf2d2e34a2",
+    "approach_sha256": "c6e577aa9074b2c6e5cd543824e2756b62806a58331647d89bd2b3a21b35130b",
+    "solution_variants_sha256": "dc14fcceb6340bdf9369dd779ba912acf4d81eeb9bd3e740ad5f5c1533556aca",
+    "complexity_evidence_sha256": "aa0170e58c8367f9bfa6eda6f104b6a7b520ed2903198d4178010bd23e539c64",
+    "cases_sha256": "1543498815a2e13dfefd70e5e07f82674e381dd6499cc26e49314d1d6cd2d8fd"
+  }
+}

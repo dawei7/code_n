@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_51",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order with the exact boards and explanation-backed n = 4 result",
+      "the n = 1 minimum, n = 9 maximum with all 352 boards, and exact empty outputs for n = 2 and n = 3",
+      "all four n = 6 boards as a visible intermediate multiple-solution case",
+      "an independent full-permutation diagonal oracle compared exact solution sets for every n from 1 through 9 against current and immutable native sources",
+      "every returned board checked for dimensions, alphabet, one queen per row and column, both diagonal constraints, and duplicate freedom",
+      "three hidden performance-only tiers spanning n = 1, 4, and 8 across the legal backtracking domain",
+      "a correct full-column-permutation solver that passes every output and fails only scaling growth (+1.74 > +0.15; 58.87x > 8x)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "33a2c8d43b4a9d35b42edf443b163218be9f1635ac5c2ae5a46f1f4fad36736a",
+    "native_source_sha256": "5ccdfb8dd3cf356f8f1a87e56b88f15c4a3c6d8b9d3ee04f94eb07d22bc9caa8",
+    "approach_sha256": "e17c6318d1dbc66234f590a38eb5520b1497f129a4b76e2a06b217632a5ee4b6",
+    "solution_variants_sha256": "739aeead57e921e122e2974036ff35c511418b4a26b6654d886645922fd34ac0",
+    "cases_sha256": "de925d6f23f522fc907d0f20b6015b75eee189ac6287aa377e37545c25e85d25",
+    "complexity_evidence_sha256": "f439032f178b68aa62d3937fdb5d19971b4b5a883febde384169033bda8f51e3"
+  }
+}

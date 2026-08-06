@@ -6,10 +6,13 @@
 
 Ignoring self-relationships, the directed “knows” edges are:
 
-```text
-0 --> 1
-2 --> 0
-2 --> 1
+```mermaid
+flowchart LR
+    accTitle: Example 1 acquaintance graph
+    accDescr: Person 0 knows person 1, and person 2 knows both people 0 and 1. Person 1 knows nobody else.
+    P0["0"] --> P1["1"]
+    P2["2"] --> P0
+    P2 --> P1
 ```
 
 - Output: `1`
@@ -21,8 +24,11 @@ Ignoring self-relationships, the directed “knows” edges are:
 
 Ignoring self-relationships, the directed edges form a cycle:
 
-```text
-0 --> 2 --> 1 --> 0
+```mermaid
+flowchart LR
+    accTitle: Example 2 acquaintance cycle
+    accDescr: Person 0 knows person 2, person 2 knows person 1, and person 1 knows person 0, forming a cycle.
+    P0["0"] --> P2["2"] --> P1["1"] --> P0
 ```
 
 - Output: `-1`

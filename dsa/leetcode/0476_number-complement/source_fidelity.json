@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_476",
+    "frontend_id": "476",
+    "title_slug": "number-complement",
+    "url": "https://leetcode.com/problems/number-complement/description/",
+    "paid_only": false,
+    "content_sha256": "4b1ef61706218c9ced2e35737b3d267afa396c7c7ff696aa97bcd499c79683da",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "note"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "num = 5",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "num = 1",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "448262aace6c8c668c2c7ab428957e66f495501ec0c5bbd1d07e020085558c69",
+      "reference/contract.md": "7253f3e71895337c85d912c85aba2bfda8833481b3f507d61b1ed0dd9a591b51",
+      "reference/examples.md": "4235bca05e26a9fb599565f7c620b82f724db8a2f99d909f35c605ef7305ae6a",
+      "reference/constraints.md": "3a7c369d75054c582fb86fb7de0001764f819166e170b4af948032c14f6eece3",
+      "reference/note.md": "44df7f07d770b807c23df65e6568492fb51fe969a399d83a4bee0136b795fe2a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

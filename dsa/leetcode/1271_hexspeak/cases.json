@@ -7,9 +7,9 @@
     {"id": "trial-minimum", "name": "trial: minimum value maps to I", "kind": "trial", "visible": true, "input": {"num": "1"}, "expected": "I", "tags": ["trial", "minimum"]},
     {"id": "trial-ten", "name": "trial: hexadecimal A remains a letter", "kind": "trial", "visible": true, "input": {"num": "10"}, "expected": "A", "tags": ["trial", "single-letter"]},
     {"id": "trial-internal-zero", "name": "trial: internal zero becomes O", "kind": "trial", "visible": true, "input": {"num": "2827"}, "expected": "BOB", "tags": ["trial", "internal-zero"]},
-    {"id": "real-all-letter-digits", "name": "hidden: hexadecimal FACE is already pronounceable", "kind": "real", "visible": false, "input": {"num": "64206"}, "expected": "FACE", "tags": ["hidden", "letters"]},
-    {"id": "real-five-letter-digits", "name": "hidden: a longer all-letter representation", "kind": "real", "visible": false, "input": {"num": "703710"}, "expected": "ABCDE", "tags": ["hidden", "letters"]},
-    {"id": "real-maximum", "name": "hidden: maximum decimal input contains forbidden digits", "kind": "real", "visible": false, "input": {"num": "1000000000000"}, "expected": "ERROR", "tags": ["hidden", "maximum", "invalid"]},
-    {"id": "real-power-of-sixteen", "name": "hidden: several zero digits become O", "kind": "real", "visible": false, "input": {"num": "4096"}, "expected": "IOOO", "tags": ["hidden", "power-of-sixteen"]}
+    {"id": "trial-all-letter-digits", "name": "trial: hexadecimal FACE is already pronounceable", "kind": "trial", "visible": true, "input": {"num": "64206"}, "expected": "FACE", "tags": ["trial", "letters"]},
+    {"id": "trial-five-letter-digits", "name": "trial: a longer all-letter representation", "kind": "trial", "visible": true, "input": {"num": "703710"}, "expected": "ABCDE", "tags": ["trial", "letters"]},
+    {"id": "trial-maximum", "name": "trial: maximum decimal input contains forbidden digits", "kind": "trial", "visible": true, "input": {"num": "1000000000000"}, "expected": "ERROR", "tags": ["trial", "maximum", "invalid"]},
+    {"id": "trial-power-of-sixteen", "name": "trial: several zero digits become O", "kind": "trial", "visible": true, "input": {"num": "4096"}, "expected": "IOOO", "tags": ["trial", "power-of-sixteen"]}
   ]
 }

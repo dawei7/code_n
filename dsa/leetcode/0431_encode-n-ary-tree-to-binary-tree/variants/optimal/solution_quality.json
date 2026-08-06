@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_431",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "correctness",
+        "severity": "material",
+        "reason": "The protected recursive first-child/next-sibling codec raises RecursionError on a legal height-1000 chain. The inert candidate preserves the exact representation, stateless behavior, O(n) time, and O(h) auxiliary bound with explicit continuation frames that pass both legal maxima."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 431 and its Python Codec surface. The app contract explicitly distinguishes the recursive local fixture shape from the native level-order display and returns the reconstructed N-ary Node after the required encode/decode round trip. The Reference preserves the unrestricted codec requirement, all three exact source examples, all four constraints, and the source diagram's complete relationships in an accessible table."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064797983 and remains aligned with the protected app-local recursive codec. The candidate is inert and creates the same binary node per N-ary node, identical left first-child links, and identical ordered right-sibling chains, but uses explicit continuation frames; promotion would still require separately Accepted native evidence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 64-, 192-, and 512-node star tiers span 8x and isolate sibling-link construction while validating the reconstructed N-ary tree. The candidate passes all 12 black-box executions at +0.02 extra growth and 1.45x the protected reference runtime; a correct control that rescans the right-sibling chain for every append passes every output but fails only the runtime verdict at 21.71x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach now describes the candidate exactly: left first-child links, right next-sibling chains, parent continuation frames, symmetric decoding continuations, reversibility, stateless calls, O(n) time, and O(h) auxiliary space without interpreter recursion."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Reference was checked against the authenticated live Premium statement. It preserves the statement order, N-ary and binary definitions, level-order null separators, illustrative rather than mandatory encoding, all example literals, every constraint, and the full source-image structure through a locally authored table."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "All three authenticated Premium source examples now appear first and in source order, including the previously missing 14-node tree, with exact ordered structure and empty-tree facts; the invented leaf is correctly labelled a trial.",
+      "Visible cases cover empty and single-node trees, values 0 and 10000, chains, wide sibling lists, repeated values, independent branches, and deliberately non-sorted child order.",
+      "Generated legal boundaries cover a 10,000-node star and a height-1000 chain, preventing node-count and interpreter-recursion regressions without embedding an unparseably deep JSON fixture.",
+      "Independent structural checks verified all nine authored cases, all three benchmarks, 3,000 randomized ordered trees, stateless codec reuse, exact protected/candidate binary representations on overlapping inputs, and both maximum constructions.",
+      "All nine correctness cases are visible samples or trials; the unchanged 64-, 192-, and 512-node sibling-chain workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "48e516b2ff53ef54b24471c88a87408fa71e9f0e68799bb978ca7c1ad3334c90",
+    "native_source_sha256": "b3730907d476046a47a53780bfc9c8508ca55afcd2fa1789b4e0b3e0fc5277aa",
+    "approach_sha256": "50f65d404abd767277759f24cd9198d62c90f033ee6576433c2b6b2c3bc477f3",
+    "solution_variants_sha256": "cc665f41c0cc86155c275c486a95fff7cc2d24f73401d907f6ac609277365ab1",
+    "complexity_evidence_sha256": "9098fcd8cb512bf69f2dd7ce2cf9a2f43629f5b90975e76cfa28f9d4f00845f4",
+    "cases_sha256": "252d302cd050c20c8f665d2d29e5ab5f226ec3f4bc1266e0ad61cd2b6dc108fe",
+    "candidate_source_sha256": "ab8b31c4c8108416945cbb3821d598a3489f8293fbd800afee879aa6d959d967"
+  }
+}

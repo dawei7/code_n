@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_252", "frontend_id": "252", "title_slug": "meeting-rooms", "url": "https://leetcode.com/problems/meeting-rooms/description/", "paid_only": true, "content_sha256": "4d6551da47e05cae5037db72f31aa4c9a95ab3a6338598e40bfd102936aa8aa5", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "intervals = [[0,30],[5,10],[15,20]]", "output": "false", "has_explanation": false}, {"ordinal": 2, "input": "intervals = [[7,10],[2,4]]", "output": "true", "has_explanation": false}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_252",
+    "frontend_id": "252",
+    "title_slug": "meeting-rooms",
+    "url": "https://leetcode.com/problems/meeting-rooms/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "6f0dad60aaa00e34f2d882187e870c53e484fbdaa57273019b7dbc4dcfe58a27", "reference/contract.md": "44c49444e661d3d4f327f1b7f71d78f61b320dfb7b545c51fbdb1dd235c6584f", "reference/examples.md": "e6a6ff44fb25e5eb3e460093ac31aa25c23a2fee6860b487832119b9c4e5a356", "reference/constraints.md": "27059790b135f88af283ec8565a7e249834cb5f5ef1446a3e0ccc7471f894933"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`intervals = [[0,30],[5,10],[15,20]]`",
+        "output": "`false`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "`intervals = [[7,10],[2,4]]`",
+        "output": "`true`",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0161a08ec1d82665ec12d0c19a40b70a2ebce7d12a479e1ab6459748b7fe01ae",
+      "reference/contract.md": "7e49a72f488fd6ec4edf725a5dad64c3372942b90cf3aaa4447ad936e5888f7d",
+      "reference/examples.md": "5cfb80d3ba39c7e9855b407e2ae20b89936f93d20d8fc86799f01783990379f4",
+      "reference/constraints.md": "542689a341505cdd15cc6ae5c6df30079fdd3eccd78f42f8a0074bd26fe56614"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

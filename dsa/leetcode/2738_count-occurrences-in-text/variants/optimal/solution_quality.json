@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2738",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution executes two SELECT queries using COUNT(*) and LIKE predicates ('% bull %', '% bear %') combined with UNION ALL. This directly counts files containing at least one space-bounded occurrence of 'bull' or 'bear'. The query executes in O(S) time where S is total text character length and O(1) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Using literal spaces around the word ('% bull %' and '% bear %') strictly enforces space boundaries, excluding embedded words (bullet, bears), punctuation-adjacent occurrences (bull.), and boundary positions. COUNT(*) per query counts qualifying files once."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Scanning text content of length S takes O(S) time across the table. Output consists of exactly two rows using O(1) space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts Files table and returns word and count columns for 'bull' and 'bear'."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details space-bounded LIKE pattern matching, COUNT(*) aggregation, UNION ALL combination, and O(S) time / O(1) space bounds. Alternatives and edge cases cover conditional aggregation overhead, regex word-boundary pitfalls, token splitting risks, file-level deduplication, dual-match rows, boundary rejection, and zero-count row guarantees."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions both execute the identical UNION ALL LIKE pattern query with SHA-256 digests 774e26ef907956fd40e7b5a55b0f949cb0fa1d317835afe2f1250e259cfc18fd and fe9931b9413e5dca7811b6b9271b9e4cd4c8f0d36d1ac4c7b4483a7bb3506014. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Files table interface, three examples, two constraints, and 3 local tables. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "774e26ef907956fd40e7b5a55b0f949cb0fa1d317835afe2f1250e259cfc18fd",
+    "native_source_sha256": "fe9931b9413e5dca7811b6b9271b9e4cd4c8f0d36d1ac4c7b4483a7bb3506014",
+    "approach_sha256": "f767182a8b41d32bc6bcbfff21755b5112f41544537e932d0c5fb185ad36cebb",
+    "solution_variants_sha256": "b8fd7d06afe828bbdf756d1433df6f18fb9469a87abd8d60c5cc3c34443b4921",
+    "complexity_evidence_sha256": "d8aa18c3792685bb72acbf3d655d4e47acea6ef6155e2db8ae35279f338cb2f0"
+  }
+}

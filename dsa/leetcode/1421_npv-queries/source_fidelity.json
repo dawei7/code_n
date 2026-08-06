@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1421",
+    "frontend_id": "1421",
+    "title_slug": "npv-queries",
+    "url": "https://leetcode.com/problems/npv-queries/description/",
+    "paid_only": true,
+    "content_sha256": "889ec7ae179c29993cf4487895ad07944afbf9c8de9480306cf24963282af5e5",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "npv_table",
+      "queries_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "NPV = [[1,2018,100],[7,2020,30],[13,2019,40],[1,2019,113],[2,2008,121],[3,2009,12],[11,2020,99],[7,2019,0]], Queries = [[1,2019],[2,2008],[3,2009],[7,2018],[7,2019],[7,2020],[13,2019]]",
+        "output": "[[1,2019,113],[2,2008,121],[3,2009,12],[7,2018,0],[7,2019,0],[7,2020,30],[13,2019,40]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/npv_table.md": "32030db1581b74260fd4531de8d6b50ba5b05058e3094aa0aac5304ce61c38ef",
+      "reference/queries_table.md": "7576aeb2bdeb4abaee930a4061d8f34f1069a8149362b06ce60ad279f42d2dcd",
+      "reference/description.md": "cc038906fb93f7df023019ba16ba8987c2d1e046863ca440f1cdfcfc765bd199",
+      "reference/contract.md": "40f2606ed91df47b35f3499215689307f61564c1f14f341787c490f71579261c",
+      "reference/examples.md": "9f62ecbe615058a3780d367bf4f18e0ae748720c8b895084b974096f6796d74a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

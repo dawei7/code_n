@@ -2,9 +2,9 @@
 
 **Inputs**
 
-- `s`: The source string.
-- `t`: The target string.
+- `s`: A string consisting of English letters and digits ($0 \le \text{s.length} \le 10^4$).
+- `t`: A string consisting of English letters and digits ($0 \le \text{t.length} \le 10^4$).
 
 **Return value**
 
-Return `true` exactly when one permitted edit transforms `s` into `t`.
+Return a boolean: `true` if `s` and `t` are exactly one edit distance apart, and `false` otherwise.

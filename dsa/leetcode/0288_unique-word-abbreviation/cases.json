@@ -1,6 +1,104 @@
-{"challenge_id":"lc_288","cases":[
-{"id":"sample-queries","name":"sample: mixed unique queries","kind":"sample","visible":true,"input":{"dictionary":["deer","door","cake","card"],"words":["dear","cart","cane","make"]},"expected":[false,true,false,true],"tags":["sample","design"]},
-{"id":"sample-same","name":"sample: identical dictionary word is unique","kind":"sample","visible":true,"input":{"dictionary":["hello"],"words":["hello"]},"expected":[true],"tags":["sample","identity"]},
-{"id":"trial-duplicates","name":"duplicate entries do not create ambiguity","kind":"trial","visible":true,"input":{"dictionary":["a","a"],"words":["a","b"]},"expected":[true,true],"tags":["duplicates","short"]},
-{"id":"real-collision","name":"hidden: two distinct words share abbreviation","kind":"real","visible":false,"input":{"dictionary":["internationalization","localization"],"words":["internationalization","interpolation"]},"expected":[true,true],"tags":["hidden","abbreviation"]}
-]}
+{
+  "challenge_id": "lc_288",
+  "cases": [
+    {
+      "id": "sample-operation-trace",
+      "name": "sample: complete sequence of uniqueness queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {"dictionary": ["deer", "door", "cake", "card"], "words": ["dear", "cart", "cane", "make", "cake"]},
+      "expected": [false, true, false, true, true],
+      "tags": ["sample", "source-example", "design", "complete-trace"]
+    },
+    {
+      "id": "trial-duplicate-single-letter",
+      "name": "duplicate one-letter entries preserve identity uniqueness",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["a", "a"], "words": ["a", "b"]},
+      "expected": [true, true],
+      "tags": ["duplicate-entry", "one-letter", "minimum-length"]
+    },
+    {
+      "id": "trial-single-letter-identity",
+      "name": "one-letter abbreviations remain the words themselves",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["a"], "words": ["a", "b"]},
+      "expected": [true, true],
+      "tags": ["one-letter", "identity", "absent-key"]
+    },
+    {
+      "id": "trial-two-letter-identity",
+      "name": "two-letter words do not insert a numeric count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["it", "in"], "words": ["it", "is", "in"]},
+      "expected": [true, true, true],
+      "tags": ["two-letter", "identity", "short-word"]
+    },
+    {
+      "id": "trial-three-letter-collision",
+      "name": "three-letter words collide by first and last character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["dog"], "words": ["dog", "dig", "dug", "dot"]},
+      "expected": [true, false, false, true],
+      "tags": ["three-letter", "collision", "exact-identity"]
+    },
+    {
+      "id": "trial-ambiguous-key",
+      "name": "two distinct dictionary words make their abbreviation ambiguous",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["deer", "door"], "words": ["deer", "door", "dear", "dare"]},
+      "expected": [false, false, false, true],
+      "tags": ["ambiguous-abbreviation", "distinct-identities"]
+    },
+    {
+      "id": "trial-repeated-identity",
+      "name": "repeating one dictionary word does not create ambiguity",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["deer", "deer"], "words": ["deer", "dear", "door"]},
+      "expected": [true, false, false],
+      "tags": ["duplicate-entry", "same-identity"]
+    },
+    {
+      "id": "trial-duplicates-after-collision",
+      "name": "later duplicates cannot remove an existing ambiguity",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["deer", "door", "deer"], "words": ["deer", "door", "dear"]},
+      "expected": [false, false, false],
+      "tags": ["ambiguous-abbreviation", "duplicate-entry", "persistent-collision"]
+    },
+    {
+      "id": "trial-maximum-word-length",
+      "name": "maximum-length words use the full middle count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["abcdefghijklmnopqrst"], "words": ["abcdefghijklmnopqrst", "azzzzzzzzzzzzzzzzzzt"]},
+      "expected": [true, false],
+      "tags": ["maximum-word-length", "a18t", "collision"]
+    },
+    {
+      "id": "trial-different-length",
+      "name": "matching endpoints at different lengths do not collide",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["dog"], "words": ["doog"]},
+      "expected": [true],
+      "tags": ["different-middle-count", "absent-key"]
+    },
+    {
+      "id": "trial-multiple-abbreviation-groups",
+      "name": "independent keys retain their own identity or ambiguity state",
+      "kind": "trial",
+      "visible": true,
+      "input": {"dictionary": ["cake", "cane", "cart", "card"], "words": ["cake", "cane", "cape", "cart", "care", "card", "cold"]},
+      "expected": [false, false, false, true, false, true, false],
+      "tags": ["multiple-keys", "ambiguous-abbreviation", "sole-identity"]
+    }
+  ]
+}

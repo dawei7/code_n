@@ -19,4 +19,6 @@ Index construction is $O(n)$. A query is linear in the two occurrence-list lengt
 ## Alternatives and edge cases
 - **Rescan the entire dictionary per query:** uses no index but repeats $O(n)$ work regardless of occurrence frequency.
 - **Compare all occurrence pairs:** can be quadratic per query.
-- A word may appear many times; every query word is guaranteed present.
+- **Repeated words:** may create long occurrence lists, but each query pointer advances at most once per stored position.
+- **Guaranteed presence:** ensures both occurrence lists are nonempty, so the returned minimum is finite.
+- **Distinct query words:** keep the two occurrence lists separate, as required by the source contract.

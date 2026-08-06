@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1127",
+    "frontend_id": "1127",
+    "title_slug": "user-purchase-platform",
+    "url": "https://leetcode.com/problems/user-purchase-platform/description/",
+    "paid_only": true,
+    "content_sha256": "e7067776dbf9077def711d88a9ac3c9fc914e91634fa841c0a9345488ad5729e",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "spending_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Spending = [[1,\"2019-07-01\",\"mobile\",100],[1,\"2019-07-01\",\"desktop\",100],[2,\"2019-07-01\",\"mobile\",100],[2,\"2019-07-02\",\"mobile\",100],[3,\"2019-07-01\",\"desktop\",100],[3,\"2019-07-02\",\"desktop\",100]]",
+        "output": "[[\"2019-07-01\",\"desktop\",100,1],[\"2019-07-01\",\"mobile\",100,1],[\"2019-07-01\",\"both\",200,1],[\"2019-07-02\",\"desktop\",100,1],[\"2019-07-02\",\"mobile\",100,1],[\"2019-07-02\",\"both\",0,0]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/spending_table.md": "08d1d3ce124e831fedbf0062e255c19fb97d2d74ca09ea797eb56c30e0407d28",
+      "reference/description.md": "e6b70d6c4bc057bbbb5050eca2d52909a10112b9381a42d52f140822d2b0a812",
+      "reference/contract.md": "c6da89f49888d2816c5fcbe421befcc78a17d161f7dc9f78bd3c163ac89f8664",
+      "reference/examples.md": "3102625d602456d6b991bf69b1fdf4b78342cc6ba936fdedeb316676f39c0e5c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

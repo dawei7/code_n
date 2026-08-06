@@ -19,7 +19,7 @@ For `[0,1,2]` and $k = 4$, reduce to rotation `1`. Form `2 -> 0`; the new tail i
 
 Reducing `k` modulo the list length removes complete rotations that return every node to its original position. Linking the old tail to the old head then makes the list circular, so choosing a new tail is sufficient to define any rotation without moving nodes individually.
 
-After walking $n - k - 1$ links from the original head, the next node begins the original final `k`-node suffix. Cutting there places that suffix first and leaves the original first $n - k$ nodes after it, exactly the requested right rotation.
+After walking `n - rotation - 1` links from the original head, the next node begins the original final `rotation`-node suffix. Cutting there places that suffix first and leaves the original first `n - rotation` nodes after it, exactly the requested right rotation.
 
 ## Complexity detail
 One traversal measures the list and at most one more partial traversal locates the cut, for $O(n)$ time. Only pointers and counters are stored, giving $O(1)$ auxiliary space.

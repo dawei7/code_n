@@ -9,7 +9,7 @@ Maintain the transformed prefix sum through the current index. For a subarray en
 
 **Keep prefixes as rolling totals**
 
-Initialize the transformed sum of the first `k` values. As the right endpoint advances, add its transformed value, separately extend the prefix ending `k` positions behind, and maintain the minimum of those eligible prefixes. No prefix array is required.
+Initialize the transformed sum of the first `k` values by indexing the original array directly, avoiding a copied slice. As the right endpoint advances, add its transformed value, separately extend the prefix ending `k` positions behind, and maintain the minimum of those eligible prefixes. No prefix array or window copy is required.
 
 **Binary-search the monotone answer**
 
@@ -20,10 +20,11 @@ Every feasible average makes all smaller averages feasible, while every infeasib
 The feasibility test considers every subarray of length at least `k` through its ending prefix and best eligible starting prefix. Binary search preserves an interval containing the transition between feasible and infeasible averages. Repeated halving makes the feasible lower boundary arbitrarily close to the true maximum, within the required tolerance.
 
 ## Complexity detail
-Let `R = max(nums) - min(nums)` and let `epsilon` be the target precision. Each feasibility check scans `N` values in $O(N)$ time and $O(1)$ space. Binary search performs $O(\log(R / \varepsilon))$ checks, for $O(N \log(R / \varepsilon))$ time and $O(1)$ auxiliary space.
+Let `R = max(nums) - min(nums)` and let `epsilon` be the target precision. Each feasibility check scans `N` values by index in $O(N)$ time while retaining only three rolling sums, so it uses $O(1)$ auxiliary space. Binary search performs $O(\log(R / \varepsilon))$ checks, for $O(N \log(R / \varepsilon))$ time and $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Prefix-array feasibility:** stores every transformed prefix and uses the same binary search, but requires $O(N)$ extra space.
+- **Slice the first window:** `nums[:k]` is concise, but it copies `k` values during every feasibility check and violates the required $O(1)$ auxiliary-space bound.
 - **Enumerate all eligible subarrays:** incrementally sums every start/end pair in $O(N^2)$ time.
 - **Check only length `k`:** solves the fixed-length variant but misses a longer subarray with a better average.
 - When $k = 1$, the answer is the largest element.

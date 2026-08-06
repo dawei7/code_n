@@ -7,7 +7,7 @@ After updating row `r`, `heights[c]` is exactly the number of consecutive ones e
 
 **A monotonic stack evaluates every possible limiting height**
 
-For each updated histogram, keep nondecreasing `(start, height)` pairs. `start` is the earliest column since which every height is at least the candidate height. When a lower bar arrives, pop taller candidates: the current column is their first shorter boundary on the right, and their stored start is the first legal column on the left.
+For each updated histogram, keep nondecreasing `(start, height)` pairs. `start` is the earliest column since which every height is at least the candidate height. At the current column `i`, pop taller candidates when a lower bar arrives and evaluate each area as `previous_height * (i - start)`: `i` is their first shorter boundary on the right, and their stored start is the first legal column on the left.
 
 Carry the earliest popped start into the new lower height, because that height can extend across all columns that supported the taller bars. A conceptual zero sentinel after the final column forces every unresolved positive height to be evaluated for this row.
 

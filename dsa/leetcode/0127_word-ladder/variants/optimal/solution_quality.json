@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_127",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The current neighbor generator introduces the prohibited local variable named index; the candidate preserves the same BFS while using conventional i notation."
+      },
+      {
+        "category": "complexity",
+        "severity": "material",
+        "reason": "The former generalized bound omitted Python substring/hash costs. The corrected O(N) legal-domain bound uses the source's fixed ten-letter maximum and 26-letter alphabet explicitly."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "3aa3dd292c6418ef675d35cccb6d31dc1c06aef60f7e58df4b8abcd2d168ec05",
+    "native_source_sha256": "393b44a584a57b94897b3edbb86d04a535620b43939721fc00d5addfaad2f43c",
+    "approach_sha256": "f3cc0807c3fbab949c8212ad35502e4348d623f8dd5825f78882e527fd7e0142",
+    "solution_variants_sha256": "7a22d9311dfffec90e388cac5020ca770dd33faafc1fe82601c1c4e8c570f225",
+    "complexity_evidence_sha256": "943504fce36ca1cdf0cd1139de87311e0bc568b4c6ca85f3b2cd343a45319562",
+    "candidate_source_sha256": "a7e645e0bd8fbeb663c1b526b4dc3ef3faf46b3b8868974f8e92a555fb438bd3"
+  }
+}

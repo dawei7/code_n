@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Strobogrammatic Number and meets the required complexity bound.",
+      "summary": "Checks mirrored digits against the fixed 180-degree rotation map while two pointers move inward.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

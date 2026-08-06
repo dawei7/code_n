@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Alien Dictionary and meets the required complexity bound.",
+      "summary": "Extracts first-difference edges from adjacent words, rejects invalid prefixes, then runs Kahn's algorithm.",
       "time_complexity": "O(c + e)",
       "space_complexity": "O(a + e)"
     }

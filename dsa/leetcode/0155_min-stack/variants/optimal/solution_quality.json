@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_155",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity",
+        "severity": "material",
+        "reason": "The original 8/64/256 workload did not reject a correct implementation that scanned the stack for every getMin call. The recalibrated 64/512/2048 retained-stack tiers keep all calls legal, pass the current source, and reject that control only on scaling."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "68f2ab0e7a32592d6e9fa948533ec5f8834c10d67038c3d845ff9160cca46b30",
+    "native_source_sha256": "ef1929071c0a07a1c73b0d0c1d57c039b6933bcbe937f996edee80a034492231",
+    "approach_sha256": "1f05e8483277d5889d97e12068a36bd9c4a28c192bea2cce76a3e54b7e5f8971",
+    "solution_variants_sha256": "72f332d4cf4677561590438e55b5351e094bc468ce46fd673b89eb15ad666101",
+    "complexity_evidence_sha256": "80f678ec98ef3012f91298ef886388ae460cef223a76e5f84c107c2c21e48da4"
+  }
+}

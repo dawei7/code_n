@@ -31,6 +31,36 @@
       ]
     },
     {
+      "id": "trial-lower-bound",
+      "name": "minimum allowed input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "lower-bound",
+        "one-digit"
+      ]
+    },
+    {
+      "id": "trial-two-digit",
+      "name": "two-digit non-Armstrong number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "two-digit",
+        "false"
+      ]
+    },
+    {
       "id": "trial-single-digit",
       "name": "single-digit number",
       "kind": "trial",
@@ -73,72 +103,86 @@
       ]
     },
     {
-      "id": "real-four-digit-false",
-      "name": "hidden: near a four-digit Armstrong number",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-digit-false",
+      "name": "trial: near a four-digit Armstrong number",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9475
       },
       "expected": false,
       "tags": [
-        "real",
+        "trial",
         "false"
       ]
     },
     {
-      "id": "real-five-digit",
-      "name": "hidden: five-digit Armstrong number",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-five-digit",
+      "name": "trial: five-digit Armstrong number",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 54748
       },
       "expected": true,
       "tags": [
-        "real",
+        "trial",
         "five-digit"
       ]
     },
     {
-      "id": "real-seven-digit",
-      "name": "hidden: seven-digit Armstrong number",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-six-digit",
+      "name": "six-digit Armstrong number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 548834
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "six-digit"
+      ]
+    },
+    {
+      "id": "trial-seven-digit",
+      "name": "trial: seven-digit Armstrong number",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1741725
       },
       "expected": true,
       "tags": [
-        "real",
+        "trial",
         "seven-digit"
       ]
     },
     {
-      "id": "real-eight-digit",
-      "name": "hidden: eight-digit Armstrong number",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-eight-digit",
+      "name": "trial: eight-digit Armstrong number",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 88593477
       },
       "expected": true,
       "tags": [
-        "real",
+        "trial",
         "eight-digit"
       ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "hidden: maximum allowed input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-bound",
+      "name": "trial: maximum allowed input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100000000
       },
       "expected": false,
       "tags": [
-        "real",
+        "trial",
         "upper-bound"
       ]
     }

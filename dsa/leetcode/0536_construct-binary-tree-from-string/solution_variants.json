@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Construct Binary Tree from String and meets the required complexity bound.",
+      "summary": "Parses signed values once while stack frames attach child expressions in exact left-to-right order.",
       "time_complexity": "O(n)",
       "space_complexity": "O(h)"
     }

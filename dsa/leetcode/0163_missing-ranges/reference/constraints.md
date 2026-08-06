@@ -1,6 +1,6 @@
 ## Constraints
 
-- $-10^9 \le \texttt{lower} \le \texttt{upper} \le 10^9$
-- $0 \le \texttt{nums.length} \le 100$
-- `lower <= nums[i] <= upper`
-- All values in `nums` are unique.
+- $-10^9 \le \text{lower} \le \text{upper} \le 10^9$.
+- $0 \le \text{nums.length} \le 22$.
+- $\text{lower} \le \text{nums}[i] \le \text{upper}$.
+- All the values of `nums` are **unique**.

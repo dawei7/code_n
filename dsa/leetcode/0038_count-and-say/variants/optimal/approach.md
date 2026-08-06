@@ -1,13 +1,13 @@
 ## General
 **Describe maximal runs, not individual equalities**
 
-Start with term `"1"`. To build the next term, scan the current string by maximal runs of equal digits. For a run from `index` up to but not including `following`, append `str(following - index)` and the run digit to a list of fragments. The inner scan must continue to the first different digit so one run is never split into several descriptions.
+Start with term `"1"`. To build the next term, scan the current string by maximal runs of equal digits. For a run from `i` up to but not including `j`, append `str(j - i)` and the run digit to a list of fragments. The inner scan must continue to the first different digit so one run is never split into several descriptions.
 
 Repeat this transformation $n - 1$ times.
 
 **Build each next term in one left-to-right pass**
 
-At the start of an outer iteration, `term` is exactly the current sequence term. During its scan, the fragment list describes exactly the maximal runs strictly before `index`, with no run split or merged. Advancing `index` directly to `following` preserves this invariant and guarantees progress.
+At the start of an outer iteration, `term` is exactly the current sequence term. During its scan, the fragment list describes exactly the maximal runs strictly before `i`, with no run split or merged. Advancing `i` directly to `j` preserves this invariant and guarantees progress.
 
 Accumulate fragments in a mutable list and join once. Repeatedly extending an immutable result string may recopy the entire partial output after every run.
 

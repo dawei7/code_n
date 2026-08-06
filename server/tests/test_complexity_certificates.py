@@ -14,7 +14,7 @@ from bisect import bisect_left, bisect_right
 from datetime import date, timedelta
 from fractions import Fraction
 from functools import lru_cache
-from itertools import combinations, combinations_with_replacement, permutations, product
+from itertools import combinations, combinations_with_replacement, groupby, permutations, product
 from pathlib import Path
 
 import pytest
@@ -23,12 +23,16 @@ from engine.complexity_certificates import validate_complexity_certificate
 from engine.special_environments import category_is_runnable
 from server.app.engine_runner import (
     _JudgeArrayReader,
+    _JudgeListNode,
     _JudgeMajorityReader,
+    _JudgeNode,
     _JudgePoint,
     _JudgeSea,
+    _JudgeTreeNode,
     _color_red_triangle_match,
     _list_node_from_values,
     _list_node_to_values,
+    _traffic_light_match,
 )
 from server.app.challenge_packages import (
     leetcode_complexity_certificate_path,
@@ -44,10 +48,30 @@ from . import conftest
 
 
 CERTIFIED_METHODS = {
+    "2": "asymptotic_optimality",
+    "6": "bounded_domain",
+    "7": "bounded_domain",
+    "9": "bounded_domain",
+    "12": "bounded_domain",
+    "13": "bounded_domain",
+    "17": "asymptotic_optimality",
+    "19": "asymptotic_optimality",
+    "21": "asymptotic_optimality",
+    "24": "asymptotic_optimality",
+    "27": "asymptotic_optimality",
+    "29": "bounded_domain",
+    "31": "asymptotic_optimality",
+    "36": "bounded_domain",
+    "37": "bounded_domain",
+    "38": "bounded_domain",
+    "362": "bounded_domain",
+    "384": "bounded_domain",
     "401": "bounded_domain",
     "405": "bounded_domain",
     "479": "bounded_domain",
+    "800": "bounded_domain",
     "999": "bounded_domain",
+    "1056": "bounded_domain",
     "1108": "bounded_domain",
     "1114": "bounded_concurrency",
     "1118": "bounded_domain",
@@ -221,6 +245,619 @@ CERTIFIED_METHODS = {
     "3996": "bounded_domain",
     "4000": "bounded_domain",
 }
+
+
+def test_add_two_numbers_optimality_certificate_covers_output_boundaries() -> None:
+    add_two_numbers = _reference_solve("2")
+    package = leetcode_package_dir("lc_2")
+    assert package is not None
+    node_type = type(_list_node_from_values([0]))
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py"),
+        init_globals={"ListNode": node_type},
+    )
+    native_add_two_numbers = native_namespace["Solution"]().addTwoNumbers
+
+    def oracle(left: list[int], right: list[int]) -> list[int]:
+        left_value = sum(digit * 10**i for i, digit in enumerate(left))
+        right_value = sum(digit * 10**i for i, digit in enumerate(right))
+        total = left_value + right_value
+        digits: list[int] = []
+        while total:
+            total, digit = divmod(total, 10)
+            digits.append(digit)
+        return digits or [0]
+
+    def assert_matches(left: list[int], right: list[int], expected: list[int]) -> None:
+        app_result = add_two_numbers(_list_node_from_values(left), _list_node_from_values(right))
+        native_result = native_add_two_numbers(_list_node_from_values(left), _list_node_from_values(right))
+        assert _list_node_to_values(app_result) == expected
+        assert _list_node_to_values(native_result) == expected
+        assert len(expected) in {max(len(left), len(right)), max(len(left), len(right)) + 1}
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        left = case["input"]["l1"]
+        right = case["input"]["l2"]
+        expected = oracle(left, right)
+        assert case["expected"] == expected
+        assert_matches(left, right, expected)
+
+    for n in (1, 2, 99, 100):
+        for m in (1, 2, 99, 100):
+            left = [9] * n
+            right = [1] * m
+            assert_matches(left, right, oracle(left, right))
+
+
+def test_zigzag_bounded_domain_matches_cycle_arithmetic_oracle() -> None:
+    convert = _reference_solve("6")
+    package = leetcode_package_dir("lc_6")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_convert = native_namespace["Solution"]().convert
+
+    def oracle(s: str, num_rows: int) -> str:
+        if num_rows == 1 or num_rows >= len(s):
+            return s
+        cycle = 2 * (num_rows - 1)
+        result: list[str] = []
+        for r in range(num_rows):
+            for i in range(r, len(s), cycle):
+                result.append(s[i])
+                j = i + cycle - 2 * r
+                if 0 < r < num_rows - 1 and j < len(s):
+                    result.append(s[j])
+        return "".join(result)
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        s = case["input"]["s"]
+        num_rows = case["input"]["numRows"]
+        expected = oracle(s, num_rows)
+        assert case["expected"] == expected
+        assert convert(s, num_rows) == expected
+        assert native_convert(s, num_rows) == expected
+
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,."
+    boundary = "".join(alphabet[i % len(alphabet)] for i in range(1000))
+    for num_rows in range(1, 1001):
+        expected = oracle(boundary, num_rows)
+        assert convert(boundary, num_rows) == expected
+        assert native_convert(boundary, num_rows) == expected
+
+
+def test_reverse_integer_bounded_domain_matches_string_oracle() -> None:
+    reverse = _reference_solve("7")
+    package = leetcode_package_dir("lc_7")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_reverse = native_namespace["Solution"]().reverse
+
+    def oracle(x: int) -> int:
+        sign = -1 if x < 0 else 1
+        reversed_value = sign * int(str(abs(x))[::-1])
+        return reversed_value if -(2**31) <= reversed_value <= 2**31 - 1 else 0
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        x = case["input"]["x"]
+        expected = oracle(x)
+        assert case["expected"] == expected
+        assert reverse(x) == expected
+        assert native_reverse(x) == expected
+
+    boundary_values = range(-10_000, 10_001)
+    lower_edge = range(-(2**31), -(2**31) + 10_001)
+    upper_edge = range(2**31 - 10_001, 2**31)
+    for x in (*boundary_values, *lower_edge, *upper_edge):
+        expected = oracle(x)
+        assert reverse(x) == expected
+        assert native_reverse(x) == expected
+
+
+def test_palindrome_number_bounded_domain_matches_string_oracle() -> None:
+    is_palindrome = _reference_solve("9")
+    package = leetcode_package_dir("lc_9")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_is_palindrome = native_namespace["Solution"]().isPalindrome
+
+    def oracle(x: int) -> bool:
+        digits = str(x)
+        return digits == digits[::-1]
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        x = case["input"]["x"]
+        expected = oracle(x)
+        assert case["expected"] == expected
+        assert is_palindrome(x) == expected
+        assert native_is_palindrome(x) == expected
+
+    boundary_values = range(-10_000, 10_001)
+    lower_edge = range(-(2**31), -(2**31) + 10_001)
+    upper_edge = range(2**31 - 10_001, 2**31)
+    for x in (*boundary_values, *lower_edge, *upper_edge):
+        expected = oracle(x)
+        assert is_palindrome(x) == expected
+        assert native_is_palindrome(x) == expected
+
+
+def test_integer_to_roman_bounded_domain_matches_digit_place_oracle() -> None:
+    int_to_roman = _reference_solve("12")
+    package = leetcode_package_dir("lc_12")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_int_to_roman = native_namespace["Solution"]().intToRoman
+
+    thousands = ("", "M", "MM", "MMM")
+    hundreds = ("", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM")
+    tens = ("", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC")
+    ones = ("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX")
+
+    def oracle(num: int) -> str:
+        return (
+            thousands[num // 1000]
+            + hundreds[num // 100 % 10]
+            + tens[num // 10 % 10]
+            + ones[num % 10]
+        )
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        num = case["input"]["num"]
+        expected = oracle(num)
+        assert case["expected"] == expected
+
+    for num in range(1, 4000):
+        expected = oracle(num)
+        assert int_to_roman(num) == expected
+        assert native_int_to_roman(num) == expected
+
+
+def test_roman_to_integer_bounded_domain_matches_digit_place_encoder() -> None:
+    roman_to_int = _reference_solve("13")
+    package = leetcode_package_dir("lc_13")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_roman_to_int = native_namespace["Solution"]().romanToInt
+
+    thousands = ("", "M", "MM", "MMM")
+    hundreds = ("", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM")
+    tens = ("", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC")
+    ones = ("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX")
+
+    def encode(num: int) -> str:
+        return (
+            thousands[num // 1000]
+            + hundreds[num // 100 % 10]
+            + tens[num // 10 % 10]
+            + ones[num % 10]
+        )
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        numeral = case["input"]["s"]
+        expected = case["expected"]
+        assert numeral == encode(expected)
+
+    for num in range(1, 4000):
+        numeral = encode(num)
+        assert roman_to_int(numeral) == num
+        assert native_roman_to_int(numeral) == num
+
+
+def test_phone_combinations_optimality_matches_complete_cartesian_domain() -> None:
+    letter_combinations = _reference_solve("17")
+    package = leetcode_package_dir("lc_17")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_letter_combinations = native_namespace["Solution"]().letterCombinations
+    letters = {
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz",
+    }
+
+    def oracle(digits: str) -> list[str]:
+        return ["".join(values) for values in product(*(letters[digit] for digit in digits))]
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        digits = case["input"]["digits"]
+        expected = oracle(digits)
+        assert sorted(case["expected"]) == sorted(expected)
+
+    checked = 0
+    for length in range(1, 5):
+        for digit_tuple in product(letters, repeat=length):
+            digits = "".join(digit_tuple)
+            expected = oracle(digits)
+            assert letter_combinations(digits) == expected
+            assert native_letter_combinations(digits) == expected
+            checked += 1
+    assert checked == 4_680
+
+
+def test_remove_nth_node_optimality_matches_every_legal_position() -> None:
+    remove_nth = _reference_solve("19")
+    package = leetcode_package_dir("lc_19")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_remove_nth = native_namespace["Solution"]().removeNthFromEnd
+
+    checked = 0
+    for length in range(1, 31):
+        values = list(range(length))
+        for n in range(1, length + 1):
+            expected = values[: length - n] + values[length - n + 1 :]
+            head = _list_node_from_values(values)
+            native_head = _list_node_from_values(values)
+            assert _list_node_to_values(remove_nth(head, n)) == expected
+            assert _list_node_to_values(native_remove_nth(native_head, n)) == expected
+            checked += 1
+    assert checked == 465
+
+
+def test_merge_two_sorted_lists_optimality_matches_sorted_concatenation() -> None:
+    merge_lists = _reference_solve("21")
+    package = leetcode_package_dir("lc_21")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_merge_lists = native_namespace["Solution"]().mergeTwoLists
+
+    def assert_merge(left: list[int], right: list[int]) -> None:
+        expected = sorted(left + right)
+        app_result = merge_lists(_list_node_from_values(left), _list_node_from_values(right))
+        native_result = native_merge_lists(
+            _list_node_from_values(left),
+            _list_node_from_values(right),
+        )
+        assert _list_node_to_values(app_result) == expected
+        assert _list_node_to_values(native_result) == expected
+
+    small_lists = [
+        list(values)
+        for length in range(5)
+        for values in combinations_with_replacement(range(-2, 3), length)
+    ]
+    checked = 0
+    for left in small_lists:
+        for right in small_lists:
+            assert_merge(left, right)
+            checked += 1
+    assert checked == 15_876
+
+    boundary_values = list(range(-100, -50))
+    for left_length in range(51):
+        if left_length:
+            left_positions = {
+                position * len(boundary_values) // left_length
+                for position in range(left_length)
+            }
+        else:
+            left_positions = set()
+        left = [value for i, value in enumerate(boundary_values) if i in left_positions]
+        right = [value for i, value in enumerate(boundary_values) if i not in left_positions]
+        assert len(left) == left_length
+        assert_merge(left, right)
+
+
+def test_swap_pairs_optimality_preserves_node_identity_at_every_legal_length() -> None:
+    swap_pairs = _reference_solve("24")
+    package = leetcode_package_dir("lc_24")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_swap_pairs = native_namespace["Solution"]().swapPairs
+
+    def nodes_from(head: object) -> list[object]:
+        nodes: list[object] = []
+        while head is not None:
+            nodes.append(head)
+            head = head.next
+        return nodes
+
+    for length in range(101):
+        values = list(range(length))
+        for swap in (swap_pairs, native_swap_pairs):
+            head = _list_node_from_values(values)
+            original_nodes = nodes_from(head)
+            expected_nodes: list[object] = []
+            for i in range(0, length - 1, 2):
+                expected_nodes.extend((original_nodes[i + 1], original_nodes[i]))
+            if length % 2:
+                expected_nodes.append(original_nodes[-1])
+
+            result_nodes = nodes_from(swap(head))
+            assert result_nodes == expected_nodes
+            assert [node.val for node in original_nodes] == values
+
+
+def test_remove_element_optimality_matches_filter_oracle_across_legal_shapes() -> None:
+    remove_element = _reference_solve("27")
+    package = leetcode_package_dir("lc_27")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_remove_element = native_namespace["Solution"]().removeElement
+
+    def assert_filter(values: list[int], target: int) -> None:
+        expected = [value for value in values if value != target]
+        for remove in (remove_element, native_remove_element):
+            nums = values.copy()
+            retained = remove(nums, target)
+            assert retained == len(expected)
+            assert nums[:retained] == expected
+
+    for length in range(7):
+        for values in product(range(3), repeat=length):
+            for target in range(4):
+                assert_filter(list(values), target)
+
+    for length in range(101):
+        values = [(i * 17 + length) % 51 for i in range(length)]
+        for target in (0, 25, 50, 51, 100):
+            assert_filter(values, target)
+
+
+def test_divide_two_integers_bounded_domain_matches_arithmetic_oracle() -> None:
+    divide = _reference_solve("29")
+    package = leetcode_package_dir("lc_29")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_divide = native_namespace["Solution"]().divide
+
+    minimum = -(2**31)
+    maximum = 2**31 - 1
+
+    def oracle(dividend: int, divisor: int) -> int:
+        quotient = abs(dividend) // abs(divisor)
+        if (dividend < 0) != (divisor < 0):
+            quotient = -quotient
+        return min(maximum, max(minimum, quotient))
+
+    def assert_quotient(dividend: int, divisor: int) -> None:
+        expected = oracle(dividend, divisor)
+        assert divide(dividend, divisor) == expected
+        assert native_divide(dividend, divisor) == expected
+
+    for dividend in range(-256, 257):
+        for divisor in range(-64, 65):
+            if divisor:
+                assert_quotient(dividend, divisor)
+
+    boundary_dividends = (
+        minimum,
+        minimum + 1,
+        -(2**30),
+        -1,
+        0,
+        1,
+        2**30,
+        maximum - 1,
+        maximum,
+        2,
+        -2,
+    )
+    boundary_divisors = (
+        minimum,
+        minimum + 1,
+        -(2**30),
+        -3,
+        -2,
+        -1,
+        1,
+        2,
+        3,
+        2**30,
+        maximum - 1,
+        maximum,
+    )
+    for dividend in boundary_dividends:
+        for divisor in boundary_divisors:
+            assert_quotient(dividend, divisor)
+
+    rng = random.Random(29)
+    for _ in range(20_000):
+        dividend = rng.randint(minimum, maximum)
+        divisor = 0
+        while divisor == 0:
+            divisor = rng.randint(minimum, maximum)
+        assert_quotient(dividend, divisor)
+
+
+def test_next_permutation_optimality_traverses_complete_small_cycles() -> None:
+    next_permutation = _reference_solve("31")
+    package = leetcode_package_dir("lc_31")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_next_permutation = native_namespace["Solution"]().nextPermutation
+
+    checked = 0
+    for length in range(1, 9):
+        for multiset in combinations_with_replacement(range(4), length):
+            ordered = sorted(set(permutations(multiset)))
+            for i, values in enumerate(ordered):
+                expected = list(ordered[(i + 1) % len(ordered)])
+                for advance in (next_permutation, native_next_permutation):
+                    nums = list(values)
+                    assert advance(nums) is None
+                    assert nums == expected
+                checked += 1
+
+    assert checked == 87_380
+
+    for length in range(1, 101):
+        ascending = list(range(1, length + 1))
+        expected_ascending = ascending[:-2] + ascending[-2:][::-1]
+        descending = ascending[::-1]
+        for advance in (next_permutation, native_next_permutation):
+            nums = ascending.copy()
+            assert advance(nums) is None
+            assert nums == expected_ascending
+
+            nums = descending.copy()
+            assert advance(nums) is None
+            assert nums == ascending
+
+
+def test_valid_sudoku_bounded_domain_classifies_every_equal_digit_pair() -> None:
+    is_valid = _reference_solve("36")
+    package = leetcode_package_dir("lc_36")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_is_valid = native_namespace["Solution"]().isValidSudoku
+
+    def empty_board() -> list[list[str]]:
+        return [["."] * 9 for _ in range(9)]
+
+    checked = 0
+    for first, second in combinations(range(81), 2):
+        first_row, first_column = divmod(first, 9)
+        second_row, second_column = divmod(second, 9)
+        board = empty_board()
+        board[first_row][first_column] = "1"
+        board[second_row][second_column] = "1"
+        expected = not (
+            first_row == second_row
+            or first_column == second_column
+            or (first_row // 3, first_column // 3)
+            == (second_row // 3, second_column // 3)
+        )
+        assert is_valid(board) is expected
+        assert native_is_valid(board) is expected
+        checked += 1
+
+    assert checked == 3_240
+
+    complete = [
+        list("534678912"),
+        list("672195348"),
+        list("198342567"),
+        list("859761423"),
+        list("426853791"),
+        list("713924856"),
+        list("961537284"),
+        list("287419635"),
+        list("345286179"),
+    ]
+    assert is_valid(empty_board())
+    assert native_is_valid(empty_board())
+    assert is_valid(complete)
+    assert native_is_valid(complete)
+
+
+def test_sudoku_solver_bounded_domain_solves_near_complete_and_authored_boards() -> None:
+    solve_sudoku = _reference_solve("37")
+    package = leetcode_package_dir("lc_37")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_solve_sudoku = native_namespace["Solution"]().solveSudoku
+
+    complete = [
+        list("534678912"),
+        list("672195348"),
+        list("198342567"),
+        list("859761423"),
+        list("426853791"),
+        list("713924856"),
+        list("961537284"),
+        list("287419635"),
+        list("345286179"),
+    ]
+
+    def assert_solution(board: list[list[str]], expected: list[list[str]]) -> None:
+        clues = [row.copy() for row in board]
+        for solve in (solve_sudoku, native_solve_sudoku):
+            working = [row.copy() for row in board]
+            assert solve(working) is None
+            assert working == expected
+            assert all(
+                clue == "." or working[row][column] == clue
+                for row in range(9)
+                for column, clue in enumerate(clues[row])
+            )
+
+    removed_groups = {(position,) for position in range(81)}
+    for position in range(81):
+        row, column = divmod(position, 9)
+        same_row = row * 9 + (column + 1) % 9
+        same_column = ((row + 1) % 9) * 9 + column
+        box_row = (row // 3) * 3 + (row + 1) % 3
+        box_column = (column // 3) * 3 + (column + 1) % 3
+        same_box = box_row * 9 + box_column
+        removed_groups.add(tuple(sorted((position, same_row))))
+        removed_groups.add(tuple(sorted((position, same_column))))
+        removed_groups.add(tuple(sorted((position, same_box))))
+
+    for removed in sorted(removed_groups):
+        board = [row.copy() for row in complete]
+        for position in removed:
+            row, column = divmod(position, 9)
+            board[row][column] = "."
+        assert_solution(board, complete)
+    assert len(removed_groups) == 324
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        assert_solution(case["input"]["board"], case["expected"])
+
+
+def test_count_and_say_bounded_domain_matches_grouping_oracle() -> None:
+    count_and_say = _reference_solve("38")
+    package = leetcode_package_dir("lc_38")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_count_and_say = native_namespace["Solution"]().countAndSay
+
+    def describe(term: str) -> str:
+        return "".join(
+            f"{sum(1 for _ in run)}{digit}" for digit, run in groupby(term)
+        )
+
+    expected = "1"
+    previous_length = 0
+    for n in range(1, 31):
+        assert len(expected) >= previous_length
+        assert count_and_say(n) == expected
+        assert native_count_and_say(n) == expected
+        previous_length = len(expected)
+        expected = describe(expected)
 
 
 def test_internal_angles_bounded_domain_matches_heron_oracle() -> None:
@@ -4459,10 +5096,27 @@ def test_fresh_donuts_bounded_domain_matches_independent_bitmask_oracle() -> Non
 def _reference_solve(frontend_id: str):
     source_path = leetcode_solution_path(f"lc_{frontend_id}", "python")
     assert source_path is not None
-    return runpy.run_path(
+    import typing
+    ns = runpy.run_path(
         str(source_path),
-        init_globals={"Point": _JudgePoint},
-    )["solve"]
+        init_globals={
+            "List": list,
+            "Dict": dict,
+            "Tuple": tuple,
+            "Set": set,
+            "Optional": typing.Optional,
+            "Union": typing.Union,
+            "Any": typing.Any,
+            "ListNode": _JudgeListNode,
+            "TreeNode": _JudgeTreeNode,
+            "Node": _JudgeNode,
+            "Point": _JudgePoint,
+        },
+    )
+    from server.app.engine_runner import _bind_leetcode_solution_runner
+    from challenges.registry import CHALLENGE_REGISTRY
+    ch = CHALLENGE_REGISTRY[f"lc_{frontend_id}"]()
+    return _bind_leetcode_solution_runner(ns, challenge=ch)
 
 
 def test_knights_tour_bounded_domain_validates_every_legal_tuple() -> None:
@@ -5710,6 +6364,95 @@ def test_certificate_validator_rejects_a_generic_waiver() -> None:
     assert any("replacement_checks" in error for error in status.errors)
 
 
+def test_hit_counter_certificate_covers_window_and_call_boundaries() -> None:
+    solve = _reference_solve("362")
+    package = leetcode_package_dir("lc_362")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_counter = native_namespace["HitCounter"]
+
+    def run_native(operations: list[list]) -> list[int]:
+        counter = native_counter()
+        results: list[int] = []
+        for name, timestamp in operations:
+            if name == "hit":
+                counter.hit(timestamp)
+            else:
+                results.append(counter.getHits(timestamp))
+        return results
+
+    no_hits = [["getHits", 1]]
+    assert solve(no_hits) == [0]
+    assert run_native(no_hits) == [0]
+
+    start = 1000
+    for age in range(301):
+        operations = [["hit", start], ["getHits", start + age]]
+        expected = [int(age < 300)]
+        assert solve(operations) == expected
+        assert run_native(operations) == expected
+
+    reused_slot = [["hit", 1], ["hit", 301], ["getHits", 301]]
+    assert solve(reused_slot) == [1]
+    assert run_native(reused_slot) == [1]
+
+    maximum_burst = [["hit", 2_000_000_000] for _ in range(299)]
+    maximum_burst.append(["getHits", 2_000_000_000])
+    assert solve(maximum_burst) == [299]
+    assert run_native(maximum_burst) == [299]
+
+
+def test_shuffle_array_certificate_covers_length_and_call_boundaries() -> None:
+    package = leetcode_package_dir("lc_384")
+    assert package is not None
+
+    source_paths = (
+        (package / "variants" / "optimal" / "solutions" / "solve.py", {}),
+        (
+            package / "variants" / "optimal" / "solutions" / "leetcode.py",
+            {"List": list},
+        ),
+    )
+    values = list(range(-25, 25))
+
+    for source_path, init_globals in source_paths:
+        if not source_path.is_file():
+            continue
+        namespace = runpy.run_path(str(source_path), init_globals=init_globals)
+        solution_type = namespace["Solution"]
+
+        single = solution_type([7])
+        assert single.shuffle() == [7]
+        assert single.reset() == [7]
+
+        solution = solution_type(values)
+        reset_result = solution.reset()
+        assert reset_result == values
+        reset_result[0] = 1_000_000
+        assert solution.reset() == values
+
+        choices: list[tuple[int, int]] = []
+
+        def choose_last(i: int, stop: int) -> int:
+            choices.append((i, stop))
+            return stop - 1
+
+        shuffle_globals = solution.shuffle.__func__.__globals__
+        shuffle_globals["randrange"] = choose_last
+        expected = values.copy()
+        for i in range(len(expected) - 1):
+            expected[i], expected[-1] = expected[-1], expected[i]
+        assert solution.shuffle() == expected
+        assert choices == [(i, len(values)) for i in range(len(values) - 1)]
+
+        shuffle_globals["randrange"] = lambda i, _stop: i
+        for call in range(10_000):
+            result = solution.shuffle() if call % 2 == 0 else solution.reset()
+            assert result == values
+
+
 def test_small_finite_domains_are_exhaustively_verified() -> None:
     binary_watch = _reference_solve("401")
     for turned_on in range(11):
@@ -5742,6 +6485,136 @@ def test_small_finite_domains_are_exhaustively_verified() -> None:
     while current <= end:
         assert day_of_year(current.isoformat()) == current.timetuple().tm_yday
         current += timedelta(days=1)
+
+
+def test_armstrong_number_bounded_domain_matches_decimal_string_oracle() -> None:
+    is_armstrong = _reference_solve("1134")
+    package = leetcode_package_dir("lc_1134")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_is_armstrong = native_namespace["Solution"]().isArmstrong
+
+    def oracle(value: int) -> bool:
+        digits = str(value)
+        exponent = len(digits)
+        return sum(int(digit) ** exponent for digit in digits) == value
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        value = case["input"]["n"]
+        expected = oracle(value)
+        assert case["expected"] is expected
+        assert is_armstrong(value) is expected
+        assert native_is_armstrong(value) is expected
+
+    boundaries: set[int] = {1, 100_000_000}
+    for exponent in range(1, 9):
+        lower = 1 if exponent == 1 else 10 ** (exponent - 1)
+        upper = 10**exponent - 1
+        boundaries.update((lower, lower + 1, upper - 1, upper))
+    boundaries.update(
+        {
+            1, 2, 3, 4, 5, 6, 7, 8, 9,
+            153, 370, 371, 407,
+            1_634, 8_208, 9_474,
+            54_748, 92_727, 93_084,
+            548_834,
+            1_741_725, 4_210_818, 9_800_817, 9_926_315,
+            24_678_050, 24_678_051, 88_593_477,
+        }
+    )
+    for value in sorted(boundaries):
+        expected = oracle(value)
+        assert is_armstrong(value) is expected
+        assert native_is_armstrong(value) is expected
+
+    rng = random.Random(1134)
+    for _ in range(20_000):
+        value = rng.randint(1, 100_000_000)
+        expected = oracle(value)
+        assert is_armstrong(value) is expected
+        assert native_is_armstrong(value) is expected
+
+
+def test_similar_rgb_bounded_domain_matches_every_channel_byte() -> None:
+    similar_rgb = _reference_solve("800")
+    package = leetcode_package_dir("lc_800")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_similar_rgb = native_namespace["Solution"]().similarRGB
+
+    def channel_oracle(value: int) -> int:
+        return min(range(0, 256, 17), key=lambda candidate: abs(value - candidate))
+
+    def color_oracle(color: str) -> str:
+        channels = (
+            channel_oracle(int(color[start : start + 2], 16))
+            for start in (1, 3, 5)
+        )
+        return "#" + "".join(f"{channel:02x}" for channel in channels)
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        color = case["input"]["color"]
+        expected = color_oracle(color)
+        assert case["expected"] == expected
+        assert similar_rgb(color) == expected
+        assert native_similar_rgb(color) == expected
+
+    for value in range(256):
+        digits = f"{value:02x}"
+        for color in (f"#{digits}0000", f"#00{digits}00", f"#0000{digits}"):
+            expected = color_oracle(color)
+            assert similar_rgb(color) == expected
+            assert native_similar_rgb(color) == expected
+
+
+def test_confusing_number_bounded_domain_matches_rotation_oracle() -> None:
+    confusing_number = _reference_solve("1056")
+    package = leetcode_package_dir("lc_1056")
+    assert package is not None
+    native_namespace = runpy.run_path(
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
+    )
+    native_confusing_number = native_namespace["Solution"]().confusingNumber
+    rotated_digit = {"0": "0", "1": "1", "6": "9", "8": "8", "9": "6"}
+
+    def oracle(n: int) -> bool:
+        digits = str(n)
+        if any(digit not in rotated_digit for digit in digits):
+            return False
+        rotated = int("".join(rotated_digit[digit] for digit in reversed(digits)))
+        return rotated != n
+
+    def assert_matches(n: int) -> None:
+        expected = oracle(n)
+        assert confusing_number(n) is expected
+        assert native_confusing_number(n) is expected
+
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    for case in cases:
+        n = case["input"]["n"]
+        expected = oracle(n)
+        assert case["expected"] is expected
+        assert_matches(n)
+
+    for n in range(100_000):
+        assert_matches(n)
+
+    for length in range(1, 10):
+        for position in range(length):
+            for invalid_digit in "23457":
+                digits = ["1"] * length
+                digits[position] = invalid_digit
+                assert_matches(int("".join(digits)))
+
+    rng = random.Random(1056)
+    for _ in range(10_000):
+        assert_matches(rng.randint(0, 10**9))
 
 
 def test_clock_angle_bounded_domain_matches_exact_half_degree_oracle() -> None:
@@ -6164,6 +7037,120 @@ def test_number_of_ships_bounded_domain_matches_hidden_points_within_query_cap()
             _JudgePoint(*bottom_left),
         ) == expected
         assert sea.query_count <= 400
+
+
+def test_traffic_light_bounded_concurrency_preserves_safety_progress_and_callbacks() -> None:
+    source = _reference_source("1279", "python")
+    package = leetcode_package_dir("lc_1279")
+    assert package is not None
+    cases = json.loads((package / "cases.json").read_text(encoding="utf-8"))["cases"]
+    maximum_case = next(case for case in cases if case["id"] == "trial-twenty")
+
+    for case in [*cases, maximum_case, maximum_case, maximum_case]:
+        result = run_special_environment(
+            category="concurrency",
+            source=source,
+            input_data=case["input"],
+            challenge_id="lc_1279",
+            timeout_seconds=3.0,
+        )
+        assert result.ok, result.error_message
+        assert result.value["violations"] == []
+
+        green_road = 1
+        crossed = []
+        for event in result.value["events"]:
+            if event["kind"] == "green":
+                assert event["road"] != green_road
+                green_road = event["road"]
+            else:
+                assert event["kind"] == "cross"
+                assert event["road"] == green_road
+                crossed.append(event["car"])
+        assert sorted(crossed) == sorted(case["expected"]["cars"])
+        assert len(crossed) == len(case["expected"]["cars"])
+
+    redundant = run_special_environment(
+        category="concurrency",
+        source="""
+class TrafficLight:
+    def carArrived(self, carId, roadId, direction, turnGreen, crossCar):
+        turnGreen()
+        crossCar()
+""",
+        input_data={"cars": [1], "directions": [1], "arrival_times": [0]},
+        challenge_id="lc_1279",
+    )
+    assert redundant.ok, redundant.error_message
+    assert "redundant-green-change" in redundant.value["violations"]
+
+    unsafe_overlap = run_special_environment(
+        category="concurrency",
+        source="""
+from threading import Barrier
+
+class TrafficLight:
+    def __init__(self):
+        self.ready = Barrier(2)
+
+    def carArrived(self, carId, roadId, direction, turnGreen, crossCar):
+        if roadId == 2:
+            turnGreen()
+        self.ready.wait()
+        crossCar()
+""",
+        input_data={"cars": [1, 2], "directions": [1, 3], "arrival_times": [0, 0]},
+        challenge_id="lc_1279",
+    )
+    assert unsafe_overlap.ok, unsafe_overlap.error_message
+    assert set(unsafe_overlap.value["violations"]) & {"red-road-crossing", "cross-road-overlap"}
+
+    duplicate_crossing = run_special_environment(
+        category="concurrency",
+        source="""
+class TrafficLight:
+    def carArrived(self, carId, roadId, direction, turnGreen, crossCar):
+        crossCar()
+        crossCar()
+""",
+        input_data={"cars": [1], "directions": [1], "arrival_times": [0]},
+        challenge_id="lc_1279",
+    )
+    assert duplicate_crossing.ok, duplicate_crossing.error_message
+    assert sum(event["kind"] == "cross" for event in duplicate_crossing.value["events"]) == 2
+    assert not _traffic_light_match(duplicate_crossing.value, {"cars": [1]})
+
+    missing_crossing = run_special_environment(
+        category="concurrency",
+        source="""
+class TrafficLight:
+    def carArrived(self, carId, roadId, direction, turnGreen, crossCar):
+        pass
+""",
+        input_data={"cars": [1], "directions": [1], "arrival_times": [0]},
+        challenge_id="lc_1279",
+    )
+    assert missing_crossing.ok, missing_crossing.error_message
+    assert not _traffic_light_match(missing_crossing.value, {"cars": [1]})
+
+    deadlock = run_special_environment(
+        category="concurrency",
+        source="""
+from threading import Event
+
+class TrafficLight:
+    def __init__(self):
+        self.never = Event()
+
+    def carArrived(self, carId, roadId, direction, turnGreen, crossCar):
+        self.never.wait()
+""",
+        input_data={"cars": [1], "directions": [1], "arrival_times": [0]},
+        challenge_id="lc_1279",
+        timeout_seconds=0.2,
+    )
+    assert not deadlock.ok
+    assert "deadlocked or timed out" in deadlock.error_message
 
 
 def test_tic_tac_toe_bounded_domain_matches_every_reachable_board_state() -> None:

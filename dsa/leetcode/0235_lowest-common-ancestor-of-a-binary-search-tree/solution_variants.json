@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Lowest Common Ancestor of a Binary Search Tree and meets the required complexity bound.",
+      "summary": "Follows BST ordering until the targets first split around or meet the current node.",
       "time_complexity": "O(h)",
       "space_complexity": "O(1)"
     }

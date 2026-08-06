@@ -31,4 +31,4 @@ Each pointer moves across the string at most once, giving $O(n)$ time. Only two 
 - **Compare raw characters:** mishandles punctuation and case.
 - **Use repeated deletion:** can cause quadratic string copying.
 - A string with no alphanumeric characters normalizes to empty and is palindromic. A single retained character is also palindromic.
-- The approach compares Unicode-aware or ASCII-aware character classes according to the implementation API; do not mix inconsistent normalization rules.
+- The contract restricts input to printable ASCII, so Python's `str.isalnum()` and `str.lower()` have exactly the required behavior on every legal character.

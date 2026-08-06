@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2632",
+    "frontend_id": "2632",
+    "title_slug": "curry",
+    "url": "https://leetcode.com/problems/curry/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`fn = (a, b, c) => a + b + c`, `inputs = [[1], [2], [3]]`",
+        "output": "`6`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`fn = (a, b, c) => a + b + c`, `inputs = [[1, 2], [3]]`",
+        "output": "`6`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`fn = (a, b, c) => a + b + c`, `inputs = [[], [], [1, 2, 3]]`",
+        "output": "`6`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 4,
+        "input": "`fn = () => 42`, `inputs = [[]]`",
+        "output": "`42`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b5bbed17fe483265f427ec44b39d8d85fde9576cc266df31033f79fbff41d4b2",
+      "reference/contract.md": "5599ea3ca4cf752a058cb0bc36c81ffee6b0402a2d3ff76e11213f55c01d1197",
+      "reference/examples.md": "07aa2775b91b445dca72580b49fcfca7bcb271217cd8646861af8348d61788e7",
+      "reference/constraints.md": "d61ccc18418fad2ec9c7b87411201f05d684e59ba6bc4d689aa1fff621347133"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -73,13 +73,14 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "update"
       ]
     },
     {
-      "id": "sample-single",
-      "name": "sample: one-cell assignment",
-      "kind": "sample",
+      "id": "trial-single",
+      "name": "one-cell assignment",
+      "kind": "trial",
       "visible": true,
       "input": {
         "matrix": [
@@ -115,14 +116,13 @@
         -2
       ],
       "tags": [
-        "sample",
         "boundary"
       ]
     },
     {
-      "id": "sample-two-by-two",
-      "name": "sample: update affects column rectangle",
-      "kind": "sample",
+      "id": "trial-two-by-two",
+      "name": "update affects a column rectangle",
+      "kind": "trial",
       "visible": true,
       "input": {
         "matrix": [
@@ -163,7 +163,6 @@
         9
       ],
       "tags": [
-        "sample",
         "overlap"
       ]
     },
@@ -259,10 +258,10 @@
       ]
     },
     {
-      "id": "real-interleaved",
-      "name": "hidden: interior and boundary updates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved",
+      "name": "interior and boundary updates affect later rectangles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -320,12 +319,95 @@
       "expected": [
         45,
         18,
-        1
+        3
       ],
       "tags": [
-        "hidden",
         "interleaved"
       ]
+    },
+    {
+      "id": "trial-one-column",
+      "name": "one-column queries reflect an interior assignment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [[1],[-2],[3],[4]],
+        "operations": [["sum",0,0,3,0],["update",1,0,5],["sum",1,0,3,0]]
+      },
+      "expected": [6,12],
+      "tags": ["one-column","interior-update","inclusive-range"]
+    },
+    {
+      "id": "trial-negative-values",
+      "name": "negative matrix sums respond to a positive extreme update",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [[-1,-2,-3],[-4,-5,-6]],
+        "operations": [["sum",0,0,1,2],["update",0,1,1000],["sum",0,0,0,2],["sum",0,0,1,2]]
+      },
+      "expected": [-21,996,981],
+      "tags": ["negative-values","maximum-value","full-matrix"]
+    },
+    {
+      "id": "trial-value-extremes",
+      "name": "assignments cross both allowed value endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [[-1000,1000]],
+        "operations": [["sum",0,0,0,1],["update",0,0,1000],["sum",0,0,0,1],["update",0,1,-1000],["sum",0,0,0,1]]
+      },
+      "expected": [0,2000,0],
+      "tags": ["minimum-value","maximum-value","assignment-delta"]
+    },
+    {
+      "id": "trial-corner-updates",
+      "name": "opposite corner updates remain separately queryable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [[0,0,0],[0,0,0],[0,0,0]],
+        "operations": [["update",0,0,5],["update",2,2,7],["sum",0,0,2,2],["sum",0,0,0,0],["sum",2,2,2,2],["sum",1,1,1,1]]
+      },
+      "expected": [12,5,7,0],
+      "tags": ["corner-updates","single-cell-query","full-matrix"]
+    },
+    {
+      "id": "trial-maximum-width",
+      "name": "maximum-width row includes both endpoint columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+        "operations": [["sum",0,0,0,199],["update",0,199,-1000],["sum",0,199,0,199],["sum",0,0,0,199]]
+      },
+      "expected": [200,-1000,-801],
+      "tags": ["maximum-width","one-row","right-boundary"]
+    },
+    {
+      "id": "trial-maximum-height",
+      "name": "maximum-height column includes both endpoint rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+        "operations": [["sum",0,0,199,0],["update",0,0,1000],["update",199,0,1000],["sum",0,0,199,0],["sum",0,0,0,0],["sum",199,0,199,0]]
+      },
+      "expected": [-200,1802,1000,1000],
+      "tags": ["maximum-height","one-column","top-bottom-boundaries"]
+    },
+    {
+      "id": "trial-update-only",
+      "name": "updates without queries produce no adapter outputs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [[1,2],[3,4]],
+        "operations": [["update",0,0,-1],["update",1,1,9],["update",0,1,2]]
+      },
+      "expected": [],
+      "tags": ["update-only","zero-delta","adapter-contract"]
     }
   ]
 }

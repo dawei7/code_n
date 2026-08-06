@@ -7,5 +7,5 @@
     "constraint_count": 2,
     "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "f57119a113cd2e23309a8dc56732cccc4770d3e6da0f6b054de1936e7b78d140", "reference/contract.md": "bf175c301d172ec9f3dcb8c02d04086d0054664d397958291a651431d4b14655", "reference/examples.md": "530e965d6b08a30e7c4c6303d395e93124977d17e1c1b0c43cab87a61574d0da", "reference/constraints.md": "4453f9a67ebb922a4ede2926f4f13a0e9e3b731c2a29a80a3f2a2e4cc2b40313"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {"status": "verified", "files": {"reference/description.md": "f57119a113cd2e23309a8dc56732cccc4770d3e6da0f6b054de1936e7b78d140", "reference/contract.md": "c72a880b06257c0a9ac957e8d433ffea8158f23332efebbf031455e47ceb8f98", "reference/examples.md": "530e965d6b08a30e7c4c6303d395e93124977d17e1c1b0c43cab87a61574d0da", "reference/constraints.md": "4453f9a67ebb922a4ede2926f4f13a0e9e3b731c2a29a80a3f2a2e4cc2b40313"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
 }

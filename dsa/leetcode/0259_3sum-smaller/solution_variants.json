@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for 3Sum Smaller and meets the required complexity bound.",
+      "summary": "Sorts the array, fixes each first value, and counts whole valid right-endpoint blocks with two pointers.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
     }

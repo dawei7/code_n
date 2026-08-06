@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shortest Word Distance and meets the required complexity bound.",
+      "summary": "Tracks the latest occurrence of each target and minimizes their distance in one left-to-right scan.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Coin Change and meets the required complexity bound.",
+      "summary": "Builds minimum coin counts bottom-up by trying each denomination as the final coin for every total.",
       "time_complexity": "O(cA)",
       "space_complexity": "O(A)"
     }

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_325",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "improvement",
+        "reason": "The protected source already expresses the optimal earliest-prefix method clearly. The inert candidate makes the material style correction required by this campaign, replacing the forbidden generic locals index and value with the conventional scan variables i and x while preserving the recurrence and contract exactly."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 325 and its Python maxSubArrayLen surface. The Reference preserves contiguous-subarray semantics, the maximum-length result and zero fallback, both explained source examples, and all three signed-value constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064386001 and structurally aligns with the protected app-local source apart from the required class wrapper and legacy List annotation. The candidate preserves the same helper, prefix state, lookup order, and earliest-occurrence rule, changing only local scan names."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal alternating zero-sum tiers use 32, 128, and 512 elements, span 16x, and expose repeated matching intervals. The candidate passes all nine executions at +0.01 relative growth and 0.98x; a correct O(n^2) start/end enumeration passes all three benchmark outputs but fails only scaling at +1.17 and 142.38x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach exactly derives subarray sums as prefix differences, explains the seeded empty prefix and earliest-occurrence invariant, proves completeness and maximality, and states expected O(n) time with O(n) space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound authenticated Premium Reference remains source-fidelity verified, including both source examples and their explanations in order and all three constraints."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated source examples appear first, in source order, with their exact arrays, targets, and longest lengths.",
+      "The invented no-match row is now a trial rather than a source sample, and every formerly hidden whole-array, repeated-prefix, and singleton case is visible.",
+      "A one-element trial covers the minimum length; independent verification covers the 200,000-element maximum, and visible trials use element bounds -10,000 and 10,000 plus target bounds -1,000,000,000 and 1,000,000,000.",
+      "No-match, singleton, whole-array, interior, negative-target, zero-target, all-zero, and alternating-sign cases exercise every return mode and the seeded empty-prefix behavior.",
+      "Repeated equal prefix sums verify that the earliest index must be retained to maximize length; negative values demonstrate why a sliding window is invalid.",
+      "A quadratic start/end oracle verified all 11 authored results and all three benchmark results; the candidate also matched it on 214,830 exhaustive array-target pairs with lengths one through six, values from {-2, -1, 0, 1, 2}, and targets -5 through 5.",
+      "All 11 correctness cases are visible samples or trials; the unchanged 32-, 128-, and 512-element alternating zero-sum workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "46c67632977f73fa1902fd3c398be5ee6b49df3274a66af042bb9fcd9ba5e22a",
+    "native_source_sha256": "ec8711d70beb3b17b99f80dfaf1d4d0b524f392a8e81f596d4abcc0ee0aee89e",
+    "approach_sha256": "ef885a9d5780a3b9113f52b6b1c94d2c724ccfe0cce95a90d41ec8b9f6551efb",
+    "solution_variants_sha256": "fe59ef77ffc8e7033eef8dcb526920db0bdbd0a06abd88431c8e998e5c03c0e1",
+    "complexity_evidence_sha256": "ec409baec064199fadf42ebd2c4763ca7590efe2b1529316b1cb6b964fd4a98f",
+    "candidate_source_sha256": "970fd138b70227b93c5ffebec2c361efbffa66b5ca10500c1d5476e6db94b621",
+    "cases_sha256": "111754b9742a3a75a87e1a7ec86147dd63361f7a6f92d59eadc813570b500334"
+  }
+}

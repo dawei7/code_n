@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_194",
-  "measurement_note": "Growing rectangular files exercise every input cell and accumulated output column.",
+  "measurement_note": "Size is r * c, the number of input cells. Growing rectangular files exercise every cell and emitted transposed field.",
   "cases": [
     {
       "id": "benchmark-scale-1",
       "name": "benchmark: 8 table rows",
       "kind": "benchmark",
       "visible": false,
-      "size": 8,
+      "size": 32,
       "input": {
         "stdin": "",
         "files": {
@@ -26,7 +26,7 @@
       "name": "benchmark: 64 table rows",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 256,
       "input": {
         "stdin": "",
         "files": {
@@ -44,7 +44,7 @@
       "name": "benchmark: 256 table rows",
       "kind": "benchmark",
       "visible": false,
-      "size": 256,
+      "size": 1024,
       "input": {
         "stdin": "",
         "files": {

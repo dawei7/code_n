@@ -1,17 +1,16 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_255",
-  "measurement_note": "Size is preorder length; an increasing right spine makes repeated recursive range partitioning rescan every remaining suffix.",
+  "measurement_note": "Size is legal preorder length; an increasing right spine makes repeated recursive range partitioning rescan every remaining suffix.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: increasing preorder with 32 values",
+      "name": "benchmark: 32-node increasing preorder",
       "kind": "benchmark",
       "visible": false,
       "size": 32,
       "input": {
         "preorder": [
-          0,
           1,
           2,
           3,
@@ -42,25 +41,24 @@
           28,
           29,
           30,
-          31
+          31,
+          32
         ]
       },
       "expected": true,
       "tags": [
         "benchmark",
-        "scale-small",
-        "skewed"
+        "scale-small"
       ]
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: increasing preorder with 128 values",
+      "name": "benchmark: 128-node increasing preorder",
       "kind": "benchmark",
       "visible": false,
       "size": 128,
       "input": {
         "preorder": [
-          0,
           1,
           2,
           3,
@@ -187,25 +185,24 @@
           124,
           125,
           126,
-          127
+          127,
+          128
         ]
       },
       "expected": true,
       "tags": [
         "benchmark",
-        "scale-medium",
-        "skewed"
+        "scale-medium"
       ]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: increasing preorder with 512 values",
+      "name": "benchmark: 512-node increasing preorder",
       "kind": "benchmark",
       "visible": false,
       "size": 512,
       "input": {
         "preorder": [
-          0,
           1,
           2,
           3,
@@ -716,14 +713,14 @@
           508,
           509,
           510,
-          511
+          511,
+          512
         ]
       },
       "expected": true,
       "tags": [
         "benchmark",
-        "scale-large",
-        "skewed"
+        "scale-large"
       ]
     }
   ]

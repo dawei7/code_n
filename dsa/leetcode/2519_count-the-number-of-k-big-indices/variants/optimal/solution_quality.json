@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2519",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution uses a Fenwick tree (Binary Indexed Tree) to count strictly smaller values on both sides of each index. In the first pass (left-to-right), it records smaller_left[i] = query(nums[i] - 1) and adds nums[i] to the tree. In the second pass (right-to-left), it checks query(nums[i] - 1) >= k and smaller_left[i] >= k. The solution runs in O(n log n) time and O(n) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Querying at nums[i] - 1 counts values strictly smaller than nums[i]. Performing two independent Fenwick passes correctly calculates left-side and right-side smaller element counts for every index."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Each of the n elements requires O(log n) Fenwick query and update operations in both passes, giving O(n log n) total time and O(n) auxiliary space for the tree and smaller_left array. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts nums array and integer k, returning total count of k-big indices."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details order statistic queries, Fenwick tree coordinate mapping (1 to n), dual pass structure, and O(n log n) time / O(n) space bounds. Alternatives and edge cases cover direct side scans, merge-sort counting, strict inequality query adjustments, side boundary limits, and monotone arrays."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the identical Fenwick tree prefix query algorithm with SHA-256 digests cee2d1410f3392d812a6853fd4472941d3206f144da4338616c2d3ce9d6c66d6 and bbc47a6851946e3b40e210bab6bb7c70e18748a18261dd2e5f339f4177f9801b. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed nums and k interface, two examples, four constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "cee2d1410f3392d812a6853fd4472941d3206f144da4338616c2d3ce9d6c66d6",
+    "native_source_sha256": "bbc47a6851946e3b40e210bab6bb7c70e18748a18261dd2e5f339f4177f9801b",
+    "approach_sha256": "3f612b402efe57bb0ec03f79479d73986e5fea7f96d5b1a2d703b34de1d6fe56",
+    "solution_variants_sha256": "0e381e35603597cf4503b69649e3cd3344e0faf9f5f8b93211af67c9382a326f",
+    "complexity_evidence_sha256": "04c8f282f46f723162e74b2fc1fac03611ff9a67d99236fac52b448383ccdab3"
+  }
+}

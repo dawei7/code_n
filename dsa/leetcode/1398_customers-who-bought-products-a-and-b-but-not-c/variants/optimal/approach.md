@@ -1,18 +1,29 @@
 ## General
-Join customers to their orders and group by customer. Within each group, use conditional sums to count purchases of A, B, and C. Keep the group only when the A count and B count are positive and the C count is zero.
 
-Every joined row belongs to its purchasing customer, so each conditional aggregate examines exactly that customer's orders. The three `HAVING` conditions are therefore equivalent to the required existential A condition, existential B condition, and universal absence-of-C condition. Purchases of any other product contribute zero to all three counts and do not affect qualification.
+**Reduce each order history to three presence tests.** Join `Customers` to `Orders` by `customer_id`, then group the joined rows by both selected customer columns. Each group now contains exactly one customer's purchases. Within that group, the expression
 
-An inner join naturally omits customers without orders; they cannot have bought both required products. Order the surviving rows by customer identifier.
+```sql
+SUM(CASE WHEN o.product_name = 'A' THEN 1 ELSE 0 END)
+```
+
+counts A orders; the corresponding expressions do the same for B and C. Requiring the A and B counts to be positive implements the two existential conditions, while requiring the C count to equal zero proves that no disqualifying C row exists. Purchases of every other product contribute zero to all three sums.
+
+**Emit one source customer row.** Aggregation collapses any number of repeated purchases into one group, so a qualifying customer appears exactly once. Grouping by `customer_id` and `customer_name` also keeps the returned name attached to the correct customer instead of deriving it from order data. The inner join safely omits customers without orders because they cannot satisfy both required-product conditions. Finally, sorting by `customer_id` produces the exact required order.
+
+This establishes both directions of the filter: every emitted group contains A and B and contains no C, and every customer with those three properties has positive A and B sums, a zero C sum, and therefore survives `HAVING`.
 
 ## Complexity detail
-With indexed or hash joining and hash aggregation, reading $C$ customers and $O$ orders and emitting $R$ results takes $O(C + O + R)$ time. Grouping and join state use $O(C)$ space. A sort-based physical plan may add database-specific sorting costs.
+
+Let $C$ be the number of customer rows, $O$ the number of order rows, and $R$ the number of returned customers. With an indexed or hash join and hash aggregation, reading the inputs, maintaining at most one group per customer, and emitting the result takes $O(C + O + R)$ time and $O(C)$ working space. A particular database plan may add sorting work to implement grouping or the required final order.
 
 ## Alternatives and edge cases
-- **Three correlated subqueries:** Separate `EXISTS` checks for A and B plus `NOT EXISTS` for C are clear but can rescan all orders per customer, costing $O(CO)$ without useful indexes.
-- **Self-join order aliases:** Join A and B orders and anti-join C orders. Repeated purchases can multiply intermediate rows unless carefully deduplicated.
-- **Repeated purchases:** One or many A or B orders satisfy the same presence requirement.
-- **Product C:** A single C order disqualifies the customer regardless of other purchases.
-- **Other products:** They neither qualify nor disqualify a customer.
-- **Missing required product:** Buying only A or only B is insufficient.
-- **No orders:** Such a customer cannot appear in the result.
+
+- **Three correlated predicates:** Separate `EXISTS` checks for A and B plus `NOT EXISTS` for C express the contract directly, but can rescan `Orders` for every customer and take $O(CO)$ time without useful indexes.
+- **Self-join order aliases:** Joining A and B order subsets and anti-joining C can work, but repeated purchases may multiply intermediate rows unless they are deduplicated first.
+- **Set cardinality alone:** Counting distinct names among A, B, and C is insufficient because `{A,B}` and `{A,C}` both have cardinality two; the individual presence and absence conditions matter.
+- **Repeated A or B purchases:** Any positive count satisfies the corresponding requirement, and grouping still emits one customer row.
+- **One C purchase:** A single C order makes the C sum positive and disqualifies the customer regardless of all other purchases.
+- **Other products:** Product names outside A, B, and C contribute zero and neither qualify nor disqualify a customer.
+- **Missing A or B:** Buying only one required product cannot pass both positive-count predicates.
+- **No orders:** The inner join omits the customer, which is correct because neither required product was purchased.
+- **Duplicate customer names:** Qualification and grouping are customer-ID-specific; equal names must not merge different customers.

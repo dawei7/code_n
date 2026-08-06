@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Reverse Linked List and meets the required complexity bound.",
+      "summary": "Reverses each next pointer once while advancing saved previous, current, and following references.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

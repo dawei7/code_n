@@ -9,6 +9,8 @@ Each update now changes at most two positions regardless of its width.
 
 Walk left to right while maintaining the running sum of difference entries. At index `i`, that sum contains exactly the increments whose starts are at or before `i` and whose stopping markers are after `i`. Store it as the final value at that index.
 
+The candidate uses conventional `i` for this positional prefix scan while retaining descriptive names for the difference array and its accumulated value.
+
 **Why overlapping ranges combine correctly**
 
 Difference markers are additive. Every update contributes one positive boundary and, when needed, one matching negative boundary. Prefix summation includes that contribution precisely on its intended interval. Adding markers for multiple updates superimposes their effects, including positive and negative increments, so the reconstructed value equals the sum of all updates covering each index.

@@ -205,10 +205,10 @@
       ]
     },
     {
-      "id": "real-only-orphan",
-      "name": "hidden: comment without a listed post produces no row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-orphan",
+      "name": "comment without a listed post produces no row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Submissions": [
@@ -227,15 +227,14 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "orphan"
       ]
     },
     {
-      "id": "real-duplicate-post",
-      "name": "hidden: repeated post rows collapse",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-post",
+      "name": "repeated post rows collapse",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Submissions": [
@@ -267,15 +266,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicate-post"
       ]
     },
     {
-      "id": "real-shared-comment-id",
-      "name": "hidden: distinct counting is scoped per post",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shared-comment-id",
+      "name": "distinct counting is scoped per post",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Submissions": [
@@ -315,7 +313,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "distinct-per-group"
       ]
     }

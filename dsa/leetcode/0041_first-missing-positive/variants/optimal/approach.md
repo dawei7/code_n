@@ -5,25 +5,25 @@ For an array of length $n$, the answer lies in $[1,n+1]$. If any value from $1$ 
 
 **Use the array itself as a value-to-presence map**
 
-Give each relevant value `v` the designated position $v - 1$. For every index, while its current value lies in `[1, n]` and its designated position does not already contain it, swap the value into that position. Use a `while`, not a single `if`, because the value swapped back into the current index may itself belong elsewhere.
+Give each relevant value `v` the designated position $v - 1$. For every position `i`, while `nums[i]` lies in `[1, n]` and its designated position does not already contain it, swap the value into that position. Use a `while`, not a single `if`, because the value swapped back into position `i` may itself belong elsewhere.
 
 The destination-equality check is the duplicate guard. If two copies of `v` exist and one is already at $v - 1$, swapping the other copy there would make no progress and could loop forever.
 
-After placement, scan from index zero. The first index `i` not containing $i + 1$ identifies the answer; if none exists, return $n + 1$.
+After placement, scan from position zero. The first position `i` not containing $i + 1$ identifies the answer; if none exists, return $n + 1$.
 
 **Why nested-looking swaps are still linear**
 
-Each swap permanently places at least one in-range value at its designated index. No different value wants that same index, and a duplicate is prevented from displacing the correctly placed copy. Therefore there are at most `n` productive placements across all inner loops. The outer scan is linear as well, so the nested syntax does not imply quadratic time.
+Each swap permanently places at least one in-range value at its designated position. No different value wants that same position, and a duplicate is prevented from displacing the correctly placed copy. Therefore there are at most `n` productive placements across all inner loops. The outer scan is linear as well, so the nested syntax does not imply quadratic time.
 
 **Trace a chain of placements**
 
-For `[3, 4, -1, 1]`, move 3 to index 2, then 4 to index 3, then 1 to index 0. The array becomes `[1, -1, 3, 4]`. Index 1 does not contain 2, so 2 is the first missing positive.
+For `[3, 4, -1, 1]`, move 3 to position 2, then 4 to position 3, then 1 to position 0. The array becomes `[1, -1, 3, 4]`. Position 1 does not contain 2, so 2 is the first missing positive.
 
-**Each index becomes an occurrence certificate**
+**Each position becomes an occurrence certificate**
 
 Every relevant value `v` has one designated position $v - 1$. Productive swaps keep moving a misplaced relevant value toward that position; the process stops only when the value is placed, lies outside `[1,n]`, or finds an identical copy already certifying its occurrence.
 
-After placement, index `i` contains $i + 1$ exactly when that positive occurs somewhere in the input. Scanning from index zero therefore tests positive integers in increasing order: the first mismatch is the smallest absent one. If no mismatch exists, all values `1..n` occur, and the pigeonhole bound makes $n + 1$ the answer.
+After placement, position `i` contains $i + 1$ exactly when that positive occurs somewhere in the input. Scanning from position zero therefore tests positive integers in increasing order: the first mismatch is the smallest absent one. If no mismatch exists, all values `1..n` occur, and the pigeonhole bound makes $n + 1$ the answer.
 
 ## Complexity detail
 The outer scan visits `n` indices and the total number of productive swaps is at most `n`, followed by one final linear scan. Time is $O(n)$. All state is stored in the input array plus a fixed number of indices and temporary values, giving $O(1)$ auxiliary space.

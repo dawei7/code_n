@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1126",
+    "frontend_id": "1126",
+    "title_slug": "active-businesses",
+    "url": "https://leetcode.com/problems/active-businesses/description/",
+    "paid_only": true,
+    "content_sha256": "9b5a57287fbf1e375610f82fa302cf4f7ef2fd85522637cb9a48d4b50a2de59f",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "events_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Events = [[1,\"reviews\",7],[3,\"reviews\",3],[1,\"ads\",11],[2,\"ads\",7],[3,\"ads\",6],[1,\"page views\",3],[2,\"page views\",12]]",
+        "output": "[[1]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/events_table.md": "005a2204311000b3e1953952269b842db0da7255d8be4d67a2422063f795dfd1",
+      "reference/description.md": "56b19d7d4cf8debbb227f0b086914248ecfcfa10fe4c313f1aac36bdadf110ac",
+      "reference/contract.md": "694c08e7567979387a33350807165168347f7c2bc13e23ea8eda59a6faab6b9d",
+      "reference/examples.md": "4878c13e8a3c47ebec5226d23f5d4839b8edc28332945b86b867258f8b329f26"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

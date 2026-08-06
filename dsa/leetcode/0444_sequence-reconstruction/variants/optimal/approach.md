@@ -13,11 +13,11 @@ Remove the selected vertex, decrement each outgoing neighbor's indegree, and enq
 
 **Why all values must appear in the evidence**
 
-A value absent from every supplied sequence is not actually constrained by the evidence, even if graph initialization gives it a vertex. Track observed values and require all of `nums` to appear; otherwise the proposed reconstruction is not established by the subsequences.
+Because `nums` contains $n$ distinct values, every value that appears anywhere in `sequences` must occur in every supersequence. If some value of `nums` is never observed, omitting it produces a supersequence shorter than `nums`, so `nums` cannot be a shortest one. Conversely, once all $n$ values are observed, every supersequence needs at least $n$ positions and `nums` already has exactly $n$. The coverage check therefore establishes the shortest-length part of the contract.
 
 **Why the test is necessary and sufficient**
 
-If the queue ever has multiple choices, choosing different vertices yields distinct valid topological prefixes, so uniqueness fails. If it always has exactly the next value of `nums`, every topological order is forced to take that value at every position. Processing all vertices then proves `nums` is both valid and unique.
+After coverage establishes that a shortest supersequence uses all $n$ values once, its possible orders are exactly the graph's topological orders. If the queue ever has multiple choices, choosing different vertices yields distinct shortest supersequences, so uniqueness fails. If it always has exactly the next value of `nums`, every topological order is forced to take that value at every position. Processing all vertices then proves that `nums` is the unique shortest supersequence.
 
 ## Complexity detail
 Let `V` be the number of values and `E` the number of distinct adjacent constraints. Graph construction and Kahn traversal process each vertex and edge a constant number of times, giving $O(V + E)$ time and $O(V + E)$ space.
@@ -27,5 +27,6 @@ Let `V` be the number of values and `E` the number of distinct adjacent constrai
 - **Enumerate topological orders:** proves uniqueness but can take exponential time.
 - **Rescan all vertices for zero indegree:** remains correct but takes $O(V^2 + E)$ time.
 - **Repeated edge:** must not increase indegree twice.
-- **Missing value:** return `False` even if the remaining constraints are consistent.
-- **Cycle:** no zero-indegree choice eventually remains.
+- **Missing value:** return `False` because omitting that unobserved target value gives a shorter supersequence.
+- **Single target value:** one singleton evidence row is enough to make the one-value target shortest and unique.
+- **Source-domain guarantees:** every row is a subsequence of `nums`, all rows are unique, and every value is in $[1,n]$; reversed target order, cycles, duplicate rows, and out-of-range values are not legal inputs.

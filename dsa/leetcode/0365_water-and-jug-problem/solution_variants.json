@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Water and Jug Problem and meets the required complexity bound.",
+      "summary": "Applies the total-capacity bound and Bézout's gcd divisibility criterion, computing the gcd with Euclid's algorithm.",
       "time_complexity": "O(\\log \\min(x,y))",
       "space_complexity": "O(1)"
     }

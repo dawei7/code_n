@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1077",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL is direct, conventional, and expert-interview ready. The ranked_assignments CTE names its relation and experience_rank clearly, the window specification exposes the per-project comparison grain, and the rank-one filter preserves every tied maximum without unnecessary relational steps. The deterministic output order is harmless and the query contains no obscure aliases, tricks, or prohibited generic index bindings."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "An independent Python oracle joined assignments to experience by employee_id, computed each project maximum separately, retained every employee tied at that maximum, and returned no rows for an empty Project table. All seven visible cases, all three benchmark outputs, and 240 deterministic randomized schema-valid databases matched that oracle for both the protected sql.sql and immutable leetcode.sql. The randomized databases covered shared employees, tied maxima, single assignments, zero experience, unassigned Employee rows, duplicate names, empty Project, and multiple independent projects."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata identifies Premium LeetCode database problem 1077 and its SQL/MySQL native query entrypoint. The query preserves the Project composite assignment identity and Employee foreign-key join, compares experience independently within every represented project, retains all maximum-experience ties, returns exactly project_id and employee_id, and imposes only a deterministic order where the source permits any result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2067520462 are byte-for-byte identical. They use the same join, project partition, descending DENSE_RANK, rank-one filter, projected columns, aliases, and deterministic ordering; neither source nor submission.json was modified during this review."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden performance-only tiers increase both Project assignments and Employee rows from 64 through 256 to 1024, with one assignment per project so every row reaches the output. The protected query passed all benchmark outputs and the paired scaling gate with extra growth exponent -0.01 and a 0.97x largest-tier ratio. An independently correct correlated aggregate with an equivalent non-sargable integer project predicate passed every visible and benchmark output but failed only scaling, with extra growth exponent +0.75 and a 9.98x largest-tier ratio. This distinguishes the global join-and-window plan from repeated full-relation scans without changing benchmark.json."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives attaching experience to assignments, partitioning comparisons by project, choosing DENSE_RANK to preserve equal maxima, and filtering the complete top rank. Its sort-based O(E+R log R) time and O(E+R) execution-space qualifications match the branch manifest and protected query, while its alternatives correctly identify grouped maximum recovery, repeated correlated scans, and the tie-dropping ROW_NUMBER trap."
+      },
+      {
+        "category": "case_quality",
+        "severity": "verified",
+        "reason": "The seven ordinary cases are all visible samples or trials. They preserve the sole source example exactly, including John's corrected three years of experience and output row [1,3], and cover per-project partitioning, shared employees, partial and complete ties, unique maxima, single assignments, zero experience, unassigned employees, duplicate names, unrestricted ordering, and an empty Project table. Performance workloads remain exclusively hidden in benchmark.json."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The authenticated Premium statement was reviewed directly. The modular Reference preserves both source table schemas and key relationships, the complete tied-maximum task and ordering rule, and the single exact source example with its explanation. source_fidelity.json is verified with live-content SHA-256 4c2d02924719b6079ee95a7aeb073439557d15193c7f258983f12e1c54e7532d and current hashes for every composed Reference section."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "the sole source example exactly, including both employees tied at project 1's maximum",
+      "maximum experience computed independently per project when an employee is shared",
+      "partial ties, every assignment tied, and a unique maximum",
+      "a single assignment with zero experience",
+      "unassigned Employee rows that must not create output",
+      "duplicate employee names that must not affect ranking",
+      "an empty Project table and its empty two-column result",
+      "unrestricted source ordering with deterministic local row comparison",
+      "three hidden performance-only scaling tiers spanning 64 through 1024 assignments"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "dc491b44de07824703826089a7cab956c7d0e8fb6bfceb7fafc4c040eee6230c",
+    "native_source_sha256": "dc491b44de07824703826089a7cab956c7d0e8fb6bfceb7fafc4c040eee6230c",
+    "approach_sha256": "124231429aea55448b2c7f756734c2ee0c8ccf084418698d39882cc1315289f9",
+    "solution_variants_sha256": "9619abdf0850745eaf2144e1df209ce7408728ddfc54d6b0231d7cfd79a66ed7",
+    "cases_sha256": "10c679915ba60ae5c260c5a74ae955f7a6846699f41383747e1a56ee50b5b12d",
+    "complexity_evidence_sha256": "fba79d183cfddbbb41103c2d759c089c7ffaf3eab342ab54e71b54e7c48e4acb"
+  }
+}

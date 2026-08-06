@@ -1,10 +1,145 @@
 {
   "challenge_id": "lc_7",
   "cases": [
-    {"id": "sample-1", "name": "sample: positive", "kind": "sample", "visible": true, "input": {"x": 123}, "expected": 321, "tags": ["sample"]},
-    {"id": "sample-2", "name": "sample: negative", "kind": "sample", "visible": true, "input": {"x": -123}, "expected": -321, "tags": ["sample", "negative"]},
-    {"id": "trial-trailing-zero", "name": "trailing zero is discarded", "kind": "trial", "visible": true, "input": {"x": 120}, "expected": 21, "tags": ["zero"]},
-    {"id": "trial-positive-overflow", "name": "positive reversal overflows", "kind": "trial", "visible": true, "input": {"x": 1534236469}, "expected": 0, "tags": ["overflow"]},
-    {"id": "real-negative-boundary", "name": "hidden: negative reversal remains in range", "kind": "real", "visible": false, "input": {"x": -2147483412}, "expected": -2143847412, "tags": ["hidden", "boundary"]}
+    {
+      "id": "sample-1",
+      "name": "sample: positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 123
+      },
+      "expected": 321,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": -123
+      },
+      "expected": -321,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: trailing zero is discarded",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 120
+      },
+      "expected": 21,
+      "tags": [
+        "sample",
+        "trailing-zero"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "zero remains zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 0
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-multiple-trailing-zeroes",
+      "name": "negative value loses multiple trailing zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": -1200
+      },
+      "expected": -21,
+      "tags": [
+        "negative",
+        "trailing-zero"
+      ]
+    },
+    {
+      "id": "trial-positive-overflow",
+      "name": "positive reversal overflows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 1534236469
+      },
+      "expected": 0,
+      "tags": [
+        "overflow",
+        "positive"
+      ]
+    },
+    {
+      "id": "trial-negative-overflow",
+      "name": "negative reversal overflows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": -1563847412
+      },
+      "expected": 0,
+      "tags": [
+        "overflow",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-minimum-input",
+      "name": "minimum signed 32-bit input reverses out of range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": -2147483648
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "overflow",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-valid-negative-boundary",
+      "name": "large negative reversal remains in range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": -2147483412
+      },
+      "expected": -2143847412,
+      "tags": [
+        "boundary",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-valid-positive-boundary",
+      "name": "large positive reversal remains in range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 1463847412
+      },
+      "expected": 2147483641,
+      "tags": [
+        "boundary",
+        "positive"
+      ]
+    }
   ]
 }

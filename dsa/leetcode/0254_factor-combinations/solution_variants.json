@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Factor Combinations and meets the required complexity bound.",
+      "summary": "Backtracks over nondecreasing divisors through each remainder's square root, emitting each factorization once.",
       "time_complexity": "O(\\sqrt{n} + output)",
       "space_complexity": "O(\\log n)"
     }

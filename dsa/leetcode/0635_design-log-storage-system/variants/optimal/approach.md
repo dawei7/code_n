@@ -1,7 +1,7 @@
 ## General
-**Preserve insertion order in a flat log list**
+**Keep the stored logs in a flat list**
 
-Append each `(identifier, timestamp)` pair. `put` is constant time, and scanning this list naturally emits matching identifiers in insertion order without a second ordering structure.
+Append each `(identifier, timestamp)` pair. This makes `put` constant time and lets each retrieval inspect every stored log directly. Result order is unrestricted, so the insertion order naturally produced by the scan is a permissible order and needs no additional sorting.
 
 **Translate granularity into a prefix length**
 
@@ -25,5 +25,6 @@ Let `P` be the number of stored logs and `Q` the number of retrievals in a trace
 - Query endpoints are inclusive after truncation to the selected granularity.
 - A `Day` query ignores hours, minutes, and seconds in both endpoint strings.
 - Distinct IDs may share an identical timestamp and must all be returned.
+- Retrieval result order is unrestricted; only the complete collection of matching IDs matters.
 - A query with no stored timestamp in its truncated interval returns an empty list.
 - Fixed-width zero padding is essential to the equivalence between string and chronological ordering.

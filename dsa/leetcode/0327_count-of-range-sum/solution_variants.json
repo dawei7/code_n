@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count of Range Sum and meets the required complexity bound.",
+      "summary": "Counts valid prefix-sum pairs across merge-sort halves with two monotone range boundaries.",
       "time_complexity": "O(n \\log n)",
       "space_complexity": "O(n)"
     }

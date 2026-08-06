@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Android Unlock Patterns and meets the required complexity bound.",
-      "time_complexity": "O(K^3 \\cdot 2^K)",
-      "space_complexity": "O(K^2 \\cdot 2^K)"
+      "summary": "Propagates weighted counts between legal (visited-mask, current-key) states for every requested length.",
+      "time_complexity": "O(K^2 \\cdot 2^K)",
+      "space_complexity": "O(K \\cdot 2^K)"
     }
   ]
 }

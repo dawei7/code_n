@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_723",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is concise, conventional, and interview-ready. Its rows, columns, crushed, value, and write names expose detection, round state, candy identity, and compaction roles directly, while sign marking and two-pointer gravity avoid auxiliary boards and repeated swaps."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Negating matched candies marks removal without erasing their type, so later overlapping horizontal or vertical checks compare absolute values against the same pre-crush state. Overlapping triples cover every run of length at least three, and all marks are therefore simultaneous. Bottom-up copying moves each positive survivor once into the lowest available position while preserving column order; skipped negative cells are removed and the remaining prefix is zeroed. Every productive round removes candies, so repetition terminates exactly when a full scan finds no crushable run."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 723, Python, and the native candyCrush(board) interface. Authenticated source evidence confirms a rectangular m-by-n board with 3 <= m,n <= 50, input candy types from 1 through 2000, zero as an empty cell after removal, simultaneous crushing of every horizontal or vertical run of at least three equal candies, downward gravity with no new candies above the board, repeated rounds, and return of the stable board."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065721119 are algorithmically identical: both perform the same horizontal and vertical absolute-value scans, negative marking, stability exit, bottom-up positive compaction, and zero fill. Their only structural differences are the required Solution.candyCrush wrapper and Python typing dialect."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged three authored workloads grow square boards from 64 to 1024 cells; each has a crushable lower half and stable upper half that must fall halfway down, forcing full marking and substantial gravity movement. In a fresh real-test run, the exact protected source passed all eleven visible correctness cases and all three performance tiers with relative growth exponent +0.00 and a 1.01x largest runtime ratio. A correct control that settles gravity through repeated one-row moves matched every output but failed only performance with relative growth exponent +0.34, distinguishing direct column compaction from the additional height factor."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives simultaneous sign marking, absolute-value overlap detection, bottom-up one-pass compaction, survivor-order preservation, stability, and finite termination. Its O(Rmn) time and O(1) auxiliary-space claims match the number of simulation scans, in-place implementation, and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the four ordered game rules, both exact source examples in source order, all four constraints, and the source-native hint. The source's composite cascade image is independently reconstructed as three accessible text boards, with the first- and second-round removal groups and the intersecting cell described precisely. Neither source example invents an Explanation field because the live statement provides no prose explanation label."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated Premium source review verified exactly two examples, four constraints, one composite image, no tables, and one provider hint, together with the full crush, gravity, repetition, and stable-return semantics. source_fidelity.json binds the live statement hash 507f6864853feb40a668a359f3449048628f4407056e25caf8aff420cd55b2f3 and every composed Reference section; the independent validator reports verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Both exact input and output matrices now appear first in source order; the large cascading board was moved from a hidden real case to source sample 1, source sample 2 was added, and three repository-authored boards were relabeled as visible trials instead of source samples.",
+      "All eleven ordinary correctness checks are visible samples or trials. The former hidden long-run behavior was exposed, and the invalid zero-containing input was removed because the source constrains every input cell to a positive candy type even though zero can appear in returned empty cells.",
+      "Contract boundaries cover the minimum 3-by-3 dimensions and candy values 1 and 2000 in authored cases. Separate generated checks cover both stable and fully crushable 50-by-50 boards at the maximum dimensions without bloating cases.json.",
+      "Material behavior covers an already-stable board, horizontal and vertical runs of exactly three, a run longer than three, intersecting runs, fully overlapping runs, disjoint simultaneous removals, survivor-order-preserving gravity, a two-round cascade, complete removal, and stable termination.",
+      "Expected results were checked against an independent mark-set and rebuilt-board oracle for all fourteen authored correctness-plus-benchmark inputs, all 19683 legal 3-by-3 boards over candy types 1, 2, and 3, 500 deterministic random legal boards, and two 50-by-50 boundaries. The protected app adapter and immutable native Solution agreed throughout.",
+      "The unchanged 64, 256, and 1024-cell workloads remain hidden and performance-only in benchmark.json, span 16x, and make the correct repeated-one-row gravity control fail only the scaling verdict; the latest run measured relative growth exponent +0.34 for that control."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "bd125e8f83e9796b13f2ad418786176c62f9b9f577d0eec0da526e8d6df3775c",
+    "native_source_sha256": "58aa29e5d38777c807fce825502bd4e2f36164f9e5627f12b2963477b414fbcf",
+    "approach_sha256": "5804ac583ddeffad17e8f3290b8cfc4f66373ee8f1add1c37679957ea3f1b437",
+    "solution_variants_sha256": "15a91b38fe8d7edd48ffd7092a557d542e71e5570d85f58c793bf999e34d252b",
+    "complexity_evidence_sha256": "b70e715aa777089105937b8e52d86a9dd1123372c4fb8d438af382dbcb1a292e",
+    "cases_sha256": "950d0dedc5a2dcf5e594bfdefcc24782d226c7a54bbdca357125678239954620"
+  }
+}

@@ -64,6 +64,45 @@ memory outside the repository; that is contextual history, not project source.
 The repository folder may still be named `code_n`; the import package is
 `engine`. All Python imports must use the `engine` namespace, never the former
 inner-package namespace.
+- The desktop app preloads canonical challenge summaries once before reporting
+  health. Set selectors must filter that in-memory corpus client-side and must
+  never clear or refetch the list during a view change.
+- `npm run dev` must use the Vite development server directly; do not put a
+  production web build on the interactive development startup path.
+
+## Sources of truth
+
+1. The current worktree and tests.
+2. `dsa/leetcode/index.json`, `dsa/leetcode/subsets.json`, and each package's
+   `metadata.json`.
+3. Authored `cases.json`, complexity verification (`benchmark.json` or a
+   strictly validated `complexity_certificate.json`), and package solutions.
+4. `dsa/leetcode/_reports/_completion_report.json` for the current doc queue.
+5. This `AGENTS.md` for repository workflow and invariants.
+6. `README.md` for the public/product overview and developer quick start.
+7. `RELEASING.md` for Windows signing, release, and update procedures.
+
+Do not treat old chat summaries, cached counts, or external agent memory as
+more authoritative than the live files above. Codex may also have user-level
+memory outside the repository; that is contextual history, not project source.
+
+## Architecture
+
+- `engine/`: reusable Python engine types, language metadata, tracing,
+  complexity logic, progress models, and starter generation.
+- `challenges/`: registry and dynamic LeetCode `AlgorithmSpec` adapter.
+- `dsa/leetcode/`: canonical problem packages and subset metadata.
+- `server/`: FastAPI API, execution harnesses, DAP debugger bridge, user-data
+  storage, validation, and packaged server entrypoint.
+- `web/`: React, TypeScript, Vite, Monaco, Zustand, reference UI, runtime
+  analysis, cases, and debugger interface.
+- `electron/`: Windows desktop shell, user-data selection, updates, and
+  packaging configuration.
+- `tools/`: dataset checks, synchronization, validation, and developer CLIs.
+
+The repository folder may still be named `code_n`; the import package is
+`engine`. All Python imports must use the `engine` namespace, never the former
+inner-package namespace.
 
 ## Canonical challenge package
 
@@ -73,11 +112,8 @@ Each problem is stored once:
 dsa/leetcode/<frontend_id:04d>_<slug>/
   metadata.json
   doc.md                    # legacy document or section-mode compatibility anchor
+  template.<ext>            # exact LeetCode code editor starter template (e.g. template.py)
   reference/                # optional section-authored Reference document
-    description.md
-    contract.md
-    examples.md
-    constraints.md
     follow_up.md            # optional source-native section
   source_fidelity.json      # optional reviewed structure and factual evidence
   cases.json
@@ -118,36 +154,34 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
 - Canonical package prefixes are zero-padded to four digits for numeric
   filesystem ordering. This formatting does not change metadata frontend IDs,
   challenge IDs such as `lc_1`, official URLs, or user-data identities.
-- `challenges/algorithms/leetcode.py` loads packages into the registry.
-- External practice lists remain views: AlgoMaster membership and pattern order
-  live in `dsa/leetcode/_meta/algomaster-subsets.json` and are refreshed with
-  `tools/sync_algomaster_subsets.py`; they never create duplicate packages.
-- `_local/` is private and ignored. Do not package it.
-- `_reports/` is generated workflow state; do not hand-edit derived counts.
-- Reference solutions are not personal attempts. When official submit-ready
-  LeetCode forms are added, keep them beside—not instead of—the app-adapted
-  `solve(...)` form and preserve original declarations.
-- `SOLUTION_VARIANTS.md` is authoritative for the repository-wide branch
-  structure. Keep identity, contract, cases, and legal benchmarks shared;
-  separate each branch's Required Complexity, approach, app-local source,
-  native source, and evidence. The Optimal branch stays first and default.
-- `SOLUTION_ALIGNMENT.md` is authoritative for proving that each app-local
-  Optimal source and its exact Accepted native source use the same algorithm,
-  data flow, helper logic, permitted naming, and stated complexity. Structural
-  differences remain in its ascending review queue unless a permitted,
-  unavoidable adapter or dialect difference has a current hash-bound review.
-- Publish a simplified branch only for an Elo-eligible Easy or Medium problem
-  after it passes the unchanged shared judge and its exact native source is
-  remotely Accepted. If that source is rejected, remove the simplified branch
-  and retain only the optimal branch.
-- `LEETCODE_SUBMISSIONS.md` is authoritative for direct submission. A package
-  candidate must remain blocked until the exact source is remotely Accepted and
-  its manifest is promoted to `verified`; never infer verification from local
-  correctness alone.
-- A native source referenced by a `verified` submission manifest is immutable
-  evidence. Never edit or replace that file in place. Stage a proposed
-  replacement separately, submit those exact staged bytes, and keep the current
-  source and manifest untouched on every rejection or verification failure.
+  Only after LeetCode reports Accepted may the staged source replace the
+  canonical native file and the manifest be updated with that submission's id
+  and timestamp.
+- During canonical migration, follow the early-verification authoring order in
+    simplified/              # optional; authored in a later reviewed pass
+      approach.md
+      submission.json
+      solutions/
+```
+
+- `server/app/challenge_packages.py` is the path API for these packages.
+- Guided examples are package-authored Markdown lessons served by
+  `/api/docs/by-id/{challenge_id}/guided-example`. Each lesson works through
+  one representative input step by step using precise prose, mathematical
+  notation, Markdown tables or diagrams, and optional package-local images.
+  The lesson must teach the reasoning and expose material traps without showing
+  solution code or pseudocode.
+- `GUIDED_EXAMPLES.md` is the format and authoring authority. Do not add a step
+  manifest, playback state, renderer-specific UI, semantic code anchors, or a
+  second solution explanation. The package's `guided_example.md` is the sole
+  source for this teaching surface.
+- Reference and Guided Example PDF exports use Electron's native Save As dialog
+  and a dedicated A4 print document. Keep exported PDFs light-only regardless
+  of the active app theme, expand printable instructional content, omit locked
+  solutions and UI controls, and preserve left-aligned display mathematics.
+- Canonical package prefixes are zero-padded to four digits for numeric
+  filesystem ordering. This formatting does not change metadata frontend IDs,
+  challenge IDs such as `lc_1`, official URLs, or user-data identities.
   Only after LeetCode reports Accepted may the staged source replace the
   canonical native file and the manifest be updated with that submission's id
   and timestamp.
@@ -159,39 +193,78 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   source change exposes a semantic misunderstanding, revise documentation,
   cases, expected outputs, both solution forms, and affected benchmark claims
   together, then rerun every gate.
+- **`solve.*` TEMPLATE & HARNESS STRUCTURE**:
+  - Anything placed **outside** of `solve(...)` or `Solution` at the top level of `solve.*` (such as helper classes `ListNode`, `TreeNode`, `Employee`, `Master`, `GuessGame`, or API stubs like `read4`) constitutes the **platform-provided template / harness**.
+  - The user is NOT expected to implement or recreate these platform-provided helper structures. They are provided as part of the starter environment just like on LeetCode.
+  - The user's task is strictly confined to the solution function/class itself (`Solution` / `solve`).
+  - All platform-provided helpers and API stubs must be cleanly declared at the module level outside `solve(...)`, ensuring full type-hinting and zero IDE/linter warnings (no red squiggly lines).
 
-## Active corpus work order
+## Active accelerated solution-and-Reference campaign
 
-The migration has two deliberately ordered phases. Do not switch between them
-based on whichever report happens to show the smallest frontend ID:
+`SOLUTION_QUALITY.md` owns the default ongoing corpus campaign. Complete
+Premium packages first and exclusively, processing one package at a time in
+ascending frontend-ID order. Finish an already-started package before returning
+to the recomputed queue head.
 
-1. **Verified-solution completion:** first finish every canonical package whose
-   Optimal branch lacks `variants/optimal/submission.json` with `status` equal
-   to `verified`. Process this queue in ascending numeric frontend-ID order,
-   except when a recorded blocker requires moving to the next actionable
-   package. Follow the early-verification order above and never substitute
-   local correctness for remote Accepted evidence.
-2. **Legacy Reference migration:** only after the verified-solution queue is
-   empty, resume the corpus-wide conversion of already completed legacy
-   documents to section-authored, source-fidelity-verified References.
+A Premium package is complete for this campaign only when all four conditions
+hold in the same package pass:
 
-Run `tools/audit_leetcode_migration.py` at the start of every migration session
-and after every completed package or batch. For phase 1, the authoritative queue
-pointer is `first_unverified_optimal_submission`; do not use a document-only or
-generic local-completion pointer to restart work on a package that already has
-remote Accepted evidence. Reopen the refreshed JSON report before selecting
-the next package. If the pointer and the manifests disagree, inspect the live
-manifest files and repair the audit before continuing.
+1. The Optimal solution has a current, hash-bound expert-quality review.
+   Accelerated reviews created from this point forward use `review_scope` equal
+   to `solution_only`; an earlier current `solution_and_cases` review still
+   satisfies the solution dimension, while its case status is ignored.
+2. The complete `variants/optimal/approach.md` has been reviewed against that
+   solution or its inert candidate and accurately teaches its algorithm, data
+   flow, correctness, complexity, alternatives, and material edge cases.
+3. The package uses the modular `reference/` structure.
+4. `source_fidelity.json` validates as `verified` against authoritative live
+   source evidence.
 
-Every package imported or completed during phase 1 must use the current modular
-Reference approach in the same package pass. Author `reference/description.md`,
-`contract.md`, `examples.md`, `constraints.md`, and every additional
-source-native section; retain `doc.md` only as the composition anchor; and add a
-reviewed `source_fidelity.json`. Do not postpone that package's Reference to the
-later legacy-document phase. Verify public and Premium statements against the
-live LeetCode source, using the authenticated read-only bridge for Premium
-content, and keep the manifest unverified when direct source evidence is
-unavailable.
+Case-quality completion and benchmark calibration are explicitly deferred to a
+separate future campaign. Do not proactively inspect, expand, rewrite,
+reclassify, calibrate, or review `cases.json` or `benchmark.json`; do not create
+`case_review` evidence or claim case-quality completion. Keep every
+`benchmark.json` byte-for-byte unchanged. Treat a bound benchmark hash only as
+inherited artifact identity, never as evidence of a fresh calibration review.
+When no candidate is created, do not run or analyze that package's cases or
+benchmarks during this campaign.
+
+Create `candidate.<extension>` only when it materially improves the protected
+app-local solution under the expert-interview standard in
+`SOLUTION_QUALITY.md`. Keep every candidate inert: never promote it, submit it,
+or represent it as remotely Accepted. Preserve good protected solutions,
+verified app/native sources, `submission.json`, metadata, and
+`solution_variants.json` exactly unless a separately proven defect authorizes a
+change. When a candidate is created, run the existing unchanged judge only as
+a black-box compatibility gate. Inspect only an ordinary case that the
+candidate fails, and delete it only when authoritative source evidence
+independently proves the case wrong; never add a replacement. Do not inspect or
+modify a failed benchmark. Leave such a candidate inconclusive or omit it and
+preserve the protected solution.
+
+Derive the Premium queue from current solution-quality completion plus verified
+source fidelity, ignoring case-quality status. After each completed package,
+run its direct validators and protected-file integrity checks. Run the complete
+dataset audit without `--solution-only` and
+`tools/audit_leetcode_migration.py` after every fifty campaign completions and
+once more before session handoff, then reopen the refreshed reports and
+recompute the queue. `first_unverified_optimal_submission` remains an integrity
+signal for remote Accepted evidence, not the active campaign queue.
+
+For each active package, author `reference/description.md`, `contract.md`,
+`examples.md`, `constraints.md`, and every additional source-native section;
+retain `doc.md` only as the composition anchor. Verify Premium statements
+through the authenticated read-only Chrome source workflow (`browser_subagent`).
+**MANDATORY LIVE SOURCE FETCH**: For EVERY problem package, the agent MUST first run `browser_subagent` to open `https://leetcode.com/problems/<slug>/description/`, extract the full live statement (including all Markdown schema tables, interface declarations, math formulas, notes, hints, and example tables), and extract the exact starter template from the LeetCode code editor (including all docstrings, comments, parameter types, and method signatures verbatim with an indented `pass` inside function bodies to prevent syntax and linter errors), saving it as `template.<ext>` (e.g. `template.py` or `template.sql`) in the root of the problem package directory. Never draft `reference/` files or starter code from unverified local summaries. Preserve every source schema, example, explanation, constraint, note, hint, table, diagram, and other source-native section without copying provider prose or HTML. Direct source evidence is mandatory for a verified fidelity manifest: if it is unavailable, keep the package in progress and do not move to another package.
+
+**UNIVERSAL PRESERVATION OF EXACT CONTRACTS, SCHEMAS & TECHNICAL FACTS**: Across ALL DSA categories (Algorithms, Data Structures, Trees, Graphs, Strings, Math, SQL/Database):
+- Never omit, abbreviate, or alter essential source declarations, table schemas, primary/foreign key designations (e.g. `primary key (column with unique values)`), custom class/interface code blocks (e.g. `interface FontInfo`, `class Node`), method contracts, parameter ranges, return guarantees, edge-case constraints, notes, hints, or mathematical expressions.
+- Preserve every source schema, table, code interface block, LaTeX equation, constraint, note, hint, and follow-up in its original logical position.
+- Rephrase surrounding narrative prose for independent clarity, but keep all technical definitions, variable names, literals, and structural guarantees strictly intact.
+
+**STRICT MINIMAL MODIFICATION RULE**:
+- Rephrase or edit text ONLY when necessary to improve clarity. Otherwise, preserve technical definitions, math relations, variable names, indices, and structural facts 1:1 from the live source.
+- NEVER alter variable identifiers (e.g. keep uppercase $A$, $B$, index $i$ as in the source; do not change $A$ to lowercase `a` or remove index $i$), mathematical expressions (e.g. keep $A[i] \neq B[i]$ and $A[i] > B[i]$), literals, or index notation.
 
 ## Documentation
 
@@ -347,11 +420,11 @@ a newly completed higher-ID package, also run it with
 `--max-frontend-id <completed-id>` or validate that package directly; never
 mistake exclusion from the default scope for successful review.
 
-Always reopen the refreshed completion report before selecting the next batch.
-During verified-solution completion, also reopen
-`two_sum_migration_progress.json` and follow
-`first_unverified_optimal_submission`; the documentation completion report does
-not own that queue.
+After each Premium package, run its direct validators and integrity checks and
+rederive the accelerated queue from live solution-review and source-fidelity
+evidence. Refresh the complete dataset and migration reports after every fifty
+campaign completions and before session handoff. Ignore case-quality status
+when choosing work for this campaign.
 
 ## Runtime benchmark authoring
 

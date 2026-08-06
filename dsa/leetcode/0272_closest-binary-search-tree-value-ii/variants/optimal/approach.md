@@ -14,9 +14,14 @@ The stack tops are respectively the largest unchosen value at most the target an
 Within the predecessor side, values become no closer as they decrease away from the target; within the successor side, they become no closer as they increase. Each side's top is therefore its best remaining candidate, and the globally closest unchosen value must be one of those two. Selecting the nearer top and advancing only that iterator restores the same condition for the next choice.
 
 ## Complexity detail
-Initialization follows two root-to-leaf paths. Every selected node is pushed and popped through a bounded iterator traversal, giving $O(h + k)$ time and $O(h)$ stack space.
+
+Initializing both stacks follows two root-to-leaf paths in $O(h)$ time. Across all $k$ selections, each node entered by
+an iterator is pushed and popped at most once, so advancement costs $O(k)$ amortized time. The total is $O(h + k)$.
+The two stacks contain $O(h)$ nodes; excluding the returned $k$ values, auxiliary space is $O(h)$.
 
 ## Alternatives and edge cases
+
 - **Traverse and sort all nodes:** costs $O(n \log n)$ and ignores BST ordering.
 - **Keep a size-`k` heap during full traversal:** costs $O(n \log k)$.
-- One iterator may empty first; the remaining values then come from the other side.
+- **Exhausted iterator:** if one stack empties, every remaining selection must come from the other ordered side.
+- **All nodes requested:** `k = n` drains both iterators and returns the whole tree in distance-selection order.

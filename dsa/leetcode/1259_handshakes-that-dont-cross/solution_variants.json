@@ -9,7 +9,7 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Handshakes That Don't Cross and meets the required complexity bound.",
-      "time_complexity": "O(p\\log M)",
+      "time_complexity": "O(p+\\log M)",
       "space_complexity": "O(1)"
     }
   ]

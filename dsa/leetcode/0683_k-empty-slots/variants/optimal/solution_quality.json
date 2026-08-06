@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_683",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected source uses the campaign-forbidden generic local name index for the forward position that validates the active endpoint window. The candidate renames only that role to scan_position, making its spatial purpose explicit without changing a comparison, boundary, update, or data flow."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "improved",
+        "reason": "The inert candidate preserves the Accepted inverse-day sliding-window algorithm exactly while making the single forward scan interview-readable. The days array, left and right endpoints, invalidation rule, candidate-day calculation, asymptotic bounds, and solve(bulbs, k) contract are unchanged."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The inverse days array records when each physical bulb turns on. For endpoints k + 1 positions apart, their first simultaneous lit day is the later endpoint day, and the window is valid exactly when every interior bloom day is later than both endpoints. An interior position blooming too early invalidates the current window and every intervening fixed-width start, so advancing left to that position skips only impossible candidates. Reaching right without earlier invalidation proves a valid pair, and the minimum recorded endpoint day is therefore the earliest answer."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 683, Python, and the native kEmptySlots(bulbs, k) interface. The candidate preserves the permutation of one-based bulb positions, one activation per one-based day, exactly k unlit interior bulbs, earliest qualifying day, and -1 result when no pair occurs."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065565853 use the same inverse-day construction, endpoint distance, forward invalidation condition, right-boundary recognition, minimum later-endpoint day, and no-answer sentinel. The candidate changes only the local scan name and remains inert; it does not replace or alter the Accepted evidence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged authored workloads grow sequential bloom permutations from 64 to 512 positions with k equal to half the size, forcing a no-solution traversal while each scan position advances once. In a fresh real-test run, the exact candidate passed all ten ordinary correctness cases and all three performance tiers with relative growth exponent -0.00 and a 0.97x largest runtime ratio; the protected source also passed with exponent -0.01 and a 1.00x ratio. A correct day-by-day control comparing every new bloom with all prior blooms passed every ordinary and benchmark output but failed only performance with relative growth exponent +1.12 and a 152.85x largest runtime ratio, distinguishing the linear window scan from quadratic pair comparison."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach accurately derives the inverse day array, fixed endpoint distance, premature-interior invalidation, scan_position update, right-boundary recognition, skipped-window argument, and earliest-day minimization. Its O(N) time and O(N) auxiliary-space claims match the candidate and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "reviewed",
+        "reason": "The legacy document was replaced by a composition anchor and four modular Reference sections. The independent narrative preserves the initially-off state, exactly one daily activation, zero-based schedule indexing and one-based bulb positions, exact endpoint separation, still-off interior bulbs, earliest qualifying day, both source examples in order, every daily state in the first explanation, and all five constraints."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated live Premium evidence verified the description, exactly two source examples, the complete first-example day progression, absence of an explanation for the second example, and all five constraints. The modular Reference is bound to source content hash 1d8fd1d9c4f5f42df2e0e95b4ead7f8aef31dd70f787f478b2c3810ab6a98d8f and every composed local section through source_fidelity.json; direct validation returns verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact bulb orders, k values, and outputs now appear first and in source order; the local adjacent-bulb check was reclassified from an invented sample to a trial.",
+      "All ordinary correctness checks are visible samples or trials. The former hidden longer permutation, invalid-window reset, and oversized-gap checks were exposed or strengthened, leaving no correctness behavior concealed in cases.json.",
+      "Contract boundaries cover n = 1, k = 0, k = 20000, positions 1 and n, a permutation of every position, the widest gap that can fit, and a gap too large to fit. Larger N behavior remains the concern of the separate scaling workloads rather than an oversized ordinary case.",
+      "Material behavior covers adjacent endpoints, earliest selection among multiple qualifying pairs, a valid pair after an invalid window, a delayed answer in a longer permutation, a geometrically fitting gap whose interiors bloom too early, and both reachable and impossible outcomes.",
+      "Expected results were checked by an independent day-by-day lit-set oracle across all permutations through n = 8 and k values from 0 through n + 1, totaling 455345 permutation/k combinations. Protected app, inert candidate, and immutable native forms agreed with the oracle throughout and on every authored case and benchmark.",
+      "All ten ordinary cases are visible. The unchanged 64, 256, and 512-position workloads remain hidden and performance-only in benchmark.json, span 8x, and make the correct all-prior-blooms control fail only the scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "0123f2742758fb5a8a6fdc2ab962b23148d3dd648301cddcc637bf2df33384a1",
+    "native_source_sha256": "89cb312810977ace4f25bb0379b8180644e30d0f2f737401e50b555afdd6bceb",
+    "approach_sha256": "2579b941d9a70a229f0aa8b1cae083279be5725d19d7c36fee2e3be5f682d3a3",
+    "solution_variants_sha256": "1d590847159e6094ccf8a65a5fa19953105e3021f6c949ef06adc08924903d0d",
+    "complexity_evidence_sha256": "d7e59e99699787d4c710c281744e678d77515d2ed86f522344cb48124cb4f912",
+    "cases_sha256": "c385dc19fa5b0a5772daf765f11c17e7a9c13f8cfd62b38beec7d34ba8041425",
+    "candidate_source_sha256": "f153b87ba1fdf3cce838bcd1d7a4058bf7371df631503e94810650d33ff60b76"
+  }
+}

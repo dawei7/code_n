@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Paint House II and meets the required complexity bound.",
+      "summary": "Uses each prior row's smallest total, its color, and the second-smallest total for O(1) transitions.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(k)"
     }

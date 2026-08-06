@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_467",
+    "frontend_id": "467",
+    "title_slug": "unique-substrings-in-wraparound-string",
+    "url": "https://leetcode.com/problems/unique-substrings-in-wraparound-string/description/",
+    "paid_only": false,
+    "content_sha256": "d604ddec6cdfb041435537803fd690b35dbc330895fa344596d83d8515891b66",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"a\"",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"cac\"",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"zab\"",
+        "output": "6",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "88b24f38cf55c3218888256f3666f52a5c050f2cd7c276c48406ec8a168a722e",
+      "reference/contract.md": "3b60d1286b880db3de0f92e9ff0a9e7f266fa4eac695854ab32b7dea925f5dba",
+      "reference/examples.md": "f5e2718f19b92a72158167b5dbe13819235c2ca6ba35e6e11aeb6bc6a0fd39ef",
+      "reference/constraints.md": "4e486110a57fafd83e6d722b12a8db32b50e8b1b609310b1f3604a160ad6024f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

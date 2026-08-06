@@ -21,13 +21,56 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "no-carry"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: carry through trailing nines",
+      "name": "sample: zero becomes one",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          0
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "source-example",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-all-nine",
+      "name": "trial: carry creates leading digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          9,
+          9,
+          9
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "all-nine"
+      ]
+    },
+    {
+      "id": "trial-trailing-nines",
+      "name": "trial: carry through trailing nines",
+      "kind": "trial",
       "visible": true,
       "input": {
         "head": [
@@ -44,49 +87,8 @@
         0
       ],
       "tags": [
-        "sample",
-        "carry"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: carry creates leading digit",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "head": [
-          9,
-          9,
-          9
-        ]
-      },
-      "expected": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "tags": [
-        "sample",
-        "all-nine"
-      ]
-    },
-    {
-      "id": "trial-zero",
-      "name": "trial: zero becomes one",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "head": [
-          0
-        ]
-      },
-      "expected": [
-        1
-      ],
-      "tags": [
         "trial",
-        "boundary"
+        "carry"
       ]
     },
     {
@@ -109,10 +111,10 @@
       ]
     },
     {
-      "id": "hidden-middle-carry",
-      "name": "hidden: carry stops before leading digit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-carry",
+      "name": "trial: carry stops before leading digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           4,
@@ -130,15 +132,15 @@
         0
       ],
       "tags": [
-        "hidden",
+        "trial",
         "carry"
       ]
     },
     {
-      "id": "hidden-internal-nine",
-      "name": "hidden: earlier nine is not in carry suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-internal-nine",
+      "name": "trial: earlier nine is not in carry suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -154,15 +156,15 @@
         0
       ],
       "tags": [
-        "hidden",
+        "trial",
         "carry"
       ]
     },
     {
-      "id": "hidden-long-no-carry",
-      "name": "hidden: preserve prefix when tail increments",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-no-carry",
+      "name": "trial: preserve prefix when tail increments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           2,
@@ -178,7 +180,7 @@
         1
       ],
       "tags": [
-        "hidden",
+        "trial",
         "no-carry"
       ]
     }

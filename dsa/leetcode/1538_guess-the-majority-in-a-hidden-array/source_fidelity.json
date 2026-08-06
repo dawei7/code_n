@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1538",
+    "frontend_id": "1538",
+    "title_slug": "guess-the-majority-in-a-hidden-array",
+    "url": "https://leetcode.com/problems/guess-the-majority-in-a-hidden-array/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums = [0, 0, 1, 0, 1, 1, 1, 1]`",
+        "output": "`5`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums = [0, 0, 1, 1, 0]`",
+        "output": "`0`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`nums = [1, 0, 1, 0, 1, 0, 1, 0]`",
+        "output": "`-1`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "97e00d74a1c4e37a71bf5914aafd0ed95bb8a7d6f5a22096416b9544b826ecac",
+      "reference/contract.md": "b3f6878c5bf037cf4823db16c03060b9e0548229b3ff422499101354a06c834b",
+      "reference/examples.md": "01de050ed0ab760f8490def15370e536cf83b38a7b8c561a229487b3dfa46228",
+      "reference/constraints.md": "36f3527a8e26acbc71a9dd55408d84cc992df8c5dc97ab376bbdbcc88fdc507a",
+      "reference/hint.md": "230e6506f89c8bb54059ed9f0bb36f439ff9b1e089137c4a393fe2df2578fe6a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

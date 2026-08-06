@@ -69,6 +69,9 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "sample",
         "window-function"
@@ -100,6 +103,9 @@
             1
           ]
         ]
+      },
+      "validator": {
+        "kind": "unordered_table"
       },
       "tags": [
         "trial",
@@ -157,6 +163,9 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "trial",
         "partitions"
@@ -205,16 +214,19 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "trial",
         "identifiers"
       ]
     },
     {
-      "id": "hidden-one-team",
-      "name": "hidden: every employee belongs to one team",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-team",
+      "name": "trial: every employee belongs to one team",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -261,16 +273,19 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
-        "hidden",
+        "trial",
         "single-team"
       ]
     },
     {
-      "id": "hidden-all-singletons",
-      "name": "hidden: every team is a singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-singletons",
+      "name": "trial: every team is a singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -309,16 +324,19 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
-        "hidden",
+        "trial",
         "singletons"
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: interleaved teams with different sizes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "trial: interleaved teams with different sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -381,9 +399,103 @@
           ]
         ]
       },
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
-        "hidden",
+        "trial",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no employees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": {
+            "columns": [
+              "employee_id",
+              "team_id"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-signed-identifiers",
+      "name": "trial: negative and zero identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "employee_id": 7,
+              "team_id": 0
+            },
+            {
+              "employee_id": -10,
+              "team_id": -1
+            },
+            {
+              "employee_id": 0,
+              "team_id": -1
+            },
+            {
+              "employee_id": -3,
+              "team_id": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": [
+          [
+            -10,
+            2
+          ],
+          [
+            -3,
+            2
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            7,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "trial",
+        "signed-values",
+        "ordering"
       ]
     }
   ]

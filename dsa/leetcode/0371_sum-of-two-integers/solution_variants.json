@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Two Integers and meets the required complexity bound.",
+      "summary": "Propagates XOR partial sums and shifted AND carries inside a masked 32-bit two's-complement word.",
       "time_complexity": "O(w)",
       "space_complexity": "O(1)"
     }

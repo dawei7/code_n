@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_48",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order with their exact rotated matrices",
+      "the 1 x 1 minimum and a visible 20 x 20 maximum-size matrix at the maximum value 1000",
+      "the value endpoints -1000 and 1000, negative-only input, mixed signs, zeros, odd sizes, and even sizes",
+      "1,530 matrices checked with an independent coordinate-mapping oracle against the current source and immutable native source",
+      "in-place mutation, the exact clockwise result, and the required None return verified in all 3,060 oracle checks",
+      "three hidden performance-only tiers spanning n = 1, 4, and 16 for quadratic cell growth",
+      "a correct cubic rotation that passes every output and fails only scaling growth (+0.98 > +0.15; 15.95x > 8x)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "89317758f6ba7b4cb99abf225ce5c3a9ae21dbce07670ac03d4a9f543d79b36d",
+    "native_source_sha256": "a299e18afb5be73c659e8ff4b300cf3d85346ec9a08c0ec4b954fdf44810c26c",
+    "approach_sha256": "5cbb82f603ec4dcffb24a443cd7e09b1e73372381ebe93b760ca63762da065e5",
+    "solution_variants_sha256": "95dcbb299a4204d35194bb3554ebe3363c8a4e40a66b8b028103ae465e33c86b",
+    "cases_sha256": "1885a37c702cb9bfafb14e6781c21cd1b5530f2573a3e2a781dd9f7ff594141c",
+    "complexity_evidence_sha256": "bc9104b496c3f6529aada29bb6b6f0d0fa3b11c3f57ef954983f3b929cac4a23"
+  }
+}

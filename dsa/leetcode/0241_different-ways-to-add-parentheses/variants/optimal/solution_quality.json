@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_241",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "Both protected sources use the prohibited generic local name `index` for an operator split. The inert candidate preserves the exact accepted memoized recursion and app-local contract while using the conventional interview variable `i`."
+      },
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "Apart from the naming issue, the protected algorithm is the conventional output-sensitive solution: choose every operator as the root, combine every cached left/right result pair, preserve duplicate values, and parse an operator-free substring once. No algorithmic rewrite is justified."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 1/4/8-operator all-plus tiers require the complete Catalan multiset while keeping arithmetic stable and the largest result count below 10^4. The candidate passes at +0.01 relative exponent; the same correct recursion without memoization passes every output and fails only scaling at +1.42 with an 18.91x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach accurately proves the unique-root decomposition, explains why substring results must be cached as multisets rather than sets, and states the output-sensitive Catalan bound. Number-only, multi-digit, and duplicate-result semantics are now labeled explicitly."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "3e03ff9a173e2c7944b96a0f4eba6d92b4cf307574881e1c3934adfb92ba051f",
+    "native_source_sha256": "b6f532a874b11602d60a58f0869029071eec0c64e7a497d1e87a6d7f95a04026",
+    "approach_sha256": "20b12d6667592de87dc28bd54b212d18b01445f531b20899bb7c24d01d89f858",
+    "solution_variants_sha256": "8a70281dfa567fb3519788754ccae775f4a3ad566a51c6746fb7787b26bde079",
+    "complexity_evidence_sha256": "da0552069cfda5e10b80bcb05b1f502d42a68d2c35135c5e4851e09fb3da218f",
+    "candidate_source_sha256": "08a10f17bc1751ea9e7a9df98108e05f2382f35a774ff806692be9db103ef400"
+  }
+}

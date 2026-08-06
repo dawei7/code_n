@@ -1,7 +1,7 @@
 ## General
 **Only windows with the pattern length can qualify**
 
-Anagrams contain the same number of characters, so maintain a window of exactly `m = len(p)` characters. Count the pattern's letters and the first text window in two 26-entry arrays.
+Anagrams contain the same number of characters, so maintain a window of exactly `m = len(p)` characters. After ruling out `m > len(s)`, pair each pattern character `x` with the corresponding first-window character `y` and count them in two 26-entry arrays. Use one lowercase-alphabet offset to map both characters into those arrays.
 
 **Slide by updating only the two boundary letters**
 

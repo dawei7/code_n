@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_465",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source uses the conventional net-balance reduction followed by symmetry-pruned backtracking on the first unsettled account. Its mutation and restoration are compact, its pruning is safe, and its names communicate the settlement model clearly, so no inert candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 465 and its single-list Python contract. The corrected O(n + k!) time claim includes aggregation before factorial search; O(p + k^2) space includes the participant map and the sum of active per-depth symmetry sets, where n is the transaction count, p the participant count, and k the nonzero-balance count."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2064954969. It matches the protected source in balance aggregation, zero removal, recursive cursor advancement, opposite-sign filtering, equal-value symmetry pruning, in-place partner mutation and restoration, exact-cancellation cutoff, and final return; only the LeetCode class wrapper and type surface differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three authored tiers use 2, 4, and 8 nonzero balances, span 4x, and specifically exercise repeated equivalent counterparties and exact cancellations. The current source passed all 9 correctness cases and all three performance tiers. An independent correct subset-partition control passed every output, including the enlarged legal boundary suite, but failed only the runtime verdict with relative growth exponent +1.64 and a 12.83x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach now matches the protected target exactly: it derives netting, explains why clearing the first unfinished account covers every optimal first counterparty, accounts for the in-place residual balance and restoration, justifies both pruning rules, and states aggregation, factorial search, and active-set storage costs without omitting preprocessing."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves the transfer semantics and requested minimum, both examples in order with complete independently worded explanations, all five constraints, and the source's absence of follow-ups, tables, images, or diagrams."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples appear first and in source order with exact transaction and result facts, and both are explicitly tagged as source examples.",
+      "The illegal empty-history sample was replaced with a legal fully netted history. Boundary trials cover 1 and 8 transactions, participant identifiers 0 and 11, all 12 permitted identifiers, and amounts 1 and 100.",
+      "Visible trials cover a zero final balance, payment-chain netting, independent pairs, unequal residual balances, cyclic history, exact cancellation, minimum input size, and maximum input size.",
+      "An independent zero-sum subset-partition oracle verified all nine authored results and all three benchmark outputs, plus 1,884 exhaustive one-to-three-transfer histories over three people and 1,000 deterministic randomized legal histories.",
+      "All nine correctness cases are visible samples or trials; the unchanged 2-, 4-, and 8-balance workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "a207140fb1dd914321c473279e29c7953231f21b386a68fb27f5e33858793df1",
+    "native_source_sha256": "cd8aedcf010bbac3d0ccecbc265cba440089d980b7db335dc00d66af9e856d8e",
+    "approach_sha256": "0c8b3310b3b271f3b294f216fe9c1819b5f559ac44fcfdcb268d20f79e39f0f6",
+    "solution_variants_sha256": "4ead2e6c5badb165fa74b3c9d1cd7817122645ba9574519ff49976d2a325d883",
+    "complexity_evidence_sha256": "2436270b91841ee0ac8245a9d2ad14a21e4913fbcd50a3f8cf49a72d419dc78b",
+    "cases_sha256": "e842fa620152ca2fcfb2d52d2d86684284765b48b15cf22aa5eb70e5f8f7c58e"
+  }
+}

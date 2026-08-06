@@ -2,11 +2,137 @@
   "schema_version": 1,
   "challenge_id": "lc_631",
   "cases": [
-    {"id": "sample-1", "name": "sample: overlapping references update", "kind": "sample", "visible": true, "input": {"operations": ["Excel","set","sum","set","get"], "arguments": [[3,"C"],[1,"A",2],[3,"C",["A1","A1:B2"]],[2,"B",2],[3,"C"]]}, "expected": [null,null,4,null,6], "tags": ["sample", "overlap", "propagation"]},
-    {"id": "sample-2", "name": "sample: blank and literal cells", "kind": "sample", "visible": true, "input": {"operations": ["Excel","get","set","get","sum","get"], "arguments": [[2,"B"],[1,"A"],[1,"A",5],[1,"A"],[2,"B",["A1"]],[2,"B"]]}, "expected": [null,0,null,5,5,5], "tags": ["sample", "blank", "literal"]},
-    {"id": "trial-1", "name": "trial: dependency chain receives both paths", "kind": "trial", "visible": true, "input": {"operations": ["Excel","set","sum","sum","set","get"], "arguments": [[1,"C"],[1,"A",2],[1,"B",["A1"]],[1,"C",["A1:B1"]],[1,"A",3],[1,"C"]]}, "expected": [null,null,2,4,null,6], "tags": ["trial", "chain", "diamond"]},
-    {"id": "trial-2", "name": "trial: replacing formula removes old dependency", "kind": "trial", "visible": true, "input": {"operations": ["Excel","set","sum","sum","set","get","set","get"], "arguments": [[3,"C"],[1,"A",5],[3,"C",["A1"]],[3,"C",["B1"]],[1,"A",9],[3,"C"],[1,"B",4],[3,"C"]]}, "expected": [null,null,5,0,null,0,null,4], "tags": ["trial", "formula-replacement"]},
-    {"id": "hidden-1", "name": "hidden: range overlap preserves multiplicity", "kind": "real", "visible": false, "input": {"operations": ["Excel","set","set","set","set","sum","set","get"], "arguments": [[3,"C"],[1,"A",1],[2,"A",2],[1,"B",3],[2,"B",4],[3,"C",["A1:B2","A1","B2"]],[2,"B",10],[3,"C"]]}, "expected": [null,null,null,null,null,15,null,27], "tags": ["hidden", "range", "multiplicity"]},
-    {"id": "hidden-2", "name": "hidden: literal overwrite stops propagation", "kind": "real", "visible": false, "input": {"operations": ["Excel","set","sum","set","set","get"], "arguments": [[2,"B"],[1,"A",7],[2,"B",["A1"]],[2,"B",11],[1,"A",20],[2,"B"]]}, "expected": [null,null,7,null,null,11], "tags": ["hidden", "literal-overwrite"]}
+    {
+      "id": "sample-1",
+      "name": "sample: source overlapping references update",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "sum", "set", "get"],
+        "arguments": [[3, "C"], [1, "A", 2], [3, "C", ["A1", "A1:B2"]], [2, "B", 2], [3, "C"]]
+      },
+      "expected": [null, null, 4, null, 6],
+      "tags": ["sample", "source-example", "overlap", "propagation"]
+    },
+    {
+      "id": "trial-blank-and-literal-cells",
+      "name": "trial: blank and literal cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "get", "set", "get", "sum", "get"],
+        "arguments": [[2, "B"], [1, "A"], [1, "A", 5], [1, "A"], [2, "B", ["A1"]], [2, "B"]]
+      },
+      "expected": [null, 0, null, 5, 5, 5],
+      "tags": ["trial", "blank", "literal", "single-reference"]
+    },
+    {
+      "id": "trial-dependency-diamond",
+      "name": "trial: dependency chain receives both paths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "sum", "sum", "set", "get"],
+        "arguments": [[1, "C"], [1, "A", 2], [1, "B", ["A1"]], [1, "C", ["A1:B1"]], [1, "A", 3], [1, "C"]]
+      },
+      "expected": [null, null, 2, 4, null, 6],
+      "tags": ["trial", "chain", "diamond", "transitive-propagation"]
+    },
+    {
+      "id": "trial-formula-replacement",
+      "name": "trial: replacing formula removes old dependency",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "sum", "sum", "set", "get", "set", "get"],
+        "arguments": [[3, "C"], [1, "A", 5], [3, "C", ["A1"]], [3, "C", ["B1"]], [1, "A", 9], [3, "C"], [1, "B", 4], [3, "C"]]
+      },
+      "expected": [null, null, 5, 0, null, 0, null, 4],
+      "tags": ["trial", "formula-replacement", "stale-edge-removal"]
+    },
+    {
+      "id": "trial-formula-overwrites-literal",
+      "name": "trial: formula overwrites literal and updates downstream cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "set", "sum", "sum", "get", "set", "get"],
+        "arguments": [[1, "C"], [1, "A", 2], [1, "B", 10], [1, "C", ["B1"]], [1, "B", ["A1"]], [1, "C"], [1, "A", 4], [1, "C"]]
+      },
+      "expected": [null, null, null, 10, 2, 2, null, 4],
+      "tags": ["trial", "literal-to-formula", "downstream-propagation"]
+    },
+    {
+      "id": "trial-range-overlap-multiplicity",
+      "name": "trial: range overlap preserves multiplicity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "set", "set", "set", "sum", "set", "get"],
+        "arguments": [[3, "C"], [1, "A", 1], [2, "A", 2], [1, "B", 3], [2, "B", 4], [3, "C", ["A1:B2", "A1", "B2"]], [2, "B", 10], [3, "C"]]
+      },
+      "expected": [null, null, null, null, null, 15, null, 27],
+      "tags": ["trial", "range", "overlap", "multiplicity"]
+    },
+    {
+      "id": "trial-literal-overwrite",
+      "name": "trial: literal overwrite stops propagation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "sum", "set", "set", "get"],
+        "arguments": [[2, "B"], [1, "A", 7], [2, "B", ["A1"]], [2, "B", 11], [1, "A", 20], [2, "B"]]
+      },
+      "expected": [null, null, 7, null, null, 11],
+      "tags": ["trial", "literal-overwrite", "stale-edge-removal"]
+    },
+    {
+      "id": "trial-minimum-sheet-value-bounds",
+      "name": "trial: minimum sheet and literal value bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "get", "set", "get", "set", "get"],
+        "arguments": [[1, "A"], [1, "A"], [1, "A", -100], [1, "A"], [1, "A", 100], [1, "A"]]
+      },
+      "expected": [null, 0, null, -100, null, 100],
+      "tags": ["trial", "minimum-sheet", "value-boundaries", "negative-value"]
+    },
+    {
+      "id": "trial-maximum-coordinate-range",
+      "name": "trial: maximum coordinate and multi-digit inclusive range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "set", "sum", "set", "set", "get"],
+        "arguments": [[26, "Z"], [25, "Y", 3], [26, "Z", -2], [24, "X", ["Y25:Z26"]], [26, "Y", 4], [25, "Z", 7], [24, "X"]]
+      },
+      "expected": [null, null, null, 1, null, null, 12],
+      "tags": ["trial", "maximum-sheet", "maximum-coordinate", "inclusive-range", "multi-digit-row"]
+    },
+    {
+      "id": "trial-five-references",
+      "name": "trial: five references retain duplicates and blanks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "set", "sum", "set", "get"],
+        "arguments": [[2, "C"], [1, "A", 2], [1, "B", -1], [2, "C", ["A1", "A1", "B1", "A1:B1", "A2:B2"]], [1, "B", 3], [2, "C"]]
+      },
+      "expected": [null, null, null, 4, null, 12],
+      "tags": ["trial", "maximum-reference-count", "duplicates", "blank-range", "negative-value"]
+    },
+    {
+      "id": "trial-negative-diamond",
+      "name": "trial: negative change propagates through both dependency paths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Excel", "set", "sum", "sum", "set", "get"],
+        "arguments": [[3, "C"], [1, "A", -5], [1, "B", ["A1"]], [1, "C", ["A1:B1"]], [1, "A", -3], [1, "C"]]
+      },
+      "expected": [null, null, -5, -10, null, -6],
+      "tags": ["trial", "negative-value", "diamond", "transitive-propagation"]
+    }
   ]
 }

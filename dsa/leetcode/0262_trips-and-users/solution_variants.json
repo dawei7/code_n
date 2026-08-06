@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Trips and Users and meets the required complexity bound.",
+      "summary": "Joins each trip to unbanned client and driver rows, then averages cancellation indicators per requested day.",
       "time_complexity": "O(t \\log u)",
       "space_complexity": "O(u)"
     }

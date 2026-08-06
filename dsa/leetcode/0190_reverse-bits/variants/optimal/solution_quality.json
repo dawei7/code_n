@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_190",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The previous benchmark assigned synthetic sizes 8/64/256 to fixed 32-bit inputs, so it did not represent a legal scaling dimension. A bounded-domain certificate now proves the exact 32-iteration O(1) time and O(1) auxiliary-space bounds."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "797bdf0e12acf73027c62b7361c8d2ca5844cdbb0bd24793159ac30d2c4826f2",
+    "native_source_sha256": "9477b4dae3140b46fc4df7708358ab06c4b6d5bf4e6c4b5661f0c687c06772a0",
+    "approach_sha256": "fd1ad2989f06d2e67f6348dcfca9bd805e678353e667da275ff007edc87165a3",
+    "solution_variants_sha256": "dbf4be386a06f81aaf605004ee871290cc0cb7e1efc6f23986e49ee119b927b5",
+    "complexity_evidence_sha256": "31b1ab32133fc8176dc57a2ee5f04105eb39a30541768e2e1ec2d76ffb094a17"
+  }
+}

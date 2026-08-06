@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_159",
-  "measurement_note": "Alternating among three characters repeatedly invalidates the window; two monotone boundaries retain linear growth while restart scans become quadratic.",
+  "measurement_note": "A single-character string keeps every suffix valid, forcing restart-from-each-position scans to examine quadratically many characters while the sliding window remains linear.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 8 alternating characters",
+      "name": "benchmark: 8 identical characters",
       "kind": "benchmark",
       "visible": false,
       "size": 8,
       "input": {
-        "s": "abcabcab"
+        "s": "aaaaaaaa"
       },
-      "expected": 2,
+      "expected": 8,
       "tags": [
         "benchmark",
         "scale-small"
@@ -20,14 +20,14 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: 64 alternating characters",
+      "name": "benchmark: 64 identical characters",
       "kind": "benchmark",
       "visible": false,
       "size": 64,
       "input": {
-        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca"
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       },
-      "expected": 2,
+      "expected": 64,
       "tags": [
         "benchmark",
         "scale-medium"
@@ -35,14 +35,14 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: 256 alternating characters",
+      "name": "benchmark: 256 identical characters",
       "kind": "benchmark",
       "visible": false,
       "size": 256,
       "input": {
-        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca"
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       },
-      "expected": 2,
+      "expected": 256,
       "tags": [
         "benchmark",
         "scale-large"

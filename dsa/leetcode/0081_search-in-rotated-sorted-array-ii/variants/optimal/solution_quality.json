@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_81",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "approach_accuracy",
+        "severity": "material",
+        "reason": "The executable midpoint expressions used `mid`, while the current source uses `middle`; the approach now names the implemented state exactly."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "material",
+        "reason": "A validated asymptotic-optimality certificate now records the duplicate-driven Omega(n) absence lower bound and the current search's matching O(n) upper bound directly."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "e1d7a1de569d368d4a6f758e507f438d65ffd4aeb09caad22bfc48bc5d6ffb5c",
+    "native_source_sha256": "d78abe44017181fff9f9f20af94bd3996e450c1ef588fc8a5e64d454c3fed644",
+    "approach_sha256": "fff528142f8103861a8a38ccfb5676cc7cd0060955a3059f194eeaf6226fc6dc",
+    "solution_variants_sha256": "daa019934c149dea888f1288059ba5fcd9ca9ca55824804b85c2403c211ad429",
+    "complexity_evidence_sha256": "3ef1d6fc5b8cb7818845fa234c48c9abbd7f63791767a72ac2ca2e78b3eac4ff"
+  }
+}

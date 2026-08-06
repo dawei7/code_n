@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Combination Sum IV and meets the required complexity bound.",
+      "summary": "Counts ordered sequences by subtotal, appending each input value as the final element of a transition.",
       "time_complexity": "O(n \\cdot target)",
       "space_complexity": "O(target)"
     }

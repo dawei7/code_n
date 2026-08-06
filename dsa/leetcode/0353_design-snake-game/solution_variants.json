@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Snake Game and meets the required complexity bound.",
+      "summary": "Tracks tail-to-head order in a deque and live body occupancy in a set for constant-time moves.",
       "time_complexity": "O(q)",
       "space_complexity": "O(f)"
     }

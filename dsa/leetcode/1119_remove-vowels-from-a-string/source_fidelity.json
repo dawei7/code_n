@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1119",
+    "frontend_id": "1119",
+    "title_slug": "remove-vowels-from-a-string",
+    "url": "https://leetcode.com/problems/remove-vowels-from-a-string/description/",
+    "paid_only": true,
+    "content_sha256": "2e9041e454dad769a92bc038b62a65b1ce30abe0322fe47353bcd1fcd7c48940",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"leetcodeisacommunityforcoders\"",
+        "output": "\"ltcdscmmntyfrcdrs\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"aeiou\"",
+        "output": "\"\"",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "fac1f478218786a7ff60ec03216898e4b6592a16272da70ba31d6c0c1ff0518d",
+      "reference/contract.md": "1942b988ca0b09f05381a33f9d5c2083fae9bee036a779d840ff1db4916b1a79",
+      "reference/examples.md": "b3e94deafd5731b29f8e874b84b77398989214d40bac5062bf0f1e83e5c43db2",
+      "reference/constraints.md": "3cc938a18f6727a9d903866849cb07bdce0e3496a027561de4dc373a52198b83",
+      "reference/hints.md": "c55a0c13d530aa169f000088e3a445cd85be43b37621be8746e325c49503b026"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

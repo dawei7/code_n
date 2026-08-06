@@ -2,11 +2,141 @@
   "schema_version": 1,
   "challenge_id": "lc_1188",
   "cases": [
-    {"id":"sample-single-producer-consumer","name":"sample: blocking in both directions","kind":"sample","visible":true,"input":{"capacity":2,"producer_threads":1,"consumer_threads":1,"operations":[["enqueue",1],["dequeue"],["dequeue"],["enqueue",0],["enqueue",2],["enqueue",3],["enqueue",4],["dequeue"],["size"]]},"expected":{"dequeued":[1,0,2],"final_size":2},"validator":{"kind":"bounded_blocking_queue"},"tags":["sample","blocking","fifo"]},
-    {"id":"sample-multiple-producers","name":"sample: scheduler may order simultaneous producers","kind":"sample","visible":true,"input":{"capacity":3,"producer_threads":3,"consumer_threads":4,"operations":[["enqueue",1],["enqueue",0],["enqueue",2],["dequeue"],["dequeue"],["dequeue"],["enqueue",3],["size"]]},"expected":{"dequeued_multiset":[0,1,2],"final_size":1},"validator":{"kind":"bounded_blocking_queue"},"tags":["sample","concurrency"]},
-    {"id":"trial-capacity-one","name":"capacity one alternates storage ownership","kind":"trial","visible":true,"input":{"capacity":1,"producer_threads":1,"consumer_threads":1,"operations":[["enqueue",7],["enqueue",8],["dequeue"],["dequeue"],["size"]]},"expected":{"dequeued":[7,8],"final_size":0},"validator":{"kind":"bounded_blocking_queue"},"tags":["trial","capacity"]},
-    {"id":"real-consumer-first","name":"hidden: consumer blocks before first item","kind":"real","visible":false,"input":{"capacity":2,"producer_threads":1,"consumer_threads":1,"operations":[["dequeue"],["enqueue",5],["size"]]},"expected":{"dequeued":[5],"final_size":0},"validator":{"kind":"bounded_blocking_queue"},"tags":["hidden","empty-block"]},
-    {"id":"real-full-producer","name":"hidden: producer blocks until capacity opens","kind":"real","visible":false,"input":{"capacity":2,"producer_threads":2,"consumer_threads":1,"operations":[["enqueue",1],["enqueue",2],["enqueue",3],["dequeue"],["dequeue"],["dequeue"],["size"]]},"expected":{"dequeued":[1,2,3],"final_size":0},"validator":{"kind":"bounded_blocking_queue"},"tags":["hidden","full-block"]},
-    {"id":"real-fifo","name":"hidden: sequentially linearized enqueues remain FIFO","kind":"real","visible":false,"input":{"capacity":4,"producer_threads":1,"consumer_threads":1,"operations":[["enqueue",4],["enqueue",1],["enqueue",9],["dequeue"],["dequeue"],["enqueue",2],["dequeue"],["dequeue"],["size"]]},"expected":{"dequeued":[4,1,9,2],"final_size":0},"validator":{"kind":"bounded_blocking_queue"},"tags":["hidden","fifo"]}
+    {
+      "id": "sample-single-producer-consumer",
+      "name": "sample 1: blocking in both directions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "capacity": 2,
+        "producer_threads": 1,
+        "consumer_threads": 1,
+        "operations": [["enqueue", 1], ["dequeue"], ["dequeue"], ["enqueue", 0], ["enqueue", 2], ["enqueue", 3], ["enqueue", 4], ["dequeue"], ["size"]],
+        "blocking_checks": [
+          {"operation_index": 2, "after_completed": [0, 1]},
+          {"operation_index": 6, "after_completed": [4, 5]}
+        ]
+      },
+      "expected": {"dequeued": [1, 0, 2], "final_size": 2},
+      "validator": {"kind": "bounded_blocking_queue"},
+      "tags": ["sample", "blocking", "fifo"]
+    },
+    {
+      "id": "sample-multiple-producers",
+      "name": "sample 2: scheduler may order simultaneous producers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "capacity": 3,
+        "producer_threads": 3,
+        "consumer_threads": 4,
+        "operations": [["enqueue", 1], ["enqueue", 0], ["enqueue", 2], ["dequeue"], ["dequeue"], ["dequeue"], ["enqueue", 3], ["size"]]
+      },
+      "expected": {"dequeued_multiset": [0, 1, 2], "final_size": 1},
+      "validator": {"kind": "bounded_blocking_queue"},
+      "tags": ["sample", "concurrency", "scheduler-order"]
+    },
+    {
+      "id": "trial-capacity-one",
+      "name": "capacity one transfers storage ownership",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": 1,
+        "producer_threads": 1,
+        "consumer_threads": 1,
+        "operations": [["enqueue", 7], ["enqueue", 8], ["dequeue"], ["dequeue"], ["size"]],
+        "blocking_checks": [{"operation_index": 1, "after_completed": [0]}]
+      },
+      "expected": {"dequeued": [7, 8], "final_size": 0},
+      "validator": {"kind": "bounded_blocking_queue"},
+      "tags": ["trial", "minimum-capacity", "full-block"]
+    },
+    {
+      "id": "trial-consumer-first",
+      "name": "consumer blocks before the first item",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": 2,
+        "producer_threads": 1,
+        "consumer_threads": 1,
+        "operations": [["dequeue"], ["enqueue", 5], ["size"]],
+        "blocking_checks": [{"operation_index": 0, "after_completed": []}]
+      },
+      "expected": {"dequeued": [5], "final_size": 0},
+      "validator": {"kind": "bounded_blocking_queue"},
+      "tags": ["trial", "empty-block", "consumer-first"]
+    },
+    {
+      "id": "trial-full-producer",
+      "name": "producer blocks until capacity opens",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": 2,
+        "producer_threads": 2,
+        "consumer_threads": 1,
+        "operations": [["enqueue", 1], ["enqueue", 2], ["enqueue", 3], ["dequeue"], ["dequeue"], ["dequeue"], ["size"]],
+        "blocking_checks": [{"operation_index": 2, "after_completed": [0, 1]}]
+      },
+      "expected": {"dequeued": [1, 2, 3], "final_size": 0},
+      "validator": {"kind": "bounded_blocking_queue"},
+      "tags": ["trial", "full-block", "multiple-producers"]
+    },
+    {
+      "id": "trial-fifo",
+      "name": "linearized enqueues remain FIFO across interleaved calls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": 4,
+        "producer_threads": 1,
+        "consumer_threads": 1,
+        "operations": [["enqueue", 4], ["enqueue", 1], ["enqueue", 9], ["dequeue"], ["dequeue"], ["enqueue", 2], ["dequeue"], ["dequeue"], ["size"]]
+      },
+      "expected": {"dequeued": [4, 1, 9, 2], "final_size": 0},
+      "validator": {"kind": "bounded_blocking_queue"},
+      "tags": ["trial", "fifo", "interleaving"]
+    },
+    {
+      "id": "trial-nonempty-final-queue",
+      "name": "more enqueues than dequeues leave the exact final size",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": 5,
+        "producer_threads": 2,
+        "consumer_threads": 2,
+        "operations": [["enqueue", 0], ["enqueue", 20], ["enqueue", 0], ["dequeue"], ["size"]]
+      },
+      "expected": {"dequeued": [0], "final_size": 2},
+      "validator": {"kind": "bounded_blocking_queue"},
+      "tags": ["trial", "payload-boundaries", "nonempty-final"]
+    },
+    {
+      "id": "trial-maximum-contract",
+      "name": "maximum capacity, thread counts, payload, and forty calls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": 30,
+        "producer_threads": 8,
+        "consumer_threads": 8,
+        "operations": [
+          ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20],
+          ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20],
+          ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20],
+          ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20],
+          ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20],
+          ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20], ["enqueue", 20],
+          ["dequeue"], ["dequeue"], ["dequeue"], ["dequeue"], ["dequeue"],
+          ["dequeue"], ["dequeue"], ["dequeue"], ["dequeue"], ["size"]
+        ]
+      },
+      "expected": {"dequeued_multiset": [20, 20, 20, 20, 20, 20, 20, 20, 20], "final_size": 21},
+      "validator": {"kind": "bounded_blocking_queue"},
+      "tags": ["trial", "maximum-capacity", "maximum-threads", "maximum-payload", "maximum-calls"]
+    }
   ]
 }

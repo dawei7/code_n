@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The current implementation uses the prohibited local name `index`; the candidate preserves the accepted one-pass hash-table algorithm while using conventional interview variables `i`, `x`, and `y`."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in their original order",
+      "the minimum two-element input and distinct positions for duplicate values",
+      "answers at the front, after the first element, and at the final two positions",
+      "negative complements and a negative target",
+      "duplicate zero values without reusing one position",
+      "array values at both numeric constraint bounds",
+      "hidden benchmark-only workloads with a unique late pair at each scale"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "c85f5cb2dfceb6467e4de3b478c137a1e3d32d34499b8048de59bec6ccecf904",
+    "native_source_sha256": "2ed614d87a742ff341fdbc3e1f5f3c37ba20d556edeb29b60dc70fbda8c1363b",
+    "approach_sha256": "827a082a8ffdd8158c723773fd262e4b2cc3e44d27403e18f3219060bd55f85e",
+    "solution_variants_sha256": "c1245c8dc518bde2697947e2cd53c2098c8f089d485eb1a05cd2e51434ba1ea3",
+    "cases_sha256": "9b451aa7c388bd6525981d2c3f7292d95946722e57f3b3c96465b00185bbec4a",
+    "complexity_evidence_sha256": "5e21f391c9c80c7e108cdfdc6b869fcbeec62b8d9912858921ed658d1c5f10e9",
+    "candidate_source_sha256": "621aab3d0d280e0a3b2da0b9538e222a67c362c183fa19ad01bdd95269ce93db"
+  }
+}

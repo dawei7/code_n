@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1257",
+    "frontend_id": "1257",
+    "title_slug": "smallest-common-region",
+    "url": "https://leetcode.com/problems/smallest-common-region/description/",
+    "paid_only": true,
+    "content_sha256": "a2d5010d4b9152293511ea4ba2f81d0913dc1277b1dfd4f6e15c68c75b4e0aa2",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "regions = [[\"Earth\",\"North America\",\"South America\"],[\"North America\",\"United States\",\"Canada\"],[\"United States\",\"New York\",\"Boston\"],[\"Canada\",\"Ontario\",\"Quebec\"],[\"South America\",\"Brazil\"]], region1 = \"Quebec\", region2 = \"New York\"",
+        "output": "\"North America\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "regions = [[\"Earth\",\"North America\",\"South America\"],[\"North America\",\"United States\",\"Canada\"],[\"United States\",\"New York\",\"Boston\"],[\"Canada\",\"Ontario\",\"Quebec\"],[\"South America\",\"Brazil\"]], region1 = \"Canada\", region2 = \"South America\"",
+        "output": "\"Earth\"",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b476ff5b78a6996a49f085bd1521fa39b6dc30b94005697c34c5b2e586720ca0",
+      "reference/contract.md": "381a1518cd3a43e034d4d5eace7d3463f9c0c4d03604402503b08c822174aa70",
+      "reference/examples.md": "bafbf3deb8fee9bddd2d35fd8a6c06295e63fce65f43161dd411c8e0ed2bf7f9",
+      "reference/constraints.md": "051b4d92525a7193ce280da84259b648b51e9e0ad8851e49d0d2c748673c8a0f",
+      "reference/hint.md": "610ba054207e5d161d3a9bfd071f136575597d5264ffceeebabd783a785722f0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

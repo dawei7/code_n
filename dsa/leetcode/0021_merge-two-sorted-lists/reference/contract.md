@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `list1`: The head of the first non-decreasing linked list.
-- `list2`: The head of the second non-decreasing linked list.
+- `list1`: The first non-decreasing linked-list head.
+- `list2`: The second non-decreasing linked-list head.
 
 **Return value**
 

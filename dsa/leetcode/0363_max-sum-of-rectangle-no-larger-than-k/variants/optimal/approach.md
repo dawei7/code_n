@@ -17,6 +17,8 @@ Python's standard sorted list can locate the successor with binary search, but i
 
 A prefix-count query reveals how many inserted values lie below the threshold rank. If fewer than the total inserted prefixes lie below it, a Fenwick order-statistic search finds the next occupied rank in $O(\log l)$. Because only previously inserted prefixes are stored, every candidate represents a non-empty subarray ending at the current position. Repeating this for every boundary pair considers every rectangle exactly once, so the best legal candidate is the required answer.
 
+The candidate uses `i` for the one-based Fenwick position in each tree walk. Coordinate ranks retain descriptive names where they represent a distinct algorithmic concept.
+
 ## Complexity detail
 There are $O(s^2)$ boundary pairs. Updating the compressed values costs $O(l)$ per ending boundary, and each one-dimensional constrained maximum performs coordinate sorting plus `l` Fenwick queries and updates in $O(l \log l)$ time. The total is $O(s^2 l \log l)$. The compressed array, prefix coordinates, and Fenwick tree each use $O(l)$ space.
 

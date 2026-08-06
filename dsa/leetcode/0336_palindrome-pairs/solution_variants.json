@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Palindrome Pairs and meets the required complexity bound.",
-      "time_complexity": "O(n k^2 + P)",
-      "space_complexity": "O(n k + P)"
+      "summary": "Queries a reverse trie whose nodes record words with palindromic unmatched remainders.",
+      "time_complexity": "O(S + P)",
+      "space_complexity": "O(S + P)"
     }
   ]
 }

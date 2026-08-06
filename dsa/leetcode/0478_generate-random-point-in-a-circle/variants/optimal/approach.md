@@ -1,7 +1,9 @@
 ## General
+
 **Choose angle uniformly**
 
-Map one uniform value `v` to angle `2πv`. Equal angle intervals then have equal probability, providing rotational symmetry around the center.
+Map one uniform value $v$ to the angle $2\pi v$. Equal angle intervals then have equal probability, providing
+rotational symmetry around the center.
 
 **Correct the radial distribution for area**
 
@@ -17,9 +19,11 @@ If the center is $(x_c,y_c)$ and the sampled angle is $\theta$, return the point
 The app consumes authored `random_values` cyclically in radial/angle pairs. This validates center translation, square-root radius, and stream progression deterministically while the native artifact uses independent random calls.
 
 ## Complexity detail
+
 Each point uses two random values and constant arithmetic, so `draws` points take $O(draws)$ time. The returned trace uses $O(draws)$ space; one native `randPoint()` call uses $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
+
 - **Rejection sample the bounding square:** accept uniform square points lying inside the circle; expected work is constant because the acceptance probability is $\pi/4$.
 - **Uniform radius without square root:** is biased toward the center and is not area-uniform.
 - **Uniform disk area via Cartesian rejection:** avoids trigonometry but may consume a variable number of random calls.

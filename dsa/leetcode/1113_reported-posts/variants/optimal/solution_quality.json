@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1113",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is concise, conventional expert-interview SQL. Its two predicates state yesterday's report-only slice directly, extra is exposed through the contract-defined report_reason alias, and COUNT(DISTINCT post_id) states the requested counting unit without an unnecessary join or intermediate relation. A candidate would not materially improve its clarity, correctness, or maintainability."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The conjunction of action_date = '2019-07-04' and action = 'report' excludes every other date and action before aggregation. GROUP BY extra forms one group for each represented reason value, including the optional NULL value under SQL grouping semantics. COUNT(DISTINCT post_id) deduplicates both repeated rows and multiple reporters within one reason, while separate groups allow the same post to contribute once to different reasons."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1113, SQL/MySQL, and the native query entrypoint. Authenticated source evidence confirms the five Actions columns, duplicate-row allowance, exact six-value action domain, optional extra semantics, today 2019-07-05, yesterday-only report filtering, distinct-post counts by reason, two output aliases, nonzero-group behavior, and unrestricted order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql is byte-for-byte identical to immutable leetcode.sql bound to verified submission 2067705292. Both use the same relation, target-date and action predicates, reason grouping, distinct post count, aliases, and projection, with no adapter semantic gap."
+      },
+      {
+        "category": "case_fidelity_correction",
+        "severity": "corrected",
+        "reason": "The prior sample retained only six of the source's thirteen Actions rows, reversed the displayed source output order, and had no unordered-table validator despite the explicit any-order contract. This review restored every exact input and output literal, retained the source explanation, and applied unordered-table validation to all ordinary cases. No protected solution, native source, submission manifest, or benchmark changed."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers grow through 128, 512, and 2048 Actions rows, balance reports across four reasons, and duplicate reporters for every post. The protected grouped-distinct query passed at a 1.01x largest runtime ratio and +0.01 relative growth exponent. An independently correct correlated distinct-count control used explicit result ordering only to satisfy stored benchmark order, preserved every output, and failed only scaling at 128.79x and +1.09."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the combined date/action filter, reason grouping, distinct-post aggregation, and one-row-per-reason output. Its conservative O(R log R) time and O(R) execution-space bounds match the branch manifest and query, and it covers pre-deduplication, correlated rescanning, COUNT(*) overcounting, irrelevant actions and dates, duplicate reporters, cross-reason reuse, and empty output."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the exact Actions schema and enum domain, duplicate allowance, optional extra meaning, yesterday relative to 2019-07-05, report-only filter, distinct-post counting, output aliases, unrestricted ordering, all thirteen source example rows, both source output rows, and the nonzero-reason explanation."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review verified exactly one explained example, three source tables, and no constraints, hints, notes, follow-up, images, or diagrams. source_fidelity.json binds every composed local section to live content hash 3ad583eccd05b23d2e31152049b58fd5f79afe923555170edff5ea0f7b99f8de."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly one explained example. sample-1 preserves all thirteen Actions rows in source order, the source's spam-then-racism output order, and its nonzero-report-reason explanation.",
+      "All nine ordinary fixtures are visible samples or trials and declare unordered-table validation because the source permits any result order. They cover one report, one post under different reasons, duplicate rows and reporters, all five non-report action values, adjacent dates, optional NULL extra values, multiple independent reason groups, and an empty Actions table.",
+      "An independent Python oracle filters by the exact date and action, accumulates a set of post IDs per extra value, and emits each set's cardinality. It shares neither SQL grouping nor the correlated control's repeated subquery.",
+      "The oracle, protected app-local query, byte-identical immutable native query, and independently correct correlated distinct-count control agreed on all nine ordinary cases, all three benchmark tiers, and 5000 databases generated with seed 1113.",
+      "Randomized inputs covered zero through 90 base rows, every action enum value, dates from 2019-07-01 through 2019-07-07, NULL and four textual extra values, duplicate rows, multiple reporters, repeated posts across reasons, empty qualifying slices, and regularly forced target-day duplicates and adjacent-date reports.",
+      "The 128-, 512-, and 2048-row workloads remain hidden and performance-only, use R consistently as size, and span 16x. The protected query passed scaling at +0.01 and 1.01x; the ordered correlated control failed only scaling at +1.09 and 128.79x. benchmark.json required no edit."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "a719180e8cb32bfa8a400cd1521a4f6920223b4b2a1f28bea8175d2c4a586238",
+    "native_source_sha256": "a719180e8cb32bfa8a400cd1521a4f6920223b4b2a1f28bea8175d2c4a586238",
+    "approach_sha256": "7a0b4505b98e838f2754491ef209e475c5ce281820d7697fb22a7f53f5f63506",
+    "solution_variants_sha256": "a112bd636996cf347e67f6d2badc5cf1b3cbf359aa3df9bf4eab52a6f06a6d68",
+    "complexity_evidence_sha256": "449679b89ee42f5282ff1cfb761215f59f07a4e471303d92b0c8df0723e26882",
+    "cases_sha256": "6778e548143a360345f15710190e6dc0e35f4629b7984556c06464b96b5b3b06"
+  }
+}

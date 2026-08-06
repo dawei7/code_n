@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1057",
+    "frontend_id": "1057",
+    "title_slug": "campus-bikes",
+    "url": "https://leetcode.com/problems/campus-bikes/description/",
+    "paid_only": true,
+    "content_sha256": "ace3193df0e7cb53411f2a43d9409d6a54b4a15b4859bd92e72e3646ca2a4831",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "workers = [[0,0],[2,1]], bikes = [[1,2],[3,3]]",
+        "output": "[1,0]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "workers = [[0,0],[1,1],[2,0]], bikes = [[1,0],[2,2],[2,1]]",
+        "output": "[0,2,1]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e5f3b55a63c0f3131338675b61a73cfe149721acd29fcee462fb4595952bc225",
+      "reference/contract.md": "2cff624b746eba759ea317783b634d9560497db59134bdf70e89f87b6b728707",
+      "reference/examples.md": "6a8d44099081ef16f7a45bfe1edf62aceb2e4118e67549756fbdb4315f74b47d",
+      "reference/constraints.md": "8c1c5bda6768f79640a976567ae8ffb341bb5ce1d48f97401fb010d5d105ee80",
+      "reference/hint.md": "b5022aefc7c40efdb2557f174bd410e65f11fbbaa949b73d3b7edd7d83859c5c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

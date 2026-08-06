@@ -116,6 +116,43 @@ def test_sql_environment_returns_a_result_grid() -> None:
     assert result.value == {"columns": ["id", "name"], "rows": [[2, "Grace"]]}
 
 
+def test_bounded_blocking_queue_reports_a_missing_full_queue_block() -> None:
+    source = """
+from collections import deque
+from threading import Lock
+
+class BoundedBlockingQueue:
+    def __init__(self, capacity):
+        self.queue = deque()
+        self.lock = Lock()
+
+    def enqueue(self, element):
+        with self.lock:
+            self.queue.append(element)
+
+    def dequeue(self):
+        with self.lock:
+            return self.queue.popleft()
+
+    def size(self):
+        with self.lock:
+            return len(self.queue)
+"""
+    result = run_special_environment(
+        category="concurrency",
+        challenge_id="lc_1188",
+        source=source,
+        input_data={
+            "capacity": 1,
+            "operations": [["enqueue", 1], ["enqueue", 2], ["dequeue"], ["dequeue"], ["size"]],
+            "blocking_checks": [{"operation_index": 1, "after_completed": [0]}],
+        },
+    )
+
+    assert result.ok, result.error_message
+    assert result.value["violations"] == ["operation-1-did-not-block"]
+
+
 def test_sql_environment_returns_post_mutation_grid_from_final_statement() -> None:
     result = run_special_environment(
         category="database",

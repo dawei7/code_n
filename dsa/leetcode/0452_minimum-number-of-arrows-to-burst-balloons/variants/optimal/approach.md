@@ -18,7 +18,7 @@ Sorting dominates at $O(n \log n)$ time, and the greedy scan is $O(n)$. The refe
 - **Sort by starts and maintain an intersection:** track the minimum end within the current overlapping group; starting a disjoint group adds one arrow and is also $O(n \log n)$.
 - **Repeatedly choose the smallest remaining endpoint:** follows the same greedy rule but rescanning and filtering the remaining intervals costs $O(n^2)$.
 - **Merge intervals first:** can count overlap groups, but stores merged ranges that are unnecessary for the count.
-- **Empty input:** requires zero arrows.
+- **Defensive empty input:** although the native contract contains at least one balloon, the app-local guard returns zero for an empty list.
 - **Nested intervals:** the innermost interval's endpoint can burst the entire containing group.
 - **Duplicate intervals:** all copies are burst by the same arrow.
 - **Negative coordinates:** comparisons work without any coordinate offset or special case.

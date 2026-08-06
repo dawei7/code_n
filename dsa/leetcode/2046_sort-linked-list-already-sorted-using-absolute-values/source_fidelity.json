@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2046",
+    "frontend_id": "2046",
+    "title_slug": "sort-linked-list-already-sorted-using-absolute-values",
+    "url": "https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`head = [0, 2, -5, 5, 10, -10]`",
+        "output": "`[-10, -5, 0, 2, 5, 10]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`head = [0, 1, 2]`",
+        "output": "`[0, 1, 2]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`head = [1]`",
+        "output": "`[1]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e069b965b61f0c75890fb3a1503e7d937d8d4028d04f7d7a375cef0062cf5493",
+      "reference/contract.md": "6e94a615e6997c300433e95822e63e8051655985ada16b85df48daa0300bfdbc",
+      "reference/examples.md": "9b4542f8a12eda4a182cb43279437cd799f998f6cf94203a9a5f36a2754d8df4",
+      "reference/constraints.md": "5a594f7f9c2a0cf6d4e3a8a6de506a7bfac71dd3cc45d0cd0fd0bc0824bca0f9"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

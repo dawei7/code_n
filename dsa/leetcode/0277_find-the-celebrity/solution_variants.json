@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Celebrity and meets the required complexity bound.",
+      "summary": "Eliminates impossible celebrities in one pass, then verifies the sole survivor in both directions.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

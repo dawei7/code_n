@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_197",
+  "language": "sql",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.sql",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "time_complexity",
+        "severity": "material",
+        "reason": "The protected SQLite query applies julianday to both join columns, forcing a pairwise scan. The candidate transforms only the previous date and leaves current.recordDate available for an automatic equality index; on 8,192 daily rows it measured about 5 ms versus about 3.04 seconds for the protected query."
+      },
+      {
+        "category": "complexity_claim",
+        "severity": "corrected",
+        "reason": "The branch previously claimed O(n log n), but the immutable MySQL DATEDIFF join and aligned SQLite two-sided date-function join have an O(n^2) worst case under the declared schema. The required bound now records that honest acceptance boundary; the staged candidate improves it to O(n log n)."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "clarified",
+        "reason": "The unchanged legal 8/64/256-row tiers are now bound explicitly to Weather row count and the quadratic immutable reference. A correct nested repeated-work control passed every output but failed scaling at +1.06 relative exponent and 47.97x on the largest tier; the candidate passed all three tiers."
+      },
+      {
+        "category": "alignment",
+        "severity": "reviewed",
+        "reason": "The protected app-local and Accepted native sources remain untouched and retain their hash-bound SQLite-versus-MySQL date-arithmetic review. The candidate preserves exact calendar adjacency and strict temperature comparison but is inert and is not submission evidence."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "c3392208b2d02b3ae613fa1e605e9a47c6334262dec0f171176daa81c35aa2f6",
+    "native_source_sha256": "66d7d7bd4a607514acc9db81e74cf2d5de8cab3a57ffe7848702c9b085be93cb",
+    "approach_sha256": "9f7e1c6f38b7dede3f65e07c395cdb113e2e619add31e8987a887fa93dfe353e",
+    "solution_variants_sha256": "15261ecd4dc47d24232c4a41348d3b1f4d661e329e40d3dde4133e95bfd22ea4",
+    "complexity_evidence_sha256": "36329b17771c812735a9d5af546f16215d8d6a7e045b3fed48b668b4d5ba6d90",
+    "candidate_source_sha256": "3b2e4803a3c994cbaa65887be9652de3358977c78929a4c6f2e9220fac01ca47"
+  }
+}

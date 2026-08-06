@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_360",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {"correct": true, "required_complexity": true, "clear_and_concise": true, "conventional_structure": true, "interview_quality_naming": true, "app_contract_preserved": true, "approach_matches_target": true},
+    "findings": [
+      {"category": "solution_quality", "severity": "good", "reason": "The protected source is the canonical parabola-aware two-pointer merge. It compares transformed endpoints, fills backward for convex or linear transforms and forward for concave transforms, and preserves duplicates with clear conventional state. No candidate is justified."},
+      {"category": "metadata_and_contract", "severity": "verified", "reason": "Metadata consistently identifies Premium LeetCode problem 360 and its Python sortTransformedArray surface. The Reference preserves sorted input, the exact quadratic transform, duplicate-preserving ascending output, both source examples, all three constraints, and the O(n) follow-up."},
+      {"category": "submission_and_alignment", "severity": "verified", "reason": "The immutable native source remains tied to verified submission 2064599440. Its transform helper, output allocation, endpoint comparisons, branch directions, pointer and write updates, and return are exactly the protected app-local algorithm apart from the required wrapper and annotations."},
+      {"category": "complexity_evidence", "severity": "verified", "reason": "The legal convex-transform tiers use 16, 64, and 200 sorted values, span 12.5x, and force endpoint merging around the vertex. The current source passes all 14 executions at +0.01 relative growth and 1.05x; correct sorted-list insertion passes every benchmark output but fails only scaling at +0.71 and 5.65x."},
+      {"category": "approach_accuracy", "severity": "verified", "reason": "The Approach accurately derives endpoint extrema from parabola shape, handles convex, concave, and linear coefficients, proves the output-boundary invariant, and states O(n) time with O(n) returned storage and O(1) auxiliary state."},
+      {"category": "source_fidelity", "severity": "verified", "reason": "The hash-bound authenticated Premium Reference remains source-fidelity verified, including both source examples in order, the exact transform and sorted-output contract, all three constraints, and the source-native linear-time follow-up."}
+    ],
+    "validation": {"mode": "real_test", "correctness_cases_passed": 11, "correctness_cases_total": 11, "performance_cases_passed": 3, "performance_cases_total": 3, "complexity_method": "benchmark", "complexity_passed": true}
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples appear first and in source order with their exact inputs and outputs; the invented third sample is now correctly labelled a trial.",
+      "Visible boundaries cover nums.length=1, input values -100 and 100, and both -100 and 100 for each of a, b, and c; generated checks also cover nums.length=200.",
+      "Convex, concave, increasing-linear, decreasing-linear, and constant transforms exercise every shape branch, including vertices inside the input interval.",
+      "Duplicate inputs, equal transformed endpoints, an off-center vertex, and output ties verify that multiplicity and ascending order are preserved.",
+      "An independent direct transform-and-sort oracle verified all eleven authored results, all three benchmarks, 98,875 exhaustive small inputs, and 27 extreme-coefficient combinations at the 200-element maximum.",
+      "All eleven correctness cases are visible samples or trials; the unchanged 16-, 64-, and 200-element workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "d5bb1e29337b3b89b64cc8635cb320d99e14f36263a23eee32e1743f0af0e7cf",
+    "native_source_sha256": "5caaef9b95993c223017f42e64d8a776ec112406acd865276bf4b619f653a636",
+    "approach_sha256": "f57b8867e15552784b1caccbdf9d88f486c3a7426be9ac38e68d8c293cf149cf",
+    "solution_variants_sha256": "d51bed9ec098269f56b105561791f050331dc858234531bce8677e6a652e578f",
+    "complexity_evidence_sha256": "295c3f8b0fdc5a54452d2f0dbbded99889f977620a8a17b6576fd61c1c84e809",
+    "cases_sha256": "343d7ccff60ca4a59456dfa75ff1a7c3d3f62f00435ab72ab9878cccad12d4a2"
+  }
+}

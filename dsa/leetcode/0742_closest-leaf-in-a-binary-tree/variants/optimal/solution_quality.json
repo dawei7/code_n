@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_742",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "executable_contract",
+        "severity": "material",
+        "reason": "The protected app source traverses objects supplied as LeetCode TreeNode instances but defines no local model, leaving the executable contract dependent on an invisible runner global. The candidate adds the minimal documented app-local TreeNode equivalent and annotates solve(root, k), making the source self-contained without changing the search."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "improved",
+        "reason": "The inert candidate preserves the Accepted parent-map construction and breadth-first search exactly while supplying only the missing tree model and root type. Parent, target, stack, queue, seen, child, and neighbor names clearly expose the two traversal phases, and no algorithmic or asymptotic variation is introduced."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The first traversal records the parent of every node and locates the unique target, turning each tree edge into an implicitly traversable undirected edge without adding shortcuts. Breadth-first search from the target visits nodes in nondecreasing edge distance through children and parents, while the seen set prevents reversals. A leaf is recognized solely by having no children, so the first leaf removed from the queue has minimum tree distance; the target itself is returned at distance zero when it is a leaf."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 742, Python, and the native findClosestLeaf(root, k) interface. Authenticated source evidence confirms a nonempty one-to-1000-node binary tree, unique node values from 1 through 1000, guaranteed target presence, distance measured by the least number of tree edges, childless leaf semantics, any valid equal-distance tie, and return of the closest leaf's value."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065860138 use the same full-tree stack traversal, parent map, target lookup, deque initialization, leaf test, neighbor order, seen updates, and first-leaf return. The candidate adds only the app-local TreeNode definition and root annotation, remains inert, and does not replace or alter the Accepted evidence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged three authored workloads grow complete trees from 7 to 31 nodes with the root as target and many equally deep leaves, forcing the parent traversal and breadth-first layers across a linear fraction of the tree. In a fresh real-test run, the exact candidate passed all twelve visible correctness cases and all three performance tiers with relative growth exponent +0.01 and a 0.98x largest runtime ratio. A correct control that repeatedly searches root paths for every leaf matched every output but failed only performance with relative growth exponent +0.50, distinguishing linear parent-map BFS from quadratic repeated path discovery."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach identifies the local TreeNode model, derives parent links for upward paths, explains distance-layer BFS and direction-independent leaf recognition, and proves first-leaf minimality. Its O(n) time and O(n) auxiliary-space claims match the candidate and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves unique tree values, guaranteed target presence, minimum edge distance, childless leaf semantics, paths through parents or children, and arbitrary tied answers. It includes all three exact source examples and explanations, all four constraints, both hint alternatives, and accessible Mermaid reconstructions of the three source tree diagrams with every node and edge preserved."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated Premium source review verified exactly three explained examples, three source tree images, four constraints, no tables, and one provider hint containing two alternatives. source_fidelity.json binds the live statement hash 27344d61732a881238d82227263194133ba459e03636382b8501ea6dda5754f1 and every composed Reference section; the independent validator reports verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly three examples. Their exact level-order trees, target values, outputs, and explanation facts now appear first in source order; Example 1's expected literal was corrected from the alternate tied answer 3 to the source output 2, while its closest-leaf validator still accepts either valid tie.",
+      "All twelve ordinary correctness checks are visible samples or trials. The former hidden descendant and shallow-root behaviors were exposed, and the hidden duplicate of source Example 3 was removed instead of counting the same input twice.",
+      "Authored contract boundaries cover the one-node minimum, node and target values at 1 and 1000, unique values, and sparse level-order trees. Separate generated checks exercise both a 1000-node skewed tree and a 1000-node broad tree.",
+      "Material behavior covers the target already being a leaf, a direct child leaf, a deeper descendant, a closer leaf reached through an ancestor, unequal leaf depths, sibling and four-way ties, complete trees, one-sided chains, sparse trees, and a zigzag path.",
+      "Expected results were checked with an independent parent-map breadth-first oracle that computes the complete set of nearest leaf values for all fifteen authored correctness-plus-benchmark inputs, 4081 exhaustive ordered tree-shape and target combinations through seven nodes, 5000 deterministic random unique-valued trees, and two maximum-node boundaries. The protected app adapter, inert candidate, and immutable native Solution all returned a valid nearest leaf throughout.",
+      "The unchanged 7, 15, and 31-node complete-tree workloads remain hidden and performance-only in benchmark.json, span more than 4x, and make the correct repeated-root-path control fail only the scaling verdict; the latest run measured relative growth exponent +0.50 for that control."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "50ef4abc8f10acc58a74e27cc57238bb5c5c810ee298ab7e5d0d0a0bf4123263",
+    "native_source_sha256": "0c42b1366ca206b62eb84d2a97d8601fd1a4dd4717fe466044f1f91bc83078fd",
+    "approach_sha256": "ed741c1acadf2021b7a688ed26b050ebb30d9aa0a34702002f4f91017b7244c6",
+    "solution_variants_sha256": "8efc74364222a1f1c177f8541ec0e2d40f7f31ebc788ffda5da53eebb24fd067",
+    "complexity_evidence_sha256": "420e83bf45759ed40ae140827dd5c48165088380675edea7693a11921c345887",
+    "cases_sha256": "9add69ffcfc373969c5bac3d0669e9f075a4c6623721dce8c727cfb238ac176d",
+    "candidate_source_sha256": "c12ea734eb0c465479d1bf58643a9b1bd52be9d4bd275d6e7d3aacff6a5a0d0f"
+  }
+}

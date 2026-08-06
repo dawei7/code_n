@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_445",
+    "frontend_id": "445",
+    "title_slug": "add-two-numbers-ii",
+    "url": "https://leetcode.com/problems/add-two-numbers-ii/description/",
+    "paid_only": false,
+    "content_sha256": "a8a41e554afcba2086a76affedb18eb702b0a5ec25317cd71faf60f1f86e21d5",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "l1 = [7,2,4,3], l2 = [5,6,4]",
+        "output": "[7,8,0,7]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "l1 = [2,4,3], l2 = [5,6,4]",
+        "output": "[8,0,7]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "l1 = [0], l2 = [0]",
+        "output": "[0]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8b505a03c56b3dce1065a4329379c52a51e02356c3d08f7740a8995c6264ee6e",
+      "reference/contract.md": "9e8835020eae5bdf186d3afb120d0bab73cde23f580dbf16460f6ffd1e187dee",
+      "reference/examples.md": "8224a95ee68ebed572dc23b114161ffa86b707db856daf435af6e98db067c31d",
+      "reference/constraints.md": "25e67f57601ca072a2f9b74ceb58fefd39d4c6de4c823e6e25b37255fc9bab0c",
+      "reference/follow_up.md": "5baec6c5d1eff2eccbaa7026af986b1a08fc7d0994322b4eaf4c488346e74101"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

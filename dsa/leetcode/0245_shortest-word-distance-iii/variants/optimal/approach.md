@@ -10,9 +10,10 @@ The stored positions are the latest valid endpoints, and the running answer is t
 For distinct words, the closest earlier compatible endpoint is the latest occurrence of the other word. When both targets are equal, it is the immediately preceding occurrence of that same word. Any older compatible position is farther from the current index, so checking the latest valid partner for every occurrence necessarily checks an optimal pair.
 
 ## Complexity detail
-The list is scanned once for $O(n)$ time, and only indices plus the minimum are stored.
+The list is scanned once for $O(n)$ time, and only a constant number of positions plus the minimum are stored, so auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
 - **Occurrence lists:** simplify post-processing but use linear space.
 - **All-pairs comparison:** is quadratic.
-- Equal targets require at least two occurrences and must never pair one position with itself.
+- **Equal targets:** require at least two occurrences and must never pair one position with itself.
+- **Distinct targets:** use the latest occurrence of the opposite word as the closest compatible earlier endpoint.

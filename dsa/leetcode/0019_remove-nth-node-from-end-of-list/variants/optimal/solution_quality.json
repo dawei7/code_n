@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_19",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order",
+      "the only-node list and both head-removal and tail-removal branches",
+      "an interior removal from an even-length list",
+      "minimum and maximum legal node values",
+      "the maximum legal list length with an interior removal",
+      "every legal list-length and removal-position pair checked against an independent list-slice oracle",
+      "the one-pass linear lower and upper bounds established without illegal runtime scaling"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "c673ef1afe286caf34f4721e15267cf29a6949cf7e4f50bf28152990d3993f57",
+    "native_source_sha256": "5949964778fea8e2508bff56ca2fd15965a38c44941f998fc5a90c37449ab48c",
+    "approach_sha256": "c5c813ab2dd0d0f413f423200de35421789cfb73587cb5d3573895a5a85da152",
+    "solution_variants_sha256": "fb07c6c9955caa676ced397d3a65dbb6ce058060faafefd1b2422297e94ab9a3",
+    "cases_sha256": "0f974e65bd740ac4b149fbb37d5841abd4ed4671d301cc13874fa05b040f3d55",
+    "complexity_evidence_sha256": "32fe58fc4c723f0fd2f1a9575f107b38350bec149a4a47afc832b1b51d570782"
+  }
+}

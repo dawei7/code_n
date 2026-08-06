@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1199",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected solution is already concise, conventional, and expert-interview quality. In-place heap construction, discarding the smaller extracted plan, naming the second one `larger`, and reinserting `larger + split` expose the reverse worker-tree recurrence directly. Extra helpers or a copied heap would add ceremony or space without improving correctness or clarity, so no candidate is warranted."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Combining subplans of durations `a <= b` under one earlier split produces duration `split + b`; the smaller child does not affect that parent maximum. An exchange can place the two smallest remaining plans as deepest siblings without increasing any ancestor maximum, because replacing a deeper larger child with a smaller one cannot delay the tree. Merging the two minima is therefore safe, and induction over the heap leaves the globally minimum completion time."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "Two independent exact models were used. A subset-partition dynamic program enumerated every binary split of small block sets, while a separate prefix-tree feasibility oracle used allowable worker-tree depths and the Kraft inequality. Both agreed with protected, immutable native, and explicit-rescan implementations on 6,430 exhaustive multisets and all 10 ordinary plus three benchmark fixtures."
+      },
+      {
+        "category": "randomized_and_boundary_validation",
+        "severity": "verified",
+        "reason": "A further 5,000 deterministic legal instances generated with seed 1199 had zero disagreements; coverage included 487 single-block, 487 equal-time, 4,155 unsorted, 52 minimum-split, and 47 maximum-split inputs. Authored boundaries separately exercise block times 1 and 100000, split costs 1 and 100, and block counts 1 and 1000; the 1,000-unit-block result independently verifies as 11."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1199, Python, and native entrypoint `Solution.minBuildTime`. Fresh authenticated evidence confirms one initial worker, exactly one worker per block, binary splitting that increases workers by one, worker departure after building, fixed split cost, parallel simultaneous splits, minimum elapsed-time return, three exact explained examples, three constraints, and six hints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native source remains bound to verified submission 2067922410 and is unchanged. Apart from the required class-method wrapper and type syntax, protected and native sources use identical in-place heapify, two minimum removals, smaller-plan discard, `larger + split` insertion, merge loop, input mutation, and final root return."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers contain 32, 128, and 512 equal unit-time blocks with split cost one, use block count consistently as `size`, and span 16x. In three consecutive fresh real-test runs, protected passed all 13 outputs and scaling with largest reference ratios from 0.98x to 1.02x. The independently correct explicit-rescan control preserved every output but failed only scaling each time with excess growth from +0.34 to +0.38."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach matches the protected reverse split-to-merge interpretation, `split + max(a,b)` recurrence, deepest-sibling exchange, minimum-heap order, and intentional input mutation. Its O(n log n) time follows from heap construction and n-1 merges, and O(1) auxiliary space is accurate because the input list itself stores the heap."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the authenticated narrative order, exactly three source examples and all their reasoning steps, all three constraints, and all six independently worded hints. It keeps the source hints' dynamic-programming route distinct from the protected heap explanation and adds no source-absent example, note, follow-up, image, table, or diagram."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review found three explained examples, three constraints, six hints, and no image, table, diagram, note, or follow-up. `source_fidelity.json` binds every modular section to live description-content hash fb1749efd89d4ffcc6cf6474b872dfd50cede0db48780c64c245249dbaa96b26 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first three visible samples are the three authenticated source examples in source order with exact inputs and outputs. Their explanations preserve the no-split decision, one split followed by parallel builds, and the two-level split schedule with the complete nested maximum calculation.",
+      "All 10 ordinary fixtures are visible samples or trials. Exact boundaries cover one and 1000 blocks, block times 1 and 100000, and split costs 1 and 100. Material cases cover one and two blocks, balanced and non-power-of-two equal blocks, one dominant long block, expensive splitting, unsorted input, and active maximum split cost.",
+      "The subset-partition and tree-feasibility oracles independently recomputed expectations. Protected, native, and the rescan control agreed on 6,430 exhaustive multisets, 5,000 seeded random legal instances, all ordinary cases, and all benchmarks.",
+      "The three unchanged hidden performance tiers use ordered sizes 32, 128, and 512 with a 16x span. Protected passed scaling in three runs; the correct O(n^2) rescan control retained all 13 answers but failed only the runtime verdict in every run."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "9e54743714ed8877d28d6147007862694e0f8044603ba1ed1d3ecff3cf0ad030",
+    "native_source_sha256": "32de6a2953b0b5d92b83038a8212d0055884d33b9654493f56d50e2dec6303e9",
+    "approach_sha256": "7007ac1ba3f20ab29e7714a29d8fa6f9a773b260f4aeed9d386d1335f2b9d6aa",
+    "solution_variants_sha256": "3d166b930c8db1804c05735fd81d009138f27226871d531d724506d9287e08ca",
+    "complexity_evidence_sha256": "8ed2ce43225518ffc75d16f708bf0a3860891855f94dfffb598e5c0d3477c0e7",
+    "cases_sha256": "acbf28450c33f5977fb2544c78172a2bf63c7ac4192b397c4f49d0b6a19a35b2"
+  }
+}

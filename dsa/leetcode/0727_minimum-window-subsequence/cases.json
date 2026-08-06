@@ -4,75 +4,102 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: official overlapping candidates",
+      "name": "sample: source overlapping candidates",
       "kind": "sample",
       "visible": true,
       "input": {"s1": "abcdebdde", "s2": "bde"},
       "expected": "bcde",
-      "tags": ["sample", "minimum-window"]
+      "tags": ["sample", "source-example", "minimum-window", "leftmost-tie"]
     },
     {
       "id": "sample-2",
-      "name": "sample: exact match",
+      "name": "sample: source target character absent",
       "kind": "sample",
+      "visible": true,
+      "input": {"s1": "jmeqksfrsdcmsiwvaovztaqenprpvnbstl", "s2": "u"},
+      "expected": "",
+      "tags": ["sample", "source-example", "missing-target"]
+    },
+    {
+      "id": "trial-exact-match",
+      "name": "the entire source equals the target",
+      "kind": "trial",
       "visible": true,
       "input": {"s1": "abc", "s2": "abc"},
       "expected": "abc",
-      "tags": ["sample", "exact"]
+      "tags": ["trial", "exact-match", "whole-source"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: target absent",
-      "kind": "sample",
+      "id": "trial-single-character-match",
+      "name": "minimum source and target lengths match",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "a", "s2": "a"},
+      "expected": "a",
+      "tags": ["trial", "minimum-lengths", "exact-match"]
+    },
+    {
+      "id": "trial-small-missing-target",
+      "name": "a one-character target is absent",
+      "kind": "trial",
       "visible": true,
       "input": {"s1": "abc", "s2": "d"},
       "expected": "",
-      "tags": ["sample", "missing"]
+      "tags": ["trial", "missing-target"]
     },
     {
-      "id": "trial-1",
-      "name": "trial: repeated target characters",
+      "id": "trial-repeated-target-characters",
+      "name": "one source occurrence cannot satisfy two target positions",
       "kind": "trial",
       "visible": true,
       "input": {"s1": "aaaaa", "s2": "aa"},
       "expected": "aa",
-      "tags": ["trial", "repeated"]
+      "tags": ["trial", "repeated-characters", "distinct-occurrences"]
     },
     {
-      "id": "trial-2",
-      "name": "trial: only a noncontiguous match",
+      "id": "trial-noncontiguous-subsequence",
+      "name": "the target matches only as a noncontiguous subsequence",
       "kind": "trial",
       "visible": true,
       "input": {"s1": "axbxc", "s2": "abc"},
       "expected": "axbxc",
-      "tags": ["trial", "subsequence"]
+      "tags": ["trial", "subsequence", "whole-source"]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: equal length chooses the leftmost window",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leftmost-equal-length-window",
+      "name": "equal minimum lengths choose the leftmost window",
+      "kind": "trial",
+      "visible": true,
       "input": {"s1": "abcxxadc", "s2": "ac"},
       "expected": "abc",
-      "tags": ["hidden", "leftmost-tie"]
+      "tags": ["trial", "leftmost-tie", "multiple-windows"]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: later window is shorter",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-later-shorter-window",
+      "name": "a later candidate replaces an earlier longer window",
+      "kind": "trial",
+      "visible": true,
       "input": {"s1": "axbyab", "s2": "ab"},
       "expected": "ab",
-      "tags": ["hidden", "later-shorter"]
+      "tags": ["trial", "later-shorter", "multiple-windows"]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: target longer than source",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-target-longer-than-source",
+      "name": "a longer target cannot be a source subsequence",
+      "kind": "trial",
+      "visible": true,
       "input": {"s1": "abc", "s2": "abcd"},
       "expected": "",
-      "tags": ["hidden", "length-boundary"]
+      "tags": ["trial", "target-longer", "no-window"]
+    },
+    {
+      "id": "trial-maximum-target-length",
+      "name": "target reaches the one-hundred-character limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["trial", "maximum-target-length", "repeated-characters", "exact-match"]
     }
   ]
 }

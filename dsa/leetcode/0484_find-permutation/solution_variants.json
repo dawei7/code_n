@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Permutation and meets the required complexity bound.",
+      "summary": "Starts in ascending order and reverses the value block induced by each maximal decrease run.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

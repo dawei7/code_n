@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Palindrome Permutation and meets the required complexity bound.",
+      "summary": "Toggles each character in an odd-frequency set, then accepts when at most one character remains.",
       "time_complexity": "O(n)",
       "space_complexity": "O(k)"
     }

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_95",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity_evidence",
+        "severity": "material",
+        "reason": "The n <= 8 Catalan domain is too narrow for reliable runtime-class inference; a validated bounded-domain certificate now proves the cached interval construction and structural materialization stay within O(n C_n)."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "473b99d07d7e670ba173c28634dd5488f1ff081319a13961aee9e66d661902ba",
+    "native_source_sha256": "075781c741f633540dc184ab9057bf4a57726cb729ce8f626d351f95ff5c82bb",
+    "approach_sha256": "da931f30520b696f16d49b5f946d2a02c9dc8ee27eacc0b718b54be52bd6aec5",
+    "solution_variants_sha256": "623df38c5a269405d314d554e5c34ef3fa4d1f2e696cd1ddefd910f4cc7c4ace",
+    "complexity_evidence_sha256": "26f2860fee2988664ef3206b58a5ee63b954242d07fb9ae34768765e67798e8d"
+  }
+}

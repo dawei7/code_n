@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Integer to English Words and meets the required complexity bound.",
+      "summary": "Converts nonzero base-1000 chunks locally, attaches scale names, and joins them from largest to smallest.",
       "time_complexity": "O(\\log num)",
       "space_complexity": "O(\\log num)"
     }

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1666",
+    "frontend_id": "1666",
+    "title_slug": "change-the-root-of-a-binary-tree",
+    "url": "https://leetcode.com/problems/change-the-root-of-a-binary-tree/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`root = [3,5,1,6,2,0,8,null,null,7,4]`, `leaf = 7`",
+        "output": "`[7,2,null,5,4,3,6,null,null,null,1,null,null,0,8]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`root = [3,5,1,6,2,0,8,null,null,7,4]`, `leaf = 0`",
+        "output": "`[0,1,null,3,8,5,null,null,null,6,2,null,null,7,4]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5d4ff9c58e5b6d3b8d626bab1e1061ba2fbd006a07e4bd3d5b4fe163d39dd1e8",
+      "reference/contract.md": "4d12aba173f007e0d3cb386ce320fd33dd402529b668e68f807ec759fd75e72e",
+      "reference/examples.md": "cbd883137e5d5f70ef8dd654c8192361c0e2ca6772579367286bb22ce0836804",
+      "reference/constraints.md": "ce24ec2ab264612cae9c3421ac6d808254fcd8a0bc49020405250fd8fef5d2c1"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

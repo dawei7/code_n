@@ -9,25 +9,19 @@ class Solution:
         if graph[destination]:
             return False
         state = [0] * n
-        stack = [(source, 0)]
-        while stack:
-            node, next_index = stack[-1]
-            if state[node] == 0:
-                if not graph[node]:
-                    if node != destination:
-                        return False
-                    state[node] = 2
-                    stack.pop()
-                    continue
-                state[node] = 1
-            if next_index == len(graph[node]):
-                state[node] = 2
-                stack.pop()
-                continue
-            neighbor = graph[node][next_index]
-            stack[-1] = (node, next_index + 1)
-            if state[neighbor] == 1:
+
+        def dfs(node: int) -> bool:
+            if state[node] == 1:
                 return False
-            if state[neighbor] == 0:
-                stack.append((neighbor, 0))
-        return True
+            if state[node] == 2:
+                return True
+            if not graph[node]:
+                return node == destination
+            state[node] = 1
+            for neighbor in graph[node]:
+                if not dfs(neighbor):
+                    return False
+            state[node] = 2
+            return True
+
+        return dfs(source)

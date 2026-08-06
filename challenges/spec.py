@@ -131,9 +131,42 @@ def make_challenge(spec: AlgorithmSpec) -> type[Challenge]:
     # once (at factory time) instead of per instance is fine: the
     # source is a top-level function definition with no mutable
     # shared state.
-    namespace: dict[str, Any] = {"__name__": f"spec.{spec.id}"}
-    exec(spec.source, namespace)  # noqa: S102 - intentional dynamic load
-    reference_solve = namespace.get("solve", lambda **_: None)
+    import typing
+    from server.app.engine_runner import (
+        _JudgeListNode,
+        _JudgeNode,
+        _JudgePoint,
+        _JudgeTreeNode,
+    )
+    namespace: dict[str, Any] = {
+        "__name__": f"spec.{spec.id}",
+        "List": list,
+        "Dict": dict,
+        "Tuple": tuple,
+        "Set": set,
+        "Optional": typing.Optional,
+        "Union": typing.Union,
+        "Any": typing.Any,
+        "ListNode": _JudgeListNode,
+        "Node": _JudgeNode,
+        "Point": _JudgePoint,
+        "TreeNode": _JudgeTreeNode,
+    }
+    try:
+        exec(spec.source, namespace)  # noqa: S102 - intentional dynamic load
+    except Exception:
+        pass
+
+    try:
+        from server.app.engine_runner import _bind_leetcode_solution_runner
+        class _TempChallenge:
+            pass
+        tc = _TempChallenge()
+        tc.info = type("Info", (), {"id": spec.id})()
+        tc._spec = spec
+        reference_solve = _bind_leetcode_solution_runner(namespace, challenge=tc)
+    except Exception:
+        reference_solve = namespace.get("solve", lambda **_: None)
 
     info_required_complexity = spec.required_complexity
 

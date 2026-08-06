@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_618",
+    "frontend_id": "618",
+    "title_slug": "students-report-by-geography",
+    "url": "https://leetcode.com/problems/students-report-by-geography/description/",
+    "paid_only": true,
+    "content_sha256": "99e26c51f543da1cbb002315f30b2f6e12a48c54f0f8e8f0b1a8e274cdaa3557",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "student_table",
+      "description",
+      "examples",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Student = [[\"Jane\",\"America\"],[\"Pascal\",\"Europe\"],[\"Xi\",\"Asia\"],[\"Jack\",\"America\"]]",
+        "output": "[[\"Jack\",\"Xi\",\"Pascal\"],[\"Jane\",null,null]]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/student_table.md": "21cc652aae64656c20ee9085990450f552b185dbd38d52cf20fe2260a3aa25ec",
+      "reference/description.md": "308a40ee0d48265a4b985c0b8ab6f8f2a51af00a801b247483b997e1732c4108",
+      "reference/contract.md": "ca55ac7d99eedeae9b7614b1aefd27c3e3e92318ea644bc10da149234e052c4e",
+      "reference/examples.md": "181fa0fa7b43d5b75dcc5c0f987acd9a8282db37d69f4d5c6d0d9b3a1e91897d",
+      "reference/follow_up.md": "482fd050d6ccf9caa99e1ecfdea9f67fbdca6530b33e95400f0a53771f8590c9"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

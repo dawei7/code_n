@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1549",
+    "frontend_id": "1549",
+    "title_slug": "the-most-recent-orders-for-each-product",
+    "url": "https://leetcode.com/problems/the-most-recent-orders-for-each-product/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`Customers = [[1, \"Winston\"], [2, \"Jonathan\"], [3, \"Annabelle\"], [4, \"Marwan\"], [5, \"Khaled\"]], Products = [[1, \"keyboard\", 20], [2, \"mouse\", 10], [3, \"screen\", 200], [4, \"hard disk\", 50]], Orders = [[1, \"2020-07-31\", 1, 1], [2, \"2020-07-30\", 2, 2], [3, \"2020-08-29\", 3, 3], [4, \"2020-07-29\", 4, 1], [5, \"2020-06-10\", 1, 2], [6, \"2020-08-01\", 2, 1], [7, \"2020-08-01\", 3, 1], [8, \"2020-08-03\", 1, 2], [9, \"2020-08-07\", 2, 3]]`",
+        "output": "`[[\"keyboard\", 1, 6, \"2020-08-01\"], [\"keyboard\", 1, 7, \"2020-08-01\"], [\"mouse\", 2, 8, \"2020-08-03\"], [\"screen\", 3, 3, \"2020-08-29\"]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`one product with orders 10 and 11 on its latest day`",
+        "output": "`both rows included, ordered by order_id`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`two products named \"pen\" with IDs 2 and 1`",
+        "output": "`product with ID 1 appears before product with ID 2`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 4,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 7,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "1c6ad81e99c2fe9b9b1791a46dc2cd8bfb54ae4602040fb899dc2c5f74cd95d3",
+      "reference/contract.md": "f6a1899c5534dfb22abd21924cb89a345776166a895ed1f28783906613572086",
+      "reference/examples.md": "0c232b059bd5b55eafa3faa3f79c891ae87094e4de3679d68f91ba63630da926",
+      "reference/constraints.md": "4eda44d0556cdb09c2a66c4ece4ce71d9f0ec4d885d34f29af5376d148b39796"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

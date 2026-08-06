@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Power of Two and meets the required complexity bound.",
+      "summary": "Recognizes a positive integer with exactly one set bit by clearing its least significant set bit.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

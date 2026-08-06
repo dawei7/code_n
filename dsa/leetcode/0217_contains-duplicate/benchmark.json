@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_217",
-  "measurement_note": "Growing lists place the repeated value at the final position for full scans.",
+  "measurement_note": "Size is the legal array length n. Distinct prefixes place the sole repeated value at the final position so both linear and pairwise methods scan their full paths.",
   "cases": [
     {
       "id": "benchmark-scale-1",

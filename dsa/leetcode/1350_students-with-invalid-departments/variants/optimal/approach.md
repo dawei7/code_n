@@ -1,16 +1,21 @@
 ## General
-**Preserve every student with a left join.** Join `Students` to `Departments` on the recorded department ID. A valid reference produces the matching department row, while an invalid reference still preserves the student but supplies `NULL` for every column from the department side.
 
-**Keep only unmatched rows.** Filter for `d.id IS NULL`. Because `Departments.id` is a primary key and therefore cannot itself be null, this condition distinguishes an absent join partner without confusing it with stored data. Select the student-side `id` and `name`; ordering by student ID is optional for the problem contract but makes local results deterministic.
+**Turn the missing-reference condition into an anti-join.** Begin with `Students`, because every student must remain available long enough to decide whether the recorded department exists. A left join on `d.id = s.department_id` either attaches the unique matching department or produces a null-extended department side when no match exists.
 
-The left join examines every student. A row survives exactly when no department has the referenced ID, which is precisely the requested invalid-department condition.
+**Recognize an unmatched row unambiguously.** Keep only rows for which `d.id IS NULL`. `Departments.id` is a primary key, so an actual department row can never satisfy that predicate. The filter therefore accepts exactly the students whose recorded ID has no partner in `Departments`. Selecting `s.id` and `s.name` preserves the requested student identity even when names repeat.
+
+Each student produces at most one joined row because the department join key is unique. A valid assignment is removed by the null filter, while an invalid assignment survives, which proves both that every returned student qualifies and that no qualifying student is omitted. The contract permits any result order, so no `ORDER BY` is required.
 
 ## Complexity detail
-With an index or hash table on the department primary key, constructing or reading the lookup structure costs $O(D)$ and checking all students costs $O(S)$, for $O(N)$ time and $O(D)$ lookup space in the general model. Database indexes may already provide that lookup storage.
+
+Let $D$ and $S$ be the table sizes and $N=D+S$. With the department primary-key index or a hash table, the engine can build or access the department lookup in $O(D)$ time and test all students in $O(S)$ time. The general indexed or hash-join model is therefore $O(N)$ time and $O(D)$ lookup space; a database may already own the index storage.
 
 ## Alternatives and edge cases
-- **`NOT EXISTS` anti-subquery:** A correlated existence test is semantically equivalent and often optimized to the same plan, but an unindexed nested scan can cost $O(DS)$.
-- **`NOT IN` subquery:** This is concise, but nullable values in the subquery can make SQL's three-valued logic reject every row; the primary key is non-null here, though the anti-join remains clearer.
-- **No invalid students:** The query correctly returns an empty result.
-- **No departments:** Every student is unmatched and must be returned.
-- **Repeated names:** Student identity comes from `id`; equal names remain separate output rows.
+
+- **`NOT EXISTS` anti-subquery:** Testing for the absence of a matching department is equally robust and is commonly optimized to the same anti-join plan; a literal correlated rescan without key lookup can cost $O(DS)$.
+- **`NOT IN` subquery:** This form is concise but participates in SQL three-valued logic. A null outer `department_id`, or a nullable value in a less constrained subquery, makes the predicate unknown rather than true; `NOT EXISTS` or the left anti-join states missing-match semantics more directly.
+- **No invalid students:** Every join finds a department, so the filter returns an empty result.
+- **No departments:** Every student receives a null-extended department side and is returned.
+- **No students:** The left input is empty, so the result is empty without special handling.
+- **Repeated student names:** Rows remain distinct through the student primary key; selecting from `Students` preserves every qualifying ID-name pair.
+- **Input and output order:** Neither table order affects membership, and the result order is intentionally unrestricted.

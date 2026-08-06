@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `num`: A valid decimal representation with no leading zero unless the value itself is zero.
+- `num`: A string of digits ($1 \le \text{num.length} \le 50$).
 
 **Return value**
 
-Return whether rotating the entire written number by $180$ degrees leaves it unchanged.
+Return a boolean `True` if `num` remains unchanged after a 180-degree rotation, and `False` otherwise.

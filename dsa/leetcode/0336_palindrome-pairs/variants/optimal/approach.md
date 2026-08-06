@@ -1,30 +1,33 @@
 ## General
-**A valid partner is forced at a split boundary**
+**Precompute every palindromic boundary in linear time**
 
-Map every word to its index. For each word, examine every split `word = prefix + suffix`, including empty pieces. If `prefix` is a palindrome, placing `reverse(suffix)` before the word creates
-`reverse(suffix) + prefix + suffix`, which is a palindrome. Look up that forced preceding word in the map.
+A valid pair can have words of different lengths. After the shorter word mirrors an equal-length portion of the longer word, the unmatched prefix or suffix of the longer word must be a palindrome. The candidate therefore needs to recognize every palindromic prefix and suffix without rescanning each split.
 
-Symmetrically, if `suffix` is a palindrome, placing `reverse(prefix)` after the word creates `prefix + suffix + reverse(prefix)`. Look up that forced following word. In both directions, reject the word's own index because a pair must use distinct entries.
+For each word, insert delimiters between characters and run one Manacher scan: character centers represent odd-length palindromes and delimiter centers represent even-length palindromes. Whenever a maximal palindrome reaches the word's left boundary, mark its ending length as a palindromic prefix; whenever it reaches the right boundary, mark its starting position as a palindromic suffix. Empty prefixes and suffixes are marked explicitly. Each center reuses the rightmost known palindrome, so all boundary flags for a word take linear time.
 
-**The two directions cover unequal word lengths and the empty string**
+**Store reversed words and their palindromic remainders**
 
-Exact reversed words appear at an empty-prefix or empty-suffix boundary. A shorter word can pair with a longer one when the unmatched remainder of the longer word is palindromic; this is why checking only complete reversals is insufficient.
+Insert every word into a trie from right to left. Before inserting character `word[j]`, append the word's index to the current node when `word[:j + 1]` is a palindrome. The node then records that the trie path has already matched a suffix of this word and that its unmatched prefix can safely sit at the far end of a concatenated palindrome. At the terminal node, record both the exact word index and its empty remainder.
 
-When the empty string exists, every palindromic word pairs with it in both directions. Those cases arise naturally at the two extreme split positions. Skip the suffix-palindrome branch when the suffix is empty, because the corresponding exact-reversal pair was already emitted by the prefix branch of the partner word.
+To query a word from left to right, follow the trie characters. If the current trie node terminates another word and the query suffix beginning at `j` is palindromic, the query word followed by that shorter partner is valid. If the entire query is consumed, every distinct index recorded in the final node's palindrome-remainder list is a valid longer partner. The empty string follows the same rules: it terminates the root and pairs in both directions exactly with palindromic words.
 
-For `"lls"`, splitting as `"ll" + "s"` finds palindromic prefix `"ll"` and forced preceding word `"s"`, producing pair `[3,2]`. For `"sssll"`, splitting as `"ss" + "sll"` finds palindromic prefix `"ss"` and forced preceding word `"lls"`, producing `[2,4]`.
+For `"lls"`, the query consumes the reversed prefix of `"sssll"`; the longer word's stored remainder is palindromic, so `[2,4]` is emitted. The word `"s"` consumes the first trie edge of reversed `"lls"`, whose remaining `"ll"` is recorded as palindromic, so `[3,2]` is emitted.
 
-**Every palindrome pair appears at one of these splits**
+**Trie matches are necessary and sufficient**
 
-Consider a valid concatenation of two words. If the left word is no longer than the right, its mirrored characters force a reversed prefix of the right word, and the unmatched suffix of the right word must itself be palindromic. If the left word is longer, the symmetric argument leaves a palindromic prefix of the left word and forces the other word to equal the reverse of its suffix.
-
-These are exactly the two split tests. Every emitted pair is palindromic by construction, and every valid pair satisfies one of the forced-complement cases, proving completeness.
+Every emitted terminal match mirrors all characters supplied by the shorter side, and its boundary flag proves that the unmatched characters are palindromic. The concatenation is therefore a palindrome. Conversely, in any valid pair, matching mirrored characters from the concatenation's ends consumes one entire word first; the other word's unmatched portion must be a palindromic boundary. Insertion records exactly that boundary at exactly the trie node reached by the shorter word, so the query emits every valid ordered pair. Rejecting the same index enforces the distinct-entry requirement.
 
 ## Complexity detail
-Let `n` be the number of words, `k` the maximum word length, and `P` the number of returned pairs. Each word has $O(k)$ splits; slicing, reversing, and palindrome checking can take $O(k)$ per split, for $O(n k^2 + P)$ time. The word map stores $O(nk)$ characters and the output stores $O(P)$ pairs.
+Let
+
+$$
+S = \sum_{w \in \texttt{words}} \lvert w \rvert
+$$
+
+and let `P` be the number of returned pairs. Manacher preprocessing, reverse-trie insertion, and trie queries each process $O(S)$ characters. Emitting results costs $O(P)$, so total time is $O(S + P)$. Boundary flags and trie nodes use $O(S)$ storage, while the returned pairs use $O(P)$, for $O(S + P)$ total space.
 
 ## Alternatives and edge cases
-- **Test every ordered word pair:** is simple but costs $O(n^2 k)$ time.
-- **Look up only complete reversed words:** misses pairs where a palindromic remainder belongs to the longer word.
-- **A reversed-word trie:** can organize the same prefix/suffix logic and achieve comparable bounds.
-- The empty string pairs only with palindromic words. Pair direction matters, and the outer result order does not.
+- **Test every ordered word pair:** is simple but costs $O(n^2 k)$ time for `n` words of maximum length `k`.
+- **Hash-map every split:** is concise, but repeated slicing, reversal, and palindrome checks cost $O(nk^2 + P)$ time.
+- **Use rolling hashes for boundary tests:** can approach the same asymptotic bound but introduces collision risk unless equality is verified.
+- The empty string pairs only with palindromic words. Pair direction matters, duplicate output pairs must not be emitted, and the outer result order does not matter.

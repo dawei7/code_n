@@ -5,21 +5,15 @@ When `n` is negative, replace the base by its reciprocal and work with `-n`, usi
 
 **Consume one binary exponent bit per iteration**
 
-Maintain `result`, `base`, and the remaining exponent. If the exponent's low bit is `1`, multiply `result` by the current base power. Then square `base` and shift the exponent right. Squaring changes the represented factor from $x^{2^k}$ to $x^{2^{k+1}}$, while the shift exposes the next binary coefficient.
+Maintain `result`, the current power in `x`, and the remaining exponent in `n`. If `n & 1` is true, multiply `result` by `x`. Then square `x` and shift `n` right. Squaring changes the represented factor from $x^{2^k}$ to $x^{2^{k+1}}$, while the shift exposes the next binary coefficient.
 
 **The accumulated and unprocessed factors retain the same product**
 
-At every iteration, `result * base ^ exponent` equals the requested normalized power. Multiplying `result` by `base` removes an odd factor; squaring the base while halving an even exponent preserves the product. When the exponent becomes zero, the invariant leaves `result` as the answer.
+At a loop boundary, let $r$, $b$, and $e$ be the values stored in `result`, `x`, and `n`. The product $r b^e$ equals the requested normalized power. When $e$ is odd, multiplying `result` by `x` accounts for its low set bit. Squaring `x` while halving `n` preserves the remaining power for both odd and even exponents. When `n` becomes zero, $b^0 = 1$, so `result` is the answer.
 
 **Trace set bits rather than ten multiplications**
 
 For $2^{10}$, binary `10` is `1010`. The method squares the base through `2`, `4`, `16`, and `256`, multiplying only for the set bits. The accumulated result becomes $4 \cdot 256 = 1024$ in four iterations rather than ten.
-
-**Each exponent bit preserves the remaining power**
-
-Maintain `result * base ^ exponent = x ^ abs(n)` after any negative-exponent normalization. For an odd exponent, multiplying `result` by `base` accounts for its low set bit. Squaring `base` while halving the exponent then uses `base ** ((2k)) = (base ** 2) ** k`, preserving the same total power for both odd and even cases.
-
-When the exponent reaches zero, the remaining factor is one and `result` equals $x ^ | n |$. If the original exponent was negative, replacing the base by its reciprocal at the start makes that same invariant evaluate $x^{n}$ directly.
 
 ## Complexity detail
 The exponent is halved each iteration, so the loop runs $O(\log |n|)$ times. It keeps only a constant number of numeric variables, using $O(1)$ auxiliary space.

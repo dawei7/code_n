@@ -1,6 +1,104 @@
-{"challenge_id":"lc_255","cases":[
-{"id":"sample-valid","name":"sample: valid branching preorder","kind":"sample","visible":true,"input":{"preorder":[5,2,1,3,6]},"expected":true,"tags":["sample","valid"]},
-{"id":"sample-invalid","name":"sample: value violates right-subtree bound","kind":"sample","visible":true,"input":{"preorder":[5,2,6,1,3]},"expected":false,"tags":["sample","invalid"]},
-{"id":"trial-increasing","name":"increasing right spine","kind":"trial","visible":true,"input":{"preorder":[1,2,3,4]},"expected":true,"tags":["boundary","skewed"]},
-{"id":"real-late-violation","name":"hidden: late lower-bound violation","kind":"real","visible":false,"input":{"preorder":[8,5,1,7,10,12,9]},"expected":false,"tags":["hidden","lower-bound"]}
-]}
+{
+  "challenge_id": "lc_255",
+  "cases": [
+    {
+      "id": "sample-valid",
+      "name": "sample: valid branching preorder",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "preorder": [5, 2, 1, 3, 6]
+      },
+      "expected": true,
+      "tags": ["sample", "valid"]
+    },
+    {
+      "id": "sample-invalid",
+      "name": "sample: value violates right-subtree bound",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "preorder": [5, 2, 6, 1, 3]
+      },
+      "expected": false,
+      "tags": ["sample", "invalid", "lower-bound"]
+    },
+    {
+      "id": "trial-single-minimum-value",
+      "name": "singleton at the minimum node value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [1]
+      },
+      "expected": true,
+      "tags": ["minimum-length", "minimum-value"]
+    },
+    {
+      "id": "trial-both-value-limits",
+      "name": "maximum root with the minimum value as its left child",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [10000, 1]
+      },
+      "expected": true,
+      "tags": ["minimum-value", "maximum-value"]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "strictly increasing right spine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [1, 2, 3, 4]
+      },
+      "expected": true,
+      "tags": ["right-spine", "monotone"]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "strictly decreasing left spine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [4, 3, 2, 1]
+      },
+      "expected": true,
+      "tags": ["left-spine", "monotone"]
+    },
+    {
+      "id": "trial-valid-multiple-subtrees",
+      "name": "valid preorder enters several nested left and right subtrees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [10, 5, 1, 7, 6, 8, 40, 30, 50]
+      },
+      "expected": true,
+      "tags": ["branching", "multiple-pops"]
+    },
+    {
+      "id": "trial-late-root-bound-violation",
+      "name": "late value falls below an ancestor after entering its right subtree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [8, 5, 1, 7, 10, 12, 9]
+      },
+      "expected": false,
+      "tags": ["late-violation", "root-bound"]
+    },
+    {
+      "id": "trial-nested-right-bound-violation",
+      "name": "value re-enters a closed left region inside the right subtree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [10, 5, 1, 7, 40, 50, 30]
+      },
+      "expected": false,
+      "tags": ["late-violation", "nested-bound"]
+    }
+  ]
+}

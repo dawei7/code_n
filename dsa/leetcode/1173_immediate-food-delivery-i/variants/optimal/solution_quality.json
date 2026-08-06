@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1173",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is concise, conventional, and expert-interview-ready. Its `CASE` states the immediate-delivery predicate directly, decimal literals make numeric intent explicit, `AVG` expresses the fraction without redundant counts or scans, and the final alias exactly names the required result. There are no unnecessary joins, subqueries, grouping clauses, opaque aliases, or prohibited generic `index` bindings, so no material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Each delivery contributes `1.0` exactly when `order_date = customer_pref_delivery_date` and `0.0` when the preferred date is later. The average of those indicators is therefore the immediate-delivery count divided by the total delivery count. Multiplying by `100.0` converts the ratio to a percentage, `ROUND(..., 2)` supplies the required precision, and the absence of `GROUP BY` produces exactly one result row regardless of repeated customers."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "A Python Decimal oracle with explicit half-up rounding, the protected query, the immutable native query, and an independently structured correlated full-rescan control agreed on all six authored cases and all three benchmark outputs. Another 5,000 deterministic schema-valid tables generated with seed 1173 included 132 singleton tables, 109 all-immediate tables, 186 all-scheduled tables, 4,868 tables with repeated customers, and 3,314 percentages requiring two-place rounding; all three SQL queries matched the oracle throughout."
+      },
+      {
+        "category": "numeric_and_output_contract",
+        "severity": "verified",
+        "reason": "Using `1.0`, `0.0`, and `100.0` keeps the computation in a non-integer numeric domain, preventing truncating division behavior. The protected query correctly produces `0.0`, `100.0`, downward rounding such as `33.33`, and upward rounding such as `66.67`, while its `immediate_percentage` alias and single aggregate row exactly match the required result shape."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1173, MySQL, and the native query entrypoint. Authenticated source evidence confirms the four Delivery columns, primary-key uniqueness of delivery_id, preferred dates on or after order dates, equality as the only immediate condition, all-row percentage denominator, two-decimal rounding, and one explained example. The source contains no separate constraints, hints, notes, or follow-up section."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local `sql.sql` remains byte-for-byte identical to immutable `leetcode.sql` bound to verified submission 2067890298. Both use the same date-equality predicate, decimal indicator values, single average, percentage factor, rounding precision, output alias, and table source. sql.sql, leetcode.sql, and submission.json were not edited."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers scale Delivery from 32 through 128 to 256 rows, an 8x span with balanced immediate and scheduled rows that forces the aggregate to inspect the complete table. Protected passed every output with a 1.03x largest runtime ratio and +0.04 relative growth exponent. The independently correct correlated formulation rescanned Delivery for every outer row, passed all six ordinary and all three benchmark outputs, and failed only scaling at 7.34x and +0.79, supporting the required O(n) scan without changing benchmark.json."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately describes the reviewed query's zero-or-one indicator, decimal average, percentage conversion, two-place rounding, single-row aggregate, and exact alias. It correctly derives O(n) logical time from one full-table aggregate and O(1) working space from scalar aggregate state while acknowledging engine-dependent physical execution, and its alternatives cover integer division, redundant scans, extreme percentages, repeated customers, and the equality boundary."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the complete Delivery schema and primary key, preferred-date guarantee, immediate-versus-scheduled rule, all-delivery denominator, output alias, rounding requirement, and the only source example with its exact six rows, output, and explanation. It introduces no source-absent example, constraint, hint, note, or follow-up."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed one Delivery schema table, one explained example, three total source tables when the example input and output are included, and no images, constraints, hints, notes, or follow-up sections. source_fidelity.json binds every modular section to live statement hash a81654eeb9aa7a3e3b9a67940cfe34ca3eab83ab7080a4fff1d9c25c1ffad7af and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "sample-mixed is the only authenticated source example and preserves all six Delivery rows, the 33.33 output, and the explanation that delivery IDs 2 and 3 are immediate while the other four are scheduled.",
+      "All six ordinary fixtures are visible samples or trials. The source publishes no numerical row-count or value constraints, so the authored contract boundaries cover a singleton table, every delivery immediate, every delivery scheduled, and the exact equality-versus-later-date distinction. Material cases additionally cover one-third rounding downward, two-thirds rounding upward, repeated customer IDs, and per-delivery rather than per-customer counting.",
+      "A Decimal oracle recomputed every authored and benchmark expectation. Protected, immutable native, and correlated-control SQL agreed on all nine fixed outputs and 5,000 deterministic schema-valid random tables with seed 1173, including singleton, all-immediate, all-scheduled, repeated-customer, and nonterminating-percentage cases.",
+      "The three hidden performance-only tiers use Delivery row count consistently as size and span 32 through 256. Protected passed at +0.04 and 1.03x. The correlated full-rescan control passed every ordinary and benchmark output but failed only scaling at +0.79 and 7.34x. benchmark.json remained byte-for-byte unchanged."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "d0e391bfa51179467c4d11a2bf01f6b5059e693da231ab1c4fb5a9674c84b08e",
+    "native_source_sha256": "d0e391bfa51179467c4d11a2bf01f6b5059e693da231ab1c4fb5a9674c84b08e",
+    "approach_sha256": "d59d2feb79184f9391f250c1a23b7b16fb9c378020bb27087e2a211dfa23c39f",
+    "solution_variants_sha256": "398078824ba8e5ab7c4d218ad1f465c88a16d5f3795a4c0f91c3519b6dd2fedb",
+    "complexity_evidence_sha256": "ec6f1b5af5484c4e1234cbaaa7b6b283a0bf210e1c91e2f6eb6277ee6a456677",
+    "cases_sha256": "adf7f6cc5e175272b4f8ef4a296015b6b989e01972cf05569e7eacce75e1c371"
+  }
+}

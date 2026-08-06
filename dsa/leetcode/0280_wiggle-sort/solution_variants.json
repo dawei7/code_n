@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Wiggle Sort and meets the required complexity bound.",
+      "summary": "Repairs each alternating inequality greedily with at most one adjacent swap per position.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

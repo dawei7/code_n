@@ -1,11 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_156", "frontend_id": "156", "title_slug": "binary-tree-upside-down", "url": "https://leetcode.com/problems/binary-tree-upside-down/description/", "paid_only": true, "content_sha256": "b57bff1262fb76f9bd84e1280a563226c9226e8258ccbd162f596239f496d4d9", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "root = [1,2,3,4,5]", "output": "[4,5,2,null,null,3,1]", "has_explanation": false}, {"ordinal": 2, "input": "root = []", "output": "[]", "has_explanation": false}, {"ordinal": 3, "input": "root = [1]", "output": "[1]", "has_explanation": false}],
-    "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_156",
+    "frontend_id": "156",
+    "title_slug": "binary-tree-upside-down",
+    "url": "https://leetcode.com/problems/binary-tree-upside-down/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "dccd8d29a812aaa66c3070500d846738ab89bc81993cf3d3ee0e9c4fbbca2bbb", "reference/contract.md": "16ea5d50bd9071c41530c50f5b0802d4dcc090ee00d8c9146a14420b00d7a82a", "reference/examples.md": "1338cf3636355358f1c2a856a976923b920c9777cec0dddb7109390acf5d0407", "reference/constraints.md": "40678e7508ad55683bc0c7779f7efd0b1808ce53ac6f005ad1e9e5a948ebdb29"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`root = [1,2,3,4,5]`",
+        "output": "`[4,5,2,null,null,3,1]`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "`root = []`",
+        "output": "`[]`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "`root = [1]`",
+        "output": "`[1]`",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ad2bcb14a1ec5836a60f8486c01d1b69774d56f801b7ae5293389bf4685b79c3",
+      "reference/contract.md": "74847cc712e7e4527e3e8bb417ec0f2cb6ec2c5e1962ec35d114caf288a48b7f",
+      "reference/examples.md": "124ea0b639ee71b74ad3a9bee2be6af4dab696c3f3c7f513537eebbc4b20bf53",
+      "reference/constraints.md": "0001a580be9189b61276c504fbbcf37b6154281020857f2b0b69f757c6a0a013"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

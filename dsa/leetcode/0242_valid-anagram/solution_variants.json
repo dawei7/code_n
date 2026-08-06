@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Valid Anagram and meets the required complexity bound.",
+      "summary": "Balances the two strings in one pass with a fixed 26-entry lowercase-letter counter array.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

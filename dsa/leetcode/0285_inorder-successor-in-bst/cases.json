@@ -1,10 +1,125 @@
-{"challenge_id":"lc_285","cases":[
-{"id":"sample-parent","name":"sample: successor is ancestor","kind":"sample","visible":true,"input":{"root":[2,1,3],"p":1},"expected":2,"validator": {"kind": "node_value"},
-      "tags":["sample","bst"]},
-{"id":"sample-none","name":"sample: maximum has no successor","kind":"sample","visible":true,"input":{"root":[5,3,6,2,4,null,null,1],"p":6},"expected":null,"validator": {"kind": "node_value"},
-      "tags":["sample","boundary"]},
-{"id":"trial-root","name":"target successor above right subtree minimum","kind":"trial","visible":true,"input":{"root":[5,3,6,2,4],"p":4},"expected":5,"validator": {"kind": "node_value"},
-      "tags":["ancestor"]},
-{"id":"real-right-child","name":"hidden: successor lies in right direction","kind":"real","visible":false,"input":{"root":[8,4,12,2,6,10,14],"p":10},"expected":12,"validator": {"kind": "node_value"},
-      "tags":["hidden","search"]}
-]}
+{
+  "challenge_id": "lc_285",
+  "cases": [
+    {
+      "id": "sample-parent",
+      "name": "sample: successor is an ancestor",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [2, 1, 3], "p": 1},
+      "expected": 2,
+      "validator": {"kind": "node_value"},
+      "tags": ["sample", "source-example", "ancestor-successor"]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: maximum node has no successor",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [5, 3, 6, 2, 4, null, null, 1], "p": 6},
+      "expected": null,
+      "validator": {"kind": "node_value"},
+      "tags": ["sample", "source-example", "maximum-node", "no-successor"]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "single-node tree has no successor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0], "p": 0},
+      "expected": null,
+      "validator": {"kind": "node_value"},
+      "tags": ["minimum-node-count", "root-target", "no-successor"]
+    },
+    {
+      "id": "trial-root-right-minimum",
+      "name": "root successor is the minimum of its right subtree",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [5, 3, 7, 2, 4, 6, 8], "p": 5},
+      "expected": 6,
+      "validator": {"kind": "node_value"},
+      "tags": ["root-target", "right-subtree", "leftmost-descendant"]
+    },
+    {
+      "id": "trial-immediate-right-child",
+      "name": "successor is the target's immediate right child",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [5, 3, 7, 2, 4, 6, 8], "p": 3},
+      "expected": 4,
+      "validator": {"kind": "node_value"},
+      "tags": ["right-child", "immediate-successor"]
+    },
+    {
+      "id": "trial-multilevel-ancestor",
+      "name": "successor is a greater ancestor several levels above",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [20, 10, 30, 5, 15, null, null, 2, 7, 13, 17], "p": 17},
+      "expected": 20,
+      "validator": {"kind": "node_value"},
+      "tags": ["ancestor-successor", "multi-level"]
+    },
+    {
+      "id": "trial-minimum-node",
+      "name": "minimum node advances to its nearest ancestor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [20, 10, 30, 5, 15, null, null, 2, 7, 13, 17], "p": 2},
+      "expected": 5,
+      "validator": {"kind": "node_value"},
+      "tags": ["minimum-node", "ancestor-successor"]
+    },
+    {
+      "id": "trial-minimum-value",
+      "name": "minimum allowed value has the root as successor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0, -100000, 100000], "p": -100000},
+      "expected": 0,
+      "validator": {"kind": "node_value"},
+      "tags": ["minimum-value", "numeric-boundary"]
+    },
+    {
+      "id": "trial-maximum-value",
+      "name": "maximum allowed value has no successor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0, -100000, 100000], "p": 100000},
+      "expected": null,
+      "validator": {"kind": "node_value"},
+      "tags": ["maximum-value", "numeric-boundary", "no-successor"]
+    },
+    {
+      "id": "trial-deep-right-minimum",
+      "name": "right-subtree successor lies below its root",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [20, 10, 30, 5, 15, 25, 35, null, null, 12, 18, 22, 27], "p": 20},
+      "expected": 22,
+      "validator": {"kind": "node_value"},
+      "tags": ["right-subtree", "leftmost-descendant", "sparse-tree"]
+    },
+    {
+      "id": "trial-right-skewed",
+      "name": "right-skewed tree advances to the next child",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, null, 2, null, 3, null, 4], "p": 3},
+      "expected": 4,
+      "validator": {"kind": "node_value"},
+      "tags": ["right-skewed", "right-child"]
+    },
+    {
+      "id": "trial-left-skewed",
+      "name": "left-skewed tree returns the parent ancestor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [4, 3, null, 2, null, 1], "p": 2},
+      "expected": 3,
+      "validator": {"kind": "node_value"},
+      "tags": ["left-skewed", "ancestor-successor"]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_450",
+    "frontend_id": "450",
+    "title_slug": "delete-node-in-a-bst",
+    "url": "https://leetcode.com/problems/delete-node-in-a-bst/description/",
+    "paid_only": false,
+    "content_sha256": "34f8d7134d807af5ab48765aaac67a64037d1cafefd87b4ad5a774c92ecc5337",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [5,3,6,2,4,null,7], key = 3",
+        "output": "[5,4,6,2,null,null,7]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [5,3,6,2,4,null,7], key = 0",
+        "output": "[5,3,6,2,4,null,7]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "root = [], key = 0",
+        "output": "[]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "85f245b9b5f14353710bca4aea5b31b650b19f7b46547bab585829e2392a7bd9",
+      "reference/contract.md": "3ef4e5296a3e66d974043c852018283a21acd0f1826cf33b0c93948e01e00c8d",
+      "reference/examples.md": "7f229492e7087f12dee7d6cc33b0b54018d2e5e37691bf19387160fb9bb72049",
+      "reference/constraints.md": "badbe25da3375baea837322d31978d09f2f19f4a2c55fdc19296d379bc3f0e93",
+      "reference/follow_up.md": "35e9b281b805cbaa04f3c6607920adb8752a79906f9647c7a96bff856129f2b5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

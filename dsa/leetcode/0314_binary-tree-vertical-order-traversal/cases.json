@@ -34,6 +34,7 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "sparse"
       ]
     },
@@ -74,21 +75,61 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "tie-order"
       ]
     },
     {
-      "id": "sample-empty",
-      "name": "sample: empty tree",
+      "id": "sample-deep-ties",
+      "name": "sample: deeper nodes share vertical columns",
       "kind": "sample",
       "visible": true,
       "input": {
-        "root": []
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          10,
+          9,
+          11,
+          null,
+          5,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          6
+        ]
       },
-      "expected": [],
+      "expected": [
+        [
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          10,
+          9,
+          6
+        ],
+        [
+          3
+        ],
+        [
+          11
+        ]
+      ],
       "tags": [
         "sample",
-        "boundary"
+        "source-example",
+        "deep-ties"
       ]
     },
     {
@@ -140,10 +181,10 @@
       ]
     },
     {
-      "id": "real-perfect",
-      "name": "hidden: perfect tree has two center-column ties",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-perfect",
+      "name": "perfect tree has two center-column ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -175,9 +216,44 @@
         ]
       ],
       "tags": [
-        "hidden",
         "tie-order"
       ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "empty tree returns no columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": []},
+      "expected": [],
+      "tags": ["empty-tree","minimum-node-count","boundary"]
+    },
+    {
+      "id": "trial-left-chain",
+      "name": "left-skewed tree creates decreasing columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [3,2,null,1]},
+      "expected": [[1],[2],[3]],
+      "tags": ["left-skewed","column-order","one-node-columns"]
+    },
+    {
+      "id": "trial-tie-not-value-sorted",
+      "name": "same-position values retain left-to-right order rather than value order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0,1,2,null,100,-100,null]},
+      "expected": [[1],[0,100,-100],[2]],
+      "tags": ["same-position-tie","left-to-right","value-boundaries"]
+    },
+    {
+      "id": "trial-maximum-nodes",
+      "name": "maximum-node right chain creates one hundred columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,0]},
+      "expected": [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],
+      "tags": ["maximum-node-count","right-skewed","maximum-columns"]
     }
   ]
 }

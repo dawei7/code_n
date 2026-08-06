@@ -1,9 +1,9 @@
 ## Description
 
-Given strings `s` and `t`, return whether they are exactly one edit apart. One edit means performing exactly one of these operations on `s`:
+Given two strings `s` and `t`, return `true` if they are both one edit distance apart, otherwise return `false`.
 
-- Insert one character to obtain `t`.
-- Delete one character to obtain `t`.
-- Replace one character with a different character to obtain `t`.
+A string `s` is said to be one edit distance apart from a string `t` if you can:
 
-Return `false` when the strings require zero edits or more than one edit.
+- Insert exactly one character into `s` to get `t`
+- Delete exactly one character from `s` to get `t`
+- Replace exactly one character of `s` to get `t`

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_297",
-  "measurement_note": "Left-skewed trees exercise complete shape preservation and repeated serialization work; size is the number of tree nodes.",
+  "measurement_note": "Left-skewed trees exercise complete shape preservation; size is the node count, so processing each token once is linear while rescanning each remaining subtree is quadratic.",
   "cases": [
     {
       "id": "benchmark-scale-1",

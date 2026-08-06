@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_209",
-  "measurement_note": "Growing positive arrays exercise both sliding-window boundaries.",
+  "measurement_note": "Size is the positive-array length. Targets force both boundaries to advance throughout the scan, while restarting a sum from every left boundary grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",

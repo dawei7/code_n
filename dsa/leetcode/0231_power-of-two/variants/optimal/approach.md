@@ -17,4 +17,5 @@ Fixed-width integer comparison, subtraction, and bitwise AND take $O(1)$ time an
 ## Alternatives and edge cases
 - **Repeated division by two:** is correct but takes $O(\log n)$ time.
 - **Logarithms:** introduce floating-point precision concerns.
-- Negative values and zero return false; one is $2^{0}$ and returns true.
+- **Non-positive values:** negative values and zero return false even though zero satisfies the bitwise equality.
+- **One:** the value one is $2^{0}$ and correctly returns true.

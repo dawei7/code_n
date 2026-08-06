@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Best Meeting Point and meets the required complexity bound.",
+      "summary": "Separates Manhattan distance by axis and chooses the median occupied row and column without sorting.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(k)"
     }

@@ -1,51 +1,43 @@
 ## General
 **Transfer digits arithmetically from right to left**
 
-Remember whether `x` is negative and work with its nonnegative magnitude. Repeatedly divide the remaining magnitude by `10`: the remainder is its last decimal digit, and the quotient is the still-unprocessed prefix. Appending a popped digit `digit` to a partial reversal `reversed_value` would produce:
+Save `sign`, then work with the nonnegative magnitude `value = abs(x)`. Each `divmod(value, 10)` removes the final decimal digit: the quotient becomes the unprocessed prefix and the remainder is `digit`. Appending that digit to `reversed_value` would compute `reversed_value * 10 + digit`.
 
-```text
-reversed_value * 10 + digit
-```
+Trailing zeroes disappear naturally. The popped digits of 120 are 0, 2, and 1, so the successive partial reversals are 0, 2, and 21. When `x == 0`, the loop is skipped and the initialized result zero is returned.
 
-Because zero contributes nothing when appended to an initially zero result, trailing zeroes in the original number disappear naturally. For example, the popped digits of `120` are `0`, `2`, and `1`, producing partial results `0`, `2`, and `21`.
+**Respect the asymmetric signed range**
 
-**Account for the asymmetric signed range**
+Signed 32-bit integers range from $-2^{31}$ through $2^{31}-1$. The negative side permits magnitude $2^{31}$, one greater than the positive maximum. The active solution therefore chooses `limit = 2**31` for a negative input and `2**31 - 1` otherwise.
 
-A signed 32-bit integer ranges from $-2^{31}$ through $2^{31} - 1$. The negative side permits a magnitude of $2^{31}$, one greater than the largest positive value. Choose the allowed magnitude before processing digits:
+This sign-specific limit is necessary even though most reversed values are far from the boundary. A single shared positive limit would incorrectly reject a negative result whose magnitude is exactly $2^{31}$.
 
-- $2^{31} - 1$ when the original number is nonnegative;
-- $2^{31}$ when it is negative.
+**Check an append before it can overflow**
 
-This distinction matters for boundary inputs. Treating both signs with the positive limit would incorrectly reject the valid result `-2147483648` if its digit reversal produced that exact value.
+In a fixed-width language, calculating the next partial value before checking it may already overflow. For nonnegative `reversed_value` and `digit`, the desired condition is
 
-**Detect overflow before performing the risky operation**
+$$
+10 \cdot 	exttt{reversed_value} + 	exttt{digit} \le 	exttt{limit}.
+$$
 
-Do not calculate the next partial value and then ask whether it overflowed. In fixed-width languages, the multiplication may already have wrapped or become invalid. Instead, rearrange the desired inequality:
+Rearranging gives the safe preflight comparison
 
-```text
-reversed_value * 10 + digit <= limit
-```
+`reversed_value <= (limit - digit) // 10`.
 
-Since all terms are nonnegative, it is safe to append the digit exactly when:
+If the comparison fails, the next reversed prefix already exceeds the permitted magnitude. Further nonnegative decimal digits cannot bring it back into range, so returning 0 is required. Otherwise the multiplication and addition are safe.
 
-```text
-reversed_value <= (limit - digit) // 10
-```
+**Why digit transfer returns exactly the required value**
 
-If the condition fails, the mathematical reversal lies outside the permitted signed range, so return `0` immediately. Otherwise perform the multiplication and addition, then pop the next input digit.
+Before every iteration, `reversed_value` contains the digits already removed from the magnitude in their final reversed order, while `value` contains exactly the unprocessed prefix. Popping one remainder and appending it preserves that division of the original decimal representation.
 
-**Digit transfer and overflow stay exact together**
-
-Before each pop, `reversed_value` contains the digits already removed from the input magnitude in their final reversed order, while the remaining quotient contains exactly the unprocessed prefix. Appending the next remainder preserves this division of the original decimal representation, so exhaustion yields the mathematical digit reversal.
-
-The preflight inequality is algebraically equivalent to the proposed append staying within the sign-specific magnitude limit. If it fails, the next reversed prefix is already too large; appending further nonnegative decimal digits cannot bring the eventual value back into range. Returning zero is therefore required at that exact point. If every append passes, all arithmetic remains representable, and restoring the saved sign produces the requested integer.
+The preflight inequality is algebraically equivalent to the proposed append remaining within the sign-specific range. Thus every performed operation is safe, an overflow is detected at the first impossible prefix, and exhausting `value` produces the mathematical reversal. Multiplying by `sign` restores the original sign without changing the digits.
 
 ## Complexity detail
-Each division by `10` removes one decimal digit, so an input with $d = \Theta(\log_{10} \lvert x \rvert)$ digits takes $O(\log \lvert x \rvert)$ time. The algorithm stores only the sign, remaining magnitude, current digit, limit, and partial reversal, giving $O(1)$ auxiliary space. The $x = 0$ case performs constant work.
+Let $d$ be the number of decimal digits in $lvert x \rvert$. Each division by 10 removes one digit, so the time complexity is $O(d)=O(\log lvert x \rvert)$ for nonzero $x$. The algorithm stores only the sign, magnitude, limit, current digit, and partial reversal, giving $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- Converting to a string, reversing it, and parsing it back is concise but uses $O(\log |x|)$ additional storage and still requires a range check.
-- Reversing first and checking afterward is unsafe in languages with fixed-width integer overflow.
-- Using an arbitrarily wide or wider integer type can mask the central overflow issue and is unnecessary when the preflight inequality is available.
-- Negative values should not use language-specific remainder behavior directly unless it is understood; processing the magnitude keeps every digit nonnegative.
-- Inputs ending in one or more zeroes lose those zeroes in the result, and `0` remains `0`.
+- **Convert to a string:** is concise but uses $O(d)$ additional space and still needs a signed-range check.
+- **Check after reversal:** is unsafe in fixed-width languages because an intermediate multiplication may already have overflowed.
+- **Use a wider integer type:** masks the central constraint and is unnecessary when the preflight inequality is available.
+- **Negative remainder arithmetic:** varies by language; processing the magnitude keeps every popped digit nonnegative.
+- **Trailing zeroes:** contribute nothing while the partial reversal is zero and therefore disappear from the integer result.
+- **Zero:** performs no digit-transfer iterations and returns zero directly.

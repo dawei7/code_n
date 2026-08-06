@@ -7,7 +7,7 @@ Enumerate every nonempty first prefix and every following nonempty second segmen
 
 **Match forced sums directly against the remaining text**
 
-For a candidate pair `first, second`, form `str(first + second)`. A prefix comparison at the current index simultaneously chooses the next boundary and verifies its value. There is no reason to try other third-number lengths because decimal notation for the required sum is unique.
+For a candidate pair `first, second`, set `i` to the end of the second segment and form `str(first + second)`. A prefix comparison at `i` simultaneously chooses the next boundary and verifies its value. Advance `i` by the matched sum's length and rotate the two stored values. There is no reason to try other third-number lengths because decimal notation for the required sum is unique.
 
 For `"199100199"`, selecting `1` and `99` forces `100`, then `199`; both match and consume the string. For `"1023"`, the split `1,0` forces `1` rather than `2`, while a second number beginning with `0` cannot be extended to `02`.
 

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1264",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is a concise, conventional set-based solution. The friends CTE makes the undirected relationship explicit, likes and own distinguish candidate from target rows, DISTINCT states the output-set requirement, and NOT EXISTS expresses the anti-join without null-sensitive NOT IN behavior. No unnecessary nesting, obscure SQL feature, or naming defect impairs an expert interview explanation, so a candidate would not materially improve it."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The two CTE branches collect exactly the opposite endpoint of every friendship involving user 1, regardless of column direction; UNION makes that friend set unique. Joining it to Likes produces precisely the pages with a witnessing friend. The correlated NOT EXISTS removes a candidate exactly when user 1 has the same page_id, and final DISTINCT collapses pages liked by multiple friends. Thus every returned page satisfies the contract and every eligible page survives."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent Python set oracle normalized friendship endpoints, collected user 1's own pages, and filtered friend likes. It, the protected SQL, byte-identical immutable native SQL, and an independently structured correlated SQL control agreed on all ten visible cases, all three benchmark tiers, and all 4,096 databases formed from every subset of six directed friendships and six likes over three users and two pages. Input fixtures remained unchanged."
+      },
+      {
+        "category": "randomized_and_boundary_coverage",
+        "severity": "verified",
+        "reason": "Another 10,000 deterministic schema-valid databases generated with seed 1264 matched the oracle, with direct protected/control SQL execution on the first 2,000. The corpus included 4,709 databases using both friendship directions, 3,136 with a shared friend page, 4,316 with a self-like overlap, 2,117 with no friends, 7,589 with a nonfriend like, 3,087 with a friend lacking likes, and 4,858 containing both ordered representations of some relation."
+      },
+      {
+        "category": "benchmark_calibration",
+        "severity": "verified",
+        "reason": "The existing hidden tiers correctly define size as total Friendship and Likes rows at R = 17, 129, and 513, span more than 30x, alternate user 1 between both friendship columns, and give each friend a unique candidate page. Across three repeated runs of fifteen paired trials per tier, protected SQL and an independent set-based left anti-join passed every output and scaling. The correct correlated friendship-scan control passed every output but failed only scaling in all runs, with extra-growth exponents +0.22 to +0.23. No benchmark edit was warranted."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "Only the authenticated mixed-table fixture is a source example, so the invented directional rows were reclassified as trials and the two hidden correctness rows became visible. Three additional visible trials cover partial exclusion across several friend pages, a friend with no likes, and both ordered representations of one relation. All ten ordinary rows are now visible samples or trials and every expected set was independently recomputed."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1264, SQL as the sole language, and the native query entrypoint. Fresh authenticated evidence confirms both integer table schemas, their composite primary keys, friendship and like row meanings, the fixed target user_id = 1, friend-liked recommendation rule, self-like exclusion, duplicate-free output, and unrestricted result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected sql.sql and immutable leetcode.sql remain byte-for-byte identical and bound to verified submission 2068038675. Both use the same two-branch UNION friend normalization, join to Likes, correlated own-page anti-join, DISTINCT projection, and recommended_page alias. submission.json and both SQL sources remain unchanged."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The complete Approach was reviewed against the protected query. It accurately explains both UNION branches, friend-to-like join, DISTINCT requirement, null-safe NOT EXISTS exclusion, soundness and completeness, average O(R) set-based processing with a possible sort-based logarithmic factor, and O(R) intermediate space. Its alternatives and edge cases match the actual SQL and cover every material failure mode."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves both schemas and composite keys, the meaning of each table, bidirectional friendship lookup, target user 1, friend-liked inclusion, own-like exclusion, duplicate-free and unordered output, and the sole source example with all table rows and explanation steps. It corrects the source explanation's apparent attribution of page 56 to user 3 by following the source input row showing user 4."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed one explained example, five semantic source tables, and no constraints, hints, images, notes, or follow-up. source_fidelity.json binds all five modular Reference files to live-content SHA-256 5a412a1dbbc138a55beded049a0116a419eeb7590f6da0a8947251b7adb2a57b and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first visible sample preserves the sole authenticated source example, including all Friendship, Likes, and output rows and every explanation step; it explicitly resolves the source explanation's apparent page-56 attribution typo from the input table.",
+      "All ten ordinary fixtures are visible samples or trials covering either friendship column, own-page exclusion, shared-page deduplication, unrelated friendships and likes, no friends, several pages from one friend, a friend without likes, and reversed duplicate relation rows.",
+      "The independent set oracle, protected and native SQL, and correlated control agree on all fixed inputs and 4,096 exhaustive small databases. Ten thousand seeded legal random databases were oracle-checked, with protected/control SQL executed on 2,000 of them and no fixture mutation.",
+      "The three unchanged hidden performance-only tiers use R = 17, 129, and 513. Repeated paired trials accept protected and independent same-class controls, while the correct correlated scan passes every output and fails only scaling."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "8a4b23b2dfebf84d3761c352c8aaef6d2e50bd8556ab9df03e645af3ae49cb63",
+    "native_source_sha256": "8a4b23b2dfebf84d3761c352c8aaef6d2e50bd8556ab9df03e645af3ae49cb63",
+    "approach_sha256": "90dad7e971c7a545f8e8df7fb292a1d711ee4d9080f0fcbbc1348610938e04ab",
+    "solution_variants_sha256": "937bfead1c236336883d34111334603faa3f24f243d40d4849c32d08323933d7",
+    "complexity_evidence_sha256": "c6941175fcb565e91c641699f5bc20edae0d732f40de7ec44824a44ddb9e5aae",
+    "cases_sha256": "83a746fee534f80da48149ee00c5fdadaad0df72200749cd75b4ffc19ede3d62"
+  }
+}

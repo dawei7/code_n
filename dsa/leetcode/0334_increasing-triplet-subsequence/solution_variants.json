@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Increasing Triplet Subsequence and meets the required complexity bound.",
+      "summary": "Maintains the smallest possible tails of increasing subsequences of lengths one and two.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

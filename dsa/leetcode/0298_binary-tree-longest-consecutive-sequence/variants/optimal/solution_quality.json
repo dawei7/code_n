@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_298",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "typing",
+        "severity": "material",
+        "reason": "The protected app-local source defines the required local TreeNode equivalent but imports Any and discards that precise model in both the solve signature and traversal stack. The single inert candidate removes the unnecessary Any dependency and types those surfaces as TreeNode | None and TreeNode without changing executable behavior."
+      },
+      {
+        "category": "solution_quality",
+        "severity": "verified",
+        "reason": "The algorithm itself is already the canonical one-pass depth-first traversal: carry the parent value and ending length, extend only across an exact plus-one edge, reset otherwise, and update the global endpoint maximum. The candidate preserves that complete control flow byte-for-byte apart from type declarations."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 298 and its Python binary-tree-to-integer contract. The Reference preserves the strict downward plus-one semantics, both source examples in order with full explanations, both constraints, and accessible text equivalents of both source tree images."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local and native traversal bodies remain structurally identical, and the immutable native source remains tied to verified submission 2064356391. The candidate changes only app-local type precision, is inert, and has not been submitted or represented as Accepted."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 16/64/192-node increasing chains span 12x, stay within both node and value bounds, and force the full valid path to be processed. The candidate passes at +0.02 relative exponent and 1.04x largest ratio; a correct implementation that starts a fresh consecutive search from every node passes all outputs but fails only scaling at +1.18 and 93.89x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now targets the candidate's precise local tree type, proves the endpoint recurrence, defines node count n and height h, and correctly bounds the depth-first stack by O(h) rather than presenting an independent O(n) worst-shape bound."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Premium Reference remains verified against authenticated source evidence, preserving both examples and explanations, both constraints, the one-way parent-to-child rule, and informational equivalents for both source images."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 14,
+      "correctness_cases_total": 14,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated source examples appear first, in source order, with their exact level-order trees and longest-path lengths.",
+      "The invented empty-tree sample was removed because it violates the one-node minimum; the formerly hidden equal-branch case is now a visible trial.",
+      "Single-node trees cover the minimum node count, and authored trees touch both allowed value endpoints at -30,000 and 30,000.",
+      "Decreasing, duplicate, and skipped-value edges verify mandatory resets, while sparse left and right chains verify that the longest run may begin below the root.",
+      "Sibling, parallel-branch, and zero-valued-root cases enforce strict parent-to-child direction, exact plus-one adjacency, and the prohibition on joining runs through an upward edge.",
+      "A brute downward-path oracle verified all 14 authored results and all three benchmark results; the candidate also matched it on 46,948 exhaustive ordered tree shapes with one through five nodes labeled from {-1, 0, 1, 2}.",
+      "All 14 correctness cases are visible samples or trials; the unchanged 16-, 64-, and 192-node increasing chains remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "ed642fabfaa5eaa2bb1d03a04056a3a48138e2682564375ae10d33564fd44251",
+    "native_source_sha256": "157f77a55fe1436905b0e39441133cc4ae46abc014d16eaa9dff7e8154e20d90",
+    "approach_sha256": "150fe33627192fe53d4255c3b9dfdee258e650a2da762609d3434068c232fe5c",
+    "solution_variants_sha256": "8953212dd71a8ed40a8dcd1a32d602508ccb70313102ac07d1a6a2f7091643dd",
+    "complexity_evidence_sha256": "38e907fd3fc65d6d68948e337c42a4fe68e0fbf5d7e4f09e2a67c9b226a22ae6",
+    "candidate_source_sha256": "9c70881683c06b01c53c1368df5b4cebd43d630e7df9f8ce57179ccce56f90db",
+    "cases_sha256": "6f61d95089d0fa6364dc67c56d3d8b734a91a5da231763a87c808ec0545845ba"
+  }
+}

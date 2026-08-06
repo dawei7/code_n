@@ -1,1 +1,163 @@
-{"schema_version":1,"challenge_id":"lc_1088","cases":[{"id":"sample-1","name":"sample: six confusing values through twenty","kind":"sample","visible":true,"input":{"n":20},"expected":6,"tags":["sample","rotation"]},{"id":"sample-2","name":"sample: three-digit boundary","kind":"sample","visible":true,"input":{"n":100},"expected":19,"tags":["sample","bound"]},{"id":"trial-one","name":"one is unchanged by rotation","kind":"trial","visible":true,"input":{"n":1},"expected":0,"tags":["trial","unchanged"]},{"id":"trial-first-confusing","name":"six is the first confusing number","kind":"trial","visible":true,"input":{"n":6},"expected":1,"tags":["trial","minimum"]},{"id":"real-strobogrammatic","name":"hidden: unchanged valid values are excluded","kind":"real","visible":false,"input":{"n":11},"expected":3,"tags":["hidden","strobogrammatic"]},{"id":"real-partial-decade","name":"hidden: stop within two-digit candidates","kind":"real","visible":false,"input":{"n":89},"expected":14,"tags":["hidden","inclusive"]},{"id":"real-three-digits","name":"hidden: all three-digit candidates below 999","kind":"real","visible":false,"input":{"n":999},"expected":106,"tags":["hidden","digits"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1088",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: six confusing values through twenty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 20
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "definition"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nineteen confusing values through one hundred",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 100
+      },
+      "expected": 19,
+      "tags": [
+        "sample",
+        "three-digits"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "one is unchanged by rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-invalid-gap",
+      "name": "invalid digits produce no confusing number below six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "invalid-digits"
+      ]
+    },
+    {
+      "id": "trial-first-confusing",
+      "name": "six is the first confusing number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "inclusive"
+      ]
+    },
+    {
+      "id": "trial-strobogrammatic",
+      "name": "unchanged valid values are excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 11
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-unchanged-sixty-nine",
+      "name": "sixty-nine remains unchanged after rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 69
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "digit-swap",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-partial-decade",
+      "name": "inclusive bound stops within two-digit candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 89
+      },
+      "expected": 14,
+      "tags": [
+        "trial",
+        "inclusive"
+      ]
+    },
+    {
+      "id": "trial-three-digits",
+      "name": "all confusing numbers through three-digit nines",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999
+      },
+      "expected": 106,
+      "tags": [
+        "trial",
+        "three-digits"
+      ]
+    },
+    {
+      "id": "trial-leading-zero-rotation",
+      "name": "leading zeros in the rotated representation are ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8000
+      },
+      "expected": 347,
+      "tags": [
+        "trial",
+        "leading-zero",
+        "source-semantics"
+      ]
+    },
+    {
+      "id": "trial-maximum-bound",
+      "name": "maximum inclusive upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
+      "expected": 1950627,
+      "tags": [
+        "trial",
+        "maximum",
+        "inclusive"
+      ]
+    }
+  ]
+}

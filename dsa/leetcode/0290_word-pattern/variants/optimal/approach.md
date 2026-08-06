@@ -1,17 +1,29 @@
 ## General
 **A pattern match requires a bijection, not one map**
 
-Split the sentence and reject a length mismatch. For each character-word pair, require any existing character mapping to match the word and any existing word mapping to match the character; otherwise install both mappings.
+Split the sentence into words and reject it immediately if the number of words differs from the number of pattern
+characters. Scan the aligned character-word pairs once while maintaining both a character-to-word map and a
+word-to-character map.
 
-After every processed position, the two maps are inverses over all character-word pairs seen so far.
+For each pair, an existing forward mapping must name the current word, and an existing reverse mapping must name the
+current character. If both checks pass, assign the pair in both maps. After every processed position, the two maps are
+inverses over all pairs seen so far.
 
 **The inverse maps enforce both directions**
 
-A forward conflict would assign two words to one pattern character; a reverse conflict would assign one word to two characters. Rejecting both kinds makes the relation one-to-one and consistent. If every aligned pair passes and the sequence lengths match, the two maps form exactly the required bijection over all positions.
+A forward conflict would assign two words to one pattern character; a reverse conflict would assign one word to two
+characters. Rejecting both kinds makes the relation one-to-one and consistent. Conversely, if every aligned pair
+passes, both occurrences of every character-word association agree, so the complete sequences follow the required
+bijection.
 
 ## Complexity detail
-Each of `n` positions performs expected-constant-time hash operations, and at most `k` distinct mappings are stored.
+Let $n$ be the combined number of characters in `pattern` and `s`. Splitting and scanning consume $O(n)$ time, and
+the expected total cost of hashing the words is also $O(n)$. The word list and the two maps retain at most $O(n)$
+characters and references, so the auxiliary space is $O(n)$.
 
 ## Alternatives and edge cases
-- **Compare first-occurrence indices by rescanning:** can take $O(n^2)$.
-- A word-count mismatch fails immediately; repeating both the character and its word is valid.
+- **Pairwise consistency checks:** comparing every pair of positions is correct but takes quadratic time.
+- **One directional map:** misses the case where two different pattern characters map to the same word.
+- **Length mismatch:** fails before `zip` could silently discard unmatched characters or words.
+- **Repeated association:** repeating both a character and its established word is valid and leaves the maps
+  unchanged in meaning.

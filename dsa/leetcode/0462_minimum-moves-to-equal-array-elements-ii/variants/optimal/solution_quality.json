@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_462",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical sort-and-median solution: it chooses the upper median and sums every absolute deviation from it. The code is concise, conventional, handles even lengths correctly, and is expert interview quality for the declared O(n log n) branch, so no inert candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 462 and its nonempty integer-array Python contract. The O(n log n) time and O(n) space claims correctly include Python's in-place sort, sorting workspace, and the linear distance scan; the source guarantees the returned total fits in 32 bits."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2064945665. Its in-place sort, upper-middle selection, zero accumulator, absolute-distance loop, and returned total are identical to the protected app-local algorithm and data flow; only annotation spelling and the LeetCode class wrapper differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The 31-, 127-, and 511-value distinct tiers span more than 16x and require full ordering plus a complete distance sum. The current source passed all 7 opaque correctness executions and all three performance tiers at 1.00x the reference runtime. A correct control that evaluates every input value as a target passed every output but failed only the runtime verdict at 445.61x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly matches the protected target and derives median optimality for absolute distance, validates the upper median for even length, and gives the equivalent extreme-pair interpretation. Its sorting and workspace costs, quickselect alternative, and mean, duplicate, negative, and large-total boundaries are accurate."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the live public statement. It preserves the exact single-element increment-or-decrement move, both source examples, the complete two-move first-example trace, the 32-bit-answer guarantee, and all three constraints. The unsupported legacy third example was removed."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "0132d233ff718b35713e25fa2b9d32fbc737a25801a90eba6baf72bc410896f5",
+    "native_source_sha256": "e327ee8e884edbd3fe5ef15d9a6c5ef40f971bc43f0a2df579febc7c99853492",
+    "approach_sha256": "34cfa9ad4111d8a2168e904100acaefd85d648b2d7ac6df69a7951a3be40706b",
+    "solution_variants_sha256": "891f73dd14e06036ecaff484889beac7257a52688a574970c9f286cb42d837a9",
+    "complexity_evidence_sha256": "b8d4ffd4b5dc2fafc32d9cf40e0cb7cdb53d08dbd6ec3c32b7918c3e2669d90d"
+  }
+}

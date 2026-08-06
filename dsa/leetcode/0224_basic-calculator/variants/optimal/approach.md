@@ -25,8 +25,12 @@ At any scan position, `result + sign * number` represents the value accumulated 
 Each character is examined once, so time is $O(n)$. The stack stores two values per unmatched opening parenthesis, using $O(d)$ space for nesting depth `d`.
 
 ## Alternatives and edge cases
-- Recursive descent maps naturally to the grammar and has the same asymptotic bounds, using call frames instead of an explicit context stack.
-- Converting to postfix requires an operator stack and a separate evaluation pass, which is unnecessary for this limited precedence.
-- Calling a built-in evaluator violates the contract and may introduce security risks on untrusted input.
-- Spaces may appear anywhere permitted by the grammar, and numbers may contain multiple digits.
-- Unary minus can appear at the start or before a parenthesized subexpression; deeply nested input determines stack usage.
+- **Recursive descent:** It maps naturally to the grammar with the same asymptotic bounds, using call frames instead of
+  an explicit context stack.
+- **Postfix conversion:** It requires an operator stack and a separate evaluation pass that this limited precedence does
+  not need.
+- **Built-in evaluation:** It violates the source requirement and can execute unsafe input in less constrained settings.
+- **Spaces and multi-digit numbers:** Spaces do not commit a term, while every consecutive digit extends the current
+  number.
+- **Unary minus and nesting:** A minus sign can begin the expression or a parenthesized subexpression, and nesting depth
+  determines stack usage.

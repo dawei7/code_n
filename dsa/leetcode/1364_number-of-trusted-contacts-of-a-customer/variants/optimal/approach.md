@@ -1,18 +1,25 @@
 ## General
-**Classify contacts before joining invoices.** Start from `Contacts` and left join each `contact_email` to `Customers.email`. Group by the contact owner `user_id`. `COUNT(*)` gives the owner's total contacts, while a conditional sum counts rows whose joined customer ID is non-null.
 
-**Preserve customers without contacts.** Join each invoice to its owning customer, then left join the aggregated counts. Missing aggregate rows mean that owner has no contacts, so apply `COALESCE(..., 0)` to both count columns.
+**Reduce registered emails to membership keys.** Trust depends only on whether a contact email exists in `Customers`, not on how many customer rows carry it. The `customer_emails` CTE therefore selects distinct addresses before any contact join. Each contact can then match at most one membership row, preventing duplicate registered addresses from multiplying either contact count.
 
-The contact aggregation creates exactly one summary row per owner represented in `Contacts`, and the email join marks exactly the contacts whose addresses belong to registered customers. The final invoice join reuses the owner's summary for every invoice without multiplying contact rows. Ordering by `invoice_id` establishes the required presentation.
+**Aggregate each owner's contacts once.** Left join `Contacts` to the distinct email set and group by `user_id`. `COUNT(*)` counts every contact row, while `COUNT(trusted.email)` counts only rows whose address exists in the shop-customer set. This produces one reusable summary per customer who has contacts.
+
+**Attach summaries without losing invoices.** Join every invoice to its owning customer for the requested name, then left join the owner summary. A missing summary means the customer has no contacts, so both nullable counts become zero through `COALESCE`. Reusing one summary avoids repeating contact work when a customer has several invoices, and the final `ORDER BY` establishes the required ascending invoice order.
+
+The distinct email set gives each contact exactly one yes-or-no trust marker. Aggregation therefore computes both owner-level counts correctly. The final joins create one output row per invoice with its owner's summary, including the zero-contact case, which proves all five output columns and their cardinality.
 
 ## Complexity detail
-Under the general comparison-based database model, joins, grouping, and final ordering take $O(N\log N)$ time; indexed or hash-based plans may be faster. The joined and grouped working state uses $O(N)$ space.
+
+Let $C$, $K$, and $I$ be the numbers of customers, contacts, and invoices, with $N=C+K+I$. In the general comparison-based model, deduplication, joins, grouping, and final ordering take $O(N\log N)$ time. Hash-based plans may have expected linear work before the required output sort. The distinct email set, owner summaries, and join state use $O(N)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Group after joining every invoice:** Join invoices directly to all contacts and trusted customers, then group by invoice. This is correct but repeats the same contact work for customers with several invoices.
-- **Correlated counts:** Run separate contact subqueries for every invoice. Without usable indexes this repeatedly scans the tables and can grow quadratically or worse.
-- **Inner join to summaries:** This incorrectly drops invoices belonging to customers with no contacts; the summary join must be left-sided.
-- **External email:** A contact whose email is absent from `Customers` contributes to `contacts_cnt` but not `trusted_contacts_cnt`.
-- **Matching name only:** Equal names do not establish trust; only `contact_email = Customers.email` matters.
-- **Several invoices:** Every invoice appears separately with the same owner-level contact counts.
-- **Zero contacts:** Convert both null aggregate values to numeric zero.
+
+- **Raw customer-email join:** Joining contacts directly to `Customers` is shorter, but duplicate registered emails can multiply one contact and inflate both counts; reduce to distinct membership keys first.
+- **Correlated `EXISTS`:** Testing email existence once per contact preserves correct membership semantics, but without a usable email index it can repeatedly scan `Customers`.
+- **Group after joining every invoice:** This can be correct with careful distinct-email handling, but repeats the same contact work for customers with several invoices.
+- **Inner join to owner summaries:** This drops invoices for customers with no contacts; the summary join must remain left-sided.
+- **External contact:** The row contributes to `contacts_cnt` but not to `trusted_contacts_cnt`.
+- **Contact-name match:** Names are irrelevant to trust; only `contact_email` membership matters.
+- **Self email:** A contact address equal to the owner's registered email is trusted because that address exists in `Customers`.
+- **Several invoices:** Each invoice remains a separate ordered row and reuses the same owner-level counts.
+- **No owner contacts:** Both counts must be numeric zero rather than null.

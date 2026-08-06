@@ -1,11 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_250", "frontend_id": "250", "title_slug": "count-univalue-subtrees", "url": "https://leetcode.com/problems/count-univalue-subtrees/description/", "paid_only": true, "content_sha256": "eefffdef61b0aaf1cc3ec9caca354751f2b3f54785ef14b11e0f50ec33ea2afc", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "root = [5,1,5,5,5,null,5]", "output": "4", "has_explanation": false}, {"ordinal": 2, "input": "root = []", "output": "0", "has_explanation": false}, {"ordinal": 3, "input": "root = [5,5,5,5,5,null,5]", "output": "6", "has_explanation": false}],
-    "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_250",
+    "frontend_id": "250",
+    "title_slug": "count-univalue-subtrees",
+    "url": "https://leetcode.com/problems/count-univalue-subtrees/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "98c8596a7edd70963c63bb6a875eb69bf3651f23a1989bfd93615adab63bb5c6", "reference/contract.md": "11ab1b4b8bbe53934dd04098e6be88fa355ee9ed62439f447bea1673e0ab839b", "reference/examples.md": "8ab198ee2243dd5ea8a1286b75443df6d57196f414b79725c3974d867639e33f", "reference/constraints.md": "061deef98d3401a53c9555e2acd16f4b84dc30e844b0a7c3748be12338b97ef2"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`root = [5,1,5,5,5,null,5]`",
+        "output": "`4`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "`root = []`",
+        "output": "`0`",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "`root = [5,5,5,5,5,null,5]`",
+        "output": "`6`",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a1463b347fea13aeba28e6ccbcb8f6be45bd1377d8422f0828e4c494c1536d3b",
+      "reference/contract.md": "55c8a947013c5d52eb5c68053a54d31f35b02276ce020c14ab2ca9df8790de3a",
+      "reference/examples.md": "5182ccb10b53c67d601b3c156e7d1525c828b947a1f7f242ac3b7062dc933805",
+      "reference/constraints.md": "4a7a55a18c7dff2dbcbf25cc165f7836a2a8acd94421009caa14601958fd5c55"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1474",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected implementation is a direct in-place two-pointer traversal. The names current and after_deleted clearly identify the retained anchor and first surviving successor, the two bounded loops mirror the keep/delete cycle, and one next-pointer assignment performs each block deletion. The local ListNode equivalent preserves the standalone app contract, and no material improvement warrants an inert candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "At each outer-loop entry, current is the first unprocessed node and is retained. Advancing at most m - 1 links places it at the last available node of that keep block; advancing after_deleted at most n links then crosses exactly the following deletion block. Rewiring current.next to after_deleted bypasses precisely those nodes, and assigning current = after_deleted starts the next cycle at the first unclassified node. Early list exhaustion either preserves a partial keep block or deletes the available suffix, so every node receives exactly the required positional treatment."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Every node is crossed by at most one keep traversal or one deletion traversal, so the total work of the nested bounded loops is O(L), not O(L(m + n)). The algorithm stores only two node references and loop counters while rewiring the original list, matching the declared O(1) auxiliary-space bound. The complexity artifact is inherited, hash-bound identity only; this accelerated review did not inspect or recalibrate it and did not claim a fresh runtime verdict."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "The implementation starts from head, keeps each block before deleting the next, returns the original head, preserves retained node identity and order, and handles partial final keep or deletion blocks. Positive m guarantees that head is retained, so the absence of a dummy predecessor is safe; repeated values do not affect the position-based rule."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The complete Approach accurately describes retained-block anchoring, advancing across deleted nodes, the single pointer rewire, why a dummy node is unnecessary, and exact coverage of every node. Its O(L) time and O(1) space claims match the protected code and manifest, and its alternatives and edge cases cover copying, sentinels, recursion, rescanning, short lists, tail deletion, unit block sizes, repeated values, and incomplete cycles."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "The protected app source and immutable native source remain unchanged at canonical SHA-256 values 1200ac4e90ba2289aa8a6946f248879a8c81cb985eb6e0f896c22cb867eb3337 and 5f6d732efc65e92bd99f9260ca5feea079a9c82c9f40e87088bf1397c428aa9a. Both retain identical pointer roles, loops, early return, rewiring, and final result; their structural differences are limited to the required local ListNode and native Solution interface. Verified submission 2074753886 remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated Premium evidence confirmed the four-step keep/delete procedure, two exact explained examples, three constraints, two linked-list diagrams, the in-place follow-up, and one pointer-rewiring hint. The legacy third example was not source-native; the modular Reference now preserves only the source examples and independently recreates both diagrams as accessible Mermaid chains that label every kept and deleted node. It is bound to live content SHA-256 4cbf028119829ee11ee325921c2ede47ea73e91717a5ce18d63973545580160c."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "1200ac4e90ba2289aa8a6946f248879a8c81cb985eb6e0f896c22cb867eb3337",
+    "native_source_sha256": "5f6d732efc65e92bd99f9260ca5feea079a9c82c9f40e87088bf1397c428aa9a",
+    "approach_sha256": "6e58782101fc8b740afba8ea0cd08b257350443cc8de632d3bfc3d172b8021a1",
+    "solution_variants_sha256": "c0d80d887d29fb5068372a8b135f23755832b467d7d082af1090297a95e4aaa1",
+    "complexity_evidence_sha256": "309feb591f5002971c2c27f465489aa5451190545568ec7f72d584536804dd36"
+  }
+}

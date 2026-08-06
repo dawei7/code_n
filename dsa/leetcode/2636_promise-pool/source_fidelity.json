@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2636",
+    "frontend_id": "2636",
+    "title_slug": "promise-pool",
+    "url": "https://leetcode.com/problems/promise-pool/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`functions = [() => sleep(300), () => sleep(400), () => sleep(200)], n = 2`",
+        "output": "`[300, 400, 500]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`functions = [() => sleep(300), () => sleep(400), () => sleep(200)], n = 5`",
+        "output": "`[300, 400, 200]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`functions = [() => sleep(300), () => sleep(400), () => sleep(200)], n = 1`",
+        "output": "`[300, 700, 900]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3be198f853cc15f45338109d37ce205f6bbca8485c5154778eff3b70a47a5814",
+      "reference/contract.md": "5c1d394d533f14134c5a05945583ab12a7eb5c1172bbd8de7c4c8fdcfccb1038",
+      "reference/examples.md": "e8ae4035c8e81023686b2ed932a97d1adb6f701835b1fe56147cf624fbd76bb9",
+      "reference/constraints.md": "2e9b6eeb7a58fb394753ac60f4cdd4f40e4d1224d5db9d2a9c482b5d1e43badf"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

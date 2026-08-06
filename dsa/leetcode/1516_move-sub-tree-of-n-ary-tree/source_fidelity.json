@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1516",
+    "frontend_id": "1516",
+    "title_slug": "move-sub-tree-of-n-ary-tree",
+    "url": "https://leetcode.com/problems/move-sub-tree-of-n-ary-tree/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`root = [[1, [2, 3]], [2, [4, 5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]], p = 4, q = 1`",
+        "output": "`[[1, [2, 3, 4]], [2, [5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`root = [[1, [2, 3]], [2, [4, 5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]], p = 7, q = 4`",
+        "output": "the same tree",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`tree = [[1, [2, 3]], [2, [4, 5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]], p = 1, q = 8`",
+        "output": "`[[8, [1]], [1, [2, 3]], [2, [4, 5]], [3, [6]], [4, [7]], [5, []], [6, []], [7, []]]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b0a2560820b20b86b21916bdf366a88eea09ae8dc7d7d9ccb74641ae1edee1fd",
+      "reference/contract.md": "9849cc6f63129b976929ea5db7e0285f65cd139358f2da9d553cda902635f5dc",
+      "reference/examples.md": "95a806982a48c349991ef8d5a2bf0985278482b4a7c2eafa56df5f6b8615104f",
+      "reference/constraints.md": "12355ef36317cb00bc128ef1ae292564b68b6d577685dee2fc93404bc9115f8c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

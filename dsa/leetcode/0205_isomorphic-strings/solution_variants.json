@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Isomorphic Strings and meets the required complexity bound.",
+      "summary": "Maintains inverse source-to-target and target-to-source character maps in one scan.",
       "time_complexity": "O(n)",
       "space_complexity": "O(k)"
     }

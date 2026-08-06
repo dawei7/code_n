@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_702",
+    "frontend_id": "702",
+    "title_slug": "search-in-a-sorted-array-of-unknown-size",
+    "url": "https://leetcode.com/problems/search-in-a-sorted-array-of-unknown-size/description/",
+    "paid_only": true,
+    "content_sha256": "8138dc579a74127436dd630bad22359d93ee592d9596d4dbbf22865ad5062d9c",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "secret = [-1,0,3,5,9,12], target = 9",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "secret = [-1,0,3,5,9,12], target = 2",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "2e69d973166ddf64621d0408ebd41d9050b96fb6af37472aee8240caed2f9bff",
+      "reference/contract.md": "d9fd7d6990ee002566d7beccccaa7f57d23ebf05d6cd4db9f21d5514979efc0c",
+      "reference/examples.md": "214036e49af252136832f73350b6e3bfe5917e6914f5fb326783558ebb3a4437",
+      "reference/constraints.md": "2d666d868e6641a72c708bb7e66c391b74c56e8c3a39eaf5324fb598acce24f5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

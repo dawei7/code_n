@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_193",
-  "measurement_note": "Growing line files exercise anchored full-line regex filtering.",
+  "measurement_note": "Size is the total file character count. Growing line files exercise anchored full-line regex filtering.",
   "cases": [
     {
       "id": "benchmark-scale-1",
       "name": "benchmark: 8 candidate lines",
       "kind": "benchmark",
       "visible": false,
-      "size": 8,
+      "size": 89,
       "input": {
         "stdin": "",
         "files": {
@@ -26,7 +26,7 @@
       "name": "benchmark: 64 candidate lines",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 742,
       "input": {
         "stdin": "",
         "files": {
@@ -44,7 +44,7 @@
       "name": "benchmark: 256 candidate lines",
       "kind": "benchmark",
       "visible": false,
-      "size": 256,
+      "size": 3086,
       "input": {
         "stdin": "",
         "files": {

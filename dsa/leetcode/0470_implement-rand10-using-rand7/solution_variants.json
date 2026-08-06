@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Implement Rand10() Using Rand7() and meets the required complexity bound.",
+      "summary": "Uses two base-7 draws and rejection sampling to map 40 equiprobable cells uniformly to 1 through 10.",
       "time_complexity": "O(draws)",
       "space_complexity": "O(draws)"
     }

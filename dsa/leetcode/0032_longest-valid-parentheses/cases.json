@@ -1,10 +1,16 @@
 {
   "challenge_id": "lc_32",
   "cases": [
-    {"id": "sample-1", "name": "sample: unmatched opening prefix", "kind": "sample", "visible": true, "input": {"s": "(()"}, "expected": 2, "tags": ["sample", "backward-pass"]},
-    {"id": "sample-2", "name": "sample: valid middle segment", "kind": "sample", "visible": true, "input": {"s": ")()())"}, "expected": 4, "tags": ["sample", "boundary"]},
-    {"id": "trial-empty", "name": "empty string", "kind": "trial", "visible": true, "input": {"s": ""}, "expected": 0, "tags": ["empty"]},
-    {"id": "trial-separated-valid-pairs", "name": "unmatched opener separates pairs", "kind": "trial", "visible": true, "input": {"s": "()(()"}, "expected": 2, "tags": ["separator"]},
-    {"id": "real-nested-and-adjacent", "name": "hidden: nested and adjacent pairs", "kind": "real", "visible": false, "input": {"s": "()(())"}, "expected": 6, "tags": ["hidden", "whole-string"]}
+    {"id": "sample-1", "name": "sample: valid suffix after an unmatched opener", "kind": "sample", "visible": true, "input": {"s": "(()"}, "expected": 2, "tags": ["sample", "reverse-pass"]},
+    {"id": "sample-2", "name": "sample: valid region between unmatched closers", "kind": "sample", "visible": true, "input": {"s": ")()())"}, "expected": 4, "tags": ["sample", "forward-reset"]},
+    {"id": "sample-3", "name": "sample: empty string", "kind": "sample", "visible": true, "input": {"s": ""}, "expected": 0, "tags": ["sample", "boundary", "empty"]},
+    {"id": "trial-separated-valid-pairs", "name": "valid prefix separated from an incomplete suffix", "kind": "trial", "visible": true, "input": {"s": "()(()"}, "expected": 2, "tags": ["separate-regions", "unmatched-openers"]},
+    {"id": "trial-nested-and-adjacent", "name": "nested and adjacent pairs form one region", "kind": "trial", "visible": true, "input": {"s": "()(())"}, "expected": 6, "tags": ["nested", "adjacent", "fully-valid"]},
+    {"id": "trial-all-open", "name": "only opening parentheses", "kind": "trial", "visible": true, "input": {"s": "(((((("}, "expected": 0, "tags": ["no-match", "reverse-reset"]},
+    {"id": "trial-all-closed", "name": "only closing parentheses", "kind": "trial", "visible": true, "input": {"s": "))))))"}, "expected": 0, "tags": ["no-match", "forward-reset"]},
+    {"id": "trial-fully-nested", "name": "one fully nested region", "kind": "trial", "visible": true, "input": {"s": "((()))"}, "expected": 6, "tags": ["nested", "fully-valid"]},
+    {"id": "trial-reset-before-nested", "name": "invalid prefix before a nested region", "kind": "trial", "visible": true, "input": {"s": "())((()))"}, "expected": 6, "tags": ["forward-reset", "nested"]},
+    {"id": "trial-valid-prefix-before-openers", "name": "valid region before unmatched openers", "kind": "trial", "visible": true, "input": {"s": "(()())(()"}, "expected": 6, "tags": ["reverse-pass", "unmatched-openers"]},
+    {"id": "trial-reset-before-adjacent", "name": "invalid prefix before adjacent pairs", "kind": "trial", "visible": true, "input": {"s": "())(())"}, "expected": 4, "tags": ["forward-reset", "adjacent"]}
   ]
 }

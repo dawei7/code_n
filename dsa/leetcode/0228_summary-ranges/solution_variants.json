@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Summary Ranges and meets the required complexity bound.",
+      "summary": "Scans each maximal consecutive run once and emits only its first and last values.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

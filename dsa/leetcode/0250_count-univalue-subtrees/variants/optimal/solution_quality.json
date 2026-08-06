@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_250",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution counts univalue subtrees using a bottom-up postorder depth-first traversal. For each node, it checks if both left and right subtrees are univalue and if the child values match the current node's value. The solution runs in O(n) time and O(h) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "A subtree is univalue if and only if both left and right subtrees are univalue and non-null child root values match the current node's value. Postorder traversal evaluates children first, guaranteeing correct bottom-up counting."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Each node in the binary tree is visited once, performing O(1) work per node for an overall O(n) time complexity. Auxiliary space is O(h) for the recursion stack, where h is the tree height. Complexity evidence is certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts root node of a binary tree, returning an integer representing the count of univalue subtrees."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details postorder bottom-up evaluation, leaf and null-child base cases, root counting logic, and O(n) time / O(h) space bounds. Alternatives and edge cases cover explicit stack frames, top-down re-scanning quadratic penalties, empty trees, and leaf node guarantees."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the identical postorder bottom-up univalue subtree counting algorithm with SHA-256 digests 80d76190e4037554c1e7f88b7e4e78d2b1fc8093729cc6f34678b47c43a72817 and 8f7e99ed33ec6ad0a2275a0742490b112366254482e4169c5c0ec6864a9d3317. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed root interface, three examples, two constraints, and 0 diagrams. Bound to content SHA-256 a1463b347fea13aeba28e6ccbcb8f6be45bd1377d8422f0828e4c494c1536d3b."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "8f7e99ed33ec6ad0a2275a0742490b112366254482e4169c5c0ec6864a9d3317",
+    "native_source_sha256": "8f7e99ed33ec6ad0a2275a0742490b112366254482e4169c5c0ec6864a9d3317",
+    "approach_sha256": "a5f2b2d70804f74cbacbcb9f53773f08a469667dfd1934c1cb05356e0d794fbc",
+    "solution_variants_sha256": "021f56c1dfadeb383fec16c99a30d7e2592b3f87033415015c67f795b476144a",
+    "complexity_evidence_sha256": "3e1115401cb4f6bfc0b649d75fb0fcec0862075372b3cd485dde5a0002fd94a5"
+  }
+}

@@ -10,317 +10,162 @@
       "input": {
         "tables": {
           "Enrollments": [
-            {
-              "student_id": 2,
-              "course_id": 2,
-              "grade": 95
-            },
-            {
-              "student_id": 2,
-              "course_id": 3,
-              "grade": 95
-            },
-            {
-              "student_id": 1,
-              "course_id": 1,
-              "grade": 90
-            },
-            {
-              "student_id": 1,
-              "course_id": 2,
-              "grade": 99
-            },
-            {
-              "student_id": 3,
-              "course_id": 1,
-              "grade": 80
-            },
-            {
-              "student_id": 3,
-              "course_id": 2,
-              "grade": 75
-            },
-            {
-              "student_id": 3,
-              "course_id": 3,
-              "grade": 82
-            }
+            {"student_id": 2, "course_id": 2, "grade": 95},
+            {"student_id": 2, "course_id": 3, "grade": 95},
+            {"student_id": 1, "course_id": 1, "grade": 90},
+            {"student_id": 1, "course_id": 2, "grade": 99},
+            {"student_id": 3, "course_id": 1, "grade": 80},
+            {"student_id": 3, "course_id": 2, "grade": 75},
+            {"student_id": 3, "course_id": 3, "grade": 82}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "student_id",
-          "course_id",
-          "grade"
-        ],
-        "rows": [
-          [
-            1,
-            2,
-            99
-          ],
-          [
-            2,
-            2,
-            95
-          ],
-          [
-            3,
-            3,
-            82
-          ]
-        ]
+        "columns": ["student_id", "course_id", "grade"],
+        "rows": [[1, 2, 99], [2, 2, 95], [3, 3, 82]]
       },
-      "tags": [
-        "sample",
-        "tie-break"
-      ]
+      "tags": ["sample", "tie-break"]
     },
     {
       "id": "trial-one-enrollment",
-      "name": "trial: one student with one course",
+      "name": "one student with one course returns that enrollment",
       "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Enrollments": [
-            {
-              "student_id": 7,
-              "course_id": 40,
-              "grade": 88
-            }
+            {"student_id": 7, "course_id": 40, "grade": 88}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "student_id",
-          "course_id",
-          "grade"
-        ],
-        "rows": [
-          [
-            7,
-            40,
-            88
-          ]
-        ]
+        "columns": ["student_id", "course_id", "grade"],
+        "rows": [[7, 40, 88]]
       },
-      "tags": [
-        "trial",
-        "minimum"
-      ]
+      "tags": ["single-student", "single-course"]
     },
     {
       "id": "trial-all-tied",
-      "name": "trial: smallest course wins a complete grade tie",
+      "name": "the smallest course wins when every grade is tied",
       "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Enrollments": [
-            {
-              "student_id": 5,
-              "course_id": 30,
-              "grade": 100
-            },
-            {
-              "student_id": 5,
-              "course_id": 10,
-              "grade": 100
-            },
-            {
-              "student_id": 5,
-              "course_id": 20,
-              "grade": 100
-            }
+            {"student_id": 5, "course_id": 30, "grade": 100},
+            {"student_id": 5, "course_id": 10, "grade": 100},
+            {"student_id": 5, "course_id": 20, "grade": 100}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "student_id",
-          "course_id",
-          "grade"
-        ],
-        "rows": [
-          [
-            5,
-            10,
-            100
-          ]
-        ]
+        "columns": ["student_id", "course_id", "grade"],
+        "rows": [[5, 10, 100]]
       },
-      "tags": [
-        "trial",
-        "all-tied"
-      ]
+      "tags": ["maximum-tie", "smallest-course"]
     },
     {
-      "id": "real-grade-before-course",
-      "name": "hidden: higher grade beats smaller course",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-grade-before-course",
+      "name": "a higher grade defeats a smaller course identifier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Enrollments": [
-            {
-              "student_id": 1,
-              "course_id": 1,
-              "grade": 70
-            },
-            {
-              "student_id": 1,
-              "course_id": 99,
-              "grade": 71
-            },
-            {
-              "student_id": 2,
-              "course_id": 1,
-              "grade": 50
-            },
-            {
-              "student_id": 2,
-              "course_id": 2,
-              "grade": 49
-            }
+            {"student_id": 1, "course_id": 1, "grade": 70},
+            {"student_id": 1, "course_id": 99, "grade": 71},
+            {"student_id": 2, "course_id": 1, "grade": 50},
+            {"student_id": 2, "course_id": 2, "grade": 49}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "student_id",
-          "course_id",
-          "grade"
-        ],
-        "rows": [
-          [
-            1,
-            99,
-            71
-          ],
-          [
-            2,
-            1,
-            50
-          ]
-        ]
+        "columns": ["student_id", "course_id", "grade"],
+        "rows": [[1, 99, 71], [2, 1, 50]]
       },
-      "tags": [
-        "hidden",
-        "key-priority"
-      ]
+      "tags": ["key-priority", "multiple-students"]
     },
     {
-      "id": "real-unsorted-students",
-      "name": "hidden: result order ignores input order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-students",
+      "name": "ascending result order is independent of input order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Enrollments": [
-            {
-              "student_id": 9,
-              "course_id": 3,
-              "grade": 80
-            },
-            {
-              "student_id": 3,
-              "course_id": 8,
-              "grade": 90
-            },
-            {
-              "student_id": 9,
-              "course_id": 1,
-              "grade": 82
-            },
-            {
-              "student_id": 3,
-              "course_id": 2,
-              "grade": 90
-            }
+            {"student_id": 9, "course_id": 3, "grade": 80},
+            {"student_id": 3, "course_id": 8, "grade": 90},
+            {"student_id": 9, "course_id": 1, "grade": 82},
+            {"student_id": 3, "course_id": 2, "grade": 90}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "student_id",
-          "course_id",
-          "grade"
-        ],
-        "rows": [
-          [
-            3,
-            2,
-            90
-          ],
-          [
-            9,
-            1,
-            82
-          ]
-        ]
+        "columns": ["student_id", "course_id", "grade"],
+        "rows": [[3, 2, 90], [9, 1, 82]]
       },
-      "tags": [
-        "hidden",
-        "ordering"
-      ]
+      "tags": ["output-order", "input-order"]
     },
     {
-      "id": "real-low-grades",
-      "name": "hidden: ranking works across low grade values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-grades",
+      "name": "zero grades still use maximum grade then smallest course",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Enrollments": [
-            {
-              "student_id": 4,
-              "course_id": 1,
-              "grade": 0
-            },
-            {
-              "student_id": 4,
-              "course_id": 2,
-              "grade": 1
-            },
-            {
-              "student_id": 6,
-              "course_id": 5,
-              "grade": 0
-            },
-            {
-              "student_id": 6,
-              "course_id": 3,
-              "grade": 0
-            }
+            {"student_id": 4, "course_id": 1, "grade": 0},
+            {"student_id": 4, "course_id": 2, "grade": 1},
+            {"student_id": 6, "course_id": 5, "grade": 0},
+            {"student_id": 6, "course_id": 3, "grade": 0}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "student_id",
-          "course_id",
-          "grade"
-        ],
-        "rows": [
-          [
-            4,
-            2,
-            1
-          ],
-          [
-            6,
-            3,
-            0
-          ]
-        ]
+        "columns": ["student_id", "course_id", "grade"],
+        "rows": [[4, 2, 1], [6, 3, 0]]
       },
-      "tags": [
-        "hidden",
-        "grade-range"
-      ]
+      "tags": ["zero-grade", "tie-break"]
+    },
+    {
+      "id": "trial-tie-only-at-maximum",
+      "name": "the course tie-break applies only among maximum-grade rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Enrollments": [
+            {"student_id": 12, "course_id": 1, "grade": 85},
+            {"student_id": 12, "course_id": 9, "grade": 90},
+            {"student_id": 12, "course_id": 4, "grade": 90},
+            {"student_id": 12, "course_id": 2, "grade": 80}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["student_id", "course_id", "grade"],
+        "rows": [[12, 4, 90]]
+      },
+      "tags": ["maximum-tie", "lexicographic-preference"]
+    },
+    {
+      "id": "trial-empty-enrollments",
+      "name": "an empty Enrollments table produces an empty result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Enrollments": {
+            "columns": ["student_id", "course_id", "grade"],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": ["student_id", "course_id", "grade"],
+        "rows": []
+      },
+      "tags": ["empty-table", "empty-result"]
     }
   ]
 }

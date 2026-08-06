@@ -1,29 +1,36 @@
 ## General
+
 **Create an independent timeline for each player**
 
-Partition the rows by `player_id` so activity belonging to one player never contributes to another player's total.
+Partition the rows by `player_id`, preventing one player's games from contributing to another player's total. Within
+each partition, order rows by `event_date`; the composite primary key makes each player-date position unique.
 
-**Order each timeline chronologically**
+**Sum every chronological prefix without collapsing rows**
 
-Within each partition, order by `event_date`. The table contract has at most one activity per player and date, so this order identifies an unambiguous prefix ending at every row.
+Apply `SUM(games_played)` over the explicit frame from `UNBOUNDED PRECEDING` through `CURRENT ROW`. A window aggregate
+preserves every input activity row while adding the inclusive total of its player's earlier and current records. The
+explicit `ROWS` frame states the intended record prefix directly.
 
-**Sum the prefix with a window aggregate**
-
-Apply `SUM(games_played)` over the player partition from its first row through the current row and alias it `games_played_so_far`. A window aggregate preserves every input activity row, unlike `GROUP BY`, while adding the cumulative value derived from earlier rows.
-
-**Why every running total is exact**
-
-For an activity row on date `d`, the window frame contains exactly the same player's records whose dates are no later than `d`. Summing their `games_played` values is therefore precisely the requested total through that date. Partitioning prevents cross-player contributions, and chronological ordering prevents later activity from entering the prefix.
+For a row on date `d`, that frame contains exactly the same player's recorded login dates no later than `d`. Its sum
+is therefore the requested games total through that date. Partitioning excludes other players, chronological ordering
+excludes later activity, and the outer `ORDER BY` merely makes local serialization deterministic even though the
+source permits any result order.
 
 ## Complexity detail
-For `A` activity rows, a typical window plan sorts rows by player and date in $O(A \log A)$ time and stores ordered partitions in $O(A)$ space. An index or already ordered input may let the database stream the window with less sorting work. The final `ORDER BY` makes local result serialization deterministic.
+
+Let $A$ be the number of `Activity` rows. A typical window plan sorts by player and date in $O(A \log A)$ time and
+stores ordered partitions in $O(A)$ space. A suitable index or already ordered access path may let the database
+stream the window with less sorting work.
 
 ## Alternatives and edge cases
-- **Correlated prefix subquery:** returns the same totals but may rescan `Activity` for every output row and take $O(A^2)$ work.
-- **Self-join on earlier dates plus grouping:** is compatible with older SQL versions but materializes many row pairs and can also become quadratic.
-- **Recursive CTE:** can advance through a player's dates, but it is more complex and unnecessary when window functions are available.
-- **First activity:** its running total equals its own `games_played` value.
-- **Zero games:** preserves the previous cumulative total while still producing an output row.
-- **Interleaved players:** remain independent because the window is partitioned.
-- **Insertion order:** does not affect the result; `event_date` defines accumulation order.
-- **Empty table:** yields an empty result grid.
+
+- **Correlated prefix subquery:** returns the same totals but may rescan an expanding history for every output row,
+  causing quadratic work.
+- **Self-join on earlier dates plus grouping:** supports older SQL versions but can materialize a quadratic number of
+  row pairs.
+- **Recursive CTE:** can advance through each player's dates but is more complex than a supported window aggregate.
+- **First activity:** its cumulative value equals its own `games_played` value.
+- **Zero games:** preserves the previous total while still producing the source activity row.
+- **Interleaved players:** remain independent because of `PARTITION BY player_id`.
+- **Insertion order:** is irrelevant; `event_date` defines the cumulative prefix.
+- **Empty table:** produces an empty result table.

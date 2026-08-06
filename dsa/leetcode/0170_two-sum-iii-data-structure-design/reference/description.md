@@ -1,9 +1,9 @@
 ## Description
 
-Design a data structure that receives a stream of integers and can determine whether any two stored occurrences add to a requested value.
+Design a data structure that accepts a stream of integers and checks if it has a pair of integers that sum up to a particular value.
 
-Implement the `TwoSum` class with these operations:
+Implement the `TwoSum` class:
 
-- `TwoSum()` initializes an empty structure.
-- `void add(int number)` stores one occurrence of `number`.
-- `boolean find(int value)` returns whether two stored occurrences sum to `value`.
+- `TwoSum()` Initializes the `TwoSum` object, with an empty array initially.
+- `void add(int number)` Adds `number` to the data structure.
+- `boolean find(int value)` Returns `true` if there exists any pair of numbers whose sum is equal to `value`, otherwise, it returns `false`.

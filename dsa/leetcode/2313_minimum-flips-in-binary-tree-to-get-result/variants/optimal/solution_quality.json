@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_2313",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution evaluates minimum leaf flips via postorder tree DP using an explicit visited-state stack to avoid recursion stack overflow. For each node, it computes costs = (min_flips_for_false, min_flips_for_true). Leaves cost (0, 1) or (1, 0), NOT nodes swap child costs, and binary operators (OR, AND, XOR) evaluate all 4 child outcome combinations. The solution runs in O(n) time and O(n) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Postorder evaluation guarantees child minimum flip pairs are computed before parent evaluation. Evaluating all 4 combinations of left/right Boolean states per binary node and picking min cost for each outcome (False / True) strictly minimizes total leaf flips."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Each tree node is visited twice (push/pop) and evaluated in constant time, yielding O(n) time and O(n) space for stack and DP costs dictionary. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts root TreeNode and target boolean result, returning minimum leaf flips costs[root][result]."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details postorder tree DP pair tracking, operator cost combination logic, explicit stack recursion-safety, and O(n) time / O(n) space bounds. Alternatives and edge cases cover recursive tree DP overflow risks, greedy evaluation pitfalls, single-leaf roots, unary NOT child orientation, and XOR semantics."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both use the identical postorder tree DP algorithm with SHA-256 digests 4897a2d848a1c165adc2c45364e782c4b53fe9235254051d2fbc77bf15dc9a75 and 398ad7cb2c6798c6fc2b6184c33e0c972a8222c780748463186c39d8484e6339. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed TreeNode interface, two examples, five constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "4897a2d848a1c165adc2c45364e782c4b53fe9235254051d2fbc77bf15dc9a75",
+    "native_source_sha256": "398ad7cb2c6798c6fc2b6184c33e0c972a8222c780748463186c39d8484e6339",
+    "approach_sha256": "31659329eea956183a82267aedcb974c34bf56ba7fa801ebaaff9ff9970ee0cd",
+    "solution_variants_sha256": "a86ffeb38f476cc7269fcea08e2b6e7974ca1df8448827dd28ba8167022dd889",
+    "complexity_evidence_sha256": "24a6a54ff876901a38585ec01415d22ad63dffc024e3e19286de5238eff5b621"
+  }
+}

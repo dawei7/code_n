@@ -4,7 +4,7 @@
   "cases": [
     {
       "id": "sample-multiple-exams",
-      "name": "sample: only consistently non-extreme student qualifies",
+      "name": "sample: exact source multi-exam histories",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -99,13 +99,14 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "multiple-exams"
       ]
     },
     {
-      "id": "sample-one-middle",
-      "name": "sample: one middle score",
-      "kind": "sample",
+      "id": "trial-one-middle",
+      "name": "trial: one middle score",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -155,14 +156,14 @@
         ]
       },
       "tags": [
-        "sample",
+        "trial",
         "middle"
       ]
     },
     {
-      "id": "sample-tied-minimum",
-      "name": "sample: tied minimum disqualifies every participant",
-      "kind": "sample",
+      "id": "trial-tied-minimum",
+      "name": "trial: tied minimum disqualifies every participant",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -207,7 +208,7 @@
         "rows": []
       },
       "tags": [
-        "sample",
+        "trial",
         "ties"
       ]
     },
@@ -282,10 +283,10 @@
       ]
     },
     {
-      "id": "real-extreme-later",
-      "name": "hidden: one later extreme disqualifies student",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extreme-later",
+      "name": "trial: one later extreme disqualifies student",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Student": [
@@ -348,16 +349,16 @@
         "rows": []
       },
       "tags": [
-        "hidden",
+        "trial",
         "all-exams",
         "no-exam"
       ]
     },
     {
-      "id": "real-single-participant",
-      "name": "hidden: sole participant is both extremes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-participant",
+      "name": "trial: sole participant is both extremes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Student": [
@@ -383,8 +384,128 @@
         "rows": []
       },
       "tags": [
-        "hidden",
+        "trial",
         "single-participant"
+      ]
+    },
+    {
+      "id": "trial-tied-maximum-with-middle",
+      "name": "trial: tied maximum still leaves one middle score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "Low"
+            },
+            {
+              "student_id": 2,
+              "student_name": "Middle"
+            },
+            {
+              "student_id": 3,
+              "student_name": "High A"
+            },
+            {
+              "student_id": 4,
+              "student_name": "High B"
+            }
+          ],
+          "Exam": [
+            {
+              "exam_id": 55,
+              "student_id": 1,
+              "score": 10
+            },
+            {
+              "exam_id": 55,
+              "student_id": 2,
+              "score": 20
+            },
+            {
+              "exam_id": 55,
+              "student_id": 3,
+              "score": 30
+            },
+            {
+              "exam_id": 55,
+              "student_id": 4,
+              "score": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name"
+        ],
+        "rows": [
+          [
+            2,
+            "Middle"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "tied-maximum",
+        "middle"
+      ]
+    },
+    {
+      "id": "trial-all-scores-equal",
+      "name": "trial: all participants tie at both extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 12,
+              "student_name": "Equal A"
+            },
+            {
+              "student_id": 13,
+              "student_name": "Equal B"
+            },
+            {
+              "student_id": 14,
+              "student_name": "Equal C"
+            }
+          ],
+          "Exam": [
+            {
+              "exam_id": 77,
+              "student_id": 12,
+              "score": 42
+            },
+            {
+              "exam_id": 77,
+              "student_id": 13,
+              "score": 42
+            },
+            {
+              "exam_id": 77,
+              "student_id": 14,
+              "score": 42
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "all-equal",
+        "tied-extremes"
       ]
     }
   ]

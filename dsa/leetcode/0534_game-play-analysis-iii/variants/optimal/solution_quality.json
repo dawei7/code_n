@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_534",
+  "language": "sql",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL is the canonical interview-quality running-total query: one partitioned, chronological `SUM` window with an explicit row frame retains every activity while deriving its inclusive prefix. The query is concise, standard, and free of unnecessary joins or subqueries, so no inert candidate is materially justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium database problem 534 as SQL-only. The query consumes the four-column `Activity` relation, emits the required three columns, keeps each login date including zero-game rows, partitions players independently, and adds only a permitted deterministic output order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native SQL is bound to verified MySQL submission 2065281177. Its bytes are identical to the protected app SQL: both partition by `player_id`, order by `event_date`, sum the explicit unbounded-preceding/current-row frame, use the required alias, and order the final rows identically."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The single-player history workloads contain 16, 64, and 256 activity rows, span 16x, and make a correlated prefix sum rescan an expanding history for each output row. The protected query passed all 9 correctness cases and all three performance tiers. A correct correlated-prefix control passed every output but failed only the runtime verdict with relative growth exponent +0.70."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The current-targeted Approach exactly explains player partitions, chronological order, the explicit inclusive `ROWS` frame, row preservation, and the nonsemantic outer ordering. It defines the activity-row count and qualifies the usual O(A log A) sort and O(A) storage bounds for indexes and ordered access paths."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves all four schema columns and types, the composite primary key, zero-games possibility, cumulative-through-date objective, any-order allowance, the single source input/output table, both players' arithmetic explanation, and the login-date-only note."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The sole authenticated Premium source example appears first with all five exact Activity rows and cumulative results. Its third row and corresponding output were repaired from an invented player 2 partition to the source's player 1 values.",
+      "The two invented samples were relabelled as trials, the formerly hidden zero-game case is now visible, and every nonempty fixture respects the composite (player_id, event_date) primary key.",
+      "Contract boundaries cover an explicitly typed empty Activity table, a single row, multiple players, zero games played, shared dates across players, device changes, and valid calendar endpoints from 1000-01-01 through 9999-12-31.",
+      "Material semantics cover unsorted insertion order, inclusive current-row totals, preservation of zero-game rows, independent interleaved partitions, device irrelevance, same-date cross-player isolation, and one output per login date.",
+      "An independent per-player chronological prefix oracle and SQLite execution of the protected window query verified all nine correctness cases and all three benchmark outputs, all 120 permutations of the source rows, and 1,000 randomized Activity tables.",
+      "All nine correctness cases are visible samples or trials; the unchanged 16-, 64-, and 256-row single-player workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "1456d0e8cd352550a605133ec96d1e92b9b2852a47bb14ffccc04a9a741c0811",
+    "native_source_sha256": "1456d0e8cd352550a605133ec96d1e92b9b2852a47bb14ffccc04a9a741c0811",
+    "approach_sha256": "d3bcf44b779a43e2c01d3a5e40adbcbf17a0dec4b074822811a69b23ced52d39",
+    "solution_variants_sha256": "6d027c85d88615860d1321c162a7b5015c3a6a08b55fcfc1cfa891217addb99b",
+    "complexity_evidence_sha256": "2c9d1d7b7b6527521b9581cdd47f23cfa93b0f3d79ec9e07c1a0b4ddd416b375",
+    "cases_sha256": "2d03d61b8b73e97511b33fe40d6b9fc100c354184a7b43a3a4a0c9a7b753c559"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_505",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source is a clear expert implementation of weighted shortest path: four simple grid sweeps precompute every legal stopping endpoint, a distance table makes improvements explicit, and conventional heap-based Dijkstra handles unequal roll lengths. Its structure and naming are direct enough that no inert candidate is materially justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 505 and its Python maze/start/destination integer contract. Search states are complete-roll endpoints, edge weights count exactly the cells crossed, and success is checked only at a stopping state, so passing through the destination cannot be mistaken for arrival."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2065145855. It and the protected app source have identical four-direction endpoint sweeps, finite sentinel, distance initialization, heap tuples, stale-entry rule, destination termination, endpoint relaxation, and failure return; differences are limited to the native class and type wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The disconnected-destination mazes contain 16, 64, and 256 cells, span 16x, and force weighted search after linear endpoint preprocessing. The protected source passed all 10 correctness cases and all three performance tiers, including the legal 100 by 100 boundary. A correct linear-frontier Dijkstra control passed every output but failed only the runtime verdict with relative growth exponent +0.65 and a 10.58x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The current-targeted Approach exactly derives the weighted stopping graph, four dynamic endpoint sweeps, distance table, heap relaxation, stale-entry rejection, and stop-only destination semantics. It also proves that the implementation's `2 * rows * cols` sentinel exceeds every finite simple-route distance and accounts for all preprocessing, heap, and table costs."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves rolling-until-wall behavior, border-wall and exact-stop semantics, the distance definition, all three examples and the first two explanations, all ten constraints, and source section order. Both source images were independently recreated as accessible tables with the same maze, start, destination, and wall relationships."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "All three authenticated Premium source examples now appear first and in source order with their exact mazes, start and destination coordinates, and integer results. The missing third source example was restored.",
+      "The contract-invalid same-cell fixture was removed, the invented open-grid example was relabelled as a trial, and both formerly hidden correctness cases are now visible trials.",
+      "Boundaries cover 1 by 2 and 2 by 1 minimum mazes, a legal 100 by 100 maximum maze, coordinates 0 and 99, distinct in-bounds empty positions, walls and open cells, one-roll distances, and the maximum open-grid route distance.",
+      "Material semantics cover passing through without stopping, an isolated start, an unreachable destination, multiple equal-distance routes, weighted roll lengths, corridors, turns, and open-grid movement.",
+      "An independent step-by-step rolling Dijkstra oracle verified all ten correctness cases and all three benchmark outputs, 10,228 exhaustive legal small-maze routes, and 1,000 randomized routes. The protected implementation agreed throughout.",
+      "All ten correctness cases are visible samples or trials; the unchanged 16-, 64-, and 256-cell disconnected-destination workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "7e7f4a942df2bd1f45fa6a196ea72a6642b72ac5c3a9660208d8e6699e392ead",
+    "native_source_sha256": "a838f888d82b7e0a66c174d0f2611edf8a2f67860a3a39caba8ba9756893f5d1",
+    "approach_sha256": "b6ed502f84f04a9f1effca9eaf34877e500982d7a76cb080659fb1fb4f7430c0",
+    "solution_variants_sha256": "f475b42c0d257aaf835a30711ba871a0a51f1ef4f64c6ac4fc88b6b57a98c5ae",
+    "complexity_evidence_sha256": "6924323d6189723b49be76839e4a7180e3d46bd87ad8e7acd8c2addd4be1241d",
+    "cases_sha256": "4180df152baf3c1b76117332595f14ddad2282946d5c50d0a857d81b3920620b"
+  }
+}

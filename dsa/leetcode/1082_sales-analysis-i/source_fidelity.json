@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1082",
+    "frontend_id": "1082",
+    "title_slug": "sales-analysis-i",
+    "url": "https://leetcode.com/problems/sales-analysis-i/description/",
+    "paid_only": true,
+    "content_sha256": "f90ff39b48f391f387d91e6e279b892064226abc4c9cfcc2c8181c7ab431b065",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "product_table",
+      "sales_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Product = [[1,\"S8\",1000],[2,\"G4\",800],[3,\"iPhone\",1400]], Sales = [[1,1,1,\"2019-01-21\",2,2000],[1,2,2,\"2019-02-17\",1,800],[2,2,3,\"2019-06-02\",1,800],[3,3,4,\"2019-05-13\",2,2800]]",
+        "output": "[[1],[3]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/product_table.md": "983fccc3f0d3da5049eb72515b3e3d83c1f83539abe306bedd693d5edbd34be5",
+      "reference/sales_table.md": "4c97f0dcf3ea211652d6dbd91acd5a7826797a063f8926bf20fa7f24e636f7b4",
+      "reference/description.md": "f57d968a9d6e8d143043e246a6d94ce78823df8be8714314a77cba31f0a068b6",
+      "reference/contract.md": "9d4dc8f53a734891c9c3fc562adbe7541c6def5e0dc7b09c97ac6ce192a39e13",
+      "reference/examples.md": "d728bd281d417a8961ab58813aa8a51af0c32d9d672b8323ccf1382c5b96c107"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

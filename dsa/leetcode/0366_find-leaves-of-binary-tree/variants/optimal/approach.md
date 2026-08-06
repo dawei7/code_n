@@ -21,6 +21,6 @@ Each of the `n` nodes is visited once and performs constant work, so time is $O(
 - **Parent pointers plus remaining-child counts:** can process leaves as a topological queue in $O(n)$, but needs $O(n)$ auxiliary maps.
 - **Breadth-first traversal by root depth:** groups distance from the root, which is not the same as removal time in an unbalanced tree.
 - Values within one removal round are unordered, but the sequence of rounds is significant.
-- An empty tree returns no rounds.
+- A single-node tree produces one round containing the root value.
 - Duplicate node values remain separate output entries.
 - A one-sided chain produces one node per round, starting at the deepest node.

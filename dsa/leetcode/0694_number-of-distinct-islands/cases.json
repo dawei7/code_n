@@ -4,75 +4,102 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: translated square islands",
+      "name": "sample 1: translated square islands share one shape",
       "kind": "sample",
       "visible": true,
       "input": {"grid": [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]},
       "expected": 1,
-      "tags": ["sample", "translation"]
+      "tags": ["sample", "source-example", "translation"]
     },
     {
       "id": "sample-2",
-      "name": "sample: three shapes",
+      "name": "sample 2: the grid contains three distinct shapes",
       "kind": "sample",
       "visible": true,
       "input": {"grid": [[1,1,0,1,1],[1,0,0,0,0],[0,0,0,0,1],[1,1,0,1,1]]},
       "expected": 3,
-      "tags": ["sample", "multiple-shapes"]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: repeated single-cell islands",
-      "kind": "sample",
-      "visible": true,
-      "input": {"grid": [[1,0,1],[0,0,0],[1,0,1]]},
-      "expected": 1,
-      "tags": ["sample", "single-cell"]
+      "tags": ["sample", "source-example", "multiple-shapes"]
     },
     {
       "id": "trial-1",
-      "name": "trial: rotation remains distinct",
+      "name": "trial: minimum all-water grid has no islands",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0]]},
+      "expected": 0,
+      "tags": ["trial", "minimum-rows", "minimum-columns", "all-water"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: minimum land grid has one singleton shape",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1]]},
+      "expected": 1,
+      "tags": ["trial", "minimum-rows", "minimum-columns", "single-cell"]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: diagonal land cells are separate copies of one shape",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0],[0,1]]},
+      "expected": 1,
+      "tags": ["trial", "four-directional", "diagonal-separation", "duplicate-shape"]
+    },
+    {
+      "id": "trial-4",
+      "name": "trial: rotation does not preserve shape identity",
       "kind": "trial",
       "visible": true,
       "input": {"grid": [[1,1,0,1,0],[0,0,0,1,0]]},
       "expected": 2,
-      "tags": ["trial", "rotation"]
+      "tags": ["trial", "rotation", "distinct-shapes"]
     },
     {
-      "id": "trial-2",
-      "name": "trial: all water",
+      "id": "trial-5",
+      "name": "trial: reflection does not preserve shape identity",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0,0,0],[0,0,0]]},
-      "expected": 0,
-      "tags": ["trial", "no-islands"]
-    },
-    {
-      "id": "hidden-1",
-      "name": "hidden: one irregular island",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1,1,0],[0,1,1],[0,0,1]]},
-      "expected": 1,
-      "tags": ["hidden", "single-component"]
-    },
-    {
-      "id": "hidden-2",
-      "name": "hidden: translated L shapes",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]]},
-      "expected": 1,
-      "tags": ["hidden", "translation", "branched"]
-    },
-    {
-      "id": "hidden-3",
-      "name": "hidden: reflection remains distinct",
-      "kind": "real",
-      "visible": false,
       "input": {"grid": [[1,0,0,0,1],[1,1,0,1,1]]},
       "expected": 2,
-      "tags": ["hidden", "reflection"]
+      "tags": ["trial", "reflection", "distinct-shapes"]
+    },
+    {
+      "id": "trial-6",
+      "name": "trial: translated L islands share one shape",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]]},
+      "expected": 1,
+      "tags": ["trial", "translation", "branched"]
+    },
+    {
+      "id": "trial-7",
+      "name": "trial: one irregular orthogonal component contributes once",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,0],[0,1,1],[0,0,1]]},
+      "expected": 1,
+      "tags": ["trial", "single-component", "irregular-shape"]
+    },
+    {
+      "id": "trial-8",
+      "name": "trial: maximum column count forms one horizontal island",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]},
+      "expected": 1,
+      "tags": ["trial", "maximum-columns", "boundary-island"]
+    },
+    {
+      "id": "trial-9",
+      "name": "trial: maximum row count forms one vertical island",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]]},
+      "expected": 1,
+      "tags": ["trial", "maximum-rows", "boundary-island"]
     }
   ]
 }

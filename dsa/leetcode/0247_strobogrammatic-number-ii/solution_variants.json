@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Strobogrammatic Number II and meets the required complexity bound.",
+      "summary": "Builds every valid numeral from its center by wrapping it with the five rotation-compatible digit pairs.",
       "time_complexity": "O(n \\cdot 5^{n/2})",
       "space_complexity": "O(n \\cdot 5^{n/2})"
     }

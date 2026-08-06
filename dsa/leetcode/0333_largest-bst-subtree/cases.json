@@ -8,153 +8,120 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "root": [
-          10,
-          5,
-          15,
-          1,
-          8,
-          null,
-          7
-        ]
+        "root": [10, 5, 15, 1, 8, null, 7]
       },
       "expected": 3,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "source-example"]
     },
     {
       "id": "sample-2",
-      "name": "sample: complete BST",
+      "name": "sample: largest BST below repeated values",
       "kind": "sample",
       "visible": true,
       "input": {
-        "root": [
-          2,
-          1,
-          3
-        ]
+        "root": [4, 2, 7, 2, 3, 5, null, 2, null, null, null, null, null, 1]
       },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "bst"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: one node",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "root": [
-          1
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "sample",
-        "boundary"
-      ]
+      "expected": 2,
+      "tags": ["sample", "source-example", "duplicates"]
     },
     {
       "id": "trial-empty",
-      "name": "trial: empty tree",
+      "name": "empty tree",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "root": []
       },
       "expected": 0,
-      "tags": [
-        "trial",
-        "empty"
-      ]
+      "tags": ["empty", "minimum-size"]
     },
     {
-      "id": "trial-duplicate",
-      "name": "trial: duplicate violates strict ordering",
+      "id": "trial-single-minimum",
+      "name": "single node at the minimum value",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
-        "root": [
-          2,
-          2,
-          3
-        ]
+        "root": [-10000]
       },
       "expected": 1,
-      "tags": [
-        "trial",
-        "duplicate"
-      ]
+      "tags": ["single-node", "minimum-value"]
     },
     {
-      "id": "hidden-deep-violation",
-      "name": "hidden: both children valid but root join invalid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-boundary",
+      "name": "duplicate left child violates strict ordering",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "root": [
-          10,
-          5,
-          15,
-          1,
-          8,
-          6,
-          20
-        ]
+        "root": [2, 2, 3]
+      },
+      "expected": 1,
+      "tags": ["duplicates", "strict-ordering"]
+    },
+    {
+      "id": "trial-deep-boundary-violation",
+      "name": "valid child BSTs cannot be joined across the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [10, 5, 15, 1, 8, 6, 20]
       },
       "expected": 3,
-      "tags": [
-        "hidden",
-        "boundary-violation"
-      ]
+      "tags": ["global-boundary", "largest-descendant"]
     },
     {
-      "id": "hidden-left-chain",
-      "name": "hidden: left-skewed BST",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-extremes",
+      "name": "whole BST uses both value bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "root": [
-          5,
-          4,
-          null,
-          3,
-          null,
-          2,
-          null,
-          1
-        ]
+        "root": [0, -10000, 10000]
+      },
+      "expected": 3,
+      "tags": ["minimum-value", "maximum-value", "whole-tree"]
+    },
+    {
+      "id": "trial-left-skewed",
+      "name": "left-skewed tree is entirely a BST",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [5, 4, null, 3, null, 2, null, 1]
       },
       "expected": 5,
-      "tags": [
-        "hidden",
-        "skewed"
-      ]
+      "tags": ["skewed", "whole-tree"]
     },
     {
-      "id": "hidden-negative",
-      "name": "hidden: balanced BST with negative values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-balanced",
+      "name": "balanced BST crosses zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "root": [
-          0,
-          -2,
-          2,
-          -3,
-          -1,
-          1,
-          3
-        ]
+        "root": [0, -2, 2, -3, -1, 1, 3]
       },
       "expected": 7,
-      "tags": [
-        "hidden",
-        "negative"
-      ]
+      "tags": ["negative", "balanced", "whole-tree"]
+    },
+    {
+      "id": "trial-complete-subtree",
+      "name": "a rooted subtree must retain every descendant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [10, 5, 15, 1, 12, null, 20]
+      },
+      "expected": 3,
+      "tags": ["complete-subtree", "global-boundary", "largest-descendant"]
+    },
+    {
+      "id": "trial-all-duplicates",
+      "name": "equal parent and children leave only singleton BSTs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [2, 2, 2]
+      },
+      "expected": 1,
+      "tags": ["duplicates", "strict-ordering"]
     }
   ]
 }

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1747",
+    "frontend_id": "1747",
+    "title_slug": "leetflex-banned-accounts",
+    "url": "https://leetcode.com/problems/leetflex-banned-accounts/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`LogInfo = [[1, 1, \"2021-02-01 09:00:00\", \"2021-02-01 09:30:00\"], [1, 2, \"2021-02-01 09:20:00\", \"2021-02-01 10:00:00\"], [2, 1, \"2021-02-01 12:00:00\", \"2021-02-01 12:30:00\"], [2, 2, \"2021-02-01 13:00:00\", \"2021-02-01 14:00:00\"]]`",
+        "output": "`[[1]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`account 2 uses two different IP addresses sequentially without temporal overlap`",
+        "output": "`no row for account 2`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`account 3 has overlapping sessions from the exact same IP address`",
+        "output": "`no row for account 3`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 2,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6235b2d53428fc08ead29a0eba66021f602f21a23ed6876e54fea98ff36876e6",
+      "reference/contract.md": "8e4653ff29195a134c9c8b53091a64f6c6bffafb0475fd826d42a313dde484d0",
+      "reference/examples.md": "ba6ac71980dc799813bc60199f62a8e10c7c59e651eff08995a28b53314ebf1d",
+      "reference/constraints.md": "765c64787791a5dd19b8f181896884fffcb4ae66fe0203f4ed90fc24b8c77172"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

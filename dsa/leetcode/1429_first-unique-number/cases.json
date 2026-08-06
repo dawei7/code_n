@@ -3,282 +3,111 @@
   "cases": [
     {
       "id": "sample-mixed",
-      "name": "sample: initial uniques become duplicates",
+      "name": "source example 1: initial uniques become duplicates",
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": [
-          "FirstUnique",
-          "showFirstUnique",
-          "add",
-          "showFirstUnique",
-          "add",
-          "showFirstUnique",
-          "add",
-          "showFirstUnique"
-        ],
-        "arguments": [
-          [
-            [
-              2,
-              3,
-              5
-            ]
-          ],
-          [],
-          [
-            5
-          ],
-          [],
-          [
-            2
-          ],
-          [],
-          [
-            3
-          ],
-          []
-        ]
+        "operations": ["FirstUnique", "showFirstUnique", "add", "showFirstUnique", "add", "showFirstUnique", "add", "showFirstUnique"],
+        "arguments": [[[2, 3, 5]], [], [5], [], [2], [], [3], []]
       },
-      "expected": [
-        null,
-        2,
-        null,
-        2,
-        null,
-        3,
-        null,
-        -1
-      ],
-      "tags": [
-        "sample",
-        "design"
-      ]
+      "expected": [null, 2, null, 2, null, 3, null, -1],
+      "tags": ["sample", "source-example-1", "design"]
     },
     {
       "id": "sample-none-then-new",
-      "name": "sample: no initial unique then add one",
+      "name": "source example 2: no initial unique then add one",
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": [
-          "FirstUnique",
-          "showFirstUnique",
-          "add",
-        "add",
-        "add",
-        "add",
-        "add",
-        "showFirstUnique"
-        ],
-        "arguments": [
-          [
-            [
-              7,
-              7,
-              7,
-              7,
-              7,
-              7
-            ]
-          ],
-          [],
-          [
-            7
-          ],
-          [
-            3
-          ],
-          [
-            3
-          ],
-          [
-            7
-          ],
-          [
-            17
-          ],
-          []
-        ]
+        "operations": ["FirstUnique", "showFirstUnique", "add", "add", "add", "add", "add", "showFirstUnique"],
+        "arguments": [[[7, 7, 7, 7, 7, 7]], [], [7], [3], [3], [7], [17], []]
       },
-      "expected": [
-        null,
-        -1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        17
-      ],
-      "tags": [
-        "sample",
-        "repeated"
-      ]
+      "expected": [null, -1, null, null, null, null, null, 17],
+      "tags": ["sample", "source-example-2", "repeated"]
     },
     {
       "id": "sample-single",
-      "name": "sample: single value becomes duplicate",
+      "name": "source example 3: single value becomes duplicate",
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": [
-          "FirstUnique",
-          "showFirstUnique",
-          "add",
-          "showFirstUnique"
-        ],
-        "arguments": [
-          [
-            [
-              809
-            ]
-          ],
-          [],
-          [
-            809
-          ],
-          []
-        ]
+        "operations": ["FirstUnique", "showFirstUnique", "add", "showFirstUnique"],
+        "arguments": [[[809]], [], [809], []]
       },
-      "expected": [
-        null,
-        809,
-        null,
-        -1
-      ],
-      "tags": [
-        "sample",
-        "single"
-      ]
-    },
-    {
-      "id": "trial-empty",
-      "name": "empty stream gains its first unique",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "operations": [
-          "FirstUnique",
-          "showFirstUnique",
-          "add",
-          "showFirstUnique"
-        ],
-        "arguments": [
-          [
-            []
-          ],
-          [],
-          [
-            4
-          ],
-          []
-        ]
-      },
-      "expected": [
-        null,
-        -1,
-        null,
-        4
-      ],
-      "tags": [
-        "trial",
-        "empty"
-      ]
+      "expected": [null, 809, null, -1],
+      "tags": ["sample", "source-example-3", "single"]
     },
     {
       "id": "trial-order",
-      "name": "later unique does not overtake earlier one",
+      "name": "later uniques do not overtake the earliest one",
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": [
-          "FirstUnique",
-          "add",
-          "add",
-          "showFirstUnique",
-          "add",
-          "showFirstUnique"
-        ],
-        "arguments": [
-          [
-            [
-              1,
-              2
-            ]
-          ],
-          [
-            3
-          ],
-          [
-            4
-          ],
-          [],
-          [
-            1
-          ],
-          []
-        ]
+        "operations": ["FirstUnique", "add", "add", "showFirstUnique", "add", "showFirstUnique"],
+        "arguments": [[[1, 2]], [3], [4], [], [1], []]
       },
-      "expected": [
-        null,
-        null,
-        null,
-        1,
-        null,
-        2
-      ],
-      "tags": [
-        "trial",
-        "order"
-      ]
+      "expected": [null, null, null, 1, null, 2],
+      "tags": ["trial", "arrival-order"]
     },
     {
-      "id": "real-many-counts",
-      "name": "hidden: counts above two stay non-unique",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-counts-above-two",
+      "name": "counts above two remain permanently non-unique",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": [
-          "FirstUnique",
-          "add",
-          "add",
-          "showFirstUnique",
-          "add",
-          "showFirstUnique"
-        ],
-        "arguments": [
-          [
-            [
-              5,
-              6
-            ]
-          ],
-          [
-            5
-          ],
-          [
-            5
-          ],
-          [],
-          [
-            6
-          ],
-          []
-        ]
+        "operations": ["FirstUnique", "add", "add", "showFirstUnique", "add", "showFirstUnique"],
+        "arguments": [[[5, 6]], [5], [5], [], [6], []]
       },
-      "expected": [
-        null,
-        null,
-        null,
-        6,
-        null,
-        -1
-      ],
-      "tags": [
-        "hidden",
-        "frequency"
-      ]
+      "expected": [null, null, null, 6, null, -1],
+      "tags": ["trial", "frequency-above-two"]
+    },
+    {
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum values transition to duplicates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["FirstUnique", "showFirstUnique", "add", "showFirstUnique", "add", "showFirstUnique"],
+        "arguments": [[[100000000, 1, 100000000]], [], [1], [], [100000000], []]
+      },
+      "expected": [null, 1, null, -1, null, -1],
+      "tags": ["trial", "value-boundaries", "no-unique"]
+    },
+    {
+      "id": "trial-repeated-show",
+      "name": "repeated queries do not consume the first unique value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["FirstUnique", "showFirstUnique", "showFirstUnique", "add", "showFirstUnique"],
+        "arguments": [[[10, 11, 10]], [], [], [11], []]
+      },
+      "expected": [null, 11, 11, null, -1],
+      "tags": ["trial", "repeated-query", "query-stability"]
+    },
+    {
+      "id": "trial-late-front-cleanup",
+      "name": "several stale fronts are removed by one later query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["FirstUnique", "showFirstUnique", "add", "add", "add", "showFirstUnique"],
+        "arguments": [[[4, 5, 6, 7]], [], [4], [5], [6], []]
+      },
+      "expected": [null, 4, null, null, null, 7],
+      "tags": ["trial", "lazy-cleanup", "multiple-stale-fronts"]
+    },
+    {
+      "id": "trial-initial-duplicates",
+      "name": "initial duplicates precede two ordered unique values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["FirstUnique", "showFirstUnique", "add", "showFirstUnique", "add", "showFirstUnique"],
+        "arguments": [[[8, 8, 9, 10, 9]], [], [8], [], [10], []]
+      },
+      "expected": [null, 10, null, 10, null, -1],
+      "tags": ["trial", "initial-duplicates", "no-revival"]
     }
   ]
 }

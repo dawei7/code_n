@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_249",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution groups shifted strings by computing a canonical signature for each string based on the modular difference (mod 26) between consecutive characters. Strings with the same signature belong to the same shifting sequence and are grouped into a hash table. The solution runs in O(L) time and O(L) space where L is the total number of characters across all strings; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Shift-equivalence requires all adjacent character differences to be congruent modulo 26. Mapping each string to a tuple of (ord(string[i]) - ord(string[i-1])) % 26 creates a unique, shift-invariant key for every equivalence class."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Computing the tuple key for a string of length k takes O(k) time. Processing all strings with total character count L takes O(L) time and O(L) space to store the grouped strings. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts list of strings, returning a list of lists of strings grouped by shifting sequence."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details shift-invariant tuple encoding, hash map grouping, and O(L) time/space bounds. Alternatives and edge cases cover 'a'-normalization strategies, single-character empty-tuple keys, and circular alphabet wraparound."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the identical modular-difference tuple key hashing algorithm with SHA-256 digests 63801079169a39b794e7d065515ca41eacebbd89e5829fca3d1c139d62cd6fed and 0e3d106b9df67d361a4c4212b1ace2e6b6a11b246a53ef54c792365e11141d7c. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed strings interface, two examples, three constraints, and 0 diagrams. Bound to content SHA-256 c99e85b84e88642e557f8dbc55fb3c2517ba02e4fa6761e04301c3f4783ca94f."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "0e3d106b9df67d361a4c4212b1ace2e6b6a11b246a53ef54c792365e11141d7c",
+    "native_source_sha256": "0e3d106b9df67d361a4c4212b1ace2e6b6a11b246a53ef54c792365e11141d7c",
+    "approach_sha256": "0a23c33aa9814f05b5d351413a0595acf22f0ad0f907ffa71ac86bac22eaa1cf",
+    "solution_variants_sha256": "7f5f1fd1f1ce282065863e1d1eaebf2890b63ccdbd2de251636cc540407c7a5e",
+    "complexity_evidence_sha256": "e89f5debfe1dd51a142dda6eae38b8f02dfa336d417818019edd76e7051bb212"
+  }
+}

@@ -5,10 +5,10 @@
 
 The greedy choice is safe: immediately before a chosen connection joins two components, those components define a cut of the graph, and this is a minimum-cost still-available connection crossing that cut. The cut property guarantees that some minimum spanning tree contains that choice. Repeating the argument constructs a minimum spanning tree whenever one exists. Path compression and union by size keep component operations efficient.
 
-**Detect an impossible network.** A successful spanning tree uses exactly `n - 1` merging connections. If processing all entries leaves `used < n - 1`, at least two components have no available connection between them, so return `-1`. For `n = 1`, zero connections are needed and the minimum cost is `0`.
+**Detect an impossible network.** A successful spanning tree uses exactly `n - 1` merging connections. If processing all entries leaves `used < n - 1`, at least two components have no available connection between them, so return `-1`.
 
 ## Complexity detail
-Sorting the $m$ connections costs $O(m\log m)$. The disjoint-set operations contribute $O(m\alpha(n))$, where $\alpha$ is the inverse Ackermann function, and are dominated by sorting. The parent and size arrays use $O(n)$ auxiliary space; sorting storage is implementation-dependent and is not larger than $O(m)$ when the input is copied.
+Initializing the parent and size arrays costs $O(n)$. Sorting the $m$ connections costs $O(m\log m)$, and the disjoint-set operations contribute $O(m\alpha(n))$, where $\alpha$ is the inverse Ackermann function. The total time is therefore $O(n+m\log m)$. The parent and size arrays use $O(n)$ space, while this implementation's `sorted` call creates an $O(m)$ connection list, for $O(n+m)$ auxiliary space overall.
 
 ## Alternatives and edge cases
 - **Prim's algorithm:** Grow a tree from one city with an adjacency list and a min-heap in $O(m\log n)$ time and $O(n+m)$ space; it is equally valid but stores every connection in adjacency form.
@@ -16,4 +16,4 @@ Sorting the $m$ connections costs $O(m\log m)$. The disjoint-set operations cont
 - **Disconnected graph:** Fewer than `n - 1` successful merges means no selection can connect every city, even if every listed connection is considered.
 - **Zero-cost connections:** Cost `0` is valid and should be selected whenever it safely joins two components.
 - **Redundant or parallel connections:** A connection whose endpoints are already joined is skipped; among parallel choices, ascending processing naturally considers the cheapest first.
-- **Single city:** No connection is required, so the correct minimum total is `0`.
+- **Smallest valid instance:** The combined source constraints require at least one connection between distinct city labels, so the smallest schema-valid input has `n = 2`; its sole required connection determines the answer.

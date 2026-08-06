@@ -1,7 +1,7 @@
 ## General
 **Assign a horizontal coordinate during breadth-first search**
 
-Give the root column zero. A left child has its parent's column minus one; a right child has its parent's column plus one. During traversal, append each value to the bucket for its column and track the smallest and largest columns encountered.
+The app-local candidate defines the repository-required local `TreeNode` equivalent, then gives the root column zero. A left child has its parent's column minus one; a right child has its parent's column plus one. During traversal, append each value to the bucket for its column and track the smallest and largest columns encountered.
 
 After traversal, read buckets consecutively from the minimum column through the maximum. Tree connectivity guarantees that every intermediate column has at least one node, so no sorting of column keys is required.
 

@@ -1,6 +1,93 @@
-{"challenge_id":"lc_252","cases":[
-{"id":"sample-overlap","name":"sample: overlapping meetings","kind":"sample","visible":true,"input":{"intervals":[[0,30],[5,10],[15,20]]},"expected":false,"tags":["sample","overlap"]},
-{"id":"sample-compatible","name":"sample: separated meetings","kind":"sample","visible":true,"input":{"intervals":[[7,10],[2,4]]},"expected":true,"tags":["sample","compatible"]},
-{"id":"trial-touching","name":"touching endpoints are compatible","kind":"trial","visible":true,"input":{"intervals":[[1,2],[2,3],[3,4]]},"expected":true,"tags":["boundary"]},
-{"id":"real-unsorted-overlap","name":"hidden: overlap in unsorted input","kind":"real","visible":false,"input":{"intervals":[[10,12],[1,5],[4,8],[13,15]]},"expected":false,"tags":["hidden","sorting"]}
-]}
+{
+  "challenge_id": "lc_252",
+  "cases": [
+    {
+      "id": "sample-overlap",
+      "name": "sample: overlapping meetings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [[0, 30], [5, 10], [15, 20]]
+      },
+      "expected": false,
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "sample-compatible",
+      "name": "sample: separated meetings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [[7, 10], [2, 4]]
+      },
+      "expected": true,
+      "tags": ["sample", "compatible", "unsorted"]
+    },
+    {
+      "id": "trial-empty-schedule",
+      "name": "empty schedule has no conflict",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": []
+      },
+      "expected": true,
+      "tags": ["empty", "minimum-count"]
+    },
+    {
+      "id": "trial-single-full-time-domain",
+      "name": "one meeting spans both inclusive time limits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[0, 1000000]]
+      },
+      "expected": true,
+      "tags": ["singleton", "time-boundaries"]
+    },
+    {
+      "id": "trial-unsorted-touching-chain",
+      "name": "unsorted meetings may touch at every endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[4, 1000000], [1, 3], [0, 1], [3, 4]]
+      },
+      "expected": true,
+      "tags": ["touching-endpoints", "unsorted", "time-boundaries"]
+    },
+    {
+      "id": "trial-unsorted-overlap",
+      "name": "an overlap is found after chronological sorting",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[10, 12], [1, 5], [4, 8], [13, 15]]
+      },
+      "expected": false,
+      "tags": ["overlap", "unsorted"]
+    },
+    {
+      "id": "trial-contained-meeting",
+      "name": "a meeting contained inside another still overlaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[100, 101], [20, 30], [0, 100]]
+      },
+      "expected": false,
+      "tags": ["containment", "touching-distractor"]
+    },
+    {
+      "id": "trial-equal-starts",
+      "name": "meetings with the same start time overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [[5, 10], [5, 6]]
+      },
+      "expected": false,
+      "tags": ["equal-start", "overlap"]
+    }
+  ]
+}

@@ -30,5 +30,5 @@ Every one of the `n` values creates exactly one node, giving $O(n)$ time. Balanc
 - **Insert values one at a time:** can require $O(n \log n)$ time even with a careful insertion order.
 - **Always choose an endpoint:** preserves BST ordering but creates an unbalanced chain.
 - **Array slicing:** remains correct but copies subarrays and adds avoidable allocation.
-- Empty input maps to a null root. A one-element interval creates a leaf with two empty children.
+- A one-element interval creates a leaf with two empty children.
 - The array must be strictly increasing for the strict BST contract; duplicate-key placement would require a stated policy.

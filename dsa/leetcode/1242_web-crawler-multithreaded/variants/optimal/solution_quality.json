@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1242",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already expert-level interview code. `hostname`, `visited`, `pending`, `completed`, `future`, and `neighbor` expose the host boundary and future lifecycle directly. A fixed `ThreadPoolExecutor` overlaps blocking parser calls, `FIRST_COMPLETED` avoids level barriers, and one coordinator owns both mutable sets, so locks and race-prone shared worker state are unnecessary. No candidate would materially improve correctness, asymptotic complexity, clarity, naming, or resource discipline."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The start URL is marked before its first fetch. The coordinator accepts a neighbor only when its extracted hostname exactly matches the fixed starting hostname and it is not already visited, then marks it before submission. Thus every scheduled URL is a reachable same-host page fetched once. Conversely, every scheduled page has all outgoing links inspected; induction along a valid reachability path proves completeness. The pending set becomes empty only after every scheduled fetch is consumed, so completion is independent of worker finish order."
+      },
+      {
+        "category": "concurrency_design",
+        "severity": "verified",
+        "reason": "Only executor workers call the injected blocking parser; only the coordinator reads or mutates `visited` and `pending`. This eliminates check-then-schedule races without a lock, bounds active parser calls to eight, submits work as soon as any fetch finishes, handles cycles and converging frontiers, and propagates worker exceptions through `future.result()` instead of silently returning an incomplete crawl."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent breadth-first oracle used `urllib.parse.urlsplit` for hostname extraction and separately constructed directed adjacency. Oracle, protected app source, immutable native source, an independent queue-and-worker implementation, and a correct list-membership control agreed on all nine ordinary cases and all three benchmark tiers, 1,200 deterministic schema-valid random URL graphs generated with seed 1242, a delayed 33-page wide frontier, and a legal 1,000-URL chain. Every implementation returned exactly the oracle set, produced no duplicate output or fetch, fetched every reachable same-host page once, never fetched an off-host page, and used at most eight simultaneous parser calls."
+      },
+      {
+        "category": "randomized_and_boundary_coverage",
+        "severity": "verified",
+        "reason": "The 1,200 random databases included 42 single-page libraries, 145 all-same-host graphs, 1,055 mixed-host graphs, 1,036 cyclic graphs, 1,605 generated duplicate-edge events, 768 graphs with reachable off-host edges, 1,018 graphs with disconnected same-host pages, and 1,008 converging graphs. The first 80 used deterministic fetch delays to vary completion order. Separate checks covered true overlap, the eight-worker ceiling, 1,000 unique URLs, a 300-character URL, and a 63-character hostname label."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "The three hidden `real` rows were replaced by explicit visible trials and two additional visible boundary cases were added. All nine ordinary cases are now source-shaped URL libraries and directed edge lists. The source examples retain their exact URL, edge, start, and output facts, while the trials expose no links, maximum URL and label lengths, cycles, duplicate links, exact hostname lookalikes, an off-host bridge, a wide concurrent frontier, converging branches, and trailing-slash URL identity."
+      },
+      {
+        "category": "benchmark_calibration",
+        "severity": "verified",
+        "reason": "The original blocker-playbook benchmark remains unchanged at dense same-host reachable-vertex tiers V = 8, 32, and 128. Protected passed twice at extra growth exponents +0.09 and +0.00; immutable native passed at -0.03; and the independent queue-and-worker same-class implementation passed three times at -0.26, -0.10, and -0.22. The conventional list-membership crawler preserved all twelve outputs with no case failures but failed only the scaling verdict three times at +0.28, +0.22, and +0.22. No timeout, safety cap, deadlock, wrong answer, or hidden-data exposure contributed to those failures."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode concurrency problem 1242, Python, and native entrypoint `Solution.crawl`. Fresh authenticated source evidence confirms exact-hostname reachability, arbitrary result order, unique crawling, HTTP without ports, blocking parser calls returning within 15 ms, mandatory multithreading, one through 1,000 unique URLs, URL length through 300, the hostname grammar, and the custom-test distinction that hides `urls` and `edges` from submitted code."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native source remains bound to verified submission 2067985115 and is unchanged. Apart from the required app-local `HtmlParser` equivalent and its module docstring, protected and native sources share the exact imports, `Solution.crawl` body, hostname extraction, visited set, fixed worker count, future scheduling, same-host and unseen checks, mark-before-submit behavior, and returned set conversion."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach was reviewed against the protected source and exactly describes coordinator-owned scheduling, `FIRST_COMPLETED`, mark-before-submission, bounded workers, exception propagation, and the soundness/completeness argument. Its complexity discussion now distinguishes total computational work from overlapped blocking latency and records the URL-character-scan qualification behind the source-bounded `O(V+E)` statement."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the crawler rules, exact hostname semantics, parser interface, 15 ms blocking guarantee, custom-test fixture boundary, both examples in source order with the correct explanation presence, all six constraints, and all three distributed-crawler follow-up questions. A local component table, text interface diagram, and two accessible Mermaid graphs independently recreate the information carried by all three source images."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples, explanation only on Example 2, six constraints, a three-question follow-up, three source images, and no source table. `source_fidelity.json` binds all five modular files to live statement hash 82b568f1b455e9e6a861f22374bd38eb5a9abd227abe2b2a70f69282df16c25f and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples are the two authenticated source examples in source order. Their URL libraries, directed edges, starting URLs, and output literals are preserved exactly; only Example 2 carries a source explanation.",
+      "All nine ordinary fixtures are visible samples or trials. They cover the one-URL minimum, maximum URL and hostname-label lengths, cycles, duplicate links, exact-hostname boundaries, off-host bridges, unreachable pages, true parser-call overlap, the eight-worker bound, converging branches, scheduler variation, and trailing-slash URL identity.",
+      "The independent BFS oracle recomputed every fixed expectation. Protected source, immutable native source, independent queue workers, and the list control agreed on all fixed fixtures, 1,200 seeded random graphs, a delayed wide frontier, and a separate legal 1,000-URL chain.",
+      "The unchanged hidden tiers use dense same-host graphs at V = 8, 32, and 128. Protected, native, and an independently structured same-class implementation pass scaling, while the correct linear-list control preserves every output and fails only the scaling verdict in three repeated runs."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "ceef73586867aa6ff350316864cf37d3ccac46db03f1c493184ecc5a01076784",
+    "native_source_sha256": "1c36c637f641319158c661820bb4504f97b7e03cfd2be7a34da002efedeee14c",
+    "approach_sha256": "e73afd2c8d620fe5157d75ccb2cfb3be6d97ca01b8132bc6f28504c63f98cb20",
+    "solution_variants_sha256": "33d15c00fa5786e5eec38a781be191eafbda400b0cb7694de086f023727cc9ec",
+    "complexity_evidence_sha256": "edd026443cd985ca0989d89128d331057d9c5c99779479ceee53546a0fdc085c",
+    "cases_sha256": "e069dc21c2222b46dde09f1870571220ecd51e6c1ebec7bfa27eb65d206f024a"
+  }
+}

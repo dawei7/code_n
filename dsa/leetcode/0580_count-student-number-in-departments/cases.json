@@ -4,8 +4,77 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: unequal department sizes",
+      "name": "sample: source department student counts",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "Jack",
+              "gender": "M",
+              "dept_id": 1
+            },
+            {
+              "student_id": 2,
+              "student_name": "Jane",
+              "gender": "F",
+              "dept_id": 1
+            },
+            {
+              "student_id": 3,
+              "student_name": "Mark",
+              "gender": "M",
+              "dept_id": 2
+            }
+          ],
+          "Department": [
+            {
+              "dept_id": 1,
+              "dept_name": "Engineering"
+            },
+            {
+              "dept_id": 2,
+              "dept_name": "Science"
+            },
+            {
+              "dept_id": 3,
+              "dept_name": "Law"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Engineering",
+            2
+          ],
+          [
+            "Science",
+            1
+          ],
+          [
+            "Law",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "left-join"
+      ]
+    },
+    {
+      "id": "trial-unequal-sizes",
+      "name": "trial: unequal department sizes",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -64,14 +133,14 @@
         ]
       },
       "tags": [
-        "sample",
+        "trial",
         "aggregation"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: preserve an empty department",
-      "kind": "sample",
+      "id": "trial-preserve-empty",
+      "name": "trial: preserve an empty department",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -112,14 +181,14 @@
         ]
       },
       "tags": [
-        "sample",
+        "trial",
         "empty-department"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: equal counts use name order",
-      "kind": "sample",
+      "id": "trial-equal-counts",
+      "name": "trial: equal counts use department-name order",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -166,12 +235,12 @@
         ]
       },
       "tags": [
-        "sample",
-        "aggregation"
+        "trial",
+        "tie-order"
       ]
     },
     {
-      "id": "trial-1",
+      "id": "trial-zero-one-two",
       "name": "trial: zero, one, and two students",
       "kind": "trial",
       "visible": true,
@@ -235,11 +304,11 @@
       },
       "tags": [
         "trial",
-        "aggregation"
+        "count-boundaries"
       ]
     },
     {
-      "id": "trial-2",
+      "id": "trial-duplicate-names",
       "name": "trial: duplicate department names stay separate",
       "kind": "trial",
       "visible": true,
@@ -303,14 +372,14 @@
       },
       "tags": [
         "trial",
-        "aggregation"
+        "identity-grouping"
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: nonconsecutive identifiers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonconsecutive-identifiers",
+      "name": "trial: nonconsecutive identifiers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Department": [
@@ -370,15 +439,15 @@
         ]
       },
       "tags": [
-        "real",
-        "aggregation"
+        "trial",
+        "identifiers"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: multiple empty departments",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-empty",
+      "name": "trial: multiple empty departments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Department": [
@@ -438,8 +507,67 @@
         ]
       },
       "tags": [
-        "real",
-        "empty-department"
+        "trial",
+        "empty-department",
+        "tie-order"
+      ]
+    },
+    {
+      "id": "trial-empty-student-table",
+      "name": "trial: every department is empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "dept_id": 30,
+              "dept_name": "Zoology"
+            },
+            {
+              "dept_id": 10,
+              "dept_name": "Art"
+            },
+            {
+              "dept_id": 20,
+              "dept_name": "Mathematics"
+            }
+          ],
+          "Student": {
+            "columns": [
+              "student_id",
+              "student_name",
+              "gender",
+              "dept_id"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Art",
+            0
+          ],
+          [
+            "Mathematics",
+            0
+          ],
+          [
+            "Zoology",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "empty-student-table",
+        "tie-order"
       ]
     }
   ]

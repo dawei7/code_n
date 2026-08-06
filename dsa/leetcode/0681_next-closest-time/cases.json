@@ -4,116 +4,102 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: reuse the final digit",
+      "name": "sample 1: next legal display is five minutes later",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "time": "19:34"
-      },
+      "input": {"time": "19:34"},
       "expected": "19:39",
-      "tags": [
-        "sample",
-        "digit-reuse"
-      ]
+      "tags": ["sample", "source-example", "same-hour", "digit-reuse"]
     },
     {
       "id": "sample-2",
-      "name": "sample: wrap to the next day",
+      "name": "sample 2: closest display occurs after midnight",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "time": "23:59"
-      },
+      "input": {"time": "23:59"},
       "expected": "22:22",
-      "tags": [
-        "sample",
-        "day-wrap"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: only one digit available",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "time": "11:11"
-      },
-      "expected": "11:11",
-      "tags": [
-        "sample",
-        "full-cycle"
-      ]
+      "tags": ["sample", "source-example", "day-wrap", "maximum-hour", "maximum-minute"]
     },
     {
       "id": "trial-1",
-      "name": "trial: next minute",
+      "name": "trial: midnight is the minimum valid display",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "time": "01:32"
-      },
-      "expected": "01:33",
-      "tags": [
-        "trial",
-        "one-minute-gap"
-      ]
+      "input": {"time": "00:00"},
+      "expected": "00:00",
+      "tags": ["trial", "minimum-hour", "minimum-minute", "full-cycle"]
     },
     {
       "id": "trial-2",
-      "name": "trial: hour carry",
+      "name": "trial: one available digit forces a full-day cycle",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "time": "20:48"
-      },
+      "input": {"time": "11:11"},
+      "expected": "11:11",
+      "tags": ["trial", "single-distinct-digit", "full-cycle"]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: unlimited reuse produces the next minute",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "01:32"},
+      "expected": "01:33",
+      "tags": ["trial", "one-minute-gap", "digit-reuse"]
+    },
+    {
+      "id": "trial-4",
+      "name": "trial: minute overflow advances to a later hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "20:48"},
       "expected": "22:00",
-      "tags": [
-        "trial",
-        "hour-wrap"
-      ]
+      "tags": ["trial", "hour-carry", "zero-reuse"]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: midnight repeats next day",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "time": "00:00"
-      },
-      "expected": "00:00",
-      "tags": [
-        "hidden",
-        "midnight"
-      ]
-    },
-    {
-      "id": "hidden-2",
-      "name": "hidden: rearrange minute digits",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "time": "22:23"
-      },
+      "id": "trial-5",
+      "name": "trial: rearranging minute digits gives the closest display",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "22:23"},
       "expected": "22:32",
-      "tags": [
-        "hidden",
-        "minute-rearrangement"
-      ]
+      "tags": ["trial", "minute-rearrangement", "same-hour"]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: preserve leading zero",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "time": "05:50"
-      },
+      "id": "trial-6",
+      "name": "trial: leading zero remains part of the display",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "05:50"},
       "expected": "05:55",
-      "tags": [
-        "hidden",
-        "leading-zero"
-      ]
+      "tags": ["trial", "leading-zero", "same-hour"]
+    },
+    {
+      "id": "trial-7",
+      "name": "trial: invalid clock arrangements are rejected",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "13:59"},
+      "expected": "15:11",
+      "tags": ["trial", "clock-validity", "hour-carry"]
+    },
+    {
+      "id": "trial-8",
+      "name": "trial: four distinct digits require both validity filters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "06:49"},
+      "expected": "09:00",
+      "tags": ["trial", "four-distinct-digits", "clock-validity", "leading-zero"]
+    },
+    {
+      "id": "trial-9",
+      "name": "trial: three distinct digits can be rearranged within the hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "12:23"},
+      "expected": "12:31",
+      "tags": ["trial", "three-distinct-digits", "minute-rearrangement", "same-hour"]
     }
   ]
 }
-

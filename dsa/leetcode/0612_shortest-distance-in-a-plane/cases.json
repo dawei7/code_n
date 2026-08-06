@@ -2,12 +2,368 @@
   "schema_version": 1,
   "challenge_id": "lc_612",
   "cases": [
-    {"id": "sample-1", "name": "sample: diagonal nearest pair", "kind": "sample", "visible": true, "input": {"tables": {"Point2D": [{"x": 0, "y": 0}, {"x": -1, "y": -1}, {"x": 100, "y": 100}]}}, "expected": {"columns": ["shortest"], "rows": [[1.41]]}, "tags": ["sample", "rounding"]},
-    {"id": "sample-2", "name": "sample: three-four-five distance", "kind": "sample", "visible": true, "input": {"tables": {"Point2D": [{"x": 0, "y": 0}, {"x": 3, "y": 4}]}}, "expected": {"columns": ["shortest"], "rows": [[5.0]]}, "tags": ["sample", "two-points"]},
-    {"id": "sample-3", "name": "sample: closest vertical neighbors", "kind": "sample", "visible": true, "input": {"tables": {"Point2D": [{"x": 2, "y": -3}, {"x": 2, "y": 5}, {"x": 2, "y": 6}]}}, "expected": {"columns": ["shortest"], "rows": [[1.0]]}, "tags": ["sample", "equal-x"]},
-    {"id": "trial-1", "name": "trial: closest horizontal neighbors", "kind": "trial", "visible": true, "input": {"tables": {"Point2D": [{"x": -10, "y": 7}, {"x": -4, "y": 7}, {"x": 8, "y": 7}]}}, "expected": {"columns": ["shortest"], "rows": [[6.0]]}, "tags": ["trial", "equal-y"]},
-    {"id": "trial-2", "name": "trial: several equal minimum distances", "kind": "trial", "visible": true, "input": {"tables": {"Point2D": [{"x": 0, "y": 0}, {"x": 0, "y": 2}, {"x": 2, "y": 0}, {"x": 2, "y": 2}]}}, "expected": {"columns": ["shortest"], "rows": [[2.0]]}, "tags": ["trial", "ties"]},
-    {"id": "hidden-1", "name": "hidden: nearest pair is not adjacent in input", "kind": "real", "visible": false, "input": {"tables": {"Point2D": [{"x": 50, "y": 50}, {"x": -100, "y": -100}, {"x": 4, "y": 5}, {"x": 3, "y": 4}, {"x": 90, "y": -90}]}}, "expected": {"columns": ["shortest"], "rows": [[1.41]]}, "tags": ["hidden", "input-order"]},
-    {"id": "hidden-2", "name": "hidden: large coordinate range", "kind": "real", "visible": false, "input": {"tables": {"Point2D": [{"x": -10000, "y": -10000}, {"x": 10000, "y": 10000}, {"x": 9997, "y": 9996}, {"x": 0, "y": 1}]}}, "expected": {"columns": ["shortest"], "rows": [[5.0]]}, "tags": ["hidden", "large-coordinates"]}
+    {
+      "id": "sample-1",
+      "name": "sample: source vertical nearest pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": -1,
+              "y": -1
+            },
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": -1,
+              "y": -2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "equal-x"
+      ]
+    },
+    {
+      "id": "trial-round-down",
+      "name": "trial: diagonal distance rounds down",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": -1,
+              "y": -1
+            },
+            {
+              "x": 100,
+              "y": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            1.41
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "rounding",
+        "diagonal"
+      ]
+    },
+    {
+      "id": "trial-two-points",
+      "name": "trial: exactly two points form a three-four-five triangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 3,
+              "y": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "two-points",
+        "contract-boundary"
+      ]
+    },
+    {
+      "id": "trial-vertical-neighbors",
+      "name": "trial: closest points share an x-coordinate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": 2,
+              "y": -3
+            },
+            {
+              "x": 2,
+              "y": 5
+            },
+            {
+              "x": 2,
+              "y": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "equal-x",
+        "negative-coordinate"
+      ]
+    },
+    {
+      "id": "trial-horizontal-neighbors",
+      "name": "trial: closest points share a y-coordinate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": -10,
+              "y": 7
+            },
+            {
+              "x": -4,
+              "y": 7
+            },
+            {
+              "x": 8,
+              "y": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            6
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "equal-y",
+        "negative-coordinate"
+      ]
+    },
+    {
+      "id": "trial-tied-minima",
+      "name": "trial: several pairs share the minimum distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": 2
+            },
+            {
+              "x": 2,
+              "y": 0
+            },
+            {
+              "x": 2,
+              "y": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "ties",
+        "multiple-minima"
+      ]
+    },
+    {
+      "id": "trial-input-order",
+      "name": "trial: nearest pair is separated in input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": 50,
+              "y": 50
+            },
+            {
+              "x": -100,
+              "y": -100
+            },
+            {
+              "x": 4,
+              "y": 5
+            },
+            {
+              "x": 90,
+              "y": -90
+            },
+            {
+              "x": 3,
+              "y": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            1.41
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "input-order",
+        "diagonal"
+      ]
+    },
+    {
+      "id": "trial-large-coordinate-range",
+      "name": "trial: nearest pair within a large coordinate range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": -10000,
+              "y": -10000
+            },
+            {
+              "x": 10000,
+              "y": 10000
+            },
+            {
+              "x": 9997,
+              "y": 9996
+            },
+            {
+              "x": 0,
+              "y": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "large-coordinates",
+        "mixed-sign"
+      ]
+    },
+    {
+      "id": "trial-round-up",
+      "name": "trial: diagonal distance rounds up",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Point2D": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 2,
+              "y": 2
+            },
+            {
+              "x": 100,
+              "y": 101
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "shortest"
+        ],
+        "rows": [
+          [
+            2.83
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "rounding",
+        "diagonal"
+      ]
+    }
   ]
 }

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Substring with At Most K Distinct Characters and meets the required complexity bound.",
+      "summary": "Maintains one frequency-counted window and shrinks its left edge only while distinctness exceeds k.",
       "time_complexity": "O(n)",
       "space_complexity": "O(k)"
     }

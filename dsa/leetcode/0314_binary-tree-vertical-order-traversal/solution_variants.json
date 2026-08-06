@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Binary Tree Vertical Order Traversal and meets the required complexity bound.",
+      "summary": "Groups nodes by horizontal coordinate during one left-before-right breadth-first traversal.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

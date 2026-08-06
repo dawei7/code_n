@@ -17,5 +17,5 @@ There are $\left\lfloor n / 2 \right\rfloor$ swaps, so the running time is $O(n)
 ## Alternatives and edge cases
 - **Slice reversal or a new reversed list:** takes $O(n)$ time but allocates $O(n)$ extra storage and violates the in-place requirement.
 - **Repeated front insertion:** can take $O(n^2)$ because every insertion shifts existing list elements.
-- An empty list and a one-character list require no swaps.
+- A one-character list requires no swaps.
 - Duplicate characters do not change the pairing rule because positions, not character identities, determine the reversal.

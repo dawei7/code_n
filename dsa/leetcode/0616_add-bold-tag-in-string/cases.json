@@ -2,12 +2,332 @@
   "schema_version": 1,
   "challenge_id": "lc_616",
   "cases": [
-    {"id": "sample-1", "name": "sample: two separated bold regions", "kind": "sample", "visible": true, "input": {"s": "abcxyz123", "words": ["abc", "123"]}, "expected": "<b>abc</b>xyz<b>123</b>", "tags": ["sample", "separated"]},
-    {"id": "sample-2", "name": "sample: overlapping matches merge", "kind": "sample", "visible": true, "input": {"s": "aaabbcc", "words": ["aaa", "aab", "bc"]}, "expected": "<b>aaabbc</b>c", "tags": ["sample", "overlap"]},
-    {"id": "sample-3", "name": "sample: no dictionary match", "kind": "sample", "visible": true, "input": {"s": "plain", "words": ["xyz", "longerword"]}, "expected": "plain", "tags": ["sample", "no-match"]},
-    {"id": "trial-1", "name": "trial: adjacent matches share tags", "kind": "trial", "visible": true, "input": {"s": "abcxyz", "words": ["abc", "xyz"]}, "expected": "<b>abcxyz</b>", "tags": ["trial", "adjacent"]},
-    {"id": "trial-2", "name": "trial: contained and extending matches", "kind": "trial", "visible": true, "input": {"s": "abcdef", "words": ["abc", "bc", "cde"]}, "expected": "<b>abcde</b>f", "tags": ["trial", "contained"]},
-    {"id": "hidden-1", "name": "hidden: repeated overlapping occurrence", "kind": "real", "visible": false, "input": {"s": "aaaaa", "words": ["aa"]}, "expected": "<b>aaaaa</b>", "tags": ["hidden", "repeated"]},
-    {"id": "hidden-2", "name": "hidden: letters and digits with partial coverage", "kind": "real", "visible": false, "input": {"s": "a1b2c3d4", "words": ["1b2", "2c3", "d4", "missing"]}, "expected": "a<b>1b2c3d4</b>", "tags": ["hidden", "digits"]}
+    {
+      "id": "sample-1",
+      "name": "sample: source two separated bold regions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcxyz123",
+        "words": [
+          "abc",
+          "123"
+        ]
+      },
+      "expected": "<b>abc</b>xyz<b>123</b>",
+      "tags": [
+        "sample",
+        "source-example",
+        "separated"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: source overlapping and consecutive matches merge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaabbb",
+        "words": [
+          "aa",
+          "b"
+        ]
+      },
+      "expected": "<b>aaabbb</b>",
+      "tags": [
+        "sample",
+        "source-example",
+        "overlap",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "trial-overlapping-matches",
+      "name": "trial: several overlapping matches merge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabbcc",
+        "words": [
+          "aaa",
+          "aab",
+          "bc"
+        ]
+      },
+      "expected": "<b>aaabbc</b>c",
+      "tags": [
+        "trial",
+        "overlap",
+        "multiple-words"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: no dictionary word occurs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "plain",
+        "words": [
+          "xyz",
+          "longerword"
+        ]
+      },
+      "expected": "plain",
+      "tags": [
+        "trial",
+        "no-match",
+        "word-longer-than-source"
+      ]
+    },
+    {
+      "id": "trial-adjacent-matches",
+      "name": "trial: adjacent matches share one tag pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcxyz",
+        "words": [
+          "abc",
+          "xyz"
+        ]
+      },
+      "expected": "<b>abcxyz</b>",
+      "tags": [
+        "trial",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "trial-contained-and-extending",
+      "name": "trial: contained and extending matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "words": [
+          "abc",
+          "bc",
+          "cde"
+        ]
+      },
+      "expected": "<b>abcde</b>f",
+      "tags": [
+        "trial",
+        "contained",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-repeated-overlap",
+      "name": "trial: repeated overlapping occurrence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa",
+        "words": [
+          "aa"
+        ]
+      },
+      "expected": "<b>aaaaa</b>",
+      "tags": [
+        "trial",
+        "repeated",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-letters-and-digits",
+      "name": "trial: letters and digits with partial coverage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a1b2c3d4",
+        "words": [
+          "1b2",
+          "2c3",
+          "d4",
+          "missing"
+        ]
+      },
+      "expected": "a<b>1b2c3d4</b>",
+      "tags": [
+        "trial",
+        "digits",
+        "overlap",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "trial-empty-dictionary",
+      "name": "trial: empty dictionary leaves the source unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "Keep9",
+        "words": []
+      },
+      "expected": "Keep9",
+      "tags": [
+        "trial",
+        "empty-dictionary",
+        "contract-boundary"
+      ]
+    },
+    {
+      "id": "trial-minimum-source-and-word",
+      "name": "trial: one-character source and word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "Z",
+        "words": [
+          "Z"
+        ]
+      },
+      "expected": "<b>Z</b>",
+      "tags": [
+        "trial",
+        "minimum-source-length",
+        "minimum-word-length",
+        "full-coverage"
+      ]
+    },
+    {
+      "id": "trial-maximum-source-and-word",
+      "name": "trial: maximum source and word lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "words": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ]
+      },
+      "expected": "<b>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</b>",
+      "tags": [
+        "trial",
+        "maximum-source-length",
+        "maximum-word-length",
+        "full-coverage"
+      ]
+    },
+    {
+      "id": "trial-maximum-dictionary-size",
+      "name": "trial: one match among one hundred distinct words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "w42",
+        "words": [
+          "w00",
+          "w01",
+          "w02",
+          "w03",
+          "w04",
+          "w05",
+          "w06",
+          "w07",
+          "w08",
+          "w09",
+          "w10",
+          "w11",
+          "w12",
+          "w13",
+          "w14",
+          "w15",
+          "w16",
+          "w17",
+          "w18",
+          "w19",
+          "w20",
+          "w21",
+          "w22",
+          "w23",
+          "w24",
+          "w25",
+          "w26",
+          "w27",
+          "w28",
+          "w29",
+          "w30",
+          "w31",
+          "w32",
+          "w33",
+          "w34",
+          "w35",
+          "w36",
+          "w37",
+          "w38",
+          "w39",
+          "w40",
+          "w41",
+          "w42",
+          "w43",
+          "w44",
+          "w45",
+          "w46",
+          "w47",
+          "w48",
+          "w49",
+          "w50",
+          "w51",
+          "w52",
+          "w53",
+          "w54",
+          "w55",
+          "w56",
+          "w57",
+          "w58",
+          "w59",
+          "w60",
+          "w61",
+          "w62",
+          "w63",
+          "w64",
+          "w65",
+          "w66",
+          "w67",
+          "w68",
+          "w69",
+          "w70",
+          "w71",
+          "w72",
+          "w73",
+          "w74",
+          "w75",
+          "w76",
+          "w77",
+          "w78",
+          "w79",
+          "w80",
+          "w81",
+          "w82",
+          "w83",
+          "w84",
+          "w85",
+          "w86",
+          "w87",
+          "w88",
+          "w89",
+          "w90",
+          "w91",
+          "w92",
+          "w93",
+          "w94",
+          "w95",
+          "w96",
+          "w97",
+          "w98",
+          "w99"
+        ]
+      },
+      "expected": "<b>w42</b>",
+      "tags": [
+        "trial",
+        "maximum-dictionary-size",
+        "unique-words"
+      ]
+    }
   ]
 }

@@ -20,10 +20,10 @@ Compare suffixes by advancing temporary indices across their common prefix. If o
 Together, the maximum-subsequence proof handles every fixed split, the suffix-aware merge handles every interleaving for that split, and enumerating all feasible splits handles every source allocation. The best candidate is therefore globally optimal.
 
 ## Complexity detail
-There are at most $k + 1$ feasible splits. For one split, the two monotonic scans cost $O(n + m)$. A merge emits `k` digits, and a suffix comparison may scan $O(k)$ equal digits at each emission, giving $O(k^2)$ in the worst case. Total time is $O(k(n + m + k^2))$. Stacks, candidates, and the merged result use $O(k)$ auxiliary space.
+Let $n$ and $m$ be the two input lengths. There are at most $k + 1$ feasible splits. For one split, the two monotonic scans cost $O(n + m)$. A merge emits $k$ digits, and a suffix comparison may scan $O(k)$ equal digits at each emission, giving $O(k^2)$ in the worst case. Total time is $O(k(n + m + k^2))$. Stacks, candidates, and the merged result use $O(k)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Compare only the current digits while merging:** fails on ties such as suffixes `[6,7]` and `[6,0,4]`; the left `6` must win because $7 > 0$ later.
-- **Choose the globally largest `k` digits:** can violate the relative order within a source.
+- **Choose the globally largest $k$ digits:** can violate the relative order within a source.
 - **Enumerate all subsequences or interleavings:** is correct but grows combinatorially.
 - One feasible split may take all digits from one source. Repeated equal digits stress suffix comparisons but do not change correctness, and $k = n + m$ requires retaining every input digit while still choosing the best merge.

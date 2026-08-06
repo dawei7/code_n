@@ -1,5 +1,5 @@
 ## Constraints
 
-- $1 \le \texttt{num.length} \le 50$
-- `num` consists only of decimal digits.
-- `num` has no leading zero unless it is exactly `"0"`.
+- $1 \le \text{num.length} \le 50$.
+- `num` consists of only digits.
+- `num` does not contain any leading zeros except for the zero itself.

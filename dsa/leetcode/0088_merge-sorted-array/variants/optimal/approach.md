@@ -1,13 +1,13 @@
 ## General
 **Backward merging protects unread values in `nums1`**
 
-Point `i` to the last valid value in `nums1`, `j` to the last value in `nums2`, and `write` to the final reserved position of `nums1`. Compare the two source endpoints, write the larger one at `write`, and move that source pointer and the destination left.
+Point `first` to the last valid value in `nums1`, `second` to the last value in `nums2`, and `destination` to the final reserved position of `nums1`. Compare the two source endpoints, write the larger one at `destination`, and move that source pointer and `destination` left.
 
 The destination is never before an unread `nums1` value: it begins after the valid prefix, and every write consumes one source value. This is why merging backward needs no buffer, while merging from the front would overwrite data still needed.
 
 **Only a remaining `nums2` prefix needs explicit copying**
 
-If `nums2` is exhausted first, any remaining `nums1` prefix is already in its final positions and the algorithm can stop. If `nums1` is exhausted first, copy the remaining `nums2` prefix backward into the open beginning. A single loop conditioned on $j \ge 0$ captures both cases.
+If `nums2` is exhausted first, any remaining `nums1` prefix is already in its final positions and the algorithm can stop. If `nums1` is exhausted first, copy the remaining `nums2` prefix backward into the open beginning. A single loop conditioned on `second >= 0` captures both cases.
 
 **The filled suffix contains the globally largest merged values**
 

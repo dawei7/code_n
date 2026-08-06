@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Moving Average from Data Stream and meets the required complexity bound.",
+      "summary": "Maintains the live window in a deque and updates its running sum as values enter and expire.",
       "time_complexity": "O(m)",
       "space_complexity": "O(size)"
     }

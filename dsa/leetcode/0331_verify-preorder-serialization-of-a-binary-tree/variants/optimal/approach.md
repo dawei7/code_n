@@ -7,7 +7,7 @@ Scan tokens from left to right. Before consuming any token, the slot count must 
 
 **Scan token boundaries without building a token array**
 
-Only the first character of a token matters for the slot update: `#` is null and every other valid token is an integer, including a negative one beginning with `-`. After processing that distinction, advance to the next comma or the end of the string.
+Only the first character of a token matters for the slot update: `#` is null and every other valid token is an integer. After processing that distinction, advance to the next comma or the end of the string.
 
 For `"1,#"`, the root changes one slot into two, and the null consumes only one, leaving one missing child slot. For `"9,#,#,1"`, the first three tokens reduce the count to zero; the final `1` is rejected before it can consume a nonexistent slot.
 
@@ -24,4 +24,4 @@ Each character is advanced over once while locating token boundaries, giving $O(
 - **Split into tokens and use the same slot rule:** remains linear but uses $O(L)$ extra storage.
 - **Recursively parse left and right subtrees:** is correct, but repeated list or string slicing can become $O(L^2)$ on a skewed serialization and recursion can overflow.
 - **Count only total nodes and nulls:** misses invalid prefixes that finish a tree before later tokens.
-- `"#"` is a valid empty-tree serialization. Negative node values behave like all other non-null tokens.
+- `"#"` is a valid empty-tree serialization. Multi-digit node values behave like all other non-null tokens.

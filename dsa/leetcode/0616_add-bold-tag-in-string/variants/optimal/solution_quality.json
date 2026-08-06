@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_616",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected source uses the campaign-forbidden generic local name index for two different concepts: a dense automaton-transition column and a position in the source string. That reuse makes transition-table construction and final rendering less immediately distinguishable during review."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "improved",
+        "reason": "The inert candidate preserves the verified Aho-Corasick, difference-array, and rendering logic while renaming char_index to alphabet_positions, its values to alphabet_position, and the rendering coordinate to position. The names now identify their roles without adding helpers, comments, branches, or algorithmic changes, and the solve(s, words) contract is unchanged."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The trie recognizes every dictionary prefix, failure links supply suffix transitions and inherit the longest terminal match, and each scan position therefore exposes the longest word ending there. Shorter matches ending at the same position are contained in that interval, so marking only the longest cannot change the covered union. Difference boundaries combine all overlapping and consecutive coverage, and tag emission at coverage transitions produces exactly one pair around each maximal bold span."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 616, Python, and the native addBoldTag(s, words) interface. The candidate accepts an empty dictionary, words longer than the source, overlapping and contained occurrences, and the fixed English-letter-and-digit alphabet while returning the original characters in order with only the required tags."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065476941 implement the same trie states, dense transitions, breadth-first failure links, longest-suffix propagation, difference marks, and tag rendering; the native wrapper is the only contract adaptation. The candidate changes only semantic local names, remains inert, and does not replace or alter that Accepted evidence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three authored workloads grow the source from 64 to 512 characters while growing a dictionary of distinct absent length-eight words, forcing repeated position-word checks but allowing one linear automaton scan. The exact candidate passed all 12 correctness cases and all three performance tiers at 1.12x the calibrated reference runtime. A correct position-by-word control passed every correctness and benchmark output but failed only performance with relative growth exponent +0.90 and a 2.31x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach accurately derives the Aho-Corasick automaton, explains why one longest ending match preserves the covered union, describes difference-array accumulation and coverage-transition rendering, and records the fixed-alphabet O(N + D) time and O(N + D) space bounds implemented by the candidate."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The modular Reference is bound to the authenticated Premium statement's rendered-content hash. It preserves the union semantics for overlapping and consecutive matches, both source examples and their complete explanations, all five constraints including an empty words array and unique values, the absence of source visuals, and the source note that problem 758 defines the same task."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples now appear first with their exact source strings, dictionary order, outputs, overlap and adjacency facts, and complete explanation semantics.",
+      "The former invented second and third samples were relabelled as trials, and both formerly hidden repeated-overlap and letter-and-digit checks are now visible trials.",
+      "Contract boundaries cover source lengths 1 and 1,000, an empty dictionary, one-character and 1,000-character words, 100 distinct dictionary values, letters and digits, a word longer than the source, and the unchanged-source outcome when no word matches.",
+      "Material semantics cover separated regions, overlap, adjacency, containment, extending matches, repeated occurrences, full and partial coverage, a single matching word among many absent words, and the requirement to emit one tag pair per maximal covered union.",
+      "An independent position-and-word coverage oracle verified the protected app source, immutable native class, and inert naming candidate on all 12 cases, all three benchmark outputs, 16,256 exhaustive binary-string/dictionary inputs, and 500 deterministic randomized inputs.",
+      "All 12 ordinary correctness cases are visible samples or trials; the unchanged 64-, 256-, and 512-character absent-dictionary workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "ff0fa1d526648039ff31a872c458be1c94dcbccef2705c2d00fa7840856e362c",
+    "native_source_sha256": "5e0b9d379115e0adab96c413bf1f4cf6b7105588c6d78377c61e44a67907bebd",
+    "approach_sha256": "cfd519cf8aacd815bbd11b44b2eb4d258e5b9234be041c75a65a25466a5d6d04",
+    "solution_variants_sha256": "1639dc69605e4c16743f5be9b87dc7a871b3c96506d0d3323a08d988410076a4",
+    "complexity_evidence_sha256": "ed1ba3dbb1f3f6cb757a89cf001452e065d8d6f129e922b30065f5946966abdf",
+    "cases_sha256": "34555e254537fddbd93c89154e6b48660d0eecd359673579fdbd016656d37aa4",
+    "candidate_source_sha256": "eddbbe70e4924c73e57227a97172bdddc0e3f86f753ac9114227c57e1ed7dcbc"
+  }
+}

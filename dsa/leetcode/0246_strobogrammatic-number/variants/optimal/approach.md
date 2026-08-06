@@ -14,4 +14,5 @@ At most half the string is examined, giving $O(n)$ time. The fixed five-pair map
 
 ## Alternatives and edge cases
 - **Build the rotated string:** is simple but uses $O(n)$ extra space.
-- Digits `2`, `3`, `4`, `5`, and `7` are immediately invalid; a middle digit must be `0`, `1`, or `8`.
+- **Invalid digits:** `2`, `3`, `4`, `5`, and `7` cannot participate in any valid rotated pair.
+- **Middle digit:** in an odd-length numeral, it must map to itself and therefore must be `0`, `1`, or `8`.

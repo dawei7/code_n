@@ -8,7 +8,7 @@
       "visible": true,
       "input": {"pattern": "abab", "s": "redblueredblue"},
       "expected": true,
-      "tags": ["sample", "repeated-symbols"]
+      "tags": ["sample", "source-example", "repeated-symbols"]
     },
     {
       "id": "sample-one-symbol",
@@ -17,7 +17,7 @@
       "visible": true,
       "input": {"pattern": "aaaa", "s": "asdasdasdasd"},
       "expected": true,
-      "tags": ["sample", "reuse"]
+      "tags": ["sample", "source-example", "reuse"]
     },
     {
       "id": "sample-no-match",
@@ -26,34 +26,115 @@
       "visible": true,
       "input": {"pattern": "aabb", "s": "xyzabcxzyabc"},
       "expected": false,
-      "tags": ["sample", "backtracking"]
+      "tags": ["sample", "source-example", "backtracking"]
     },
     {
       "id": "trial-bijection",
-      "name": "different symbols cannot share a substring",
+      "name": "different symbols cannot share one substring",
       "kind": "trial",
       "visible": true,
       "input": {"pattern": "ab", "s": "aa"},
       "expected": false,
-      "tags": ["bijection"]
+      "tags": ["bijection", "reverse-map"]
     },
     {
-      "id": "real-long-assignments",
-      "name": "hidden: repeated multi-character assignments",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-assignments",
+      "name": "repeated multi-character assignments reconstruct the target",
+      "kind": "trial",
+      "visible": true,
       "input": {"pattern": "abba", "s": "redbluebluered"},
       "expected": true,
-      "tags": ["hidden", "boundary"]
+      "tags": ["multi-character", "repeated-symbols"]
     },
     {
-      "id": "real-length-impossible",
-      "name": "hidden: repeated assignment cannot consume suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-length-impossible",
+      "name": "one repeated assignment cannot change for the suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {"pattern": "aaaa", "s": "catcatcatdog"},
       "expected": false,
-      "tags": ["hidden", "pruning"]
+      "tags": ["mapped-prefix-mismatch", "repeated-symbols"]
+    },
+    {
+      "id": "trial-minimum-inputs",
+      "name": "minimum-length pattern maps to the minimum-length target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "a", "s": "x"},
+      "expected": true,
+      "tags": ["minimum-pattern-length", "minimum-target-length"]
+    },
+    {
+      "id": "trial-pattern-longer-than-target",
+      "name": "every symbol needs a nonempty substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "ab", "s": "x"},
+      "expected": false,
+      "tags": ["nonempty-assignment", "length-impossible"]
+    },
+    {
+      "id": "trial-single-symbol-maximum-target",
+      "name": "one symbol may consume the entire maximum-length target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "a", "s": "abcdefghijklmnopqrst"},
+      "expected": true,
+      "tags": ["maximum-target-length", "whole-target-assignment"]
+    },
+    {
+      "id": "trial-maximum-equal-lengths",
+      "name": "maximum-length repeated pattern uses one-character assignments",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "aaaaaaaaaaaaaaaaaaaa", "s": "xxxxxxxxxxxxxxxxxxxx"},
+      "expected": true,
+      "tags": ["maximum-pattern-length", "maximum-target-length", "repeated-symbols"]
+    },
+    {
+      "id": "trial-all-symbols-distinct-target-equal",
+      "name": "distinct symbols cannot all receive the same one-character value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "abc", "s": "aaa"},
+      "expected": false,
+      "tags": ["bijection", "equal-length", "reverse-map"]
+    },
+    {
+      "id": "trial-repeated-ends",
+      "name": "first and last occurrences reuse the same assignment",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "aba", "s": "redbluered"},
+      "expected": true,
+      "tags": ["repeated-symbol", "exact-exhaustion"]
+    },
+    {
+      "id": "trial-extra-suffix",
+      "name": "a valid expansion plus an extra suffix is rejected",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "aba", "s": "redblueredx"},
+      "expected": false,
+      "tags": ["extra-suffix", "exact-exhaustion"]
+    },
+    {
+      "id": "trial-distinct-single-characters",
+      "name": "distinct symbols may map to distinct one-character substrings",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "ab", "s": "xy"},
+      "expected": true,
+      "tags": ["bijection", "one-character-assignments"]
+    },
+    {
+      "id": "trial-reused-symbol-mismatch",
+      "name": "one symbol cannot map to two different characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "aa", "s": "xy"},
+      "expected": false,
+      "tags": ["forward-map", "mapped-prefix-mismatch"]
     }
   ]
 }

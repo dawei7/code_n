@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_232",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected queue class is the conventional two-stack design: pushes append to incoming, front access transfers only when outgoing is empty, and empty checks both stacks. Each value moves at most once between stacks, giving O(1) amortized operations and O(n) storage; no candidate is justified."
+      },
+      {
+        "category": "alignment",
+        "severity": "verified",
+        "reason": "The app-local MyQueue class is identical to the Accepted native class in state, helper logic, operation order, and return behavior. The additional solve function is only the required app adapter that dispatches the authored operation stream."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The former benchmark exceeded the source contract with 256 calls and push values above 9. Because the verified contract permits at most 100 calls, a bounded-domain certificate now proves O(q) aggregate work across q calls by charging each value for one push, at most one transfer, and at most one pop."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach accurately states the logical queue ordering, lazy-transfer invariant, O(1) amortized versus O(n) worst-call distinction, and O(n) storage. Emptiness and valid front access are now labeled separately."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "c991cafabf049136f3a1070007253a1d4e6553f54b45a85fd9d870f96b25b87b",
+    "native_source_sha256": "c63270e1b410543778ef00509e681c145665c8f8bc1b9f417a9f06d4bc4b4e4c",
+    "approach_sha256": "441a5d0191065d32fd412c6bc263129f37b5a410537dab011dd6d6089b4ff5bb",
+    "solution_variants_sha256": "970cb41af5f110293a7c4cc19ce92e680da4896f8aa5da634eeb6ab26ecf9ddd",
+    "complexity_evidence_sha256": "f9682d43cf85c90fc7a9300386e2944719afd47176166713dd99b3d15060f94d"
+  }
+}

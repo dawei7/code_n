@@ -1,5 +1,5 @@
 ## Description
 
-A uni-value subtree is a subtree in which every node stores the same value.
+Given the `root` of a binary tree, return *the number of **uni-value** subtrees*.
 
-Given the root of a binary tree, return the number of its uni-value subtrees.
+A **uni-value** subtree means all nodes of the subtree have the same value.

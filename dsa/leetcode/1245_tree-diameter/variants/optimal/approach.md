@@ -1,9 +1,9 @@
 ## General
 **Build undirected adjacency lists.** Add both directions for every edge so a breadth-first traversal can move through the tree. If `edges` is empty, return zero immediately.
 
-**Find one diameter endpoint.** Run BFS from any vertex, such as `0`, and remember a farthest reached vertex `a`. In a tree, a vertex farthest from an arbitrary start is an endpoint of some diameter: if a longest path extended farther in the relevant direction, the unique paths would contradict `a`'s maximal distance.
+**Find one diameter endpoint.** Run BFS from any vertex, such as `0`. BFS removes vertices in non-decreasing distance order, so the last removed vertex `a` has maximum distance from the start. A standard tree property makes `a` an endpoint of a diameter: for any diameter path, one of its endpoints is at least as far from the start as every vertex outside that path; otherwise the unique connecting paths would extend one side of the supposed diameter. Any vertex tied at that maximum distance is likewise a valid endpoint of some diameter.
 
-**Measure from that endpoint.** Run BFS again from `a`. The greatest distance discovered is the distance to an opposite diameter endpoint and therefore equals the diameter. BFS distances count traversed edges, exactly matching the requested unit. Each traversal visits every vertex and edge once.
+**Measure from that endpoint.** Run BFS again from `a`. Because `a` is a diameter endpoint, its greatest distance is the distance to an opposite endpoint: no shorter value could describe the longest path, and no larger value could exist without forming a longer path. BFS distances count traversed edges, exactly matching the requested unit.
 
 ## Complexity detail
 Building adjacency lists takes $O(n)$ time and space because a tree has $n-1$ edges. Two BFS traversals each take $O(n)$ time and use an $O(n)$ distance array and queue, so the total bounds remain $O(n)$ time and $O(n)$ space.

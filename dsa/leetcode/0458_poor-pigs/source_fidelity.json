@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_458",
+    "frontend_id": "458",
+    "title_slug": "poor-pigs",
+    "url": "https://leetcode.com/problems/poor-pigs/description/",
+    "paid_only": false,
+    "content_sha256": "f3330b9c8acd40e85c889d65dc1bf48508aca1430e7a4b07fa6ce2fb7a5b4b23",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "buckets = 4, minutesToDie = 15, minutesToTest = 15",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "buckets = 4, minutesToDie = 15, minutesToTest = 30",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3092ae5bc08ce90e28b487180eecdd70016a156a5051f924c8fcc9206b1986d6",
+      "reference/contract.md": "1e07541767a4954f7d3534d53ad49a3ab220c26f41cf56441f10894835408cf8",
+      "reference/examples.md": "d1376e0c52ad5ba0380a7fc81137aeb3141a83069f1f0307bfce1ae6659fc41c",
+      "reference/constraints.md": "13ea5f2c1a3287eca7dcaff1b3c511d56505355bd99bb43ef2ae1d9bf582b156"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

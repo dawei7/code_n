@@ -15,7 +15,7 @@
     "files": {
       "reference/description.md": "6bb9c77c7c94e9104f716b75bf3cfe89cc8b31545934770ed9b34341a06cac88",
       "reference/contract.md": "17cee6eaa484d3201c457b0a6d502fca0ec66a4091649df715500100b62a1377",
-      "reference/examples.md": "03276dec24a717dc857dfc1e549fbd1e1564b1d5ae756bcfa421bdc5745a6d7d",
+      "reference/examples.md": "6cc5c6b86a2540bd9f2bd89a702f6055af2a6e52b2a5e3b2c693ba8d99e1514a",
       "reference/constraints.md": "bbc76cbaa6731ae400ce8370dbcd3161369ec35a15a9bf7177d525ad88fe3836"
     },
     "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}

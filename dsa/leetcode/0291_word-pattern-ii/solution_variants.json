@@ -8,8 +8,8 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Word Pattern II and meets the required complexity bound.",
-      "time_complexity": "O(2^n)",
+      "summary": "Backtracks over nonempty substring assignments while enforcing the bijection and pruning impossible suffix lengths.",
+      "time_complexity": "O(n \\cdot 2^n)",
       "space_complexity": "O(n + p)"
     }
   ]

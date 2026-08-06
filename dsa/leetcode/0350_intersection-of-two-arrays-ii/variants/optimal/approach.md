@@ -17,6 +17,5 @@ Counting the shorter array and scanning the longer one take $O(n + m)$ expected 
 ## Alternatives and edge cases
 - **Sort both arrays and use two pointers:** costs $O(n \log n + m \log m)$ but is attractive when inputs are already sorted or sequential external-memory access matters.
 - **Search and remove each match:** can take $O(nm)$ because both list membership and removal are linear.
-- An empty input produces an empty intersection.
-- Negative values and zero need no special handling.
+- Zero needs no special handling.
 - Duplicate output is intentional, but each value's multiplicity cannot exceed its smaller input frequency.

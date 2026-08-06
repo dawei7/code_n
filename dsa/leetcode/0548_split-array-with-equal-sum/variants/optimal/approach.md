@@ -1,7 +1,11 @@
 ## General
+
 **Express every section with exclusive prefix sums**
 
-Let `prefix[t]` be the sum of `nums[0:t]`. For removed indices $i < j < k$, the four retained sums are `prefix[i]`, `prefix[j] - prefix[i + 1]`, `prefix[k] - prefix[j + 1]`, and `prefix[n] - prefix[k + 1]`. Each can then be evaluated in constant time.
+Let `prefix[t]` be the sum of `nums[0:t]`. Build it by enumerating each value at position `i` and assigning
+`prefix[i + 1] = prefix[i] + value`. For removed indices $i < j < k$, the four retained sums are `prefix[i]`,
+`prefix[j] - prefix[i + 1]`, `prefix[k] - prefix[j + 1]`, and `prefix[n] - prefix[k + 1]`. Each can then be evaluated
+in constant time.
 
 **Fix the middle removed index**
 
@@ -20,9 +24,12 @@ For every `k` from $j + 2$ through $n - 2$, compare the third and fourth section
 Every stored value comes from at least one legal left index whose first two sections share that sum. Every tested right value comes from a legal right index whose last two sections share it. Equality through the set therefore combines actual compatible indices around the fixed `j`. Conversely, any valid triple is examined when its middle index is fixed, its left sum is inserted, and its right index is tested, so the algorithm cannot miss a solution.
 
 ## Complexity detail
-There are $O(n)$ choices for `j). For each one, the left and right scans together take $O(n)$ time, giving $O(n^2)$ total time. The prefix array and the per-middle set each use $O(n)$ space.
+
+There are $O(n)$ choices for `middle`. For each one, the left and right scans together take $O(n)$ time, giving
+$O(n^2)$ total time. The prefix array and the per-middle set each use $O(n)$ space.
 
 ## Alternatives and edge cases
+
 - **Enumerate all three removed indices:** prefix sums make each check constant-time, but the three nested choices still cost $O(n^3)$.
 - **Recompute section sums directly:** adds another linear factor and can take $O(n^4)$ time.
 - **Minimum length:** seven elements are required to leave four non-empty sections and remove three indices.

@@ -3,7 +3,7 @@
 
 Scan once, updating the most recent index of each target. Whenever both are known, their distance is the best distance ending at the newly seen target occurrence.
 
-After index `i`, the two stored positions are the latest occurrences at or before `i`, and the answer is the minimum distance among every target pair whose later endpoint is at most `i`.
+After position `i`, the two stored positions are the latest occurrences at or before `i`, and the answer is the minimum distance among every target pair whose later endpoint is at most `i`.
 
 **Every optimal pair is considered at its later endpoint**
 
@@ -15,4 +15,6 @@ One scan takes $O(n)$ time, while two indices and the current minimum use consta
 ## Alternatives and edge cases
 - **Store all occurrence indices:** works but uses $O(n)$ space.
 - **Compare every pair:** can take $O(n^2)$.
-- Adjacent targets yield one; repeated target occurrences continually tighten the candidate distance.
+- **Adjacent targets:** yield the minimum possible answer, one.
+- **Repeated occurrences:** continually replace the relevant latest position and may tighten the answer.
+- **Distinct targets:** make the `elif` branch safe because one array entry cannot match both words.

@@ -3,15 +3,15 @@
 
 Scan prices in chronological order while storing the minimum price seen so far. For a fixed current sale day, every earlier buy produces `current_price - buy_price`, so the minimum earlier price dominates every more expensive choice.
 
-**Evaluate the best transaction ending today before moving on**
+**Update the prefix minimum, then evaluate today's sale**
 
-Subtract the running minimum from the current price and update the best profit. Then include the current price in the running minimum for future sale days. Initializing best profit to zero represents choosing no transaction when all differences are negative.
+First include the current `price` in `lowest`, then update `best` with `price - lowest`. When the current day sets a new minimum, that difference is zero; this same-day comparison cannot create a positive profit and therefore cannot displace any legal earlier-buy result. Initializing `best` to zero represents making no transaction when every legal difference is negative.
 
 Whether the current price is incorporated immediately before or after its zero-profit sale evaluation does not change the answer, but stating the earlier-buy interpretation keeps chronological legality clear.
 
 **The scan summarizes all legal buy-sale pairs in two values**
 
-Before processing day `i`, `lowest` is the minimum price among days through `i`, and `best` is the maximum legal one-transaction profit whose sale occurs no later than `i`.
+After processing a day, `lowest` is the minimum price in the prefix through that day, and `best` is the maximum legal one-transaction profit whose sale occurs within that prefix, or zero if none is positive.
 
 **Trace a new minimum followed by the optimal sale**
 
@@ -31,4 +31,3 @@ Each of `n` prices is processed once, giving $O(n)$ time. Two scalar values prov
 - **Sort prices:** loses chronological order and can place the sale before the buy.
 - **Add every positive rise:** permits multiple transactions and solves Problem 122.
 - A decreasing or constant sequence returns zero. A single price cannot form a buy-then-later-sell pair and also returns zero.
-- Sorting prices is invalid because day order is part of every legal transaction.

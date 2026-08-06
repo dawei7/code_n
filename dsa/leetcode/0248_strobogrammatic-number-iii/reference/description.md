@@ -1,5 +1,5 @@
 ## Description
 
-A strobogrammatic number appears unchanged after a $180$-degree rotation, as if viewed upside down.
+Given two strings `low` and `high` that represent two integers where `low <= high`, return *the number of **strobogrammatic numbers** in the range* `[low, high]`.
 
-The strings `low` and `high` represent integers with `low <= high`. Return how many strobogrammatic integers lie in the inclusive range `[low, high]`.
+A **strobogrammatic number** is a number that looks the same when rotated 180 degrees (looked at upside down).

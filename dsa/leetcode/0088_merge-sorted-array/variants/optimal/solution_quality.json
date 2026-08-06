@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_88",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "approach_accuracy",
+        "severity": "material",
+        "reason": "The approach described nonexistent `i`, `j`, and `write` locals; it now follows the current source's `first`, `second`, and `destination` pointers exactly."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "material",
+        "reason": "The scaling tiers exceeded the verified m+n <= 200 limit; a validated certificate now records the m = 0 output-write Omega(m+n) lower bound and the backward merge's matching O(m+n) upper bound."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "70e8aa9dd2fb6e313d943472520b612a65817e20e8556d77baf83f33cd450bec",
+    "native_source_sha256": "2a417fc1928d5d7c39794756f3a36ccf71cb96c3b7de9bbd131eff5ea7778539",
+    "approach_sha256": "b79fdb450364740ec3541854fd4b3e6bdc40bf4690093c6502d1cff866e48ace",
+    "solution_variants_sha256": "64936b20e814d1ac99f14c9529b27979d2893077be44f88369f7a66f5d7bf76c",
+    "complexity_evidence_sha256": "a5a0020eb791a0781ca621838f604274e50bf1e83ecd8f455495b6bee54fb060"
+  }
+}

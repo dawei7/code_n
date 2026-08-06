@@ -8,8 +8,8 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Combination Sum III and meets the required complexity bound.",
-      "time_complexity": "O(C(9,k)k)",
+      "summary": "Backtracks over strictly increasing digits and emits only length-k paths whose remaining sum is zero.",
+      "time_complexity": "O(2^9 k)",
       "space_complexity": "O(k)"
     }
   ]

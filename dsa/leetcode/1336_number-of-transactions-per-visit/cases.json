@@ -142,13 +142,14 @@
               "visit_date": "2020-02-01"
             }
           ],
-          "Transactions": [
-            {
-              "user_id": 99,
-              "transaction_date": "2020-02-02",
-              "amount": 1
-            }
-          ]
+          "Transactions": {
+            "columns": [
+              "user_id",
+              "transaction_date",
+              "amount"
+            ],
+            "rows": []
+          }
         }
       },
       "expected": {
@@ -272,10 +273,10 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
-      "name": "hidden: repeated transactions count separately",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "trial: repeated transactions count separately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Visits": [
@@ -328,27 +329,31 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-unmatched",
-      "name": "hidden: transaction outside every visit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-date-different-users",
+      "name": "trial: same-date transactions stay with the matching user",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Visits": [
             {
               "user_id": 6,
               "visit_date": "2020-06-01"
+            },
+            {
+              "user_id": 7,
+              "visit_date": "2020-06-01"
             }
           ],
           "Transactions": [
             {
-              "user_id": 6,
-              "transaction_date": "2020-06-02",
+              "user_id": 7,
+              "transaction_date": "2020-06-01",
               "amount": 1
             }
           ]
@@ -363,19 +368,24 @@
           [
             0,
             1
+          ],
+          [
+            1,
+            1
           ]
         ]
       },
       "tags": [
-        "hidden",
-        "unmatched-date"
+        "trial",
+        "composite-key",
+        "same-date"
       ]
     },
     {
-      "id": "hidden-two-users",
-      "name": "hidden: users with equal transaction counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-users",
+      "name": "trial: users with equal transaction counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Visits": [
@@ -419,8 +429,50 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "grouping"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no visits and no transactions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Visits": {
+            "columns": [
+              "user_id",
+              "visit_date"
+            ],
+            "rows": []
+          },
+          "Transactions": {
+            "columns": [
+              "user_id",
+              "transaction_date",
+              "amount"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "transactions_count",
+          "visits_count"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "empty",
+        "zero-bucket"
       ]
     }
   ]

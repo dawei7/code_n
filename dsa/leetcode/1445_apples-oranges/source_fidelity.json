@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1445",
+    "frontend_id": "1445",
+    "title_slug": "apples-oranges",
+    "url": "https://leetcode.com/problems/apples-oranges/description/",
+    "paid_only": true,
+    "content_sha256": "8938e4918a8bc5a48f61e1058b812d96de5b38af890bc388e492c4518773291f",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "sales_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Sales = [[\"2020-05-01\",\"apples\",10],[\"2020-05-01\",\"oranges\",8],[\"2020-05-02\",\"apples\",15],[\"2020-05-02\",\"oranges\",15],[\"2020-05-03\",\"apples\",20],[\"2020-05-03\",\"oranges\",0],[\"2020-05-04\",\"apples\",15],[\"2020-05-04\",\"oranges\",16]]",
+        "output": "[[\"2020-05-01\",2],[\"2020-05-02\",0],[\"2020-05-03\",20],[\"2020-05-04\",-1]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/sales_table.md": "a3ad4fbe21a24f9e61f544f8bb4ff11a8f460e0ba7d75562d6e4ecf68079e2ac",
+      "reference/description.md": "cb9512c06ef080f1b96317c8dee77db763236b7821c978e87b59581111971cdb",
+      "reference/contract.md": "9a85dc23a5463fa470e0a04b0daee2e76961c2b986a3dfcd4cbad9c408602118",
+      "reference/examples.md": "0725a3579b183ebacc1055594f0cd4430b1a863fe60663ae0535e3661d6dc931"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

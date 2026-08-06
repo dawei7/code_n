@@ -20,8 +20,11 @@ All possible height changes occur at swept boundaries. After starts are inserted
 There are at most `2n` distinct boundaries. Sorting them costs $O(n \log n)$. Each building is pushed once and popped at most once, with $O(\log n)$ heap operations, for total $O(n \log n)$ time. Boundary storage and the heap use $O(n)$ space.
 
 ## Alternatives and edge cases
-- Divide and conquer recursively builds and merges skylines in $O(n \log n)$ time and can be elegant but has more involved merge logic.
-- Sampling every integer coordinate is infeasible when coordinates are large or sparse.
-- Eagerly deleting an arbitrary ended heap entry requires an indexed heap or multiset; lazy deletion keeps the ordinary heap simple.
-- Shared starts and ends must produce at most one key point per coordinate. Touching equal-height buildings form one plateau.
-- The result must end with a ground-level point and must not contain adjacent equal heights.
+- **Divide and conquer:** Recursively building and merging skylines also takes $O(n \log n)$ time but requires more
+  involved merge logic.
+- **Integer-coordinate sampling:** It is infeasible when coordinates are large or sparse.
+- **Eager heap deletion:** Removing arbitrary ended entries requires an indexed heap or multiset; lazy deletion keeps
+  the ordinary heap simple.
+- **Shared boundaries:** Shared starts and ends must produce at most one key point per coordinate, and touching
+  equal-height buildings form one plateau.
+- **Canonical output:** The result must end with a ground-level point and must not contain adjacent equal heights.

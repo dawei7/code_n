@@ -3,7 +3,7 @@
 
 The first unconsumed value of each sorted list is that list's smallest remaining value. Put those at most `k` candidates into a min-heap. Repeatedly remove the global minimum, append it to the result, and insert the next value from the same source list. Values deeper in a list do not belong in the heap yet because they cannot precede that list's current head.
 
-For linked nodes, attach the popped node directly to the merged tail and push its successor. For the app's nested-array representation, heap entries also store the source-list and element indices. A deterministic source index or monotonic counter should be included as a tie-breaker in languages whose heap would otherwise try to compare node objects when values are equal.
+Each heap entry is `(node.val, i, node)`, where `i` is the source-list position. Attach the popped node directly to the merged tail and push its successor with the same `i`. The source position breaks equal-value ties deterministically, so Python never tries to compare `ListNode` objects.
 
 **Restore the frontier after every extraction**
 
@@ -20,7 +20,7 @@ For each nonempty source, its current head is the smallest value not yet emitted
 Popping that heap minimum therefore chooses the globally next value. Advancing only its source exposes the sole new value that can enter the frontier; every other source head remains unchanged. Repeating preserves one candidate per nonempty suffix and emits the complete sorted multiset union.
 
 ## Complexity detail
-Each of the `N` values enters and leaves a heap of at most `k` entries once. Heap operations cost $O(\log k)$, giving $O(N \log k)$ time; when `k` is zero or one, the corresponding behavior is constant overhead or a direct list traversal. The heap uses $O(k)$ auxiliary space. The app's returned array is output storage, while the official form relinks existing nodes.
+Each of the $N$ nodes enters and leaves a heap of at most $k$ entries once. Heap operations cost $O(\log k)$, giving $O(N \log k)$ time; when $k$ is zero or one, the corresponding behavior is constant overhead or a direct list traversal. The heap uses $O(k)$ auxiliary space. Both the app-local and native forms relink and return the existing nodes; the app runner serializes the returned chain only after `solve` finishes.
 
 ## Alternatives and edge cases
 - **Scan all `k` heads for every output:** uses little storage but requires $O(Nk)$ time.

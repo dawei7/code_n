@@ -3,9 +3,146 @@
   "challenge_id": "lc_569",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: odd company size",
+      "id": "source-example-1",
+      "name": "sample: source example 1",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "company": "A",
+              "salary": 2341
+            },
+            {
+              "id": 2,
+              "company": "A",
+              "salary": 341
+            },
+            {
+              "id": 3,
+              "company": "A",
+              "salary": 15
+            },
+            {
+              "id": 4,
+              "company": "A",
+              "salary": 15314
+            },
+            {
+              "id": 5,
+              "company": "A",
+              "salary": 451
+            },
+            {
+              "id": 6,
+              "company": "A",
+              "salary": 513
+            },
+            {
+              "id": 7,
+              "company": "B",
+              "salary": 15
+            },
+            {
+              "id": 8,
+              "company": "B",
+              "salary": 13
+            },
+            {
+              "id": 9,
+              "company": "B",
+              "salary": 1154
+            },
+            {
+              "id": 10,
+              "company": "B",
+              "salary": 1345
+            },
+            {
+              "id": 11,
+              "company": "B",
+              "salary": 1221
+            },
+            {
+              "id": 12,
+              "company": "B",
+              "salary": 234
+            },
+            {
+              "id": 13,
+              "company": "C",
+              "salary": 2345
+            },
+            {
+              "id": 14,
+              "company": "C",
+              "salary": 2645
+            },
+            {
+              "id": 15,
+              "company": "C",
+              "salary": 2645
+            },
+            {
+              "id": 16,
+              "company": "C",
+              "salary": 2652
+            },
+            {
+              "id": 17,
+              "company": "C",
+              "salary": 65
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            5,
+            "A",
+            451
+          ],
+          [
+            6,
+            "A",
+            513
+          ],
+          [
+            12,
+            "B",
+            234
+          ],
+          [
+            9,
+            "B",
+            1154
+          ],
+          [
+            14,
+            "C",
+            2645
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "odd-even-partitions",
+        "salary-tie"
+      ]
+    },
+    {
+      "id": "trial-odd-company",
+      "name": "trial: odd company size",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -43,14 +180,14 @@
         ]
       },
       "tags": [
-        "sample",
-        "median"
+        "trial",
+        "odd-count"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: even company size",
-      "kind": "sample",
+      "id": "trial-even-company",
+      "name": "trial: even company size",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -98,14 +235,15 @@
         ]
       },
       "tags": [
-        "sample",
-        "median"
+        "trial",
+        "even-count",
+        "unsorted-input"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one employee",
-      "kind": "sample",
+      "id": "trial-singleton",
+      "name": "trial: one employee",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -133,12 +271,12 @@
         ]
       },
       "tags": [
-        "sample",
-        "median"
+        "trial",
+        "singleton"
       ]
     },
     {
-      "id": "trial-1",
+      "id": "trial-independent-companies",
       "name": "trial: independent odd and even companies",
       "kind": "trial",
       "visible": true,
@@ -199,11 +337,12 @@
       },
       "tags": [
         "trial",
-        "partition"
+        "partition",
+        "odd-even-partitions"
       ]
     },
     {
-      "id": "trial-2",
+      "id": "trial-tied-salaries",
       "name": "trial: tied salaries use identifier order",
       "kind": "trial",
       "visible": true,
@@ -244,14 +383,15 @@
       },
       "tags": [
         "trial",
-        "partition"
+        "salary-tie",
+        "id-tiebreak"
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: mixed salary signs and companies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-signs",
+      "name": "trial: mixed salary signs and companies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -308,15 +448,16 @@
         ]
       },
       "tags": [
-        "hidden",
-        "ordering"
+        "trial",
+        "negative-salary",
+        "partition"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: unsorted five-employee company",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-five",
+      "name": "trial: unsorted five-employee company",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -363,10 +504,40 @@
         ]
       },
       "tags": [
-        "hidden",
-        "ordering"
+        "trial",
+        "unsorted-input",
+        "odd-count"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no employee rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": {
+            "columns": [
+              "id",
+              "company",
+              "salary"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "empty"
       ]
     }
   ]
 }
-

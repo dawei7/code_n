@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_759",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is clear, conventional, and interview-ready. The interval_schedule, intervals, current_end, free_time, employee, start, and end names expose the adapter and merge state directly, with no generic local named index. The app-local Interval is minimal, defines only __init__, and carries the required Local equivalent documentation."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Flattening and sorting every busy interval by start creates one chronological stream for the union across all employees. After each processed prefix, current_end is the right boundary of its final merged busy component, and every earlier positive gap has already been emitted. A later interval with start greater than current_end begins a new component, so [current_end, start] is uncovered by every employee and is exactly one finite common-free interval; an overlapping, nested, or touching interval creates no positive gap. Extending current_end with the maximum end preserves the invariant, so the scan emits every and only the finite gaps between merged busy components in chronological order."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 759, Python, and the native employeeFreeTime(schedule) interface. Authenticated source evidence confirms a list of employee schedules whose Interval objects are sorted and non-overlapping within each employee, and requires sorted finite positive-length intervals during which every employee is free. It also confirms 1 through 50 employees, 1 through 50 intervals per employee, and endpoints satisfying 0 <= start < end <= 10^8."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app core and immutable native source bound to verified submission 2065984602 are algorithmically identical: both flatten the schedules, sort by interval start, initialize the merged boundary from the earliest interval, emit a gap only on a strict separation, extend with the maximum end, and return the accumulated Interval objects. The app adds only the required minimal local Interval and serialization adapter; the native comment correctly relies on LeetCode's injected Interval and remains unchanged."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged three authored workloads grow reverse-ordered, one-interval employee schedules from 8 to 48 total intervals, requiring chronological ordering before merge. The exact protected source passed all ten visible correctness cases and all three performance tiers with relative growth exponent +0.01 and a 1.00x largest runtime ratio; an independently written heap-merge peer also passed with exponent -0.02. An independently correct control that repeatedly searched the remaining intervals for the earliest start matched every benchmark output but failed only performance with relative growth exponent +0.70, distinguishing O(N log N) ordering from O(N^2) repeated selection."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately reduces common free time to gaps in the global busy union, derives the merged-prefix boundary invariant, distinguishes strict gaps from touching intervals, and excludes unbounded exterior time. Its O(N log N) time and O(N) space claims match the protected implementation and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "reviewed",
+        "reason": "The modular Reference now preserves the complete authenticated narrative and native Interval-object model, the app adapter distinction, sorted non-overlapping employee schedules, finite positive common-free output, chronological ordering, touching-interval behavior, exterior exclusion, both source examples in order, both constraint items, and the separate sweep-line hint. The first example retains every explanatory fact about three employees and the two discarded unbounded intervals."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Fresh authenticated review on 2026-08-04 verified exactly two examples in source order, every input and output literal, one explained example, two constraint items, the sorted non-overlapping per-employee guarantee, native Interval field access, exclusion of zero-length and unbounded output, and one separate sweep-line hint. The statement has no images or tables. source_fidelity.json binds the live description-content hash cb608a5fb0e667701687e7267f09deea8379dcd915ceb56611f210d9637cf553 and every composed Reference section hash, and the repository validator reports verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact nested schedules and ordered finite free-time outputs remain first in source order, including the first explanation's discarded unbounded exterior intervals.",
+      "All ten ordinary correctness cases are visible samples or trials. The former hidden nested, disjoint, and bridge-overlap checks were exposed without changing their verified expected gaps.",
+      "Authored and generated checks cover 1 and 50 employees, 1 and 50 intervals per employee, endpoints 0 and 100000000, unit-length busy intervals, a minimum one-employee one-interval schedule, and a maximum 2500-interval schedule while preserving each employee's sorted non-overlapping contract.",
+      "Material behavior covers one and multiple finite gaps, single-employee internal gaps, overlapping and nested intervals, overlaps that extend or bridge the merged end, disjoint busy components, touching boundaries, strict positive-length output, chronological output, and exclusion of unbounded free time before the first and after the last busy interval.",
+      "Expected results were checked against an independent coordinate-span oracle that examines every interval between consecutive busy endpoints and merges adjacent spans uncovered by all employees. The oracle, protected app adapter, and immutable native Solution agreed on all thirteen authored correctness-plus-benchmark inputs, 1884 exhaustive small schedules, 5000 deterministic random valid schedules, and one maximum-dimension schedule.",
+      "The unchanged 8-, 24-, and 48-interval reverse-order workloads remain hidden and performance-only in benchmark.json, span 6x, let both the protected sort-and-merge solution and an independent heap-merge peer pass, and make the correct repeated-selection control fail only the scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "f03ef24721bff592e41515e4095af2533b01c106d73d0048090e0d6550f4f2a3",
+    "native_source_sha256": "530351f2694ba3486675ad1aa9ab03957d9133ae19a7427a751ed7ec69a59544",
+    "approach_sha256": "600ffd732ef34c4574bc4e0faaa6c17008740d9f6ff7d22b2325029e313eabbb",
+    "solution_variants_sha256": "d2bbefdaec0e6245eb52909621aa9ce13eb121699dbbf814733f32ce4501b5bb",
+    "complexity_evidence_sha256": "3e6ccecb8e3d6f8f2bea5ac7624a238d9bd2e024cd19b6a21e717ce2824543ce",
+    "cases_sha256": "f3109f7e08a9f2d3533c6f01aaab231071e41e2e6745e7304eec5c40dc7e1040"
+  }
+}

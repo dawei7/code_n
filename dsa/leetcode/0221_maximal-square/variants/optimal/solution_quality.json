@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_221",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "space_complexity",
+        "severity": "material",
+        "reason": "The protected sources always allocate the rolling DP line by the original column count and therefore use O(n) space on an m-by-n matrix, including wide one-row inputs. The candidate traverses columns as logical lines only when the matrix is wider than tall, reducing auxiliary space to O(min(m,n)) without changing O(mn) time."
+      },
+      {
+        "category": "orientation",
+        "severity": "material",
+        "reason": "The square-side recurrence is invariant under transposition. The candidate uses zip(*matrix) as a lazy logical transpose, retaining only one O(min(m,n))-sized tuple and DP line rather than materializing a second matrix; wide, square, and tall benchmark shapes all pass."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 8/64/256-cell all-one tiers bind size to mn and exercise every DP update across wide, square, and tall shapes. The candidate passes at -0.01 relative exponent; a correct implementation that enumerates and validates every candidate square passes all outputs and fails only scaling (+0.91 relative exponent; 30.51x largest runtime ratio)."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "221693c19137e8824cc012e718565c6587787be56f2e073c62975338159cda8c",
+    "native_source_sha256": "3d90b6e77f1a2ea1da344d0b76c279a78ce1dc92c5f99af99f63d62879572f0b",
+    "approach_sha256": "d9074291bc40f82a143fa77fc0d4d9ea061b08a9f252e15581f0b4c2d246047a",
+    "solution_variants_sha256": "40e9bcfac3d45e174d8c5694b5c3c739f9dd03e21d926cefa415db3db9b61d75",
+    "complexity_evidence_sha256": "798131e9290df7b1913269b39dbbbdfe2316d1c0e143ee3a54003c27f575adf9",
+    "candidate_source_sha256": "3fd35a412b698430351b7fb479d3c808a674e38545a4682c4d610456b385bb5b"
+  }
+}

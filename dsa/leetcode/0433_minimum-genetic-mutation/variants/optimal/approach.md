@@ -5,7 +5,9 @@ Each bank gene is a vertex. Two genes are adjacent when they differ at exactly o
 
 **Generate the bounded set of possible neighbors**
 
-For a dequeued gene, try each of its `L` positions and each of the four alphabet characters. A candidate is a usable neighbor only when it is still in the unvisited-bank set. Remove it immediately when enqueuing so no later path repeats its work.
+After confirming that a nontrivial target is in the bank, build the unvisited set and discard `startGene`. Discarding the source prevents it from being enqueued later if the bank happens to contain it.
+
+For a dequeued gene, try each position `i` and each of the four alphabet characters. A candidate is a usable neighbor only when it is still in the unvisited-bank set. Remove it immediately when enqueuing so no later path repeats its work.
 
 **Use breadth-first levels as mutation counts**
 
@@ -24,5 +26,6 @@ Let `B` be the bank size and `L` the gene length. Each bank gene is visited at m
 - **Bidirectional BFS:** expands from both endpoints and can reduce the explored frontier while preserving the same worst-case class here.
 - **Start equals target:** return zero without requiring a mutation.
 - **Target absent from bank:** return `-1` unless no mutation is needed.
-- **Cycles in the bank graph:** removing a gene when enqueued prevents repeated exploration.
+- **Start also appears in the bank:** discarding it before BFS prevents a cycle from enqueuing the source again.
+- **Cycles in the bank graph:** removing every other gene when enqueued prevents repeated exploration.
 - **Unreachable target:** exhaust the queue and return `-1`.

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_226",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected app-local and Accepted native sources perform the direct iterative DFS: each reachable node is popped once, its child references are swapped in place, and each existing child is scheduled once. The implementation is clear, conventional, O(n)-time, and O(n)-space in the worst case, so no candidate is justified."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The former capacity-unit tiers were off by one and its 255-node largest tree exceeded the source maximum of 100 nodes. A scaling control is also unnecessary because changing every node's child orientation imposes Omega(n) work. A verified asymptotic-optimality certificate now proves matching Omega(n) and O(n) bounds."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The local-swap reachability argument and explicit-stack bounds already match both protected forms. Alternatives and structural boundaries now use explicit labels, and the Optimal summary states the exact in-place DFS behavior."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "847a46b1ea8d7a1a90c2cafc0d423c64629ecb527907bd8b95b434617b302d41",
+    "native_source_sha256": "ad1d87c76c8c9835c6e00497c1c7bb3d1a4521a65b05258351824f37862aea7e",
+    "approach_sha256": "0b10c7ed0ab23142409096de56ff8c6989ea4808af55e961ee0dd86685081f7c",
+    "solution_variants_sha256": "16e16157a053a94f5d69e3ce3d6f9ac7e394e9fc82737156e0a437af9488bab4",
+    "complexity_evidence_sha256": "90bc0618f0defe8869f5e7572ddf2ea0150ddd031813af6c839f36f6bb14b9d1"
+  }
+}

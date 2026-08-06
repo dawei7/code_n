@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_156",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected LeetCode Python solution flips a binary tree upside down iteratively in O(n) time and O(1) space by rewiring pointers along the left spine. The solution is optimal; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Iterating down the left child chain while setting current.left = parent_right and current.right = parent preserves all node relationships without losing subtrees or producing detached nodes."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Each left-child step does O(1) pointer updates. Traversal touches at most n nodes, using O(n) time and O(1) extra memory. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts root node of a binary tree, returning the new root after flipping."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details iterative left-spine pointer rewiring and O(n) time / O(1) space bounds. Alternatives and edge cases cover recursive call stack space, empty trees, and single-node trees."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "LeetCode Python solution executes the iterative left-spine pointer rewiring algorithm with SHA-256 digest 0c9a49ecd497757a0b369a050500c5e5228f1956d0791d52f5a0a6ff781c09ca. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed root interface, two examples, two constraints, and 0 diagrams."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "0c9a49ecd497757a0b369a050500c5e5228f1956d0791d52f5a0a6ff781c09ca",
+    "native_source_sha256": "0c9a49ecd497757a0b369a050500c5e5228f1956d0791d52f5a0a6ff781c09ca",
+    "approach_sha256": "bddae309c8b6ba816345ffa167ab0d88824f77609f67f5d4cb50e8d540ea1f79",
+    "solution_variants_sha256": "4f645b0d37fc38a9e34c02bc60b8b628e456673dad9c67fc2a0b0dfaf4421900",
+    "complexity_evidence_sha256": "8f833cbdcc0983e5827ead7e2f63ccb26e31420ad004616e4f7ec6c73c008e36"
+  }
+}

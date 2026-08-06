@@ -3,7 +3,7 @@
 
 Store only cells that have become land. When a genuinely new cell arrives, create a one-element disjoint-set component and increase the island count by one. If the coordinate already exists, the grid has not changed, so append the existing count immediately.
 
-Map `(row, column)` to one integer identifier such as `row * n + column`. Parent and component-size maps then support path-compressed root lookup and union by size without allocating the entire potentially sparse grid.
+Map `(row, column)` to the unique integer `row * n + column`. Parent and component-size maps then support path-compressed root lookup and union by size without allocating the entire potentially sparse grid.
 
 **Each successful neighboring union removes one island**
 
@@ -20,7 +20,7 @@ Initially there are no land cells and no roots. Adding a new cell creates exactl
 By induction after every operation, disjoint-set components and grid islands are in one-to-one correspondence. The maintained component count is therefore the required island count.
 
 ## Complexity detail
-For `k` additions, each new coordinate performs at most four unions and a constant number of path-compressed finds. Union by size gives $O(k \cdot \alpha(k))$ total time, conventionally near-linear. Parent and size maps contain at most the `k` distinct land cells and use $O(k)$ space.
+Let $k$ be the number of additions. Each new coordinate performs at most four unions and a constant number of path-compressed finds. Union by size gives $O(k \cdot \alpha(k))$ total time, conventionally near-linear. The parent and size maps contain at most $k$ distinct land cells and use $O(k)$ space.
 
 ## Alternatives and edge cases
 - **Recount islands with DFS after every addition:** is correct but repeatedly revisits old land and can take $O(kmn)$ or $O(k^2)$ on a sparse active region.

@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `s`: A nonempty string of English letters.
+- `s`: A string consisting of English letters ($1 \le \text{s.length} \le 10^5$).
 
 **Return value**
 
-Return the maximum length of a contiguous substring whose character set has size at most two.
+Return an integer representing the maximum length of a contiguous substring containing at most two distinct characters.

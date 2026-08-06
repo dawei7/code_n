@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_291",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already an expert-quality backtracking solution. It commits assignments reversibly, uses a set for the reverse bijection, follows established values without branching, and reserves a safe minimum suffix before trying a new nonempty substring. Its structure and naming are clear, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 291 and its Python pattern-and-target boolean contract. The Reference preserves the nonempty-substring bijection, all three source examples in order, explanations for the first two examples only, and both source constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064317907. It and the app-local source have identical assignment and used-substring state, base cases, mapped-prefix transition, suffix lower bound, candidate range, reversible branch updates, and initial search state; only the required wrapper and type syntax differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The former 12/24/48-character tiers exceeded the source maximum of 20. Legal 4/8/20-character repeated-symbol failures now span 5x and grow the pattern through six occurrences, so a correct implementation that validates consistency only after generating complete partitions must explore the intended combinatorial path. The current source passes at -0.02 relative exponent and 1.01x largest ratio; that delayed-consistency control passes every output but fails only scaling at +4.09 and 702.23x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The manifest now includes the linear substring-work factor in the exponential bound. The Approach defines target length n and pattern length p, derives the boundary-subset search, accounts for live substring storage and recursion, explains reversible assignments and the safe suffix bound, and covers bijection, nonempty, and exact-exhaustion traps."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Premium Reference remains verified against authenticated source evidence, preserving all three examples and their explanation presence, both constraints, the complete bijection semantics, and the zero-visual structure."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 15,
+      "correctness_cases_total": 15,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "All three authenticated source examples appear first, in source order, with their exact pattern, target, and boolean result.",
+      "The two previously hidden correctness rows are now visible trials, and every row uses source-legal nonempty lowercase strings.",
+      "The suite covers minimum and maximum pattern and target lengths, one symbol consuming the whole target, equal one-character assignments, and a pattern longer than the target.",
+      "Forward-map consistency and reverse-map injectivity are checked separately through repeated-symbol mismatches and distinct symbols attempting to share one substring.",
+      "Successful and failing repeated multi-character assignments, extra target suffixes, exact simultaneous exhaustion, and distinct one-character assignments exercise the material backtracking endpoints.",
+      "Each expected result was independently derived by enumerating every complete nonempty partition and checking the resulting bijection; the protected source matched this oracle on 15,748 exhaustive small pattern/string pairs.",
+      "All 15 correctness cases are visible; the unchanged legal 4-, 8-, and 20-character repeated-symbol failures remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "a610dccfd4101da562f3c864c9a7824a86896464022ffbf21d733d1ee6b627b0",
+    "native_source_sha256": "351b74d93178c0d7621815f50acefae5100bc554d171abcc6af7001ae678b4dc",
+    "approach_sha256": "3f96fcffe207ca4d7bc98202daf7b4c529446b44e4ebc58c11b1224fcc22e70b",
+    "solution_variants_sha256": "334ad1aed2efc77103a8963a55fbb0ea576f73a4a84e31020d583d77ec16745d",
+    "complexity_evidence_sha256": "1bc1d05087ba2daa1e9acc77e6d6e7c76f1b70a1c7eebec4fc9f224cc866a861",
+    "cases_sha256": "d57398a5232b7c33dd0b2149ca97c3a54b85d94b2b4f352b5f5b6b26946a9b97"
+  }
+}

@@ -1,12 +1,10 @@
 ## Function Contract
 
-LeetCode repeatedly calls `read(buf, n)` while preserving the reader's state. The canonical app represents those calls as one equivalent batch.
-
 **Inputs**
 
-- `content`: The app-local string consumed as the persistent file.
-- `requests`: The successive `n` values passed to the same reader instance.
+- `buf`: Destination buffer array (`List[str]`).
+- `n`: Target number of characters to read for the current call ($1 \le n \le 1000$).
 
 **Return value**
 
-The app returns the substring copied by each request. Under the native interface, each call instead writes that substring into the shared destination `buf` and returns its character count.
+Return an integer representing the number of actual characters read into `buf` during the current call.

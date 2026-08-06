@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_694",
+    "frontend_id": "694",
+    "title_slug": "number-of-distinct-islands",
+    "url": "https://leetcode.com/problems/number-of-distinct-islands/description/",
+    "paid_only": true,
+    "content_sha256": "b7f58045db88d81361d9d994d9ef94e56173dd6d870f69a5bfb67347fef797ee",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]",
+        "output": "1",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[1,1,0,1,1],[1,0,0,0,0],[0,0,0,0,1],[1,1,0,1,1]]",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "1ce2e866fa926fb97acce9e721f9846568335c72aed31185563c6403b2f66617",
+      "reference/contract.md": "078973415b17b8b32b7ad492adf63a678efc3ae6e3aea642fa5bae528020e956",
+      "reference/examples.md": "16b602f15ed55daa6c2551907b0d655c6bb8cdfa93cc50aa0859172e53029b71",
+      "reference/constraints.md": "5194baeb9501d3d976a145191f90ce1959faa06cdb274dc82f40703c99f05dc4"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

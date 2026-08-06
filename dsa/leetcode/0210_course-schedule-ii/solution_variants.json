@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Course Schedule II and meets the required complexity bound.",
+      "summary": "Emits Kahn's zero-indegree queue as a topological order and rejects any unprocessed cycle.",
       "time_complexity": "O(V + E)",
       "space_complexity": "O(V + E)"
     }

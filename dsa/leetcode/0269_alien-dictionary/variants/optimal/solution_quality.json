@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_269",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already the canonical optimal graph solution: initialize every observed letter, derive one deduplicated first-difference edge per adjacent word pair, reject reverse-prefix ordering, and use Kahn's algorithm to detect a cycle or emit a valid order. The structure and naming are interview-quality, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies paid-only LeetCode problem 269 and its Python list-to-string contract. The Reference preserves arbitrary valid-order acceptance, impossible-input behavior, all three examples, and all three source constraints; the contract now defines c, a, and e for the branch bounds."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is tied to verified submission 2064293784. It and the app-local source have identical node initialization, adjacent pairing, prefix rejection, first-difference edge deduplication, indegrees, Kahn queue processing, cycle test, and return; only typing and wrapper syntax differ."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The previous largest tier illegally contained 104 words against the 100-word source limit. The replacement 20/50/100-word tiers are legal, preserve sorted prefix-heavy comparisons, and span 80/200/400 total characters. The current source passes at -0.00 relative exponent and 1.06x largest ratio; a correct all-pairs comparison control passes every output but fails only scaling at +0.99 and 32.62x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach matches the protected source's adjacent first-difference graph and Kahn traversal, and now derives the O(c + e) bound from adjacent comparison participation while accounting for all graph, indegree, queue, result, repeated-word, and isolated-letter state."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound paid-only Reference remains verified against its reviewed source evidence, preserving all three examples in order and their explanation presence, all three constraints, and the zero-visual structure."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source-fidelity-verified examples now appear first and in source order as visible samples, including the formerly missing z-before-x example",
+      "every correctness and benchmark row uses the alien-dictionary validator so any complete topological order satisfying the inferred constraints is accepted",
+      "the source cycle and an explicit reverse-prefix pair cover both independent impossibility modes",
+      "a four-letter one-word chain supplies a unique order, while one unconstrained word verifies that isolated observed letters are still returned",
+      "ab before abc distinguishes a legal shorter prefix from the invalid longer-before-shorter prefix",
+      "za, zb, ca, cb infers a-before-b twice and verifies that the duplicate edge increments b's indegree only once while a separate z-before-c component remains valid",
+      "one 100-character word reaches the exact word-length maximum and exposes all 26 lowercase letters without precedence edges",
+      "one hundred repeated one-letter words reach the exact word-count maximum and minimum word length without inventing an edge",
+      "all ten expected outputs and the protected outputs matched an independent adjacent first-difference extractor, reverse-prefix check, DFS cycle detector, and precedence-order validator",
+      "10,000 seeded random legal-domain word lists agreed on feasibility and produced independently valid orders whenever a solution existed",
+      "the protected current source passed all ten correctness rows and all three unchanged benchmark tiers through the real-test engine; benchmark outputs and runtime scaling passed",
+      "all ten correctness rows are visible samples or trials, while the unchanged 20, 50, and 100-word workloads remain hidden performance-only benchmarks"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "21f5e33b35c7a75a9f5aaeabce5567dbaf525b74f05ab09dd12667efcc393edf",
+    "native_source_sha256": "2db3a299ff4289e9a80317d4e533411c173cae574b8f40dae875c0b01d92155e",
+    "approach_sha256": "77d78ae1d7d0762edf9eb525c08f171afbc6f2347fc854f0ee35e09a115aa435",
+    "solution_variants_sha256": "1f786bc525c40760a71be10302087494709ae6b452a5bede6290be672975b392",
+    "complexity_evidence_sha256": "d2c0e8d616084a5dcbd15ec15a571bc81cd4d7b1ac10287a61d4d54802bf08b9",
+    "cases_sha256": "4613cfa4f11d35a2eb1da833344e0af0d9d21ca6d7e494dba02029ed840d26f5"
+  }
+}

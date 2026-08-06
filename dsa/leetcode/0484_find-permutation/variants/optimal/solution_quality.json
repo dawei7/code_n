@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_484",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source is the conventional greedy construction: start with the ascending permutation, scan maximal D runs, and reverse each corresponding inclusive value block in place. Its run_start, boundary, left, and right names expose the block structure, the sentinel removes special-case cleanup, and no inert candidate is materially justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 484 and its Python string-to-integer-list contract. The implementation returns a permutation of 1 through len(s) + 1, enforces every I or D comparison, and constructs the lexicographically smallest valid sequence. Linear scan and disjoint block reversals match the manifest's O(n) time and O(n) returned-output space."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2065012161. It and the protected app source use the same ascending range, run_start state, inclusive boundary scan, D continuation, two-pointer block swaps, boundary + 1 update, and final return. Differences are limited to the native class/type wrapper and formatting."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The all-D workloads of lengths 32, 128, and 512 span 16x and force one full block reversal. The protected source passed all 8 correctness cases and all three performance tiers, including the legal 100,000-character boundary. A correct repeated-adjacent-swap control passed every output but failed only the runtime verdict with relative growth exponent +1.20 and an 83.40x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The current-targeted Approach follows the exact ascending initialization, run_start and boundary states, s[run_start:boundary] decrease run, inclusive reversal, sentinel closure, and two-pointer swaps. It proves comparison validity and lexicographic minimality block by block and distinguishes required O(n) output space from O(1) auxiliary space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves the permutation range and representation rules, lexicographically-smallest request, both examples and explanations in order, both constraints, and the absence of source visuals, tables, follow-ups, or other later sections."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples appear first and in source order with exact pattern, permutation, and lexicographic facts, and both are explicitly tagged as source examples.",
+      "The invented third sample is now a trial and both formerly hidden rows are visible trials. Boundaries cover pattern lengths 1 and 100,000 and both legal symbols I and D.",
+      "Visible cases cover all increases, all decreases, alternating comparisons, a middle decrease run, multiple decrease runs, a run at the start, a run at the end, and the maximum-length lexicographically increasing permutation.",
+      "An independent stack-flush oracle verified all eight authored results and all three benchmark outputs. A brute-force lexicographic oracle covered every one of the 254 patterns through length 7, and 1,000 deterministic randomized patterns also agreed with the protected source.",
+      "All eight correctness cases are visible samples or trials; the unchanged length-32, length-128, and length-512 all-D workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "35785f3fa5b8b7e6c5414a88036a12e3b88520cda5b2ac26a59bbb72658ac83b",
+    "native_source_sha256": "3f77f6c683377038d05b38d62ac30d6a2c4fc3e567f466c1d6646560447dfd0c",
+    "approach_sha256": "5eb7367c2b4478972ddcada24ddcf7a4a7f73242462721ea7c95f930a648beff",
+    "solution_variants_sha256": "14b4e8cc0af177bd061105ee723896ebb09ab0494d77580a951fc2afa812dbcb",
+    "complexity_evidence_sha256": "cf63ee949b4ff3f73c1aadb89cb8aab2f72c084876390e649dc840df5c477f5c",
+    "cases_sha256": "cd9f4c0935a4f92826f8ab2399af75b0562eeec3f1abb9181dfe0baecea7c57c"
+  }
+}

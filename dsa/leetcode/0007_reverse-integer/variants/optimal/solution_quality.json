@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_7",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in their original order",
+      "zero and multiple trailing zeroes",
+      "positive and negative reversals",
+      "positive and negative overflow",
+      "the minimum signed 32-bit input",
+      "large valid reversals near both magnitude limits",
+      "a ten-digit bounded-domain certificate backed by an independent string oracle"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "135e7624fb28ee74c1ccadcd8e8408a0deead55cce66e0f6b9dcfe525b23c1f5",
+    "native_source_sha256": "0d3852fcc0f7408e7fb43a9f1fe4383bb8efb59af3aec283d5b3d4bc971b4e38",
+    "approach_sha256": "564380348d807e6df5da4eb9505d2e31dd5aaaeb7bd7f216a3c7d50f372eb9c0",
+    "solution_variants_sha256": "3895536f4145b1eb351ef51ff4762c2b72418a7b8f73659b6980ced971a8d9a7",
+    "cases_sha256": "851f05c68712fb8de9bc80087a9f92593d61e10ca2c8adf73661edac0576891d",
+    "complexity_evidence_sha256": "4283557bf02f374f1bbd02bb35570e4dc083d43196a6a48d529147269f5cb3a8"
+  }
+}

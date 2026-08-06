@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_1421",
-  "measurement_note": "Size is P + Q, the combined stored and query row count. Every query has one matching stored pair and appears in ordered output; the 32/128/512 tiers span 16x. A composite-key left join takes O(P + Q) expected time. A correct de-indexed correlated scalar lookup rescans NPV for each query, takes O(PQ) time, and completes normally.",
+  "measurement_note": "Size is P + Q, the combined stored and query row count. Every query has one matching stored pair and contributes one output row; unordered-table validation follows the source contract. The 32/128/512 tiers span 16x. A composite-key left join takes O(P + Q) expected time. A correct de-indexed correlated scalar lookup rescans NPV for each query, takes O(PQ) time, and completes normally.",
   "cases": [
     {
       "id": "benchmark-scale-1",
@@ -249,6 +249,9 @@
             48
           ]
         ]
+      },
+      "validator": {
+        "kind": "unordered_table"
       },
       "tags": [
         "benchmark",
@@ -1174,6 +1177,9 @@
             192
           ]
         ]
+      },
+      "validator": {
+        "kind": "unordered_table"
       },
       "tags": [
         "benchmark",
@@ -4787,6 +4793,9 @@
             768
           ]
         ]
+      },
+      "validator": {
+        "kind": "unordered_table"
       },
       "tags": [
         "benchmark",

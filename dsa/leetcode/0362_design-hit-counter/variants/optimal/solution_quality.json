@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_362",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the conventional fixed-window ring design: it aggregates same-second hits, resets a slot on timestamp-cycle reuse, and sums only live slots. Its class and app adapter are clear, concise, and expert interview-quality, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 362 and its Python HitCounter surface. The Reference preserves chronological calls, repeated same-second hits, the open-left 300-second window, the source operation sequence and explanation, all three constraints, and the high-volume same-second follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064603055. Its two fixed arrays, modulo slot selection, timestamp mismatch reset, same-timestamp increment, live-window predicate, and sum are identical to the protected HitCounter apart from the app-local operation adapter."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The former 512- and 2048-operation benchmark tiers exceeded the 300-call source constraint and were removed. The replacement bounded-domain certificate proves one-slot hit updates, exactly 300 query inspections, and fixed 600-entry storage; its regression passes the app and native implementations for no-hit queries, every age from 0 through 300, slot reuse, and 299 same-second hits plus one query at the legal call limit."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the 300-slot timestamp ring, explains why reuse resets counts, proves the live-window predicate, and distinguishes per-hit aggregation from unbounded per-hit history. Its O(1) time and space bounds correctly treat the source-fixed 300-second window as constant."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound authenticated Premium Reference remains source-fidelity verified, including the complete source operation trace, exact timestamp and call-count constraints, chronological-order guarantee, interval boundary, and source-native scalability follow-up."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The sole authenticated Premium source example is now one complete first case with its exact seven method calls and three app-adapter query results; the former partial samples are correctly labelled trials.",
+      "Visible timestamp coverage includes the legal minimum 1, the maximum 2,000,000,000, and hit ages 299 and 300 that distinguish inclusion from exact expiry.",
+      "Queries before any hit, repeated hits in one second, modulo-slot reuse, mixed bursts, multiple queries, and fully expired history exercise every state transition.",
+      "An independent append-only hit-history oracle verified all nine authored results, 18,943 exhaustive chronological streams, every possible hit age from 0 through 300, and 299 same-second hits plus one query at the 300-call limit.",
+      "All nine correctness cases are visible samples or trials. benchmark.json remains absent, and the unchanged bounded-domain certificate separately proves fixed work and storage for the source-fixed 300-second window."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "5ceb933f965e8b19abb8c8773adcff9fb26f3646a28c95ee463f55bade6f14c7",
+    "native_source_sha256": "928deabf77a66ae0dbfcdf602927db0343beeb8b902a562b96e0e9d513ea39a0",
+    "approach_sha256": "7d40562f55a1619740150b065d98048ab4dbd2eaba70e1d8a952d3eacdf27cb8",
+    "solution_variants_sha256": "00f189c3db73c2628a1c9f04ffb03525a85b24e60fcbd534d82e5d9956928edf",
+    "complexity_evidence_sha256": "ac44f063136d0e1fd880054bf5fbd688cdaa04ecfa59f55f5c5d9ebdfa8ac370",
+    "cases_sha256": "67ffbfe7e01de426004944ab15efc16ecfff009405f9857773acad93004656f9"
+  }
+}

@@ -9,5 +9,8 @@
   "language": "python3",
   "source": "solutions/leetcode.py",
   "verified_submission_id": "2064261279",
-  "verified_at": "2026-07-11T19:52:27.869476+00:00"
+  "verified_at": "2026-07-11T19:52:27.869476+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T08:46:00.000000+00:00"
 }

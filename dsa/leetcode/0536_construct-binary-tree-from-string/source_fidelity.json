@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_536",
+    "frontend_id": "536",
+    "title_slug": "construct-binary-tree-from-string",
+    "url": "https://leetcode.com/problems/construct-binary-tree-from-string/description/",
+    "paid_only": true,
+    "content_sha256": "b39915730b8243037845d42ee87d2f8a4878c0c1e5f7c6d3afff829d5a537f64",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"4(2(3)(1))(6(5))\"",
+        "output": "[4,2,6,3,1,5]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"4(2(3)(1))(6(5)(7))\"",
+        "output": "[4,2,6,3,1,5,7]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"-4(2(3)(1))(6(5)(7))\"",
+        "output": "[-4,2,6,3,1,5,7]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9803e834baeba8f5f1802e9ebccf33895155d9a43e77c3a0e10642b6ba18c9c6",
+      "reference/contract.md": "4729b8bcadfd18cfdf39a562840625eda1b7eba8a6872173d7846902806ca914",
+      "reference/examples.md": "1ad649bd1efb8c536d154909211acb804c94453dc37070f02e2d157e69b40705",
+      "reference/constraints.md": "ecccc3020bf669acd0541ca786654811b9e575e9615b15574e16968f8acf2c6e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

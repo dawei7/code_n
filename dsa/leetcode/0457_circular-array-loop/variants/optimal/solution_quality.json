@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_457",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected source uses the campaign-prohibited local name index as both the successor helper parameter and the failed-path cleanup cursor. The inert candidate changes only those occurrences to the conventional position variable i; every expression, branch, mutation, and return remains unchanged."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "With that narrow naming correction, the candidate remains the canonical in-place Floyd solution: it validates direction and self-loop rules before advancing, detects same-direction cycles, and clears each failed path for amortized linear work. No broader algorithmic rewrite is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 457 and its Python circular-array contract. The O(n) time and O(1) extra-space claims match Floyd pointers plus in-place zero marking, while the direct-source Reference preserves the nonzero signed-jump domain, circular wrapping, consistent-direction rule, and length-greater-than-one rule."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064933298 and is algorithmically identical to the protected app source. The candidate preserves the helper's invalid-step checks, modulo successor, slow/fast advancement order, meeting test, same-direction cleanup, zero marking, and return behavior; only index is renamed i in inert code."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The 31-, 127-, and 511-position direction-change tiers span more than 16x and force a long failed path before cleanup. The candidate passed all 7 opaque correctness executions and all three performance tiers at 1.00x the reference runtime. A correct per-start visited-set control passed every output but failed only the runtime verdict at 59.26x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach exactly describes the functional graph, direction-validating successor, self-loop rejection, Floyd meeting condition, modulo behavior, and in-place failed-path clearing through local cursor i. It proves the amortized O(n) bound and states the input-mutation tradeoff and all material cycle boundaries."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the live public statement. It preserves both signed movement rules, circular wrapping, the formal repeating sequence and two cycle restrictions, all three exact examples and full explanations, all three constraints, and the O(n)-time/O(1)-space follow-up. Three accessible Mermaid graphs independently reproduce every source-image edge and direction."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "1fc1dedc7375ffe005f3982fe60d04b7b266ee3b447f2ec325f7ac148e741a6c",
+    "native_source_sha256": "151d18d3c826eeadfddd09372615afbc6213a09020a88ffdef8151db37ec2d52",
+    "approach_sha256": "7f33fe257bd4486ccab6a3f5f92bbccddcd56b5921f126e1f0075a654fbbd6c3",
+    "solution_variants_sha256": "4673acb12ebd0e822c16bf021f57a9be06427ae7a04cf2ec0bd55d40ff925650",
+    "complexity_evidence_sha256": "f51b22b294bc79342dd75f2ca26ae9741382f38e11ecdf37fd7a3c47e64ea541",
+    "candidate_source_sha256": "0ae8d11036b403ff1e3e6207b7492e4e9e848b18f0c8e9d626f7c02c01d21659"
+  }
+}

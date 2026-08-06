@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1430",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "material_improvement",
+        "severity": "candidate",
+        "reason": "The protected recursive DFS is algorithmically sound but uses the prohibited generic local name `index` and consumes one Python call frame per matched level. The source permits an array length of 5,000, and an equally deep legal matching path raises RecursionError. The inert candidate uses clear `position` naming and an explicit DFS stack, preserving O(N) time and O(h) space while handling the full legal depth."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Every candidate stack state pairs a connected root-to-current-node prefix with the one array position that its node must match. A mismatch safely discards the branch; a final-position match succeeds exactly at a leaf; and a matching non-final node pushes only its children at the next position. Thus every success is an exact root-to-leaf realization, and every valid realization remains reachable until accepted."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent oracle materialized root-to-leaf value paths without prefix pruning. It, the candidate, protected app source, exact immutable native Solution.isValidSequence, and an independently written path-materialization control agreed on all ten visible cases and all three repaired benchmark tiers."
+      },
+      {
+        "category": "randomized_validation",
+        "severity": "verified",
+        "reason": "Seed 1430 generated 5,000 source-valid trees totaling 423,828 nodes and 61,636 target entries. Coverage included 295 single-node trees, 250 left-skewed, 250 right-skewed, 834 selected valid paths, 785 internal prefixes, 833 beyond-leaf targets, 833 mutated values, 833 random targets, and 882 root mismatches. All four tested implementations matched the independent oracle on every tree."
+      },
+      {
+        "category": "contract_boundary",
+        "severity": "candidate",
+        "reason": "A separate all-9 right-skewed tree used exactly 5,000 nodes and an exact 5,000-entry target, the source's maximum array length. The oracle and candidate returned true. The protected app and immutable native implementations both raised RecursionError, directly proving that the candidate's explicit stack is a material contract-level robustness improvement rather than a stylistic alternative."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "Across three real-test repetitions, the candidate passed all thirteen selected outputs and scaling with extra growth exponent -0.02 through -0.01 and largest-tier ratio 1.13x through 1.18x. The protected implementation also passed the recursion-safe benchmark tiers. The correct O(N squared) path-copy control passed every output but failed only scaling each time, with relative growth exponent +0.95 through +0.97 and largest ratio 55.25x through 59.36x."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "corrected",
+        "reason": "The old tiers used arr=[1] against an all-zero root, so every protected run stopped after one comparison and never exercised the required O(N) path. The repaired hidden performance-only tiers retain legal sizes 32, 128, and 512 for a 16x span but use an N-entry all-zero target on the right-skewed all-zero tree. Both target and reference now traverse the full path, while the slower path-copy class fails only scaling."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach explicitly targets the inert candidate and derives its node-position state, mismatch pruning, exact leaf endpoint, child transitions, bidirectional correctness argument, O(N) time, and O(h) explicit-stack space. It contrasts recursive DFS, BFS, and path materialization and covers internal endings, early leaves, one-node trees, duplicates, branching, and root mismatch."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "All ten ordinary correctness cases are visible samples or trials. The three authenticated source examples remain exact. Former hidden cases are represented visibly, and trials cover one-node success and failure, values 0 and 9, a target extending beyond a leaf, a valid right-only path, duplicate-prefix branching, an internal endpoint, and an overlong target after a single leaf."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "corrected",
+        "reason": "Metadata consistently identifies Premium LeetCode tree problem 1430 and Python as the active language. The reviewed artifacts preserve exact root-to-leaf semantics, nonempty targets of length at most 5,000, and digit values 0 through 9. The legacy Reference's invented 1-to-5,000 tree-node constraint was removed because the authenticated source contains no such constraint."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "The protected solve.py and immutable leetcode.py bound to verified submission 2069077262 remain structurally aligned and byte-for-byte unchanged, as does submission.json. The robust iterative replacement exists only as candidate.py; it has not been submitted, promoted, or represented as remotely Accepted."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed the valid-sequence definition, concatenated array representation, three exact examples and explanations, three constraints, two hints, and three source tree images. Three accessible Mermaid trees independently preserve the complete structures and highlighted success, mismatch, and internal-end relationships. source_fidelity.json binds the five Reference files to live-content SHA-256 ee99ff47d5f18567ed33a25dd1817eb061de9dd4774fe2f5eab40a9b1b94de44 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three authenticated source examples exactly, with full explanations and independently recreated tree diagrams",
+      "one-node success and failure plus the minimum and maximum node/array digits",
+      "a target ending at an internal node and a target continuing beyond a leaf",
+      "left/right structure, a valid right-skewed path, duplicate values, and branch selection",
+      "5,000 seeded legal trees with valid paths, internal prefixes, beyond-leaf targets, mutations, random targets, and root mismatches",
+      "the exact 5,000-entry target boundary independently validated against an equally deep legal path",
+      "three hidden performance-only full-traversal tiers spanning N=32 through N=512 with proven O(N squared) path-copy discrimination"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "9a5a4fd6ab000fb4d657670ac55657ca7213c41500aa4ca789714cd88f2d965d",
+    "native_source_sha256": "4ee9655c036ccb78cadbc69684d2d2ff5eb02459d113c1c650efeadba6ac8c3f",
+    "approach_sha256": "c2131ee6bd77e71c0b31fc308039d3816e99fd93800b73c7e8a1449e7ff69731",
+    "solution_variants_sha256": "6e85f35e85754447c33a3d794b421a288b753c8c7bc8b88b2762cdc7879ec616",
+    "complexity_evidence_sha256": "26e6399214db2d2736d88f8d7a2aab0f238cf74178ad481e25ea514af09e5c33",
+    "cases_sha256": "6f4f59e042964d43b2af6e8aed1d0d167c6e3ffe943fa6cbc24c22e99bbedbf3",
+    "candidate_source_sha256": "aff38561840fa139fc792e7fd243643f9e76cebad845c894d5a861d357a058d4"
+  }
+}

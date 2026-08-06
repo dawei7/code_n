@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Intersection of Two Arrays II and meets the required complexity bound.",
+      "summary": "Counts occurrences from the shorter array and consumes one remaining count for each match in the other.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(\\min(n, m))"
     }

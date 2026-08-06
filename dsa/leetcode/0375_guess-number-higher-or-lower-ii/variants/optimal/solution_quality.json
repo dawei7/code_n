@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_375",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the standard bottom-up interval minimax dynamic program. It initializes zero-cost singleton intervals, evaluates every first guess against the worse shorter branch, retains the minimum guarantee, and fills states in dependency order. The implementation is clear and interview-quality, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 375 and its Python getMoneyAmount surface. The Reference preserves the hidden-number game, payment only for wrong guesses, minimum guaranteed worst-case budget, all three source examples and explanations, the first strategy tree, and the n-at-most-200 constraint."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064636219. Its padded cost table, interval-length order, boundaries, full pivot scan, minimax candidate, best update, table write, and final lookup are exactly the protected app-local algorithm apart from the required LeetCode wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal interval-DP tiers use n values 8, 16, and 32 and span 4x while evaluating nontrivial minimax tables. The current source passes all 11 executions at +0.01 relative growth and 1.01x; correct per-pivot enumeration of every hidden target passes every benchmark output but fails only scaling at +0.95 and 14.16x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately defines interval state, derives the guess-plus-worse-branch transition, proves the adversarial lower bound and achievable strategy, gives the dependency order, and states O(n^3) time with O(n^2) space. Its expected-cost and final-correct-guess distinctions are precise."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including all three source examples and complete explanations, an independent text reconstruction of the first strategy diagram, every game and payment rule, and the sole source constraint."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "790192b60594508ea5e45423550a8a19965232fa9306642e2cd8776561367678",
+    "native_source_sha256": "4d064ad8f1ae3107c1151db463d643c0aa0ef5d56d3eb976bbc8326478697501",
+    "approach_sha256": "03d9e9de038df69e60b09ed79fad6fcd4e91b316b32aa5647f0338ecd6aaa566",
+    "solution_variants_sha256": "433a01bb70728bd8349c92c84f3fe375d12cd71ddeac14c2b60c7af3c5665a55",
+    "complexity_evidence_sha256": "02fbbadc2a76481c6133030943e0dd509970721c8245bab9efee4dacd04a5231"
+  }
+}

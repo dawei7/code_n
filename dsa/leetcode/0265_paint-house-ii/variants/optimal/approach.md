@@ -10,8 +10,14 @@ After each house, the DP value for every color is the cheapest valid prefix endi
 A prefix ending in color `c` may extend every previous color except `c`. If the cheapest prior state uses another color, it is plainly the best allowed predecessor. If it uses `c`, removing that single forbidden state makes the second-cheapest prior state optimal. Each transition is therefore exact, and induction makes the minimum of the last row globally optimal.
 
 ## Complexity detail
-Each of `n` rows performs constant work for each of `k` colors, giving $O(nk)$ time. The current DP row uses $O(k)$ space.
+
+For each of the $n$ rows, finding the smallest total and its color, finding the second-smallest total, and building the
+next DP row each take $O(k)$ time. The total is therefore $O(nk)$. Only one $k$-value DP row and constant scalar state
+are retained, so the auxiliary space is $O(k)$.
 
 ## Alternatives and edge cases
+
 - **Compare every prior color:** takes $O(nk^2)$.
-- No houses cost zero; one house chooses its cheapest color. Native constraints provide enough colors for multiple houses.
+- **Tied prior minima:** excluding one minimum color leaves the other equal minimum as `second_minimum`, so no valid tie is lost.
+- **No houses:** the defensive app-local guard returns zero, although the native contract requires at least one house.
+- **One house:** the zero-initialized prior row makes the result the cheapest color cost. The contract always provides at least two colors.

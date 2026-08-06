@@ -1,4 +1,5 @@
 ## General
+
 **Classify each interval against the removal range**
 
 Process the already sorted input from left to right. For an interval `[start, end]`, there is no overlap when `end <= remove_start` or `start >= remove_end`. The non-strict comparisons are essential for half-open intervals: touching at either endpoint removes no real numbers. Append such an interval unchanged.
@@ -11,6 +12,7 @@ For every input interval, these retained pieces are exactly the points outside t
 Each of the $n$ intervals is examined once and emits at most two pieces, so the running time is $O(n)$. The returned list can contain up to $n+1$ intervals and therefore uses $O(n)$ space; excluding the required output, the sweep uses $O(1)$ auxiliary state.
 
 ## Alternatives and edge cases
+- **Repeated result concatenation:** Reassigning `answer = answer + pieces` copies the growing output on every input interval and raises the total running time to $O(n^2)$.
 - **Front insertion followed by reversal:** It can preserve the same final order, but repeatedly shifting an expanding list takes $O(n^2)$ time.
 - **Endpoint-event sweep:** Treating all endpoints as events generalizes to many set operations but adds sorting and bookkeeping that the sorted disjoint input does not need.
 - **Complete coverage:** An interval entirely inside `toBeRemoved` emits no piece.

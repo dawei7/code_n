@@ -36,6 +36,7 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "incremental"
       ]
     },
@@ -59,13 +60,14 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "boundary"
       ]
     },
     {
-      "id": "sample-duplicate-bridge",
-      "name": "sample: duplicate then bridge",
-      "kind": "sample",
+      "id": "trial-duplicate-bridge",
+      "name": "duplicate addition followed by a bridge",
+      "kind": "trial",
       "visible": true,
       "input": {
         "m": 2,
@@ -96,7 +98,6 @@
         1
       ],
       "tags": [
-        "sample",
         "duplicate",
         "bridge"
       ]
@@ -186,10 +187,10 @@
       ]
     },
     {
-      "id": "real-three-way",
-      "name": "hidden: bridge plus repeated coordinate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-way",
+      "name": "bridge followed by a repeated coordinate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 3,
         "n": 3,
@@ -229,10 +230,100 @@
         1
       ],
       "tags": [
-        "hidden",
         "duplicate",
         "bridge"
       ]
+    },
+    {
+      "id": "trial-four-way-merge",
+      "name": "center addition merges four distinct neighboring islands",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "positions": [[0,1],[1,0],[1,2],[2,1],[1,1]]
+      },
+      "expected": [1,2,3,4,1],
+      "tags": ["four-way-merge","distinct-roots","center"]
+    },
+    {
+      "id": "trial-redundant-neighbors",
+      "name": "center touches four neighbors already in one island",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "positions": [[0,0],[0,1],[0,2],[1,0],[1,2],[2,0],[2,1],[2,2],[1,1]]
+      },
+      "expected": [1,1,1,1,1,1,1,1,1],
+      "tags": ["same-root-neighbors","cycle","redundant-unions"]
+    },
+    {
+      "id": "trial-diagonal-only",
+      "name": "diagonal land cells remain separate islands",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "positions": [[0,0],[1,1],[2,2]]
+      },
+      "expected": [1,2,3],
+      "tags": ["four-directional-only","diagonal","separate-components"]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "out-of-order additions connect a single column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 5,
+        "n": 1,
+        "positions": [[2,0],[4,0],[3,0],[0,0],[1,0]]
+      },
+      "expected": [1,2,1,2,1],
+      "tags": ["one-column","out-of-order","bridge"]
+    },
+    {
+      "id": "trial-maximum-width",
+      "name": "maximum-width grid uses both endpoint columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 10000,
+        "positions": [[0,0],[0,9999],[0,1],[0,9998]]
+      },
+      "expected": [1,2,2,2],
+      "tags": ["maximum-width","coordinate-boundary","sparse-land"]
+    },
+    {
+      "id": "trial-maximum-height",
+      "name": "maximum-height grid uses both endpoint rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 10000,
+        "n": 1,
+        "positions": [[0,0],[9999,0],[1,0],[9998,0]]
+      },
+      "expected": [1,2,2,2],
+      "tags": ["maximum-height","coordinate-boundary","sparse-land"]
+    },
+    {
+      "id": "trial-duplicate-only",
+      "name": "repeated additions to one cell never change the grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "positions": [[1,1],[1,1],[1,1]]
+      },
+      "expected": [1,1,1],
+      "tags": ["duplicate","idempotent","no-op"]
     }
   ]
 }

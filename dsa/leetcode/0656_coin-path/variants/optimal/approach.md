@@ -3,7 +3,7 @@
 
 Let `cost[i]` be the minimum total cost of a valid path that starts at index `i` and reaches the final index. The destination has cost `coins[-1]`. A blocked position is unreachable, while every other position considers each reachable next index `j` from $i + 1$ through `i + maxJump` and minimizes `coins[i] + cost[j]`.
 
-Process indices from right to left so every candidate suffix has already been solved. Alongside each finite cost, store the chosen next index; this is enough to reconstruct the path without copying complete suffix paths into every DP state.
+Process positions from right to left so every candidate suffix has already been solved. Alongside each finite cost, store the chosen next position in `successor`; this is enough to reconstruct the path without copying complete suffix paths into every DP state.
 
 **Resolve equal costs lexicographically**
 
@@ -13,10 +13,10 @@ This rule also handles zero-cost positions correctly: an extra early index may m
 
 **Why reconstruction returns exactly the required path**
 
-The destination state is optimal by definition. Assuming all states to the right of `i` store their minimum-cost, lexicographically smallest suffixes, the transition checks every legal first jump and therefore finds the minimum possible cost from `i`; the increasing scan selects the smallest first jump among ties. Induction proves the property for index zero. Following the saved next indices reaches the destination when its cost is finite, and an infinite start cost proves no valid path exists.
+The destination state is optimal by definition. Assuming all states to the right of `i` store their minimum-cost, lexicographically smallest suffixes, the transition checks every legal first jump and therefore finds the minimum possible cost from `i`; the increasing scan selects the smallest first jump among ties. Induction proves the property for position zero. Following `successor` reaches the destination when its cost is finite, and an infinite start cost proves no valid path exists.
 
 ## Complexity detail
-Each of the `N` positions examines at most `B = maxJump` next positions, giving $O(N \cdot B)$ time. The cost and next-index arrays use $O(N)$ space, and the returned path contains at most `N` indices.
+Each of the `N` positions examines at most `B = maxJump` next positions, giving $O(N \cdot B)$ time. The cost and `successor` arrays use $O(N)$ space, and the returned path contains at most `N` positions.
 
 ## Alternatives and edge cases
 - **Store a complete best path at every state:** simplifies tie comparison, but repeated path copying can raise time and memory use to quadratic in long-path cases.

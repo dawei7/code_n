@@ -8,6 +8,9 @@
   "paid_only": true,
   "language": "mysql",
   "source": "solutions/leetcode.sql",
-  "verified_submission_id": "2065479475",
-  "verified_at": "2026-07-12T22:41:29.643738+00:00"
+  "verified_submission_id": "2065457811",
+  "verified_at": "2026-07-12T20:57:11.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T14:28:00.000000+00:00"
 }

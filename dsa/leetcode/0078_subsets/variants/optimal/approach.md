@@ -1,7 +1,7 @@
 ## General
 **Every input value contributes one independent binary decision**
 
-Backtrack by input index. At every position, recurse once without the current value and once after appending it. Pop after the inclusion branch returns. When the index reaches the array length, every value has a fixed include/exclude decision, so copy the current path into the result.
+Backtrack with `i` as the current input position. Recurse once without `nums[i]` and once after appending it. Pop after the inclusion branch returns. When `i` reaches the array length, every value has a fixed include/exclude decision, so copy the current path into the result.
 
 **Depth records exactly which prefix has been decided**
 

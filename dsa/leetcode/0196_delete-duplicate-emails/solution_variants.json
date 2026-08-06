@@ -8,8 +8,8 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Delete Duplicate Emails and meets the required complexity bound.",
-      "time_complexity": "O(n \\log n)",
+      "summary": "Computes each email's minimum id once, then deletes every row outside that keeper set.",
+      "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
     }
   ]

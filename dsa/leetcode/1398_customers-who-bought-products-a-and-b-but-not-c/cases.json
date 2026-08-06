@@ -2,10 +2,163 @@
   "schema_version": 1,
   "challenge_id": "lc_1398",
   "cases": [
-    {"id": "sample-qualifies", "name": "sample: customer bought A and B", "kind": "sample", "visible": true, "input": {"tables": {"Customers": [{"customer_id": 1, "customer_name": "Alice"}], "Orders": [{"order_id": 1, "customer_id": 1, "product_name": "A"}, {"order_id": 2, "customer_id": 1, "product_name": "B"}]}}, "expected": {"columns": ["customer_id", "customer_name"], "rows": [[1, "Alice"]]}, "tags": ["sample", "qualifies"]},
-    {"id": "sample-c-disqualifies", "name": "sample: product C disqualifies", "kind": "sample", "visible": true, "input": {"tables": {"Customers": [{"customer_id": 2, "customer_name": "Bob"}], "Orders": [{"order_id": 1, "customer_id": 2, "product_name": "A"}, {"order_id": 2, "customer_id": 2, "product_name": "B"}, {"order_id": 3, "customer_id": 2, "product_name": "C"}]}}, "expected": {"columns": ["customer_id", "customer_name"], "rows": []}, "tags": ["sample", "forbidden-product"]},
-    {"id": "sample-other-products", "name": "sample: unrelated product is harmless", "kind": "sample", "visible": true, "input": {"tables": {"Customers": [{"customer_id": 3, "customer_name": "Cara"}], "Orders": [{"order_id": 1, "customer_id": 3, "product_name": "A"}, {"order_id": 2, "customer_id": 3, "product_name": "D"}, {"order_id": 3, "customer_id": 3, "product_name": "B"}]}}, "expected": {"columns": ["customer_id", "customer_name"], "rows": [[3, "Cara"]]}, "tags": ["sample", "other-product"]},
-    {"id": "trial-mixed-customers", "name": "several qualification outcomes", "kind": "trial", "visible": true, "input": {"tables": {"Customers": [{"customer_id": 1, "customer_name": "One"}, {"customer_id": 2, "customer_name": "Two"}, {"customer_id": 3, "customer_name": "Three"}], "Orders": [{"order_id": 1, "customer_id": 1, "product_name": "A"}, {"order_id": 2, "customer_id": 1, "product_name": "B"}, {"order_id": 3, "customer_id": 2, "product_name": "A"}, {"order_id": 4, "customer_id": 3, "product_name": "B"}]}}, "expected": {"columns": ["customer_id", "customer_name"], "rows": [[1, "One"]]}, "tags": ["trial", "mixed"]},
-    {"id": "real-duplicates-and-no-orders", "name": "hidden: duplicates count as presence and no-order customer is omitted", "kind": "real", "visible": false, "input": {"tables": {"Customers": [{"customer_id": 4, "customer_name": "Four"}, {"customer_id": 5, "customer_name": "Five"}], "Orders": [{"order_id": 1, "customer_id": 4, "product_name": "A"}, {"order_id": 2, "customer_id": 4, "product_name": "A"}, {"order_id": 3, "customer_id": 4, "product_name": "B"}]}}, "expected": {"columns": ["customer_id", "customer_name"], "rows": [[4, "Four"]]}, "tags": ["hidden", "duplicates", "no-orders"]}
+    {
+      "id": "sample-source-example",
+      "name": "sample: exact source customer histories",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {"customer_id": 1, "customer_name": "Daniel"},
+            {"customer_id": 2, "customer_name": "Diana"},
+            {"customer_id": 3, "customer_name": "Elizabeth"},
+            {"customer_id": 4, "customer_name": "Jhon"}
+          ],
+          "Orders": [
+            {"order_id": 10, "customer_id": 1, "product_name": "A"},
+            {"order_id": 20, "customer_id": 1, "product_name": "B"},
+            {"order_id": 30, "customer_id": 1, "product_name": "D"},
+            {"order_id": 40, "customer_id": 1, "product_name": "C"},
+            {"order_id": 50, "customer_id": 2, "product_name": "A"},
+            {"order_id": 60, "customer_id": 3, "product_name": "A"},
+            {"order_id": 70, "customer_id": 3, "product_name": "B"},
+            {"order_id": 80, "customer_id": 3, "product_name": "D"},
+            {"order_id": 90, "customer_id": 4, "product_name": "C"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["customer_id", "customer_name"],
+        "rows": [[3, "Elizabeth"]]
+      },
+      "tags": ["sample", "source-example", "mixed-outcomes"]
+    },
+    {
+      "id": "trial-minimal-qualifier",
+      "name": "trial: one A and one B qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {"customer_id": 5, "customer_name": "Alice"}
+          ],
+          "Orders": [
+            {"order_id": 1, "customer_id": 5, "product_name": "A"},
+            {"order_id": 2, "customer_id": 5, "product_name": "B"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["customer_id", "customer_name"],
+        "rows": [[5, "Alice"]]
+      },
+      "tags": ["trial", "minimal-qualifier"]
+    },
+    {
+      "id": "trial-repeated-and-other-products",
+      "name": "trial: repeated required products and an unrelated product",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {"customer_id": 6, "customer_name": "Bob"}
+          ],
+          "Orders": [
+            {"order_id": 3, "customer_id": 6, "product_name": "A"},
+            {"order_id": 4, "customer_id": 6, "product_name": "A"},
+            {"order_id": 5, "customer_id": 6, "product_name": "B"},
+            {"order_id": 6, "customer_id": 6, "product_name": "B"},
+            {"order_id": 7, "customer_id": 6, "product_name": "D"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["customer_id", "customer_name"],
+        "rows": [[6, "Bob"]]
+      },
+      "tags": ["trial", "repeated-purchases", "other-product"]
+    },
+    {
+      "id": "trial-c-disqualifies",
+      "name": "trial: one C order overrides A and B",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {"customer_id": 7, "customer_name": "Cara"}
+          ],
+          "Orders": [
+            {"order_id": 8, "customer_id": 7, "product_name": "A"},
+            {"order_id": 9, "customer_id": 7, "product_name": "B"},
+            {"order_id": 10, "customer_id": 7, "product_name": "C"},
+            {"order_id": 11, "customer_id": 7, "product_name": "D"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["customer_id", "customer_name"],
+        "rows": []
+      },
+      "tags": ["trial", "forbidden-product"]
+    },
+    {
+      "id": "trial-missing-products-and-no-orders",
+      "name": "trial: only A, only B, unrelated only, and no orders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {"customer_id": 8, "customer_name": "Only A"},
+            {"customer_id": 9, "customer_name": "Only B"},
+            {"customer_id": 10, "customer_name": "Only D"},
+            {"customer_id": 11, "customer_name": "None"}
+          ],
+          "Orders": [
+            {"order_id": 20, "customer_id": 8, "product_name": "A"},
+            {"order_id": 21, "customer_id": 9, "product_name": "B"},
+            {"order_id": 22, "customer_id": 10, "product_name": "D"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["customer_id", "customer_name"],
+        "rows": []
+      },
+      "tags": ["trial", "missing-required-product", "no-orders"]
+    },
+    {
+      "id": "trial-ordering-and-duplicate-names",
+      "name": "trial: qualifying IDs are ordered and equal names stay separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {"customer_id": 9, "customer_name": "Sam"},
+            {"customer_id": 2, "customer_name": "Sam"},
+            {"customer_id": 5, "customer_name": "Blocked"}
+          ],
+          "Orders": [
+            {"order_id": 101, "customer_id": 9, "product_name": "B"},
+            {"order_id": 102, "customer_id": 2, "product_name": "B"},
+            {"order_id": 103, "customer_id": 5, "product_name": "A"},
+            {"order_id": 104, "customer_id": 9, "product_name": "A"},
+            {"order_id": 105, "customer_id": 5, "product_name": "B"},
+            {"order_id": 106, "customer_id": 2, "product_name": "A"},
+            {"order_id": 107, "customer_id": 5, "product_name": "C"}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["customer_id", "customer_name"],
+        "rows": [[2, "Sam"], [9, "Sam"]]
+      },
+      "tags": ["trial", "ordering", "duplicate-names", "multiple-qualifiers"]
+    }
   ]
 }

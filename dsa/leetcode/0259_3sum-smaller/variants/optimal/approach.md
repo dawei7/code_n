@@ -14,4 +14,6 @@ Sorting costs $O(n \log n)$. Each of `n` first indices performs one linear point
 
 ## Alternatives and edge cases
 - **Enumerate all triples:** takes $O(n^3)$.
-- The inequality is strict; duplicates represent different index choices; fewer than three values produce zero.
+- **Strict inequality:** triples whose sum equals `target` must not be counted.
+- **Duplicate values:** still represent distinct index choices and are counted with their full multiplicity.
+- **Short arrays:** fewer than three values contain no index triplet and therefore return zero.

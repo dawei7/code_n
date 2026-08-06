@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_421",
+    "frontend_id": "421",
+    "title_slug": "maximum-xor-of-two-numbers-in-an-array",
+    "url": "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/description/",
+    "paid_only": false,
+    "content_sha256": "7e2073df9097e79fdb7bb4635b8934dd2fe9119416ab03ffd0f83b1ad27659e8",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [3,10,5,25,2,8]",
+        "output": "28",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [14,70,53,83,49,91,36,80,92,51,66,70]",
+        "output": "127",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8cd8e8cf71a42b590007b40313790715f92ecb111aa450d1b040f313c49db3df",
+      "reference/contract.md": "e2a2a4d9ffe2b878479b96a7c53914efc123ce73fe094413ec62dbe7759a1daa",
+      "reference/examples.md": "3036f721022a59dea67882585e335a80437fd41745e427c2af8ccd227ae29772",
+      "reference/constraints.md": "f5a65a3562d5f47e52f5d83fbace6e2236f0a19e37076d02e2616fd322c9c53a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

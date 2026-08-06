@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_356",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {"correct": true, "required_complexity": true, "clear_and_concise": true, "conventional_structure": true, "interview_quality_naming": true, "app_contract_preserved": true, "approach_matches_target": true},
+    "findings": [
+      {"category": "solution_quality", "severity": "good", "reason": "The protected source is the canonical forced-axis hash-set solution. Extreme x-coordinates determine twice the only possible axis, integer reflection avoids precision loss, and every distinct point receives an expected constant-time partner check. No candidate is justified."},
+      {"category": "metadata_and_contract", "severity": "verified", "reason": "Metadata consistently identifies Premium LeetCode problem 356 and its Python isReflected surface. The Reference preserves vertical-axis set reflection, repeated-point semantics, both explained source examples, all three constraints, and the better-than-quadratic follow-up."},
+      {"category": "submission_and_alignment", "severity": "verified", "reason": "The immutable native source remains tied to verified submission 2064568578. Its extremes, axis sum, point set, reflected-coordinate membership predicate, and return are exactly the protected app-local algorithm apart from the required wrapper and annotations."},
+      {"category": "complexity_evidence", "severity": "verified", "reason": "The legal mirrored-half tiers use 32, 128, and 512 points and span 16x. The current source passes all nine executions at +0.00 relative growth and 1.01x; correct linear partner search passes all three benchmark outputs but fails only scaling at +0.19."},
+      {"category": "approach_accuracy", "severity": "verified", "reason": "The Approach accurately proves the unique axis from horizontal extremes, derives reflection with the doubled axis, establishes sufficiency and necessity of partner membership, and states expected O(n) time with O(n) space."},
+      {"category": "source_fidelity", "severity": "verified", "reason": "The hash-bound authenticated Premium Reference remains source-fidelity verified, including both source examples and explanations in order, repeated-point semantics, all three constraints, the follow-up, and two independent local diagrams."}
+    ],
+    "validation": {"mode": "real_test", "correctness_cases_passed": 11, "correctness_cases_total": 11, "performance_cases_passed": 3, "performance_cases_total": 3, "complexity_method": "benchmark", "complexity_passed": true}
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples appear first, in source order, with their exact point coordinates and Boolean results.",
+      "The invented on-axis example is now a trial, and every formerly hidden duplicate, missing-partner, and negative-axis check is visible.",
+      "A single boundary-valued point covers n=1; visible sets use both coordinate bounds -100,000,000 and 100,000,000, and an independently generated symmetric set covers n=10,000.",
+      "Integer, half-integer, negative, and all-points-on-axis reflection lines are covered together with self-reflecting points and multiple horizontal rows.",
+      "Uneven duplicate multiplicity verifies geometric set semantics, while missing partners and individually symmetric rows with conflicting axes reject local-only checks.",
+      "An independent row-grouping and sorted-pair oracle verified all eleven authored results, all three benchmark results, 19,896 exhaustive small point lists including duplicate variants, and the maximum-size point set.",
+      "All eleven correctness cases are visible samples or trials; the unchanged 32-, 128-, and 512-point mirrored workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "348fa8f73e5f178f0705085b38982ad32d36b0c09162f68c2dce7da4a14a26e9",
+    "native_source_sha256": "1daafd1ccc490c2c7da6033b83af3f64549cf10490ff5033de6c843f1e8790d8",
+    "approach_sha256": "d2e900ebdfad8dde49d6cb0cd837bd7491f8620bb88b0020cc2d7f20a9d9f1bf",
+    "solution_variants_sha256": "96a56896fe7d937e0d11afba80cb0e379df42628a0db81484ba81df312ebcb2f",
+    "complexity_evidence_sha256": "15b3f9032cf188b707b1cb8266e3aeaf9fda152db461ab160c398f40cc7d8b6c",
+    "cases_sha256": "668c60166592c32acd0014b532718f35909ca514ca50602c21e1bc173c9697e3"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_361",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source implements the canonical wall-segment cache cleanly: it refreshes a row total and one total per column only at segment boundaries, evaluates only empty cells, and keeps the scan state explicit. It is concise, conventional, and already expert interview-quality, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 361 and its Python maxKilledEnemies surface. The Reference preserves the three cell types, empty-cell placement rule, four-direction wall stopping semantics, required maximum, both source examples in order, and all four source constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064601226. Its defensive empty-grid return, row and column segment refreshes, cached totals, empty-cell maximum update, and return are identical to the protected app-local algorithm apart from the required LeetCode wrapper and annotations."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal wall-free benchmark tiers contain 64, 576, and 4096 cells, span 64x, and repeatedly exercise the segment totals at empty placements. The current source passes all 13 executions at -0.01 relative growth and 1.00x; a correct four-ray rescanner passes every benchmark output but fails only scaling at +0.48 and 16.37x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives wall-delimited segment reuse, explains both refresh conditions and the no-double-count argument, traces the central source placement, and states O(mn) time with O(n) auxiliary space. Its alternatives and boundary notes match the protected implementation."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound authenticated Premium Reference remains source-fidelity verified, including both source examples in order, independent text equivalents of both source illustrations, blast blocking semantics, and all four constraints."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples now appear first and in source order with their exact matrices and outputs; the invented crossing and no-placement examples are correctly labelled trials.",
+      "The illegal empty-grid row was replaced by the legal 1x1 minimum, while visible single-row and single-column cases exercise both narrow rectangular orientations.",
+      "Walls split horizontal and vertical blast segments, crossing enemies combine both directions, and enemy-only, wall-only, and all-empty situations cover the absence of a productive placement.",
+      "All three legal cell values are exercised together with multiple walls, adjacent enemies, unequal segment strengths, and the rule that only a 0 cell may receive the bomb.",
+      "An independent four-direction ray oracle verified all ten authored results, all three benchmarks, and 21,243 exhaustive small grids; a checkerboard construction verified the 500x500 dimension boundary with expected result 500.",
+      "All ten correctness cases are visible samples or trials; the unchanged 64-, 576-, and 4,096-cell workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "db00032b39d441f8cf32e4e5de0eb6ed31f2e73b484f56dc325ed429253c491e",
+    "native_source_sha256": "16fdc68db4ac1e728b2337d4868933ad74e8e947ce0ffc881141a15dfda26961",
+    "approach_sha256": "5c92ff1538e086cf6a3b107cfb8383d7e8032534a3715aab55bf1ebdc6a2507d",
+    "solution_variants_sha256": "833d2439aafdcddac7c02edfd639a1f80ce4ec66fb2c9ab022a2cc01d4cb5fbe",
+    "complexity_evidence_sha256": "f714a42a374c436fb274f1860f55093ca4e039a87624cdbc3f92da64a7f3bf7a",
+    "cases_sha256": "faef0481da54381910ed28b3222b981b8424056787dc5631f7977284c0b2b31a"
+  }
+}

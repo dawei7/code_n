@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2268",
+    "frontend_id": "2268",
+    "title_slug": "minimum-number-of-keypresses",
+    "url": "https://leetcode.com/problems/minimum-number-of-keypresses/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`s = \"apple\"`",
+        "output": "`5`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`s = \"abcdefghijkl\"`",
+        "output": "`15`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "787c9ecdc77ecd047d19666fc045692b6a76aad3380f1f16f9ad509ac91dd8ac",
+      "reference/contract.md": "a1dfdded7f0922b9a9fb16005e744d75599f44b7c3c8fda4391d02ed253e1104",
+      "reference/examples.md": "7cf71e924066e4e7ec15d18fab8aa2e7e09ce9f223c1dc80716ca61e1a655349",
+      "reference/constraints.md": "86f8bbaa49782ee9976b79bdf42b42a4ef8bbaa2b8f1f8da786f9a513c0f433d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

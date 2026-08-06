@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_126",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The current neighbor generator introduces the prohibited local variable named index; the candidate preserves the BFS and parent-DAG algorithm while using conventional i notation."
+      },
+      {
+        "category": "complexity",
+        "severity": "material",
+        "reason": "The former bounds omitted Python substring/hash costs and the parent/output dimensions. The corrected legal-domain bounds define R explicitly and use the source's fixed five-letter maximum and 26-letter alphabet."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "b698a9fa0a65887595ad114e7d0d3a8f02a4c226535db4c9780770f4a08ade6c",
+    "native_source_sha256": "8edb2ab78a47b77a35d12a5134bb0eeeabbf9fe2d7d924cfaec7e5c054fd0502",
+    "approach_sha256": "0b473cce1f8d6f276d6ca4cc84aa6054c6cc711d6e430285364ea06eee73db52",
+    "solution_variants_sha256": "0fb4cb1a8034c81b5898603323193c03c2034865a0633a8ec93f87812fabe072",
+    "complexity_evidence_sha256": "202f387baf92836250a08bf2188f496dd483e36171c4558f399a034cef933fd7",
+    "candidate_source_sha256": "0ce1a782fc389d375320fb883f7b625d493032ccde8391eb895100c5dfdf3ae6"
+  }
+}

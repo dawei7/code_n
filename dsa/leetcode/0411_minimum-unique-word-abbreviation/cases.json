@@ -21,6 +21,7 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "single-word"
       ]
     },
@@ -32,9 +33,9 @@
       "input": {
         "target": "apple",
         "dictionary": [
+          "blade",
           "plain",
-          "amber",
-          "blade"
+          "amber"
         ]
       },
       "expected": "1p3",
@@ -45,13 +46,14 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "multiple-words"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no relevant dictionary words",
-      "kind": "sample",
+      "id": "trial-empty-dictionary",
+      "name": "trial: no relevant dictionary words",
+      "kind": "trial",
       "visible": true,
       "input": {
         "target": "aaaa",
@@ -64,7 +66,7 @@
         "dictionary_param": "dictionary"
       },
       "tags": [
-        "sample",
+        "trial",
         "empty-dictionary"
       ]
     },
@@ -116,10 +118,10 @@
       ]
     },
     {
-      "id": "hidden-all-positions",
-      "name": "hidden: every position is independently required",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-positions",
+      "name": "trial: every position is independently required",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "abc",
         "dictionary": [
@@ -135,15 +137,15 @@
         "dictionary_param": "dictionary"
       },
       "tags": [
-        "hidden",
+        "trial",
         "all-literal"
       ]
     },
     {
-      "id": "hidden-other-lengths",
-      "name": "hidden: other word lengths are irrelevant",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-other-lengths",
+      "name": "trial: other word lengths are irrelevant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "target",
         "dictionary": [
@@ -158,15 +160,15 @@
         "dictionary_param": "dictionary"
       },
       "tags": [
-        "hidden",
+        "trial",
         "length-filter"
       ]
     },
     {
-      "id": "hidden-separated",
-      "name": "hidden: separated distinguishing letters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated",
+      "name": "trial: separated distinguishing letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "abcdefg",
         "dictionary": [
@@ -182,8 +184,52 @@
         "dictionary_param": "dictionary"
       },
       "tags": [
-        "hidden",
+        "trial",
         "separated"
+      ]
+    },
+    {
+      "id": "trial-minimum-target",
+      "name": "trial: one-letter target must remain literal against one peer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "a",
+        "dictionary": [
+          "b"
+        ]
+      },
+      "expected": "a",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "all-literal"
+      ]
+    },
+    {
+      "id": "trial-maximum-target",
+      "name": "trial: twenty-one-letter target with empty dictionary abbreviates fully",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "abcdefghijklmnopqrstu",
+        "dictionary": []
+      },
+      "expected": "21",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "empty-dictionary"
       ]
     }
   ]

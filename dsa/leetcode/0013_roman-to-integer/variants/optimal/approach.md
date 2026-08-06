@@ -1,13 +1,13 @@
 ## General
 **Let the next symbol determine addition or subtraction**
 
-Roman symbols normally contribute positively. The only exception is a smaller symbol immediately before a larger one, where it is subtracted as part of a canonical subtractive pair. Therefore scan from left to right and compare each symbol's value with the next value.
+Roman symbols normally contribute positively. The only exception is a smaller symbol immediately before a larger one, where it is subtracted as part of a canonical subtractive pair. Therefore enumerate the string from left to right with position `i` and compare each symbol's value with the next value.
 
 Subtract the current value when it is smaller than its successor; otherwise add it. The final symbol always contributes positively.
 
 **Why one-character lookahead is sufficient**
 
-Before index `i` is processed, `total` equals the signed contribution of every symbol strictly before `i`. Comparing the current value to its successor uniquely determines whether it starts a subtractive pair or contributes additively. Even though the larger symbol in a subtractive pair is added on the following iteration, the two signed contributions combine to the pair's value: for example, $-100 + 1000 = 900$ for `CM`.
+Before position `i` is processed, `total` equals the signed contribution of every symbol strictly before `i`. Comparing the current value to its successor uniquely determines whether it starts a subtractive pair or contributes additively. Even though the larger symbol in a subtractive pair is added on the following iteration, the two signed contributions combine to the pair's value: for example, $-100 + 1000 = 900$ for `CM`.
 
 The input is guaranteed to be a valid canonical Roman numeral. Therefore any smaller-before-larger adjacency is one of the allowed subtractive forms; the algorithm is evaluating notation, not validating arbitrary Roman-like strings.
 

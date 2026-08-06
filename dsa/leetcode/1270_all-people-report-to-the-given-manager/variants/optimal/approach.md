@@ -17,4 +17,4 @@ With indexed lookup on the unique `employee_id`, each of the $n$ candidate rows 
 - **Head row:** Employee `1` must be excluded even though its self-reference reaches `1`.
 - **Separate self-managed hierarchy:** A chain rooted at an employee other than `1` never satisfies the final head condition.
 - **Maximum-depth chain:** A candidate three manager edges from the head is still included.
-- **Output order:** The contract accepts any order; the app-local query orders identifiers only for deterministic display.
+- **Output order:** The contract accepts any order, so the query correctly leaves the result unordered and avoids an unnecessary sort.

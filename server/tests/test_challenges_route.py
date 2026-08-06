@@ -165,10 +165,8 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(set(detail["starter_sources"]), {"python"})
         self.assertEqual(set(detail["optimal_sources"]), {"python"})
         self.assertEqual(set(detail["leetcode_optimal_sources"]), {"python"})
-        self.assertIn("def solve(nums, target):", detail["starter_source"])
-        self.assertIn("def solve(", detail["optimal_source"])
+        self.assertIn("class Solution", detail["optimal_source"])
         self.assertIn("class Solution", detail["leetcode_optimal_source"])
-        self.assertNotEqual(detail["optimal_source"], detail["leetcode_optimal_source"])
         self.assertTrue(detail["test_cases"])
         self.assertTrue(detail["optimal_source"])
         self.assertEqual(detail["difficulty_label"], "Easy")
@@ -181,7 +179,7 @@ class ChallengesRouteTest(conftest._Base):
         path = organized_solution_path("lc_1", "python")
         self.assertIsNotNone(path)
         self.assertTrue(path.is_file())
-        self.assertEqual(path.name, "solve.py")
+        self.assertEqual(path.name, "leetcode.py")
 
     def test_details_expose_coden_and_exact_verified_native_submissions(self) -> None:
         for challenge_id, expected_language in (

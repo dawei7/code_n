@@ -25,8 +25,11 @@ The final prefix-function value is the maximum length `p` for which a prefix of 
 Constructing the reversed and combined strings, computing the prefix array, and assembling the output each take $O(n)$ time. The combined string and prefix array use $O(n)$ space.
 
 ## Alternatives and edge cases
-- Testing prefixes from longest to shortest and checking each for palindrome can take $O(n^2)$ time.
-- A rolling-hash comparison can find a candidate in linear expected time, but requires collision handling or verification for deterministic correctness.
-- Manacher's algorithm can identify palindromic prefixes in linear time but is more machinery than the prefix-overlap formulation.
-- Appending characters solves a different problem; additions are restricted to the front.
-- Empty, one-character, and already-palindromic strings are unchanged. If only the first character qualifies, the entire remaining suffix is mirrored.
+- **Repeated prefix checks:** Testing prefixes from longest to shortest can take $O(n^2)$ time.
+- **Rolling hash:** A hash comparison can find a candidate in expected linear time, but collision-free deterministic
+  correctness requires verification or additional machinery.
+- **Manacher's algorithm:** It can identify palindromic prefixes in linear time but is more machinery than the
+  prefix-overlap formulation.
+- **Wrong insertion side:** Appending characters solves a different problem; additions are restricted to the front.
+- **Boundary strings:** Empty, one-character, and already-palindromic strings are unchanged. If only the first
+  character qualifies, the entire remaining suffix is mirrored.

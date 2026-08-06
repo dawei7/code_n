@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Data Stream as Disjoint Intervals and meets the required complexity bound.",
+      "summary": "Maintains interval endpoints in paired hash maps and merges only intervals adjacent to each new value.",
       "time_complexity": "O(1) / O(k \\log k)",
       "space_complexity": "O(v)"
     }

@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `root`: The root of a binary tree satisfying the stated right-child guarantees, encoded in level order by the app.
+- `root`: The root `TreeNode` of a binary tree (or `null`), containing between 0 and 10 nodes, with values in $[1, 10]$.
 
 **Return value**
 
-Return the root of the transformed tree.
+Return the new root `TreeNode` of the upside-down transformed binary tree.

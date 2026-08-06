@@ -34,6 +34,7 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "rounds"
       ]
     },
@@ -57,24 +58,37 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "boundary"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: empty tree",
-      "kind": "sample",
+      "id": "trial-value-bounds",
+      "name": "trial: minimum and maximum values become leaves together",
+      "kind": "trial",
       "visible": true,
       "input": {
-        "root": []
+        "root": [
+          0,
+          -100,
+          100
+        ]
       },
-      "expected": [],
+      "expected": [
+        [
+          -100,
+          100
+        ],
+        [
+          0
+        ]
+      ],
       "validator": {
         "kind": "ordered_unordered_groups"
       },
       "tags": [
-        "sample",
-        "empty"
+        "trial",
+        "boundary"
       ]
     },
     {
@@ -147,10 +161,10 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
-      "name": "hidden: duplicate values retain multiplicity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "trial: duplicate values retain multiplicity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -181,15 +195,15 @@
         "kind": "ordered_unordered_groups"
       },
       "tags": [
-        "hidden",
+        "trial",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-mixed-height",
-      "name": "hidden: root waits for deeper side",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-height",
+      "name": "trial: root waits for deeper side",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -222,15 +236,15 @@
         "kind": "ordered_unordered_groups"
       },
       "tags": [
-        "hidden",
+        "trial",
         "unbalanced"
       ]
     },
     {
-      "id": "hidden-two-nodes",
-      "name": "hidden: parent follows only child",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-nodes",
+      "name": "trial: parent follows only child",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -250,7 +264,7 @@
         "kind": "ordered_unordered_groups"
       },
       "tags": [
-        "hidden",
+        "trial",
         "boundary"
       ]
     }

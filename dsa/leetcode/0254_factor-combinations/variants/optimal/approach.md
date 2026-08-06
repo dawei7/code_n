@@ -14,4 +14,5 @@ Divisor exploration is output-sensitive, with a top-level $O(\sqrt{n})$ scan and
 
 ## Alternatives and edge cases
 - **Generate ordered factor sequences:** repeats permutations and requires expensive deduplication.
-- Prime numbers and values below four have no valid combination; repeated factors remain valid.
+- **Prime or tiny inputs:** prime numbers and values below four have no valid nontrivial combination.
+- **Repeated factors:** remain valid because recursion passes the chosen factor, rather than the next larger value, as its minimum.

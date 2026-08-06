@@ -1,29 +1,44 @@
 ## General
-**Read complete signed integers**
 
-When the cursor reaches a digit or minus sign, consume the optional sign and every following digit as one node value. Create the node immediately rather than searching ahead for its matching closing parenthesis.
+**Read one complete signed integer at a time**
 
-**Track open ancestors and their next child slot**
+When the cursor reaches a digit or minus sign, remember its position, consume the optional sign and full digit run,
+and create one `TreeNode` from that slice. The app-local class is the direct equivalent of LeetCode's injected tree
+model.
 
-Keep stack frames containing an open node and whether its next subtree belongs on the left or right. A newly parsed node attaches to the slot of the top frame, advances that parent's slot, and becomes the new top frame for any children of its own.
+**Track each open ancestor and its next child slot**
 
-**Use parentheses to open and close subtree contexts**
+Each stack frame contains an open node and a mutable slot number. A newly parsed node attaches to the left slot when
+that number is zero and otherwise to the right slot. Attaching advances the parent's slot, and the child receives its
+own frame so any following parentheses can describe its descendants.
 
-An opening parenthesis announces a child representation. If it is immediately followed by `)`, advance the current parent's slot without attaching a node; this preserves a missing left child before a right child. Otherwise the next integer begins the child. A nonempty subtree's closing parenthesis pops its root frame, returning parsing context to the parent.
+**Use parentheses to enter and leave child contexts**
 
-**Why the reconstructed structure is exact**
+An opening parenthesis announces the next child expression. If the following character is immediately `)`, advance
+the current parent's slot without creating a node; this records an absent left child before a possible right child.
+Otherwise, the next signed integer starts a nonempty child. Its closing parenthesis pops that child's frame and
+returns the parsing context to its parent.
 
-Preorder places each node before its children, so the current top frame is exactly the parent awaiting the next encoded subtree. Slot advancement assigns the first child expression left and the second right, including explicit empty expressions. Closing parentheses remove precisely the completed subtree context. Thus every encoded value and absence marker is attached at its unique prescribed position.
+Preorder encoding places every parent before its children, so the top frame is exactly the node awaiting the next
+child expression. Slot advancement assigns child expressions in left-then-right order, including explicit empty
+positions, and each closing parenthesis removes precisely the completed subtree. The monotonic cursor therefore
+reconstructs every value and relationship once.
 
 ## Complexity detail
-The cursor advances monotonically and examines each of the `n` characters a constant number of times, giving $O(n)$ time. The stack holds one frame per open ancestor, so auxiliary space is $O(h)$ for tree height `h`, excluding the required nodes.
+
+Let $n = \lvert s \rvert$ and let $h$ be the resulting tree height. The cursor advances monotonically, while all
+integer slices cover disjoint character runs, so parsing takes $O(n)$ time. The stack stores one frame per open
+ancestor and uses $O(h)$ auxiliary space, excluding the required tree nodes.
 
 ## Alternatives and edge cases
-- **Recursive parser with one shared cursor:** also runs in $O(n)$ time and mirrors the grammar directly, but a deeply skewed tree can exceed the call-stack limit.
-- **Find matching parentheses and slice substrings:** is intuitive but repeatedly scans and copies nested suffixes, degrading to $O(n^2)$ on a skewed encoding.
+
+- **Recursive parser with one shared cursor:** also mirrors the grammar in $O(n)$ time, but a deeply skewed tree can
+  exceed Python's call-stack limit.
+- **Find matching parentheses and slice subtrees:** is intuitive but repeatedly rescans and copies nested suffixes,
+  degrading to quadratic time on a skewed encoding.
 - **Tokenize first:** separates lexical and structural parsing but stores $O(n)$ additional tokens.
-- **Negative value:** consume the sign as part of the following integer.
-- **Leaf node:** has no parentheses and remains on the stack only until its containing subtree closes.
-- **Right child without left child:** the explicit `()` must advance the left slot before parsing the right subtree.
-- **Empty string:** represents an empty tree.
-- **Multi-digit values:** consume the entire digit run as one node.
+- **Negative value:** consume `"-"` together with the complete following digit run.
+- **Leaf node:** needs no child parentheses.
+- **Right child without a left child:** `()` advances the left slot before the right subtree is parsed.
+- **Empty string:** returns `None` before allocating a stack.
+- **Multi-digit value:** the entire consecutive digit run creates one node.

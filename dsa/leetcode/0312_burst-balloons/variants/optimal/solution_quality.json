@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_312",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical bottom-up last-balloon interval dynamic program. Virtual one-valued boundaries remove edge branches, increasing widths satisfy every dependency, and each transition combines the exact two subinterval optima with the final burst. The implementation is compact and clearly named, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 312 and its Python maxCoins surface. The Reference preserves current-neighbor scoring, virtual boundary values, complete removal and maximization, both source examples in order, the first full reward explanation, and all three constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064370377. Its helper is structurally identical to the protected app-local helper, including padding, interval-table shape, width order, boundary product, last-balloon maximization, and full-interval return; only the permitted wrapper differs."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 2, 4, and 8-balloon nonuniform tiers span 4x and require full interval choices while allowing exhaustive order enumeration to finish. The current source passes all nine executions at +0.01 relative growth and 1.02x; a correct permutation search passes every output but fails only scaling at +5.14 and 1050.25x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now defines n before the manifest bounds. Its fixed-boundary derivation, subinterval independence, fill order, sample trace, bidirectional recurrence proof, cubic transition count, quadratic table space, and zero and singleton behavior match the protected source exactly."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples, the first example's changing-neighbor arithmetic, all three constraints, and virtual out-of-bounds balloons."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "b13927a8ef1a8b289c717eca402c2dfd545a7f2e70336a626c1eec3deb9192eb",
+    "native_source_sha256": "e88f5e2d623afd7e7b85e34990f8eea1820f17557e10b498ea4432a126be8810",
+    "approach_sha256": "4caf36a26c8f6bcbb917adbf9c8935e2ff0191c5d2acee1615b727965bd4d6cd",
+    "solution_variants_sha256": "b1b905be19cd0f75dba6aaf218eb64f5cd4fd1f10bb1af228426082b1dd625c7",
+    "complexity_evidence_sha256": "95e664d774de9f3bb7c187d1c0e2c046a1bc49d44b5e2900ccf544837fcaeb9e"
+  }
+}

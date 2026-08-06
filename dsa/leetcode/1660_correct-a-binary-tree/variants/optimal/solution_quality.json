@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1660",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution corrects a corrupted binary tree containing one invalid node whose right pointer points sideways to a same-level node. It performs a right-to-left depth-first traversal with a visited hash set seen. If node.right is in seen, it returns None to sever the invalid parent link and remove the corrupted node and its descendants. The solution runs in O(N) time and O(N) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Traversing right child before left child guarantees that any same-level node to the right is visited before the invalid node's corrupted pointer is evaluated."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Visiting each node at most once with O(1) set operations takes O(N) time. The seen set and recursion stack require O(N) auxiliary space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts root TreeNode and returns the root of the corrected binary tree with the invalid node removed."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details right-to-left DFS level ordering, visited hash set membership checks, sideway pointer detection, link replacement, and O(N) time / O(N) space bounds. Alternatives and edge cases cover right-to-left BFS equivalence, linear list search quadratic costs, left-first DFS failure modes, leaf invalid nodes, large genuine subtree detachments, target node preservation, object identity reliance, and extreme node value safety."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the identical right-to-left DFS seen-set pointer repair algorithm with SHA-256 digests 2b8a459f2b7889fba47856c1cb677346f66534aa20bdea010d31a87bbe77f285 and e4e9e3e494890a8fabe003284b56db649d4894e5c194baba1b4b142cd78a26a7. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed root interface, three examples, five constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "2b8a459f2b7889fba47856c1cb677346f66534aa20bdea010d31a87bbe77f285",
+    "native_source_sha256": "e4e9e3e494890a8fabe003284b56db649d4894e5c194baba1b4b142cd78a26a7",
+    "approach_sha256": "2b32c36b00bb2b02f69f53e54f6409059b5356e94a818ac748eaa436c7033a87",
+    "solution_variants_sha256": "ba453076b7695c8ccb1f9f0998b5675d496ee267c06dc9ed885498d8f7f57bb8",
+    "complexity_evidence_sha256": "540063b9aeed2e3aeedc84db8a8a14d083662b2f4f959229367ee1e1a192d29f"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1098",
+    "frontend_id": "1098",
+    "title_slug": "unpopular-books",
+    "url": "https://leetcode.com/problems/unpopular-books/description/",
+    "paid_only": true,
+    "content_sha256": "5455eba781c0a41c7e71c1f0a6bb0e978687e2314ccf05ed99f2cb3d3e380537",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "books_table",
+      "orders_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Books = [[1,\"Kalila And Demna\",\"2010-01-01\"],[2,\"28 Letters\",\"2012-05-12\"],[3,\"The Hobbit\",\"2019-06-10\"],[4,\"13 Reasons Why\",\"2019-06-01\"],[5,\"The Hunger Games\",\"2008-09-21\"]], Orders = [[1,1,2,\"2018-07-26\"],[2,1,1,\"2018-11-05\"],[3,3,8,\"2019-06-11\"],[4,4,6,\"2019-06-05\"],[5,4,5,\"2019-06-20\"],[6,5,9,\"2009-02-02\"],[7,5,8,\"2010-04-13\"]]",
+        "output": "[[1,\"Kalila And Demna\"],[2,\"28 Letters\"],[5,\"The Hunger Games\"]]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/books_table.md": "fba2f76c78ca358141d814eb39f94a1cd91fbe982dc9bbbd922736f847bf13e4",
+      "reference/orders_table.md": "3cc5d52da30a34d9577fadf38f263e2082dff627bfdace8cb4e1fc4bacd39091",
+      "reference/description.md": "fc91e2cabfeb87b2d1b18b1c3cffd999a5f205bc50c4d8c68855360bf25a25da",
+      "reference/contract.md": "ea84c16d93339619532bc830d96d6d647172c65fcea7bb7d29210fb801504714",
+      "reference/examples.md": "4153ed04b83bf7693433dd87670e9f3dcef11889603743a48fb37875b8bdebc3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

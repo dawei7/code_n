@@ -2,9 +2,12 @@
   "challenge_id": "lc_24",
   "cases": [
     {"id": "sample-1", "name": "sample: two complete pairs", "kind": "sample", "visible": true, "input": {"head": [1, 2, 3, 4]}, "expected": [2, 1, 4, 3], "tags": ["sample", "even"]},
-    {"id": "sample-2", "name": "sample: empty list", "kind": "sample", "visible": true, "input": {"head": []}, "expected": [], "tags": ["sample", "empty"]},
-    {"id": "trial-odd-length", "name": "unpaired tail remains", "kind": "trial", "visible": true, "input": {"head": [1, 2, 3]}, "expected": [2, 1, 3], "tags": ["odd"]},
-    {"id": "trial-single", "name": "single node", "kind": "trial", "visible": true, "input": {"head": [7]}, "expected": [7], "tags": ["boundary"]},
-    {"id": "real-negative-values", "name": "hidden: values do not affect links", "kind": "real", "visible": false, "input": {"head": [-3, 0, -2, 8, 5]}, "expected": [0, -3, 8, -2, 5], "tags": ["hidden", "odd"]}
+    {"id": "sample-2", "name": "sample: empty list", "kind": "sample", "visible": true, "input": {"head": []}, "expected": [], "tags": ["sample", "empty", "boundary"]},
+    {"id": "sample-3", "name": "sample: single node", "kind": "sample", "visible": true, "input": {"head": [1]}, "expected": [1], "tags": ["sample", "boundary"]},
+    {"id": "sample-4", "name": "sample: unpaired tail remains", "kind": "sample", "visible": true, "input": {"head": [1, 2, 3]}, "expected": [2, 1, 3], "tags": ["sample", "odd"]},
+    {"id": "trial-value-boundaries", "name": "minimum and maximum node values form one pair", "kind": "trial", "visible": true, "input": {"head": [0, 100]}, "expected": [100, 0], "tags": ["boundary", "even"]},
+    {"id": "trial-duplicate-values", "name": "duplicate values still require node swaps", "kind": "trial", "visible": true, "input": {"head": [5, 5, 5, 5, 5]}, "expected": [5, 5, 5, 5, 5], "tags": ["duplicates", "odd"]},
+    {"id": "trial-mixed-odd", "name": "three link regions with an unpaired tail", "kind": "trial", "visible": true, "input": {"head": [0, 42, 100, 7, 8]}, "expected": [42, 0, 7, 100, 8], "tags": ["boundary", "odd"]},
+    {"id": "trial-maximum-length", "name": "maximum-length even list", "kind": "trial", "visible": true, "input": {"head": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99]}, "expected": [1,0,3,2,5,4,7,6,9,8,11,10,13,12,15,14,17,16,19,18,21,20,23,22,25,24,27,26,29,28,31,30,33,32,35,34,37,36,39,38,41,40,43,42,45,44,47,46,49,48,51,50,53,52,55,54,57,56,59,58,61,60,63,62,65,64,67,66,69,68,71,70,73,72,75,74,77,76,79,78,81,80,83,82,85,84,87,86,89,88,91,90,93,92,95,94,97,96,99,98], "tags": ["boundary", "even"]}
   ]
 }

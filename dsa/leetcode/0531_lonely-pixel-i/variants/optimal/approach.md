@@ -1,23 +1,31 @@
 ## General
+
 **Count black pixels along both axes**
 
-Create one count per row and one per column. Scan every cell once; when a black pixel is found, increment its row count and column count.
+Allocate one counter per row and one per column. Scan every cell once; whenever the cell is `"B"`, increment the
+counter for its row and the counter for its column.
 
-**Test the complete loneliness condition**
+**Test both loneliness requirements together**
 
-Scan the picture again. A black pixel contributes exactly when its stored row count and column count are both one. The two conditions are independent: uniqueness in only one direction is insufficient.
+Scan all coordinates again. A coordinate contributes exactly when it contains `"B"`, its row count is one, and its
+column count is one. The generator yields those Boolean conjunctions, and `sum` counts the true values directly.
 
-**Why every counted pixel is exactly a lonely pixel**
-
-The first pass records the complete black-pixel totals for every row and column. Thus a black cell passes the second-pass test precisely when no other black cell shares either axis with it. Every lonely pixel passes, and no non-lonely pixel can pass.
+The first pass records complete black-pixel totals for every row and column. Therefore a black coordinate passes the
+second test precisely when no other black coordinate shares either axis with it. Every lonely pixel is counted once,
+and a non-lonely or white pixel cannot contribute.
 
 ## Complexity detail
-Both scans visit `rows * cols` cells, giving $O(rows \cdot cols)$ time. The row and column count arrays use $O(rows + cols)$ auxiliary space.
+
+Both full scans visit `rows * cols` cells, giving $O(rows \cdot cols)$ time. The two counter arrays use
+$O(rows + cols)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Rescan a row and column for every black pixel:** is simple but can take $O(rows \cdot cols \cdot (rows + cols))$ time on a dense picture.
-- **Sets of candidate coordinates:** can track first and repeated black positions, but count arrays are simpler and have the same asymptotic space.
-- **All-white picture:** contains no candidates and returns zero.
+
+- **Rescan a row and column for every black pixel:** is direct but can take
+  $O(rows \cdot cols \cdot (rows + cols))$ time on a dense picture.
+- **Sets of candidate coordinates:** can track first and repeated black positions, but count arrays express the same
+  information more simply.
+- **All-white picture:** has no candidate black coordinate and returns zero.
 - **Dense black picture:** every black pixel shares both axes and none is lonely.
-- **One-row or one-column picture:** a black pixel is lonely only when it is the sole black pixel in that entire line.
-- **Rectangular picture:** row and column counts must use their separate dimensions.
+- **One row or one column:** a black pixel is lonely only when it is the sole black pixel in that entire line.
+- **Rectangular picture:** row and column counters must use their distinct dimensions.

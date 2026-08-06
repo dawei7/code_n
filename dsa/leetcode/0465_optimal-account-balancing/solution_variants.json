@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Optimal Account Balancing and meets the required complexity bound.",
-      "time_complexity": "O(k!)",
-      "space_complexity": "O(k)"
+      "summary": "Nets every account, then uses symmetry-pruned backtracking to settle the first outstanding balance.",
+      "time_complexity": "O(n + k!)",
+      "space_complexity": "O(p + k^2)"
     }
   ]
 }

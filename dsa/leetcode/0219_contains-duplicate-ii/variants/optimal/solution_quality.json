@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_219",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "space_complexity",
+        "severity": "material",
+        "reason": "The protected latest-position map retains every distinct value encountered and therefore uses O(n) space even when k is small. The candidate keeps exactly the preceding k-position window in a set, preserving expected O(n) time while reducing auxiliary space to O(min(n,k))."
+      },
+      {
+        "category": "window_semantics",
+        "severity": "material",
+        "reason": "The candidate checks membership before insertion and removes position i - k only after the current comparison, so a value exactly distance k remains eligible. For k = 0, each value is removed in its insertion iteration and distinct positions can never qualify."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 8/64/256-value tiers use k = n and place the only qualifying duplicate last, forcing the full lookup path. The candidate passes at +0.07 relative exponent; a correct scan of up to k preceding positions passes every output and fails only scaling (+1.18 relative exponent; 72.24x largest runtime ratio). The measurement note now binds size to n explicitly."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "1ae6345ef11e42ceae776db24e913cf512818fbefed02228c6ceee0afd832ebd",
+    "native_source_sha256": "bebe764b272a646caa50dcef5adaad5e9d736c431577ac2ff860ef7008d07ead",
+    "approach_sha256": "ee6ee168dd33263ae927e794ff43ce20829f5aea2e504b772c678f553d1d697f",
+    "solution_variants_sha256": "4224572ef3b10afdbc7ee8e9e03c1768460c506a2d31d0a159f31eafb968cffa",
+    "complexity_evidence_sha256": "ae1f5d3a2b352cef8a221ee0e2fea2ade590d797e42f7a1e63e41599d5da6f5a",
+    "candidate_source_sha256": "ef0698ebbecc51af10bf15067da80df927753322cd08de99c5abff57d0f27c28"
+  }
+}

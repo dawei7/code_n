@@ -7,7 +7,7 @@ This validation must happen before reversal. Reversing while counting and then d
 
 **Reverse the group while preserving both boundaries**
 
-Save `group_next = kth.next` before changing links. Set `previous = group_next` and `current = group_prev.next`. Repeatedly save `current.next`, point `current.next` backward to `previous`, and advance until `current = group_next`.
+Save `group_next = kth.next` before changing links. Set `previous = group_next` and `current = group_prev.next`. Repeatedly save `current.next`, point `current.next` backward to `previous`, and advance until `current is group_next`.
 
 Initializing `previous` to `group_next` makes the old first node point directly to the untouched suffix when it becomes the group's tail. After reversal, connect `group_prev.next` to `kth`, the group's new head. Finally move `group_prev` to the old group start, which is now the correct predecessor for the next candidate group.
 

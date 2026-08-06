@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in their original order",
+      "empty and single-character boundary inputs",
+      "entirely distinct and entirely repeated strings",
+      "overlapping windows after a duplicate",
+      "stale occurrences that must not move the left boundary backward",
+      "spaces, symbols, and case-sensitive letters",
+      "three hidden distinct-character scaling tiers that reject a quadratic restart scan"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "a6cdecc49a7f07f0e01f631bc546ea8a838387338db6ea0725091e88e5420ede",
+    "native_source_sha256": "7302a259a648549ba4c1184dcf364afba21cab0ed5c151c47c9e565b104aa72f",
+    "approach_sha256": "c6175ca778cf676fd9e64b79d94911226f3f5352e6d53b17ebb1ecab72751811",
+    "solution_variants_sha256": "1d1461222cc154f25cf61f3ed270d23d2cb4ba30f10d33b18bdfa70628f1d5ba",
+    "cases_sha256": "4ebe14d907171104b71041e6d45e8a71ed4786d13c20c2a9cea3e17c08b94b00",
+    "complexity_evidence_sha256": "d64c28bead61c601c56d2a80f330f13de9eb962fae5b3fc0790f08a0311524a8"
+  }
+}

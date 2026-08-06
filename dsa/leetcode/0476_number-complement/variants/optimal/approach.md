@@ -1,4 +1,5 @@
 ## General
+
 **Restrict inversion to significant bits**
 
 An unrestricted bitwise NOT also flips infinitely many leading zeros in Python or the full machine word in fixed-width languages. Instead determine the number of significant bits `b` and construct a mask with exactly those low `b` bits set: $(1 \ll b) - 1$.
@@ -12,9 +13,13 @@ XOR flips a bit wherever the mask contains one. The mask covers every bit in the
 All mask positions above the highest set bit are zero and leave the implicit leading zeros unchanged. Within the mask, every original zero becomes one and every original one becomes zero, including the leading one becoming a harmless leading zero in the result.
 
 ## Complexity detail
-For bit width $b = O(\log num)$, determining or constructing the mask requires at most $O(b)$ conceptual bit work; fixed-width machine operations are constant bounded. The algorithm stores only the mask, using $O(1)$ auxiliary space.
+
+Let $b$ be the significant bit width of `num`, so $b = O(\log \texttt{num})$. Determining the width and constructing
+or applying the mask requires at most $O(b)$ conceptual bit work; under the source's fixed 31-bit bound, the machine
+operations are constant bounded. The algorithm stores only the mask, using $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
+
 - **Build the mask by shifting:** repeatedly append one bits until the mask exceeds `num`, then XOR; this is also linear in bit width.
 - **Inspect and rebuild each output bit:** works but is more verbose and can repeat shifts if masks are reconstructed from scratch.
 - **Binary-string translation:** is easy to visualize but allocates strings and parses the result.

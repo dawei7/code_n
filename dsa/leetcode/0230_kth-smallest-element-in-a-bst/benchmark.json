@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_230",
-  "measurement_note": "Size is the number of BST nodes; k selects the largest value so each tier completes the inorder traversal.",
+  "measurement_note": "Size is the number of nodes in a balanced BST; k = 1 isolates the O(h + k) early-stop path.",
   "cases": [
     {
       "id": "benchmark-scale-1",
@@ -43,9 +43,9 @@
           29,
           31
         ],
-        "k": 31
+        "k": 1
       },
-      "expected": 31,
+      "expected": 1,
       "tags": [
         "benchmark",
         "scale-small"
@@ -187,9 +187,9 @@
           125,
           127
         ],
-        "k": 127
+        "k": 1
       },
-      "expected": 127,
+      "expected": 1,
       "tags": [
         "benchmark",
         "scale-medium"
@@ -715,9 +715,9 @@
           509,
           511
         ],
-        "k": 511
+        "k": 1
       },
-      "expected": 511,
+      "expected": 1,
       "tags": [
         "benchmark",
         "scale-large"

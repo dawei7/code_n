@@ -1,8 +1,8 @@
 ## Description
 
-Design a data structure that receives a string array once and can then answer repeated shortest-distance queries for two different words from that array.
+Design a data structure that will be initialized with a string array, and then it should answer queries of the shortest distance between two different strings from the array.
 
-Implement the `WordDistance` class with these operations:
+Implement the `WordDistance` class:
 
-- `WordDistance(String[] wordsDict)` constructs the object from `wordsDict`.
-- `int shortest(String word1, String word2)` returns the minimum index distance between `word1` and `word2` in the stored array.
+- `WordDistance(String[] wordsDict)` initializes the object with the strings array `wordsDict`.
+- `int shortest(String word1, String word2)` returns the shortest distance between `word1` and `word2` in the array `wordsDict`.

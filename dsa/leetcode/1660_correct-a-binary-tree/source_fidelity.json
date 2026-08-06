@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1660",
+    "frontend_id": "1660",
+    "title_slug": "correct-a-binary-tree",
+    "url": "https://leetcode.com/problems/correct-a-binary-tree/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`root = [1,2,3]`, `from_value = 2`, `to_value = 3`",
+        "output": "`[1,null,3]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`root = [8,3,1,7,null,9,4,2,null,null,null,5,6]`, `from_value = 7`, `to_value = 4`",
+        "output": "`[8,3,1,null,null,9,4,null,null,5,6]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "A single-branch tree where an internal node's right pointer points horizontally to an existing same-level right node.",
+        "output": "The tree with that internal node and its left/right subtrees removed.",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "42d679b3cbc4a51b00222b382c9895bf3b79213098ba2ecc59e6cb733c4b9406",
+      "reference/contract.md": "4ba177008871f9a95b6bb1dfeb3cf353626b3137beee123952fbe947895d04e8",
+      "reference/examples.md": "ceae657ba34aa3fd29492e10c9095bcf2ad3d405d1369c329564984ea07e6835",
+      "reference/constraints.md": "3b9ed735c4482f76405a69badffd91041f68092174e1604bb7649180b1cd6cd0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

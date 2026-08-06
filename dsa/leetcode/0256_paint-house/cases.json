@@ -1,6 +1,93 @@
-{"challenge_id":"lc_256","cases":[
-{"id":"sample-three","name":"sample: three houses","kind":"sample","visible":true,"input":{"costs":[[17,2,17],[16,16,5],[14,3,19]]},"expected":10,"tags":["sample","dp"]},
-{"id":"sample-one","name":"sample: one house","kind":"sample","visible":true,"input":{"costs":[[7,6,2]]},"expected":2,"tags":["sample","boundary"]},
-{"id":"trial-empty","name":"no houses","kind":"trial","visible":true,"input":{"costs":[]},"expected":0,"tags":["boundary","empty"]},
-{"id":"real-switching","name":"hidden: optimum switches colors","kind":"real","visible":false,"input":{"costs":[[1,100,100],[100,2,100],[3,100,4],[100,1,100]]},"expected":7,"tags":["hidden","state"]}
-]}
+{
+  "challenge_id": "lc_256",
+  "cases": [
+    {
+      "id": "sample-three",
+      "name": "sample: three houses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "costs": [[17, 2, 17], [16, 16, 5], [14, 3, 19]]
+      },
+      "expected": 10,
+      "tags": ["sample", "dynamic-programming"]
+    },
+    {
+      "id": "sample-one",
+      "name": "sample: one house",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "costs": [[7, 6, 2]]
+      },
+      "expected": 2,
+      "tags": ["sample", "minimum-houses"]
+    },
+    {
+      "id": "trial-single-cost-boundaries",
+      "name": "single house includes both inclusive cost limits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[20, 1, 20]]
+      },
+      "expected": 1,
+      "tags": ["minimum-cost", "maximum-cost", "single-house"]
+    },
+    {
+      "id": "trial-repeated-cheapest-color",
+      "name": "adjacent houses cannot repeatedly use their cheapest color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[1, 20, 20], [1, 20, 20], [1, 20, 20]]
+      },
+      "expected": 22,
+      "tags": ["adjacency", "greedy-trap"]
+    },
+    {
+      "id": "trial-switching-colors",
+      "name": "optimal path switches among all three color states",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[1, 20, 20], [20, 2, 20], [3, 20, 4], [20, 1, 20]]
+      },
+      "expected": 7,
+      "tags": ["state-transitions", "multiple-colors"]
+    },
+    {
+      "id": "trial-simultaneous-update",
+      "name": "all next color states must use the same previous row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[8, 5, 7], [6, 7, 1]]
+      },
+      "expected": 6,
+      "tags": ["simultaneous-update", "state-isolation"]
+    },
+    {
+      "id": "trial-tied-color-choices",
+      "name": "tied local costs preserve several optimal prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[1, 1, 20], [20, 1, 1], [1, 20, 1]]
+      },
+      "expected": 3,
+      "tags": ["ties", "multiple-optima"]
+    },
+    {
+      "id": "trial-maximum-house-count",
+      "name": "one hundred houses at the maximum cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [[20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20], [20, 20, 20]]
+      },
+      "expected": 2000,
+      "tags": ["maximum-houses", "maximum-cost", "ties"]
+    }
+  ]
+}

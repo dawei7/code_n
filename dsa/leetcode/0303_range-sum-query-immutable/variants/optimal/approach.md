@@ -9,7 +9,8 @@ For an inclusive query `[left, right]`, `prefix[right + 1]` contains the desired
 
 Because `nums` never changes, every prefix value remains correct for the lifetime of the query object. Construction performs the only element-by-element accumulation. Each later query needs two reads and one subtraction, regardless of range width.
 
-For `[-2,0,3,-5,2,-1]`, the prefix array is `[0,-2,-2,1,-4,-2,-3]`. Query `[2,5]` returns `prefix[6] - prefix[2] = - 3 - ( - 2) = - 1`.
+For `[-2,0,3,-5,2,-1]`, the prefix array is `[0,-2,-2,1,-4,-2,-3]`. Query `[2,5]` returns
+`prefix[6] - prefix[2] = -3 - (-2) = -1`.
 
 **Prefix subtraction includes every requested index exactly once**
 
@@ -20,9 +21,12 @@ and
 Their difference cancels precisely the indices before `left`, while indices `left` through `right` occur only in the first sum. Thus every returned value equals its inclusive range sum.
 
 ## Complexity detail
-Building $n + 1$ prefix entries takes $O(n)$ time. Each of the `q` queries takes $O(1)$, for $O(n + q)$ total time. The prefix array uses $O(n)$ auxiliary space; the returned query results are output storage.
+Let $n$ be the array length and $q$ the number of app-local queries. Building $n + 1$ prefix entries takes $O(n)$
+time. Each query takes $O(1)$, for $O(n + q)$ total time. The prefix array uses $O(n)$ auxiliary space; the returned
+query results are output storage.
 
 ## Alternatives and edge cases
 - **Sum each requested slice directly:** uses no preprocessing but costs $O(range length)$ per query and can reach $O(nq)$.
 - **Segment tree or Fenwick tree:** supports updates, but immutability makes its logarithmic query cost and additional machinery unnecessary.
-- Single-element and full-array queries follow the same subtraction formula. Negative values and zero totals require no special handling.
+- **Boundary ranges:** single-element and full-array queries use the same leading-zero subtraction formula.
+- **Negative values and zero totals:** require no special handling because prefix sums and subtraction preserve signs.

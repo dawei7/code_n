@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1064",
+    "frontend_id": "1064",
+    "title_slug": "fixed-point",
+    "url": "https://leetcode.com/problems/fixed-point/description/",
+    "paid_only": true,
+    "content_sha256": "abe8deb5bd8835a4aa4a79f33b117102f9da99ba8da7a8d772c519c28fd82adf",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "arr = [-10,-5,0,3,7]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "arr = [0,2,5,8,17]",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "arr = [-10,-5,3,4,7,9]",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b37feb10507baeae37a6298cec7f9641b039c05f6095f5b561315b77960a9b75",
+      "reference/contract.md": "af2a205b43241419c0781826648464db30e177a050b8bf44e4cbd5afba19fa23",
+      "reference/examples.md": "a2f920832273a626c7f7875fd7f17ec6fa879b0fd68f6f368022d13f0b6fc5dd",
+      "reference/constraints.md": "ff32aa307151f455e49e888f808d62baf232d7a32a4b48afafe2b4438ef51363",
+      "reference/follow_up.md": "e5244227ada04e8b8db01a7dffd598b066745a2489bfc1fda619003328882d3b",
+      "reference/hint.md": "37acfe9f61d951489da3d7b61cf9291023e53a94e905331da4e6592c5615a60a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

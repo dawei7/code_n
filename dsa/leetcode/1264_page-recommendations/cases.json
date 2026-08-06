@@ -7,339 +7,154 @@
       "name": "sample: both friendship directions and shared pages",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "tables": {
-          "Friendship": [
-            {
-              "user1_id": 1,
-              "user2_id": 2
-            },
-            {
-              "user1_id": 1,
-              "user2_id": 3
-            },
-            {
-              "user1_id": 1,
-              "user2_id": 4
-            },
-            {
-              "user1_id": 2,
-              "user2_id": 3
-            },
-            {
-              "user1_id": 2,
-              "user2_id": 4
-            },
-            {
-              "user1_id": 2,
-              "user2_id": 5
-            },
-            {
-              "user1_id": 6,
-              "user2_id": 1
-            }
-          ],
-          "Likes": [
-            {
-              "user_id": 1,
-              "page_id": 88
-            },
-            {
-              "user_id": 2,
-              "page_id": 23
-            },
-            {
-              "user_id": 3,
-              "page_id": 24
-            },
-            {
-              "user_id": 4,
-              "page_id": 56
-            },
-            {
-              "user_id": 5,
-              "page_id": 11
-            },
-            {
-              "user_id": 6,
-              "page_id": 33
-            },
-            {
-              "user_id": 2,
-              "page_id": 77
-            },
-            {
-              "user_id": 3,
-              "page_id": 77
-            },
-            {
-              "user_id": 6,
-              "page_id": 88
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "recommended_page"
+      "input": {"tables": {
+        "Friendship": [
+          {"user1_id": 1, "user2_id": 2},
+          {"user1_id": 1, "user2_id": 3},
+          {"user1_id": 1, "user2_id": 4},
+          {"user1_id": 2, "user2_id": 3},
+          {"user1_id": 2, "user2_id": 4},
+          {"user1_id": 2, "user2_id": 5},
+          {"user1_id": 6, "user2_id": 1}
         ],
-        "rows": [
-          [
-            23
-          ],
-          [
-            24
-          ],
-          [
-            33
-          ],
-          [
-            56
-          ],
-          [
-            77
-          ]
+        "Likes": [
+          {"user_id": 1, "page_id": 88},
+          {"user_id": 2, "page_id": 23},
+          {"user_id": 3, "page_id": 24},
+          {"user_id": 4, "page_id": 56},
+          {"user_id": 5, "page_id": 11},
+          {"user_id": 6, "page_id": 33},
+          {"user_id": 2, "page_id": 77},
+          {"user_id": 3, "page_id": 77},
+          {"user_id": 6, "page_id": 88}
         ]
-      },
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": [[23], [24], [56], [33], [77]]},
       "validator": {"kind": "unordered_table"},
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "source-example-1", "both-directions", "deduplication", "self-like-exclusion"]
     },
     {
-      "id": "sample-first-column",
-      "name": "sample: target in first friendship column",
-      "kind": "sample",
+      "id": "trial-first-column",
+      "name": "target appears in the first friendship column",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "tables": {
-          "Friendship": [
-            {
-              "user1_id": 1,
-              "user2_id": 2
-            }
-          ],
-          "Likes": [
-            {
-              "user_id": 2,
-              "page_id": 10
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "recommended_page"
-        ],
-        "rows": [
-          [
-            10
-          ]
-        ]
-      },
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 1, "user2_id": 2}],
+        "Likes": [{"user_id": 2, "page_id": 10}]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": [[10]]},
       "validator": {"kind": "unordered_table"},
-      "tags": [
-        "sample"
-      ]
+      "tags": ["first-column", "single-friend"]
     },
     {
-      "id": "sample-second-column",
-      "name": "sample: target in second friendship column",
-      "kind": "sample",
+      "id": "trial-second-column",
+      "name": "target appears in the second friendship column",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "tables": {
-          "Friendship": [
-            {
-              "user1_id": 2,
-              "user2_id": 1
-            }
-          ],
-          "Likes": [
-            {
-              "user_id": 2,
-              "page_id": 11
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "recommended_page"
-        ],
-        "rows": [
-          [
-            11
-          ]
-        ]
-      },
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 2, "user2_id": 1}],
+        "Likes": [{"user_id": 2, "page_id": 11}]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": [[11]]},
       "validator": {"kind": "unordered_table"},
-      "tags": [
-        "sample"
-      ]
+      "tags": ["second-column", "single-friend"]
     },
     {
       "id": "trial-self-liked",
-      "name": "trial: friend page already liked by target",
+      "name": "friend page already liked by the target is excluded",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "tables": {
-          "Friendship": [
-            {
-              "user1_id": 1,
-              "user2_id": 2
-            }
-          ],
-          "Likes": [
-            {
-              "user_id": 1,
-              "page_id": 9
-            },
-            {
-              "user_id": 2,
-              "page_id": 9
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "recommended_page"
-        ],
-        "rows": []
-      },
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 1, "user2_id": 2}],
+        "Likes": [{"user_id": 1, "page_id": 9}, {"user_id": 2, "page_id": 9}]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": []},
       "validator": {"kind": "unordered_table"},
-      "tags": [
-        "trial",
-        "excluded"
-      ]
+      "tags": ["self-like-exclusion", "empty-result"]
     },
     {
-      "id": "trial-shared",
-      "name": "trial: two friends share one page",
+      "id": "trial-shared-page",
+      "name": "two friends sharing one page yield one recommendation",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "tables": {
-          "Friendship": [
-            {
-              "user1_id": 1,
-              "user2_id": 2
-            },
-            {
-              "user1_id": 3,
-              "user2_id": 1
-            }
-          ],
-          "Likes": [
-            {
-              "user_id": 2,
-              "page_id": 5
-            },
-            {
-              "user_id": 3,
-              "page_id": 5
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "recommended_page"
-        ],
-        "rows": [
-          [
-            5
-          ]
-        ]
-      },
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 3, "user2_id": 1}],
+        "Likes": [{"user_id": 2, "page_id": 5}, {"user_id": 3, "page_id": 5}]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": [[5]]},
       "validator": {"kind": "unordered_table"},
-      "tags": [
-        "trial",
-        "distinct"
-      ]
+      "tags": ["shared-page", "deduplication"]
     },
     {
-      "id": "real-nonfriend",
-      "name": "hidden: nonfriend likes are ignored",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "tables": {
-          "Friendship": [
-            {
-              "user1_id": 1,
-              "user2_id": 2
-            },
-            {
-              "user1_id": 3,
-              "user2_id": 4
-            }
-          ],
-          "Likes": [
-            {
-              "user_id": 2,
-              "page_id": 7
-            },
-            {
-              "user_id": 3,
-              "page_id": 8
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "recommended_page"
-        ],
-        "rows": [
-          [
-            7
-          ]
-        ]
-      },
+      "id": "trial-nonfriend",
+      "name": "likes from users outside the friend set are ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 3, "user2_id": 4}],
+        "Likes": [{"user_id": 2, "page_id": 7}, {"user_id": 3, "page_id": 8}]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": [[7]]},
       "validator": {"kind": "unordered_table"},
-      "tags": [
-        "real"
-      ]
+      "tags": ["nonfriend", "unrelated-edge"]
     },
     {
-      "id": "real-no-friends",
-      "name": "hidden: target has no friendship edge",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "tables": {
-          "Friendship": [
-            {
-              "user1_id": 2,
-              "user2_id": 3
-            }
-          ],
-          "Likes": [
-            {
-              "user_id": 2,
-              "page_id": 4
-            },
-            {
-              "user_id": 3,
-              "page_id": 6
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "recommended_page"
-        ],
-        "rows": []
-      },
+      "id": "trial-no-friends",
+      "name": "target with no friendship edge receives no recommendations",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 2, "user2_id": 3}],
+        "Likes": [{"user_id": 2, "page_id": 4}, {"user_id": 3, "page_id": 6}]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": []},
       "validator": {"kind": "unordered_table"},
-      "tags": [
-        "real",
-        "empty"
-      ]
+      "tags": ["no-friends", "empty-result"]
+    },
+    {
+      "id": "trial-mixed-own-pages",
+      "name": "one friend has several pages and only overlapping own pages are removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 1, "user2_id": 8}],
+        "Likes": [
+          {"user_id": 1, "page_id": 20},
+          {"user_id": 1, "page_id": 99},
+          {"user_id": 8, "page_id": 20},
+          {"user_id": 8, "page_id": 21},
+          {"user_id": 8, "page_id": 22}
+        ]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": [[21], [22]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["multiple-pages", "partial-exclusion", "unrelated-own-page"]
+    },
+    {
+      "id": "trial-friend-without-likes",
+      "name": "a friend with no liked page contributes nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 1, "user2_id": 2}],
+        "Likes": [{"user_id": 3, "page_id": 30}]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": []},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["friend-without-likes", "nonfriend-like", "empty-result"]
+    },
+    {
+      "id": "trial-reversed-duplicate-relation",
+      "name": "both ordered representations of one friendship do not duplicate pages",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 2, "user2_id": 1}],
+        "Likes": [{"user_id": 2, "page_id": 40}, {"user_id": 2, "page_id": 41}]
+      }},
+      "expected": {"columns": ["recommended_page"], "rows": [[40], [41]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["both-directions", "friend-deduplication", "composite-primary-key"]
     }
   ]
 }

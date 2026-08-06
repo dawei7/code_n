@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_77",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(k \\cdot C(n,k))",
+  "summary": "Every valid result contains all C(n,k) combinations explicitly, so output construction itself matches the required bound. A direct output lower bound and the pruned search upper bound certify the current solution more precisely than runtime scaling.",
+  "optimality": {
+    "symbol": "k * C(n,k)",
+    "lower_bound": "Omega(k * C(n,k))",
+    "upper_bound": "O(k * C(n,k))",
+    "argument": "The result contains C(n,k) distinct lists of length k, requiring Omega(k * C(n,k)) values to be written. The current search follows exactly one increasing path per combination, prunes prefixes that cannot reach length k, and copies exactly k values at each leaf, giving O(k * C(n,k)) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Any valid return value explicitly materializes C(n,k) combinations, and each combination contains k integers, so the output alone has k * C(n,k) elements."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Strictly increasing choices give each combination one leaf, the loop bound rejects every prefix without enough remaining values, and each emitted path copy costs O(k)."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover multiple combinations and the single-value domain; black-box real-test execution passed all five existing ordinary correctness checks."
+    }
+  ]
+}

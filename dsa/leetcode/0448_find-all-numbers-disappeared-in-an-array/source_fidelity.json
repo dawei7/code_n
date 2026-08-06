@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_448",
+    "frontend_id": "448",
+    "title_slug": "find-all-numbers-disappeared-in-an-array",
+    "url": "https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/",
+    "paid_only": false,
+    "content_sha256": "a1522ed21fd753b57db6156223b0062cf23e8572d47fa9134a51ef87b4d50088",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [4,3,2,7,8,2,3,1]",
+        "output": "[5,6]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,1]",
+        "output": "[2]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f8d8c2f5c700d20c8d8f7c9ad705c0041c95ff254f8229d908a3502d25f76a03",
+      "reference/contract.md": "7bc597bf8f04a4a8d5b4c98571130f722236b9aae21734d37657639aa21d1c91",
+      "reference/examples.md": "65be6a862d2f6d65053deb2e0c7fd0c1b4f1d35e1b4a6821d12679273b4adf85",
+      "reference/constraints.md": "f26cc36887980cd6f6ba0d860cc73911a392385fe20dfe01af74b03f0d0c957f",
+      "reference/follow_up.md": "d23a8908a73406946b1ed0277702ba902803a7dc5187ab065e56ed193cb7a7ff"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

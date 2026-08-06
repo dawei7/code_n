@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shortest Palindrome and meets the required complexity bound.",
+      "summary": "Uses a KMP prefix function to find the longest palindromic prefix, then mirrors only the remainder.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

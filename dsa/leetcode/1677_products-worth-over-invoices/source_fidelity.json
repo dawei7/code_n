@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1677",
+    "frontend_id": "1677",
+    "title_slug": "products-worth-over-invoices",
+    "url": "https://leetcode.com/problems/products-worth-over-invoices/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`Product` table:",
+        "output": "| name | rest | paid | canceled | refunded |",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "808f370200199da7290ce93a5c707cd2b4a61cac66ac35eab98364bbd4197515",
+      "reference/contract.md": "1ba8613dacb249606a3ed81aba72d609f361c14828402c04a358d08b2c5a8b52",
+      "reference/examples.md": "f0badd4161752267a1a471433bf444890d2e5f615e5673d561050f957defe897",
+      "reference/constraints.md": "6c8361cf65a401b8cc8ec61120d20352541bd62e58cba55e1aad16250b1e359b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

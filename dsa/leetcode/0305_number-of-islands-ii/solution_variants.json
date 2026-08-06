@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Islands II and meets the required complexity bound.",
+      "summary": "Tracks sparse land components with path-compressed union-find and union by size.",
       "time_complexity": "O(k \\cdot \\alpha(k))",
       "space_complexity": "O(k)"
     }

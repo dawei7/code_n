@@ -9,7 +9,7 @@
       "visible": true,
       "input": {"transactions": [[0, 1, 10], [2, 0, 5]]},
       "expected": 2,
-      "tags": ["sample", "three-accounts"]
+      "tags": ["sample", "source-example", "three-accounts"]
     },
     {
       "id": "sample-one-transfer",
@@ -18,16 +18,16 @@
       "visible": true,
       "input": {"transactions": [[0, 1, 10], [1, 0, 1], [1, 2, 5], [2, 0, 5]]},
       "expected": 1,
-      "tags": ["sample", "netting"]
+      "tags": ["sample", "source-example", "netting"]
     },
     {
-      "id": "sample-empty",
-      "name": "sample: no balances to settle",
-      "kind": "sample",
+      "id": "trial-fully-netted",
+      "name": "trial: opposite history entries leave no balance",
+      "kind": "trial",
       "visible": true,
-      "input": {"transactions": []},
+      "input": {"transactions": [[0, 1, 10], [1, 0, 10]]},
       "expected": 0,
-      "tags": ["sample", "empty"]
+      "tags": ["trial", "net-zero"]
     },
     {
       "id": "trial-chain-nets",
@@ -48,22 +48,40 @@
       "tags": ["trial", "pairs"]
     },
     {
-      "id": "hidden-unequal-balances",
-      "name": "hidden: unequal balances require three settlements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unequal-balances",
+      "name": "trial: unequal balances require three settlements",
+      "kind": "trial",
+      "visible": true,
       "input": {"transactions": [[0, 1, 4], [0, 2, 3], [3, 0, 2]]},
       "expected": 3,
-      "tags": ["hidden", "unequal"]
+      "tags": ["trial", "unequal"]
     },
     {
-      "id": "hidden-cycle-history",
-      "name": "hidden: cyclic history reduces before settlement",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle-history",
+      "name": "trial: cyclic history reduces before settlement",
+      "kind": "trial",
+      "visible": true,
       "input": {"transactions": [[0, 1, 10], [1, 2, 3], [2, 0, 7]]},
       "expected": 2,
-      "tags": ["hidden", "cycle"]
+      "tags": ["trial", "cycle"]
+    },
+    {
+      "id": "trial-minimum-history",
+      "name": "trial: one minimum-amount transfer uses endpoint identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {"transactions": [[0, 11, 1]]},
+      "expected": 1,
+      "tags": ["trial", "boundary", "minimum-history", "endpoint-identifiers"]
+    },
+    {
+      "id": "trial-maximum-history",
+      "name": "trial: eight transfers involve all twelve identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {"transactions": [[0, 1, 100], [2, 3, 100], [4, 5, 100], [6, 7, 100], [8, 9, 100], [10, 11, 100], [0, 1, 1], [2, 3, 1]]},
+      "expected": 6,
+      "tags": ["trial", "boundary", "maximum-history", "maximum-amount", "all-identifiers"]
     }
   ]
 }

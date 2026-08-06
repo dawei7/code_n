@@ -237,7 +237,10 @@
         "scale-small"
       ],
       "size": 32,
-      "timeout_ms": 12000
+      "timeout_ms": 12000,
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "benchmark-scale-128",
@@ -1097,7 +1100,10 @@
         "scale-medium"
       ],
       "size": 128,
-      "timeout_ms": 12000
+      "timeout_ms": 12000,
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "benchmark-scale-512",
@@ -4453,7 +4459,10 @@
         "scale-large"
       ],
       "size": 512,
-      "timeout_ms": 12000
+      "timeout_ms": 12000,
+      "validator": {
+        "kind": "unordered_table"
+      }
     }
   ]
 }

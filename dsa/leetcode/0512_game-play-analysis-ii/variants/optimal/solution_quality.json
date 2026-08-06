@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_512",
+  "language": "sql",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL uses the conventional aggregate-and-join solution: one grouped subquery identifies each first login, and one two-column join recovers the associated device. The aliases and projection expose the relational intent without extra layers or dialect tricks, so no inert candidate is materially justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium database problem 512 as SQL-only. The query consumes the four-column `Activity` relation, emits exactly `player_id` and `device_id`, does not impose an unauthorized result order, and relies correctly on the source's composite `(player_id, event_date)` primary key to make the earliest source row unique."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native SQL is bound to verified MySQL submission 2065173739. Its bytes are identical to the protected app SQL: both group by `player_id`, name `MIN(event_date)` as `first_login`, join back on player and date, and project the matching device."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The `Activity` workloads contain 16, 64, and 256 rows, span 16x, and exercise grouped minima followed by one join. The protected query passed all 9 correctness cases and all three performance tiers. A correct correlated-minimum control passed every output but failed only the runtime verdict with relative growth exponent +0.61."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The current-targeted Approach exactly explains the grouped minimum, the join on both key components, and why the primary key preserves the correct device association. It defines activity-row and player counts, states expected hash aggregate/join costs, and explicitly qualifies optimizer-, index-, and sort-dependent SQL behavior."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves all four schema columns and types, the composite primary key, zero-games possibility, first-login device objective, unrestricted result order, and the single source example. The schema, input, and output tables retain their original rows and columns."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The sole authenticated Premium source example appears first with all five exact Activity rows and the exact three-row result. Its incorrect second-row device value was repaired from 3 to the source's 2.",
+      "The two invented samples were relabelled as trials, the formerly hidden correctness case is now a visible trial, and every nonempty fixture respects the composite (player_id, event_date) primary key.",
+      "Contract boundaries cover an explicitly typed empty Activity table, one row and one player, multiple rows and players, zero games played, shared dates, shared devices, and valid calendar endpoints from 1000-01-01 through 9999-12-31.",
+      "Material semantics cover unsorted input, a numerically smaller device on a later date, same-date rows belonging to different players, independent per-player minima, device reuse across players, and the irrelevance of games_played to the selected row.",
+      "An independent grouped-minimum oracle and SQLite execution of the protected query verified all nine correctness cases and all three benchmark outputs, all 120 permutations of the source rows, and 1,000 randomized Activity tables.",
+      "All nine correctness cases are visible samples or trials; the unchanged 16-, 64-, and 256-row workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "30d7e39c882ce7244dfef087a8a3c8789ed913cb207c38feafc96fb42e3fdd7c",
+    "native_source_sha256": "30d7e39c882ce7244dfef087a8a3c8789ed913cb207c38feafc96fb42e3fdd7c",
+    "approach_sha256": "420d054c484bd32d66448a6a5ce082cd7b6a7740a6ba79ecc534eca3262353a8",
+    "solution_variants_sha256": "71f29f5ec90a27627b9215e942ae9ad7a2b8cb1e57467ac0e34889557f6b136c",
+    "complexity_evidence_sha256": "4c2929d1b4376c4738e9075cac01af69da24a433c76270bd2cfd0a095a7a9690",
+    "cases_sha256": "5d36525831c39d9cd00151eafb7c9a52dab58eaf747aa6ad47f988bbec5c196d"
+  }
+}

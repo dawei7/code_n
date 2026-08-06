@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Univalue Subtrees and meets the required complexity bound.",
+      "summary": "Returns a univalue summary from each postorder call and counts roots whose child subtrees match.",
       "time_complexity": "O(n)",
       "space_complexity": "O(h)"
     }

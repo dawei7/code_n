@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1085",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected app-local solution is compact, idiomatic, and interview-ready. value and digit_sum state exactly what they hold, min(nums) avoids unnecessary ordering, quotient-and-remainder digit extraction uses constant auxiliary space, and int(...) maps the parity Boolean directly to the required integer. There are no opaque bindings or prohibited generic index names, so a candidate would add churn without a material quality gain."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "min(nums) selects the global minimum regardless of input order or repeated occurrences. Each loop iteration adds the current least-significant decimal digit with value % 10 and removes exactly that digit with value //= 10. Authenticated constraints guarantee every input value is positive, so the loop processes all digits and terminates at zero. digit_sum % 2 == 0 is true exactly for an even sum, and converting that Boolean returns precisely 1 for even and 0 for odd."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1085, Python as the user-facing language, and native Solution.sumOfDigits. Authenticated source evidence confirms an integer array nums, length from 1 through 100, values from 1 through 100, global-minimum selection, decimal digit summation, and the exact 0-for-odd and 1-otherwise return contract. The solve(nums: list[int]) adapter preserves those semantics."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local solve.py and immutable leetcode.py bound to verified submission 2067554714 have the same executable algorithm body: both assign min(nums) to value, accumulate identical remainder digits, advance by identical integer division, and return the same parity conversion. Their only differences are the required app solve function versus LeetCode Solution.sumOfDigits method and native List annotation/import."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden workloads grow descending arrays from 8 through 100 elements, forcing the minimum to appear last while remaining within the complete source domain. The exact protected source passed all eight visible correctness fixtures and all three performance tiers with relative growth exponent +0.00 and a 1.01x largest runtime ratio. An independently correct selection-sort control matched every output but failed only the scaling verdict at +1.53 and 83.59x, distinguishing the stated O(n+D) method from quadratic minimum discovery."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives one global-minimum scan, arithmetic extraction of exactly the minimum's decimal digits, and conversion of even parity to the required integer. It defines D, supports the branch manifest's O(n+D) time and O(1) auxiliary-space bounds, and correctly covers sorting, text conversion, the wrong all-elements digit sum, duplicate minima, internal zero digits, and singleton input."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the concise problem contract, both source examples in order with exact inputs and outputs, both parity explanations, both exact constraint bounds, and all four source hints in their original progression from minimum discovery through decimal-digit extraction and the required return mapping. No source tables, images, or diagrams were present or invented."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified the 0-for-odd and 1-otherwise rule, exactly two explained examples, two constraints, four hints, and no notes or follow-up. source_fidelity.json binds the independently written modular Reference to live content hash e0b7030f3c527c3389c7a5748b27adcdc6f2ab003f074d902dfed458aa8137b3 and validates with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact arrays, outputs, identified minima, digit sums, parity classifications, and return explanations appear first as sample-1 and sample-2 in source order.",
+      "All eight ordinary correctness fixtures are visible samples or trials. They cover odd and even digit sums, a minimum containing a zero digit, singleton input, a repeated minimum, the maximum legal value 100 as a three-digit minimum, a minimum at the final position, and the maximum legal array length of 100 with its minimum at the end.",
+      "Every fixture respects 1 <= nums.length <= 100 and 1 <= nums[i] <= 100. The source lower value bound is exercised by sample-1, the upper value bound by trial-maximum-value, and both length bounds by the singleton and maximum-length trials.",
+      "An independent Python oracle sorts a copy to select the minimum, converts only that value to decimal text, sums the characters as digits, and maps parity to the required integer. It shares neither the protected solution's min scan implementation nor its quotient-and-remainder digit extraction.",
+      "The oracle, protected app-local function, and immutable native Solution method agreed on all 11 authored correctness-plus-benchmark fixtures. They also agreed on 5000 deterministic random legal arrays spanning lengths 1 through 100 and values 1 through 100, plus seven explicit legal boundary arrays.",
+      "The 8-, 32-, and 100-element workloads remain hidden and performance-only, use size consistently as array length, span 12.5x, place the minimum last, and remain within the exact source domain. The correct O(n^2) selection-sort control failed only scaling at +1.53 and 83.59x, while the protected linear scan passed at +0.00 and 1.01x; benchmark.json was not edited."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "5d7ebbf2eb97d6d311ca7eb9c9d2b69e03a57299caeb73cdb626bc21b2ea1bf5",
+    "native_source_sha256": "8908f940760907f0dccd869caebfc78a2919c11046308d1dcec59af97157b340",
+    "approach_sha256": "43612c63f7c3fe9502f6d5312efca3883dda70401e22773afe514f574d153730",
+    "solution_variants_sha256": "7d4bf82675e1c1e7f9e2cc469b445ab1327b9e6ae61ea45c258789f1afa9e03f",
+    "complexity_evidence_sha256": "90a165c76eabd3e45d0f02bfc5043f9479817f4610b31d36b177c422e1505793",
+    "cases_sha256": "152face0d239f68238b005f14abbf0e46020c9384e84f5f64d26c3d34a77db3a"
+  }
+}

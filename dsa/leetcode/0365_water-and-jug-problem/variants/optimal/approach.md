@@ -1,7 +1,7 @@
 ## General
 **Reject amounts that cannot physically fit**
 
-The two jugs can hold at most $x + y$ units in total. Any larger target is impossible regardless of the pouring sequence. A zero target is always achievable by leaving both jugs empty.
+The two jugs can hold at most $x + y$ units in total. Any larger target is impossible regardless of the pouring sequence.
 
 **Identify the indivisible volume unit**
 
@@ -24,7 +24,6 @@ Euclid's remainder sequence shrinks at least as quickly as consecutive Fibonacci
 - **Breadth-first search over jug states:** directly models every operation but can visit $O(xy)$ states and is unnecessary for a reachability decision.
 - **Depth-first state exploration:** has the same state-space cost and needs explicit cycle detection.
 - **Subtractive GCD:** preserves correctness but may require linear time when capacities are consecutive.
-- Target `0` is achievable even when both capacities are zero.
 - A target greater than $x + y$ is impossible even when divisible by the gcd.
-- If one jug has zero capacity, only zero and the other jug's full capacity are measurable.
-- When both capacities are zero and the target is positive, the capacity check rejects it before any modulo operation.
+- A target equal to $x + y$ is reached by filling both jugs and is necessarily divisible by the gcd.
+- Equal capacities can measure only a full-jug multiple that still fits within the two-jug total.

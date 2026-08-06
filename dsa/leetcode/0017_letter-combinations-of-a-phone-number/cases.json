@@ -29,25 +29,8 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: empty input",
+      "name": "sample: one three-letter key",
       "kind": "sample",
-      "visible": true,
-      "input": {
-        "digits": ""
-      },
-      "expected": [],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample",
-        "empty"
-      ]
-    },
-    {
-      "id": "trial-single-key",
-      "name": "one three-letter key",
-      "kind": "trial",
       "visible": true,
       "input": {
         "digits": "2"
@@ -61,7 +44,8 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "boundary"
+        "sample",
+        "minimum-length"
       ]
     },
     {
@@ -82,14 +66,15 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "four-way"
+        "four-way",
+        "minimum-length"
       ]
     },
     {
-      "id": "real-two-four-letter-keys",
-      "name": "hidden: two four-letter keys",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-four-letter-keys",
+      "name": "two four-letter keys",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": "79"
       },
@@ -115,10 +100,162 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "four-way"
+      ]
+    },
+    {
+      "id": "trial-repeated-digit",
+      "name": "repeated digit positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": "22"
+      },
+      "expected": [
+        "aa",
+        "ab",
+        "ac",
+        "ba",
+        "bb",
+        "bc",
+        "ca",
+        "cb",
+        "cc"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "repeated-digit"
+      ]
+    },
+    {
+      "id": "trial-mixed-branching",
+      "name": "three-way then four-way branching",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": "29"
+      },
+      "expected": [
+        "aw",
+        "ax",
+        "ay",
+        "az",
+        "bw",
+        "bx",
+        "by",
+        "bz",
+        "cw",
+        "cx",
+        "cy",
+        "cz"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "mixed-branching"
+      ]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "maximum length across remaining mappings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": "4568"
+      },
+      "expected": [
+        "gjmt",
+        "gjmu",
+        "gjmv",
+        "gjnt",
+        "gjnu",
+        "gjnv",
+        "gjot",
+        "gjou",
+        "gjov",
+        "gkmt",
+        "gkmu",
+        "gkmv",
+        "gknt",
+        "gknu",
+        "gknv",
+        "gkot",
+        "gkou",
+        "gkov",
+        "glmt",
+        "glmu",
+        "glmv",
+        "glnt",
+        "glnu",
+        "glnv",
+        "glot",
+        "glou",
+        "glov",
+        "hjmt",
+        "hjmu",
+        "hjmv",
+        "hjnt",
+        "hjnu",
+        "hjnv",
+        "hjot",
+        "hjou",
+        "hjov",
+        "hkmt",
+        "hkmu",
+        "hkmv",
+        "hknt",
+        "hknu",
+        "hknv",
+        "hkot",
+        "hkou",
+        "hkov",
+        "hlmt",
+        "hlmu",
+        "hlmv",
+        "hlnt",
+        "hlnu",
+        "hlnv",
+        "hlot",
+        "hlou",
+        "hlov",
+        "ijmt",
+        "ijmu",
+        "ijmv",
+        "ijnt",
+        "ijnu",
+        "ijnv",
+        "ijot",
+        "ijou",
+        "ijov",
+        "ikmt",
+        "ikmu",
+        "ikmv",
+        "iknt",
+        "iknu",
+        "iknv",
+        "ikot",
+        "ikou",
+        "ikov",
+        "ilmt",
+        "ilmu",
+        "ilmv",
+        "ilnt",
+        "ilnu",
+        "ilnv",
+        "ilot",
+        "ilou",
+        "ilov"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "maximum-length",
+        "mapping-coverage"
       ]
     }
   ]
 }
-

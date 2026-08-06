@@ -9,14 +9,6 @@ Sorted order makes that pair sum monotone. If the four-value total is too small,
 
 Skip `values[i]` when it equals the previous first value and likewise skip duplicate second values for a fixed `i`. After emitting a quadruplet, advance both pointers past all copies of their current values. This prevents duplicates without a result set.
 
-Bounds from the four smallest or four largest available values can stop or skip fixed-index searches that cannot reach the target, improving constants without changing worst-case complexity.
-
-**Prune only when sorted bounds prove impossibility**
-
-For a fixed first index, the sum of it and the three smallest available successors is the smallest achievable quadruplet. If even that exceeds `target`, every later first value is at least as large, so the outer loop may stop. Conversely, if the first value plus the three largest values is still below `target`, this first value cannot succeed and may be skipped. Analogous bounds can be applied after choosing the second index.
-
-These checks are optional constant-factor improvements. They must use four distinct valid positions and should be computed in a sufficiently wide integer type so the pruning arithmetic itself does not overflow.
-
 **What the two pointers have ruled out**
 
 For fixed `i` and `j`, every pair outside the pointer interval has been examined or ruled out by sorted monotonicity. Moving a pointer discards only sums that remain on the same wrong side of the target. Duplicate skips remove value-identical quadruplets, never a new combination.
@@ -38,5 +30,6 @@ Sorting costs $O(n \log n)$. The two fixed-index loops select $O(n^2)$ prefixes,
 - **Four nested loops:** checks all index quadruples in $O(n^4)$ time and still needs value deduplication.
 - **Pair-sum table:** can approach $O(n^2)$ expected work for detection, but maintaining distinct indices and unique quadruplets requires substantial $O(n^2)$ storage and careful normalization.
 - **Recursive k-sum:** generalizes this pattern cleanly to other `k`; its two-sum base case is the same monotone pointer scan.
+- **Sorted bound pruning:** smallest- and largest-achievable sums can skip impossible fixed prefixes, but the current direct implementation omits these optional constant-factor checks.
 - Fewer than four inputs return an empty result. Repeated values can form a valid answer, as with four copies of `2`, but that value quadruplet must be emitted only once.
 - In fixed-width languages, addends near the constraint limits should be promoted before summation to prevent overflow from reversing comparisons with `target`.

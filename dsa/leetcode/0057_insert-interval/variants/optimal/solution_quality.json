@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_57",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The current app and immutable native sources use the prohibited generic local name `index`; the candidate preserves the accepted linear three-region scan while using the conventional interview cursor `i`."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "material",
+        "reason": "Every benchmark tier used a new interval starting at -1 even though the official lower bound is 0; the corrected tiers start at 0 and retain the same full-overlap workload and linear-versus-quadratic separation."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "material",
+        "reason": "The approach incorrectly described input nonmutation as a contract requirement; it now accurately presents copying as this implementation's deliberate caller-safe behavior."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "e7312d9b2bd780af7ae6c6bc397a39e9c8e5a9bc8490626b5d825225a8af9ebc",
+    "native_source_sha256": "2b31476ad5f38eab770d96bdf4babaf73c87328b7e499fed77cd13306bd34e93",
+    "approach_sha256": "229f47ad15e2e9cb8db1972bba6401d5230d88a95a3937f2c35519447c2082e9",
+    "solution_variants_sha256": "93f7e10e708217a77b9869825a1c8ba7d00b7306886bcb3315e6c76c9264ed41",
+    "complexity_evidence_sha256": "17e8d52cb000195b663774cd5bf58ea96f2660ff80b413aad6fb2b31bcf1428e",
+    "candidate_source_sha256": "d10be4536f03553f633d270cbf202a893bc48c91545c2614cfe408bfce6b3350"
+  }
+}

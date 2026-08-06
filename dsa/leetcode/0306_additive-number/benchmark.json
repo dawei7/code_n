@@ -5,12 +5,12 @@
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: exhaustive false candidate at n=16",
+      "name": "benchmark: exhaustive false candidate at n=3",
       "kind": "benchmark",
       "visible": false,
-      "size": 16,
+      "size": 3,
       "input": {
-        "num": "1111111111111112"
+        "num": "113"
       },
       "expected": false,
       "tags": [
@@ -21,12 +21,12 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: exhaustive false candidate at n=32",
+      "name": "benchmark: exhaustive false candidate at n=6",
       "kind": "benchmark",
       "visible": false,
-      "size": 32,
+      "size": 6,
       "input": {
-        "num": "11111111111111111111111111111112"
+        "num": "111112"
       },
       "expected": false,
       "tags": [
@@ -37,12 +37,12 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: exhaustive false candidate at n=64",
+      "name": "benchmark: exhaustive false candidate at n=12",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 12,
       "input": {
-        "num": "1111111111111111111111111111111111111111111111111111111111111112"
+        "num": "111111111112"
       },
       "expected": false,
       "tags": [

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_419",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical one-pass canonical-head count. Its row, column, and ships concepts directly express the board scan, and the two predecessor checks avoid mutation or visited storage without obscuring the invariant. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 419 and its Python countBattleships surface. The Reference preserves straight 1-by-k or k-by-1 ship geometry, orthogonal separation, both source examples, all four constraints, the one-pass follow-up, and a board table equivalent to the source illustration."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064756663. Its row-major scan, empty-cell rejection, upper and left predecessor checks, and ship-head increment are exactly the protected app-local algorithm apart from the LeetCode wrapper and annotations."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The former 512-column tier violated the live n <= 200 constraint and was replaced. The legal 48-, 96-, and 192-cell horizontal ships span 4x and force complete scans; the current source passes all 11 executions at +0.02 and 1.00x, while correct head rediscovery passes every output but fails only scaling at +1.27 and 40.98x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach derives a unique topmost or leftmost canonical cell per straight ship, uses the separation guarantee to exclude shared starts, and explains why local predecessor checks need no mutation or visited state. It accurately states O(rc) time with O(1) auxiliary space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference retains ship shape and separation semantics, both source examples in order without invented explanations, all four constraints, the source-native follow-up, and a table preserving the source board illustration."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "bee691a0065a4ddab54a13c63e4f1d25d1a7c1dc708e449ba893c99185dbe666",
+    "native_source_sha256": "78764ac64a48668bfcb8f867e4880aa959679fb410296355b7faf0236fa10c07",
+    "approach_sha256": "927d6ba2522ac421521b0498b7a6298d6db3809a2665a2a43b79370963de5ac8",
+    "solution_variants_sha256": "8086a1077487ef065e7982263b5d451e4aa446238e9022a8e4cfe68e4deae1f4",
+    "complexity_evidence_sha256": "3d01a3ec88ca3cacbb7e6073acaa8396942fc9e7abfbe40e6e4d151c5747d6b7"
+  }
+}

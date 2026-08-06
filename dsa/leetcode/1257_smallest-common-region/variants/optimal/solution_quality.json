@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1257",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected implementation is a direct and recognizable lowest-common-ancestor solution for a parent-linked tree. The parent, group, child, and ancestors names expose the data model; each loop has one purpose; self-containment and the root termination are visible; and there is no code golf, unnecessary abstraction, prohibited index binding, or obscure library behavior. A candidate would not materially improve this expert-interview-quality source, so none was created."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Each non-root region has at most one direct container, so the parent map gives a unique chain from either query to the root. The first loop records exactly region1 and all of its containing regions. Walking region2 upward then encounters common containers from smallest to largest; therefore its first member of that set is precisely the smallest region containing both. Starting each chain at the query itself correctly handles an ancestor query and a queried root."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent child-adjacency oracle found the unique root, recovered both root-to-query paths, and compared their common prefix. It, the protected app source, immutable native source, a postorder subtree-count LCA, and a scan-every-list parent control agreed on all eleven visible cases, the three final benchmark tiers, 158,239 exhaustive queries over every eligible increasing-parent tree through eight nodes, and 10,000 deterministic schema-valid random trees generated with seed 1257. The hierarchy input remained unchanged."
+      },
+      {
+        "category": "randomized_and_boundary_coverage",
+        "severity": "verified",
+        "reason": "The random corpus included 4,368 root answers, 1,531 ancestor answers, 496 root queries, 407 sibling pairs, and 9,493 trees whose root group was not listed first. Separate exact boundaries covered two hierarchy lists, two entries per list, twenty entries in one list, one- and twenty-letter names, and a 10,000-list chain. Every generated region had one direct parent at most, every group was schema-valid, and one root contained all nodes."
+      },
+      {
+        "category": "benchmark_calibration",
+        "severity": "corrected",
+        "reason": "The legacy deep-branch topology was sound, but identifiers such as A1 and B1 violated the authenticated English-letters-only constraint. After converting every benchmark region to an alphabetic name, the 15/63/255 tiers also rejected a genuinely O(R) postorder LCA once in three runs because small-tier constant overhead pushed its extra-growth estimate over 0.15. The final legal tiers retain the same topology at R = 63, 255, and 1023. Protected, postorder, and independently structured two-chain O(R) controls passed all outputs and scaling in three runs each. The correct scan-every-list O(R^2) control passed all fourteen outputs but failed only scaling in three runs, with extra-growth exponents from +1.08 to +1.10 and largest-tier ratios from 43.67x to 46.47x."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "The two hidden real rows were converted to visible trials, the invented third sample was correctly reclassified as a trial, and the former one-list sibling input was repaired because the live contract requires at least two region lists. Four additional visible trials cover a queried root, groups listed before their own parent group, the maximum list length, and maximum name length. All eleven ordinary rows are now visible samples or trials, preserve the two exact source examples in order, and exercise every material containment shape."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1257, Python as the primary language, and native entrypoint Solution.findSmallestRegion. Fresh authenticated evidence confirms direct and transitive indirect containment, self-containment, distinct queries, a guaranteed smallest common region, two through 10^4 hierarchy lists, two through twenty names per list, name lengths one through twenty, a universal containing region, and at most one direct container per region."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected solve.py and immutable leetcode.py remain bound to verified submission 2068017542 and are unchanged. They build the same child-to-parent mapping, collect the same complete first-query ancestor set, walk the second query to its first shared ancestor, and return the same region with O(R) time and space. Their only substantive wrapper difference is the app-local function versus native Solution.findSmallestRegion entrypoint."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach was reviewed against the protected target and exactly describes its parent-map construction, inclusive first ancestor chain, upward second walk, first-match minimality argument, common-root guarantee, and O(R) time and space. Its scan-based, recursive subtree, ancestor-query, root-branch, sibling, and opaque-name discussions cover the meaningful alternative and edge conditions without claiming behavior absent from the code."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves direct containment by the first name in each list, transitive indirect containment, relative size language, self-containment, the smallest-common-region request and existence guarantee, both exact source examples without invented explanations, all seven constraints, and all three hints in source order. No provider visual or table required a local replacement."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples, no example explanations, seven constraints, three hints, and no source visuals, tables, notes, or follow-up. source_fidelity.json binds all five modular Reference files to live-content SHA-256 a2d5010d4b9152293511ea4ba2f81d0913dc1277b1dfd4f6e15c68c75b4e0aa2 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples preserve the authenticated source inputs and quoted outputs in source order; neither source example includes an explanation.",
+      "All eleven ordinary fixtures are visible samples or trials covering cousins, different root branches, ancestor queries, direct siblings, unequal depths, complete names containing spaces as demonstrated by the source, deep branches, a queried root, unordered group definitions, nineteen direct children, and twenty-letter names.",
+      "An independent root-path oracle recomputed every expectation. It, protected and native sources, postorder LCA, and scan-based controls agreed on the fixed suite, 158,239 exhaustive small-tree queries, 10,000 seeded legal random trees, and an exact 10,000-list chain boundary without hierarchy mutation.",
+      "The three hidden performance-only tiers use legal alphabetic names and identical two-branch topology at R = 63, 255, and 1023. Three repeated runs accept protected, postorder, and two-chain linear solutions while the correct quadratic scan passes every output and fails only scaling."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "c9fd2c092fd8e59ba4454d33a196969b72f6df0442a6a73e4080df476174aaee",
+    "native_source_sha256": "840dd1c9a7d67344460fc77aa1441d9b1f03f883c5a4923e64e3eda6b79c90f5",
+    "approach_sha256": "26aac7056a47685ec14dc3bdfde1f58b16810d1b8fb2efefa9ce289d6df5316a",
+    "solution_variants_sha256": "442ce584f1aa49d100fba815c754aa49b8351dd0c8352bb07829766f4f5cbce4",
+    "complexity_evidence_sha256": "922f212d29832e8efa2290bbf7a88088db8191b4ebcb077a7fc0d2b16f3acd5e",
+    "cases_sha256": "3ef91348a246b421871dae8605e624de9c6cd82cb6a8511ee3050c29c6534807"
+  }
+}

@@ -1,12 +1,7 @@
 ## Function Contract
 
-The app executes the stateful class through an equivalent operation-list adapter.
+**Class Interface**
 
-**Inputs**
-
-- `operations`: The constructor, `add`, and `find` operations in execution order.
-- `arguments`: The argument list corresponding to each operation.
-
-**Return value**
-
-Return one aligned result per operation: `null` for construction and additions, and the boolean result for each `find`.
+- `TwoSum()`: Initializes an empty `TwoSum` object.
+- `add(number: int) -> None`: Adds `number` ($-10^5 \le \text{number} \le 10^5$) to the data structure.
+- `find(value: int) -> bool`: Returns `true` if any pair of stored numbers sums to `value` ($-10^9 \le \text{value} \le 10^9$), and `false` otherwise.

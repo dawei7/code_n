@@ -22,4 +22,4 @@ Each of the `m` input values is consumed at most once. Every patch at least doub
 - **Maintain every reachable subset sum explicitly:** can require $O(n)$ space and much more work than tracking one continuous boundary.
 - **Patch with the next input value or with one:** may cover the immediate gap poorly or fail to cover it at all, producing extra patches.
 - **Use total input sum alone:** does not prove there are no holes in the representable interval.
-- An empty array is handled by repeatedly doubling coverage. Inputs already spanning `[1,n]` need no patches, and values beyond `n` never need to be consumed.
+- A first input larger than `n` is never consumed, so every gap is patched by doubling coverage. Inputs already spanning `[1,n]` need no patches, and later values beyond `n` likewise need not be consumed.

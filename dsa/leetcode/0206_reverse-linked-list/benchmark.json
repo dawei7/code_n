@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_206",
-  "measurement_note": "Growing linked lists exercise one edge reversal per node.",
+  "measurement_note": "Size is the input node count. One-pass edge rewiring stays linear, while repeatedly locating and extracting the remaining tail grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",

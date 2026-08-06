@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1783",
+    "frontend_id": "1783",
+    "title_slug": "grand-slam-titles",
+    "url": "https://leetcode.com/problems/grand-slam-titles/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`Players = [[1, \"Nadal\"], [2, \"Federer\"], [3, \"Novak\"]], Championships = [[2018, 1, 1, 1, 1], [2019, 1, 1, 2, 2], [2020, 2, 1, 2, 2]]`",
+        "output": "`[[1, \"Nadal\", 7], [2, \"Federer\", 5]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`Players = [[7, \"Serena\"], [8, \"Venus\"]], Championships = [[2021, 7, 7, 7, 7]]`",
+        "output": "`[[7, \"Serena\", 4]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`Players = [[1, \"A\"], [2, \"B\"], [3, \"C\"], [4, \"D\"]], Championships = [[2024, 1, 2, 3, 4]]`",
+        "output": "`[[1, \"A\", 1], [2, \"B\", 1], [3, \"C\", 1], [4, \"D\", 1]]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "00b94ccb651698d9b0363ba6192a0c6a5143d86496d79f706f0695660e7d1379",
+      "reference/contract.md": "c06f573d571d327cd7c44d5da5088ecff9f7e195b5f79caa2f87ebd9efc84fe0",
+      "reference/examples.md": "47af5409eb3c19c9b65b5a38f401ae25b3d877f4de613925493b7eafdd7a914e",
+      "reference/constraints.md": "80a661c1a2cbcf0152b97ed54008d64069a98cda81ef02dda4143e2faa545843"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

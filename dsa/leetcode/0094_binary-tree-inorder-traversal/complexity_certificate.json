@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_94",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The returned inorder list contains one value for every tree node, so linear output work is unavoidable. The current iterative traversal pushes, pops, and emits each node once and matches that bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "For an n-node tree, the contract requires a returned list of exactly n node values in inorder, so any implementation must materialize n output entries and takes Omega(n) time. The current traversal reaches every node once, pushes it once during a left descent, pops it once at its visit, and performs constant work around those operations, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An n-node input requires an n-element returned traversal, and every node value must appear exactly once in that output."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each node is discovered, pushed, popped, and appended exactly once; all other loop work is constant per such event."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover asymmetric and branching trees, empty input, and a single node; black-box real-test execution verifies all existing ordinary checks without inspecting their definitions."
+    }
+  ]
+}

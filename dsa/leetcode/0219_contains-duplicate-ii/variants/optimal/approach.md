@@ -1,17 +1,32 @@
 ## General
-For each value, only its most recent occurrence matters. At index `i`, that occurrence gives the smallest distance from `i` among all earlier equal values; every still earlier occurrence is farther away.
+At position `i`, only equal values among the previous `k` positions can form an allowed pair. Maintain a set representing
+that sliding prefix window rather than retaining information about values that are already too far away.
 
-Maintain a map from value to latest index. Before overwriting an entry, check whether `i - latest[value] <= k`. If so, the two distinct indices witness a valid pair. Otherwise update the entry to `i`, because this occurrence is the best candidate for all future positions.
+Before inserting `nums[i]`, test whether it is in the set. A hit witnesses an earlier equal value whose position differs
+from `i` by at most `k`, so return `true`. Otherwise insert the current value. If `i >= k`, remove `nums[i - k]` after the
+test and insertion so that the set is ready for the next position.
 
-For `[1,2,1,1]` with $k = 1$, the occurrence of `1` at index 2 is too far from index 0, but the map is updated. The next `1` at index 3 is only one position from index 2 and correctly qualifies. Keeping only the first occurrence would miss that pair.
+The removal order matters. Position `i - k` is still exactly distance `k` from `i` and must participate in the current
+membership test. It becomes too old only for position `i + 1`, which is why it is removed at the end of the iteration.
 
-Before index `i`, the map stores the greatest earlier index for each encountered value. If the current value's stored index lies within `k`, a valid equal pair exists. If it lies farther than `k`, every other earlier equal index is smaller and therefore even farther, so none can pair with `i`. Updating to `i` preserves the latest-index property. Thus every current occurrence is compared with the only earlier occurrence capable of giving its minimum distance, and the final result is exact.
+For `[1,2,1,1]` with $k = 1$, the set before position 2 contains only `2`, so the earlier `1` at position 0 is correctly
+ignored. After processing position 2, the window becomes `{1}`; the `1` at position 3 is then detected at distance one.
+
+Assume no pair has yet been returned. Before position `i`, the set contains exactly the values at positions
+$\max(0, i-k)$ through $i-1$. Those values are distinct—otherwise an earlier iteration would already have returned. A
+membership hit is therefore precisely an equal value at an allowed earlier position. After a miss, adding the current
+value and removing the position that will be too old next restores the window invariant. If the scan finishes, no legal
+pair exists.
 
 ## Complexity detail
-Expected $O(1)$ map work per element gives expected $O(n)$ time. The map can contain one entry for every distinct value, using $O(n)$ space.
+Each element is inserted once and removed at most once. Expected $O(1)$ set operations give expected $O(n)$ time. The
+set contains at most `k` previous values, and never more than the input length, so it uses $O(\min(n,k))$ auxiliary space.
 
 ## Alternatives and edge cases
-- A set containing only the previous `k` values uses $O(\min(n,k))$ space, but must expire the value leaving the window in the correct order.
-- Comparing every index with the preceding `k` indices costs $O(nk)$.
-- Storing the first occurrence rather than the latest can miss a closer later pair.
-- $k = 0$ cannot satisfy two distinct indices. Adjacent duplicates qualify whenever $k \ge 1$.
+- **Latest-position map:** Recording the most recent position of every distinct value also gives expected $O(n)$ time,
+  but can retain $O(n)$ entries even when `k` is small.
+- **Preceding-window scan:** Comparing each position with up to `k` predecessors takes $O(nk)$ time.
+- **First occurrence only:** Retaining only the earliest equal value can miss a closer later pair.
+- **Zero distance:** When $k = 0$, each inserted value is removed in the same iteration, so two distinct positions can
+  never qualify.
+- **Adjacent duplicates:** They are detected whenever $k \ge 1$.

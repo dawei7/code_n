@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1107",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected query is concise, conventional expert-interview SQL. The first_logins CTE names the necessary one-row-per-user relation, MIN(activity_date) states newness directly, and the outer grouping makes the daily output grain obvious. There are no opaque aliases, redundant distinct operations, or unnecessary abstractions, so an inert candidate would add churn without a material improvement."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Filtering to login rows before grouping excludes every non-login activity from the definition of newness. Taking the minimum over the complete history prevents a prior login from being hidden by the reporting filter. The closed interval from 2019-04-01 through 2019-06-30 implements a day difference from today between 0 and 90 inclusive. Because the CTE contains one row per user, COUNT(*) counts each user once even when Traffic contains duplicate or repeated login rows."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1107, SQL/MySQL, and the native query entrypoint. Authenticated source evidence confirms the Traffic columns and types, permitted duplicate rows, the exact five-value activity domain, first-login semantics, today 2019-06-30, the at-most-90-day condition, login_date/user_count output, nonzero-date behavior, and unrestricted result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2067675168 share the same login-only first_logins CTE, user grouping, minimum date, post-derivation window filter, daily aggregation, aliases, and projection. Their only executable difference is the necessary dialect expression of the same date predicate: SQLite date subtraction versus MySQL DATEDIFF."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers use U as size and grow through 128, 512, and 2048 users, with two login rows per user. The protected grouped-minimum query passed every correctness and performance result at a 1.01x largest runtime ratio and +0.01 relative growth exponent. An independently correct correlated-minimum control returned every expected result but failed only the scaling verdict at 86.92x and +1.01, so benchmark calibration distinguishes grouped aggregation from quadratic rescanning without conflating performance and correctness."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives login filtering before the per-user minimum, filtering after newness is established, the inclusive day-difference boundaries, and aggregation of the one-row-per-user relation. Its sort-based O(N log N) time and O(U) execution-space bounds match the branch manifest and query, while its alternatives and edge cases cover correlated aggregation, anti-joins, windows, duplicates, boundary dates, prior login history, non-login history, and empty output."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the exact Traffic schema and activity domain, duplicate-row allowance, complete-history first-login rule, at-most-90-day window ending on 2019-06-30, output columns, order freedom, zero-date omission, and the source example with its full explanation."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review verified one explained example, three source tables, and no constraints, hints, notes, follow-up, images, or diagrams. source_fidelity.json binds every composed local section to live content hash 31f99a4ea771308a58e28301d0ad2e7f6e6fcf605b20716d4834e180a1f0c282."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly one example with an explanation. sample-1 preserves all fifteen Traffic rows, both output rows, the nonzero-date observation, and the reason user 5 is excluded from the June 21 count.",
+      "All eight ordinary fixtures are visible samples or trials. They cover both inclusive endpoints, the immediately preceding and following dates, a prior out-of-window login, earlier non-login activities, a user with no login, permitted duplicate rows, repeated logins, multiple independent result dates, and an empty Traffic table.",
+      "An independent Python oracle filters login activities, computes each user's minimum date over the complete input, applies the integer day-difference condition 0 through 90, and counts users by qualifying date. It shares neither SQL aggregation nor the queries' date functions.",
+      "The oracle, protected SQLite query, immutable MySQL query with an independently supplied DATEDIFF implementation, and a correct correlated-minimum control agreed on all eight ordinary cases, all three benchmark tiers, and 5000 databases generated with seed 1107.",
+      "Randomized inputs covered zero through 25 base users, every activity value, zero-event users, duplicate rows, repeated login dates, dates from 2019-01-01 through 2019-07-31, multiple daily groups, and regularly forced exact and adjacent reporting boundaries.",
+      "The three benchmark tiers remain hidden and performance-only, use U consistently as size, and span 16x. The protected query passed scaling at +0.01 and 1.01x; the correct correlated control failed only scaling at +1.01 and 86.92x. benchmark.json required no edit."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "590e1f2c37e7c1df622f08cb6dc2e90118ecf4ea639ce13ffdf93a92b33cba20",
+    "native_source_sha256": "c8bf0477133e2b27e4a9ffc7f9bdb8892e53b5f2817dc9495f512440945774b0",
+    "approach_sha256": "fe3cb4b3cdb2d4848d85627c4500fc535e8def3c6e3749e2cc1273eaa1fb2059",
+    "solution_variants_sha256": "6366f04b784ddc3f0c160ee73b7b58635f3608c1e31ed0532f45aeaf713dcd38",
+    "complexity_evidence_sha256": "9d7d2a971acb1442f62c46492b4cd2486cf4134ca8c0c8634260ead9a1d56836",
+    "cases_sha256": "71e98c846fef6653c6a485d97fb2cb4f65e2b99244109dbca9b679414e87e0d4"
+  }
+}

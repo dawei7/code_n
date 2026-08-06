@@ -17,6 +17,5 @@ Let the input lengths be $n$ and $m$. Building the smaller set and scanning the 
 ## Alternatives and edge cases
 - **Sort both arrays and use two pointers:** takes $O(n \log n + m \log m)$ time but can avoid hash storage when mutating the inputs is acceptable.
 - **Linear membership for every candidate:** can degrade to $O(nm)$, especially when the arrays are disjoint.
-- If either input is empty, the intersection is empty.
-- Negative values and zero are ordinary set keys.
+- Zero is an ordinary set key.
 - Duplicates on either or both sides never create duplicate output values.

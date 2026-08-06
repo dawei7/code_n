@@ -7,7 +7,7 @@
     "app_sha256": "c7b94de9c6c0cf63c795a9ad484c9470bd97de450b8cb722eb6ad1825a2bffce",
     "native_sha256": "937fd3697a5d8aaf76fd3b51530d164a52baa81b32e154c9018cd00a25008891",
     "solution_variants_sha256": "9b795c44c069a2bb1e7dcc8aa915453a7dd8d28c5482263b8a009bf52a396cc8",
-    "approach_sha256": "ca88e5d70b60f6b218a3e9665d3386dcde06016ac6aa147840930bb7cee665ab"
+    "approach_sha256": "6b0e2649caed804341d270a7357f2bc88dd881151c2bf6284dcf4c0ee763d187"
   },
   "classifications": ["sql_dialect"],
   "assertions": {

@@ -1,32 +1,17 @@
 ## General
 **Different speeds turn a cycle into a modular-distance collision**
 
-Advance `slow` by one edge and `fast` by two. Before each fast move, ensure both `fast` and `fast.next` exist. If either is null, the finite next-chain has ended and no cycle exists. Otherwise, if a cycle exists, both pointers eventually enter its finite node set.
+Initialize `slow` and `fast` at `head`. While `fast` and `fast.next` exist, advance `slow` by one edge and `fast` by two. Reaching null proves that the finite `next` chain terminates and therefore has no cycle. Compare node identity rather than values, because distinct nodes may store the same value.
 
-**Inside the cycle, relative distance advances by one**
-
-Once both pointers are inside a cycle of length `c`, fast gains one cycle position per iteration relative to slow. The relative distance therefore visits residues modulo `c` and must reach zero within at most `c` iterations. Compare node identity, not stored value, because distinct nodes may carry equal values.
-
-**Pointer movement either proves termination or preserves the speed ratio**
-
-After each complete iteration, `slow` has followed one edge per step and `fast` two, unless the acyclic end was encountered.
-
-**Trace a self-loop and a longer cycle**
-
-For a one-node self-loop, slow and fast both move back to the same node on the first iteration. In a longer cycle, fast may enter first, but slow eventually enters; from then on their modular gap closes by one position per iteration.
-
-**Relative speed makes meeting equivalent to a cycle**
-
-In an acyclic finite list, the faster pointer eventually reaches null, proving no edge returns to an earlier node. In a cyclic list, both pointers eventually enter the cycle.
-
-Once inside a cycle of length `c`, the fast pointer gains one position on the slow pointer per iteration modulo `c`. That relative gap must become zero within at most `c` steps, forcing a meeting. The algorithm therefore meets exactly when a cycle exists.
+If a cycle exists, both pointers eventually enter it. For a cycle of length $c$, `fast` gains one position on `slow` per iteration modulo $c$, so their relative distance must become zero within at most $c$ further iterations. They then reference the same node and the function returns true. Conversely, two forward traversals cannot revisit the same node at different speeds in an acyclic chain, so a meeting occurs only in a cycle.
 
 ## Complexity detail
-Both pointers traverse at most a constant multiple of `n` distinct-prefix and cycle edges before terminating or meeting, giving $O(n)$ time and $O(1)$ space.
+Let $n$ be the number of reachable nodes. The pointers traverse only a constant multiple of the noncyclic prefix and cycle length before reaching null or meeting, giving $O(n)$ time. Two node references use $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Visited-node set:** is straightforward but uses $O(n)$ space.
-- **Compare node values:** fails when distinct nodes share a value.
+- **Visited-node set:** detects the first repeated identity in $O(n)$ time but uses $O(n)$ auxiliary space.
+- **Compare node values:** fails when distinct nodes contain equal values.
 - **Modify pointers as markers:** destroys caller-owned list structure.
-- An empty list and a one-node list without a self-loop are acyclic. A one-node self-loop is detected on the first movement.
-- Meeting is sufficient for existence; locating the cycle's entry requires the second phase from problem 142.
+- Empty input and a one-node list ending at null are acyclic.
+- A one-node self-loop is detected after the first pair of pointer moves.
+- Detecting a meeting proves existence; locating the entry requires the additional phase used in problem 142.

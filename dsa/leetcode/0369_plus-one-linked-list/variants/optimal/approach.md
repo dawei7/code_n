@@ -5,7 +5,7 @@ Scan the list once and remember the last node whose digit is not nine. Any nodes
 
 **Handle an all-nine number by reusing the original nodes**
 
-When no non-nine node exists, every original digit becomes zero and the result needs a new leading one. Create that one node, link it before the original head, zero the full original list, and return the new head. In the app adapter, constructing `type(head)(1)` preserves the runner-provided node type without defining a competing linked-list class.
+When no non-nine node exists, every original digit becomes zero and the result needs a new leading one. Create that one node as `ListNode(1, head)`, zero the full original list, and return the new head. The app-local source declares the required local equivalent of LeetCode's injected `ListNode` model, so this construction preserves the executable contract.
 
 **Why no other digit changes**
 

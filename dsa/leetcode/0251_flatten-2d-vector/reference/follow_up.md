@@ -1,3 +1,3 @@
 ## Follow-up
 
-As an additional challenge, implement the data structure using only iterators in C++ or only iterators in Java.
+As an added challenge, try to code it using only iterators in C++ or iterators in Java.

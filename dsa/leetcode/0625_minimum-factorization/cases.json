@@ -2,12 +2,185 @@
   "schema_version": 1,
   "challenge_id": "lc_625",
   "cases": [
-    {"id": "sample-1", "name": "sample: combine factors into six and eight", "kind": "sample", "visible": true, "input": {"a": 48}, "expected": 68, "tags": ["sample", "composite-digits"]},
-    {"id": "sample-2", "name": "sample: product fifteen", "kind": "sample", "visible": true, "input": {"a": 15}, "expected": 35, "tags": ["sample", "two-digits"]},
-    {"id": "sample-3", "name": "sample: unsupported prime factor", "kind": "sample", "visible": true, "input": {"a": 13}, "expected": 0, "tags": ["sample", "impossible"]},
-    {"id": "trial-1", "name": "trial: one is already minimal", "kind": "trial", "visible": true, "input": {"a": 1}, "expected": 1, "tags": ["trial", "one-digit"]},
-    {"id": "trial-2", "name": "trial: two threes form digit nine", "kind": "trial", "visible": true, "input": {"a": 36}, "expected": 49, "tags": ["trial", "greedy-grouping"]},
-    {"id": "hidden-1", "name": "hidden: several composite factors", "kind": "real", "visible": false, "input": {"a": 100}, "expected": 455, "tags": ["hidden", "ascending-digits"]},
-    {"id": "hidden-2", "name": "hidden: minimum representation overflows", "kind": "real", "visible": false, "input": {"a": 1073741824}, "expected": 0, "tags": ["hidden", "overflow"]}
+    {
+      "id": "sample-1",
+      "name": "sample: source combines factors into six and eight",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 48
+      },
+      "expected": 68,
+      "tags": [
+        "sample",
+        "source-example",
+        "composite-digits"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: source product fifteen",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 15
+      },
+      "expected": 35,
+      "tags": [
+        "sample",
+        "source-example",
+        "two-digits"
+      ]
+    },
+    {
+      "id": "trial-impossible-prime",
+      "name": "trial: unsupported prime factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 13
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "impossible",
+        "prime-factor"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: one is already minimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "one-digit",
+        "lower-boundary"
+      ]
+    },
+    {
+      "id": "trial-largest-one-digit",
+      "name": "trial: nine is already minimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 9
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "one-digit",
+        "shortcut-boundary"
+      ]
+    },
+    {
+      "id": "trial-first-two-digit-input",
+      "name": "trial: ten factors into two and five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 10
+      },
+      "expected": 25,
+      "tags": [
+        "trial",
+        "two-digit-transition",
+        "prime-factors"
+      ]
+    },
+    {
+      "id": "trial-greedy-grouping",
+      "name": "trial: two threes form digit nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 36
+      },
+      "expected": 49,
+      "tags": [
+        "trial",
+        "greedy-grouping",
+        "composite-digits"
+      ]
+    },
+    {
+      "id": "trial-valid-prime-seven",
+      "name": "trial: valid factor seven combines with six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 42
+      },
+      "expected": 67,
+      "tags": [
+        "trial",
+        "prime-digit",
+        "factor-seven"
+      ]
+    },
+    {
+      "id": "trial-several-composite-factors",
+      "name": "trial: several composite factors form ascending digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 100
+      },
+      "expected": 455,
+      "tags": [
+        "trial",
+        "ascending-digits",
+        "composite-digits"
+      ]
+    },
+    {
+      "id": "trial-largest-valid-result",
+      "name": "trial: largest possible in-range minimum representation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 387420489
+      },
+      "expected": 999999999,
+      "tags": [
+        "trial",
+        "output-boundary",
+        "power-of-nine"
+      ]
+    },
+    {
+      "id": "trial-result-overflow",
+      "name": "trial: minimum representation exceeds signed 32-bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1073741824
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "overflow",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "trial-maximum-input",
+      "name": "trial: maximum signed-32-bit input is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 2147483647
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "maximum-input",
+        "impossible"
+      ]
+    }
   ]
 }

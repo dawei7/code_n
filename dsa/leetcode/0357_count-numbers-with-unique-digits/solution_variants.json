@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Numbers with Unique Digits and meets the required complexity bound.",
+      "summary": "Extends the exact-length digit permutation product once per length and accumulates those disjoint counts.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

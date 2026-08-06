@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_427",
+    "frontend_id": "427",
+    "title_slug": "construct-quad-tree",
+    "url": "https://leetcode.com/problems/construct-quad-tree/description/",
+    "paid_only": false,
+    "content_sha256": "2a6479680520d448265a04a6e8634a6d2033e4d25c21abe2dd148eb5abfa7ed1",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "grid = [[0,1],[1,0]]",
+        "output": "[[0,1],[1,0],[1,1],[1,1],[1,0]]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0]]",
+        "output": "[[0,1],[1,1],[0,1],[1,1],[1,0],null,null,null,null,[1,0],[1,0],[1,1],[1,1]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 5,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c7b68a3fe0cdc7119de88108c64c1dd018e5dc75d38e9965a8a15d69f5734f93",
+      "reference/contract.md": "0dc947ebc3135251095be72f7cd6b78bc9883c9f58a9c098762731c149509ca9",
+      "reference/examples.md": "1b26d3a50dc3bbad732fd7ddd372d73102aa909370c9a1b6e33dc12b90beed54",
+      "reference/constraints.md": "987d579dfbfa2d7ec003cf2c6303bd500cf61b98b54be3aa4148a3fc3a2e671e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

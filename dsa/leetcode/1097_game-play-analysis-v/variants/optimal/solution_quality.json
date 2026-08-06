@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1097",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL is concise, conventional, and interview-ready. The installs CTE names the one-row-per-player cohort seed, next_day states the role of the exact-date join, and averaging a binary indicator expresses the retention fraction directly. The left join visibly preserves non-returning players in the denominator, while the composite primary key prevents fan-out. No material correctness, robustness, complexity, clarity, or maintainability defect justifies a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Grouping Activity by player_id and taking MIN(event_date) assigns every player exactly one install date. The left join matches that player only on the following calendar day; because (player_id, event_date) is unique, each install row has at most one retained match. COUNT(*) is therefore the cohort size, and AVG of one for a match and zero for no match is exactly retained players divided by installs. Grouping by install_dt keeps cohorts independent, ROUND(..., 2) supplies the required precision, later logins do not count, zero-game rows remain logins, and empty Activity yields no groups."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1097, SQL/MySQL, and the native query entrypoint. Authenticated source evidence confirms the four Activity columns, composite primary key, possibly-zero games count, first-login install definition, exact-next-calendar-day retention numerator, per-install-date denominator, two-decimal rounding, install_dt/installs/Day1_retention output, and unrestricted result order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2067617043 share the same installs CTE, player grouping, minimum-date derivation, left-join keys, binary retention indicator, cohort aggregation, aliases, projection, and grouping. Their sole executable difference is the required dialect adaptation from SQLite date(install_dt, '+1 day') to MySQL DATE_ADD(install_dt, INTERVAL 1 DAY)."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The three hidden workloads grow fully retained cohorts through 64, 256, and 1024 players, with two Activity rows per player so grouping and exact-next-day matching process the complete relation. The exact protected query passed all seven visible cases and all three tiers with relative growth exponent +0.00 and a 1.00x largest runtime ratio. An independently correct non-sargable correlated control preserved every correctness and benchmark output but failed only the scaling verdict at +0.75 and 9.30x, distinguishing the stated O(A log A) grouped join from repeated Activity scans."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives one install row per player, an exact-next-date left join, primary-key protection against fan-out, and aggregation of a binary retention indicator over each cohort. Its conservative sort-based O(A log A) time and O(A) working-space bounds match the branch manifest and query, and its alternatives and edge cases correctly cover window minima, correlated rescanning, later returns, absent returns, separate install dates, and zero games played."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves the four-column Activity schema, composite primary key, login and possibly-zero games semantics, first-login installation, exact next-calendar-day retention, independent cohort counting, two-decimal rounding, three output columns, and unrestricted order. Its sole source example retains all five Activity rows, both output rows, and both explanation steps across three complete source-equivalent tables."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review of the live Premium statement verified one schema section, the install and day-one-retention definitions, unrestricted output order, exactly one explained source example, three source table structures, and no separate constraints, hints, notes, or follow-up. source_fidelity.json binds the independently written modular Reference to live content hash e7e5bc5c2e21eb817a5e4a4e77534fe861c3c86e366eb33a7d0b57691f32ef6c and validates with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly one example. Its exact five Activity rows, two cohort rows, and explanation of player 1's return, player 3's absence, and player 2's zero-retention cohort appear first as sample-1.",
+      "All seven ordinary correctness fixtures are visible samples or trials. They cover full, zero, and partial retention; two-decimal rounding; exact-day rather than later-return semantics; independent cohorts; single-login players; zero games; device changes; year and leap-day rollovers; and empty Activity.",
+      "Every nonempty fixture respects the (player_id, event_date) primary key. The empty boundary uses the runtime's explicit columns-plus-rows encoding so all four Activity columns remain available to the query.",
+      "An independent Python oracle finds each player's minimum date, builds that player's set of activity dates, groups players by the minimum, checks membership of minimum plus one calendar day, and rounds the resulting fraction with decimal half-up semantics. It neither executes SQL nor depends on device_id or games_played.",
+      "The oracle, protected app-local query, immutable native query after its single MySQL-to-SQLite date-expression adaptation, and independently correct correlated control agreed on all ten authored correctness-plus-benchmark fixtures. They also agreed on 5000 deterministic random schema-valid databases with zero through 24 players, shared cohorts, multiple independent dates, exact and later returns, zero games, changing devices, shuffled row order, leap/year boundaries, and three explicit boundary databases.",
+      "The 64-, 256-, and 1024-player workloads remain hidden and performance-only, use size consistently as player count, contain exactly two rows per player, and span 16x. The slower correlated control failed only scaling at +0.75 and 9.30x, while the protected grouped query passed at +0.00 and 1.00x; benchmark calibration is therefore fit and benchmark.json was not edited."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "5bd2bf6700fd4db267418d3cadfe3ffca81d93bc9aa62076292a9dd14653729d",
+    "native_source_sha256": "3ae1443e08151d439ddfca714592b0cc9303ec4ce68e285807abb5421fcaa40f",
+    "approach_sha256": "d09cec26700a433e7b37aa0a07889890b329f17df2390846ef361b3af06e7c30",
+    "solution_variants_sha256": "3217ca058cfd28f6e69ade0d2a15eee87304bc1e6a590103970ed38deb7232dc",
+    "complexity_evidence_sha256": "716f3283f437a0b214a5c03c581e759e2b8d49c57babb21c1bd32dab909d0298",
+    "cases_sha256": "b6ac9a2aec3b22097582b0b3404eb6e100f0cd85c7eac837952d585dc5806d98"
+  }
+}

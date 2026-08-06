@@ -39,17 +39,21 @@
       "tags": [
         "benchmark",
         "scale-small",
-        "equal-prefix"
+        "equal-prefix",
+        "all-splits"
       ]
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: equal-prefix arrays with n=12",
+      "name": "benchmark: equal-prefix arrays with n=15",
       "kind": "benchmark",
       "visible": false,
-      "size": 12,
+      "size": 15,
       "input": {
         "nums1": [
+          9,
+          9,
+          9,
           9,
           9,
           9,
@@ -75,11 +79,17 @@
           9,
           9,
           9,
+          9,
+          9,
+          9,
           9
         ],
-        "k": 12
+        "k": 15
       },
       "expected": [
+        9,
+        9,
+        9,
         9,
         9,
         9,
@@ -96,17 +106,24 @@
       "tags": [
         "benchmark",
         "scale-medium",
-        "equal-prefix"
+        "equal-prefix",
+        "all-splits"
       ]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: equal-prefix arrays with n=24",
+      "name": "benchmark: equal-prefix arrays with n=30",
       "kind": "benchmark",
       "visible": false,
-      "size": 24,
+      "size": 30,
       "input": {
         "nums1": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
           9,
           9,
           9,
@@ -156,11 +173,23 @@
           9,
           9,
           9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
           9
         ],
-        "k": 24
+        "k": 30
       },
       "expected": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
         9,
         9,
         9,
@@ -189,7 +218,8 @@
       "tags": [
         "benchmark",
         "scale-large",
-        "equal-prefix"
+        "equal-prefix",
+        "all-splits"
       ]
     }
   ]

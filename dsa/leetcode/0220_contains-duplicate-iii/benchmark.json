@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_220",
-  "measurement_note": "Growing active windows use separated values to force all bucket checks.",
+  "measurement_note": "Size is the legal array length n. With indexDiff = n, values separated by 100 and valueDiff = 10 force every bucket and neighbor check without an early match.",
   "cases": [
     {
       "id": "benchmark-scale-1",

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1440",
+    "frontend_id": "1440",
+    "title_slug": "evaluate-boolean-expression",
+    "url": "https://leetcode.com/problems/evaluate-boolean-expression/description/",
+    "paid_only": true,
+    "content_sha256": "7ff1ac240ca6d72d5755fd2ffb8a2527c75dfd2ec8c9a0867d4078238bf66df3",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "variables_table",
+      "expressions_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Variables = [[\"x\",66],[\"y\",77]], Expressions = [[\"x\",\">\",\"y\"],[\"x\",\"<\",\"y\"],[\"x\",\"=\",\"y\"],[\"y\",\">\",\"x\"],[\"y\",\"<\",\"x\"],[\"x\",\"=\",\"x\"]]",
+        "output": "[[\"x\",\">\",\"y\",\"false\"],[\"x\",\"<\",\"y\",\"true\"],[\"x\",\"=\",\"y\",\"false\"],[\"y\",\">\",\"x\",\"true\"],[\"y\",\"<\",\"x\",\"false\"],[\"x\",\"=\",\"x\",\"true\"]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/variables_table.md": "58fe840032330ec367b503df92723598a0c87f893fa99c556ea1e0abb62790d4",
+      "reference/expressions_table.md": "1e3708114ea1f890e4c2017f8eeb9121512837d12ca4aa91257a536994d678b9",
+      "reference/description.md": "1c540fd275ee0102e7ab319312a5a1b8a7e833ff2ad844fb19706b2364b99b2c",
+      "reference/contract.md": "e3800e7c14eb122c5bfe5bdb83c7b4bd9698c8d91bb01915571c8367a4257313",
+      "reference/examples.md": "0367175067e643fde7254ddf54cebdc02eeaf71dbfa119646ac5a80629778e82"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

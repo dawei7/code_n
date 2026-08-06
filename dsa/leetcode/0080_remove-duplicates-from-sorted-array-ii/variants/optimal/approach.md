@@ -22,7 +22,7 @@ In sorted order, a third retained copy of the current value would have to equal 
 If the current value differs from that position, fewer than two equal copies can occupy the retained suffix, so accepting it cannot violate the cap. The first two values are always safe. Processing all input values this way preserves up to two copies of every run and rejects only excess copies.
 
 ## Complexity detail
-One pass reads each element once, giving $O(n)$ time. Read and write indices use $O(1)$ auxiliary space.
+One pass reads each element once, giving $O(n)$ time. The write boundary and loop iterator use $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Delete excess items with list removal:** repeated shifting can take $O(n^2)$ time.

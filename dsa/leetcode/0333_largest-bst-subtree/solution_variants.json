@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Largest BST Subtree and meets the required complexity bound.",
+      "summary": "Combines iterative postorder summaries of BST validity, bounds, size, and the best descendant result.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

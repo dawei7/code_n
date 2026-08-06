@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_612",
+    "frontend_id": "612",
+    "title_slug": "shortest-distance-in-a-plane",
+    "url": "https://leetcode.com/problems/shortest-distance-in-a-plane/description/",
+    "paid_only": true,
+    "content_sha256": "3cac393e79ec418e203615ee12a96286f38e9e2a2bbb15d183e355382da1f02b",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": [
+      "point2d_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Point2D = [[-1,-1],[0,0],[-1,-2]]",
+        "output": "[[1.00]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/point2d_table.md": "8903d91febbde0bca297591f4530d504ab7f6b10c41a5a26262fc6e456c81b5e",
+      "reference/description.md": "dd12d24a49d8c1e7f84b3fed1a5cd35bd3657264fca98c1936a44d96920426f7",
+      "reference/contract.md": "0ae13bb72a4b9bd6db5920b97734ec03a7a10956af8bb3d5f126d2c983cf1fe2",
+      "reference/examples.md": "1dd543f49e47dbcda835787bf602f4f8efbb183f6086ecdd1e0332482ab14861"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

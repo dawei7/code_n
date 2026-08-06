@@ -1,11 +1,11 @@
 ## General
 **Sort so interchangeable occurrences become adjacent siblings**
 
-Sort `nums`, append a copy of the current path as one valid subset, then try positions from `start` onward. At one recursion depth, skip `nums[index]` when `index > start` and it equals `nums[index - 1]`. Those two choices would append the same value to the same prefix and expose equivalent suffix choices.
+Sort `nums`, append a copy of the current path as one valid subset, then try positions from `start` onward. At one recursion depth, skip `nums[i]` when `i > start` and it equals `nums[i - 1]`. Those two choices would append the same value to the same prefix and expose equivalent suffix choices.
 
 **The same value remains legal at a deeper multiplicity level**
 
-The `index > start` condition restricts the skip to siblings. After selecting one copy and recursing with `start = index + 1`, the next equal copy is now the first choice at the deeper level and is allowed. That path represents using two copies rather than exchanging which single copy was used.
+The `i > start` condition restricts the skip to siblings. After selecting one copy and recursing with `build(i + 1)`, the next equal copy is now the first choice at the deeper level and is allowed. That path represents using two copies rather than exchanging which single copy was used.
 
 **Every recursion node represents one unique value multiset**
 

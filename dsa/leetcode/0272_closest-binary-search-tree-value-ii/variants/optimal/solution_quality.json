@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_272",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already the canonical sublinear balanced-BST solution: initialize lazy predecessor and successor stacks around the target, compare their nearest tops, and advance only the selected iterator k times. Both iterator transitions and exhaustion handling are explicit, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies paid-only LeetCode problem 272 and its Python TreeNode contract. The Reference preserves arbitrary output order, unique closest-set guarantee, both examples, all four constraints, and the balanced-tree sublinear follow-up; the contract now defines n and h."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is tied to verified submission 2064297956. Both sources have identical stack initialization boundaries, predecessor and successor advancement, distance comparison, k-step merge, and result; the only structural difference is the required local TreeNode equivalent versus LeetCode's injected model and wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal balanced 31/127/511-node tiers keep k = 8 and center the target between nearby values, exercising both lazy iterators while tree size grows. The current source passes at +0.00 relative exponent and 1.00x largest ratio; a correct full traversal and distance sort passes every output but fails only scaling at +0.68 relative exponent."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach proves the two ordered stack-top invariant and now derives the amortized O(h + k) iterator bound, excludes returned values from O(h) auxiliary space, and explains exhausted-iterator and k = n behavior."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "corrected",
+        "reason": "The hash-bound paid-only Reference remains source-fidelity verified with both examples, all four constraints, and the follow-up intact. Its one source tree image is now represented by one accessible Mermaid tree with matching nodes and edges and passes the Mermaid gate."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source-fidelity-verified examples remain first and in source order as visible samples, with the first expected list restored to the source literal order and validated as unordered",
+      "the former target 4.5, k = 3 trial was removed because equal-distance values 3 and 6 tied at the cutoff and violated the source guarantee of one unique closest set",
+      "the replacement target 4.4 has a strict distance gap after [3, 4, 5], and every authored row with k below n was checked for the same unique-cutoff guarantee",
+      "targets above and below the tree force successor-empty and predecessor-empty behavior respectively",
+      "an exact target with both equidistant neighbors verifies the two-sided merge without ambiguity at the selected-set boundary",
+      "sparse level-order and right-skewed fixtures verify app-local TreeNode construction and lazy iterator spine advancement",
+      "k = n exposes the former hidden all-values row and drains both iterators, while the single-node source example covers k = 1 and n = 1",
+      "one three-node BST covers node values 0 and 10^9 together with targets -10^9 and 10^9",
+      "all eleven expected sets matched an independent full-tree distance ranking, and all outputs have exactly k distinct tree values",
+      "10,000 seeded random legal BSTs through eighty nodes with non-tied cutoff distances matched an independent sorted-value ranking oracle",
+      "the protected current source passed all eleven correctness rows and all three unchanged benchmark tiers through the real-test engine; benchmark outputs and runtime scaling passed",
+      "all eleven correctness rows use unordered-list validation and remain visible samples or trials, while the unchanged balanced 31, 127, and 511-node workloads remain hidden performance-only benchmarks"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "5c356b640f00b946a13fef6a2c865ca10b2e983ef3e3b79d926ee7f6d036f498",
+    "native_source_sha256": "813560b861eeba32d52f217e7deaa11c48f424f081898a735c5fece570495e6f",
+    "approach_sha256": "1ac7a49031425243b202fffdb408c06b207813b77ffad3bbef8ae9de0a0fb0e0",
+    "solution_variants_sha256": "3176b7ac01546dba1ea5500a0e9ad03aa61912a924e61ad04f360c22150ec934",
+    "complexity_evidence_sha256": "7057ee9e8871d0cf759f8ab7887b3fcf2744047092bfeccc130ffa17111947f9",
+    "cases_sha256": "ddd6ff2565951467631b87e0ee41b004b19aa3014e67f02aee8819c7c6695137"
+  }
+}

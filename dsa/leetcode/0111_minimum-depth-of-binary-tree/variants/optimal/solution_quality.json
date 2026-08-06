@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_111",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "08f2d927c18d07b3d324c5cae36331f6b96aa4c202cf626a837c559775a85902",
+    "native_source_sha256": "eda09eb72a4d1599688ef757b4b9b9360c1f9da1b937b2d9ccd878cdbe4b8428",
+    "approach_sha256": "e2bfdea28e3ed65e237ce1283b58ccf48a571a57064ccbfd8585bfa0d40c98d1",
+    "solution_variants_sha256": "2a83ce40760543092233d46eb8159caad2464ce6c79f098c9de6ec10538a961e",
+    "complexity_evidence_sha256": "66ad253b716bf00d9b2dcdb4dcbaec8243490a14f32cb9d30a96dadda108bbcb"
+  }
+}

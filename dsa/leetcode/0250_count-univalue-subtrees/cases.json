@@ -1,6 +1,104 @@
-{"challenge_id":"lc_250","cases":[
-{"id":"sample-four","name":"sample: four univalue subtrees","kind":"sample","visible":true,"input":{"root":[5,1,5,5,5,null,5]},"expected":4,"tags":["sample","mixed"]},
-{"id":"sample-empty","name":"sample: empty tree","kind":"sample","visible":true,"input":{"root":[]},"expected":0,"tags":["sample","boundary"]},
-{"id":"trial-all-one","name":"entire three-node tree qualifies","kind":"trial","visible":true,"input":{"root":[1,1,1]},"expected":3,"tags":["all-equal"]},
-{"id":"real-leaves-only","name":"hidden: unequal root leaves qualify","kind":"real","visible":false,"input":{"root":[1,2,3]},"expected":2,"tags":["hidden","leaves"]}
-]}
+{
+  "challenge_id": "lc_250",
+  "cases": [
+    {
+      "id": "sample-four",
+      "name": "sample: four univalue subtrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [5, 1, 5, 5, 5, null, 5]
+      },
+      "expected": 4,
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: empty tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": []
+      },
+      "expected": 0,
+      "tags": ["sample", "empty-tree"]
+    },
+    {
+      "id": "sample-all-five",
+      "name": "sample: every subtree is univalue",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [5, 5, 5, 5, 5, null, 5]
+      },
+      "expected": 6,
+      "tags": ["sample", "all-equal"]
+    },
+    {
+      "id": "trial-single-minimum-value",
+      "name": "single leaf at the minimum node value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [-1000]
+      },
+      "expected": 1,
+      "tags": ["single-node", "minimum-value"]
+    },
+    {
+      "id": "trial-unequal-root",
+      "name": "unequal root leaves still qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [1, 2, 3]
+      },
+      "expected": 2,
+      "tags": ["leaves", "root-mismatch"]
+    },
+    {
+      "id": "trial-uniform-children-mismatch-root",
+      "name": "uniform child subtrees qualify despite a mismatching root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [1, 2, 2, 2, 2, 2, 2]
+      },
+      "expected": 6,
+      "tags": ["child-subtrees", "root-mismatch"]
+    },
+    {
+      "id": "trial-deep-mismatch",
+      "name": "an equal child cannot hide a mismatching descendant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [1, 1, null, 2]
+      },
+      "expected": 1,
+      "tags": ["deep-mismatch", "postorder"]
+    },
+    {
+      "id": "trial-right-skewed-maximum-value",
+      "name": "one-sided uniform tree at the maximum node value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [1000, null, 1000, null, 1000]
+      },
+      "expected": 3,
+      "tags": ["sparse-tree", "maximum-value"]
+    },
+    {
+      "id": "trial-maximum-node-count",
+      "name": "complete-prefix uniform tree with one thousand nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+      },
+      "expected": 1000,
+      "tags": ["maximum-node-count", "all-equal"]
+    }
+  ]
+}

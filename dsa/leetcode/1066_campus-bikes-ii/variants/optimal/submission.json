@@ -2,13 +2,15 @@
   "schema_version": 1,
   "provider": "leetcode.com",
   "status": "verified",
-  "question_id": "1067",
+  "question_id": "1066",
   "frontend_id": "1066",
   "title_slug": "campus-bikes-ii",
   "paid_only": true,
   "language": "python3",
   "source": "solutions/leetcode.py",
-  "native_entrypoint": "Solution.assignBikes",
-  "verified_submission_id": "2067478383",
-  "verified_at": "2026-07-14T14:38:00.924465+00:00"
+  "verified_submission_id": "2065539810",
+  "verified_at": "2026-07-12T22:22:11.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T15:40:00.000000+00:00"
 }

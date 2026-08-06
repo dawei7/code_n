@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Height Trees and meets the required complexity bound.",
+      "summary": "Peels complete leaf layers until only the tree's one or two centers remain.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

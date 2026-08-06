@@ -15,7 +15,8 @@ Applying this local transformation at every node exchanges the left and right su
 Every node is processed once for $O(n)$ time. The explicit stack can hold $O(n)$ nodes in the worst case.
 
 ## Alternatives and edge cases
-- **Recursive DFS:** is concise but uses call-stack depth.
-- **Level-order queue:** has the same bounds.
-- **Swap values only:** does not invert structure.
-- Empty and single-node trees are unchanged. An absent child is simply swapped to the other side, so asymmetric trees need no special branch.
+- **Recursive DFS:** It is concise but uses call-stack depth and can approach the recursion limit on a skewed tree.
+- **Level-order queue:** It has the same time and worst-case auxiliary-space bounds.
+- **Value-only exchange:** Swapping stored values does not invert the tree's structure.
+- **Empty or singleton tree:** It is unchanged.
+- **Missing child:** A lone child simply moves to the opposite side, so asymmetric trees need no special branch.

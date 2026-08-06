@@ -4,7 +4,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three recent hits",
+      "name": "sample: complete five-minute hit-counter trace",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,21 +24,36 @@
           [
             "getHits",
             4
+          ],
+          [
+            "hit",
+            300
+          ],
+          [
+            "getHits",
+            300
+          ],
+          [
+            "getHits",
+            301
           ]
         ]
       },
       "expected": [
+        3,
+        4,
         3
       ],
       "tags": [
         "sample",
+        "source-example",
         "window"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: oldest hit expires at 301",
-      "kind": "sample",
+      "id": "trial-source-boundary-subsequence",
+      "name": "trial: oldest hit expires at 301",
+      "kind": "trial",
       "visible": true,
       "input": {
         "operations": [
@@ -73,14 +88,14 @@
         3
       ],
       "tags": [
-        "sample",
+        "trial",
         "boundary"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: query empty counter",
-      "kind": "sample",
+      "id": "trial-query-empty-counter",
+      "name": "trial: query empty counter",
+      "kind": "trial",
       "visible": true,
       "input": {
         "operations": [
@@ -94,7 +109,7 @@
         0
       ],
       "tags": [
-        "sample",
+        "trial",
         "empty"
       ]
     },
@@ -162,10 +177,10 @@
       ]
     },
     {
-      "id": "hidden-slot-reuse",
-      "name": "hidden: reused ring slot resets count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-slot-reuse",
+      "name": "trial: reused ring slot resets count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -190,15 +205,15 @@
         1
       ],
       "tags": [
-        "hidden",
+        "trial",
         "reuse"
       ]
     },
     {
-      "id": "hidden-mixed-bursts",
-      "name": "hidden: burst counts across window edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-bursts",
+      "name": "trial: burst counts across window edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -241,15 +256,15 @@
         2
       ],
       "tags": [
-        "hidden",
+        "trial",
         "boundary"
       ]
     },
     {
-      "id": "hidden-late-empty",
-      "name": "hidden: all history eventually expires",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-empty",
+      "name": "trial: all history eventually expires",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -270,8 +285,38 @@
         0
       ],
       "tags": [
-        "hidden",
+        "trial",
         "expired"
+      ]
+    },
+    {
+      "id": "trial-maximum-timestamp-window",
+      "name": "trial: maximum timestamp separates ages 299 and 300",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "hit",
+            1999999700
+          ],
+          [
+            "hit",
+            1999999701
+          ],
+          [
+            "getHits",
+            2000000000
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "boundary",
+        "maximum-timestamp"
       ]
     }
   ]

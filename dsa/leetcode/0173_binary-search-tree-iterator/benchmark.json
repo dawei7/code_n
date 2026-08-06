@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_173",
-  "measurement_note": "Right-skewed trees exercise lazy inorder advancement across every node and the height-bounded stack.",
+  "measurement_note": "Right-skewed trees make every next call advance into a new right subtree. Across each tier, the iterator performs all n lazy inorder steps, distinguishing amortized O(1) advancement from retraversing the full tree for every returned value.",
   "cases": [
     {
       "id": "benchmark-scale-1",

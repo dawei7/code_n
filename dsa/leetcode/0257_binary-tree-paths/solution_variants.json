@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Binary Tree Paths and meets the required complexity bound.",
+      "summary": "Carries each root prefix through one depth-first traversal and emits it exactly when a leaf is reached.",
       "time_complexity": "O(n + output)",
       "space_complexity": "O(h)"
     }

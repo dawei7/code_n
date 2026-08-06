@@ -2,13 +2,15 @@
   "schema_version": 1,
   "provider": "leetcode.com",
   "status": "verified",
-  "question_id": "760",
+  "question_id": "758",
   "frontend_id": "758",
   "title_slug": "bold-words-in-string",
   "paid_only": true,
   "language": "python3",
   "source": "solutions/leetcode.py",
-  "native_entrypoint": "Solution.boldWords",
-  "verified_submission_id": "2065974107",
-  "verified_at": "2026-07-13T09:58:44.204607+00:00"
+  "verified_submission_id": "2065518112",
+  "verified_at": "2026-07-12T21:56:12.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T15:15:00.000000+00:00"
 }

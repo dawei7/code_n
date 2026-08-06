@@ -2,12 +2,12 @@
 
 **Example 1**
 
-- Input: `s = "eceba"`
-- Output: `3`
-- Explanation: The substring `"ece"` has length `3` and uses only two distinct characters.
+- **Input:** `s = "eceba"`
+- **Output:** `3`
+- **Explanation:** The substring is `"ece"` which its length is 3.
 
 **Example 2**
 
-- Input: `s = "ccaabbb"`
-- Output: `5`
-- Explanation: The substring `"aabbb"` has length `5` and contains only `a` and `b`.
+- **Input:** `s = "ccaabbb"`
+- **Output:** `5`
+- **Explanation:** The substring is `"aabbb"` which its length is 5.

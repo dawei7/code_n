@@ -24,7 +24,7 @@ Let `n = len(nums)`. Each of the `target` positive totals examines up to `n` val
 - **Top-down memoized recursion:** evaluates the same remaining-target states and has the same asymptotic bounds, with recursion overhead.
 - **Uncached sequence recursion:** repeats identical remaining sums and grows exponentially.
 - **Number-first coin-change DP:** counts unordered multisets instead of ordered sequences and is semantically incorrect here.
-- A target of zero has one empty sequence, which supplies the recurrence's base case.
+- The internal zero-sum state contains one empty sequence, which supplies the recurrence's base case.
 - A number larger than the current total cannot be the final value.
 - If no number can build the target, the count remains zero.
 - Distinct input values prevent duplicate transitions representing the same appended number.

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Convex Polygon and meets the required complexity bound.",
+      "summary": "Checks that every noncollinear turn around the ordered boundary has one orientation.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

@@ -95,7 +95,9 @@
           ]
         ]
       },
-      "validator": {"kind": "unordered_table"},
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "sample",
         "all-categories",
@@ -147,7 +149,9 @@
           ]
         ]
       },
-      "validator": {"kind": "unordered_table"},
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "trial",
         "single-user"
@@ -204,7 +208,9 @@
           ]
         ]
       },
-      "validator": {"kind": "unordered_table"},
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "trial",
         "both"
@@ -267,17 +273,19 @@
           ]
         ]
       },
-      "validator": {"kind": "unordered_table"},
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
         "trial",
         "user-count"
       ]
     },
     {
-      "id": "real-user-changes-category",
-      "name": "hidden: one user has different categories by date",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-user-changes-category",
+      "name": "trial: one user has different categories by date",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Spending": [
@@ -348,17 +356,19 @@
           ]
         ]
       },
-      "validator": {"kind": "unordered_table"},
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
-        "real",
+        "trial",
         "date-isolation"
       ]
     },
     {
-      "id": "real-mixed-amounts",
-      "name": "hidden: both amounts are added while user counts once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-amounts",
+      "name": "trial: both amounts are added while user counts once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Spending": [
@@ -429,17 +439,19 @@
           ]
         ]
       },
-      "validator": {"kind": "unordered_table"},
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
-        "real",
+        "trial",
         "aggregation"
       ]
     },
     {
-      "id": "real-three-dates",
-      "name": "hidden: complete grid for three dates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-dates",
+      "name": "trial: complete grid for three dates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Spending": [
@@ -534,10 +546,85 @@
           ]
         ]
       },
-      "validator": {"kind": "unordered_table"},
+      "validator": {
+        "kind": "unordered_table"
+      },
       "tags": [
-        "real",
+        "trial",
         "multiple-dates"
+      ]
+    },
+    {
+      "id": "trial-zero-amount-users",
+      "name": "zero-amount purchases still count their users",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spending": [
+            {
+              "user_id": 1,
+              "spend_date": "2024-04-04",
+              "platform": "desktop",
+              "amount": 0
+            },
+            {
+              "user_id": 2,
+              "spend_date": "2024-04-04",
+              "platform": "mobile",
+              "amount": 0
+            },
+            {
+              "user_id": 3,
+              "spend_date": "2024-04-04",
+              "platform": "desktop",
+              "amount": 0
+            },
+            {
+              "user_id": 3,
+              "spend_date": "2024-04-04",
+              "platform": "mobile",
+              "amount": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "spend_date",
+          "platform",
+          "total_amount",
+          "total_users"
+        ],
+        "rows": [
+          [
+            "2024-04-04",
+            "desktop",
+            0,
+            1
+          ],
+          [
+            "2024-04-04",
+            "mobile",
+            0,
+            1
+          ],
+          [
+            "2024-04-04",
+            "both",
+            0,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "trial",
+        "zero-amount",
+        "user-count",
+        "all-categories"
       ]
     }
   ]

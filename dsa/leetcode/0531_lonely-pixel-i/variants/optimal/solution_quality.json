@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_531",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source is the conventional optimal matrix solution: one nested scan builds explicit row and column black-pixel counts, and one readable Boolean generator counts cells satisfying both conditions. The names, control flow, and absence of unnecessary structures make an inert candidate materially unjustified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 531 and its Python picture-to-integer contract. The implementation distinguishes row and column dimensions, tests that the candidate cell itself is black, requires exact uniqueness on both axes, and returns only the requested count."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2065255595. It and the protected app source have identical dimension extraction, counter allocation, nested coordinate scan, black-cell increments, final coordinate iteration, three-part loneliness condition, and Boolean sum; only the native class/type wrapper differs."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The dense picture workloads contain 64, 256, and 1024 cells, span 16x, and force a naive method to rescan full rows and columns for every black pixel. The protected source passed all 10 correctness cases and all three performance tiers, including the legal 500 by 500 boundary. A correct repeated-rescan control passed every output but failed only the runtime verdict with relative growth exponent +0.46 and a 10.84x largest runtime ratio."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The current-targeted Approach exactly describes the two counter arrays, first-pass increments, second-pass Boolean conjunction, and completeness of the stored totals. Its O(rows * cols) time and O(rows + cols) auxiliary-space claims account for every scan and allocation."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves the black/white representation, exact same-row and same-column definition, both source examples, the first explanation, all four constraints, and source order. Both source images were independently recreated as accessible tables with the same pixels and loneliness relationships."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples now appear first and in source order with their exact pictures and counts. The missing dense 3 by 3 picture was restored.",
+      "The two invented samples were relabelled as trials, both formerly hidden correctness cases are now visible trials, and every fixture is a nonempty rectangular matrix containing only B and W.",
+      "Boundaries cover 1 by 1 black and white pictures, distinct row and column dimensions, one-row input, and the legal 500 by 500 maximum with coordinates on opposite boundaries.",
+      "Material semantics cover all-white and dense pictures, multiple black pixels sharing a row or column, isolated black pixels, mixed lonely and non-lonely candidates, rectangular layouts, and zero, one, two, and three qualifying pixels.",
+      "An independent direct row-and-column rescan oracle verified all ten correctness cases and all three benchmark outputs. The protected implementation also agreed on all 682 pictures up to 3 by 3 and 1,000 randomized pictures.",
+      "All ten correctness cases are visible samples or trials; the unchanged 64-, 256-, and 1,024-cell dense workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "e07c8f0cc78f69423ff93d50c4b2aef3edbbbc2ea7c38f8c7634db9cc43fb886",
+    "native_source_sha256": "0cdab3e83877e10264c97dde7d92b23ba295eacda3563fb56af0171831b9b8a3",
+    "approach_sha256": "dcf2fd80e4093a7b3bf76dae871965f2ece36c7b95ef260bbc38afeb5eaa3e44",
+    "solution_variants_sha256": "07a495c88a0744a35383a2e95421254a6dcf298f4ef7ec0c4c6c54048b103c01",
+    "complexity_evidence_sha256": "37517508a5c0193ca017226ecfa171a6e0ac3bd2745b78faf16d177d3c7f772f",
+    "cases_sha256": "e8dae14e5a64a259d439b96cb00c8cc15e63d3c1979ded936a05359c63cf9c97"
+  }
+}

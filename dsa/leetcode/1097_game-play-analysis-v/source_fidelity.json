@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1097",
+    "frontend_id": "1097",
+    "title_slug": "game-play-analysis-v",
+    "url": "https://leetcode.com/problems/game-play-analysis-v/description/",
+    "paid_only": true,
+    "content_sha256": "e7e5bc5c2e21eb817a5e4a4e77534fe861c3c86e366eb33a7d0b57691f32ef6c",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "activity_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Activity = [[1,2,\"2016-03-01\",5],[1,2,\"2016-03-02\",6],[2,3,\"2017-06-25\",1],[3,1,\"2016-03-01\",0],[3,4,\"2016-07-03\",5]]",
+        "output": "[[\"2016-03-01\",2,0.50],[\"2017-06-25\",1,0.00]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/activity_table.md": "c588597ddbb2a6a05eb17eeec99735582b38e7e59cececfa328199857619665d",
+      "reference/description.md": "0fb793be92010790ca195555493f976975d54f946eca5fcae81f16ac7cbf7c57",
+      "reference/contract.md": "ac23365ba40cf72f11411a43d55d3d96e8af991b4afce4badbd925347b85229a",
+      "reference/examples.md": "6af99aeca5d746e127c3bdcd7293acdeda8164fd06186bf4a2635605dd12d639"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ## General
 **Start with every interior index active.** On the first round, any interior position might be a strict peak or valley. Evaluate all of them against the unchanged current array and collect their signed updates without applying any update early.
 
-**Apply one simultaneous batch.** After every active position has been evaluated, add the collected `+1` or `-1` changes. This preserves the rule that all decisions in a round use the same prior values. The endpoints are never active and therefore never change.
+**Apply one simultaneous batch.** After every active position has been evaluated, add the collected `+1` or `-1` changes. This preserves the rule that all decisions in a round use the same prior values; iteration order within the active set cannot affect the batch because evaluation performs no writes. The endpoints are never active and therefore never change.
 
 **Restrict the next frontier.** If a position did not change and neither neighbor changed, its complete three-value neighborhood is identical on the next round, so it still cannot change. Consequently, only a changed index and its immediate interior neighbors need reevaluation. Build the next active set from those positions. When a batch contains no updates, the array is stable everywhere: every omitted position has an unchanged neighborhood, and every active position was just shown not to be a strict extremum.
 
@@ -15,4 +15,4 @@ The initial frontier contains $O(n)$ indices. Each of the $C$ actual updates con
 - **Already stable array:** The first evaluation produces no updates and returns the input values unchanged.
 - **Equal neighbor:** The comparison is strict; equality with either neighbor prevents an update in that direction.
 - **Endpoint:** Positions `0` and `n - 1` remain fixed even if they would be extrema.
-- **Direction reversal:** An element may change in different directions on later rounds, so frontier membership—not a permanent per-index direction—is tracked.
+- **Direction reversal:** An element may change in different directions on later rounds, so frontier membership—not a permanent per-position direction—is tracked.

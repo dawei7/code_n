@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Graph Valid Tree and meets the required complexity bound.",
+      "summary": "Rejects any edge count other than n - 1, then uses path-compressed union-find with union by size to detect a cycle.",
       "time_complexity": "O(n + e)",
       "space_complexity": "O(n)"
     }

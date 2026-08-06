@@ -9,7 +9,7 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for The Earliest Moment When Everyone Become Friends and meets the required complexity bound.",
-      "time_complexity": "O(m \\log m + m\\alpha(n))",
+      "time_complexity": "O(n + m \\log m + m\\alpha(n))",
       "space_complexity": "O(m + n)"
     }
   ]

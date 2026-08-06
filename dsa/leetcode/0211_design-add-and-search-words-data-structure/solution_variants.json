@@ -8,8 +8,8 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Add and Search Words Data Structure and meets the required complexity bound.",
-      "time_complexity": "O(B^L)",
+      "summary": "Stores words in a trie and advances an iterative frontier across literal and wildcard query positions.",
+      "time_complexity": "O(L B^d)",
       "space_complexity": "O(T)"
     }
   ]

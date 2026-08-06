@@ -19,4 +19,5 @@ Each value participates in a constant number of stack operations over its lifeti
 ## Alternatives and edge cases
 - **Transfer on every push:** preserves FIFO order but costs $O(n)$ per insertion.
 - **One dynamic-array stack with front deletion:** violates the intended stack-operation model and front deletion is linear.
-- `empty` is true only when both stacks are empty; valid `pop` and `peek` calls occur only on non-empty queues.
+- **Emptiness:** `empty` is true only when both stacks are empty.
+- **Valid front access:** the contract calls `pop` and `peek` only when the logical queue is non-empty.

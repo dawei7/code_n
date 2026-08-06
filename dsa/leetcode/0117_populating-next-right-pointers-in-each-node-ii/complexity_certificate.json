@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_117",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "A wide binary tree requires a linear number of horizontal next links to be established. Reusing each completed level as the parent traversal path matches that bound with constant auxiliary storage.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Complete trees are legal arbitrary binary trees, and across their levels all but one node per level receive non-null next pointers, yielding Theta(n) required link assignments. The current method scans each node once through an established level chain and appends each existing child once through head and tail pointers, for O(n) total time and O(1) auxiliary space."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "A complete legal input requires non-null next links for all but the rightmost node of each level, which is Theta(n) mutations."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Every node is scanned once as a parent and appended at most once as a child using only current-level, head, and tail pointers."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a sparse cross-parent bridge and the empty tree; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

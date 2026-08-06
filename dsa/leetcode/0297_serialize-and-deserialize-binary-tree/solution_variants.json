@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Serialize and Deserialize Binary Tree and meets the required complexity bound.",
+      "summary": "Uses iterative preorder with explicit null markers, giving an unambiguous linear-time binary-tree codec.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

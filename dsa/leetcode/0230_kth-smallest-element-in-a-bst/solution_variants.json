@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Kth Smallest Element in a BST and meets the required complexity bound.",
+      "summary": "Performs iterative inorder traversal and stops as soon as the requested rank is reached.",
       "time_complexity": "O(h + k)",
       "space_complexity": "O(h)"
     }

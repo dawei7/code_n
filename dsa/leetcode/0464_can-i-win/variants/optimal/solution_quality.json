@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_464",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical memoized bitmask minimax: arithmetic rejects unreachable targets, each mask represents one used-number subset, and a state wins exactly when it has an immediate winning choice or can hand the opponent a losing state. It is concise and expert interview quality, so no inert candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 464 and its two-integer Python game contract. The O(m * 2^m) time and O(2^m) space claims match at most one cached evaluation per subset, up to m choices per state, and recursion depth at most m; remaining is determined by the used mask."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2064950956. Its nonpositive-target acceptance, unreachable-sum rejection, cached used/remaining state, descending choice order, bit construction and skip, immediate-win test, opponent negation, and initial call are identical to the protected app-local algorithm and data flow; only the LeetCode wrapper differs."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The losing games with 3, 6, and 12 choices span 4x in state bits and force shared subgames reached through different move orders. The current source passed all 7 opaque correctness executions and all three performance tiers at 1.00x the reference runtime. With a transient 10,000,000-line safety allowance so terminating plain minimax could finish, that correct unmemoized control passed every output but failed only the runtime verdict at 3.19x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach now corresponds exactly to the protected target: only nonpositive and unreachable targets are guarded before search, while an immediately reachable target is recognized by the first recursive state. It accurately derives mask sufficiency, minimax quantifiers, memoized subset sharing, asymptotic bounds, and all relevant game boundaries."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the live public statement. It restores the classic 100-game introduction, the no-reuse modification and 1-through-15 illustration, optimal-play requirement, all three exact examples, the complete complementary-response argument for the first example, and both constraints."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "747e99ee31d6d10cc4a799c3b7a592a1371fbee1da6c200d74fe830cec73ef72",
+    "native_source_sha256": "89da5e394b11b0731460b97df0abc085602cc4675017cc2e8fefc6ce28f4c7e0",
+    "approach_sha256": "35ff4081a21289a9e022c056d05982001587a315adce376bc31c899bc03f16d7",
+    "solution_variants_sha256": "62f27781886455450bd78bb7238333961f2821a2ab0f7a705a088a0a58faa698",
+    "complexity_evidence_sha256": "ace98808cc07d061bf7759855db6ea7b5e0359372b76f181e4e3e117014330b6"
+  }
+}

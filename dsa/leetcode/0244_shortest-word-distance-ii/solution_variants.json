@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shortest Word Distance II and meets the required complexity bound.",
+      "summary": "Indexes each word's sorted positions once, then answers every query by merging two occurrence lists.",
       "time_complexity": "O(n + qn)",
       "space_complexity": "O(n)"
     }

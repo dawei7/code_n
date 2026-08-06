@@ -2,5 +2,10 @@
 {"id":"sample-two-digit-range","name":"sample: bounded two-digit range","kind":"sample","visible":true,"input":{"low":"50","high":"100"},"expected":3,"tags":["sample","bounds"]},
 {"id":"sample-zero-only","name":"sample: zero singleton range","kind":"sample","visible":true,"input":{"low":"0","high":"0"},"expected":1,"tags":["sample","zero"]},
 {"id":"trial-through-ten","name":"single-digit valid numbers","kind":"trial","visible":true,"input":{"low":"0","high":"10"},"expected":3,"tags":["boundary"]},
-{"id":"real-inclusive-valid","name":"hidden: both valid endpoints included","kind":"real","visible":false,"input":{"low":"69","high":"96"},"expected":3,"tags":["hidden","inclusive"]}
+{"id":"trial-inclusive-valid","name":"both valid endpoints are included","kind":"trial","visible":true,"input":{"low":"69","high":"96"},"expected":3,"tags":["inclusive","valid-bounds"]},
+{"id":"trial-invalid-singleton","name":"invalid singleton range contributes zero","kind":"trial","visible":true,"input":{"low":"2","high":"2"},"expected":0,"tags":["singleton","invalid-bound"]},
+{"id":"trial-narrow-exclusion","name":"narrow range retains only the interior valid value","kind":"trial","visible":true,"input":{"low":"70","high":"95"},"expected":1,"tags":["bounds","exclusion"]},
+{"id":"trial-cross-lengths","name":"range spans complete two- and three-digit families","kind":"trial","visible":true,"input":{"low":"10","high":"1000"},"expected":16,"tags":["different-lengths","complete-families"]},
+{"id":"trial-maximum-length-singleton","name":"valid 15-digit singleton is included","kind":"trial","visible":true,"input":{"low":"100000000000001","high":"100000000000001"},"expected":1,"tags":["boundary","maximum-length","singleton","inclusive"]},
+{"id":"trial-complete-maximum-domain","name":"complete legal domain through 15 digits","kind":"trial","visible":true,"input":{"low":"0","high":"999999999999999"},"expected":312499,"tags":["boundary","maximum-length","complete-domain"]}
 ]}

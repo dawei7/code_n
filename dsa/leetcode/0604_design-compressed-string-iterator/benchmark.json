@@ -5,12 +5,12 @@
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: inspect a lazy run of 128 characters",
+      "name": "benchmark: inspect a lazy run of 65536 characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 128,
+      "size": 65536,
       "input": {
-        "compressedString": "x128",
+        "compressedString": "x65536",
         "operations": [
           [
             "hasNext"
@@ -28,12 +28,12 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: inspect a lazy run of 512 characters",
+      "name": "benchmark: inspect a lazy run of 1048576 characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 512,
+      "size": 1048576,
       "input": {
-        "compressedString": "x512",
+        "compressedString": "x1048576",
         "operations": [
           [
             "hasNext"
@@ -51,12 +51,12 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: inspect a lazy run of 2048 characters",
+      "name": "benchmark: inspect a lazy run of 16777216 characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 2048,
+      "size": 16777216,
       "input": {
-        "compressedString": "x2048",
+        "compressedString": "x16777216",
         "operations": [
           [
             "hasNext"

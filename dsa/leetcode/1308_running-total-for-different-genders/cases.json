@@ -290,10 +290,10 @@
       ]
     },
     {
-      "id": "hidden-only-female",
-      "name": "hidden: only one gender appears",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-female",
+      "name": "trial: only one gender appears",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Scores": [
@@ -332,15 +332,15 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "single-partition"
       ]
     },
     {
-      "id": "hidden-date-gaps",
-      "name": "hidden: gaps between score dates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-date-gaps",
+      "name": "trial: gaps between score dates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Scores": [
@@ -390,15 +390,15 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "date-gaps"
       ]
     },
     {
-      "id": "hidden-partition-reset",
-      "name": "hidden: second gender starts a separate total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-partition-reset",
+      "name": "trial: second gender starts a separate total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Scores": [
@@ -448,8 +448,121 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "partition-reset"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no recorded scores",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": {
+            "columns": [
+              "player_name",
+              "gender",
+              "day",
+              "score_points"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-signed-scores-and-duplicate-names",
+      "name": "trial: zero and negative scores with repeated player names",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "Alex",
+              "gender": "F",
+              "day": "2024-01-03",
+              "score_points": -4
+            },
+            {
+              "player_name": "Alex",
+              "gender": "F",
+              "day": "2024-01-01",
+              "score_points": 5
+            },
+            {
+              "player_name": "Alex",
+              "gender": "M",
+              "day": "2024-01-01",
+              "score_points": 0
+            },
+            {
+              "player_name": "Bea",
+              "gender": "F",
+              "day": "2024-01-02",
+              "score_points": 0
+            },
+            {
+              "player_name": "Alex",
+              "gender": "M",
+              "day": "2024-01-04",
+              "score_points": -2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2024-01-01",
+            5
+          ],
+          [
+            "F",
+            "2024-01-02",
+            5
+          ],
+          [
+            "F",
+            "2024-01-03",
+            1
+          ],
+          [
+            "M",
+            "2024-01-01",
+            0
+          ],
+          [
+            "M",
+            "2024-01-04",
+            -2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-score",
+        "negative-score",
+        "duplicate-player-name"
       ]
     }
   ]

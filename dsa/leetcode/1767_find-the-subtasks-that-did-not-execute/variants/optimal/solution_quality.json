@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1767",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution uses a recursive CTE (WITH RECURSIVE AllSubtasks) starting with subtask_id = 1 for each task and incrementing subtask_id while subtask_id < subtasks_count. It then filters for valid pairs NOT EXISTS in Executed on (task_id, subtask_id) and orders by task_id ASC, subtask_id ASC. The recursive generation and anti-join solution is canonical, optimal, and concise; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Recursion starting from 1 up to subtasks_count generates every valid (task_id, subtask_id) pair. NOT EXISTS against Executed filters out executed subtasks, leaving exactly the unexecuted subtasks per task."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Generating T total subtasks and probing Executed using an index or hash lookup takes O(T) time and O(T) working space. Complexity evidence is certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs columns task_id and subtask_id, handles tasks with 0 executed subtasks, tasks with all subtasks executed (returning empty), and orders output by task_id ASC, subtask_id ASC."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details recursive CTE domain generation, independent task sequence advancement, NOT EXISTS anti-join filtering, and relational complexity bounds. Alternatives and edge cases cover fixed numbers tables, hardcoded integer unions, left anti-joins, unexecuted tasks, fully executed tasks, non-contiguous missing subtask IDs, multi-task resetting, and sorting guarantees."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical with SHA-256 digest 456b6b7b7986920734db8a76e7919594cf720f184af3eb09dff68f089590116d. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Tasks and Executed schemas, three examples, three constraints, and 5 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "456b6b7b7986920734db8a76e7919594cf720f184af3eb09dff68f089590116d",
+    "native_source_sha256": "456b6b7b7986920734db8a76e7919594cf720f184af3eb09dff68f089590116d",
+    "approach_sha256": "ec1a6ac87103de92e29f5eb6d024d0434b34cfb01e1b0e45ac35845d1c5c3ae5",
+    "solution_variants_sha256": "672eaf7cd0cac086defe6b1b62d132436181a983e519dcde3b7dc9df68d946bb",
+    "complexity_evidence_sha256": "7d26cfe979f66b289468855fd1b2ce0bcbe56683d5d1fe431371842efdb58ca0"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_168",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(\\log n)",
+  "summary": "The verified 32-bit input ceiling limits every legal Excel title to at most seven characters, which is too small for an honest runtime-scaling verdict by output length.",
+  "workload_bound": {
+    "symbol": "k",
+    "maximum": 7,
+    "unit": "output title characters",
+    "source_constraint": "The source-fidelity-verified bound 1 <= columnNumber <= 2^31 - 1 implies a bijective base-26 title of at most seven characters."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each loop iteration subtracts one, performs one division by 26, and appends exactly one output character. The quotient strictly decreases, so there are exactly k iterations and O(k) = O(log n) time with only the output buffer growing."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Black-box real-test execution verifies every existing ordinary check without inspecting its definition, including the app-local conversion and returned-string path."
+    }
+  ]
+}

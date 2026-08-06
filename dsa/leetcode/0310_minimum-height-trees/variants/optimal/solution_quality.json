@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_310",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical leaf-trimming solution. It handles one- and two-node trees directly, removes complete leaf layers with explicit remaining-node accounting, updates each neighbor exactly once per removed edge, and returns a stable sorted center list. Its graph concepts are clearly named, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 310 and its Python findMinHeightTrees surface. The Reference defines tree height in edges, the valid tree guarantees and any-order return contract, preserves both source examples and the first explanation, all six constraints, and accessible diagrams equivalent to both source images."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064368278. Its helper is structurally identical to the protected app-local helper, including sparse adjacency sets, initial leaves, layer-size batching, degree updates, termination, and sorted return; only the permitted wrapper differs."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 32, 128, and 256-node paths span 8x and maximize height while preserving the exact n-1-edge tree contract. The current source passes all nine executions at -0.03 relative growth and 0.96x; a correct BFS from every possible root passes every output but fails only scaling at +1.08 and 141.08x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives simultaneous leaf removal, explains why noncentral leaves cannot be optimal, connects the final one or two nodes to diameter middles, proves completeness, and accounts for one queue insertion per node and linear edge processing. Its special cases match the source."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples, the first height explanation, all six constraints, and independently authored diagrams preserving both source illustrations' graph relationships."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "33d0c322008320f61d505084c61c406424267ff8bd9379284012e31828dd6d99",
+    "native_source_sha256": "e2dc6fccbe5c0b7b90217084bcd70d30cdb9ae2b3ac1d4196caa66a1f97cb85d",
+    "approach_sha256": "2d22af892fd04164e67130127f6cd7785d18bb6eda6f0305b5b53ef9a4afd26a",
+    "solution_variants_sha256": "c29db4b4c3fe4d6130da8ce14e09aa7b0dbd6a7d2931e578e9c09efec3036968",
+    "complexity_evidence_sha256": "6172f4469f984a4e88999de0b0de3216935f6a29891d8b7c0f75651f871435fc"
+  }
+}

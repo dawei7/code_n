@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1747",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution self-joins LogInfo on matching account_id, differing ip_address, and overlapping time intervals (first_session.login <= second_session.logout AND second_session.login <= first_session.logout), selecting DISTINCT account_id ordered by account_id ASC. The self-join solution is canonical, concise, and optimal; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Matching account_id and differing ip_address isolates sessions for the same user from distinct locations. The interval condition login1 <= logout2 AND login2 <= logout1 tests closed time interval overlap completely, and DISTINCT account_id avoids duplicate output rows."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Self-joining R log rows by account_id and comparing timestamps takes worst-case O(R^2) time on all-one-account inputs, or expected O(R log R) / O(R) time with per-account indexing/hashing. Deduplicating B banned accounts uses O(B) space. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs single column account_id, requires distinct IP addresses for temporal overlap violations, and returns each banned account exactly once."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details self-joining LogInfo for distinct IPs, complete interval overlap logic (login1 <= logout2 AND login2 <= logout1), and relational complexity bounds. Alternatives and edge cases cover correlated EXISTS subqueries, sweep line algorithms, same-IP overlaps, different accounts, contained intervals, shared endpoints, multiple violations, and sequential IP usage."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical with SHA-256 digest 4a4cc731580f4fb4d26aec579c84fdcada284de971359017b33d1f43fda6a11d. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed LogInfo schema, three examples, three constraints, and 3 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "4a4cc731580f4fb4d26aec579c84fdcada284de971359017b33d1f43fda6a11d",
+    "native_source_sha256": "4a4cc731580f4fb4d26aec579c84fdcada284de971359017b33d1f43fda6a11d",
+    "approach_sha256": "6dd0c8b8447a06e453ab5c782fd116179f67d43fb52ac977853bce073cb5b317",
+    "solution_variants_sha256": "c5d3441e9f7b3eb4f69ef5805fc12d11487752d7bba6aae23e0fca7ac0b522b0",
+    "complexity_evidence_sha256": "c77e332a1f7c7604a2caa5bf839ddad665bd70038092421ba1effdeb8e988390"
+  }
+}

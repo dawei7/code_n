@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_196",
+  "language": "sql",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.sql",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "time_complexity",
+        "severity": "material",
+        "reason": "The protected SQLite adapter performs a correlated smaller-id search for every row. With no email index, its query plan repeats growing primary-key range scans and measured about 1.44 seconds on 8,192 paired rows, versus about 5 ms for the candidate's single grouped-minimum pass."
+      },
+      {
+        "category": "complexity_claim",
+        "severity": "corrected",
+        "reason": "The branch previously claimed O(n log n), but the immutable MySQL self-join and aligned SQLite correlated query have an O(n^2) worst case under the declared schema. The required bound now states that honest acceptance boundary; the staged candidate improves it to O(n log n)."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The performance tiers now use 32, 96, and 192 Person rows so a correct nested repeated-work control completes every output yet is rejected only by scaling (+1.45 relative exponent and 36.13x largest ratio), while the grouped-minimum candidate passes all three tiers."
+      },
+      {
+        "category": "alignment",
+        "severity": "reviewed",
+        "reason": "The protected app-local and Accepted native sources remain untouched and retain their hash-bound SQLite-versus-MySQL alignment review. The candidate is inert, uses the same minimum-id survivor contract, and is not submission evidence."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "25cb1bf7c4ca46b107c1bc04eabfcc4a4ad8dab9d9602d1a0910dc94c5f8da9d",
+    "native_source_sha256": "91ec03d319a2870d5463007e686f982834dbfd4b5a4befa9a87b2fe754e29750",
+    "approach_sha256": "8b42968bd10ba205a023d7e5535cf7bb4d7d621fd9e4c4b48992d162c49b62aa",
+    "solution_variants_sha256": "e3f7f96910b6cb3e10f7b8613efd45b680397992367db82a460323ba8d9ad76c",
+    "complexity_evidence_sha256": "f7d989252cba6d4dd151ebdbc5fbec5df52916cdf1b047ffc2e6ec88296c2af8",
+    "candidate_source_sha256": "9b56720fe131996df5c279bf5bbd293cf5a6b917b54da5d9fac13c98a85eb9a2"
+  }
+}

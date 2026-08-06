@@ -1,13 +1,13 @@
 ## General
 **Reduce each fixed value to an ordered pair search**
 
-Sort the values and initialize the best sum from any valid first triple. For each fixed index, place pointers at the beginning and end of the remaining suffix. Evaluate that triple and replace the best whenever its distance from the target is smaller.
+Sort the values and initialize the best sum from any valid first triple. For each fixed position `i`, place pointers at the beginning and end of the remaining suffix. Evaluate that triple and replace the best whenever its distance from the target is smaller.
 
 If the sum is below the target, move the left pointer right to increase it. If above, move the right pointer left to decrease it. An exact match can be returned immediately because no smaller distance than zero exists.
 
 **Move only in the direction that can approach the target**
 
-For a fixed index, all pairs outside the current pointer interval have been evaluated or cannot improve in the direction needed. After a sum below target, keeping the same left value with a smaller right value would only decrease the sum further, so discard that left value by advancing it. After a sum above target, keeping the same right value with a larger left value would only increase it further, so discard that right value.
+For a fixed position `i`, all pairs outside the current pointer interval have been evaluated or cannot improve in the direction needed. After a sum below target, keeping the same left value with a smaller right value would only decrease the sum further, so discard that left value by advancing it. After a sum above target, keeping the same right value with a larger left value would only increase it further, so discard that right value.
 
 The stored `closest` is always the best sum among every triple examined so far.
 
@@ -17,7 +17,7 @@ Sort `[-1, 2, 1, -4]` into `[-4, -1, 1, 2]`. With `-4` fixed, pointer movement r
 
 **Why pointer movement cannot hide a closer sum**
 
-Fixing the first sorted index leaves a monotone pair-sum search. If the current total is below the target, moving the right pointer inward can only lower it further, so no pair using the current left value and a smaller right value can be closer from the needed direction; increase the left pointer. The symmetric argument applies above the target.
+Fixing the first sorted position leaves a monotone pair-sum search. If the current total is below the target, moving the right pointer inward can only lower it further, so no pair using the current left value and a smaller right value can be closer from the needed direction; increase the left pointer. The symmetric argument applies above the target.
 
 Each move removes only candidates dominated in the direction required to approach the target, while every evaluated total updates the smallest absolute difference seen. Repeating for every possible first index covers every triple that could improve the answer. An exact target match has zero distance and can return immediately.
 

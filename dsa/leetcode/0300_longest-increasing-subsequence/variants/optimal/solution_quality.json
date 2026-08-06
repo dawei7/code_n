@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_300",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected app-local source stores the lower-bound position in the explicitly prohibited local variable `index`. The single inert candidate preserves the exact patience-sorting algorithm and app contract while using the conventional binary-search position `i`."
+      },
+      {
+        "category": "solution_quality",
+        "severity": "verified",
+        "reason": "Apart from the prohibited local name, the implementation is already the canonical O(n log n) LIS solution. Lower-bound replacement preserves the smallest attainable tail for each length, and appending alone creates a new attainable length. The candidate changes no algorithmic behavior."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 300 and its Python nonempty-integer-array-to-length contract. The Reference preserves strict subsequence semantics, all three source examples in order and the sole explanation, both constraints, and the O(n log n) follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local and native sources remain structurally identical, and the immutable native source remains tied to verified submission 2064357971. The candidate renames only the lower-bound position, is inert, and has not been submitted or represented as Accepted."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 64/192/512-element modular permutations span 8x, remain inside the value and length bounds, and force full predecessor consideration in quadratic dynamic programming. The candidate passes at -0.02 relative exponent and 0.99x largest ratio; the correct quadratic control passes all outputs but fails only scaling at +1.22 and 158.29x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now targets the candidate's `i` position, proves both attainability and coverage of every LIS length, defines n before the manifest bounds, and explicitly separates strict-equality handling from decreasing and all-equal arrays."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains verified against its reviewed source evidence, preserving all three examples and their explanation presence, both constraints, the strict-increase definition, the subsequence order rule, and the source-native follow-up."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "4f67f2100c733bbf80bfb99d8bfda02cf471b101b1209c6057028a63ef5b25cc",
+    "native_source_sha256": "047fa47c673a96c1d5dcb617439cfc787e6364e7e35a58e77e29e993f5faf2fe",
+    "approach_sha256": "bd59666ee23f8cb8c82150045a8303491c2c1fe94c4eb57bc3ac5678dba0d55e",
+    "solution_variants_sha256": "1d3c5b5da7d08191a1cc2f1b59aa94ddc16da92e7d966175886b7286c6aa5488",
+    "complexity_evidence_sha256": "c783338a84befcee7db01f533e0cd2f22095ac7feeb8f4caa65e50b77a54c1ff",
+    "candidate_source_sha256": "db64e599845f9ffe0c69834d89dbedd3b8446ac63b4492c471c77b7b7e5dee25"
+  }
+}

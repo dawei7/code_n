@@ -5,7 +5,7 @@ Use postorder recursion. An empty subtree has height zero. For a real node, firs
 
 **One sentinel carries both height and validity information**
 
-All valid heights are nonnegative, so reserve `-1` to mean “this subtree is unbalanced.” If the left child returns `-1`, return immediately without traversing the right child; if the right child fails or the current height difference exceeds one, return `-1`. Ancestors propagate the sentinel rather than treating it as a numeric height.
+All valid heights are nonnegative, so reserve `-1` to mean "this subtree is unbalanced." If the left child returns `-1`, return immediately without traversing the right child; if the right child fails or the current height difference exceeds one, return `-1`. Ancestors propagate the sentinel rather than treating it as a numeric height.
 
 **The helper has a precise two-case contract**
 

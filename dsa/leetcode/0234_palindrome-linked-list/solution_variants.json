@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Palindrome Linked List and meets the required complexity bound.",
+      "summary": "Reverses and compares the second half in place, then restores the original list topology.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

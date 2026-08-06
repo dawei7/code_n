@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_487",
+    "frontend_id": "487",
+    "title_slug": "max-consecutive-ones-ii",
+    "url": "https://leetcode.com/problems/max-consecutive-ones-ii/description/",
+    "paid_only": true,
+    "content_sha256": "1cc42fc8bfd444ee8983258d114223c3c2380be769462f6d169693f4da2ac687",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,0,1,1,0]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,0,1,1,0,1]",
+        "output": "4",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c0962ca7c2aac22ef34792cba02937a03e0211ae9d051fa3efa8a4e10a36135a",
+      "reference/contract.md": "39b7daebf3f44c614a64c6a031d4940006657e8a9fc7d9146f14a7b543804344",
+      "reference/examples.md": "bba70aded941869c6cd635f78587c9d4cb0a9d052feac8eee048ab1715c93114",
+      "reference/constraints.md": "e2890145e608f5f1c2aa98c3e95ec50d5baf3d9476b196ab83062ab8456db212",
+      "reference/follow_up.md": "65e08576992a59b579b0eb9a8e28d8a39f6d9a1c14e1fdf0bbe6c26a3f092e13"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

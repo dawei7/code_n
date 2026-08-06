@@ -5,6 +5,10 @@
     {"id": "sample-fractional", "name": "sample: fractional base", "kind": "sample", "visible": true, "input": {"x": 2.1, "n": 3}, "expected": 9.261, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["sample"]},
     {"id": "sample-negative", "name": "sample: negative exponent", "kind": "sample", "visible": true, "input": {"x": 2.0, "n": -2}, "expected": 0.25, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["sample", "negative"]},
     {"id": "trial-zero", "name": "zero exponent", "kind": "trial", "visible": true, "input": {"x": -7.5, "n": 0}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["boundary"]},
-    {"id": "real-min-exponent", "name": "hidden: minimum 32-bit exponent", "kind": "real", "visible": false, "input": {"x": 1.0, "n": -2147483648}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["hidden", "integer-boundary"]}
+    {"id": "trial-min-exponent", "name": "minimum 32-bit exponent", "kind": "trial", "visible": true, "input": {"x": -1.0, "n": -2147483648}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["integer-boundary", "negative", "even-exponent"]},
+    {"id": "trial-max-exponent", "name": "maximum 32-bit exponent", "kind": "trial", "visible": true, "input": {"x": -1.0, "n": 2147483647}, "expected": -1.0, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["integer-boundary", "negative-base", "odd-exponent"]},
+    {"id": "trial-zero-base", "name": "zero base with positive exponent", "kind": "trial", "visible": true, "input": {"x": 0.0, "n": 5}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["zero", "contract-guard"]},
+    {"id": "trial-negative-base-negative-exponent", "name": "negative base and negative odd exponent", "kind": "trial", "visible": true, "input": {"x": -2.0, "n": -3}, "expected": -0.125, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["negative-base", "negative-exponent", "odd-exponent"]},
+    {"id": "trial-base-near-lower-bound", "name": "base near strict lower bound", "kind": "trial", "visible": true, "input": {"x": -99.999, "n": 1}, "expected": -99.999, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["boundary", "negative-base"]}
   ]
 }

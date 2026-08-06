@@ -11,7 +11,8 @@ Before processing each position, the set contains exactly the distinct values in
 Expected hash-set insertion and lookup are $O(1)$, giving expected $O(n)$ time. In the all-distinct case the set stores `n` values, using $O(n)$ space.
 
 ## Alternatives and edge cases
-- Sorting places duplicates next to one another but costs $O(n \log n)$ time and may mutate the input.
-- Comparing every pair is $O(n^2)$.
-- Comparing `len(nums)` with `len(set(nums))` is concise and has the same expected bounds, but builds the full set even when a duplicate appears early.
-- Empty and one-element inputs contain no duplicate. Negative values and zero are ordinary keys.
+- **Sorting:** It places duplicates next to one another but costs $O(n \log n)$ time and may mutate the input.
+- **Pairwise comparison:** Comparing every pair takes $O(n^2)$ time.
+- **Whole-set length comparison:** Comparing `len(nums)` with `len(set(nums))` has the same expected bounds, but builds
+  the full set even when a duplicate appears early.
+- **Single value:** A one-element legal input contains no duplicate; negative values and zero are ordinary hash keys.

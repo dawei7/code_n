@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1181",
+    "frontend_id": "1181",
+    "title_slug": "before-and-after-puzzle",
+    "url": "https://leetcode.com/problems/before-and-after-puzzle/description/",
+    "paid_only": true,
+    "content_sha256": "2f79fb02a0d114b00173123e9337b1a50ff6ac278909b725f042f06d0c02ff6c",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "phrases = [\"writing code\",\"code rocks\"]",
+        "output": "[\"writing code rocks\"]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "phrases = [\"mission statement\",\"a quick bite to eat\",\"a chip off the old block\",\"chocolate bar\",\"mission impossible\",\"a man on a mission\",\"block party\",\"eat my words\",\"bar of soap\"]",
+        "output": "[\"a chip off the old block party\",\"a man on a mission impossible\",\"a man on a mission statement\",\"a quick bite to eat my words\",\"chocolate bar of soap\"]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "phrases = [\"a\",\"b\",\"a\"]",
+        "output": "[\"a\"]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 4,
+        "input": "phrases = [\"ab ba\",\"ba ab\",\"ab ba\"]",
+        "output": "[\"ab ba ab\",\"ba ab ba\"]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "1c45646967e952c31dedd9e796ceae4c1bbb9f064e06ca334758020f1ecd3a19",
+      "reference/contract.md": "7b4ff93c60ad7d7f5c5e16623126ac9140b1c2debe339f0d56412890b84fa5f9",
+      "reference/examples.md": "0e4a8e8bf031803dac24820ec454ca8358113712d81af74063e56d4d428165bd",
+      "reference/constraints.md": "db0cf06f09733f156f164b5553563d1838a072b499106f15520951381cedbba5",
+      "reference/hint.md": "8ca3b9b687955966b50bad0004b47c8e2ffcb5f3b37b8405e765efe2ed6a936c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

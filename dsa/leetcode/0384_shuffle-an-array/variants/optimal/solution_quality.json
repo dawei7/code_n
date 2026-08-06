@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_384",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected Fisher-Yates loop uses the prohibited local name index and the unnecessarily verbose swap_index. The inert candidate preserves the exact algorithm and app-local class contract while using the conventional positions i and j."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 384 and its Python Solution reset/shuffle surface. The Reference preserves uniform probability over all permutations, immutable reset semantics, distinct values, the complete source operation example, all four constraints, and the app-local operation-stream adapter."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064666323 and remains algorithmically identical to the protected app-local class apart from annotations and the solve adapter. The inert candidate changes only local loop names and formatting, so no protected evidence was modified."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The former 64-, 192-, and 512-element benchmark tiers violated the source maximum of 50 and were removed. Legal scaling through 50 elements could not reliably reject an explicit quadratic shrinking-list shuffle, so a strict bounded-domain certificate now proves exactly n copied outputs, n - 1 constant-time choices and swaps, O(n) retained storage, and the matching output-size lower bound. Its regression passes both protected app-local and native classes at lengths 1 and 50, verifies every deterministic choice range and reset isolation, and exercises the 10,000-call maximum."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach now describes the candidate's i/j Fisher-Yates loop exactly, derives the 1/n! probability, explains snapshot isolation and state-aware validation, states O(n) time and space, and keeps the distinct-value boundary aligned with the canonical contract."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including the class API, uniform-shuffle requirement, complete source example and explanation, array and value bounds, uniqueness guarantee, and total-call limit."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 7,
+      "correctness_cases_total": 7,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "8ec8c31b97fbc9f51b0d8b1bb46453ad7fd0027ec97f78cfba00e2783910912f",
+    "native_source_sha256": "c480d0759a97751095025415c4cf7d5a988b66218f5383c8da2a4540cb0891ef",
+    "approach_sha256": "ba42c2a7f3e56e1c138c12b3c2bf9f10b80e6070c696dba709954e471bf99433",
+    "solution_variants_sha256": "7714348bca65a5fdd65badef92b9c34fa552c7c2e48563cedbd369dd6c65ee11",
+    "complexity_evidence_sha256": "c92281533312b4b9a855c2322e1453dfa522d1fcc953bb7c3aca9fb2847d6183",
+    "candidate_source_sha256": "8c80dda422273e8cad10f3005b2ffc8cb7923f904104f7458a45095a77337b91"
+  }
+}

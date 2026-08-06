@@ -29,7 +29,7 @@ After each day, classify every legal trading history by whether it ends holding,
 Taking the maximum over each complete predecessor set therefore preserves the best history in every class by induction. A final profit cannot use an unsold share, so `max(sold, rest)` is exactly the optimum.
 
 ## Complexity detail
-Each of the `n` prices performs a constant number of arithmetic operations and comparisons, giving $O(n)$ time. Three previous-state values and three new values use $O(1)$ auxiliary space.
+Let $n$ be the number of prices. Each price performs a constant number of arithmetic operations and comparisons, giving $O(n)$ time. Three previous-state values and three new values use $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Try every buy/sell pair after every prefix:** is correct with dynamic programming but takes $O(n^2)$ time.

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_449",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected deserializer uses the campaign-prohibited local name index for the shared preorder position. The inert candidate changes only that state to cursor, a descriptive name for the genuine reconstruction concept already used by the Approach."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "With that narrow naming correction, the candidate remains the compact canonical BST codec: preorder serialization omits null markers, bounded reconstruction consumes each token once, and all buffers and cursor state remain call-local. No broader algorithmic rewrite is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 449 and its Python Codec surface. The app defines the required minimal TreeNode equivalent and round-trips the input through the same serialize and deserialize methods exposed natively. The modular Reference preserves the compact-string requirement and current nonnegative BST constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064845624 and is algorithmically identical to the protected app Codec apart from annotations and the local TreeNode definition. The candidate preserves preorder token emission, open-bound checks, token consumption, subtree order, and return structure; only index is renamed cursor in inert code."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The 31-, 127-, and 511-node right-spine tiers span more than 16x and force a preorder-insertion alternative to walk a growing path. The candidate passed all 10 opaque correctness executions and all three performance tiers at 1.02x the reference runtime. A correct O(n^2) preorder insertion control passed every output but failed only the runtime verdict at 52.93x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach exactly describes preorder values without null markers, one shared cursor, strict inherited bounds, left-before-right reconstruction, call-local state, and the resulting O(n) time and O(n) token and recursion space. Its cursor terminology now matches the candidate source directly."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Reference was checked against the live public statement. It preserves the serialization purpose, implementation freedom, original-tree round trip, compactness requirement, both exact examples without invented explanations, and all three constraints. The fabricated legacy middle example and unsupported negative-value claim were removed."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "c8542b69a719e2223c8b6b4532b9848f08b99b9bf99b66a4299e30c58c563c81",
+    "native_source_sha256": "15824fcf2e06ae1f107ff9a5d06309223958685b37205a1dde8deeac2e3edbd9",
+    "approach_sha256": "7806a8176e558faeefeaf199db66092649121f49f78e158a296a7ef2260e8bd7",
+    "solution_variants_sha256": "713b05f065842d2af33281487077507ccb0d981477a10d2aa4c552c4f36b211a",
+    "complexity_evidence_sha256": "8c7218d8cf160c7686229324d42caa2619a5245fcd1ad3a6e36e5624c3a0745f",
+    "candidate_source_sha256": "71f672353bb3e4957d36ba90428a0f7b44d4fcc7911d3a114d730bd19c70c213"
+  }
+}

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Validate IP Address and meets the required complexity bound.",
+      "summary": "Selects the delimiter grammar, then validates every IPv4 or IPv6 field exactly.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
     }

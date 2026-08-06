@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Reconstruct Itinerary and meets the required complexity bound.",
+      "summary": "Runs iterative Hierholzer traversal over reverse-sorted destinations and reverses the dead-end route.",
       "time_complexity": "O(E \\log E)",
       "space_complexity": "O(E)"
     }

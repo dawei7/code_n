@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_207",
-  "measurement_note": "Growing prerequisite chains exercise every vertex and directed edge.",
+  "measurement_note": "Size is the course count V; each chain has E = V - 1, so V governs the linear V + E workload. Kahn traversal processes each item once, while prerequisite rescanning grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",

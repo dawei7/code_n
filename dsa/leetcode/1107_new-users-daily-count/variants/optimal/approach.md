@@ -3,7 +3,7 @@
 
 **Filter the derived first-login relation:** The period ends on `2019-06-30`, and subtracting 90 days gives the inclusive lower boundary `2019-04-01`. Keep only derived dates in that closed interval. Non-login activities never enter the minimum, so a homepage visit before a user's first login does not disqualify the later login.
 
-**Aggregate users by first-login date:** Group the remaining one-row-per-user relation by `login_date` and count its rows. Each counted row represents a distinct user, so `COUNT(*)` gives the daily new-user total without another distinct operation. Ordering is added only to make local results stable.
+**Aggregate users by first-login date:** Group the remaining one-row-per-user relation by `login_date` and count its rows. Each counted row represents a distinct user, so `COUNT(*)` gives the daily new-user total without another distinct operation. The contract permits any result order, so no `ORDER BY` clause is required.
 
 Every returned user belongs to the group for that user's minimum login date, which is inside the required interval, so every count is valid. Conversely, any user whose first login falls inside the interval survives the filter exactly once and is counted in the corresponding date group, so no qualifying user is omitted or counted twice.
 

@@ -19,4 +19,4 @@ One value assignment and one pointer assignment take $O(1)$ time and $O(1)$ spac
 ## Alternatives and edge cases
 - **Shift every later value left:** is correct but takes $O(n)$ time.
 - **Search from the head:** is impossible because the head is not supplied.
-- The method requires a successor, which is why the target is guaranteed not to be the tail.
+- **Non-tail guarantee:** the method requires a successor, which is why the target is guaranteed not to be the tail.

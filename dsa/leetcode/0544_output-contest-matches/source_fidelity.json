@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_544",
+    "frontend_id": "544",
+    "title_slug": "output-contest-matches",
+    "url": "https://leetcode.com/problems/output-contest-matches/description/",
+    "paid_only": true,
+    "content_sha256": "6c0d30b7629d295f850a361354d6c1ac9984a0620e6bf91b0e5db49a72b6cc2b",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 4",
+        "output": "\"((1,4),(2,3))\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 8",
+        "output": "\"(((1,8),(4,5)),((2,7),(3,6)))\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "284fd74e88fc741d8dddf498298858399de3b8a0195cc87cb249b2d1fca004bf",
+      "reference/contract.md": "36d041afcd0454466022c7916af6e2c9622b454d8bd07ab93d87b071f4815328",
+      "reference/examples.md": "48df624c59f39892d56863b0e193f7e4f7c08c634d0450cbaf6df21d2bc875f3",
+      "reference/constraints.md": "310e8af853491ac1fa9fa7b5545ffe95975bdc704d4e459053f7b347df339bbf"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

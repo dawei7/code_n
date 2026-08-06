@@ -16,7 +16,7 @@ Binary `11` would suggest incrementing `3` to `4`, taking two more moves to reac
 After either odd move, the result must be halved next. For endings `01`, decrementing yields a smaller quotient than incrementing without sacrificing trailing zeros. For endings `11` above three, incrementing clears at least two low one bits, while decrementing clears only the final one and leaves a value ending in `10`. The increment route reaches a strictly more divisible state no farther from the target, so the greedy choices preserve an optimal path.
 
 ## Complexity detail
-Every one or two operations remove at least one significant binary bit, so the loop performs $O(\log n)$ iterations. The current value and step count use $O(1)$ space.
+Every even operation halves the current value, and at most one odd adjustment occurs between consecutive halvings. An increment can add one leading bit only when the value is an all-ones bit pattern, so that carry contributes at most one additional halving over the whole run. The loop therefore performs $O(\log n)$ iterations. The current value and step count use $O(1)$ space.
 
 ## Alternatives and edge cases
 - **Memoized recurrence:** explores both choices for odd values and caches results, giving a concise correctness baseline with logarithmically many relevant states.

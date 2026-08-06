@@ -1,7 +1,7 @@
 ## General
 **Use sorted-range elimination whenever rotation is visible**
 
-Check the midpoint against the target first. If `nums[left] <= nums[mid]` and ambiguity has been excluded, the left half is nondecreasing. Retain it only when `nums[left] <= target < nums[mid]`; otherwise retain the other half. If the left half is not sorted, the right half is, and the symmetric range test applies.
+Check the midpoint against the target first. If `nums[left] <= nums[middle]` and ambiguity has been excluded, the left half is nondecreasing. Retain it only when `nums[left] <= target < nums[middle]`; otherwise retain the other half. If the left half is not sorted, the right half is, and the symmetric range test applies.
 
 **Equal values at all three probes erase ordering information**
 

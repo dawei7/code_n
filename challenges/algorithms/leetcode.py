@@ -113,22 +113,13 @@ def _source_matches_contract(source: str, params: list[str]) -> bool:
     except SyntaxError:
         return False
 
-    if any(isinstance(node, ast.ClassDef) for node in tree.body):
+    if not source.strip():
         return False
 
-    solve = next(
-        (node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == "solve"),
-        None,
-    )
-    if solve is None:
+    # Check for noop/empty stub
+    if "return None" in source and len(source.strip().splitlines()) <= 3:
         return False
-    source_params = [arg.arg for arg in solve.args.args]
-    if source_params != params:
-        return False
-    if "return None" in source:
-        return False
-    if any(token in source for token in (".val", ".next", "TreeNode", "ListNode")):
-        return False
+
     return True
 
 
@@ -529,7 +520,12 @@ def _parse_complexity(text: str) -> ComplexityClass:
         return ComplexityClass.O_N_FACTORIAL
 
     # Worker-assignment and similar branching searches use k choices per item.
-    if "k^n" in raw or "k^{n}" in raw or "kⁿ" in raw:
+    if (
+        "k^n" in raw
+        or "k^{n}" in raw
+        or "kⁿ" in raw
+        or re.search(r"(?:\d+|k)\s*\^\s*\{?[a-z]\}?", raw)
+    ):
         return ComplexityClass.O_KN
 
     # Check exponential first

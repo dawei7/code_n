@@ -1,7 +1,7 @@
 ## General
 **Measure reusable prefix structure**
 
-Build the KMP prefix table. At position `i`, the table stores the length of the longest proper prefix of `s[:i + 1]` that is also its suffix. On a mismatch, fall back through previously computed borders instead of restarting comparisons, so every character contributes amortized constant work.
+Build the KMP prefix table. For each position `i` from `1` onward, the table stores the length of the longest proper prefix of `s[:i + 1]` that is also its suffix. On a mismatch, fall back through previously computed borders instead of restarting comparisons, so every character contributes amortized constant work.
 
 **Derive the only possible shortest period**
 

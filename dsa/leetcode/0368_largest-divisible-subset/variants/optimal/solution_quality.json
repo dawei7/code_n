@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_368",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the conventional sorted longest-chain dynamic program. It stores one length and predecessor per value, extends only divisible endpoints, tracks one best endpoint, and reconstructs an accepted optimum without copying partial chains. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 368 and its Python largestDivisibleSubset surface. The Reference preserves distinct positive inputs, the pairwise divisibility condition in either direction, maximum cardinality, arbitrary optimal ties, both source examples, and all three constraints."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064618341. Its sorted values, length and predecessor arrays, nested predecessor scan, strict improvement rule, best endpoint update, link traversal, reversal, and return are exactly the protected app-local algorithm apart from the required wrapper and annotations."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal pairwise-incompatible prime tiers contain 4, 8, and 16 distinct values, span 4x, and force exhaustive enumeration through the power set before a singleton optimum. The current source passes all 11 executions at +0.00 relative growth and 1.00x; correct exhaustive subset enumeration passes every benchmark output but fails only scaling at +4.84 and 1190.27x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the sorted divisibility chain, dynamic-programming state and transition, transitivity argument, optimal reconstruction, tie behavior, and O(n^2) time with O(n) auxiliary space. Its alternatives state the correct exponential or copied-chain tradeoffs."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples in order, the first example's accepted tie explanation, the bidirectional pair condition, arbitrary-optimum rule, and all three constraints."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "a118d5d19c70158552dac7ab5b2f209790a03736d99e964baf2c5b4f52177e8b",
+    "native_source_sha256": "f23a2471d0b955cfbfab1bd33f57dda85a99a5866561936483f5915cb23d9a1c",
+    "approach_sha256": "120e0438d314785590d060456ebd4ff7b81274d1b3ffc9ba7dccc3c7b74269fc",
+    "solution_variants_sha256": "a41527b756699db06016cbb5934534e1db56dc28d61746598f5eb508b1a46fec",
+    "complexity_evidence_sha256": "d37bdb17625c7933dc4a196555493748f4d60b1abb8e31c4b5c795f5503fd907"
+  }
+}

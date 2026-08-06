@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_737",
+    "frontend_id": "737",
+    "title_slug": "sentence-similarity-ii",
+    "url": "https://leetcode.com/problems/sentence-similarity-ii/description/",
+    "paid_only": true,
+    "content_sha256": "e168eb2e9b24ad4cf891ff4c1d42b80f05e6d699a7892ee53c5bbe30c1fc59ce",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "sentence1 = [\"great\",\"acting\",\"skills\"], sentence2 = [\"fine\",\"drama\",\"talent\"], similarPairs = [[\"great\",\"good\"],[\"fine\",\"good\"],[\"drama\",\"acting\"],[\"skills\",\"talent\"]]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "sentence1 = [\"I\",\"love\",\"leetcode\"], sentence2 = [\"I\",\"love\",\"onepiece\"], similarPairs = [[\"manga\",\"onepiece\"],[\"platform\",\"anime\"],[\"leetcode\",\"platform\"],[\"anime\",\"manga\"]]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "sentence1 = [\"I\",\"love\",\"leetcode\"], sentence2 = [\"I\",\"love\",\"onepiece\"], similarPairs = [[\"manga\",\"hunterXhunter\"],[\"platform\",\"anime\"],[\"leetcode\",\"platform\"],[\"anime\",\"manga\"]]",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c5842301e1e7d1fd513d5d540a33ff5ccc20c22c30a0322455be4b7cf5d2e09e",
+      "reference/contract.md": "f1f8467f2344c31de0bbd01afb1a16b32c75d355e176a96c4b8e9f0b55864c0b",
+      "reference/examples.md": "f983e27614c4208e46242d6017aaca536a5b29a99991ab9944d287ebe631488b",
+      "reference/constraints.md": "5fb82e163ce1a24bd416d4b7e8bbaa6bb0a00237d3327bab5dd647cc1f2ed692",
+      "reference/hint.md": "fbb7882a15d7b28b25e8c90e5af277cf7705512f9f10793aa79ef18e7a3b3365"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

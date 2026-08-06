@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_574",
+    "frontend_id": "574",
+    "title_slug": "winning-candidate",
+    "url": "https://leetcode.com/problems/winning-candidate/description/",
+    "paid_only": true,
+    "content_sha256": "128b050213eec9dcef825655841c757fde2421c8f8aaa4a2306cb0865a3bdfa5",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": [
+      "candidate_table",
+      "vote_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Candidate = [[1,\"A\"],[2,\"B\"],[3,\"C\"],[4,\"D\"],[5,\"E\"]], Vote = [[1,2],[2,4],[3,3],[4,2],[5,5]]",
+        "output": "[[\"B\"]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/candidate_table.md": "7bfd7a4a0da2e2ac751c213880f7d5d0f9db84aa9c7fb5f7b5165c8e9f4de0e3",
+      "reference/vote_table.md": "9b0dc21c782cd1ee5baa2b0b8c25d3ad712838f4e3b194ce62765f434f222fd2",
+      "reference/description.md": "b5670d87f170c8292d2fe7f008f32e06b16fe7c5ca7a5eec45ff55b5dd80ddfc",
+      "reference/contract.md": "ec326623d3dd252ca2611b2febc778276c74e46bf68159128382a6b3c9d7c624",
+      "reference/examples.md": "2d92eed6c319f99deddc118147dd3e0e39a323d9435fc17c55c8640fa42df0c2"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

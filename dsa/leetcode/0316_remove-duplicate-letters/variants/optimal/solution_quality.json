@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_316",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "candidate",
+        "reason": "The protected greedy monotonic-stack solution is algorithmically strong and concise, but its comprehension and main scan declare the explicitly disallowed local name index. The sole inert candidate preserves the genuine last_index concept and every stack operation while renaming only the scan position to i; protected sources remain unchanged."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 316 and its Python removeDuplicateLetters surface. The Reference preserves exact-once distinct-letter membership, subsequence order, lexicographic minimization, both source examples, both constraints, and the source-native equivalence note for problem 1081."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064375333 and structurally aligned with the protected app-local helper despite app-only collection annotations. The candidate changes local identifiers only, leaving last occurrences, membership skips, recoverable larger-letter pops, appends, and solve contract unchanged."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 256, 2048, and 8192-character tiers span 32x and place a long misleading prefix before the only complete alphabet suffix. The candidate passes all nine executions at -0.00 relative growth and 1.01x; a correct feasibility-by-suffix-rescan implementation passes every output but fails only the runtime verdict at 13.44x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now calls i a position rather than repeating the prohibited identifier. Its recoverable-pop condition, membership invariant, lexicographically smallest feasible-prefix argument, fixed-alphabet space bound, and duplicate and irreplaceable-letter traps match the candidate exactly."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples, both constraints, the lexicographic subsequence requirement, and the source-native equivalence note."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "27b144052f3cb2b914de3ae2469dbe527828a1b63749a890be89238a5a233a1f",
+    "native_source_sha256": "2032763ecec9e53e5c9ec596974c2fb8d3d6cb4fe3c52f28a3d4cdbb4a9b31f8",
+    "approach_sha256": "4b413c574783bff66c9667b258b3ac820dd8a727785609834cfade909d8715a2",
+    "solution_variants_sha256": "839cdf965759b4cd7d7e8cb3f0fffea6bb51455af7a79401fc291d9a754bb349",
+    "complexity_evidence_sha256": "a323400667f238eccb8db671800c3f2751c654e9db95e3cb0bf6068726e7366d",
+    "candidate_source_sha256": "5b2a0349ac26eef0561dca93296f90e3af7913b434311227b0c0ef76ca639c53"
+  }
+}

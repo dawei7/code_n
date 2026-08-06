@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Guess Number Higher or Lower II and meets the required complexity bound.",
+      "summary": "Fills an interval minimax table by choosing the first guess that minimizes the worse remaining branch.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n^2)"
     }

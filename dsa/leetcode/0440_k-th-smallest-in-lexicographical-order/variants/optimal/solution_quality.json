@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_440",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is the conventional implicit decimal-prefix trie traversal. subtree_size, prefix, first, following, size, and remaining expose the prefix interval and one-based-rank conversion directly; skip and descend branches mirror lexicographic preorder. No inert candidate would materially improve its clarity or complexity."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 440 and its Python two-integer surface. The executable solve signature and native findKthNumber method accept the same inclusive bound and one-based rank and return the selected integer. The modular Reference preserves both current source examples, the complete displayed order in the first explanation, and the single chained constraint."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064820556. Both implementations count the same clipped decimal-prefix intervals through n + 1, start at prefix 1 with k - 1 remaining moves, compare the same subtree size, skip the same sibling or descend to the same child, and return the same prefix; only the required wrapper differs."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The 512-, 2048-, and 8192-value tiers span 16x and request the final lexicographic position, forcing a materialize-and-sort alternative to process the whole range. The protected source passed all 10 opaque correctness executions and all three performance tiers at 0.99x the reference runtime. A correct O(n log n) sorting control passed every output but failed only the runtime verdict at 1.65x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly models lexicographic order as prefix preorder, derives clipped subtree sizes from adjacent prefix boundaries, explains the k - 1 offset and skip-versus-descend updates, proves rank preservation, and matches O(d^2) time with O(1) auxiliary space."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Reference was checked against the live public statement. It preserves the exact range and one-based lexicographic selection, both example facts in order, the first example's full 13-value ordering and conclusion, the second example's lack of explanation, and the sole constraint. The statement contains no images, tables, diagrams, notes, or follow-up."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "9767397b2a293e624d9a87c0493cdb6936e5c6562dd1aa470040b4068b800ca8",
+    "native_source_sha256": "d0afcd1de540193bddadbf27515d03a6c36e2449f4fc76a1cf59dfa821692c61",
+    "approach_sha256": "e56da28525dad80da81492c465077b8ab873ddd4c325e03c2f6364dc4c4ac719",
+    "solution_variants_sha256": "aab4a5f6af2c78b51c90c005010ac97fb5a41378ef79ec69ab3e5e9104dde32a",
+    "complexity_evidence_sha256": "c455dbdf4057ef9222e13a84fc2adf7df28f811d4154293f1b7a1c4702e98034"
+  }
+}

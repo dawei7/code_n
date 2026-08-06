@@ -42,9 +42,9 @@
                 }
             },
             "expected": [
-                "http://news.yahoo.com/news/topics/",
                 "http://news.yahoo.com",
                 "http://news.yahoo.com/news",
+                "http://news.yahoo.com/news/topics/",
                 "http://news.yahoo.com/us"
             ],
             "validator": {
@@ -147,33 +147,36 @@
         },
         {
             "id": "trial-no-links",
-            "name": "start page with no links is returned alone",
+            "name": "one maximum-length URL with no links is returned alone",
             "kind": "trial",
             "visible": true,
             "input": {
-                "startUrl": "http://solo.com/home",
+                "startUrl": "http://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
                 "htmlParser": {
                     "urls": [
-                        "http://solo.com/home"
+                        "http://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                     ],
                     "edges": []
                 }
             },
             "expected": [
-                "http://solo.com/home"
+                "http://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             ],
             "validator": {
                 "kind": "unordered_list"
             },
             "tags": [
-                "no-links"
+                "no-links",
+                "minimum-url-count",
+                "maximum-url-length",
+                "maximum-hostname-label"
             ]
         },
         {
-            "id": "real-duplicate-edges",
-            "name": "hidden: duplicate links do not duplicate results",
-            "kind": "real",
-            "visible": false,
+            "id": "trial-duplicate-edges",
+            "name": "duplicate links do not duplicate results",
+            "kind": "trial",
+            "visible": true,
             "input": {
                 "startUrl": "http://a.com",
                 "htmlParser": {
@@ -205,15 +208,14 @@
                 "kind": "unordered_list"
             },
             "tags": [
-                "hidden",
                 "duplicate-links"
             ]
         },
         {
-            "id": "real-lookalike-host",
-            "name": "hidden: hostname lookalike is not accepted",
-            "kind": "real",
-            "visible": false,
+            "id": "trial-lookalike-host",
+            "name": "hostname lookalike is not accepted",
+            "kind": "trial",
+            "visible": true,
             "input": {
                 "startUrl": "http://a.com",
                 "htmlParser": {
@@ -246,15 +248,14 @@
                 "kind": "unordered_list"
             },
             "tags": [
-                "hidden",
                 "hostname-boundary"
             ]
         },
         {
-            "id": "real-off-host-bridge",
-            "name": "hidden: traversal cannot cross another host and return",
-            "kind": "real",
-            "visible": false,
+            "id": "trial-off-host-bridge",
+            "name": "traversal cannot cross another host and return",
+            "kind": "trial",
+            "visible": true,
             "input": {
                 "startUrl": "http://a.com",
                 "htmlParser": {
@@ -282,8 +283,50 @@
                 "kind": "unordered_list"
             },
             "tags": [
-                "hidden",
                 "off-host-bridge"
+            ]
+        },
+        {
+            "id": "trial-trailing-slash",
+            "name": "trailing slash distinguishes two same-host URLs",
+            "kind": "trial",
+            "visible": true,
+            "input": {
+                "startUrl": "http://slash.com",
+                "htmlParser": {
+                    "urls": [
+                        "http://slash.com",
+                        "http://slash.com/",
+                        "http://slash.com/path"
+                    ],
+                    "edges": [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            0
+                        ]
+                    ]
+                }
+            },
+            "expected": [
+                "http://slash.com",
+                "http://slash.com/",
+                "http://slash.com/path"
+            ],
+            "validator": {
+                "kind": "unordered_list"
+            },
+            "tags": [
+                "trailing-slash",
+                "distinct-urls",
+                "cycle"
             ]
         }
     ]

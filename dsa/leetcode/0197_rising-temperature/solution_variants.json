@@ -8,8 +8,8 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Rising Temperature and meets the required complexity bound.",
-      "time_complexity": "O(n \\log n)",
+      "summary": "Transforms each previous date once and uses direct equality to find the following calendar day.",
+      "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
     }
   ]

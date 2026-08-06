@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1429",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected implementation is the canonical expert-interview solution: a frequency map determines eligibility, a deque preserves first-occurrence order, and lazy front cleanup gives constant amortized work without middle deletion. The state, names, and control flow are compact and defensible, so no material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "A value enters the deque exactly on its first occurrence. Because frequencies only increase, a deque entry whose count exceeds one is permanently stale and can be removed safely when it reaches the front. After cleanup, every earlier candidate is non-unique and the surviving front has frequency one, making it the earliest current unique value; an empty deque proves that none exists."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent oracle rebuilt a Counter from the complete arrival history and scanned that history from the beginning for every query. The oracle, protected app adapter, exact immutable native FirstUnique class, and a separately written full-rescan control agreed on all nine visible cases and all three benchmark tiers."
+      },
+      {
+        "category": "randomized_validation",
+        "severity": "verified",
+        "reason": "Seed 1429 generated 5,000 source-valid object lifecycles containing 312,390 initial values and 548,416 later calls: 315,514 additions and 232,902 queries. Coverage included 1,020 single-value initial arrays, 1,525 all-equal arrays, 1,580 all-unique arrays, both numeric endpoints, repeated queries in 4,861 traces, and 146 traces ending without a unique value. Every implementation matched the direct-history oracle."
+      },
+      {
+        "category": "contract_boundaries",
+        "severity": "verified",
+        "reason": "A separate legal boundary trace used exactly 100,000 initial values and exactly 50,000 later calls, the source maxima, and correctly ended at -1 in both protected and native implementations. Visible cases exercise the minimum initial length and values 1 and 100,000,000."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "Across three real-test repetitions, the protected solution passed all twelve selected outputs and scaling with extra growth exponent -0.01 and largest-tier ratio 0.98x through 0.99x. The O(q squared) rescanning control passed every output but failed only scaling on every repetition, with relative growth exponent +0.53 through +0.57 over the +0.15 limit."
+      },
+      {
+        "category": "benchmark_contract",
+        "severity": "verified",
+        "reason": "The three benchmark tiers remain hidden and performance-only. Their positive unique sizes q=31, 127, and 511 span more than 16x and alternate front-invalidating additions with queries, giving lazy cleanup linear total work while forcing a history rescan to quadratic total work. The slower control completes normally and fails only scaling, so benchmark.json was not edited."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The complete Approach now states the deque eligibility and arrival-order invariants, proves permanent staleness and the empty-deque result, distinguishes per-call worst-case cleanup from amortized expected O(1) operations, and derives O(n+q) total time and space. It covers linked-list, ordered-map, heap/set, and rescan alternatives plus repeated queries, high frequencies, absence, single input, and numeric boundaries."
+      },
+      {
+        "category": "case_quality",
+        "severity": "corrected",
+        "reason": "All nine ordinary correctness cases are now visible. The three authenticated source examples remain exact. The former empty-initial-array trial was removed because it violated the source constraint, the former hidden frequency case is visible, and added trials cover order stability, counts above two, both value endpoints, repeated queries, multi-entry lazy cleanup, initial duplicates, and no revival."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode design problem 1429 and Python as the active language. Reviewed artifacts preserve nonempty initialization, append-only updates, earliest-current-unique semantics, -1 absence behavior, values from 1 through 100,000,000, initial length through 100,000, and at most 50,000 combined query and add calls."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app FirstUnique class and immutable native class bound to verified submission 2069073389 use the same constructor-through-add initialization, count transition, first-occurrence append, lazy front removal, and return behavior. The app adds only the required operation-trace adapter; both sources and submission.json remain byte-for-byte unchanged, and no candidate exists."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed the queue narrative, all three class operations, exactly three examples with full explanations, four constraints, and three hints, with no tables, images, diagrams, notes, or follow-up. source_fidelity.json binds five modular Reference files to live-content SHA-256 219f64808625aec3c05aa49fbaefe8cfe077fba4762be178c812813078fb3d7f and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three authenticated source examples exactly, including every source explanation",
+      "minimum initial length, maximum initial length, maximum later-call count, and both value endpoints",
+      "all-equal, all-unique, initial-duplicate, no-unique, and later-unique streams",
+      "arrival-order stability, repeated queries, frequencies above two, multiple stale fronts, and permanent non-uniqueness",
+      "5,000 seeded legal object lifecycles checked by a direct-history oracle and two independent controls",
+      "three hidden performance-only tiers spanning q=31 through q=511 with repeatable quadratic-rescan discrimination"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "19c8637156fac91112d82b9c58d9befa6ce8597a909f176b6a68ace47002198c",
+    "native_source_sha256": "744f8ca6d4d1d871a200649eb83f318a3b209e13928b81abc4d0c5bf46664456",
+    "approach_sha256": "3dd877bacbba9ce3dd9bbb2b6e78ad5f504bca6c3409f338a2635a66b87d0ddc",
+    "solution_variants_sha256": "ccaad6f5f2f59f26982f41fdeae14e38d71049c6c9bb431711e36dec347732e5",
+    "complexity_evidence_sha256": "cd1b22b64d0ef9cc1bb1a7514d92291242b6d9b1421f4336406a2a1c99752b95",
+    "cases_sha256": "f9acd8e43c91366e736fa05803ef23596539d9c54c188a6080d55462c3ccf8e2"
+  }
+}

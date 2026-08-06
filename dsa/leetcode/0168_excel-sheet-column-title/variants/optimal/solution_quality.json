@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_168",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "complexity",
+        "severity": "material",
+        "reason": "The 32-bit source ceiling limits every legal title to at most seven characters, so the former 1/4/7 timing tiers could not provide honest asymptotic scaling. A bounded-domain certificate now proves one division and one emitted character per loop iteration."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 5,
+      "correctness_cases_total": 5,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "338bca3e36b21cb2d60afb9fa426b96e82b6e681ebedc36f13c730c58a3efbbf",
+    "native_source_sha256": "9a00a0affd14754af5f983e3930a186c7e4153a606b9e742130096baa640b417",
+    "approach_sha256": "5764a3830a0296b8fd74a5271208802435f54d0cf60c1266d7f680e504f7b104",
+    "solution_variants_sha256": "66f3e348da9479bdfaf720706af538993e4b4ec19cb6e553ed6e34d2f85866b9",
+    "complexity_evidence_sha256": "66414d02d6411ffc37c81efa65ef2e24cd451b5f0111ad9ee917b2c23904cba4"
+  }
+}

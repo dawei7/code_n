@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_17",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n \\cdot 4^n)",
+  "summary": "Worst-case legal inputs have four letter choices at every digit, and the required result materializes every length-n combination, so the output lower bound already matches the backtracking upper bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n * 4^n)",
+    "upper_bound": "O(n * 4^n)",
+    "argument": "For an input made only of 7 and 9, the result contains exactly 4^n distinct strings of length n. Returning that list requires Omega(n * 4^n) character materialization, while the depth-first search visits each combination once and joins exactly n path characters at each leaf."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "A worst-case input has 4^n required outputs, each containing n characters, so any eager implementation must materialize Omega(n * 4^n) output characters."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The candidate explores one tree edge per chosen letter, reuses an n-character path, and performs one O(n) join for each of at most 4^n leaves."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "An independent Cartesian-product oracle checks every legal digit string of lengths 1 through 4 against the app-local and immutable native implementations; the candidate is checked through the same complete domain."
+    }
+  ]
+}

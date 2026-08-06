@@ -32,5 +32,5 @@ For source length `n`, each character examines at most `m = len(t)` target posit
 - **Enumerate source subsequences:** explores exponentially many index sets.
 - **Two-dimensional DP:** is correct in $O(nm)$ time but uses $O(nm)$ space.
 - **Update target positions forward:** reuses one source character multiple times and overcounts.
-- An empty target has one subsequence in every source. A nonempty target cannot be formed from an empty source or when `len(t) > len(s)`.
+- When `len(t) > len(s)`, no valid index selection exists and the result is zero.
 - Large answers may exceed narrow integer types; use the numeric width guaranteed by the platform language contract.

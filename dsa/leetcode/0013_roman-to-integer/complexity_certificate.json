@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_13",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "Every legal input is the canonical Roman representation of an integer from 1 through 3,999 and has at most 15 symbols, so the source domain is too narrow for honest runtime scaling.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 15,
+    "unit": "Roman symbols",
+    "source_constraint": "The source contract requires 1 <= |s| <= 15 and guarantees a valid numeral representing a value in [1, 3999]."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The solution performs one constant-work iteration per symbol, uses only a fixed seven-symbol mapping and scalar state, and therefore executes at most 15 iterations on the legal domain."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "An independent digit-place encoder generates the canonical numeral for every integer from 1 through 3,999 and verifies both app-local and immutable native decoders, while the candidate is checked separately through the same complete domain."
+    }
+  ]
+}

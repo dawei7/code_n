@@ -26,6 +26,14 @@
           [
             "check",
             2
+          ],
+          [
+            "release",
+            2
+          ],
+          [
+            "check",
+            2
           ]
         ]
       },
@@ -34,7 +42,8 @@
         1,
         true,
         2,
-        false
+        false,
+        true
       ],
       "validator": {
         "kind": "phone_directory_trace",
@@ -43,13 +52,14 @@
       },
       "tags": [
         "sample",
+        "source-example",
         "allocation"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: exhausted one-number directory",
-      "kind": "sample",
+      "id": "trial-exhausted-single",
+      "name": "trial: exhausted one-number directory",
+      "kind": "trial",
       "visible": true,
       "input": {
         "max_numbers": 1,
@@ -72,14 +82,14 @@
         "operations_param": "operations"
       },
       "tags": [
-        "sample",
+        "trial",
         "exhausted"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: release and reuse",
-      "kind": "sample",
+      "id": "trial-release-and-reuse",
+      "name": "trial: release and reuse",
+      "kind": "trial",
       "visible": true,
       "input": {
         "max_numbers": 2,
@@ -111,7 +121,7 @@
         "operations_param": "operations"
       },
       "tags": [
-        "sample",
+        "trial",
         "release"
       ]
     },
@@ -186,10 +196,10 @@
       ]
     },
     {
-      "id": "hidden-release-middle",
-      "name": "hidden: released allocation returns to pool",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-release-middle",
+      "name": "trial: released allocation returns to pool",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "max_numbers": 3,
         "operations": [
@@ -223,15 +233,15 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
+        "trial",
         "release"
       ]
     },
     {
-      "id": "hidden-check-transitions",
-      "name": "hidden: checks reflect allocation and release",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-check-transitions",
+      "name": "trial: checks reflect allocation and release",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "max_numbers": 2,
         "operations": [
@@ -268,15 +278,15 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
+        "trial",
         "check"
       ]
     },
     {
-      "id": "hidden-repeated-exhaustion",
-      "name": "hidden: exhaustion remains stable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-exhaustion",
+      "name": "trial: exhaustion remains stable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "max_numbers": 1,
         "operations": [
@@ -302,7 +312,7 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
+        "trial",
         "exhausted"
       ]
     }

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_527",
+    "frontend_id": "527",
+    "title_slug": "word-abbreviation",
+    "url": "https://leetcode.com/problems/word-abbreviation/description/",
+    "paid_only": true,
+    "content_sha256": "0aa4edb006a79a2baea72044f2a541d3ad0d46ae8fe737b884036fbd8e1029ca",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "abbreviation_rules", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "words = [\"like\",\"god\",\"internal\",\"me\",\"internet\",\"interval\",\"intension\",\"face\",\"intrusion\"]",
+        "output": "[\"l2e\",\"god\",\"internal\",\"me\",\"i6t\",\"interval\",\"inte4n\",\"f2e\",\"intr4n\"]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "words = [\"aa\",\"aaa\"]",
+        "output": "[\"aa\",\"aaa\"]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8336163afa74ed02d170f9e5f0033fcf9f15a4b226e469e6ddb046e78fda9600",
+      "reference/contract.md": "3da7c880467e49cf6454e917066ee930cba9536139c13eda06ecd8365fd99098",
+      "reference/abbreviation_rules.md": "87def5a52be7af67d5a7dfddcd1ddd5b63047de5e47d3d991500f8474d8f2c13",
+      "reference/examples.md": "e432bcc063af3e3b106eab2b15c58af89c22e786c91d27fa9a03fd2a64cea7b5",
+      "reference/constraints.md": "8cf846a5e9f8cdd2be283c79cfeddc51c662d14f2d4f5b636d1dbc655e549a4a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

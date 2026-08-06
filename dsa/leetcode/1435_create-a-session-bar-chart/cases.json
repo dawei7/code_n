@@ -3,400 +3,179 @@
   "challenge_id": "lc_1435",
   "cases": [
     {
-      "id": "sample-chart",
-      "name": "sample: populated and empty intervals",
+      "id": "sample-source-example",
+      "name": "source example: populated and empty intervals",
       "kind": "sample",
       "visible": true,
       "input": {
         "tables": {
           "Sessions": [
-            {
-              "session_id": 1,
-              "duration": 30
-            },
-            {
-              "session_id": 2,
-              "duration": 199
-            },
-            {
-              "session_id": 3,
-              "duration": 299
-            },
-            {
-              "session_id": 4,
-              "duration": 580
-            },
-            {
-              "session_id": 5,
-              "duration": 1000
-            }
+            {"session_id": 1, "duration": 30},
+            {"session_id": 2, "duration": 199},
+            {"session_id": 3, "duration": 299},
+            {"session_id": 4, "duration": 580},
+            {"session_id": 5, "duration": 1000}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "bin",
-          "total"
-        ],
-        "rows": [
-          [
-            "[0-5>",
-            3
-          ],
-          [
-            "[5-10>",
-            1
-          ],
-          [
-            "[10-15>",
-            0
-          ],
-          [
-            "15 or more",
-            1
-          ]
-        ]
+        "columns": ["bin", "total"],
+        "rows": [["[0-5>", 3], ["[5-10>", 1], ["[10-15>", 0], ["15 or more", 1]]
       },
-      "tags": [
-        "sample",
-        "empty-bin"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "source-example", "empty-bin"]
     },
     {
-      "id": "sample-boundaries",
-      "name": "sample: exact interval boundaries",
-      "kind": "sample",
+      "id": "trial-all-boundaries",
+      "name": "zero and both sides of every interval boundary",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Sessions": [
-            {
-              "session_id": 1,
-              "duration": 299
-            },
-            {
-              "session_id": 2,
-              "duration": 300
-            },
-            {
-              "session_id": 3,
-              "duration": 599
-            },
-            {
-              "session_id": 4,
-              "duration": 600
-            },
-            {
-              "session_id": 5,
-              "duration": 899
-            },
-            {
-              "session_id": 6,
-              "duration": 900
-            }
+            {"session_id": 1, "duration": 0},
+            {"session_id": 2, "duration": 299},
+            {"session_id": 3, "duration": 300},
+            {"session_id": 4, "duration": 599},
+            {"session_id": 5, "duration": 600},
+            {"session_id": 6, "duration": 899},
+            {"session_id": 7, "duration": 900}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "bin",
-          "total"
-        ],
-        "rows": [
-          [
-            "[0-5>",
-            1
-          ],
-          [
-            "[5-10>",
-            2
-          ],
-          [
-            "[10-15>",
-            2
-          ],
-          [
-            "15 or more",
-            1
-          ]
-        ]
+        "columns": ["bin", "total"],
+        "rows": [["15 or more", 1], ["[10-15>", 2], ["[5-10>", 2], ["[0-5>", 2]]
       },
-      "tags": [
-        "sample",
-        "boundaries"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "boundaries", "unordered-result"]
     },
     {
-      "id": "sample-first-only",
-      "name": "sample: sessions occupy only first bin",
-      "kind": "sample",
+      "id": "trial-first-only",
+      "name": "sessions occupy only the first interval",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Sessions": [
-            {
-              "session_id": 1,
-              "duration": 42
-            },
-            {
-              "session_id": 2,
-              "duration": 120
-            }
+            {"session_id": 41, "duration": 42},
+            {"session_id": 73, "duration": 120}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "bin",
-          "total"
-        ],
-        "rows": [
-          [
-            "[0-5>",
-            2
-          ],
-          [
-            "[5-10>",
-            0
-          ],
-          [
-            "[10-15>",
-            0
-          ],
-          [
-            "15 or more",
-            0
-          ]
-        ]
+        "columns": ["bin", "total"],
+        "rows": [["[0-5>", 2], ["[5-10>", 0], ["[10-15>", 0], ["15 or more", 0]]
       },
-      "tags": [
-        "sample",
-        "zero-counts"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "zero-counts", "noncontiguous-ids"]
     },
     {
       "id": "trial-each-bin",
-      "name": "one session in every interval",
+      "name": "one session at every interval lower bound",
       "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Sessions": [
-            {
-              "session_id": 1,
-              "duration": 0
-            },
-            {
-              "session_id": 2,
-              "duration": 300
-            },
-            {
-              "session_id": 3,
-              "duration": 600
-            },
-            {
-              "session_id": 4,
-              "duration": 900
-            }
+            {"session_id": 1, "duration": 0},
+            {"session_id": 2, "duration": 300},
+            {"session_id": 3, "duration": 600},
+            {"session_id": 4, "duration": 900}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "bin",
-          "total"
-        ],
-        "rows": [
-          [
-            "[0-5>",
-            1
-          ],
-          [
-            "[5-10>",
-            1
-          ],
-          [
-            "[10-15>",
-            1
-          ],
-          [
-            "15 or more",
-            1
-          ]
-        ]
+        "columns": ["bin", "total"],
+        "rows": [["[0-5>", 1], ["[5-10>", 1], ["[10-15>", 1], ["15 or more", 1]]
       },
-      "tags": [
-        "trial",
-        "lower-bounds"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "lower-bounds"]
     },
     {
-      "id": "trial-upper-edges",
-      "name": "values immediately below every upper edge",
+      "id": "trial-middle-only",
+      "name": "only the ten-to-fifteen-minute interval is populated",
       "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
           "Sessions": [
-            {
-              "session_id": 1,
-              "duration": 299
-            },
-            {
-              "session_id": 2,
-              "duration": 599
-            },
-            {
-              "session_id": 3,
-              "duration": 899
-            },
-            {
-              "session_id": 4,
-              "duration": 901
-            }
+            {"session_id": 10, "duration": 601},
+            {"session_id": 20, "duration": 750},
+            {"session_id": 30, "duration": 899}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "bin",
-          "total"
-        ],
-        "rows": [
-          [
-            "[0-5>",
-            1
-          ],
-          [
-            "[5-10>",
-            1
-          ],
-          [
-            "[10-15>",
-            1
-          ],
-          [
-            "15 or more",
-            1
-          ]
-        ]
+        "columns": ["bin", "total"],
+        "rows": [["[0-5>", 0], ["[5-10>", 0], ["[10-15>", 3], ["15 or more", 0]]
       },
-      "tags": [
-        "trial",
-        "upper-edges"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "empty-bins", "middle-only"]
     },
     {
-      "id": "real-middle-only",
-      "name": "hidden: only middle interval is populated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-durations",
+      "name": "equal durations from distinct sessions count independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Sessions": [
-            {
-              "session_id": 10,
-              "duration": 601
-            },
-            {
-              "session_id": 20,
-              "duration": 750
-            },
-            {
-              "session_id": 30,
-              "duration": 899
-            }
+            {"session_id": 1, "duration": 300},
+            {"session_id": 2, "duration": 300},
+            {"session_id": 3, "duration": 900},
+            {"session_id": 4, "duration": 900},
+            {"session_id": 5, "duration": 900}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "bin",
-          "total"
-        ],
-        "rows": [
-          [
-            "[0-5>",
-            0
-          ],
-          [
-            "[5-10>",
-            0
-          ],
-          [
-            "[10-15>",
-            3
-          ],
-          [
-            "15 or more",
-            0
-          ]
-        ]
+        "columns": ["bin", "total"],
+        "rows": [["[0-5>", 0], ["[5-10>", 2], ["[10-15>", 0], ["15 or more", 3]]
       },
-      "tags": [
-        "hidden",
-        "empty-bins"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "multiplicity", "repeated-duration"]
     },
     {
-      "id": "real-repeated",
-      "name": "hidden: repeated durations count independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-sessions",
+      "name": "empty Sessions table still produces all four zero bins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sessions": {
+            "columns": ["session_id", "duration"],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": ["bin", "total"],
+        "rows": [["[0-5>", 0], ["[5-10>", 0], ["[10-15>", 0], ["15 or more", 0]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "empty-table", "all-zero"]
+    },
+    {
+      "id": "trial-long-sessions",
+      "name": "durations well above fifteen minutes share the final bin",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Sessions": [
-            {
-              "session_id": 1,
-              "duration": 300
-            },
-            {
-              "session_id": 2,
-              "duration": 300
-            },
-            {
-              "session_id": 3,
-              "duration": 900
-            },
-            {
-              "session_id": 4,
-              "duration": 900
-            },
-            {
-              "session_id": 5,
-              "duration": 900
-            }
+            {"session_id": 101, "duration": 901},
+            {"session_id": 202, "duration": 3600},
+            {"session_id": 303, "duration": 86400}
           ]
         }
       },
       "expected": {
-        "columns": [
-          "bin",
-          "total"
-        ],
-        "rows": [
-          [
-            "[0-5>",
-            0
-          ],
-          [
-            "[5-10>",
-            2
-          ],
-          [
-            "[10-15>",
-            0
-          ],
-          [
-            "15 or more",
-            3
-          ]
-        ]
+        "columns": ["bin", "total"],
+        "rows": [["15 or more", 3], ["[10-15>", 0], ["[5-10>", 0], ["[0-5>", 0]]
       },
-      "tags": [
-        "hidden",
-        "multiplicity"
-      ]
+      "validator": {"kind": "unordered_table"},
+      "tags": ["trial", "last-bin", "unordered-result"]
     }
   ]
 }

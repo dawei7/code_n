@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_21",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order",
+      "both lists empty and each list independently empty",
+      "both possible initial-head choices and both remaining-suffix attachments",
+      "alternating values that exercise every merge-loop branch",
+      "equal values and both legal node-value boundaries",
+      "the exact maximum combined node count",
+      "15,876 pairs of small non-decreasing lists checked against sorted concatenation",
+      "every split of the 50-node combined boundary checked against both app-local and immutable native sources",
+      "the matching linear lower and upper bounds established without illegal runtime scaling"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "50afee8e9bb12cab3237e6969c6fa1873130b4e4eac213137682b896904cddc0",
+    "native_source_sha256": "d05992882ffe3ebaacc92df2605649350ef2312395d16cc31b3b53e607515022",
+    "approach_sha256": "1b17b85414b9cc79d56c0d5cdc6850b505743caf66ea742dfae3093418727aab",
+    "solution_variants_sha256": "dc19c4d0c4c3d9e8d3ab9215ef12492aafa15b7e6e47dc7e58abe8d2c4f4b6d6",
+    "cases_sha256": "97ddeaf282d640279da0d6aa176055a664d32926fdda56521843870d7382fe5d",
+    "complexity_evidence_sha256": "ff0c4c9d2ec1818e81836877d64f1207ca1fc86842339f1636796ca7bd4ad1e7"
+  }
+}

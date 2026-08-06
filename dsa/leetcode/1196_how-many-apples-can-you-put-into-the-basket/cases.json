@@ -78,10 +78,10 @@
       ]
     },
     {
-      "id": "real-light-apples-improve-count",
-      "name": "hidden: light apples displace a heavy apple",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-light-apples-improve-count",
+      "name": "light apples displace a heavy apple",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           900,
@@ -96,15 +96,15 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
+        "trial",
         "greedy"
       ]
     },
     {
-      "id": "real-first-overflow",
-      "name": "hidden: one apple remains after capacity fills",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-overflow",
+      "name": "one apple remains after capacity fills",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           1000,
@@ -117,15 +117,15 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
+        "trial",
         "overflow"
       ]
     },
     {
-      "id": "real-unsorted-all-fit",
-      "name": "hidden: input ordering is irrelevant",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-all-fit",
+      "name": "input ordering is irrelevant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           900,
@@ -138,15 +138,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
+        "trial",
         "unsorted"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: maximum input length with heavy apples",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "maximum input length with maximum-weight apples",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           1000,
@@ -1153,7 +1153,7 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
+        "trial",
         "maximum-length",
         "capacity"
       ]

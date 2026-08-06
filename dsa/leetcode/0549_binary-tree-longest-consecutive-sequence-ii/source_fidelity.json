@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_549",
+    "frontend_id": "549",
+    "title_slug": "binary-tree-longest-consecutive-sequence-ii",
+    "url": "https://leetcode.com/problems/binary-tree-longest-consecutive-sequence-ii/description/",
+    "paid_only": true,
+    "content_sha256": "1172f7b0a306f898a24132eb21dc96b89f37f9f8dfe58fee59407609cedbe397",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [1,2,3]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [2,1,3]",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8f34d9367773a2300273af2215c66cff7a2fbaacd84fdce38c608d0ba4361dc1",
+      "reference/contract.md": "810f5b5bf60c6f7da69549d52ef6ffd307bc06a63690f50cb70cad71e4bfec2f",
+      "reference/examples.md": "60a7fc3e8655194572f2e901e7bd75ee0a844fa7679170be461049468f238b45",
+      "reference/constraints.md": "4beebb0cb4e1ef341ab54e297e79ada0d2d2a2783b8ed614160cac9f83ef462b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

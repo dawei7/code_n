@@ -5,7 +5,7 @@
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 1 digits",
+      "name": "benchmark: 1 digit",
       "kind": "benchmark",
       "visible": false,
       "size": 1,

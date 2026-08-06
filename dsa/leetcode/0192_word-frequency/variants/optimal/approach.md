@@ -7,7 +7,9 @@ The input uses both spaces and newlines as separators, while Unix counting tools
 4. `uniq -c` replaces each contiguous run with its exact count and word.
 5. Sort those counted rows numerically by count in descending order, then use `awk` to print `word count` rather than `count word`.
 
-The first sort is not for presentation; it is what makes `uniq -c` a correct global frequency counter. Without it, only adjacent repeated words would be combined. The second sort establishes the requested frequency order. The reference pipeline adds a deterministic word tie-breaker, although the problem constrains only descending count.
+The first sort is not for presentation; it is what makes `uniq -c` a correct global frequency counter. Without it, only adjacent repeated words would be combined. The second sort establishes the requested frequency order. The candidate pipeline adds a deterministic word tie-breaker, although the problem constrains only descending count.
+
+The candidate places each pipe at the end of the command it extends. Bash then recognizes the following physical line as the next pipeline stage without relying on a backslash followed by a leading pipe, a layout that is rejected by GNU Bash on Linux.
 
 Quoting and locale deserve attention in shell solutions. Use the character class `[:space:]` rather than assuming only literal spaces, and specify numeric sorting for counts so `10` is ordered above `2`. The input filename should be redirected or quoted rather than interpolated from untrusted text.
 

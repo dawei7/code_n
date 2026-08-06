@@ -1,7 +1,7 @@
 ## General
 **Allow paths to move upward as well as downward**
 
-The closest leaf need not lie inside the target's subtree; it may be reached by moving through ancestors into a sibling branch. Traverse the tree once, recording each node's parent and locating the unique node whose value is `k`. These parent links turn the tree into an undirected graph without rebuilding node objects.
+The candidate defines `TreeNode` as the app-local equivalent of LeetCode's injected model, making the executable contract self-contained. The closest leaf need not lie inside the target's subtree; it may be reached by moving through ancestors into a sibling branch. Traverse the tree once, recording each node's parent and locating the unique node whose value is `k`. These parent links turn the tree into an undirected graph without rebuilding node objects.
 
 **Search outward from the target by distance layers**
 

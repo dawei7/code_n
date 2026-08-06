@@ -63,6 +63,7 @@
       ],
       "tags": [
         "sample",
+        "source-example",
         "branching"
       ],
       "validator": {
@@ -71,22 +72,143 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: leaf round trip",
+      "name": "sample: fourteen-node ordered tree round trip",
       "kind": "sample",
       "visible": true,
       "input": {
         "root": [
-          7,
-          []
+          1,
+          [
+            [
+              2,
+              []
+            ],
+            [
+              3,
+              [
+                [
+                  6,
+                  []
+                ],
+                [
+                  7,
+                  [
+                    [
+                      11,
+                      [
+                        [
+                          14,
+                          []
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              4,
+              [
+                [
+                  8,
+                  [
+                    [
+                      12,
+                      []
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              5,
+              [
+                [
+                  9,
+                  [
+                    [
+                      13,
+                      []
+                    ]
+                  ]
+                ],
+                [
+                  10,
+                  []
+                ]
+              ]
+            ]
+          ]
         ]
       },
       "expected": [
-        7,
-        []
+        1,
+        [
+          [
+            2,
+            []
+          ],
+          [
+            3,
+            [
+              [
+                6,
+                []
+              ],
+              [
+                7,
+                [
+                  [
+                    11,
+                    [
+                      [
+                        14,
+                        []
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ],
+          [
+            4,
+            [
+              [
+                8,
+                [
+                  [
+                    12,
+                    []
+                  ]
+                ]
+              ]
+            ]
+          ],
+          [
+            5,
+            [
+              [
+                9,
+                [
+                  [
+                    13,
+                    []
+                  ]
+                ]
+              ],
+              [
+                10,
+                []
+              ]
+            ]
+          ]
+        ]
       ],
       "tags": [
         "sample",
-        "leaf"
+        "source-example",
+        "branching"
       ],
       "validator": {
         "kind": "nary_tree"
@@ -103,7 +225,31 @@
       "expected": null,
       "tags": [
         "sample",
+        "source-example",
         "empty"
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
+    },
+    {
+      "id": "trial-leaf",
+      "name": "trial: leaf round trip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          7,
+          []
+        ]
+      },
+      "expected": [
+        7,
+        []
+      ],
+      "tags": [
+        "trial",
+        "leaf"
       ],
       "validator": {
         "kind": "nary_tree"
@@ -213,17 +359,18 @@
       ],
       "tags": [
         "trial",
-        "wide"
+        "wide",
+        "child-order"
       ],
       "validator": {
         "kind": "nary_tree"
       }
     },
     {
-      "id": "hidden-repeated-values",
-      "name": "hidden: structure distinguishes repeated values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-values",
+      "name": "trial: structure distinguishes repeated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -263,7 +410,7 @@
         ]
       ],
       "tags": [
-        "hidden",
+        "trial",
         "repeated-values"
       ],
       "validator": {
@@ -271,10 +418,10 @@
       }
     },
     {
-      "id": "hidden-multiple-branches",
-      "name": "hidden: siblings have independent descendants",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-branches",
+      "name": "trial: siblings have independent descendants",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -332,8 +479,42 @@
         ]
       ],
       "tags": [
-        "hidden",
+        "trial",
         "branches"
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
+    },
+    {
+      "id": "trial-boundary-values",
+      "name": "trial: minimum and maximum node values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          0,
+          [
+            [
+              10000,
+              []
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        [
+          [
+            10000,
+            []
+          ]
+        ]
+      ],
+      "tags": [
+        "trial",
+        "boundary",
+        "extreme-values"
       ],
       "validator": {
         "kind": "nary_tree"

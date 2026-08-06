@@ -4,7 +4,7 @@
   "measurement_note": "Exponent magnitudes grow geometrically, separating logarithmic binary exponentiation from one-multiplication-per-power loops.",
   "cases": [
     {"id": "benchmark-scale-1", "name": "benchmark: exponent eight", "kind": "benchmark", "visible": false, "size": 8, "input": {"x": 1.000001, "n": 8}, "expected": null, "validator": {"kind": "float_close", "tolerance": 0.000001}, "tags": ["benchmark", "scale-small"]},
-    {"id": "benchmark-scale-2", "name": "benchmark: exponent 1024", "kind": "benchmark", "visible": false, "size": 1024, "input": {"x": 1.000001, "n": 1024}, "expected": null, "validator": {"kind": "float_close", "tolerance": 0.000001}, "tags": ["benchmark", "scale-medium"]},
-    {"id": "benchmark-scale-3", "name": "benchmark: exponent 1048576", "kind": "benchmark", "visible": false, "size": 1048576, "input": {"x": 1.000001, "n": 1048576}, "expected": null, "validator": {"kind": "float_close", "tolerance": 0.000001}, "tags": ["benchmark", "scale-large"]}
+    {"id": "benchmark-scale-2", "name": "benchmark: exponent 256", "kind": "benchmark", "visible": false, "size": 256, "input": {"x": 1.000001, "n": 256}, "expected": null, "validator": {"kind": "float_close", "tolerance": 0.000001}, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: exponent 8192", "kind": "benchmark", "visible": false, "size": 8192, "input": {"x": 1.000001, "n": 8192}, "expected": null, "validator": {"kind": "float_close", "tolerance": 0.000001}, "tags": ["benchmark", "scale-large"]}
   ]
 }

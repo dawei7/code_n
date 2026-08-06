@@ -2,13 +2,15 @@
   "schema_version": 1,
   "provider": "leetcode.com",
   "status": "verified",
-  "question_id": "1259",
+  "question_id": "1149",
   "frontend_id": "1149",
   "title_slug": "article-views-ii",
   "paid_only": true,
   "language": "mysql",
   "source": "solutions/leetcode.sql",
-  "native_entrypoint": "query",
-  "verified_submission_id": "2067848017",
-  "verified_at": "2026-07-14T20:03:19.705569+00:00"
+  "verified_submission_id": "2065583810",
+  "verified_at": "2026-07-12T23:06:11.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T16:28:00.000000+00:00"
 }

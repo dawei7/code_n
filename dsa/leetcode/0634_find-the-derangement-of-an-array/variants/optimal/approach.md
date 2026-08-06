@@ -9,20 +9,27 @@ For $n \ge 2$, choose a non-original destination for one fixed value in $n - 1$ 
 
 **Turn the counting split into a recurrence**
 
-The two cases are disjoint and exhaustive, giving $D(n) = (n - 1) \cdot (D(n - 1) + D(n - 2))$. Compute states in increasing order and reduce after every transition, which is valid because addition and multiplication respect modular equivalence.
+The two cases are disjoint and exhaustive, giving
+
+$$
+D(n) = (n - 1)\bigl(D(n - 1) + D(n - 2)\bigr).
+$$
+
+Compute states in increasing order and reduce after every transition, which is valid because addition and multiplication preserve modular equivalence.
 
 **Keep only the two required states**
 
 Each transition reads only the previous two derangement counts. After producing the next value, shift those two variables forward; the complete dynamic-programming table is unnecessary.
 
 ## Complexity detail
-The loop evaluates one constant-time modular transition for every size from `2` through `n`, taking $O(n)$ time. Two prior counts and the current loop index use $O(1)$ auxiliary space.
+The loop evaluates one constant-time modular transition for every size from `2` through `n`, taking $O(n)$ time. The modulus, two prior counts, and current size use $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Full dynamic-programming array:** stores every `D(i)` and uses the same $O(n)$ time, but requires $O(n)$ space without benefiting later transitions.
-- **Inclusion-exclusion:** computes $n! \cdot \operatorname{sum}((- 1) ^{k} / k!)$; it can be made linear with modular inverses, but its derivation and modular bookkeeping are less direct.
-- **Backtracking over permutations:** checks the fixed-point condition explicitly but takes factorial time.
-- **Repeated addition for each transition:** reproduces multiplication by $n - 1$ with an inner loop and is correct, but grows quadratically.
-- $n = 1$ has no valid arrangement, while $n = 2$ has exactly the swap.
-- Intermediate counts grow rapidly, so the modulus must be applied during every transition.
-- The empty-state value is used only to seed the recurrence; the public input is positive.
+- **Full dynamic-programming array:** Storing every `D(i)` uses the same $O(n)$ time but requires $O(n)$ space without helping later transitions.
+- **Inclusion-exclusion:** The identity $D(n) = n!\sum_{k=0}^{n}(-1)^k/k!$ can be evaluated modularly, but modular inverses and alternating terms make it less direct.
+- **Backtracking over permutations:** Checking the fixed-point condition explicitly is a useful tiny-input oracle but takes factorial time.
+- **Repeated addition:** Replacing multiplication by `n - 1` with an inner addition loop is correct but grows quadratically.
+- **Minimum input:** For $n = 1$, the only element cannot leave its original position, so the answer is `0`.
+- **First nonzero state:** For $n = 2$, swapping the two elements is the sole derangement.
+- **Modular boundary:** The exact count first exceeds $10^9 + 7$ at $n = 13$, so reduction must occur during transitions rather than only in small examples.
+- **Empty recurrence state:** $D(0)=1$ is an internal seed only; the public input remains positive.

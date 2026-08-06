@@ -1,9 +1,96 @@
-{"schema_version":1,"challenge_id":"lc_660","cases":[
-{"id":"sample-1","name":"sample: first base-nine carry","kind":"sample","visible":true,"input":{"n":9},"expected":10,"tags":["sample","carry"]},
-{"id":"sample-2","name":"sample: first retained integer","kind":"sample","visible":true,"input":{"n":1},"expected":1,"tags":["sample","boundary"]},
-{"id":"sample-3","name":"sample: second tens block","kind":"sample","visible":true,"input":{"n":18},"expected":20,"tags":["sample","conversion"]},
-{"id":"trial-1","name":"trial: final one-digit rank","kind":"trial","visible":true,"input":{"n":8},"expected":8,"tags":["trial","boundary"]},
-{"id":"trial-2","name":"trial: two base-nine digits","kind":"trial","visible":true,"input":{"n":73},"expected":81,"tags":["trial","conversion"]},
-{"id":"hidden-1","name":"hidden: exact power of nine","kind":"real","visible":false,"input":{"n":81},"expected":100,"tags":["hidden","power"]},
-{"id":"hidden-2","name":"hidden: mixed digits","kind":"real","visible":false,"input":{"n":100},"expected":121,"tags":["hidden","conversion"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_660",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample 1: first base-nine carry",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 9},
+      "expected": 10,
+      "tags": ["sample", "source-example", "carry"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample 2: value immediately after the first carry",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 10},
+      "expected": 11,
+      "tags": ["sample", "source-example", "carry"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: minimum rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1},
+      "expected": 1,
+      "tags": ["trial", "minimum-rank"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: final one-digit rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 8},
+      "expected": 8,
+      "tags": ["trial", "one-digit-boundary"]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: final value before decimal nineteen is skipped",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 17},
+      "expected": 18,
+      "tags": ["trial", "skip-nine"]
+    },
+    {
+      "id": "trial-4",
+      "name": "trial: decimal nineteen is skipped",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 18},
+      "expected": 20,
+      "tags": ["trial", "skip-nine", "carry"]
+    },
+    {
+      "id": "trial-5",
+      "name": "trial: final two-digit base-nine numeral",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 80},
+      "expected": 88,
+      "tags": ["trial", "two-digit-boundary"]
+    },
+    {
+      "id": "trial-6",
+      "name": "trial: exact power of nine creates two decimal zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 81},
+      "expected": 100,
+      "tags": ["trial", "power-of-nine", "zero-digits"]
+    },
+    {
+      "id": "trial-7",
+      "name": "trial: mixed base-nine digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 100},
+      "expected": 121,
+      "tags": ["trial", "mixed-digits"]
+    },
+    {
+      "id": "trial-8",
+      "name": "trial: maximum legal rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 800000000},
+      "expected": 2052305618,
+      "tags": ["trial", "maximum-rank", "multi-digit"]
+    }
+  ]
+}

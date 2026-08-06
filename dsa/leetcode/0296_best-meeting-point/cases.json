@@ -1,11 +1,122 @@
 {
   "challenge_id": "lc_296",
   "cases": [
-    {"id": "sample-three-homes", "name": "sample: three separated homes", "kind": "sample", "visible": true, "input": {"grid": [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]}, "expected": 6, "tags": ["sample", "median"]},
-    {"id": "sample-single", "name": "sample: one occupied cell", "kind": "sample", "visible": true, "input": {"grid": [[1]]}, "expected": 0, "tags": ["sample", "boundary"]},
-    {"id": "sample-adjacent", "name": "sample: adjacent homes", "kind": "sample", "visible": true, "input": {"grid": [[1,1]]}, "expected": 1, "tags": ["sample", "even"]},
-    {"id": "trial-corners", "name": "four corners meet centrally", "kind": "trial", "visible": true, "input": {"grid": [[1,0,1],[0,0,0],[1,0,1]]}, "expected": 8, "tags": ["corners", "even"]},
-    {"id": "trial-one-row", "name": "one-dimensional row", "kind": "trial", "visible": true, "input": {"grid": [[1,0,0,1,0,1]]}, "expected": 5, "tags": ["one-dimensional"]},
-    {"id": "real-asymmetric", "name": "hidden: asymmetric occupied cells", "kind": "real", "visible": false, "input": {"grid": [[0,1,0,0],[0,0,0,1],[1,0,0,0],[0,0,1,0]]}, "expected": 8, "tags": ["hidden", "asymmetric"]}
+    {
+      "id": "sample-three-homes",
+      "name": "sample: three separated homes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]},
+      "expected": 6,
+      "tags": ["sample","source-example","odd-home-count","empty-meeting-cell"]
+    },
+    {
+      "id": "sample-adjacent",
+      "name": "sample: adjacent homes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1]]},
+      "expected": 1,
+      "tags": ["sample","source-example","minimum-friend-count","one-row","even-home-count"]
+    },
+    {
+      "id": "trial-one-column",
+      "name": "two homes at opposite ends of one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1],[0],[0],[0],[1]]},
+      "expected": 4,
+      "tags": ["one-column","minimum-friend-count","axis-boundary"]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "three homes in one row",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,0,1,0,1]]},
+      "expected": 5,
+      "tags": ["one-row","odd-home-count","median"]
+    },
+    {
+      "id": "trial-corners",
+      "name": "four corners have a central optimal region",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,1],[0,0,0],[1,0,1]]},
+      "expected": 8,
+      "tags": ["corners","even-home-count","multiple-optima"]
+    },
+    {
+      "id": "trial-asymmetric",
+      "name": "asymmetric homes require independent coordinate medians",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0,1,0,0],[0,0,0,1],[1,0,0,0],[0,0,1,0]]},
+      "expected": 8,
+      "tags": ["asymmetric","independent-medians","unsorted-columns"]
+    },
+    {
+      "id": "trial-diagonal-two",
+      "name": "two diagonal homes admit many shortest meeting cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,0],[0,0,0],[0,0,1]]},
+      "expected": 4,
+      "tags": ["minimum-friend-count","diagonal","multiple-optima"]
+    },
+    {
+      "id": "trial-full-even-rectangle",
+      "name": "every cell occupied in an even-by-odd rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,1],[1,1,1]]},
+      "expected": 7,
+      "tags": ["dense-grid","even-home-count","rectangular"]
+    },
+    {
+      "id": "trial-full-odd-square",
+      "name": "every cell occupied in an odd square",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]},
+      "expected": 12,
+      "tags": ["dense-grid","odd-home-count","unique-center"]
+    },
+    {
+      "id": "trial-empty-optimum",
+      "name": "the optimal meeting point need not contain a home",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,1],[0,0,0],[0,1,0]]},
+      "expected": 4,
+      "tags": ["empty-meeting-cell","independent-medians","semantic-boundary"]
+    },
+    {
+      "id": "trial-row-majority-outlier",
+      "name": "a row majority anchors one median despite a distant outlier",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,1,1],[0,0,0,0],[0,0,0,0],[0,0,0,1]]},
+      "expected": 8,
+      "tags": ["duplicate-coordinates","outlier","median"]
+    },
+    {
+      "id": "trial-maximum-width",
+      "name": "maximum-width row with homes at both endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]},
+      "expected": 199,
+      "tags": ["maximum-width","one-row","minimum-friend-count"]
+    },
+    {
+      "id": "trial-maximum-height",
+      "name": "maximum-height column with homes at both endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[1]]},
+      "expected": 199,
+      "tags": ["maximum-height","one-column","minimum-friend-count"]
+    }
   ]
 }

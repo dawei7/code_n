@@ -24,11 +24,11 @@ Any interval ending before the new interval starts is disjoint on the left and c
 At the first start greater than the merged end, sorted order guarantees that interval and all later ones are disjoint on the right. Copying the left region, emitting the single merged middle interval, and copying the right region therefore covers every input interval exactly once and preserves the required union and order.
 
 ## Complexity detail
-Each original interval is examined and copied at most once, giving $O(n)$ time. The returned list uses $O(n)$ storage; only the merged endpoints and index are auxiliary state.
+Each original interval is examined and copied at most once, giving $O(n)$ time. The returned list uses $O(n)$ storage; only the merged endpoints and `i` are auxiliary state.
 
 ## Alternatives and edge cases
 - **Append, sort, then run Merge Intervals:** is correct but discards the useful precondition and costs $O(n \log n)$ time.
 - **Repeated pairwise merging:** can require quadratic comparisons and list shifts.
-- **Modify the original list in place:** can reduce allocations in some environments but violates this contract's nonmutation requirement.
+- **Modify the original list in place:** can reduce allocations in some environments but changes caller-owned values; this implementation instead returns independent interval pairs.
 - Empty input produces a list containing only the new interval. An insertion entirely before or after the input is handled by an empty left or overlap region.
-- Copy endpoints into a working interval if the input must remain unchanged; mutating `newInterval` or an original interval would violate the stated contract.
+- Copy endpoints into working scalars and copy returned interval pairs so neither `newInterval` nor an original interval is mutated.

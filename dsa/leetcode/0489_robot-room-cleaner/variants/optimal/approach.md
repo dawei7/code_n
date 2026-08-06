@@ -1,29 +1,64 @@
 ## General
-**Create virtual coordinates**
 
-Treat the start as `(0, 0)` and its initial facing as virtual north. Every successful move changes that virtual coordinate by the delta for the currently explored relative direction.
+**Build a coordinate system from the starting state**
 
-**Explore through the interface**
+Treat the unknown starting cell as virtual coordinate `(0, 0)` and the robot's initial upward direction as `0`.
+The four entries in `directions` map relative directions to coordinate changes. Absolute room coordinates are
+unnecessary: successful moves and the robot's turns keep the virtual coordinates synchronized with its physical
+state.
 
-Depth-first search records and cleans each newly reached coordinate. For four directions, move only when the target coordinate is unvisited. A failed move reveals a wall while leaving the robot in place.
+Record `(0, 0)` in `visited`, clean it, and push the first explicit DFS frame. Each frame stores four integers:
+`[row, col, direction, offset]`. `direction` is the orientation on entry to that cell, and `offset` identifies the
+next of its four relative directions to try.
 
-**Restore position and orientation**
+**Advance one DFS frame at a time**
 
-After exploring a neighbor, turn twice, move back, and turn twice again. After every direction attempt, turn right once. These operations restore the parent's exact physical state before its next branch.
+For the top frame, `(direction + offset) % 4` is the physical direction currently faced. If the neighboring virtual
+coordinate is unvisited and `robot.move()` succeeds, mark and clean the new cell, then push a child frame with that
+movement direction and offset zero. The parent frame remains unchanged until the child finishes.
+
+If the coordinate was already visited or the move is blocked, turn right and increment the frame's offset. Thus the
+top frame and the physical robot advance together through all four directions.
+
+**Restore the parent without recursion**
+
+An offset of four means the current cell has no unexplored direction. Pop its frame. When a parent remains, call
+`go_back()`: turn twice, move one cell back, and turn twice again. The robot is now at the parent's cell facing the
+direction of the completed child edge. One more right turn and one parent-offset increment put it in the exact state
+for the next branch.
+
+This is the same physical backtracking discipline as recursive DFS, but the explicit stack is not bounded by
+Python's recursion limit.
 
 **Why every reachable cell is cleaned**
 
-DFS eventually tries every edge leaving every discovered cell. Induction along a path from the start shows every reachable cell is entered. The visited set prevents cycles, and exact physical backtracking preserves access to every unexplored branch.
+Whenever the algorithm pushes a frame, a successful robot move proves that its coordinate is reachable, and it is
+cleaned immediately. The visited set permits at most one frame creation per coordinate, so cycles cannot cause
+unbounded revisits. Conversely, every discovered cell tries all four incident directions. Along any path of open
+cells from the start, induction over the path edges shows that each next unvisited cell is eventually entered and
+cleaned. Exact restoration after every completed child preserves the physical state required to try all remaining
+branches.
 
 ## Complexity detail
-Let `c` be the reachable-cell count. Each cell considers four directions and every traversed edge uses constant robot operations, so time is $O(c)$. The visited set and recursion stack use $O(c)$ space.
+
+Let $c$ be the number of reachable cells. Each coordinate enters `visited` and the stack once, and its frame examines
+four directions. Every successful tree edge is traversed once forward and once during `go_back`, so the total time
+complexity is $O(c)$.
+
+The visited set and explicit DFS stack each hold at most $c$ entries, giving $O(c)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Visited coordinates in a list:** is correct but linear membership checks produce $O(c^2)$ time.
-- **Known-grid DFS:** violates the interactive contract because the room is hidden.
-- **Breadth-first search:** requires costly physical navigation back to queued cells.
-- **Single cell:** clean it even though every move fails.
-- **Cycles:** require the visited set.
-- **Disconnected regions:** unreachable cells are outside the required result.
-- **Arbitrary orientation:** relative coordinates need no global compass.
-- **Dead ends:** backtracking must restore orientation as well as position.
+
+- **Recursive coordinate DFS:** the protected and immutable Accepted sources express the same traversal compactly,
+  but the app-local Python execution can raise `RecursionError` on a source-legal deep room. An explicit stack keeps
+  the algorithm valid through the complete room bound.
+- **Visited coordinates in a list:** remains logically correct, but linear membership checks raise worst-case time
+  to $O(c^2)$.
+- **Known-grid traversal:** reading `room`, `row`, or `col` directly violates the blind interface contract.
+- **Breadth-first search:** logical queuing does not preserve the robot's physical position, so reaching each queued
+  cell would require additional navigation state and work.
+- **Single open cell:** clean it before movement; all four blocked attempts then finish the sole frame.
+- **Cycles:** the hash set prevents entering an already discovered coordinate even if another physical route reaches
+  it.
+- **Dead ends:** four direction attempts followed by `go_back()` restore both the parent cell and its orientation.
+- **Initial direction:** the source guarantees that the robot faces upward, which anchors virtual direction zero.

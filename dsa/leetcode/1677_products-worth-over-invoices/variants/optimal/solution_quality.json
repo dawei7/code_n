@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1677",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution sums total rest, paid, canceled, and refunded monetary amounts per product. It performs a LEFT JOIN from Product to Invoice on product_id, groups by product_id and name, uses COALESCE(SUM(...), 0) to replace null sums for products without invoices, and orders by p.name ASC. The query runs in O(I + P log P) time and O(P) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "LEFT JOIN ensures all catalog products are retained regardless of invoice history, and COALESCE guarantees 0 defaults for missing amounts."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Scanning P products and I invoices takes O(P + I) time for hash join and grouping, plus O(P log P) time for sorting results by product name. Space is O(P) for aggregation buffers. Complexity evidence is bounded-domain certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts Product and Invoice tables, returning columns name, rest, paid, canceled, and refunded sorted by name ASC."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details catalog preservation via LEFT JOIN, COALESCE-guarded SUM aggregation, name-based output sorting, and O(I + P log P) time / O(P) space bounds. Alternatives and edge cases cover pre-aggregating invoices subquery options, INNER JOIN product omission defects, correlated aggregate subquery inefficiencies, zero-invoice product defaults, zero-value invoice handling, and primary key gap independence."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions both execute the identical LEFT JOIN COALESCE SUM query with SHA-256 digest 9ef32598bd75f85953bf99cdb5ab074998aca536641cf3d8bab7263209990f3c. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Product and Invoice interface, three examples, three constraints, and 5 local tables. Bound to content SHA-256 808f370200199da7290ce93a5c707cd2b4a61cac66ac35eab98364bbd4197515."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "9ef32598bd75f85953bf99cdb5ab074998aca536641cf3d8bab7263209990f3c",
+    "native_source_sha256": "9ef32598bd75f85953bf99cdb5ab074998aca536641cf3d8bab7263209990f3c",
+    "approach_sha256": "6a028429a5bb74a3f7e8a6fb05a3cfd7e73a770b759cb1d74ee2a72e0ee4e506",
+    "solution_variants_sha256": "aa0627af42a9278476e1bf65722bed0482e1165dcbfdc313ada991a7d43d2125",
+    "complexity_evidence_sha256": "ad41f71c26ea3dafda97f5e09739f1e3b98425600ddd0c425d1a6008d654d0d4"
+  }
+}

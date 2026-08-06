@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_663",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "executable_contract",
+        "severity": "material",
+        "reason": "The protected app source traverses objects supplied as LeetCode TreeNode instances but does not define the minimal local model required by the repository's executable contract. The candidate adds that documented app-local equivalent and precise solve and helper annotations, so the source is self-contained instead of depending on an invisible runner global."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "improved",
+        "reason": "The inert candidate preserves the Accepted one-pass postorder algorithm exactly and adds only the missing TreeNode definition and type contract. The traversal, subtree-sum collection, root exclusion, half-sum decision, solve(root) interface, and asymptotic behavior are unchanged."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Every removable edge has a non-root child whose subtree is one resulting component. Postorder computes the sum of each such subtree exactly, and a cut is valid precisely when that sum equals half the whole-tree sum. Removing the final root sum excludes the nonexistent edge above the root, which is essential when the total is zero; rejecting odd totals handles the integer parity condition."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 663, Python, and the native checkEqualTree(root) interface. The candidate preserves the app-local solve(root) adapter, binary-tree node values and child links, the requirement to remove exactly one edge, and the Boolean equal-component-sum result."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app source and immutable native source bound to verified submission 2065533058 use the same nested postorder helper, subtree-sum order, root removal, parity check, and half-sum membership test. The candidate adds only the local model and annotations required by the app contract; it does not replace or alter the Accepted evidence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged three-tier workload grows right-skewed all-one trees from 63 to 511 nodes with odd totals, forcing every candidate edge to be considered and preventing a successful partition. Fresh real-test runs passed all 10 correctness cases and all three performance tiers for both the exact candidate and the protected source; the candidate measured relative growth exponent -0.03 with a 0.99x largest runtime ratio. An independently written correct control that recomputes every candidate subtree passed all 13 outputs but failed only scaling with relative growth exponent +1.10 and a 167.80x largest runtime ratio. The existing benchmark calibration therefore distinguishes the required one-pass traversal from quadratic repeated traversal and was not edited."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach derives the proper-subtree half-sum condition, postorder accumulation, root exclusion, zero-total trap, and completeness in terms matching the candidate. Its O(N) time and O(N) worst-case storage claims match the implementation and branch manifest."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "reviewed",
+        "reason": "The legacy document was replaced by a composition anchor and four modular Reference sections. The independent narrative preserves the exact-one-edge partition contract, both source examples in order, Example 2's explanation, both constraints, and the information carried by the two source tree images through two accessible Mermaid diagrams. The function contract also identifies `root` as the root of a binary tree, keeping level-order fixtures executable in the app."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Authenticated live Premium evidence verified the statement structure, exact examples and outputs, Example 2's explanation, both constraints, and two source images. The modular Reference is bound to source content hash 169f7c4d8ec2a8a86cd33a82987b5a4d80b7a6f0b0888fb4ace146b013995145 and every composed local section through source_fidelity.json; direct validation returns verified with no errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The authenticated Premium statement contains exactly two examples. Their exact level-order trees and Boolean outputs appear first and in source order, and Example 2 preserves its explanation. The two source tree images are represented by independently authored accessible Mermaid diagrams in the modular Reference.",
+      "All ordinary correctness checks are visible samples or trials. The former hidden two-node and negative-tree checks were exposed, leaving no correctness behavior concealed in cases.json.",
+      "Contract boundaries cover the one-node minimum, the smallest possible valid cut with two nodes, and both Node.val extrema at -100000 and 100000. A separate balanced 10000-node tree exercised the maximum node count against the oracle and all three solution forms without turning cases.json into a performance workload.",
+      "Material semantics cover exact-one-edge root exclusion, a proper zero-sum subtree, zero total without a proper zero subtree, negative values, odd-total rejection, and a valid detachable half-sum subtree rooted below the root.",
+      "Expected results were checked by independently enumerating every removable edge across 3279 complete trees, 27993 oriented chains, and 2000 seeded random trees, plus the maximum-size tree. The protected app/native forms and inert self-contained candidate agreed on all authored cases and benchmarks.",
+      "All ten ordinary cases are visible. The unchanged 63, 191, and 511-node odd-sum chains remain hidden and performance-only in benchmark.json, span more than 8x, and make the correct repeated-subtree-sum control fail only the scaling verdict."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "0fdda19aed1562090c4de76b7df73b5c064a392f8fc101f0f89933efff8e9449",
+    "native_source_sha256": "e670cd1ef5d1aef3cc6ff7bc4b45451f778d3dc7bf4dcc20a1df38ffd67e9c9b",
+    "approach_sha256": "b9e3ee8a3f6e26bd72c052f71e201dcaee854582b09fbba349d082bc4cb0b92c",
+    "solution_variants_sha256": "793c7d6455d74e428227369f8fca982f1c213767d5e83d5c0c1394c029cc6201",
+    "complexity_evidence_sha256": "cc3673969b4013b37b6a4261504a2a1b5247a21ec425f48a1a8f548c5af54072",
+    "cases_sha256": "6b1dc4834e4a7b13f9a60e281da5d43f8983fa87ad5b8c4ca39ca7fa2177ff86",
+    "candidate_source_sha256": "2fc581181ab2f92b513015655b2e4181e053537a382bc6e7bc032cb2aadc2fa8"
+  }
+}

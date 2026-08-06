@@ -1,23 +1,34 @@
 ## General
-**Materialize the three year intervals.** Create a small common table expression containing each report-year label, its first date, and its last date. Join a sales row to a year exactly when their closed intervals overlap:
+
+**Represent the report years once.** The legal sales domain contains only 2018, 2019, and 2020. Materialize those three closed calendar intervals in a small `years` common table expression instead of repeating an almost identical query branch for every year. A sales interval belongs to a report year precisely when the two closed intervals overlap:
+
 $$
 \text{period start} \le \text{year end}
 \quad\text{and}\quad
 \text{period end} \ge \text{year start}.
 $$
 
-**Measure only the intersection.** For an overlapping pair, the first counted date is the later of the two starts and the last counted date is the earlier of the two ends. The inclusive day count is the date difference plus one. Multiply it by `average_daily_sales`, then sum these contributions by product and report year.
+**Measure the closed intersection.** For each overlapping product-year pair, the first counted date is the later of the two starts and the last counted date is the earlier of the two ends. If those dates are $a$ and $b$, respectively, the number of included days is
 
-Join `Product` by `product_id` to obtain the name, and order by the hidden product identifier followed by year. Every covered day belongs to exactly one calendar-year intersection, so cross-year periods are split without omission or double counting.
+$$
+\operatorname{days}(a,b) + 1.
+$$
+
+The added one is required because both source endpoints are inclusive. Multiplying that count by `average_daily_sales` gives exactly the product's amount for that year. The candidate uses SQLite's `julianday` difference and `MIN`/`MAX` scalar functions to implement the same calculation.
+
+**Use the source key.** `Sales.product_id` is a primary key, so each product contributes at most one sales interval. Consequently, every joined product-year pair is already the single required output row: no `SUM`, `GROUP BY`, or duplicate-elimination step is needed. Joining `Product` supplies the name, and sorting by `product_id` and `report_year` satisfies the required order. Because the three year intervals are disjoint and exhaustive over the legal date domain, every sales day is counted once in exactly one output year.
 
 ## Complexity detail
-The year relation has fixed size three. With indexed or hash joins, reading the $P$ products and $S$ sales rows and producing $R$ grouped overlaps takes $O(P + S + R)$ time. Join and grouping state use $O(P + S)$ space. The app artifact uses SQLite Julian-day arithmetic; the native artifact uses equivalent MySQL `DATEDIFF`, `LEAST`, and `GREATEST` functions.
+
+Let $P$ be the number of `Product` rows, $S$ the number of `Sales` rows, and $R$ the number of returned product-year rows. The `years` relation has constant size three. With ordinary indexed or hash joins, the query takes $O(P + S + R)$ time and $O(P + S)$ working space. Since each sales row overlaps at most three fixed years, $R \le 3S$.
 
 ## Alternatives and edge cases
-- **Expand every calendar day:** Generate one row per covered day and group afterward. It is correct but makes work proportional to total interval length.
-- **Correlated scan per product-year:** Revisit all sales rows for each product and year. Without an index this takes $O(PS)$ time.
-- **Inclusive endpoints:** Add one after subtracting dates; a one-day period must contribute one daily amount.
-- **Leap day:** Calendar arithmetic must count `2020-02-29`.
-- **Cross-year period:** Split it at each year boundary and use the same daily rate for both portions.
-- **Multiple periods:** Sum every overlapping contribution for the same product and year.
-- **No sales overlap:** Do not emit a product-year row with a null or zero amount.
+
+- **One branch per year:** Three `UNION ALL` branches can compute the same intersections, but duplicate the overlap predicate and date arithmetic, making boundary fixes and review more error-prone.
+- **Expand every calendar day:** Generating one row per covered day and grouping is correct, but its work depends on total interval length rather than the number of source and result rows.
+- **Correlated product-year scans:** Repeatedly scanning `Sales` for every product and year is correct but can take $O(PS)$ time without a usable index.
+- **Unnecessary aggregation:** Treating `Sales` as if a product could have several periods contradicts its primary key and adds grouping work without changing valid-source results.
+- **Inclusive endpoints:** A one-day interval contributes one daily amount, and a period from December 31 through January 1 contributes once to each adjacent year.
+- **Leap day:** Date arithmetic must include February 29 in 2020, so a full 2020 interval contains 366 days.
+- **Products without sales:** An unsold `Product` has no product-year overlap and must not produce a null or zero row.
+- **Zero daily sales:** A valid overlapping interval with `average_daily_sales = 0` still produces its product-year row with `total_amount = 0`.

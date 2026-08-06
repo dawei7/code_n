@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_391",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is the canonical bounding-area plus corner-parity solution. It accumulates each rectangle once, toggles all four corners directly, and makes the two necessary-and-sufficient final conditions explicit with clear geometric names. No candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 391 and its Python isRectangleCover surface. The Reference preserves positive-area axis-aligned rectangles, exact cover without gaps or overlap, all three source examples with complete explanations, all four constraints, and the coordinate roles."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064684619. Its extrema, summed area, corner toggles, outer-corner set, outer area, and joint final predicate are exactly the protected app-local algorithm apart from the LeetCode wrapper and annotations."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 64-, 192-, and 512-strip perfect covers span 8x in rectangle count and force a full accepting pass within all coordinate and count bounds. The current source passes all 11 executions at +0.03 relative growth and 1.00x; correct pairwise overlap checking plus bounding-area equality passes every benchmark output but fails only scaling at +1.01 and 66.97x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives the only possible bounding rectangle, corner parity, area equality, their combined sufficiency, expected O(r) time, O(r) unmatched-corner space, and the sweep-line and pairwise alternatives."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound public Reference remains source-fidelity verified, including all three source examples and explanations, equivalent accessible representations of all three source images, gap and overlap distinctions, coordinate semantics, and all four constraints."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "a4fa27630af156da0a2ee814f8f8304805ff0e428f4d0bde46cbbcde79a3ab3d",
+    "native_source_sha256": "48ead9d960a5adfd71206c877af0211c38e47873df9e01ec0ef4fdb7c2a7c593",
+    "approach_sha256": "bbc656160184fdd758e01620043e24145dc116d83b77dae63ea4f7c4aefcbf40",
+    "solution_variants_sha256": "198aef90e869fb03566629274e4059679c7d5de7753beb282ac51452312ba791",
+    "complexity_evidence_sha256": "19136b59df58c4996e7dd0b6e5e45b64a4efeb9e871b5c4d02fe49de1c204bab"
+  }
+}

@@ -10,8 +10,13 @@ Before leaving a node, `closest` is optimal among the visited path. The discarde
 If the target is below the current value, every value in the right subtree is at least the current value and therefore no closer than the current node; only the left subtree can improve the answer. The symmetric argument holds when the target is larger. Updating before following that sole promising child preserves the best candidate until the search path ends.
 
 ## Complexity detail
-One node per tree level is examined, for $O(h)$ time. Iteration stores only the current node and best value.
+
+The search examines at most one node per tree level, for $O(h)$ time: $O(\log n)$ in a balanced tree and $O(n)$ in a
+maximally skewed tree. Iteration retains only `node` and `closest`, so the auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
+
 - **Traverse the whole tree:** is correct but takes $O(n)$ instead of exploiting BST order.
-- Exact matches may return immediately; targets outside the value range converge to an extreme node.
+- **Distance without the value tie-breaker:** may return the larger value when two nodes are equally close.
+- **Exact match:** the protected source returns immediately because no smaller distance than zero exists.
+- **Target outside the value range:** the search follows one extreme path and returns the minimum or maximum node value.

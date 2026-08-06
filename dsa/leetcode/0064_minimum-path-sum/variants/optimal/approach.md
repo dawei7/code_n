@@ -29,6 +29,6 @@ Every cell is processed once, so time is $O(mn)$. The rolling array stores one v
 ## Alternatives and edge cases
 - **Full matrix DP:** is equally direct but consumes $O(mn)$ additional space.
 - **Unmemoized recursive path search:** evaluates every movement sequence and grows exponentially.
-- **Overwrite the input grid:** achieves $O(1)$ auxiliary space but violates a nonmutating adapter expectation.
+- **Overwrite the input grid:** achieves $O(1)$ auxiliary space but changes caller-owned values; the rolling array preserves the input.
 - A one-cell grid returns that cell's value. One-row and one-column grids have exactly one path, so their answer is the sum of all cells.
 - Nonnegative values are part of the contract, but the acyclic right/down recurrence would still compute a minimum correctly for arbitrary finite weights because no cycle can be exploited.

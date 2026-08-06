@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1628",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python solution implements Node and TreeBuilder classes to construct and evaluate binary expression trees from postfix token arrays. It uses an explicit stack during postfix parsing to build ExpressionNode subtrees, then computes expression values via recursive evaluate() calls. The solution runs in O(t) time and O(t) space; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Postfix stack invariant ensures operators pop right then left subtrees in correct evaluation order. Recursive tree evaluate() applies +, -, *, / with truncating integer division."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Building tree from t tokens takes O(t) stack pushes/pops. Evaluating tree takes O(t) structural recursion calls. Auxiliary space is O(t) for tree nodes and evaluation call stack. Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Accepts postfix array, with TreeBuilder returning root Node whose evaluate() method returns the integer result."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details postfix stack invariant construction, separate ExpressionNode evaluation logic, truncating division handling, and O(t) time / O(t) space bounds. Alternatives and edge cases cover tree-less integer stack calculation, recursive right-to-left parsing complexity, front-based list shift quadratic costs, single operand leaf nodes, operator right-before-left operand ordering rules, negative intermediate values, and zero-truncation vs floor division."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App Python and native Python solutions both execute the identical postfix stack tree construction and recursive evaluation algorithm with SHA-256 digests b6dfe06b4651a849bb257dbbb762568863276a252644a21e509a9e2061312081 and d221bc7ef6b9e60054c99ae9004d8fb55caa356861d97d141066d0ee93f8a4ec. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed postfix interface, three examples, seven constraints, and 0 diagrams. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "b6dfe06b4651a849bb257dbbb762568863276a252644a21e509a9e2061312081",
+    "native_source_sha256": "d221bc7ef6b9e60054c99ae9004d8fb55caa356861d97d141066d0ee93f8a4ec",
+    "approach_sha256": "0ffca89aa2f6bd26e801c315769e6b0d48b7ba9f6da47cd1a378c2edd4e00d5f",
+    "solution_variants_sha256": "0db51d70b9272e6466cc68a9433ee65736dd7b9766c61c889d7f5538ae8e512a",
+    "complexity_evidence_sha256": "b4af92929ed93a201f8a1e6fe3801ca700778427ba878315e1d3b39a1ac00f59"
+  }
+}

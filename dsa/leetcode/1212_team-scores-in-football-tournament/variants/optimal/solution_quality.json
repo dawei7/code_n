@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1212",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected query is already clear, conventional, and expert-interview quality. `point_events` normalizes the host and guest perspectives, the two symmetric `CASE` expressions make all three scoring outcomes visible, and the catalog left join plus `COALESCE` states idle-team handling directly. The final two-key ordering mirrors the contract, so no material improvement justifies a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Every match emits exactly one host contribution and one guest contribution. The symmetric comparisons award three points to a winner, one point to each team in a draw, and zero to a loser. `UNION ALL` preserves both contributions, grouping sums every match for each team, and the left join retains catalog teams with no event at zero points. Sorting by total descending and then team ID ascending implements both standings keys exactly."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "A Python oracle initialized every catalog team at zero, compared each match's two goal totals independently, credited both participants, accumulated across host and guest roles, and sorted by the exact standings keys. It agreed with protected SQL, byte-identical immutable native SQL, and a separately written host-or-guest join control on all eight ordinary cases, all three benchmark tiers, 1,936 exhaustive tournaments, and 5,000 deterministic random schema-valid tournaments generated with seed 1212."
+      },
+      {
+        "category": "boundary_and_relational_semantics",
+        "severity": "verified",
+        "reason": "Random validation included 872 tournaments with no matches, 1,595 with an idle team, 3,909 with a host win, 3,878 with a guest win, 3,775 with a draw, 3,418 with a scoreless draw, 3,359 with repeated opponents, 3,924 with duplicate team names, 3,094 with a standings tie, and 3,928 where a team played multiple matches. Fixed cases separately isolate every scoring outcome, both participant roles, idle inclusion, scoreless draws, an empty Matches table, duplicate names, repeated opponents, reversed roles, accumulated ties, and both ordering keys."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1212, SQL, and native query entrypoint. Fresh authenticated evidence confirms both schemas, unique team and match IDs, finished matches between two different registered teams, the meanings of both goal columns, the three-point win, one-point draw, and zero-point loss rules, one result row for each team, columns `team_id`, `team_name`, and `num_points`, and the exact decreasing-points/increasing-ID order."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The protected app-local and immutable native SQL remain byte-identical, and the native artifact remains bound to verified submission 2067938783. They therefore share the exact point-event projections, scoring expressions, `UNION ALL`, complete team-catalog left join, grouped sum, null-to-zero behavior, aliases, and standings order without any adapter or dialect divergence."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers scale team count from 16 through 64 to 256 with half as many disjoint matches and span 16x. Across three fresh `real_test` runs, protected passed every output and scaling at largest-tier ratios 1.01x, 1.00x, and 1.01x. The independently correct host-or-guest join control passed all eight ordinary and three benchmark outputs but failed only scaling at 2.48x, 2.68x, and 2.55x with extra growth exponents from +0.37 to +0.39, separating O(t+m) event aggregation from a possible O(tm) join."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly matches the protected query's two perspective events, symmetric scoring rules, `UNION ALL`, per-team aggregation, full catalog restoration, null-to-zero conversion, and standings order. It defines t and m in the modular Reference and correctly qualifies expected O(t+m) logical work with O(t+m) event and grouping state while acknowledging engine-dependent physical plans."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves both exact schemas and every column type, both uniqueness facts, registered distinct opponents, respective goal meanings, all three scoring rules, accumulation across both roles, inclusion of every team, the exact output schema and sorting keys, and the sole exact source example with all three example tables. It adds no source-absent explanation, constraint, hint, note, follow-up, image, or diagram."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two schema tables, a three-item scoring list, one example without an explanation, five meaningful source tables in total, and no constraints, hints, notes, follow-up, images, or diagrams. `source_fidelity.json` binds every modular section to live content hash 7140b247f02cca1d72c66face4618b4c9e13a52308eb40362d8ed51c7b5fef2a and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first visible sample is the sole authenticated source example in source order, preserving every Teams row, Matches row, and ordered result row exactly. The source supplies no example explanation, constraints, hints, notes, or follow-up, so none were fabricated as source cases or sections.",
+      "All eight ordinary fixtures are visible samples or trials and preserve the source's required result order. They cover host wins, guest wins, nonzero and scoreless draws, losses, accumulation across host and guest roles, idle teams, a completely empty Matches table with explicit schema, duplicate team names, repeated opponents, reversed roles, point ties, and the increasing-team-ID tiebreak.",
+      "The independent Python standings oracle recomputed every authored and benchmark expectation. Protected SQL, immutable native SQL, and the independent host-or-guest control agreed on all fixed fixtures, 1,936 exhaustive tournaments, and 5,000 seeded random tournaments covering absent matches, idle teams, all score outcomes, repeated pairs, duplicate names, multiple appearances, and standings ties.",
+      "The three unchanged hidden performance tiers keep `size` equal to the team count, use half as many disjoint matches, and span 16 to 256. Protected passed three repeated scaling runs near 1x; the correct host-or-guest control preserved every output but failed only the scaling verdict in all three runs."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "657cbdb438bb6b81432bf12cc6753e102b60ff4b3c2c2000a4cab7f4cde9facc",
+    "native_source_sha256": "657cbdb438bb6b81432bf12cc6753e102b60ff4b3c2c2000a4cab7f4cde9facc",
+    "approach_sha256": "8edbe9cb8cdafe593ee9120eb2f02496f99e4c860e3aa997f35084703d084b33",
+    "solution_variants_sha256": "113602a5d2d2038752f4f7c88c9e3b86e2c08e8226418192f062c72eb637da3a",
+    "complexity_evidence_sha256": "05ae7829bf3aa6c8846c874ce69bb1e8335bfa640860970a678af5574d65a1f3",
+    "cases_sha256": "108770c44ed4baeb9d981029f664bc884e461b8802e07befef6f9cbebe6f9238"
+  }
+}

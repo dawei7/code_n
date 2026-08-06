@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1136",
+  "language": "python",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected Python is clear, conventional, and expert-interview ready. graph and indegree expose topological state, prerequisite/course and next_course make edge direction explicit, queue names current availability, and completed/semesters track the two verdict quantities directly. Freezing range(len(queue)) makes the semester boundary visible without a sentinel or duplicated queues; no material improvement warrants a candidate."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Every initial zero-indegree course has no unmet prerequisite and is eligible in semester one. Each loop freezes the starting queue length, so it processes exactly the courses eligible before that semester and defers newly unlocked courses to the next. Every relationship is removed once when its prerequisite course completes, and a dependent enters the queue only when its last unmet prerequisite reaches zero. The layers therefore assign every course its earliest legal semester. If fewer than n courses are processed, the remaining subgraph has no zero-indegree vertex and contains a directed cycle, requiring -1."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1136, Python/Python 3, and Solution.minimumSemesters. Authenticated source evidence confirms one-based course labels, unique directed prerequisite pairs, unlimited same-semester parallelism, completion of every prerequisite before its dependent course, the minimum-semester objective, and the -1 impossibility sentinel. It also confirms n and relation-count bounds through 5000, distinct endpoints, and two-value relation rows; solve(n, relations) preserves all of these semantics."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The app-local solve body and immutable native method bound to verified submission 2067818055 contain identical executable statements: the same adjacency and indegree construction, zero-indegree generator, deque initialization, counters, fixed-size layer loop, indegree updates, zero-transition enqueue, and processed-count verdict. Only the permitted app function versus LeetCode class wrapper, equivalent nested-list annotations, native List import, and app module docstring differ."
+      },
+      {
+        "category": "complexity_claim",
+        "severity": "verified",
+        "reason": "Building the graph and indegree array costs O(n + r). Each course enters and leaves the queue once, and every relation is traversed once when its prerequisite completes, so total time is O(n + r). The adjacency list, indegrees, and queue collectively use O(n + r) space, matching the branch manifest exactly."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers grow prerequisite chains from 32 through 256 courses, producing n semester layers while layered BFS remains linear and repeated eligibility scanning revisits all courses each semester. The protected source passed every output and scaling at a 0.99x largest runtime ratio and +0.01 relative growth exponent. The correct repeated-scan control passed all 12 ordinary cases and all three benchmark outputs but failed only scaling at 43.42x and +1.05."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives directed adjacency and indegrees, fixed-size queue layers as semesters, earliest-semester optimality through the longest-chain lower bound, and processed-count cycle detection. Its O(n + r) time and space match the implementation and manifest, and its alternatives and edge cases cover memoized DFS, repeated scans, cycles, independent courses, multiple prerequisites, and next-semester handling of newly unlocked courses."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves course labels, unique directed prerequisite pairs, previous-semester completion semantics, unrestricted parallel eligibility, the minimum-semester objective, -1 sentinel, both explained examples, all six constraints, and all three hints. Its two accessible Mermaid diagrams independently reproduce every course and directed relationship conveyed by the source images."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review confirmed exactly two explained examples, six constraints, three hints, two source images, and no tables, notes, or follow-up. source_fidelity.json binds every local section to live statement hash 596702d46c3f0309e8f7c479e7ec6330f93f242bcbf20bb12cf424de92b0de80, and the repository Mermaid validator accepted both local diagrams."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "sample-1 and sample-2 preserve both authenticated inputs, outputs, source order, and explanation facts: courses 1 and 2 precede course 3 in two semesters, while the three-course directed cycle leaves no course eligible.",
+      "All 12 ordinary fixtures are visible samples or trials. Together they cover the smallest schema-valid n = 2 and r = 1 instance, n = 5000, r = 5000, labels 1 and n, two-value relation rows, distinct endpoints, and pair uniqueness.",
+      "Material scheduling behavior includes a two-course cycle, a full chain, converging branches, independent components, a transitive edge, a cycle isolated inside an otherwise acyclic graph, competing branch lengths, multiple prerequisites completed in different earlier semesters, broad parallel availability, and both finite and impossible results.",
+      "An independently structured memoized DFS oracle computes the longest path while detecting recursion-stack cycles. It agreed with every authored expected result, the protected app-local function, the immutable native Solution method, and a slower repeated-eligibility control on all 12 ordinary cases and all three benchmark tiers.",
+      "Deterministic validation with seed 1136 covered 5000 schema-valid graphs split across DAG, explicit-cycle, and arbitrary generators, always using unique non-self relation pairs. A separate bitmask semester-state oracle confirmed another 500 small random graphs and independently cross-checked the DFS oracle.",
+      "The hidden performance-only tiers use n consistently as size, span 8x from 32 through 256, and contain chains with r = n - 1. The protected source passed scaling at +0.01 and 0.99x; the correct repeated-eligibility control passed every output and failed only scaling at +1.05 and 43.42x. benchmark.json required no edit."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "0d3c029376dd00fc62197c14c4bd12283c8af0d2d58dd196fa54be7fb270f1b6",
+    "native_source_sha256": "dac1a578e8564fb06963608ba750634f29907f50435e8bdfb5211b1a9518a535",
+    "approach_sha256": "b8d626627b390a756f654e2321446ab8f7d70e2629a516ee395df13ef4e96562",
+    "solution_variants_sha256": "234166cef6583f35c49c4bd58d46faf4cff139f4ad3a5faa9d4c0ecef143abdf",
+    "complexity_evidence_sha256": "5859b6bb7ccff708389d2514d5f3a1d8ea5ea53884df82d2335350c913740f0e",
+    "cases_sha256": "583a827d517700e9b2e046c53c9e662a68751856692c45980f92b5d3e82149c5"
+  }
+}

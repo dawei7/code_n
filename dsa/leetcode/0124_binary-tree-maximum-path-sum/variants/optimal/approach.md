@@ -5,7 +5,7 @@ For each node, recursively compute the best downward gain beginning at each chil
 
 **A complete path may use both child arms exactly once**
 
-The best complete path whose highest—turning—node is current includes `node.val + max(0, left_gain) + max(0, right_gain)`. It may begin in one subtree, pass through current, and end in the other. Update the global answer with this candidate before returning the one-arm gain upward.
+The best complete path whose highest node, and therefore turning point, is current includes `node.val + left_gain + right_gain`, where each stored gain has already been clipped to zero. It may begin in one subtree, pass through current, and end in the other. Update `best` with this candidate before returning the one-arm gain upward.
 
 **Helper return and global answer have different contracts**
 

@@ -1,34 +1,39 @@
 ## General
-**`read4` exposes the file only in bounded sequential chunks**
 
-Allocate one fixed four-character temporary buffer. While the caller still needs characters, invoke `read4(temp)`. It writes the next zero through four file characters in order and returns that count; no random access or rewind is available.
+**Consume the file through one fixed four-character buffer**
 
-**A primitive chunk may be larger than the caller's remaining capacity**
+The candidate allocates a temporary buffer of length four and repeatedly calls `read4`. Each call exposes the next
+zero to four file characters and advances the source position. `copied` records how many characters already occupy
+the caller's destination.
 
-Copy exactly `min(read_count, n - copied)` temporary characters into the caller buffer, starting at its current written count. This prevents writing beyond `n` when the final primitive call overreads the request.
+After a call returns `available`, copy only `min(available, n - copied)` characters into the destination. This cap
+matters when the final primitive call reads beyond the remaining request. The candidate uses the conventional loop
+variable `i` for these positions and advances `copied` by the number actually written.
 
-Because this version invokes `read` only once, unused characters from that final chunk never need to serve a later request and may be discarded. That assumption is the decisive difference from problem 158.
+A zero return means the file was already exhausted. A positive return below four includes the final file
+characters, so the method stops after copying them. A full chunk may be followed by more input, and the loop
+continues only while fewer than `n` characters have been written.
 
-**A short primitive read proves EOF after its returned characters**
+Before every primitive call, the destination contains exactly the first `copied` file characters in order. Copying
+a prefix of the next sequential chunk preserves that property and never exceeds the request. The loop therefore
+returns exactly the first `min(n, file_length)` characters. Because `read` is called only once, any surplus consumed
+by the final `read4` call never needs to be retained for a future request.
 
-A zero count means EOF was already reached. A positive count smaller than four means those are the final available characters; copy the permitted portion and stop rather than issuing a redundant primitive call. A full count of four may or may not be the final chunk, so continue only if the request remains unfilled.
-
-**Copied output is always the exact file prefix required so far**
-
-Before each primitive call, the output contains exactly the first `copied` file characters, where `copied <= n`. Each iteration extends that prefix without exceeding the request.
-
-**Every copied chunk extends the same file prefix**
-
-`read4` exposes consecutive file characters in their original order. Before each primitive call, the output already contains exactly the first `copied` characters. Copying at most `n - copied` characters from the next chunk extends that prefix without skipping, reordering, or exceeding the request.
-
-The loop ends only when $n$ characters have been copied or `read4` reports the end of the file. The output is therefore exactly the first `min(n, file_length)` characters.
+The app-local adapter installs an equivalent advancing `read4`, invokes the same `Solution.read` method, and returns
+the populated destination prefix as a string.
 
 ## Complexity detail
-At most $\left\lceil n / 4 \right\rceil$ useful primitive calls and `n` character copies occur, giving $O(n)$ time. The native algorithm uses a fixed four-character temporary buffer, or $O(1)$ auxiliary space beyond the caller's output.
+
+Let $m = \min(n, \text{file length})$. The method copies $m$ characters and makes at most
+$\lceil m / 4 \rceil + 1$ primitive calls, where the possible extra call detects end of file. Its time is $O(n)$
+under the required upper bound. The native method uses one four-character temporary buffer, so auxiliary space is
+$O(1)$ beyond the caller-owned output; the app adapter's returned buffer is output storage.
 
 ## Alternatives and edge cases
-- **Call `read4` once:** fails whenever $n > 4$.
-- **Copy every returned character:** can write beyond the requested `n`.
-- **Persist surplus characters:** is unnecessary for this single-call version but becomes essential in Problem 158.
-- The file may be empty, `n` may be zero, and the final primitive read may return one to three characters.
-- A request smaller than four uses at most one primitive call and copies only its requested prefix.
+
+- **Call `read4` once:** fails whenever the requested prefix extends beyond the first four file characters.
+- **Copy every returned character:** can write past the requested count when fewer than four positions remain.
+- **Persist surplus characters:** is unnecessary for this single-call contract but becomes required in problem 158.
+- When `n` exceeds the file length, a short chunk or a subsequent zero return terminates the read at EOF.
+- A request smaller than four may consume one full primitive chunk but copies only the requested prefix.
+- A file length divisible by four can require one final zero-length primitive call when `n` is larger than the file.

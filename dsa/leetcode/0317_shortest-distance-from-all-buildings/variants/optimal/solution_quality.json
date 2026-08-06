@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_317",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is a clear building-origin BFS solution. It accumulates one shortest distance per building and empty cell, tracks independent reach counts, never traverses obstacles or other buildings, and rejects partial reachability before minimizing. Its grid concepts are precisely named, so no candidate is justified."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 317 and its Python shortestDistance surface. The Reference preserves the three cell meanings, four-direction travel, empty-house requirement, all-buildings reachability, minimum distance sum, all three source examples, all five constraints, and an accessible sample-grid diagram."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064376441 and structurally aligned with the protected app-local helper despite legacy List annotation spelling. Building enumeration, per-source BFS, visitation, accumulation, reach filtering, and final sentinel behavior are identical."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "corrected",
+        "reason": "The former 16x16 tier caused the correct slower control to hit the runner safety cap. The legal 4x4, 6x6, and 8x8 open-grid tiers span 4x in cell count and let candidate-origin BFS finish. The current source passes all nine executions at -0.00 relative growth and 1.02x; the slower control passes every output but fails only scaling at +1.07 and 12.39x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now renders m, n, and b consistently as mathematical quantities. Its reversed search direction, BFS layer accumulation, per-building visitation requirement, reach-count validity filter, disconnected-case reasoning, O(bmn) time, and O(mn) auxiliary space match the protected source exactly."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Premium Reference remains verified against authenticated source evidence, including all three source examples, the first distance breakdown, all five constraints, and the informational equivalent of the source grid illustration."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 13,
+      "correctness_cases_total": 13,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "All three authenticated source examples appear first, in source order, with their exact grids and minimum-distance or impossible results.",
+      "Every formerly hidden legal correctness case is now a visible trial, including isolated, four-building, and forced-detour configurations.",
+      "The one-cell source case covers both minimum dimensions and no empty land; one-row and one-column trials exercise the maximum width and height of 50.",
+      "Open grids, a single common candidate, multiple optimal candidates, and one versus four buildings cover the valid-result range and sum aggregation.",
+      "Obstacles, an impassable building wall, a sealed building, and private land reachable from only one building distinguish shortest traversable paths from Manhattan distance and reject partial reachability.",
+      "An independent candidate-origin BFS oracle verified all 13 authored results and all three benchmark results; the protected source also matched it on all 20,615 legal grids up to 3 by 3 containing at least one building.",
+      "All 13 correctness cases are visible samples or trials; the unchanged open 4 by 4, 6 by 6, and 8 by 8 scaling grids remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "d5978fa67a14e2952d188ada53efeb36fe484fe402a874d76601d4bb06f1c3e4",
+    "native_source_sha256": "d5f3be429a45f333186e85b29981f15e0fb1da4e4e254171b2e1dbbab85bf81e",
+    "approach_sha256": "8eef32dbe13f8306cd908b1b3de9d507682210e0db33b6d15062bc8fc2836fc3",
+    "solution_variants_sha256": "28237889f0cccfc2b06bc09c2a3d6c02775b061365ab78e2daab65cbf7966b80",
+    "complexity_evidence_sha256": "be0662ffa591781a003fb0005fa62c4859bfdf046837486bfa446e099ff984b7",
+    "cases_sha256": "90e34dcbfda7664562a77f567c35abc2f03ce031e9222734ef6217b9481b4c2d"
+  }
+}

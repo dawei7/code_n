@@ -1,6 +1,159 @@
-{"challenge_id":"lc_272","cases":[
-{"id":"sample-two","name":"sample: two closest values","kind":"sample","visible":true,"input":{"root":[4,2,5,1,3],"target":3.714286,"k":2},"expected":[3,4],"validator":{"kind":"unordered_list"},"tags":["sample","bst"]},
-{"id":"sample-single","name":"sample: only tree value","kind":"sample","visible":true,"input":{"root":[1],"target":0.0,"k":1},"expected":[1],"validator":{"kind":"unordered_list"},"tags":["sample","boundary"]},
-{"id":"trial-both-sides","name":"merge predecessors and successors","kind":"trial","visible":true,"input":{"root":[4,2,6,1,3,5,7],"target":4.5,"k":3},"expected":[3,4,5],"validator":{"kind":"unordered_list"},"tags":["merge"]},
-{"id":"real-all","name":"hidden: request every node","kind":"real","visible":false,"input":{"root":[2,1,3],"target":10.0,"k":3},"expected":[1,2,3],"validator":{"kind":"unordered_list"},"tags":["hidden","all-values"]}
-]}
+{
+  "challenge_id": "lc_272",
+  "cases": [
+    {
+      "id": "sample-two",
+      "name": "sample: two closest values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [4, 2, 5, 1, 3],
+        "target": 3.714286,
+        "k": 2
+      },
+      "expected": [4, 3],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "binary-search-tree"]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: only tree value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [1],
+        "target": 0.0,
+        "k": 1
+      },
+      "expected": [1],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "minimum-nodes", "minimum-k"]
+    },
+    {
+      "id": "trial-both-sides",
+      "name": "uniquely closest values merge both sides of the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [4, 2, 6, 1, 3, 5, 7],
+        "target": 4.4,
+        "k": 3
+      },
+      "expected": [3, 4, 5],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["predecessors", "successors", "unique-cutoff"]
+    },
+    {
+      "id": "trial-all-values",
+      "name": "requesting k equal to n returns every node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [2, 1, 3],
+        "target": 10.0,
+        "k": 3
+      },
+      "expected": [1, 2, 3],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["maximum-k", "all-values", "iterator-exhaustion"]
+    },
+    {
+      "id": "trial-predecessors-only",
+      "name": "target above the tree drains only predecessors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [4, 2, 6, 1, 3, 5, 7],
+        "target": 100.0,
+        "k": 2
+      },
+      "expected": [6, 7],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["predecessors", "successor-empty", "above-range"]
+    },
+    {
+      "id": "trial-successors-only",
+      "name": "target below the tree drains only successors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [4, 2, 6, 1, 3, 5, 7],
+        "target": -100.0,
+        "k": 2
+      },
+      "expected": [1, 2],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["successors", "predecessor-empty", "below-range"]
+    },
+    {
+      "id": "trial-exact-target",
+      "name": "an exact target is selected before its two equidistant neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [4, 2, 6, 1, 3, 5, 7],
+        "target": 4.0,
+        "k": 3
+      },
+      "expected": [3, 4, 5],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["exact-target", "balanced-merge"]
+    },
+    {
+      "id": "trial-sparse-tree",
+      "name": "sparse level-order nodes advance both iterators",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [8, 4, 12, null, 6, 10, 14],
+        "target": 9.2,
+        "k": 3
+      },
+      "expected": [8, 10, 12],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sparse-tree", "level-order-fixture"]
+    },
+    {
+      "id": "trial-right-skewed",
+      "name": "a right-skewed BST advances through nested successor spines",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [1, null, 2, null, 3, null, 4],
+        "target": 2.6,
+        "k": 2
+      },
+      "expected": [2, 3],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["skewed-tree", "height", "successors"]
+    },
+    {
+      "id": "trial-minimum-boundaries",
+      "name": "minimum target selects the two smallest boundary-side values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [500000000, 0, 1000000000],
+        "target": -1000000000.0,
+        "k": 2
+      },
+      "expected": [0, 500000000],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["minimum-target", "minimum-node-value", "below-range"]
+    },
+    {
+      "id": "trial-maximum-boundaries",
+      "name": "maximum target selects its exact node and the next predecessor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [500000000, 0, 1000000000],
+        "target": 1000000000.0,
+        "k": 2
+      },
+      "expected": [500000000, 1000000000],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["maximum-target", "maximum-node-value", "exact-target"]
+    }
+  ]
+}

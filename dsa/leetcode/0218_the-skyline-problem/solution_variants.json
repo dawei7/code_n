@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for The Skyline Problem and meets the required complexity bound.",
+      "summary": "Sweeps sorted building boundaries with a max-heap and lazily removes intervals after their right edges.",
       "time_complexity": "O(n \\log n)",
       "space_complexity": "O(n)"
     }

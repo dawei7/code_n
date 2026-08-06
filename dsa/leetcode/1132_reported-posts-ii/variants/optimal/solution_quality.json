@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1132",
+  "language": "sql",
+  "reviewed_on": "2026-08-04",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL is clear, conventional, and expert-interview ready. spam_posts identifies the distinct date/post reporting unit, daily_percentages names the equal-weight intermediate values, and daily_percent remains distinct from average_daily_percent. The two-stage aggregation makes the required average-of-percentages explicit without opaque aliases, redundant scans, or premature rounding, so no candidate is justified."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "The exact report/spam predicate excludes unrelated actions and reasons, while DISTINCT action_date/post_id neutralizes duplicate rows and multiple reporters. The left join retains unremoved posts and matches a removed post at most once through the Removals primary key. Matched rows divided by all distinct spam posts therefore yields each daily percentage; averaging those rows weights dates equally, and final-only ROUND produces the required two-decimal value."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode database problem 1132 and SQL/MySQL. Authenticated source evidence confirms duplicate-tolerant Actions, its six-value action enum, optional extra details, unique Removals.post_id, spam-report filtering, removal membership regardless of remove_date, unweighted daily averaging, final two-decimal rounding, and one-column output."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local sql.sql and immutable leetcode.sql bound to verified submission 2067803978 are byte-for-byte identical. They share the spam predicate, distinct date/post relation, left removal join, matched and total counts, floating-point percentage calculation, per-date grouping, unweighted final average, rounding, aliases, and projection, leaving no adapter gap."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The unchanged hidden tiers grow from 96 through 1536 total rows, with distinct spam reports and half as many removals in reverse identifier order. The protected query passed every output and scaling at a 1.00x largest runtime ratio and +0.00 relative growth exponent. A correct non-sargable correlated-removal control passed every output but failed only scaling at 6.21x and +0.63."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach accurately derives early date/post deduplication, a zero-preserving left removal join, daily matched-over-total percentages, and equal-weight averaging across dates with one final rounding operation. Its conservative O(R log R) time and O(R) execution-space bounds match the manifest and query, and its alternatives cover conditional distinct counts, correlated lookup, duplicates, unequal daily populations, removal-date irrelevance, and non-spam exclusions."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves both schemas, all column types, duplicate and enum facts, removal key and row meaning, the exact calculation, and the single source example. Its explanation retains the 50% and 100% daily values, exclusion of other days, unweighted 75% average, one-number output, and removal-date irrelevance."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated review confirmed one explained example, no constraints, hints, notes, or follow-up, and five logical source tables: two schemas plus example Actions, Removals, and output. source_fidelity.json binds every local section to live statement hash c869133d3c8e89155e047f6381bc4e2ec881ad340ec0c7bc983c9439cb4ae6e6."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "sample-1 preserves the authenticated statement's exact thirteen Actions rows, two Removals rows, 75.00 output, and every explanation step. Its unordered-table validator remains correct for the one-row relation.",
+      "All nine ordinary fixtures are visible samples or trials. They cover 0%, 50%, and 100% days, equal weighting of differently sized days, final two-decimal rounding, duplicate rows and reporters, one post reported on multiple dates, non-report spam text, non-spam report reasons, removal dates before and after reports, and no qualifying spam-report date.",
+      "An independent Python oracle uses sets of post IDs per date, exact Fraction arithmetic, and decimal half-up final rounding. A conditional-distinct aggregation and a separately structured non-sargable correlated-removal query provide two independent SQL controls.",
+      "The oracle, protected query, byte-identical native query, conditional-distinct control, and correlated control agreed on all nine ordinary cases, all three benchmark tiers, and 5000 randomized duplicate-tolerant databases generated with seed 1132.",
+      "Random databases exercised every source action enum, optional and spam/non-spam extra values, duplicate rows, multiple reporters, repeated posts across dates, zero qualifying dates, arbitrary removal subsets, unrelated removals, and removal dates on either side of action dates.",
+      "The 96-, 384-, and 1536-row workloads remain hidden and performance-only, use total row count consistently as size, and span 16x. The protected query passed scaling at +0.00 and 1.00x; the correlated control failed only scaling at +0.63 and 6.21x. benchmark.json required no edit."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "2a14923311fa852b3a3c0bef69df5a619bcb4d192ba7bf666c5cb07dec141fb0",
+    "native_source_sha256": "2a14923311fa852b3a3c0bef69df5a619bcb4d192ba7bf666c5cb07dec141fb0",
+    "approach_sha256": "5a039f098b2101577b7f19216569a1714200278770b80669f3fd9acf73af0807",
+    "solution_variants_sha256": "c37c0a10081c19f052242ddb08904d2c480ec9fe0d0004f58b8c9b4d3f01b694",
+    "complexity_evidence_sha256": "84a7fecb1f3e35cb05ee4b45131b4d15bdcbfc3a16c99ccd361a0c9d4bb6032c",
+    "cases_sha256": "cc505d1fa69ad21a8f8d58720bc4d3d24c0acf77e2bcb97ae3950ef4a40886a3"
+  }
+}

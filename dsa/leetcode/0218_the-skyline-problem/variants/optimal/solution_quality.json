@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_218",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected app-local and Accepted native sources implement a correct O(n log n) boundary sweep. They group starts at each coordinate, use a height-first heap with lazy right-edge expiry, preserve half-open interval semantics, suppress equal-height key points, and emit the final ground transition. The implementation is conventional and concise, so no candidate is justified."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 8/64/256-building tiers bind size to building count and exercise overlapping starts and ends throughout the sweep. The protected source passes; a correct implementation that scans every building at every distinct boundary passes all outputs and fails only scaling (+0.67 relative exponent; 10.63x largest runtime ratio). The measurement note now identifies n and the exercised paths explicitly."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The existing derivation accurately explains the protected event ordering, lazy expiry, heap invariant, half-open boundaries, and output canonicalization. The alternatives and semantic boundaries now use explicit required labels, and the Optimal summary names the exact sweep and heap behavior."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 4,
+      "correctness_cases_total": 4,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "9ff81292d7d2c247d05fefdb4fa7d3aaab76275d251ad2521da90ef808461b48",
+    "native_source_sha256": "803d05a9bc05c97fb354b91efbe1ad99106e6b14649a5828ad3cbb5fdb6d90f6",
+    "approach_sha256": "b6442cc01dd36cc82b6893b2e37b0d61e5a6caadb66a206a7af663a1337e3bab",
+    "solution_variants_sha256": "cc61b47e7d04c9700593765e44e89c2fa668f35daa0c3ab00cb86bdf2dce5255",
+    "complexity_evidence_sha256": "63ceaca19823916abbbb4cfb02e158ea145a1911900fda9d4dc28e589b67b8c2"
+  }
+}

@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Verify Preorder Serialization of a Binary Tree and meets the required complexity bound.",
+      "summary": "Scans token boundaries in place while tracking the child slots consumed and created by each token.",
       "time_complexity": "O(L)",
       "space_complexity": "O(1)"
     }

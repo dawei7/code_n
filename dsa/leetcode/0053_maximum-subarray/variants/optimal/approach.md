@@ -1,7 +1,7 @@
 ## General
 **Every endpoint offers a restart-or-extend decision**
 
-For each value, the best nonempty subarray ending at that position has only two possible forms: start a new subarray with the current value, or extend a subarray ending one position earlier. Among all extensions, extending the best previous endpoint sum is optimal, so update with `max(value, ending_here + value)`.
+For each value `x`, the best nonempty subarray ending at that position has only two possible forms: start a new subarray with `x`, or extend a subarray ending one position earlier. Among all extensions, extending the best previous endpoint sum is optimal, so update with `max(x, ending_here + x)`.
 
 This choice discards a negative accumulated prefix exactly when carrying it forward would make every future extension worse than starting at the current position.
 
@@ -9,7 +9,7 @@ This choice discards a negative accumulated prefix exactly when carrying it forw
 
 After index `i`, `ending_here` is the largest sum of a nonempty subarray whose right endpoint is exactly `i`. `best` is the largest sum over every nonempty subarray ending at or before `i`. Update the endpoint value first and then use it to update the global value.
 
-Initialize both from `nums[0]`, not zero. A zero initialization would incorrectly allow the forbidden empty subarray and return zero for an all-negative input.
+The candidate creates `values = iter(nums)`, initializes both sums from `next(values)`, and then scans the remaining values without allocating a slice. Initializing from an input value rather than zero prevents the forbidden empty subarray from winning an all-negative case.
 
 **Trace a harmful prefix being discarded**
 

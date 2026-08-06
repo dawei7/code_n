@@ -3,7 +3,7 @@
 
 At depth `i`, choose one letter mapped from `digits[i]`. Append it to the current path, recursively fill the next position, then remove it before exploring the next letter. A path reaching depth `n` contains one choice for every digit and is copied into the result.
 
-The branching factor is three for digits `2`, `3`, `4`, `5`, `6`, and `8`, and four for `7` and `9`. The empty input is handled separately because the contract requests no combinations rather than a list containing one empty string.
+The branching factor is three for digits `2`, `3`, `4`, `5`, `6`, and `8`, and four for `7` and `9`. The implementation also returns an empty result defensively for empty input, although the source contract requires at least one digit.
 
 **Backtrack with one reusable path**
 
@@ -30,3 +30,4 @@ Each digit has at most four letters, so there are at most $4^{n}$ leaves. Materi
 - **Lazy generator:** can reduce retained output memory for streaming consumers, but the required return type asks for a complete list.
 - Input order must be preserved: letters chosen for a later digit may not be moved ahead of an earlier digit's letter.
 - The mapping contains only digits `2` through `9`; handling `0` or `1` is outside the stated contract.
+- Empty input is outside the source constraint; the initial guard is defensive and does not replace legal boundary coverage.

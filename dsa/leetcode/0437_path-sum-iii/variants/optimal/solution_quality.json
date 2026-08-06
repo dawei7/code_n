@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_437",
+  "language": "python",
+  "reviewed_on": "2026-08-02",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected solution is the canonical prefix-frequency DFS. prefix_counts, current_sum, total, node, and count_paths expose the mathematical state directly; the seed, lookup, increment, two child calls, and decrement appear in invariant order. The local TreeNode model is minimal and explicit. No inert candidate would materially improve it."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies public LeetCode problem 437 and its Python TreeNode contract. The app-local class is marked as the judge model's local equivalent, and the Reference distinguishes level-order JSON construction from the executable root object. The two source parameters, downward-path semantics, target sum, and integer count match the native pathSum surface."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source remains tied to verified submission 2064813415. Both implementations seed prefix zero once, compute the same root-to-node sum, count the same target difference, update and backtrack the same frequency, traverse children in the same order, and return the same recursive total. The app source adds only the required local TreeNode class and solve wrapper."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The 31-, 127-, and 511-node zero-valued spines span more than 16x and force a start-at-every-node alternative to enumerate a quadratic number of suffixes. The protected source passed all 11 opaque correctness executions and all three performance tiers at 0.94x the reference runtime. A correct iterative O(n^2) suffix-sum control passed every output but failed only the runtime verdict at 57.34x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly derives path sums as prefix differences, explains the zero seed and active-ancestor frequency map, requires removal before crossing branches, proves one count per valid endpoint and starting prefix, and matches O(n) average time with O(n) worst-case map and recursion storage."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Reference was checked against the live public statement. It preserves the downward-only path definition, both exact examples and their explanation presence, all three constraints, and every relationship from the source tree image. An independently authored accessible Mermaid tree identifies the three paths 5 to 3, 5 to 2 to 1, and -3 to 11 without copying the provider asset."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "d0e4562b077edf8d4c282012c1b55e661038120bcdc2c5230911266d8bffc3c4",
+    "native_source_sha256": "182e52434d76838609a94afa90d39eb17fcc17442ed582f5585cefd8825c0b05",
+    "approach_sha256": "a8d4aa1f97833eaaa4a713e393dc67416a458a655079b6763c026a9d27349888",
+    "solution_variants_sha256": "c420540ecc204974a12d0250efffa4bc9976acef344021309e7ef7293b682379",
+    "complexity_evidence_sha256": "9b4033f5f0af529b8c90dd70cbbdda28d3409cff69444ffa50f0f179ba7ccafd"
+  }
+}

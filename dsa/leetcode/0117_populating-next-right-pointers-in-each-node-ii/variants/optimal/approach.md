@@ -19,7 +19,7 @@ For `[1, 2, 3, 4, 5, null, 7]`, scanning parents `2` then `3` discovers children
 
 **Horizontal parent order induces exact child order**
 
-Parents are scanned from left to right through the current `next` chain, and each parent's existing children are considered left before right. Appending those children to a dummy-headed chain therefore lists the next level in exact horizontal order while naturally skipping missing positions.
+Parents are scanned from left to right through the current `next` chain, and each parent's existing children are considered left before right. Appending those children through `next_head` and `tail` therefore lists the next level in exact horizontal order while naturally skipping missing positions.
 
 The root is a correctly formed first level. Once one level is correct, this scan constructs the next level's complete neighbor chain, so repeating links every level precisely.
 

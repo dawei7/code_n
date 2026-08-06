@@ -1,22 +1,29 @@
 ## General
-**Count transactions without losing empty visits**
 
-Left join `Visits` to `Transactions` on both `user_id` and the matching date. Group by the visit's composite key and use `COUNT(transaction_date)`. Counting a nullable column, rather than `COUNT(*)`, gives zero for a visit whose left join produced only the placeholder row.
+**Assign one transaction count to every visit**
 
-**Generate the complete bucket range**
+Join `Visits` to `Transactions` on both `user_id` and the matching date. The join must be left-sided so a visit without transactions survives as a placeholder row. Group by the visit's composite primary key and count `t.transaction_date`, not `COUNT(*)`: a matched transaction contributes a non-null date, while the unmatched placeholder contributes nothing and therefore produces count zero. Duplicate transaction rows remain separate joined rows and are counted separately, as required.
 
-Find the largest per-visit count. A recursive common table expression starts at 0 and emits the next integer until it reaches that maximum. Left join this generated series to the per-visit counts, group by the generated integer, and count matching visits. Because the series is the preserved side, transaction counts that never occur still produce a row with zero.
+**Build every required histogram bucket**
 
-Finally, order by the generated count. Every visit contributes to exactly one bucket because its transaction count was computed once from its matching rows, and the complete integer series proves that no required gap can disappear.
+Let $m$ be the largest per-visit transaction count. The recursive `count_range` CTE starts at `0`; whenever its current value is below $m$, it emits the next integer. By induction, it produces every and only integer from $0$ through $m$, so missing intermediate buckets cannot disappear.
+
+Left join the per-visit counts onto that range. For a bucket $k$, every matching visit contributes one non-null `v.transactions_count`, so `COUNT(v.transactions_count)` is exactly the number of visits with count $k$; a missing bucket retains only its null placeholder and returns zero. Each visit has one composite-key group and one count, so it contributes to exactly one bucket. Ordering the range value completes the required ascending result.
 
 ## Complexity detail
-With indexed or sort-based grouping, joining and aggregating $N$ input rows takes $O(N\log N)$ time in the general comparison model. Generating and aggregating at most $T+1$ buckets stays within that bound. The grouped visits, bucket series, and database working structures use $O(N)$ space.
+
+Let $V$ and $T$ be the input row counts and $N=V+T$. Under indexed or sort-based database execution, joining and grouping the inputs takes $O(N\log N)$ time in the general comparison model. The generated range has $m+1\le T+1$ rows, and joining and grouping it remains within $O(N\log N)$. The visit aggregates, range, result groups, and database working structures use $O(N)$ space.
 
 ## Alternatives and edge cases
-- **Correlated count per visit:** Counting matching `Transactions` in a scalar subquery is concise but may rescan all $T$ transactions for each visit, taking $O(VT)$ time.
-- **Group transactions before joining:** Pre-aggregating by user and date is also efficient, provided the subsequent left join preserves visits with no match.
-- **No transactions:** The maximum visit count is zero, so the output still contains the single bucket `[0, V]`.
-- **Missing intermediate count:** Generate it explicitly and report zero visits.
-- **Composite match:** Equal dates from different users, or different dates for one user, must not be combined.
-- **Duplicate transaction rows:** Each row represents a separate transaction and contributes to the visit's count.
-- **Unmatched transaction:** A transaction with no corresponding visit does not create a visit or a bucket contribution.
+
+- **Preaggregate transactions first:** Group `Transactions` by user and date, then left join those counts to `Visits`; this is also efficient and correct when zero-transaction visits are preserved.
+- **Correlated count per visit:** Counting matching transactions in a scalar subquery is concise but can rescan all $T$ transaction rows for each of $V$ visits and take $O(VT)$ time.
+- **`COUNT(*)` after the left join:** This incorrectly assigns one transaction to every unmatched visit because it counts the placeholder row.
+- **No transactions:** Every visit belongs to bucket `0`, so the result is `[0,V]`.
+- **Missing intermediate count:** The recursive range retains the bucket and the left join reports zero visits.
+- **Same user on different dates:** Date is part of the join and group key, so each visit is counted independently.
+- **Different users on the same date:** User identity is also part of the key; their transactions must not mix.
+- **Duplicate transaction rows:** Each row represents a separate transaction and increases the matching visit's count.
+- **Transaction amount:** `amount` does not affect the histogram; only the number of matching transaction rows matters.
+- **Guaranteed match:** Source-valid transaction rows always correspond to a visit, so a transaction never creates a visit on its own.
+- **Empty input:** With no visits and no transactions, the recursive base bucket produces `[0,0]`, the natural zero-visit histogram.

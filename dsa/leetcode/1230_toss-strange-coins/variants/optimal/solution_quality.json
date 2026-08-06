@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1230",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected source is already concise expert-interview code. `probabilities`, `processed`, `head_probability`, and `heads` expose the rolling head-count distribution, reachable-state bound, and current transition directly. Descending updates and the separate zero-head multiplication are visible where they matter, with no unnecessary abstraction or obscure trick, so no candidate is materially justified."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Before any toss, probability one belongs to zero heads. For each coin, exactly `h` heads arises through two disjoint events: the previous layer already had `h` heads and the coin is tails, or it had `h - 1` heads and the coin is heads. The weighted sum is therefore exact. Descending updates preserve both previous-layer values until use, the zero state multiplies by the tail probability, and counts above `target` may be discarded because later tosses cannot reduce the head count."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent exact-rational oracle multiplied full head-count generating polynomials and retained every coefficient, while a separately written slower control explicitly enumerated heads/tails outcomes. Oracle, protected app source, immutable native source, and enumerator agreed on all ten ordinary cases and all three benchmark tiers, 22,460 exhaustive vectors over probabilities 0, 0.25, 0.5, 0.75, and 1, plus 5,000 deterministic schema-valid random inputs generated with seed 1230. Protected and native also matched the closed-form central binomial probability for 1,000 fair coins and target 500."
+      },
+      {
+        "category": "boundary_and_probability_semantics",
+        "severity": "verified",
+        "reason": "Visible fixtures preserve both authenticated source examples and cover one coin, zero and full-count targets, probabilities zero and one, certain and impossible outcomes, fair and unequal coins, and an interior target requiring several disjoint outcome contributions. Seeded validation covered 868 zero targets, 920 full-count targets, 3,212 interior targets, 1,282 vectors containing zero, 1,334 containing one, 17 certain results, 407 impossible results, 412 minimum-length arrays, and 409 length-twelve arrays."
+      },
+      {
+        "category": "case_and_benchmark_calibration",
+        "severity": "corrected",
+        "reason": "Fresh authenticated evidence requires accepting answers within `10^-5`, but the legacy cases and tiers used exact float equality. An independently correct enumerator returned `0.21440000000000003` for the exact `0.2144` trial and was wrongly rejected before scaling, proving the calibration defect. Every ordinary and benchmark result now uses the source-native `float_close` tolerance of 0.00001. Benchmark inputs, expected mathematical values, sizes, ordering, and hidden status remain unchanged."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode algorithm problem 1230, Python, and native entrypoint `Solution.probabilityOfHeads`. Fresh authenticated evidence confirms one through 1,000 coins, per-coin head probabilities from zero through one, a target from zero through the coin count, exactly one toss per coin, exact-head-count return semantics, and the `10^-5` acceptance tolerance."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native source remains bound to verified submission 2067962506 and is unchanged. Apart from the required `Solution.probabilityOfHeads` wrapper and type-only `List` syntax, it and the protected app source share the exact target-sized initialization, processed-coin bound, descending recurrence, head/tail weighting, zero-head update, and target lookup."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The hidden tiers keep fair-coin count as `size`, target half the size, and the unchanged 3, 6, 12 progression spanning 4x. After the validator repair, protected passed two repeated runs at largest-tier ratios 0.99x and 1.03x. An independently written `O(nt)` rolling DP passed three runs at 1.13x, 1.15x, and 1.13x. The correct explicit `O(2^n)` outcome enumerator preserved all ten ordinary and three benchmark outputs but failed only scaling in three runs at 62.24x, 65.59x, and 66.26x, with extra growth exponents from +2.92 through +2.96."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach exactly matches the protected source's head-count probability state, disjoint head/tail recurrence, descending in-place updates, processed-count cap, separate zero-head transition, and final target lookup. Its `O(nt)` time and `O(t)` rolling-space analysis is accurate for `n` coins and target `t`."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves one toss per coin, per-coin head probabilities, the exact target, both source examples in order without fabricated explanations, all four constraints including answer tolerance, and all four hints. The deterministic and mixed-probability additions are clearly separated under Additional Examples rather than represented as source examples."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review confirmed two examples without explanations, four constraints, four hints, and no image, table, note, or follow-up. `source_fidelity.json` binds all five modular files to live statement hash 0f6b4963db98b9ad980807f2f359cb5027873bc84bfc7159f57a0ed6bebdf4b8 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 10,
+      "correctness_cases_total": 10,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples are the two authenticated source examples in source order with every probability, target, and output literal preserved exactly. Because the source supplies no explanations, the modular Reference does not fabricate explanations inside the source example sequence.",
+      "All ten ordinary fixtures are visible samples or trials. They cover probability and target endpoints, certain and impossible results, single and multiple coins, zero heads, all heads, fair coins, unequal biases, and an interior target with several contributing outcomes.",
+      "Every ordinary and benchmark result uses the authenticated absolute tolerance of 0.00001. This repaired a demonstrated exact-float rejection while leaving all three hidden performance workloads, sizes, expected mathematical values, and scaling semantics unchanged.",
+      "The exact-rational polynomial oracle recomputed every authored and benchmark expectation. Protected source, immutable native source, and explicit outcome enumeration agreed on every fixed fixture, 22,460 exhaustive vectors, and 5,000 seeded random inputs; a separate 1,000-coin central-target check covered the length upper bound.",
+      "The independent same-class rolling DP passed three scaling runs, while the correct exponential enumerator preserved every output and failed only the scaling verdict in all three runs."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "e25e7b63f12d6f52b997cb5bb0c03292287c13b413c8b538d0c8aee1932b848b",
+    "native_source_sha256": "d20f6aab4cbb37204f002ccad2c3e318983031057f83ba6278390fc766a110f0",
+    "approach_sha256": "1611c7f9046c86d8f00727e2751ddd52411ea1d0d59d9fa85d194a2395bdb859",
+    "solution_variants_sha256": "977bdcc21461d1c70777e5131f72d0633a1c78ba92a4473d2ab9d8788c7b7d41",
+    "complexity_evidence_sha256": "3095f91dbf1f1e221838be8494c46bc641280a0e2a7029f90fd630fdc6687421",
+    "cases_sha256": "e6c21cca63c72b438065ef0b10a96b82c67f2dcb2d446945995eebc1318d4139"
+  }
+}

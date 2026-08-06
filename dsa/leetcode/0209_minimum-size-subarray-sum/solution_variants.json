@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Size Subarray Sum and meets the required complexity bound.",
+      "summary": "Expands and greedily shrinks one positive-sum window while each boundary advances once.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }

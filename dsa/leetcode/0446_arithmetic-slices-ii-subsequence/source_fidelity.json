@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_446",
+    "frontend_id": "446",
+    "title_slug": "arithmetic-slices-ii-subsequence",
+    "url": "https://leetcode.com/problems/arithmetic-slices-ii-subsequence/description/",
+    "paid_only": false,
+    "content_sha256": "ef7f9e2ffb3b063d3e67464e815a4a0fc070c11ff91348198b5694a6338a50ab",
+    "checked_at": "2026-08-02"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [2,4,6,8,10]",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [7,7,7,7,7]",
+        "output": "16",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a651c1a3c1a169e6bcbb9bf0fb31f101e998d09ed4d72ace9ac0b70dfb43642b",
+      "reference/contract.md": "a3dcfeba0dcaebcac4db900a55312f9d48909fdb3f4118b628a75ac28daf877c",
+      "reference/examples.md": "9d6434c9b147576e7dd3e8680344f9e45e82aa57cd97e1c14ecb045379a1111e",
+      "reference/constraints.md": "fffd53ee16bd1b1420f3e41d8606d0328ffaaa9f435667dc8d1a3886b676b788"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -5,13 +5,13 @@ Every path contains exactly $m - 1$ downward moves and $n - 1$ rightward moves, 
 
 **Choose the smaller move group to minimize arithmetic steps**
 
-Let $N=m+n-2$ be the total number of moves. Use symmetry $\binom{N}{r} = \binom{N}{N-r}$ and let $r = \min(m - 1, n - 1)$. Compute the coefficient incrementally rather than constructing two factorials. At step `i`, multiply by `total - r + i` and divide by `i`.
+Let $N = \texttt{total_moves} = m+n-2$. Use symmetry $\binom{N}{r} = \binom{N}{N-r}$ and set $r = \texttt{selected_moves} = \min(m - 1, n - 1)$. Compute the coefficient incrementally rather than constructing two factorials. At each `count`, multiply by `total_moves - selected_moves + count` and divide by `count`.
 
 The chosen recurrence yields an integer after every complete step, so arbitrary-precision implementations remain exact. Fixed-width implementations should use a sufficiently wide intermediate type or divide common factors safely before multiplication.
 
 **Every intermediate value is a smaller binomial coefficient**
 
-After iteration $i$, the running result equals $\binom{N-r+i}{i}$. Multiplying by `total - r + i` and dividing by `i` applies the standard neighboring-binomial recurrence, preserving integrality.
+After iteration `count`, `paths` equals $\binom{N-r+\texttt{count}}{\texttt{count}}$. Multiplying by `total_moves - selected_moves + count` and dividing by `count` applies the standard neighboring-binomial recurrence, preserving integrality.
 
 **Trace a rectangular grid**
 

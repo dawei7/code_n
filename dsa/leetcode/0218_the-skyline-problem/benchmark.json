@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_218",
-  "measurement_note": "Growing overlapping buildings exercise event sorting and lazy heap expiry.",
+  "measurement_note": "Size is the legal building count n. Growing overlapping intervals exercise boundary sorting, grouped starts, and lazy heap expiry across the full sweep.",
   "cases": [
     {
       "id": "benchmark-scale-1",

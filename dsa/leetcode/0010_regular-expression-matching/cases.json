@@ -1,11 +1,18 @@
 {
   "challenge_id": "lc_10",
   "cases": [
-    {"id": "sample-1", "name": "sample: literal is too short", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "a"}, "expected": false, "tags": ["sample"]},
+    {"id": "sample-1", "name": "sample: literal is too short", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "a"}, "expected": false, "tags": ["sample", "whole-string"]},
     {"id": "sample-2", "name": "sample: starred literal", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "a*"}, "expected": true, "tags": ["sample", "star"]},
-    {"id": "trial-wildcard-star", "name": "dot star consumes the string", "kind": "trial", "visible": true, "input": {"s": "ab", "p": ".*"}, "expected": true, "tags": ["wildcard", "star"]},
-    {"id": "trial-zero-and-many", "name": "stars use zero and multiple copies", "kind": "trial", "visible": true, "input": {"s": "aab", "p": "c*a*b"}, "expected": true, "tags": ["zero-copies", "many-copies"]},
-    {"id": "real-ambiguous-failure", "name": "hidden: locally plausible stars cannot complete", "kind": "real", "visible": false, "input": {"s": "mississippi", "p": "mis*is*p*."}, "expected": false, "tags": ["hidden", "backtracking"]},
-    {"id": "real-empty-string", "name": "hidden: starred element matches empty", "kind": "real", "visible": false, "input": {"s": "", "p": "c*"}, "expected": true, "tags": ["hidden", "empty"]}
+    {"id": "sample-3", "name": "sample: wildcard star", "kind": "sample", "visible": true, "input": {"s": "ab", "p": ".*"}, "expected": true, "tags": ["sample", "wildcard", "star"]},
+    {"id": "trial-minimum-literals", "name": "one literal matches one character", "kind": "trial", "visible": true, "input": {"s": "a", "p": "a"}, "expected": true, "tags": ["boundary", "literal"]},
+    {"id": "trial-single-wildcard", "name": "dot matches exactly one character", "kind": "trial", "visible": true, "input": {"s": "z", "p": "."}, "expected": true, "tags": ["boundary", "wildcard"]},
+    {"id": "trial-leading-zero-copies", "name": "leading star uses zero copies", "kind": "trial", "visible": true, "input": {"s": "b", "p": "a*b"}, "expected": true, "tags": ["star", "zero-copies"]},
+    {"id": "trial-trailing-zero-copies", "name": "trailing star uses zero copies", "kind": "trial", "visible": true, "input": {"s": "a", "p": "ab*"}, "expected": true, "tags": ["star", "zero-copies"]},
+    {"id": "trial-zero-and-many", "name": "different stars use zero and multiple copies", "kind": "trial", "visible": true, "input": {"s": "aab", "p": "c*a*b"}, "expected": true, "tags": ["star", "zero-copies", "many-copies"]},
+    {"id": "trial-ambiguous-failure", "name": "locally plausible stars cannot complete", "kind": "trial", "visible": true, "input": {"s": "mississippi", "p": "mis*is*p*."}, "expected": false, "tags": ["star", "backtracking", "mismatch"]},
+    {"id": "trial-star-cooperation", "name": "star choices leave characters for later elements", "kind": "trial", "visible": true, "input": {"s": "aaa", "p": "ab*a*c*a"}, "expected": true, "tags": ["star", "backtracking"]},
+    {"id": "trial-whole-string", "name": "matching a prefix is insufficient", "kind": "trial", "visible": true, "input": {"s": "ab", "p": ".*c"}, "expected": false, "tags": ["whole-string", "mismatch"]},
+    {"id": "trial-max-string-length", "name": "maximum-length string consumed by a star", "kind": "trial", "visible": true, "input": {"s": "aaaaaaaaaaaaaaaaaaaa", "p": "a*"}, "expected": true, "tags": ["boundary", "many-copies"]},
+    {"id": "trial-max-pattern-length", "name": "maximum-length pattern with skipped pairs", "kind": "trial", "visible": true, "input": {"s": "j", "p": "a*b*c*d*e*f*g*h*i*j*"}, "expected": true, "tags": ["boundary", "zero-copies"]}
   ]
 }

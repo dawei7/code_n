@@ -6,4 +6,4 @@
 
 **Return value**
 
-Return nothing; relink the supplied nodes in place. The app displays the resulting value order.
+Return nothing; relink the supplied linked list in place. The app displays the resulting value order.

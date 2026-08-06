@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_2277",
+    "frontend_id": "2277",
+    "title_slug": "closest-node-to-path-in-tree",
+    "url": "https://leetcode.com/problems/closest-node-to-path-in-tree/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`n = 7, edges = [[0, 1], [0, 2], [0, 3], [1, 4], [2, 5], [2, 6]], query = [[5, 3, 4], [5, 3, 6]]`",
+        "output": "`[0, 2]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`n = 3, edges = [[0, 1], [1, 2]], query = [[0, 1, 2]]`",
+        "output": "`[1]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`n = 3, edges = [[0, 1], [1, 2]], query = [[0, 0, 0]]`",
+        "output": "`[0]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "143355a8bc13fa8c1e4ed8ba84a2bf18051cc5c1650075c2daadc1ac7f74ef24",
+      "reference/contract.md": "6e3f6a29a006a5c0667b30b083bec3a4d09db01e721f8da99c52e39b86e0acb3",
+      "reference/examples.md": "4301dd5c6d341bf15d68000acbaf2839ce25c51e706c994005931a5ad1e904b4",
+      "reference/constraints.md": "d60119abca171ea257590213becab0e3d98c659d28d858a75dfa37e55e8217ef"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

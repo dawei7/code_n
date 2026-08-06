@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Robot Room Cleaner and meets the required complexity bound.",
+      "summary": "Uses an explicit coordinate-DFS stack while physically restoring the robot after each branch.",
       "time_complexity": "O(c)",
       "space_complexity": "O(c)"
     }

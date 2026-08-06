@@ -3,183 +3,93 @@
   "cases": [
     {
       "id": "sample-valid",
-      "name": "sample: exact root-to-leaf sequence",
+      "name": "source example 1: exact root-to-leaf sequence",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "root": [
-          0,
-          1,
-          0,
-          0,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0
-        ],
-        "arr": [
-          0,
-          1,
-          0,
-          1
-        ]
-      },
+      "input": {"root": [0, 1, 0, 0, 1, 0, null, null, 1, 0, 0], "arr": [0, 1, 0, 1]},
       "expected": true,
-      "tags": [
-        "sample",
-        "valid"
-      ]
+      "tags": ["sample", "source-example-1", "valid"]
     },
     {
       "id": "sample-wrong-value",
-      "name": "sample: path value does not match",
+      "name": "source example 2: requested path does not exist",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "root": [
-          0,
-          1,
-          0,
-          0,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0
-        ],
-        "arr": [
-          0,
-          0,
-          1
-        ]
-      },
+      "input": {"root": [0, 1, 0, 0, 1, 0, null, null, 1, 0, 0], "arr": [0, 0, 1]},
       "expected": false,
-      "tags": [
-        "sample",
-        "mismatch"
-      ]
+      "tags": ["sample", "source-example-2", "mismatch"]
     },
     {
       "id": "sample-internal-end",
-      "name": "sample: sequence stops at internal node",
+      "name": "source example 3: sequence stops at an internal node",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "root": [
-          0,
-          1,
-          0,
-          0,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0
-        ],
-        "arr": [
-          0,
-          1,
-          1
-        ]
-      },
+      "input": {"root": [0, 1, 0, 0, 1, 0, null, null, 1, 0, 0], "arr": [0, 1, 1]},
       "expected": false,
-      "tags": [
-        "sample",
-        "leaf-condition"
-      ]
+      "tags": ["sample", "source-example-3", "leaf-condition"]
     },
     {
       "id": "trial-single-match",
-      "name": "single-node matching sequence",
+      "name": "single-node tree matches one maximum digit",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "root": [
-          7
-        ],
-        "arr": [
-          7
-        ]
-      },
+      "input": {"root": [9], "arr": [9]},
       "expected": true,
-      "tags": [
-        "trial",
-        "boundary"
-      ]
+      "tags": ["trial", "single-node", "value-maximum"]
     },
     {
       "id": "trial-single-mismatch",
-      "name": "single-node mismatching sequence",
+      "name": "single minimum-valued node mismatches the target",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "root": [
-          7
-        ],
-        "arr": [
-          6
-        ]
-      },
+      "input": {"root": [0], "arr": [9]},
       "expected": false,
-      "tags": [
-        "trial",
-        "mismatch"
-      ]
+      "tags": ["trial", "single-node", "root-mismatch", "value-boundaries"]
     },
     {
-      "id": "real-too-long",
-      "name": "hidden: array continues beyond leaf",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "root": [
-          1,
-          2,
-          3
-        ],
-        "arr": [
-          1,
-          2,
-          4
-        ]
-      },
+      "id": "trial-too-long",
+      "name": "array continues after a matching leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, 2, 3], "arr": [1, 2, 4]},
       "expected": false,
-      "tags": [
-        "hidden",
-        "length"
-      ]
+      "tags": ["trial", "leaf-too-early", "length"]
     },
     {
-      "id": "real-right-path",
-      "name": "hidden: valid path uses right children",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "root": [
-          1,
-          null,
-          2,
-          null,
-          3
-        ],
-        "arr": [
-          1,
-          2,
-          3
-        ]
-      },
+      "id": "trial-right-skew",
+      "name": "valid sequence follows only right children",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, null, 2, null, 3], "arr": [1, 2, 3]},
       "expected": true,
-      "tags": [
-        "hidden",
-        "right-skew"
-      ]
+      "tags": ["trial", "right-skew", "valid"]
+    },
+    {
+      "id": "trial-duplicate-branch",
+      "name": "duplicate prefix values require exploring the correct branch",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, 1, 1, null, 2, 3, null], "arr": [1, 1, 3]},
+      "expected": true,
+      "tags": ["trial", "duplicates", "branching"]
+    },
+    {
+      "id": "trial-short-internal",
+      "name": "matching target ends one level before a leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [5, 4, 6, 3, null, null, 7], "arr": [5, 4]},
+      "expected": false,
+      "tags": ["trial", "internal-end", "too-short"]
+    },
+    {
+      "id": "trial-extra-after-single-leaf",
+      "name": "single-node leaf cannot satisfy a longer array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [2], "arr": [2, 2]},
+      "expected": false,
+      "tags": ["trial", "single-node", "too-long"]
     }
   ]
 }

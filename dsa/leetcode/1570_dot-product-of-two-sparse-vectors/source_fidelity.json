@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1570",
+    "frontend_id": "1570",
+    "title_slug": "dot-product-of-two-sparse-vectors",
+    "url": "https://leetcode.com/problems/dot-product-of-two-sparse-vectors/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums1 = [1,0,0,2,3], nums2 = [0,3,0,4,0]`",
+        "output": "`8`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums1 = [0,1,0,0,0], nums2 = [0,0,0,0,2]`",
+        "output": "`0`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`nums1 = [0,1,0,0,2,0,0], nums2 = [1,0,0,0,3,0,4]`",
+        "output": "`6`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "451377d56c9a826b1c5ff84ee1ca70f634ea46157612f0fa7ca19c9bbadd5bc5",
+      "reference/contract.md": "d32654f2206428f92bf568e9fd702969ea409263a731ad68f4afd61cb6712524",
+      "reference/examples.md": "0dbbf6b7dc9fd0170b441b508f2aea528922d303dcc92e951514a34d7974b5bf",
+      "reference/constraints.md": "8ff15024d7f21f3f694e801555e05f705bd9ae797e0ec27e5d7b34c77a9c813e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

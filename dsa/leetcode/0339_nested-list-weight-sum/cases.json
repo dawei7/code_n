@@ -9,7 +9,7 @@
       "visible": true,
       "input": {"nestedList": [[1, 1], 2, [1, 1]]},
       "expected": 10,
-      "tags": ["sample"]
+      "tags": ["sample", "source-example"]
     },
     {
       "id": "sample-2",
@@ -18,7 +18,7 @@
       "visible": true,
       "input": {"nestedList": [1, [4, [6]]]},
       "expected": 27,
-      "tags": ["sample", "depth"]
+      "tags": ["sample", "source-example", "depth"]
     },
     {
       "id": "sample-3",
@@ -27,52 +27,65 @@
       "visible": true,
       "input": {"nestedList": [0]},
       "expected": 0,
-      "tags": ["sample", "zero"]
-    },
-    {
-      "id": "trial-empty",
-      "name": "trial: empty outer list",
-      "kind": "trial",
-      "visible": false,
-      "input": {"nestedList": []},
-      "expected": 0,
-      "tags": ["trial", "empty"]
+      "tags": ["sample", "source-example", "zero", "minimum-length"]
     },
     {
       "id": "trial-negative",
-      "name": "trial: negative values retain their sign",
+      "name": "negative values retain their sign at every depth",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {"nestedList": [-1, [2, [-3]]]},
       "expected": -6,
-      "tags": ["trial", "negative"]
+      "tags": ["negative", "mixed-sign", "depth"]
     },
     {
-      "id": "hidden-empty-branches",
-      "name": "hidden: nested empty lists",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-branches",
+      "name": "empty nested lists contribute nothing",
+      "kind": "trial",
+      "visible": true,
       "input": {"nestedList": [[], [[]], 5]},
       "expected": 5,
-      "tags": ["hidden", "empty"]
+      "tags": ["empty-nested-list", "mixed"]
     },
     {
-      "id": "hidden-mixed-branches",
-      "name": "hidden: values across several branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-branches",
+      "name": "values across several branches use their own depths",
+      "kind": "trial",
+      "visible": true,
       "input": {"nestedList": [5, [1, 1], [[2]], 3]},
       "expected": 18,
-      "tags": ["hidden", "mixed"]
+      "tags": ["mixed-branches", "depth"]
     },
     {
-      "id": "hidden-deep-zero",
-      "name": "hidden: zero between nonzero depths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep-zero",
+      "name": "zero between nonzero depths does not stop traversal",
+      "kind": "trial",
+      "visible": true,
       "input": {"nestedList": [1, [0, [2]]]},
       "expected": 7,
-      "tags": ["hidden", "depth", "zero"]
+      "tags": ["zero", "depth"]
+    },
+    {
+      "id": "trial-maximum-outer-length",
+      "name": "maximum outer length alternates both integer bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nestedList": [100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100]
+      },
+      "expected": 0,
+      "tags": ["maximum-length", "minimum-value", "maximum-value"]
+    },
+    {
+      "id": "trial-maximum-depth",
+      "name": "minimum integer at maximum depth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nestedList": [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[-100]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+      },
+      "expected": -5000,
+      "tags": ["maximum-depth", "minimum-value", "deeply-nested"]
     }
   ]
 }

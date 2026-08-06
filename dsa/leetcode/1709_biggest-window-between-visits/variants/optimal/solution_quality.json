@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1709",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL solution uses LEAD(visit_date) OVER (PARTITION BY user_id ORDER BY visit_date) in a CTE to attach each user's next visit date, uses COALESCE(next_visit, '2021-01-01') for terminal visits, computes day differences, and takes MAX per user_id AS biggest_window. The solution is canonical, optimal, and concise; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "LEAD partitioned by user_id and ordered by visit_date pairs each visit with the next chronological visit for that user. Replacing NULL next_visit values with 2021-01-01 correctly measures the terminal gap for the latest visit. MAX per user_id selects the largest gap."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Window ranking and grouping over R visit rows takes O(R) time using composite index order or O(R log R) time with general sorting, and O(R) space. Complexity evidence is certified and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Outputs columns user_id and biggest_window, correctly uses 2021-01-01 as default next visit for terminal visits, and handles single-visit users."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details LEAD windowing by user_id, replacing nulls with 2021-01-01, MAX grouping, and relational complexity bounds. Alternatives and edge cases cover self-joins, correlated subqueries, global LEAD errors, unordered window bugs, single visits, terminal gap wins, unsorted rows, leap year date math, and result ordering flexibility."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions both execute the exact same LEAD windowing, COALESCE 2021-01-01 terminal handling, and MAX grouping with SHA-256 digests 0db73566ccbd0b09d924bfd08a87a06efd434658525c63bb41a55a900982487e and 394d680ae1a3d1a0b3e01355036ae1640e13674bd57d6754a7582f8dde925647. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed UserVisits schema, three examples, three constraints, and 3 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "certificate",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "0db73566ccbd0b09d924bfd08a87a06efd434658525c63bb41a55a900982487e",
+    "native_source_sha256": "394d680ae1a3d1a0b3e01355036ae1640e13674bd57d6754a7582f8dde925647",
+    "approach_sha256": "aa5fc7e7df76f9a1afb403ddc5d66ed10d6bb2314d61211172b9cdc901528abb",
+    "solution_variants_sha256": "f81036c89d071833238ef2cb3392025bffccc2dc626d735db89de85a4f9265fc",
+    "complexity_evidence_sha256": "82ccfb832bcc78cda1f5c8226a0f47ec33a5286c1cd8bf1e46e429c90b4b0d02"
+  }
+}

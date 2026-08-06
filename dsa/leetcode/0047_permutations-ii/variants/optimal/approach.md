@@ -1,7 +1,7 @@
 ## General
 **Sort equal values so interchangeable choices are adjacent**
 
-Sort `nums`, keep a `used` flag for each source position, and build a path. At each depth, consider every unused position. Skip index `i` when it has the same value as $i - 1$ and the earlier equal position is not already used in the current path.
+Sort `nums`, keep a `used` flag for each source position, and build `path`. At each depth, the candidate considers every unused position with loop variable `i`. It skips `i` when `nums[i]` equals `nums[i - 1]` and the earlier equal position is not already used in the current path.
 
 That final condition is subtle. If the earlier equal copy is unused, choosing the later copy would start a sibling branch indistinguishable from the branch that chooses the earlier one. If the earlier copy is already used, choosing the later copy is necessary to permit repeated values within one permutation. Thus equal copies are selected in source order without being globally deduplicated.
 

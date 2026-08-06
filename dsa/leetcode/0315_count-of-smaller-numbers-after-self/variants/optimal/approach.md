@@ -18,7 +18,7 @@ Process `[5, 2, 6, 1]` from the end. After inserting `1`, the query for `6` retu
 Before each query, the Fenwick frequencies represent exactly the elements at indices greater than the current index. The prefix below the current rank therefore equals the required count. Inserting the current value restores the same statement for the next index to the left, so every result position is correct.
 
 ## Complexity detail
-Sorting at most `n` distinct values costs $O(n \log n)$. Each of the `n` elements performs one Fenwick prefix query and one update, each in $O(\log n)$ time, so total time is $O(n \log n)$. The ranks, frequency tree, and result use $O(n)$ space.
+Let $n$ be the array length. Sorting at most $n$ distinct values costs $O(n \log n)$. Each element performs one Fenwick prefix query and one update, each in $O(\log n)$ time, so total time is $O(n \log n)$. The ranks, frequency tree, and result use $O(n)$ space.
 
 ## Alternatives and edge cases
 - **Compare every pair:** is direct and correct but takes $O(n^2)$ time, especially on descending input.

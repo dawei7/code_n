@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1056",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(D)",
+  "summary": "The legal input contains at most ten decimal digits, which is too small to support a stable runtime trend between linear digit processing and repeated prefix rebuilding.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 10,
+    "unit": "decimal digits",
+    "source_constraint": "n is an integer from 0 through 10^9 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The protected loop removes one decimal digit per iteration, performs constant-time lookup and arithmetic, and therefore executes at most ten iterations with constant auxiliary storage."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The permanent certificate regression checks every integer below 100000, every invalid digit at every position through nine digits, deterministic values across the full bound including 10^9, all authored cases, and both protected source forms against an independent string-rotation oracle."
+    }
+  ]
+}

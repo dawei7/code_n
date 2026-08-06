@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_208",
-  "measurement_note": "Growing command streams exercise shared-prefix insertion and exact queries.",
+  "measurement_note": "Size is the total number of processed characters. Every command uses seven characters, so growing alternating insert/search streams keep trie work linear while list-backed word lookup grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: 8 operations",
+      "name": "benchmark: 56 processed characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 8,
+      "size": 56,
       "input": {
         "operations": [
           [
@@ -58,10 +58,10 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: 64 operations",
+      "name": "benchmark: 448 processed characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 448,
       "input": {
         "operations": [
           [
@@ -363,10 +363,10 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: 256 operations",
+      "name": "benchmark: 1792 processed characters",
       "kind": "benchmark",
       "visible": false,
-      "size": 256,
+      "size": 1792,
       "input": {
         "operations": [
           [

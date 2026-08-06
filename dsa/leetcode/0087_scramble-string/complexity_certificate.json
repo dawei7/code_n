@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_87",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n^4)",
+  "summary": "The legal length cap of 30 is too narrow for reliable runtime-class scaling across input-dependent recursive pruning. A direct count of cached interval states and split transitions verifies the required O(n^4) upper bound.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 30,
+    "unit": "characters in each input string",
+    "source_constraint": "The verified source constraint is 1 <= |s1| = |s2| <= 30."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "A state is (first_start, second_start, size), giving O(n^3) possible cached interval pairs. Each state compares a fixed 26-letter inventory, may compare O(n) characters for exact equality, and tries at most O(n) split positions with O(1) cached child lookups, for O(n^4) total time and O(n^3) cache space."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a swapped recursive decomposition, a false equal-length candidate, and the one-character base case; black-box real-test execution verifies the existing ordinary checks without inspecting their definitions."
+    }
+  ]
+}

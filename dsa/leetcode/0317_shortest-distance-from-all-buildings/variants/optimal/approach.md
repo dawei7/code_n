@@ -18,7 +18,7 @@ After all building searches, consider only empty cells whose reach count equals 
 If a cell has a smaller partial sum but was not reached by every building, it is not a candidate at all. If no empty cell has the full reach count, disconnected regions or obstacles prevent a common meeting point and the answer is `-1`.
 
 ## Complexity detail
-Let the grid have `m` rows, `n` columns, and `b` buildings. Each building's BFS visits at most `mn` cells, for $O(bmn)$ time. The two accumulation matrices, one visited matrix, and the BFS queue each require $O(mn)$ space.
+Let the grid have $m$ rows, $n$ columns, and $b$ buildings. Each building's BFS visits at most $mn$ cells, for $O(bmn)$ time. The two accumulation matrices, one visited matrix, and the BFS queue each require $O(mn)$ space.
 
 ## Alternatives and edge cases
 - **BFS from every empty cell:** can take $O((mn)^2)$ time when many candidates must explore most of the grid.

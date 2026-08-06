@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_469",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "The protected cyclic scan uses the campaign-prohibited local name index. The inert candidate changes only that position to the conventional variable i; all modulo point selections, coordinate differences, cross-product arithmetic, zero handling, sign comparison, orientation updates, and returns remain byte-for-byte equivalent otherwise."
+      },
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "With the narrow naming correction, the candidate is the conventional consistent-cross-product solution. It includes both closing turns through modulo positions, tolerates collinear boundary vertices, exits on the first reflex turn, and is concise expert interview code without an algorithmic rewrite."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 469 and its ordered point-list Python contract. One constant-time cross product per vertex and a fixed number of references establish the manifest's O(n) time and O(1) auxiliary-space claims."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The immutable native source is bound to verified submission 2064965568 and is algorithmically identical to the protected app source. The candidate retains that accepted algorithm and data flow exactly, changing only the prohibited local name index to i in inert code."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The strictly convex boundaries with 8, 32, and 128 vertices span 16x and force evaluation of every nonzero turn, including wraparound. The exact candidate passed all 8 correctness cases and all three performance tiers. A calibrated correct O(n log n) repeated-sort control passed every output, including the legal 10,000-point boundary, but failed only the runtime verdict with relative growth exponent +0.20."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The candidate-targeted Approach follows position i and the actual first, second, third, cross, and orientation values exactly. It derives cross-product signs, explains zero turns and cyclic triples, proves the one-orientation criterion under the simple-polygon guarantee, and matches the linear-time constant-space implementation."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound modular Reference was checked directly against the authenticated Premium statement. It preserves the sequential X-Y point model, convexity request, complete simple-polygon intersection guarantee, both exact examples in order without invented explanations, all four constraints, and the absence of source visuals or later sections."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated Premium source examples appear first and in source order with their exact point and Boolean facts; the first square was corrected from side length 1 to the source's side length 5, and both rows are explicitly tagged as source examples.",
+      "The invented triangle row is now a trial, and the two formerly hidden rows are visible trials. Boundaries cover 3 and 10,000 unique vertices, two-coordinate point shape, and coordinate values -10,000 and 10,000.",
+      "Visible cases cover clockwise and counterclockwise traversal, consecutive collinear boundary vertices, a reflex notch, a reflex turn at the wraparound end, a minimum triangle, large cross products, and a maximum-size square boundary with long collinear runs.",
+      "An independent convex-hull-area oracle verified all eight authored results and all three benchmark outputs. It also agreed with both current and candidate sources on 1,440 exhaustively enumerated simple polygons: 588 convex and 852 concave.",
+      "All eight correctness cases are visible samples or trials; the unchanged 8-, 32-, and 128-vertex strictly convex workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "1c93e44f238cff164bc7947a73efdffbe122d516e967297ae97c8fb9cd0c9527",
+    "native_source_sha256": "bb0c5608f6347ec16c374973bae1b31df5dae0398bc3f6e723f2676190eba24d",
+    "approach_sha256": "f3393b4751d0ff9355c2d3600d6277458768f599df776e428aa46ef64f6c7b54",
+    "solution_variants_sha256": "df76013f943992585f791a3531cdfc03d8fd49514e2faf8b794c96b64a0f8999",
+    "complexity_evidence_sha256": "28a23a47e325e4667e978f6963edb2430df2045233d20758e981c6344a655595",
+    "cases_sha256": "212f5634aefa1c26de5541d0fbddb9da2808d5fc38de55aa389ae12b29407062",
+    "candidate_source_sha256": "c8033bfd9a06296ea390cf4d81888ec7f296845bb2c8366308a98d0beb443de1"
+  }
+}

@@ -7,7 +7,7 @@ For each value, replace `first` when the value is no larger. Otherwise it is gre
 
 **Use non-strict updates to enforce a strict triplet**
 
-The update comparisons must be `<=`. An equal value replaces a threshold rather than advancing to the next one, so `[1,1,2,2]` never treats equal copies as a strict increase. Only the final `else` proves `value > second >` the earlier value that established `second`.
+The update comparisons must be `<=`. An equal value replaces a threshold rather than advancing to the next one, so `[1,1,2,2]` never treats equal copies as a strict increase. Only the final `else` proves that the current value is greater than `second`, which was established by an earlier value greater than an even earlier `first`.
 
 The current `first` may be replaced after `second` was formed. That does not invalidate `second`: it still represents a real earlier increasing pair, even if its original first value is no longer stored. Lowering `first` merely creates a better opportunity for future pairs.
 

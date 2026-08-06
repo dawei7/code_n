@@ -1,54 +1,54 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_660",
-  "measurement_note": "Size is the requested rank n. Arithmetic base-9 conversion grows with the number of digits, while enumerating decimal candidates and rejecting those containing digit 9 examines a number of candidates proportional to the rank.",
+  "measurement_note": "Size is the requested rank n. Direct arithmetic conversion performs one step per base-nine digit. The slower control precomputes every no-9 half-width decimal block for meet-in-the-middle counting, then binary-searches the answer; its preprocessing grows on the order of the square root of the numeric range.",
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: rank 128",
+      "name": "benchmark: rank 30 with one-digit half blocks",
       "kind": "benchmark",
       "visible": false,
-      "size": 128,
+      "size": 30,
       "input": {
-        "n": 128
+        "n": 30
       },
-      "expected": 152,
+      "expected": 33,
       "tags": [
         "benchmark",
         "scaling",
-        "rank"
+        "meet-in-the-middle"
       ]
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: rank 1024",
+      "name": "benchmark: rank 30000 with three-digit half blocks",
       "kind": "benchmark",
       "visible": false,
-      "size": 1024,
+      "size": 30000,
       "input": {
-        "n": 1024
+        "n": 30000
       },
-      "expected": 1357,
+      "expected": 45133,
       "tags": [
         "benchmark",
         "scaling",
-        "rank"
+        "meet-in-the-middle"
       ]
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: rank 8192",
+      "name": "benchmark: rank 300000000 with five-digit half blocks",
       "kind": "benchmark",
       "visible": false,
-      "size": 8192,
+      "size": 300000000,
       "input": {
-        "n": 8192
+        "n": 300000000
       },
-      "expected": 12212,
+      "expected": 686446563,
       "tags": [
         "benchmark",
         "scaling",
-        "rank"
+        "meet-in-the-middle"
       ]
     }
   ]

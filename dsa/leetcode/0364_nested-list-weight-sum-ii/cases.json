@@ -23,6 +23,7 @@
       "expected": 8,
       "tags": [
         "sample",
+        "source-example",
         "inverse"
       ]
     },
@@ -45,13 +46,14 @@
       "expected": 17,
       "tags": [
         "sample",
+        "source-example",
         "depth"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: zero",
-      "kind": "sample",
+      "id": "trial-zero",
+      "name": "trial: zero",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nestedList": [
@@ -60,7 +62,7 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
+        "trial",
         "zero"
       ]
     },
@@ -87,30 +89,30 @@
       ]
     },
     {
-      "id": "trial-empty-branches",
-      "name": "trial: empty branches do not increase integer depth",
+      "id": "trial-value-bounds",
+      "name": "trial: integer bounds retain their signs and inverse weights",
       "kind": "trial",
       "visible": true,
       "input": {
         "nestedList": [
-          [],
+          -100,
           [
-            []
-          ],
-          5
+            100
+          ]
         ]
       },
-      "expected": 5,
+      "expected": -100,
       "tags": [
         "trial",
-        "empty"
+        "boundary",
+        "negative"
       ]
     },
     {
-      "id": "hidden-mixed-branches",
-      "name": "hidden: unequal branch depths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-branches",
+      "name": "trial: unequal branch depths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nestedList": [
           5,
@@ -128,34 +130,38 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
+        "trial",
         "mixed"
       ]
     },
     {
-      "id": "hidden-only-empty",
-      "name": "hidden: no integers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-deepest",
+      "name": "trial: every integer shares the deepest level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nestedList": [
-          [],
           [
-            []
+            1,
+            2
+          ],
+          [
+            3,
+            4
           ]
         ]
       },
-      "expected": 0,
+      "expected": 10,
       "tags": [
-        "hidden",
-        "empty"
+        "trial",
+        "deepest"
       ]
     },
     {
-      "id": "hidden-deep-single",
-      "name": "hidden: sole deeply nested integer has weight one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep-single",
+      "name": "trial: sole deeply nested integer has weight one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nestedList": [
           [
@@ -169,8 +175,89 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
+        "trial",
         "depth"
+      ]
+    },
+    {
+      "id": "trial-maximum-width",
+      "name": "trial: fifty top-level integers preserve every contribution",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nestedList": [
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100,
+          -100,
+          100
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary",
+        "maximum-width"
+      ]
+    },
+    {
+      "id": "trial-maximum-depth",
+      "name": "trial: one integer at depth fifty still has weight one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nestedList": [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[100]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+      },
+      "expected": 100,
+      "tags": [
+        "trial",
+        "boundary",
+        "maximum-depth"
       ]
     }
   ]

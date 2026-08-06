@@ -1,10 +1,13 @@
 {
   "challenge_id": "lc_13",
   "cases": [
-    {"id": "sample-1", "name": "sample: repeated units", "kind": "sample", "visible": true, "input": {"s": "III"}, "expected": 3, "tags": ["sample"]},
-    {"id": "sample-2", "name": "sample: descending additive symbols", "kind": "sample", "visible": true, "input": {"s": "LVIII"}, "expected": 58, "tags": ["sample"]},
-    {"id": "trial-multiple-subtractive-pairs", "name": "three subtractive pairs", "kind": "trial", "visible": true, "input": {"s": "MCMXCIV"}, "expected": 1994, "tags": ["subtractive"]},
-    {"id": "trial-small-subtractive", "name": "smallest subtractive pair", "kind": "trial", "visible": true, "input": {"s": "IV"}, "expected": 4, "tags": ["subtractive"]},
-    {"id": "real-largest", "name": "hidden: largest legal numeral", "kind": "real", "visible": false, "input": {"s": "MMMCMXCIX"}, "expected": 3999, "tags": ["hidden", "boundary"]}
+    {"id": "sample-1", "name": "sample: repeated units", "kind": "sample", "visible": true, "input": {"s": "III"}, "expected": 3, "tags": ["sample", "repetition"]},
+    {"id": "sample-2", "name": "sample: descending additive symbols", "kind": "sample", "visible": true, "input": {"s": "LVIII"}, "expected": 58, "tags": ["sample", "additive"]},
+    {"id": "sample-3", "name": "sample: three subtractive pairs", "kind": "sample", "visible": true, "input": {"s": "MCMXCIV"}, "expected": 1994, "tags": ["sample", "subtractive"]},
+    {"id": "trial-smallest", "name": "smallest legal numeral", "kind": "trial", "visible": true, "input": {"s": "I"}, "expected": 1, "tags": ["boundary"]},
+    {"id": "trial-largest", "name": "largest legal numeral", "kind": "trial", "visible": true, "input": {"s": "MMMCMXCIX"}, "expected": 3999, "tags": ["boundary", "subtractive"]},
+    {"id": "trial-four-subtractive-pairs", "name": "four-based subtraction in three places", "kind": "trial", "visible": true, "input": {"s": "CDXLIV"}, "expected": 444, "tags": ["subtractive"]},
+    {"id": "trial-base-symbols", "name": "every base symbol in descending order", "kind": "trial", "visible": true, "input": {"s": "MDCLXVI"}, "expected": 1666, "tags": ["base-symbols", "additive"]},
+    {"id": "trial-maximum-length", "name": "maximum-length canonical numeral", "kind": "trial", "visible": true, "input": {"s": "MMMDCCCLXXXVIII"}, "expected": 3888, "tags": ["boundary", "repetition"]}
   ]
 }

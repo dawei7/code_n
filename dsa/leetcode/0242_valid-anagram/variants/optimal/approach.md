@@ -19,4 +19,5 @@ The strings are scanned once, giving $O(n)$ time. The 26-entry counter array is 
 ## Alternatives and edge cases
 - **Sorting both strings:** is concise but costs $O(n \log n)$.
 - **General hash maps:** support arbitrary characters but use alphabet-dependent space.
-- Empty strings are anagrams; equal character sets with different counts are not.
+- **Multiplicity:** equal sets of distinct characters are insufficient when any character counts differ.
+- **Unicode follow-up:** replacing the fixed array with a frequency map extends the method beyond lowercase English letters.

@@ -1,6 +1,122 @@
-{"challenge_id":"lc_276","cases":[
-{"id":"sample-three-two","name":"sample: three posts and two colors","kind":"sample","visible":true,"input":{"n":3,"k":2},"expected":6,"tags":["sample","dp"]},
-{"id":"sample-one","name":"sample: one post and one color","kind":"sample","visible":true,"input":{"n":1,"k":1},"expected":1,"tags":["sample","boundary"]},
-{"id":"trial-two-one","name":"two posts may share one color","kind":"trial","visible":true,"input":{"n":2,"k":1},"expected":1,"tags":["same"]},
-{"id":"real-three-one","name":"hidden: third identical post is forbidden","kind":"real","visible":false,"input":{"n":3,"k":1},"expected":0,"tags":["hidden","forbidden-run"]}
-]}
+{
+  "challenge_id": "lc_276",
+  "cases": [
+    {
+      "id": "sample-three-two",
+      "name": "sample: three posts and two colors",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "k": 2},
+      "expected": 6,
+      "tags": ["sample", "source-example", "forbidden-run"]
+    },
+    {
+      "id": "sample-one-one",
+      "name": "sample: one post and one color",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1, "k": 1},
+      "expected": 1,
+      "tags": ["sample", "source-example", "minimum-boundary"]
+    },
+    {
+      "id": "sample-seven-two",
+      "name": "sample: seven posts and two colors",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 7, "k": 2},
+      "expected": 42,
+      "tags": ["sample", "source-example", "recurrence"]
+    },
+    {
+      "id": "trial-one-max-colors",
+      "name": "one post at the maximum color count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "k": 100000},
+      "expected": 100000,
+      "tags": ["maximum-k", "single-post"]
+    },
+    {
+      "id": "trial-two-one-color",
+      "name": "two posts may share the only color",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "k": 1},
+      "expected": 1,
+      "tags": ["one-color", "two-post-initialization"]
+    },
+    {
+      "id": "trial-two-three-colors",
+      "name": "every two-post assignment is legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "k": 3},
+      "expected": 9,
+      "tags": ["two-post-initialization", "all-assignments-legal"]
+    },
+    {
+      "id": "trial-three-one-color",
+      "name": "a third identical post is forbidden",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "k": 1},
+      "expected": 0,
+      "tags": ["one-color", "zero-answer", "forbidden-run"]
+    },
+    {
+      "id": "trial-three-three-colors",
+      "name": "exclude the three monochromatic assignments",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "k": 3},
+      "expected": 24,
+      "tags": ["first-transition", "forbidden-run"]
+    },
+    {
+      "id": "trial-four-two-colors",
+      "name": "both ending states feed the next transition",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4, "k": 2},
+      "expected": 10,
+      "tags": ["same-ending", "different-ending", "recurrence"]
+    },
+    {
+      "id": "trial-five-three-colors",
+      "name": "multiple recurrence steps with three colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "k": 3},
+      "expected": 180,
+      "tags": ["recurrence", "multi-step"]
+    },
+    {
+      "id": "trial-near-output-limit",
+      "name": "legal two-post count near the 32-bit result limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "k": 46340},
+      "expected": 2147395600,
+      "tags": ["large-count", "result-boundary", "two-post-initialization"]
+    },
+    {
+      "id": "trial-large-valid-count",
+      "name": "long two-color fence with a large valid count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 43, "k": 2},
+      "expected": 1402817466,
+      "tags": ["large-count", "long-recurrence"]
+    },
+    {
+      "id": "trial-maximum-posts-one-color",
+      "name": "maximum post count with one color",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 50, "k": 1},
+      "expected": 0,
+      "tags": ["maximum-n", "one-color", "zero-answer"]
+    }
+  ]
+}

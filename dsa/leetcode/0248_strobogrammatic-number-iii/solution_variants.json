@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Strobogrammatic Number III and meets the required complexity bound.",
+      "summary": "Generates valid mirrored digit assignments by length and counts only completions inside the inclusive bounds.",
       "time_complexity": "O(d \\cdot 5^{d/2})",
       "space_complexity": "O(d)"
     }

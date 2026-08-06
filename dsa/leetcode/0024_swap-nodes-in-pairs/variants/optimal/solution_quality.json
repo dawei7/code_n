@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_24",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 0,
+      "performance_cases_total": 0,
+      "complexity_method": "certificate",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all four source examples in source order",
+      "empty, one-node, even-length, and odd-length lists",
+      "minimum and maximum legal node values",
+      "duplicate values whose visible sequence cannot prove identity changes by itself",
+      "the exact maximum legal length",
+      "every legal length from zero through 100 checked for output identity, pair order, and unchanged node values",
+      "both app-local and immutable native sources checked against the same identity oracle",
+      "the matching linear lower and upper bounds established without illegal runtime scaling"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "18d498df85a69858cdbc2f1d94c99d83e7f12dfe31846918911184c7677f489e",
+    "native_source_sha256": "9fdac26adfbad8ce547de232c745036f82cef1fb091371f88b60102dd5a6fed1",
+    "approach_sha256": "3b0d194b341db9f343a577c3fde04983be1c1fc4c66c275ecf1015185f7fc9c6",
+    "solution_variants_sha256": "7fdeac9bb00fd2f413e2bf59b6e7c09a8458dfcb998160d7b44fbab515068697",
+    "cases_sha256": "8624e94dbe7c88887944019c114e3dba14d7e73449bef5c9d26bdf87afb7fb63",
+    "complexity_evidence_sha256": "7441486ef4156b701438350bd63eada38a80fac38108a1a62f8edbc48eafdc35"
+  }
+}

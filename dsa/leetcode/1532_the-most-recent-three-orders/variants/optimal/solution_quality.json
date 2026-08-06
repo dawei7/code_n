@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_1532",
+  "language": "sql",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "overall_quality",
+        "severity": "good",
+        "reason": "The protected SQL implementation uses ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) inside a CTE to rank each customer's orders by recency, joins to Customers, filters recency_rank <= 3, and orders the output by customer_name ASC, customer_id ASC, order_date DESC. The solution is canonical, optimal, and concise; no candidate is required."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Because each customer places at most one order per date, ROW_NUMBER() produces an unambiguous recency rank without ties. Filtering recency_rank <= 3 keeps at most the three newest orders for each customer. Customers with fewer than 3 orders retain all their orders, and customers with zero orders produce no rows."
+      },
+      {
+        "category": "complexity",
+        "severity": "verified",
+        "reason": "Window-function ranking and final multi-key ordering take O(m log m) time across m orders, and joining to c customers takes O(c + m) time. Working space is O(c + m). Complexity evidence is inherited and hash-bound."
+      },
+      {
+        "category": "contract_fidelity",
+        "severity": "verified",
+        "reason": "Projects customer_name, customer_id, order_id, and order_date in the required column format and applies the multi-column sort (customer_name ASC, customer_id ASC, order_date DESC) specified by the contract."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The approach accurately details windowed ranking by customer_id, filtering for ranks 1 to 3, joining customer details, and enforcing the 3-part presentation sort. Alternatives and edge cases cover correlated subqueries, session variables, fewer than 3 orders, tie-breaking by customer_id, and unique daily order guarantees."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "preserved",
+        "reason": "App SQL and native SQL solutions are identical with SHA-256 digest 9c3819d2fa1d013beb8731d59b960fedc144168bd0dab24da9dee62be042f11a. Verified submission remains untouched."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "Statement structure and factual evidence confirmed Customers and Orders schemas, three examples, three constraints, and 5 tables in reference mode. Bound to content SHA-256 f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270."
+      }
+    ],
+    "validation": {
+      "mode": "expert_review",
+      "judge_run": false,
+      "complexity_method": "benchmark",
+      "complexity_evidence": "inherited"
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "9c3819d2fa1d013beb8731d59b960fedc144168bd0dab24da9dee62be042f11a",
+    "native_source_sha256": "9c3819d2fa1d013beb8731d59b960fedc144168bd0dab24da9dee62be042f11a",
+    "approach_sha256": "46a0e5771575428e0e99fd5ab885b4af3fa1fccf60640bb8284aacd3fce3f06f",
+    "solution_variants_sha256": "db52f2e0e863a33d926fbdf0340ae359972ff1ead7f0d00fde6aee8875e1c2a7",
+    "complexity_evidence_sha256": "66581066598f2f2e507f53decc1bd0e7b22951ef2dd6eb23be89ecbce7cb98c8"
+  }
+}

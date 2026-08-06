@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Burst Balloons and meets the required complexity bound.",
+      "summary": "Uses last-burst interval dynamic programming with fixed virtual boundary balloons.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n^2)"
     }

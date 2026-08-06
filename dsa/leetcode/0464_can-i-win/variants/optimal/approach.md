@@ -1,7 +1,7 @@
 ## General
-**Reject or accept arithmetic boundary cases first**
+**Handle arithmetic boundaries before search**
 
-If the target is nonpositive, the first player has already met it. If the sum $1 + \ldots + m$ is below the target, neither player can ever reach it, so the first player cannot win. If the target is at most `m`, the first player chooses it immediately.
+If the target is nonpositive, the first player has already met it. If the sum $1 + \ldots + m$ is below the target, neither player can ever reach it, so the first player cannot win. For a positive target at most `m`, the recursive loop encounters an immediately winning choice on its first state; no separate guard is needed.
 
 **Represent the game state by used choices**
 

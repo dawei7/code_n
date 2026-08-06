@@ -1,34 +1,36 @@
 ## General
-**Each pointer walks both list lengths in opposite order**
 
-Start `pointer_a` at `headA` and `pointer_b` at `headB`. On every iteration, advance each one node; when a pointer is null, redirect it to the other list's head. Stop when the two references are identical, including the shared null result for disjoint lists.
+**Let each pointer traverse both list lengths**
 
-**Switching cancels unequal private-prefix lengths automatically**
+Start `first` at `headA` and `second` at `headB`. Advance each pointer by one node. When `first` reaches `None`,
+redirect it to `headB`; when `second` reaches `None`, redirect it to `headA`. Stop when the references are identical,
+including when both become `None` for disjoint lists.
 
-If the private prefixes have lengths $a$ and $b$ and the shared suffix has length $c$, the two routes have lengths $a+c+b+c$ and $b+c+a+c$ conceptually until meeting. Before the shared section of their second route, each pointer has traversed the same combined private distance $a+b$. The longer initial prefix is therefore exactly offset by switching to the shorter list.
+Suppose the private prefixes have lengths $a$ and $b$ and the shared suffix has length $c$. The first pointer's
+concatenated route is A then B, while the second pointer's route is B then A. Reaching the shared suffix on the
+second list takes $a + c + b$ steps for the first route and $b + c + a$ for the second, which are equal. Switching
+heads therefore cancels the original prefix-length difference without measuring either list.
 
-Equivalently, each pointer follows list A then B or B then A, giving equal total route length when no intersection exists.
+If an intersection exists, the equally aligned pointers meet at its first shared node. If the lists are disjoint,
+each pointer traverses exactly $m + n$ nodes and they reach `None` together. The loop compares object identity with
+`is`, so separate nodes carrying equal values cannot produce a false match.
 
-**Equal step counts align pointers relative to the shared suffix**
-
-After the same number of steps, both pointers have traversed equal total distances across their concatenated routes. Once each has absorbed the other list's prefix-length difference, they are aligned relative to any shared tail.
-
-**Trace different prefix lengths**
-
-If A has private prefix `[4,1]` and B has `[5,6,1]` before shared node `8`, B begins one node farther from the intersection. After each pointer switches heads, A's pointer spends that extra node in B's prefix; both then arrive at node `8` together.
-
-**Switching heads cancels the unequal private prefixes**
-
-Let the lists have private-prefix lengths `a` and `b` and a shared suffix of length `c`. One pointer follows $a + c + b$ nodes and the other follows $b + c + a$; after switching heads, both have traversed equally long routes when they reach the first shared node. Their unequal private prefixes have therefore been canceled without explicitly measuring them.
-
-If no shared suffix exists, both routes contain $m + n$ nodes and terminate at `None` together. Comparing node identity—not stored value—ensures that equal-valued but separate nodes can never produce a false intersection.
+Neither pointer assignment changes a `next` link. The original list structures are therefore preserved exactly as
+the contract requires.
 
 ## Complexity detail
-Each pointer traverses at most both lists once, giving $O(m + n)$ time. Only two node references are stored.
+
+Each pointer traverses at most both lists once, giving $O(m + n)$ time for list lengths $m$ and $n$. Only the two
+moving node references are stored, so auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
-- **Hash nodes from one list:** is linear time but uses $O(m)$ extra space.
-- **Compute lengths then advance the longer prefix:** also achieves the target bounds but requires separate length passes.
-- **Compare node values or suffix values:** is invalid because distinct nodes may carry identical data.
-- Either head may be empty, both heads may already be the same node, or the lists may have equal-valued but disjoint suffixes.
-- Intersection is defined by object identity. Once singly linked lists share one node, they necessarily share the entire suffix after it.
+
+- **Store nodes from one list in a set:** finds the first shared identity in linear time but uses $O(m)$ auxiliary
+  space.
+- **Measure both lengths first:** can advance the longer prefix and then walk in lockstep with the same asymptotic
+  bounds, but requires separate length passes.
+- **Compare node values:** is incorrect because different node objects may hold the same value.
+- The two heads may already reference the same node, in which case the loop returns immediately.
+- Equal-length private prefixes need no special case.
+- Once acyclic singly linked lists share one node, they necessarily share the complete suffix after it.
+- Disjoint lists converge at the shared `None` reference.

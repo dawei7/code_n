@@ -21,7 +21,7 @@ Let `N` be the number of words, `L` their length, and `P` the number of partial-
 ## Alternatives and edge cases
 - **Trie with candidate lists:** stores the same prefix information structurally and provides equivalent pruning and asymptotic bounds.
 - **Scan every word at every state:** avoids a prefix index but adds an $O(N)$ candidate scan to each state.
-- **Try every length-`L` word sequence:** takes $O(NᴸL^2)$ time before symmetry filtering.
+- **Try every length-`L` word sequence:** takes $O(N^L L^2)$ time before symmetry filtering.
 - **One-letter words:** each input word independently forms a one-row square.
 - **Word reuse:** the same dictionary word may occupy several rows; do not mark words as consumed.
 - **No completion:** return an empty list when every partial square is pruned.

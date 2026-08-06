@@ -1,4 +1,5 @@
 ## General
+
 **Read the hexadecimal digits from least significant to most significant**
 
 Parse `num` as an integer. Repeatedly apply `divmod(value, 16)`: the remainder is the next hexadecimal digit and the quotient contains the digits still to process. A remainder of `0` contributes `O`, `1` contributes `I`, and a remainder from `10` through `15` contributes `A` through `F`.

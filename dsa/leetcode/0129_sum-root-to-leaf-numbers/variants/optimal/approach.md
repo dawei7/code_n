@@ -29,4 +29,4 @@ Each of `n` nodes is processed once, giving $O(n)$ time. Depth-first pending wor
 - **Breadth-first traversal:** is correct but can store $O(w)$ nodes in a wide tree.
 - **Sum internal prefixes:** double-counts incomplete root-to-leaf paths.
 - A root digit zero and leading zeroes on a path are handled naturally by arithmetic; they do not create a separate textual representation issue.
-- Empty input conventionally contributes sum zero. A single node contributes exactly its digit.
+- A single-node tree contributes exactly its digit.

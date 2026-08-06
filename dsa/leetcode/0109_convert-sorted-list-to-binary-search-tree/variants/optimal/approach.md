@@ -5,7 +5,7 @@ First traverse the list once to count `n`. The count lets recursion divide an in
 
 **Simulate inorder construction while the list cursor moves forward**
 
-To build `size` nodes, reserve `left_size = size // 2` for the left subtree and recursively construct it first. The cursor then points to the next inorder value, which must be this subtree's root. Create the root, advance the cursor once, and build `size - left_size - 1` right-subtree nodes.
+To build `count` nodes, recursively construct `count // 2` left-subtree nodes first. The cursor then points to the next inorder value, which must be this subtree's root. Create the root, advance the cursor once, and build `count - count // 2 - 1` right-subtree nodes.
 
 This order matches left-root-right traversal and never needs to move the singly linked cursor backward.
 

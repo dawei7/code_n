@@ -2,13 +2,15 @@
   "schema_version": 1,
   "provider": "leetcode.com",
   "status": "verified",
-  "question_id": "1108",
+  "question_id": "1152",
   "frontend_id": "1152",
   "title_slug": "analyze-user-website-visit-pattern",
   "paid_only": true,
   "language": "python3",
   "source": "solutions/leetcode.py",
-  "native_entrypoint": "Solution.mostVisitedPattern",
-  "verified_submission_id": "2067856998",
-  "verified_at": "2026-07-14T20:19:54.568557+00:00"
+  "verified_submission_id": "2065589810",
+  "verified_at": "2026-07-12T23:12:11.800026+00:00",
+  "review_scope": "solution_only",
+  "review_status": "current",
+  "review_at": "2026-08-06T16:34:00.000000+00:00"
 }

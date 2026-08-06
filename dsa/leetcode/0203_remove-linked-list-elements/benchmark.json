@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_203",
-  "measurement_note": "Growing lists exercise retained and removed runs in one pointer pass.",
+  "measurement_note": "Size is the input node count. Mixed retained and removed runs keep one-pass pointer rewiring linear, while rebuilding by rescanning the output tail grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",

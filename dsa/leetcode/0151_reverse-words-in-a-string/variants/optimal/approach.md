@@ -1,34 +1,19 @@
 ## General
-**Word extraction performs spacing normalization before reversal**
+**Whitespace-aware splitting performs normalization during extraction**
 
-Extract nonempty words by splitting on whitespace without a literal single-space separator. This discards leading/trailing whitespace and collapses internal runs conceptually into one boundary. Using `split(" ")` would instead produce empty fields between repeated spaces.
+Call `s.split()` without a literal separator. It returns every maximal non-space word in original order while discarding leading and trailing spaces and omitting empty fields from repeated internal spaces. In contrast, `split(" ")` would retain empty strings between adjacent separators.
 
-**Reverse whole-word positions, not characters**
+Reverse the extracted word sequence, not the characters inside each word, then join with one literal space. `join` inserts separators only between words, so it simultaneously guarantees exactly one internal space and no leading or trailing space.
 
-Traverse or reverse the extracted word list. Each word remains an unchanged substring; only its position among words changes. Character-level reversal would produce different words and requires a second repair step.
-
-**One join establishes all output-space guarantees**
-
-Join the reversed sequence with exactly one ordinary space. Join inserts separators only between elements, so it creates neither leading nor trailing whitespace.
-
-**Extracted and emitted word sequences preserve content exactly**
-
-After appending `k` output words, they are exactly the final `k` input words in reverse order, with one separator between adjacent words and no extra separators.
-
-**Trace a run of several spaces**
-
-For `"a good   example"`, extraction yields `['a','good','example']` with no empty words. Reversing gives `['example','good','a']`, and joining yields `"example good a"`.
-
-**Normalized tokens determine the unique output**
-
-Word extraction yields every maximal non-space token exactly once, in its original order, while discarding only separator whitespace. Reversing that list changes no word content and places the words in precisely the required order. Joining with one literal space then creates the unique normalized result: no leading or trailing space and exactly one space between adjacent words.
+The split sequence contains every source word exactly once and no separator artifacts. Reversing changes only word positions, and joining changes only normalized separators, so the result preserves all word content in precisely the required reverse order.
 
 ## Complexity detail
-Splitting, reversing, and joining inspect or copy a total linear number of characters. The word list and returned string require $O(n)$ space because Python strings are immutable.
+Let $n = \lvert s\rvert$. Splitting and joining inspect or copy a linear total number of characters, while reversed iteration visits the word references once, giving $O(n)$ time. The extracted word list and immutable returned string use $O(n)$ space.
 
 ## Alternatives and edge cases
-- **Manual two-pointer scan:** offers precise control and is useful in mutable-buffer languages, but Python's word extraction already expresses the invariant safely.
-- **Reverse all characters twice:** can be in-place with mutable storage, but Python must allocate a new string anyway.
-- **Literal `split(" ")`:** incorrectly retains empty fields for repeated spaces.
-- A one-word string returns that word without surrounding spaces. Arbitrarily long space runs collapse to one separator.
-- The LeetCode contract guarantees at least one word; a broader all-whitespace input would naturally produce an empty output under this extraction method.
+- **Manual two-pointer scan:** offers explicit control and is useful for mutable buffers, but is more code than Python's whitespace-aware split requires.
+- **Reverse all characters and then each word:** can meet the in-place follow-up with mutable storage, whereas Python strings still require allocation.
+- **Literal `split(" ")`:** produces empty fields for repeated spaces and therefore does not normalize correctly by itself.
+- A one-word string returns that word without surrounding spaces.
+- Arbitrarily long legal space runs collapse to one separator.
+- The source guarantees at least one word; broader all-whitespace input would naturally yield an empty string with this implementation.

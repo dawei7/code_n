@@ -1,0 +1,23 @@
+from collections import deque
+
+
+def solve(beginWord: str, endWord: str, wordList: list[str]) -> int:
+    unvisited = set(wordList)
+    if endWord not in unvisited:
+        return 0
+    queue = deque([(beginWord, 1)])
+    unvisited.discard(beginWord)
+    while queue:
+        word, length = queue.popleft()
+        for i, original in enumerate(word):
+            for replacement in "abcdefghijklmnopqrstuvwxyz":
+                if replacement == original:
+                    continue
+                candidate = word[:i] + replacement + word[i + 1 :]
+                if candidate not in unvisited:
+                    continue
+                if candidate == endWord:
+                    return length + 1
+                unvisited.remove(candidate)
+                queue.append((candidate, length + 1))
+    return 0

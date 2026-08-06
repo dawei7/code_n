@@ -9,7 +9,7 @@ For a pick, retrieve the target's stored positions and choose one list element u
 
 **Judge random output semantically**
 
-A finite run cannot establish a distribution and should not require a predetermined random sequence. The package verifies that each returned integer is in bounds and that `nums[index]` equals its corresponding target. The uniform-list-choice implementation provides the probability guarantee.
+A finite run cannot establish a distribution and should not require a predetermined random sequence. The package verifies that each returned integer `i` is in bounds and that `nums[i]` equals its corresponding target. The uniform-list-choice implementation provides the probability guarantee.
 
 **Why preprocessing fits repeated picks**
 

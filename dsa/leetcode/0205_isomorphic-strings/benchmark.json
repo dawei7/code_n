@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_205",
-  "measurement_note": "Growing repeated character patterns exercise both mapping directions.",
+  "measurement_note": "Size is the common string length. Valid repeated patterns exercise both map directions without early rejection, while checking every pair of positions grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",

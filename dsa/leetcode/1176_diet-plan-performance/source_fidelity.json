@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1176",
+    "frontend_id": "1176",
+    "title_slug": "diet-plan-performance",
+    "url": "https://leetcode.com/problems/diet-plan-performance/description/",
+    "paid_only": true,
+    "content_sha256": "aecd02114ae10279d31d6815fd53046b2799f368abaf9c42d727b05218926e78",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "calories = [1,2,3,4,5], k = 1, lower = 3, upper = 3",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "calories = [3,2], k = 2, lower = 0, upper = 1",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "calories = [6,5,0,0], k = 2, lower = 1, upper = 5",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5e59df3b346b2a553b48f2e8d09a1d056588ad7015ba78fe89715f83b49ed1ca",
+      "reference/contract.md": "cee3065f6a1d402f1f8df5accdb00db6e12b106db40abddeed5ae7cf506a4fb1",
+      "reference/examples.md": "4a9ffb13b42b8229672d830f87c4f4cfcec1b6fc38f3db1b70e3a2b36d25ea0a",
+      "reference/constraints.md": "e709296a0c985167a02ff76290fbddab9fd58af8be527f9ba91359570c36ec71",
+      "reference/hint.md": "81e6a6c7129e641c46a2be9a8fa6a732fd9ea660e551b63924ed711dbebd53be"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

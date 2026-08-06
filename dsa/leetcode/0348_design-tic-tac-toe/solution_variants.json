@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Tic-Tac-Toe and meets the required complexity bound.",
+      "summary": "Tracks signed row, column, and diagonal totals so each valid move checks only four counters.",
       "time_complexity": "O(m)",
       "space_complexity": "O(n)"
     }

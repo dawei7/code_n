@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_49",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 8,
+      "correctness_cases_total": 8,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "all three source examples in source order, including the empty string and one-letter cases",
+      "the one-string minimum, 10,000-string maximum, zero-length word minimum, and 100-character word maximum",
+      "letters a and z, repeated identical strings, duplicate occurrences, multiple empty strings, and unequal character multiplicities",
+      "4,683 arrays checked with an independent sorted-string oracle against the current source and immutable native source",
+      "all 9,366 oracle checks verified group equivalence, complete input partitioning, and occurrence multiplicity",
+      "three hidden performance-only tiers spanning 8, 64, and 512 distinct anagram signatures",
+      "a correct pairwise bucket search that passes every output and fails only scaling growth (+0.75 > +0.15; 27.58x > 8x)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "9ec397e3339764e65b26ff9c21366a0362ac21138b02b34ea272f8d5a3ccdb64",
+    "native_source_sha256": "e4b540df8314e38048fe3f4501f77ab5a7d4992ae76ad8584cc7696512705192",
+    "approach_sha256": "2ade788ec9d21b408dfe5054fae7bbb374ab591d7ce4818ebb0e20cf18c86bfc",
+    "solution_variants_sha256": "b44a8e5375f9903d0f7f5808e092df835425269cf4018e97f18f57e1afd25aaa",
+    "cases_sha256": "2a6798caafbf8b735d9605f8bcd0b56ce050bfa71fa84c4e7265ab8aed6da77d",
+    "complexity_evidence_sha256": "a9da43e57c01f010562c8fe2ac9920037f7c253cc9b3147e015918191ce964b1"
+  }
+}

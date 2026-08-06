@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_1197",
+  "language": "python",
+  "reviewed_on": "2026-08-05",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "solution_quality",
+        "severity": "good",
+        "reason": "The protected closed form is already expert-interview quality. `larger`, `smaller`, and `moves` expose the symmetry reduction and lower-bound calculation directly, the only two exceptional coordinate shapes are explicit, and the parity repair is a single readable operation. Replacing the fixed-size coordinate sort with `max` and `min` or expanding the arithmetic into helpers would be stylistic churn rather than a material improvement, so no candidate is warranted."
+      },
+      {
+        "category": "correctness",
+        "severity": "verified",
+        "reason": "Reflections and exchanging axes preserve knight distance, so the target may be reduced to `larger >= smaller >= 0`. Every route needs at least `ceil(larger / 2)` moves from per-axis progress and at least `ceil((larger + smaller) / 3)` from Manhattan progress; its move parity must match the target square. Outside `(1,0)` and `(2,2)`, the maximum of those bounds with the parity correction is attainable. The explicit returns repair exactly those two local-geometry exceptions."
+      },
+      {
+        "category": "independent_validation",
+        "severity": "verified",
+        "reason": "An independent unbounded breadth-first search generated exact shortest-path distances for every one of the 180,601 source-valid coordinate pairs satisfying `abs(x) + abs(y) <= 300`. Protected and immutable native sources matched the BFS oracle on the complete domain with zero mismatches. A separately implemented memoized predecessor recurrence also matched all 180,601 targets, all 11 ordinary cases, and all three benchmark tiers."
+      },
+      {
+        "category": "randomized_and_boundary_validation",
+        "severity": "verified",
+        "reason": "A further 20,000 deterministic random legal targets generated with seed 1197 agreed with the BFS oracle; these included 321 axis targets, 14,864 targets with at least one negative coordinate, 444 targets on the maximum Manhattan boundary, and 51 targets with equal coordinate magnitudes. Exhaustive validation established that the true maximum answer is 151 at `(±299,0)` and `(0,±299)`, motivating an explicit near-boundary parity case."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 1197, Python, and native entrypoint `Solution.minKnightMoves`. Fresh authenticated evidence confirms the infinite integer-coordinate board, origin `[0,0]`, all eight standard knight displacements, minimum-move return, guaranteed reachability, two exact examples with explanations, both coordinate constraints, three hints, and one knight-move illustration."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "reviewed",
+        "reason": "The immutable native source remains bound to verified submission 2067920678 and is unchanged. Apart from the required `Solution.minKnightMoves` wrapper, protected and native sources use identical absolute-value symmetry, coordinate ordering, exception checks, ceiling bounds, parity adjustment, and return data flow."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "All three hidden tiers remain source-valid, use positive-axis Manhattan distance consistently as `size`, and span 12 through 120. In three consecutive fresh real-test runs, protected passed all 14 outputs and scaling with largest reference ratios from 0.99x to 1.01x. The independently correct memoized recurrence passed every output but failed only scaling each time, with largest ratios from 11.18x to 11.76x. The former note's incremental-control claim was not reproducible, so only the measurement note was corrected; tier inputs and expected outputs were preserved exactly."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "verified",
+        "reason": "The Approach matches the protected source's first-octant symmetry reduction, coordinate and Manhattan lower bounds, parity correction, and two exceptional shapes. It correctly states fixed-operation O(1) time and O(1) auxiliary space, and now documents the memoized predecessor recurrence used as the slower complexity control alongside incremental search and BFS alternatives."
+      },
+      {
+        "category": "reference_documentation",
+        "severity": "verified",
+        "reason": "The modular Reference preserves exactly the two authenticated source examples in order, both full route explanations, both constraints, and all three independently worded hints. It adds no source-absent example, note, or follow-up. The source image's complete instructional content is reproduced accessibly as a table enumerating all eight signed knight displacements."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "A fresh authenticated Premium review found two explained examples, two constraints, three hints, one image, no source table, and no note or follow-up. `source_fidelity.json` binds every modular section to live description-content hash 62b748ebb48f441351a6f448315859c2dd47171cb0456d9a14b251c88012ec47 and validates without errors."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 11,
+      "correctness_cases_total": 11,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "The first two visible samples are the two authenticated source examples in source order with exact inputs and outputs. Their explanations preserve the direct `[0,0] → [2,1]` move and the stated four-move route to `[5,5]`.",
+      "All 11 ordinary fixtures are visible samples or trials. They cover the origin, a direct move, both exceptional coordinate shapes, parity adjustment, signed-coordinate reflection, axis exchange, maximum Manhattan distance on an axis and split across coordinates, the negative coordinate boundary, and the non-monotone `(299,0) -> 151` near-boundary result.",
+      "Independent BFS recomputed every expected result and exhaustively covered all 180,601 legal targets. Protected, native, and the independent memoized recurrence had zero domain mismatches; an additional 20,000 seeded legal targets exercised negative coordinates, axes, equal magnitudes, and the maximum Manhattan boundary.",
+      "The three hidden performance-only tiers use source-valid axis targets with ordered sizes 12, 48, and 120, a 10x total span. Protected passed scaling in three runs; the correct memoized recurrence retained all 14 answers but failed only the runtime verdict in every run."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "ce11a4341433e4e4a89c6618c6b665b1b186d5f8d92cfb484754c5c0774c5740",
+    "native_source_sha256": "3c35c2e6a457ed55b0732d0578fd71932a42b650a1abfee58bfb6f753502603f",
+    "approach_sha256": "8925ba555c31aaa5e4f0298efed1e72328910b9e6e73791303a12e3ebe02bc12",
+    "solution_variants_sha256": "8e7e50e668d2b53e4bba732a7c6e896f8c09935cb8403a7162007614bb4d2ecf",
+    "complexity_evidence_sha256": "6e4f0e7f78325aa3ad549c2249b0250e0ff9d1108f15ee755cc76c3ffef2c436",
+    "cases_sha256": "7cde7ba22279280703d0f17d01adc66fba9fd88c5f711d774d3a4734a38fa1d7"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1256",
+    "frontend_id": "1256",
+    "title_slug": "encode-number",
+    "url": "https://leetcode.com/problems/encode-number/description/",
+    "paid_only": true,
+    "content_sha256": "9bd5841b4812fc5187c8eac48dfd30aac3c62218fc06b29440666abb439e6a34",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hint"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "num = 23",
+        "output": "\"1000\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "num = 107",
+        "output": "\"101100\"",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0021b1a6523c010032e24d4ed251786c3fd8adedfb4a5cdd6b730ab36a4b01cf",
+      "reference/contract.md": "9ffc4e33566d7e13b2750be50f2bd1ffd508a8fb65e4328aad946acebc2fe4d4",
+      "reference/examples.md": "8e0f2378da01fb800789f511c357a2293fb18622c30be599a3affdad2307b2e8",
+      "reference/constraints.md": "6aa19855bf1d683df56645cc30eca84427e4cf966bddf0c054aef48fdd18e97c",
+      "reference/hint.md": "ae64b76d12659107fe7f50b23333a184e8c2f1c3b25703b426ed8bc617c12b44"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

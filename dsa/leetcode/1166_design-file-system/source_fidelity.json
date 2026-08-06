@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1166",
+    "frontend_id": "1166",
+    "title_slug": "design-file-system",
+    "url": "https://leetcode.com/problems/design-file-system/description/",
+    "paid_only": true,
+    "content_sha256": "5e65a9c75a70cfeec42923fc0b7c6fc2350fc39cb4912c4702a73bf0eac242da",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "[\"FileSystem\",\"createPath\",\"get\"], [[],[\"/a\",1],[\"/a\"]]",
+        "output": "[null,true,1]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "[\"FileSystem\",\"createPath\",\"createPath\",\"get\",\"createPath\",\"get\"], [[],[\"/leet\",1],[\"/leet/code\",2],[\"/leet/code\"],[\"/c/d\",1],[\"/c\"]]",
+        "output": "[null,true,true,2,false,-1]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "247c1548bddb5a4bc494c939cee046458434d4f47720109f0abc820d514f240a",
+      "reference/contract.md": "934527a0598eb327491e8eddb4714e04c340a59edab56f6ccb7a9272368d60fa",
+      "reference/examples.md": "5c8edcc1e4049320b53b35d22ec07bdbb885105cc92d88fa336fdabb8b078b2b",
+      "reference/constraints.md": "0fa315713bb7db06fd5c461235fc0e195815c7980034de6b2f60e87fcdc17dd6",
+      "reference/hints.md": "136af58aa7cde4de833ac7ee5515680f53da4d0f73703447ef6b4c4dcbdaff3f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

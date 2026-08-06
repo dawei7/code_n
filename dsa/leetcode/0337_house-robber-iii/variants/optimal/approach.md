@@ -4,7 +4,7 @@
 For every node, compute a pair `(skip, take)`. `skip` is the best value in its subtree when the node itself is not robbed; `take` is the best when it is robbed. A single best value would lose the information a parent needs to enforce adjacency.
 
 If the node is taken, neither child may be taken, so
-`take = node.value + left.skip + right.skip`.
+`take = node.val + left.skip + right.skip`.
 If the node is skipped, each child independently chooses its better state, so
 `skip = max(left.skip, left.take) + max(right.skip, right.take)`.
 
@@ -29,4 +29,4 @@ Every node is pushed a constant number of times and summarized once, giving $O(n
 - **Recurse separately on children and grandchildren without memoization:** repeats subtrees and can take exponential time.
 - **Always choose the larger of a parent and its children:** ignores profitable combinations deeper in both branches.
 - **Memoized recursion:** has the same $O(n)$ bound but may exceed the language recursion limit on a very deep tree.
-- An empty tree returns zero. A single node returns its value, and a one-child tree chooses the larger nonadjacent arrangement.
+- A single node returns its value, and a one-child tree chooses the larger nonadjacent arrangement.

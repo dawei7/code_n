@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_43",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": "",
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 9,
+      "correctness_cases_total": 9,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "both source examples in source order with single-digit and multi-carry products",
+      "zero in either operand position and minimum-length nonzero operands",
+      "unequal operand lengths, internal zero digits, and a long carry chain",
+      "two maximum-length 200-digit operands with their exact 400-digit product",
+      "90,000 exhaustive small integer pairs checked with an independent integer oracle against the current and immutable native sources",
+      "a runner regression proving the accepted source completes the maximum legal case under its terminating step budget",
+      "three hidden performance-only equal-length tiers spanning 8 through 128 digits per operand",
+      "a correct full-buffer-rescan multiplication that passes every output and fails only scaling growth (+0.47 > +0.15)"
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "9177f974663cc691040f86f8e13d4926755f82d6e522e332835e3dd2d7efa427",
+    "native_source_sha256": "3225e34088259855971cad5a92983e0645b7b42c8083b5eb0460f01247a8d00a",
+    "approach_sha256": "c14cb7961af91a0e9c0bf75f84204115439f8332a84a641940ef70cce5798cf7",
+    "solution_variants_sha256": "dd260f588e02bd46484596f2d32dc2f331a66da0ab6c47b646f0a91093727966",
+    "cases_sha256": "0cf22545a29d09d70ef0054647680aefeda634ec334462e476660f920a33621d",
+    "complexity_evidence_sha256": "7315ebe0985e5664fdd3102f1938ddb9aa9e6fa53db85cf008c5ef77d2381fdb"
+  }
+}

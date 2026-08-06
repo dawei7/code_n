@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1088",
+    "frontend_id": "1088",
+    "title_slug": "confusing-number-ii",
+    "url": "https://leetcode.com/problems/confusing-number-ii/description/",
+    "paid_only": true,
+    "content_sha256": "b66fad0fc1a882db90b99ce9563216b9dbd65af4bc3a81c230e28460d94a6574",
+    "checked_at": "2026-08-04"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "hints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 20",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 100",
+        "output": "19",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "31d128a49a094316cd32f5d6e67eea91ec96d9c913cc12e2562ee31589d08dd1",
+      "reference/contract.md": "88438b3e80fcd054f2a1eddabe5ac35fe4f0d207b6a17c143e75667dc59dc538",
+      "reference/examples.md": "ff519783495a6da382fca20718f4fc028f8ea104eeef14da835c50117e4476cd",
+      "reference/constraints.md": "07f9dcbee843f2071cd7a19b1827c2325c5e47201ccac463004d50ca512a5f97",
+      "reference/hints.md": "a60c8378bc819041718c9eb95d5e2dba7f8f4b90c381398080541d6ad3b8c8f2"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

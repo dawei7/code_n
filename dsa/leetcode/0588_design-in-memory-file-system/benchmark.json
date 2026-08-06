@@ -5,267 +5,139 @@
   "cases": [
     {
       "id": "benchmark-scale-1",
-      "name": "benchmark: create and list 64 root directories",
+      "name": "benchmark: create and list 32 root directories",
       "kind": "benchmark",
       "visible": false,
-      "size": 64,
+      "size": 32,
       "input": {
         "operations": [
           [
             "mkdir",
-            "/dir0063"
+            "/dabf"
           ],
           [
             "mkdir",
-            "/dir0062"
+            "/dabe"
           ],
           [
             "mkdir",
-            "/dir0061"
+            "/dabd"
           ],
           [
             "mkdir",
-            "/dir0060"
+            "/dabc"
           ],
           [
             "mkdir",
-            "/dir0059"
+            "/dabb"
           ],
           [
             "mkdir",
-            "/dir0058"
+            "/daba"
           ],
           [
             "mkdir",
-            "/dir0057"
+            "/daaz"
           ],
           [
             "mkdir",
-            "/dir0056"
+            "/daay"
           ],
           [
             "mkdir",
-            "/dir0055"
+            "/daax"
           ],
           [
             "mkdir",
-            "/dir0054"
+            "/daaw"
           ],
           [
             "mkdir",
-            "/dir0053"
+            "/daav"
           ],
           [
             "mkdir",
-            "/dir0052"
+            "/daau"
           ],
           [
             "mkdir",
-            "/dir0051"
+            "/daat"
           ],
           [
             "mkdir",
-            "/dir0050"
+            "/daas"
           ],
           [
             "mkdir",
-            "/dir0049"
+            "/daar"
           ],
           [
             "mkdir",
-            "/dir0048"
+            "/daaq"
           ],
           [
             "mkdir",
-            "/dir0047"
+            "/daap"
           ],
           [
             "mkdir",
-            "/dir0046"
+            "/daao"
           ],
           [
             "mkdir",
-            "/dir0045"
+            "/daan"
           ],
           [
             "mkdir",
-            "/dir0044"
+            "/daam"
           ],
           [
             "mkdir",
-            "/dir0043"
+            "/daal"
           ],
           [
             "mkdir",
-            "/dir0042"
+            "/daak"
           ],
           [
             "mkdir",
-            "/dir0041"
+            "/daaj"
           ],
           [
             "mkdir",
-            "/dir0040"
+            "/daai"
           ],
           [
             "mkdir",
-            "/dir0039"
+            "/daah"
           ],
           [
             "mkdir",
-            "/dir0038"
+            "/daag"
           ],
           [
             "mkdir",
-            "/dir0037"
+            "/daaf"
           ],
           [
             "mkdir",
-            "/dir0036"
+            "/daae"
           ],
           [
             "mkdir",
-            "/dir0035"
+            "/daad"
           ],
           [
             "mkdir",
-            "/dir0034"
+            "/daac"
           ],
           [
             "mkdir",
-            "/dir0033"
+            "/daab"
           ],
           [
             "mkdir",
-            "/dir0032"
-          ],
-          [
-            "mkdir",
-            "/dir0031"
-          ],
-          [
-            "mkdir",
-            "/dir0030"
-          ],
-          [
-            "mkdir",
-            "/dir0029"
-          ],
-          [
-            "mkdir",
-            "/dir0028"
-          ],
-          [
-            "mkdir",
-            "/dir0027"
-          ],
-          [
-            "mkdir",
-            "/dir0026"
-          ],
-          [
-            "mkdir",
-            "/dir0025"
-          ],
-          [
-            "mkdir",
-            "/dir0024"
-          ],
-          [
-            "mkdir",
-            "/dir0023"
-          ],
-          [
-            "mkdir",
-            "/dir0022"
-          ],
-          [
-            "mkdir",
-            "/dir0021"
-          ],
-          [
-            "mkdir",
-            "/dir0020"
-          ],
-          [
-            "mkdir",
-            "/dir0019"
-          ],
-          [
-            "mkdir",
-            "/dir0018"
-          ],
-          [
-            "mkdir",
-            "/dir0017"
-          ],
-          [
-            "mkdir",
-            "/dir0016"
-          ],
-          [
-            "mkdir",
-            "/dir0015"
-          ],
-          [
-            "mkdir",
-            "/dir0014"
-          ],
-          [
-            "mkdir",
-            "/dir0013"
-          ],
-          [
-            "mkdir",
-            "/dir0012"
-          ],
-          [
-            "mkdir",
-            "/dir0011"
-          ],
-          [
-            "mkdir",
-            "/dir0010"
-          ],
-          [
-            "mkdir",
-            "/dir0009"
-          ],
-          [
-            "mkdir",
-            "/dir0008"
-          ],
-          [
-            "mkdir",
-            "/dir0007"
-          ],
-          [
-            "mkdir",
-            "/dir0006"
-          ],
-          [
-            "mkdir",
-            "/dir0005"
-          ],
-          [
-            "mkdir",
-            "/dir0004"
-          ],
-          [
-            "mkdir",
-            "/dir0003"
-          ],
-          [
-            "mkdir",
-            "/dir0002"
-          ],
-          [
-            "mkdir",
-            "/dir0001"
-          ],
-          [
-            "mkdir",
-            "/dir0000"
+            "/daaa"
           ],
           [
             "ls",
@@ -275,70 +147,38 @@
       },
       "expected": [
         [
-          "dir0000",
-          "dir0001",
-          "dir0002",
-          "dir0003",
-          "dir0004",
-          "dir0005",
-          "dir0006",
-          "dir0007",
-          "dir0008",
-          "dir0009",
-          "dir0010",
-          "dir0011",
-          "dir0012",
-          "dir0013",
-          "dir0014",
-          "dir0015",
-          "dir0016",
-          "dir0017",
-          "dir0018",
-          "dir0019",
-          "dir0020",
-          "dir0021",
-          "dir0022",
-          "dir0023",
-          "dir0024",
-          "dir0025",
-          "dir0026",
-          "dir0027",
-          "dir0028",
-          "dir0029",
-          "dir0030",
-          "dir0031",
-          "dir0032",
-          "dir0033",
-          "dir0034",
-          "dir0035",
-          "dir0036",
-          "dir0037",
-          "dir0038",
-          "dir0039",
-          "dir0040",
-          "dir0041",
-          "dir0042",
-          "dir0043",
-          "dir0044",
-          "dir0045",
-          "dir0046",
-          "dir0047",
-          "dir0048",
-          "dir0049",
-          "dir0050",
-          "dir0051",
-          "dir0052",
-          "dir0053",
-          "dir0054",
-          "dir0055",
-          "dir0056",
-          "dir0057",
-          "dir0058",
-          "dir0059",
-          "dir0060",
-          "dir0061",
-          "dir0062",
-          "dir0063"
+          "daaa",
+          "daab",
+          "daac",
+          "daad",
+          "daae",
+          "daaf",
+          "daag",
+          "daah",
+          "daai",
+          "daaj",
+          "daak",
+          "daal",
+          "daam",
+          "daan",
+          "daao",
+          "daap",
+          "daaq",
+          "daar",
+          "daas",
+          "daat",
+          "daau",
+          "daav",
+          "daaw",
+          "daax",
+          "daay",
+          "daaz",
+          "daba",
+          "dabb",
+          "dabc",
+          "dabd",
+          "dabe",
+          "dabf"
         ]
       ],
       "tags": [
@@ -349,1035 +189,523 @@
     },
     {
       "id": "benchmark-scale-2",
-      "name": "benchmark: create and list 256 root directories",
+      "name": "benchmark: create and list 128 root directories",
       "kind": "benchmark",
       "visible": false,
-      "size": 256,
+      "size": 128,
       "input": {
         "operations": [
           [
             "mkdir",
-            "/dir0255"
+            "/daex"
           ],
           [
             "mkdir",
-            "/dir0254"
+            "/daew"
           ],
           [
             "mkdir",
-            "/dir0253"
+            "/daev"
           ],
           [
             "mkdir",
-            "/dir0252"
+            "/daeu"
           ],
           [
             "mkdir",
-            "/dir0251"
+            "/daet"
           ],
           [
             "mkdir",
-            "/dir0250"
+            "/daes"
           ],
           [
             "mkdir",
-            "/dir0249"
+            "/daer"
           ],
           [
             "mkdir",
-            "/dir0248"
+            "/daeq"
           ],
           [
             "mkdir",
-            "/dir0247"
+            "/daep"
           ],
           [
             "mkdir",
-            "/dir0246"
+            "/daeo"
           ],
           [
             "mkdir",
-            "/dir0245"
+            "/daen"
           ],
           [
             "mkdir",
-            "/dir0244"
+            "/daem"
           ],
           [
             "mkdir",
-            "/dir0243"
+            "/dael"
           ],
           [
             "mkdir",
-            "/dir0242"
+            "/daek"
           ],
           [
             "mkdir",
-            "/dir0241"
+            "/daej"
           ],
           [
             "mkdir",
-            "/dir0240"
+            "/daei"
           ],
           [
             "mkdir",
-            "/dir0239"
+            "/daeh"
           ],
           [
             "mkdir",
-            "/dir0238"
+            "/daeg"
           ],
           [
             "mkdir",
-            "/dir0237"
+            "/daef"
           ],
           [
             "mkdir",
-            "/dir0236"
+            "/daee"
           ],
           [
             "mkdir",
-            "/dir0235"
+            "/daed"
           ],
           [
             "mkdir",
-            "/dir0234"
+            "/daec"
           ],
           [
             "mkdir",
-            "/dir0233"
+            "/daeb"
           ],
           [
             "mkdir",
-            "/dir0232"
+            "/daea"
           ],
           [
             "mkdir",
-            "/dir0231"
+            "/dadz"
           ],
           [
             "mkdir",
-            "/dir0230"
+            "/dady"
           ],
           [
             "mkdir",
-            "/dir0229"
+            "/dadx"
           ],
           [
             "mkdir",
-            "/dir0228"
+            "/dadw"
           ],
           [
             "mkdir",
-            "/dir0227"
+            "/dadv"
           ],
           [
             "mkdir",
-            "/dir0226"
+            "/dadu"
           ],
           [
             "mkdir",
-            "/dir0225"
+            "/dadt"
           ],
           [
             "mkdir",
-            "/dir0224"
+            "/dads"
           ],
           [
             "mkdir",
-            "/dir0223"
+            "/dadr"
           ],
           [
             "mkdir",
-            "/dir0222"
+            "/dadq"
           ],
           [
             "mkdir",
-            "/dir0221"
+            "/dadp"
           ],
           [
             "mkdir",
-            "/dir0220"
+            "/dado"
           ],
           [
             "mkdir",
-            "/dir0219"
+            "/dadn"
           ],
           [
             "mkdir",
-            "/dir0218"
+            "/dadm"
           ],
           [
             "mkdir",
-            "/dir0217"
+            "/dadl"
           ],
           [
             "mkdir",
-            "/dir0216"
+            "/dadk"
           ],
           [
             "mkdir",
-            "/dir0215"
+            "/dadj"
           ],
           [
             "mkdir",
-            "/dir0214"
+            "/dadi"
           ],
           [
             "mkdir",
-            "/dir0213"
+            "/dadh"
           ],
           [
             "mkdir",
-            "/dir0212"
+            "/dadg"
           ],
           [
             "mkdir",
-            "/dir0211"
+            "/dadf"
           ],
           [
             "mkdir",
-            "/dir0210"
+            "/dade"
           ],
           [
             "mkdir",
-            "/dir0209"
+            "/dadd"
           ],
           [
             "mkdir",
-            "/dir0208"
+            "/dadc"
           ],
           [
             "mkdir",
-            "/dir0207"
+            "/dadb"
           ],
           [
             "mkdir",
-            "/dir0206"
+            "/dada"
           ],
           [
             "mkdir",
-            "/dir0205"
+            "/dacz"
           ],
           [
             "mkdir",
-            "/dir0204"
+            "/dacy"
           ],
           [
             "mkdir",
-            "/dir0203"
+            "/dacx"
           ],
           [
             "mkdir",
-            "/dir0202"
+            "/dacw"
           ],
           [
             "mkdir",
-            "/dir0201"
+            "/dacv"
           ],
           [
             "mkdir",
-            "/dir0200"
+            "/dacu"
           ],
           [
             "mkdir",
-            "/dir0199"
+            "/dact"
           ],
           [
             "mkdir",
-            "/dir0198"
+            "/dacs"
           ],
           [
             "mkdir",
-            "/dir0197"
+            "/dacr"
           ],
           [
             "mkdir",
-            "/dir0196"
+            "/dacq"
           ],
           [
             "mkdir",
-            "/dir0195"
+            "/dacp"
           ],
           [
             "mkdir",
-            "/dir0194"
+            "/daco"
           ],
           [
             "mkdir",
-            "/dir0193"
+            "/dacn"
           ],
           [
             "mkdir",
-            "/dir0192"
+            "/dacm"
           ],
           [
             "mkdir",
-            "/dir0191"
+            "/dacl"
           ],
           [
             "mkdir",
-            "/dir0190"
+            "/dack"
           ],
           [
             "mkdir",
-            "/dir0189"
+            "/dacj"
           ],
           [
             "mkdir",
-            "/dir0188"
+            "/daci"
           ],
           [
             "mkdir",
-            "/dir0187"
+            "/dach"
           ],
           [
             "mkdir",
-            "/dir0186"
+            "/dacg"
           ],
           [
             "mkdir",
-            "/dir0185"
+            "/dacf"
           ],
           [
             "mkdir",
-            "/dir0184"
+            "/dace"
           ],
           [
             "mkdir",
-            "/dir0183"
+            "/dacd"
           ],
           [
             "mkdir",
-            "/dir0182"
+            "/dacc"
           ],
           [
             "mkdir",
-            "/dir0181"
+            "/dacb"
           ],
           [
             "mkdir",
-            "/dir0180"
+            "/daca"
           ],
           [
             "mkdir",
-            "/dir0179"
+            "/dabz"
           ],
           [
             "mkdir",
-            "/dir0178"
+            "/daby"
           ],
           [
             "mkdir",
-            "/dir0177"
+            "/dabx"
           ],
           [
             "mkdir",
-            "/dir0176"
+            "/dabw"
           ],
           [
             "mkdir",
-            "/dir0175"
+            "/dabv"
           ],
           [
             "mkdir",
-            "/dir0174"
+            "/dabu"
           ],
           [
             "mkdir",
-            "/dir0173"
+            "/dabt"
           ],
           [
             "mkdir",
-            "/dir0172"
+            "/dabs"
           ],
           [
             "mkdir",
-            "/dir0171"
+            "/dabr"
           ],
           [
             "mkdir",
-            "/dir0170"
+            "/dabq"
           ],
           [
             "mkdir",
-            "/dir0169"
+            "/dabp"
           ],
           [
             "mkdir",
-            "/dir0168"
+            "/dabo"
           ],
           [
             "mkdir",
-            "/dir0167"
+            "/dabn"
           ],
           [
             "mkdir",
-            "/dir0166"
+            "/dabm"
           ],
           [
             "mkdir",
-            "/dir0165"
+            "/dabl"
           ],
           [
             "mkdir",
-            "/dir0164"
+            "/dabk"
           ],
           [
             "mkdir",
-            "/dir0163"
+            "/dabj"
           ],
           [
             "mkdir",
-            "/dir0162"
+            "/dabi"
           ],
           [
             "mkdir",
-            "/dir0161"
+            "/dabh"
           ],
           [
             "mkdir",
-            "/dir0160"
+            "/dabg"
           ],
           [
             "mkdir",
-            "/dir0159"
+            "/dabf"
           ],
           [
             "mkdir",
-            "/dir0158"
+            "/dabe"
           ],
           [
             "mkdir",
-            "/dir0157"
+            "/dabd"
           ],
           [
             "mkdir",
-            "/dir0156"
+            "/dabc"
           ],
           [
             "mkdir",
-            "/dir0155"
+            "/dabb"
           ],
           [
             "mkdir",
-            "/dir0154"
+            "/daba"
           ],
           [
             "mkdir",
-            "/dir0153"
+            "/daaz"
           ],
           [
             "mkdir",
-            "/dir0152"
+            "/daay"
           ],
           [
             "mkdir",
-            "/dir0151"
+            "/daax"
           ],
           [
             "mkdir",
-            "/dir0150"
+            "/daaw"
           ],
           [
             "mkdir",
-            "/dir0149"
+            "/daav"
           ],
           [
             "mkdir",
-            "/dir0148"
+            "/daau"
           ],
           [
             "mkdir",
-            "/dir0147"
+            "/daat"
           ],
           [
             "mkdir",
-            "/dir0146"
+            "/daas"
           ],
           [
             "mkdir",
-            "/dir0145"
+            "/daar"
           ],
           [
             "mkdir",
-            "/dir0144"
+            "/daaq"
           ],
           [
             "mkdir",
-            "/dir0143"
+            "/daap"
           ],
           [
             "mkdir",
-            "/dir0142"
+            "/daao"
           ],
           [
             "mkdir",
-            "/dir0141"
+            "/daan"
           ],
           [
             "mkdir",
-            "/dir0140"
+            "/daam"
           ],
           [
             "mkdir",
-            "/dir0139"
+            "/daal"
           ],
           [
             "mkdir",
-            "/dir0138"
+            "/daak"
           ],
           [
             "mkdir",
-            "/dir0137"
+            "/daaj"
           ],
           [
             "mkdir",
-            "/dir0136"
+            "/daai"
           ],
           [
             "mkdir",
-            "/dir0135"
+            "/daah"
           ],
           [
             "mkdir",
-            "/dir0134"
+            "/daag"
           ],
           [
             "mkdir",
-            "/dir0133"
+            "/daaf"
           ],
           [
             "mkdir",
-            "/dir0132"
+            "/daae"
           ],
           [
             "mkdir",
-            "/dir0131"
+            "/daad"
           ],
           [
             "mkdir",
-            "/dir0130"
+            "/daac"
           ],
           [
             "mkdir",
-            "/dir0129"
+            "/daab"
           ],
           [
             "mkdir",
-            "/dir0128"
-          ],
-          [
-            "mkdir",
-            "/dir0127"
-          ],
-          [
-            "mkdir",
-            "/dir0126"
-          ],
-          [
-            "mkdir",
-            "/dir0125"
-          ],
-          [
-            "mkdir",
-            "/dir0124"
-          ],
-          [
-            "mkdir",
-            "/dir0123"
-          ],
-          [
-            "mkdir",
-            "/dir0122"
-          ],
-          [
-            "mkdir",
-            "/dir0121"
-          ],
-          [
-            "mkdir",
-            "/dir0120"
-          ],
-          [
-            "mkdir",
-            "/dir0119"
-          ],
-          [
-            "mkdir",
-            "/dir0118"
-          ],
-          [
-            "mkdir",
-            "/dir0117"
-          ],
-          [
-            "mkdir",
-            "/dir0116"
-          ],
-          [
-            "mkdir",
-            "/dir0115"
-          ],
-          [
-            "mkdir",
-            "/dir0114"
-          ],
-          [
-            "mkdir",
-            "/dir0113"
-          ],
-          [
-            "mkdir",
-            "/dir0112"
-          ],
-          [
-            "mkdir",
-            "/dir0111"
-          ],
-          [
-            "mkdir",
-            "/dir0110"
-          ],
-          [
-            "mkdir",
-            "/dir0109"
-          ],
-          [
-            "mkdir",
-            "/dir0108"
-          ],
-          [
-            "mkdir",
-            "/dir0107"
-          ],
-          [
-            "mkdir",
-            "/dir0106"
-          ],
-          [
-            "mkdir",
-            "/dir0105"
-          ],
-          [
-            "mkdir",
-            "/dir0104"
-          ],
-          [
-            "mkdir",
-            "/dir0103"
-          ],
-          [
-            "mkdir",
-            "/dir0102"
-          ],
-          [
-            "mkdir",
-            "/dir0101"
-          ],
-          [
-            "mkdir",
-            "/dir0100"
-          ],
-          [
-            "mkdir",
-            "/dir0099"
-          ],
-          [
-            "mkdir",
-            "/dir0098"
-          ],
-          [
-            "mkdir",
-            "/dir0097"
-          ],
-          [
-            "mkdir",
-            "/dir0096"
-          ],
-          [
-            "mkdir",
-            "/dir0095"
-          ],
-          [
-            "mkdir",
-            "/dir0094"
-          ],
-          [
-            "mkdir",
-            "/dir0093"
-          ],
-          [
-            "mkdir",
-            "/dir0092"
-          ],
-          [
-            "mkdir",
-            "/dir0091"
-          ],
-          [
-            "mkdir",
-            "/dir0090"
-          ],
-          [
-            "mkdir",
-            "/dir0089"
-          ],
-          [
-            "mkdir",
-            "/dir0088"
-          ],
-          [
-            "mkdir",
-            "/dir0087"
-          ],
-          [
-            "mkdir",
-            "/dir0086"
-          ],
-          [
-            "mkdir",
-            "/dir0085"
-          ],
-          [
-            "mkdir",
-            "/dir0084"
-          ],
-          [
-            "mkdir",
-            "/dir0083"
-          ],
-          [
-            "mkdir",
-            "/dir0082"
-          ],
-          [
-            "mkdir",
-            "/dir0081"
-          ],
-          [
-            "mkdir",
-            "/dir0080"
-          ],
-          [
-            "mkdir",
-            "/dir0079"
-          ],
-          [
-            "mkdir",
-            "/dir0078"
-          ],
-          [
-            "mkdir",
-            "/dir0077"
-          ],
-          [
-            "mkdir",
-            "/dir0076"
-          ],
-          [
-            "mkdir",
-            "/dir0075"
-          ],
-          [
-            "mkdir",
-            "/dir0074"
-          ],
-          [
-            "mkdir",
-            "/dir0073"
-          ],
-          [
-            "mkdir",
-            "/dir0072"
-          ],
-          [
-            "mkdir",
-            "/dir0071"
-          ],
-          [
-            "mkdir",
-            "/dir0070"
-          ],
-          [
-            "mkdir",
-            "/dir0069"
-          ],
-          [
-            "mkdir",
-            "/dir0068"
-          ],
-          [
-            "mkdir",
-            "/dir0067"
-          ],
-          [
-            "mkdir",
-            "/dir0066"
-          ],
-          [
-            "mkdir",
-            "/dir0065"
-          ],
-          [
-            "mkdir",
-            "/dir0064"
-          ],
-          [
-            "mkdir",
-            "/dir0063"
-          ],
-          [
-            "mkdir",
-            "/dir0062"
-          ],
-          [
-            "mkdir",
-            "/dir0061"
-          ],
-          [
-            "mkdir",
-            "/dir0060"
-          ],
-          [
-            "mkdir",
-            "/dir0059"
-          ],
-          [
-            "mkdir",
-            "/dir0058"
-          ],
-          [
-            "mkdir",
-            "/dir0057"
-          ],
-          [
-            "mkdir",
-            "/dir0056"
-          ],
-          [
-            "mkdir",
-            "/dir0055"
-          ],
-          [
-            "mkdir",
-            "/dir0054"
-          ],
-          [
-            "mkdir",
-            "/dir0053"
-          ],
-          [
-            "mkdir",
-            "/dir0052"
-          ],
-          [
-            "mkdir",
-            "/dir0051"
-          ],
-          [
-            "mkdir",
-            "/dir0050"
-          ],
-          [
-            "mkdir",
-            "/dir0049"
-          ],
-          [
-            "mkdir",
-            "/dir0048"
-          ],
-          [
-            "mkdir",
-            "/dir0047"
-          ],
-          [
-            "mkdir",
-            "/dir0046"
-          ],
-          [
-            "mkdir",
-            "/dir0045"
-          ],
-          [
-            "mkdir",
-            "/dir0044"
-          ],
-          [
-            "mkdir",
-            "/dir0043"
-          ],
-          [
-            "mkdir",
-            "/dir0042"
-          ],
-          [
-            "mkdir",
-            "/dir0041"
-          ],
-          [
-            "mkdir",
-            "/dir0040"
-          ],
-          [
-            "mkdir",
-            "/dir0039"
-          ],
-          [
-            "mkdir",
-            "/dir0038"
-          ],
-          [
-            "mkdir",
-            "/dir0037"
-          ],
-          [
-            "mkdir",
-            "/dir0036"
-          ],
-          [
-            "mkdir",
-            "/dir0035"
-          ],
-          [
-            "mkdir",
-            "/dir0034"
-          ],
-          [
-            "mkdir",
-            "/dir0033"
-          ],
-          [
-            "mkdir",
-            "/dir0032"
-          ],
-          [
-            "mkdir",
-            "/dir0031"
-          ],
-          [
-            "mkdir",
-            "/dir0030"
-          ],
-          [
-            "mkdir",
-            "/dir0029"
-          ],
-          [
-            "mkdir",
-            "/dir0028"
-          ],
-          [
-            "mkdir",
-            "/dir0027"
-          ],
-          [
-            "mkdir",
-            "/dir0026"
-          ],
-          [
-            "mkdir",
-            "/dir0025"
-          ],
-          [
-            "mkdir",
-            "/dir0024"
-          ],
-          [
-            "mkdir",
-            "/dir0023"
-          ],
-          [
-            "mkdir",
-            "/dir0022"
-          ],
-          [
-            "mkdir",
-            "/dir0021"
-          ],
-          [
-            "mkdir",
-            "/dir0020"
-          ],
-          [
-            "mkdir",
-            "/dir0019"
-          ],
-          [
-            "mkdir",
-            "/dir0018"
-          ],
-          [
-            "mkdir",
-            "/dir0017"
-          ],
-          [
-            "mkdir",
-            "/dir0016"
-          ],
-          [
-            "mkdir",
-            "/dir0015"
-          ],
-          [
-            "mkdir",
-            "/dir0014"
-          ],
-          [
-            "mkdir",
-            "/dir0013"
-          ],
-          [
-            "mkdir",
-            "/dir0012"
-          ],
-          [
-            "mkdir",
-            "/dir0011"
-          ],
-          [
-            "mkdir",
-            "/dir0010"
-          ],
-          [
-            "mkdir",
-            "/dir0009"
-          ],
-          [
-            "mkdir",
-            "/dir0008"
-          ],
-          [
-            "mkdir",
-            "/dir0007"
-          ],
-          [
-            "mkdir",
-            "/dir0006"
-          ],
-          [
-            "mkdir",
-            "/dir0005"
-          ],
-          [
-            "mkdir",
-            "/dir0004"
-          ],
-          [
-            "mkdir",
-            "/dir0003"
-          ],
-          [
-            "mkdir",
-            "/dir0002"
-          ],
-          [
-            "mkdir",
-            "/dir0001"
-          ],
-          [
-            "mkdir",
-            "/dir0000"
+            "/daaa"
           ],
           [
             "ls",
@@ -1387,262 +715,134 @@
       },
       "expected": [
         [
-          "dir0000",
-          "dir0001",
-          "dir0002",
-          "dir0003",
-          "dir0004",
-          "dir0005",
-          "dir0006",
-          "dir0007",
-          "dir0008",
-          "dir0009",
-          "dir0010",
-          "dir0011",
-          "dir0012",
-          "dir0013",
-          "dir0014",
-          "dir0015",
-          "dir0016",
-          "dir0017",
-          "dir0018",
-          "dir0019",
-          "dir0020",
-          "dir0021",
-          "dir0022",
-          "dir0023",
-          "dir0024",
-          "dir0025",
-          "dir0026",
-          "dir0027",
-          "dir0028",
-          "dir0029",
-          "dir0030",
-          "dir0031",
-          "dir0032",
-          "dir0033",
-          "dir0034",
-          "dir0035",
-          "dir0036",
-          "dir0037",
-          "dir0038",
-          "dir0039",
-          "dir0040",
-          "dir0041",
-          "dir0042",
-          "dir0043",
-          "dir0044",
-          "dir0045",
-          "dir0046",
-          "dir0047",
-          "dir0048",
-          "dir0049",
-          "dir0050",
-          "dir0051",
-          "dir0052",
-          "dir0053",
-          "dir0054",
-          "dir0055",
-          "dir0056",
-          "dir0057",
-          "dir0058",
-          "dir0059",
-          "dir0060",
-          "dir0061",
-          "dir0062",
-          "dir0063",
-          "dir0064",
-          "dir0065",
-          "dir0066",
-          "dir0067",
-          "dir0068",
-          "dir0069",
-          "dir0070",
-          "dir0071",
-          "dir0072",
-          "dir0073",
-          "dir0074",
-          "dir0075",
-          "dir0076",
-          "dir0077",
-          "dir0078",
-          "dir0079",
-          "dir0080",
-          "dir0081",
-          "dir0082",
-          "dir0083",
-          "dir0084",
-          "dir0085",
-          "dir0086",
-          "dir0087",
-          "dir0088",
-          "dir0089",
-          "dir0090",
-          "dir0091",
-          "dir0092",
-          "dir0093",
-          "dir0094",
-          "dir0095",
-          "dir0096",
-          "dir0097",
-          "dir0098",
-          "dir0099",
-          "dir0100",
-          "dir0101",
-          "dir0102",
-          "dir0103",
-          "dir0104",
-          "dir0105",
-          "dir0106",
-          "dir0107",
-          "dir0108",
-          "dir0109",
-          "dir0110",
-          "dir0111",
-          "dir0112",
-          "dir0113",
-          "dir0114",
-          "dir0115",
-          "dir0116",
-          "dir0117",
-          "dir0118",
-          "dir0119",
-          "dir0120",
-          "dir0121",
-          "dir0122",
-          "dir0123",
-          "dir0124",
-          "dir0125",
-          "dir0126",
-          "dir0127",
-          "dir0128",
-          "dir0129",
-          "dir0130",
-          "dir0131",
-          "dir0132",
-          "dir0133",
-          "dir0134",
-          "dir0135",
-          "dir0136",
-          "dir0137",
-          "dir0138",
-          "dir0139",
-          "dir0140",
-          "dir0141",
-          "dir0142",
-          "dir0143",
-          "dir0144",
-          "dir0145",
-          "dir0146",
-          "dir0147",
-          "dir0148",
-          "dir0149",
-          "dir0150",
-          "dir0151",
-          "dir0152",
-          "dir0153",
-          "dir0154",
-          "dir0155",
-          "dir0156",
-          "dir0157",
-          "dir0158",
-          "dir0159",
-          "dir0160",
-          "dir0161",
-          "dir0162",
-          "dir0163",
-          "dir0164",
-          "dir0165",
-          "dir0166",
-          "dir0167",
-          "dir0168",
-          "dir0169",
-          "dir0170",
-          "dir0171",
-          "dir0172",
-          "dir0173",
-          "dir0174",
-          "dir0175",
-          "dir0176",
-          "dir0177",
-          "dir0178",
-          "dir0179",
-          "dir0180",
-          "dir0181",
-          "dir0182",
-          "dir0183",
-          "dir0184",
-          "dir0185",
-          "dir0186",
-          "dir0187",
-          "dir0188",
-          "dir0189",
-          "dir0190",
-          "dir0191",
-          "dir0192",
-          "dir0193",
-          "dir0194",
-          "dir0195",
-          "dir0196",
-          "dir0197",
-          "dir0198",
-          "dir0199",
-          "dir0200",
-          "dir0201",
-          "dir0202",
-          "dir0203",
-          "dir0204",
-          "dir0205",
-          "dir0206",
-          "dir0207",
-          "dir0208",
-          "dir0209",
-          "dir0210",
-          "dir0211",
-          "dir0212",
-          "dir0213",
-          "dir0214",
-          "dir0215",
-          "dir0216",
-          "dir0217",
-          "dir0218",
-          "dir0219",
-          "dir0220",
-          "dir0221",
-          "dir0222",
-          "dir0223",
-          "dir0224",
-          "dir0225",
-          "dir0226",
-          "dir0227",
-          "dir0228",
-          "dir0229",
-          "dir0230",
-          "dir0231",
-          "dir0232",
-          "dir0233",
-          "dir0234",
-          "dir0235",
-          "dir0236",
-          "dir0237",
-          "dir0238",
-          "dir0239",
-          "dir0240",
-          "dir0241",
-          "dir0242",
-          "dir0243",
-          "dir0244",
-          "dir0245",
-          "dir0246",
-          "dir0247",
-          "dir0248",
-          "dir0249",
-          "dir0250",
-          "dir0251",
-          "dir0252",
-          "dir0253",
-          "dir0254",
-          "dir0255"
+          "daaa",
+          "daab",
+          "daac",
+          "daad",
+          "daae",
+          "daaf",
+          "daag",
+          "daah",
+          "daai",
+          "daaj",
+          "daak",
+          "daal",
+          "daam",
+          "daan",
+          "daao",
+          "daap",
+          "daaq",
+          "daar",
+          "daas",
+          "daat",
+          "daau",
+          "daav",
+          "daaw",
+          "daax",
+          "daay",
+          "daaz",
+          "daba",
+          "dabb",
+          "dabc",
+          "dabd",
+          "dabe",
+          "dabf",
+          "dabg",
+          "dabh",
+          "dabi",
+          "dabj",
+          "dabk",
+          "dabl",
+          "dabm",
+          "dabn",
+          "dabo",
+          "dabp",
+          "dabq",
+          "dabr",
+          "dabs",
+          "dabt",
+          "dabu",
+          "dabv",
+          "dabw",
+          "dabx",
+          "daby",
+          "dabz",
+          "daca",
+          "dacb",
+          "dacc",
+          "dacd",
+          "dace",
+          "dacf",
+          "dacg",
+          "dach",
+          "daci",
+          "dacj",
+          "dack",
+          "dacl",
+          "dacm",
+          "dacn",
+          "daco",
+          "dacp",
+          "dacq",
+          "dacr",
+          "dacs",
+          "dact",
+          "dacu",
+          "dacv",
+          "dacw",
+          "dacx",
+          "dacy",
+          "dacz",
+          "dada",
+          "dadb",
+          "dadc",
+          "dadd",
+          "dade",
+          "dadf",
+          "dadg",
+          "dadh",
+          "dadi",
+          "dadj",
+          "dadk",
+          "dadl",
+          "dadm",
+          "dadn",
+          "dado",
+          "dadp",
+          "dadq",
+          "dadr",
+          "dads",
+          "dadt",
+          "dadu",
+          "dadv",
+          "dadw",
+          "dadx",
+          "dady",
+          "dadz",
+          "daea",
+          "daeb",
+          "daec",
+          "daed",
+          "daee",
+          "daef",
+          "daeg",
+          "daeh",
+          "daei",
+          "daej",
+          "daek",
+          "dael",
+          "daem",
+          "daen",
+          "daeo",
+          "daep",
+          "daeq",
+          "daer",
+          "daes",
+          "daet",
+          "daeu",
+          "daev",
+          "daew",
+          "daex"
         ]
       ],
       "tags": [
@@ -1653,2059 +853,1035 @@
     },
     {
       "id": "benchmark-scale-3",
-      "name": "benchmark: create and list 512 root directories",
+      "name": "benchmark: create and list 256 root directories",
       "kind": "benchmark",
       "visible": false,
-      "size": 512,
+      "size": 256,
       "input": {
         "operations": [
           [
             "mkdir",
-            "/dir0511"
+            "/dajv"
           ],
           [
             "mkdir",
-            "/dir0510"
+            "/daju"
           ],
           [
             "mkdir",
-            "/dir0509"
+            "/dajt"
           ],
           [
             "mkdir",
-            "/dir0508"
+            "/dajs"
           ],
           [
             "mkdir",
-            "/dir0507"
+            "/dajr"
           ],
           [
             "mkdir",
-            "/dir0506"
+            "/dajq"
           ],
           [
             "mkdir",
-            "/dir0505"
+            "/dajp"
           ],
           [
             "mkdir",
-            "/dir0504"
+            "/dajo"
           ],
           [
             "mkdir",
-            "/dir0503"
+            "/dajn"
           ],
           [
             "mkdir",
-            "/dir0502"
+            "/dajm"
           ],
           [
             "mkdir",
-            "/dir0501"
+            "/dajl"
           ],
           [
             "mkdir",
-            "/dir0500"
+            "/dajk"
           ],
           [
             "mkdir",
-            "/dir0499"
+            "/dajj"
           ],
           [
             "mkdir",
-            "/dir0498"
+            "/daji"
           ],
           [
             "mkdir",
-            "/dir0497"
+            "/dajh"
           ],
           [
             "mkdir",
-            "/dir0496"
+            "/dajg"
           ],
           [
             "mkdir",
-            "/dir0495"
+            "/dajf"
           ],
           [
             "mkdir",
-            "/dir0494"
+            "/daje"
           ],
           [
             "mkdir",
-            "/dir0493"
+            "/dajd"
           ],
           [
             "mkdir",
-            "/dir0492"
+            "/dajc"
           ],
           [
             "mkdir",
-            "/dir0491"
+            "/dajb"
           ],
           [
             "mkdir",
-            "/dir0490"
+            "/daja"
           ],
           [
             "mkdir",
-            "/dir0489"
+            "/daiz"
           ],
           [
             "mkdir",
-            "/dir0488"
+            "/daiy"
           ],
           [
             "mkdir",
-            "/dir0487"
+            "/daix"
           ],
           [
             "mkdir",
-            "/dir0486"
+            "/daiw"
           ],
           [
             "mkdir",
-            "/dir0485"
+            "/daiv"
           ],
           [
             "mkdir",
-            "/dir0484"
+            "/daiu"
           ],
           [
             "mkdir",
-            "/dir0483"
+            "/dait"
           ],
           [
             "mkdir",
-            "/dir0482"
+            "/dais"
           ],
           [
             "mkdir",
-            "/dir0481"
+            "/dair"
           ],
           [
             "mkdir",
-            "/dir0480"
+            "/daiq"
           ],
           [
             "mkdir",
-            "/dir0479"
+            "/daip"
           ],
           [
             "mkdir",
-            "/dir0478"
+            "/daio"
           ],
           [
             "mkdir",
-            "/dir0477"
+            "/dain"
           ],
           [
             "mkdir",
-            "/dir0476"
+            "/daim"
           ],
           [
             "mkdir",
-            "/dir0475"
+            "/dail"
           ],
           [
             "mkdir",
-            "/dir0474"
+            "/daik"
           ],
           [
             "mkdir",
-            "/dir0473"
+            "/daij"
           ],
           [
             "mkdir",
-            "/dir0472"
+            "/daii"
           ],
           [
             "mkdir",
-            "/dir0471"
+            "/daih"
           ],
           [
             "mkdir",
-            "/dir0470"
+            "/daig"
           ],
           [
             "mkdir",
-            "/dir0469"
+            "/daif"
           ],
           [
             "mkdir",
-            "/dir0468"
+            "/daie"
           ],
           [
             "mkdir",
-            "/dir0467"
+            "/daid"
           ],
           [
             "mkdir",
-            "/dir0466"
+            "/daic"
           ],
           [
             "mkdir",
-            "/dir0465"
+            "/daib"
           ],
           [
             "mkdir",
-            "/dir0464"
+            "/daia"
           ],
           [
             "mkdir",
-            "/dir0463"
+            "/dahz"
           ],
           [
             "mkdir",
-            "/dir0462"
+            "/dahy"
           ],
           [
             "mkdir",
-            "/dir0461"
+            "/dahx"
           ],
           [
             "mkdir",
-            "/dir0460"
+            "/dahw"
           ],
           [
             "mkdir",
-            "/dir0459"
+            "/dahv"
           ],
           [
             "mkdir",
-            "/dir0458"
+            "/dahu"
           ],
           [
             "mkdir",
-            "/dir0457"
+            "/daht"
           ],
           [
             "mkdir",
-            "/dir0456"
+            "/dahs"
           ],
           [
             "mkdir",
-            "/dir0455"
+            "/dahr"
           ],
           [
             "mkdir",
-            "/dir0454"
+            "/dahq"
           ],
           [
             "mkdir",
-            "/dir0453"
+            "/dahp"
           ],
           [
             "mkdir",
-            "/dir0452"
+            "/daho"
           ],
           [
             "mkdir",
-            "/dir0451"
+            "/dahn"
           ],
           [
             "mkdir",
-            "/dir0450"
+            "/dahm"
           ],
           [
             "mkdir",
-            "/dir0449"
+            "/dahl"
           ],
           [
             "mkdir",
-            "/dir0448"
+            "/dahk"
           ],
           [
             "mkdir",
-            "/dir0447"
+            "/dahj"
           ],
           [
             "mkdir",
-            "/dir0446"
+            "/dahi"
           ],
           [
             "mkdir",
-            "/dir0445"
+            "/dahh"
           ],
           [
             "mkdir",
-            "/dir0444"
+            "/dahg"
           ],
           [
             "mkdir",
-            "/dir0443"
+            "/dahf"
           ],
           [
             "mkdir",
-            "/dir0442"
+            "/dahe"
           ],
           [
             "mkdir",
-            "/dir0441"
+            "/dahd"
           ],
           [
             "mkdir",
-            "/dir0440"
+            "/dahc"
           ],
           [
             "mkdir",
-            "/dir0439"
+            "/dahb"
           ],
           [
             "mkdir",
-            "/dir0438"
+            "/daha"
           ],
           [
             "mkdir",
-            "/dir0437"
+            "/dagz"
           ],
           [
             "mkdir",
-            "/dir0436"
+            "/dagy"
           ],
           [
             "mkdir",
-            "/dir0435"
+            "/dagx"
           ],
           [
             "mkdir",
-            "/dir0434"
+            "/dagw"
           ],
           [
             "mkdir",
-            "/dir0433"
+            "/dagv"
           ],
           [
             "mkdir",
-            "/dir0432"
+            "/dagu"
           ],
           [
             "mkdir",
-            "/dir0431"
+            "/dagt"
           ],
           [
             "mkdir",
-            "/dir0430"
+            "/dags"
           ],
           [
             "mkdir",
-            "/dir0429"
+            "/dagr"
           ],
           [
             "mkdir",
-            "/dir0428"
+            "/dagq"
           ],
           [
             "mkdir",
-            "/dir0427"
+            "/dagp"
           ],
           [
             "mkdir",
-            "/dir0426"
+            "/dago"
           ],
           [
             "mkdir",
-            "/dir0425"
+            "/dagn"
           ],
           [
             "mkdir",
-            "/dir0424"
+            "/dagm"
           ],
           [
             "mkdir",
-            "/dir0423"
+            "/dagl"
           ],
           [
             "mkdir",
-            "/dir0422"
+            "/dagk"
           ],
           [
             "mkdir",
-            "/dir0421"
+            "/dagj"
           ],
           [
             "mkdir",
-            "/dir0420"
+            "/dagi"
           ],
           [
             "mkdir",
-            "/dir0419"
+            "/dagh"
           ],
           [
             "mkdir",
-            "/dir0418"
+            "/dagg"
           ],
           [
             "mkdir",
-            "/dir0417"
+            "/dagf"
           ],
           [
             "mkdir",
-            "/dir0416"
+            "/dage"
           ],
           [
             "mkdir",
-            "/dir0415"
+            "/dagd"
           ],
           [
             "mkdir",
-            "/dir0414"
+            "/dagc"
           ],
           [
             "mkdir",
-            "/dir0413"
+            "/dagb"
           ],
           [
             "mkdir",
-            "/dir0412"
+            "/daga"
           ],
           [
             "mkdir",
-            "/dir0411"
+            "/dafz"
           ],
           [
             "mkdir",
-            "/dir0410"
+            "/dafy"
           ],
           [
             "mkdir",
-            "/dir0409"
+            "/dafx"
           ],
           [
             "mkdir",
-            "/dir0408"
+            "/dafw"
           ],
           [
             "mkdir",
-            "/dir0407"
+            "/dafv"
           ],
           [
             "mkdir",
-            "/dir0406"
+            "/dafu"
           ],
           [
             "mkdir",
-            "/dir0405"
+            "/daft"
           ],
           [
             "mkdir",
-            "/dir0404"
+            "/dafs"
           ],
           [
             "mkdir",
-            "/dir0403"
+            "/dafr"
           ],
           [
             "mkdir",
-            "/dir0402"
+            "/dafq"
           ],
           [
             "mkdir",
-            "/dir0401"
+            "/dafp"
           ],
           [
             "mkdir",
-            "/dir0400"
+            "/dafo"
           ],
           [
             "mkdir",
-            "/dir0399"
+            "/dafn"
           ],
           [
             "mkdir",
-            "/dir0398"
+            "/dafm"
           ],
           [
             "mkdir",
-            "/dir0397"
+            "/dafl"
           ],
           [
             "mkdir",
-            "/dir0396"
+            "/dafk"
           ],
           [
             "mkdir",
-            "/dir0395"
+            "/dafj"
           ],
           [
             "mkdir",
-            "/dir0394"
+            "/dafi"
           ],
           [
             "mkdir",
-            "/dir0393"
+            "/dafh"
           ],
           [
             "mkdir",
-            "/dir0392"
+            "/dafg"
           ],
           [
             "mkdir",
-            "/dir0391"
+            "/daff"
           ],
           [
             "mkdir",
-            "/dir0390"
+            "/dafe"
           ],
           [
             "mkdir",
-            "/dir0389"
+            "/dafd"
           ],
           [
             "mkdir",
-            "/dir0388"
+            "/dafc"
           ],
           [
             "mkdir",
-            "/dir0387"
+            "/dafb"
           ],
           [
             "mkdir",
-            "/dir0386"
+            "/dafa"
           ],
           [
             "mkdir",
-            "/dir0385"
+            "/daez"
           ],
           [
             "mkdir",
-            "/dir0384"
+            "/daey"
           ],
           [
             "mkdir",
-            "/dir0383"
+            "/daex"
           ],
           [
             "mkdir",
-            "/dir0382"
+            "/daew"
           ],
           [
             "mkdir",
-            "/dir0381"
+            "/daev"
           ],
           [
             "mkdir",
-            "/dir0380"
+            "/daeu"
           ],
           [
             "mkdir",
-            "/dir0379"
+            "/daet"
           ],
           [
             "mkdir",
-            "/dir0378"
+            "/daes"
           ],
           [
             "mkdir",
-            "/dir0377"
+            "/daer"
           ],
           [
             "mkdir",
-            "/dir0376"
+            "/daeq"
           ],
           [
             "mkdir",
-            "/dir0375"
+            "/daep"
           ],
           [
             "mkdir",
-            "/dir0374"
+            "/daeo"
           ],
           [
             "mkdir",
-            "/dir0373"
+            "/daen"
           ],
           [
             "mkdir",
-            "/dir0372"
+            "/daem"
           ],
           [
             "mkdir",
-            "/dir0371"
+            "/dael"
           ],
           [
             "mkdir",
-            "/dir0370"
+            "/daek"
           ],
           [
             "mkdir",
-            "/dir0369"
+            "/daej"
           ],
           [
             "mkdir",
-            "/dir0368"
+            "/daei"
           ],
           [
             "mkdir",
-            "/dir0367"
+            "/daeh"
           ],
           [
             "mkdir",
-            "/dir0366"
+            "/daeg"
           ],
           [
             "mkdir",
-            "/dir0365"
+            "/daef"
           ],
           [
             "mkdir",
-            "/dir0364"
+            "/daee"
           ],
           [
             "mkdir",
-            "/dir0363"
+            "/daed"
           ],
           [
             "mkdir",
-            "/dir0362"
+            "/daec"
           ],
           [
             "mkdir",
-            "/dir0361"
+            "/daeb"
           ],
           [
             "mkdir",
-            "/dir0360"
+            "/daea"
           ],
           [
             "mkdir",
-            "/dir0359"
+            "/dadz"
           ],
           [
             "mkdir",
-            "/dir0358"
+            "/dady"
           ],
           [
             "mkdir",
-            "/dir0357"
+            "/dadx"
           ],
           [
             "mkdir",
-            "/dir0356"
+            "/dadw"
           ],
           [
             "mkdir",
-            "/dir0355"
+            "/dadv"
           ],
           [
             "mkdir",
-            "/dir0354"
+            "/dadu"
           ],
           [
             "mkdir",
-            "/dir0353"
+            "/dadt"
           ],
           [
             "mkdir",
-            "/dir0352"
+            "/dads"
           ],
           [
             "mkdir",
-            "/dir0351"
+            "/dadr"
           ],
           [
             "mkdir",
-            "/dir0350"
+            "/dadq"
           ],
           [
             "mkdir",
-            "/dir0349"
+            "/dadp"
           ],
           [
             "mkdir",
-            "/dir0348"
+            "/dado"
           ],
           [
             "mkdir",
-            "/dir0347"
+            "/dadn"
           ],
           [
             "mkdir",
-            "/dir0346"
+            "/dadm"
           ],
           [
             "mkdir",
-            "/dir0345"
+            "/dadl"
           ],
           [
             "mkdir",
-            "/dir0344"
+            "/dadk"
           ],
           [
             "mkdir",
-            "/dir0343"
+            "/dadj"
           ],
           [
             "mkdir",
-            "/dir0342"
+            "/dadi"
           ],
           [
             "mkdir",
-            "/dir0341"
+            "/dadh"
           ],
           [
             "mkdir",
-            "/dir0340"
+            "/dadg"
           ],
           [
             "mkdir",
-            "/dir0339"
+            "/dadf"
           ],
           [
             "mkdir",
-            "/dir0338"
+            "/dade"
           ],
           [
             "mkdir",
-            "/dir0337"
+            "/dadd"
           ],
           [
             "mkdir",
-            "/dir0336"
+            "/dadc"
           ],
           [
             "mkdir",
-            "/dir0335"
+            "/dadb"
           ],
           [
             "mkdir",
-            "/dir0334"
+            "/dada"
           ],
           [
             "mkdir",
-            "/dir0333"
+            "/dacz"
           ],
           [
             "mkdir",
-            "/dir0332"
+            "/dacy"
           ],
           [
             "mkdir",
-            "/dir0331"
+            "/dacx"
           ],
           [
             "mkdir",
-            "/dir0330"
+            "/dacw"
           ],
           [
             "mkdir",
-            "/dir0329"
+            "/dacv"
           ],
           [
             "mkdir",
-            "/dir0328"
+            "/dacu"
           ],
           [
             "mkdir",
-            "/dir0327"
+            "/dact"
           ],
           [
             "mkdir",
-            "/dir0326"
+            "/dacs"
           ],
           [
             "mkdir",
-            "/dir0325"
+            "/dacr"
           ],
           [
             "mkdir",
-            "/dir0324"
+            "/dacq"
           ],
           [
             "mkdir",
-            "/dir0323"
+            "/dacp"
           ],
           [
             "mkdir",
-            "/dir0322"
+            "/daco"
           ],
           [
             "mkdir",
-            "/dir0321"
+            "/dacn"
           ],
           [
             "mkdir",
-            "/dir0320"
+            "/dacm"
           ],
           [
             "mkdir",
-            "/dir0319"
+            "/dacl"
           ],
           [
             "mkdir",
-            "/dir0318"
+            "/dack"
           ],
           [
             "mkdir",
-            "/dir0317"
+            "/dacj"
           ],
           [
             "mkdir",
-            "/dir0316"
+            "/daci"
           ],
           [
             "mkdir",
-            "/dir0315"
+            "/dach"
           ],
           [
             "mkdir",
-            "/dir0314"
+            "/dacg"
           ],
           [
             "mkdir",
-            "/dir0313"
+            "/dacf"
           ],
           [
             "mkdir",
-            "/dir0312"
+            "/dace"
           ],
           [
             "mkdir",
-            "/dir0311"
+            "/dacd"
           ],
           [
             "mkdir",
-            "/dir0310"
+            "/dacc"
           ],
           [
             "mkdir",
-            "/dir0309"
+            "/dacb"
           ],
           [
             "mkdir",
-            "/dir0308"
+            "/daca"
           ],
           [
             "mkdir",
-            "/dir0307"
+            "/dabz"
           ],
           [
             "mkdir",
-            "/dir0306"
+            "/daby"
           ],
           [
             "mkdir",
-            "/dir0305"
+            "/dabx"
           ],
           [
             "mkdir",
-            "/dir0304"
+            "/dabw"
           ],
           [
             "mkdir",
-            "/dir0303"
+            "/dabv"
           ],
           [
             "mkdir",
-            "/dir0302"
+            "/dabu"
           ],
           [
             "mkdir",
-            "/dir0301"
+            "/dabt"
           ],
           [
             "mkdir",
-            "/dir0300"
+            "/dabs"
           ],
           [
             "mkdir",
-            "/dir0299"
+            "/dabr"
           ],
           [
             "mkdir",
-            "/dir0298"
+            "/dabq"
           ],
           [
             "mkdir",
-            "/dir0297"
+            "/dabp"
           ],
           [
             "mkdir",
-            "/dir0296"
+            "/dabo"
           ],
           [
             "mkdir",
-            "/dir0295"
+            "/dabn"
           ],
           [
             "mkdir",
-            "/dir0294"
+            "/dabm"
           ],
           [
             "mkdir",
-            "/dir0293"
+            "/dabl"
           ],
           [
             "mkdir",
-            "/dir0292"
+            "/dabk"
           ],
           [
             "mkdir",
-            "/dir0291"
+            "/dabj"
           ],
           [
             "mkdir",
-            "/dir0290"
+            "/dabi"
           ],
           [
             "mkdir",
-            "/dir0289"
+            "/dabh"
           ],
           [
             "mkdir",
-            "/dir0288"
+            "/dabg"
           ],
           [
             "mkdir",
-            "/dir0287"
+            "/dabf"
           ],
           [
             "mkdir",
-            "/dir0286"
+            "/dabe"
           ],
           [
             "mkdir",
-            "/dir0285"
+            "/dabd"
           ],
           [
             "mkdir",
-            "/dir0284"
+            "/dabc"
           ],
           [
             "mkdir",
-            "/dir0283"
+            "/dabb"
           ],
           [
             "mkdir",
-            "/dir0282"
+            "/daba"
           ],
           [
             "mkdir",
-            "/dir0281"
+            "/daaz"
           ],
           [
             "mkdir",
-            "/dir0280"
+            "/daay"
           ],
           [
             "mkdir",
-            "/dir0279"
+            "/daax"
           ],
           [
             "mkdir",
-            "/dir0278"
+            "/daaw"
           ],
           [
             "mkdir",
-            "/dir0277"
+            "/daav"
           ],
           [
             "mkdir",
-            "/dir0276"
+            "/daau"
           ],
           [
             "mkdir",
-            "/dir0275"
+            "/daat"
           ],
           [
             "mkdir",
-            "/dir0274"
+            "/daas"
           ],
           [
             "mkdir",
-            "/dir0273"
+            "/daar"
           ],
           [
             "mkdir",
-            "/dir0272"
+            "/daaq"
           ],
           [
             "mkdir",
-            "/dir0271"
+            "/daap"
           ],
           [
             "mkdir",
-            "/dir0270"
+            "/daao"
           ],
           [
             "mkdir",
-            "/dir0269"
+            "/daan"
           ],
           [
             "mkdir",
-            "/dir0268"
+            "/daam"
           ],
           [
             "mkdir",
-            "/dir0267"
+            "/daal"
           ],
           [
             "mkdir",
-            "/dir0266"
+            "/daak"
           ],
           [
             "mkdir",
-            "/dir0265"
+            "/daaj"
           ],
           [
             "mkdir",
-            "/dir0264"
+            "/daai"
           ],
           [
             "mkdir",
-            "/dir0263"
+            "/daah"
           ],
           [
             "mkdir",
-            "/dir0262"
+            "/daag"
           ],
           [
             "mkdir",
-            "/dir0261"
+            "/daaf"
           ],
           [
             "mkdir",
-            "/dir0260"
+            "/daae"
           ],
           [
             "mkdir",
-            "/dir0259"
+            "/daad"
           ],
           [
             "mkdir",
-            "/dir0258"
+            "/daac"
           ],
           [
             "mkdir",
-            "/dir0257"
+            "/daab"
           ],
           [
             "mkdir",
-            "/dir0256"
-          ],
-          [
-            "mkdir",
-            "/dir0255"
-          ],
-          [
-            "mkdir",
-            "/dir0254"
-          ],
-          [
-            "mkdir",
-            "/dir0253"
-          ],
-          [
-            "mkdir",
-            "/dir0252"
-          ],
-          [
-            "mkdir",
-            "/dir0251"
-          ],
-          [
-            "mkdir",
-            "/dir0250"
-          ],
-          [
-            "mkdir",
-            "/dir0249"
-          ],
-          [
-            "mkdir",
-            "/dir0248"
-          ],
-          [
-            "mkdir",
-            "/dir0247"
-          ],
-          [
-            "mkdir",
-            "/dir0246"
-          ],
-          [
-            "mkdir",
-            "/dir0245"
-          ],
-          [
-            "mkdir",
-            "/dir0244"
-          ],
-          [
-            "mkdir",
-            "/dir0243"
-          ],
-          [
-            "mkdir",
-            "/dir0242"
-          ],
-          [
-            "mkdir",
-            "/dir0241"
-          ],
-          [
-            "mkdir",
-            "/dir0240"
-          ],
-          [
-            "mkdir",
-            "/dir0239"
-          ],
-          [
-            "mkdir",
-            "/dir0238"
-          ],
-          [
-            "mkdir",
-            "/dir0237"
-          ],
-          [
-            "mkdir",
-            "/dir0236"
-          ],
-          [
-            "mkdir",
-            "/dir0235"
-          ],
-          [
-            "mkdir",
-            "/dir0234"
-          ],
-          [
-            "mkdir",
-            "/dir0233"
-          ],
-          [
-            "mkdir",
-            "/dir0232"
-          ],
-          [
-            "mkdir",
-            "/dir0231"
-          ],
-          [
-            "mkdir",
-            "/dir0230"
-          ],
-          [
-            "mkdir",
-            "/dir0229"
-          ],
-          [
-            "mkdir",
-            "/dir0228"
-          ],
-          [
-            "mkdir",
-            "/dir0227"
-          ],
-          [
-            "mkdir",
-            "/dir0226"
-          ],
-          [
-            "mkdir",
-            "/dir0225"
-          ],
-          [
-            "mkdir",
-            "/dir0224"
-          ],
-          [
-            "mkdir",
-            "/dir0223"
-          ],
-          [
-            "mkdir",
-            "/dir0222"
-          ],
-          [
-            "mkdir",
-            "/dir0221"
-          ],
-          [
-            "mkdir",
-            "/dir0220"
-          ],
-          [
-            "mkdir",
-            "/dir0219"
-          ],
-          [
-            "mkdir",
-            "/dir0218"
-          ],
-          [
-            "mkdir",
-            "/dir0217"
-          ],
-          [
-            "mkdir",
-            "/dir0216"
-          ],
-          [
-            "mkdir",
-            "/dir0215"
-          ],
-          [
-            "mkdir",
-            "/dir0214"
-          ],
-          [
-            "mkdir",
-            "/dir0213"
-          ],
-          [
-            "mkdir",
-            "/dir0212"
-          ],
-          [
-            "mkdir",
-            "/dir0211"
-          ],
-          [
-            "mkdir",
-            "/dir0210"
-          ],
-          [
-            "mkdir",
-            "/dir0209"
-          ],
-          [
-            "mkdir",
-            "/dir0208"
-          ],
-          [
-            "mkdir",
-            "/dir0207"
-          ],
-          [
-            "mkdir",
-            "/dir0206"
-          ],
-          [
-            "mkdir",
-            "/dir0205"
-          ],
-          [
-            "mkdir",
-            "/dir0204"
-          ],
-          [
-            "mkdir",
-            "/dir0203"
-          ],
-          [
-            "mkdir",
-            "/dir0202"
-          ],
-          [
-            "mkdir",
-            "/dir0201"
-          ],
-          [
-            "mkdir",
-            "/dir0200"
-          ],
-          [
-            "mkdir",
-            "/dir0199"
-          ],
-          [
-            "mkdir",
-            "/dir0198"
-          ],
-          [
-            "mkdir",
-            "/dir0197"
-          ],
-          [
-            "mkdir",
-            "/dir0196"
-          ],
-          [
-            "mkdir",
-            "/dir0195"
-          ],
-          [
-            "mkdir",
-            "/dir0194"
-          ],
-          [
-            "mkdir",
-            "/dir0193"
-          ],
-          [
-            "mkdir",
-            "/dir0192"
-          ],
-          [
-            "mkdir",
-            "/dir0191"
-          ],
-          [
-            "mkdir",
-            "/dir0190"
-          ],
-          [
-            "mkdir",
-            "/dir0189"
-          ],
-          [
-            "mkdir",
-            "/dir0188"
-          ],
-          [
-            "mkdir",
-            "/dir0187"
-          ],
-          [
-            "mkdir",
-            "/dir0186"
-          ],
-          [
-            "mkdir",
-            "/dir0185"
-          ],
-          [
-            "mkdir",
-            "/dir0184"
-          ],
-          [
-            "mkdir",
-            "/dir0183"
-          ],
-          [
-            "mkdir",
-            "/dir0182"
-          ],
-          [
-            "mkdir",
-            "/dir0181"
-          ],
-          [
-            "mkdir",
-            "/dir0180"
-          ],
-          [
-            "mkdir",
-            "/dir0179"
-          ],
-          [
-            "mkdir",
-            "/dir0178"
-          ],
-          [
-            "mkdir",
-            "/dir0177"
-          ],
-          [
-            "mkdir",
-            "/dir0176"
-          ],
-          [
-            "mkdir",
-            "/dir0175"
-          ],
-          [
-            "mkdir",
-            "/dir0174"
-          ],
-          [
-            "mkdir",
-            "/dir0173"
-          ],
-          [
-            "mkdir",
-            "/dir0172"
-          ],
-          [
-            "mkdir",
-            "/dir0171"
-          ],
-          [
-            "mkdir",
-            "/dir0170"
-          ],
-          [
-            "mkdir",
-            "/dir0169"
-          ],
-          [
-            "mkdir",
-            "/dir0168"
-          ],
-          [
-            "mkdir",
-            "/dir0167"
-          ],
-          [
-            "mkdir",
-            "/dir0166"
-          ],
-          [
-            "mkdir",
-            "/dir0165"
-          ],
-          [
-            "mkdir",
-            "/dir0164"
-          ],
-          [
-            "mkdir",
-            "/dir0163"
-          ],
-          [
-            "mkdir",
-            "/dir0162"
-          ],
-          [
-            "mkdir",
-            "/dir0161"
-          ],
-          [
-            "mkdir",
-            "/dir0160"
-          ],
-          [
-            "mkdir",
-            "/dir0159"
-          ],
-          [
-            "mkdir",
-            "/dir0158"
-          ],
-          [
-            "mkdir",
-            "/dir0157"
-          ],
-          [
-            "mkdir",
-            "/dir0156"
-          ],
-          [
-            "mkdir",
-            "/dir0155"
-          ],
-          [
-            "mkdir",
-            "/dir0154"
-          ],
-          [
-            "mkdir",
-            "/dir0153"
-          ],
-          [
-            "mkdir",
-            "/dir0152"
-          ],
-          [
-            "mkdir",
-            "/dir0151"
-          ],
-          [
-            "mkdir",
-            "/dir0150"
-          ],
-          [
-            "mkdir",
-            "/dir0149"
-          ],
-          [
-            "mkdir",
-            "/dir0148"
-          ],
-          [
-            "mkdir",
-            "/dir0147"
-          ],
-          [
-            "mkdir",
-            "/dir0146"
-          ],
-          [
-            "mkdir",
-            "/dir0145"
-          ],
-          [
-            "mkdir",
-            "/dir0144"
-          ],
-          [
-            "mkdir",
-            "/dir0143"
-          ],
-          [
-            "mkdir",
-            "/dir0142"
-          ],
-          [
-            "mkdir",
-            "/dir0141"
-          ],
-          [
-            "mkdir",
-            "/dir0140"
-          ],
-          [
-            "mkdir",
-            "/dir0139"
-          ],
-          [
-            "mkdir",
-            "/dir0138"
-          ],
-          [
-            "mkdir",
-            "/dir0137"
-          ],
-          [
-            "mkdir",
-            "/dir0136"
-          ],
-          [
-            "mkdir",
-            "/dir0135"
-          ],
-          [
-            "mkdir",
-            "/dir0134"
-          ],
-          [
-            "mkdir",
-            "/dir0133"
-          ],
-          [
-            "mkdir",
-            "/dir0132"
-          ],
-          [
-            "mkdir",
-            "/dir0131"
-          ],
-          [
-            "mkdir",
-            "/dir0130"
-          ],
-          [
-            "mkdir",
-            "/dir0129"
-          ],
-          [
-            "mkdir",
-            "/dir0128"
-          ],
-          [
-            "mkdir",
-            "/dir0127"
-          ],
-          [
-            "mkdir",
-            "/dir0126"
-          ],
-          [
-            "mkdir",
-            "/dir0125"
-          ],
-          [
-            "mkdir",
-            "/dir0124"
-          ],
-          [
-            "mkdir",
-            "/dir0123"
-          ],
-          [
-            "mkdir",
-            "/dir0122"
-          ],
-          [
-            "mkdir",
-            "/dir0121"
-          ],
-          [
-            "mkdir",
-            "/dir0120"
-          ],
-          [
-            "mkdir",
-            "/dir0119"
-          ],
-          [
-            "mkdir",
-            "/dir0118"
-          ],
-          [
-            "mkdir",
-            "/dir0117"
-          ],
-          [
-            "mkdir",
-            "/dir0116"
-          ],
-          [
-            "mkdir",
-            "/dir0115"
-          ],
-          [
-            "mkdir",
-            "/dir0114"
-          ],
-          [
-            "mkdir",
-            "/dir0113"
-          ],
-          [
-            "mkdir",
-            "/dir0112"
-          ],
-          [
-            "mkdir",
-            "/dir0111"
-          ],
-          [
-            "mkdir",
-            "/dir0110"
-          ],
-          [
-            "mkdir",
-            "/dir0109"
-          ],
-          [
-            "mkdir",
-            "/dir0108"
-          ],
-          [
-            "mkdir",
-            "/dir0107"
-          ],
-          [
-            "mkdir",
-            "/dir0106"
-          ],
-          [
-            "mkdir",
-            "/dir0105"
-          ],
-          [
-            "mkdir",
-            "/dir0104"
-          ],
-          [
-            "mkdir",
-            "/dir0103"
-          ],
-          [
-            "mkdir",
-            "/dir0102"
-          ],
-          [
-            "mkdir",
-            "/dir0101"
-          ],
-          [
-            "mkdir",
-            "/dir0100"
-          ],
-          [
-            "mkdir",
-            "/dir0099"
-          ],
-          [
-            "mkdir",
-            "/dir0098"
-          ],
-          [
-            "mkdir",
-            "/dir0097"
-          ],
-          [
-            "mkdir",
-            "/dir0096"
-          ],
-          [
-            "mkdir",
-            "/dir0095"
-          ],
-          [
-            "mkdir",
-            "/dir0094"
-          ],
-          [
-            "mkdir",
-            "/dir0093"
-          ],
-          [
-            "mkdir",
-            "/dir0092"
-          ],
-          [
-            "mkdir",
-            "/dir0091"
-          ],
-          [
-            "mkdir",
-            "/dir0090"
-          ],
-          [
-            "mkdir",
-            "/dir0089"
-          ],
-          [
-            "mkdir",
-            "/dir0088"
-          ],
-          [
-            "mkdir",
-            "/dir0087"
-          ],
-          [
-            "mkdir",
-            "/dir0086"
-          ],
-          [
-            "mkdir",
-            "/dir0085"
-          ],
-          [
-            "mkdir",
-            "/dir0084"
-          ],
-          [
-            "mkdir",
-            "/dir0083"
-          ],
-          [
-            "mkdir",
-            "/dir0082"
-          ],
-          [
-            "mkdir",
-            "/dir0081"
-          ],
-          [
-            "mkdir",
-            "/dir0080"
-          ],
-          [
-            "mkdir",
-            "/dir0079"
-          ],
-          [
-            "mkdir",
-            "/dir0078"
-          ],
-          [
-            "mkdir",
-            "/dir0077"
-          ],
-          [
-            "mkdir",
-            "/dir0076"
-          ],
-          [
-            "mkdir",
-            "/dir0075"
-          ],
-          [
-            "mkdir",
-            "/dir0074"
-          ],
-          [
-            "mkdir",
-            "/dir0073"
-          ],
-          [
-            "mkdir",
-            "/dir0072"
-          ],
-          [
-            "mkdir",
-            "/dir0071"
-          ],
-          [
-            "mkdir",
-            "/dir0070"
-          ],
-          [
-            "mkdir",
-            "/dir0069"
-          ],
-          [
-            "mkdir",
-            "/dir0068"
-          ],
-          [
-            "mkdir",
-            "/dir0067"
-          ],
-          [
-            "mkdir",
-            "/dir0066"
-          ],
-          [
-            "mkdir",
-            "/dir0065"
-          ],
-          [
-            "mkdir",
-            "/dir0064"
-          ],
-          [
-            "mkdir",
-            "/dir0063"
-          ],
-          [
-            "mkdir",
-            "/dir0062"
-          ],
-          [
-            "mkdir",
-            "/dir0061"
-          ],
-          [
-            "mkdir",
-            "/dir0060"
-          ],
-          [
-            "mkdir",
-            "/dir0059"
-          ],
-          [
-            "mkdir",
-            "/dir0058"
-          ],
-          [
-            "mkdir",
-            "/dir0057"
-          ],
-          [
-            "mkdir",
-            "/dir0056"
-          ],
-          [
-            "mkdir",
-            "/dir0055"
-          ],
-          [
-            "mkdir",
-            "/dir0054"
-          ],
-          [
-            "mkdir",
-            "/dir0053"
-          ],
-          [
-            "mkdir",
-            "/dir0052"
-          ],
-          [
-            "mkdir",
-            "/dir0051"
-          ],
-          [
-            "mkdir",
-            "/dir0050"
-          ],
-          [
-            "mkdir",
-            "/dir0049"
-          ],
-          [
-            "mkdir",
-            "/dir0048"
-          ],
-          [
-            "mkdir",
-            "/dir0047"
-          ],
-          [
-            "mkdir",
-            "/dir0046"
-          ],
-          [
-            "mkdir",
-            "/dir0045"
-          ],
-          [
-            "mkdir",
-            "/dir0044"
-          ],
-          [
-            "mkdir",
-            "/dir0043"
-          ],
-          [
-            "mkdir",
-            "/dir0042"
-          ],
-          [
-            "mkdir",
-            "/dir0041"
-          ],
-          [
-            "mkdir",
-            "/dir0040"
-          ],
-          [
-            "mkdir",
-            "/dir0039"
-          ],
-          [
-            "mkdir",
-            "/dir0038"
-          ],
-          [
-            "mkdir",
-            "/dir0037"
-          ],
-          [
-            "mkdir",
-            "/dir0036"
-          ],
-          [
-            "mkdir",
-            "/dir0035"
-          ],
-          [
-            "mkdir",
-            "/dir0034"
-          ],
-          [
-            "mkdir",
-            "/dir0033"
-          ],
-          [
-            "mkdir",
-            "/dir0032"
-          ],
-          [
-            "mkdir",
-            "/dir0031"
-          ],
-          [
-            "mkdir",
-            "/dir0030"
-          ],
-          [
-            "mkdir",
-            "/dir0029"
-          ],
-          [
-            "mkdir",
-            "/dir0028"
-          ],
-          [
-            "mkdir",
-            "/dir0027"
-          ],
-          [
-            "mkdir",
-            "/dir0026"
-          ],
-          [
-            "mkdir",
-            "/dir0025"
-          ],
-          [
-            "mkdir",
-            "/dir0024"
-          ],
-          [
-            "mkdir",
-            "/dir0023"
-          ],
-          [
-            "mkdir",
-            "/dir0022"
-          ],
-          [
-            "mkdir",
-            "/dir0021"
-          ],
-          [
-            "mkdir",
-            "/dir0020"
-          ],
-          [
-            "mkdir",
-            "/dir0019"
-          ],
-          [
-            "mkdir",
-            "/dir0018"
-          ],
-          [
-            "mkdir",
-            "/dir0017"
-          ],
-          [
-            "mkdir",
-            "/dir0016"
-          ],
-          [
-            "mkdir",
-            "/dir0015"
-          ],
-          [
-            "mkdir",
-            "/dir0014"
-          ],
-          [
-            "mkdir",
-            "/dir0013"
-          ],
-          [
-            "mkdir",
-            "/dir0012"
-          ],
-          [
-            "mkdir",
-            "/dir0011"
-          ],
-          [
-            "mkdir",
-            "/dir0010"
-          ],
-          [
-            "mkdir",
-            "/dir0009"
-          ],
-          [
-            "mkdir",
-            "/dir0008"
-          ],
-          [
-            "mkdir",
-            "/dir0007"
-          ],
-          [
-            "mkdir",
-            "/dir0006"
-          ],
-          [
-            "mkdir",
-            "/dir0005"
-          ],
-          [
-            "mkdir",
-            "/dir0004"
-          ],
-          [
-            "mkdir",
-            "/dir0003"
-          ],
-          [
-            "mkdir",
-            "/dir0002"
-          ],
-          [
-            "mkdir",
-            "/dir0001"
-          ],
-          [
-            "mkdir",
-            "/dir0000"
+            "/daaa"
           ],
           [
             "ls",
@@ -3715,518 +1891,262 @@
       },
       "expected": [
         [
-          "dir0000",
-          "dir0001",
-          "dir0002",
-          "dir0003",
-          "dir0004",
-          "dir0005",
-          "dir0006",
-          "dir0007",
-          "dir0008",
-          "dir0009",
-          "dir0010",
-          "dir0011",
-          "dir0012",
-          "dir0013",
-          "dir0014",
-          "dir0015",
-          "dir0016",
-          "dir0017",
-          "dir0018",
-          "dir0019",
-          "dir0020",
-          "dir0021",
-          "dir0022",
-          "dir0023",
-          "dir0024",
-          "dir0025",
-          "dir0026",
-          "dir0027",
-          "dir0028",
-          "dir0029",
-          "dir0030",
-          "dir0031",
-          "dir0032",
-          "dir0033",
-          "dir0034",
-          "dir0035",
-          "dir0036",
-          "dir0037",
-          "dir0038",
-          "dir0039",
-          "dir0040",
-          "dir0041",
-          "dir0042",
-          "dir0043",
-          "dir0044",
-          "dir0045",
-          "dir0046",
-          "dir0047",
-          "dir0048",
-          "dir0049",
-          "dir0050",
-          "dir0051",
-          "dir0052",
-          "dir0053",
-          "dir0054",
-          "dir0055",
-          "dir0056",
-          "dir0057",
-          "dir0058",
-          "dir0059",
-          "dir0060",
-          "dir0061",
-          "dir0062",
-          "dir0063",
-          "dir0064",
-          "dir0065",
-          "dir0066",
-          "dir0067",
-          "dir0068",
-          "dir0069",
-          "dir0070",
-          "dir0071",
-          "dir0072",
-          "dir0073",
-          "dir0074",
-          "dir0075",
-          "dir0076",
-          "dir0077",
-          "dir0078",
-          "dir0079",
-          "dir0080",
-          "dir0081",
-          "dir0082",
-          "dir0083",
-          "dir0084",
-          "dir0085",
-          "dir0086",
-          "dir0087",
-          "dir0088",
-          "dir0089",
-          "dir0090",
-          "dir0091",
-          "dir0092",
-          "dir0093",
-          "dir0094",
-          "dir0095",
-          "dir0096",
-          "dir0097",
-          "dir0098",
-          "dir0099",
-          "dir0100",
-          "dir0101",
-          "dir0102",
-          "dir0103",
-          "dir0104",
-          "dir0105",
-          "dir0106",
-          "dir0107",
-          "dir0108",
-          "dir0109",
-          "dir0110",
-          "dir0111",
-          "dir0112",
-          "dir0113",
-          "dir0114",
-          "dir0115",
-          "dir0116",
-          "dir0117",
-          "dir0118",
-          "dir0119",
-          "dir0120",
-          "dir0121",
-          "dir0122",
-          "dir0123",
-          "dir0124",
-          "dir0125",
-          "dir0126",
-          "dir0127",
-          "dir0128",
-          "dir0129",
-          "dir0130",
-          "dir0131",
-          "dir0132",
-          "dir0133",
-          "dir0134",
-          "dir0135",
-          "dir0136",
-          "dir0137",
-          "dir0138",
-          "dir0139",
-          "dir0140",
-          "dir0141",
-          "dir0142",
-          "dir0143",
-          "dir0144",
-          "dir0145",
-          "dir0146",
-          "dir0147",
-          "dir0148",
-          "dir0149",
-          "dir0150",
-          "dir0151",
-          "dir0152",
-          "dir0153",
-          "dir0154",
-          "dir0155",
-          "dir0156",
-          "dir0157",
-          "dir0158",
-          "dir0159",
-          "dir0160",
-          "dir0161",
-          "dir0162",
-          "dir0163",
-          "dir0164",
-          "dir0165",
-          "dir0166",
-          "dir0167",
-          "dir0168",
-          "dir0169",
-          "dir0170",
-          "dir0171",
-          "dir0172",
-          "dir0173",
-          "dir0174",
-          "dir0175",
-          "dir0176",
-          "dir0177",
-          "dir0178",
-          "dir0179",
-          "dir0180",
-          "dir0181",
-          "dir0182",
-          "dir0183",
-          "dir0184",
-          "dir0185",
-          "dir0186",
-          "dir0187",
-          "dir0188",
-          "dir0189",
-          "dir0190",
-          "dir0191",
-          "dir0192",
-          "dir0193",
-          "dir0194",
-          "dir0195",
-          "dir0196",
-          "dir0197",
-          "dir0198",
-          "dir0199",
-          "dir0200",
-          "dir0201",
-          "dir0202",
-          "dir0203",
-          "dir0204",
-          "dir0205",
-          "dir0206",
-          "dir0207",
-          "dir0208",
-          "dir0209",
-          "dir0210",
-          "dir0211",
-          "dir0212",
-          "dir0213",
-          "dir0214",
-          "dir0215",
-          "dir0216",
-          "dir0217",
-          "dir0218",
-          "dir0219",
-          "dir0220",
-          "dir0221",
-          "dir0222",
-          "dir0223",
-          "dir0224",
-          "dir0225",
-          "dir0226",
-          "dir0227",
-          "dir0228",
-          "dir0229",
-          "dir0230",
-          "dir0231",
-          "dir0232",
-          "dir0233",
-          "dir0234",
-          "dir0235",
-          "dir0236",
-          "dir0237",
-          "dir0238",
-          "dir0239",
-          "dir0240",
-          "dir0241",
-          "dir0242",
-          "dir0243",
-          "dir0244",
-          "dir0245",
-          "dir0246",
-          "dir0247",
-          "dir0248",
-          "dir0249",
-          "dir0250",
-          "dir0251",
-          "dir0252",
-          "dir0253",
-          "dir0254",
-          "dir0255",
-          "dir0256",
-          "dir0257",
-          "dir0258",
-          "dir0259",
-          "dir0260",
-          "dir0261",
-          "dir0262",
-          "dir0263",
-          "dir0264",
-          "dir0265",
-          "dir0266",
-          "dir0267",
-          "dir0268",
-          "dir0269",
-          "dir0270",
-          "dir0271",
-          "dir0272",
-          "dir0273",
-          "dir0274",
-          "dir0275",
-          "dir0276",
-          "dir0277",
-          "dir0278",
-          "dir0279",
-          "dir0280",
-          "dir0281",
-          "dir0282",
-          "dir0283",
-          "dir0284",
-          "dir0285",
-          "dir0286",
-          "dir0287",
-          "dir0288",
-          "dir0289",
-          "dir0290",
-          "dir0291",
-          "dir0292",
-          "dir0293",
-          "dir0294",
-          "dir0295",
-          "dir0296",
-          "dir0297",
-          "dir0298",
-          "dir0299",
-          "dir0300",
-          "dir0301",
-          "dir0302",
-          "dir0303",
-          "dir0304",
-          "dir0305",
-          "dir0306",
-          "dir0307",
-          "dir0308",
-          "dir0309",
-          "dir0310",
-          "dir0311",
-          "dir0312",
-          "dir0313",
-          "dir0314",
-          "dir0315",
-          "dir0316",
-          "dir0317",
-          "dir0318",
-          "dir0319",
-          "dir0320",
-          "dir0321",
-          "dir0322",
-          "dir0323",
-          "dir0324",
-          "dir0325",
-          "dir0326",
-          "dir0327",
-          "dir0328",
-          "dir0329",
-          "dir0330",
-          "dir0331",
-          "dir0332",
-          "dir0333",
-          "dir0334",
-          "dir0335",
-          "dir0336",
-          "dir0337",
-          "dir0338",
-          "dir0339",
-          "dir0340",
-          "dir0341",
-          "dir0342",
-          "dir0343",
-          "dir0344",
-          "dir0345",
-          "dir0346",
-          "dir0347",
-          "dir0348",
-          "dir0349",
-          "dir0350",
-          "dir0351",
-          "dir0352",
-          "dir0353",
-          "dir0354",
-          "dir0355",
-          "dir0356",
-          "dir0357",
-          "dir0358",
-          "dir0359",
-          "dir0360",
-          "dir0361",
-          "dir0362",
-          "dir0363",
-          "dir0364",
-          "dir0365",
-          "dir0366",
-          "dir0367",
-          "dir0368",
-          "dir0369",
-          "dir0370",
-          "dir0371",
-          "dir0372",
-          "dir0373",
-          "dir0374",
-          "dir0375",
-          "dir0376",
-          "dir0377",
-          "dir0378",
-          "dir0379",
-          "dir0380",
-          "dir0381",
-          "dir0382",
-          "dir0383",
-          "dir0384",
-          "dir0385",
-          "dir0386",
-          "dir0387",
-          "dir0388",
-          "dir0389",
-          "dir0390",
-          "dir0391",
-          "dir0392",
-          "dir0393",
-          "dir0394",
-          "dir0395",
-          "dir0396",
-          "dir0397",
-          "dir0398",
-          "dir0399",
-          "dir0400",
-          "dir0401",
-          "dir0402",
-          "dir0403",
-          "dir0404",
-          "dir0405",
-          "dir0406",
-          "dir0407",
-          "dir0408",
-          "dir0409",
-          "dir0410",
-          "dir0411",
-          "dir0412",
-          "dir0413",
-          "dir0414",
-          "dir0415",
-          "dir0416",
-          "dir0417",
-          "dir0418",
-          "dir0419",
-          "dir0420",
-          "dir0421",
-          "dir0422",
-          "dir0423",
-          "dir0424",
-          "dir0425",
-          "dir0426",
-          "dir0427",
-          "dir0428",
-          "dir0429",
-          "dir0430",
-          "dir0431",
-          "dir0432",
-          "dir0433",
-          "dir0434",
-          "dir0435",
-          "dir0436",
-          "dir0437",
-          "dir0438",
-          "dir0439",
-          "dir0440",
-          "dir0441",
-          "dir0442",
-          "dir0443",
-          "dir0444",
-          "dir0445",
-          "dir0446",
-          "dir0447",
-          "dir0448",
-          "dir0449",
-          "dir0450",
-          "dir0451",
-          "dir0452",
-          "dir0453",
-          "dir0454",
-          "dir0455",
-          "dir0456",
-          "dir0457",
-          "dir0458",
-          "dir0459",
-          "dir0460",
-          "dir0461",
-          "dir0462",
-          "dir0463",
-          "dir0464",
-          "dir0465",
-          "dir0466",
-          "dir0467",
-          "dir0468",
-          "dir0469",
-          "dir0470",
-          "dir0471",
-          "dir0472",
-          "dir0473",
-          "dir0474",
-          "dir0475",
-          "dir0476",
-          "dir0477",
-          "dir0478",
-          "dir0479",
-          "dir0480",
-          "dir0481",
-          "dir0482",
-          "dir0483",
-          "dir0484",
-          "dir0485",
-          "dir0486",
-          "dir0487",
-          "dir0488",
-          "dir0489",
-          "dir0490",
-          "dir0491",
-          "dir0492",
-          "dir0493",
-          "dir0494",
-          "dir0495",
-          "dir0496",
-          "dir0497",
-          "dir0498",
-          "dir0499",
-          "dir0500",
-          "dir0501",
-          "dir0502",
-          "dir0503",
-          "dir0504",
-          "dir0505",
-          "dir0506",
-          "dir0507",
-          "dir0508",
-          "dir0509",
-          "dir0510",
-          "dir0511"
+          "daaa",
+          "daab",
+          "daac",
+          "daad",
+          "daae",
+          "daaf",
+          "daag",
+          "daah",
+          "daai",
+          "daaj",
+          "daak",
+          "daal",
+          "daam",
+          "daan",
+          "daao",
+          "daap",
+          "daaq",
+          "daar",
+          "daas",
+          "daat",
+          "daau",
+          "daav",
+          "daaw",
+          "daax",
+          "daay",
+          "daaz",
+          "daba",
+          "dabb",
+          "dabc",
+          "dabd",
+          "dabe",
+          "dabf",
+          "dabg",
+          "dabh",
+          "dabi",
+          "dabj",
+          "dabk",
+          "dabl",
+          "dabm",
+          "dabn",
+          "dabo",
+          "dabp",
+          "dabq",
+          "dabr",
+          "dabs",
+          "dabt",
+          "dabu",
+          "dabv",
+          "dabw",
+          "dabx",
+          "daby",
+          "dabz",
+          "daca",
+          "dacb",
+          "dacc",
+          "dacd",
+          "dace",
+          "dacf",
+          "dacg",
+          "dach",
+          "daci",
+          "dacj",
+          "dack",
+          "dacl",
+          "dacm",
+          "dacn",
+          "daco",
+          "dacp",
+          "dacq",
+          "dacr",
+          "dacs",
+          "dact",
+          "dacu",
+          "dacv",
+          "dacw",
+          "dacx",
+          "dacy",
+          "dacz",
+          "dada",
+          "dadb",
+          "dadc",
+          "dadd",
+          "dade",
+          "dadf",
+          "dadg",
+          "dadh",
+          "dadi",
+          "dadj",
+          "dadk",
+          "dadl",
+          "dadm",
+          "dadn",
+          "dado",
+          "dadp",
+          "dadq",
+          "dadr",
+          "dads",
+          "dadt",
+          "dadu",
+          "dadv",
+          "dadw",
+          "dadx",
+          "dady",
+          "dadz",
+          "daea",
+          "daeb",
+          "daec",
+          "daed",
+          "daee",
+          "daef",
+          "daeg",
+          "daeh",
+          "daei",
+          "daej",
+          "daek",
+          "dael",
+          "daem",
+          "daen",
+          "daeo",
+          "daep",
+          "daeq",
+          "daer",
+          "daes",
+          "daet",
+          "daeu",
+          "daev",
+          "daew",
+          "daex",
+          "daey",
+          "daez",
+          "dafa",
+          "dafb",
+          "dafc",
+          "dafd",
+          "dafe",
+          "daff",
+          "dafg",
+          "dafh",
+          "dafi",
+          "dafj",
+          "dafk",
+          "dafl",
+          "dafm",
+          "dafn",
+          "dafo",
+          "dafp",
+          "dafq",
+          "dafr",
+          "dafs",
+          "daft",
+          "dafu",
+          "dafv",
+          "dafw",
+          "dafx",
+          "dafy",
+          "dafz",
+          "daga",
+          "dagb",
+          "dagc",
+          "dagd",
+          "dage",
+          "dagf",
+          "dagg",
+          "dagh",
+          "dagi",
+          "dagj",
+          "dagk",
+          "dagl",
+          "dagm",
+          "dagn",
+          "dago",
+          "dagp",
+          "dagq",
+          "dagr",
+          "dags",
+          "dagt",
+          "dagu",
+          "dagv",
+          "dagw",
+          "dagx",
+          "dagy",
+          "dagz",
+          "daha",
+          "dahb",
+          "dahc",
+          "dahd",
+          "dahe",
+          "dahf",
+          "dahg",
+          "dahh",
+          "dahi",
+          "dahj",
+          "dahk",
+          "dahl",
+          "dahm",
+          "dahn",
+          "daho",
+          "dahp",
+          "dahq",
+          "dahr",
+          "dahs",
+          "daht",
+          "dahu",
+          "dahv",
+          "dahw",
+          "dahx",
+          "dahy",
+          "dahz",
+          "daia",
+          "daib",
+          "daic",
+          "daid",
+          "daie",
+          "daif",
+          "daig",
+          "daih",
+          "daii",
+          "daij",
+          "daik",
+          "dail",
+          "daim",
+          "dain",
+          "daio",
+          "daip",
+          "daiq",
+          "dair",
+          "dais",
+          "dait",
+          "daiu",
+          "daiv",
+          "daiw",
+          "daix",
+          "daiy",
+          "daiz",
+          "daja",
+          "dajb",
+          "dajc",
+          "dajd",
+          "daje",
+          "dajf",
+          "dajg",
+          "dajh",
+          "daji",
+          "dajj",
+          "dajk",
+          "dajl",
+          "dajm",
+          "dajn",
+          "dajo",
+          "dajp",
+          "dajq",
+          "dajr",
+          "dajs",
+          "dajt",
+          "daju",
+          "dajv"
         ]
       ],
       "tags": [

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1555",
+    "frontend_id": "1555",
+    "title_slug": "bank-account-summary",
+    "url": "https://leetcode.com/problems/bank-account-summary/description/",
+    "paid_only": true,
+    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
+    "checked_at": "2026-08-05"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Users Moustafa, Jonathan, Winston, and Luis, with transfers of 400 from Moustafa to Winston, 500 from Winston to Jonathan, and 200 from Jonathan to Moustafa.",
+        "output": "| user_id | user_name | credit | credit_limit_breached |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "A user with credit zero and no transactions.",
+        "output": "| user_id | user_name | credit | credit_limit_breached |",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "One user pays 75 and receives 20 from separate users.",
+        "output": "| user_id | user_name | credit | credit_limit_breached |",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c0455d83fbea3958565cb1f1278401b846de621aa8ee563cdb3f3b2fa920c6b2",
+      "reference/contract.md": "87301458647a4cffd18f0f301d095ecec42f5a4c0f1f2ff298984ce8d1732b2b",
+      "reference/examples.md": "64c88871cdb63646f046ef6fae716bb07cfc4020a85130636469fe7c92f4dc88",
+      "reference/constraints.md": "54faa59a10072e940e1cf03f8c5d3e5d857033313f9a2f2853ddbbfdd3ecd6c6"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_and_cases",
+  "challenge_id": "lc_280",
+  "language": "python",
+  "reviewed_on": "2026-08-03",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "candidate_proposed",
+    "target": "candidate",
+    "candidate": "variants/optimal/solutions/candidate.py",
+    "approach_target": "candidate",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {
+        "category": "naming",
+        "severity": "material",
+        "reason": "Both protected sources declare the explicitly prohibited local loop variable `index`. The inert candidate preserves the exact greedy adjacent-repair algorithm and app-local in-place contract while using the conventional interview variable `i`."
+      },
+      {
+        "category": "solution_quality",
+        "severity": "verified",
+        "reason": "Apart from the prohibited name, the implementation is already the canonical optimal method: each position checks its required non-strict inequality and swaps only a violating adjacent pair. The candidate makes no algorithmic or micro-optimization change."
+      },
+      {
+        "category": "metadata_and_contract",
+        "severity": "verified",
+        "reason": "Metadata consistently identifies Premium LeetCode problem 280 and its Python in-place list contract. The Reference preserves the non-strict alternating inequalities, both source examples and explanation presence, all three constraints, and the source-native O(n) follow-up."
+      },
+      {
+        "category": "submission_and_alignment",
+        "severity": "verified",
+        "reason": "The protected app-local and native sources remain structurally aligned, and the immutable native source remains tied to verified submission 2064305374. The candidate differs only by the local rename from index to i; it is separate, inert, locally validated evidence and has not been submitted or represented as Accepted."
+      },
+      {
+        "category": "complexity_evidence",
+        "severity": "verified",
+        "reason": "The legal 32/128/512-element tiers require a full adjacent-repair pass and retain a 16x span. The candidate passes at -0.03 relative exponent and 0.78x largest ratio; a correct insertion-sort-then-interleave control passes every output but fails only scaling at +1.26 and 190.63x."
+      },
+      {
+        "category": "approach_accuracy",
+        "severity": "corrected",
+        "reason": "The Approach now targets the candidate's i-based scan exactly, proves why each swap strengthens rather than breaks the preceding inequality, accounts for in-place linear work, and separates equality, short-input, multiset-preservation, and slower sorting alternatives."
+      },
+      {
+        "category": "source_fidelity",
+        "severity": "verified",
+        "reason": "The hash-bound Premium Reference remains verified against authenticated source evidence, preserving both examples in order and their explanation presence, all three constraints, the follow-up after Constraints, and the zero-visual structure."
+      }
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 12,
+      "correctness_cases_total": 12,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "case_review": {
+    "status": "complete",
+    "assertions": {
+      "source_examples": true,
+      "contract_boundaries": true,
+      "material_edge_cases": true,
+      "expected_results": true,
+      "all_correctness_cases_visible": true,
+      "benchmarks_are_performance_only": true
+    },
+    "coverage": [
+      "Both authenticated source examples appear first, in source order, with their exact input arrays and displayed output facts.",
+      "The previous suite omitted source example 2, mislabeled an invented increasing array as a sample, and hid the descending correctness row; the replacement suite makes every correctness behavior visible and labels additions as trials.",
+      "The suite covers the minimum one-element length, minimum and maximum element values, two-element swap and no-swap paths, odd and even lengths, and the in-place None-return contract.",
+      "Already-valid, increasing, descending, all-equal, duplicate-heavy, and alternating-extreme arrays exercise both odd-position and even-position local repairs without requiring strict inequalities.",
+      "Every row uses the non-strict wiggle_sort validator, which checks the alternating inequalities and preservation of the input multiset instead of requiring one arbitrary permutation.",
+      "The protected source and inert candidate produced identical valid in-place results for all 21,844 arrays of lengths 1 through 7 over values 0 through 3, and all 12 authored expected arrangements were independently checked for wiggle order and multiset equality.",
+      "All 12 correctness cases are visible samples or trials; the unchanged 32-, 128-, and 512-element descending workloads remain hidden and performance-only in benchmark.json."
+    ]
+  },
+  "hashes": {
+    "current_source_sha256": "44d537c524cd4cc8dce2b1a2624e9af2cb9274738cadda92c4a345667f37c8bf",
+    "native_source_sha256": "f9959b7b03510fac3516396a9c318dc9a3e156280e2686d3ff367e1ded479bd5",
+    "approach_sha256": "984625a8790613d559001901c2d3365e7aa95b89bef61838f277c41e63175357",
+    "solution_variants_sha256": "bad116d55ae6d022bd99a1c55c9adcb7e4432fbe459dc74fc203e0472b9f734f",
+    "complexity_evidence_sha256": "f1f152de94af5818106411e624dcff9bd61fcb5fb4dacf4369aa534efb7b11a6",
+    "cases_sha256": "a6757704b28018354859ee9401271033d8385f9cece78cab30866e912e03dc79",
+    "candidate_source_sha256": "a97e109cc94e5b72dcbed6ed0923edbebaff2f21c1f170ff1cee1dd43c99acd2"
+  }
+}

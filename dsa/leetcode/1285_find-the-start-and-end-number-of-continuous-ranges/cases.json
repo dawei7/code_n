@@ -57,9 +57,9 @@
       ]
     },
     {
-      "id": "sample-one-range",
-      "name": "sample: one continuous range",
-      "kind": "sample",
+      "id": "trial-one-range",
+      "name": "trial: one continuous range",
+      "kind": "trial",
       "visible": true,
       "input": {
         "tables": {
@@ -92,7 +92,7 @@
         ]
       },
       "tags": [
-        "sample",
+        "trial",
         "continuous"
       ]
     },
@@ -200,10 +200,62 @@
       ]
     },
     {
-      "id": "hidden-unsorted-fixture",
-      "name": "hidden: insertion order differs from numeric order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-signed-identifiers",
+      "name": "trial: negative, zero, and positive identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Logs": [
+            {
+              "log_id": 3
+            },
+            {
+              "log_id": -2
+            },
+            {
+              "log_id": 1
+            },
+            {
+              "log_id": -3
+            },
+            {
+              "log_id": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "start_id",
+          "end_id"
+        ],
+        "rows": [
+          [
+            -3,
+            -2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "signed-values",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-unsorted-fixture",
+      "name": "trial: insertion order differs from numeric order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Logs": [
@@ -249,15 +301,15 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "ordering"
       ]
     },
     {
-      "id": "hidden-varied-gaps",
-      "name": "hidden: ranges of several lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-varied-gaps",
+      "name": "trial: ranges of several lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Logs": [
@@ -310,7 +362,7 @@
         ]
       },
       "tags": [
-        "hidden",
+        "trial",
         "gaps"
       ]
     }

@@ -52,7 +52,7 @@
     },
     {
       "id": "trial-empty-prefix",
-      "name": "one empty string",
+      "name": "first string is empty",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -68,10 +68,82 @@
       ]
     },
     {
-      "id": "real-long-common",
-      "name": "hidden: long common prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-later-empty",
+      "name": "later string is empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "prefix",
+          "",
+          "pre"
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "edge",
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "trial-shorter-prefix",
+      "name": "later string is the complete prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "interview",
+          "inter",
+          "internal"
+        ]
+      },
+      "expected": "inter",
+      "tags": [
+        "edge",
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "trial-identical",
+      "name": "all strings are identical",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "same",
+          "same",
+          "same"
+        ]
+      },
+      "expected": "same",
+      "tags": [
+        "edge",
+        "full-match"
+      ]
+    },
+    {
+      "id": "trial-first-shortest",
+      "name": "first string is the complete prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "pre",
+          "prefix",
+          "prevent"
+        ]
+      },
+      "expected": "pre",
+      "tags": [
+        "edge",
+        "full-match"
+      ]
+    },
+    {
+      "id": "trial-long-common",
+      "name": "long common prefix before a mismatch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strs": [
           "interstellar",
@@ -82,7 +154,8 @@
       },
       "expected": "inter",
       "tags": [
-        "hidden"
+        "edge",
+        "late-mismatch"
       ]
     }
   ]

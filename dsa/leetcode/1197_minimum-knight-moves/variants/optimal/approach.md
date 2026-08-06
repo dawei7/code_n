@@ -16,6 +16,7 @@ The method performs a fixed number of absolute-value, ordering, ceiling-division
 
 ## Alternatives and edge cases
 - **Incremental move-count search:** Testing successive move counts until all coordinate, Manhattan, and parity bounds hold is correct after the two exceptions, but takes $O(r)$ time for distance scale $r$.
+- **Memoized predecessor recurrence:** After symmetry reduction, recursively approaching the origin through the two predecessor shapes and caching coordinate states is correct, but it explores a growing state set and needs corresponding cache space.
 - **Breadth-first search:** BFS over board positions directly guarantees the shortest path, but explores $O(r^2)$ positions and uses $O(r^2)$ space for target distance scale $r$.
 - **Bidirectional breadth-first search:** Expanding from both endpoints reduces constants but still maintains growing frontiers and visited maps.
 - **Origin:** Both lower bounds and parity yield zero, so no special positive move count is introduced.

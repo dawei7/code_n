@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "review_scope": "solution_only",
+  "challenge_id": "lc_354",
+  "language": "python",
+  "reviewed_on": "2026-08-01",
+  "solution_review": {
+    "status": "complete",
+    "verdict": "good",
+    "target": "current",
+    "candidate": null,
+    "approach_target": "current",
+    "assertions": {
+      "correct": true,
+      "required_complexity": true,
+      "clear_and_concise": true,
+      "conventional_structure": true,
+      "interview_quality_naming": true,
+      "app_contract_preserved": true,
+      "approach_matches_target": true
+    },
+    "findings": [
+      {"category": "solution_quality", "severity": "good", "reason": "The protected source is the canonical sort-and-LIS solution. Descending heights within equal widths prevent false nesting, and bisect_left maintains minimal strict-subsequence tails with clear conventional state. No candidate is justified."},
+      {"category": "metadata_and_contract", "severity": "verified", "reason": "Metadata consistently identifies public LeetCode problem 354 and its Python maxEnvelopes surface. The Reference preserves strict growth in both dimensions, both source examples and the first explanation, the no-rotation note, and all three constraints."},
+      {"category": "submission_and_alignment", "severity": "verified", "reason": "The immutable native source remains tied to verified submission 2064562611. Its sorting key, tails state, bisect_left position, append-or-replace update, and result align exactly with the protected app-local source; only the required wrapper and annotations differ."},
+      {"category": "complexity_evidence", "severity": "verified", "reason": "The legal fully increasing tiers use 32, 128, and 512 envelopes, span 16x, and force a full LIS extension. The current source passes all nine executions at +0.01 relative growth and 1.02x; correct predecessor dynamic programming passes all three benchmark outputs but fails only scaling at +1.17 and 143.06x."},
+      {"category": "approach_accuracy", "severity": "corrected", "reason": "The Approach accurately proves the equal-width tie ordering and patience-sorting tails invariant, then states O(n log n) time and O(n) space. Its edge discussion now respects the legal nonempty input contract."},
+      {"category": "source_fidelity", "severity": "verified", "reason": "The hash-bound public Reference remains source-fidelity verified, including both source examples in order, the first explanation, strict two-dimensional nesting, the no-rotation source note, and all three constraints."}
+    ],
+    "validation": {
+      "mode": "real_test",
+      "correctness_cases_passed": 6,
+      "correctness_cases_total": 6,
+      "performance_cases_passed": 3,
+      "performance_cases_total": 3,
+      "complexity_method": "benchmark",
+      "complexity_passed": true
+    }
+  },
+  "hashes": {
+    "current_source_sha256": "4d04879aaa210d37db226b2076e8880252ebf68d1367bac1df324da681d969e8",
+    "native_source_sha256": "144edc1616e90b747d8488319d7f53ca70aa6011e5368edad54945c264375948",
+    "approach_sha256": "564cdf65f3e8fb15d8c27c3f577d6a78849d3b3ab5d0feaa011a44571b737a3b",
+    "solution_variants_sha256": "aed8e56724ace94ba60d4f8038cc8dae7d84e85b5d3814ced52cb05a66febde4",
+    "complexity_evidence_sha256": "c1d524c2c128f0b03a524f316af38ae41d266a66a70b5407770690c43a794ba5"
+  }
+}

@@ -3,7 +3,7 @@
 
 At any binary-search interval, at most one of its two halves can cross the rotation boundary. Therefore at least one half is in ordinary increasing order. With distinct values, `nums[left] <= nums[mid]` proves the left half is sorted; otherwise the right half must be sorted.
 
-Check `nums[mid] = target` first. The remaining range comparisons can then use one strict endpoint around the midpoint without accidentally retaining or discarding the already-tested value.
+Check `nums[middle] == target` first. The remaining range comparisons can then use one strict endpoint around the midpoint without accidentally retaining or discarding the already-tested value.
 
 **Use the sorted half's endpoints to choose the next interval**
 

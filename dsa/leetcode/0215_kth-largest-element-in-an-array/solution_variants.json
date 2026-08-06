@@ -8,7 +8,7 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Kth Largest Element in an Array and meets the required complexity bound.",
+      "summary": "Uses randomized median-of-three pivots and in-place three-way partitioning to select the requested rank.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
     }
