@@ -2,15 +2,47 @@
 
 The set `[1, 2, 3, ..., n]` contains a total of `n!` unique permutations.
 
-By listing and labeling all of the permutations in order, we get the following sequence for `n = 3`:
+By listing and labeling all of the permutations in order, we get the following sequence for $n = 3$:
 
-<ol>
-	<li>`"123"`</li>
-	<li>`"132"`</li>
-	<li>`"213"`</li>
-	<li>`"231"`</li>
-	<li>`"312"`</li>
-	<li>`"321"`</li>
-</ol>
+- `"123"`
 
-Given `n` and `k`, return the `k^th` permutation sequence.
+- `"132"`
+
+- `"213"`
+
+- `"231"`
+
+- `"312"`
+
+- `"321"`
+
+Given `n` and `k`, return the $$k^{\text{th}}$$ permutation sequence.
+### Function Contract
+
+**Inputs**
+
+- `n`: The inclusive upper bound of the digit set `1` through `n`.
+- `k`: The one-based rank of the requested permutation.
+
+**Return value**
+
+Return the $k$th lexicographically ordered permutation as a string.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 3, k = 3$
+- **Output:** `"213"`
+#### Example 2
+
+- **Input:** $n = 4, k = 9$
+- **Output:** `"2314"`
+#### Example 3
+
+- **Input:** $n = 3, k = 1$
+- **Output:** `"123"`
+### Constraints
+
+- $1 \le n \le 9$
+
+- $1 \le k \le n!$

@@ -7,3 +7,33 @@ The grid is said to be **connected** if we have **exactly one island**, otherwis
 In one day, we are allowed to change **any **single land cell `(1)` into a water cell `(0)`.
 
 Return *the minimum number of days to disconnect the grid*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/land1.jpg)
+
+- **Input:** `grid = [[0,1,1,0],[0,1,1,0],[0,0,0,0]]`
+- **Output:** `2`
+- **Explanation:** We need at least 2 days to get a disconnected grid.
+Change land grid[1][1] and grid[0][2] to water and get 2 disconnected island.
+#### Example 2
+
+![](images/land2.jpg)
+
+- **Input:** `grid = [[1,1]]`
+- **Output:** `2`
+- **Explanation:** Grid of full water is also disconnected ([[1,1]] -> [[0,0]]), 0 islands.
+### Constraints
+
+- $m = \text{grid.length}$
+
+- $n = \text{grid}[i].length$
+
+- $1 \le m, n \le 30$
+
+- $\text{grid}[i][j]$ is either `0` or `1`.

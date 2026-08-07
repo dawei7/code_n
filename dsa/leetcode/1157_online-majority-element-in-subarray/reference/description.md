@@ -6,7 +6,40 @@ The **majority element** of a subarray is an element that occurs `threshold` tim
 
 Implementing the `MajorityChecker` class:
 
-<ul>
-	<li>`MajorityChecker(int[] arr)` Initializes the instance of the class with the given array `arr`.</li>
-	<li>`int query(int left, int right, int threshold)` returns the element in the subarray `arr[left...right]` that occurs at least `threshold` times, or `-1` if no such element exists.</li>
-</ul>
+- `MajorityChecker(int[] arr)` Initializes the instance of the class with the given array `arr`.
+
+- `int query(int left, int right, int threshold)` returns the element in the subarray `arr[left...right]` that occurs at least `threshold` times, or `-1` if no such element exists.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+```
+**Input**
+["MajorityChecker", "query", "query", "query"]
+[[[1, 1, 2, 2, 1, 1]], [0, 5, 4], [0, 3, 3], [2, 3, 2]]
+**Output**
+[null, 1, -1, 2]
+
+**Explanation**
+MajorityChecker majorityChecker = new MajorityChecker([1, 1, 2, 2, 1, 1]);
+majorityChecker.query(0, 5, 4); // return 1
+majorityChecker.query(0, 3, 3); // return -1
+majorityChecker.query(2, 3, 2); // return 2
+```
+### Constraints
+
+- $1 \le \text{arr.length} \le 2 * 10^{4}$
+
+- $1 \le \text{arr}[i] \le 2 * 10^{4}$
+
+- $0 \le left \le right < \text{arr.length}$
+
+- $threshold \le right - left + 1$
+
+- $2 * threshold > right - left + 1$
+
+- At most $10^{4}$ calls will be made to `query`.

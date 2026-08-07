@@ -1,13 +1,42 @@
 ## Description
 
-An RGB color written as `"#AABBCC"` has the shorthand form `"#ABC"` when each two-digit channel repeats one hexadecimal digit. For example, `"#15c"` expands to `"#1155cc"`.
+The red-green-blue color `"#AABBCC"` can be written as `"#ABC"` in shorthand.
 
-For colors `"#ABCDEF"` and `"#UVWXYZ"`, interpret `AB`, `CD`, and `EF` as the first color's hexadecimal channel values and `UV`, `WX`, and `YZ` as the second color's. Their similarity is
+- For example, `"#15c"` is shorthand for the color `"#1155cc"`.
 
-$$
--\left(\mathrm{AB}-\mathrm{UV}\right)^2-\left(\mathrm{CD}-\mathrm{WX}\right)^2-\left(\mathrm{EF}-\mathrm{YZ}\right)^2.
-$$
+The similarity between the two colors `"#ABCDEF"` and `"#UVWXYZ"` is $-(AB - UV)^2 - (CD - WX)^2 - (EF - YZ)^2$.
 
-Given `color` in six-digit form, find a color that can be represented by some three-digit shorthand `"#XYZ"` and maximizes this similarity to `color`.
+Given a string `color` that follows the format `"#ABCDEF"`, return a string represents the color that is most similar to the given color and has a shorthand (i.e., it can be represented as some `"#XYZ"`).
 
-Return that color in expanded six-digit form. If several colors share the highest possible similarity, any of them is accepted.
+**Any answer** which has the same highest similarity as the best answer will be accepted.
+### Function Contract
+
+**Inputs**
+
+- `color`: a seven-character lowercase RGB string in the form `"#ABCDEF"`.
+
+The leading character is `#`; the remaining six characters encode the red, green, and blue bytes in hexadecimal. A valid returned channel must repeat one hexadecimal digit, so the expanded result has the form `"#XXYYZZ"` for some shorthand `"#XYZ"`.
+
+**Return value**
+
+- A six-digit shorthand-expressible color with maximum similarity to `color`. Any co-optimal answer is valid.
+
+### Examples
+#### Example 1
+
+- **Input:** $color = "#09f166"$
+- **Output:** `"#11ee66"`
+- **Explanation:**
+The similarity is -(0x09 - 0x11)^2 -(0xf1 - 0xee)^2 - (0x66 - 0x66)^2 = -64 -9 -0 = -73.
+This is the highest among any shorthand color.
+#### Example 2
+
+- **Input:** $color = "#4e3fe1"$
+- **Output:** `"#5544dd"`
+### Constraints
+
+- $\text{color.length} = 7$
+
+- $\text{color}[0] = '#'$
+
+- $\text{color}[i]$ is either digit or character in the range `['a', 'f']` for `i > 0`.

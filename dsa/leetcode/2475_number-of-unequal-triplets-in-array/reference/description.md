@@ -2,13 +2,38 @@
 
 You are given a **0-indexed** array of positive integers `nums`. Find the number of triplets `(i, j, k)` that meet the following conditions:
 
-<ul>
-	<li>`0 <= i < j < k < nums.length`</li>
-	<li>`nums[i]`, `nums[j]`, and `nums[k]` are **pairwise distinct**.
-	<ul>
-		<li>In other words, `nums[i] != nums[j]`, `nums[i] != nums[k]`, and `nums[j] != nums[k]`.</li>
-	</ul>
+- $0 \le i < j < k < \text{nums.length}$
+
+- $\text{nums}[i]$, $\text{nums}[j]$, and $\text{nums}[k]$ are **pairwise distinct**.
+
+		<li>In other words, $\text{nums}[i] \neq \text{nums}[j]$, $\text{nums}[i] \neq \text{nums}[k]$, and $\text{nums}[j] \neq \text{nums}[k]$.
+
 	</li>
-</ul>
 
 Return *the number of triplets that meet the conditions.*
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** `nums = [4,4,2,4,3]`
+- **Output:** `3`
+- **Explanation:** The following triplets meet the conditions:
+- (0, 2, 4) because 4 != 2 != 3
+- (1, 2, 4) because 4 != 2 != 3
+- (2, 3, 4) because 2 != 4 != 3
+Since there are 3 triplets, we return 3.
+Note that (2, 0, 4) is not a valid triplet because 2 > 0.
+#### Example 2
+
+- **Input:** `nums = [1,1,1,1,1]`
+- **Output:** `0`
+- **Explanation:** No triplets meet the conditions so we return 0.
+### Constraints
+
+- $3 \le \text{nums.length} \le 100$
+
+- $1 \le \text{nums}[i] \le 1000$

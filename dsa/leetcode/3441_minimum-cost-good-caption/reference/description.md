@@ -4,18 +4,75 @@ You are given a string `caption` of length `n`. A **good** caption is a string w
 
 For example:
 
-<ul>
-	<li>`"aaabbb"` and `"aaaaccc"` are **good** captions.</li>
-	<li>`"aabbb"` and `"ccccd"` are **not** good captions.</li>
-</ul>
+- `"aaabbb"` and `"aaaaccc"` are **good** captions.
+
+- `"aabbb"` and `"ccccd"` are **not** good captions.
 
 You can perform the following operation **any** number of times:
 
-Choose an index `i` (where `0 <= i < n`) and change the character at that index to either:
+Choose an index `i` (where $0 \le i < n$) and change the character at that index to either:
 
-<ul>
-	<li>The character immediately **before** it in the alphabet (if `caption[i] != 'a'`).</li>
-	<li>The character immediately **after** it in the alphabet (if `caption[i] != 'z'`).</li>
-</ul>
+- The character immediately **before** it in the alphabet (if $\text{caption}[i] \neq 'a'$).
 
-Your task is to convert the given `caption` into a **good** caption using the **minimum** number of operations, and return it. If there are **multiple** possible good captions, return the **<span data-keyword="lexicographically-smaller-string">lexicographically smallest</span>** one among them. If it is **impossible** to create a good caption, return an empty string `""`.
+- The character immediately **after** it in the alphabet (if $\text{caption}[i] \neq 'z'$).
+
+Your task is to convert the given `caption` into a **good** caption using the **minimum** number of operations, and return it. If there are **multiple** possible good captions, return the **lexicographically smallest** one among them. If it is **impossible** to create a good caption, return an empty string `""`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** caption = "cdcd"
+
+**Output:** "cccc"
+
+**Explanation:**
+
+It can be shown that the given caption cannot be transformed into a good caption with fewer than 2 operations. The possible good captions that can be created using exactly 2 operations are:
+
+- `"dddd"`: Change $\text{caption}[0]$ and $\text{caption}[2]$ to their next character `'d'`.
+
+- `"cccc"`: Change $\text{caption}[1]$ and $\text{caption}[3]$ to their previous character `'c'`.
+
+Since `"cccc"` is lexicographically smaller than `"dddd"`, return `"cccc"`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** caption = "aca"
+
+**Output:** "aaa"
+
+**Explanation:**
+
+It can be proven that the given caption requires at least 2 operations to be transformed into a good caption. The only good caption that can be obtained with exactly 2 operations is as follows:
+
+- Operation 1: Change $\text{caption}[1]$ to `'b'`. $caption = "aba"$.
+
+- Operation 2: Change $\text{caption}[1]$ to `'a'`. $caption = "aaa"$.
+
+Thus, return `"aaa"`.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** caption = "bc"
+
+**Output:** ""
+
+**Explanation:**
+
+It can be shown that the given caption cannot be converted to a good caption by using any number of operations.
+
+</div>
+### Constraints
+
+- $1 \le \text{caption.length} \le 5 * 10^{4}$
+
+- `caption` consists only of lowercase English letters.

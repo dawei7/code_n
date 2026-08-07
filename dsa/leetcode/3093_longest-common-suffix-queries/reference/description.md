@@ -2,6 +2,63 @@
 
 You are given two arrays of strings `wordsContainer` and `wordsQuery`.
 
-For each `wordsQuery[i]`, you need to find a string from `wordsContainer` that has the **longest common suffix** with `wordsQuery[i]`. If there are two or more strings in `wordsContainer` that share the longest common suffix, find the string that is the **smallest** in length. If there are two or more such strings that have the **same** smallest length, find the one that occurred **earlier** in `wordsContainer`.
+For each $\text{wordsQuery}[i]$, you need to find a string from `wordsContainer` that has the **longest common suffix** with $\text{wordsQuery}[i]$. If there are two or more strings in `wordsContainer` that share the longest common suffix, find the string that is the **smallest** in length. If there are two or more such strings that have the **same** smallest length, find the one that occurred **earlier** in `wordsContainer`.
 
-Return *an array of integers *`ans`*, where *`ans[i]`* is the index of the string in *`wordsContainer`* that has the **longest common suffix** with *`wordsQuery[i]`*.*
+Return *an array of integers *`ans`*, where *$\text{ans}[i]$* is the index of the string in *`wordsContainer`* that has the **longest common suffix** with *$\text{wordsQuery}[i]$*.*
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** wordsContainer = ["abcd","bcd","xbcd"], wordsQuery = ["cd","bcd","xyz"]
+
+**Output:** [1,1,1]
+
+**Explanation:**
+
+Let's look at each $\text{wordsQuery}[i]$ separately:
+
+- For $\text{wordsQuery}[0] = "cd"$, strings from `wordsContainer` that share the longest common suffix `"cd"` are at indices 0, 1, and 2. Among these, the answer is the string at index 1 because it has the shortest length of 3.
+
+- For $\text{wordsQuery}[1] = "bcd"$, strings from `wordsContainer` that share the longest common suffix `"bcd"` are at indices 0, 1, and 2. Among these, the answer is the string at index 1 because it has the shortest length of 3.
+
+- For $\text{wordsQuery}[2] = "xyz"$, there is no string from `wordsContainer` that shares a common suffix. Hence the longest common suffix is `""`, that is shared with strings at index 0, 1, and 2. Among these, the answer is the string at index 1 because it has the shortest length of 3.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** wordsContainer = ["abcdefgh","poiuygh","ghghgh"], wordsQuery = ["gh","acbfgh","acbfegh"]
+
+**Output:** [2,0,2]
+
+**Explanation:**
+
+Let's look at each $\text{wordsQuery}[i]$ separately:
+
+- For $\text{wordsQuery}[0] = "gh"$, strings from `wordsContainer` that share the longest common suffix `"gh"` are at indices 0, 1, and 2. Among these, the answer is the string at index 2 because it has the shortest length of 6.
+
+- For $\text{wordsQuery}[1] = "acbfgh"$, only the string at index 0 shares the longest common suffix `"fgh"`. Hence it is the answer, even though the string at index 2 is shorter.
+
+- For $\text{wordsQuery}[2] = "acbfegh"$, strings from `wordsContainer` that share the longest common suffix `"gh"` are at indices 0, 1, and 2. Among these, the answer is the string at index 2 because it has the shortest length of 6.
+
+</div>
+### Constraints
+
+- $1 \le \text{wordsContainer.length}, \text{wordsQuery.length} \le 10^{4}$
+
+- $1 \le \text{wordsContainer}[i].length \le 5 * 10^{3}$
+
+- $1 \le \text{wordsQuery}[i].length \le 5 * 10^{3}$
+
+- $\text{wordsContainer}[i]$ consists only of lowercase English letters.
+
+- $\text{wordsQuery}[i]$ consists only of lowercase English letters.
+
+- Sum of $\text{wordsContainer}[i].length$ is at most $5 * 10^{5}$.
+
+- Sum of $\text{wordsQuery}[i].length$ is at most $5 * 10^{5}$.

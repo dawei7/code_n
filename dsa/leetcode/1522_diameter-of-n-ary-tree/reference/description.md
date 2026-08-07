@@ -1,5 +1,48 @@
 ## Description
 
-Given the root of an N-ary tree, find the tree's diameter: the greatest number of edges on a simple path between any two nodes. The longest path may pass through the supplied root, through another internal node, or end at the root.
+Given a `root` of an `N-ary tree`, you need to compute the length of the diameter of the tree.
 
-The source tree contains between 1 and $10^4$ nodes and may have depth up to 1000. Return only the diameter length in edges, not the endpoints or the path itself.
+The diameter of an N-ary tree is the length of the **longest** path between any two nodes in the tree. This path may or may not pass through the root.
+
+(*Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value.)*
+### Function Contract
+
+**Inputs**
+
+- `root`: The N-ary tree's root `Node`, whose `children` list contains its child nodes. The tree contains $N$ nodes where $1 \le N \le 10^4$.
+
+Let $N$ be the total number of nodes in the tree and $H$ the tree depth.
+
+**Return value**
+
+Return the maximum number of edges on a simple path between any two nodes in the tree. A single-node tree has diameter 0.
+
+### Examples
+#### Example 1
+
+![](images/sample_2_1897.png)
+
+- **Input:** `root = [1,null,3,2,4,null,5,6]`
+- **Output:** `3`
+- **Explanation:** Diameter is shown in red color.
+#### Example 2
+
+**
+
+![](images/sample_1_1897.png)
+
+**
+
+- **Input:** `root = [1,null,2,null,3,4,null,5,null,6]`
+- **Output:** `4`
+#### Example 3
+
+![](images/sample_3_1897.png)
+
+- **Input:** `root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
+- **Output:** `7`
+### Constraints
+
+- The depth of the n-ary tree is less than or equal to `1000`.
+
+- The total number of nodes is between $[1, 10^{4}]$.

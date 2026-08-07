@@ -1,10 +1,32 @@
 ## Description
 
-A permutation `perm` of `n + 1` integers of all the integers in the range `[0, n]` can be represented as a string `s` of length `n` where:
+A permutation `perm` of $n + 1$ integers of all the integers in the range `[0, n]` can be represented as a string `s` of length `n` where:
 
-<ul>
-	<li>`s[i] == 'I'` if `perm[i] < perm[i + 1]`, and</li>
-	<li>`s[i] == 'D'` if `perm[i] > perm[i + 1]`.</li>
-</ul>
+- $s[i] = 'I'$ if $\text{perm}[i] < perm[i + 1]$, and
+
+- $s[i] = 'D'$ if $\text{perm}[i] > perm[i + 1]$.
 
 Given a string `s`, reconstruct the permutation `perm` and return it. If there are multiple valid permutations perm, return **any of them**.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** `s = "IDID"`
+- **Output:** `[0,4,1,3,2]`
+#### Example 2
+
+- **Input:** `s = "III"`
+- **Output:** `[0,1,2,3]`
+#### Example 3
+
+- **Input:** `s = "DDI"`
+- **Output:** `[3,2,0,1]`
+### Constraints
+
+- $1 \le \text{s.length} \le 10^{5}$
+
+- $s[i]$ is either `'I'` or `'D'`.

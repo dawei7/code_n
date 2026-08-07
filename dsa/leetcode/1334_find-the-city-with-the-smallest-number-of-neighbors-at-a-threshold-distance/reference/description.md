@@ -1,7 +1,53 @@
 ## Description
 
-There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where `edges[i] = [from_i, to_i, weight_i]` represents a bidirectional and weighted edge between cities `from_i` and `to_i`, and given the integer `distanceThreshold`.
+There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where $\text{edges}[i] = [\text{from}_{i}, \text{to}_{i}, \text{weight}_{i}]$ represents a bidirectional and weighted edge between cities $\text{from}_{i}$ and $\text{to}_{i}$, and given the integer `distanceThreshold`.
 
 Return the city with the smallest number of cities that are reachable through some path and whose distance is **at most** `distanceThreshold`, If there are multiple such cities, return the city with the greatest number.
 
 Notice that the distance of a path connecting cities ***i*** and ***j*** is equal to the sum of the edges' weights along that path.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/problem1334example1.png)
+
+- **Input:** $n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4$
+- **Output:** `3`
+- **Explanation:** The figure above describes the graph.
+The neighboring cities at a distanceThreshold = 4 for each city are:
+City 0 -> [City 1, City 2]
+City 1 -> [City 0, City 2, City 3]
+City 2 -> [City 0, City 1, City 3]
+City 3 -> [City 1, City 2]
+Cities 0 and 3 have 2 neighboring cities at a distanceThreshold = 4, but we have to return city 3 since it has the greatest number.
+#### Example 2
+
+![](images/problem1334example0.png)
+
+- **Input:** $n = 5, edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], distanceThreshold = 2$
+- **Output:** `0`
+- **Explanation:** The figure above describes the graph.
+The neighboring cities at a distanceThreshold = 2 for each city are:
+City 0 -> [City 1]
+City 1 -> [City 0, City 4]
+City 2 -> [City 3, City 4]
+City 3 -> [City 2, City 4]
+City 4 -> [City 1, City 2, City 3]
+The city 0 has 1 neighboring city at a distanceThreshold = 2.
+### Constraints
+
+- $2 \le n \le 100$
+
+- $1 \le \text{edges.length} \le n * (n - 1) / 2$
+
+- $\text{edges}[i].length = 3$
+
+- $0 \le \text{from}_{i} < \text{to}_{i} < n$
+
+- $1 \le \text{weight}_{i}, distanceThreshold \le 10^{4}$
+
+- All pairs $(\text{from}_{i}, \text{to}_{i})$ are distinct.

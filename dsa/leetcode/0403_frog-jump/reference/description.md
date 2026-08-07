@@ -4,4 +4,34 @@ A frog is crossing a river. The river is divided into some number of units, and 
 
 Given a list of `stones` positions (in units) in sorted **ascending order**, determine if the frog can cross the river by landing on the last stone. Initially, the frog is on the first stone and assumes the first jump must be `1` unit.
 
-If the frog's last jump was `k` units, its next jump must be either `k - 1`, `k`, or `k + 1` units. The frog can only jump in the forward direction.
+If the frog's last jump was `k` units, its next jump must be either $k - 1$, `k`, or $k + 1$ units. The frog can only jump in the forward direction.
+### Function Contract
+
+**Inputs**
+
+- `stones`: Strictly increasing stone positions beginning with `0`.
+
+**Return value**
+
+Return `true` if the frog can land on the last stone under the initial- and subsequent-jump rules; otherwise return `false`.
+
+### Examples
+#### Example 1
+
+- **Input:** $stones = [0,1,3,5,6,8,12,17]$
+- **Output:** `true`
+- **Explanation:** The frog can jump to the last stone by jumping 1 unit to the 2nd stone, then 2 units to the 3rd stone, then 2 units to the 4th stone, then 3 units to the 6th stone, 4 units to the 7th stone, and 5 units to the 8th stone.
+#### Example 2
+
+- **Input:** $stones = [0,1,2,3,4,8,9,11]$
+- **Output:** `false`
+- **Explanation:** There is no way to jump to the last stone as the gap between the 5th and 6th stone is too large.
+### Constraints
+
+- $2 \le \text{stones.length} \le 2000$
+
+- $0 \le \text{stones}[i] \le 2^{31} - 1$
+
+- $\text{stones}[0] = 0$
+
+- `stones` is sorted in a strictly increasing order.

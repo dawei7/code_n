@@ -1,10 +1,61 @@
 ## Description
 
-The `Tasks` table stores submitted work. Each row identifies a task with its
-unique `task_id`, records the responsible `assignee_id`, and gives the calendar
-date on which it was submitted.
+Table: `Tasks`
 
-Classify every task by its submission day. Saturday and Sunday are weekend
-days; Monday through Friday are working days. Return one row containing the
-number of weekend submissions as `weekend_cnt` and the number of working-day
-submissions as `working_cnt`. The assignee does not affect either count.
+```
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| task_id     | int  |
+| assignee_id | int  |
+| submit_date | date |
++-------------+------+
+task_id is the primary key (column with unique values) for this table.
+Each row in this table contains the ID of a task, the id of the assignee, and the submission date.
+```
+
+Write a solution to report:
+
+- the number of tasks that were submitted during the weekend (Saturday, Sunday) as $\text{weekend}_{cnt}$, and
+
+- the number of tasks that were submitted during the working days as $\text{working}_{cnt}$.
+
+Return the result table in **any order**.
+
+The result format is shown in the following example.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+Tasks table:
++---------+-------------+-------------+
+| task_id | assignee_id | submit_date |
++---------+-------------+-------------+
+| 1       | 1           | 2022-06-13  |
+| 2       | 6           | 2022-06-14  |
+| 3       | 6           | 2022-06-15  |
+| 4       | 3           | 2022-06-18  |
+| 5       | 5           | 2022-06-19  |
+| 6       | 7           | 2022-06-19  |
++---------+-------------+-------------+
+**Output:**
++-------------+-------------+
+| weekend_cnt | working_cnt |
++-------------+-------------+
+| 3           | 3           |
++-------------+-------------+
+**Explanation:**
+Task 1 was submitted on Monday.
+Task 2 was submitted on Tuesday.
+Task 3 was submitted on Wednesday.
+Task 4 was submitted on Saturday.
+Task 5 was submitted on Sunday.
+Task 6 was submitted on Sunday.
+3 tasks were submitted during the weekend.
+3 tasks were submitted during the working days.
+```

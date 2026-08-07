@@ -1,21 +1,78 @@
 ## Description
 
-<p data-end="116" data-start="0">You are given three integers <code data-end="33" data-start="30">x</code>, <code data-end="38" data-start="35">y</code>, and <code data-end="47" data-start="44">z</code>, representing the positions of three people on a number line:
+You are given three integers `x`, `y`, and `z`, representing the positions of three people on a number line:
 
-<ul data-end="252" data-start="118">
-	<li data-end="154" data-start="118"><code data-end="123" data-start="120">x</code> is the position of Person 1.</li>
-	<li data-end="191" data-start="155"><code data-end="160" data-start="157">y</code> is the position of Person 2.</li>
-	<li data-end="252" data-start="192"><code data-end="197" data-start="194">z</code> is the position of Person 3, who does **not** move.</li>
-</ul>
+- `x` is the position of Person 1.
 
-<p data-end="322" data-start="254">Both Person 1 and Person 2 move toward Person 3 at the **same** speed.
+- `y` is the position of Person 2.
 
-<p data-end="372" data-start="324">Determine which person reaches Person 3 **first**:
+- `z` is the position of Person 3, who does **not** move.
 
-<ul data-end="505" data-start="374">
-	<li data-end="415" data-start="374">Return 1 if Person 1 arrives first.</li>
-	<li data-end="457" data-start="416">Return 2 if Person 2 arrives first.</li>
-	<li data-end="505" data-start="458">Return 0 if both arrive at the **same** time.</li>
-</ul>
+Both Person 1 and Person 2 move toward Person 3 at the **same** speed.
 
-<p data-end="537" data-is-last-node="" data-is-only-node="" data-start="507">Return the result accordingly.
+Determine which person reaches Person 3 **first**:
+
+- Return 1 if Person 1 arrives first.
+
+- Return 2 if Person 2 arrives first.
+
+- Return 0 if both arrive at the **same** time.
+
+Return the result accordingly.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** x = 2, y = 7, z = 4
+
+**Output:** 1
+
+**Explanation:**
+
+- Person 1 is at position 2 and can reach Person 3 (at position 4) in 2 steps.
+
+- Person 2 is at position 7 and can reach Person 3 in 3 steps.
+
+Since Person 1 reaches Person 3 first, the output is 1.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** x = 2, y = 5, z = 6
+
+**Output:** 2
+
+**Explanation:**
+
+- Person 1 is at position 2 and can reach Person 3 (at position 6) in 4 steps.
+
+- Person 2 is at position 5 and can reach Person 3 in 1 step.
+
+Since Person 2 reaches Person 3 first, the output is 2.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** x = 1, y = 5, z = 3
+
+**Output:** 0
+
+**Explanation:**
+
+- Person 1 is at position 1 and can reach Person 3 (at position 3) in 2 steps.
+
+- Person 2 is at position 5 and can reach Person 3 in 2 steps.
+
+Since both Person 1 and Person 2 reach Person 3 at the same time, the output is 0.
+
+</div>
+### Constraints
+
+- $1 \le x, y, z \le 100$

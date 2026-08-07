@@ -2,12 +2,55 @@
 
 You are given a string `s` and an integer `k`.
 
-Determine if there exists a <span data-keyword="substring-nonempty">substring</span> of length **exactly** `k` in `s` that satisfies the following conditions:
+Determine if there exists a substring of length **exactly** `k` in `s` that satisfies the following conditions:
 
-<ol>
-	<li>The substring consists of **only one distinct character** (e.g., `"aaa"` or `"bbb"`).</li>
-	<li>If there is a character **immediately before** the substring, it must be different from the character in the substring.</li>
-	<li>If there is a character **immediately after** the substring, it must also be different from the character in the substring.</li>
-</ol>
+- The substring consists of **only one distinct character** (e.g., `"aaa"` or `"bbb"`).
+
+- If there is a character **immediately before** the substring, it must be different from the character in the substring.
+
+- If there is a character **immediately after** the substring, it must also be different from the character in the substring.
 
 Return `true` if such a substring exists. Otherwise, return `false`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** s = "aaabaaa", k = 3
+
+**Output:** true
+
+**Explanation:**
+
+The substring $s[4..6] = "aaa"$ satisfies the conditions.
+
+- It has a length of 3.
+
+- All characters are the same.
+
+- The character before `"aaa"` is `'b'`, which is different from `'a'`.
+
+- There is no character after `"aaa"`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** s = "abc", k = 2
+
+**Output:** false
+
+**Explanation:**
+
+There is no substring of length 2 that consists of one distinct character and satisfies the conditions.
+
+</div>
+### Constraints
+
+- $1 \le k \le \text{s.length} \le 100$
+
+- `s` consists of lowercase English letters only.

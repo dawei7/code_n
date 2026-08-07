@@ -4,14 +4,31 @@ Given an integer n, return *the smallest **prime palindrome** greater than or eq
 
 An integer is **prime** if it has exactly two divisors: `1` and itself. Note that `1` is not a prime number.
 
-<ul>
-	<li>For example, `2`, `3`, `5`, `7`, `11`, and `13` are all primes.</li>
-</ul>
+- For example, `2`, `3`, `5`, `7`, `11`, and `13` are all primes.
 
 An integer is a **palindrome** if it reads the same from left to right as it does from right to left.
 
-<ul>
-	<li>For example, `101` and `12321` are palindromes.</li>
-</ul>
+- For example, `101` and `12321` are palindromes.
 
-The test cases are generated so that the answer always exists and is in the range `[2, 2 * 10^8]`.
+The test cases are generated so that the answer always exists and is in the range $[2, 2 * 10^{8}]$.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 6$
+- **Output:** `7`
+#### Example 2
+
+- **Input:** $n = 8$
+- **Output:** `11`
+#### Example 3
+
+- **Input:** $n = 13$
+- **Output:** `101`
+### Constraints
+
+- $1 \le n \le 10^{8}$

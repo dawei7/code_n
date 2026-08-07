@@ -4,22 +4,96 @@ You are given three integers `m`, `n`, and `k`.
 
 Construct **any** `m x n` grid consisting only of the characters `'.'` and `'#'`, where:
 
-<ul>
-	<li>`'.'` represents a free cell.</li>
-	<li>`'#'` represents an obstacle cell.</li>
-</ul>
+- `'.'` represents a free cell.
+
+- `'#'` represents an obstacle cell.
 
 A **valid path** is a sequence of free cells that:
 
-<ul>
-	<li>Starts at the top-left cell `(0, 0)`.</li>
-	<li>Ends at the bottom-right cell `(m - 1, n - 1)`.</li>
-	<li>Moves only:
-	<ul>
-		<li>Right, from `(i, j)` to `(i, j + 1)`, or</li>
-		<li>Down, from `(i, j)` to `(i + 1, j)`.</li>
-	</ul>
+- Starts at the top-left cell `(0, 0)`.
+
+- Ends at the bottom-right cell $(m - 1, n - 1)$.
+
+- Moves only:
+
+		<li>Right, from `(i, j)` to $(i, j + 1)$, or
+
+- Down, from `(i, j)` to $(i + 1, j)$.
+
 	</li>
-</ul>
 
 Return any grid such that there are **exactly** `k` **valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.
+### Function Contract
+
+`solve(m, n, k) -> list[str]`
+
+**Inputs**
+
+- `m`: The positive number of grid rows.
+- `n`: The positive number of grid columns.
+- `k`: The required positive number of valid paths.
+
+Rows and columns use zero-based indices. A valid path begins at `(0, 0)`, ends at `(m - 1, n - 1)`, stays on `.` cells, and moves only right or down.
+
+**Output**
+
+Return a list of exactly `m` strings of length `n`, using only `.` for free cells and `#` for obstacles, such that the grid contains exactly `k` valid paths. More than one construction may be correct. Return `[]` precisely when no valid construction exists.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** m = 2, n = 3, k = 2
+
+**Output:** ["...","#.."]
+
+**Explanation:**
+
+![](images/screenshot-2026-05-27-at-113554am.png)
+
+There are exactly $k = 2$ valid paths from `(0, 0)` to `(1, 2)`:
+
+- `(0, 0) → (0, 1) → (0, 2) → (1, 2)`
+
+- `(0, 0) → (0, 1) → (1, 1) → (1, 2)`
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** m = 3, n = 3, k = 4
+
+**Output:** ["..#","...","#.."]
+
+**Explanation:**
+
+![](images/screenshot-2026-05-27-at-113452am.png)
+
+There are exactly $k = 4$ valid paths from `(0, 0)` to `(2, 2)`:
+
+- `(0, 0) → (0, 1) → (1, 1) → (1, 2) → (2, 2)`
+
+- `(0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2)`
+
+- `(0, 0) → (1, 0) → (1, 1) → (1, 2) → (2, 2)`
+
+- `(0, 0) → (1, 0) → (1, 1) → (2, 1) → (2, 2)`
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** m = 1, n = 4, k = 2
+
+**Output:** []
+
+**Explanation:**​
+
+No grid exists with exactly $k = 2$ valid paths for a `1 x 4` grid, so the answer is an empty array.
+
+</div>
+### Constraints
+
+- $1 \le m, n \le 10$
+
+- $1 \le k \le 4$

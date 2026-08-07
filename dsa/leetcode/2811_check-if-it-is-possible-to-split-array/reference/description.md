@@ -4,11 +4,73 @@ You are given an array `nums` of length `n` and an integer `m`. You need to dete
 
 An array is called **good** if:
 
-<ul>
-	<li>The length of the array is **one**, or</li>
-	<li>The sum of the elements of the array is **greater than or equal** to `m`.</li>
-</ul>
+- The length of the array is **one**, or
+
+- The sum of the elements of the array is **greater than or equal** to `m`.
 
 In each step, you can select an existing array (which may be the result of previous steps) with a length of **at least two** and split it into **two **arrays, if both resulting arrays are good.
 
 Return true if you can split the given array into `n` arrays, otherwise return false.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [2, 2, 1], m = 4
+
+**Output:** true
+
+**Explanation:**
+
+- Split `[2, 2, 1]` to `[2, 2]` and `[1]`. The array `[1]` has a length of one, and the array `[2, 2]` has the sum of its elements equal to $4 \ge m$, so both are good arrays.
+
+- Split `[2, 2]` to `[2]` and `[2]`. both arrays have the length of one, so both are good arrays.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [2, 1, 3], m = 5
+
+**Output:** false
+
+**Explanation:**
+
+The first move has to be either of the following:
+
+- Split `[2, 1, 3]` to `[2, 1]` and `[3]`. The array `[2, 1]` has neither length of one nor sum of elements greater than or equal to `m`.
+
+- Split `[2, 1, 3]` to `[2]` and `[1, 3]`. The array `[1, 3]` has neither length of one nor sum of elements greater than or equal to `m`.
+
+So as both moves are invalid (they do not divide the array into two good arrays), we are unable to split `nums` into `n` arrays of size 1.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** nums = [2, 3, 3, 2, 3], m = 6
+
+**Output:** true
+
+**Explanation:**
+
+- Split `[2, 3, 3, 2, 3]` to `[2]` and `[3, 3, 2, 3]`.
+
+- Split `[3, 3, 2, 3]` to `[3, 3, 2]` and `[3]`.
+
+- Split `[3, 3, 2]` to `[3, 3]` and `[2]`.
+
+- Split `[3, 3]` to `[3]` and `[3]`.
+
+</div>
+### Constraints
+
+- $1 \le n = \text{nums.length} \le 100$
+
+- $1 \le \text{nums}[i] \le 100$
+
+- $1 \le m \le 200$

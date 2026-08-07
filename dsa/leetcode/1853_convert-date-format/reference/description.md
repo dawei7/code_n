@@ -1,5 +1,45 @@
 ## Description
 
-The `Days` table stores unique calendar dates in a single `DATE` column named `day`. Produce one result row for every input row, converting the stored date into a human-readable English string while preserving the date itself rather than filtering, grouping, or reordering it.
+Table: `Days`
 
-The required text has the form `"day_name, month_name day, year"`. Spell out the weekday and month with their usual capitalization, place a comma after the weekday and before the year, and write the numeric day of the month without a leading zero. The returned column must also be named `day`; row order is unrestricted.
+```
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| day         | date |
++-------------+------+
+day is the column with unique values for this table.
+```
+
+Write a solution to convert each date in `Days` into a string formatted as $"\text{day}_{name}, \text{month}_{name} day, year"$.
+
+Return the result table in **any order**.
+
+The result format is in the following example.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+Days table:
++------------+
+| day        |
++------------+
+| 2022-04-12 |
+| 2021-08-09 |
+| 2020-06-26 |
++------------+
+**Output:**
++-------------------------+
+| day                     |
++-------------------------+
+| Tuesday, April 12, 2022 |
+| Monday, August 9, 2021  |
+| Friday, June 26, 2020   |
++-------------------------+
+**Explanation:** Please note that the output is case-sensitive.
+```

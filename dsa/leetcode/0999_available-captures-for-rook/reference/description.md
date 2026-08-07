@@ -7,3 +7,60 @@ A rook can move any number of squares horizontally or vertically (up, down, left
 Note: A rook cannot move through other pieces, such as bishops or pawns. This means a rook cannot attack a pawn if there is another piece blocking the path.
 
 Return the **number of pawns** the white rook is **attacking**.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/1253_example_1_improved.PNG)
+
+<div class="example-block">
+**Input:** board = [[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","R",".",".",".","p"],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]
+
+**Output:** 3
+
+**Explanation:**
+
+In this example, the rook is attacking all the pawns.
+
+</div>
+#### Example 2
+
+![](images/1253_example_2_improved.PNG)
+
+<div class="example-block">
+**Input:** board = [[".",".",".",".",".",".","."],[".","p","p","p","p","p",".","."],[".","p","p","B","p","p",".","."],[".","p","B","R","B","p",".","."],[".","p","p","B","p","p",".","."],[".","p","p","p","p","p",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]
+
+**Output:** 0
+
+**Explanation:**
+
+The bishops are blocking the rook from attacking any of the pawns.
+
+</div>
+#### Example 3
+
+![](images/1253_example_3_improved.PNG)
+
+<div class="example-block">
+**Input:** board = [[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","p",".",".",".","."],["p","p",".","R",".","p","B","."],[".",".",".",".",".",".",".","."],[".",".",".","B",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."]]
+
+**Output:** 3
+
+**Explanation:**
+
+The rook is attacking the pawns at positions b5, d6, and f5.
+
+</div>
+### Constraints
+
+- $\text{board.length} = 8$
+
+- $\text{board}[i].length = 8$
+
+- $\text{board}[i][j]$ is either `'R'`, `'.'`, `'B'`, or `'p'`
+
+- There is exactly one cell with $\text{board}[i][j] = 'R'$

@@ -4,16 +4,52 @@ Implement a last-in-first-out (LIFO) stack using only two queues. The implemente
 
 Implement the `MyStack` class:
 
-<ul>
-	<li>`void push(int x)` Pushes element x to the top of the stack.</li>
-	<li>`int pop()` Removes the element on the top of the stack and returns it.</li>
-	<li>`int top()` Returns the element on the top of the stack.</li>
-	<li>`boolean empty()` Returns `true` if the stack is empty, `false` otherwise.</li>
-</ul>
+- `void push(int x)` Pushes element x to the top of the stack.
+
+- `int pop()` Removes the element on the top of the stack and returns it.
+
+- `int top()` Returns the element on the top of the stack.
+
+- `boolean empty()` Returns `true` if the stack is empty, `false` otherwise.
 
 **Notes:**
 
-<ul>
-	<li>You must use **only** standard operations of a queue, which means that only `push to back`, `peek/pop from front`, `size` and `is empty` operations are valid.</li>
-	<li>Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.</li>
-</ul>
+- You must use **only** standard operations of a queue, which means that only `push to back`, `peek/pop from front`, `size` and `is empty` operations are valid.
+
+- Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.
+### Function Contract
+
+**Inputs**
+
+- `operations`: App-local commands `["push", x]`, `["pop"]`, `["top"]`, and `["empty"]`, processed against one initially empty stack.
+
+**Return value**
+
+Return the result of each `pop`, `top`, and `empty` command in command order; `push` produces no result.
+
+### Examples
+#### Example 1
+
+```
+**Input**
+["MyStack", "push", "push", "top", "pop", "empty"]
+[[], [1], [2], [], [], []]
+**Output**
+[null, null, null, 2, 2, false]
+
+**Explanation**
+MyStack myStack = new MyStack();
+myStack.push(1);
+myStack.push(2);
+myStack.top(); // return 2
+myStack.pop(); // return 2
+myStack.empty(); // return False
+```
+### Constraints
+
+- $1 \le x \le 9$
+
+- At most `100` calls will be made to `push`, `pop`, `top`, and `empty`.
+
+- All the calls to `pop` and `top` are valid.
+### Follow-up Can you implement the stack using only one queue?

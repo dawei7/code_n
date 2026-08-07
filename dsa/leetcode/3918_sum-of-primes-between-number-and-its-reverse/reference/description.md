@@ -4,4 +4,66 @@ You are given an integer `n`.
 
 Let `r` be the integer formed by reversing the digits of `n`.
 
-Return the **sum** of all <span data-keyword="prime-number">prime numbers</span> between `min(n, r)` and `max(n, r)`, inclusive.
+Return the **sum** of all prime numbers between `min(n, r)` and `max(n, r)`, inclusive.
+### Function Contract
+
+**Inputs**
+
+- `n`: The positive integer whose decimal digits are reversed to obtain the other endpoint.
+
+Let `r` be the integer obtained by reversing the digits of `n`, $L=\min(\texttt{n},r)$, and $U=\max(\texttt{n},r)$.
+
+**Return value**
+
+Return the sum of all primes $p$ satisfying $L\le p\le U$. Return `0` when the interval contains no prime.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** n = 13
+
+**Output:** 132
+
+**Explanation:**
+
+- The reverse of 13 is 31. Thus, the range is `[13, 31]`.
+
+- The prime numbers in this range are 13, 17, 19, 23, 29, and 31.
+
+- The sum of these prime numbers is $13 + 17 + 19 + 23 + 29 + 31 = 132$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** n = 10
+
+**Output:** 17
+
+**Explanation:**
+
+- The reverse of 10 is 1. Thus, the range is `[1, 10]`.
+
+- The prime numbers in this range are 2, 3, 5, and 7.
+
+- The sum of these prime numbers is $2 + 3 + 5 + 7 = 17$.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** n = 8
+
+**Output:** 0
+
+**Explanation:**
+
+- The reverse of 8 is 8. Thus, the range is `[8, 8]`.
+
+- There are no prime numbers in this range, so the sum is 0.
+
+</div>
+### Constraints
+
+- $1 \le n \le 1000$

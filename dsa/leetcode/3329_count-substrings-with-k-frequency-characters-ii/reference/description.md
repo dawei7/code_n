@@ -1,5 +1,47 @@
 ## Description
 
-Given a lowercase English string `s` and a positive integer `k`, consider every nonempty contiguous substring of `s`. A substring qualifies when at least one character occurs at least `k` times inside that substring. The character that reaches the threshold may differ between substrings, and no particular character is designated beforehand.
+Given a string `s` and an integer `k`, return the total number of substrings of `s` where **at least one** character appears **at least** `k` times.
+### Function Contract
 
-Return the total number of qualifying substrings. Substrings are distinguished by their start and end indices, so equal text at different positions contributes more than once. Once a substring qualifies, extending it to the right cannot make it invalid because existing character frequencies never decrease.
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** s = "abacb", k = 2
+
+**Output:** 4
+
+**Explanation:**
+
+The valid substrings are:
+
+- "`aba"` (character `'a'` appears 2 times).
+
+- `"abac"` (character `'a'` appears 2 times).
+
+- `"abacb"` (character `'a'` appears 2 times).
+
+- `"bacb"` (character `'b'` appears 2 times).
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** s = "abcde", k = 1
+
+**Output:** 15
+
+**Explanation:**
+
+All substrings are valid because every character appears at least once.
+
+</div>
+### Constraints
+
+- $1 \le \text{s.length} \le 3 * 10^{5}$
+
+- $1 \le k \le \text{s.length}$
+
+- `s` consists only of lowercase English letters.

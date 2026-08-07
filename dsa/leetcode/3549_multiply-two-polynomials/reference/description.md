@@ -1,5 +1,77 @@
 ## Description
 
-Two integer arrays `poly1` and `poly2` encode polynomials in ascending exponent order. An entry at index $i$ is the coefficient multiplying $x^i$, so index `0` stores the constant term and trailing entries represent the highest supplied powers. Zero coefficients are meaningful positions and must not be discarded.
+You are given two integer arrays `poly1` and `poly2`, where the element at index `i` in each array represents the coefficient of $x^i$ in a polynomial.
 
-Multiply the two represented polynomials. Return every coefficient of the product in the same ascending-exponent order. If the input lengths are $n$ and $m$, the returned array must have exactly $n+m-1$ entries, including a zero coefficient at the highest position when cancellation or a supplied trailing zero produces one.
+Let `A(x)` and `B(x)` be the polynomials represented by `poly1` and `poly2`, respectively.
+
+Return an integer array `result` of length $(\text{poly1.length} + \text{poly2.length} - 1)$ representing the coefficients of the product polynomial $R(x) = A(x) * B(x)$, where $\text{result}[i]$ denotes the coefficient of $x^i$ in `R(x)`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** poly1 = [3,2,5], poly2 = [1,4]
+
+**Output:** [3,14,13,20]
+
+**Explanation:**
+
+- $A(x) = 3 + 2x + 5x^2$ and $B(x) = 1 + 4x$
+
+- $R(x) = (3 + 2x + 5x^2) * (1 + 4x)$
+
+- $R(x) = 3 * 1 + (3 * 4 + 2 * 1)x + (2 * 4 + 5 * 1)x^{2} + (5 * 4)x^{3}$
+
+- $R(x) = 3 + 14x + 13x^2 + 20x^3$
+
+- Thus, result = `[3, 14, 13, 20]`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** poly1 = [1,0,-2], poly2 = [-1]
+
+**Output:** [-1,0,2]
+
+**Explanation:**
+
+- $A(x) = 1 + 0x - 2x^2$ and $B(x) = -1$
+
+- $R(x) = (1 + 0x - 2x^2) * (-1)$
+
+- $R(x) = -1 + 0x + 2x^2$
+
+- Thus, result = `[-1, 0, 2]`.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** poly1 = [1,5,-3], poly2 = [-4,2,0]
+
+**Output:** [-4,-18,22,-6,0]
+
+**Explanation:**
+
+- $A(x) = 1 + 5x - 3x^2$ and $B(x) = -4 + 2x + 0x^2$
+
+- $R(x) = (1 + 5x - 3x^2) * (-4 + 2x + 0x^2)$
+
+- $R(x) = 1 * -4 + (1 * 2 + 5 * -4)x + (5 * 2 + -3 * -4)x^{2} + (-3 * 2)x^{3} + 0x^4$
+
+- $R(x) = -4 -18x + 22x^2 -6x^3 + 0x^4$
+
+- Thus, result = `[-4, -18, 22, -6, 0]`.
+
+</div>
+### Constraints
+
+- $1 \le \text{poly1.length}, \text{poly2.length} \le 5 * 10^{4}$
+
+- $-10^{3} \le \text{poly1}[i], \text{poly2}[i] \le 10^{3}$
+
+- `poly1` and `poly2` contain at least one non-zero coefficient.

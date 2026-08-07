@@ -1,0 +1,235 @@
+[TOC]
+
+## Solution
+
+---
+### Approach 1: Stack
+
+Summarizing the given problem, we can say that we need to determine whether a tag is valid or not, by checking the following properties.
+
+1. The code should be wrapped in a valid closed tag.
+
+2. The $\text{TAG}_{NAME}$ should be valid.
+
+3. The $\text{TAG}_{CONTENT}$ should be valid.
+
+4. The **cdata** should be valid.
+
+5. All the tags should be closed. i.e. each start-tag should have a corresponding end-tag and vice-versa and the order of the tags should be correct as well.
+
+In order to check the validity of all these, firstly, we need to identify which parts of the given $code$ string act as which part from the above-mentioned categories. To understand how it's done, we'll go through the implementation and the reasoning behind it step by step.
+
+We iterate over the given $code$ string. Whenever a `<` is encountered(unless we are currently inside `<![CDATA[...]]>`), it indicates the beginning of either a $\text{TAG}_{NAME}$(start tag or end tag) or the beginning of cdata as per the conditions given in the problem statement.
+
+If the character immediately following this `<` is an `!`, the characters following this `<` can't be a part of a valid $\text{TAG}_{NAME}$, since only upper-case letters(in case of a start tag) or `/` followed by upper-case letters(in the case of an end tag). Thus, the choice now narrows down to only **cdata**. Thus, we need to check if the current bunch of characters following `<!`(including it) constitute a valid **cdata**. To do this, firstly we find out the first matching `]]>` following the current `<!` to mark the ending of **cdata**. If no such matching `]]>` exists, the $code$ string is considered as invalid. Apart from this, the `<!` should also be immediately followed by `CDATA[` for the **cdata** to be valid. The characters lying inside the  `<![CDATA[` and `]]>` do not have any constraints on them.
+
+If the character immediately following the `<` encountered isn't an `!`, this `<` can only mark the beginning of $\text{TAG}_{NAME}$. Now, since a valid start tag can't contain anything except upper-case letters if a `/` is found after `<`, the `</` pair indicates the beginning of an end tag. Now, when a `<` refers to the beginning of a $\text{TAG}_{NAME}$(either start-tag or end-tag), we find out the first closing `>` following the `<` to find out the substring(say $s$), that constitutes the $\text{TAG}_{NAME}$. This $s$ should satisfy all the criteria to constitute a valid $\text{TAG}_{NAME}$. Thus, for every such $s$, we check if it contains all upper-case letters and also check its length(It should be between 1 to 9). If any of the criteria isn't fulfilled, $s$ doesn't constitute a valid $\text{TAG}_{NAME}$. Hence, the $code$ string turns out to be invalid as well.
+
+Apart from checking the validity of the $\text{TAG}_{NAME}$, we also need to ensure that the tags always exist in pairs. i.e. for every start-tag, a corresponding end-tag should always exist. Further, we can note that in case of multiple $\text{TAG}_{NAME}$'s, the $\text{TAG}_{NAME}$ whose start-tag comes later than the other ones, should have its end-tag appearing before the end-tags of those other $\text{TAG}_{NAME}$'s. i.e. the tag that starts later should end first.
+
+From this, we get the intuition that we can make use of a $stack$ to check the existence of matching start and end-tags. Thus, whenever we find out a valid start-tag, as mentioned above, we push its $\text{TAG}_{NAME}$ string onto a $stack$. Now, whenever an end-tag is found, we compare its $\text{TAG}_{NAME}$ with the $\text{TAG}_{NAME}$ at the top of the $stack$ and remove this element from the $stack$. If the two don't match, this implies that either the current end-tag has no corresponding start-tag or there is a problem with the ordering of the tags. The two need to match for the tag-pair to be valid since there can't exist an end-tag without a corresponding start-tag and vice-versa. Thus, if a match isn't found, we can conclude that the given $code$ string is invalid.
+
+Now, after the complete $code$ string has been traversed, the $stack$ should be empty if all the start-tags have their corresponding end-tags as well. If the $stack$ isn't empty, this implies that some start-tag doesn't have the corresponding end-tag, violating the closed-tag's validity condition.
+
+Further, we also need to ensure that the given $code$ is completely enclosed within closed tags. For this, we need to ensure that the first **cdata** found is also inside the closed tags. Thus, when we find a possibility of the presence of **cdata**, we proceed further only if we've already found a start tag, indicated by a non-empty stack. Further, to ensure that no data lies after the last end-tag, we need to ensure that the $stack$ doesn't become empty before we reach the end of the given $code$ string since an empty $stack$ indicates that the last end-tag has been encountered.
+
+The following animation depicts the process.
+
+![Slide 1](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide1.PNG)
+
+![Slide 2](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide2.PNG)
+
+![Slide 3](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide3.PNG)
+
+![Slide 4](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide4.PNG)
+
+![Slide 5](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide5.PNG)
+
+![Slide 6](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide6.PNG)
+
+![Slide 7](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide7.PNG)
+
+![Slide 8](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide8.PNG)
+
+![Slide 9](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide9.PNG)
+
+![Slide 10](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide10.PNG)
+
+![Slide 11](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide11.PNG)
+
+![Slide 12](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide12.PNG)
+
+![Slide 13](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide13.PNG)
+
+![Slide 14](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide14.PNG)
+
+![Slide 15](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide15.PNG)
+
+![Slide 16](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide16.PNG)
+
+![Slide 17](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide17.PNG)
+
+![Slide 18](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide18.PNG)
+
+![Slide 19](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide19.PNG)
+
+![Slide 20](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide20.PNG)
+
+![Slide 21](images/slideshow_Tag_Validator_Stack_Tag_Validator_StackSlide21.PNG)
+
+```java
+public class Solution {
+    Stack < String > stack = new Stack < > ();
+    boolean contains_tag = false;
+    public boolean isValidTagName(String s, boolean ending) {
+        if (s.length() < 1 || s.length() > 9)
+            return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (!Character.isUpperCase(s.charAt(i)))
+                return false;
+        }
+        if (ending) {
+            if (!stack.isEmpty() && stack.peek().equals(s))
+                stack.pop();
+            else
+                return false;
+        } else {
+            contains_tag = true;
+            stack.push(s);
+        }
+        return true;
+    }
+    public boolean isValidCdata(String s) {
+        return s.indexOf("[CDATA[") == 0;
+    }
+    public boolean isValid(String code) {
+        if (code.charAt(0) != '<' || code.charAt(code.length() - 1) != '>')
+            return false;
+        for (int i = 0; i < code.length(); i++) {
+            boolean ending = false;
+            int closeindex;
+            if(stack.isEmpty() && contains_tag)
+                return false;
+            if (code.charAt(i) == '<') {
+                if (!stack.isEmpty() && code.charAt(i + 1) == '!') {
+                    closeindex = code.indexOf("]]>", i + 1);
+                    if (closeindex < 0 || !isValidCdata(code.substring(i + 2, closeindex)))
+                        return false;
+                } else {
+                    if (code.charAt(i + 1) == '/') {
+                        i++;
+                        ending = true;
+                    }
+                    closeindex = code.indexOf('>', i + 1);
+                    if (closeindex < 0 || !isValidTagName(code.substring(i + 1, closeindex), ending))
+                        return false;
+                }
+                i = closeindex;
+            }
+        }
+        return stack.isEmpty() && contains_tag;
+    }
+}
+```
+
+**Complexity Analysis**
+
+* Time complexity : $O(n)$. We traverse over the given $code$ string of length $n$.
+
+* Space complexity : $O(n)$. The stack can grow upto a size of $n/3$ in the worst case. e.g. In case of `<A><B><C><D>`, $n$=12 and number of tags = 12/3 = 4.
+<br>
+<br>
+
+---
+### Approach 2: Regex
+
+Instead of manually checking the given $code$ string for checking the validity of $\text{TAG}_{NAME}$, $\text{TAG}_{CONTENT}$ and **cdata**, we can make use of an inbuilt java functionality known as regular expressions.
+
+A regular expression is a special sequence of characters that helps you match or find other strings or sets of strings, using a specialized syntax held in a pattern. They can be used to search, edit, or manipulate text and data. The most common quantifiers used in regular expressions are listed below. A quantifier after a token (such as a character) or group specifies how often that preceding element is allowed to occur.
+
+`?`	The question mark indicates zero or one occurrence of the preceding element. For example, colou?r matches both "color" and "colour".
+
+`*`	The asterisk indicates zero or more occurrences of the preceding element. For example, ab*c matches "ac", "abc", "abbc", "abbbc", and so on.
+
+`+`	The plus sign indicates one or more occurrences of the preceding element. For example, ab+c matches "abc", "abbc", "abbbc", and so on, but not "ac".
+
+`{n}` The preceding item is matched exactly **n** times.
+
+`{min,}` The preceding item is matched **min** or more times.
+
+`{min,max}`	The preceding item is matched at least **min** times, but not more than **max** times.
+
+`|` A vertical bar separates alternatives. For example, gray|grey can match "gray" or "grey".
+
+`()` Parentheses are used to define the scope and precedence of the operators (among other uses). For example, gray|grey and gr(a|e)y are equivalent patterns that both describe the set of "gray" or "grey".
+
+`[...]`	Matches any single character in brackets.
+
+$[^...]$	Matches any single character not in brackets.
+
+Thus, by making use of regex, we can directly check the validity of the $code$ string directly(except the nesting of the inner tags) by using the regex expression below:
+
+$<([A-Z]{1,9})>([^<]*((<\/?[A-Z]{1,9}>)|(<!\[CDATA\[(.*?)]]>))?[^<]*)*<\/\1>$
+
+The image below shows the portion of the string that each part of the expression helps to match:
+
+![Regex](images/591_Tag_Validator.PNG)
+
+But, if we make use of back-referencing as mentioned above, the matching process takes a very large amount of CPU time. Thus, we use the regex only to check the validity of the $\text{TAG}_{CONTENT}$, $\text{TAG}_{NAME}$ and the **cdata**. We check the presence of the outermost closed tags by making use of a $stack$ as done in the last approach.
+
+The rest of the process remains the same as in the last approach, except that we need not manually check the validity of $\text{TAG}_{CONTENT}$, $\text{TAG}_{NAME}$, and the **cdata**, since it is already done by the regex expression. We only need to check the presence of inner closed tags.
+
+Check [this](http://regexr.com/) link for testing any regular expression on a sample text.
+
+```java
+import java.util.regex.*;
+public class Solution {
+    Stack < String > stack = new Stack < > ();
+    boolean contains_tag = false;
+    public boolean isValidTagName(String s, boolean ending) {
+        if (ending) {
+            if (!stack.isEmpty() && stack.peek().equals(s))
+                stack.pop();
+            else
+                return false;
+        } else {
+            contains_tag = true;
+            stack.push(s);
+        }
+        return true;
+    }
+    public boolean isValid(String code) {
+        String regex = "<[A-Z]{0,9}>([^<]*(<((\\/?[A-Z]{1,9}>)|(!\\[CDATA\\[(.*?)]]>)))?)*";
+        if (!Pattern.matches(regex, code))
+            return false;
+        for (int i = 0; i < code.length(); i++) {
+            boolean ending = false;
+            if (stack.isEmpty() && contains_tag)
+                return false;
+            if (code.charAt(i) == '<') {
+                if (code.charAt(i + 1) == '!') {
+                    i = code.indexOf("]]>", i + 1);
+                    continue;
+                }
+                if (code.charAt(i + 1) == '/') {
+                    i++;
+                    ending = true;
+                }
+                int closeindex = code.indexOf('>', i + 1);
+                if (closeindex < 0 || !isValidTagName(code.substring(i + 1, closeindex), ending))
+                    return false;
+                i = closeindex;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+```
+
+**Complexity Analysis**
+
+* Time complexity: Regular Expressions are/can be implemented in the form of finite-state machines. Thus, the time complexity is dependent on the internal representation. In the case of any suggestions, please comment below.
+
+* Space complexity: $O(n)$. The stack can grow up to a size of $n/3$ in the worst case. e.g. In case of `<A><B><C><D>`, $n$=12 and number of tags = 12/3 = 4.
+<br>
+<br>

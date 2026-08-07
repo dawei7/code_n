@@ -4,33 +4,56 @@ Under the grammar given below, strings can represent a set of lowercase words. L
 
 The grammar can best be understood through simple examples:
 
-<ul>
-	<li>Single letters represent a singleton set containing that word.
-	<ul>
-		<li>`R("a") = {"a"}`</li>
-		<li>`R("w") = {"w"}`</li>
-	</ul>
+- Single letters represent a singleton set containing that word.
+
+		<li>$R("a") = {"a"}$
+
+- $R("w") = {"w"}$
+
 	</li>
-	<li>When we take a comma-delimited list of two or more expressions, we take the union of possibilities.
-	<ul>
-		<li>`R("{a,b,c}") = {"a","b","c"}`</li>
-		<li>`R("{{a,b},{b,c}}") = {"a","b","c"}` (notice the final set only contains each word at most once)</li>
-	</ul>
+- When we take a comma-delimited list of two or more expressions, we take the union of possibilities.
+
+		<li>$R("{a,b,c}") = {"a","b","c"}$
+
+- $R("{{a,b},{b,c}}") = {"a","b","c"}$ (notice the final set only contains each word at most once)
+
 	</li>
-	<li>When we concatenate two expressions, we take the set of possible concatenations between two words where the first word comes from the first expression and the second word comes from the second expression.
-	<ul>
-		<li>`R("{a,b}{c,d}") = {"ac","ad","bc","bd"}`</li>
-		<li>`R("a{b,c}{d,e}f{g,h}") = {"abdfg", "abdfh", "abefg", "abefh", "acdfg", "acdfh", "acefg", "acefh"}`</li>
-	</ul>
+- When we concatenate two expressions, we take the set of possible concatenations between two words where the first word comes from the first expression and the second word comes from the second expression.
+
+		<li>$R("{a,b}{c,d}") = {"ac","ad","bc","bd"}$
+
+- $R("a{b,c}{d,e}f{g,h}") = {"abdfg", "abdfh", "abefg", "abefh", "acdfg", "acdfh", "acefg", "acefh"}$
+
 	</li>
-</ul>
 
 Formally, the three rules for our grammar:
 
-<ul>
-	<li>For every lowercase letter `x`, we have `R(x) = {x}`.</li>
-	<li>For expressions `e_1, e_2, ... , e_k` with `k >= 2`, we have `R({e_1, e_2, ...}) = R(e_1) ∪ R(e_2) ∪ ...`</li>
-	<li>For expressions `e_1` and `e_2`, we have `R(e_1 + e_2) = {a + b for (a, b) in R(e_1) × R(e_2)}`, where `+` denotes concatenation, and `×` denotes the cartesian product.</li>
-</ul>
+- For every lowercase letter `x`, we have $R(x) = {x}$.
+
+- For expressions $e_{1}, e_{2}, ... , e_{k}$ with $k \ge 2$, we have $R({e_{1}, e_{2}, ...}) = R(e_{1}) ∪ R(e_{2}) ∪ ...$
+
+- For expressions $e_{1}$ and $e_{2}$, we have $R(e_{1} + e_{2}) = {a + b for (a, b) in R(e_{1}) × R(e_{2})}$, where `+` denotes concatenation, and `×` denotes the cartesian product.
 
 Given an expression representing a set of words under the given grammar, return *the sorted list of words that the expression represents*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $expression = "{a,b}{c,{d,e}}"$
+- **Output:** `["ac","ad","ae","bc","bd","be"]`
+#### Example 2
+
+- **Input:** $expression = "{{a,z},a{b,c},{ab,z}}"$
+- **Output:** `["a","ab","ac","z"]`
+- **Explanation:** Each distinct word is written only once in the final answer.
+### Constraints
+
+- $1 \le \text{expression.length} \le 60$
+
+- $\text{expression}[i]$ consists of `'{'`, `'}'`, `','`or lowercase English letters.
+
+- The given `expression` represents a set of words based on the grammar given in the description.

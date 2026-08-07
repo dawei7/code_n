@@ -5,3 +5,58 @@ You are given two arrays, `nums` and `target`.
 In a single operation, you may increment any element of `nums` by 1.
 
 Return **the minimum number** of operations required so that each element in `target` has **at least** one multiple in `nums`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,2,3], target = [4]
+
+**Output:** 1
+
+**Explanation:**
+
+The minimum number of operations required to satisfy the condition is 1.
+
+- Increment 3 to 4 with just one operation, making 4 a multiple of itself.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [8,4], target = [10,5]
+
+**Output:** 2
+
+**Explanation:**
+
+The minimum number of operations required to satisfy the condition is 2.
+
+- Increment 8 to 10 with 2 operations, making 10 a multiple of both 5 and 10.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** nums = [7,9,10], target = [7]
+
+**Output:** 0
+
+**Explanation:**
+
+Target 7 already has a multiple in nums, so no additional operations are needed.
+
+</div>
+### Constraints
+
+- $1 \le \text{nums.length} \le 5 * 10^{4}$
+
+- $1 \le \text{target.length} \le 4$
+
+- $\text{target.length} \le \text{nums.length}$
+
+- $1 \le \text{nums}[i], \text{target}[i] \le 10^{4}$

@@ -1,5 +1,68 @@
 ## Description
 
-For an `event_type`, its average activity is the average `occurrences` among all businesses that have a row for that event. A business without that event does not participate in the event's average.
+Table: `Events`
 
-A business is active when more than one of its event types has an `occurrences` value strictly greater than the corresponding event's average activity. Find every active business and report its identifier. Equality with the average does not qualify, and the result rows may be returned in any order.
+```
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| business_id   | int     |
+| event_type    | varchar |
+| occurrences   | int     |
++---------------+---------+
+(business_id, event_type) is the primary key (combination of columns with unique values) of this table.
+Each row in the table logs the info that an event of some type occurred at some business for a number of times.
+```
+
+The **average activity** for a particular $\text{event}_{type}$ is the average `occurrences` across all companies that have this event.
+
+An **active business** is a business that has **more than one** $\text{event}_{type}$ such that their `occurrences` is **strictly greater** than the average activity for that event.
+
+Write a solution to find all **active businesses**.
+
+Return the result table in **any order**.
+
+The result format is in the following example.
+### Function Contract
+
+**Inputs**
+
+`Events(business_id, event_type, occurrences)` contains $R$ rows at the unique business-event grain. For each event type, compute its average only from rows recorded for that event type.
+
+**Return value**
+
+- Return exactly one column named `business_id`.
+- Include a business when it is strictly above the matching event-type average for at least two distinct event types.
+- Exclude equality and businesses that qualify for only one event type.
+- Result row order is unrestricted.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+Events table:
++-------------+------------+-------------+
+| business_id | event_type | occurrences |
++-------------+------------+-------------+
+| 1           | reviews    | 7           |
+| 3           | reviews    | 3           |
+| 1           | ads        | 11          |
+| 2           | ads        | 7           |
+| 3           | ads        | 6           |
+| 1           | page views | 3           |
+| 2           | page views | 12          |
++-------------+------------+-------------+
+**Output:**
++-------------+
+| business_id |
++-------------+
+| 1           |
++-------------+
+**Explanation:**
+The average activity for each event can be calculated as follows:
+- 'reviews': (7+3)/2 = 5
+- 'ads': (11+7+6)/3 = 8
+- 'page views': (3+12)/2 = 7.5
+The business with id=1 has 7 'reviews' events (more than 5) and 11 'ads' events (more than 8), so it is an active business.
+```

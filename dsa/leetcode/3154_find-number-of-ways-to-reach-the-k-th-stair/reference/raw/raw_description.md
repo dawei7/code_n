@@ -1,0 +1,88 @@
+## Description
+
+You are given a **non-negative** integer `k`. There exists a staircase with an infinite number of stairs, with the **lowest** stair numbered 0.
+
+Alice has an integer `jump`, with an initial value of 0. She starts on stair 1 and wants to reach stair `k` using **any** number of **operations**. If she is on stair `i`, in one **operation** she can:
+
+	- Go down to stair `i - 1`. This operation **cannot** be used consecutively or on stair 0.
+
+	- Go up to stair `i + 2^jump`. And then, `jump` becomes `jump + 1`.
+
+Return the *total* number of ways Alice can reach stair `k`.
+
+**Note** that it is possible that Alice reaches the stair `k`, and performs some operations to reach the stair `k` again.
+
+**Example 1:**
+
+<div class="example-block">
+**Input:** <span class="example-io">k = 0</span>
+
+**Output:** <span class="example-io">2</span>
+
+**Explanation:**
+
+The 2 possible ways of reaching stair 0 are:
+
+	- Alice starts at stair 1.
+
+		<li>Using an operation of the first type, she goes down 1 stair to reach stair 0.
+
+	</li>
+	- Alice starts at stair 1.
+
+		<li>Using an operation of the first type, she goes down 1 stair to reach stair 0.
+
+		- Using an operation of the second type, she goes up 2^0 stairs to reach stair 1.
+
+		- Using an operation of the first type, she goes down 1 stair to reach stair 0.
+
+	</li>
+
+</div>
+
+**Example 2:**
+
+<div class="example-block">
+**Input:** <span class="example-io">k = 1</span>
+
+**Output:** <span class="example-io">4</span>
+
+**Explanation:**
+
+The 4 possible ways of reaching stair 1 are:
+
+	- Alice starts at stair 1. Alice is at stair 1.
+
+	- Alice starts at stair 1.
+
+		<li>Using an operation of the first type, she goes down 1 stair to reach stair 0.
+
+		- Using an operation of the second type, she goes up 2^0 stairs to reach stair 1.
+
+	</li>
+	- Alice starts at stair 1.
+
+		<li>Using an operation of the second type, she goes up 2^0 stairs to reach stair 2.
+
+		- Using an operation of the first type, she goes down 1 stair to reach stair 1.
+
+	</li>
+	- Alice starts at stair 1.
+
+		<li>Using an operation of the first type, she goes down 1 stair to reach stair 0.
+
+		- Using an operation of the second type, she goes up 2^0 stairs to reach stair 1.
+
+		- Using an operation of the first type, she goes down 1 stair to reach stair 0.
+
+		- Using an operation of the second type, she goes up 2^1 stairs to reach stair 2.
+
+		- Using an operation of the first type, she goes down 1 stair to reach stair 1.
+
+	</li>
+
+</div>
+
+**Constraints:**
+
+	- `0 <= k <= 10^9`

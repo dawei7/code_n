@@ -1,3 +1,33 @@
 ## Description
 
 Given the `root` of a binary tree, *check whether it is a mirror of itself* (i.e., symmetric around its center).
+### Function Contract
+
+**Inputs**
+
+- `root`: The root of the binary tree.
+
+**Return value**
+
+Return `true` when the tree mirrors itself around its center; otherwise return `false`.
+
+### Examples
+#### Example 1
+
+![](images/symtree1.jpg)
+
+- **Input:** `root = [1,2,2,3,4,4,3]`
+- **Output:** `true`
+#### Example 2
+
+![](images/symtree2.jpg)
+
+- **Input:** `root = [1,2,2,null,3,null,3]`
+- **Output:** `false`
+### Constraints
+
+- The number of nodes in the tree is in the range `[1, 1000]`.
+
+- $-100 \le \text{Node.val} \le 100$
+
+**Follow up:** Could you solve it both recursively and iteratively?

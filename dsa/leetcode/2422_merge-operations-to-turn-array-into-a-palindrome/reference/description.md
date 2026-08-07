@@ -1,5 +1,43 @@
 ## Description
 
-You are given an array `nums` containing positive integers. In one operation, choose any two adjacent elements, remove both of them, and insert their sum at the same position. The array becomes one element shorter after every operation.
+You are given an array `nums` consisting of **positive** integers.
 
-Find the minimum number of operations needed to make the resulting array a palindrome. The chosen merges may occur anywhere, and an array with one element already satisfies the palindrome condition.
+You can perform the following operation on the array **any** number of times:
+
+- Choose any two **adjacent** elements and **replace** them with their **sum**.
+
+		<li>For example, if `nums = [1,<u>2,3</u>,1]`, you can apply one operation to make it `[1,5,1]`.
+
+	</li>
+
+Return *the **minimum** number of operations needed to turn the array into a **palindrome***.
+### Function Contract
+
+**Inputs**
+
+- `nums`: A list of $n$ positive integers ($1 \le n \le 10^5$, $1 \le \text{nums}[i] \le 10^6$).
+
+**Return value**
+
+Return an integer representing the minimum number of adjacent pair merges required to transform `nums` into a palindrome.
+
+### Examples
+#### Example 1
+
+- **Input:** `nums = [4,3,2,1,2,3,1]`
+- **Output:** `2`
+- **Explanation:** We can turn the array into a palindrome in 2 operations as follows:
+- Apply the operation on the fourth and fifth element of the array, nums becomes equal to [4,3,2,**<u>3</u>**,3,1].
+- Apply the operation on the fifth and sixth element of the array, nums becomes equal to [4,3,2,3,**<u>4</u>**].
+The array [4,3,2,3,4] is a palindrome.
+It can be shown that 2 is the minimum number of operations needed.
+#### Example 2
+
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `3`
+- **Explanation:** We do the operation 3 times in any position, we obtain the array [10] at the end which is a palindrome.
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $1 \le \text{nums}[i] \le 10^{6}$

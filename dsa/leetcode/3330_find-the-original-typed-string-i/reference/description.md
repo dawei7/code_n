@@ -7,3 +7,46 @@ Although Alice tried to focus on her typing, she is aware that she may still hav
 You are given a string `word`, which represents the **final** output displayed on Alice's screen.
 
 Return the total number of *possible* original strings that Alice *might* have intended to type.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** word = "abbcccc"
+
+**Output:** 5
+
+**Explanation:**
+
+The possible strings are: `"abbcccc"`, `"abbccc"`, `"abbcc"`, `"abbc"`, and `"abcccc"`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** word = "abcd"
+
+**Output:** 1
+
+**Explanation:**
+
+The only possible string is `"abcd"`.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** word = "aaaa"
+
+**Output:** 4
+
+</div>
+### Constraints
+
+- $1 \le \text{word.length} \le 100$
+
+- `word` consists only of lowercase English letters.

@@ -7,3 +7,26 @@ It is **guaranteed** that there is always possible to find a binary search tree 
 A **binary search tree** is a binary tree where for every node, any descendant of `Node.left` has a value **strictly less than** `Node.val`, and any descendant of `Node.right` has a value **strictly greater than** `Node.val`.
 
 A **preorder traversal** of a binary tree displays the value of the node first, then traverses `Node.left`, then traverses `Node.right`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/1266.png)
+
+- **Input:** $preorder = [8,5,1,7,10,12]$
+- **Output:** `[8,5,10,1,7,null,12]`
+#### Example 2
+
+- **Input:** $preorder = [1,3]$
+- **Output:** `[1,null,3]`
+### Constraints
+
+- $1 \le \text{preorder.length} \le 100$
+
+- $1 \le \text{preorder}[i] \le 1000$
+
+- All the values of `preorder` are **unique**.

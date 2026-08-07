@@ -6,7 +6,31 @@ Return *the **largest palindromic** integer (in the form of a string) that can b
 
 **Notes:**
 
-<ul>
-	<li>You do **not** need to use all the digits of `num`, but you must use **at least** one digit.</li>
-	<li>The digits can be reordered.</li>
-</ul>
+- You do **not** need to use all the digits of `num`, but you must use **at least** one digit.
+
+- The digits can be reordered.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $num = "444947137"$
+- **Output:** `"7449447"`
+- **Explanation:**
+Use the digits "4449477" from "<u>**44494**</u><u>**7**</u>13<u>**7**</u>" to form the palindromic integer "7449447".
+It can be shown that "7449447" is the largest palindromic integer that can be formed.
+#### Example 2
+
+- **Input:** $num = "00009"$
+- **Output:** `"9"`
+- **Explanation:**
+It can be shown that "9" is the largest palindromic integer that can be formed.
+Note that the integer returned should not contain leading zeroes.
+### Constraints
+
+- $1 \le \text{num.length} \le 10^{5}$
+
+- `num` consists of digits.

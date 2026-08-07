@@ -5,3 +5,29 @@ Given a string `s`. In one step you can insert any character at any index of the
 Return *the minimum number of steps* to make `s` palindrome.
 
 A **Palindrome String** is one that reads the same backward as well as forward.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** `s = "zzazz"`
+- **Output:** `0`
+- **Explanation:** The string "zzazz" is already palindrome we do not need any insertions.
+#### Example 2
+
+- **Input:** `s = "mbadm"`
+- **Output:** `2`
+- **Explanation:** String can be "mbdadbm" or "mdbabdm".
+#### Example 3
+
+- **Input:** `s = "leetcode"`
+- **Output:** `5`
+- **Explanation:** Inserting 5 characters the string becomes "leetcodocteel".
+### Constraints
+
+- $1 \le \text{s.length} \le 500$
+
+- `s` consists of lowercase English letters.

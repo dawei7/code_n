@@ -1,0 +1,242 @@
+[TOC]
+
+## Solution
+
+---
+
+### Overview
+
+Define the **range** of a subarray as the difference between the largest and smallest element in the subarray:
+
+![img](images/2104-ex.png)
+
+The task is to find the sum of all subarray ranges of the given array `nums`.
+
+---
+
+### Approach 1: Two Loops
+
+#### Intuition
+
+Let's start with a brute force solution, that is, to find and iterate over all subarrays of `nums`, and get the sum of their ranges.
+
+1) Set $answer = 0$.
+2) Iterate over every left index of subarrays `left`.
+3) With every fixed `left`, iterate over every right index `right` of subarrays.
+4) For each subarray `[left, right]`, iterate over it to find its minimum value `minVal` and maximum value `maxVal`.
+5) Increment `answer` by $maxVal - minVal$.
+
+This approach contains three nested loops which make the time complexity quite high, so it may not pass all test cases. But we can consider this as a prompt for better approaches!
+
+Note that for a fixed `left` index, two adjacent arrays only differ by one element. Suppose the previous array is `[left, right]` and the new array is `[left, right + 1]`, we can get the `minVal, maxVal` for the new subarray, by updating `minVal, maxVal` of the previous array using $nums[right + 1]$.
+
+- $minVal = min(minVal, nums[right + 1])$
+- $maxVal = max(maxVal, nums[right + 1])$
+
+Therefore, the average time for finding the range of one subarray is reduced to $O(1)$. Please refer to the following picture.
+
+![img](images/2104-s2.png)
+
+<br>
+
+#### Algorithm
+
+1) Set $answer = 0$.
+2) Iterate over every left index of subarrays `left`.
+3) With every fixed `left`, initialize $minVal = maxVal = \text{nums}[left]$, iterate over every right index `right` of subarrays.
+4) For each right index `right`, update `minVal` and `maxVal` by $\text{nums}[right]$. Then update $answer += maxVal - minVal$.
+
+#### Implementation
+
+```python
+class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
+        n = len(nums)
+        answer = 0
+
+        for left in range(n):
+            min_val, max_val = math.inf, -math.inf
+            for right in range(left, n):
+                max_val = max(max_val, nums[right])
+                min_val = min(min_val, nums[right])
+                answer += max_val - min_val
+
+        return answer
+```
+
+#### Complexity Analysis
+
+Let $n$ be the size of the input array `nums`.
+
+* Time complexity: $O(n^2)$
+
+- We have two nested iterations over `nums`.
+- In each step, we update `minVal, maxVal` and `answer`, it takes constant time.
+- To sum up, the overall time complexity is $O(n^2)$.
+
+* Space complexity: $O(1)$
+
+- We only need to update three variables `minVal`, `maxVal` and `answer`.
+
+<br/>
+
+---
+
+### Approach 2: Monotonic Stack
+
+#### Intuition
+
+From the definition of the sum of all subarray ranges:
+
+$\sum\limits_{k} range_{k} = \sum\limits_{k} (maxVal_{k} - minVal_{k}) = \sum\limits_{k} maxVal_{k} - \sum\limits_{k} minVal_{k}$
+
+> It implies that we can calculate these two partial sums separately.
+
+Let's think of this problem differently, instead of finding each subarray and getting its `minVal` and `maxVal`, we focus on each number. If we can find that, for each number $\text{nums}[i]$, the number of subarrays having $\text{nums}[i]$ as its **minimum value** is $\text{minTime}[i]$. Then the sum of `minVal` can be rewritten as:
+
+$\sum\limits_{k} minVal_{k} = \sum\limits_{i = 1}^{n} \text{minTime}[i]\ \cdot\ \text{nums}[i]$
+
+For example, we have found $minTime = [1, 4, 1]$ for the array `[X, Y, Z]` by some means (which will be explained in detail soon), then the sum of `minVal` is $1 * X + 4 * Y + 1 * Z$. We don't need to know exactly which array holds which value as the minimum, but only the number of times each number is taken as the minimum!
+
+> Now the task becomes finding $\text{minTime}[i]$ for each index `i`.
+
+Notice that $\text{minTime}[i]$ depends on:
+
+- The number of consecutive elements **larger than or equal to** $\text{nums}[i]$ on its left side. In other words, to find the index `left` where the value is **less than** $\text{nums}[i]$.
+
+- The number of consecutive elements **larger than or equal to** $\text{nums}[i]$ on its right side. In other words, to find the index `right` where the value is **strictly less than** $\text{nums}[i]$.
+
+Now we have (i - left) positions to put the starting position of the subarray, and (right - i) positions to put the ending position of the subarray. Therefore, we have (i - left) * (right - i) valid subarrays in total, so we can calculate $\text{minTime}[i]$ as follows:
+
+$\text{minTime}[i] = (right - i) \cdot (i - left)$
+$range_i = \text{minTime}[i] \cdot \text{nums}[i]$
+
+In the array shown below, $\text{nums}[3] = 4$ has $left = 0$ and $right = 6$, thus the number of subarrays having $\text{nums}[3]$ as the minimum is $\text{minTime}[3] = (6 - 3) * (3 - 0) = 9$, meaning that there are 9 subarays having $\text{nums}[3]$ as the minimum.
+
+![img](images/2104-stack1.png)
+
+To calculate $\text{minTime}[i]$ for every index, we can use a stack to maintain a monotonically increasing sequence during the iteration over `nums`:
+
+- What is the left index `left`? The element on $\text{nums}[i]$'s left in the stack.
+
+- What is the right index `right`? The element we are using to pop $\text{nums}[i]$ from the stack.
+
+In other words, $\text{minTime}[i]$ is not calculated when we add $\text{nums}[i]$ to the stack, but when we **pop** $\text{nums}[i]$ from the stack, because only then are the left and right indexes clear to us. Then we can calculate $\text{minTime}[i]$ using: $\text{minTime}[i] = (right - i) \cdot (i - left)$. As shown in the picture below, when we encounter $\text{nums}[6] = 1$, we should pop $\text{nums}[3] = 4$ from the stack, which is the time to calculate $\text{minTime}[3]$.
+
+![img](images/2104-stack2.png)
+
+> How to handle the edge cases?
+
+- If the stack is empty after we pop $\text{nums}[i]$ from it, we can't find the any index as the left boundary, so we set the left index as `-1`, which means that all the numbers on $\text{nums}[i]$'s left are within the range `[left, i]`.
+
+- In order to pop the remaining elements from the stack after the iteration over `nums` stops, we set the right boundaries of all the remaining elements as `n`, which means that all the numbers on $\text{nums}[i]$'s right are within the range `[i, right]`. That's why we iterate from $i = 0$ to $i = n$: to use $i = n$ as the right boundary index to pop all the remaining elements from the stack.
+
+> Will there by any duplicated calculation?
+
+One might think, what if there are identical values that are close or adjacent, do we double count any subarray? The answer is NO! Although several identical values `A` may be adjacent to each other, the subarrays of the previous `A` will never take the following `A` as their minimum. As shown in the picture below, subarrays using the first `4` as the minimum don't cross the second `4`, thus we won't double count any subarray!
+
+![img](images/2104-edge.png)
+
+> With each subproblem solved, we can move on to the results!
+
+Please take the following slides as an example of getting the total sum of `minVal`.
+
+![Slide 1](images/slideshow_s1_2104-1.png)
+
+![Slide 2](images/slideshow_s1_2104-2.png)
+
+![Slide 3](images/slideshow_s1_2104-3.png)
+
+![Slide 4](images/slideshow_s1_2104-4.png)
+
+![Slide 5](images/slideshow_s1_2104-5.png)
+
+![Slide 6](images/slideshow_s1_2104-6.png)
+
+![Slide 7](images/slideshow_s1_2104-7.png)
+
+![Slide 8](images/slideshow_s1_2104-8.png)
+
+![Slide 9](images/slideshow_s1_2104-9.png)
+
+![Slide 10](images/slideshow_s1_2104-10.png)
+
+![Slide 11](images/slideshow_s1_2104-11.png)
+
+![Slide 12](images/slideshow_s1_2104-12.png)
+
+![Slide 13](images/slideshow_s1_2104-13.png)
+
+![Slide 14](images/slideshow_s1_2104-14.png)
+
+![Slide 15](images/slideshow_s1_2104-15.png)
+
+![Slide 16](images/slideshow_s1_2104-16.png)
+
+![Slide 17](images/slideshow_s1_2104-17.png)
+
+![Slide 18](images/slideshow_s1_2104-18.png)
+
+Note that this iteration is to get the sum of `minVal`. We also need to find the sum of `maxVal` in a similar way, by reversing the comparison condition, then get the sum of ranges using the first equation in this chapter. The job is done!
+
+> If you are not much familiar with stack, we suggest you read our [Leetcode Explore Card](https://leetcode.com/explore/learn/card/queue-stack/230/usage-stack/1369/) and have some knowledge of it beforehand.
+
+<br>
+
+#### Algorithm
+
+1) Initialize an empty stack `stack`, get the size of `nums` as `n`.
+2) Iterate over every index from `0` to `n` (inclusive). For each index `right`, if either of the following two condition is met:
+- $index = n$
+- `stack` is not empty and $\text{nums}[mid] \ge \text{nums}[right]$, where `mid` is its top value:
+
+    go to step 3.
+    Otherwise, repeat step 2.
+3) Calculate the number of subarrays with $\text{nums}[mid]$ as its minimum value:
+- Pop `mid` from stack.
+- If `stack` is empty, set $left = -1$, otherwise, `left` equals the top element from `stack`.
+- Increment `answer` by $(right - mid) * (mid - left)$.
+- Repeat step 2.
+
+#### Implementation
+
+```python
+class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
+        n, answer = len(nums), 0
+        stack = []
+
+        # Find the sum of all the minimum.
+        for right in range(n + 1):
+            while stack and (right == n or nums[stack[-1]] >= nums[right]):
+                mid = stack.pop()
+                left = -1 if not stack else stack[-1]
+                answer -= nums[mid] * (mid - left) * (right - mid)
+            stack.append(right)
+
+        # Find the sum of all the maximum.
+        stack.clear()
+        for right in range(n + 1):
+            while stack and (right == n or nums[stack[-1]] <= nums[right]):
+                mid = stack.pop()
+                left = -1 if not stack else stack[-1]
+                answer += nums[mid] * (mid - left) * (right - mid)
+            stack.append(right)
+
+        return answer
+```
+
+#### Complexity Analysis
+
+Let $n$ be the size of the input array `nums`.
+
+* Time complexity: $O(n)$
+
+- To find the total sum of `minVal`, we only need one iteration over `nums`, and each number will be added to and popped from `stack` once, these also apply for finding `maxVal`.
+- Therefore the overall time complexity is $O(n)$.
+
+* Space complexity: $O(n)$
+
+- We use a (monotonic) stack to keep the increasing (decreasing) sequence, in the worst-case scenario, there may be $O(n)$ numbers in the stack, which takes $O(n)$ space.
+
+<br/>

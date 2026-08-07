@@ -8,26 +8,62 @@ Let `f(c)` denote the number of times the character `c` occurs in `s`.
 
 The **beauty** of a **k-subsequence** is the **sum** of `f(c)` for every character `c` in the k-subsequence.
 
-For example, consider `s = "abbbdd"` and `k = 2`:
+For example, consider `s = "abbbdd"` and $k = 2$:
 
-<ul>
-	<li>`f('a') = 1`, `f('b') = 3`, `f('d') = 2`</li>
-	<li>Some k-subsequences of `s` are:
-	<ul>
-		<li>`"<u>**ab**</u>bbdd"` -> `"ab"` having a beauty of `f('a') + f('b') = 4`</li>
-		<li>`"<u>**a**</u>bbb**<u>d</u>**d"` -> `"ad"` having a beauty of `f('a') + f('d') = 3`</li>
-		<li>`"a**<u>b</u>**bb<u>**d**</u>d"` -> `"bd"` having a beauty of `f('b') + f('d') = 5`</li>
-	</ul>
+- $f('a') = 1$, $f('b') = 3$, $f('d') = 2$
+
+- Some k-subsequences of `s` are:
+
+		<li>`"<u>**ab**</u>bbdd"` -> `"ab"` having a beauty of $f('a') + f('b') = 4$
+
+- `"<u>**a**</u>bbb**<u>d</u>**d"` -> `"ad"` having a beauty of $f('a') + f('d') = 3$
+
+- `"a**<u>b</u>**bb<u>**d**</u>d"` -> `"bd"` having a beauty of $f('b') + f('d') = 5$
+
 	</li>
-</ul>
 
-Return *an integer denoting the number of k-subsequences **whose **beauty** is the **maximum** among all **k-subsequences***. Since the answer may be too large, return it modulo `10^9 + 7`.
+Return *an integer denoting the number of k-subsequences **whose **beauty** is the **maximum** among all **k-subsequences***. Since the answer may be too large, return it modulo $10^{9} + 7$.
 
 A subsequence of a string is a new string formed from the original string by deleting some (possibly none) of the characters without disturbing the relative positions of the remaining characters.
 
 **Notes**
 
-<ul>
-	<li>`f(c)` is the number of times a character `c` occurs in `s`, not a k-subsequence.</li>
-	<li>Two k-subsequences are considered different if one is formed by an index that is not present in the other. So, two k-subsequences may form the same string.</li>
-</ul>
+- `f(c)` is the number of times a character `c` occurs in `s`, not a k-subsequence.
+
+- Two k-subsequences are considered different if one is formed by an index that is not present in the other. So, two k-subsequences may form the same string.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** `s = "bcca", k = 2`
+- **Output:** `4`
+- **Explanation:** From s we have f('a') = 1, f('b') = 1, and f('c') = 2.
+The k-subsequences of s are:
+**<u>bc</u>**ca having a beauty of f('b') + f('c') = 3
+**<u>b</u>**c<u>**c**</u>a having a beauty of f('b') + f('c') = 3
+**<u>b</u>**cc**<u>a</u>** having a beauty of f('b') + f('a') = 2
+b**<u>c</u>**c<u>**a**</u>** **having a beauty of f('c') + f('a') = 3
+bc**<u>ca</u>** having a beauty of f('c') + f('a') = 3
+There are 4 k-subsequences that have the maximum beauty, 3.
+Hence, the answer is 4.
+#### Example 2
+
+- **Input:** `s = "abbcd", k = 4`
+- **Output:** `2`
+- **Explanation:** From s we have f('a') = 1, f('b') = 2, f('c') = 1, and f('d') = 1.
+The k-subsequences of s are:
+<u>**ab**</u>b**<u>cd</u>** having a beauty of f('a') + f('b') + f('c') + f('d') = 5
+<u style="white-space: normal;">**a**</u>b<u>**bcd**</u> having a beauty of f('a') + f('b') + f('c') + f('d') = 5
+There are 2 k-subsequences that have the maximum beauty, 5.
+Hence, the answer is 2.
+### Constraints
+
+- $1 \le \text{s.length} \le 2 * 10^{5}$
+
+- $1 \le k \le \text{s.length}$
+
+- `s` consists only of lowercase English letters.

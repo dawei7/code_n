@@ -1,5 +1,60 @@
 ## Description
 
-A directed, weighted graph has `n` nodes numbered from `0` to `n - 1`. Every entry `[u, v, w]` in `edges` represents a directed edge from node `u` to node `v` whose positive weight is `w`. Multiple directed edges may connect the same ordered pair of nodes.
+You are given a positive integer `n` which is the number of nodes of a **0-indexed directed weighted** graph and a **0-indexed** **2D array** `edges` where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates that there is an edge from node $u_{i}$ to node $v_{i}$ with weight $w_{i}$.
 
-Starting at node `s`, find the minimum total weight of a directed path that ends at any node listed in `marked`. The marked nodes are distinct, and `s` itself is not marked. Return `-1` if no marked node is reachable from the source.
+You are also given a node `s` and a node array `marked`; your task is to find the **minimum** distance from `s` to **any** of the nodes in `marked`.
+
+Return *an integer denoting the minimum distance from *`s`* to any node in *`marked`* or *`-1`* if there are no paths from s to any of the marked nodes*.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 4, edges = [[0,1,1],[1,2,3],[2,3,2],[0,3,4]], s = 0, marked = [2,3]$
+- **Output:** `4`
+- **Explanation:** There is one path from node 0 (the green node) to node 2 (a red node), which is 0->1->2, and has a distance of 1 + 3 = 4.
+There are two paths from node 0 to node 3 (a red node), which are 0->1->2->3 and 0->3, the first one has a distance of 1 + 3 + 2 = 6 and the second one has a distance of 4.
+The minimum of them is 4.
+
+![](images/image_2023-06-13_16-34-38.png)
+#### Example 2
+
+- **Input:** $n = 5, edges = [[0,1,2],[0,2,4],[1,3,1],[2,3,3],[3,4,2]], s = 1, marked = [0,4]$
+- **Output:** `3`
+- **Explanation:** There are no paths from node 1 (the green node) to node 0 (a red node).
+There is one path from node 1 to node 4 (a red node), which is 1->3->4, and has a distance of 1 + 2 = 3.
+So the answer is 3.
+
+![](images/image_2023-06-13_16-35-13.png)
+#### Example 3
+
+- **Input:** $n = 4, edges = [[0,1,1],[1,2,3],[2,3,2]], s = 3, marked = [0,1]$
+- **Output:** `-1`
+- **Explanation:** There are no paths from node 3 (the green node) to any of the marked nodes (the red nodes), so the answer is -1.
+
+![](images/image_2023-06-13_16-35-47.png)
+### Constraints
+
+- $2 \le n \le 500$
+
+- $1 \le \text{edges.length} \le 10^{4}$
+
+- $\text{edges}[i].length = 3$
+
+- $0 \le \text{edges}[i][0], \text{edges}[i][1] \le n - 1$
+
+- $1 \le \text{edges}[i][2] \le 10^{6}$
+
+- $1 \le \text{marked.length} \le n - 1$
+
+- $0 \le s, \text{marked}[i] \le n - 1$
+
+- $s \neq \text{marked}[i]$
+
+- $\text{marked}[i] \neq \text{marked}[j]$ for every $i \neq j$
+
+- The graph might have **repeated edges**.
+
+- The graph is generated such that it has no **self-loops**.

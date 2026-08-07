@@ -4,16 +4,63 @@ You are given two integers `n` and `k`.
 
 A **positive** integer `x` is called **compatible** if it satisfies both of the following conditions:
 
-<ul>
-    <li>`abs(n - x) <= k`</li>
-    <li>`(n & x) == 0`</li>
-</ul>
+- $abs(n - x) \le k$
+
+- $(n \& x) = 0$
 
 Return the sum of all **compatible** integers `x`.
 
 **Note**:
 
-<ul>
-    <li>Here, `&` denotes the **bitwise AND** operator.</li>
-    <li>The **absolute** difference between integers `i` and `j` is defined as `abs(i - j)`.</li>
-</ul>
+- Here, `&` denotes the **bitwise AND** operator.
+
+- The **absolute** difference between integers `i` and `j` is defined as $abs(i - j)$.
+### Function Contract
+
+**Inputs**
+
+- `n`: The positive integer whose distance and set bits define compatibility.
+- `k`: The inclusive maximum allowed absolute difference from `n`.
+
+**Return value**
+
+Return the integer sum of all positive values `x` satisfying both `abs(n - x) <= k` and `(n & x) == 0`. Return `0` when no such value exists.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** n = 2, k = 3
+
+**Output:** 10
+
+**Explanation:**
+
+The compatible integers are:
+
+- $x = 1$, since $abs(2 - 1) = 1$ and $2 \& 1 = 0$.
+
+- $x = 4$, since $abs(2 - 4) = 2$ and $2 \& 4 = 0$.
+
+- $x = 5$, since $abs(2 - 5) = 3$ and $2 \& 5 = 0$.
+
+Thus, the answer is $1 + 4 + 5 = 10$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** n = 5, k = 1
+
+**Output:** 0
+
+**Explanation:**
+
+There are no compatible integers in the range `[4, 6]`. Thus, the answer is 0.
+
+</div>
+### Constraints
+
+- $1 \le n \le 100$
+
+- $1 \le k \le 100$

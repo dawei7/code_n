@@ -1,9 +1,45 @@
 ## Description
 
-Given `n`, consider every permutation of the 1-indexed array
-`[1, 2, ..., n]`. A permutation is **self-divisible** when the value placed at
-every 1-indexed position $i$ is coprime with $i$; equivalently,
-$\gcd(a_i,i)=1$ for all $1\le i\le n$.
+Given an integer `n`, return *the number of **permutations** of the **1-indexed** array* `nums = [1, 2, ..., n]`*, such that it's **self-divisible***.
 
-Return the number of permutations satisfying this condition. Each value from
-`1` through `n` must appear exactly once.
+A **1-indexed** array `a` of length `n` is **self-divisible** if for every $1 \le i \le n$, $gcd(a[i], i) = 1$.
+
+A **permutation** of an array is a rearrangement of the elements of that array, for example here are all of the permutations of the array `[1, 2, 3]`:
+
+- `[1, 2, 3]`
+
+- `[1, 3, 2]`
+
+- `[2, 1, 3]`
+
+- `[2, 3, 1]`
+
+- `[3, 1, 2]`
+
+- `[3, 2, 1]`
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 1$
+- **Output:** `1`
+- **Explanation:** The array [1] has only 1 permutation which is self-divisible.
+#### Example 2
+
+- **Input:** $n = 2$
+- **Output:** `1`
+- **Explanation:** The array [1,2] has 2 permutations and only one of them is self-divisible:
+nums = [1,2]: This is not self-divisible since gcd(nums[2], 2) != 1.
+nums = [2,1]: This is self-divisible since gcd(nums[1], 1) == 1 and gcd(nums[2], 2) == 1.
+#### Example 3
+
+- **Input:** $n = 3$
+- **Output:** `3`
+- **Explanation:** The array [1,2,3] has 3 self-divisble permutations: [1,3,2], [3,1,2], [2,3,1].
+It can be shown that the other 3 permutations are not self-divisible. Hence the answer is 3.
+### Constraints
+
+- $1 \le n \le 12$

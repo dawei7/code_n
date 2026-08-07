@@ -1,9 +1,42 @@
 ## Description
 
-Construct a binary tree from a string made of integers and parentheses. The complete string describes one tree. A
-node begins with its integer value and is followed by zero, one, or two parenthesized child-tree encodings that obey
-the same structure.
+You need to construct a binary tree from a string consisting of parenthesis and integers.
 
-When children exist, the left child is encoded before the right child. Empty parentheses reserve a missing left-child
-position when a right child must follow. Return the root of the reconstructed tree, or an empty tree for an empty
-input string.
+The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure.
+
+You always start to construct the **left** child node of the parent first if it exists.
+### Function Contract
+
+**Input**
+
+- `s`: a binary-tree encoding containing signed decimal integers and parentheses
+
+**Return value**
+
+- Return the root `TreeNode` represented by `s`, or `None` when `s` is empty.
+
+Each returned `TreeNode` has an integer `val` and optional `left` and `right` child references. Multi-digit and
+negative values form one node value; the first child expression belongs to `left` and the second to `right`.
+
+### Examples
+#### Example 1
+
+![](images/butree.jpg)
+
+- **Input:** `s = "4(2(3)(1))(6(5))"`
+- **Output:** `[4,2,6,3,1,5]`
+#### Example 2
+
+- **Input:** `s = "4(2(3)(1))(6(5)(7))"`
+- **Output:** `[4,2,6,3,1,5,7]`
+#### Example 3
+
+- **Input:** `s = "-4(2(3)(1))(6(5)(7))"`
+- **Output:** `[-4,2,6,3,1,5,7]`
+### Constraints
+
+- $0 \le \text{s.length} \le 3 * 10^{4}$
+
+- `s` consists of digits, `'('`, `')'`, and `'-'` only.
+
+- All numbers in the tree have value **at most** than $2^{30}$.

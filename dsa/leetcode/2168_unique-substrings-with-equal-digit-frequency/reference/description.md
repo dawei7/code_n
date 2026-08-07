@@ -1,10 +1,24 @@
 ## Description
 
-Given a string `s` made only of decimal digits, consider every nonempty
-substring. A substring qualifies when all digits that occur in it have the
-same frequency. Digits absent from that substring do not participate in the
-comparison.
+Given a digit string `s`, return *the number of **unique substrings **of *`s`* where every digit appears the same number of times.*
+### Function Contract
 
-Count how many different substring values qualify. Uniqueness is based on the
-digit sequence itself rather than its positions in `s`, so multiple
-occurrences of identical text contribute only once.
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+- **Input:** `s = "1212"`
+- **Output:** `5`
+- **Explanation:** The substrings that meet the requirements are "1", "2", "12", "21", "1212".
+Note that although the substring "12" appears twice, it is only counted once.
+#### Example 2
+
+- **Input:** `s = "12321"`
+- **Output:** `9`
+- **Explanation:** The substrings that meet the requirements are "1", "2", "3", "12", "23", "32", "21", "123", "321".
+### Constraints
+
+- $1 \le \text{s.length} \le 1000$
+
+- `s` consists of digits.

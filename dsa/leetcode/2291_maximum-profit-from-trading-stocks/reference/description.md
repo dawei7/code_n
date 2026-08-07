@@ -1,11 +1,42 @@
 ## Description
 
-Two 0-indexed arrays, `present` and `future`, describe the same collection of
-stocks. For stock $i$, `present[i]` is its price now and `future[i]` is its
-price one year from now. A stock may be bought at most once, and every purchase
-must be paid for from the fixed amount `budget` available today.
+You are given two **0-indexed** integer arrays of the same length `present` and `future` where $\text{present}[i]$ is the current price of the $$i^{\text{th}}$$stock and$\text{future}[i]$is the price of the$$i^{\text{th}}$$ stock a year in the future. You may buy each stock at most **once**. You are also given an integer `budget` representing the amount of money you currently have.
 
-Choose which stocks to buy without spending more than the budget. After one
-year, sell every chosen stock and return the maximum possible total profit,
-where a chosen stock contributes `future[i] - present[i]`. Buying nothing is
-allowed, so the result is never negative.
+Return *the maximum amount of profit you can make.*
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+- **Input:** $present = [5,4,6,2,3], future = [8,5,4,3,5], budget = 10$
+- **Output:** `6`
+- **Explanation:** One possible way to maximize your profit is to:
+Buy the 0^th, 3^rd, and 4^th stocks for a total of 5 + 2 + 3 = 10.
+Next year, sell all three stocks for a total of 8 + 3 + 5 = 16.
+The profit you made is 16 - 10 = 6.
+It can be shown that the maximum profit you can make is 6.
+#### Example 2
+
+- **Input:** $present = [2,2,5], future = [3,4,10], budget = 6$
+- **Output:** `5`
+- **Explanation:** The only possible way to maximize your profit is to:
+Buy the 2^nd stock, and make a profit of 10 - 5 = 5.
+It can be shown that the maximum profit you can make is 5.
+#### Example 3
+
+- **Input:** $present = [3,3,12], future = [0,3,15], budget = 10$
+- **Output:** `0`
+- **Explanation:** One possible way to maximize your profit is to:
+Buy the 1^st stock, and make a profit of 3 - 3 = 0.
+It can be shown that the maximum profit you can make is 0.
+### Constraints
+
+- $n = \text{present.length} = \text{future.length}$
+
+- $1 \le n \le 1000$
+
+- $0 \le \text{present}[i], \text{future}[i] \le 100$
+
+- $0 \le budget \le 1000$

@@ -1,13 +1,65 @@
 ## Description
 
-A straight street is represented by a number line. Each building
-`[start, end, height]` occupies the half-closed interval `[start, end)`,
-including its start but excluding its end.
+A perfectly straight street is represented by a number line. The street has building(s) on it and is represented by a 2D integer array `buildings`, where $\text{buildings}[i] = [\text{start}_{i}, \text{end}_{i}, \text{height}_{i}]$. This means that there is a building with $\text{height}_{i}$ in the **half-closed segment** $[\text{start}_{i}, \text{end}_{i})$.
 
-Describe every covered part of the street with the minimum number of
-non-overlapping segments. For each covered segment, report its left endpoint,
-right endpoint, and the integer-division average of the heights of all
-buildings present there. Adjacent covered regions with the same average must be
-merged, even if their active building sets differ. Uncovered gaps are omitted
-and prevent merging across them. The returned segments may appear in any
-order.
+You want to **describe** the heights of the buildings on the street with the **minimum** number of non-overlapping **segments**. The street can be represented by the 2D integer array `street` where $\text{street}[j] = [\text{left}_{j}, \text{right}_{j}, \text{average}_{j}]$ describes a **half-closed segment** $[\text{left}_{j}, \text{right}_{j})$ of the road where the **average** heights of the buildings in the** segment** is $\text{average}_{j}$.
+
+- For example, if $buildings = [[1,5,2],[3,10,4]],$ the street could be represented by $street = [[1,3,2],[3,5,3],[5,10,4]]$ because:
+
+		<li>From 1 to 3, there is only the first building with an average height of $2 / 1 = 2$.
+
+- From 3 to 5, both the first and the second building are there with an average height of $(2+4) / 2 = 3$.
+
+- From 5 to 10, there is only the second building with an average height of $4 / 1 = 4$.
+
+	</li>
+
+Given `buildings`, return *the 2D integer array *`street`* as described above (**excluding** any areas of the street where there are no buldings). You may return the array in **any order***.
+
+The **average** of `n` elements is the **sum** of the `n` elements divided (**integer division**) by `n`.
+
+A **half-closed segment** `[a, b)` is the section of the number line between points `a` and `b` **including** point `a` and **not including** point `b`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+![](images/image-20210921224001-2.png)
+
+- **Input:** $buildings = [[1,4,2],[3,9,4]]$
+- **Output:** `[[1,3,2],[3,4,3],[4,9,4]]`
+- **Explanation:**
+From 1 to 3, there is only the first building with an average height of 2 / 1 = 2.
+From 3 to 4, both the first and the second building are there with an average height of (2+4) / 2 = 3.
+From 4 to 9, there is only the second building with an average height of 4 / 1 = 4.
+#### Example 2
+
+- **Input:** $buildings = [[1,3,2],[2,5,3],[2,8,3]]$
+- **Output:** `[[1,3,2],[3,8,3]]`
+- **Explanation:**
+From 1 to 2, there is only the first building with an average height of 2 / 1 = 2.
+From 2 to 3, all three buildings are there with an average height of (2+3+3) / 3 = 2.
+From 3 to 5, both the second and the third building are there with an average height of (3+3) / 2 = 3.
+From 5 to 8, there is only the last building with an average height of 3 / 1 = 3.
+The average height from 1 to 3 is the same so we can group them into one segment.
+The average height from 3 to 8 is the same so we can group them into one segment.
+#### Example 3
+
+- **Input:** $buildings = [[1,2,1],[5,6,1]]$
+- **Output:** `[[1,2,1],[5,6,1]]`
+- **Explanation:**
+From 1 to 2, there is only the first building with an average height of 1 / 1 = 1.
+From 2 to 5, there are no buildings, so it is not included in the output.
+From 5 to 6, there is only the second building with an average height of 1 / 1 = 1.
+We cannot group the segments together because an empty space with no buildings seperates the segments.
+### Constraints
+
+- $1 \le \text{buildings.length} \le 10^{5}$
+
+- $\text{buildings}[i].length = 3$
+
+- $0 \le \text{start}_{i} < \text{end}_{i} \le 10^{8}$
+
+- $1 \le \text{height}_{i} \le 10^{5}$

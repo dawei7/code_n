@@ -1,7 +1,48 @@
 ## Description
 
-Evaluate a string that represents a ternary conditional expression. The expression may contain arbitrarily nested conditionals, and every conditional uses `T` or `F` as its condition.
+Given a string `expression` representing arbitrarily nested ternary expressions, evaluate the expression, and return *the result of it*.
 
-The expression is guaranteed to be valid. Its only characters are the digits `0` through `9`, `?`, `:`, `T`, and `F`; every numeric value is a single digit. As in the usual ternary operator, conditionals associate from right to left. For example, `F?1:T?4:5` means `F?1:(T?4:5)`.
+You can always assume that the given expression is valid and only contains digits, `'?'`, `':'`, `'T'`, and `'F'` where `'T'` is true and `'F'` is false. All the numbers in the expression are **one-digit** numbers (i.e., in the range `[0, 9]`).
 
-Return the value produced by evaluating the complete expression. The result is always one character: a digit, `T`, or `F`.
+The conditional expressions group right-to-left (as usual in most languages), and the result of the expression will always evaluate to either a digit, `'T'` or `'F'`.
+### Function Contract
+
+`solve(expression: str) -> str`
+
+### Inputs
+
+- `expression`: A valid, right-associative ternary expression whose conditions are `T` or `F` and whose terminal values are single digits, `T`, or `F`.
+
+Let $n$ be the number of characters in `expression`.
+
+### Output
+
+Return the single-character terminal selected by evaluating `expression`.
+
+### Examples
+#### Example 1
+
+- **Input:** $expression = "T?2:3"$
+- **Output:** `"2"`
+- **Explanation:** If true, then result is 2; otherwise result is 3.
+#### Example 2
+
+- **Input:** $expression = "F?1:T?4:5"$
+- **Output:** `"4"`
+- **Explanation:** The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:
+"(F ? 1 : (T ? 4 : 5))" --> "(F ? 1 : 4)" --> "4"
+or "(F ? 1 : (T ? 4 : 5))" --> "(T ? 4 : 5)" --> "4"
+#### Example 3
+
+- **Input:** $expression = "T?T?F:5:3"$
+- **Output:** `"F"`
+- **Explanation:** The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:
+"(T ? (T ? F : 5) : 3)" --> "(T ? F : 3)" --> "F"
+"(T ? (T ? F : 5) : 3)" --> "(T ? F : 5)" --> "F"
+### Constraints
+
+- $5 \le \text{expression.length} \le 10^{4}$
+
+- `expression` consists of digits, `'T'`, `'F'`, `'?'`, and `':'`.
+
+- It is **guaranteed** that `expression` is a valid ternary expression and that each number is a **one-digit number**.

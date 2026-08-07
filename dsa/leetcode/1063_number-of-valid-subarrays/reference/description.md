@@ -1,5 +1,38 @@
 ## Description
 
-Given an integer array `nums`, call a non-empty **subarray** valid when its leftmost element is not larger than any other element inside that subarray. A subarray is contiguous. Equality is allowed, and two equal value sequences at different index boundaries are separate subarrays for counting purposes.
+Given an integer array `nums`, return *the number of non-empty **subarrays** with the leftmost element of the subarray not larger than other elements in the subarray*.
 
-Return the total number of valid subarrays. Every single-element subarray is valid because it contains no later element smaller than its first value. For a fixed starting position, extending the right boundary remains valid until the first strictly smaller value is included; every extension reaching that value or passing it is invalid.
+A **subarray** is a **contiguous** part of an array.
+### Function Contract
+
+**Inputs**
+
+- `nums`: a non-empty integer array.
+
+Let $N = \lvert\texttt{nums}\rvert$. Each pair of inclusive left and right boundaries defines one non-empty contiguous subarray. It is valid exactly when its first value is less than or equal to every value between those boundaries.
+
+**Return value**
+
+- The total number of valid subarrays.
+
+### Examples
+#### Example 1
+
+- **Input:** `nums = [1,4,2,5,3]`
+- **Output:** `11`
+- **Explanation:** There are 11 valid subarrays: [1],[4],[2],[5],[3],[1,4],[2,5],[1,4,2],[2,5,3],[1,4,2,5],[1,4,2,5,3].
+#### Example 2
+
+- **Input:** `nums = [3,2,1]`
+- **Output:** `3`
+- **Explanation:** The 3 valid subarrays are: [3],[2],[1].
+#### Example 3
+
+- **Input:** `nums = [2,2,2]`
+- **Output:** `6`
+- **Explanation:** There are 6 valid subarrays: [2],[2],[2],[2,2],[2,2],[2,2,2].
+### Constraints
+
+- $1 \le \text{nums.length} \le 5 * 10^{4}$
+
+- $0 \le \text{nums}[i] \le 10^{5}$

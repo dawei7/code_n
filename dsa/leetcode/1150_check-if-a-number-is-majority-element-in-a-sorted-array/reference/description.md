@@ -1,5 +1,36 @@
 ## Description
 
-Given an integer array `nums` sorted in non-decreasing order and an integer `target`, decide whether `target` is a majority element of the array.
+Given an integer array `nums` sorted in non-decreasing order and an integer `target`, return `true` *if* `target` *is a **majority** element, or *`false`* otherwise*.
 
-A majority element appears more than `nums.length / 2` times. The comparison is strict, so a target occurring exactly half as many times as the array length is not a majority. Return `true` when `target` satisfies this definition and `false` otherwise.
+A **majority** element in an array `nums` is an element that appears more than $\text{nums.length} / 2$ times in the array.
+### Function Contract
+
+**Inputs**
+
+- `nums`: an integer array of length $n$, sorted in non-decreasing order.
+- `target`: the integer value to test.
+
+**Return value**
+
+- `true` if the number of occurrences of `target` is strictly greater than $n/2$; otherwise `false`.
+
+### Examples
+#### Example 1
+
+- **Input:** `nums = [2,4,5,5,5,5,5,6,6], target = 5`
+- **Output:** `true`
+- **Explanation:** The value 5 appears 5 times and the length of the array is 9.
+Thus, 5 is a majority element because 5 > 9/2 is true.
+#### Example 2
+
+- **Input:** `nums = [10,100,101,101], target = 101`
+- **Output:** `false`
+- **Explanation:** The value 101 appears 2 times and the length of the array is 4.
+Thus, 101 is not a majority element because 2 > 4/2 is false.
+### Constraints
+
+- $1 \le \text{nums.length} \le 1000$
+
+- $1 \le \text{nums}[i], target \le 10^{9}$
+
+- `nums` is sorted in non-decreasing order.

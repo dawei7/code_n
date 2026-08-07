@@ -1,5 +1,75 @@
 ## Description
 
-The `Products` table contains one row per product, identified by `product_id`, together with its `name`. Find every product whose name contains a run of exactly three consecutive digit characters.
+Table: `Products`
 
-The three digits must form a complete run: neither adjacent character, when present, may also be a digit. A name can contain more than one qualifying run, but each returned product appears only once. Return `product_id` and `name`, ordered by `product_id` in ascending order.
+```
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| product_id  | int     |
+| name        | varchar |
++-------------+---------+
+product_id is the unique key for this table.
+Each row of this table contains the ID and name of a product.
+```
+
+Write a solution to find all **products** whose names contain a **sequence of exactly three consecutive digits in a row**.
+
+Return *the result table ordered by* $\text{product}_{id}$ *in **ascending** order.*
+
+The result format is in the following example.
+
+**Note** that the name may contain multiple such sequences, but each should have length three.
+
+**Example:**
+
+<div class="example-block">
+**Input:**
+
+products table:
+
+```
++-------------+--------------------+
+| product_id  | name               |
++-------------+--------------------+
+| 1           | ABC123XYZ          |
+| 2           | A12B34C            |
+| 3           | Product56789       |
+| 4           | NoDigitsHere       |
+| 5           | 789Product         |
+| 6           | Item003Description |
+| 7           | Product12X34       |
++-------------+--------------------+
+```
+
+**Output:**
+
+```
++-------------+--------------------+
+| product_id  | name               |
++-------------+--------------------+
+| 1           | ABC123XYZ          |
+| 5           | 789Product         |
+| 6           | Item003Description |
++-------------+--------------------+
+```
+
+**Explanation:**
+
+- Product 1: ABC123XYZ contains the digits 123.
+
+- Product 5: 789Product contains the digits 789.
+
+- Product 6: Item003Description contains 003, which is exactly three digits.
+
+**Note:**
+
+- Results are ordered by $\text{product}_{id}$ in ascending order.
+
+- Only products with exactly three consecutive digits in their names are included in the result.
+
+</div>
+
+### Function Contract
+
+- Refer to method signature.

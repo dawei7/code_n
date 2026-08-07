@@ -1,5 +1,107 @@
 ## Description
 
-Design a `StatisticsTracker` that begins empty and receives positive integers over time. An update may append a number or remove the earliest number that is still present, so removals follow insertion order. At any valid point, the tracker must answer the floored arithmetic mean, the median, and the mode of its current contents.
+Design a data structure that keeps track of the values in it and answers some queries regarding their mean, median, and mode.
 
-For a sorted collection of odd size, the median is its middle value. For an even size, use the larger of the two central values. The mode is the most frequent value; if several values share the greatest frequency, return the smallest. Removal and every statistical query are guaranteed to occur only while at least one number is present.
+Implement the `StatisticsTracker` class.
+
+- `StatisticsTracker()`: Initialize the `StatisticsTracker` object with an empty array.
+
+- `void addNumber(int number)`: Add `number` to the data structure.
+
+- `void removeFirstAddedNumber()`: Remove the earliest added number from the data structure.
+
+- `int getMean()`: Return the floored **mean** of the numbers in the data structure.
+
+- `int getMedian()`: Return the **median** of the numbers in the data structure.
+
+- `int getMode()`: Return the **mode** of the numbers in the data structure. If there are multiple modes, return the smallest one.
+
+**Note**:
+
+- The **mean** of an array is the sum of all the values divided by the number of values in the array.
+
+- The **median** of an array is the middle element of the array when it is sorted in non-decreasing order. If there are two choices for a median, the larger of the two values is taken.
+
+- The **mode** of an array is the element that appears most often in the array.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:**
+
+["StatisticsTracker", "addNumber", "addNumber", "addNumber", "addNumber", "getMean", "getMedian", "getMode", "removeFirstAddedNumber", "getMode"]
+
+[[], [4], [4], [2], [3], [], [], [], [], []]
+
+**Output:**
+
+[null, null, null, null, null, 3, 4, 4, null, 2]
+
+**Explanation**
+
+StatisticsTracker statisticsTracker = new StatisticsTracker();
+
+statisticsTracker.addNumber(4); // The data structure now contains [4]
+
+statisticsTracker.addNumber(4); // The data structure now contains [4, 4]
+
+statisticsTracker.addNumber(2); // The data structure now contains [4, 4, 2]
+
+statisticsTracker.addNumber(3); // The data structure now contains [4, 4, 2, 3]
+
+statisticsTracker.getMean(); // return 3
+
+statisticsTracker.getMedian(); // return 4
+
+statisticsTracker.getMode(); // return 4
+
+statisticsTracker.removeFirstAddedNumber(); // The data structure now contains [4, 2, 3]
+
+statisticsTracker.getMode(); // return 2</div>
+#### Example 2
+
+<div class="example-block">
+**Input:**
+
+["StatisticsTracker", "addNumber", "addNumber", "getMean", "removeFirstAddedNumber", "addNumber", "addNumber", "removeFirstAddedNumber", "getMedian", "addNumber", "getMode"]
+
+[[], [9], [5], [], [], [5], [6], [], [], [8], []]
+
+**Output:**
+
+[null, null, null, 7, null, null, null, null, 6, null, 5]
+
+**Explanation**
+
+StatisticsTracker statisticsTracker = new StatisticsTracker();
+
+statisticsTracker.addNumber(9); // The data structure now contains [9]
+
+statisticsTracker.addNumber(5); // The data structure now contains [9, 5]
+
+statisticsTracker.getMean(); // return 7
+
+statisticsTracker.removeFirstAddedNumber(); // The data structure now contains [5]
+
+statisticsTracker.addNumber(5); // The data structure now contains [5, 5]
+
+statisticsTracker.addNumber(6); // The data structure now contains [5, 5, 6]
+
+statisticsTracker.removeFirstAddedNumber(); // The data structure now contains [5, 6]
+
+statisticsTracker.getMedian(); // return 6
+
+statisticsTracker.addNumber(8); // The data structure now contains [5, 6, 8]
+
+statisticsTracker.getMode(); // return 5</div>
+### Constraints
+
+- $1 \le number \le 10^{9}$
+
+- At most, $10^{5}$ calls will be made to `addNumber`, `removeFirstAddedNumber`, `getMean`, `getMedian`, and `getMode` in total.
+
+- `removeFirstAddedNumber`, `getMean`, `getMedian`, and `getMode` will be called only if there is at least one element in the data structure.

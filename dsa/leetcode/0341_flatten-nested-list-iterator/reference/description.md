@@ -4,22 +4,46 @@ You are given a nested list of integers `nestedList`. Each element is either an 
 
 Implement the `NestedIterator` class:
 
-<ul>
-	<li>`NestedIterator(List<NestedInteger> nestedList)` Initializes the iterator with the nested list `nestedList`.</li>
-	<li>`int next()` Returns the next integer in the nested list.</li>
-	<li>`boolean hasNext()` Returns `true` if there are still some integers in the nested list and `false` otherwise.</li>
-</ul>
+- `NestedIterator(List<NestedInteger> nestedList)` Initializes the iterator with the nested list `nestedList`.
+
+- `int next()` Returns the next integer in the nested list.
+
+- `boolean hasNext()` Returns `true` if there are still some integers in the nested list and `false` otherwise.
 
 Your code will be tested with the following pseudocode:
-
-```
 
 initialize iterator with nestedList
 res = []
 while iterator.hasNext()
-    append iterator.next() to the end of res
+append iterator.next() to the end of res
 return res
-
 ```
-
 If `res` matches the expected flattened list, then your code will be judged as correct.
+### Function Contract
+
+**Inputs**
+
+- `nestedList`: A list of `NestedInteger` objects. Each object either stores one integer or a nested list of more `NestedInteger` objects.
+
+JSON cases use ordinary nested arrays and integers. The runner reconstructs the `NestedInteger` interface objects before constructing `NestedIterator(nestedList)`.
+
+**Return value**
+
+`NestedIterator.next()` returns the next integer, while `hasNext()` reports whether one remains. The app's `solve` dispatcher exhausts that same iterator so validated cases can display the complete sequence.
+
+### Examples
+#### Example 1
+```
+- **Input:** $nestedList = [[1,1],2,[1,1]]$
+- **Output:** `[1,1,2,1,1]`
+- **Explanation:** By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].
+#### Example 2
+
+- **Input:** $nestedList = [1,[4,[6]]]$
+- **Output:** `[1,4,6]`
+- **Explanation:** By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
+### Constraints
+
+- $1 \le \text{nestedList.length} \le 500$
+
+- The values of the integers in the nested list is in the range $[-10^{6}, 10^{6}]$.

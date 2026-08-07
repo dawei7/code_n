@@ -1,7 +1,73 @@
 ## Description
 
-The `Posts` table records when users publish posts. Identify users whose February 2024 activity contains a burst: within some period of seven consecutive calendar days, the user's post count is at least twice that user's average weekly post count across the month.
+Table: `Posts`
 
-Only posts dated from February 1 through February 28, 2024 are part of the calculation. For the average, treat those 28 days as exactly four weeks. For each qualifying user, report the largest seven-day post count found anywhere in that interval together with the monthly total divided by four.
+```
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| post_id     | int     |
+| user_id     | int     |
+| post_date   | date    |
++-------------+---------+
+post_id is the primary key (column with unique values) for this table.
+Each row of this table contains post_id, user_id, and post_date.
+```
 
-Return the result in ascending order of `user_id`.
+Write a solution to find users who demonstrate **bursty behavior** in their posting patterns during February `2024`. **Bursty behavior** is defined as **any** period of **7** **consecutive** days where a user's posting frequency is **at least twice** to their **average** weekly posting frequency for February `2024`.
+
+**Note:** Only include the dates from February `1` to February `28` in your analysis, which means you should count February as having exactly `4` weeks.
+
+Return *the result table orderd by *$\text{user}_{id}$* in ***ascending*** order.*
+
+The result format is in the following example.
+
+**Example:**
+
+<div class="example-block">
+**Input:**
+
+Posts table:
+
+```
++---------+---------+------------+
+| post_id | user_id | post_date  |
++---------+---------+------------+
+| 1       | 1       | 2024-02-27 |
+| 2       | 5       | 2024-02-06 |
+| 3       | 3       | 2024-02-25 |
+| 4       | 3       | 2024-02-14 |
+| 5       | 3       | 2024-02-06 |
+| 6       | 2       | 2024-02-25 |
++---------+---------+------------+
+```
+
+**Output:**
+
+```
++---------+----------------+------------------+
+| user_id | max_7day_posts | avg_weekly_posts |
++---------+----------------+------------------+
+| 1       | 1              | 0.2500           |
+| 2       | 1              | 0.2500           |
+| 5       | 1              | 0.2500           |
++---------+----------------+------------------+
+```
+
+**Explanation:**
+
+- **User 1:** Made only 1 post in February, resulting in an average of 0.25 posts per week and a max of 1 post in any 7-day period.
+
+- **User 2:** Also made just 1 post, with the same average and max 7-day posting frequency as User 1.
+
+- **User 5:** Like Users 1 and 2, User 5 made only 1 post throughout February, leading to the same average and max 7-day posting metrics.
+
+- **User 3:** Although User 3 made more posts than the others (3 posts), they did not reach twice the average weekly posts in their consecutive 7-day window, so they are not listed in the output.
+
+**Note:** Output table is ordered by user_id in ascending order.
+
+</div>
+
+### Function Contract
+
+- Refer to method signature.

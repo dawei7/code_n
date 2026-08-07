@@ -1,5 +1,124 @@
 ## Description
 
-The `Teams` table assigns every match participant to a team. The `Passes` table records each attempted pass through its sender, receiver, and `time_stamp`. A pass is successful for the sender's team when both players belong to that same team; receiving the ball on another team is an interception.
+Table: `Teams`
 
-For each team, consider only passes sent by that team's players and place them in chronological order. Successful passes extend the current streak, while an interception ends it. Passes sent by another team do not interrupt this team's sequence. Return the greatest positive streak attained by every team that completes at least one successful pass, omitting teams whose outgoing passes are all intercepted, and order the rows by `team_name` in ascending order.
+```
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| player_id   | int     |
+| team_name   | varchar |
++-------------+---------+
+player_id is the unique key for this table.
+Each row contains the unique identifier for player and the name of one of the teams participating in that match.
+```
+
+Table: `Passes`
+
+```
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| pass_from   | int     |
+| time_stamp  | varchar |
+| pass_to     | int     |
++-------------+---------+
+(pass_from, time_stamp) is the unique key for this table.
+pass_from is a foreign key to player_id from Teams table.
+Each row represents a pass made during a match, time_stamp represents the time in minutes (00:00-90:00) when the pass was made,
+pass_to is the player_id of the player receiving the pass.
+```
+
+Write a solution to find the **longest successful pass streak** for **each team** during the match. The rules are as follows:
+
+- A successful pass streak is defined as consecutive passes where:
+
+		<li>Both the $\text{pass}_{from}$ and $\text{pass}_{to}$ players belong to the same team
+
+	</li>
+- A streak breaks when either:
+
+		<li>The pass is intercepted (received by a player from the opposing team)
+
+	</li>
+
+Return *the result table ordered by* $\text{team}_{name}$ *in **ascending** order*.
+
+The result format is in the following example.
+
+**Example:**
+
+<div class="example-block">
+**Input:**
+
+Teams table:
+
+```
++-----------+-----------+
+| player_id | team_name |
++-----------+-----------+
+| 1         | Arsenal   |
+| 2         | Arsenal   |
+| 3         | Arsenal   |
+| 4         | Arsenal   |
+| 5         | Chelsea   |
+| 6         | Chelsea   |
+| 7         | Chelsea   |
+| 8         | Chelsea   |
++-----------+-----------+
+```
+
+Passes table:
+
+```
++-----------+------------+---------+
+| pass_from | time_stamp | pass_to |
++-----------+------------+---------+
+| 1         | 00:05      | 2       |
+| 2         | 00:07      | 3       |
+| 3         | 00:08      | 4       |
+| 4         | 00:10      | 5       |
+| 6         | 00:15      | 7       |
+| 7         | 00:17      | 8       |
+| 8         | 00:20      | 6       |
+| 6         | 00:22      | 5       |
+| 1         | 00:25      | 2       |
+| 2         | 00:27      | 3       |
++-----------+------------+---------+
+```
+
+**Output:**
+
+```
++-----------+----------------+
+| team_name | longest_streak |
++-----------+----------------+
+| Arsenal   | 3              |
+| Chelsea   | 4              |
++-----------+----------------+
+```
+
+**Explanation:**
+
+- **Arsenal**'s streaks:
+
+		<li>First streak: 3 passes (1→2→3→4) ended when player 4 passed to Chelsea's player 5
+
+- Second streak: 2 passes (1→2→3)
+
+- Longest streak = 3
+
+	</li>
+- **Chelsea**'s streaks:
+
+		<li>First streak: 3 passes (6→7→8→6→5)
+
+- Longest streak = 4
+
+	</li>
+
+</div>
+
+### Function Contract
+
+- Refer to method signature.

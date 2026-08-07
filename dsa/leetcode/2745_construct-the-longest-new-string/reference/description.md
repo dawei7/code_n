@@ -7,3 +7,24 @@ You have `x` strings equal to `"AA"`, `y` strings equal to `"BB"`, and `z` strin
 Return *the maximum possible length of the new string*.
 
 A **substring** is a contiguous **non-empty** sequence of characters within a string.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $x = 2, y = 5, z = 1$
+- **Output:** `12`
+- **Explanation:** We can concatenate the strings "BB", "AA", "BB", "AA", "BB", and "AB" in that order. Then, our new string is "BBAABBAABBAB".
+That string has length 12, and we can show that it is impossible to construct a string of longer length.
+#### Example 2
+
+- **Input:** $x = 3, y = 2, z = 2$
+- **Output:** `14`
+- **Explanation:** We can concatenate the strings "AB", "AB", "AA", "BB", "AA", "BB", and "AA" in that order. Then, our new string is "ABABAABBAABBAA".
+That string has length 14, and we can show that it is impossible to construct a string of longer length.
+### Constraints
+
+- $1 \le x, y, z \le 50$

@@ -1,5 +1,44 @@
 ## Description
 
-Every node in a binary tree has `left`, `right`, and `parent` pointers. Given the original `root` and an existing leaf node, restructure the tree so that `leaf` becomes the new root while preserving every node and every subtree not on the leaf-to-root path.
+Given the `root` of a binary tree and a `leaf` node, reroot the tree so that the `leaf` is the new root.
 
-For each path node `cur` other than the old root, move an existing left child to `cur.right`, make `cur`'s former parent its new left child, and clear the former parent's link back to `cur`. The contract guarantees each such `cur` has at most one child when processed. All child and `parent` pointers must agree in the returned tree.
+You can reroot the tree with the following steps for each node `cur` on the path **starting from the **`leaf` up to the `root`​​​ **excluding the root**:
+
+- If `cur` has a left child, then that child becomes `cur`'s right child.
+
+- `cur`'s original parent becomes `cur`'s left child. Note that in this process the original parent's pointer to `cur` becomes `null`, making it have at most one child.
+
+Return *the new root **of the rerooted tree.*
+
+**Note:** Ensure that your solution sets the `Node.parent` pointers correctly after rerooting or you will receive "Wrong Answer".
+### Function Contract
+
+**Inputs**
+
+- `root`: The root `Node` of a binary tree containing between 2 and 100 uniquely valued nodes.
+- `leaf`: A leaf `Node` within the tree rooted at `root`.
+
+**Return value**
+
+Return the supplied `leaf` node as the new root of the rerooted tree with `leaf.parent` set to `null`.
+
+### Examples
+#### Example 1
+
+![](images/bt_image_1.png)
+
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 7`
+- **Output:** `[7,2,null,5,4,3,6,null,null,null,1,null,null,0,8]`
+#### Example 2
+
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 0`
+- **Output:** `[0,1,null,3,8,5,null,null,null,6,2,null,null,7,4]`
+### Constraints
+
+- The number of nodes in the tree is in the range `[2, 100]`.
+
+- $-10^{9} \le \text{Node.val} \le 10^{9}$
+
+- All `Node.val` are **unique**.
+
+- `leaf` exist in the tree.

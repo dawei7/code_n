@@ -1,0 +1,170 @@
+### Approach 1: Binary Search
+
+#### Intuition
+
+Since the fruit positions are already sorted in ascending order, we can efficiently determine how many fruits fall within any interval on the x-axis using binary search. The main challenge is to find the interval of positions that can be reached from `startPos` using at most $k$ steps, such that the total number of fruits collected is maximized.
+
+We follow a greedy strategy, moving in one direction first and then turning around. This works because fruits can only be picked once, and covering a wider range increases the chance of collecting more fruits.
+
+There are two main movement patterns:
+
+- Move $x$ steps in one direction, then $k - x$ steps in the opposite direction.
+- When $x = 0$, we simply move in one direction for $k$ steps.
+
+For each $x$ in the range $[0, \left\lfloor \frac{k}{2} \right\rfloor]$, we consider:
+
+1. Left-first movement: move left $x$ steps, then right $(k - x)$ steps. This covers the interval $[\textit{startPos} - x, \textit{startPos} + k - 2x]$.
+2. Right-first movement: move right $x$ steps, then left $(k - x)$ steps. This covers the interval $[\textit{startPos} - (k - 2x), \textit{startPos} + x]$.
+
+For each of these intervals, we compute the number of fruits using prefix sums and binary search in $O(\log n)$ time. The maximum value across all such intervals gives the answer.
+
+#### Implementation
+
+```python
+class Solution:
+    def maxTotalFruits(
+        self, fruits: List[List[int]], startPos: int, k: int
+    ) -> int:
+        n = len(fruits)
+        sum_ = [0] * (n + 1)
+        indices = [0] * n
+
+        for i in range(n):
+            sum_[i + 1] = sum_[i] + fruits[i][1]
+            indices[i] = fruits[i][0]
+
+        ans = 0
+        for x in range(k // 2 + 1):
+            # move left x steps, then right (k - 2x) steps
+            y = k - 2 * x
+            left = startPos - x
+            right = startPos + y
+            start = bisect_left(indices, left)
+            end = bisect_right(indices, right)
+            ans = max(ans, sum_[end] - sum_[start])
+
+            # move right x steps, then left (k - 2x) steps
+            y = k - 2 * x
+            left = startPos - y
+            right = startPos + x
+            start = bisect_left(indices, left)
+            end = bisect_right(indices, right)
+            ans = max(ans, sum_[end] - sum_[start])
+
+        return ans
+```
+
+#### Complexity Analysis
+
+Let $n$ be the length of the array $\textit{fruits}$, and let $k$ be the given integer.
+
+- Time complexity: $O(n + k \log n)$.
+
+  The time complexity for calculating the prefix sum of the array is $O(n)$, and the time required for each query to find the number of fruits in a range is $O(\log n)$. Since there are a total of $k$ queries, the overall time complexity is $O(n + k \log n)$.
+
+- Space complexity: $O(n)$.
+
+  We calculate and store the prefix sum of the array, which requires $O(n)$ space.
+
+---
+
+### Approach 2: Sliding Window
+
+#### Intuition
+
+We can approach the problem from a new perspective. Suppose we fix an interval $[ \textit{left}, \textit{right} ]$ (where `left` and `right` are **indices** in the `fruits` array). From the given starting position `startPos`, how many steps are required to visit all fruit positions within this interval?
+
+There are three cases to consider:
+
+* **Case 1:** $startPos > \text{fruits}[right][0]$
+  The interval lies entirely to the left of `startPos`. We need to move left to reach $\text{fruits}[left][0]$.
+  Steps needed:
+
+  $\textit{startPos} - \textit{\text{fruits}[left][0]}$
+
+* **Case 2:** $startPos < \text{fruits}[left][0]$
+  The interval lies entirely to the right of `startPos`. We need to move right to reach $\text{fruits}[right][0]$.
+  Steps needed:
+
+  $\textit{\text{fruits}[right][0]} - \textit{startPos}$
+
+* **Case 3:** `startPos` is within the interval
+  There are two ways to visit both ends:
+
+  * Go left first to $\text{fruits}[left][0]$, then right to $\text{fruits}[right][0]$
+    Steps:
+
+    $\textit{startPos} - \textit{\text{fruits}[left][0]} + \textit{\text{fruits}[right][0]} - \textit{\text{fruits}[left][0]}$
+  * Go right first to $\text{fruits}[right][0]$, then left to $\text{fruits}[left][0]$
+    Steps:
+
+    $\textit{\text{fruits}[right][0]} - \textit{startPos} + \textit{\text{fruits}[right][0]} - \textit{\text{fruits}[left][0]}$
+
+So, in general, the minimum number of steps required to traverse the interval $[ \textit{\text{fruits}[left][0]}, \textit{\text{fruits}[right][0]} ]$ is:
+
+$\text{step}(left, right) = \textit{\text{fruits}[right][0]} - \textit{\text{fruits}[left][0]} + \min\left( |\textit{startPos} - \textit{\text{fruits}[left][0]}|,\ |\textit{startPos} - \textit{\text{fruits}[right][0]}| \right)$
+
+This expression ensures that we count both the total distance and the shorter leg from `startPos` to either end.
+
+Now, if we fix `right` and slide `left`, we observe:
+
+* If $\text{fruits}[left][0] < startPos$, decreasing `left` can decrease the `step` value.
+* If $\text{fruits}[left][0] ≥ startPos$, decreasing `left` no longer helps and `step` stays the same or increases.
+
+Thus, for fixed `right`, the `step(left, right)` function is non-increasing as long as $\text{fruits}[left][0] < startPos$, and non-decreasing afterward.
+
+Thus, we use a sliding window where both `left` and `right` are pointers to intervals in the `fruits` array. As we move `right` forward to include more fruits, we check whether the number of steps needed to reach the interval exceeds `k`. If it does, we increment `left` to shrink the window until the constraint is satisfied. At each step, we track the sum of fruits in the valid window and update the maximum found so far.
+
+#### Implementation
+
+```python
+class Solution:
+    def maxTotalFruits(
+        self, fruits: List[List[int]], startPos: int, k: int
+    ) -> int:
+        left = 0
+        right = 0
+        n = len(fruits)
+        sum = 0
+        ans = 0
+
+        def step(left: int, right: int) -> int:
+            if fruits[right][0] <= startPos:
+                return startPos - fruits[left][0]
+            elif fruits[left][0] >= startPos:
+                return fruits[right][0] - startPos
+            else:
+                return (
+                    min(
+                        abs(startPos - fruits[right][0]),
+                        abs(startPos - fruits[left][0]),
+                    )
+                    + fruits[right][0]
+- fruits[left][0]
+                )
+
+        # each time fix the right boundary of the window
+        while right < n:
+            sum += fruits[right][1]
+            # move left boundary
+            while left <= right and step(left, right) > k:
+                sum -= fruits[left][1]
+                left += 1
+
+            ans = max(ans, sum)
+            right += 1
+
+        return ans
+```
+
+#### Complexity Analysis
+
+Let $n$ be the length of the array $\textit{fruits}$.
+
+- Time complexity: $O(n)$.
+
+  Each time, we move the right endpoint of the fixed window and then try to move the left endpoint. The right endpoint can move at most $n$ times, and the left endpoint can also move at most $n$ times. Therefore, the time complexity is $O(2n) = O(n)$.
+
+- Space complexity: $O(1)$.
+
+---

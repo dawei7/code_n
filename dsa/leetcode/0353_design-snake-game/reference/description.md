@@ -1,10 +1,10 @@
 ## Description
 
-Design a Snake game that is played on a device with screen size `height x width`. [Play the game online](http://patorjk.com/games/snake/) if you are not familiar with the game.
+Design a <a href="https://en.wikipedia.org/wiki/Snake_(video_game)" target="_blank">Snake game</a> that is played on a device with screen size `height x width`. <a href="http://patorjk.com/games/snake/" target="_blank">Play the game online</a> if you are not familiar with the game.
 
 The snake is initially positioned at the top left corner `(0, 0)` with a length of `1` unit.
 
-You are given an array `food` where `food[i] = (ri, ci)` is the row and column position of a piece of food that the snake can eat. When a snake eats a piece of food, its length and the game's score both increase by `1`.
+You are given an array `food` where $\text{food}[i] = (r_{i}, c_{i})$ is the row and column position of a piece of food that the snake can eat. When a snake eats a piece of food, its length and the game's score both increase by `1`.
 
 Each piece of food appears one by one on the screen, meaning the second piece of food will not appear until the snake eats the first piece of food.
 
@@ -14,5 +14,57 @@ The game is over if the snake goes out of bounds (hits a wall) or if its head oc
 
 Implement the `SnakeGame` class:
 
-* `SnakeGame(int width, int height, int[][] food)` Initializes the object with a screen of size `height x width` and the positions of the `food`.
-* `int move(String direction)` Returns the score of the game after applying one `direction` move by the snake. If the game is over, return `-1`.
+- `SnakeGame(int width, int height, int[][] food)` Initializes the object with a screen of size `height x width` and the positions of the `food`.
+
+- `int move(String direction)` Returns the score of the game after applying one `direction` move by the snake. If the game is over, return `-1`.
+### Function Contract
+
+**Inputs**
+
+- `width`: The number of screen columns.
+- `height`: The number of screen rows.
+- `food`: Food coordinates in appearance order.
+- `directions`: For the app adapter, the sequence supplied to native `move` calls.
+
+**Return value**
+
+The app adapter returns every move's score or `-1` result. The native method returns the result of one move.
+
+### Examples
+#### Example 1
+
+![](images/snake.jpg)
+
+```
+**Input**
+["SnakeGame", "move", "move", "move", "move", "move", "move"]
+[[3, 2, [[1, 2], [0, 1]]], ["R"], ["D"], ["R"], ["U"], ["L"], ["U"]]
+**Output**
+[null, 0, 0, 1, 1, 2, -1]
+
+**Explanation**
+SnakeGame snakeGame = new SnakeGame(3, 2, [[1, 2], [0, 1]]);
+snakeGame.move("R"); // return 0
+snakeGame.move("D"); // return 0
+snakeGame.move("R"); // return 1, snake eats the first piece of food. The second piece of food appears at (0, 1).
+snakeGame.move("U"); // return 1
+snakeGame.move("L"); // return 2, snake eats the second food. No more food appears.
+snakeGame.move("U"); // return -1, game over because snake collides with border
+```
+### Constraints
+
+- $1 \le width, height \le 10^{4}$
+
+- $1 \le \text{food.length} \le 50$
+
+- $\text{food}[i].length = 2$
+
+- $0 \le r_{i} < height$
+
+- $0 \le c_{i} < width$
+
+- $\text{direction.length} = 1$
+
+- `direction` is `'U'`, `'D'`, `'L'`, or `'R'`.
+
+- At most $10^{4}$ calls will be made to `move`.

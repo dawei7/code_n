@@ -1,7 +1,55 @@
 ## Description
 
-Given an integer array `nums` and an integer `k`, call a contiguous subarray semi-repeating when at most `k` distinct element values appear more than once inside that subarray.
+You are given an integer array `nums` of length `n` and an integer `k`.
 
-A value with frequency two, three, or more counts as one repeating element value, not as several repetitions. Values occurring exactly once do not count toward the limit.
+A **semi‑repeating** subarray is a contiguous subarray in which at most `k` elements repeat (i.e., appear more than once).
 
-Return the maximum length of any semi-repeating subarray.
+Return the length of the longest **semi‑repeating** subarray in `nums`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,2,3,1,2,3,4], k = 2
+
+**Output:** 6
+
+**Explanation:**
+
+The longest semi-repeating subarray is `[2, 3, 1, 2, 3, 4]`, which has two repeating elements (2 and 3).
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [1,1,1,1,1], k = 4
+
+**Output:** 5
+
+**Explanation:**
+
+The longest semi-repeating subarray is `[1, 1, 1, 1, 1]`, which has only one repeating element (1).
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** nums = [1,1,1,1,1], k = 0
+
+**Output:** 1
+
+**Explanation:**
+
+The longest semi-repeating subarray is `[1]`, which has no repeating elements.
+
+</div>
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $1 \le \text{nums}[i] \le 10^{5}$
+
+- $0 \le k \le \text{nums.length}$

@@ -6,4 +6,51 @@ At each step, **one **uninfected person **adjacent** to an infected person gets 
 
 An **infection sequence** is the order in which uninfected people become infected, excluding those initially infected.
 
-Return the number of different infection sequences possible, modulo `10^9+7`.
+Return the number of different infection sequences possible, modulo $10^{9}+7$.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** n = 5, sick = [0,4]
+
+**Output:** 4
+
+**Explanation:**
+
+There is a total of 6 different sequences overall.
+
+- Valid infection sequences are `[1,2,3]`, `[1,3,2]`, `[3,2,1]` and `[3,1,2]`.
+
+- `[2,3,1]` and `[2,1,3]` are not valid infection sequences because the person at index 2 cannot be infected at the first step.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** n = 4, sick = [1]
+
+**Output:** 3
+
+**Explanation:**
+
+There is a total of 6 different sequences overall.
+
+- Valid infection sequences are `[0,2,3]`, `[2,0,3]` and `[2,3,0]`.
+
+- `[3,2,0]`, `[3,0,2]`, and `[0,3,2]` are not valid infection sequences because the infection starts at the person at index 1, then the order of infection is 2, then 3, and hence 3 cannot be infected earlier than 2.
+
+</div>
+### Constraints
+
+- $2 \le n \le 10^{5}$
+
+- $1 \le \text{sick.length} \le n - 1$
+
+- $0 \le \text{sick}[i] \le n - 1$
+
+- `sick` is sorted in increasing order.

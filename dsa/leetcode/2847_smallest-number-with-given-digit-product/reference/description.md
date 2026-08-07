@@ -1,5 +1,26 @@
 ## Description
 
-You are given a positive integer `n`. Find the smallest positive integer whose decimal digits have product exactly `n`, and return that integer as a string.
+Given a **positive** integer `n`, return *a string representing the **smallest positive** integer such that the product of its digits is equal to* `n`*, or *`"-1"`* if no such number exists*.
+### Function Contract
 
-Every digit of the returned number participates in the product. If no decimal integer can have the required digit product, return `"-1"` instead. The comparison is by ordinary numeric value, so a valid answer with fewer digits is smaller than any valid answer with more digits; among answers of equal length, their left-to-right digit order decides which is smallest.
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 105$
+- **Output:** `"357"`
+- **Explanation:** 3 * 5 * 7 = 105. It can be shown that 357 is the smallest number with a product of digits equal to 105. So the answer would be "357".
+#### Example 2
+
+- **Input:** $n = 7$
+- **Output:** `"7"`
+- **Explanation:** Since 7 has only one digit, its product of digits would be 7. We will show that 7 is the smallest number with a product of digits equal to 7. Since the product of numbers 1 to 6 is 1 to 6 respectively, so "7" would be the answer.
+#### Example 3
+
+- **Input:** $n = 44$
+- **Output:** `"-1"`
+- **Explanation:** It can be shown that there is no number such that its product of digits is equal to 44. So the answer would be "-1".
+### Constraints
+
+- $1 \le n \le 10^{18}$

@@ -1,6 +1,6 @@
 ## Description
 
-In a string `<font face="monospace">s</font>` of lowercase letters, these letters form consecutive groups of the same character.
+In a string `s` of lowercase letters, these letters form consecutive groups of the same character.
 
 For example, a string like `s = "abbxxxxzyy"` has the groups `"a"`, `"bb"`, `"xxxx"`, `"z"`, and `"yy"`.
 
@@ -9,3 +9,29 @@ A group is identified by an interval `[start, end]`, where `start` and `end` den
 A group is considered **large** if it has 3 or more characters.
 
 Return *the intervals of every **large** group sorted in **increasing order by start index***.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** `s = "abbxxxxzzy"`
+- **Output:** `[[3,6]]`
+- **Explanation:** "xxxx" is the only large group with start index 3 and end index 6.
+#### Example 2
+
+- **Input:** `s = "abc"`
+- **Output:** `[]`
+- **Explanation:** We have groups "a", "b", and "c", none of which are large groups.
+#### Example 3
+
+- **Input:** `s = "abcdddeeeeaabbbcd"`
+- **Output:** `[[3,5],[6,9],[12,14]]`
+- **Explanation:** The large groups are "ddd", "eeee", and "bbb".
+### Constraints
+
+- $1 \le \text{s.length} \le 1000$
+
+- `s` contains lowercase English letters only.

@@ -1,9 +1,52 @@
 ## Description
 
-<p data-end="320" data-start="259">You are given an integer array `nums` of size `n` and a positive integer `k`.
+You are given an integer array `nums` of size `n` and a positive integer `k`.
 
-<p data-end="294" data-start="163">An array **capped** by value `x` is obtained by replacing every element `nums[i]` with `min(nums[i], x)`.
+An array **capped** by value `x` is obtained by replacing every element $\text{nums}[i]$ with $min(\text{nums}[i], x)$.
 
-<p data-end="511" data-start="296">For each integer <code data-end="316" data-start="313">x</code> from 1 to <code data-end="332" data-start="329">n</code>, determine whether it is possible to choose a **<span data-keyword="subsequence-array-nonempty">subsequence</span>** from the array capped by `x` such that the sum of the chosen elements is **exactly** <code data-end="510" data-start="507">k</code>.
+For each integer `x` from 1 to `n`, determine whether it is possible to choose a **subsequence** from the array capped by `x` such that the sum of the chosen elements is **exactly** `k`.
 
-<p data-end="788" data-start="649">Return a **0-indexed** boolean array <code data-end="680" data-start="672">answer</code> of size <code data-end="694" data-start="691">n</code>, where <code data-end="713" data-start="702">answer[i]</code> is <code data-end="723" data-start="717">true</code> if it is possible when using <code data-end="764" data-start="753">x = i + 1</code>, and <code data-end="777" data-start="770">false</code> otherwise.
+Return a **0-indexed** boolean array `answer` of size `n`, where $\text{answer}[i]$ is `true` if it is possible when using $x = i + 1$, and `false` otherwise.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [4,3,2,4], k = 5
+
+**Output:** [false,false,true,true]
+
+**Explanation:**
+
+- For $x = 1$, the capped array is `[1, 1, 1, 1]`. Possible sums are `1, 2, 3, 4`, so it is impossible to form a sum of `5`.
+
+- For $x = 2$, the capped array is `[2, 2, 2, 2]`. Possible sums are `2, 4, 6, 8`, so it is impossible to form a sum of `5`.
+
+- For $x = 3$, the capped array is `[3, 3, 2, 3]`. A subsequence `[2, 3]` sums to `5`, so it is possible.
+
+- For $x = 4$, the capped array is `[4, 3, 2, 4]`. A subsequence `[3, 2]` sums to `5`, so it is possible.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [1,2,3,4,5], k = 3
+
+**Output:** [true,true,true,true,true]
+
+**Explanation:**
+
+For every value of `x`, it is always possible to select a subsequence from the capped array that sums exactly to `3`.
+
+</div>
+### Constraints
+
+- $1 \le n = \text{nums.length} \le 4000$
+
+- $1 \le \text{nums}[i] \le n$
+
+- $1 \le k \le 4000$

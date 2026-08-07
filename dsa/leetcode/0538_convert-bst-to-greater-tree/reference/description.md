@@ -4,8 +4,35 @@ Given the `root` of a Binary Search Tree (BST), convert it to a Greater Tree suc
 
 As a reminder, a *binary search tree* is a tree that satisfies these constraints:
 
-<ul>
-	<li>The left subtree of a node contains only nodes with keys **less than** the node's key.</li>
-	<li>The right subtree of a node contains only nodes with keys **greater than** the node's key.</li>
-	<li>Both the left and right subtrees must also be binary search trees.</li>
-</ul>
+- The left subtree of a node contains only nodes with keys **less than** the node's key.
+
+- The right subtree of a node contains only nodes with keys **greater than** the node's key.
+
+- Both the left and right subtrees must also be binary search trees.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/tree.png)
+
+- **Input:** `root = [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]`
+- **Output:** `[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]`
+#### Example 2
+
+- **Input:** `root = [0,null,1]`
+- **Output:** `[1,null,1]`
+### Constraints
+
+- The number of nodes in the tree is in the range $[0, 10^{4}]$.
+
+- $-10^{4} \le \text{Node.val} \le 10^{4}$
+
+- All the values in the tree are **unique**.
+
+- `root` is guaranteed to be a valid binary search tree.
+
+**Note:** This question is the same as 1038: <a href="https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/" target="_blank">https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/</a>
