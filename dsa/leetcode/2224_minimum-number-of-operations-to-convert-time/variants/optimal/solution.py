@@ -1,11 +1,9 @@
 class Solution:
     def convertTime(self, current: str, correct: str) -> int:
-        def minutes(time: str) -> int:
-            return int(time[:2]) * 60 + int(time[3:])
-
-        remaining = minutes(correct) - minutes(current)
-        operations = 0
-        for increment in (60, 15, 5, 1):
-            count, remaining = divmod(remaining, increment)
-            operations += count
-        return operations
+        a = int(current[:2]) * 60 + int(current[3:])
+        b = int(correct[:2]) * 60 + int(correct[3:])
+        ans, d = 0, b - a
+        for i in [60, 15, 5, 1]:
+            ans += d // i
+            d %= i
+        return ans

@@ -1,8 +1,25 @@
-class NumArray:
-    def __init__(self, nums: list[int]):
-        self.prefix = [0]
-        for value in nums:
-            self.prefix.append(self.prefix[-1] + value)
+# Time:  ctor:   O(n),
+#        lookup: O(1)
+# Space: O(n)
 
-    def sumRange(self, left: int, right: int) -> int:
-        return self.prefix[right + 1] - self.prefix[left]
+class NumArray(object):
+    def __init__(self, nums):
+        """
+        initialize your data structure here.
+        :type nums: List[int]
+        """
+        self.accu = [0]
+        for num in nums:
+            self.accu.append(self.accu[-1] + num),
+
+    def sumRange(self, i, j):
+        """
+        sum of elements nums[i..j], inclusive.
+        :type i: int
+        :type j: int
+        :rtype: int
+        """
+        return self.accu[j + 1] - self.accu[i]
+
+
+

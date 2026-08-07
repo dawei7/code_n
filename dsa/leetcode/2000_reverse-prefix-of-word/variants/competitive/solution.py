@@ -1,6 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def reversePrefix(self, word: str, ch: str) -> str:
-        boundary = word.find(ch)
-        if boundary == -1:
-            return word
-        return word[: boundary + 1][::-1] + word[boundary + 1 :]
+    def reversePrefix(self, word, ch):
+        """
+        :type word: str
+        :type ch: str
+        :rtype: str
+        """
+        i = word.find(ch)
+        return word[:i+1][::-1]+word[i+1:]

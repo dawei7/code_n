@@ -1,21 +1,19 @@
-from typing import List
-
+# Time:  O(rlogr), r is the number of result
+# Space: O(r)
 
 class Solution:
-    def filterRestaurants(
-        self,
-        restaurants: List[List[int]],
-        veganFriendly: int,
-        maxPrice: int,
-        maxDistance: int,
-    ) -> List[int]:
-        eligible = []
-
-        for restaurant_id, rating, is_vegan, price, distance in restaurants:
-            if veganFriendly and not is_vegan:
-                continue
-            if price <= maxPrice and distance <= maxDistance:
-                eligible.append((rating, restaurant_id))
-
-        eligible.sort(reverse=True)
-        return [restaurant_id for _, restaurant_id in eligible]
+    def filterRestaurants(self, restaurants, veganFriendly, maxPrice, maxDistance):
+        """
+        :type restaurants: List[List[int]]
+        :type veganFriendly: int
+        :type maxPrice: int
+        :type maxDistance: int
+        :rtype: List[int]
+        """
+        result, lookup = [], {}
+        for j, (i, _, v, p, d) in enumerate(restaurants):
+            if v >= veganFriendly and p <= maxPrice and d <= maxDistance:
+                lookup[i] = j
+                result.append(i)
+        result.sort(key=lambda i: (-restaurants[lookup[i]][1], -restaurants[lookup[i]][0]))
+        return result

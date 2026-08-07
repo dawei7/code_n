@@ -1,28 +1,28 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# constructive algorithms, greedy, two pointers
 class Solution:
-    def minimumOperations(self, nums: List[int]) -> int:
-        left = 0
-        right = len(nums) - 1
-        left_sum = nums[left]
-        right_sum = nums[right]
-        operations = 0
-
+    def minimumOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        left, right = 0, len(nums)-1
+        l, r = nums[left], nums[right]
         while left < right:
-            if left_sum == right_sum:
+            if l == r:
                 left += 1
                 right -= 1
-                if left < right:
-                    left_sum = nums[left]
-                    right_sum = nums[right]
-            elif left_sum < right_sum:
+                l, r = nums[left], nums[right]
+                continue
+            if l < r:
                 left += 1
-                left_sum += nums[left]
-                operations += 1
+                l += nums[left]
             else:
                 right -= 1
-                right_sum += nums[right]
-                operations += 1
-
-        return operations
+                r += nums[right]
+            result += 1
+        return result
+            

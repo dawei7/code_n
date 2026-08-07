@@ -1,13 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def addRungs(self, rungs: List[int], dist: int) -> int:
-        answer = 0
-        previous = 0
+    def addRungs(self, rungs, dist):
+        """
+        :type rungs: List[int]
+        :type dist: int
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+(b-1))//b
 
-        for rung in rungs:
-            answer += (rung - previous - 1) // dist
-            previous = rung
-
-        return answer
+        result = prev = 0
+        for curr in rungs:
+            result += ceil_divide(curr-prev, dist)-1
+            prev = curr
+        return result

@@ -1,14 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table, constructive algorithms
 class Solution:
-    def minOperations(self, nums: List[int], k: int) -> int:
-        values_above = set()
-
-        for value in nums:
-            if value < k:
-                return -1
-            if value > k:
-                values_above.add(value)
-
-        return len(values_above)
+    def minOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        mn = min(nums)
+        return len(set(nums))-int(mn == k) if mn >= k else -1

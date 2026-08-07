@@ -1,15 +1,24 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(k)
 
 class Solution:
-    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        first_index = {0: -1}
-        remainder = 0
-        for index, value in enumerate(nums):
-            remainder = (remainder + value) % k
-            if remainder in first_index:
-                if index - first_index[remainder] >= 2:
+    def checkSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        count = 0
+        lookup = {0: -1}
+        for i, num in enumerate(nums):
+            count += num
+            if k:
+                count %= k
+            if count in lookup:
+                if i - lookup[count] > 1:
                     return True
             else:
-                first_index[remainder] = index
+                lookup[count] = i
+
         return False
+

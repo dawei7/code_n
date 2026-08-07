@@ -1,15 +1,18 @@
-WITH fridays AS (
-    SELECT 1 AS week_of_month, DATE('2023-11-03') AS purchase_date
-    UNION ALL SELECT 2, DATE('2023-11-10')
-    UNION ALL SELECT 3, DATE('2023-11-17')
-    UNION ALL SELECT 4, DATE('2023-11-24')
-)
+WITH RECURSIVE
+    T AS (
+        SELECT '2023-11-01' AS purchase_date
+        UNION
+        SELECT purchase_date + INTERVAL 1 DAY
+        FROM T
+        WHERE purchase_date < '2023-11-30'
+    )
 SELECT
-    friday.week_of_month,
-    friday.purchase_date,
-    COALESCE(SUM(purchase.amount_spend), 0) AS total_amount
-FROM fridays AS friday
-LEFT JOIN Purchases AS purchase
-    ON purchase.purchase_date = friday.purchase_date
-GROUP BY friday.week_of_month, friday.purchase_date
-ORDER BY friday.week_of_month;
+    CEIL(DAYOFMONTH(purchase_date) / 7) AS week_of_month,
+    purchase_date,
+    IFNULL(SUM(amount_spend), 0) AS total_amount
+FROM
+    T
+    LEFT JOIN Purchases USING (purchase_date)
+WHERE DAYOFWEEK(purchase_date) = 6
+GROUP BY 2
+ORDER BY 1;

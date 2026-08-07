@@ -1,23 +1,16 @@
-from heapq import nlargest
-from typing import List
-
-
 class Solution:
     def maximumScore(self, scores: List[int], edges: List[List[int]]) -> int:
-        neighbors = [[] for _ in scores]
-        for first, second in edges:
-            neighbors[first].append(second)
-            neighbors[second].append(first)
-
-        best_neighbors = [nlargest(3, adjacent, key=scores.__getitem__) for adjacent in neighbors]
-
-        answer = -1
-        for second, third in edges:
-            for first in best_neighbors[second]:
-                for fourth in best_neighbors[third]:
-                    if len({first, second, third, fourth}) == 4:
-                        answer = max(
-                            answer,
-                            scores[first] + scores[second] + scores[third] + scores[fourth],
-                        )
-        return answer
+        g = defaultdict(list)
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        for k in g.keys():
+            g[k] = nlargest(3, g[k], key=lambda x: scores[x])
+        ans = -1
+        for a, b in edges:
+            for c in g[a]:
+                for d in g[b]:
+                    if b != c != d != a:
+                        t = scores[a] + scores[b] + scores[c] + scores[d]
+                        ans = max(ans, t)
+        return ans

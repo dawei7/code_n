@@ -1,46 +1,49 @@
-from typing import List
-
-
 class LockingTree:
     def __init__(self, parent: List[int]):
+        n = len(parent)
+        self.locked = [-1] * n
         self.parent = parent
-        self.children = [[] for _ in parent]
-        for node in range(1, len(parent)):
-            self.children[parent[node]].append(node)
-        self.locked_by = [0] * len(parent)
+        self.children = [[] for _ in range(n)]
+        for son, fa in enumerate(parent[1:], 1):
+            self.children[fa].append(son)
 
     def lock(self, num: int, user: int) -> bool:
-        if self.locked_by[num] != 0:
-            return False
-        self.locked_by[num] = user
-        return True
+        if self.locked[num] == -1:
+            self.locked[num] = user
+            return True
+        return False
 
     def unlock(self, num: int, user: int) -> bool:
-        if self.locked_by[num] != user:
-            return False
-        self.locked_by[num] = 0
-        return True
+        if self.locked[num] == user:
+            self.locked[num] = -1
+            return True
+        return False
 
     def upgrade(self, num: int, user: int) -> bool:
-        if self.locked_by[num] != 0:
-            return False
+        def dfs(x: int):
+            nonlocal find
+            for y in self.children[x]:
+                if self.locked[y] != -1:
+                    self.locked[y] = -1
+                    find = True
+                dfs(y)
 
-        ancestor = self.parent[num]
-        while ancestor != -1:
-            if self.locked_by[ancestor] != 0:
+        x = num
+        while x != -1:
+            if self.locked[x] != -1:
                 return False
-            ancestor = self.parent[ancestor]
+            x = self.parent[x]
 
-        found_locked_descendant = False
-        stack = list(self.children[num])
-        while stack:
-            node = stack.pop()
-            if self.locked_by[node] != 0:
-                found_locked_descendant = True
-                self.locked_by[node] = 0
-            stack.extend(self.children[node])
-
-        if not found_locked_descendant:
+        find = False
+        dfs(num)
+        if not find:
             return False
-        self.locked_by[num] = user
+        self.locked[num] = user
         return True
+
+
+# Your LockingTree object will be instantiated and called as such:
+# obj = LockingTree(parent)
+# param_1 = obj.lock(num,user)
+# param_2 = obj.unlock(num,user)
+# param_3 = obj.upgrade(num,user)

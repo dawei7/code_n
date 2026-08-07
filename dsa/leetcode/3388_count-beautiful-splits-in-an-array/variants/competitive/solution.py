@@ -1,41 +1,84 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
 
-
+# z-function
 class Solution:
-    def beautifulSplits(self, nums: List[int]) -> int:
-        n = len(nums)
-        prefix_matches = [0] * n
-        left = 0
-        right = 0
-        for position in range(1, n):
-            if position <= right:
-                prefix_matches[position] = min(
-                    right - position + 1,
-                    prefix_matches[position - left],
-                )
-            while (
-                position + prefix_matches[position] < n
-                and nums[prefix_matches[position]] == nums[position + prefix_matches[position]]
-            ):
-                prefix_matches[position] += 1
-            if position + prefix_matches[position] - 1 > right:
-                left = position
-                right = position + prefix_matches[position] - 1
+    def beautifulSplits(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # Template: https://cp-algorithms.com/string/z-function.html
+        def z_function(s):  # Time: O(n), Space: O(n)
+            z = [0]*len(s)
+            l, r = 0, 0
+            for i in range(1, len(z)):
+                if i <= r:
+                    z[i] = min(r-i+1, z[i-l])
+                while i+z[i] < len(z) and s[z[i]] == s[i+z[i]]:
+                    z[i] += 1
+                if i+z[i]-1 > r:
+                    l, r = i, i+z[i]-1
+            return z
 
-        answer = 0
-        next_lcp = [0] * (n + 1)
-        for first_cut in range(n - 2, 0, -1):
-            current_lcp = [0] * (n + 1)
-            first_can_prefix_second = prefix_matches[first_cut] >= first_cut
-            for second_cut in range(n - 1, first_cut, -1):
-                if nums[first_cut] == nums[second_cut]:
-                    current_lcp[second_cut] = 1 + next_lcp[second_cut + 1]
+        result = 0
+        z0 = z_function(nums)
+        for i in range(1, len(nums)-1):
+            zi = z_function(nums[i:])
+            for j in range(i+1, len(nums)):
+                if (z0[i] >= i and j-i >= i) or zi[j-i] >= j-i:
+                    result += 1
+        return result
 
-                second_length = second_cut - first_cut
-                if (first_can_prefix_second and first_cut <= second_length) or (
-                    second_length <= n - second_cut and current_lcp[second_cut] >= second_length
-                ):
-                    answer += 1
-            next_lcp = current_lcp
 
-        return answer
+# Time:  O(n^2)
+# Space: O(n^2)
+# dp
+class Solution2(object):
+    def beautifulSplits(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = [[0]*len(nums) for _ in range(len(nums))]
+        for i in reversed(range(len(nums))):
+            for j in range(i+1, len(dp)):
+                dp[i][j] = 1+(dp[i+1][j+1] if j+1 < len(nums) else 0) if nums[i] == nums[j] else 0
+        result = 0
+        for i in range(1, len(nums)-1):
+            for j in range(i+1, len(nums)):
+                if (dp[0][i] >= i and j-i >= i) or dp[i][j] >= j-i:
+                    result += 1
+        return result
+
+
+# Time:  O(n^2)
+# Space: O(n)
+# z-function
+class Solution_TLE(object):
+    def beautifulSplits(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # Template: https://cp-algorithms.com/string/z-function.html
+        def z_function(s, left, right):  # Time: O(n), Space: O(n)
+            z = [0]*(right-left+1)
+            l, r = 0, 0
+            for i in range(1, len(z)):
+                if i <= r:
+                    z[i] = min(r-i+1, z[i-l])
+                while i+z[i] < len(z) and s[left+z[i]] == s[left+i+z[i]]:
+                    z[i] += 1
+                if i+z[i]-1 > r:
+                    l, r = i, i+z[i]-1
+            return z
+        
+        result = 0
+        z0 = z_function(nums, 0, len(nums)-1)
+        for i in range(1, len(nums)-1):
+            zi = z_function(nums, i, len(nums)-1)
+            for j in range(i+1, len(nums)):
+                if (z0[i] >= i and j-i >= i) or zi[j-i] >= j-i:
+                    result += 1
+        return result

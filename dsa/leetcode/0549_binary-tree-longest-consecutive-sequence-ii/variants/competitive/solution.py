@@ -1,54 +1,32 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
 
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def longestConsecutive(self, root: Optional["TreeNode"]) -> int:
-        if root is None:
-            return 0
+    def longestConsecutive(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def longestConsecutiveHelper(root):
+            if not root:
+                return 0, 0
+            left_len = longestConsecutiveHelper(root.left)
+            right_len = longestConsecutiveHelper(root.right)
+            cur_inc_len, cur_dec_len = 1, 1
+            if root.left:
+                if root.left.val == root.val + 1:
+                    cur_inc_len = max(cur_inc_len, left_len[0] + 1)
+                elif root.left.val == root.val - 1:
+                    cur_dec_len = max(cur_dec_len, left_len[1] + 1)
+            if root.right:
+                if root.right.val == root.val + 1:
+                    cur_inc_len = max(cur_inc_len, right_len[0] + 1)
+                elif root.right.val == root.val - 1:
+                    cur_dec_len = max(cur_dec_len, right_len[1] + 1)
+            self.max_len = max(self.max_len, cur_dec_len + cur_inc_len - 1)
+            return cur_inc_len, cur_dec_len
 
-        longest = 1
-        stack = [[root, 0, None, None]]
+        self.max_len = 0
+        longestConsecutiveHelper(root)
+        return self.max_len
 
-        while stack:
-            frame = stack[-1]
-            node = frame[0]
-
-            if frame[1] == 0:
-                frame[1] = 1
-                if node.left is not None:
-                    stack.append([node.left, 0, None, None])
-            elif frame[1] == 1:
-                frame[1] = 2
-                if node.right is not None:
-                    stack.append([node.right, 0, None, None])
-            else:
-                increasing = 1
-                decreasing = 1
-
-                for child, pair in ((node.left, frame[2]), (node.right, frame[3])):
-                    if child is None:
-                        continue
-                    child_increasing, child_decreasing = pair
-                    if child.val == node.val + 1:
-                        increasing = max(increasing, child_increasing + 1)
-                    elif child.val == node.val - 1:
-                        decreasing = max(decreasing, child_decreasing + 1)
-
-                longest = max(longest, increasing + decreasing - 1)
-                result = (increasing, decreasing)
-                stack.pop()
-
-                if stack:
-                    parent = stack[-1]
-                    if parent[1] == 1:
-                        parent[2] = result
-                    else:
-                        parent[3] = result
-
-        return longest

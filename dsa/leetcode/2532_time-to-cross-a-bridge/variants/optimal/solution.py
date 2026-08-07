@@ -1,40 +1,42 @@
-from heapq import heapify, heappop, heappush
-from typing import List
-
-
 class Solution:
     def findCrossingTime(self, n: int, k: int, time: List[List[int]]) -> int:
-        waiting_left = [(-(row[0] + row[2]), -worker, worker) for worker, row in enumerate(time)]
-        heapify(waiting_left)
-        waiting_right = []
-        working_left = []
-        working_right = []
-        current = 0
-        boxes = n
-
-        while boxes > 0 or waiting_right or working_right:
-            while working_left and working_left[0][0] <= current:
-                _, worker = heappop(working_left)
-                row = time[worker]
-                heappush(waiting_left, (-(row[0] + row[2]), -worker, worker))
-            while working_right and working_right[0][0] <= current:
-                _, worker = heappop(working_right)
-                row = time[worker]
-                heappush(waiting_right, (-(row[0] + row[2]), -worker, worker))
-
-            if waiting_right:
-                _, _, worker = heappop(waiting_right)
-                current += time[worker][2]
-                heappush(working_left, (current + time[worker][3], worker))
-            elif boxes > 0 and waiting_left:
-                _, _, worker = heappop(waiting_left)
-                current += time[worker][0]
-                boxes -= 1
-                heappush(working_right, (current + time[worker][1], worker))
+        time.sort(key=lambda x: x[0] + x[2])
+        cur = 0
+        wait_in_left, wait_in_right = [], []
+        work_in_left, work_in_right = [], []
+        for i in range(k):
+            heappush(wait_in_left, -i)
+        while 1:
+            while work_in_left:
+                t, i = work_in_left[0]
+                if t > cur:
+                    break
+                heappop(work_in_left)
+                heappush(wait_in_left, -i)
+            while work_in_right:
+                t, i = work_in_right[0]
+                if t > cur:
+                    break
+                heappop(work_in_right)
+                heappush(wait_in_right, -i)
+            left_to_go = n > 0 and wait_in_left
+            right_to_go = bool(wait_in_right)
+            if not left_to_go and not right_to_go:
+                nxt = inf
+                if work_in_left:
+                    nxt = min(nxt, work_in_left[0][0])
+                if work_in_right:
+                    nxt = min(nxt, work_in_right[0][0])
+                cur = nxt
+                continue
+            if right_to_go:
+                i = -heappop(wait_in_right)
+                cur += time[i][2]
+                if n == 0 and not wait_in_right and not work_in_right:
+                    return cur
+                heappush(work_in_left, (cur + time[i][3], i))
             else:
-                next_time = working_right[0][0] if working_right else float("inf")
-                if boxes > 0 and working_left:
-                    next_time = min(next_time, working_left[0][0])
-                current = next_time
-
-        return current
+                i = -heappop(wait_in_left)
+                cur += time[i][0]
+                n -= 1
+                heappush(work_in_right, (cur + time[i][1], i))

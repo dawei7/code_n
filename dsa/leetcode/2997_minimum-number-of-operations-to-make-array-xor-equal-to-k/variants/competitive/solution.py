@@ -1,9 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# bit manipulation
 class Solution:
-    def minOperations(self, nums: List[int], k: int) -> int:
-        difference = k
-        for value in nums:
-            difference ^= value
-        return difference.bit_count()
+    def minOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x).count('1')
+    
+        return popcount(reduce(lambda x, y: x^y, nums, k))

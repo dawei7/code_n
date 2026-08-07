@@ -1,11 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def longestSubsequence(self, arr: List[int], difference: int) -> int:
-        best_by_value = {}
-        longest = 0
-        for value in arr:
-            best_by_value[value] = best_by_value.get(value - difference, 0) + 1
-            longest = max(longest, best_by_value[value])
-        return longest
+    def longestSubsequence(self, arr, difference):
+        """
+        :type arr: List[int]
+        :type difference: int
+        :rtype: int
+        """
+        result = 1
+        lookup = collections.defaultdict(int)
+        for i in range(len(arr)):
+            lookup[arr[i]] = lookup[arr[i]-difference] + 1
+            result = max(result, lookup[arr[i]])
+        return result

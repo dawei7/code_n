@@ -1,25 +1,15 @@
 class Solution:
     def minLargest(self, nums1: List[int], nums2: List[int]) -> int:
-        def next_value(previous: int, parity: int) -> int:
-            candidate = previous + 1
-            if candidate % 2 != parity:
-                candidate += 1
-            return candidate
+        def nxt(x: int, y: int) -> int:
+            return x + 1 if (x & 1 ^ y) == 1 else x + 2
 
-        second_length = len(nums2)
-        previous_row = [0] * (second_length + 1)
-        for second_index, parity in enumerate(nums2, 1):
-            previous_row[second_index] = next_value(previous_row[second_index - 1], parity)
-
-        for first_index, first_parity in enumerate(nums1, 1):
-            current_row = [0] * (second_length + 1)
-            current_row[0] = next_value(previous_row[0], first_parity)
-
-            for second_index, second_parity in enumerate(nums2, 1):
-                take_first = next_value(previous_row[second_index], first_parity)
-                take_second = next_value(current_row[second_index - 1], second_parity)
-                current_row[second_index] = min(take_first, take_second)
-
-            previous_row = current_row
-
-        return previous_row[second_length]
+        m, n = len(nums1), len(nums2)
+        f = [[0] * (n + 1) for _ in range(m + 1)]
+        for i, x in enumerate(nums1, 1):
+            f[i][0] = nxt(f[i - 1][0], x)
+        for j, y in enumerate(nums2, 1):
+            f[0][j] = nxt(f[0][j - 1], y)
+        for i, x in enumerate(nums1, 1):
+            for j, y in enumerate(nums2, 1):
+                f[i][j] = min(nxt(f[i - 1][j], x), nxt(f[i][j - 1], y))
+        return f[m][n]

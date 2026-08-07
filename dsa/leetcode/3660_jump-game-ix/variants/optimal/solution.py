@@ -1,27 +1,12 @@
-from typing import List
-
-
 class Solution:
     def maxValue(self, nums: List[int]) -> List[int]:
         n = len(nums)
-        suffix_min = nums.copy()
-        for i in range(n - 2, -1, -1):
-            suffix_min[i] = min(nums[i], suffix_min[i + 1])
-
-        answer = [0] * n
-        start = 0
-        segment_max = nums[0]
-
-        for i in range(n - 1):
-            segment_max = max(segment_max, nums[i])
-            if segment_max <= suffix_min[i + 1]:
-                for j in range(start, i + 1):
-                    answer[j] = segment_max
-                start = i + 1
-                segment_max = nums[start]
-
-        segment_max = max(segment_max, nums[-1])
-        for j in range(start, n):
-            answer[j] = segment_max
-
-        return answer
+        ans = [0] * n
+        pre_max = [nums[0]] * n
+        for i in range(1, n):
+            pre_max[i] = max(pre_max[i - 1], nums[i])
+        suf_min = inf
+        for i in range(n - 1, -1, -1):
+            ans[i] = ans[i + 1] if pre_max[i] > suf_min else pre_max[i]
+            suf_min = min(suf_min, nums[i])
+        return ans

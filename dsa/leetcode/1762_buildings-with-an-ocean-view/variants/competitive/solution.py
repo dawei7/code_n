@@ -1,15 +1,31 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def findBuildings(self, heights: List[int]) -> List[int]:
-        visible = []
-        tallest_to_right = 0
+    def findBuildings(self, heights):
+        """
+        :type heights: List[int]
+        :rtype: List[int]
+        """
+        result = []
+        for i, h in enumerate(heights):
+            while result and heights[result[-1]] <= h:
+                result.pop()
+            result.append(i)
+        return result
 
-        for index in range(len(heights) - 1, -1, -1):
-            if heights[index] > tallest_to_right:
-                visible.append(index)
-                tallest_to_right = heights[index]
 
-        visible.reverse()
-        return visible
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def findBuildings(self, heights):
+        """
+        :type heights: List[int]
+        :rtype: List[int]
+        """
+        result = []
+        for i in reversed(range(len(heights))):
+            if not result or heights[result[-1]] < heights[i]:
+                result.append(i)
+        result.reverse()
+        return result

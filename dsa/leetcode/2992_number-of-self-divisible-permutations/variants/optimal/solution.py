@@ -1,16 +1,14 @@
-from math import gcd
-
-
 class Solution:
     def selfDivisiblePermutationCount(self, n: int) -> int:
-        ways = [0] * (1 << n)
-        ways[0] = 1
+        @cache
+        def dfs(mask: int) -> int:
+            i = mask.bit_count() + 1
+            if i > n:
+                return 1
+            ans = 0
+            for j in range(1, n + 1):
+                if (mask >> j & 1) == 0 and gcd(i, j) == 1:
+                    ans += dfs(mask | 1 << j)
+            return ans
 
-        for mask in range(1 << n):
-            position = mask.bit_count() + 1
-            for value in range(1, n + 1):
-                bit = 1 << (value - 1)
-                if mask & bit == 0 and gcd(value, position) == 1:
-                    ways[mask | bit] += ways[mask]
-
-        return ways[-1]
+        return dfs(0)

@@ -1,15 +1,27 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def frequencySort(self, s: str) -> str:
-        frequencies = Counter(s)
-        buckets = [[] for _ in range(len(s) + 1)]
-        for character, frequency in frequencies.items():
-            buckets[frequency].append(character)
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        freq = collections.defaultdict(int)
+        for c in s:
+            freq[c] += 1
 
-        pieces = []
-        for frequency in range(len(s), 0, -1):
-            for character in buckets[frequency]:
-                pieces.append(character * frequency)
-        return "".join(pieces)
+        counts = [""] * (len(s)+1)
+        for c in freq:
+            counts[freq[c]] += c
+
+        result = ""
+        for count in reversed(range(len(counts)-1)):
+            for c in counts[count]:
+                result += c * count
+
+        return result
+

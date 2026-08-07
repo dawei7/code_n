@@ -1,9 +1,45 @@
-from bisect import bisect_left, bisect_right
-from typing import List
+# Time:  O(nlogn + mlogn)
+# Space: O(n)
+
+import bisect
 
 
+# line sweep, binary search
 class Solution:
-    def fullBloomFlowers(self, flowers: List[List[int]], people: List[int]) -> List[int]:
-        starts = sorted(start for start, _ in flowers)
-        ends = sorted(end for _, end in flowers)
-        return [bisect_right(starts, time) - bisect_left(ends, time) for time in people]
+    def fullBloomFlowers(self, flowers, persons):
+        """
+        :type flowers: List[List[int]]
+        :type persons: List[int]
+        :rtype: List[int]
+        """
+        cnt = collections.Counter()
+        for s, e in flowers:
+            cnt[s] += 1
+            cnt[e+1] -= 1
+        events = sorted(cnt.keys())
+        prefix = [0]
+        for x in events:
+            prefix.append(prefix[-1]+cnt[x])
+        return [prefix[bisect.bisect_right(events, t)] for t in persons]
+
+
+# Time:  O(nlogn + mlogn)
+# Space: O(n)
+import bisect
+
+
+# binary search
+class Solution:
+    def fullBloomFlowers(self, flowers, persons):
+        """
+        :type flowers: List[List[int]]
+        :type persons: List[int]
+        :rtype: List[int]
+        """
+        starts, ends = [], []
+        for s, e in flowers:
+            starts.append(s)
+            ends.append(e+1)
+        starts.sort()
+        ends.sort()
+        return [bisect.bisect_right(starts, t)-bisect.bisect_right(ends, t) for t in persons]

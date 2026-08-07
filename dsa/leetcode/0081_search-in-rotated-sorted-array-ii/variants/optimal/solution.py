@@ -1,23 +1,19 @@
-from typing import List
-
-
 class Solution:
     def search(self, nums: List[int], target: int) -> bool:
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            middle = (left + right) // 2
-            if nums[middle] == target:
-                return True
-            if nums[left] == nums[middle] == nums[right]:
-                left += 1
-                right -= 1
-            elif nums[left] <= nums[middle]:
-                if nums[left] <= target < nums[middle]:
-                    right = middle - 1
+        n = len(nums)
+        l, r = 0, n - 1
+        while l < r:
+            mid = (l + r) >> 1
+            if nums[mid] > nums[r]:
+                if nums[l] <= target <= nums[mid]:
+                    r = mid
                 else:
-                    left = middle + 1
-            elif nums[middle] < target <= nums[right]:
-                left = middle + 1
+                    l = mid + 1
+            elif nums[mid] < nums[r]:
+                if nums[mid] < target <= nums[r]:
+                    l = mid + 1
+                else:
+                    r = mid
             else:
-                right = middle - 1
-        return False
+                r -= 1
+        return nums[l] == target

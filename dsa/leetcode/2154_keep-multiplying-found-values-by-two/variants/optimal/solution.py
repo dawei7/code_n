@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     def findFinalValue(self, nums: List[int], original: int) -> int:
-        values = set(nums)
-        while original in values:
-            original *= 2
+        s = set(nums)
+        while original in s:
+            original <<= 1
         return original

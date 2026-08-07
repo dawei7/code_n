@@ -1,22 +1,34 @@
-from bisect import bisect_right
-from typing import List
+# Time:  ctor: O(n)
+#        q:    O(logn)
+# Space: O(n)
+
+import collections
+import itertools
+import bisect
 
 
-class TopVotedCandidate:
-    def __init__(self, persons: List[int], times: List[int]):
-        self.times = times
-        self.leaders = []
-        counts = {}
-        leader = -1
-        leader_count = 0
+class TopVotedCandidate(object):
 
-        for person in persons:
-            counts[person] = counts.get(person, 0) + 1
-            if counts[person] >= leader_count:
-                leader = person
-                leader_count = counts[person]
-            self.leaders.append(leader)
+    def __init__(self, persons, times):
+        """
+        :type persons: List[int]
+        :type times: List[int]
+        """
+        lead = -1
+        self.__lookup, count = [], collections.defaultdict(int)
+        for t, p in itertools.izip(times, persons):
+            count[p] += 1
+            if count[p] >= count[lead]:
+                lead = p
+                self.__lookup.append((t, lead))
 
-    def q(self, t: int) -> int:
-        vote_index = bisect_right(self.times, t) - 1
-        return self.leaders[vote_index]
+    def q(self, t):
+        """
+        :type t: int
+        :rtype: int
+        """
+        return self.__lookup[bisect.bisect(self.__lookup,
+                                           (t, float("inf")))-1][1]
+
+
+

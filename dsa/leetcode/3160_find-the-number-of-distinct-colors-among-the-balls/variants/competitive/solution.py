@@ -1,22 +1,26 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(q)
+# Space: O(q)
+
+import collections
 
 
+# freq table
 class Solution:
-    def queryResults(self, limit: int, queries: List[List[int]]) -> List[int]:
-        ball_colors = {}
-        color_counts = defaultdict(int)
-        answer = []
-
-        for ball, color in queries:
-            if ball in ball_colors:
-                previous = ball_colors[ball]
-                color_counts[previous] -= 1
-                if color_counts[previous] == 0:
-                    del color_counts[previous]
-
-            ball_colors[ball] = color
-            color_counts[color] += 1
-            answer.append(len(color_counts))
-
-        return answer
+    def queryResults(self, limit, queries):
+        """
+        :type limit: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        result = [0]*len(queries)
+        lookup = {}
+        cnt = collections.Counter()
+        for i, (x, y) in enumerate(queries):
+            if x in lookup:
+                cnt[lookup[x]] -= 1
+                if not cnt[lookup[x]]:
+                    del cnt[lookup[x]]
+            lookup[x] = y
+            cnt[lookup[x]] += 1
+            result[i] = len(cnt)
+        return result

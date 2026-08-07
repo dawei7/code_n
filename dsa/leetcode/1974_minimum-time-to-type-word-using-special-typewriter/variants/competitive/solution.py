@@ -1,11 +1,12 @@
+# Time:  O(n)
+# Space; O(1)
+
 class Solution:
-    def minTimeToType(self, word: str) -> int:
-        total = len(word)
-        previous = "a"
-
-        for character in word:
-            direct = abs(ord(character) - ord(previous))
-            total += min(direct, 26 - direct)
-            previous = character
-
-        return total
+    def minTimeToType(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        return (min((ord(word[0])-ord('a'))%26, (ord('a')-ord(word[0]))%26)+1) + \
+               sum(min((ord(word[i])-ord(word[i-1]))%26, (ord(word[i-1])-ord(word[i]))%26)+1
+                   for i in range(1, len(word)))

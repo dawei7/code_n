@@ -1,12 +1,9 @@
 class Solution:
     def minimumSteps(self, s: str) -> int:
-        black_to_left = 0
-        steps = 0
-
-        for ball in s:
-            if ball == "1":
-                black_to_left += 1
-            else:
-                steps += black_to_left
-
-        return steps
+        n = len(s)
+        ans = cnt = 0
+        for i in range(n - 1, -1, -1):
+            if s[i] == '1':
+                cnt += 1
+                ans += n - i - cnt
+        return ans

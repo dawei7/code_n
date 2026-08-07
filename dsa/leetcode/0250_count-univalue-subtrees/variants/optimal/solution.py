@@ -1,21 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def countUnivalSubtrees(self, root: Optional[TreeNode]) -> int:
-        count = 0
-
-        def is_univalue(node) -> bool:
-            nonlocal count
-            if node is None:
+        def dfs(root):
+            if root is None:
                 return True
-            left_ok = is_univalue(node.left)
-            right_ok = is_univalue(node.right)
-            if not left_ok or not right_ok:
+            l, r = dfs(root.left), dfs(root.right)
+            if not l or not r:
                 return False
-            if node.left is not None and node.left.val != node.val:
-                return False
-            if node.right is not None and node.right.val != node.val:
-                return False
-            count += 1
-            return True
+            a = root.val if root.left is None else root.left.val
+            b = root.val if root.right is None else root.right.val
+            if a == b == root.val:
+                nonlocal ans
+                ans += 1
+                return True
+            return False
 
-        is_univalue(root)
-        return count
+        ans = 0
+        dfs(root)
+        return ans

@@ -1,7 +1,8 @@
+# Write your MySQL query statement below
 SELECT
     product_id,
-    MAX(CASE WHEN store = 'store1' THEN price END) AS store1,
-    MAX(CASE WHEN store = 'store2' THEN price END) AS store2,
-    MAX(CASE WHEN store = 'store3' THEN price END) AS store3
+    SUM(IF(store = 'store1', price, NULL)) AS store1,
+    SUM(IF(store = 'store2', price, NULL)) AS store2,
+    SUM(IF(store = 'store3', price, NULL)) AS store3
 FROM Products
-GROUP BY product_id;
+GROUP BY 1;

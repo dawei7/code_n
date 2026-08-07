@@ -1,26 +1,26 @@
+# Time:  O(n + q)
+# Space: O(n)
+
+# prefix sum
 class Solution:
-    def minTotalTime(self, forward: List[int], backward: List[int], queries: List[int]) -> int:
-        forward_prefix = [0]
-        backward_prefix = [0]
-
-        for distance in forward:
-            forward_prefix.append(forward_prefix[-1] + distance)
-        for distance in backward:
-            backward_prefix.append(backward_prefix[-1] + distance)
-
-        forward_total = forward_prefix[-1]
-        backward_total = backward_prefix[-1]
-        answer = 0
-        current = 0
-
-        for target in queries:
-            forward_distance = (forward_prefix[target] - forward_prefix[current]) % forward_total
-            backward_distance = (backward_prefix[current + 1] - backward_prefix[target + 1]) % backward_total
-
-            answer += min(
-                forward_distance,
-                backward_distance,
-            )
-            current = target
-
-        return answer
+    def minTotalTime(self, forward, backward, queries):
+        """
+        :type forward: List[int]
+        :type backward: List[int]
+        :type queries: List[int]
+        :rtype: int
+        """
+        prefix1 = [0]*((2*len(forward)-1)+1)
+        for i in range(2*len(forward)-1):
+            prefix1[i+1] = prefix1[i]+forward[i%len(forward)]
+        prefix2 = [0]*((2*len(backward)-1)+1)
+        for i in range(2*len(backward)-1):
+            prefix2[i+1] = prefix2[i]+backward[i%len(backward)]
+        result = prev = 0
+        for q in queries:
+            if prev > q:
+                result += min(prefix1[q+len(forward)]-prefix1[prev], prefix2[prev+1]-prefix2[q+1])
+            else:
+                result += min(prefix1[q]-prefix1[prev], prefix2[prev+len(forward)+1]-prefix2[q+1])
+            prev = q
+        return result

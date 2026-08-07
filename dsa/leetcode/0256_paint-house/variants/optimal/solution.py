@@ -1,13 +1,6 @@
-from typing import List
-
-
 class Solution:
     def minCost(self, costs: List[List[int]]) -> int:
-        red = blue = green = 0
-        for red_cost, blue_cost, green_cost in costs:
-            red, blue, green = (
-                red_cost + min(blue, green),
-                blue_cost + min(red, green),
-                green_cost + min(red, blue),
-            )
-        return min(red, blue, green)
+        a = b = c = 0
+        for ca, cb, cc in costs:
+            a, b, c = min(b, c) + ca, min(a, c) + cb, min(a, b) + cc
+        return min(a, b, c)

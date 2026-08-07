@@ -1,11 +1,9 @@
 class Solution:
     def residuePrefixes(self, s: str) -> int:
-        distinct = set()
-        residues = 0
-
-        for length, character in enumerate(s, start=1):
-            distinct.add(character)
-            if len(distinct) == length % 3:
-                residues += 1
-
-        return residues
+        st = set()
+        ans = 0
+        for i, c in enumerate(s, 1):
+            st.add(c)
+            if len(st) == i % 3:
+                ans += 1
+        return ans

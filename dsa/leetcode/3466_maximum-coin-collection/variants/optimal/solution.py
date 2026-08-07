@@ -1,34 +1,18 @@
 class Solution:
     def maxCoins(self, lane1: List[int], lane2: List[int]) -> int:
-        unreachable = -(10**30)
-        no_switch = unreachable
-        one_switch = unreachable
-        two_switches = unreachable
-        answer = unreachable
+        @cache
+        def dfs(i: int, j: int, k: int) -> int:
+            if i >= n:
+                return 0
+            x = lane1[i] if j == 0 else lane2[i]
+            ans = max(x, dfs(i + 1, j, k) + x)
+            if k > 0:
+                ans = max(ans, dfs(i + 1, j ^ 1, k - 1) + x)
+                ans = max(ans, dfs(i, j ^ 1, k - 1))
+            return ans
 
-        for first, second in zip(lane1, lane2):
-            next_no_switch = max(
-                first,
-                no_switch + first,
-            )
-            next_one_switch = max(
-                second,
-                one_switch + second,
-                no_switch + second,
-            )
-            next_two_switches = max(
-                two_switches + first,
-                one_switch + first,
-            )
-
-            no_switch = next_no_switch
-            one_switch = next_one_switch
-            two_switches = next_two_switches
-            answer = max(
-                answer,
-                no_switch,
-                one_switch,
-                two_switches,
-            )
-
-        return answer
+        n = len(lane1)
+        ans = -inf
+        for i in range(n):
+            ans = max(ans, dfs(i, 0, 2))
+        return ans

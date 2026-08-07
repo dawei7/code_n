@@ -1,30 +1,21 @@
-from typing import Optional
-
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def partition(self, head: Optional["ListNode"], x: int) -> Optional["ListNode"]:
-        lower_head = lower_tail = None
-        upper_head = upper_tail = None
-        current = head
-
-        while current is not None:
-            next_node = current.next
-            current.next = None
-            if current.val < x:
-                if lower_head is None:
-                    lower_head = current
-                else:
-                    lower_tail.next = current
-                lower_tail = current
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        l = ListNode()
+        r = ListNode()
+        tl, tr = l, r
+        while head:
+            if head.val < x:
+                tl.next = head
+                tl = tl.next
             else:
-                if upper_head is None:
-                    upper_head = current
-                else:
-                    upper_tail.next = current
-                upper_tail = current
-            current = next_node
-
-        if lower_head is None:
-            return upper_head
-        lower_tail.next = upper_head
-        return lower_head
+                tr.next = head
+                tr = tr.next
+            head = head.next
+        tr.next = None
+        tl.next = r.next
+        return l.next

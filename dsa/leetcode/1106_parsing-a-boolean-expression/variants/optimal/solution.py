@@ -1,24 +1,21 @@
 class Solution:
     def parseBoolExpr(self, expression: str) -> bool:
-        stack = []
-        for token in expression:
-            if token == ",":
-                continue
-            if token != ")":
-                stack.append(token)
-                continue
-
-            values = []
-            while stack[-1] != "(":
-                values.append(stack.pop() == "t")
-            stack.pop()
-            operator = stack.pop()
-            if operator == "!":
-                result = not values[0]
-            elif operator == "&":
-                result = all(values)
-            else:
-                result = any(values)
-            stack.append("t" if result else "f")
-
-        return stack[-1] == "t"
+        stk = []
+        for c in expression:
+            if c in 'tf!&|':
+                stk.append(c)
+            elif c == ')':
+                t = f = 0
+                while stk[-1] in 'tf':
+                    t += stk[-1] == 't'
+                    f += stk[-1] == 'f'
+                    stk.pop()
+                match stk.pop():
+                    case '!':
+                        c = 't' if f else 'f'
+                    case '&':
+                        c = 'f' if f else 't'
+                    case '|':
+                        c = 't' if t else 'f'
+                stk.append(c)
+        return stk[0] == 't'

@@ -1,9 +1,14 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort
 class Solution:
-    def numberGame(self, nums: List[int]) -> List[int]:
-        ordered = sorted(nums)
-        for index in range(0, len(ordered), 2):
-            ordered[index], ordered[index + 1] = ordered[index + 1], ordered[index]
-        return ordered
+    def numberGame(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        nums.sort()
+        for i in range(0, len(nums), 2):
+            nums[i], nums[i+1] = nums[i+1], nums[i]
+        return nums

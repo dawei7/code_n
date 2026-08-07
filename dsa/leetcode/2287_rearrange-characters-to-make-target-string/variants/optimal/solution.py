@@ -1,11 +1,5 @@
 class Solution:
     def rearrangeCharacters(self, s: str, target: str) -> int:
-        available = [0] * 26
-        required = [0] * 26
-
-        for character in s:
-            available[ord(character) - ord("a")] += 1
-        for character in target:
-            required[ord(character) - ord("a")] += 1
-
-        return min(available[index] // required[index] for index in range(26) if required[index])
+        cnt1 = Counter(s)
+        cnt2 = Counter(target)
+        return min(cnt1[c] // v for c, v in cnt2.items())

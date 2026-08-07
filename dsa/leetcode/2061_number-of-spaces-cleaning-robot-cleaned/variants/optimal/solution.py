@@ -1,32 +1,20 @@
-from typing import List
-
-
 class Solution:
     def numberOfCleanRooms(self, room: List[List[int]]) -> int:
-        rows = len(room)
-        columns = len(room[0])
-        directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
-        row = column = direction = 0
-        states = set()
-        cleaned = set()
-
-        while (row, column, direction) not in states:
-            states.add((row, column, direction))
-            cleaned.add((row, column))
-
-            row_step, column_step = directions[direction]
-            next_row = row + row_step
-            next_column = column + column_step
-            if (
-                next_row < 0
-                or next_row >= rows
-                or next_column < 0
-                or next_column >= columns
-                or room[next_row][next_column] == 1
-            ):
-                direction = (direction + 1) % 4
+        def dfs(i, j, k):
+            if (i, j, k) in vis:
+                return
+            nonlocal ans
+            ans += room[i][j] == 0
+            room[i][j] = -1
+            vis.add((i, j, k))
+            x, y = i + dirs[k], j + dirs[k + 1]
+            if 0 <= x < len(room) and 0 <= y < len(room[0]) and room[x][y] != 1:
+                dfs(x, y, k)
             else:
-                row = next_row
-                column = next_column
+                dfs(i, j, (k + 1) % 4)
 
-        return len(cleaned)
+        vis = set()
+        dirs = (0, 1, 0, -1, 0)
+        ans = 0
+        dfs(0, 0, 0)
+        return ans

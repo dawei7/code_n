@@ -1,21 +1,29 @@
+# Time:  O(n)
+# Space: O(1)
+
+# Boyer–Moore majority vote algorithm, linear search
 class Solution:
-    def minimumIndex(self, nums: List[int]) -> int:
-        candidate = nums[0]
-        balance = 0
-        for value in nums:
-            if balance == 0:
-                candidate = value
-            balance += 1 if value == candidate else -1
-
-        total = nums.count(candidate)
-        left = 0
-        n = len(nums)
-
-        for i in range(n - 1):
-            if nums[i] == candidate:
-                left += 1
-
-            if left * 2 > i + 1 and (total - left) * 2 > n - i - 1:
+    def minimumIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def boyer_moore_majority_vote():
+            result, cnt = None, 0
+            for x in nums:
+                if not cnt:
+                    result = x
+                if x == result:
+                    cnt += 1
+                else:
+                    cnt -= 1
+            return result
+        
+        m = boyer_moore_majority_vote()
+        total, cnt = nums.count(m), 0
+        for i, x in enumerate(nums):
+            if x == m:
+                cnt += 1
+            if cnt*2 > i+1 and (total-cnt)*2 > len(nums)-(i+1):
                 return i
-
         return -1

@@ -1,24 +1,14 @@
-from typing import List
-
-
 class Solution:
-    def shiftingLetters(
-        self,
-        s: str,
-        shifts: List[List[int]],
-    ) -> str:
-        difference = [0] * (len(s) + 1)
-
-        for start, end, direction in shifts:
-            amount = 1 if direction == 1 else -1
-            difference[start] += amount
-            difference[end + 1] -= amount
-
-        answer = []
-        running_shift = 0
-        for index, char in enumerate(s):
-            running_shift += difference[index]
-            shifted = (ord(char) - ord("a") + running_shift) % 26
-            answer.append(chr(ord("a") + shifted))
-
-        return "".join(answer)
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        n = len(s)
+        d = [0] * (n + 1)
+        for i, j, v in shifts:
+            if v == 0:
+                v = -1
+            d[i] += v
+            d[j + 1] -= v
+        for i in range(1, n + 1):
+            d[i] += d[i - 1]
+        return ''.join(
+            chr(ord('a') + (ord(s[i]) - ord('a') + d[i] + 26) % 26) for i in range(n)
+        )

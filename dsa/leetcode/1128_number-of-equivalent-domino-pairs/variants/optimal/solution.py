@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     def numEquivDominoPairs(self, dominoes: List[List[int]]) -> int:
-        counts = [0] * 100
-        pairs = 0
-        for left, right in dominoes:
-            key = 10 * min(left, right) + max(left, right)
-            pairs += counts[key]
-            counts[key] += 1
-        return pairs
+        cnt = Counter()
+        ans = 0
+        for a, b in dominoes:
+            x = a * 10 + b if a < b else b * 10 + a
+            ans += cnt[x]
+            cnt[x] += 1
+        return ans

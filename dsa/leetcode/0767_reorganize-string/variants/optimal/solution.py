@@ -1,19 +1,17 @@
-from collections import Counter
-
-
 class Solution:
     def reorganizeString(self, s: str) -> str:
-        frequencies = Counter(s)
-        if max(frequencies.values()) > (len(s) + 1) // 2:
-            return ""
-
-        result = [""] * len(s)
-        position = 0
-        for character, count in sorted(frequencies.items(), key=lambda item: -item[1]):
-            for _ in range(count):
-                if position >= len(s):
-                    position = 1
-                result[position] = character
-                position += 2
-
-        return "".join(result)
+        n = len(s)
+        cnt = Counter(s)
+        mx = max(cnt.values())
+        if mx > (n + 1) // 2:
+            return ''
+        i = 0
+        ans = [None] * n
+        for k, v in cnt.most_common():
+            while v:
+                ans[i] = k
+                v -= 1
+                i += 2
+                if i >= n:
+                    i = 1
+        return ''.join(ans)

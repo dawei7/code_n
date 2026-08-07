@@ -1,29 +1,33 @@
+# Time:  O(n + qlogm)
+# Space: O(n)
+
+# bfs, fast exponentiation
 class Solution:
-    def queryConversions(self, conversions: List[List[int]], queries: List[List[int]]) -> List[int]:
-        modulus = 1_000_000_007
-        unit_count = len(conversions) + 1
-        graph = [[] for _ in range(unit_count)]
+    def queryConversions(self, conversions, queries):
+        """
+        :type conversions: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        MOD = 10**9+7
+        def divmod(a, b):
+            return (a*pow(b, MOD-2, MOD))%MOD
 
-        for source, target, factor in conversions:
-            graph[source].append((target, factor))
-            graph[target].append(
-                (
-                    source,
-                    pow(factor, modulus - 2, modulus),
-                )
-            )
-
-        from_root = [0] * unit_count
-        from_root[0] = 1
-        stack = [0]
-
-        while stack:
-            unit = stack.pop()
-            for neighbor, factor in graph[unit]:
-                if from_root[neighbor] == 0:
-                    from_root[neighbor] = (from_root[unit] * factor) % modulus
-                    stack.append(neighbor)
-
-        return [
-            from_root[target] * pow(from_root[source], modulus - 2, modulus) % modulus for source, target in queries
-        ]
+        def unit():
+            adj = [[] for _ in range(len(conversions)+1)]
+            for u, v, w in conversions:
+                adj[u].append((v, w))
+            result = [0]*len(adj)
+            result[0] = 1
+            q = [0]
+            while q:
+                new_q = []
+                for u in q:
+                    for v, w in adj[u]:
+                        result[v] = (result[u]*w)%MOD
+                        new_q.append(v)
+                q = new_q
+            return result
+        
+        lookup = unit()
+        return [divmod(lookup[b], lookup[a]) for a, b in queries]

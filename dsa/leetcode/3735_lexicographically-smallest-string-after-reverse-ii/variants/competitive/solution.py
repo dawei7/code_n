@@ -1,78 +1,64 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# rolling hash, binary search
 class Solution:
-    def lexSmallest(self, s: str) -> str:
-        n = len(s)
-        reversed_s = s[::-1]
-        sources = (s, reversed_s)
-        base = 911382323
-        moduli = (1_000_000_007, 1_000_000_009)
-
-        powers = []
-        hashes = []
-        for modulus in moduli:
-            power = [1] * (n + 1)
-            for index in range(n):
-                power[index + 1] = power[index] * base % modulus
-            source_hashes = []
-            for text in sources:
-                prefix = [0] * (n + 1)
-                for index, character in enumerate(text):
-                    prefix[index + 1] = (prefix[index] * base + ord(character) - ord("a") + 1) % modulus
-                source_hashes.append(prefix)
-            powers.append(power)
-            hashes.append(source_hashes)
-
-        def substring_hash(
-            modulus_index: int,
-            source: int,
-            left: int,
-            right: int,
-        ) -> int:
-            modulus = moduli[modulus_index]
-            prefix = hashes[modulus_index][source]
-            return (prefix[right] - prefix[left] * powers[modulus_index][right - left]) % modulus
-
-        # A candidate is (source1, left1, right1, source2, left2, right2).
-        def prefix_hash(candidate: tuple[int, ...], length: int, modulus_index: int) -> int:
-            source1, left1, right1, source2, left2, _ = candidate
-            first_length = right1 - left1
-            if length <= first_length:
-                return substring_hash(modulus_index, source1, left1, left1 + length)
-            remainder = length - first_length
-            modulus = moduli[modulus_index]
-            return (
-                substring_hash(modulus_index, source1, left1, right1) * powers[modulus_index][remainder]
-                + substring_hash(modulus_index, source2, left2, left2 + remainder)
-            ) % modulus
-
-        def character_at(candidate: tuple[int, ...], index: int) -> str:
-            source1, left1, right1, source2, left2, _ = candidate
-            first_length = right1 - left1
-            if index < first_length:
-                return sources[source1][left1 + index]
-            return sources[source2][left2 + index - first_length]
-
-        def is_smaller(candidate: tuple[int, ...], current: tuple[int, ...]) -> bool:
-            low = 0
-            high = n
-            while low < high:
-                middle = (low + high + 1) // 2
-                if prefix_hash(candidate, middle, 0) == prefix_hash(current, middle, 0) and prefix_hash(
-                    candidate, middle, 1
-                ) == prefix_hash(current, middle, 1):
-                    low = middle
+    def lexSmallest(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        MOD = 10**9+7
+        B = 29
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
                 else:
-                    high = middle - 1
-            return low < n and character_at(candidate, low) < character_at(current, low)
+                    left = mid+1
+            return left
 
-        best = (0, 0, n, 0, n, n)
-        for k in range(1, n + 1):
-            candidate = (1, n - k, n, 0, k, n)
-            if is_smaller(candidate, best):
-                best = candidate
-        for start in range(n):
-            candidate = (0, 0, start, 1, 0, n - start)
-            if is_smaller(candidate, best):
-                best = candidate
+        def get_prefix_hash(l, r):
+            return (prefix[r+1]-prefix[l]*base[r-l+1])%MOD if l <= r else 0
 
-        source1, left1, right1, source2, left2, right2 = best
-        return sources[source1][left1:right1] + sources[source2][left2:right2]
+        def get_suffix_hash(l, r):
+            return (suffix[l]-suffix[r+1]*base[r-l+1])%MOD if l <= r else 0
+        
+        def get_total_hash(k, t, l):
+            if not t:
+                return get_suffix_hash(k-l, k-1) if l <= k else ((get_suffix_hash(0, k-1))*base[l-k]+get_prefix_hash(k, l-1))%MOD
+            nk = len(s)-k
+            return get_prefix_hash(0, l-1) if l <= nk else ((get_prefix_hash(0, nk-1))*base[l-nk]+get_suffix_hash(len(s)-(l-nk), len(s)-1))%MOD
+
+        def get_char(k, t, idx):
+            if not t:
+                return s[(k-1)-idx] if idx < k else s[idx]
+            return s[idx] if idx < len(s)-k else s[(len(s)-1)-(idx-(len(s)-k))]
+
+        def is_less(k, i):
+            idx = binary_search(0, len(s)-1, lambda x: get_total_hash(k, i, x+1) != get_total_hash(best_k, best_i, x+1))
+            return idx != len(s) and get_char(k, i, idx) < get_char(best_k, best_i, idx)
+
+        prefix = [0]*(len(s)+1)
+        for i in range(len(prefix)-1):
+            prefix[i+1] = (prefix[i]*B+ord(s[i]))%MOD
+        suffix = [0]*(len(s)+1)
+        for i in reversed(range(len(suffix)-1)):
+            suffix[i] = (suffix[i+1]*B+ord(s[i]))%MOD
+        base = [1]*(len(s)+1)
+        for i in range(len(base)-1):
+            base[i+1] = (base[i]*B)%MOD
+        best_k, best_i = 1, 0
+        mn = min(s)
+        for k in range(1, len(s)+1):
+            if s[k-1] != mn:
+                continue
+            if is_less(k, 0):
+                best_k, best_i = k, 0
+        for k in range(1, len(s)+1):
+            if not s[-k] >= s[-1]:
+                continue
+            if is_less(k, 1):
+                best_k, best_i = k, 1
+        return s[:best_k][::-1]+s[best_k:] if not best_i else s[:-best_k]+s[-best_k:][::-1]

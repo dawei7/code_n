@@ -1,29 +1,29 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def findMaxAverage(self, nums: List[int], k: int) -> float:
-        def feasible(average):
-            current_prefix = sum(value - average for value in nums[:k])
-            if current_prefix >= 0:
-                return True
+    def findMaxAverage(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: float
+        """
+        def getDelta(avg, nums, k):
+            accu = [0.0] * (len(nums) + 1)
+            minval_pos = None
+            delta = 0.0
+            for i in range(len(nums)):
+                accu[i+1] = nums[i] + accu[i] - avg
+                if i >= (k-1):
+                    if minval_pos == None or accu[i-k+1] < accu[minval_pos]:
+                        minval_pos = i-k+1
+                    if accu[i+1] - accu[minval_pos] >= 0:
+                        delta = max(delta, (accu[i+1] - accu[minval_pos]) / (i+1 - minval_pos))
+            return delta
 
-            eligible_prefix = 0.0
-            minimum_prefix = 0.0
-            for right in range(k, len(nums)):
-                current_prefix += nums[right] - average
-                eligible_prefix += nums[right - k] - average
-                minimum_prefix = min(minimum_prefix, eligible_prefix)
-                if current_prefix - minimum_prefix >= 0:
-                    return True
-            return False
+        left, delta = min(nums), float("inf")
+        while delta > 1e-5:
+            delta = getDelta(left, nums, k)
+            left += delta
+        return left
 
-        lower = float(min(nums))
-        upper = float(max(nums))
-        for _ in range(60):
-            middle = (lower + upper) / 2
-            if feasible(middle):
-                lower = middle
-            else:
-                upper = middle
-        return lower

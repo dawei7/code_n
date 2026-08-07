@@ -1,12 +1,17 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# hash table, unordered set
 class Solution:
-    def maxStudentsOnBench(self, students: List[List[int]]) -> int:
-        students_by_bench = defaultdict(set)
-
-        for student_id, bench_id in students:
-            students_by_bench[bench_id].add(student_id)
-
-        return max((len(student_ids) for student_ids in students_by_bench.values()), default=0)
+    def maxStudentsOnBench(self, students):
+        """
+        :type students: List[List[int]]
+        :rtype: int
+        """
+        lookup = collections.defaultdict(set)
+        for s, b in students:
+            lookup[b].add(s)
+        return max(len(x) for x in lookup.values()) if lookup else 0

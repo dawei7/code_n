@@ -1,19 +1,23 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def balancedString(self, s: str) -> int:
-        outside = Counter(s)
-        target = len(s) // 4
-        if all(outside[character] == target for character in "QWER"):
-            return 0
-
-        answer = len(s)
+    def balancedString(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        count = collections.Counter(s)
+        result = len(s) 
         left = 0
-        for right, character in enumerate(s):
-            outside[character] -= 1
-            while left <= right and all(outside[value] <= target for value in "QWER"):
-                answer = min(answer, right - left + 1)
-                outside[s[left]] += 1
+        for right in range(len(s)):
+            count[s[right]] -= 1
+            while left < len(s) and \
+                  all(v <= len(s)//4 for v in count.values()):
+                result = min(result, right-left+1)
+                count[s[left]] += 1
                 left += 1
-        return answer
+        return result

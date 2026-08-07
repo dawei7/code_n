@@ -1,41 +1,33 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def checkWays(self, pairs: List[List[int]]) -> int:
-        neighbors = defaultdict(set)
-        for first, second in pairs:
-            neighbors[first].add(second)
-            neighbors[second].add(first)
-
-        node_count = len(neighbors)
-        root = next(
-            (node for node, adjacent in neighbors.items() if len(adjacent) == node_count - 1),
-            None,
-        )
-        if root is None:
-            return 0
-
-        result = 1
-        for node, adjacent in neighbors.items():
-            if node == root:
-                continue
-
-            parent = None
-            parent_degree = node_count
-            for candidate in adjacent:
-                candidate_degree = len(neighbors[candidate])
-                if len(adjacent) <= candidate_degree < parent_degree:
-                    parent = candidate
-                    parent_degree = candidate_degree
-
-            if parent is None:
-                return 0
-            for neighbor in adjacent:
-                if neighbor != parent and neighbor not in neighbors[parent]:
+    def checkWays(self, pairs):
+        """
+        :type pairs: List[List[int]]
+        :rtype: int
+        """
+        adj = collections.defaultdict(set)
+        for x, y in pairs:
+            adj[x].add(y)
+            adj[y].add(x)
+        n, mul = len(adj), False
+        lookup = set()
+        for node in sorted(adj.keys(), key=lambda i: len(adj[i]), reverse=True):
+            lookup.add(node)
+            parent = 0
+            for x in adj[node]:
+                if x not in lookup:
+                    continue
+                if parent == 0 or len(adj[x]) < len(adj[parent]):
+                    parent = x
+            if parent:
+                if any(True for x in adj[node] if x != parent and x not in adj[parent]):
                     return 0
-            if parent_degree == len(adjacent):
-                result = 2
-
-        return result
+                mul |= len(adj[parent]) == len(adj[node])
+            elif len(adj[node]) != n-1:
+                return 0
+        return 1 + mul

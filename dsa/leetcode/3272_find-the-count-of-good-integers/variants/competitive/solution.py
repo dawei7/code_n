@@ -1,32 +1,49 @@
-from collections import Counter
-from math import factorial
+# Time:  O(n + 10 * 10^((n + 1)/2))
+# Space: O(n + 10 * (10 * nHr(10, n/2)))
 
-
+# combinatorics, freq table
 class Solution:
-    def countGoodIntegers(self, n: int, k: int) -> int:
-        half_length = (n + 1) // 2
-        signatures = set()
+    def countGoodIntegers(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        def reverse(x, n):
+            if n%2:
+                x //= 10
+            result = 0
+            while x:
+                result = result*10+x%10
+                x //= 10
+            return result
 
-        for half in range(10 ** (half_length - 1), 10**half_length):
-            left = str(half)
-            palindrome = left + left[-1 - (n % 2) :: -1]
-            if int(palindrome) % k == 0:
-                signatures.add("".join(sorted(palindrome)))
+        def palindrome(x, n):
+            return x*(10**(n//2))+reverse(x, n)
 
-        answer = 0
-        for signature in signatures:
-            counts = Counter(signature)
-            permutations = factorial(n)
-            for count in counts.values():
-                permutations //= factorial(count)
+        def count(x):
+            cnt = [0]*10
+            while x:
+                cnt[x%10] += 1
+                x //= 10
+            return tuple(cnt)
 
-            if counts["0"] > 0:
-                leading_zero = factorial(n - 1) // factorial(counts["0"] - 1)
-                for digit, count in counts.items():
-                    if digit != "0":
-                        leading_zero //= factorial(count)
-                permutations -= leading_zero
-
-            answer += permutations
-
-        return answer
+        fact = [1]*(n+1)
+        for i in range(len(fact)-1):
+            fact[i+1] = fact[i]*(i+1)
+        l = (n+1)//2
+        result = 0
+        lookup = set()
+        for d in range(10**(l-1), 10**l):
+            x = palindrome(d, n)
+            if x%k:
+                continue
+            cnt = count(x)
+            if cnt in lookup:
+                continue
+            lookup.add(cnt)
+            total = (n-cnt[0])*fact[n-1]
+            for c in cnt:
+                total //= fact[c]
+            result += total
+        return result

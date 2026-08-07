@@ -1,18 +1,18 @@
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def inorderTraversal(self, root: Optional["TreeNode"]) -> List[int]:
-        result = []
-        stack = []
-        node = root
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        def dfs(root):
+            if root is None:
+                return
+            dfs(root.left)
+            ans.append(root.val)
+            dfs(root.right)
 
-        while node is not None or stack:
-            while node is not None:
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-            result.append(node.val)
-            node = node.right
-
-        return result
+        ans = []
+        dfs(root)
+        return ans

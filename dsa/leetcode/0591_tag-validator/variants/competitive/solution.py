@@ -1,45 +1,61 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def isValid(self, code: str) -> bool:
-        def valid_name(name):
-            return 1 <= len(name) <= 9 and all("A" <= char <= "Z" for char in name)
+    def isValid(self, code):
+        """
+        :type code: str
+        :rtype: bool
+        """
+        def validText(s, i):
+            j = i
+            i = s.find("<", i)
+            return i != j, i
 
-        stack = []
-        opened_root = False
-        index = 0
+        def validCData(s, i):
+            if s.find("<![CDATA[", i) != i:
+                return False, i
+            j = s.find("]]>", i)
+            if j == -1:
+                return False, i
+            return True, j+3
 
-        while index < len(code):
-            if opened_root and not stack:
-                return False
+        def parseTagName(s, i):
+            if s[i] != '<':
+                return "", i
+            j = s.find('>', i)
+            if j == -1 or not (1 <= (j-1-i) <= 9):
+                return "", i
+            tag = s[i+1:j]
+            for c in tag:
+                if not (ord('A') <= ord(c) <= ord('Z')):
+                    return "", i
+            return tag, j+1
 
-            if code.startswith("<![CDATA[", index):
-                if not stack:
-                    return False
-                end = code.find("]]>", index + 9)
-                if end == -1:
-                    return False
-                index = end + 3
-            elif code.startswith("</", index):
-                end = code.find(">", index + 2)
-                if end == -1:
-                    return False
-                name = code[index + 2 : end]
-                if not valid_name(name) or not stack or stack[-1] != name:
-                    return False
-                stack.pop()
-                index = end + 1
-            elif code[index] == "<":
-                end = code.find(">", index + 1)
-                if end == -1:
-                    return False
-                name = code[index + 1 : end]
-                if not valid_name(name):
-                    return False
-                stack.append(name)
-                opened_root = True
-                index = end + 1
-            else:
-                if not stack:
-                    return False
-                index += 1
+        def parseContent(s, i):
+            while i < len(s):
+                result, i = validText(s, i)
+                if result:
+                    continue
+                result, i = validCData(s, i)
+                if result:
+                    continue
+                result, i = validTag(s, i)
+                if result:
+                    continue
+                break
+            return i
 
-        return opened_root and not stack
+        def validTag(s, i):
+            tag, j = parseTagName(s, i)
+            if not tag:
+                return False, i
+            j = parseContent(s, j)
+            k = j + len(tag) + 2
+            if k >= len(s) or s[j:k+1] != "</" + tag + ">":
+                return False, i
+            return True, k+1
+
+        result, i = validTag(code, 0)
+        return result and i == len(code)
+

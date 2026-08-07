@@ -1,3 +1,12 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# bit manipulation
 class Solution:
-    def minBitFlips(self, start: int, goal: int) -> int:
-        return (start ^ goal).bit_count()
+    def minBitFlips(self, start, goal):
+        """
+        :type start: int
+        :type goal: int
+        :rtype: int
+        """
+        return bin(start^goal).count('1')

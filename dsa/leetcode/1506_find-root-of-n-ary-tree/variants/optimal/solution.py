@@ -1,21 +1,17 @@
-from typing import List
-
-
+"""
 # Definition for a Node.
-# class Node:
-#     def __init__(self, val=None, children=None):
-#         self.val = val
-#         self.children = children
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children if children is not None else []
+"""
 
 
 class Solution:
-    def findRoot(self, tree: List["Node"]) -> "Node":
-        root_value = 0
+    def findRoot(self, tree: List['Node']) -> 'Node':
+        x = 0
         for node in tree:
-            root_value ^= node.val
+            x ^= node.val
             for child in node.children:
-                root_value ^= child.val
-
-        for node in tree:
-            if node.val == root_value:
-                return node
+                x ^= child.val
+        return next(node for node in tree if node.val == x)

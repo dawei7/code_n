@@ -1,16 +1,12 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# math
 class Solution:
-    def minimumRemoval(self, beans: List[int]) -> int:
-        ordered = sorted(beans)
-        total = sum(ordered)
-        maximum_kept = 0
-
-        for index, amount in enumerate(ordered):
-            maximum_kept = max(
-                maximum_kept,
-                amount * (len(ordered) - index),
-            )
-
-        return total - maximum_kept
+    def minimumRemoval(self, beans):
+        """
+        :type beans: List[int]
+        :rtype: int
+        """
+        beans.sort()
+        return sum(beans) - max(x*(len(beans)-i)for i, x in enumerate(beans))

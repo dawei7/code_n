@@ -1,55 +1,94 @@
-from typing import Optional
+# Time:  O(n^2)
+# Space: O(n)
 
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
-
+# bfs, iterative dfs
 class Solution:
-    def maxSum(self, root: Optional[TreeNode]) -> int:
-        if root is None:
-            return 0
+    def maxSum(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        def bfs():
+            adj = [[]]
+            vals = [root.val]
+            q = [(root, -1)]
+            while q:
+                new_q = []
+                for u, p in q:
+                    vals.append(u.val)
+                    adj.append([])
+                    i = len(adj)-1
+                    if p != -1:
+                        adj[i].append(p)
+                        adj[p].append(i)
+                    for node in (u.left, u.right):
+                        if not node:
+                            continue
+                        new_q.append((node, i))
+                q = new_q
+            return adj, vals
 
-        nodes = [root]
-        adjacency = [[]]
+        def iter_dfs(u):
+            result = float("-inf")
+            total = 0
+            lookup = set()
+            stk = [(1, u, -1)]
+            while stk:
+                step, u, p = stk.pop()
+                if step == 1:
+                    if vals[u] in lookup:
+                        continue
+                    stk.append((2, u, p))
+                    lookup.add(vals[u])
+                    total += vals[u]
+                    result = max(result, total)
+                    for v in adj[u]:
+                        if v == p:
+                            continue
+                        stk.append((1, v, u))
+                elif step == 2:
+                    total -= vals[u]
+                    lookup.remove(vals[u])
+            return result    
 
-        for index, node in enumerate(nodes):
-            for child in (node.left, node.right):
-                if child is None:
+        adj, vals = bfs()
+        return max(iter_dfs(u) for u in range(len(adj)))
+
+
+# Time:  O(n^2)
+# Space: O(n)
+# dfs
+class Solution2(object):
+    def maxSum(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        def dfs1(u, p):
+            vals.append(u.val)
+            adj.append([])
+            i = len(adj)-1
+            if p != -1:
+                adj[i].append(p)
+                adj[p].append(i)
+            for node in (u.left, u.right):
+                if not node:
                     continue
-                child_index = len(nodes)
-                nodes.append(child)
-                adjacency.append([index])
-                adjacency[index].append(child_index)
-
-        answer = nodes[0].val
-
-        for start in range(len(nodes)):
-            seen = set()
-            stack = [(start, -1, 0, False)]
-
-            while stack:
-                node, parent, path_sum, exiting = stack.pop()
-                value = nodes[node].val
-
-                if exiting:
-                    seen.remove(value)
+                dfs1(node, i)
+        
+        def dfs2(u, p):
+            if vals[u] in lookup:
+                return float("-inf")
+            lookup.add(vals[u])
+            mx = 0
+            for v in adj[u]:
+                if v == p:
                     continue
-
-                if value in seen:
-                    continue
-
-                path_sum += value
-                answer = max(answer, path_sum)
-                seen.add(value)
-                stack.append((node, parent, path_sum, True))
-
-                for neighbor in adjacency[node]:
-                    if neighbor != parent:
-                        stack.append((neighbor, node, path_sum, False))
-
-        return answer
+                mx = max(mx, dfs2(v, u))
+            lookup.remove(vals[u])
+            return vals[u]+mx
+            
+        adj, vals = [], []
+        dfs1(root, -1)
+        lookup = set()
+        return max(dfs2(u, -1) for u in range(len(adj)))

@@ -1,11 +1,18 @@
-class Solution:
-    def convertTime(self, current: str, correct: str) -> int:
-        def minutes(time: str) -> int:
-            return int(time[:2]) * 60 + int(time[3:])
+# Time:  O(1)
+# Space: O(1)
 
-        remaining = minutes(correct) - minutes(current)
-        operations = 0
-        for increment in (60, 15, 5, 1):
-            count, remaining = divmod(remaining, increment)
-            operations += count
-        return operations
+# greedy
+class Solution:
+    def convertTime(self, current, correct):
+        """
+        :type current: str
+        :type correct: str
+        :rtype: int
+        """
+        OPS = (60, 15, 5, 1)
+        diff = (int(correct[:2])*60+int(correct[3:]))-(int(current[:2])*60+int(current[3:]))
+        result = 0
+        for x in OPS:
+            q, diff = divmod(diff, x)
+            result += q
+        return result

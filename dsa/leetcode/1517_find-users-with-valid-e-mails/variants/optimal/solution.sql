@@ -1,4 +1,4 @@
-SELECT user_id, name, mail
+# Write your MySQL query statement below
+SELECT *
 FROM Users
-WHERE mail GLOB '[A-Za-z]*@leetcode.com'
-  AND substr(mail, 1, length(mail) - 13) NOT GLOB '*[^A-Za-z0-9_.-]*';
+WHERE mail REGEXP '^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode\\.com$' AND BINARY mail LIKE '%@leetcode.com';

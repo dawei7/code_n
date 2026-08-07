@@ -1,21 +1,34 @@
-from typing import List
+"""
+# Definition for a QuadTree node.
+class Node:
+    def __init__(self, val, isLeaf, topLeft, topRight, bottomLeft, bottomRight):
+        self.val = val
+        self.isLeaf = isLeaf
+        self.topLeft = topLeft
+        self.topRight = topRight
+        self.bottomLeft = bottomLeft
+        self.bottomRight = bottomRight
+"""
 
 
 class Solution:
-    def construct(self, grid: List[List[int]]) -> "Node":
-        def build(row: int, column: int, size: int) -> "Node":
-            if size == 1:
-                return Node(bool(grid[row][column]), True)
+    def construct(self, grid: List[List[int]]) -> 'Node':
+        def dfs(a, b, c, d):
+            zero = one = 0
+            for i in range(a, c + 1):
+                for j in range(b, d + 1):
+                    if grid[i][j] == 0:
+                        zero = 1
+                    else:
+                        one = 1
+            isLeaf = zero + one == 1
+            val = isLeaf and one
+            if isLeaf:
+                return Node(grid[a][b], True)
+            topLeft = dfs(a, b, (a + c) // 2, (b + d) // 2)
+            topRight = dfs(a, (b + d) // 2 + 1, (a + c) // 2, d)
+            bottomLeft = dfs((a + c) // 2 + 1, b, c, (b + d) // 2)
+            bottomRight = dfs((a + c) // 2 + 1, (b + d) // 2 + 1, c, d)
+            return Node(val, isLeaf, topLeft, topRight, bottomLeft, bottomRight)
 
-            half = size // 2
-            top_left = build(row, column, half)
-            top_right = build(row, column + half, half)
-            bottom_left = build(row + half, column, half)
-            bottom_right = build(row + half, column + half, half)
-            children = (top_left, top_right, bottom_left, bottom_right)
-
-            if all(child.isLeaf and child.val == top_left.val for child in children):
-                return Node(top_left.val, True)
-            return Node(True, False, top_left, top_right, bottom_left, bottom_right)
-
-        return build(0, 0, len(grid))
+        return dfs(0, 0, len(grid) - 1, len(grid[0]) - 1)

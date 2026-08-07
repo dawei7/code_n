@@ -1,7 +1,17 @@
+# Time:  O(1)
+# Space: O(1)
+
+# constructive algorithms, math
 class Solution:
-    def isReachableAtTime(self, sx: int, sy: int, fx: int, fy: int, t: int) -> bool:
-        horizontal = abs(sx - fx)
-        vertical = abs(sy - fy)
-        if horizontal == 0 and vertical == 0 and t == 1:
-            return False
-        return max(horizontal, vertical) <= t
+    def isReachableAtTime(self, sx, sy, fx, fy, t):
+        """
+        :type sx: int
+        :type sy: int
+        :type fx: int
+        :type fy: int
+        :type t: int
+        :rtype: bool
+        """
+        diff1, diff2 = abs(sx-fx), abs(sy-fy)
+        mn = min(diff1, diff2)+abs(diff1-diff2)
+        return t >= mn if mn else t != 1

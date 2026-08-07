@@ -1,21 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# greedy, dp
 class Solution:
-    def findMaxVal(
-        self,
-        n: int,
-        restrictions: List[List[int]],
-        diff: List[int],
-    ) -> int:
-        bounds = [10**30] * n
-        bounds[0] = 0
-        for index, maximum in restrictions:
-            bounds[index] = min(bounds[index], maximum)
-
-        for index in range(1, n):
-            bounds[index] = min(bounds[index], bounds[index - 1] + diff[index - 1])
-        for index in range(n - 2, -1, -1):
-            bounds[index] = min(bounds[index], bounds[index + 1] + diff[index])
-
-        return max(bounds)
+    def findMaxVal(self, n, restrictions, diff):
+        """
+        :type n: int
+        :type restrictions: List[List[int]]
+        :type diff: List[int]
+        :rtype: int
+        """
+        dp = [float("inf")]*n
+        dp[0] = 0
+        for i, x in restrictions:
+            dp[i] = x
+        for i in range(n-1):
+            dp[i+1] = min(dp[i+1], dp[i]+diff[i])
+        for i in reversed(range(n-1)):
+            dp[i] = min(dp[i], dp[i+1]+diff[i])
+        return max(dp)

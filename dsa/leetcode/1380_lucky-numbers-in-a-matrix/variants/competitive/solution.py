@@ -1,16 +1,32 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(m + n)
+
+import itertools
 
 
 class Solution:
-    def luckyNumbers(self, matrix: List[List[int]]) -> List[int]:
-        rows = len(matrix)
-        columns = len(matrix[0])
-        column_maxima = [max(matrix[row][column] for row in range(rows)) for column in range(columns)]
+    def luckyNumbers (self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        rows = map(min, matrix)
+        cols = map(max, itertools.izip(*matrix))
+        return [cell for i, row in enumerate(matrix)
+                     for j, cell in enumerate(row) if rows[i] == cols[j]]
 
-        lucky = []
-        for row in matrix:
-            minimum_column = min(range(columns), key=row.__getitem__)
-            if row[minimum_column] == column_maxima[minimum_column]:
-                lucky.append(row[minimum_column])
+    
+# Time:  O(m * n)
+# Space: O(m + n)
+import itertools
 
-        return lucky
+
+class Solution2(object):
+    def luckyNumbers (self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        return list(set(map(min, matrix)) &
+                    set(map(max, itertools.izip(*matrix))))
+ 

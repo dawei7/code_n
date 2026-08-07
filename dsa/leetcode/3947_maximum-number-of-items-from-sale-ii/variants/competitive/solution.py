@@ -1,31 +1,39 @@
-from typing import List
+# Time:  O(rlogr + nlogn) = O(nlogn), r = max(f for f, _ in items) <= n
+# Space: O(r + n) = O(n)
+
+import collections
 
 
+# freq table, sort, greedy
 class Solution:
-    def maximumSaleItems(self, items: List[List[int]], budget: int) -> int:
-        n = len(items)
-        factor_frequencies = [0] * (n + 1)
-        minimum_price = min(price for _, price in items)
-        for factor, _ in items:
-            factor_frequencies[factor] += 1
-
-        divisible_counts = [0] * (n + 1)
-        for factor in range(1, n + 1):
-            for multiple in range(factor, n + 1, factor):
-                divisible_counts[factor] += factor_frequencies[multiple]
-
-        boosted_batches = sorted((price, divisible_counts[factor] - 1) for factor, price in items)
-
-        answer = 0
-        remaining = budget
-        for price, boosted_copies in boosted_batches:
-            if price > 2 * minimum_price or price > remaining:
+    def maximumSaleItems(self, items, budget):
+        """
+        :type items: List[List[int]]
+        :type budget: int
+        :rtype: int
+        """
+        NEG_INF = float("-inf")
+        cnt = [0]*(max(f for f, _ in items)+1)
+        for f, _ in items:
+            cnt[f] += 1
+        total = [0]*len(cnt)
+        for i in range(1, len(total)):
+            if not cnt[i]:
+                continue
+            for j in range(i, len(total), i):
+                total[i] += cnt[j]
+        min_p = min(p for _, p in items)
+        group = collections.defaultdict(int)
+        for f, price in items:
+            if price >= 2*min_p:
+                continue
+            group[price] += total[f]-1
+        result = 0
+        for p in sorted(group):
+            c = min(group[p], budget//p)
+            result += 2*c
+            budget -= c*p
+            if not budget:
                 break
-
-            bought = min(boosted_copies, remaining // price)
-            answer += 2 * bought
-            remaining -= price * bought
-            if bought < boosted_copies:
-                break
-
-        return answer + remaining // minimum_price
+        result += budget//min_p
+        return result

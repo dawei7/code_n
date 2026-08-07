@@ -1,6 +1,14 @@
-SELECT
-    CAST((minute - 1) / 6 AS INTEGER) + 1 AS interval_no,
-    SUM(order_count) AS total_orders
-FROM Orders
-GROUP BY interval_no
-ORDER BY interval_no;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            minute,
+            SUM(order_count) OVER (
+                ORDER BY minute
+                ROWS 5 PRECEDING
+            ) AS total_orders
+        FROM Orders
+    )
+SELECT minute / 6 AS interval_no, total_orders
+FROM T
+WHERE minute % 6 = 0;

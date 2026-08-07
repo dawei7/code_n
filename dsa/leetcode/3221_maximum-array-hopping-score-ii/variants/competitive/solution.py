@@ -1,10 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum, greedy
 class Solution:
-    def maxScore(self, nums: List[int]) -> int:
-        best_destination = nums[-1]
-        score = best_destination
-
-        for index in range(len(nums) - 2, 0, -1):
-            best_destination = max(best_destination, nums[index])
-            score += best_destination
-
-        return score
+    def maxScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = mx = 0
+        for i in reversed(range(1, len(nums))):
+            mx = max(mx, nums[i])
+            result += mx
+        return result

@@ -1,43 +1,28 @@
-from collections import defaultdict
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+import re
 
 
 class Solution:
-    def countOfAtoms(self, formula: str) -> str:
-        counts = defaultdict(int)
-        multipliers = [1]
-        pending = 1
-        index = len(formula) - 1
+    def countOfAtoms(self, formula):
+        """
+        :type formula: str
+        :rtype: str
+        """
+        parse = re.findall(r"([A-Z][a-z]*)(\d*)|(\()|(\))(\d*)", formula)
+        stk = [collections.Counter()]
+        for name, m1, left_open, right_open, m2 in parse:
+            if name:
+              stk[-1][name] += int(m1 or 1)
+            if left_open:
+              stk.append(collections.Counter())
+            if right_open:
+                top = stk.pop()
+                for k, v in top.items():
+                  stk[-1][k] += v * int(m2 or 1)
 
-        while index >= 0:
-            character = formula[index]
+        return "".join(name + (str(stk[-1][name]) if stk[-1][name] > 1 else '') \
+                       for name in sorted(stk[-1]))
 
-            if character.isdigit():
-                factor = 0
-                place = 1
-                while index >= 0 and formula[index].isdigit():
-                    factor += int(formula[index]) * place
-                    place *= 10
-                    index -= 1
-                pending = factor
-                continue
-
-            if character == ")":
-                multipliers.append(multipliers[-1] * pending)
-                pending = 1
-                index -= 1
-                continue
-
-            if character == "(":
-                multipliers.pop()
-                index -= 1
-                continue
-
-            end = index + 1
-            while index >= 0 and formula[index].islower():
-                index -= 1
-            atom = formula[index:end]
-            counts[atom] += pending * multipliers[-1]
-            pending = 1
-            index -= 1
-
-        return "".join(atom + (str(counts[atom]) if counts[atom] > 1 else "") for atom in sorted(counts))

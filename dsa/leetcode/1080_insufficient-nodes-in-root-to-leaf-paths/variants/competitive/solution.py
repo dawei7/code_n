@@ -1,35 +1,27 @@
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def sufficientSubset(self, root: Optional["TreeNode"], limit: int) -> Optional["TreeNode"]:
-        if root is None:
+    def sufficientSubset(self, root, limit):
+        """
+        :type root: TreeNode
+        :type limit: int
+        :rtype: TreeNode
+        """
+        if not root:
             return None
-
-        stack = [(root, None, "", limit, False, False)]
-        while stack:
-            node, parent, side, need, expanded, was_leaf = stack.pop()
-            if not expanded:
-                was_leaf = node.left is None and node.right is None
-                stack.append((node, parent, side, need, True, was_leaf))
-                child_need = need - node.val
-                if node.right is not None:
-                    stack.append((node.right, node, "right", child_need, False, False))
-                if node.left is not None:
-                    stack.append((node.left, node, "left", child_need, False, False))
-                continue
-
-            survives = node.val >= need if was_leaf else node.left is not None or node.right is not None
-            if not survives:
-                if parent is None:
-                    root = None
-                else:
-                    setattr(parent, side, None)
-
+        if not root.left and not root.right:
+            return None if root.val < limit else root
+        root.left = self.sufficientSubset(root.left, limit-root.val)
+        root.right = self.sufficientSubset(root.right, limit-root.val)
+        if not root.left and not root.right:
+            return None
         return root

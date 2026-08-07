@@ -1,18 +1,8 @@
-from typing import List
-
-
 class Solution:
     def resultsArray(self, nums: List[int], k: int) -> List[int]:
-        result = []
-        consecutive_length = 0
-
-        for index, value in enumerate(nums):
-            if index > 0 and value == nums[index - 1] + 1:
-                consecutive_length += 1
-            else:
-                consecutive_length = 1
-
-            if index >= k - 1:
-                result.append(value if consecutive_length >= k else -1)
-
-        return result
+        n = len(nums)
+        f = [1] * n
+        for i in range(1, n):
+            if nums[i] == nums[i - 1] + 1:
+                f[i] = f[i - 1] + 1
+        return [nums[i] if f[i] >= k else -1 for i in range(k - 1, n)]

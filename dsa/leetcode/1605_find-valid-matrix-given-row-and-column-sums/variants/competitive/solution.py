@@ -1,19 +1,40 @@
-from typing import List
+# Time:  O(m + n), excluding ctor of result
+# Space: O(1)
 
-
+# optimized from Solution2 since we can find next i, j pair without nested loops
 class Solution:
-    def restoreMatrix(self, rowSum: List[int], colSum: List[int]) -> List[List[int]]:
-        matrix = [[0] * len(colSum) for _ in rowSum]
-        row = column = 0
+    def restoreMatrix(self, rowSum, colSum):
+        """
+        :type rowSum: List[int]
+        :type colSum: List[int]
+        :rtype: List[List[int]]
+        """
+        matrix = [[0]*len(colSum) for _ in range(len(rowSum))]
+        i = j = 0
+        while i < len(matrix) and j < len(matrix[0]):
+            matrix[i][j] = min(rowSum[i], colSum[j])  # greedily used
+            rowSum[i] -= matrix[i][j]
+            colSum[j] -= matrix[i][j]
+            if not rowSum[i]:  # won't be used in row i, ++i
+                i += 1
+            if not colSum[j]:  # won't be used in col j, ++j
+                j += 1
+        return matrix
 
-        while row < len(rowSum) and column < len(colSum):
-            value = min(rowSum[row], colSum[column])
-            matrix[row][column] = value
-            rowSum[row] -= value
-            colSum[column] -= value
-            if rowSum[row] == 0:
-                row += 1
-            if colSum[column] == 0:
-                column += 1
 
+# Time:  O(m * n)
+# Space: O(1)
+class Solution2(object):
+    def restoreMatrix(self, rowSum, colSum):
+        """
+        :type rowSum: List[int]
+        :type colSum: List[int]
+        :rtype: List[List[int]]
+        """
+        matrix = [[0]*len(colSum) for _ in range(len(rowSum))]
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                matrix[i][j] = min(rowSum[i], colSum[j])  # greedily used
+                rowSum[i] -= matrix[i][j]
+                colSum[j] -= matrix[i][j]
         return matrix

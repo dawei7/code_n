@@ -1,3 +1,10 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minPartitions(self, n: str) -> int:
-        return max(int(digit) for digit in n)
+    def minPartitions(self, n):
+        """
+        :type n: str
+        :rtype: int
+        """
+        return int(max(n))

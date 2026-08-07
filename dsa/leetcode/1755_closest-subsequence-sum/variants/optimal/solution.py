@@ -1,29 +1,32 @@
-from bisect import bisect_left
-from typing import List
-
-
 class Solution:
     def minAbsDifference(self, nums: List[int], goal: int) -> int:
-        def subset_sums(values: List[int]) -> List[int]:
-            sums = [0]
-            for value in values:
-                sums += [current + value for current in sums]
-            return sums
+        n = len(nums)
+        left = set()
+        right = set()
 
-        middle = len(nums) // 2
-        left_sums = subset_sums(nums[:middle])
-        right_sums = sorted(subset_sums(nums[middle:]))
-        answer = abs(goal)
+        self.getSubSeqSum(0, 0, nums[: n // 2], left)
+        self.getSubSeqSum(0, 0, nums[n // 2 :], right)
 
-        for left_sum in left_sums:
-            target = goal - left_sum
-            index = bisect_left(right_sums, target)
+        result = inf
+        right = sorted(right)
+        rl = len(right)
 
-            if index < len(right_sums):
-                answer = min(answer, abs(target - right_sums[index]))
-            if index > 0:
-                answer = min(answer, abs(target - right_sums[index - 1]))
-            if answer == 0:
-                return 0
+        for l in left:
+            remaining = goal - l
+            idx = bisect_left(right, remaining)
 
-        return answer
+            if idx < rl:
+                result = min(result, abs(remaining - right[idx]))
+
+            if idx > 0:
+                result = min(result, abs(remaining - right[idx - 1]))
+
+        return result
+
+    def getSubSeqSum(self, i: int, curr: int, arr: List[int], result: Set[int]):
+        if i == len(arr):
+            result.add(curr)
+            return
+
+        self.getSubSeqSum(i + 1, curr, arr, result)
+        self.getSubSeqSum(i + 1, curr + arr[i], arr, result)

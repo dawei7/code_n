@@ -1,20 +1,22 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def search(self, reader: "ArrayReader", target: int) -> int:
-        left = 0
-        right = 1
-
-        while reader.get(right) < target:
-            left = right + 1
-            right *= 2
-
+    def search(self, reader, target):
+        """
+        :type reader: ArrayReader
+        :type target: int
+        :rtype: int
+        """
+        left, right = 0, 19999
         while left <= right:
-            middle = (left + right) // 2
-            value = reader.get(middle)
-            if value == target:
-                return middle
-            if value < target:
-                left = middle + 1
+            mid = left + (right-left)//2
+            response = reader.get(mid)
+            if response > target:
+                right = mid-1
+            elif response < target:
+                left = mid+1
             else:
-                right = middle - 1
-
+                return mid
         return -1
+

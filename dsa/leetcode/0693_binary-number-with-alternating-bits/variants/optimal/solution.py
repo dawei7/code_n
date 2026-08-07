@@ -1,13 +1,10 @@
 class Solution:
     def hasAlternatingBits(self, n: int) -> bool:
-        previous = n & 1
-        n >>= 1
-
+        prev = -1
         while n:
-            current = n & 1
-            if current == previous:
+            curr = n & 1
+            if prev == curr:
                 return False
-            previous = current
+            prev = curr
             n >>= 1
-
         return True

@@ -1,27 +1,19 @@
 class MyHashMap:
-    BUCKET_COUNT = 1009
-
     def __init__(self):
-        self.buckets = [[] for _ in range(self.BUCKET_COUNT)]
+        self.data = [-1] * 1000001
 
     def put(self, key: int, value: int) -> None:
-        bucket = self.buckets[key % self.BUCKET_COUNT]
-        for entry in bucket:
-            if entry[0] == key:
-                entry[1] = value
-                return
-        bucket.append([key, value])
+        self.data[key] = value
 
     def get(self, key: int) -> int:
-        bucket = self.buckets[key % self.BUCKET_COUNT]
-        for stored_key, value in bucket:
-            if stored_key == key:
-                return value
-        return -1
+        return self.data[key]
 
     def remove(self, key: int) -> None:
-        bucket = self.buckets[key % self.BUCKET_COUNT]
-        for index, entry in enumerate(bucket):
-            if entry[0] == key:
-                bucket.pop(index)
-                return
+        self.data[key] = -1
+
+
+# Your MyHashMap object will be instantiated and called as such:
+# obj = MyHashMap()
+# obj.put(key,value)
+# param_2 = obj.get(key)
+# obj.remove(key)

@@ -3,22 +3,18 @@ class Solution:
         n = len(nums)
         left = [1] * n
         right = [1] * n
-
-        for index in range(1, n):
-            if nums[index - 1] <= nums[index]:
-                left[index] = left[index - 1] + 1
-
-        for index in range(n - 2, -1, -1):
-            if nums[index] <= nums[index + 1]:
-                right[index] = right[index + 1] + 1
-
-        answer = max(left)
-        for index in range(n):
-            if index > 0:
-                answer = max(answer, left[index - 1] + 1)
-            if index + 1 < n:
-                answer = max(answer, right[index + 1] + 1)
-            if 0 < index < n - 1 and nums[index - 1] <= nums[index + 1]:
-                answer = max(answer, left[index - 1] + 1 + right[index + 1])
-
-        return min(answer, n)
+        for i in range(1, n):
+            if nums[i] >= nums[i - 1]:
+                left[i] = left[i - 1] + 1
+        for i in range(n - 2, -1, -1):
+            if nums[i] <= nums[i + 1]:
+                right[i] = right[i + 1] + 1
+        ans = max(left)
+        for i in range(n):
+            a = 0 if i - 1 < 0 else left[i - 1]
+            b = 0 if i + 1 >= n else right[i + 1]
+            if i - 1 >= 0 and i + 1 < n and nums[i - 1] > nums[i + 1]:
+                ans = max(ans, a + 1, b + 1)
+            else:
+                ans = max(ans, a + b + 1)
+        return ans

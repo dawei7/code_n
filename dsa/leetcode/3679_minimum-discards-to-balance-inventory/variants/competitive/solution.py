@@ -1,20 +1,29 @@
-from collections import defaultdict, deque
-from typing import List
+# Time:  O(n)
+# Space: O(w)
+
+import collections
 
 
+# freq table, two pointers, sliding window
 class Solution:
-    def minArrivalsToDiscard(self, arrivals: List[int], w: int, m: int) -> int:
-        kept_days = defaultdict(deque)
-        discarded = 0
-
-        for day, item_type in enumerate(arrivals):
-            days = kept_days[item_type]
-            while days and days[0] <= day - w:
-                days.popleft()
-
-            if len(days) == m:
-                discarded += 1
-            else:
-                days.append(day)
-
-        return discarded
+    def minArrivalsToDiscard(self, arrivals, w, m):
+        """
+        :type arrivals: List[int]
+        :type w: int
+        :type m: int
+        :rtype: int
+        """
+        result = 0
+        cnt = collections.defaultdict(int)
+        for i in range(len(arrivals)):
+            cnt[arrivals[i]] += 1
+            if cnt[arrivals[i]] == m+1:
+                cnt[arrivals[i]] -= 1
+                arrivals[i] = 0
+                result += 1
+            if i-w+1 >= 0:
+                if arrivals[i-w+1]:
+                    cnt[arrivals[i-w+1]] -= 1
+                    if not cnt[arrivals[i-w+1]]:
+                        del cnt[arrivals[i-w+1]]
+        return result

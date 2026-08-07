@@ -1,26 +1,26 @@
-from typing import List
+# Time:  O(q + r)
+# Space: O(q + r)
 
 
 class Solution:
-    def loudAndRich(self, richer: List[List[int]], quiet: List[int]) -> List[int]:
-        richer_people = [[] for _ in quiet]
-        for rich, poor in richer:
-            richer_people[poor].append(rich)
+    def loudAndRich(self, richer, quiet):
+        """
+        :type richer: List[List[int]]
+        :type quiet: List[int]
+        :rtype: List[int]
+        """
+        def dfs(graph, quiet, node, result):
+            if result[node] is None:
+                result[node] = node
+                for nei in graph[node]:
+                    smallest_person = dfs(graph, quiet, nei, result)
+                    if quiet[smallest_person] < quiet[result[node]]:
+                        result[node] = smallest_person
+            return result[node]
 
-        answer = [-1] * len(quiet)
+        graph = [[] for _ in range(len(quiet))]
+        for u, v in richer:
+            graph[v].append(u)
+        result = [None]*len(quiet)
+        return map(lambda x: dfs(graph, quiet, x, result), range(len(quiet)))
 
-        def quietest(person: int) -> int:
-            if answer[person] != -1:
-                return answer[person]
-
-            answer[person] = person
-            for richer_person in richer_people[person]:
-                candidate = quietest(richer_person)
-                if quiet[candidate] < quiet[answer[person]]:
-                    answer[person] = candidate
-            return answer[person]
-
-        for person in range(len(quiet)):
-            quietest(person)
-
-        return answer

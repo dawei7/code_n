@@ -1,13 +1,17 @@
-SELECT GROUP_CONCAT(term, '') || '=0' AS equation
-FROM (
-    SELECT
-        CASE WHEN factor > 0 THEN '+' ELSE '-' END
-        || ABS(factor)
-        || CASE
-            WHEN power = 0 THEN ''
-            WHEN power = 1 THEN 'X'
-            ELSE 'X^' || power
-        END AS term
-    FROM Terms
-    ORDER BY power DESC
-);
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT 
+    CONCAT(
+        GROUP_CONCAT(
+        CASE 
+            WHEN factor > 0 THEN CONCAT('+', factor)
+            ELSE factor
+        END,
+        CASE 
+            WHEN power=0 THEN ''
+            WHEN power=1 THEN 'X'
+            ELSE CONCAT('X^', power)
+        END
+        ORDER BY power DESC SEPARATOR ''), '=0') AS equation
+FROM Terms;

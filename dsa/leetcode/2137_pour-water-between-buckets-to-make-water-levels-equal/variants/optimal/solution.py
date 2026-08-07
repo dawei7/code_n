@@ -1,23 +1,19 @@
-from typing import List
-
-
 class Solution:
     def equalizeWater(self, buckets: List[int], loss: int) -> float:
-        left = float(min(buckets))
-        right = float(max(buckets))
-        retained = 1.0 - loss / 100.0
-
-        for _ in range(60):
-            middle = (left + right) / 2.0
-            surplus = 0.0
-            deficit = 0.0
-            for amount in buckets:
-                if amount > middle:
-                    surplus += amount - middle
+        def check(v):
+            a = b = 0
+            for x in buckets:
+                if x >= v:
+                    a += x - v
                 else:
-                    deficit += middle - amount
-            if surplus * retained >= deficit:
-                left = middle
+                    b += (v - x) * 100 / (100 - loss)
+            return a >= b
+
+        l, r = 0, max(buckets)
+        while r - l > 1e-5:
+            mid = (l + r) / 2
+            if check(mid):
+                l = mid
             else:
-                right = middle
-        return left
+                r = mid
+        return l

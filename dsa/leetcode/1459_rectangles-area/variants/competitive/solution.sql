@@ -1,11 +1,12 @@
-SELECT
-    first_point.id AS p1,
-    second_point.id AS p2,
-    ABS(first_point.x_value - second_point.x_value)
-        * ABS(first_point.y_value - second_point.y_value) AS area
-FROM Points AS first_point
-JOIN Points AS second_point
-    ON first_point.id < second_point.id
-    AND first_point.x_value <> second_point.x_value
-    AND first_point.y_value <> second_point.y_value
-ORDER BY area DESC, p1, p2;
+# Time:  O(n^2)
+# Space: O(n^2)
+
+SELECT *
+FROM
+  (SELECT a.id AS P1,
+          b.id AS P2,
+          abs(a.x_value - b.x_value) * abs(a.y_value - b.y_value) AS area
+   FROM Points a
+   INNER JOIN Points b ON a.id < b.id
+   ORDER BY area DESC, P1, P2) r
+WHERE area > 0;

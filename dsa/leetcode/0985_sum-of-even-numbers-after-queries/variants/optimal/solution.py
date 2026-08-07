@@ -1,21 +1,14 @@
-from typing import List
-
-
 class Solution:
     def sumEvenAfterQueries(
-        self,
-        nums: List[int],
-        queries: List[List[int]],
+        self, nums: List[int], queries: List[List[int]]
     ) -> List[int]:
-        even_sum = sum(value for value in nums if value % 2 == 0)
-        answer = []
-
-        for value, index in queries:
-            if nums[index] % 2 == 0:
-                even_sum -= nums[index]
-            nums[index] += value
-            if nums[index] % 2 == 0:
-                even_sum += nums[index]
-            answer.append(even_sum)
-
-        return answer
+        s = sum(x for x in nums if x % 2 == 0)
+        ans = []
+        for v, i in queries:
+            if nums[i] % 2 == 0:
+                s -= nums[i]
+            nums[i] += v
+            if nums[i] % 2 == 0:
+                s += nums[i]
+            ans.append(s)
+        return ans

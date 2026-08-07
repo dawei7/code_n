@@ -1,23 +1,21 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def maxBuilding(self, n: int, restrictions: List[List[int]]) -> int:
-        limits = [[1, 0], *restrictions, [n, n - 1]]
-        limits.sort()
-
-        for index in range(1, len(limits)):
-            distance = limits[index][0] - limits[index - 1][0]
-            limits[index][1] = min(limits[index][1], limits[index - 1][1] + distance)
-
-        for index in range(len(limits) - 2, -1, -1):
-            distance = limits[index + 1][0] - limits[index][0]
-            limits[index][1] = min(limits[index][1], limits[index + 1][1] + distance)
-
-        answer = 0
-        for index in range(1, len(limits)):
-            distance = limits[index][0] - limits[index - 1][0]
-            peak = (limits[index - 1][1] + limits[index][1] + distance) // 2
-            answer = max(answer, peak)
-
-        return answer
+    def maxBuilding(self, n, restrictions):
+        """
+        :type n: int
+        :type restrictions: List[List[int]]
+        :rtype: int
+        """
+        restrictions.extend([[1, 0], [n, n-1]])
+        restrictions.sort()
+        for i in reversed(range(len(restrictions)-1)):
+            restrictions[i][1] = min(restrictions[i][1], restrictions[i+1][1]+(restrictions[i+1][0]-restrictions[i][0]))
+        result = 0
+        for i in range(1, len(restrictions)):
+            restrictions[i][1] = min(restrictions[i][1], restrictions[i-1][1]+(restrictions[i][0]-restrictions[i-1][0]))
+            left, h1 = restrictions[i-1]
+            right, h2 = restrictions[i]
+            result = max(result, max(h1, h2)+((right-left)-abs(h1-h2))//2)
+        return result

@@ -1,27 +1,24 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def wordSquares(self, words: List[str]) -> List[List[str]]:
-        ordered = sorted(words)
-        by_first = defaultdict(list)
-        by_corners = defaultdict(list)
-
-        for word in ordered:
-            by_first[word[0]].append(word)
-            by_corners[(word[0], word[3])].append(word)
-
-        squares = []
-        for top in ordered:
-            for left in by_first[top[0]]:
-                if left == top:
-                    continue
-                for right in by_first[top[3]]:
-                    if right == top or right == left:
-                        continue
-                    for bottom in by_corners[(left[3], right[3])]:
-                        if bottom != top and bottom != left and bottom != right:
-                            squares.append([top, left, right, bottom])
-
-        return squares
+        words.sort()
+        n = len(words)
+        ans = []
+        for i in range(n):
+            top = words[i]
+            for j in range(n):
+                if j != i:
+                    left = words[j]
+                    for k in range(n):
+                        if k != j and k != i:
+                            right = words[k]
+                            for h in range(n):
+                                if h != k and h != j and h != i:
+                                    bottom = words[h]
+                                    if (
+                                        top[0] == left[0]
+                                        and top[3] == right[0]
+                                        and bottom[0] == left[3]
+                                        and bottom[3] == right[3]
+                                    ):
+                                        ans.append([top, left, right, bottom])
+        return ans

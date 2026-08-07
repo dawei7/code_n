@@ -1,19 +1,28 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def checkPalindromeFormation(self, a: str, b: str) -> bool:
-        def is_palindrome(value: str, left: int, right: int) -> bool:
-            while left < right:
-                if value[left] != value[right]:
+    def checkPalindromeFormation(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: bool
+        """
+        def is_palindrome(s, i, j):
+            while i < j:
+                if s[i] != s[j]:
                     return False
-                left += 1
-                right -= 1
+                i += 1
+                j -= 1
             return True
 
-        def can_combine(prefix_source: str, suffix_source: str) -> bool:
-            left = 0
-            right = len(prefix_source) - 1
-            while left < right and prefix_source[left] == suffix_source[right]:
-                left += 1
-                right -= 1
-            return is_palindrome(prefix_source, left, right) or is_palindrome(suffix_source, left, right)
+        def check(a, b):
+            i, j = 0, len(b)-1
+            while i < j:
+                if a[i] != b[j]:
+                    return is_palindrome(a, i, j) or is_palindrome(b, i, j)
+                i += 1
+                j -= 1
+            return True
 
-        return can_combine(a, b) or can_combine(b, a)
+        return check(a, b) or check(b, a)

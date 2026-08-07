@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     def containsPattern(self, arr: List[int], m: int, k: int) -> bool:
-        equal_offset_run = 0
-
-        for index in range(len(arr) - m):
-            if arr[index] == arr[index + m]:
-                equal_offset_run += 1
-                if equal_offset_run == m * (k - 1):
+        if len(arr) < m * k:
+            return False
+        cnt, target = 0, (k - 1) * m
+        for i in range(m, len(arr)):
+            if arr[i] == arr[i - m]:
+                cnt += 1
+                if cnt == target:
                     return True
             else:
-                equal_offset_run = 0
-
+                cnt = 0
         return False

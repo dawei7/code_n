@@ -1,17 +1,20 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, greedy
 class Solution:
-    def maximumBags(
-        self,
-        capacity: List[int],
-        rocks: List[int],
-        additionalRocks: int,
-    ) -> int:
-        deficits = sorted(maximum - current for maximum, current in zip(capacity, rocks))
-        full_bags = 0
-
-        for deficit in deficits:
-            if deficit > additionalRocks:
-                break
-            additionalRocks -= deficit
-            full_bags += 1
-
-        return full_bags
+    def maximumBags(self, capacity, rocks, additionalRocks):
+        """
+        :type capacity: List[int]
+        :type rocks: List[int]
+        :type additionalRocks: int
+        :rtype: int
+        """
+        for i in range(len(capacity)):
+            capacity[i] -= rocks[i]
+        capacity.sort()
+        for i, c in enumerate(capacity):
+            if c > additionalRocks:
+                return i
+            additionalRocks -= c
+        return len(capacity)

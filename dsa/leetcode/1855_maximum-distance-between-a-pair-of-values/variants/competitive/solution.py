@@ -1,18 +1,18 @@
-from typing import List
-
+# Time:  O(n + m)
+# Space: O(1)
 
 class Solution:
-    def maxDistance(self, nums1: List[int], nums2: List[int]) -> int:
-        first = 0
-        answer = 0
-
-        for second, value in enumerate(nums2):
-            while first < len(nums1) and nums1[first] > value:
-                first += 1
-
-            if first == len(nums1):
-                break
-            if first <= second:
-                answer = max(answer, second - first)
-
-        return answer
+    def maxDistance(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        result = i = j = 0
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] > nums2[j]:
+                i += 1
+            else:
+                result = max(result, j-i)
+                j += 1
+        return result

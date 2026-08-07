@@ -1,19 +1,20 @@
 class Solution:
     def numOfArrays(self, n: int, m: int, k: int) -> int:
-        modulus = 1_000_000_007
-        if k > m:
+        if k == 0:
             return 0
-        current = [[0] * (m + 1) for _ in range(k + 1)]
-        for maximum in range(1, m + 1):
-            current[1][maximum] = 1
-
-        for _ in range(1, n):
-            following = [[0] * (m + 1) for _ in range(k + 1)]
-            for cost in range(1, k + 1):
-                smaller_prefix = 0
-                for maximum in range(1, m + 1):
-                    following[cost][maximum] = (current[cost][maximum] * maximum + smaller_prefix) % modulus
-                    smaller_prefix = (smaller_prefix + current[cost - 1][maximum]) % modulus
-            current = following
-
-        return sum(current[k]) % modulus
+        dp = [[[0] * (m + 1) for _ in range(k + 1)] for _ in range(n + 1)]
+        mod = 10**9 + 7
+        for i in range(1, m + 1):
+            dp[1][1][i] = 1
+        for i in range(2, n + 1):
+            for c in range(1, min(k + 1, i + 1)):
+                for j in range(1, m + 1):
+                    dp[i][c][j] = dp[i - 1][c][j] * j
+                    for j0 in range(1, j):
+                        dp[i][c][j] += dp[i - 1][c - 1][j0]
+                        dp[i][c][j] %= mod
+        ans = 0
+        for i in range(1, m + 1):
+            ans += dp[n][k][i]
+            ans %= mod
+        return ans

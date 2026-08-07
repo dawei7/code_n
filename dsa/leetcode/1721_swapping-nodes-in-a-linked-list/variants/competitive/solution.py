@@ -1,21 +1,27 @@
+# Time:  O(n)
+# Space: O(1)
+
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        pass
 
 
 class Solution:
-    def swapNodes(self, head: "ListNode", k: int) -> "ListNode":
-        kth_from_start = head
-        for _ in range(k - 1):
-            kth_from_start = kth_from_start.next
-
-        kth_from_end = head
-        runner = kth_from_start
-        while runner.next is not None:
-            runner = runner.next
-            kth_from_end = kth_from_end.next
-
-        kth_from_start.val, kth_from_end.val = kth_from_end.val, kth_from_start.val
+    def swapNodes(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: ListNode
+        """
+        left, right, curr = None, None, head
+        while curr:
+            k -= 1
+            if right:
+                right = right.next
+            if k == 0:
+                left = curr
+                right = head
+            curr = curr.next
+        left.val, right.val = right.val, left.val
         return head

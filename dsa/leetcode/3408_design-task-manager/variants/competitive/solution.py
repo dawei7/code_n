@@ -1,33 +1,59 @@
-import heapq
-from typing import List
+# Time:  ctor:    O(tlogt)
+#        add:     O(logt)
+#        edit:    O(logt)
+#        rmv:     O(logt)
+#        execTop: O(logt)
+# Space: O(t)
+
+from sortedcontainers import SortedList
 
 
-class TaskManager:
-    def __init__(self, tasks: List[List[int]]):
-        self.tasks = {}
-        self.heap = []
-        for user_id, task_id, priority in tasks:
-            self.add(user_id, task_id, priority)
+# sorted list
+class TaskManager(object):
 
-    def add(self, userId: int, taskId: int, priority: int) -> None:
-        self.tasks[taskId] = (userId, priority)
-        heapq.heappush(self.heap, (-priority, -taskId))
+    def __init__(self, tasks):
+        """
+        :type tasks: List[List[int]]
+        """
+        self.__lookup = {}
+        self.__sl = SortedList()
+        for userId, taskId, priority in tasks:
+            self.add(userId, taskId, priority)
 
-    def edit(self, taskId: int, newPriority: int) -> None:
-        user_id, _ = self.tasks[taskId]
-        self.tasks[taskId] = (user_id, newPriority)
-        heapq.heappush(self.heap, (-newPriority, -taskId))
+    def add(self, userId, taskId, priority):
+        """
+        :type userId: int
+        :type taskId: int
+        :type priority: int
+        :rtype: None
+        """
+        self.__sl.add((priority, taskId, userId))
+        self.__lookup[taskId] = (userId, priority)
 
-    def rmv(self, taskId: int) -> None:
-        del self.tasks[taskId]
+    def edit(self, taskId, newPriority):
+        """
+        :type taskId: int
+        :type newPriority: int
+        :rtype: None
+        """
+        userId, _ = self.__lookup[taskId]
+        self.rmv(taskId)
+        self.add(userId, taskId, newPriority)
 
-    def execTop(self) -> int:
-        while self.heap:
-            negative_priority, negative_task_id = heapq.heappop(self.heap)
-            task_id = -negative_task_id
-            priority = -negative_priority
-            current = self.tasks.get(task_id)
-            if current is not None and current[1] == priority:
-                del self.tasks[task_id]
-                return current[0]
-        return -1
+    def rmv(self, taskId):
+        """
+        :type taskId: int
+        :rtype: None
+        """
+        userId, priority = self.__lookup.pop(taskId)
+        self.__sl.remove((priority, taskId, userId))
+
+    def execTop(self):
+        """
+        :rtype: int
+        """
+        if not self.__sl:
+            return -1
+        _, taskId, userId = self.__sl[-1]
+        self.rmv(taskId)
+        return userId

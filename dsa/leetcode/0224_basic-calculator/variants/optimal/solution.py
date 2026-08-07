@@ -1,23 +1,26 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        result = number = 0
-        sign = 1
-        stack = []
-        for character in s:
-            if character.isdigit():
-                number = number * 10 + int(character)
-            elif character in "+-":
-                result += sign * number
-                number = 0
-                sign = 1 if character == "+" else -1
-            elif character == "(":
-                stack.extend((result, sign))
-                result = number = 0
+        stk = []
+        ans, sign = 0, 1
+        i, n = 0, len(s)
+        while i < n:
+            if s[i].isdigit():
+                x = 0
+                j = i
+                while j < n and s[j].isdigit():
+                    x = x * 10 + int(s[j])
+                    j += 1
+                ans += sign * x
+                i = j - 1
+            elif s[i] == "+":
                 sign = 1
-            elif character == ")":
-                result += sign * number
-                number = 0
-                previous_sign = stack.pop()
-                previous_result = stack.pop()
-                result = previous_result + previous_sign * result
-        return result + sign * number
+            elif s[i] == "-":
+                sign = -1
+            elif s[i] == "(":
+                stk.append(ans)
+                stk.append(sign)
+                ans, sign = 0, 1
+            elif s[i] == ")":
+                ans = stk.pop() * ans + stk.pop()
+            i += 1
+        return ans

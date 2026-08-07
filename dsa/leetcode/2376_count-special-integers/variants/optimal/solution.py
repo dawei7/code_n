@@ -1,35 +1,19 @@
 class Solution:
     def countSpecialNumbers(self, n: int) -> int:
-        def permutations(available: int, slots: int) -> int:
-            result = 1
-            for offset in range(slots):
-                result *= available - offset
-            return result
+        @cache
+        def dfs(i: int, mask: int, lead: bool, limit: bool) -> int:
+            if i >= len(s):
+                return int(lead ^ 1)
+            up = int(s[i]) if limit else 9
+            ans = 0
+            for j in range(up + 1):
+                if mask >> j & 1:
+                    continue
+                if lead and j == 0:
+                    ans += dfs(i + 1, mask, True, limit and j == up)
+                else:
+                    ans += dfs(i + 1, mask | 1 << j, False, limit and j == up)
+            return ans
 
-        digits = str(n)
-        length = len(digits)
-        answer = 0
-
-        for shorter_length in range(1, length):
-            answer += 9 * permutations(9, shorter_length - 1)
-
-        used = set()
-        for index, char in enumerate(digits):
-            current = int(char)
-            first_candidate = 1 if index == 0 else 0
-            remaining_slots = length - index - 1
-
-            for candidate in range(first_candidate, current):
-                if candidate not in used:
-                    answer += permutations(
-                        10 - (index + 1),
-                        remaining_slots,
-                    )
-
-            if current in used:
-                break
-            used.add(current)
-        else:
-            answer += 1
-
-        return answer
+        s = str(n)
+        return dfs(0, 0, True, True)

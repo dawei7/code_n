@@ -1,11 +1,32 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def numberOfSubstrings(self, s: str) -> int:
-        frequencies = [0] * 26
-        total = 0
+    def numberOfSubstrings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = 0
+        cnt = collections.Counter()
+        for c in s:
+            cnt[c] += 1
+            result += cnt[c]
+        return result
 
-        for character in s:
-            index = ord(character) - ord("a")
-            frequencies[index] += 1
-            total += frequencies[index]
 
-        return total
+# Time:  O(n)
+# Space: O(1)
+import collections
+
+
+class Solution:
+    def numberOfSubstrings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return sum(v*(v+1)//2 for v in collections.Counter(s).itervalues())

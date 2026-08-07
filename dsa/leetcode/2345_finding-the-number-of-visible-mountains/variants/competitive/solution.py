@@ -1,18 +1,44 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# math, sort
 class Solution:
-    def visibleMountains(self, peaks: List[List[int]]) -> int:
-        ranges = sorted(
-            ((x - y, x + y) for x, y in peaks),
-            key=lambda interval: (interval[0], -interval[1]),
-        )
-        visible = 0
-        rightmost = -1
+    def visibleMountains(self, peaks):
+        """
+        :type peaks: List[List[int]]
+        :rtype: int
+        """
+        peaks.sort(key=lambda x: (x[0]-x[1], -(x[0]+x[1])))  # rotate points by 45 degrees and we only care the largest new y in the same new x
+        result = mx = 0
+        for i in range(len(peaks)):
+            if peaks[i][0]+peaks[i][1] <= mx:
+                continue
+            mx = peaks[i][0]+peaks[i][1]
+            if i+1 == len(peaks) or peaks[i+1] != peaks[i]:
+                result += 1
+        return result
 
-        for index, interval in enumerate(ranges):
-            duplicate = (index > 0 and ranges[index - 1] == interval) or (
-                index + 1 < len(ranges) and ranges[index + 1] == interval
-            )
-            if not duplicate and interval[1] > rightmost:
-                visible += 1
-            rightmost = max(rightmost, interval[1])
 
-        return visible
+# Time:  O(nlogn)
+# Space: O(n)
+# sort, mono stack
+class Solution2(object):
+    def visibleMountains(self, peaks):
+        """
+        :type peaks: List[List[int]]
+        :rtype: int
+        """
+        def is_covered(a, b):
+            x1, y1 = a
+            x2, y2 = b
+            return x2-y2 <= x1-y1 and x1+y1 <= x2+y2
+
+        peaks.sort()
+        stk = []
+        for i in range(len(peaks)):
+            while stk and is_covered(peaks[stk[-1]], peaks[i]):
+                stk.pop()
+            if (i-1 == -1 or peaks[i-1] != peaks[i]) and (not stk or not is_covered(peaks[i], peaks[stk[-1]])):  # not duplicted and not covered
+                stk.append(i)
+        return len(stk)
+            

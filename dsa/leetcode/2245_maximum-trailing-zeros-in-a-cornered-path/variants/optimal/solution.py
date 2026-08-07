@@ -1,54 +1,32 @@
-from typing import List
-
-
 class Solution:
     def maxTrailingZeros(self, grid: List[List[int]]) -> int:
-        rows, columns = len(grid), len(grid[0])
-        row_twos = [[0] * (columns + 1) for _ in range(rows)]
-        row_fives = [[0] * (columns + 1) for _ in range(rows)]
-        column_twos = [[0] * columns for _ in range(rows + 1)]
-        column_fives = [[0] * columns for _ in range(rows + 1)]
-        factors = [[(0, 0)] * columns for _ in range(rows)]
-
-        for row in range(rows):
-            for column in range(columns):
-                value = grid[row][column]
-                twos = fives = 0
-                while value % 2 == 0:
-                    twos += 1
-                    value //= 2
-                while value % 5 == 0:
-                    fives += 1
-                    value //= 5
-                factors[row][column] = (twos, fives)
-                row_twos[row][column + 1] = row_twos[row][column] + twos
-                row_fives[row][column + 1] = row_fives[row][column] + fives
-                column_twos[row + 1][column] = column_twos[row][column] + twos
-                column_fives[row + 1][column] = column_fives[row][column] + fives
-
-        answer = 0
-        for row in range(rows):
-            for column in range(columns):
-                cell_twos, cell_fives = factors[row][column]
-                horizontal_twos = (
-                    row_twos[row][column + 1],
-                    row_twos[row][columns] - row_twos[row][column],
+        m, n = len(grid), len(grid[0])
+        r2 = [[0] * (n + 1) for _ in range(m + 1)]
+        c2 = [[0] * (n + 1) for _ in range(m + 1)]
+        r5 = [[0] * (n + 1) for _ in range(m + 1)]
+        c5 = [[0] * (n + 1) for _ in range(m + 1)]
+        for i, row in enumerate(grid, 1):
+            for j, x in enumerate(row, 1):
+                s2 = s5 = 0
+                while x % 2 == 0:
+                    x //= 2
+                    s2 += 1
+                while x % 5 == 0:
+                    x //= 5
+                    s5 += 1
+                r2[i][j] = r2[i][j - 1] + s2
+                c2[i][j] = c2[i - 1][j] + s2
+                r5[i][j] = r5[i][j - 1] + s5
+                c5[i][j] = c5[i - 1][j] + s5
+        ans = 0
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                a = min(r2[i][j] + c2[i - 1][j], r5[i][j] + c5[i - 1][j])
+                b = min(r2[i][j] + c2[m][j] - c2[i][j], r5[i][j] + c5[m][j] - c5[i][j])
+                c = min(r2[i][n] - r2[i][j] + c2[i][j], r5[i][n] - r5[i][j] + c5[i][j])
+                d = min(
+                    r2[i][n] - r2[i][j - 1] + c2[m][j] - c2[i][j],
+                    r5[i][n] - r5[i][j - 1] + c5[m][j] - c5[i][j],
                 )
-                horizontal_fives = (
-                    row_fives[row][column + 1],
-                    row_fives[row][columns] - row_fives[row][column],
-                )
-                vertical_twos = (
-                    column_twos[row + 1][column],
-                    column_twos[rows][column] - column_twos[row][column],
-                )
-                vertical_fives = (
-                    column_fives[row + 1][column],
-                    column_fives[rows][column] - column_fives[row][column],
-                )
-                for horizontal in range(2):
-                    for vertical in range(2):
-                        twos = horizontal_twos[horizontal] + vertical_twos[vertical] - cell_twos
-                        fives = horizontal_fives[horizontal] + vertical_fives[vertical] - cell_fives
-                        answer = max(answer, min(twos, fives))
-        return answer
+                ans = max(ans, a, b, c, d)
+        return ans

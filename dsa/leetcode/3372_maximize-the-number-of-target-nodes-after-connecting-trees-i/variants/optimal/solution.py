@@ -1,35 +1,27 @@
 class Solution:
-    def maxTargetNodes(self, edges1: List[List[int]], edges2: List[List[int]], k: int) -> List[int]:
-        def count_within(edges, limit):
-            size = len(edges) + 1
-            graph = [[] for _ in range(size)]
-            for first, second in edges:
-                graph[first].append(second)
-                graph[second].append(first)
+    def maxTargetNodes(
+        self, edges1: List[List[int]], edges2: List[List[int]], k: int
+    ) -> List[int]:
+        def build(edges: List[List[int]]) -> List[List[int]]:
+            n = len(edges) + 1
+            g = [[] for _ in range(n)]
+            for a, b in edges:
+                g[a].append(b)
+                g[b].append(a)
+            return g
 
-            if limit < 0:
-                return [0] * size
+        def dfs(g: List[List[int]], a: int, fa: int, d: int) -> int:
+            if d < 0:
+                return 0
+            cnt = 1
+            for b in g[a]:
+                if b != fa:
+                    cnt += dfs(g, b, a, d - 1)
+            return cnt
 
-            counts = []
-            for start in range(size):
-                reachable = 0
-                stack = [(start, -1, 0)]
-                while stack:
-                    node, parent, distance = stack.pop()
-                    if distance > limit:
-                        continue
-
-                    reachable += 1
-                    if distance < limit:
-                        for neighbor in graph[node]:
-                            if neighbor != parent:
-                                stack.append((neighbor, node, distance + 1))
-
-                counts.append(reachable)
-
-            return counts
-
-        first_counts = count_within(edges1, k)
-        second_counts = count_within(edges2, k - 1)
-        best_second = max(second_counts)
-        return [count + best_second for count in first_counts]
+        g2 = build(edges2)
+        m = len(edges2) + 1
+        t = max(dfs(g2, i, -1, k - 1) for i in range(m))
+        g1 = build(edges1)
+        n = len(edges1) + 1
+        return [dfs(g1, i, -1, k) + t for i in range(n)]

@@ -1,31 +1,23 @@
 class Solution:
     def countOfSubstrings(self, word: str, k: int) -> int:
-        vowels = set("aeiou")
-
-        def count_at_least(required_consonants: int) -> int:
-            frequencies = {}
-            consonants = 0
-            left = 0
-            total = 0
-
-            for character in word:
-                if character in vowels:
-                    frequencies[character] = frequencies.get(character, 0) + 1
+        def f(k: int) -> int:
+            cnt = Counter()
+            ans = l = x = 0
+            for c in word:
+                if c in "aeiou":
+                    cnt[c] += 1
                 else:
-                    consonants += 1
-
-                while consonants >= required_consonants and len(frequencies) == 5:
-                    outgoing = word[left]
-                    left += 1
-                    if outgoing in vowels:
-                        frequencies[outgoing] -= 1
-                        if frequencies[outgoing] == 0:
-                            del frequencies[outgoing]
+                    x += 1
+                while x >= k and len(cnt) == 5:
+                    d = word[l]
+                    if d in "aeiou":
+                        cnt[d] -= 1
+                        if cnt[d] == 0:
+                            cnt.pop(d)
                     else:
-                        consonants -= 1
+                        x -= 1
+                    l += 1
+                ans += l
+            return ans
 
-                total += left
-
-            return total
-
-        return count_at_least(k) - count_at_least(k + 1)
+        return f(k) - f(k + 1)

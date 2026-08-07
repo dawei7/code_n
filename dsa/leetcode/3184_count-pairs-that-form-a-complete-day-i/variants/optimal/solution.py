@@ -1,12 +1,8 @@
 class Solution:
     def countCompleteDayPairs(self, hours: List[int]) -> int:
-        remainder_counts = [0] * 24
-        pairs = 0
-
-        for hour in hours:
-            remainder = hour % 24
-            complement = (24 - remainder) % 24
-            pairs += remainder_counts[complement]
-            remainder_counts[remainder] += 1
-
-        return pairs
+        cnt = Counter()
+        ans = 0
+        for x in hours:
+            ans += cnt[(24 - (x % 24)) % 24]
+            cnt[x % 24] += 1
+        return ans

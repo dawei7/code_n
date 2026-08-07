@@ -1,48 +1,37 @@
-from functools import cache
-
-
 class Solution:
     def countGoodIntegersOnPath(self, l: int, r: int, directions: str) -> int:
-        path_positions = {0}
-        row = 0
-        column = 0
-
-        for direction in directions:
-            if direction == "D":
+        key = [False] * 16
+        row, col = 0, 0
+        key[0] = True
+        for c in directions:
+            if c == "D":
                 row += 1
             else:
-                column += 1
-            path_positions.add(row * 4 + column)
+                col += 1
+            key[row * 4 + col] = True
 
-        def count_at_most(limit: int) -> int:
-            if limit < 0:
+        s = ""
+
+        @cache
+        def dfs(pos, last, lim):
+            if pos == 16:
+                return 1
+
+            res = 0
+            start = last if key[pos] else 0
+            end = int(s[pos]) if lim else 9
+
+            for i in range(start, end + 1):
+                res += dfs(pos + 1, i if key[pos] else last, lim and (i == end))
+
+            return res
+
+        def calc(x):
+            nonlocal s
+            if x < 0:
                 return 0
+            s = str(x).zfill(16)
+            dfs.cache_clear()
+            return dfs(0, 0, True)
 
-            digits = [int(digit) for digit in f"{limit:016d}"]
-
-            @cache
-            def count(position: int, tight: bool, previous_path_digit: int) -> int:
-                if position == 16:
-                    return 1
-
-                upper = digits[position] if tight else 9
-                total = 0
-
-                if position in path_positions:
-                    first_digit = previous_path_digit
-                else:
-                    first_digit = 0
-
-                for digit in range(first_digit, upper + 1):
-                    next_previous = digit if position in path_positions else previous_path_digit
-                    total += count(
-                        position + 1,
-                        tight and digit == digits[position],
-                        next_previous,
-                    )
-
-                return total
-
-            return count(0, True, 0)
-
-        return count_at_most(r) - count_at_most(l - 1)
+        return calc(r) - calc(l - 1)

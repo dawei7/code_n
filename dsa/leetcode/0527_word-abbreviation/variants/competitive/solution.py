@@ -1,35 +1,39 @@
-from typing import List
+# Time:  O(n * l) ~ O(n^2 * l^2)
+# Space: O(n * l)
 
-
-class TrieNode:
-    def __init__(self) -> None:
-        self.children = {}
-        self.count = 0
+import collections
 
 
 class Solution:
-    def wordsAbbreviation(self, words: List[str]) -> List[str]:
-        roots = {}
-        for word in words:
-            signature = (len(word), word[0], word[-1])
-            node = roots.setdefault(signature, TrieNode())
-            for character in word:
-                node = node.children.setdefault(character, TrieNode())
-                node.count += 1
+    def wordsAbbreviation(self, dict):
+        """
+        :type dict: List[str]
+        :rtype: List[str]
+        """
+        def isUnique(prefix, words):
+            return sum(word.startswith(prefix) for word in words) == 1
 
-        answer = []
-        for word in words:
-            node = roots[(len(word), word[0], word[-1])]
-            prefix_length = 0
-            for character in word:
-                node = node.children[character]
-                prefix_length += 1
-                if node.count == 1:
-                    break
+        def toAbbr(prefix, word):
+            abbr = prefix + str(len(word) - 1 - len(prefix)) + word[-1]
+            return abbr if len(abbr) < len(word) else word
 
-            omitted = len(word) - prefix_length - 1
-            if omitted <= 1:
-                answer.append(word)
+        abbr_to_word = collections.defaultdict(set)
+        word_to_abbr = {}
+
+        for word in dict:
+            prefix = word[:1]
+            abbr_to_word[toAbbr(prefix, word)].add(word)
+
+        for abbr, conflicts in abbr_to_word.items():
+            if len(conflicts) > 1:
+                for word in conflicts:
+                    for i in range(2, len(word)):
+                        prefix = word[:i]
+                        if isUnique(prefix, conflicts):
+                            word_to_abbr[word] = toAbbr(prefix, word)
+                            break
             else:
-                answer.append(f"{word[:prefix_length]}{omitted}{word[-1]}")
-        return answer
+                word_to_abbr[conflicts.pop()] = abbr
+
+        return [word_to_abbr[word] for word in dict]
+

@@ -1,19 +1,23 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table, combinatorics
 class Solution:
-    def countTrapezoids(self, points: List[List[int]]) -> int:
-        modulus = 1_000_000_007
-        points_per_height = defaultdict(int)
+    def countTrapezoids(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        cnt = collections.defaultdict(int)
         for _, y in points:
-            points_per_height[y] += 1
-
-        answer = 0
-        earlier_sides = 0
-        for count in points_per_height.values():
-            sides = count * (count - 1) // 2
-            answer = (answer + sides * earlier_sides) % modulus
-            earlier_sides = (earlier_sides + sides) % modulus
-
-        return answer
+            cnt[y] += 1
+        result = total = 0
+        for c in cnt.values():
+            curr = (c*(c-1)//2)%MOD
+            result = (result+(total*curr)%MOD)%MOD
+            total = (total+curr)%MOD
+        return result

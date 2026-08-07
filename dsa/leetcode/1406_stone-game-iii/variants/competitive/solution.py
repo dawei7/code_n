@@ -1,19 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def stoneGameIII(self, stoneValue: List[int]) -> str:
-        length = len(stoneValue)
-        difference = [0] * (length + 1)
-        for index in range(length - 1, -1, -1):
-            taken = 0
-            best = -float("inf")
-            for end in range(index, min(index + 3, length)):
-                taken += stoneValue[end]
-                best = max(best, taken - difference[end + 1])
-            difference[index] = best
-        if difference[0] > 0:
-            return "Alice"
-        if difference[0] < 0:
-            return "Bob"
-        return "Tie"
+    def stoneGameIII(self, stoneValue):
+        """
+        :type stoneValue: List[int]
+        :rtype: str
+        """
+        dp = [float("-inf")]*3
+        dp[len(stoneValue)%3] = 0
+        for i in reversed(range(len(stoneValue))):
+            max_dp, curr = float("-inf"), 0
+            for j in range(min(3, len(stoneValue)-i)):
+                curr += stoneValue[i+j]
+                max_dp = max(max_dp, curr-dp[(i+j+1)%3])
+            dp[i%3] = max_dp
+        return ["Tie", "Alice", "Bob"][cmp(dp[0], 0)]

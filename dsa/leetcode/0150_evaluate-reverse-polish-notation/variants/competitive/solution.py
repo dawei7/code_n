@@ -1,23 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
+import operator
 
 class Solution:
-    def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
+    # @param tokens, a list of string
+    # @return an integer
+    def evalRPN(self, tokens):
+        numerals, operators = [], {"+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.div}
         for token in tokens:
-            if token not in {"+", "-", "*", "/"}:
-                stack.append(int(token))
-                continue
-
-            right = stack.pop()
-            left = stack.pop()
-            if token == "+":
-                stack.append(left + right)
-            elif token == "-":
-                stack.append(left - right)
-            elif token == "*":
-                stack.append(left * right)
+            if token not in operators:
+                numerals.append(int(token))
             else:
-                quotient = abs(left) // abs(right)
-                stack.append(-quotient if (left < 0) != (right < 0) else quotient)
-        return stack[-1]
+                y, x = numerals.pop(), numerals.pop()
+                numerals.append(int(operators[token](x * 1.0, y)))
+        return numerals.pop()
+

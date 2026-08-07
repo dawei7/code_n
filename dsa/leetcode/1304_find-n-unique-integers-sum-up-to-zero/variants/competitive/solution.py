@@ -1,12 +1,10 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def sumZero(self, n: int) -> List[int]:
-        res = [0] * n
-        idx = 0
-        for i in range(1, n // 2 + 1):
-            res[idx] = i
-            res[idx + 1] = -i
-            idx += 2
-        return res
+    def sumZero(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        return [i for i in range(-(n//2), n//2+1) if not (i == 0 and n%2 == 0)]

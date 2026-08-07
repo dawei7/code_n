@@ -1,29 +1,30 @@
-from typing import List
-
-
 class Solution:
     def maxProductPath(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        minimum = [[0] * columns for _ in range(rows)]
-        maximum = [[0] * columns for _ in range(rows)]
-        minimum[0][0] = maximum[0][0] = grid[0][0]
+        m, n = len(grid), len(grid[0])
+        f = [[[0, 0] for _ in range(n)] for _ in range(m)]
 
-        for row in range(rows):
-            for column in range(columns):
-                if row == 0 and column == 0:
+        for i in range(m):
+            for j in range(n):
+                x = grid[i][j]
+                if i == 0 and j == 0:
+                    f[i][j][0] = x
+                    f[i][j][1] = x
                     continue
 
-                value = grid[row][column]
-                candidates = []
-                if row > 0:
-                    candidates.append(minimum[row - 1][column] * value)
-                    candidates.append(maximum[row - 1][column] * value)
-                if column > 0:
-                    candidates.append(minimum[row][column - 1] * value)
-                    candidates.append(maximum[row][column - 1] * value)
-                minimum[row][column] = min(candidates)
-                maximum[row][column] = max(candidates)
+                mn, mx = inf, -inf
 
-        answer = maximum[-1][-1]
-        return answer % 1_000_000_007 if answer >= 0 else -1
+                if i > 0:
+                    a, b = f[i - 1][j]
+                    mn = min(mn, a * x, b * x)
+                    mx = max(mx, a * x, b * x)
+
+                if j > 0:
+                    a, b = f[i][j - 1]
+                    mn = min(mn, a * x, b * x)
+                    mx = max(mx, a * x, b * x)
+
+                f[i][j][0], f[i][j][1] = mn, mx
+
+        ans = f[m - 1][n - 1][1]
+        mod = 10**9 + 7
+        return -1 if ans < 0 else ans % mod

@@ -1,12 +1,15 @@
-class Solution:
-    def movesToMakeZigzag(self, nums: list[int]) -> int:
-        def valley_cost(parity: int) -> int:
-            cost = 0
-            for index in range(parity, len(nums), 2):
-                left = nums[index - 1] if index > 0 else float("inf")
-                right = nums[index + 1] if index + 1 < len(nums) else float("inf")
-                smaller_neighbor = min(left, right)
-                cost += max(0, nums[index] - smaller_neighbor + 1)
-            return cost
+# Time:  O(n)
+# Space: O(1)
 
-        return min(valley_cost(0), valley_cost(1))
+class Solution:
+    def movesToMakeZigzag(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = [0, 0]
+        for i in range(len(nums)):
+            left = nums[i-1] if i-1 >= 0 else float("inf")
+            right = nums[i+1] if i+1 < len(nums) else float("inf")
+            result[i%2] += max(nums[i] - min(left, right) + 1, 0)
+        return min(result)

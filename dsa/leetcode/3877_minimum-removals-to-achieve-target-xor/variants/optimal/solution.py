@@ -1,18 +1,14 @@
-from typing import List
-
-
 class Solution:
     def minRemovals(self, nums: List[int], target: int) -> int:
-        best = {0: 0}
-
-        for value in nums:
-            next_best = best.copy()
-
-            for xor_value, kept in best.items():
-                candidate = xor_value ^ value
-                next_best[candidate] = max(next_best.get(candidate, -1), kept + 1)
-
-            best = next_best
-
-        kept = best.get(target, -1)
-        return -1 if kept < 0 else len(nums) - kept
+        m = max(nums).bit_length()
+        if (1 << m) <= target:
+            return -1
+        n = len(nums)
+        f = [[-inf] * (1 << m) for _ in range(n + 1)]
+        f[0][0] = 0
+        for i, x in enumerate(nums, 1):
+            for j in range(1 << m):
+                f[i][j] = max(f[i - 1][j], f[i - 1][j ^ x] + 1)
+        if f[n][target] < 0:
+            return -1
+        return n - f[n][target]

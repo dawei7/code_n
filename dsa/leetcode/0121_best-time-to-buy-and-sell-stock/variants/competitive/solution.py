@@ -1,11 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        best = 0
-        lowest = float("inf")
+    # @param prices, a list of integer
+    # @return an integer
+    def maxProfit(self, prices):
+        max_profit, min_price = 0, float("inf")
         for price in prices:
-            lowest = min(lowest, price)
-            best = max(best, price - lowest)
-        return best
+            min_price = min(min_price, price)
+            max_profit = max(max_profit, price - min_price)
+        return max_profit
+

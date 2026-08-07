@@ -1,14 +1,36 @@
-from typing import List
+# Time:  O(n * r^2)
+# Space: O(min(n * r^2, max_x * max_y))
 
-
+# math, hash table
 class Solution:
-    def countLatticePoints(self, circles: List[List[int]]) -> int:
-        covered = set()
-        for center_x, center_y, radius in circles:
-            squared_radius = radius * radius
-            for x in range(center_x - radius, center_x + radius + 1):
-                squared_x = (x - center_x) ** 2
-                for y in range(center_y - radius, center_y + radius + 1):
-                    if squared_x + (y - center_y) ** 2 <= squared_radius:
-                        covered.add((x, y))
-        return len(covered)
+    def countLatticePoints(self, circles):
+        """
+        :type circles: List[List[int]]
+        :rtype: int
+        """
+        lookup = set()
+        for x, y, r in circles:
+            for i in range(-r, r+1):
+                for j in range(-r, r+1):
+                    if i**2+j**2 <= r**2:
+                        lookup.add(((x+i), (y+j)))
+        return len(lookup)
+
+
+# Time:  O(n * max_x * max_y)
+# Space: O(1)
+# math
+class Solution2(object):
+    def countLatticePoints(self, circles):
+        """
+        :type circles: List[List[int]]
+        :rtype: int
+        """
+        max_x = max(x+r for x, _, r in circles)
+        max_y = max(y+r for _, y, r in circles)
+        result = 0
+        for i in range(max_x+1):
+            for j in range(max_y+1):
+                if any((i-x)**2+(j-y)**2 <= r**2 for x, y, r in circles):
+                    result += 1
+        return result

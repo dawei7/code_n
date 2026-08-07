@@ -1,15 +1,36 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, two pointers
 class Solution:
-    def minRemoval(self, nums: List[int], k: int) -> int:
-        ordered = sorted(nums)
+    def minRemoval(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        nums.sort()
         left = 0
-        longest = 1
-
-        for right, maximum in enumerate(ordered):
-            while maximum > k * ordered[left]:
+        for right in range(len(nums)):
+            if nums[left]*k < nums[right]:
                 left += 1
-            longest = max(longest, right - left + 1)
+        return left
 
-        return len(nums) - longest
+
+# Time:  O(nlogn)
+# Space: O(1)
+# sort, two pointers
+class Solution2(object):
+    def minRemoval(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        nums.sort()
+        result = left = 0
+        for right in range(len(nums)):
+            while nums[left]*k < nums[right]:
+                left += 1
+            result = max(result, right-left+1)
+        return len(nums)-result

@@ -1,23 +1,17 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
-        neighbors = defaultdict(list)
-        for left, right in adjacentPairs:
-            neighbors[left].append(right)
-            neighbors[right].append(left)
-
-        current = next(value for value, adjacent in neighbors.items() if len(adjacent) == 1)
-        restored = [current]
-        previous = None
-
-        while len(restored) < len(neighbors):
-            for candidate in neighbors[current]:
-                if candidate != previous:
-                    restored.append(candidate)
-                    previous, current = current, candidate
-                    break
-
-        return restored
+        g = defaultdict(list)
+        for a, b in adjacentPairs:
+            g[a].append(b)
+            g[b].append(a)
+        n = len(adjacentPairs) + 1
+        ans = [0] * n
+        for i, v in g.items():
+            if len(v) == 1:
+                ans[0] = i
+                ans[1] = v[0]
+                break
+        for i in range(2, n):
+            v = g[ans[i - 1]]
+            ans[i] = v[0] if v[1] == ans[i - 2] else v[1]
+        return ans

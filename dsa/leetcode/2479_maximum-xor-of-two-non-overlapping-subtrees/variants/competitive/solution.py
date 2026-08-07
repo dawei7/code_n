@@ -1,68 +1,145 @@
-from typing import List
+# Time:  O(nlogr), r is sum(values)
+# Space: O(n)
+
+# iterative dfs, trie, greedy
+class Trie(object):
+    def __init__(self, bit_length):
+        self.__root = {}
+        self.__bit_length = bit_length
+        
+    def insert(self, num):
+        node = self.__root
+        for i in reversed(range(self.__bit_length)):
+            curr = (num>>i) & 1
+            if curr not in node:
+                node[curr] = {}
+            node = node[curr]
+                
+    def query(self, num):
+        if not self.__root: 
+            return -1
+        node, result = self.__root, 0
+        for i in reversed(range(self.__bit_length)):
+            curr = (num>>i) & 1
+            if 1^curr in node:
+                node = node[1^curr]
+                result |= 1<<i
+            else:
+                node = node[curr]
+        return result
 
 
 class Solution:
-    def maxXor(self, n: int, edges: List[List[int]], values: List[int]) -> int:
-        graph = [[] for _ in range(n)]
-        for node_a, node_b in edges:
-            graph[node_a].append(node_b)
-            graph[node_b].append(node_a)
+    def maxXor(self, n, edges, values):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type values: List[int]
+        :rtype: int
+        """
+        def iter_dfs():
+            lookup = [0]*len(values)
+            stk = [(1, 0, -1)]
+            while stk:
+                step, u, p = stk.pop()
+                if step == 1:
+                    stk.append((2, u, p))
+                    for v in adj[u]:
+                        if v == p:
+                            continue
+                        stk.append((1, v, u))
+                elif step == 2:
+                    lookup[u] = values[u]+sum(lookup[v] for v in adj[u] if v != p)
+            return lookup
 
-        parent = [-1] * n
-        order = [0]
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor == parent[node]:
+        def iter_dfs2():
+            trie = Trie(lookup[0].bit_length())
+            result = [0]
+            stk = [(1, (0, -1, result))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    u, p, ret = args
+                    ret[0] = max(trie.query(lookup[u]), 0)
+                    stk.append((3, (u,)))
+                    for v in adj[u]:
+                        if v == p:
+                            continue
+                        new_ret = [0]
+                        stk.append((2, (new_ret, ret)))
+                        stk.append((1, (v, u, new_ret)))
+                elif step == 2:
+                    new_ret, ret = args
+                    ret[0] = max(ret[0], new_ret[0])
+                elif step == 3:
+                    u = args[0]
+                    trie.insert(lookup[u])
+            return result[0]
+        
+        adj = [[] for _ in range(len(values))]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        lookup = iter_dfs()
+        return iter_dfs2()
+
+
+# Time:  O(nlogr), r is sum(values)
+# Space: O(n)
+# dfs, trie, greedy
+class Trie(object):
+    def __init__(self, bit_length):
+        self.__root = {}
+        self.__bit_length = bit_length
+        
+    def insert(self, num):
+        node = self.__root
+        for i in reversed(range(self.__bit_length)):
+            curr = (num>>i) & 1
+            if curr not in node:
+                node[curr] = {}
+            node = node[curr]
+                
+    def query(self, num):
+        if not self.__root: 
+            return -1
+        node, result = self.__root, 0
+        for i in reversed(range(self.__bit_length)):
+            curr = (num>>i) & 1
+            if 1^curr in node:
+                node = node[1^curr]
+                result |= 1<<i
+            else:
+                node = node[curr]
+        return result
+
+
+class Solution2(object):
+    def maxXor(self, n, edges, values):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type values: List[int]
+        :rtype: int
+        """
+        def dfs(u, p):
+            lookup[u] = values[u]+sum(dfs(v, u) for v in adj[u] if v != p)
+            return lookup[u]
+
+        def dfs2(u, p):
+            result = max(trie.query(lookup[u]), 0)
+            for v in adj[u]:
+                if v == p:
                     continue
-                parent[neighbor] = node
-                order.append(neighbor)
-
-        subtree_sum = values[:]
-        for node in reversed(order[1:]):
-            subtree_sum[parent[node]] += subtree_sum[node]
-
-        highest_bit = max(subtree_sum).bit_length() - 1
-        trie = [[-1, -1]]
-
-        def insert(value: int) -> None:
-            trie_node = 0
-            for bit in range(highest_bit, -1, -1):
-                digit = (value >> bit) & 1
-                if trie[trie_node][digit] == -1:
-                    trie[trie_node][digit] = len(trie)
-                    trie.append([-1, -1])
-                trie_node = trie[trie_node][digit]
-
-        def maximum_xor(value: int) -> int:
-            trie_node = 0
-            score = 0
-            for bit in range(highest_bit, -1, -1):
-                digit = (value >> bit) & 1
-                opposite = digit ^ 1
-                if trie[trie_node][opposite] != -1:
-                    score |= 1 << bit
-                    trie_node = trie[trie_node][opposite]
-                else:
-                    trie_node = trie[trie_node][digit]
-            return score
-
-        answer = 0
-        has_completed_subtree = False
-        stack = [(0, False)]
-
-        while stack:
-            node, exiting = stack.pop()
-            if exiting:
-                insert(subtree_sum[node])
-                has_completed_subtree = True
-                continue
-
-            if has_completed_subtree:
-                answer = max(answer, maximum_xor(subtree_sum[node]))
-
-            stack.append((node, True))
-            for neighbor in reversed(graph[node]):
-                if neighbor != parent[node]:
-                    stack.append((neighbor, False))
-
-        return answer
+                result = max(result, dfs2(v, u))
+            trie.insert(lookup[u])
+            return result
+        
+        adj = [[] for _ in range(len(values))]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        lookup = [0]*len(values)
+        dfs(0, -1)
+        trie = Trie(lookup[0].bit_length())
+        return dfs2(0, -1)

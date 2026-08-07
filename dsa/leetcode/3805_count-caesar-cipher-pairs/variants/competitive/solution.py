@@ -1,15 +1,23 @@
-from typing import List
+# Time:  O(n * m)
+# Space: O(n * m)
+
+import collections
 
 
+# freq table
 class Solution:
-    def countPairs(self, words: List[str]) -> int:
-        pairs = 0
-        seen = {}
+    def countPairs(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        def f(s):
+            return "".join(chr(ord('a')+((ord(x)-ord(s[0]))%26)) for x in s)
 
-        for word in words:
-            first = ord(word[0])
-            key = tuple((ord(character) - first) % 26 for character in word)
-            pairs += seen.get(key, 0)
-            seen[key] = seen.get(key, 0) + 1
-
-        return pairs
+        result = 0
+        cnt = collections.defaultdict(int)
+        for w in words:
+            s = f(w)
+            result += cnt[s]
+            cnt[s] += 1
+        return result

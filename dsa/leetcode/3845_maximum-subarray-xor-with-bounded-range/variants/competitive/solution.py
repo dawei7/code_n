@@ -1,78 +1,199 @@
-from collections import deque
+# Time:  O(nlogr), r = max(max(nums), 1)
+# Space: O(n)
+
+import collections
 
 
+# two pointers, mono deque, bitmasks, prefix sum, hash table
 class Solution:
-    def maxXor(self, nums: list[int], k: int) -> int:
-        n = len(nums)
-        prefix_xor = [0] * (n + 1)
-        for index, value in enumerate(nums):
-            prefix_xor[index + 1] = prefix_xor[index] ^ value
-
-        zero_child = [-1]
-        one_child = [-1]
-        count = [0]
-
-        def update(value: int, delta: int) -> None:
-            node = 0
-            count[node] += delta
-
-            for bit in range(14, -1, -1):
-                branch = (value >> bit) & 1
-                child = zero_child[node] if branch == 0 else one_child[node]
-
-                if child == -1:
-                    child = len(count)
-                    zero_child.append(-1)
-                    one_child.append(-1)
-                    count.append(0)
-                    if branch == 0:
-                        zero_child[node] = child
-                    else:
-                        one_child[node] = child
-
-                node = child
-                count[node] += delta
-
-        def maximum_xor(value: int) -> int:
-            node = 0
-            result = 0
-
-            for bit in range(14, -1, -1):
-                branch = (value >> bit) & 1
-                preferred = one_child[node] if branch == 0 else zero_child[node]
-
-                if preferred != -1 and count[preferred] > 0:
-                    result |= 1 << bit
-                    node = preferred
-                else:
-                    node = zero_child[node] if branch == 0 else one_child[node]
-
-            return result
-
-        maximum_indices: deque[int] = deque()
-        minimum_indices: deque[int] = deque()
+    def maxXor(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        lookup = [-1]*len(nums)
+        max_dq = collections.deque()
+        min_dq = collections.deque()
         left = 0
-        answer = 0
-
-        for right, value in enumerate(nums):
-            update(prefix_xor[right], 1)
-
-            while maximum_indices and nums[maximum_indices[-1]] <= value:
-                maximum_indices.pop()
-            maximum_indices.append(right)
-
-            while minimum_indices and nums[minimum_indices[-1]] >= value:
-                minimum_indices.pop()
-            minimum_indices.append(right)
-
-            while nums[maximum_indices[0]] - nums[minimum_indices[0]] > k:
-                update(prefix_xor[left], -1)
-                if maximum_indices[0] == left:
-                    maximum_indices.popleft()
-                if minimum_indices[0] == left:
-                    minimum_indices.popleft()
+        for right in range(len(nums)):
+            while max_dq and nums[max_dq[-1]] <= nums[right]:
+                max_dq.pop()
+            max_dq.append(right)
+            while min_dq and nums[min_dq[-1]] >= nums[right]:
+                min_dq.pop()
+            min_dq.append(right)
+            while nums[max_dq[0]]-nums[min_dq[0]] > k:
+                if max_dq and max_dq[0] == left:
+                    max_dq.popleft()
+                if min_dq and min_dq[0] == left:
+                    min_dq.popleft()
                 left += 1
+            lookup[right] = left
+        result = 0
+        mx = max(max(nums), 1)
+        for i in reversed(range(mx.bit_length())):
+            lookup2 = collections.defaultdict(int)
+            lookup2[0] = prefix = 0
+            for right in range(len(nums)):
+                prefix ^= nums[right]>>i
+                if ((result>>i)|1)^prefix in lookup2 and lookup2[((result>>i)|1)^prefix] >= lookup[right]:
+                    result |= 1<<i
+                    break
+                lookup2[prefix] = right+1
+        return result
 
-            answer = max(answer, maximum_xor(prefix_xor[right + 1]))
 
-        return answer
+# Time:  O(nlogr), r = max(max(nums), 1)
+# Space: O(n + t)
+import collections
+
+
+# two pointers, mono deque, bitmasks, prefix sum, trie
+class Solution2(object):
+    def maxXor(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        class Trie(object):
+            def __init__(self, bit_length):
+                self.__lefts = [-1]*(1+(1+len(nums))*bit_length)  # preallocate to speed up performance
+                self.__rights = [-1]*(1+(1+len(nums))*bit_length)
+                self.__cnts = [0]*(1+(1+len(nums))*bit_length)
+                self.__i = 0
+                self.__new_node()
+                self.__bit_length = bit_length
+            
+            def __new_node(self):
+                self.__i += 1
+                return self.__i-1
+
+            def add(self, num, diff):
+                curr = 0
+                for i in reversed(range(self.__bit_length)):
+                    x = (num>>i)&1
+                    if x == 0:
+                        if self.__lefts[curr] == -1:
+                            self.__lefts[curr] = self.__new_node()
+                        curr = self.__lefts[curr]
+                    else:
+                        if self.__rights[curr] == -1:
+                            self.__rights[curr] = self.__new_node()
+                        curr = self.__rights[curr]
+                    self.__cnts[curr] += diff
+                        
+            def query(self, prefix):
+                result = curr = 0
+                for i in reversed(range(self.__bit_length)):
+                    x = (prefix>>i)&1
+                    l, r = (self.__lefts, self.__rights) if x^1 else (self.__rights, self.__lefts)
+                    if r[curr] != -1 and self.__cnts[r[curr]]:
+                        result |= 1<<i
+                        curr = r[curr]
+                    else:
+                        curr = l[curr]
+                return result
+    
+        result = 0
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]^nums[i]
+        mx = max(max(nums), 1)
+        trie = Trie(mx.bit_length())
+        trie.add(prefix[0], +1)
+        max_dq = collections.deque()
+        min_dq = collections.deque()
+        left = 0
+        for right in range(len(nums)):
+            while max_dq and nums[max_dq[-1]] <= nums[right]:
+                max_dq.pop()
+            max_dq.append(right)
+            while min_dq and nums[min_dq[-1]] >= nums[right]:
+                min_dq.pop()
+            min_dq.append(right)
+            while nums[max_dq[0]]-nums[min_dq[0]] > k:
+                trie.add(prefix[left], -1)
+                if max_dq and max_dq[0] == left:
+                    max_dq.popleft()
+                if min_dq and min_dq[0] == left:
+                    min_dq.popleft()
+                left += 1
+            result = max(result, trie.query(prefix[right+1]))
+            trie.add(prefix[right+1], +1)
+        return result
+
+
+# Time:  O(nlogr), r = max(max(nums), 1)
+# Space: O(n + t)
+import collections
+
+
+# two pointers, mono deque, bitmasks, prefix sum, trie
+class Solution3(object):
+    def maxXor(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        class Trie(object):
+            def __init__(self, bit_length):
+                self.__nodes = []
+                self.__cnts = []
+                self.__new_node()
+                self.__bit_length = bit_length
+            
+            def __new_node(self):
+                self.__nodes.append([-1]*2)
+                self.__cnts.append(0)
+                return len(self.__nodes)-1
+
+            def add(self, num, diff):
+                curr = 0
+                for i in reversed(range(self.__bit_length)):
+                    x = (num>>i)&1
+                    if self.__nodes[curr][x] == -1:
+                        self.__nodes[curr][x] = self.__new_node()
+                    curr = self.__nodes[curr][x]
+                    self.__cnts[curr] += diff
+                        
+            def query(self, prefix):
+                result = curr = 0
+                for i in reversed(range(self.__bit_length)):
+                    x = (prefix>>i)&1
+                    if self.__nodes[curr][x^1] != -1 and self.__cnts[self.__nodes[curr][x^1]]:
+                        result |= 1<<i
+                        curr = self.__nodes[curr][x^1]
+                    else:
+                        curr = self.__nodes[curr][x]
+                return result
+    
+        result = 0
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]^nums[i]
+        mx = max(max(nums), 1)
+        trie = Trie(mx.bit_length())
+        trie.add(prefix[0], +1)
+        max_dq = collections.deque()
+        min_dq = collections.deque()
+        left = 0
+        for right in range(len(nums)):
+            while max_dq and nums[max_dq[-1]] <= nums[right]:
+                max_dq.pop()
+            max_dq.append(right)
+            while min_dq and nums[min_dq[-1]] >= nums[right]:
+                min_dq.pop()
+            min_dq.append(right)
+            while nums[max_dq[0]]-nums[min_dq[0]] > k:
+                trie.add(prefix[left], -1)
+                if max_dq and max_dq[0] == left:
+                    max_dq.popleft()
+                if min_dq and min_dq[0] == left:
+                    min_dq.popleft()
+                left += 1
+            result = max(result, trie.query(prefix[right+1]))
+            trie.add(prefix[right+1], +1)
+        return result

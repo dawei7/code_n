@@ -1,31 +1,16 @@
-from typing import List
-
-
 class Solution:
     def maxScore(self, edges: List[List[int]]) -> int:
-        n = len(edges)
-        children = [[] for _ in range(n)]
-        for node in range(1, n):
-            parent, weight = edges[node]
-            children[parent].append((node, weight))
+        def dfs(i):
+            a = b = t = 0
+            for j, w in g[i]:
+                x, y = dfs(j)
+                a += y
+                b += y
+                t = max(t, x - y + w)
+            b += t
+            return a, b
 
-        order = [0]
-        for node in order:
-            order.extend(child for child, _ in children[node])
-
-        parent_edge_free = [0] * n
-        parent_edge_chosen = [0] * n
-
-        for node in reversed(order):
-            baseline = sum(parent_edge_free[child] for child, _ in children[node])
-            parent_edge_chosen[node] = baseline
-
-            best_gain = 0
-            for child, weight in children[node]:
-                best_gain = max(
-                    best_gain,
-                    weight + parent_edge_chosen[child] - parent_edge_free[child],
-                )
-            parent_edge_free[node] = baseline + best_gain
-
-        return parent_edge_free[0]
+        g = defaultdict(list)
+        for i, (p, w) in enumerate(edges[1:], 1):
+            g[p].append((i, w))
+        return dfs(0)[1]

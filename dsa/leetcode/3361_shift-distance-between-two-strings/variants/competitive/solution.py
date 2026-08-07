@@ -1,27 +1,30 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+# prefix sum
 class Solution:
-    def shiftDistance(self, s: str, t: str, nextCost: List[int], previousCost: List[int]) -> int:
-        next_prefix = [0] * 27
-        previous_prefix = [0] * 27
-
-        for i in range(26):
-            next_prefix[i + 1] = next_prefix[i] + nextCost[i]
-            previous_prefix[i + 1] = previous_prefix[i] + previousCost[i]
-
-        answer = 0
-        for source, target in zip(s, t):
-            start = ord(source) - ord("a")
-            end = ord(target) - ord("a")
-
-            if end >= start:
-                forward = next_prefix[end] - next_prefix[start]
+    def shiftDistance(self, s, t, nextCost, previousCost):
+        """
+        :type s: str
+        :type t: str
+        :type nextCost: List[int]
+        :type previousCost: List[int]
+        :rtype: int
+        """
+        prefix1 = [0]*(len(nextCost)+1)
+        for i in range(len(nextCost)):
+            prefix1[i+1] = prefix1[i]+nextCost[i]
+        prefix2 = [0]*(len(previousCost)+1)
+        for i in range(len(previousCost)):
+            prefix2[i+1] = prefix2[i]+previousCost[i]
+        result = 0
+        for i in range(len(s)):
+            if s[i] == t[i]:
+                continue
+            left = ord(s[i])-ord('a')
+            right = ord(t[i])-ord('a')
+            if left <= right:
+                result += min(prefix1[right]-prefix1[left], prefix2[-1]-(prefix2[right+1]-prefix2[left+1]))
             else:
-                forward = next_prefix[26] - next_prefix[start] + next_prefix[end]
-
-            if end <= start:
-                backward = previous_prefix[start + 1] - previous_prefix[end + 1]
-            else:
-                backward = previous_prefix[start + 1] + previous_prefix[26] - previous_prefix[end + 1]
-
-            answer += min(forward, backward)
-
-        return answer
+                result += min(prefix2[left+1]-prefix2[right+1], prefix1[-1]-(prefix1[left]-prefix1[right]))
+        return result

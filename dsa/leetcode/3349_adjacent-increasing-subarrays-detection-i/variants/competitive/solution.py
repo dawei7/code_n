@@ -1,19 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def hasIncreasingSubarrays(self, nums: List[int], k: int) -> bool:
-        previous_run = 0
-        current_run = 1
-
-        for index in range(1, len(nums)):
-            if nums[index] > nums[index - 1]:
-                current_run += 1
+    def hasIncreasingSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        result = 0
+        curr, prev = 1, 0
+        for i in range(len(nums)-1):
+            if nums[i] < nums[i+1]:
+                curr += 1
             else:
-                previous_run = current_run
-                current_run = 1
-
-            if current_run // 2 >= k or min(previous_run, current_run) >= k:
-                return True
-
-        return False
+                prev = curr
+                curr = 1
+            result = max(result, curr//2, min(prev, curr))
+        return result >= k

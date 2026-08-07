@@ -1,8 +1,8 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
-        row_counts = Counter(map(tuple, grid))
-        return sum(row_counts[column] for column in zip(*grid))
+        n = len(grid)
+        ans = 0
+        for i in range(n):
+            for j in range(n):
+                ans += all(grid[i][k] == grid[k][j] for k in range(n))
+        return ans

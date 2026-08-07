@@ -1,40 +1,42 @@
-from collections import deque
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def maximumInvitations(self, favorite: List[int]) -> int:
-        n = len(favorite)
-        indegree = [0] * n
-        for person in favorite:
-            indegree[person] += 1
+    def maximumInvitations(self, favorite):
+        """
+        :type favorite: List[int]
+        :rtype: int
+        """
+        def find_cycles(adj):
+            result = []
+            lookup = [False]*len(adj)
+            for u in range(len(adj)):
+                cnt = {}
+                while not lookup[u]:
+                    lookup[u] = True
+                    cnt[u] = len(cnt)
+                    u = adj[u]
+                if u in cnt:
+                    result.append((u, len(cnt)-cnt[u]))
+            return result
 
-        depth = [1] * n
-        queue = deque(i for i, degree in enumerate(indegree) if degree == 0)
-        while queue:
-            employee = queue.popleft()
-            person = favorite[employee]
-            depth[person] = max(depth[person], depth[employee] + 1)
-            indegree[person] -= 1
-            if indegree[person] == 0:
-                queue.append(person)
-
-        longest_cycle = 0
-        extended_pairs = 0
-        for start in range(n):
-            if indegree[start] == 0:
-                continue
-
-            cycle_length = 0
-            employee = start
-            while indegree[employee] > 0:
-                indegree[employee] = 0
-                cycle_length += 1
-                employee = favorite[employee]
-
-            if cycle_length == 2:
-                extended_pairs += depth[start] + depth[favorite[start]]
-            else:
-                longest_cycle = max(longest_cycle, cycle_length)
-
-        return max(longest_cycle, extended_pairs)
+        def bfs(adj, u, exclude):
+            result = 0
+            q = [u]
+            while q:
+                result += 1
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if v == exclude:
+                            continue
+                        new_q.append(v)
+                q = new_q
+            return result
+            
+        inv_adj = [[] for _ in range(len(favorite))]  
+        for u, v in enumerate(favorite):
+            inv_adj[v].append(u)
+        cycles = find_cycles(favorite)
+        return max(max([l for _, l in cycles if l > 2] or [0]),
+                   sum(bfs(inv_adj, u, favorite[u]) + bfs(inv_adj, favorite[u], u) for u, l in cycles if l == 2))

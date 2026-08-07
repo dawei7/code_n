@@ -1,19 +1,30 @@
+# Time:  O(m * n)
+# Space: O(m * n)
+
+# hash table, simulation
 class Solution:
-    def checkValidGrid(self, grid: List[List[int]]) -> bool:
-        n = len(grid)
-        positions = [None] * (n * n)
-
-        for row in range(n):
-            for col in range(n):
-                positions[grid[row][col]] = (row, col)
-
-        if positions[0] != (0, 0):
+    def checkValidGrid(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: bool
+        """
+        if grid[0][0]:
             return False
+        lookup = [None]*(len(grid)*len(grid[0]))
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                lookup[grid[i][j]] = (i, j)
+        return all(sorted([abs(lookup[i+1][0]-lookup[i][0]), abs(lookup[i+1][1]-lookup[i][1])]) == [1, 2] for i in range(len(lookup)-1))
 
-        for previous, current in zip(positions, positions[1:]):
-            row_change = abs(previous[0] - current[0])
-            col_change = abs(previous[1] - current[1])
-            if sorted((row_change, col_change)) != [1, 2]:
-                return False
-
-        return True
+    
+# Time:  O(m * n)
+# Space: O(m * n)
+# hash table, simulation
+class Solution2(object):
+    def checkValidGrid(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: bool
+        """
+        lookup = {grid[i][j]:(i, j) for i in range(len(grid)) for j in range(len(grid[0]))}
+        return grid[0][0] == 0 and all(sorted([abs(lookup[i+1][0]-lookup[i][0]), abs(lookup[i+1][1]-lookup[i][1])]) == [1, 2] for i in range(len(lookup)-1))

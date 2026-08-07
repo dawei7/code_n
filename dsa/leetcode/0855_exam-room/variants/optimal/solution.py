@@ -1,52 +1,45 @@
-import heapq
-
-
 class ExamRoom:
     def __init__(self, n: int):
+        def dist(x):
+            l, r = x
+            return r - l - 1 if l == -1 or r == n else (r - l) >> 1
+
         self.n = n
-        self.heap = []
-        self.active = set()
-        self.start_to_end = {}
-        self.end_to_start = {}
-        self._add_interval(-1, n)
-
-    def _candidate(self, left: int, right: int):
-        if left == -1:
-            return 0, right
-        if right == self.n:
-            return self.n - 1, self.n - 1 - left
-        seat = (left + right) // 2
-        return seat, seat - left
-
-    def _add_interval(self, left: int, right: int) -> None:
-        self.active.add((left, right))
-        self.start_to_end[left] = right
-        self.end_to_start[right] = left
-        if right - left > 1:
-            seat, distance = self._candidate(left, right)
-            heapq.heappush(self.heap, (-distance, seat, left, right))
-
-    def _remove_interval(self, left: int, right: int) -> None:
-        self.active.discard((left, right))
-        if self.start_to_end.get(left) == right:
-            del self.start_to_end[left]
-        if self.end_to_start.get(right) == left:
-            del self.end_to_start[right]
+        self.ts = SortedList(key=lambda x: (-dist(x), x[0]))
+        self.left = {}
+        self.right = {}
+        self.add((-1, n))
 
     def seat(self) -> int:
-        while self.heap:
-            _, seat, left, right = heapq.heappop(self.heap)
-            if (left, right) in self.active:
-                break
-
-        self._remove_interval(left, right)
-        self._add_interval(left, seat)
-        self._add_interval(seat, right)
-        return seat
+        s = self.ts[0]
+        p = (s[0] + s[1]) >> 1
+        if s[0] == -1:
+            p = 0
+        elif s[1] == self.n:
+            p = self.n - 1
+        self.delete(s)
+        self.add((s[0], p))
+        self.add((p, s[1]))
+        return p
 
     def leave(self, p: int) -> None:
-        left = self.end_to_start[p]
-        right = self.start_to_end[p]
-        self._remove_interval(left, p)
-        self._remove_interval(p, right)
-        self._add_interval(left, right)
+        l, r = self.left[p], self.right[p]
+        self.delete((l, p))
+        self.delete((p, r))
+        self.add((l, r))
+
+    def add(self, s):
+        self.ts.add(s)
+        self.left[s[1]] = s[0]
+        self.right[s[0]] = s[1]
+
+    def delete(self, s):
+        self.ts.remove(s)
+        self.left.pop(s[1])
+        self.right.pop(s[0])
+
+
+# Your ExamRoom object will be instantiated and called as such:
+# obj = ExamRoom(n)
+# param_1 = obj.seat()
+# obj.leave(p)

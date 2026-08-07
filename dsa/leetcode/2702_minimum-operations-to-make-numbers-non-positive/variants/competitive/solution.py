@@ -1,23 +1,26 @@
+# Time:  O(nlogr)
+# Space: O(1)
+
+# binary search, greedy
 class Solution:
-    def minOperations(self, nums: List[int], x: int, y: int) -> int:
-        extra = x - y
-        left = 0
-        right = (max(nums) + y - 1) // y
+    def minOperations(self, nums, x, y):
+        """
+        :type nums: List[int]
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
 
-        while left < right:
-            operations = (left + right) // 2
-            required_selections = 0
-
-            for value in nums:
-                remaining = value - operations * y
-                if remaining > 0:
-                    required_selections += (remaining + extra - 1) // extra
-                    if required_selections > operations:
-                        break
-
-            if required_selections <= operations:
-                right = operations
+        def check(total):
+            return sum(ceil_divide(max(v-min(ceil_divide(v, y), total)*y, 0), x-y) for v in nums) <= total
+    
+        left, right = 1, ceil_divide(max(nums), y)
+        while left <= right:
+            mid = left+(right-left)//2
+            if check(mid):
+                right = mid-1
             else:
-                left = operations + 1
-
+                left = mid+1
         return left

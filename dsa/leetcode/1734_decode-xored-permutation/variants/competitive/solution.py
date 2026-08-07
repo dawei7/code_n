@@ -1,16 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def decode(self, encoded: List[int]) -> List[int]:
-        n = len(encoded) + 1
-        first = 0
-        for value in range(1, n + 1):
-            first ^= value
-        for index in range(1, len(encoded), 2):
-            first ^= encoded[index]
-
-        permutation = [first]
-        for value in encoded:
-            permutation.append(permutation[-1] ^ value)
-        return permutation
+    def decode(self, encoded):
+        """
+        :type encoded: List[int]
+        :rtype: List[int]
+        """
+        curr = 0
+        for i in range(1, (len(encoded)+1) + 1):
+            curr ^= i
+            if i < len(encoded) and i%2 == 1:
+                curr ^= encoded[i]
+        result = [curr]
+        for x in encoded:
+            result.append(result[-1]^x)
+        return result

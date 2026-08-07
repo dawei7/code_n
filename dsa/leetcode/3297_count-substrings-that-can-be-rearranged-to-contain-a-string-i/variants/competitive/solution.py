@@ -1,26 +1,26 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+# two pointers, sliding window, freq table
 class Solution:
-    def validSubstringCount(self, word1: str, word2: str) -> int:
-        deficit = [0] * 26
-        for character in word2:
-            deficit[ord(character) - ord("a")] += 1
-
-        missing = len(word2)
-        left = 0
-        answer = 0
-
-        for character in word1:
-            index = ord(character) - ord("a")
-            if deficit[index] > 0:
-                missing -= 1
-            deficit[index] -= 1
-
-            while missing == 0:
-                left_index = ord(word1[left]) - ord("a")
-                deficit[left_index] += 1
+    def validSubstringCount(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        cnt = [0]*26
+        curr = 0
+        for x in word2:
+            curr += int(cnt[ord(x)-ord('a')] == 0)
+            cnt[ord(x)-ord('a')] += 1
+        result = left = 0
+        for right in range(len(word1)):
+            cnt[ord(word1[right])-ord('a')] -= 1
+            curr -= int(cnt[ord(word1[right])-ord('a')] == 0)
+            while not curr:
+                result += len(word1)-right
+                curr += int(cnt[ord(word1[left])-ord('a')] == 0)
+                cnt[ord(word1[left])-ord('a')] += 1
                 left += 1
-                if deficit[left_index] > 0:
-                    missing += 1
-
-            answer += left
-
-        return answer
+        return result

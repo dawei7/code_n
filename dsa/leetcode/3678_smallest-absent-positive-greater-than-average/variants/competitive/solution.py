@@ -1,10 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def smallestAbsent(self, nums: List[int]) -> int:
-        present = set(nums)
-        candidate = max(1, sum(nums) // len(nums) + 1)
-        while candidate in present:
-            candidate += 1
-        return candidate
+    def smallestAbsent(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        total = sum(nums)
+        lookup = set(nums)
+        return next(x for x in range(max(total//len(nums)+1, 1), max(max(nums)+1, 1)+1) if x not in lookup and x*len(nums) > total)

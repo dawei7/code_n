@@ -1,51 +1,20 @@
-from functools import lru_cache
-from typing import List
-
-
 class Solution:
     def uniquePathsIII(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        cells = []
-        start = -1
-        end = -1
+        def dfs(i: int, j: int, k: int) -> int:
+            if grid[i][j] == 2:
+                return int(k == cnt + 1)
+            ans = 0
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if 0 <= x < m and 0 <= y < n and (x, y) not in vis and grid[x][y] != -1:
+                    vis.add((x, y))
+                    ans += dfs(x, y, k + 1)
+                    vis.remove((x, y))
+            return ans
 
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] == -1:
-                    continue
-                index = len(cells)
-                cells.append((row, column))
-                if grid[row][column] == 1:
-                    start = index
-                elif grid[row][column] == 2:
-                    end = index
-
-        index_by_cell = {cell: index for index, cell in enumerate(cells)}
-        neighbors = []
-        for row, column in cells:
-            adjacent = []
-            for candidate in (
-                (row + 1, column),
-                (row - 1, column),
-                (row, column + 1),
-                (row, column - 1),
-            ):
-                if candidate in index_by_cell:
-                    adjacent.append(index_by_cell[candidate])
-            neighbors.append(adjacent)
-
-        full_mask = (1 << len(cells)) - 1
-
-        @lru_cache(maxsize=None)
-        def count(position, visited):
-            if position == end:
-                return int(visited == full_mask)
-            total = 0
-            for neighbor in neighbors[position]:
-                bit = 1 << neighbor
-                if visited & bit == 0:
-                    total += count(neighbor, visited | bit)
-            return total
-
-        return count(start, 1 << start)
+        m, n = len(grid), len(grid[0])
+        start = next((i, j) for i in range(m) for j in range(n) if grid[i][j] == 1)
+        dirs = (-1, 0, 1, 0, -1)
+        cnt = sum(row.count(0) for row in grid)
+        vis = {start}
+        return dfs(*start, 0)

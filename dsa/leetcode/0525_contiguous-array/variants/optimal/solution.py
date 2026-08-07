@@ -1,15 +1,11 @@
-from typing import List
-
-
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
-        first_index = {0: -1}
-        balance = 0
-        longest = 0
-        for index, value in enumerate(nums):
-            balance += 1 if value == 1 else -1
-            if balance in first_index:
-                longest = max(longest, index - first_index[balance])
+        d = {0: -1}
+        ans = s = 0
+        for i, x in enumerate(nums):
+            s += 1 if x else -1
+            if s in d:
+                ans = max(ans, i - d[s])
             else:
-                first_index[balance] = index
-        return longest
+                d[s] = i
+        return ans

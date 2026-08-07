@@ -1,27 +1,70 @@
-from collections import Counter, defaultdict
-from typing import List
+# Time:  ctor:  O(1)
+#        add:   O(1)
+#        count: O(n)
+# Space: O(n)
+
+import collections
 
 
-class DetectSquares:
+class DetectSquares(object):
+
     def __init__(self):
-        self.points = Counter()
-        self.rows = defaultdict(Counter)
+        self.__x_to_ys = collections.defaultdict(set)
+        self.__point_counts = collections.defaultdict(int)
 
-    def add(self, point: List[int]) -> None:
-        x, y = point
-        self.points[(x, y)] += 1
-        self.rows[y][x] += 1
+    def add(self, point):
+        """
+        :type point: List[int]
+        :rtype: None
+        """
+        self.__x_to_ys[point[0]].add(point[1])
+        self.__point_counts[tuple(point)] += 1
+        
 
-    def count(self, point: List[int]) -> int:
-        x, y = point
-        squares = 0
-
-        for other_x, horizontal_count in self.rows[y].items():
-            side = other_x - x
-            if side == 0:
+    def count(self, point):
+        """
+        :type point: List[int]
+        :rtype: int
+        """
+        result = 0
+        for y in self.__x_to_ys[point[0]]:
+            if y == point[1]:
                 continue
+            dy = y-point[1]
+            result += self.__point_counts[(point[0], y)]*self.__point_counts[(point[0]+dy, point[1])]*self.__point_counts[(point[0]+dy, y)]
+            result += self.__point_counts[(point[0], y)]*self.__point_counts[(point[0]-dy, point[1])]*self.__point_counts[(point[0]-dy, y)]
+        return result 
 
-            squares += horizontal_count * self.points[(x, y + side)] * self.points[(other_x, y + side)]
-            squares += horizontal_count * self.points[(x, y - side)] * self.points[(other_x, y - side)]
 
-        return squares
+# Time:  ctor:  O(1)
+#        add:   O(1)
+#        count: O(n)
+# Space: O(n)
+import collections
+
+
+class DetectSquares2(object):
+
+    def __init__(self):
+        self.__points = []
+        self.__point_counts = collections.defaultdict(int)
+
+    def add(self, point):
+        """
+        :type point: List[int]
+        :rtype: None
+        """
+        self.__points.append(point)
+        self.__point_counts[tuple(point)] += 1
+
+    def count(self, point):
+        """
+        :type point: List[int]
+        :rtype: int
+        """
+        result = 0
+        for x, y in self.__points:
+            if not (point[0] != x and point[1] != y and (abs(point[0]-x) == abs(point[1]-y))):
+                continue
+            result += self.__point_counts[(point[0], y)]*self.__point_counts[(x, point[1])]
+        return result

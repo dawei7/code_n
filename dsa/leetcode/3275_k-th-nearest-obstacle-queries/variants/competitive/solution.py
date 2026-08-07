@@ -1,17 +1,22 @@
-from typing import List
+# Time:  O(qlogk)
+# Space: O(k)
+
 import heapq
 
 
+# heap
 class Solution:
-    def resultsArray(self, queries: List[List[int]], k: int) -> List[int]:
-        nearest = []
-        answer = []
-
+    def resultsArray(self, queries, k):
+        """
+        :type queries: List[List[int]]
+        :type k: int
+        :rtype: List[int]
+        """
+        result = []
+        max_heap = []
         for x, y in queries:
-            heapq.heappush(nearest, -(abs(x) + abs(y)))
-            if len(nearest) > k:
-                heapq.heappop(nearest)
-
-            answer.append(-nearest[0] if len(nearest) == k else -1)
-
-        return answer
+            heapq.heappush(max_heap, -(abs(x)+abs(y)))
+            if len(max_heap) == k+1:
+                heapq.heappop(max_heap)
+            result.append(-max_heap[0] if len(max_heap) == k else -1)
+        return result

@@ -1,19 +1,21 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
-        answer = 0
-        stack = [(root, root.val, root.val)]
+        def dfs(root: Optional[TreeNode], mi: int, mx: int):
+            if root is None:
+                return
+            nonlocal ans
+            ans = max(ans, abs(mi - root.val), abs(mx - root.val))
+            mi = min(mi, root.val)
+            mx = max(mx, root.val)
+            dfs(root.left, mi, mx)
+            dfs(root.right, mi, mx)
 
-        while stack:
-            node, path_min, path_max = stack.pop()
-            answer = max(answer, node.val - path_min, path_max - node.val)
-            next_min = min(path_min, node.val)
-            next_max = max(path_max, node.val)
-            if node.left is not None:
-                stack.append((node.left, next_min, next_max))
-            if node.right is not None:
-                stack.append((node.right, next_min, next_max))
-
-        return answer
+        ans = 0
+        dfs(root, root.val, root.val)
+        return ans

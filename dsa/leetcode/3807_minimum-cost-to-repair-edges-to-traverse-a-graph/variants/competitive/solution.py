@@ -1,46 +1,50 @@
-from collections import deque
-from typing import List
+# Time:  O((n + m) * logr)
+# Space: O(n + m)
 
-
+# binary search, bfs
 class Solution:
-    def minCost(self, n: int, edges: List[List[int]], k: int) -> int:
-        graph = [[] for _ in range(n)]
-        for first, second, cost in edges:
-            graph[first].append((second, cost))
-            graph[second].append((first, cost))
-
-        costs = sorted({cost for _, _, cost in edges})
-
-        def can_reach(limit: int) -> bool:
-            distance = [-1] * n
-            distance[0] = 0
-            queue = deque([0])
-
-            while queue:
-                node = queue.popleft()
-                if distance[node] == k:
-                    continue
-
-                for neighbor, cost in graph[node]:
-                    if cost <= limit and distance[neighbor] == -1:
-                        distance[neighbor] = distance[node] + 1
-                        if neighbor == n - 1:
-                            return True
-                        queue.append(neighbor)
-
+    def minCost(self, n, edges, k):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
+        
+        def bfs(x):
+            lookup = [False]*len(adj)
+            lookup[0] = True
+            q = [0]
+            d = 0
+            while q:
+                if d == k+1:
+                    break
+                new_q = []
+                for u in q:
+                    if u == n-1:
+                        return True
+                    for v, w in adj[u]:
+                        if w > x or lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+                d += 1
             return False
-
-        if not can_reach(costs[-1]):
-            return -1
-
-        left = 0
-        right = len(costs) - 1
-
-        while left < right:
-            middle = (left + right) // 2
-            if can_reach(costs[middle]):
-                right = middle
-            else:
-                left = middle + 1
-
-        return costs[left]
+            
+        adj = [[] for _ in range(n)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        left = min(w for _, _, w in edges)
+        right = max(w for _, _, w in edges)
+        result = binary_search(left, right, bfs)
+        return result if result != right+1 else -1

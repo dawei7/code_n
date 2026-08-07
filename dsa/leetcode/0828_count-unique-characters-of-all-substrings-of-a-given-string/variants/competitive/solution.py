@@ -1,20 +1,24 @@
+# Time:  O(n)
+# Space: O(1)
+
+import string
+
+
 class Solution:
-    def uniqueLetterString(self, s: str) -> int:
-        alphabet_size = 26
-        previous = [-1] * alphabet_size
-        before_previous = [-1] * alphabet_size
-        total = 0
+    def uniqueLetterString(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        M = 10**9 + 7
+        index = {c: [-1, -1] for c in string.ascii_uppercase}
+        result = 0
+        for i, c in enumerate(S):
+            k, j = index[c]
+            result = (result + (i-j) * (j-k)) % M
+            index[c] = [j, i]
+        for c in index:
+            k, j = index[c]
+            result = (result + (len(S)-j) * (j-k)) % M
+        return result
 
-        for index, character in enumerate(s):
-            letter = ord(character) - ord("A")
-            last = previous[letter]
-            total += (last - before_previous[letter]) * (index - last)
-            before_previous[letter] = last
-            previous[letter] = index
-
-        length = len(s)
-        for letter in range(alphabet_size):
-            last = previous[letter]
-            total += (last - before_previous[letter]) * (length - last)
-
-        return total

@@ -1,75 +1,84 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# segment tree, binary search, prefix sum
 class Solution:
-    def longestBalanced(self, nums: List[int]) -> int:
-        n = len(nums)
-        minimum = [0] * (4 * n)
-        maximum = [0] * (4 * n)
-        lazy = [0] * (4 * n)
+    def longestBalanced(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        class SegmentTree(object):
+            def __init__(self, N):
+                self.min = [0]*(1<<((N-1).bit_length()+1))
+                self.max = [0]*(1<<((N-1).bit_length()+1))
+                self.base = len(self.min)>>1
+                self.lazy = [0]*self.base
+                
+            def __apply(self, x, val):
+                self.min[x] += val
+                self.max[x] += val
+                if x < self.base:
+                    self.lazy[x] += val
 
-        def apply(node: int, change: int) -> None:
-            minimum[node] += change
-            maximum[node] += change
-            lazy[node] += change
+            def __push(self, x):
+                for h in reversed(range(1, x.bit_length())):
+                    y = x>>h
+                    if self.lazy[y]:
+                        self.__apply(y<<1, self.lazy[y])
+                        self.__apply((y<<1)|1, self.lazy[y])
+                        self.lazy[y] = 0
 
-        def push(node: int) -> None:
-            if lazy[node] != 0:
-                apply(node * 2, lazy[node])
-                apply(node * 2 + 1, lazy[node])
-                lazy[node] = 0
+            def update(self, L, R, h):  # Time: O(logN), Space: O(N)
+                def pull(x):
+                    while x > 1:
+                        x >>= 1
+                        self.min[x] = self.min[x<<1] if self.min[x<<1] < self.min[(x<<1)|1] else self.min[(x<<1)|1]
+                        self.max[x] = self.max[x<<1] if self.max[x<<1] > self.max[(x<<1)|1] else self.max[(x<<1)|1]
+                        if self.lazy[x]:
+                            self.min[x] += self.lazy[x]
+                            self.max[x] += self.lazy[x]
 
-        def add(
-            node: int,
-            left: int,
-            right: int,
-            query_left: int,
-            query_right: int,
-            change: int,
-        ) -> None:
-            if query_left <= left and right <= query_right:
-                apply(node, change)
-                return
+                L += self.base
+                R += self.base
+                L0, R0 = L, R
+                while L <= R:
+                    if L & 1:  # is right child
+                        self.__apply(L, h)
+                        L += 1
+                    if R & 1 == 0:  # is left child
+                        self.__apply(R, h)
+                        R -= 1
+                    L >>= 1
+                    R >>= 1
+                pull(L0)
+                pull(R0)
 
-            push(node)
-            middle = (left + right) // 2
-            if query_left <= middle:
-                add(node * 2, left, middle, query_left, query_right, change)
-            if query_right > middle:
-                add(node * 2 + 1, middle + 1, right, query_left, query_right, change)
-            minimum[node] = min(minimum[node * 2], minimum[node * 2 + 1])
-            maximum[node] = max(maximum[node * 2], maximum[node * 2 + 1])
+            def binary_search(self, x):
+                i = 1
+                while not i >= self.base:
+                    if self.lazy[i]:
+                        self.__apply(i<<1, self.lazy[i])
+                        self.__apply((i<<1)|1, self.lazy[i])
+                        self.lazy[i] = 0
+                    i <<= 1
+                    if not self.min[i] <= x <= self.max[i]:
+                        i |= 1
+                return i-self.base     
 
-        def first_zero(node: int, left: int, right: int, limit: int) -> int:
-            if left > limit or minimum[node] > 0 or maximum[node] < 0:
-                return -1
-            if left == right:
-                return left
-
-            push(node)
-            middle = (left + right) // 2
-            answer = first_zero(node * 2, left, middle, limit)
-            if answer != -1:
-                return answer
-            return first_zero(node * 2 + 1, middle + 1, right, limit)
-
-        last_position = [-1] * 100001
-        longest = 0
-
-        for right, value in enumerate(nums):
-            change = 1 if value % 2 == 0 else -1
-            add(
-                1,
-                0,
-                n - 1,
-                last_position[value] + 1,
-                right,
-                change,
-            )
-            last_position[value] = right
-
-            left = first_zero(1, 0, n - 1, right)
-            if left != -1:
-                longest = max(longest, right - left + 1)
-
-        return longest
+        n = len(nums)+1
+        st = SegmentTree(n)
+        result = curr = 0
+        lookup = {}
+        for i, x in enumerate(nums, 1):
+            d = +1 if x&1 else -1
+            if x in lookup:
+                st.update(lookup[x], n-1, -d)
+                curr -= d
+            curr += d
+            lookup[x] = i
+            st.update(lookup[x], n-1, +d)
+            l = i-st.binary_search(curr)
+            if l > result:
+                result = l
+        return result

@@ -1,13 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def longestContinuousSubstring(self, s: str) -> int:
-        longest = 1
-        current = 1
-
-        for index in range(1, len(s)):
-            if ord(s[index]) == ord(s[index - 1]) + 1:
-                current += 1
-            else:
-                current = 1
-            longest = max(longest, current)
-
-        return longest
+    def longestContinuousSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = l = 0
+        for i in range(len(s)):
+            l += 1
+            if i+1 == len(s) or ord(s[i])+1 != ord(s[i+1]):
+                result = max(result, l)
+                l = 0
+        return result

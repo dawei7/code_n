@@ -1,22 +1,18 @@
 class Solution:
     def minWindow(self, s1: str, s2: str) -> str:
-        target_length = len(s2)
-        starts = [-1] * target_length
-        best_start = -1
-        best_length = len(s1) + 1
-
-        for source_index, character in enumerate(s1):
-            for target_index in range(target_length - 1, -1, -1):
-                if character != s2[target_index]:
-                    continue
-                if target_index == 0:
-                    starts[0] = source_index
-                elif starts[target_index - 1] != -1:
-                    starts[target_index] = starts[target_index - 1]
-
-            start = starts[-1]
-            if start != -1 and source_index - start + 1 < best_length:
-                best_start = start
-                best_length = source_index - start + 1
-
-        return "" if best_start == -1 else s1[best_start : best_start + best_length]
+        m, n = len(s1), len(s2)
+        f = [[0] * (n + 1) for _ in range(m + 1)]
+        for i, a in enumerate(s1, 1):
+            for j, b in enumerate(s2, 1):
+                if a == b:
+                    f[i][j] = i if j == 1 else f[i - 1][j - 1]
+                else:
+                    f[i][j] = f[i - 1][j]
+        p, k = 0, m + 1
+        for i, a in enumerate(s1, 1):
+            if a == s2[n - 1] and f[i][n]:
+                j = f[i][n] - 1
+                if i - j < k:
+                    k = i - j
+                    p = j
+        return "" if k > m else s1[p : p + k]

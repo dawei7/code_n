@@ -1,10 +1,18 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, greedy
 class Solution:
-    def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
-        remaining = sum(apple)
-
-        for boxes_used, box_capacity in enumerate(sorted(capacity, reverse=True), start=1):
-            remaining -= box_capacity
-            if remaining <= 0:
-                return boxes_used
-
-        return len(capacity)
+    def minimumBoxes(self, apple, capacity):
+        """
+        :type apple: List[int]
+        :type capacity: List[int]
+        :rtype: int
+        """
+        capacity.sort(reverse=True)
+        total = sum(apple)
+        for i in range(len(capacity)):
+            total -= capacity[i]
+            if total <= 0:
+                return i+1
+        return -1

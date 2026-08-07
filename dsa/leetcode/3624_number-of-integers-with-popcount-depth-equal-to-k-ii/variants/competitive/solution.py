@@ -1,56 +1,69 @@
-from typing import List
+# Time:  precompute: O((logr) * log(logr) + log*(r) * (logr)) = O((logr) * log(logr)), r = max(n)
+#        runtime:    O(nlogr + max_k * n + nlogn + qlogn)
+# Space: O(logr + max_k * n)
+
+# fenwick tree
+def popcount(x):
+    return bin(x).count('1')
 
 
+def ceil_log2(x):
+    return (x-1).bit_length()
+
+
+class BIT(object):  # 0-indexed.
+    def __init__(self, n):
+        self.__bit = [0]*(n+1)  # Extra one for dummy node.
+
+    def add(self, i, val):
+        i += 1  # Extra one for dummy node.
+        while i < len(self.__bit):
+            self.__bit[i] += val
+            i += (i & -i)
+
+    def query(self, i):
+        i += 1  # Extra one for dummy node.
+        ret = 0
+        while i > 0:
+            ret += self.__bit[i]
+            i -= (i & -i)
+        return ret
+
+
+MAX_N = 10**15
+MAX_BIT_LEN = MAX_N.bit_length()
+D = [0]*(MAX_BIT_LEN+1)
+for i in range(2, MAX_BIT_LEN+1):
+    D[i] = D[popcount(i)]+1
+MAX_K = 0
+while MAX_N != 1:  # O(log*(MAX_N)) times
+    MAX_N = ceil_log2(MAX_N)
+    MAX_K += 1
 class Solution:
-    def popcountDepth(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        size = len(nums)
-        trees = [[0] * (size + 1) for _ in range(6)]
-        depths = []
-
-        def depth(value: int) -> int:
-            steps = 0
-            while value != 1:
-                value = value.bit_count()
-                steps += 1
-            return steps
-
-        for index, value in enumerate(nums, 1):
-            current_depth = depth(value)
-            depths.append(current_depth)
-            trees[current_depth][index] = 1
-
-        for tree in trees:
-            for index in range(1, size + 1):
-                parent = index + (index & -index)
-                if parent <= size:
-                    tree[parent] += tree[index]
-
-        def add(tree: List[int], index: int, delta: int) -> None:
-            index += 1
-            while index <= size:
-                tree[index] += delta
-                index += index & -index
-
-        def prefix_sum(tree: List[int], end: int) -> int:
-            total = 0
-            while end:
-                total += tree[end]
-                end -= end & -end
-            return total
-
-        answer = []
-        for query in queries:
-            if query[0] == 1:
-                _, left, right, wanted_depth = query
-                tree = trees[wanted_depth]
-                answer.append(prefix_sum(tree, right + 1) - prefix_sum(tree, left))
+    def popcountDepth(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def count(x):
+            return D[popcount(x)]+1 if x != 1 else 0
+        
+        bit = [BIT(len(nums)) for _ in range(MAX_K+1)]
+        for i in range(len(nums)):
+            bit[count(nums[i])].add(i, +1)
+        result = []
+        for q in queries:
+            if q[0] == 1:
+                _, l, r, k = q
+                assert(k < len(bit))
+                result.append(bit[k].query(r)-bit[k].query(l-1))
             else:
-                _, index, value = query
-                new_depth = depth(value)
-                old_depth = depths[index]
-                if new_depth != old_depth:
-                    add(trees[old_depth], index, -1)
-                    add(trees[new_depth], index, 1)
-                    depths[index] = new_depth
-
-        return answer
+                _, i, x = q
+                old_d = count(nums[i])
+                new_d = count(x)
+                if new_d != old_d:
+                    bit[old_d].add(i, -1)
+                    bit[new_d].add(i, +1)
+                nums[i] = x
+        return result

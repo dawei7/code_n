@@ -1,15 +1,18 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# heap
 class Solution:
-    def maximumScore(self, nums: List[int], s: str) -> int:
-        available = []
-        score = 0
-
-        for value, bit in zip(nums, s):
-            heappush(available, -value)
-            if bit == "1":
-                score -= heappop(available)
-
-        return score
+    def maximumScore(self, nums, s):
+        """
+        :type nums: List[int]
+        :type s: str
+        :rtype: int
+        """
+        result = 0
+        max_heap = []
+        for i in range(len(nums)):
+            heapq.heappush(max_heap, -nums[i])
+            if s[i] == '1':
+                result += -heapq.heappop(max_heap)
+        return result

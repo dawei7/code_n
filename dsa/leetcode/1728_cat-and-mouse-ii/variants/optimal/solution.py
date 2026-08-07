@@ -1,109 +1,85 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def canMouseWin(self, grid: List[str], catJump: int, mouseJump: int) -> bool:
-        rows = len(grid)
-        columns = len(grid[0])
-        cells = []
-        index = {}
-        mouse_start = cat_start = food = -1
+        m, n = len(grid), len(grid[0])
+        cat_start = mouse_start = food = 0
+        dirs = (-1, 0, 1, 0, -1)
+        g_mouse = [[] for _ in range(m * n)]
+        g_cat = [[] for _ in range(m * n)]
 
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] == "#":
+        for i, row in enumerate(grid):
+            for j, c in enumerate(row):
+                if c == "#":
                     continue
-                node = len(cells)
-                cells.append((row, column))
-                index[(row, column)] = node
-                if grid[row][column] == "M":
-                    mouse_start = node
-                elif grid[row][column] == "C":
-                    cat_start = node
-                elif grid[row][column] == "F":
-                    food = node
-
-        directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
-
-        def build_moves(jump: int) -> List[List[int]]:
-            moves = []
-            for node, (row, column) in enumerate(cells):
-                reachable = [node]
-                for row_step, column_step in directions:
-                    for distance in range(1, jump + 1):
-                        next_row = row + row_step * distance
-                        next_column = column + column_step * distance
-                        if (
-                            next_row < 0
-                            or next_row >= rows
-                            or next_column < 0
-                            or next_column >= columns
-                            or grid[next_row][next_column] == "#"
-                        ):
+                v = i * n + j
+                if c == "C":
+                    cat_start = v
+                elif c == "M":
+                    mouse_start = v
+                elif c == "F":
+                    food = v
+                for a, b in pairwise(dirs):
+                    for k in range(mouseJump + 1):
+                        x, y = i + k * a, j + k * b
+                        if not (0 <= x < m and 0 <= y < n and grid[x][y] != "#"):
                             break
-                        reachable.append(index[(next_row, next_column)])
-                moves.append(reachable)
-            return moves
+                        g_mouse[v].append(x * n + y)
+                    for k in range(catJump + 1):
+                        x, y = i + k * a, j + k * b
+                        if not (0 <= x < m and 0 <= y < n and grid[x][y] != "#"):
+                            break
+                        g_cat[v].append(x * n + y)
+        return self.calc(g_mouse, g_cat, mouse_start, cat_start, food) == 1
 
-        mouse_moves = build_moves(mouseJump)
-        cat_moves = build_moves(catJump)
-        nodes = len(cells)
-        states = nodes * nodes * 2
-        winner = [0] * states
-        distance = [0] * states
-        remaining = [0] * states
-        longest_child = [0] * states
-        queue = deque()
-
-        def state(mouse: int, cat: int, turn: int) -> int:
-            return ((mouse * nodes + cat) << 1) | turn
-
-        for mouse in range(nodes):
-            for cat in range(nodes):
-                for turn in range(2):
-                    current = state(mouse, cat, turn)
-                    remaining[current] = len(mouse_moves[mouse]) if turn == 0 else len(cat_moves[cat])
-
-                    if cat == food or cat == mouse:
-                        winner[current] = 2
-                        queue.append(current)
-                    elif mouse == food:
-                        winner[current] = 1
-                        queue.append(current)
-
-        while queue:
-            child = queue.popleft()
-            child_distance = distance[child]
-            turn = child & 1
-            pair = child >> 1
-            cat = pair % nodes
-            mouse = pair // nodes
-            child_winner = winner[child]
-
-            if turn == 1:
-                predecessors = (state(previous_mouse, cat, 0) for previous_mouse in mouse_moves[mouse])
-                mover = 1
+    def calc(
+        self,
+        g_mouse: List[List[int]],
+        g_cat: List[List[int]],
+        mouse_start: int,
+        cat_start: int,
+        hole: int,
+    ) -> int:
+        def get_prev_states(state):
+            m, c, t = state
+            pt = t ^ 1
+            pre = []
+            if pt == 1:
+                for pc in g_cat[c]:
+                    if ans[m][pc][1] == 0:
+                        pre.append((m, pc, pt))
             else:
-                predecessors = (state(mouse, previous_cat, 1) for previous_cat in cat_moves[cat])
-                mover = 2
+                for pm in g_mouse[m]:
+                    if ans[pm][c][0] == 0:
+                        pre.append((pm, c, 0))
+            return pre
 
-            for previous in predecessors:
-                if winner[previous] != 0:
-                    continue
+        n = len(g_mouse)
+        degree = [[[0, 0] for _ in range(n)] for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                degree[i][j][0] = len(g_mouse[i])
+                degree[i][j][1] = len(g_cat[j])
 
-                if child_winner == mover:
-                    winner[previous] = mover
-                    distance[previous] = child_distance + 1
-                    queue.append(previous)
-                    continue
-
-                remaining[previous] -= 1
-                longest_child[previous] = max(longest_child[previous], child_distance)
-                if remaining[previous] == 0:
-                    winner[previous] = child_winner
-                    distance[previous] = longest_child[previous] + 1
-                    queue.append(previous)
-
-        start = state(mouse_start, cat_start, 0)
-        return winner[start] == 1 and distance[start] <= 1000
+        ans = [[[0, 0] for _ in range(n)] for _ in range(n)]
+        q = deque()
+        for i in range(n):
+            ans[hole][i][1] = 1
+            ans[i][hole][0] = 2
+            ans[i][i][1] = ans[i][i][0] = 2
+            q.append((hole, i, 1))
+            q.append((i, hole, 0))
+            q.append((i, i, 0))
+            q.append((i, i, 1))
+        while q:
+            state = q.popleft()
+            t = ans[state[0]][state[1]][state[2]]
+            for prev_state in get_prev_states(state):
+                pm, pc, pt = prev_state
+                if pt == t - 1:
+                    ans[pm][pc][pt] = t
+                    q.append(prev_state)
+                else:
+                    degree[pm][pc][pt] -= 1
+                    if degree[pm][pc][pt] == 0:
+                        ans[pm][pc][pt] = t
+                        q.append(prev_state)
+        return ans[mouse_start][cat_start][0]

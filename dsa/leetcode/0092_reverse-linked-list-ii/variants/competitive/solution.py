@@ -1,29 +1,32 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
+    def __repr__(self):
+        if self:
+            return "{} -> {}".format(self.val, repr(self.next))
 class Solution:
-    def reverseBetween(
-        self,
-        head: Optional["ListNode"],
-        left: int,
-        right: int,
-    ) -> Optional["ListNode"]:
-        before = None
-        current = head
-        for _ in range(1, left):
-            before = current
-            current = current.next
+    # @param head, a ListNode
+    # @param m, an integer
+    # @param n, an integer
+    # @return a ListNode
+    def reverseBetween(self, head, m, n):
+        diff, dummy, cur = n - m + 1, ListNode(-1), head
+        dummy.next = head
 
-        segment_tail = current
-        previous = None
-        for _ in range(right - left + 1):
-            next_node = current.next
-            current.next = previous
-            previous = current
-            current = next_node
+        last_unswapped = dummy
+        while cur and m > 1:
+            cur, last_unswapped, m = cur.next, cur, m - 1
 
-        segment_tail.next = current
-        if before is None:
-            return previous
-        before.next = previous
-        return head
+        prev, first_swapped = last_unswapped,  cur
+        while cur and diff > 0:
+            cur.next, prev, cur, diff = prev, cur, cur.next, diff - 1
+
+        last_unswapped.next, first_swapped.next = prev, cur
+
+        return dummy.next
+

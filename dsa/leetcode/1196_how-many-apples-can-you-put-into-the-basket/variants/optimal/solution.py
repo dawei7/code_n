@@ -1,11 +1,9 @@
-from typing import List
-
-
 class Solution:
     def maxNumberOfApples(self, weight: List[int]) -> int:
-        total = 0
-        for count, apple_weight in enumerate(sorted(weight)):
-            if total + apple_weight > 5000:
-                return count
-            total += apple_weight
+        weight.sort()
+        s = 0
+        for i, x in enumerate(weight):
+            s += x
+            if s > 5000:
+                return i
         return len(weight)

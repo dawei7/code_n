@@ -1,24 +1,29 @@
 class Allocator:
     def __init__(self, n: int):
-        self.memory = [0] * n
+        self.m = [0] * n
 
     def allocate(self, size: int, mID: int) -> int:
-        free = 0
-        for index, owner in enumerate(self.memory):
-            if owner == 0:
-                free += 1
-                if free == size:
-                    start = index - size + 1
-                    self.memory[start : index + 1] = [mID] * size
-                    return start
+        cnt = 0
+        for i, v in enumerate(self.m):
+            if v:
+                cnt = 0
             else:
-                free = 0
+                cnt += 1
+                if cnt == size:
+                    self.m[i - size + 1 : i + 1] = [mID] * size
+                    return i - size + 1
         return -1
 
     def freeMemory(self, mID: int) -> int:
-        released = 0
-        for index, owner in enumerate(self.memory):
-            if owner == mID:
-                self.memory[index] = 0
-                released += 1
-        return released
+        ans = 0
+        for i, v in enumerate(self.m):
+            if v == mID:
+                self.m[i] = 0
+                ans += 1
+        return ans
+
+
+# Your Allocator object will be instantiated and called as such:
+# obj = Allocator(n)
+# param_1 = obj.allocate(size,mID)
+# param_2 = obj.freeMemory(mID)

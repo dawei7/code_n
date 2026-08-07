@@ -1,36 +1,27 @@
-WITH opinion_stats AS (
-    SELECT
-        book_id,
-        COUNT(*) AS total_sessions,
-        MIN(session_rating) AS lowest_rating,
-        MAX(session_rating) AS highest_rating,
-        SUM(
-            CASE
-                WHEN session_rating <= 2 OR session_rating >= 4 THEN 1
-                ELSE 0
-            END
-        ) AS extreme_ratings
-    FROM reading_sessions
-    GROUP BY book_id
-    HAVING COUNT(*) >= 5
-       AND MIN(session_rating) <= 2
-       AND MAX(session_rating) >= 4
-       AND SUM(
-               CASE
-                   WHEN session_rating <= 2 OR session_rating >= 4 THEN 1
-                   ELSE 0
-               END
-           ) >= 0.6 * COUNT(*)
+# Time:  O(r + nlogn)
+# Space: O(r + n)
+
+WITH rating_cte AS (
+    SELECT book_id,
+           MAX(session_rating) AS max_rating,
+           MIN(session_rating) AS min_rating,
+           SUM(CASE WHEN session_rating >= 4 OR session_rating <= 2 THEN 1 ELSE 0 END) AS extreme_ratings,
+           COUNT(*) AS total_sessions
+    FROM reading_sessions 
+    GROUP BY 1
+    ORDER BY NULL
 )
-SELECT
-    books.book_id,
-    books.title,
-    books.author,
-    books.genre,
-    books.pages,
-    opinion_stats.highest_rating - opinion_stats.lowest_rating AS rating_spread,
-    ROUND(1.0 * opinion_stats.extreme_ratings / opinion_stats.total_sessions, 2) AS polarization_score
-FROM opinion_stats
-JOIN books
-    ON books.book_id = opinion_stats.book_id
-ORDER BY polarization_score DESC, books.title DESC;
+
+SELECT b.book_id,
+       title,
+       author,
+       genre,
+       pages,
+       (max_rating - min_rating) AS rating_spread,
+       ROUND(extreme_ratings * 1.0 / total_sessions, 2) AS polarization_score
+FROM rating_cte r INNER JOIN books b ON r.book_id = b.book_id
+WHERE total_sessions >= 5
+  AND max_rating >= 4
+  AND min_rating <= 2
+  AND extreme_ratings * 1.0 / total_sessions >= 0.6
+ORDER BY 7 DESC, 2 DESC;

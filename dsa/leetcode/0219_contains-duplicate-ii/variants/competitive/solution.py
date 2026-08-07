@@ -1,11 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        last_seen = {}
-        for index, value in enumerate(nums):
-            if value in last_seen and index - last_seen[value] <= k:
-                return True
-            last_seen[value] = index
+    # @param {integer[]} nums
+    # @param {integer} k
+    # @return {boolean}
+    def containsNearbyDuplicate(self, nums, k):
+        lookup = {}
+        for i, num in enumerate(nums):
+            if num not in lookup:
+                lookup[num] = i
+            else:
+                # If the value occurs before, check the difference.
+                if i - lookup[num] <= k:
+                    return True
+                # Update the index of the value.
+                lookup[num] = i
         return False
+

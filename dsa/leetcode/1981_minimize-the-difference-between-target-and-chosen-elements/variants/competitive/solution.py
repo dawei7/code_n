@@ -1,15 +1,17 @@
-from typing import List
-
+# Time:  O(t * m * n), t is target
+# Space: O(t)
 
 class Solution:
-    def minimizeTheDifference(self, mat: List[List[int]], target: int) -> int:
-        reachable = {0}
-
+    def minimizeTheDifference(self, mat, target):
+        """
+        :type mat: List[List[int]]
+        :type target: int
+        :rtype: int
+        """
+        chosen_min = sum(min(row) for row in mat)
+        if chosen_min >= target:
+            return chosen_min-target
+        dp = {0}
         for row in mat:
-            next_sums = {current + value for current in reachable for value in set(row)}
-            above = [total for total in next_sums if total > target]
-            reachable = {total for total in next_sums if total <= target}
-            if above:
-                reachable.add(min(above))
-
-        return min(abs(total - target) for total in reachable)
+            dp = {total+x for total in dp for x in row if (total+x)-target < target-chosen_min}
+        return min(abs(target-total) for total in dp)

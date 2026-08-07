@@ -1,12 +1,9 @@
-from heapq import nlargest
-
-
 class Solution:
     def maxSum(self, nums: list[int], k: int, mul: int) -> int:
-        selected = nlargest(k, nums)
-        multiplied = min(k, mul - 1)
-
-        total = 0
-        for index in range(multiplied):
-            total += selected[index] * (mul - index)
-        return total + sum(selected[multiplied:])
+        nums.sort()
+        n = len(nums)
+        ans = 0
+        for i in range(n - 1, n - 1 - k, -1):
+            ans += nums[i] * max(1, mul)
+            mul -= 1
+        return ans

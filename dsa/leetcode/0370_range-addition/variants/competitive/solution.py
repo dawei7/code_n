@@ -1,17 +1,21 @@
-from typing import List
-
+# Time:  O(k + n)
+# Space: O(1)
 
 class Solution:
-    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:
-        difference = [0] * length
+    def getModifiedArray(self, length, updates):
+        """
+        :type length: int
+        :type updates: List[List[int]]
+        :rtype: List[int]
+        """
+        result = [0] * length
+        for update in updates:
+            result[update[0]] += update[2]
+            if update[1]+1 < length:
+                result[update[1]+1] -= update[2]
 
-        for start, end, increment in updates:
-            difference[start] += increment
-            if end + 1 < length:
-                difference[end + 1] -= increment
+        for i in range(1, length):
+            result[i] += result[i-1]
 
-        running = 0
-        for index in range(length):
-            running += difference[index]
-            difference[index] = running
-        return difference
+        return result
+

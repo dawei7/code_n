@@ -1,12 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# bit manipulation
 class Solution:
-    def hasTrailingZeros(self, nums: List[int]) -> bool:
-        even_count = 0
-        for value in nums:
-            if value % 2 == 0:
-                even_count += 1
-                if even_count == 2:
-                    return True
-        return False
+    def hasTrailingZeros(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return sum(x%2 == 0 for x in nums) >= 2

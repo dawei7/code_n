@@ -1,63 +1,55 @@
-from collections import defaultdict
-
-
 class Solution:
     def evaluate(self, expression: str) -> int:
-        index = 0
-        values = defaultdict(list)
+        def parseVar():
+            nonlocal i
+            j = i
+            while i < n and expression[i] not in " )":
+                i += 1
+            return expression[j:i]
 
-        def skip_spaces():
-            nonlocal index
-            while index < len(expression) and expression[index] == " ":
-                index += 1
+        def parseInt():
+            nonlocal i
+            sign, v = 1, 0
+            if expression[i] == "-":
+                sign = -1
+                i += 1
+            while i < n and expression[i].isdigit():
+                v = v * 10 + int(expression[i])
+                i += 1
+            return sign * v
 
-        def read_token():
-            nonlocal index
-            start = index
-            while index < len(expression) and expression[index] not in " ()":
-                index += 1
-            return expression[start:index]
-
-        def parse():
-            nonlocal index
-            skip_spaces()
-
-            if expression[index] != "(":
-                token = read_token()
-                if token[0] == "-" or token[0].isdigit():
-                    return int(token)
-                return values[token][-1]
-
-            index += 1
-            operator = read_token()
-
-            if operator == "add":
-                result = parse() + parse()
-            elif operator == "mult":
-                result = parse() * parse()
+        def eval():
+            nonlocal i
+            if expression[i] != "(":
+                return scope[parseVar()][-1] if expression[i].islower() else parseInt()
+            i += 1
+            if expression[i] == "l":
+                i += 4
+                vars = []
+                while 1:
+                    var = parseVar()
+                    if expression[i] == ")":
+                        ans = scope[var][-1]
+                        break
+                    vars.append(var)
+                    i += 1
+                    scope[var].append(eval())
+                    i += 1
+                    if not expression[i].islower():
+                        ans = eval()
+                        break
+                for v in vars:
+                    scope[v].pop()
             else:
-                bound_names = []
-                while True:
-                    skip_spaces()
-                    if expression[index] == "(" or expression[index] == "-" or expression[index].isdigit():
-                        result = parse()
-                        break
+                add = expression[i] == "a"
+                i += 4 if add else 5
+                a = eval()
+                i += 1
+                b = eval()
+                ans = a + b if add else a * b
+            i += 1
+            return ans
 
-                    name = read_token()
-                    skip_spaces()
-                    if expression[index] == ")":
-                        result = values[name][-1]
-                        break
-
-                    value = parse()
-                    values[name].append(value)
-                    bound_names.append(name)
-
-                for name in reversed(bound_names):
-                    values[name].pop()
-
-            skip_spaces()
-            index += 1
-            return result
-
-        return parse()
+        i, n = 0, len(expression)
+        scope = defaultdict(list)
+        return eval()

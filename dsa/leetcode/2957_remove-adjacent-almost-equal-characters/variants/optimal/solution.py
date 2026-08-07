@@ -1,13 +1,11 @@
 class Solution:
     def removeAlmostEqualCharacters(self, word: str) -> int:
-        operations = 0
-        index = 1
-
-        while index < len(word):
-            if abs(ord(word[index]) - ord(word[index - 1])) <= 1:
-                operations += 1
-                index += 2
+        ans = 0
+        i, n = 1, len(word)
+        while i < n:
+            if abs(ord(word[i]) - ord(word[i - 1])) < 2:
+                ans += 1
+                i += 2
             else:
-                index += 1
-
-        return operations
+                i += 1
+        return ans

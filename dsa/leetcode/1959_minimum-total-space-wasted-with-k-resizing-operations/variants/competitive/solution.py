@@ -1,29 +1,23 @@
-from typing import List
-
+# Time:  O(k * n^2)
+# Space: O(k * n)
 
 class Solution:
-    def minSpaceWastedKResizing(self, nums: List[int], k: int) -> int:
-        length = len(nums)
-        infinity = float("inf")
-        previous = [infinity] * (length + 1)
-        previous[0] = 0
-
-        for groups in range(1, k + 2):
-            current = [infinity] * (length + 1)
-
-            for end in range(groups, length + 1):
-                maximum = 0
-                total = 0
-
-                for start in range(end - 1, groups - 2, -1):
-                    maximum = max(maximum, nums[start])
-                    total += nums[start]
-                    waste = maximum * (end - start) - total
-                    current[end] = min(
-                        current[end],
-                        previous[start] + waste,
-                    )
-
-            previous = current
-
-        return previous[length]
+    def minSpaceWastedKResizing(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        INF = float("inf")
+        k += 1
+        dp = [[INF]*(k+1) for _ in range(len(nums)+1)]
+        dp[0][0] = 0
+        for i in range(1, len(nums)+1):
+            total = max_num = 0
+            for j in reversed(range(1, i+1)):
+                total += nums[j-1]
+                max_num = max(max_num, nums[j-1])
+                for m in range(1, k+1):
+                    if dp[j-1][m-1] != INF:
+                        dp[i][m] = min(dp[i][m], dp[j-1][m-1] + (max_num*(i-j+1)-total))
+        return dp[-1][-1]

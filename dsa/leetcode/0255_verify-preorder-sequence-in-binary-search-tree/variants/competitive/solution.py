@@ -1,14 +1,35 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def verifyPreorder(self, preorder: List[int]) -> bool:
-        lower_bound = float("-inf")
-        stack = []
-        for value in preorder:
-            if value < lower_bound:
+    # @param {integer[]} preorder
+    # @return {boolean}
+    def verifyPreorder(self, preorder):
+        low, i = float("-inf"), -1
+        for p in preorder:
+            if p < low:
                 return False
-            while stack and value > stack[-1]:
-                lower_bound = stack.pop()
-            stack.append(value)
+            while i >= 0 and p > preorder[i]:
+                low = preorder[i]
+                i -= 1
+            i += 1
+            preorder[i] = p
         return True
+
+# Time:  O(n)
+# Space: O(h)
+class Solution2(object):
+    # @param {integer[]} preorder
+    # @return {boolean}
+    def verifyPreorder(self, preorder):
+        low = float("-inf")
+        path = []
+        for p in preorder:
+            if p < low:
+                return False
+            while path and p > path[-1]:
+                low = path[-1]
+                path.pop()
+            path.append(p)
+        return True
+

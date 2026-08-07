@@ -1,33 +1,9 @@
-from collections import Counter
-
-
 class Solution:
     def checkPrimeFrequency(self, nums: List[int]) -> bool:
-        prime_frequencies = {
-            2,
-            3,
-            5,
-            7,
-            11,
-            13,
-            17,
-            19,
-            23,
-            29,
-            31,
-            37,
-            41,
-            43,
-            47,
-            53,
-            59,
-            61,
-            67,
-            71,
-            73,
-            79,
-            83,
-            89,
-            97,
-        }
-        return any(frequency in prime_frequencies for frequency in Counter(nums).values())
+        def is_prime(x: int) -> bool:
+            if x < 2:
+                return False
+            return all(x % i for i in range(2, int(sqrt(x)) + 1))
+
+        cnt = Counter(nums)
+        return any(is_prime(x) for x in cnt.values())

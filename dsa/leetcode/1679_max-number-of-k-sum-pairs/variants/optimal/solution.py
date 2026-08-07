@@ -1,18 +1,14 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
-        unmatched = Counter()
-        operations = 0
-
-        for value in nums:
-            complement = k - value
-            if unmatched[complement] > 0:
-                unmatched[complement] -= 1
-                operations += 1
+        nums.sort()
+        l, r, ans = 0, len(nums) - 1, 0
+        while l < r:
+            s = nums[l] + nums[r]
+            if s == k:
+                ans += 1
+                l, r = l + 1, r - 1
+            elif s > k:
+                r -= 1
             else:
-                unmatched[value] += 1
-
-        return operations
+                l += 1
+        return ans

@@ -1,31 +1,29 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n^2), used by Counter, this could be reduced to O(n) by skipping invalid input
+
+import collections
+import itertools
 
 
 class Solution:
-    def movesToChessboard(self, board: List[List[int]]) -> int:
-        side = len(board)
-        origin = board[0][0]
-        for row in range(side):
-            for column in range(side):
-                if origin ^ board[row][0] ^ board[0][column] ^ board[row][column]:
-                    return -1
-
-        def minimum_swaps(labels: List[int]) -> int:
-            ones = sum(labels)
-            if abs(side - 2 * ones) > 1:
+    def movesToChessboard(self, board):
+        """
+        :type board: List[List[int]]
+        :rtype: int
+        """
+        N = len(board)
+        result = 0
+        for count in (collections.Counter(map(tuple, board)), \
+                      collections.Counter(itertools.izip(*board))):
+            if len(count) != 2 or \
+               sorted(count.values()) != [N/2, (N+1)/2]:
                 return -1
 
-            mismatch_zero = sum(value != index % 2 for index, value in enumerate(labels))
-            if side % 2 == 0:
-                mismatches = min(mismatch_zero, side - mismatch_zero)
-            elif mismatch_zero % 2 == 0:
-                mismatches = mismatch_zero
-            else:
-                mismatches = side - mismatch_zero
-            return mismatches // 2
+            seq1, seq2 = count
+            if any(x == y for x, y in itertools.izip(seq1, seq2)):
+                return -1
+            begins = [int(seq1.count(1) * 2 > N)] if N%2 else [0, 1]
+            result += min(sum(int(i%2 != v) for i, v in enumerate(seq1, begin)) \
+                          for begin in begins) / 2
+        return result
 
-        row_swaps = minimum_swaps([board[row][0] for row in range(side)])
-        column_swaps = minimum_swaps(board[0])
-        if row_swaps == -1 or column_swaps == -1:
-            return -1
-        return row_swaps + column_swaps

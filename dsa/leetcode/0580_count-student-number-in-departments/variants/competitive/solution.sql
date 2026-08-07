@@ -1,9 +1,13 @@
+# Time:  O(s+dlogd)
+# Space: O(d+s)
+
 SELECT
-    department.dept_name,
-    COUNT(student.student_id) AS student_number
-FROM Department AS department
-LEFT JOIN Student AS student
-    ON student.dept_id = department.dept_id
-GROUP BY department.dept_id, department.dept_name
-ORDER BY student_number DESC, department.dept_name ASC;
+    dept_name, COUNT(student_id) AS student_number
+FROM
+    department
+        LEFT JOIN
+    student ON department.dept_id = student.dept_id
+GROUP BY department.dept_name
+ORDER BY student_number DESC , department.dept_name
+;
 

@@ -1,22 +1,22 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
-MODULO = 1_000_000_007
-
-
+# freq table, dp
 class Solution:
-    def sumOfGoodSubsequences(self, nums: List[int]) -> int:
-        counts = defaultdict(int)
-        totals = defaultdict(int)
-        answer = 0
-
-        for value in nums:
-            added_count = (1 + counts[value - 1] + counts[value + 1]) % MODULO
-            added_total = (totals[value - 1] + totals[value + 1] + value * added_count) % MODULO
-
-            counts[value] = (counts[value] + added_count) % MODULO
-            totals[value] = (totals[value] + added_total) % MODULO
-            answer = (answer + added_total) % MODULO
-
-        return answer
+    def sumOfGoodSubsequences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = collections.defaultdict(int)
+        cnt = collections.defaultdict(int)
+        for x in nums:
+            c = cnt[x-1]+cnt[x+1]+1
+            cnt[x] = (cnt[x]+c)%MOD
+            dp[x] = (dp[x]+(dp[x-1]+dp[x+1]+x*c))%MOD
+        return reduce(lambda accu, x: (accu+x)%MOD, dp.values())
+    

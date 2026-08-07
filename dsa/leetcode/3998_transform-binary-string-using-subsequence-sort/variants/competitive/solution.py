@@ -1,37 +1,24 @@
+# Time:  O(n * m)
+# Space: O(n)
+
+# prefix sum
 class Solution:
-    def transformStr(self, s: str, strs: List[str]) -> List[bool]:
-        source_prefix = []
-        ones = 0
-        for char in s:
-            ones += char == "1"
-            source_prefix.append(ones)
-
-        required_ones = ones
-        answer = []
-        for pattern in strs:
-            fixed_ones = pattern.count("1")
-            question_count = pattern.count("?")
-            needed_ones = required_ones - fixed_ones
-            if needed_ones < 0 or needed_ones > question_count:
-                answer.append(False)
-                continue
-
-            zero_questions = question_count - needed_ones
-            pattern_ones = 0
-            questions_seen = 0
-            possible = True
-            for index, char in enumerate(pattern):
-                if char == "1":
-                    pattern_ones += 1
-                elif char == "?":
-                    if questions_seen >= zero_questions:
-                        pattern_ones += 1
-                    questions_seen += 1
-
-                if pattern_ones > source_prefix[index]:
-                    possible = False
+    def transformStr(self, s, strs):
+        """
+        :type s: str
+        :type strs: List[str]
+        :rtype: List[bool]
+        """
+        prefix = [0]*(len(s)+1)
+        for i in range(len(s)):
+            prefix[i+1] = prefix[i]+(1 if s[i] == '1' else 0)
+        result = [False]*len(strs)
+        for i, t in enumerate(strs):
+            left = right = 0
+            for j in range(len(t)):
+                left += (1 if t[j] == '1' else 0)
+                right = min(right+(1 if t[j] != '0' else 0), prefix[j+1])
+                if left > right:
                     break
-
-            answer.append(possible)
-
-        return answer
+            result[i] = left <= prefix[-1] <= right
+        return result

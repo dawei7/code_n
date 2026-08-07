@@ -1,41 +1,84 @@
-from typing import Optional
+# Time:  O(n + l)
+# Space: O(h + l)
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+# kmp solution
 class Solution:
-    def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
-        value_limit = 100
-        pattern = []
-        node = head
-        while node is not None:
-            pattern.append(node.val)
-            node = node.next
-
-        length = len(pattern)
-        prefix = [0] * length
-        matched = 0
-        for index in range(1, length):
-            while matched and pattern[index] != pattern[matched]:
-                matched = prefix[matched - 1]
-            if pattern[index] == pattern[matched]:
-                matched += 1
-            prefix[index] = matched
-
-        transitions = [[0] * (value_limit + 1) for _ in range(length)]
-        for state in range(length):
-            for value in range(1, value_limit + 1):
-                if value == pattern[state]:
-                    transitions[state][value] = state + 1
-                elif state:
-                    transitions[state][value] = transitions[prefix[state - 1]][value]
-
-        stack = [(root, 0)]
-        while stack:
-            tree_node, state = stack.pop()
-            state = transitions[state][tree_node.val]
-            if state == length:
+    def isSubPath(self, head, root):
+        """
+        :type head: ListNode
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def getPrefix(head):
+            pattern, prefix = [head.val], [-1]
+            j = -1
+            node = head.next
+            while node:
+                while j+1 and pattern[j+1] != node.val:
+                    j = prefix[j]
+                if pattern[j+1] == node.val:
+                    j += 1
+                pattern.append(node.val)
+                prefix.append(j)
+                node = node.next
+            return pattern, prefix
+            
+        def dfs(pattern, prefix, root, j):
+            if not root:
+                return False
+            while j+1 and pattern[j+1] != root.val:
+                j = prefix[j]
+            if pattern[j+1] == root.val:
+                j += 1
+            if j+1 == len(pattern):
                 return True
-            if tree_node.left is not None:
-                stack.append((tree_node.left, state))
-            if tree_node.right is not None:
-                stack.append((tree_node.right, state))
-        return False
+            return dfs(pattern, prefix, root.left, j) or \
+                   dfs(pattern, prefix, root.right, j)
+        
+        if not head:
+            return True
+        pattern, prefix = getPrefix(head)
+        return dfs(pattern, prefix, root, -1)
+    
+
+# Time:  O(n * min(h, l))
+# Space: O(h)
+# dfs solution
+class Solution2(object):
+    def isSubPath(self, head, root):
+        """
+        :type head: ListNode
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def dfs(head, root):
+            if not head:
+                return True
+            if not root:
+                return False
+            return root.val == head.val and \
+                   (dfs(head.next, root.left) or 
+                    dfs(head.next, root.right))
+    
+        if not head:
+            return True
+        if not root:
+            return False
+        return dfs(head, root) or \
+               self.isSubPath(head, root.left) or \
+               self.isSubPath(head, root.right)

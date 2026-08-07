@@ -1,12 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def secondsToRemoveOccurrences(self, s: str) -> int:
-        zeros = 0
-        seconds = 0
-
-        for char in s:
-            if char == "0":
-                zeros += 1
-            elif zeros:
-                seconds = max(zeros, seconds + 1)
-
-        return seconds
+    def secondsToRemoveOccurrences(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = cnt = 0
+        for c in s: 
+            if c == '0':
+                cnt += 1
+                continue
+            if cnt:
+                result = max(result+1, cnt)
+        return result 

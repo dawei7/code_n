@@ -1,43 +1,63 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+class SegmentTreeNode(object):
+    def __init__(self, start, end):
+        self.start, self.end = start, end
+        self.total = self.count = 0
+        self._left = self._right = None
+
+    def mid(self):
+        return (self.start+self.end) // 2
+
+    def left(self):
+        self._left = self._left or SegmentTreeNode(self.start, self.mid())
+        return self._left
+
+    def right(self):
+        self._right = self._right or SegmentTreeNode(self.mid(), self.end)
+        return self._right
+
+    def update(self, X, i, j, val):
+        if i >= j:
+            return 0
+        if self.start == i and self.end == j:
+            self.count += val
+        else:
+            self.left().update(X, i, min(self.mid(), j), val)
+            self.right().update(X, max(self.mid(), i), j, val)
+        if self.count > 0:
+            self.total = X[self.end]-X[self.start]
+        else:
+            self.total = self.left().total + self.right().total
+        return self.total
 
 
 class Solution:
-    def rectangleArea(self, rectangles: List[List[int]]) -> int:
-        modulo = 1_000_000_007
-        y_values = sorted({y for _, y1, _, y2 in rectangles for y in (y1, y2)})
-        y_index = {value: index for index, value in enumerate(y_values)}
-        interval_count = len(y_values) - 1
-        cover_count = [0] * (4 * interval_count)
-        covered_length = [0] * (4 * interval_count)
-
-        def update(node: int, left: int, right: int, query_left: int, query_right: int, delta: int) -> None:
-            if query_left <= left and right <= query_right:
-                cover_count[node] += delta
-            else:
-                middle = (left + right) // 2
-                if query_left <= middle:
-                    update(node * 2, left, middle, query_left, query_right, delta)
-                if query_right > middle:
-                    update(node * 2 + 1, middle + 1, right, query_left, query_right, delta)
-
-            if cover_count[node] > 0:
-                covered_length[node] = y_values[right + 1] - y_values[left]
-            elif left == right:
-                covered_length[node] = 0
-            else:
-                covered_length[node] = covered_length[node * 2] + covered_length[node * 2 + 1]
-
+    def rectangleArea(self, rectangles):
+        """
+        :type rectangles: List[List[int]]
+        :rtype: int
+        """
+        OPEN, CLOSE = 1, -1
         events = []
+        X = set()
         for x1, y1, x2, y2 in rectangles:
-            events.append((x1, y1, y2, 1))
-            events.append((x2, y1, y2, -1))
+            events.append((y1, OPEN, x1, x2))
+            events.append((y2, CLOSE, x1, x2))
+            X.add(x1)
+            X.add(x2)
         events.sort()
+        X = sorted(X)
+        Xi = {x: i for i, x in enumerate(X)}
 
-        area = 0
-        previous_x = events[0][0]
-        for x, y1, y2, delta in events:
-            area += (x - previous_x) * covered_length[1]
-            update(1, 0, interval_count - 1, y_index[y1], y_index[y2] - 1, delta)
-            previous_x = x
+        st = SegmentTreeNode(0, len(X)-1)
+        result = 0
+        cur_x_sum = 0
+        cur_y = events[0][0]
+        for y, typ, x1, x2 in events:
+            result += cur_x_sum * (y-cur_y)
+            cur_x_sum = st.update(X, Xi[x1], Xi[x2], typ)
+            cur_y = y
+        return result % (10**9+7)
 
-        return area % modulo

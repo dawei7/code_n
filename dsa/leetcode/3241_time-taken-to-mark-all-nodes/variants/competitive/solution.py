@@ -1,55 +1,87 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# tree dp, bfs
 class Solution:
-    def timeTaken(self, edges: List[List[int]]) -> List[int]:
-        node_count = len(edges) + 1
-        graph = [[] for _ in range(node_count)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+    def timeTaken(self, edges):
+        """
+        :type edges: List[List[int]]
+        :rtype: List[int]
+        """
+        def topological_traversal():
+            p = [-2]*len(adj)
+            p[0] = -1
+            topological_order = [0]
+            for u in topological_order:
+                for v in reversed(adj[u]):
+                    if p[v] != -2:
+                        continue
+                    p[v] = u
+                    topological_order.append(v)
+            for u in reversed(topological_order):
+                for v in adj[u]:
+                    if v == p[u]:
+                        continue
+                    curr = [(1+int(v%2 == 0))+dp[v][0][0], v]
+                    for i in range(len(dp[u])):
+                        if curr > dp[u][i]:
+                            curr, dp[u][i] = dp[u][i], curr
 
-        parent = [-1] * node_count
-        order = [0]
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor == parent[node]:
+        def bfs():
+            q = [(0, -1, 0)]
+            while q:
+                new_q = []
+                for u, p, curr in q:
+                    result[u] = max(dp[u][0][0], curr)
+                    for v in adj[u]:
+                        if v == p:
+                            continue
+                        new_q.append((v, u, (1+int(u%2 == 0))+max((dp[u][0][0] if dp[u][0][1] != v else dp[u][1][0]), curr)))
+                q = new_q
+    
+        adj = [[] for _ in range(len(edges)+1)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        dp = [[[0, -1] for _ in range(2)] for _ in range(len(edges)+1)]
+        topological_traversal()
+        result = [0]*(len(edges)+1)
+        bfs()
+        return result
+
+
+# Time:  O(n)
+# Space: O(n)
+# tree dp, dfs
+class Solution2(object):
+    def timeTaken(self, edges):
+        """
+        :type edges: List[List[int]]
+        :rtype: List[int]
+        """
+        def dfs1(u, p):
+            for v in adj[u]:
+                if v == p:
                     continue
-                parent[neighbor] = node
-                order.append(neighbor)
+                dfs1(v, u)
+                curr = [(1+int(v%2 == 0))+dp[v][0][0], v]
+                for i in range(len(dp[u])):
+                    if curr > dp[u][i]:
+                        curr, dp[u][i] = dp[u][i], curr
 
-        downward = [0] * node_count
-        for node in reversed(order):
-            for neighbor in graph[node]:
-                if parent[neighbor] == node:
-                    contribution = downward[neighbor] + (1 if neighbor % 2 else 2)
-                    downward[node] = max(downward[node], contribution)
-
-        upward = [0] * node_count
-        answer = [0] * node_count
-
-        for node in order:
-            best = upward[node]
-            second_best = 0
-            best_child = -1
-
-            for neighbor in graph[node]:
-                if parent[neighbor] != node:
+        def dfs2(u, p, curr):
+            result[u] = max(dp[u][0][0], curr)
+            for v in adj[u]:
+                if v == p:
                     continue
-                contribution = downward[neighbor] + (1 if neighbor % 2 else 2)
-                if contribution > best:
-                    second_best = best
-                    best = contribution
-                    best_child = neighbor
-                elif contribution > second_best:
-                    second_best = contribution
+                dfs2(v, u, (1+int(u%2 == 0))+max((dp[u][0][0] if dp[u][0][1] != v else dp[u][1][0]), curr))
 
-            answer[node] = best
-            enter_node_cost = 1 if node % 2 else 2
-
-            for neighbor in graph[node]:
-                if parent[neighbor] == node:
-                    outside = second_best if neighbor == best_child else best
-                    upward[neighbor] = enter_node_cost + outside
-
-        return answer
+        adj = [[] for _ in range(len(edges)+1)]
+        for u, v, in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        dp = [[[0, -1] for _ in range(2)] for _ in range(len(edges)+1)]
+        dfs1(0, -1)
+        result = [0]*(len(edges)+1)
+        dfs2(0, -1, 0)
+        return result

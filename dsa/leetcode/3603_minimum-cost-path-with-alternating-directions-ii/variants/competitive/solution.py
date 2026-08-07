@@ -1,30 +1,46 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# dp
 class Solution:
-    def minCost(
-        self,
-        m: int,
-        n: int,
-        waitCost: List[List[int]],
-    ) -> int:
-        transposed = n > m
-        height, width = (n, m) if transposed else (m, n)
-        infinity = float("inf")
-        dp = [infinity] * width
-        dp[0] = 1
+    def minCost(self, m, n, waitCost):
+        """
+        :type m: int
+        :type n: int
+        :type waitCost: List[List[int]]
+        :rtype: int
+        """
+        waitCost[0][0] = waitCost[m-1][n-1] = 0
+        for i in range(m):
+            for j in range(n):
+                prev = 0 if (i, j) == (0, 0) else float("inf")
+                if i-1 >= 0:
+                    prev = min(prev, waitCost[i-1][j])
+                if j-1 >= 0:
+                    prev = min(prev, waitCost[i][j-1])
+                waitCost[i][j] += prev+(i+1)*(j+1)
+        return waitCost[m-1][n-1]
 
-        for row in range(height):
-            for column in range(width):
-                if row == 0 and column == 0:
-                    continue
-                from_above = dp[column]
-                from_left = dp[column - 1] if column else infinity
-                original_row, original_column = (column, row) if transposed else (row, column)
-                dp[column] = (
-                    min(from_above, from_left)
-                    + (original_row + 1) * (original_column + 1)
-                    + waitCost[original_row][original_column]
-                )
 
-        return dp[-1] - waitCost[-1][-1]
+# Time:  O(m * n)
+# Space: O(n)
+# dp
+class Solution2(object):
+    def minCost(self, m, n, waitCost):
+        """
+        :type m: int
+        :type n: int
+        :type waitCost: List[List[int]]
+        :rtype: int
+        """
+        waitCost[0][0] = waitCost[m-1][n-1] = 0
+        dp = [0]*n
+        for i in range(m):
+            for j in range(n):
+                prev = 0 if (i, j) == (0, 0) else float("inf")
+                if i-1 >= 0:
+                    prev = min(prev, dp[j])
+                if j-1 >= 0:
+                    prev = min(prev, dp[j-1])
+                dp[j] = prev+waitCost[i][j]+(i+1)*(j+1)
+        return dp[n-1]

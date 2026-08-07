@@ -1,67 +1,118 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# iterative dfs, tree dp
 class Solution:
-    def finishTime(
-        self,
-        n: int,
-        edges: List[List[int]],
-        baseTime: List[int],
-    ) -> int:
-        graph = [[] for _ in range(n)]
-        for left, right in edges:
-            graph[left].append(right)
-            graph[right].append(left)
-
-        parent = [-1] * n
-        parent[0] = 0
-        order = [0]
-        for task in order:
-            for neighbor in graph[task]:
-                if neighbor != parent[task]:
-                    parent[neighbor] = task
-                    order.append(neighbor)
-
-        downward = [0] * n
-        for task in reversed(order):
-            child_values = [downward[neighbor] for neighbor in graph[task] if parent[neighbor] == task]
-            if not child_values:
-                downward[task] = baseTime[task]
-            else:
-                downward[task] = 2 * max(child_values) - min(child_values) + baseTime[task]
-
-        upward = [0] * n
-        answer = None
-        for task in order:
-            incoming = [upward[task] if neighbor == parent[task] else downward[neighbor] for neighbor in graph[task]]
-            if not incoming:
-                root_finish = baseTime[task]
-            else:
-                minimum = second_minimum = float("inf")
-                maximum = second_maximum = float("-inf")
-                for value in incoming:
-                    if value < minimum:
-                        minimum, second_minimum = value, minimum
-                    elif value < second_minimum:
-                        second_minimum = value
-                    if value > maximum:
-                        maximum, second_maximum = value, maximum
-                    elif value > second_maximum:
-                        second_maximum = value
-
-                root_finish = 2 * maximum - minimum + baseTime[task]
-                for index, neighbor in enumerate(graph[task]):
-                    if parent[neighbor] != task:
+    def finishTime(self, n, edges, baseTime):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type baseTime: List[int]
+        :rtype: int
+        """
+        POS_INF, NEG_INF = float("inf"), float("-inf")
+        def iter_dfs():
+            dp = [0]*n
+            stk = [(1, 0, -1)]
+            while stk:
+                step, u, p = stk.pop()
+                if step == 1:
+                    stk.append((2, u, p))
+                    for v in reversed(adj[u]):
+                        if v == p:
+                            continue
+                        stk.append((1, v, u))
+                elif step == 2:
+                    mx, mn = NEG_INF, POS_INF
+                    for v in adj[u]:
+                        if v == p:
+                            continue
+                        mx, mn = max(mx, dp[v]), min(mn, dp[v])
+                    dp[u] = ((2*mx-mn) if mx is not NEG_INF else 0)+baseTime[u]
+            return dp
+        
+        def iter_dfs2():
+            def top2(a, b, x, cmp):
+                if cmp(x, a):
+                    a, b = x, a
+                elif cmp(x, b):
+                    b = x
+                return a, b
+    
+            result = POS_INF
+            stk = [(0, -1, NEG_INF)]
+            while stk:
+                u, p, t = stk.pop()
+                mx1, mx2, mn1, mn2 = NEG_INF, NEG_INF, POS_INF, POS_INF
+                for v in adj[u]:
+                    x = dp[v] if v != p else t
+                    mx1, mx2 = top2(mx1, mx2, x, lambda x, y: x > y)
+                    mn1, mn2 = top2(mn1, mn2, x, lambda x, y: x < y)
+                result = min(result, ((2*mx1-mn1) if mx1 is not NEG_INF else 0)+baseTime[u])
+                for v in reversed(adj[u]):
+                    if v == p:
                         continue
-                    if len(incoming) == 1:
-                        upward[neighbor] = baseTime[task]
-                        continue
-                    excluded = incoming[index]
-                    earliest = second_minimum if excluded == minimum else minimum
-                    latest = second_maximum if excluded == maximum else maximum
-                    upward[neighbor] = 2 * latest - earliest + baseTime[task]
+                    mx = mx1 if dp[v] != mx1 else mx2
+                    mn = mn1 if dp[v] != mn1 else mn2
+                    stk.append((v, u, ((2*mx-mn) if mx is not NEG_INF else 0)+baseTime[u]))
+            return result
+    
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        dp = iter_dfs()
+        return iter_dfs2()
 
-            if answer is None or root_finish < answer:
-                answer = root_finish
 
-        return answer
+# Time:  O(n)
+# Space: O(n)
+# dfs, tree dp
+class Solution2(object):
+    def finishTime(self, n, edges, baseTime):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type baseTime: List[int]
+        :rtype: int
+        """
+        POS_INF, NEG_INF = float("inf"), float("-inf")
+        def dfs(u, p):
+            mx, mn = NEG_INF, POS_INF
+            for v in adj[u]:
+                if v == p:
+                    continue
+                dfs(v, u)
+                mx, mn = max(mx, dp[v]), min(mn, dp[v])
+            dp[u] = ((2*mx-mn) if mx is not NEG_INF else 0)+baseTime[u]
+        
+        def dfs2(u, p, t):
+            def top2(a, b, x, cmp):
+                if cmp(x, a):
+                    a, b = x, a
+                elif cmp(x, b):
+                    b = x
+                return a, b
+
+            mx1, mx2, mn1, mn2 = NEG_INF, NEG_INF, POS_INF, POS_INF
+            for v in adj[u]:
+                x = dp[v] if v != p else t
+                mx1, mx2 = top2(mx1, mx2, x, lambda x, y: x > y)
+                mn1, mn2 = top2(mn1, mn2, x, lambda x, y: x < y)
+            result[0] = min(result[0], ((2*mx1-mn1) if mx1 is not NEG_INF else 0)+baseTime[u])
+            for v in adj[u]:
+                if v == p:
+                    continue
+                mx = mx1 if dp[v] != mx1 else mx2
+                mn = mn1 if dp[v] != mn1 else mn2
+                dfs2(v, u, ((2*mx-mn) if mx is not NEG_INF else 0)+baseTime[u])
+    
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        dp = [0]*n
+        dfs(0, -1)
+        result = [POS_INF]
+        dfs2(0, -1, NEG_INF)
+        return result[0]

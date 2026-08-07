@@ -1,26 +1,14 @@
-from functools import lru_cache
-from typing import List
-
-
 class Solution:
     def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> int:
-        @lru_cache(maxsize=None)
-        def minimum_cost(used_bikes: int) -> int:
-            worker_index = used_bikes.bit_count()
-            if worker_index == len(workers):
-                return 0
-
-            worker_x, worker_y = workers[worker_index]
-            best = float("inf")
-            for bike_index, (bike_x, bike_y) in enumerate(bikes):
-                bike_bit = 1 << bike_index
-                if used_bikes & bike_bit:
-                    continue
-                distance = abs(worker_x - bike_x) + abs(worker_y - bike_y)
-                best = min(
-                    best,
-                    distance + minimum_cost(used_bikes | bike_bit),
-                )
-            return int(best)
-
-        return minimum_cost(0)
+        n, m = len(workers), len(bikes)
+        f = [[inf] * (1 << m) for _ in range(n + 1)]
+        f[0][0] = 0
+        for i, (x1, y1) in enumerate(workers, 1):
+            for j in range(1 << m):
+                for k, (x2, y2) in enumerate(bikes):
+                    if j >> k & 1:
+                        f[i][j] = min(
+                            f[i][j],
+                            f[i - 1][j ^ (1 << k)] + abs(x1 - x2) + abs(y1 - y2),
+                        )
+        return min(f[n])

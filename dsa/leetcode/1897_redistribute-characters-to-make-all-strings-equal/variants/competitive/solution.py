@@ -1,9 +1,17 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def makeEqual(self, words: List[str]) -> bool:
-        word_count = len(words)
-        frequencies = Counter(character for word in words for character in word)
-        return all(count % word_count == 0 for count in frequencies.values())
+    def makeEqual(self, words):
+        """
+        :type words: List[str]
+        :rtype: bool
+        """
+        cnt = collections.defaultdict(int)
+        for w in words:
+            for c in w:
+                cnt[c] += 1
+        return all(v%len(words) == 0 for v in cnt.values())

@@ -1,30 +1,32 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 
 class Solution:
-    def removeZeroSumSublists(self, head: Optional["ListNode"]) -> Optional["ListNode"]:
-        dummy = ListNode(0, head)
-        last = {}
+    def removeZeroSumSublists(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        curr = dummy = ListNode(0)
+        dummy.next = head
         prefix = 0
-        current = dummy
-
-        while current is not None:
-            prefix += current.val
-            last[prefix] = current
-            current = current.next
-
-        prefix = 0
-        current = dummy
-        while current is not None:
-            prefix += current.val
-            current.next = last[prefix].next
-            current = current.next
-
+        lookup = collections.OrderedDict()
+        while curr:
+            prefix += curr.val
+            node = lookup.get(prefix, curr)
+            while prefix in lookup:
+                lookup.popitem()
+            lookup[prefix] = node
+            node.next = curr.next
+            curr = curr.next
         return dummy.next

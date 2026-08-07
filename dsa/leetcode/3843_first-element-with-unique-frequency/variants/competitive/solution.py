@@ -1,18 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table
 class Solution:
-    def firstUniqueFreq(self, nums: List[int]) -> int:
-        frequencies: dict[int, int] = {}
-        for value in nums:
-            frequencies[value] = frequencies.get(value, 0) + 1
-
-        frequency_counts: dict[int, int] = {}
-        for frequency in frequencies.values():
-            frequency_counts[frequency] = frequency_counts.get(frequency, 0) + 1
-
-        for value in nums:
-            if frequency_counts[frequencies[value]] == 1:
-                return value
-
-        return -1
+    def firstUniqueFreq(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        cnt = collections.defaultdict(int)
+        for x in nums:
+            cnt[x] += 1
+        cnt2 = collections.defaultdict(int)
+        for v in cnt.values():
+            cnt2[v] += 1
+        return next((x for x in nums if cnt2[cnt[x]] == 1), -1)

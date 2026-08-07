@@ -1,18 +1,15 @@
-"""
-# Definition for a Node.
-class Node:
-    def __init__(self, val, prev=None, next=None):
-        self.val = val
-        self.prev = prev
-        self.next = next
-"""
+# Time:  O(n)
+# Space: O(1)
 
-
+# linked list
 class Solution:
-    def toArray(self, root: "Optional[Node]") -> List[int]:
-        values = []
-        current = root
-        while current is not None:
-            values.append(current.val)
-            current = current.next
-        return values
+    def toArray(self, head):
+        """
+        :type head: Node
+        :rtype: List[int]
+        """
+        result = []
+        while head:
+            result.append(head.val)
+            head = head.next
+        return result

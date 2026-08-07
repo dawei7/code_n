@@ -1,18 +1,12 @@
 class Solution:
     def isRobotBounded(self, instructions: str) -> bool:
-        directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
-        x = 0
-        y = 0
-        direction = 0
-
-        for instruction in instructions:
-            if instruction == "G":
-                dx, dy = directions[direction]
-                x += dx
-                y += dy
-            elif instruction == "L":
-                direction = (direction - 1) % 4
+        k = 0
+        dist = [0] * 4
+        for c in instructions:
+            if c == 'L':
+                k = (k + 1) % 4
+            elif c == 'R':
+                k = (k + 3) % 4
             else:
-                direction = (direction + 1) % 4
-
-        return (x == 0 and y == 0) or direction != 0
+                dist[k] += 1
+        return (dist[0] == dist[2] and dist[1] == dist[3]) or k != 0

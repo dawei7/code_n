@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
     def twoCitySchedCost(self, costs: List[List[int]]) -> int:
-        ordered = sorted(costs, key=lambda cost: cost[0] - cost[1])
-        half = len(ordered) // 2
-        return sum(cost[0] for cost in ordered[:half]) + sum(cost[1] for cost in ordered[half:])
+        costs.sort(key=lambda x: x[0] - x[1])
+        n = len(costs) >> 1
+        return sum(costs[i][0] + costs[i + n][1] for i in range(n))

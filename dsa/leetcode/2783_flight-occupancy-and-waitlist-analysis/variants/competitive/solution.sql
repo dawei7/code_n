@@ -1,16 +1,9 @@
-SELECT
-    f.flight_id,
-    CASE
-        WHEN COUNT(p.passenger_id) < f.capacity THEN COUNT(p.passenger_id)
-        ELSE f.capacity
-    END AS booked_cnt,
-    CASE
-        WHEN COUNT(p.passenger_id) > f.capacity
-            THEN COUNT(p.passenger_id) - f.capacity
-        ELSE 0
-    END AS waitlist_cnt
-FROM Flights AS f
-LEFT JOIN Passengers AS p
-    ON p.flight_id = f.flight_id
-GROUP BY f.flight_id, f.capacity
-ORDER BY f.flight_id;
+# Time:  O(n * m + nlogn)
+# Space: O(n * m)
+
+SELECT a.flight_id,
+       LEAST(COUNT(b.flight_id), a.capacity) AS booked_cnt, 
+       GREATEST(COUNT(*)-a.capacity, 0) AS waitlist_cnt
+FROM Flights a LEFT JOIN Passengers b ON a.flight_id = b.flight_id
+GROUP BY 1
+ORDER BY 1;

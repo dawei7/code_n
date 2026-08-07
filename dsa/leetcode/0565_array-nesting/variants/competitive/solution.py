@@ -1,22 +1,21 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def arrayNesting(self, nums: List[int]) -> int:
-        visited = [False] * len(nums)
-        longest = 0
+    def arrayNesting(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for num in nums:
+            if num is not None:
+                start, count = num, 0
+                while nums[start] is not None:
+                    temp = start
+                    start = nums[start]
+                    nums[temp] = None
+                    count += 1
+                result = max(result, count)
+        return result
 
-        for start in range(len(nums)):
-            if visited[start]:
-                continue
-
-            length = 0
-            index = start
-            while not visited[index]:
-                visited[index] = True
-                length += 1
-                index = nums[index]
-
-            longest = max(longest, length)
-
-        return longest

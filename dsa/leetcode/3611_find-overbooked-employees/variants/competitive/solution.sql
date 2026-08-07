@@ -1,28 +1,20 @@
-WITH weekly_hours AS (
-    SELECT
-        employee_id,
-        date(
-            meeting_date,
-            '-' || ((CAST(strftime('%w', meeting_date) AS INTEGER) + 6) % 7) || ' days'
-        ) AS week_start,
-        SUM(duration_hours) AS total_hours
+# Time:  O(m + nlogn)
+# Space: O(m + n)
+
+WITH overbooked_employees_cte AS (
+    SELECT employee_id
     FROM meetings
-    GROUP BY
-        employee_id,
-        date(
-            meeting_date,
-            '-' || ((CAST(strftime('%w', meeting_date) AS INTEGER) + 6) % 7) || ' days'
-        )
+    GROUP BY employee_id, YEAR(meeting_date), WEEKOFYEAR(meeting_date)
     HAVING SUM(duration_hours) > 20
+    ORDER BY NULL
 )
-SELECT
-    e.employee_id,
-    e.employee_name,
-    e.department,
-    COUNT(*) AS meeting_heavy_weeks
-FROM weekly_hours AS w
-JOIN employees AS e
-    ON e.employee_id = w.employee_id
-GROUP BY e.employee_id, e.employee_name, e.department
-HAVING COUNT(*) >= 2
-ORDER BY meeting_heavy_weeks DESC, e.employee_name ASC;
+
+SELECT e.employee_id,
+       e.employee_name,
+       e.department,
+       COUNT(*) AS meeting_heavy_weeks
+FROM overbooked_employees_cte AS o
+INNER JOIN employees AS e ON o.employee_id = e.employee_id
+GROUP BY 1, 2, 3
+HAVING meeting_heavy_weeks >= 2
+ORDER BY 4 DESC, 2;

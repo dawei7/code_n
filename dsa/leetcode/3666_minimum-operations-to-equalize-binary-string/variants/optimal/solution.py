@@ -1,34 +1,24 @@
 class Solution:
     def minOperations(self, s: str, k: int) -> int:
         n = len(s)
-        zeros = s.count("0")
-        if zeros == 0:
-            return 0
-
-        def ceil_div(value: int, divisor: int) -> int:
-            return (value + divisor - 1) // divisor
-
-        candidates = []
-        if zeros % 2 == 0 and k < n:
-            operations = max(
-                ceil_div(zeros, k),
-                ceil_div(zeros, n - k),
-            )
-            if operations % 2:
-                operations += 1
-            candidates.append(operations)
-
-        if zeros % 2 == k % 2:
-            if k == n:
-                if zeros == n:
-                    candidates.append(1)
-            else:
-                operations = max(
-                    ceil_div(zeros, k),
-                    ceil_div(n - zeros, n - k),
-                )
-                if operations % 2 == 0:
-                    operations += 1
-                candidates.append(operations)
-
-        return min(candidates, default=-1)
+        ts = [SortedSet() for _ in range(2)]
+        for i in range(n + 1):
+            ts[i % 2].add(i)
+        cnt0 = s.count('0')
+        ts[cnt0 % 2].remove(cnt0)
+        q = deque([cnt0])
+        ans = 0
+        while q:
+            for _ in range(len(q)):
+                cur = q.popleft()
+                if cur == 0:
+                    return ans
+                l = cur + k - 2 * min(cur, k)
+                r = cur + k - 2 * max(k - n + cur, 0)
+                t = ts[l % 2]
+                j = t.bisect_left(l)
+                while j < len(t) and t[j] <= r:
+                    q.append(t[j])
+                    t.remove(t[j])
+            ans += 1
+        return -1

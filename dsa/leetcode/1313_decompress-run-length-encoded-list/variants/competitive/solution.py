@@ -1,11 +1,10 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def decompressRLElist(self, nums: List[int]) -> List[int]:
-        result = []
-        for index in range(0, len(nums), 2):
-            frequency = nums[index]
-            value = nums[index + 1]
-            result.extend([value] * frequency)
-        return result
+    def decompressRLElist(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        return [nums[i+1] for i in range(0, len(nums), 2) for _ in range(nums[i])]

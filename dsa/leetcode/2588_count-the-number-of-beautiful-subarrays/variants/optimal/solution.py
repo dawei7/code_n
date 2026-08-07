@@ -1,12 +1,9 @@
 class Solution:
     def beautifulSubarrays(self, nums: List[int]) -> int:
-        prefix_counts = {0: 1}
-        prefix_xor = 0
-        answer = 0
-
-        for value in nums:
-            prefix_xor ^= value
-            answer += prefix_counts.get(prefix_xor, 0)
-            prefix_counts[prefix_xor] = prefix_counts.get(prefix_xor, 0) + 1
-
-        return answer
+        cnt = Counter({0: 1})
+        ans = mask = 0
+        for x in nums:
+            mask ^= x
+            ans += cnt[mask]
+            cnt[mask] += 1
+        return ans

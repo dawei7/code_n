@@ -1,24 +1,21 @@
 class Solution:
     def minCharacters(self, a: str, b: str) -> int:
-        counts_a = [0] * 26
-        counts_b = [0] * 26
-        for character in a:
-            counts_a[ord(character) - ord("a")] += 1
-        for character in b:
-            counts_b[ord(character) - ord("a")] += 1
+        def f(cnt1, cnt2):
+            for i in range(1, 26):
+                t = sum(cnt1[i:]) + sum(cnt2[:i])
+                nonlocal ans
+                ans = min(ans, t)
 
-        total = len(a) + len(b)
-        answer = total - max(counts_a[index] + counts_b[index] for index in range(26))
-
-        prefix_a = 0
-        prefix_b = 0
-        for boundary in range(25):
-            prefix_a += counts_a[boundary]
-            prefix_b += counts_b[boundary]
-            answer = min(
-                answer,
-                len(a) - prefix_a + prefix_b,
-                len(b) - prefix_b + prefix_a,
-            )
-
-        return answer
+        m, n = len(a), len(b)
+        cnt1 = [0] * 26
+        cnt2 = [0] * 26
+        for c in a:
+            cnt1[ord(c) - ord('a')] += 1
+        for c in b:
+            cnt2[ord(c) - ord('a')] += 1
+        ans = m + n
+        for c1, c2 in zip(cnt1, cnt2):
+            ans = min(ans, m + n - c1 - c2)
+        f(cnt1, cnt2)
+        f(cnt2, cnt1)
+        return ans

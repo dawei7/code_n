@@ -1,12 +1,14 @@
-WITH event_activity AS (
-    SELECT
-        business_id,
-        occurrences,
-        AVG(occurrences) OVER (PARTITION BY event_type) AS average_occurrences
-    FROM Events
-)
+# Time:  O(n)
+# Space: O(n)
+
 SELECT business_id
-FROM event_activity
-WHERE occurrences > average_occurrences
+FROM EVENTS
+JOIN
+  (SELECT event_type,
+          avg(occurences) AS average
+   FROM EVENTS
+   GROUP BY event_type) AS TEMP ON Events.event_type = temp.event_type
+AND Events.occurences > temp.average
 GROUP BY business_id
-HAVING COUNT(*) > 1;
+HAVING count(DISTINCT Events.event_type) > 1
+ORDER BY NULL

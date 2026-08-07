@@ -1,18 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# two pointers
 class Solution:
-    def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
-        smaller = []
-        equal = []
-        greater = []
-
-        for value in nums:
-            if value < pivot:
-                smaller.append(value)
-            elif value == pivot:
-                equal.append(value)
-            else:
-                greater.append(value)
-
-        return smaller + equal + greater
+    def pivotArray(self, nums, pivot):
+        """
+        :type nums: List[int]
+        :type pivot: int
+        :rtype: List[int]
+        """
+        result = [pivot]*len(nums)
+        left, right = 0, len(nums)-sum(x > pivot for x in nums)
+        for x in nums:
+            if x < pivot:
+                result[left] = x
+                left += 1
+            elif x > pivot:
+                result[right] = x
+                right += 1
+        return result

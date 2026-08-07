@@ -1,19 +1,25 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, two pointers
 class Solution:
-    def countFairPairs(self, nums: List[int], lower: int, upper: int) -> int:
-        nums.sort()
-
-        def count_at_most(limit: int) -> int:
-            left = 0
-            right = len(nums) - 1
-            pairs = 0
-
+    def countFairPairs(self, nums, lower, upper):
+        """
+        :type nums: List[int]
+        :type lower: int
+        :type upper: int
+        :rtype: int
+        """
+        def count(x):
+            cnt = 0
+            left, right = 0, len(nums)-1
             while left < right:
-                if nums[left] + nums[right] <= limit:
-                    pairs += right - left
+                if nums[left]+nums[right] <= x:
+                    cnt += right-left
                     left += 1
                 else:
                     right -= 1
-
-            return pairs
-
-        return count_at_most(upper) - count_at_most(lower - 1)
+            return cnt
+        
+        nums.sort()
+        return count(upper)-count(lower-1)

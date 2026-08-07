@@ -1,28 +1,21 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n)
 
 class Solution:
-    def transformArray(self, arr: List[int]) -> List[int]:
-        values = arr[:]
-        active = set(range(1, len(values) - 1))
-
-        while active:
-            changes = []
-            for index in active:
-                if values[index] < values[index - 1] and values[index] < values[index + 1]:
-                    changes.append((index, 1))
-                elif values[index] > values[index - 1] and values[index] > values[index + 1]:
-                    changes.append((index, -1))
-            if not changes:
-                break
-
-            for index, delta in changes:
-                values[index] += delta
-            active = {
-                neighbor
-                for index, _ in changes
-                for neighbor in (index - 1, index, index + 1)
-                if 0 < neighbor < len(values) - 1
-            }
-
-        return values
+    def transformArray(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+        def is_changable(arr):
+            return any(arr[i-1] > arr[i] < arr[i+1] or 
+                       arr[i-1] < arr[i] > arr[i+1]
+                       for i in range(1, len(arr)-1))
+        
+        while is_changable(arr):
+            new_arr = arr[:]
+            for i in range(1, len(arr)-1):
+                new_arr[i] += arr[i-1] > arr[i] < arr[i+1]
+                new_arr[i] -= arr[i-1] < arr[i] > arr[i+1]
+            arr = new_arr
+        return arr

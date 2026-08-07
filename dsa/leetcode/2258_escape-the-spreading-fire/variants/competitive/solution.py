@@ -1,71 +1,93 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n)
+# Space: O(m * n)
+
+import collections
 
 
+# bfs
 class Solution:
-    def maximumMinutes(self, grid: List[List[int]]) -> int:
-        rows, columns = len(grid), len(grid[0])
-        infinity = 10**18
-        fire_time = [[infinity] * columns for _ in range(rows)]
-        queue = deque()
+    def maximumMinutes(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        DIRECTIONS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        GRASS, FIRE, WALL, PERSON = range(4)
+        INF = 10**9
+        def bfs(grid):
+            time = collections.defaultdict(int)
+            d = 0
+            q = [(r, c, FIRE) for r in range(len(grid)) for c in range(len(grid[0])) if grid[r][c] == FIRE]
+            q.append((0, 0, PERSON))
+            while q:
+                new_q = []
+                for r, c, t in q:
+                    for dr, dc in DIRECTIONS:
+                        nr, nc = r+dr, c+dc
+                        if not (0 <= nr < len(grid) and 0 <= nc < len(grid[0]) and
+                                grid[nr][nc] != WALL and
+                                ((t == FIRE and grid[nr][nc] != FIRE) or
+                                 (t == PERSON and (grid[nr][nc] == GRASS or (grid[nr][nc] == FIRE and (nr, nc) == (len(grid)-1, len(grid[0])-1) and d+1 == time[FIRE, nr, nc]))))):
+                            continue
+                        if grid[nr][nc] != FIRE:
+                            grid[nr][nc] = t
+                        if (nr, nc) in ((len(grid)-1, len(grid[0])-1), (len(grid)-1, len(grid[0])-2), (len(grid)-2, len(grid[0])-1)):
+                            time[t, nr, nc] = d+1
+                        new_q.append((nr, nc, t))
+                q = new_q
+                d += 1
+            return time
 
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] == 1:
-                    fire_time[row][column] = 0
-                    queue.append((row, column))
-
-        directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
-        while queue:
-            row, column = queue.popleft()
-            for row_step, column_step in directions:
-                next_row = row + row_step
-                next_column = column + column_step
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and grid[next_row][next_column] != 2
-                    and fire_time[next_row][next_column] == infinity
-                ):
-                    fire_time[next_row][next_column] = fire_time[row][column] + 1
-                    queue.append((next_row, next_column))
-
-        def can_escape(wait: int) -> bool:
-            if wait >= fire_time[0][0]:
-                return False
-            person_queue = deque([(0, 0, wait)])
-            seen = {(0, 0)}
-
-            while person_queue:
-                row, column, time = person_queue.popleft()
-                for row_step, column_step in directions:
-                    next_row = row + row_step
-                    next_column = column + column_step
-                    if (
-                        not (0 <= next_row < rows and 0 <= next_column < columns)
-                        or grid[next_row][next_column] != 0
-                        or (next_row, next_column) in seen
-                    ):
-                        continue
-                    arrival = time + 1
-                    if (next_row, next_column) == (rows - 1, columns - 1):
-                        if arrival <= fire_time[next_row][next_column]:
-                            return True
-                    elif arrival < fire_time[next_row][next_column]:
-                        seen.add((next_row, next_column))
-                        person_queue.append((next_row, next_column, arrival))
-            return False
-
-        if not can_escape(0):
+        time = bfs(grid)
+        if not time[PERSON, len(grid)-1, len(grid[0])-1]:
             return -1
-        if can_escape(10**9):
-            return 10**9
+        if not time[FIRE, len(grid)-1, len(grid[0])-1]:
+            return INF
+        diff = time[FIRE, len(grid)-1, len(grid[0])-1]-time[PERSON, len(grid)-1, len(grid[0])-1]
+        return diff if diff+2 in (time[FIRE, len(grid)-1, len(grid[0])-2]-time[PERSON, len(grid)-1, len(grid[0])-2],
+                                  time[FIRE, len(grid)-2, len(grid[0])-1]-time[PERSON, len(grid)-2, len(grid[0])-1]) else diff-1
 
-        low, high = 0, 10**9
-        while low < high:
-            middle = (low + high + 1) // 2
-            if can_escape(middle):
-                low = middle
-            else:
-                high = middle - 1
-        return low
+
+# Time:  O(m * n)
+# Space: O(m * n)
+# bfs
+class Solution2(object):
+    def maximumMinutes(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        DIRECTIONS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        FIRE, WALL, PERSON = range(1, 4)
+        INF = 10**9
+        def bfs(grid):
+            time = {FIRE:[[INF]*len(grid[0]) for _ in range(len(grid))],
+                    PERSON:[[INF]*len(grid[0]) for _ in range(len(grid))]}
+            d = 0
+            q = [(r, c, FIRE) for r in range(len(grid)) for c in range(len(grid[0])) if grid[r][c] == FIRE]
+            q.append((0, 0, PERSON))
+            for r, c, t in q:
+                time[t][r][c] = d
+            while q:
+                new_q = []
+                for r, c, t in q:
+                    for dr, dc in DIRECTIONS:
+                        nr, nc = r+dr, c+dc
+                        if not (0 <= nr < len(grid) and 0 <= nc < len(grid[0]) and
+                                grid[nr][nc] != WALL and time[t][nr][nc] == INF and
+                                (t == FIRE or
+                                 d+1 < time[FIRE][nr][nc] or (d+1 == time[FIRE][nr][nc] and (nr, nc) == (len(grid)-1, len(grid[0])-1)))):
+                            continue
+                        time[t][nr][nc] = d+1
+                        new_q.append((nr, nc, t))
+                q = new_q
+                d += 1
+            return time
+
+        time = bfs(grid)
+        if time[PERSON][-1][-1] == INF:
+            return -1
+        if time[FIRE][-1][-1] == INF:
+            return INF
+        diff = time[FIRE][-1][-1]-time[PERSON][-1][-1]
+        return diff if diff+2 in (time[FIRE][-1][-2]-time[PERSON][-1][-2], time[FIRE][-2][-1]-time[PERSON][-2][-1]) else diff-1

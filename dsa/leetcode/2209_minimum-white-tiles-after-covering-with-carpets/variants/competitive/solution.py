@@ -1,16 +1,18 @@
+# Time:  O(m * n)
+# Space: O(m * n)
+
+# dp
 class Solution:
-    def minimumWhiteTiles(self, floor: str, numCarpets: int, carpetLen: int) -> int:
-        length = len(floor)
-        previous = [0] * (length + 1)
-        for index, tile in enumerate(floor, 1):
-            previous[index] = previous[index - 1] + (tile == "1")
-
-        for _ in range(numCarpets):
-            current = [0] * (length + 1)
-            for index in range(1, length + 1):
-                leave_visible = current[index - 1] + (floor[index - 1] == "1")
-                cover = previous[max(0, index - carpetLen)]
-                current[index] = min(leave_visible, cover)
-            previous = current
-
-        return previous[length]
+    def minimumWhiteTiles(self, floor, numCarpets, carpetLen):
+        """
+        :type floor: str
+        :type numCarpets: int
+        :type carpetLen: int
+        :rtype: int
+        """
+        dp = [[0]*(numCarpets+1) for _ in range(len(floor)+1)]  # dp[i][j] : min number of white tiles in the first i floors with j carpets
+        for i in range(1, len(dp)):
+            dp[i][0] = dp[i-1][0] + int(floor[i-1])
+            for j in range(1, numCarpets+1):
+                dp[i][j] = min(dp[i-1][j] + int(floor[i-1]), dp[max(i-carpetLen, 0)][j-1])
+        return dp[-1][-1]

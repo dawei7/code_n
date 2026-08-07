@@ -1,33 +1,56 @@
-from functools import cache
-from typing import List
-
+# Time:  O(n*2^n)
+# Space: O(2^n)
 
 class Solution:
-    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
+    def canPartitionKSubsets(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        def dfs(nums, target, used, todo, lookup):
+            if lookup[used] is None:
+                targ = (todo-1)%target + 1
+                lookup[used] = any(dfs(nums, target, used | (1<<i), todo-num, lookup) \
+                                   for i, num in enumerate(nums) \
+                                   if ((used>>i) & 1) == 0 and num <= targ)
+            return lookup[used]
+
         total = sum(nums)
-        if total % k != 0:
+        if total%k or max(nums) > total//k:
             return False
+        lookup = [None] * (1 << len(nums))
+        lookup[-1] = True
+        return dfs(nums, total//k, 0, total, lookup)
 
-        target = total // k
-        values = tuple(sorted(nums, reverse=True))
-        if values[0] > target:
-            return False
 
-        full_mask = (1 << len(values)) - 1
-
-        @cache
-        def search(mask: int, remainder: int) -> bool:
-            if mask == full_mask:
-                return remainder == 0
-
-            for index, value in enumerate(values):
-                if mask & (1 << index) or remainder + value > target:
+# Time:  O(k^(n-k) * k!)
+# Space: O(n)
+# DFS solution with pruning.
+class Solution2(object):
+    def canPartitionKSubsets(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        def dfs(nums, target, i, subset_sums):
+            if i == len(nums):
+                return True
+            for k in range(len(subset_sums)):
+                if subset_sums[k]+nums[i] > target:
                     continue
-                if search(
-                    mask | (1 << index),
-                    (remainder + value) % target,
-                ):
+                subset_sums[k] += nums[i]
+                if dfs(nums, target, i+1, subset_sums):
                     return True
+                subset_sums[k] -= nums[i]
+                if not subset_sums[k]: break
             return False
 
-        return search(0, 0)
+        total = sum(nums)
+        if total%k != 0 or max(nums) > total//k:
+            return False
+        nums.sort(reverse=True)
+        subset_sums = [0] * k
+        return dfs(nums, total//k, 0, subset_sums)
+

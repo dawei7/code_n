@@ -1,17 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers
 class Solution:
-    def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
-        first = 0
-        second = 0
-
-        while first < len(nums1) and second < len(nums2):
-            if nums1[first] == nums2[second]:
-                return nums1[first]
-            if nums1[first] < nums2[second]:
-                first += 1
+    def getCommon(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        i = j = 0
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] < nums2[j]:
+                i += 1
+            elif nums1[i] > nums2[j]:
+                j += 1
             else:
-                second += 1
-
+                return nums1[i]
         return -1

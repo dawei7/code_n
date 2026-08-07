@@ -1,13 +1,5 @@
-from typing import List
-
-
 class Solution:
     def numberOfWeeks(self, milestones: List[int]) -> int:
-        total = sum(milestones)
-        largest = max(milestones)
-        rest = total - largest
-
-        if largest <= rest + 1:
-            return total
-
-        return 2 * rest + 1
+        mx, s = max(milestones), sum(milestones)
+        rest = s - mx
+        return rest * 2 + 1 if mx > rest + 1 else s

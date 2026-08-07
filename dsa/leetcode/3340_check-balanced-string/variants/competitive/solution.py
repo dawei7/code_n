@@ -1,12 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def isBalanced(self, num: str) -> bool:
-        difference = 0
-
-        for index, digit in enumerate(num):
-            value = ord(digit) - ord("0")
-            if index % 2 == 0:
-                difference += value
-            else:
-                difference -= value
-
-        return difference == 0
+    def isBalanced(self, num):
+        """
+        :type num: str
+        :rtype: bool
+        """
+        return sum(ord(num[i])-ord('0') for i in range(0, len(num), 2)) == sum(ord(num[i])-ord('0') for i in range(1, len(num), 2))

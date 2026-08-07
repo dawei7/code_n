@@ -1,12 +1,18 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def minBuildTime(self, blocks: List[int], split: int) -> int:
-        heapify(blocks)
-        while len(blocks) > 1:
-            heappop(blocks)
-            larger = heappop(blocks)
-            heappush(blocks, larger + split)
-        return blocks[0]
+    def minBuildTime(self, blocks, split):
+        """
+        :type blocks: List[int]
+        :type split: int
+        :rtype: int
+        """
+        heapq.heapify(blocks)
+        while len(blocks) != 1:
+            x, y = heapq.heappop(blocks), heapq.heappop(blocks)
+            heapq.heappush(blocks, y+split)
+        return heapq.heappop(blocks)

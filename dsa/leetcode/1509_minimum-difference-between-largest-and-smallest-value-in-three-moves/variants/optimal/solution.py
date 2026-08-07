@@ -1,11 +1,11 @@
-from heapq import nlargest, nsmallest
-from typing import List
-
-
 class Solution:
     def minDifference(self, nums: List[int]) -> int:
-        if len(nums) <= 4:
+        n = len(nums)
+        if n < 5:
             return 0
-        smallest = nsmallest(4, nums)
-        largest = sorted(nlargest(4, nums))
-        return min(high - low for low, high in zip(smallest, largest))
+        nums.sort()
+        ans = inf
+        for l in range(4):
+            r = 3 - l
+            ans = min(ans, nums[n - 1 - r] - nums[l])
+        return ans

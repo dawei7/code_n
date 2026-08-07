@@ -1,47 +1,35 @@
-from collections import deque
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(m + n)
 
 class Solution:
-    def getFood(self, grid: List[List[str]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        start = (-1, -1)
+    def getFood(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] == "*":
-                    start = (row, column)
+        q = []
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == '*':
+                    q.append((r, c))
                     break
-            if start[0] != -1:
-                break
-
-        queue = deque([(start[0], start[1], 0)])
-        visited = {start}
-
-        while queue:
-            row, column, distance = queue.popleft()
-            for row_step, column_step in (
-                (1, 0),
-                (-1, 0),
-                (0, 1),
-                (0, -1),
-            ):
-                next_row = row + row_step
-                next_column = column + column_step
-                position = (next_row, next_column)
-                if (
-                    next_row < 0
-                    or next_row >= rows
-                    or next_column < 0
-                    or next_column >= columns
-                    or grid[next_row][next_column] == "X"
-                    or position in visited
-                ):
-                    continue
-                if grid[next_row][next_column] == "#":
-                    return distance + 1
-                visited.add(position)
-                queue.append((next_row, next_column, distance + 1))
-
+        
+        result = 0
+        while q:
+            result += 1
+            new_q = []
+            for r, c in q:
+                for dr, dc in directions:
+                    nr, nc = r+dr, c+dc
+                    if not (0 <= nr < len(grid) and
+                            0 <= nc < len(grid[0]) and
+                            grid[nr][nc] != 'X'):
+                        continue
+                    if grid[nr][nc] == '#':
+                        return result
+                    grid[nr][nc] = 'X'
+                    new_q.append((nr, nc))
+            q = new_q 
         return -1

@@ -1,15 +1,31 @@
-class Solution:
-    def lexicalOrder(self, n: int) -> List[int]:
-        result = []
-        current = 1
+# Time:  O(n)
+# Space: O(1)
 
-        for _ in range(n):
-            result.append(current)
-            if current * 10 <= n:
-                current *= 10
+class Solution:
+    def lexicalOrder(self, n):
+        result = []
+
+        i = 1
+        while len(result) < n:
+            k = 0
+            while i * 10**k <= n:
+                result.append(i * 10**k)
+                k += 1
+
+            num = result[-1] + 1
+            while num <= n and num % 10:
+                result.append(num)
+                num += 1
+
+            if not num % 10:
+                num -= 1
             else:
-                while current % 10 == 9 or current + 1 > n:
-                    current //= 10
-                current += 1
+                num /= 10
+
+            while num % 10 == 9:
+                num /= 10
+
+            i = num+1
 
         return result
+

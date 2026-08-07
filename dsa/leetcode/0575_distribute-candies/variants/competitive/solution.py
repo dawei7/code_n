@@ -1,3 +1,13 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def distributeCandies(self, candyType: list[int]) -> int:
-        return min(len(set(candyType)), len(candyType) // 2)
+
+    def distributeCandies(self, candies):
+        """
+        :type candies: List[int]
+        :rtype: int
+        """
+        lookup = set(candies)
+        return min(len(lookup), len(candies)/2)
+

@@ -1,21 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def bestRotation(self, nums: List[int]) -> int:
-        n = len(nums)
-        score = sum(value <= index for index, value in enumerate(nums))
-        changes = [0] * n
+    def bestRotation(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        N = len(A)
+        change = [1] * N
+        for i in range(N):
+            change[(i-A[i]+1)%N] -= 1
+        for i in range(1, N):
+            change[i] += change[i-1]
+        return change.index(max(change))
 
-        for index, value in enumerate(nums):
-            changes[(index - value + 1) % n] -= 1
-            changes[(index + 1) % n] += 1
 
-        best_rotation = 0
-        best_score = score
-        for rotation in range(1, n):
-            score += changes[rotation]
-            if score > best_score:
-                best_score = score
-                best_rotation = rotation
-        return best_rotation

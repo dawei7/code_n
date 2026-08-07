@@ -1,20 +1,39 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def isPrefixOfWord(self, sentence: str, searchWord: str) -> int:
-        word_index = 1
-        start = 0
-
-        while start < len(sentence):
-            end = sentence.find(" ", start)
-            if end == -1:
-                end = len(sentence)
-
-            if end - start >= len(searchWord) and sentence.startswith(
-                searchWord,
-                start,
-            ):
-                return word_index
-
-            word_index += 1
-            start = end + 1
-
-        return -1
+    def isPrefixOfWord(self, sentence, searchWord):
+        """
+        :type sentence: str
+        :type searchWord: str
+        :rtype: int
+        """
+        def KMP(text, pattern):
+            def getPrefix(pattern):
+                prefix = [-1] * len(pattern)
+                j = -1
+                for i in range(1, len(pattern)):
+                    while j > -1 and pattern[j + 1] != pattern[i]:
+                        j = prefix[j]
+                    if pattern[j + 1] == pattern[i]:
+                        j += 1
+                    prefix[i] = j
+                return prefix
+    
+            prefix = getPrefix(pattern)
+            j = -1
+            for i in range(len(text)):
+                while j != -1 and pattern[j+1] != text[i]:
+                    j = prefix[j]
+                if pattern[j+1] == text[i]:
+                    j += 1
+                if j+1 == len(pattern):
+                    return i-j
+            return -1
+        
+        if sentence.startswith(searchWord):
+            return 1
+        p = KMP(sentence, ' ' + searchWord)
+        if p == -1:
+            return -1
+        return 1+sum(sentence[i] == ' ' for i in range(p+1))

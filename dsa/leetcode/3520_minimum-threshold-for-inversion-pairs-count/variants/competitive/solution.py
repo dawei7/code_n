@@ -1,45 +1,37 @@
-from bisect import bisect_left, bisect_right
-from typing import List
+# Time:  O(nlogn * logr)
+# Space: O(n)
+
+from sortedcontainers import SortedList
 
 
+# binary search, sorted list
 class Solution:
-    def minThreshold(self, nums: List[int], k: int) -> int:
-        values = sorted(set(nums))
-        size = len(values)
+    def minThreshold(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        def count_pairs(threshold: int) -> int:
-            tree = [0] * (size + 1)
+        def check(x):
+            sl = SortedList()
+            cnt = 0
+            for i in reversed(nums):
+                cnt += sl.bisect_left(i)-sl.bisect_left(i-x)
+                sl.add(i)
+            return cnt >= k
 
-            def prefix_sum(index: int) -> int:
-                total = 0
-                while index > 0:
-                    total += tree[index]
-                    index -= index & -index
-                return total
-
-            pairs = 0
-            for value in nums:
-                pairs += prefix_sum(bisect_right(values, value + threshold)) - prefix_sum(bisect_right(values, value))
-                if pairs >= k:
-                    return pairs
-
-                index = bisect_left(values, value) + 1
-                while index <= size:
-                    tree[index] += 1
-                    index += index & -index
-
-            return pairs
-
-        high = max(nums) - min(nums)
-        if count_pairs(high) < k:
-            return -1
-
-        low = 1
-        while low < high:
-            middle = (low + high) // 2
-            if count_pairs(middle) >= k:
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        mx, right = nums[0], 0
+        for i in range(1, len(nums)):
+            right = max(right, mx-nums[i])
+            mx = max(mx, nums[i])
+        result = binary_search(0, right, check)
+        return result if result <= right else -1

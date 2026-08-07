@@ -1,36 +1,51 @@
-from typing import List
+# Time:  addNum: O(n), getIntervals: O(n), n is the number of disjoint intervals.
+# Space: O(n)
+
+class Interval(object):
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e
 
 
-class SummaryRanges:
+class SummaryRanges(object):
+
     def __init__(self):
-        self.present = set()
-        self.start_to_end = {}
-        self.end_to_start = {}
+        """
+        Initialize your data structure here.
+        """
+        self.__intervals = []
 
-    def addNum(self, value: int) -> None:
-        if value in self.present:
-            return
-        self.present.add(value)
+    def addNum(self, val):
+        """
+        :type val: int
+        :rtype: void
+        """
+        def upper_bound(nums, target):
+            left, right = 0, len(nums) - 1
+            while left <= right:
+                mid = left + (right - left) / 2
+                if nums[mid].start > target:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            return left
 
-        has_left = value - 1 in self.present
-        has_right = value + 1 in self.present
+        i = upper_bound(self.__intervals, val)
+        start, end = val, val
+        if i != 0 and self.__intervals[i-1].end + 1 >= val:
+            i -= 1
+        while i != len(self.__intervals) and \
+              end + 1 >= self.__intervals[i].start:
+            start = min(start, self.__intervals[i].start)
+            end = max(end, self.__intervals[i].end)
+            del self.__intervals[i]
+        self.__intervals.insert(i, Interval(start, end))
 
-        if has_left and has_right:
-            start = self.end_to_start.pop(value - 1)
-            end = self.start_to_end.pop(value + 1)
-            self.start_to_end[start] = end
-            self.end_to_start[end] = start
-        elif has_left:
-            start = self.end_to_start.pop(value - 1)
-            self.start_to_end[start] = value
-            self.end_to_start[value] = start
-        elif has_right:
-            end = self.start_to_end.pop(value + 1)
-            self.start_to_end[value] = end
-            self.end_to_start[end] = value
-        else:
-            self.start_to_end[value] = value
-            self.end_to_start[value] = value
+    def getIntervals(self):
+        """
+        :rtype: List[Interval]
+        """
+        return self.__intervals
 
-    def getIntervals(self) -> List[List[int]]:
-        return [[start, self.start_to_end[start]] for start in sorted(self.start_to_end)]
+
+

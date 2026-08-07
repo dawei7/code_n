@@ -1,3 +1,13 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math
 class Solution:
-    def maxContainers(self, n: int, w: int, maxWeight: int) -> int:
-        return min(n * n, maxWeight // w)
+    def maxContainers(self, n, w, maxWeight):
+        """
+        :type n: int
+        :type w: int
+        :type maxWeight: int
+        :rtype: int
+        """
+        return min(maxWeight//w, n*n)

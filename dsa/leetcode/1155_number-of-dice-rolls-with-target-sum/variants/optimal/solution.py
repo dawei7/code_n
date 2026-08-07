@@ -1,18 +1,10 @@
 class Solution:
     def numRollsToTarget(self, n: int, k: int, target: int) -> int:
-        modulus = 1_000_000_007
-        if target < n or target > n * k:
-            return 0
-
-        dp = [0] * (target + 1)
-        dp[0] = 1
-        for _ in range(n):
-            next_dp = [0] * (target + 1)
-            window = 0
-            for total in range(1, target + 1):
-                window += dp[total - 1]
-                if total - k - 1 >= 0:
-                    window -= dp[total - k - 1]
-                next_dp[total] = window % modulus
-            dp = next_dp
-        return dp[target]
+        f = [[0] * (target + 1) for _ in range(n + 1)]
+        f[0][0] = 1
+        mod = 10**9 + 7
+        for i in range(1, n + 1):
+            for j in range(1, min(i * k, target) + 1):
+                for h in range(1, min(j, k) + 1):
+                    f[i][j] = (f[i][j] + f[i - 1][j - h]) % mod
+        return f[n][target]

@@ -1,16 +1,21 @@
-from typing import List
+# Time:  O(q * n)
+# Space: O(1)
 
-
+# tree, lca
 class Solution:
-    def cycleLengthQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        answer = []
-        for a, b in queries:
-            cycle_length = 1
-            while a != b:
-                if a > b:
-                    a //= 2
-                else:
-                    b //= 2
-                cycle_length += 1
-            answer.append(cycle_length)
-        return answer
+    def cycleLengthQueries(self, n, queries):
+        """
+        :type n: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        result = []
+        for x, y in queries:
+            cnt = 1
+            while x != y:
+                if x > y:
+                    x, y = y, x
+                y //= 2
+                cnt += 1
+            result.append(cnt)
+        return result

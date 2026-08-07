@@ -1,15 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
-        stack = []
-        next_pop = 0
-
-        for value in pushed:
-            stack.append(value)
-            while stack and next_pop < len(popped) and stack[-1] == popped[next_pop]:
-                stack.pop()
-                next_pop += 1
-
-        return next_pop == len(popped)
+    def validateStackSequences(self, pushed, popped):
+        """
+        :type pushed: List[int]
+        :type popped: List[int]
+        :rtype: bool
+        """
+        i = 0
+        s = []
+        for v in pushed:
+            s.append(v)
+            while s and i < len(popped) and s[-1] == popped[i]:
+                s.pop()
+                i += 1
+        return i == len(popped)

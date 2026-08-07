@@ -1,47 +1,53 @@
-from collections import deque
-
-
 class Solution:
     def minimumSeconds(self, land: List[List[str]]) -> int:
-        rows, columns = len(land), len(land[0])
-        flood_time = [[float("inf")] * columns for _ in range(rows)]
-        flood_queue = deque()
-        start = None
-        for row in range(rows):
-            for column in range(columns):
-                if land[row][column] == "*":
-                    flood_time[row][column] = 0
-                    flood_queue.append((row, column))
-                elif land[row][column] == "S":
-                    start = (row, column)
-        directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
-        while flood_queue:
-            row, column = flood_queue.popleft()
-            for dr, dc in directions:
-                next_row, next_column = row + dr, column + dc
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and land[next_row][next_column] == "."
-                    and flood_time[next_row][next_column] == float("inf")
-                ):
-                    flood_time[next_row][next_column] = flood_time[row][column] + 1
-                    flood_queue.append((next_row, next_column))
-        queue = deque([(start[0], start[1], 0)])
-        seen = {start}
-        while queue:
-            row, column, time = queue.popleft()
-            for dr, dc in directions:
-                next_row, next_column = row + dr, column + dc
-                if not (0 <= next_row < rows and 0 <= next_column < columns):
-                    continue
-                if land[next_row][next_column] == "D":
-                    return time + 1
-                if (
-                    land[next_row][next_column] == "."
-                    and (next_row, next_column) not in seen
-                    and time + 1 < flood_time[next_row][next_column]
-                ):
-                    seen.add((next_row, next_column))
-                    queue.append((next_row, next_column, time + 1))
+        m, n = len(land), len(land[0])
+        vis = [[False] * n for _ in range(m)]
+        g = [[inf] * n for _ in range(m)]
+        q = deque()
+        si = sj = 0
+        for i, row in enumerate(land):
+            for j, c in enumerate(row):
+                match c:
+                    case "*":
+                        q.append((i, j))
+                    case "S":
+                        si, sj = i, j
+        dirs = (-1, 0, 1, 0, -1)
+        t = 0
+        while q:
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                g[i][j] = t
+                for a, b in pairwise(dirs):
+                    x, y = i + a, j + b
+                    if (
+                        0 <= x < m
+                        and 0 <= y < n
+                        and not vis[x][y]
+                        and land[x][y] in ".S"
+                    ):
+                        vis[x][y] = True
+                        q.append((x, y))
+            t += 1
+        t = 0
+        q = deque([(si, sj)])
+        vis = [[False] * n for _ in range(m)]
+        vis[si][sj] = True
+        while q:
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                if land[i][j] == "D":
+                    return t
+                for a, b in pairwise(dirs):
+                    x, y = i + a, j + b
+                    if (
+                        0 <= x < m
+                        and 0 <= y < n
+                        and g[x][y] > t + 1
+                        and not vis[x][y]
+                        and land[x][y] in ".D"
+                    ):
+                        vis[x][y] = True
+                        q.append((x, y))
+            t += 1
         return -1

@@ -1,42 +1,53 @@
-from typing import List
+# Time:  O(nlogk)
+# Space: O(n)
 
-
+# binary search, sliding window, greedy
 class Solution:
-    def maxPower(self, stations: List[int], r: int, k: int) -> int:
-        n = len(stations)
-        prefix = [0]
-        for count in stations:
-            prefix.append(prefix[-1] + count)
-
-        power = [prefix[min(n, city + r + 1)] - prefix[max(0, city - r)] for city in range(n)]
-
-        def feasible(target: int) -> bool:
-            difference = [0] * (n + 1)
-            active_added = 0
-            used = 0
-
-            for city in range(n):
-                active_added += difference[city]
-                need = target - power[city] - active_added
-                if need <= 0:
+    def maxPower(self, stations, r, k):
+        """
+        :type stations: List[int]
+        :type r: int
+        :type k: int
+        :rtype: int
+        """
+        def min_power():
+            mn = float("inf")
+            curr = sum(stations[i] for i in range(r))
+            for i in range(len(stations)):
+                if i+r < len(stations):
+                    curr += stations[i+r]
+                if i >= r+1:
+                    curr -= stations[i-(r+1)]
+                mn = min(mn, curr)
+            return mn
+    
+        def check(target):
+            arr = stations[:]
+            curr = sum(arr[i] for i in range(r))
+            cnt = k
+            for i in range(len(arr)):
+                if i+r < len(arr):
+                    curr += arr[i+r]
+                if i >= r+1:
+                    curr -= arr[i-(r+1)]
+                if curr >= target:
                     continue
-
-                used += need
-                if used > k:
+                diff = target-curr
+                if diff > cnt:
                     return False
-
-                active_added += need
-                expires = min(n, city + 2 * r + 1)
-                difference[expires] -= need
-
+                cnt -= diff
+                curr += diff
+                if i+r < len(arr):
+                    arr[i+r] += diff
             return True
 
-        low = min(power)
-        high = low + k
-        while low < high:
-            middle = (low + high + 1) // 2
-            if feasible(middle):
-                low = middle
+        mn = min_power() 
+        left, right = mn, mn+k
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(mid):
+                right = mid-1
             else:
-                high = middle - 1
-        return low
+                left = mid+1
+        return right
+    

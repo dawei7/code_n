@@ -1,13 +1,9 @@
 class Solution:
     def minCost(self, nums: List[int], x: int) -> int:
         n = len(nums)
-        cheapest = nums.copy()
-        answer = sum(cheapest)
-
-        for operations in range(1, n):
-            for chocolate_type in range(n):
-                source = (chocolate_type - operations) % n
-                cheapest[chocolate_type] = min(cheapest[chocolate_type], nums[source])
-            answer = min(answer, operations * x + sum(cheapest))
-
-        return answer
+        f = [[0] * n for _ in range(n)]
+        for i, v in enumerate(nums):
+            f[i][0] = v
+            for j in range(1, n):
+                f[i][j] = min(f[i][j - 1], nums[(i - j) % n])
+        return min(sum(f[i][j] for i in range(n)) + x * j for j in range(n))

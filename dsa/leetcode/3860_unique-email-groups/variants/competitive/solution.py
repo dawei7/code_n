@@ -1,10 +1,17 @@
+# Time:  O(n * l)
+# Space: O(n * l)
+
+# string, hash table
 class Solution:
-    def uniqueEmailGroups(self, emails: list[str]) -> int:
-        normalized = set()
-
+    def uniqueEmailGroups(self, emails):
+        """
+        :type emails: List[str]
+        :rtype: int
+        """
+        result = set()
         for email in emails:
-            local, domain = email.split("@")
-            local = local.split("+", 1)[0].replace(".", "").lower()
-            normalized.add(f"{local}@{domain.lower()}")
-
-        return len(normalized)
+            email = email.lower()
+            local = email[:next(i for i, x in enumerate(email) if x in "+@")].replace('.', '')
+            domain = email[next(i for i, x in enumerate(email) if x == '@')+1:]
+            result.add(local+'@'+domain)
+        return len(result)

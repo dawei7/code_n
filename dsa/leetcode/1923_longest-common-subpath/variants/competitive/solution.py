@@ -1,52 +1,73 @@
-from typing import List
-
+# Time:  O(m * nlogn)
+# Space: O(n)
 
 class Solution:
-    def longestCommonSubpath(self, n: int, paths: List[List[int]]) -> int:
-        del n
-        paths.sort(key=len)
-        base = 100_003
-        modulus_one = 1_000_000_007
-        modulus_two = 1_000_000_009
-
-        def hashes(path: List[int], length: int) -> set[tuple[int, int]]:
-            if length == 0:
-                return {(0, 0)}
-
-            power_one = pow(base, length, modulus_one)
-            power_two = pow(base, length, modulus_two)
-            hash_one = 0
-            hash_two = 0
-            for value in path[:length]:
-                encoded = value + 1
-                hash_one = (hash_one * base + encoded) % modulus_one
-                hash_two = (hash_two * base + encoded) % modulus_two
-
-            result = {(hash_one, hash_two)}
-            for right in range(length, len(path)):
-                outgoing = path[right - length] + 1
-                incoming = path[right] + 1
-                hash_one = (hash_one * base + incoming - outgoing * power_one) % modulus_one
-                hash_two = (hash_two * base + incoming - outgoing * power_two) % modulus_two
-                result.add((hash_one, hash_two))
-
-            return result
-
-        def shared(length: int) -> bool:
-            common = hashes(paths[0], length)
-            for path in paths[1:]:
-                common.intersection_update(hashes(path, length))
-                if not common:
+    def longestCommonSubpath(self, n, paths):
+        """
+        :type n: int
+        :type paths: List[List[int]]
+        :rtype: int
+        """
+        def RabinKarp(arr, x):  # double hashing
+            hashes = tuple([reduce(lambda h,x: (h*p+x)%MOD, (arr[i] for i in range(x)), 0) for p in P])
+            powers = [pow(p, x, MOD) for p in P]
+            lookup = {hashes}
+            for i in range(x, len(arr)):
+                hashes = tuple([(hashes[j]*P[j] - arr[i-x]*powers[j] + arr[i])%MOD for j in range(len(P))])  # in smaller datasets, tuple from list is much faster than tuple from generator, see https://stackoverflow.com/questions/16940293/why-is-there-no-tuple-comprehension-in-python
+                lookup.add(hashes)
+            return lookup
+        
+        def check(paths, x):
+            intersect = RabinKarp(paths[0], x)
+            for i in range(1, len(paths)):
+                intersect = set.intersection(intersect, RabinKarp(paths[i], x))
+                if not intersect:
                     return False
             return True
 
-        low = 0
-        high = len(paths[0])
-        while low < high:
-            middle = (low + high + 1) // 2
-            if shared(middle):
-                low = middle
+        MOD, P = 10**9+7, (113, 109)  # MOD could be the min prime of 7-digit number (10**6+3), P could be (2, 3)
+        left, right = 1, min(len(p) for p in paths)
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(paths, mid):
+                right = mid-1
             else:
-                high = middle - 1
+                left = mid+1
+        return right
 
-        return low
+
+# Time:  O(m * nlogn)
+# Space: O(n)
+class Solution2(object):
+    def longestCommonSubpath(self, n, paths):
+        """
+        :type n: int
+        :type paths: List[List[int]]
+        :rtype: int
+        """
+        def RabinKarp(arr, x):
+            h = reduce(lambda h,x: (h*P+x)%MOD, (arr[i] for i in range(x)), 0)
+            power = pow(P, x, MOD)
+            lookup = {h}
+            for i in range(x, len(arr)):
+                h = (h*P - arr[i-x]*power + arr[i])%MOD
+                lookup.add(h)
+            return lookup
+        
+        def check(paths, x):
+            intersect = RabinKarp(paths[0], x)
+            for i in range(1, len(paths)):
+                intersect = set.intersection(intersect, RabinKarp(paths[i], x))
+                if not intersect:
+                    return False
+            return True
+
+        MOD, P = 10**11+19, max(x for p in paths for x in p)+1  # MOD is the min prime of 12-digit number
+        left, right = 1, min(len(p) for p in paths)
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(paths, mid):
+                right = mid-1
+            else:
+                left = mid+1
+        return right

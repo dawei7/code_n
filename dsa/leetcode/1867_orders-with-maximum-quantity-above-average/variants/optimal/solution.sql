@@ -1,14 +1,13 @@
-WITH order_totals AS (
-    SELECT
-        order_id,
-        AVG(quantity) AS average_quantity,
-        MAX(quantity) AS maximum_quantity
-    FROM OrdersDetails
-    GROUP BY order_id
-)
+# Write your MySQL query statement below
+WITH
+    t AS (
+        SELECT
+            order_id,
+            MAX(quantity) AS max_quantity,
+            SUM(quantity) / COUNT(1) AS avg_quantity
+        FROM OrdersDetails
+        GROUP BY order_id
+    )
 SELECT order_id
-FROM order_totals
-WHERE maximum_quantity > (
-    SELECT MAX(average_quantity)
-    FROM order_totals
-);
+FROM t
+WHERE max_quantity > (SELECT MAX(avg_quantity) FROM t);

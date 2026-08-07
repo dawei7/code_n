@@ -1,40 +1,35 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def reversePairs(self, nums: List[int]) -> int:
-        buffer = [0] * len(nums)
+    def reversePairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def merge(nums, start, mid, end):
+            r = mid + 1
+            tmp = []
+            for i in range(start, mid + 1):
+                while r <= end and nums[i] > nums[r]:
+                    tmp.append(nums[r])
+                    r += 1
+                tmp.append(nums[i])
+            nums[start:start+len(tmp)] = tmp
 
-        def sort_and_count(left, right):
-            if right - left <= 1:
+        def countAndMergeSort(nums, start, end):
+            if end - start <= 0:
                 return 0
-            middle = (left + right) // 2
-            count = sort_and_count(left, middle) + sort_and_count(middle, right)
 
-            partner = middle
-            for index in range(left, middle):
-                while partner < right and nums[index] > 2 * nums[partner]:
-                    partner += 1
-                count += partner - middle
-
-            first, second, write = left, middle, left
-            while first < middle and second < right:
-                if nums[first] <= nums[second]:
-                    buffer[write] = nums[first]
-                    first += 1
-                else:
-                    buffer[write] = nums[second]
-                    second += 1
-                write += 1
-            while first < middle:
-                buffer[write] = nums[first]
-                first += 1
-                write += 1
-            while second < right:
-                buffer[write] = nums[second]
-                second += 1
-                write += 1
-            nums[left:right] = buffer[left:right]
+            mid = start + (end - start) / 2
+            count = countAndMergeSort(nums, start, mid) + countAndMergeSort(nums, mid + 1, end)
+            r = mid + 1
+            for i in range(start, mid + 1):
+                while r <= end and nums[i] > nums[r] * 2:
+                    r += 1
+                count += r - (mid + 1)
+            merge(nums, start, mid, end)
             return count
 
-        return sort_and_count(0, len(nums))
+        return countAndMergeSort(nums, 0, len(nums) - 1)
+

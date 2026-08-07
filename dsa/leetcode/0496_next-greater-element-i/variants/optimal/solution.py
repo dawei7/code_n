@@ -1,12 +1,11 @@
-from typing import List
-
-
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        next_greater = {}
-        stack = []
-        for value in nums2:
-            while stack and stack[-1] < value:
-                next_greater[stack.pop()] = value
-            stack.append(value)
-        return [next_greater.get(value, -1) for value in nums1]
+        stk = []
+        d = {}
+        for x in nums2[::-1]:
+            while stk and stk[-1] < x:
+                stk.pop()
+            if stk:
+                d[x] = stk[-1]
+            stk.append(x)
+        return [d.get(x, -1) for x in nums1]

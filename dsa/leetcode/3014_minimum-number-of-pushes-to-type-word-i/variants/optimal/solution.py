@@ -1,4 +1,9 @@
 class Solution:
     def minimumPushes(self, word: str) -> int:
-        full_levels, remainder = divmod(len(word), 8)
-        return 4 * full_levels * (full_levels + 1) + remainder * (full_levels + 1)
+        n = len(word)
+        ans, k = 0, 1
+        for _ in range(n // 8):
+            ans += k * 8
+            k += 1
+        ans += k * (n % 8)
+        return ans

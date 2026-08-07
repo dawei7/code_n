@@ -1,8 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def getSmallestString(self, s: str) -> str:
-        digits = list(s)
-        for index in range(len(digits) - 1):
-            if int(digits[index]) % 2 == int(digits[index + 1]) % 2 and digits[index] > digits[index + 1]:
-                digits[index], digits[index + 1] = (digits[index + 1], digits[index])
+    def getSmallestString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = map(int, s)
+        for i in range(len(s)-1):
+            if result[i]%2 != result[i+1]%2:
+                continue
+            if result[i] > result[i+1]:
+                result[i], result[i+1] = result[i+1], result[i]
                 break
-        return "".join(digits)
+        return "".join(map(str, result))

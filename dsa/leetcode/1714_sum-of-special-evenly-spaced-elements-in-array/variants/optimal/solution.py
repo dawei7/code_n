@@ -1,32 +1,16 @@
-from collections import defaultdict
-from math import isqrt
-from typing import List
-
-
 class Solution:
     def solve(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        modulo = 1_000_000_007
-        threshold = isqrt(len(nums)) + 1
-        grouped = defaultdict(list)
-        for query_index, (start, step) in enumerate(queries):
-            grouped[step].append((query_index, start))
-
-        answers = [0] * len(queries)
-        for step, pending in grouped.items():
-            if step < threshold:
-                suffix = [0] * len(nums)
-                for index in range(len(nums) - 1, -1, -1):
-                    suffix[index] = nums[index]
-                    if index + step < len(nums):
-                        suffix[index] += suffix[index + step]
-                    suffix[index] %= modulo
-                for query_index, start in pending:
-                    answers[query_index] = suffix[start]
+        mod = 10**9 + 7
+        n = len(nums)
+        m = int(sqrt(n))
+        suf = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(n - 1, -1, -1):
+                suf[i][j] = suf[i][min(n, j + i)] + nums[j]
+        ans = []
+        for x, y in queries:
+            if y <= m:
+                ans.append(suf[y][x] % mod)
             else:
-                for query_index, start in pending:
-                    total = 0
-                    for index in range(start, len(nums), step):
-                        total += nums[index]
-                    answers[query_index] = total % modulo
-
-        return answers
+                ans.append(sum(nums[x::y]) % mod)
+        return ans

@@ -1,16 +1,14 @@
 class Solution:
     def countDigitOne(self, n: int) -> int:
-        total = 0
-        factor = 1
-        while factor <= n:
-            lower = n % factor
-            current = (n // factor) % 10
-            higher = n // (factor * 10)
-            if current == 0:
-                total += higher * factor
-            elif current == 1:
-                total += higher * factor + lower + 1
-            else:
-                total += (higher + 1) * factor
-            factor *= 10
-        return total
+        @cache
+        def dfs(i: int, cnt: int, limit: bool) -> int:
+            if i >= len(s):
+                return cnt
+            up = int(s[i]) if limit else 9
+            ans = 0
+            for j in range(up + 1):
+                ans += dfs(i + 1, cnt + (j == 1), limit and j == up)
+            return ans
+
+        s = str(n)
+        return dfs(0, 0, True)

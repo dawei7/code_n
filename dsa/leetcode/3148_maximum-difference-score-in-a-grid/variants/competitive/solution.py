@@ -1,20 +1,23 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# dp
 class Solution:
-    def maxScore(self, grid: List[List[int]]) -> int:
-        columns = len(grid[0])
-        prefix_minimum = [10**18] * columns
-        answer = -(10**18)
-
-        for row in grid:
-            left_minimum = 10**18
-            for column, value in enumerate(row):
-                previous_minimum = min(left_minimum, prefix_minimum[column])
-                answer = max(answer, value - previous_minimum)
-
-                current_minimum = min(value, previous_minimum)
-                prefix_minimum[column] = current_minimum
-                left_minimum = current_minimum
-
-        return answer
+    def maxScore(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        POS_INF = float("inf")
+        NEG_INF = float("-inf")
+        result = NEG_INF
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                mn = POS_INF
+                if i-1 >= 0:
+                    mn = min(mn, grid[i-1][j])
+                if j-1 >= 0:
+                    mn = min(mn, grid[i][j-1])
+                result = max(result, grid[i][j]-mn)
+                grid[i][j] = min(grid[i][j], mn)
+        return result

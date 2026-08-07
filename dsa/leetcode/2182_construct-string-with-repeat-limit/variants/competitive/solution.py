@@ -1,31 +1,30 @@
+# Time:  O(26 * n)
+# Space: O(26)
+
+import collections
+
+
+# greedy
 class Solution:
-    def repeatLimitedString(self, s: str, repeatLimit: int) -> str:
-        counts = [0] * 26
-        for character in s:
-            counts[ord(character) - ord("a")] += 1
-
-        pieces = []
-        largest = 25
-
-        while largest >= 0:
-            if counts[largest] == 0:
-                largest -= 1
-                continue
-
-            take = min(counts[largest], repeatLimit)
-            pieces.append(chr(ord("a") + largest) * take)
-            counts[largest] -= take
-
-            if counts[largest] == 0:
-                continue
-
-            separator = largest - 1
-            while separator >= 0 and counts[separator] == 0:
-                separator -= 1
-            if separator < 0:
+    def repeatLimitedString(self, s, repeatLimit):
+        """
+        :type s: str
+        :type repeatLimit: int
+        :rtype: str
+        """
+        cnt = collections.Counter(map(lambda x: ord(x)-ord('a'), s))
+        result = []
+        top1 = 25
+        while True:
+            top1 = next((i for i in reversed(range(top1+1)) if cnt[i]), -1)
+            if top1 == -1:
                 break
-
-            pieces.append(chr(ord("a") + separator))
-            counts[separator] -= 1
-
-        return "".join(pieces)
+            c = min(cnt[top1], repeatLimit-int(len(result) > 0 and result[-1] == top1))
+            cnt[top1] -= c
+            result.extend([top1]*c)
+            top2 = next((j for j in reversed(range(top1)) if cnt[j]), -1)
+            if top2 == -1:
+                break
+            cnt[top2] -= 1
+            result.append(top2)
+        return "".join(map(lambda x: chr(x+ord('a')), result))

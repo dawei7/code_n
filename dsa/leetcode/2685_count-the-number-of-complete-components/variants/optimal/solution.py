@@ -1,33 +1,23 @@
 class Solution:
     def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
-        graph = [[] for _ in range(n)]
+        def dfs(i: int) -> (int, int):
+            vis[i] = True
+            x, y = 1, len(g[i])
+            for j in g[i]:
+                if not vis[j]:
+                    a, b = dfs(j)
+                    x += a
+                    y += b
+            return x, y
+
+        g = defaultdict(list)
         for a, b in edges:
-            graph[a].append(b)
-            graph[b].append(a)
-
-        seen = [False] * n
-        answer = 0
-
-        for start in range(n):
-            if seen[start]:
-                continue
-
-            stack = [start]
-            seen[start] = True
-            vertices = 0
-            degree_sum = 0
-
-            while stack:
-                node = stack.pop()
-                vertices += 1
-                degree_sum += len(graph[node])
-
-                for neighbor in graph[node]:
-                    if not seen[neighbor]:
-                        seen[neighbor] = True
-                        stack.append(neighbor)
-
-            if degree_sum == vertices * (vertices - 1):
-                answer += 1
-
-        return answer
+            g[a].append(b)
+            g[b].append(a)
+        vis = [False] * n
+        ans = 0
+        for i in range(n):
+            if not vis[i]:
+                a, b = dfs(i)
+                ans += a * (a - 1) == b
+        return ans

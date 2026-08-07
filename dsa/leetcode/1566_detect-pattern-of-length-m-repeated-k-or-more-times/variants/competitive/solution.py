@@ -1,16 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def containsPattern(self, arr: List[int], m: int, k: int) -> bool:
-        equal_offset_run = 0
-
-        for index in range(len(arr) - m):
-            if arr[index] == arr[index + m]:
-                equal_offset_run += 1
-                if equal_offset_run == m * (k - 1):
-                    return True
-            else:
-                equal_offset_run = 0
-
+    def containsPattern(self, arr, m, k):
+        """
+        :type arr: List[int]
+        :type m: int
+        :type k: int
+        :rtype: bool
+        """
+        cnt = 0
+        for i in range(len(arr)-m):
+            if arr[i] != arr[i+m]:
+                cnt = 0
+                continue
+            cnt += 1
+            if cnt == (k-1)*m:
+                return True
         return False

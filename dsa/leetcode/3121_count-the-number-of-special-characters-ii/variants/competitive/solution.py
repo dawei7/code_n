@@ -1,17 +1,21 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+import itertools
+
+
+# hash table
 class Solution:
-    def numberOfSpecialChars(self, word: str) -> int:
-        state = [0] * 26
-
-        for character in word:
-            index = ord(character.lower()) - ord("a")
-            if character.islower():
-                if state[index] >= 2:
-                    state[index] = 3
-                else:
-                    state[index] = 1
-            elif state[index] == 1:
-                state[index] = 2
-            elif state[index] == 0:
-                state[index] = 3
-
-        return state.count(2)
+    def numberOfSpecialChars(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        lookup1 = [len(word)]*26
+        lookup2 = [-1]*26
+        for i, x in enumerate(word):
+            if x.islower():
+                lookup1[ord(x)-ord('a')] = i
+            elif lookup2[ord(x)-ord('A')] == -1:
+                lookup2[ord(x)-ord('A')] = i
+        return sum(x < y for x, y in itertools.izip(lookup1, lookup2))

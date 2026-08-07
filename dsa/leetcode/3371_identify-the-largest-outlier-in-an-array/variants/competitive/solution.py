@@ -1,20 +1,22 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(n)
 
-
+# freq table
 class Solution:
-    def getLargestOutlier(self, nums: List[int]) -> int:
+    def getLargestOutlier(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = float("-inf")
         total = sum(nums)
-        counts = Counter(nums)
-        answer = -(10**9)
-
-        for outlier in counts:
-            remaining = total - outlier
-            if remaining % 2:
+        cnt = collections.defaultdict(int)
+        for x in nums:
+            cnt[x] += 1
+        for x in nums:
+            if (total-x)%2:
                 continue
-
-            sum_element = remaining // 2
-            available = counts[sum_element] - (sum_element == outlier)
-            if available > 0:
-                answer = max(answer, outlier)
-
-        return answer
+            target = (total-x)//2
+            if target in cnt and (cnt[target]-int(target == x) >= 1):
+                result = max(result, x)
+        return result

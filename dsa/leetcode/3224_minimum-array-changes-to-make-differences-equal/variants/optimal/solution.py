@@ -1,23 +1,14 @@
 class Solution:
     def minChanges(self, nums: List[int], k: int) -> int:
-        savings_delta = [0] * (k + 2)
-        pair_count = len(nums) // 2
-
-        for index in range(pair_count):
-            left = nums[index]
-            right = nums[-index - 1]
-            difference = abs(left - right)
-            one_change_limit = max(left, right, k - left, k - right)
-
-            savings_delta[0] += 1
-            savings_delta[one_change_limit + 1] -= 1
-            savings_delta[difference] += 1
-            savings_delta[difference + 1] -= 1
-
-        best_savings = 0
-        current_savings = 0
-        for target in range(k + 1):
-            current_savings += savings_delta[target]
-            best_savings = max(best_savings, current_savings)
-
-        return 2 * pair_count - best_savings
+        d = [0] * (k + 2)
+        n = len(nums)
+        for i in range(n // 2):
+            x, y = nums[i], nums[-i - 1]
+            if x > y:
+                x, y = y, x
+            d[0] += 1
+            d[y - x] -= 1
+            d[y - x + 1] += 1
+            d[max(y, k - x) + 1] -= 1
+            d[max(y, k - x) + 1] += 2
+        return min(accumulate(d))

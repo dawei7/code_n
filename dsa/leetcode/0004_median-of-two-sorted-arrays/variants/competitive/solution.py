@@ -1,30 +1,66 @@
-from typing import List
-
+# Time:  O(log(min(m, n)))
+# Space: O(1)
 
 class Solution:
-    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        if len(nums1) > len(nums2):
-            nums1, nums2 = nums2, nums1
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        total = len(nums1) + len(nums2)
-        left_size = (total + 1) // 2
-        low, high = 0, len(nums1)
+        def getKth(A, B, k):
+            m, n = len(A), len(B)
+            if m > n:
+                m, n = n, m
+                A, B = B, A
+            i = binary_search(max(k-n, 0), min(m, k)-1, lambda i: A[i] >= B[k-1-i])
+            return max(A[i-1] if i-1 >= 0 else float("-inf"), B[k-1-i] if k-1-i >= 0 else float("-inf"))
 
-        while low <= high:
-            cut1 = (low + high) // 2
-            cut2 = left_size - cut1
-            left1 = nums1[cut1 - 1] if cut1 else float("-inf")
-            right1 = nums1[cut1] if cut1 < len(nums1) else float("inf")
-            left2 = nums2[cut2 - 1] if cut2 else float("-inf")
-            right2 = nums2[cut2] if cut2 < len(nums2) else float("inf")
+        len1, len2 = len(nums1), len(nums2)
+        if (len1+len2) % 2 == 1:
+            return getKth(nums1, nums2, (len1+len2)//2+1)
+        else:
+            return (getKth(nums1, nums2, (len1+len2)//2)+getKth(nums1, nums2, (len1+len2)//2+1))*0.5    
 
-            if left1 <= right2 and left2 <= right1:
-                if total % 2:
-                    return float(max(left1, left2))
-                return (max(left1, left2) + min(right1, right2)) / 2.0
-            if left1 > right2:
-                high = cut1 - 1
-            else:
-                low = cut1 + 1
 
-        raise ValueError("invalid sorted arrays")
+# Time:  O(log(max(m, n)) * log(max_val - min_val))
+# Space: O(1)
+# Generic solution.
+class Solution_Generic(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
+
+        def getKth(arrays, k):
+            def check(num):
+                # count the number of values which are less or equal to num
+                return sum(binary_search(0, len(arr)-1, lambda x: arr[x] > num) for arr in arrays) >= k
+    
+            return binary_search(min(arr[0] for arr in arrays if arr), max(arr[-1] for arr in arrays if arr), check)
+
+        array = [nums1, nums2]
+        total = sum(len(nums) for nums in array)
+        if total % 2 == 1:
+            return getKth(array, total//2+1)
+        else:
+            return (getKth(array, total//2)+getKth(array, total//2+1))*0.5

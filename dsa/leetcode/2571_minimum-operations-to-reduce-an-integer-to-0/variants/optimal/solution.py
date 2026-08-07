@@ -1,13 +1,15 @@
 class Solution:
     def minOperations(self, n: int) -> int:
-        operations = 0
-
+        ans = cnt = 0
         while n:
-            lowest_bit = n & -n
-            if n & (lowest_bit << 1):
-                n += lowest_bit
-            else:
-                n -= lowest_bit
-            operations += 1
-
-        return operations
+            if n & 1:
+                cnt += 1
+            elif cnt:
+                ans += 1
+                cnt = 0 if cnt == 1 else 1
+            n >>= 1
+        if cnt == 1:
+            ans += 1
+        elif cnt > 1:
+            ans += 2
+        return ans

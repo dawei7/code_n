@@ -1,8 +1,9 @@
+# Write your MySQL query statement below
 SELECT
-    p.product_id,
-    p.price * (100 - COALESCE(d.discount, 0)) / 100 AS final_price,
-    p.category
-FROM Products AS p
-LEFT JOIN Discounts AS d
-    ON d.category = p.category
-ORDER BY p.product_id;
+    product_id,
+    price * (100 - IFNULL(discount, 0)) / 100 final_price,
+    category
+FROM
+    Products
+    LEFT JOIN Discounts USING (category)
+ORDER BY 1;

@@ -1,17 +1,22 @@
+# Time:  O(n * m)
+# Space: O(n + m)
+
+import collections
+
+
 class Solution:
-    def largestMerge(self, word1: str, word2: str) -> str:
-        first = 0
-        second = 0
-        merge: list[str] = []
-
-        while first < len(word1) and second < len(word2):
-            if word1[first:] > word2[second:]:
-                merge.append(word1[first])
-                first += 1
+    def largestMerge(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: str
+        """
+        q1 = collections.deque(word1)
+        q2 = collections.deque(word2)
+        result = []
+        while q1 or q2:
+            if q1 > q2:
+                result.append(q1.popleft())
             else:
-                merge.append(word2[second])
-                second += 1
-
-        merge.append(word1[first:])
-        merge.append(word2[second:])
-        return "".join(merge)
+                result.append(q2.popleft())
+        return "".join(result)

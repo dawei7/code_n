@@ -1,11 +1,24 @@
-class Solution:
-    def lengthOfLastWord(self, s: str) -> int:
-        index = len(s) - 1
-        while s[index] == " ":
-            index -= 1
+# Time:  O(n)
+# Space: O(1)
 
+class Solution:
+    # @param s, a string
+    # @return an integer
+    def lengthOfLastWord(self, s):
         length = 0
-        while index >= 0 and s[index] != " ":
-            length += 1
-            index -= 1
+        for i in reversed(s):
+            if i == ' ':
+                if length:
+                    break
+            else:
+                length += 1
         return length
+
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    # @param s, a string
+    # @return an integer
+    def lengthOfLastWord(self, s):
+        return len(s.strip().split(" ")[-1])
+

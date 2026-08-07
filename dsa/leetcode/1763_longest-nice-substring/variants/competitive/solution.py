@@ -1,13 +1,22 @@
+# Time:  O(26 * n) = O(n)
+# Space: O(26 * n) = O(n)
+
 class Solution:
-    def longestNiceSubstring(self, s: str) -> str:
-        if len(s) < 2:
-            return ""
-
-        characters = set(s)
-        for index, character in enumerate(s):
-            if character.swapcase() not in characters:
-                left = self.longestNiceSubstring(s[:index])
-                right = self.longestNiceSubstring(s[index + 1 :])
-                return left if len(left) >= len(right) else right
-
-        return s
+    def longestNiceSubstring(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        lookup = set(list(s))
+        prev = -1
+        result = ""
+        for i in range(len(s)+1):
+            if not (i == len(s) or s[i] not in lookup or s[i].swapcase() not in lookup):
+                continue
+            if prev == -1 and i == len(s):
+                return s
+            tmp = self.longestNiceSubstring(s[prev+1:i])
+            if len(tmp) > len(result):
+                result = tmp
+            prev = i
+        return result

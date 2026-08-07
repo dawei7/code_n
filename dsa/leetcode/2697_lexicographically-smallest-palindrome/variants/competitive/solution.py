@@ -1,10 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def makeSmallestPalindrome(self, s: str) -> str:
-        chars = list(s)
-        left, right = 0, len(chars) - 1
-        while left < right:
-            smaller = min(chars[left], chars[right])
-            chars[left] = chars[right] = smaller
-            left += 1
-            right -= 1
-        return "".join(chars)
+    def makeSmallestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        return "".join(min(s[i], s[~i]) for i in range(len(s)))

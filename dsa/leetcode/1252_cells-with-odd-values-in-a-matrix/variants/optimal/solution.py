@@ -1,13 +1,9 @@
-from typing import List
-
-
 class Solution:
     def oddCells(self, m: int, n: int, indices: List[List[int]]) -> int:
-        rows = [0] * m
-        columns = [0] * n
-        for row, column in indices:
-            rows[row] ^= 1
-            columns[column] ^= 1
-        odd_rows = sum(rows)
-        odd_columns = sum(columns)
-        return odd_rows * (n - odd_columns) + (m - odd_rows) * odd_columns
+        g = [[0] * n for _ in range(m)]
+        for r, c in indices:
+            for i in range(m):
+                g[i][c] += 1
+            for j in range(n):
+                g[r][j] += 1
+        return sum(v % 2 for row in g for v in row)

@@ -1,7 +1,7 @@
-SELECT
-    s.school_id,
-    COALESCE(MIN(e.score), -1) AS score
-FROM Schools AS s
-LEFT JOIN Exam AS e
-    ON e.student_count <= s.capacity
-GROUP BY s.school_id;
+# Time:  O(n * m)
+# Space: O(n * m)
+
+SELECT school_id, IFNULL(min(score), -1) as score
+FROM Schools LEFT JOIN Exam ON capacity >= student_count
+GROUP BY school_id
+ORDER BY NULL;

@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -9,28 +6,25 @@ from typing import Optional
 #         self.right = right
 class Solution:
     def twoSumBSTs(
-        self,
-        root1: Optional["TreeNode"],
-        root2: Optional["TreeNode"],
-        target: int,
+        self, root1: Optional[TreeNode], root2: Optional[TreeNode], target: int
     ) -> bool:
-        first_values = set()
-        stack = [root1]
-        while stack:
-            node = stack.pop()
-            if node is None:
-                continue
-            first_values.add(node.val)
-            stack.append(node.left)
-            stack.append(node.right)
+        def dfs(root: Optional[TreeNode], i: int):
+            if root is None:
+                return
+            dfs(root.left, i)
+            nums[i].append(root.val)
+            dfs(root.right, i)
 
-        stack = [root2]
-        while stack:
-            node = stack.pop()
-            if node is None:
-                continue
-            if target - node.val in first_values:
+        nums = [[], []]
+        dfs(root1, 0)
+        dfs(root2, 1)
+        i, j = 0, len(nums[1]) - 1
+        while i < len(nums[0]) and ~j:
+            x = nums[0][i] + nums[1][j]
+            if x == target:
                 return True
-            stack.append(node.left)
-            stack.append(node.right)
+            if x < target:
+                i += 1
+            else:
+                j -= 1
         return False

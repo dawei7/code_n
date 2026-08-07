@@ -1,21 +1,55 @@
-from typing import List
+# Time:  O(h + v), h = len(hBars), v = len(vBars)
+# Space: O(h + v)
 
-
+# array, hash table
 class Solution:
-    def maximizeSquareHoleArea(self, n: int, m: int, hBars: List[int], vBars: List[int]) -> int:
-        def maximum_opening(bars: List[int]) -> int:
-            removable = set(bars)
-            longest_run = 0
+    def maximizeSquareHoleArea(self, n, m, hBars, vBars):
+        """
+        :type n: int
+        :type m: int
+        :type hBars: List[int]
+        :type vBars: List[int]
+        :rtype: int
+        """
+        def max_gap(arr):
+            result = l = 1
+            lookup = set(arr)
+            while lookup:
+                x = next(iter(lookup))
+                left = x
+                while left-1 in lookup:
+                    left -= 1
+                right = x
+                while right+1 in lookup:
+                    right += 1
+                for i in range(left, right+1):
+                    lookup.remove(i)
+                result = max(result, (right-left+1)+1)
+            return result
 
-            for bar in removable:
-                if bar - 1 in removable:
-                    continue
-                run = 1
-                while bar + run in removable:
-                    run += 1
-                longest_run = max(longest_run, run)
+        return min(max_gap(hBars), max_gap(vBars))**2
 
-            return longest_run + 1
 
-        side = min(maximum_opening(hBars), maximum_opening(vBars))
-        return side * side
+# Time:  O(hlogh + vlogv), h = len(hBars), v = len(vBars)
+# Space: O(1)
+# array, sort
+class Solution2(object):
+    def maximizeSquareHoleArea(self, n, m, hBars, vBars):
+        """
+        :type n: int
+        :type m: int
+        :type hBars: List[int]
+        :type vBars: List[int]
+        :rtype: int
+        """
+        def max_gap(arr):
+            arr.sort()
+            result = l = 1
+            for i in range(len(arr)):
+                l += 1
+                result = max(result, l)
+                if i+1 != len(arr) and arr[i+1] != arr[i]+1:
+                    l = 1
+            return result
+
+        return min(max_gap(hBars), max_gap(vBars))**2

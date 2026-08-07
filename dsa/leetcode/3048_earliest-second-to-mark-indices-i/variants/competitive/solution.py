@@ -1,41 +1,35 @@
+# Time:  O(mlogm)
+# Space: O(n)
+
+# binary search, greedy
 class Solution:
-    def earliestSecondToMarkIndices(
-        self,
-        nums: List[int],
-        changeIndices: List[int],
-    ) -> int:
-        index_count = len(nums)
-
-        def can_finish(seconds: int) -> bool:
-            last_occurrence = [-1] * index_count
-            for second in range(seconds):
-                last_occurrence[changeIndices[second] - 1] = second
-
-            if -1 in last_occurrence:
+    def earliestSecondToMarkIndices(self, nums, changeIndices):
+        """
+        :type nums: List[int]
+        :type changeIndices: List[int]
+        :rtype: int
+        """
+        def check(t):
+            lookup = [-1]*len(nums)
+            for i in range(t):
+                lookup[changeIndices[i]-1] = i
+            if -1 in lookup:
                 return False
-
-            available_decrements = 0
-            for second in range(seconds):
-                index = changeIndices[second] - 1
-                if second == last_occurrence[index]:
-                    if available_decrements < nums[index]:
-                        return False
-                    available_decrements -= nums[index]
-                else:
-                    available_decrements += 1
-
+            cnt = 0
+            for i in range(t):
+                if i != lookup[changeIndices[i]-1]:
+                    cnt += 1
+                    continue
+                cnt -= nums[changeIndices[i]-1]
+                if cnt < 0:
+                    return False
             return True
 
-        left = 1
-        right = len(changeIndices)
-        answer = -1
-
+        left, right = sum(nums)+len(nums), len(changeIndices) 
         while left <= right:
-            middle = (left + right) // 2
-            if can_finish(middle):
-                answer = middle
-                right = middle - 1
+            mid = left+(right-left)//2
+            if check(mid):
+                right = mid-1
             else:
-                left = middle + 1
-
-        return answer
+                left = mid+1
+        return left if left <= len(changeIndices) else -1

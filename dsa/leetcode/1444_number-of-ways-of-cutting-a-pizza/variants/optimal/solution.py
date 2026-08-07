@@ -1,39 +1,22 @@
-from functools import lru_cache
-from typing import List
-
-
 class Solution:
     def ways(self, pizza: List[str], k: int) -> int:
-        modulo = 1_000_000_007
-        rows = len(pizza)
-        columns = len(pizza[0])
+        @cache
+        def dfs(i: int, j: int, k: int) -> int:
+            if k == 0:
+                return int(s[m][n] - s[i][n] - s[m][j] + s[i][j] > 0)
+            ans = 0
+            for x in range(i + 1, m):
+                if s[x][n] - s[i][n] - s[x][j] + s[i][j] > 0:
+                    ans += dfs(x, j, k - 1)
+            for y in range(j + 1, n):
+                if s[m][y] - s[i][y] - s[m][j] + s[i][j] > 0:
+                    ans += dfs(i, y, k - 1)
+            return ans % mod
 
-        suffix_apples = [[0] * (columns + 1) for _ in range(rows + 1)]
-        for row in range(rows - 1, -1, -1):
-            for column in range(columns - 1, -1, -1):
-                suffix_apples[row][column] = (
-                    int(pizza[row][column] == "A")
-                    + suffix_apples[row + 1][column]
-                    + suffix_apples[row][column + 1]
-                    - suffix_apples[row + 1][column + 1]
-                )
-
-        @lru_cache(None)
-        def count_ways(row: int, column: int, pieces: int) -> int:
-            if suffix_apples[row][column] < pieces:
-                return 0
-            if pieces == 1:
-                return 1
-
-            result = 0
-            for next_row in range(row + 1, rows):
-                if suffix_apples[row][column] > suffix_apples[next_row][column]:
-                    result += count_ways(next_row, column, pieces - 1)
-
-            for next_column in range(column + 1, columns):
-                if suffix_apples[row][column] > suffix_apples[row][next_column]:
-                    result += count_ways(row, next_column, pieces - 1)
-
-            return result % modulo
-
-        return count_ways(0, 0, k)
+        mod = 10**9 + 7
+        m, n = len(pizza), len(pizza[0])
+        s = [[0] * (n + 1) for _ in range(m + 1)]
+        for i, row in enumerate(pizza, 1):
+            for j, c in enumerate(row, 1):
+                s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + int(c == 'A')
+        return dfs(0, 0, k - 1)

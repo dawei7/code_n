@@ -1,34 +1,31 @@
-from bisect import bisect_right
+# Time:  O((n + q) * logn)
+# Space: O(n)
 
-
+# sort, binary search, greedy, prefix sum
 class Solution:
-    def minimumRelativeLosses(self, prices: List[int], queries: List[List[int]]) -> List[int]:
-        prices.sort()
-        length = len(prices)
-        prefix = [0] * (length + 1)
-
-        for index, price in enumerate(prices):
-            prefix[index + 1] = prefix[index] + price
-
-        answer = []
-
-        for threshold, count in queries:
-            affordable = bisect_right(prices, threshold)
-            low = max(0, count - (length - affordable))
-            high = min(count, affordable)
-
-            while low < high:
-                chosen_low = (low + high) // 2
-                paired_high = length - count + chosen_low
-                if prices[chosen_low] + prices[paired_high] < 2 * threshold:
-                    low = chosen_low + 1
+    def minimumRelativeLosses(self, prices, queries):
+        """
+        :type prices: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if check(mid):
+                    right = mid-1
                 else:
-                    high = chosen_low
+                    left = mid+1
+            return left
 
-            chosen_low = low
-            chosen_high = count - chosen_low
-            high_sum = prefix[length] - prefix[length - chosen_high]
-            loss = prefix[chosen_low] + 2 * threshold * chosen_high - high_sum
-            answer.append(loss)
-
-        return answer
+        prices.sort()
+        prefix = [0]*(len(prices)+1)
+        for i in range(len(prices)):
+            prefix[i+1] = prefix[i]+prices[i]
+        result = []
+        for k, m in queries:
+            cnt = binary_search(0, m-1, lambda x: k-(prices[-(m-x)]-k) <= prices[(x+1)-1]-0)
+            a = prefix[-1]-prefix[-1-(m-cnt)]-(m-cnt)*k
+            b = prefix[cnt]+(m-cnt)*k
+            result.append(b-a)
+        return result

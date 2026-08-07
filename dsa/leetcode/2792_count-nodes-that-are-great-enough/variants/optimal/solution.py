@@ -1,46 +1,28 @@
-from bisect import insort
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def countGreatEnoughNodes(self, root: Optional[TreeNode], k: int) -> int:
-        summaries = {}
-        answer = 0
-        stack = [(root, False)]
+        def push(pq, x):
+            heappush(pq, x)
+            if len(pq) > k:
+                heappop(pq)
 
-        while stack:
-            node, expanded = stack.pop()
+        def dfs(root):
+            if root is None:
+                return []
+            l, r = dfs(root.left), dfs(root.right)
+            for x in r:
+                push(l, x)
+            if len(l) == k and -l[0] < root.val:
+                nonlocal ans
+                ans += 1
+            push(l, -root.val)
+            return l
 
-            if node is None:
-                continue
-
-            if not expanded:
-                stack.append((node, True))
-                stack.append((node.right, False))
-                stack.append((node.left, False))
-                continue
-
-            left = summaries.pop(id(node.left), []) if node.left else []
-            right = summaries.pop(id(node.right), []) if node.right else []
-            merged = []
-            left_index = 0
-            right_index = 0
-
-            while len(merged) < k and (left_index < len(left) or right_index < len(right)):
-                if right_index == len(right) or (left_index < len(left) and left[left_index] <= right[right_index]):
-                    merged.append(left[left_index])
-                    left_index += 1
-                else:
-                    merged.append(right[right_index])
-                    right_index += 1
-
-            if len(merged) == k and node.val > merged[-1]:
-                answer += 1
-
-            insort(merged, node.val)
-            if len(merged) > k:
-                merged.pop()
-
-            summaries[id(node)] = merged
-
-        return answer
+        ans = 0
+        dfs(root)
+        return ans

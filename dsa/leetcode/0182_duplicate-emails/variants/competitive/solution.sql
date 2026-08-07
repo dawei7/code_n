@@ -1,4 +1,5 @@
-SELECT email AS Email
-FROM Person
-GROUP BY email
-HAVING COUNT(*) > 1;
+# Time:  O(n^2)
+# Space: O(n)
+
+SELECT Email FROM Person GROUP BY Email HAVING COUNT(*) > 1
+

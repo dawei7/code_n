@@ -1,11 +1,22 @@
-from typing import List
+# Time:  O(n * l)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
-        def signature(text: str) -> tuple[int, ...]:
-            identifiers = {}
-            return tuple(identifiers.setdefault(character, len(identifiers)) for character in text)
+    def findAndReplacePattern(self, words, pattern):
+        """
+        :type words: List[str]
+        :type pattern: str
+        :rtype: List[str]
+        """
+        def match(word):
+            lookup = {}
+            for x, y in itertools.izip(pattern, word):
+                if lookup.setdefault(x, y) != y:
+                    return False
+            return len(set(lookup.values())) == len(lookup.values())
 
-        target = signature(pattern)
-        return [word for word in words if signature(word) == target]
+        return filter(match, words)
+

@@ -1,23 +1,21 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def maxActiveSectionsAfterTrade(self, s: str) -> int:
-        active = 0
-        best_gain = 0
-        previous_zeros = 0
-        index = 0
-
-        while index < len(s):
-            if s[index] == "1":
-                active += 1
-                index += 1
-                continue
-
-            end = index
-            while end < len(s) and s[end] == "0":
-                end += 1
-            zeros = end - index
-            if previous_zeros:
-                best_gain = max(best_gain, previous_zeros + zeros)
-            previous_zeros = zeros
-            index = end
-
-        return active + best_gain
+    def maxActiveSectionsAfterTrade(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        curr = prev = mx = cnt1 = 0
+        for x in s:
+            if x == '0':
+                curr += 1
+            else:
+                if curr:
+                    prev = curr
+                    curr = 0
+                cnt1 += 1
+            mx = max(mx, prev+curr)
+        return cnt1 if mx in (prev, curr) else mx+cnt1

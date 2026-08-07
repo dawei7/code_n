@@ -1,12 +1,21 @@
+# Time:  O(sqrt(n))
+# Space: O(1)
+
 class Solution:
-    def minSteps(self, n: int) -> int:
-        steps = 0
-        factor = 2
-        while factor * factor <= n:
-            while n % factor == 0:
-                steps += factor
-                n //= factor
-            factor += 1
+    def minSteps(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        result = 0
+        p = 2
+        # the answer is the sum of prime factors
+        while p**2 <= n:
+            while n % p == 0:
+                result += p
+                n //= p
+            p += 1
         if n > 1:
-            steps += n
-        return steps
+            result += n
+        return result
+

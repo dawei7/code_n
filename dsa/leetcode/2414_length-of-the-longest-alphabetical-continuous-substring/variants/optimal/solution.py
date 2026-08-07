@@ -1,13 +1,10 @@
 class Solution:
     def longestContinuousSubstring(self, s: str) -> int:
-        longest = 1
-        current = 1
-
-        for index in range(1, len(s)):
-            if ord(s[index]) == ord(s[index - 1]) + 1:
-                current += 1
+        ans = cnt = 1
+        for x, y in pairwise(map(ord, s)):
+            if y - x == 1:
+                cnt += 1
+                ans = max(ans, cnt)
             else:
-                current = 1
-            longest = max(longest, current)
-
-        return longest
+                cnt = 1
+        return ans

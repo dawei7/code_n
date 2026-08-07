@@ -1,14 +1,15 @@
+# Write your MySQL query statement below
 SELECT
-    items.item_category AS Category,
-    SUM(CASE WHEN strftime('%w', orders.order_date) = '1' THEN orders.quantity ELSE 0 END) AS Monday,
-    SUM(CASE WHEN strftime('%w', orders.order_date) = '2' THEN orders.quantity ELSE 0 END) AS Tuesday,
-    SUM(CASE WHEN strftime('%w', orders.order_date) = '3' THEN orders.quantity ELSE 0 END) AS Wednesday,
-    SUM(CASE WHEN strftime('%w', orders.order_date) = '4' THEN orders.quantity ELSE 0 END) AS Thursday,
-    SUM(CASE WHEN strftime('%w', orders.order_date) = '5' THEN orders.quantity ELSE 0 END) AS Friday,
-    SUM(CASE WHEN strftime('%w', orders.order_date) = '6' THEN orders.quantity ELSE 0 END) AS Saturday,
-    SUM(CASE WHEN strftime('%w', orders.order_date) = '0' THEN orders.quantity ELSE 0 END) AS Sunday
-FROM Items AS items
-LEFT JOIN Orders AS orders
-    ON orders.item_id = items.item_id
-GROUP BY items.item_category
-ORDER BY items.item_category;
+    item_category AS category,
+    SUM(IF(DAYOFWEEK(order_date) = '2', quantity, 0)) AS Monday,
+    SUM(IF(DAYOFWEEK(order_date) = '3', quantity, 0)) AS Tuesday,
+    SUM(IF(DAYOFWEEK(order_date) = '4', quantity, 0)) AS Wednesday,
+    SUM(IF(DAYOFWEEK(order_date) = '5', quantity, 0)) AS Thursday,
+    SUM(IF(DAYOFWEEK(order_date) = '6', quantity, 0)) AS Friday,
+    SUM(IF(DAYOFWEEK(order_date) = '7', quantity, 0)) AS Saturday,
+    SUM(IF(DAYOFWEEK(order_date) = '1', quantity, 0)) AS Sunday
+FROM
+    Orders AS o
+    RIGHT JOIN Items AS i ON o.item_id = i.item_id
+GROUP BY category
+ORDER BY category;

@@ -1,32 +1,17 @@
-from typing import List
-
-
 class Solution:
     def maximumAmount(self, coins: List[List[int]]) -> int:
-        negative_infinity = -(10**18)
-        rows = len(coins)
-        columns = len(coins[0])
-        dp = [[negative_infinity] * 3 for _ in range(columns)]
+        @cache
+        def dfs(i: int, j: int, k: int) -> int:
+            if i >= m or j >= n:
+                return -inf
+            if i == m - 1 and j == n - 1:
+                return max(coins[i][j], 0) if k else coins[i][j]
+            ans = coins[i][j] + max(dfs(i + 1, j, k), dfs(i, j + 1, k))
+            if coins[i][j] < 0 and k:
+                ans = max(ans, dfs(i + 1, j, k - 1), dfs(i, j + 1, k - 1))
+            return ans
 
-        for row in range(rows):
-            for column in range(columns):
-                if row == 0 and column == 0:
-                    incoming = [0, negative_infinity, negative_infinity]
-                else:
-                    incoming = [
-                        max(
-                            dp[column][used],
-                            dp[column - 1][used] if column > 0 else negative_infinity,
-                        )
-                        for used in range(3)
-                    ]
-
-                value = coins[row][column]
-                current = [score + value for score in incoming]
-                if value < 0:
-                    for used in range(2):
-                        current[used + 1] = max(current[used + 1], incoming[used])
-
-                dp[column] = current
-
-        return max(dp[-1])
+        m, n = len(coins), len(coins[0])
+        ans = dfs(0, 0, 2)
+        dfs.cache_clear()
+        return ans

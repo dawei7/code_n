@@ -1,20 +1,17 @@
-WITH RankedPassengers AS (
-    SELECT
-        p.passenger_id,
-        f.capacity,
-        ROW_NUMBER() OVER (
-            PARTITION BY p.flight_id
-            ORDER BY p.booking_time
-        ) AS booking_rank
-    FROM Passengers AS p
-    INNER JOIN Flights AS f
-        ON f.flight_id = p.flight_id
-)
+# Write your MySQL query statement below
 SELECT
     passenger_id,
-    CASE
-        WHEN booking_rank <= capacity THEN 'Confirmed'
-        ELSE 'Waitlist'
-    END AS Status
-FROM RankedPassengers
+    IF(
+        (
+            RANK() OVER (
+                PARTITION BY flight_id
+                ORDER BY booking_time
+            )
+        ) <= capacity,
+        'Confirmed',
+        'Waitlist'
+    ) AS Status
+FROM
+    Passengers
+    JOIN Flights USING (flight_id)
 ORDER BY passenger_id;

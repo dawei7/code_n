@@ -1,17 +1,26 @@
-from typing import List
+# Time:  O(n * l), l is the average length of file content
+# Space: O(n * l)
+
+import collections
 
 
 class Solution:
-    def findDuplicate(self, paths: List[str]) -> List[List[str]]:
-        by_content = {}
+    def findDuplicate(self, paths):
+        """
+        :type paths: List[str]
+        :rtype: List[List[str]]
+        """
+        files = collections.defaultdict(list)
+        for path in paths:
+           s = path.split(" ")
+           for i in range(1,len(s)):
+               file_name = s[0] + "/" + s[i][0:s[i].find("(")]
+               file_content = s[i][s[i].find("(")+1:s[i].find(")")]
+               files[file_content].append(file_name)
 
-        for description in paths:
-            parts = description.split()
-            directory = parts[0]
-            for file_record in parts[1:]:
-                opening = file_record.index("(")
-                filename = file_record[:opening]
-                content = file_record[opening + 1 : -1]
-                by_content.setdefault(content, []).append(directory + "/" + filename)
+        result = []
+        for file_content, file_names in files.items():
+            if len(file_names)>1:
+                result.append(file_names)
+        return result
 
-        return [group for group in by_content.values() if len(group) > 1]

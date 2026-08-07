@@ -1,20 +1,14 @@
-WITH frequency_ranges AS (
-    SELECT
-        num,
-        frequency,
-        SUM(frequency) OVER (
-            ORDER BY num
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS cumulative,
-        SUM(frequency) OVER () AS total_frequency
-    FROM Numbers
-),
-middle_values AS (
-    SELECT num
-    FROM frequency_ranges
-    WHERE 2 * cumulative >= total_frequency
-      AND 2 * (cumulative - frequency) <= total_frequency
-)
-SELECT ROUND(AVG(num), 1) AS median
-FROM middle_values;
-
+# Write your MySQL query statement below
+WITH
+    t AS (
+        SELECT
+            *,
+            SUM(frequency) OVER (ORDER BY num ASC) AS rk1,
+            SUM(frequency) OVER (ORDER BY num DESC) AS rk2,
+            SUM(frequency) OVER () AS s
+        FROM Numbers
+    )
+SELECT
+    ROUND(AVG(num), 1) AS median
+FROM t
+WHERE rk1 >= s / 2 AND rk2 >= s / 2;

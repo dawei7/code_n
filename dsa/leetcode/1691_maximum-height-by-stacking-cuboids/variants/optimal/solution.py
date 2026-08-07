@@ -1,14 +1,13 @@
-from typing import List
-
-
 class Solution:
     def maxHeight(self, cuboids: List[List[int]]) -> int:
-        normalized = sorted(sorted(cuboid) for cuboid in cuboids)
-        best = [cuboid[2] for cuboid in normalized]
-
-        for bottom in range(len(normalized)):
-            for top in range(bottom):
-                if all(normalized[top][dimension] <= normalized[bottom][dimension] for dimension in range(3)):
-                    best[bottom] = max(best[bottom], best[top] + normalized[bottom][2])
-
-        return max(best)
+        for c in cuboids:
+            c.sort()
+        cuboids.sort()
+        n = len(cuboids)
+        f = [0] * n
+        for i in range(n):
+            for j in range(i):
+                if cuboids[j][1] <= cuboids[i][1] and cuboids[j][2] <= cuboids[i][2]:
+                    f[i] = max(f[i], f[j])
+            f[i] += cuboids[i][2]
+        return max(f)

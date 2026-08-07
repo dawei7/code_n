@@ -1,13 +1,17 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# sort, two pointers, hash table
 class Solution:
-    def distinctAverages(self, nums: List[int]) -> int:
-        ordered = sorted(nums)
-        pair_sums = set()
-        n = len(ordered)
-
-        for left in range(n // 2):
-            pair_sums.add(ordered[left] + ordered[n - 1 - left])
-
-        return len(pair_sums)
+    def distinctAverages(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        lookup = set()
+        nums.sort()
+        left, right = 0, len(nums)-1
+        while left < right:
+            lookup.add(nums[left]+nums[right])
+            left, right = left+1, right-1
+        return len(lookup)

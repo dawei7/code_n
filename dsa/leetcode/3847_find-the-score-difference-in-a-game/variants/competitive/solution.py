@@ -1,20 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# simulation
 class Solution:
-    def scoreDifference(self, nums: List[int]) -> int:
-        first_player_active = True
-        difference = 0
-
-        for index, points in enumerate(nums):
-            if points % 2 == 1:
-                first_player_active = not first_player_active
-            if (index + 1) % 6 == 0:
-                first_player_active = not first_player_active
-
-            if first_player_active:
-                difference += points
-            else:
-                difference -= points
-
-        return difference
+    def scoreDifference(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        sign = 1
+        for i in range(len(nums)):
+            if nums[i]%2:
+                sign *= -1
+            if i%6 == 5:
+                sign *= -1
+            result += sign*nums[i]
+        return result

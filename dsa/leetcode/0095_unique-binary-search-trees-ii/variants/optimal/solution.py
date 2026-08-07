@@ -1,19 +1,21 @@
-from functools import cache
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def generateTrees(self, n: int) -> List[Optional["TreeNode"]]:
-        @cache
-        def build(left: int, right: int):
-            if left > right:
-                return (None,)
+    def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
+        def dfs(i: int, j: int) -> List[Optional[TreeNode]]:
+            if i > j:
+                return [None]
+            ans = []
+            for v in range(i, j + 1):
+                left = dfs(i, v - 1)
+                right = dfs(v + 1, j)
+                for l in left:
+                    for r in right:
+                        ans.append(TreeNode(v, l, r))
+            return ans
 
-            trees = []
-            for root_value in range(left, right + 1):
-                for left_tree in build(left, root_value - 1):
-                    for right_tree in build(root_value + 1, right):
-                        trees.append(TreeNode(root_value, left_tree, right_tree))
-            return tuple(trees)
-
-        return list(build(1, n))
+        return dfs(1, n)

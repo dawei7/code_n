@@ -1,12 +1,30 @@
-WITH classified AS (
-    SELECT
-        tiv_2016,
-        COUNT(*) OVER (PARTITION BY tiv_2015) AS value_count,
-        COUNT(*) OVER (PARTITION BY lat, lon) AS location_count
-    FROM Insurance
-)
-SELECT ROUND(SUM(tiv_2016), 2) AS tiv_2016
-FROM classified
-WHERE value_count > 1
-  AND location_count = 1;
+# Time:  O(n^2)
+# Space: O(n)
+
+SELECT
+    SUM(insurance.TIV_2016) AS TIV_2016
+FROM
+    insurance
+WHERE
+    insurance.TIV_2015 IN
+    (
+      SELECT
+        TIV_2015
+      FROM
+        insurance
+      GROUP BY TIV_2015
+      HAVING COUNT(*) > 1
+      ORDER BY NULL
+    )
+    AND CONCAT(LAT, LON) IN
+    (
+      SELECT
+        CONCAT(LAT, LON)
+      FROM
+        insurance
+      GROUP BY LAT , LON
+      HAVING COUNT(*) = 1
+      ORDER BY NULL
+    )
+;
 

@@ -1,41 +1,27 @@
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
-    def countRestrictedPaths(
-        self,
-        n: int,
-        edges: List[List[int]],
-    ) -> int:
-        graph = [[] for _ in range(n)]
-        for first, second, weight in edges:
-            first -= 1
-            second -= 1
-            graph[first].append((second, weight))
-            graph[second].append((first, weight))
+    def countRestrictedPaths(self, n: int, edges: List[List[int]]) -> int:
+        @cache
+        def dfs(i):
+            if i == n:
+                return 1
+            ans = 0
+            for j, _ in g[i]:
+                if dist[i] > dist[j]:
+                    ans = (ans + dfs(j)) % mod
+            return ans
 
-        distances = [float("inf")] * n
-        distances[n - 1] = 0
-        heap = [(0, n - 1)]
-
-        while heap:
-            distance, node = heappop(heap)
-            if distance != distances[node]:
-                continue
-            for neighbor, weight in graph[node]:
-                candidate = distance + weight
-                if candidate < distances[neighbor]:
-                    distances[neighbor] = candidate
-                    heappush(heap, (candidate, neighbor))
-
-        modulo = 1_000_000_007
-        ways = [0] * n
-        ways[n - 1] = 1
-
-        for node in sorted(range(n), key=distances.__getitem__):
-            for neighbor, _ in graph[node]:
-                if distances[neighbor] > distances[node]:
-                    ways[neighbor] = (ways[neighbor] + ways[node]) % modulo
-
-        return ways[0]
+        g = defaultdict(list)
+        for u, v, w in edges:
+            g[u].append((v, w))
+            g[v].append((u, w))
+        q = [(0, n)]
+        dist = [inf] * (n + 1)
+        dist[n] = 0
+        mod = 10**9 + 7
+        while q:
+            _, u = heappop(q)
+            for v, w in g[u]:
+                if dist[v] > dist[u] + w:
+                    dist[v] = dist[u] + w
+                    heappush(q, (dist[v], v))
+        return dfs(1)

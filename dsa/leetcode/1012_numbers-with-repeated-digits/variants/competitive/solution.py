@@ -1,29 +1,41 @@
+# Time:  O(logn)
+# Space: O(logn)
+
 class Solution:
-    def numDupDigitsAtMostN(self, n: int) -> int:
-        def permutations(available: int, slots: int) -> int:
+    def numDupDigitsAtMostN(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        def P(m, n):
             result = 1
-            for offset in range(slots):
-                result *= available - offset
+            for _ in range(n):
+                result *= m
+                m -= 1
             return result
 
-        digits = [int(character) for character in str(n)]
-        length = len(digits)
-        unique = 0
+        digits = map(int, str(N+1))
+        result = 0
 
-        for shorter in range(1, length):
-            unique += 9 * permutations(9, shorter - 1)
-
-        used = set()
-        for index, digit in enumerate(digits):
-            first = 1 if index == 0 else 0
-            for candidate in range(first, digit):
-                if candidate not in used:
-                    unique += permutations(10 - index - 1, length - index - 1)
-
-            if digit in used:
+        # Given 321
+        #
+        # 1. count numbers without repeated digits:
+        # - X
+        # - XX
+        for i in range(1, len(digits)):
+            result += P(9, 1)*P(9, i-1)
+        
+        # 2. count numbers without repeated digits:
+        # - 1XX ~ 3XX
+        # - 30X ~ 32X
+        # - 320 ~ 321
+        prefix_set = set()
+        for i, x in enumerate(digits):
+            for y in range(1 if i == 0 else 0, x):
+                if y in prefix_set:
+                    continue
+                result += P(9-i, len(digits)-i-1)
+            if x in prefix_set:
                 break
-            used.add(digit)
-        else:
-            unique += 1
-
-        return n - unique
+            prefix_set.add(x)
+        return N-result

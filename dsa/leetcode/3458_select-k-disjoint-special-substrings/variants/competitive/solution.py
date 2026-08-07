@@ -1,45 +1,80 @@
+# Time:  O(n + 26^3)
+# Space: O(26)
+
+# hash table, sort, greedy
 class Solution:
-    def maxSubstringLength(self, s: str, k: int) -> bool:
-        if k == 0:
-            return True
+    def maxSubstringLength(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: bool
+        """
+        def erase_overlap_intervals(intervals):
+            intervals.sort(key=lambda interval: interval[1])
+            result, right = 0, float("-inf")
+            for l, r in intervals:
+                if l <= right:
+                    result += 1
+                else:
+                    right = r
+            return result
 
-        first = [len(s)] * 26
-        last = [-1] * 26
-        for index, character in enumerate(s):
-            code = ord(character) - ord("a")
-            first[code] = min(first[code], index)
-            last[code] = index
-
+        cnt = [0]*26
+        lookup1, lookup2 = [-1]*26, [-1]*26
+        for i, c in enumerate(s):
+            cnt[ord(c)-ord('a')] += 1
+            if lookup1[ord(c)-ord('a')] == -1:
+                lookup1[ord(c)-ord('a')] = i
+            lookup2[ord(c)-ord('a')] = i 
         intervals = []
-        for code in range(26):
-            if last[code] == -1:
+        for i in lookup1:
+            if i == -1:
                 continue
+            for j in lookup2:
+                if j == -1 or i > j:
+                    continue
+                total = sum(cnt[c] for c in range(len(cnt)) if i <= lookup1[c] <= lookup2[c] <= j)
+                if total == j-i+1 and total < len(s):
+                    intervals.append((i, j))
+        return len(intervals)-erase_overlap_intervals(intervals) >= k
 
-            left = first[code]
-            right = last[code]
-            index = left
-            valid = True
 
-            while index <= right:
-                nested = ord(s[index]) - ord("a")
-                if first[nested] < left:
-                    valid = False
-                    break
-                right = max(right, last[nested])
-                index += 1
+# Time:  O(26 * n + 26 * log(26))
+# Space: O(26)
+# hash table, sort, greedy
+class Solution2(object):
+    def maxSubstringLength(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: bool
+        """
+        def erase_overlap_intervals(intervals):
+            intervals.sort(key=lambda interval: interval[1])
+            result, right = 0, float("-inf")
+            for l, r in intervals:
+                if l <= right:
+                    result += 1
+                else:
+                    right = r
+            return result
 
-            if valid and not (left == 0 and right == len(s) - 1):
-                intervals.append((right, left))
-
-        intervals.sort()
-        selected = 0
-        previous_end = -1
-
-        for right, left in intervals:
-            if left > previous_end:
-                selected += 1
-                previous_end = right
-                if selected >= k:
-                    return True
-
-        return False
+        cnt = [0]*26
+        lookup1, lookup2 = [-1]*26, [-1]*26
+        for i, c in enumerate(s):
+            cnt[ord(c)-ord('a')] += 1
+            if lookup1[ord(c)-ord('a')] == -1:
+                lookup1[ord(c)-ord('a')] = i
+            lookup2[ord(c)-ord('a')] = i 
+        intervals = []
+        for i in range(len(s)):
+            if i != lookup1[ord(s[i])-ord('a')]:
+                continue
+            x = i+1
+            j = lookup2[ord(s[i])-ord('a')]
+            while x <= j and lookup1[ord(s[x])-ord('a')] >= i:
+                j = max(j, lookup2[ord(s[x])-ord('a')])
+                x += 1
+            if x == j+1 and (i != 0 or j != len(s)-1):
+                intervals.append((i, j))
+        return len(intervals)-erase_overlap_intervals(intervals) >= k

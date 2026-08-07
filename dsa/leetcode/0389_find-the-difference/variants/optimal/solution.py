@@ -1,10 +1,7 @@
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
-        unmatched = 0
-
-        for character in s:
-            unmatched ^= ord(character)
-        for character in t:
-            unmatched ^= ord(character)
-
-        return chr(unmatched)
+        cnt = Counter(s)
+        for c in t:
+            cnt[c] -= 1
+            if cnt[c] < 0:
+                return c

@@ -1,46 +1,70 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n + klogk)
+# Space: O(m * n)
+
+import random
 
 
+# bfs, quick select
 class Solution:
-    def highestRankedKItems(
-        self,
-        grid: List[List[int]],
-        pricing: List[int],
-        start: List[int],
-        k: int,
-    ) -> List[List[int]]:
-        rows = len(grid)
-        columns = len(grid[0])
-        low, high = pricing
-        start_row, start_column = start
-        queue = deque([(start_row, start_column, 0)])
-        visited = {(start_row, start_column)}
-        ranked = []
+    def highestRankedKItems(self, grid, pricing, start, k):
+        """
+        :type grid: List[List[int]]
+        :type pricing: List[int]
+        :type start: List[int]
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        def nth_element(nums, n, left=0, compare=lambda a, b: a < b):
+            def tri_partition(nums, left, right, target, compare):
+                mid = left
+                while mid <= right:
+                    if nums[mid] == target:
+                        mid += 1
+                    elif compare(nums[mid], target):
+                        nums[left], nums[mid] = nums[mid], nums[left]
+                        left += 1
+                        mid += 1
+                    else:
+                        nums[mid], nums[right] = nums[right], nums[mid]
+                        right -= 1
+                return left, right
 
-        while queue:
-            row, column, distance = queue.popleft()
-            price = grid[row][column]
-            if low <= price <= high:
-                ranked.append((distance, price, row, column))
+            right = len(nums)-1
+            while left <= right:
+                pivot_idx = random.randint(left, right)
+                pivot_left, pivot_right = tri_partition(nums, left, right, nums[pivot_idx], compare)
+                if pivot_left <= n <= pivot_right:
+                    return
+                elif pivot_left > n:
+                    right = pivot_left-1
+                else:  # pivot_right < n.
+                    left = pivot_right+1
 
-            for row_step, column_step in (
-                (1, 0),
-                (-1, 0),
-                (0, 1),
-                (0, -1),
-            ):
-                next_row = row + row_step
-                next_column = column + column_step
-                next_cell = (next_row, next_column)
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and grid[next_row][next_column] != 0
-                    and next_cell not in visited
-                ):
-                    visited.add(next_cell)
-                    queue.append((next_row, next_column, distance + 1))
-
-        ranked.sort()
-        return [[row, column] for _, _, row, column in ranked[:k]]
+        def get_val(x):
+            return (lookup[x[0]][x[1]], grid[x[0]][x[1]], x[0], x[1])
+    
+        result = []
+        q = [start]
+        lookup = [[-1]*len(grid[0]) for _ in range(len(grid))]
+        d = lookup[start[0]][start[1]] = 0
+        while q:
+            if len(result) >= k:
+                if len(result) > k:
+                    nth_element(result, k-1, compare=lambda a, b: get_val(a) < get_val(b))
+                    result = result[:k]
+                break
+            new_q = []
+            for r, c in q:
+                if pricing[0] <= grid[r][c] <= pricing[1]:
+                    result.append([r, c])
+                for dr, dc in directions:
+                    nr, nc = r+dr, c+dc
+                    if not (0 <= nr < len(grid) and 0 <= nc < len(grid[0]) and grid[nr][nc] and lookup[nr][nc] == -1):
+                        continue
+                    lookup[nr][nc] = d+1
+                    new_q.append((nr, nc))
+            q = new_q
+            d += 1
+        result.sort(key=lambda x: get_val(x))
+        return result

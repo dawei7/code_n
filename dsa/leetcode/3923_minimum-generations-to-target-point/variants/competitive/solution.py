@@ -1,40 +1,110 @@
-from typing import List
+# Time:  O(7^6)
+# Space: O(7^3)
 
-
+# bfs
 class Solution:
-    def minGenerations(self, points: List[List[int]], target: List[int]) -> int:
-        target_point = tuple(target)
-        known = {tuple(point) for point in points}
-        if target_point in known:
-            return 0
+    def minGenerations(self, points, target):
+        """
+        :type points: List[List[int]]
+        :type target: List[int]
+        :rtype: int
+        """
+        def encode(p):
+            return p[0]*7*7+p[1]*7+p[2]
+    
+        lookup = [False]*(7**3)
+        k = total = 0
+        for p in points:
+            if lookup[encode(p)]:
+                continue
+            if p == target:
+                return k
+            lookup[encode(p)] = True
+        i = 0
+        while i < len(points):
+            if i == total:
+                total = len(points)
+                k += 1
+            for j in range(i):
+                p = [(points[i][0]+points[j][0])//2, (points[i][1]+points[j][1])//2, (points[i][2]+points[j][2])//2]
+                if lookup[encode(p)]:
+                    continue
+                if p == target:
+                    return k
+                lookup[encode(p)] = True
+                points.append(p)
+            i += 1
+        return -1
 
-        frontier = set(known)
-        generation = 1
 
-        while frontier:
-            available = tuple(known)
-            produced = set()
-
-            for a in frontier:
-                for b in available:
-                    if a == b or (b in frontier and b < a):
+# Time:  O(7^6)
+# Space: O(7^3)
+# bfs
+class Solution2(object):
+    def minGenerations(self, points, target):
+        """
+        :type points: List[List[int]]
+        :type target: List[int]
+        :rtype: int
+        """
+        def encode(p):
+            return p[0]*7*7+p[1]*7+p[2]
+    
+        lookup = [False]*(7**3)
+        for p in points:
+            if lookup[encode(p)]:
+                continue
+            lookup[encode(p)] = True
+        i = k = 0
+        while i < len(points):
+            if lookup[encode(target)]:
+                return k
+            total = len(points)
+            while i < total:
+                for j in range(i):
+                    p = [(points[i][0]+points[j][0])//2, (points[i][1]+points[j][1])//2, (points[i][2]+points[j][2])//2]
+                    if lookup[encode(p)]:
                         continue
+                    lookup[encode(p)] = True
+                    points.append(p)
+                i += 1
+            k += 1
+        return -1
 
-                    midpoint = (
-                        (a[0] + b[0]) // 2,
-                        (a[1] + b[1]) // 2,
-                        (a[2] + b[2]) // 2,
-                    )
-                    if midpoint not in known:
-                        produced.add(midpoint)
 
-            if target_point in produced:
-                return generation
-            if not produced:
-                return -1
-
-            known.update(produced)
-            frontier = produced
-            generation += 1
-
+# Time:  O(7^6)
+# Space: O(7^3)
+# bfs
+class Solution3(object):
+    def minGenerations(self, points, target):
+        """
+        :type points: List[List[int]]
+        :type target: List[int]
+        :rtype: int
+        """
+        def encode(p):
+            return p[0]*7*7+p[1]*7+p[2]
+    
+        q = []
+        lookup = [False]*(7**3)
+        for p in points:
+            if lookup[encode(p)]:
+                continue
+            lookup[encode(p)] = True
+            q.append(p)
+        k = 0
+        while q:
+            if lookup[encode(target)]:
+                return k
+            new_q = []
+            for i in range(len(points)-len(q), len(points)):
+                for j in range(i):
+                    p = [(points[i][0]+points[j][0])//2, (points[i][1]+points[j][1])//2, (points[i][2]+points[j][2])//2]
+                    if lookup[encode(p)]:
+                        continue
+                    lookup[encode(p)] = True
+                    new_q.append(p)
+            points.extend(new_q)
+            q = new_q
+            k += 1
         return -1

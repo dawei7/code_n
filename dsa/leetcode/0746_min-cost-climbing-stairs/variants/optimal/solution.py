@@ -1,13 +1,9 @@
-from typing import List
-
-
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        two_before = 0
-        one_before = 0
+        @cache
+        def dfs(i: int) -> int:
+            if i >= len(cost):
+                return 0
+            return cost[i] + min(dfs(i + 1), dfs(i + 2))
 
-        for step_cost in cost:
-            current = step_cost + min(two_before, one_before)
-            two_before, one_before = one_before, current
-
-        return min(two_before, one_before)
+        return min(dfs(0), dfs(1))

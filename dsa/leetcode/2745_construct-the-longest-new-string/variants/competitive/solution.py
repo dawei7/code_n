@@ -1,6 +1,13 @@
+# Time:  O(1)
+# Space: O(1)
+
+# constructive algorithms, math
 class Solution:
-    def longestString(self, x: int, y: int, z: int) -> int:
-        blocks = 2 * min(x, y) + z
-        if x != y:
-            blocks += 1
-        return 2 * blocks
+    def longestString(self, x, y, z):
+        """
+        :type x: int
+        :type y: int
+        :type z: int
+        :rtype: int
+        """
+        return ((min(x, y)*2+int(x != y))+z)*2

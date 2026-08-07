@@ -1,29 +1,30 @@
-from typing import List
+# Time:  O(nlogn + nlogr) = O(nlogr)
+# Space: O(1)
 
-
+# binary search, greedy
 class Solution:
-    def maxPossibleScore(self, start: List[int], d: int) -> int:
-        start.sort()
-
-        def feasible(distance: int) -> bool:
-            previous = start[0]
-            for interval_start in start[1:]:
-                chosen = max(interval_start, previous + distance)
-                if chosen > interval_start + d:
+    def maxPossibleScore(self, start, d):
+        """
+        :type start: List[int]
+        :type d: int
+        :rtype: int
+        """
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if not check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
+    
+        def check(x):
+            curr = float("-inf")
+            for i in start:
+                curr = max(curr+x, i)
+                if curr > i+d:
                     return False
-                previous = chosen
             return True
 
-        low = 0
-        high = (start[-1] + d - start[0]) // (len(start) - 1)
-        answer = 0
-
-        while low <= high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                answer = middle
-                low = middle + 1
-            else:
-                high = middle - 1
-
-        return answer
+        start.sort()
+        return binary_search_right(1, start[-1]+d-start[0], check)

@@ -1,9 +1,14 @@
-SELECT b.book_id, b.title, b.author, b.genre, b.publication_year,
-       COUNT(*) AS current_borrowers
-FROM library_books AS b
-JOIN borrowing_records AS r
-  ON r.book_id = b.book_id
- AND r.return_date IS NULL
-GROUP BY b.book_id, b.title, b.author, b.genre, b.publication_year, b.total_copies
-HAVING COUNT(*) = b.total_copies
-ORDER BY current_borrowers DESC, b.title ASC;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT l.book_id, 
+       l.title, 
+       l.author, 
+       l.genre, 
+       l.publication_year, 
+       l.total_copies AS current_borrowers
+FROM borrowing_records b LEFT JOIN library_books l ON b.book_id = l.book_id
+WHERE b.return_date IS NULL
+GROUP BY 1, 2, 3, 4, 5, 6 
+HAVING COUNT(*) = l.total_copies
+ORDER BY 6 DESC, 2;

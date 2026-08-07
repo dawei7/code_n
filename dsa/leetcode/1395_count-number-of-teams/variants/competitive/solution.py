@@ -1,24 +1,19 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(1)
 
 class Solution:
-    def numTeams(self, rating: List[int]) -> int:
-        teams = 0
-
-        for middle, middle_rating in enumerate(rating):
-            left_smaller = left_greater = 0
-            right_smaller = right_greater = 0
-            for candidate in rating[:middle]:
-                if candidate < middle_rating:
-                    left_smaller += 1
-                else:
-                    left_greater += 1
-            for candidate in rating[middle + 1 :]:
-                if candidate < middle_rating:
-                    right_smaller += 1
-                else:
-                    right_greater += 1
-            teams += left_smaller * right_greater
-            teams += left_greater * right_smaller
-
-        return teams
+    def numTeams(self, rating):
+        """
+        :type rating: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in range(1, len(rating)-1):
+            less, greater = [0]*2, [0]*2
+            for j in range(len(rating)):
+                if rating[i] > rating[j]:
+                    less[i < j] += 1
+                if rating[i] < rating[j]:
+                    greater[i < j] += 1
+            result += less[0]*greater[1] + greater[0]*less[1]
+        return result

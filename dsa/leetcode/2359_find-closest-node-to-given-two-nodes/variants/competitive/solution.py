@@ -1,28 +1,26 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# graph, hash table
 class Solution:
-    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
-        def distances(start: int) -> List[int]:
-            result = [-1] * len(edges)
-            distance = 0
-            node = start
-            while node != -1 and result[node] == -1:
-                result[node] = distance
-                distance += 1
+    def closestMeetingNode(self, edges, node1, node2):
+        """
+        :type edges: List[int]
+        :type node1: int
+        :type node2: int
+        :rtype: int
+        """
+        def dfs(node):
+            lookup = {}
+            i = 0
+            while node != -1:
+                if node in lookup:
+                    break
+                lookup[node] = i
+                i += 1
                 node = edges[node]
-            return result
-
-        first = distances(node1)
-        second = distances(node2)
-        answer = -1
-        best_distance = len(edges) + 1
-
-        for node in range(len(edges)):
-            if first[node] != -1 and second[node] != -1:
-                candidate = max(first[node], second[node])
-                if candidate < best_distance:
-                    best_distance = candidate
-                    answer = node
-
-        return answer
+            return lookup
+        
+        lookup1, lookup2 = dfs(node1), dfs(node2)
+        intersect = set(lookup1.keys())&set(lookup2.keys())
+        return min(intersect, key=lambda x: (max(lookup1[x], lookup2[x]), x)) if intersect else -1

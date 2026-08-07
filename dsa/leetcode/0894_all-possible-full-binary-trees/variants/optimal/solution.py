@@ -1,28 +1,21 @@
-from functools import cache
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def allPossibleFBT(self, n: int) -> List[Optional["TreeNode"]]:
+    def allPossibleFBT(self, n: int) -> List[Optional[TreeNode]]:
         @cache
-        def build_shapes(nodes: int) -> tuple[tuple, ...]:
-            if nodes == 1:
-                return ((None, None),)
-            if nodes % 2 == 0:
-                return ()
+        def dfs(n: int) -> List[Optional[TreeNode]]:
+            if n == 1:
+                return [TreeNode()]
+            ans = []
+            for i in range(n - 1):
+                j = n - 1 - i
+                for left in dfs(i):
+                    for right in dfs(j):
+                        ans.append(TreeNode(0, left, right))
+            return ans
 
-            shapes = []
-            for left_nodes in range(1, nodes, 2):
-                right_nodes = nodes - 1 - left_nodes
-                for left in build_shapes(left_nodes):
-                    for right in build_shapes(right_nodes):
-                        shapes.append((left, right))
-            return tuple(shapes)
-
-        def materialize(shape: tuple) -> "TreeNode":
-            left_shape, right_shape = shape
-            left = materialize(left_shape) if left_shape is not None else None
-            right = materialize(right_shape) if right_shape is not None else None
-            return TreeNode(0, left, right)
-
-        return [materialize(shape) for shape in build_shapes(n)]
+        return dfs(n)

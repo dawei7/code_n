@@ -1,8 +1,12 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def getLastMoment(self, n: int, left: List[int], right: List[int]) -> int:
-        last_left = max(left, default=0)
-        last_right = n - min(right, default=n)
-        return max(last_left, last_right)
+    def getLastMoment(self, n, left, right):
+        """
+        :type n: int
+        :type left: List[int]
+        :type right: List[int]
+        :rtype: int
+        """
+        return max(max(left or [0]), n-min(right or [n]))

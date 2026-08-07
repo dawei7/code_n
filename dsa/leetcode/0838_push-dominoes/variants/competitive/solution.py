@@ -1,28 +1,35 @@
+# Time:  O(n)
+# Space: O(n)
+
+
 class Solution:
-    def pushDominoes(self, dominoes: str) -> str:
-        bounded = "L" + dominoes + "R"
-        pieces = []
-        left = 0
+    def pushDominoes(self, dominoes):
+        """
+        :type dominoes: str
+        :rtype: str
+        """
+        force = [0]*len(dominoes)
 
-        for right in range(1, len(bounded)):
-            if bounded[right] == ".":
-                continue
-
-            if left > 0:
-                pieces.append(bounded[left])
-
-            gap = right - left - 1
-            if bounded[left] == bounded[right]:
-                pieces.append(bounded[left] * gap)
-            elif bounded[left] == "L":
-                pieces.append("." * gap)
+        f = 0
+        for i in range(len(dominoes)):
+            if dominoes[i] == 'R':
+                f = len(dominoes)
+            elif dominoes[i] == 'L':
+                f = 0
             else:
-                half = gap // 2
-                pieces.append("R" * half)
-                if gap % 2 == 1:
-                    pieces.append(".")
-                pieces.append("L" * half)
+                f = max(f-1, 0)
+            force[i] += f
 
-            left = right
+        f = 0
+        for i in reversed(range(len(dominoes))):
+            if dominoes[i] == 'L':
+                f = len(dominoes)
+            elif dominoes[i] == 'R':
+                f = 0
+            else:
+                f = max(f-1, 0)
+            force[i] -= f
 
-        return "".join(pieces)
+        return "".join('.' if f == 0 else 'R' if f > 0 else 'L'
+                       for f in force)
+

@@ -1,14 +1,17 @@
-from typing import List
+# Time:  O(k^2)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def reverseSubmatrix(self, grid: List[List[int]], x: int, y: int, k: int) -> List[List[int]]:
-        for offset in range(k // 2):
-            top = x + offset
-            bottom = x + k - 1 - offset
-            for column in range(y, y + k):
-                grid[top][column], grid[bottom][column] = (
-                    grid[bottom][column],
-                    grid[top][column],
-                )
+    def reverseSubmatrix(self, grid, x, y, k):
+        """
+        :type grid: List[List[int]]
+        :type x: int
+        :type y: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        for i in range(k//2):
+            for j in range(k):
+                grid[x+i][y+j], grid[x+(k-1-i)][y+j] = grid[x+(k-1-i)][y+j], grid[x+i][y+j]
         return grid

@@ -1,25 +1,23 @@
 class TicTacToe:
+
     def __init__(self, n: int):
         self.n = n
-        self.rows = [0] * n
-        self.columns = [0] * n
-        self.diagonal = 0
-        self.anti_diagonal = 0
+        self.cnt = [defaultdict(int), defaultdict(int)]
 
     def move(self, row: int, col: int, player: int) -> int:
-        change = 1 if player == 1 else -1
-        self.rows[row] += change
-        self.columns[col] += change
+        cur = self.cnt[player - 1]
+        n = self.n
+        cur[row] += 1
+        cur[n + col] += 1
         if row == col:
-            self.diagonal += change
-        if row + col == self.n - 1:
-            self.anti_diagonal += change
-
-        if (
-            abs(self.rows[row]) == self.n
-            or abs(self.columns[col]) == self.n
-            or abs(self.diagonal) == self.n
-            or abs(self.anti_diagonal) == self.n
-        ):
+            cur[n << 1] += 1
+        if row + col == n - 1:
+            cur[n << 1 | 1] += 1
+        if any(cur[i] == n for i in (row, n + col, n << 1, n << 1 | 1)):
             return player
         return 0
+
+
+# Your TicTacToe object will be instantiated and called as such:
+# obj = TicTacToe(n)
+# param_1 = obj.move(row,col,player)

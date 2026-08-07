@@ -1,36 +1,101 @@
+# Time:  O(n^2 + d), d is the duplicated of result substrings size
+# Space: O(r), r is the size of result substrings set
+
 class Solution:
-    def distinctEchoSubstrings(self, text: str) -> int:
-        moduli = (1_000_000_007, 1_000_000_009)
-        base = 911_382_323
-        n = len(text)
-        powers = [[1] * (n + 1) for _ in moduli]
-        prefixes = [[0] * (n + 1) for _ in moduli]
+    def distinctEchoSubstrings(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        def KMP(text, l, result):
+            prefix = [-1]*(len(text)-l)
+            j = -1
+            for i in range(1, len(prefix)):
+                while j > -1 and text[l+j+1] != text[l+i]:
+                    j = prefix[j]
+                if text[l+j+1] == text[l+i]:
+                    j += 1
+                prefix[i] = j
+                if (j+1) and (i+1) % ((i+1) - (j+1)) == 0 and \
+                   (i+1) // ((i+1) - (j+1)) % 2 == 0:
+                    result.add(text[l:l+i+1])
+            return len(prefix)-(prefix[-1]+1) \
+                   if prefix[-1]+1 and len(prefix) % (len(prefix)-(prefix[-1]+1)) == 0 \
+                   else float("inf")
 
-        for index, character in enumerate(text):
-            value = ord(character) - ord("a") + 1
-            for table, modulus in enumerate(moduli):
-                powers[table][index + 1] = powers[table][index] * base % modulus
-                prefixes[table][index + 1] = (prefixes[table][index] * base + value) % modulus
+        result = set()
+        i, l = 0, len(text)-1
+        while i < l:  # aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcdefabcdefabcdef
+            l = min(l, i + KMP(text, i, result))
+            i += 1
+        return len(result)
 
-        def range_hash(table: int, left: int, right: int) -> int:
-            modulus = moduli[table]
-            return (prefixes[table][right] - prefixes[table][left] * powers[table][right - left]) % modulus
 
-        echoes = set()
-        for half_length in range(1, n // 2 + 1):
-            full_length = 2 * half_length
-            for start in range(n - full_length + 1):
-                middle = start + half_length
-                end = start + full_length
-                first = (
-                    range_hash(0, start, middle),
-                    range_hash(1, start, middle),
-                )
-                second = (
-                    range_hash(0, middle, end),
-                    range_hash(1, middle, end),
-                )
-                if first == second:
-                    echoes.add((half_length, *first))
+# Time:  O(n^2 + d), d is the duplicated of result substrings size
+# Space: O(r), r is the size of result substrings set
+class Solution2(object):
+    def distinctEchoSubstrings(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        result = set()
+        for l in range(1, len(text)//2+1):
+            count = sum(text[i] == text[i+l] for i in range(l))
+            for i in range(len(text)-2*l):
+                if count == l:
+                    result.add(text[i:i+l])
+                count += (text[i+l] == text[i+l+l]) - (text[i] == text[i+l])
+            if count == l:
+                result.add(text[len(text)-2*l:len(text)-2*l+l])
+        return len(result)
 
-        return len(echoes)
+
+# Time:  O(n^2 + d), d is the duplicated of result substrings size
+# Space: O(r), r is the size of result substrings set
+class Solution3(object):
+    def distinctEchoSubstrings(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        D = 27  # a-z and ''
+        result = set()
+        for i in range(len(text)-1):
+            left, right, pow_D = 0, 0, 1
+            for l in range(1, min(i+2, len(text)-i)):
+                left = (D*left + (ord(text[i-l+1])-ord('a')+1)) % MOD
+                right = (pow_D*(ord(text[i+l])-ord('a')+1) + right) % MOD
+                if left == right:  # assumed no collision
+                    result.add(left)
+                pow_D = (pow_D*D) % MOD 
+        return len(result)
+
+
+# Time:  O(n^3 + d), d is the duplicated of result substrings size
+# Space: O(r), r is the size of result substrings set
+class Solution_TLE(object):
+    def distinctEchoSubstrings(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        def compare(text, l, s1, s2):
+            for i in range(l):
+                if text[s1+i] != text[s2+i]:
+                    return False
+            return True
+
+        MOD = 10**9+7
+        D = 27  # a-z and ''
+        result = set()
+        for i in range(len(text)):
+            left, right, pow_D = 0, 0, 1
+            for l in range(1, min(i+2, len(text)-i)):
+                left = (D*left + (ord(text[i-l+1])-ord('a')+1)) % MOD
+                right = (pow_D*(ord(text[i+l])-ord('a')+1) + right) % MOD
+                if left == right and compare(text, l, i-l+1, i+1):
+                    result.add(text[i+1:i+1+l])
+                pow_D = (pow_D*D) % MOD 
+        return len(result)

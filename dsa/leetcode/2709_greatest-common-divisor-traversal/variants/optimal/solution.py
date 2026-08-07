@@ -1,50 +1,47 @@
+class UnionFind:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.size = [1] * n
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa == pb:
+            return False
+        if self.size[pa] > self.size[pb]:
+            self.p[pb] = pa
+            self.size[pa] += self.size[pb]
+        else:
+            self.p[pa] = pb
+            self.size[pb] += self.size[pa]
+        return True
+
+
+mx = 100010
+p = defaultdict(list)
+for x in range(1, mx + 1):
+    v = x
+    i = 2
+    while i <= v // i:
+        if v % i == 0:
+            p[x].append(i)
+            while v % i == 0:
+                v //= i
+        i += 1
+    if v > 1:
+        p[x].append(v)
+
+
 class Solution:
     def canTraverseAllPairs(self, nums: List[int]) -> bool:
-        if len(nums) == 1:
-            return True
-        if 1 in nums:
-            return False
-
-        parent = list(range(len(nums)))
-        size = [1] * len(nums)
-
-        def find(node):
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        def union(first, second):
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
-                return
-            if size[first_root] < size[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            size[first_root] += size[second_root]
-
-        maximum = max(nums)
-        smallest_factor = list(range(maximum + 1))
-        factor = 2
-        while factor * factor <= maximum:
-            if smallest_factor[factor] == factor:
-                for multiple in range(factor * factor, maximum + 1, factor):
-                    if smallest_factor[multiple] == multiple:
-                        smallest_factor[multiple] = factor
-            factor += 1
-
-        factor_owner = {}
-        for index, value in enumerate(nums):
-            remaining = value
-            while remaining > 1:
-                factor = smallest_factor[remaining]
-                if factor in factor_owner:
-                    union(index, factor_owner[factor])
-                else:
-                    factor_owner[factor] = index
-                while remaining % factor == 0:
-                    remaining //= factor
-
-        root = find(0)
-        return all(find(index) == root for index in range(1, len(nums)))
+        n = len(nums)
+        m = max(nums)
+        uf = UnionFind(n + m + 1)
+        for i, x in enumerate(nums):
+            for j in p[x]:
+                uf.union(i, j + n)
+        return len(set(uf.find(i) for i in range(n))) == 1

@@ -1,16 +1,12 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def maxSum(self, nums: List[int]) -> int:
-        seen_positive = [False] * 101
-        positive_sum = 0
-        maximum = nums[0]
-
-        for value in nums:
-            maximum = max(maximum, value)
-            if value > 0 and not seen_positive[value]:
-                seen_positive[value] = True
-                positive_sum += value
-
-        return positive_sum if positive_sum > 0 else maximum
+    def maxSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        mx = max(nums)
+        return mx if mx < 0 else sum(x for x in set(nums) if x >= 0)

@@ -1,9 +1,12 @@
-from typing import List
-
-
 class Solution:
     def numberOfAlternatingGroups(self, colors: List[int]) -> int:
-        size = len(colors)
-        return sum(
-            colors[index] != colors[index - 1] and colors[index] != colors[(index + 1) % size] for index in range(size)
-        )
+        k = 3
+        n = len(colors)
+        ans = cnt = 0
+        for i in range(n << 1):
+            if i and colors[i % n] == colors[(i - 1) % n]:
+                cnt = 1
+            else:
+                cnt += 1
+            ans += i >= n and cnt >= k
+        return ans

@@ -1,12 +1,10 @@
 class Solution:
     def magicalString(self, n: int) -> int:
-        if n <= 0:
-            return 0
-        magical = [1, 2, 2]
-        read = 2
-        next_value = 1
-        while len(magical) < n:
-            magical.extend([next_value] * magical[read])
-            next_value = 3 - next_value
-            read += 1
-        return magical[:n].count(1)
+        s = [1, 2, 2]
+        i = 2
+        while len(s) < n:
+            pre = s[-1]
+            cur = 3 - pre
+            s += [cur] * s[i]
+            i += 1
+        return s[:n].count(1)

@@ -1,18 +1,53 @@
-from typing import List
+# Time:  O(n^1.5) on average
+#        O(n^2) on worst
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def minAreaRect(self, points: List[List[int]]) -> int:
-        point_set = {tuple(point) for point in points}
-        best = None
-        for first in range(len(points)):
-            x1, y1 = points[first]
-            for second in range(first + 1, len(points)):
-                x2, y2 = points[second]
-                if x1 == x2 or y1 == y2:
-                    continue
-                if (x1, y2) in point_set and (x2, y1) in point_set:
-                    area = abs(x1 - x2) * abs(y1 - y2)
-                    if best is None or area < best:
-                        best = area
-        return 0 if best is None else best
+    def minAreaRect(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        nx = len(set(x for x, y in points))
+        ny = len(set(y for x, y in points))
+
+        p = collections.defaultdict(list)
+        if nx > ny:
+            for x, y in points:
+                p[x].append(y)
+        else:
+            for x, y in points:
+                p[y].append(x)
+
+        lookup = {}
+        result = float("inf")
+        for x in sorted(p):
+            p[x].sort()
+            for j in range(len(p[x])):
+                for i in range(j):
+                    y1, y2 = p[x][i], p[x][j]
+                    if (y1, y2) in lookup:
+                        result = min(result, (x-lookup[y1, y2]) * (y2-y1))
+                    lookup[y1, y2] = x
+        return result if result != float("inf") else 0
+ 
+
+# Time:  O(n^2)
+# Space: O(n)
+class Solution2(object):
+    def minAreaRect(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        lookup = set()
+        result = float("inf")
+        for x1, y1 in points:
+            for x2, y2 in lookup:
+                if (x1, y2) in lookup and (x2, y1) in lookup:
+                    result = min(result, abs(x1-x2) * abs(y1-y2))
+            lookup.add((x1, y1))
+        return result if result != float("inf") else 0

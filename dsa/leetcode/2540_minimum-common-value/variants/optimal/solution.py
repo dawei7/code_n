@@ -1,17 +1,12 @@
-from typing import List
-
-
 class Solution:
     def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
-        first = 0
-        second = 0
-
-        while first < len(nums1) and second < len(nums2):
-            if nums1[first] == nums2[second]:
-                return nums1[first]
-            if nums1[first] < nums2[second]:
-                first += 1
+        i = j = 0
+        m, n = len(nums1), len(nums2)
+        while i < m and j < n:
+            if nums1[i] == nums2[j]:
+                return nums1[i]
+            if nums1[i] < nums2[j]:
+                i += 1
             else:
-                second += 1
-
+                j += 1
         return -1

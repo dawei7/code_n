@@ -1,29 +1,47 @@
+# Time:  O(n^2)
+# Space: O(n)
+
+# dp
 class Solution:
-    def minimumBeautifulSubstrings(self, s: str) -> int:
-        n = len(s)
-        powers = set()
-        value = 1
-
-        while value < 1 << n:
-            powers.add(value)
-            value *= 5
-
-        unreachable = n + 1
-        minimum_parts = [unreachable] * (n + 1)
-        minimum_parts[0] = 0
-
-        for start in range(n):
-            if minimum_parts[start] == unreachable or s[start] == "0":
+    def minimumBeautifulSubstrings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        max_pow_5 = 1
+        while max_pow_5*5 <= (1<<len(s))-1:
+            max_pow_5 *= 5
+        dp = [float("inf")]*(len(s)+1)
+        dp[0] = 0
+        for i in range(len(s)):
+            if s[i] == '0':
                 continue
+            curr = 0
+            for j in range(i, len(s)):
+                curr = curr*2+int(s[j])
+                if max_pow_5%curr == 0:
+                    dp[j+1] = min(dp[j+1], dp[(i-1)+1]+1)
+        return dp[-1] if dp[-1] != float("inf") else -1
 
-            value = 0
-            for end in range(start, n):
-                value = value * 2 + int(s[end])
 
-                if value in powers:
-                    minimum_parts[end + 1] = min(
-                        minimum_parts[end + 1],
-                        minimum_parts[start] + 1,
-                    )
-
-        return minimum_parts[n] if minimum_parts[n] != unreachable else -1
+# Time:  O(n^2)
+# Space: O(n)
+# dp
+class Solution2(object):
+    def minimumBeautifulSubstrings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        max_pow_5 = 1
+        while max_pow_5*5 <= (1<<len(s))-1:
+            max_pow_5 *= 5
+        dp = [float("inf")]*(len(s)+1)
+        dp[0] = 0
+        for i in range(len(s)):
+            curr = 0
+            for j in reversed(range(i+1)):
+                curr += int(s[j])<<(i-j)
+                if s[j] == '1' and max_pow_5%curr == 0:
+                    dp[i+1] = min(dp[i+1], dp[(j-1)+1]+1)
+        return dp[-1] if dp[-1] != float("inf") else -1

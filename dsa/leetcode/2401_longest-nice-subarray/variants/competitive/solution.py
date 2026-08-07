@@ -1,17 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# sliding window, two pointers
 class Solution:
-    def longestNiceSubarray(self, nums: List[int]) -> int:
-        used_bits = 0
-        left = 0
-        best = 0
-
-        for right, value in enumerate(nums):
-            while used_bits & value:
-                used_bits ^= nums[left]
+    def longestNiceSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = left = curr = 0
+        for right in range(len(nums)):
+            while curr&nums[right]:
+                curr ^= nums[left]
                 left += 1
-            used_bits |= value
-            best = max(best, right - left + 1)
-
-        return best
+            curr |= nums[right]
+            result = max(result, right-left+1)
+        return result

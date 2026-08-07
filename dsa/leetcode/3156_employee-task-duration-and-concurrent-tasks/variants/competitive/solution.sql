@@ -1,44 +1,31 @@
-WITH raw_events AS (
-    SELECT employee_id, start_time AS event_time, 1 AS delta
+# Time:  O(nlogn)
+# Space: O(n)
+
+# line sweep
+WITH events_cte AS (
+    SELECT employee_id,
+           start_time AS event_time,
+           +1 as event_type
     FROM Tasks
     UNION ALL
-    SELECT employee_id, end_time AS event_time, -1 AS delta
+    SELECT employee_id,
+           end_time AS event_time,
+           -1 as event_type
     FROM Tasks
-),
-events AS (
-    SELECT employee_id, event_time, SUM(delta) AS delta
-    FROM raw_events
-    GROUP BY employee_id, event_time
-),
-timeline AS (
-    SELECT
-        employee_id,
-        event_time,
-        SUM(delta) OVER (
-            PARTITION BY employee_id
-            ORDER BY event_time
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS active_tasks,
-        LEAD(event_time) OVER (
-            PARTITION BY employee_id
-            ORDER BY event_time
-        ) AS next_time
-    FROM events
+    ORDER BY 1, 2, 3
+), line_sweep_cte AS (
+    SELECT employee_id,
+           CASE WHEN @event_count = 0 THEN @start_time := event_time
+                ELSE @start_time END AS start_time,
+           @event_count := @event_count + event_type AS event_count,
+           CASE WHEN @event_count = 0 THEN event_time
+                ELSE @start_time END AS end_time
+    FROM events_cte, (SELECT @event_count := 0, @start_time := 0) init
 )
-SELECT
-    employee_id,
-    CAST(
-        SUM(
-            CASE
-                WHEN active_tasks > 0
-                THEN strftime('%s', next_time) - strftime('%s', event_time)
-                ELSE 0
-            END
-        ) / 3600
-        AS INTEGER
-    ) AS total_task_hours,
-    MAX(active_tasks) AS max_concurrent_tasks
-FROM timeline
-GROUP BY employee_id
-ORDER BY employee_id;
 
+SELECT employee_id,
+       FLOOR(SUM(TIMESTAMPDIFF(SECOND, start_time, end_time)) / 3600) AS total_task_hours,
+       MAX(event_count) AS max_concurrent_tasks
+FROM line_sweep_cte
+GROUP BY 1
+ORDER BY 1;

@@ -1,13 +1,12 @@
-from heapq import nlargest, nsmallest
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, greedy
 class Solution:
-    def minimizeSum(self, nums: List[int]) -> int:
-        smallest = nsmallest(3, nums)
-        largest = nlargest(3, nums)
-
-        return min(
-            largest[2] - smallest[0],
-            largest[1] - smallest[1],
-            largest[0] - smallest[2],
-        )
+    def minimizeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        return min(nums[-3+i]-nums[i] for i in range(3))

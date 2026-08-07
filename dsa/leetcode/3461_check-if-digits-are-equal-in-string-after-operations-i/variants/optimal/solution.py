@@ -1,12 +1,8 @@
 class Solution:
     def hasSameDigits(self, s: str) -> bool:
-        steps = len(s) - 2
-        coefficient = 1
-        difference = 0
-
-        for index in range(steps + 1):
-            difference = (difference + coefficient * (ord(s[index]) - ord(s[index + 1]))) % 10
-            if index < steps:
-                coefficient = coefficient * (steps - index) // (index + 1)
-
-        return difference == 0
+        t = list(map(int, s))
+        n = len(t)
+        for k in range(n - 1, 1, -1):
+            for i in range(k):
+                t[i] = (t[i] + t[i + 1]) % 10
+        return t[0] == t[1]

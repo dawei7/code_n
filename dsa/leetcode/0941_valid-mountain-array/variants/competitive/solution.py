@@ -1,16 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def validMountainArray(self, arr: List[int]) -> bool:
-        n = len(arr)
-        if n < 3:
-            return False
-        peak = 0
-        while peak + 1 < n and arr[peak] < arr[peak + 1]:
-            peak += 1
-        if peak == 0 or peak == n - 1:
-            return False
-        while peak + 1 < n and arr[peak] > arr[peak + 1]:
-            peak += 1
-        return peak == n - 1
+    def validMountainArray(self, A):
+        """
+        :type A: List[int]
+        :rtype: bool
+        """
+        i = 0
+        while i+1 < len(A) and A[i] < A[i+1]:
+            i += 1
+        j = len(A)-1
+        while j-1 >= 0 and A[j-1] > A[j]:
+            j -= 1
+        return 0 < i == j < len(A)-1

@@ -1,8 +1,14 @@
+# Time:  O(logn) = O(1)
+# Space: O(1)
+
 class Solution:
-    def isUgly(self, n: int) -> bool:
-        if n <= 0:
+    # @param {integer} num
+    # @return {boolean}
+    def isUgly(self, num):
+        if num == 0:
             return False
-        for factor in (2, 3, 5):
-            while n % factor == 0:
-                n //= factor
-        return n == 1
+        for i in [2, 3, 5]:
+            while num % i == 0:
+                num /= i
+        return num == 1
+

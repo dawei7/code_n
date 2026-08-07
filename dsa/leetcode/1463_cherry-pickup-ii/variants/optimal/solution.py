@@ -1,30 +1,14 @@
 class Solution:
     def cherryPickup(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        unreachable = -1
-
-        previous = [[unreachable] * cols for _ in range(cols)]
-        previous[0][cols - 1] = grid[0][0] + grid[0][cols - 1]
-
-        for row in range(1, rows):
-            current = [[unreachable] * cols for _ in range(cols)]
-
-            for col1 in range(cols):
-                for col2 in range(cols):
-                    score = previous[col1][col2]
-                    if score == unreachable:
-                        continue
-
-                    for next1 in range(max(0, col1 - 1), min(cols, col1 + 2)):
-                        for next2 in range(max(0, col2 - 1), min(cols, col2 + 2)):
-                            gain = grid[row][next1]
-                            if next1 != next2:
-                                gain += grid[row][next2]
-                            candidate = score + gain
-                            if candidate > current[next1][next2]:
-                                current[next1][next2] = candidate
-
-            previous = current
-
-        return max(max(row) for row in previous)
+        m, n = len(grid), len(grid[0])
+        f = [[[-1] * n for _ in range(n)] for _ in range(m)]
+        f[0][0][n - 1] = grid[0][0] + grid[0][n - 1]
+        for i in range(1, m):
+            for j1 in range(n):
+                for j2 in range(n):
+                    x = grid[i][j1] + (0 if j1 == j2 else grid[i][j2])
+                    for y1 in range(j1 - 1, j1 + 2):
+                        for y2 in range(j2 - 1, j2 + 2):
+                            if 0 <= y1 < n and 0 <= y2 < n and f[i - 1][y1][y2] != -1:
+                                f[i][j1][j2] = max(f[i][j1][j2], f[i - 1][y1][y2] + x)
+        return max(f[-1][j1][j2] for j1, j2 in product(range(n), range(n)))

@@ -1,18 +1,17 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def earliestFullBloom(
-        self,
-        plantTime: List[int],
-        growTime: List[int],
-    ) -> int:
-        planted = 0
-        answer = 0
-        for growth, planting in sorted(
-            zip(growTime, plantTime),
-            reverse=True,
-        ):
-            planted += planting
-            answer = max(answer, planted + growth)
-        return answer
+    def earliestFullBloom(self, plantTime, growTime):
+        """
+        :type plantTime: List[int]
+        :type growTime: List[int]
+        :rtype: int
+        """
+        order = range(len(growTime))
+        order.sort(key=lambda x: growTime[x], reverse=True)
+        result = curr = 0
+        for i in order:
+            curr += plantTime[i]
+            result = max(result, curr+growTime[i])
+        return result

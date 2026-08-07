@@ -1,16 +1,19 @@
-from typing import Optional
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
 
 class Solution:
-    def detectCycle(self, head: Optional["ListNode"]) -> Optional["ListNode"]:
-        slow = fast = head
-        while fast is not None and fast.next is not None:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        fast = slow = head
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-            if slow is fast:
-                entry = head
-                while entry is not slow:
-                    entry = entry.next
+            if slow == fast:
+                ans = head
+                while ans != slow:
+                    ans = ans.next
                     slow = slow.next
-                return entry
-        return None
+                return ans

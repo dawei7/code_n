@@ -1,44 +1,49 @@
-from typing import List
+# Time:  O(nlogn + mlogm + nlogk + mlogk), k is max(max(nums), max(xi))
+# Space: O(nlogk)
+
+class Trie(object):
+    def __init__(self, bit_length):
+        self.__root = {}
+        self.__bit_length = bit_length
+        
+    def insert(self, num):
+        node = self.__root
+        for i in reversed(range(self.__bit_length)):
+            curr = (num>>i) & 1
+            if curr not in node:
+                node[curr] = {}
+            node = node[curr]
+                
+    def query(self, num):
+        if not self.__root: 
+            return -1
+        node, result = self.__root, 0
+        for i in reversed(range(self.__bit_length)):
+            curr = (num>>i) & 1
+            if 1^curr in node:
+                node = node[1^curr]
+                result |= 1<<i
+            else:
+                node = node[curr]
+        return result
 
 
 class Solution:
-    def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:
+    def maximizeXor(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
         nums.sort()
-        ordered_queries = sorted((limit, value, index) for index, (value, limit) in enumerate(queries))
-
-        trie = [[-1, -1]]
-
-        def insert(number: int) -> None:
-            node = 0
-            for bit_index in range(29, -1, -1):
-                bit = (number >> bit_index) & 1
-                child = trie[node][bit]
-                if child == -1:
-                    child = len(trie)
-                    trie[node][bit] = child
-                    trie.append([-1, -1])
-                node = child
-
-        def maximum_xor(value: int) -> int:
-            node = 0
-            result = 0
-            for bit_index in range(29, -1, -1):
-                bit = (value >> bit_index) & 1
-                preferred = bit ^ 1
-                if trie[node][preferred] != -1:
-                    result |= 1 << bit_index
-                    node = trie[node][preferred]
-                else:
-                    node = trie[node][bit]
-            return result
-
-        answers = [-1] * len(queries)
-        inserted = 0
-        for limit, value, query_index in ordered_queries:
-            while inserted < len(nums) and nums[inserted] <= limit:
-                insert(nums[inserted])
-                inserted += 1
-            if inserted > 0:
-                answers[query_index] = maximum_xor(value)
-
-        return answers
+        max_val = max(nums[-1], max(queries, key=lambda x: x[0])[0])
+        queries = sorted(enumerate(queries), key=lambda x: x[1][1])        
+        trie = Trie(max_val.bit_length())
+        result = [-1]*len(queries)
+        j = 0
+        for i, (x, m) in queries:
+            while j < len(nums) and nums[j] <= m:
+                trie.insert(nums[j])
+                j += 1
+            result[i] = trie.query(x)
+        return result

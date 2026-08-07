@@ -1,26 +1,16 @@
-from typing import List
-
-
 class Solution:
     def deleteTreeNodes(self, nodes: int, parent: List[int], value: List[int]) -> int:
-        children = [[] for _ in range(nodes)]
-        for node in range(1, nodes):
-            children[parent[node]].append(node)
+        def dfs(i):
+            s, m = value[i], 1
+            for j in g[i]:
+                t, n = dfs(j)
+                s += t
+                m += n
+            if s == 0:
+                m = 0
+            return (s, m)
 
-        order = []
-        stack = [0]
-        while stack:
-            node = stack.pop()
-            order.append(node)
-            stack.extend(children[node])
-
-        subtree_sum = list(value)
-        retained = [1] * nodes
-        for node in reversed(order):
-            for child in children[node]:
-                subtree_sum[node] += subtree_sum[child]
-                retained[node] += retained[child]
-            if subtree_sum[node] == 0:
-                retained[node] = 0
-
-        return retained[0]
+        g = defaultdict(list)
+        for i in range(1, nodes):
+            g[parent[i]].append(i)
+        return dfs(0)[1]

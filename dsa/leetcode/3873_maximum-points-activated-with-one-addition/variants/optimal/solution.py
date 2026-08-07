@@ -1,50 +1,46 @@
+class UnionFind:
+    def __init__(self):
+        self.p = {}
+        self.size = {}
+
+    def find(self, x):
+        if x not in self.p:
+            self.p[x] = x
+            self.size[x] = 1
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa == pb:
+            return False
+        if self.size[pa] > self.size[pb]:
+            self.p[pb] = pa
+            self.size[pa] += self.size[pb]
+        else:
+            self.p[pa] = pb
+            self.size[pb] += self.size[pa]
+        return True
+
+
 class Solution:
-    def maxActivated(self, points: list[list[int]]) -> int:
-        n = len(points)
-        parent = list(range(n))
-        size = [1] * n
+    def maxActivated(self, points: List[List[int]]) -> int:
+        uf = UnionFind()
+        m = int(3e9)
 
-        def find(node: int) -> int:
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
+        for x, y in points:
+            uf.union(x, y + m)
 
-        def union(a: int, b: int) -> None:
-            root_a = find(a)
-            root_b = find(b)
-            if root_a == root_b:
-                return
-            if size[root_a] < size[root_b]:
-                root_a, root_b = root_b, root_a
-            parent[root_b] = root_a
-            size[root_a] += size[root_b]
+        cnt = Counter()
+        for x, _ in points:
+            cnt[uf.find(x)] += 1
 
-        x_owner = {}
-        y_owner = {}
-
-        for i, (x, y) in enumerate(points):
-            if x in x_owner:
-                union(i, x_owner[x])
-            else:
-                x_owner[x] = i
-
-            if y in y_owner:
-                union(i, y_owner[y])
-            else:
-                y_owner[y] = i
-
-        largest = 0
-        second_largest = 0
-
-        for i in range(n):
-            if find(i) != i:
-                continue
-            component_size = size[i]
-            if component_size > largest:
-                second_largest = largest
-                largest = component_size
-            elif component_size > second_largest:
-                second_largest = component_size
-
-        return largest + second_largest + 1
+        mx1 = mx2 = 0
+        for x in cnt.values():
+            if mx1 < x:
+                mx2 = mx1
+                mx1 = x
+            elif mx2 < x:
+                mx2 = x
+        return mx1 + mx2 + 1

@@ -1,12 +1,7 @@
-from typing import List
-
-
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
-        operations = 0
-        previous = nums[0]
-        for value in nums[1:]:
-            adjusted = max(value, previous + 1)
-            operations += adjusted - value
-            previous = adjusted
-        return operations
+        ans = mx = 0
+        for v in nums:
+            ans += max(0, mx + 1 - v)
+            mx = max(mx + 1, v)
+        return ans

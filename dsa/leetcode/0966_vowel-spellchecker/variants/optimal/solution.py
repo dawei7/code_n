@@ -1,26 +1,30 @@
-from typing import List
-
-
 class Solution:
     def spellchecker(self, wordlist: List[str], queries: List[str]) -> List[str]:
-        vowels = set("aeiou")
+        def f(w):
+            t = []
+            for c in w:
+                t.append("*" if c in "aeiou" else c)
+            return "".join(t)
 
-        def vowel_key(word):
-            return "".join("*" if character in vowels else character for character in word.lower())
+        s = set(wordlist)
+        low, pat = {}, {}
+        for w in wordlist:
+            t = w.lower()
+            low.setdefault(t, w)
+            pat.setdefault(f(t), w)
 
-        exact = set(wordlist)
-        lowercase = {}
-        vowel_errors = {}
-        for word in wordlist:
-            lowercase.setdefault(word.lower(), word)
-            vowel_errors.setdefault(vowel_key(word), word)
-
-        answer = []
-        for query in queries:
-            if query in exact:
-                answer.append(query)
-            elif query.lower() in lowercase:
-                answer.append(lowercase[query.lower()])
-            else:
-                answer.append(vowel_errors.get(vowel_key(query), ""))
-        return answer
+        ans = []
+        for q in queries:
+            if q in s:
+                ans.append(q)
+                continue
+            q = q.lower()
+            if q in low:
+                ans.append(low[q])
+                continue
+            q = f(q)
+            if q in pat:
+                ans.append(pat[q])
+                continue
+            ans.append("")
+        return ans

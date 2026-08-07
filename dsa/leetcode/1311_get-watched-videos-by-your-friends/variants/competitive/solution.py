@@ -1,28 +1,21 @@
-from collections import Counter, deque
-from typing import List
+# Time:  O(n + vlogv), v is the number of the level videos
+# Space: O(w)
+
+import collections
 
 
 class Solution:
-    def watchedVideosByFriends(
-        self,
-        watchedVideos: List[List[str]],
-        friends: List[List[int]],
-        id: int,
-        level: int,
-    ) -> List[str]:
-        queue = deque([id])
-        seen = {id}
-
+    def watchedVideosByFriends(self, watchedVideos, friends, id, level):
+        """
+        :type watchedVideos: List[List[str]]
+        :type friends: List[List[int]]
+        :type id: int
+        :type level: int
+        :rtype: List[str]
+        """
+        curr_level, lookup = set([id]), set([id])
         for _ in range(level):
-            for _ in range(len(queue)):
-                person = queue.popleft()
-                for friend in friends[person]:
-                    if friend not in seen:
-                        seen.add(friend)
-                        queue.append(friend)
-
-        counts = Counter()
-        for person in queue:
-            counts.update(watchedVideos[person])
-
-        return sorted(counts, key=lambda video: (counts[video], video))
+            curr_level = set(j for i in curr_level for j in friends[i] if j not in lookup)
+            lookup |= curr_level
+        count = collections.Counter([v for i in curr_level for v in watchedVideos[i]])
+        return sorted(count.keys(), key=lambda x: (count[x], x))

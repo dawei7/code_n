@@ -1,15 +1,11 @@
-from typing import List
-
-
 class Solution:
     def findWords(self, words: List[str]) -> List[str]:
-        row_by_letter = {
-            letter: row_index for row_index, row in enumerate(("qwertyuiop", "asdfghjkl", "zxcvbnm")) for letter in row
-        }
-        answer = []
-        for word in words:
-            lowered = word.lower()
-            row = row_by_letter[lowered[0]]
-            if all(row_by_letter[letter] == row for letter in lowered):
-                answer.append(word)
-        return answer
+        s1 = set('qwertyuiop')
+        s2 = set('asdfghjkl')
+        s3 = set('zxcvbnm')
+        ans = []
+        for w in words:
+            s = set(w.lower())
+            if s <= s1 or s <= s2 or s <= s3:
+                ans.append(w)
+        return ans

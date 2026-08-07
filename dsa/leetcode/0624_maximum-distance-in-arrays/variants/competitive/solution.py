@@ -1,14 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxDistance(self, arrays: List[List[int]]) -> int:
-        minimum = arrays[0][0]
-        maximum = arrays[0][-1]
-        answer = 0
+    def maxDistance(self, arrays):
+        """
+        :type arrays: List[List[int]]
+        :rtype: int
+        """
+        result, min_val, max_val = 0,  arrays[0][0], arrays[0][-1]
+        for i in range(1, len(arrays)):
+            result = max(result, \
+                         max(max_val - arrays[i][0], \
+                             arrays[i][-1] - min_val))
+            min_val = min(min_val, arrays[i][0])
+            max_val = max(max_val, arrays[i][-1])
+        return result
 
-        for array in arrays[1:]:
-            answer = max(answer, array[-1] - minimum, maximum - array[0])
-            minimum = min(minimum, array[0])
-            maximum = max(maximum, array[-1])
-        return answer

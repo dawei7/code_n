@@ -1,13 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def findMaxAverage(self, nums: List[int], k: int) -> float:
-        window_sum = sum(nums[:k])
-        best_sum = window_sum
+    def findMaxAverage(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: float
+        """
+        result = total = sum(nums[:k])
+        for i in range(k, len(nums)):
+            total += nums[i] - nums[i-k]
+            result = max(result, total)
+        return float(result) / k
 
-        for right in range(k, len(nums)):
-            window_sum += nums[right] - nums[right - k]
-            best_sum = max(best_sum, window_sum)
-
-        return best_sum / k

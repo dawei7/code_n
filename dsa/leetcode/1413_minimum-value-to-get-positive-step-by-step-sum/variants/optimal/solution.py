@@ -1,11 +1,7 @@
-from typing import List
-
-
 class Solution:
     def minStartValue(self, nums: List[int]) -> int:
-        prefix = 0
-        minimum_prefix = 0
-        for value in nums:
-            prefix += value
-            minimum_prefix = min(minimum_prefix, prefix)
-        return 1 - minimum_prefix
+        s, t = 0, inf
+        for num in nums:
+            s += num
+            t = min(t, s)
+        return max(1, 1 - t)

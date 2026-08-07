@@ -1,71 +1,94 @@
+# Time:  O((d + n) * 2^n)
+# Space: O(d)
+
+# optimized from Solution2
 class Solution:
-    def minAbbreviation(self, target: str, dictionary: List[str]) -> str:
-        length = len(target)
-        differences = []
+    def minAbbreviation(self, target, dictionary):
+        """
+        :type target: str
+        :type dictionary: List[str]
+        :rtype: str
+        """
+        def bits_to_abbr_len(targets, bits):
+            total = 0
+            pre = 0
+            for i in range(len(target)):
+                if bits & 1:
+                    if i - pre > 0:
+                        total += len(str(i - pre))
+                    pre = i + 1
+                    total += 1
+                elif i == len(target) - 1:
+                    total += len(str(i - pre + 1))
+                bits >>= 1
+            return total
 
+        def bits_to_abbr(targets, bits):
+            abbr = []
+            pre = 0
+            for i in range(len(target)):
+                if bits & 1:
+                    if i - pre > 0:
+                        abbr.append(str(i - pre))
+                    pre = i + 1
+                    abbr.append(target[i])
+                elif i == len(target) - 1:
+                    abbr.append(str(i - pre + 1))
+                bits >>= 1
+            return "".join(abbr)
+  
+        diffs = []
         for word in dictionary:
-            if len(word) != length:
+            if len(word) != len(target):
                 continue
-            difference = 0
-            for index, (target_character, word_character) in enumerate(zip(target, word)):
-                if target_character != word_character:
-                    difference |= 1 << index
-            differences.append(difference)
+            diffs.append(sum(2**i for i, c in enumerate(word) if target[i] != c))
 
-        if not differences:
-            return str(length)
+        if not diffs:
+            return str(len(target))
 
-        def abbreviation_length(mask):
-            tokens = 0
-            index = 0
-            while index < length:
-                tokens += 1
-                if mask & (1 << index):
-                    index += 1
-                else:
-                    while index < length and not mask & (1 << index):
-                        index += 1
-            return tokens
+        result = 2**len(target)-1
+        for mask in range(2**len(target)):
+            if all(d & mask for d in diffs) and bits_to_abbr_len(target, mask) < bits_to_abbr_len(target, result):
+                result = mask
+        return bits_to_abbr(target, result)
+    
 
-        best_mask = (1 << length) - 1
-        best_length = length
-        seen = set()
+# Time:  O((d + n) * 2^n)
+# Space: O(d + n)
+class Solution2(object):
+    def minAbbreviation(self, target, dictionary):
+        """
+        :type target: str
+        :type dictionary: List[str]
+        :rtype: str
+        """
+        def bits_to_abbr(targets, bits):
+            abbr = []
+            pre = 0
+            for i in range(len(target)):
+                if bits & 1:
+                    if i - pre > 0:
+                        abbr.append(str(i - pre))
+                    pre = i + 1
+                    abbr.append(target[i])
+                elif i == len(target) - 1:
+                    abbr.append(str(i - pre + 1))
+                bits >>= 1
+            return "".join(abbr)
+  
+        diffs = []
+        for word in dictionary:
+            if len(word) != len(target):
+                continue
+            diffs.append(sum(2**i for i, c in enumerate(word) if target[i] != c))
 
-        def search(mask):
-            nonlocal best_mask, best_length
-            if mask in seen:
-                return
-            seen.add(mask)
+        if not diffs:
+            return str(len(target))
 
-            uncovered = [difference for difference in differences if mask & difference == 0]
-            candidate_length = abbreviation_length(mask)
-            if not uncovered:
-                if candidate_length < best_length:
-                    best_mask = mask
-                    best_length = candidate_length
-                return
-            if candidate_length >= best_length:
-                return
+        result = target
+        for mask in range(2**len(target)):
+            abbr = bits_to_abbr(target, mask)
+            if all(d & mask for d in diffs) and len(abbr) < len(result):
+                result = abbr
+        return result
 
-            difference = min(uncovered, key=int.bit_count)
-            remaining = difference
-            while remaining:
-                bit = remaining & -remaining
-                search(mask | bit)
-                remaining -= bit
-
-        search(0)
-
-        parts = []
-        abbreviated = 0
-        for index, character in enumerate(target):
-            if best_mask & (1 << index):
-                if abbreviated:
-                    parts.append(str(abbreviated))
-                    abbreviated = 0
-                parts.append(character)
-            else:
-                abbreviated += 1
-        if abbreviated:
-            parts.append(str(abbreviated))
-        return "".join(parts)

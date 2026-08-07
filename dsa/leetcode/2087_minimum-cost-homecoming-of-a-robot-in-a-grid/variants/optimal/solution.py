@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     def minCost(
         self,
@@ -9,18 +6,8 @@ class Solution:
         rowCosts: List[int],
         colCosts: List[int],
     ) -> int:
-        total = 0
-
-        row_step = 1 if startPos[0] < homePos[0] else -1
-        for row in range(startPos[0] + row_step, homePos[0] + row_step, row_step):
-            total += rowCosts[row]
-
-        col_step = 1 if startPos[1] < homePos[1] else -1
-        for column in range(
-            startPos[1] + col_step,
-            homePos[1] + col_step,
-            col_step,
-        ):
-            total += colCosts[column]
-
-        return total
+        x0, y0 = startPos
+        x1, y1 = homePos
+        dx = sum(rowCosts[x0 + 1 : x1 + 1]) if x0 < x1 else sum(rowCosts[x1:x0])
+        dy = sum(colCosts[y0 + 1 : y1 + 1]) if y0 < y1 else sum(colCosts[y1:y0])
+        return dx + dy

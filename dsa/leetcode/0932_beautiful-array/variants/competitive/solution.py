@@ -1,11 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def beautifulArray(self, n: int) -> List[int]:
-        values = [1]
-        while len(values) < n:
-            odds = [2 * value - 1 for value in values if 2 * value - 1 <= n]
-            evens = [2 * value for value in values if 2 * value <= n]
-            values = odds + evens
-        return values
+    def beautifulArray(self, N):
+        """
+        :type N: int
+        :rtype: List[int]
+        """
+        result = [1]
+        while len(result) < N:
+            result = [i*2 - 1 for i in result] + [i*2 for i in result]
+        return [i for i in result if i <= N]

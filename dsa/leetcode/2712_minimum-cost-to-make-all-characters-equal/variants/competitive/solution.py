@@ -1,10 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minimumCost(self, s: str) -> int:
-        length = len(s)
-        cost = 0
-
-        for index in range(1, length):
-            if s[index] != s[index - 1]:
-                cost += min(index, length - index)
-
-        return cost
+    def minimumCost(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return sum(min(i+1, len(s)-(i+1)) for i in range(len(s)-1) if s[i] != s[i+1])

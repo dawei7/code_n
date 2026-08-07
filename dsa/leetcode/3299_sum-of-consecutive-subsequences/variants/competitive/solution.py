@@ -1,27 +1,27 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# combinatorics, prefix sum, freq table, dp
 class Solution:
-    def getSum(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        limit = max(nums) + 2
-        increasing_count = [0] * limit
-        increasing_sum = [0] * limit
-        decreasing_count = [0] * limit
-        decreasing_sum = [0] * limit
-        answer = 0
-
-        for value in nums:
-            new_increasing_count = (1 + increasing_count[value - 1]) % modulus
-            new_increasing_sum = (value + increasing_sum[value - 1] + value * increasing_count[value - 1]) % modulus
-
-            new_decreasing_count = (1 + decreasing_count[value + 1]) % modulus
-            new_decreasing_sum = (value + decreasing_sum[value + 1] + value * decreasing_count[value + 1]) % modulus
-
-            answer = (answer + new_increasing_sum + new_decreasing_sum - value) % modulus
-            increasing_count[value] = (increasing_count[value] + new_increasing_count) % modulus
-            increasing_sum[value] = (increasing_sum[value] + new_increasing_sum) % modulus
-            decreasing_count[value] = (decreasing_count[value] + new_decreasing_count) % modulus
-            decreasing_sum[value] = (decreasing_sum[value] + new_decreasing_sum) % modulus
-
-        return answer
+    def getSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def count(d):
+            result = 0
+            cnt = collections.defaultdict(int)
+            prefix = collections.defaultdict(int)
+            for x in nums:
+                c = (cnt[x-d]+1)%MOD
+                cnt[x] = (cnt[x]+c)%MOD
+                total = (prefix[x-d]+x*c)%MOD
+                prefix[x] = (prefix[x]+total)%MOD
+                result = (result+total)%MOD
+            return result
+    
+        MOD = 10**9+7
+        return (count(+1)+count(-1)-reduce(lambda accu, x: (accu+x)%MOD, nums, 0))%MOD

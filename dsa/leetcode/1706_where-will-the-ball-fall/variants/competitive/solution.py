@@ -1,19 +1,19 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def findBall(self, grid: List[List[int]]) -> List[int]:
-        columns = len(grid[0])
-        answer = []
-
-        for start in range(columns):
-            column = start
-            for row in grid:
-                next_column = column + row[column]
-                if next_column < 0 or next_column >= columns or row[next_column] != row[column]:
-                    column = -1
+    def findBall(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[int]
+        """
+        result = []
+        for c in range(len(grid[0])):
+            for r in range(len(grid)):
+                nc = c+grid[r][c]
+                if not (0 <= nc < len(grid[0]) and grid[r][nc] == grid[r][c]):
+                    c = -1
                     break
-                column = next_column
-            answer.append(column)
-
-        return answer
+                c = nc
+            result.append(c)
+        return result

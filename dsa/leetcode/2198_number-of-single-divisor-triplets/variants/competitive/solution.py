@@ -1,31 +1,19 @@
-from collections import Counter
-from typing import List
+# Time:  O(d^3), d is the number of distinct nums
+# Space: O(d)
 
+import collections
+import itertools
 
+# combinatorics
 class Solution:
-    def singleDivisorTriplet(self, nums: List[int]) -> int:
-        frequency = Counter(nums)
-        values = sorted(frequency)
-        answer = 0
+    def singleDivisorTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def check(a, b, c):
+            return sum((a+b+c)%x == 0 for x in (a, b, c)) == 1
 
-        for i, first in enumerate(values):
-            for j in range(i, len(values)):
-                second = values[j]
-                for k in range(j, len(values)):
-                    third = values[k]
-                    total = first + second + third
-                    divisible = (total % first == 0) + (total % second == 0) + (total % third == 0)
-                    if divisible != 1:
-                        continue
-
-                    if first == third:
-                        ways = frequency[first] * (frequency[first] - 1) * (frequency[first] - 2)
-                    elif first == second:
-                        ways = 3 * frequency[first] * (frequency[first] - 1) * frequency[third]
-                    elif second == third:
-                        ways = 3 * frequency[first] * frequency[second] * (frequency[second] - 1)
-                    else:
-                        ways = 6 * frequency[first] * frequency[second] * frequency[third]
-                    answer += ways
-
-        return answer
+        cnt = collections.Counter(nums)
+        return 6*(sum(cnt[a]*cnt[b]*cnt[c] for a, b, c in itertools.combinations(cnt.keys(), 3) if check(a, b, c)) +
+                  sum(cnt[a]*(cnt[a]-1)//2*cnt[b] for a, b in itertools.permutations(cnt.keys(), 2) if check(a, a, b)))

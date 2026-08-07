@@ -1,29 +1,24 @@
 class Solution:
-    def maxSumOfThreeSubarrays(self, nums: list[int], k: int) -> list[int]:
-        window_count = len(nums) - k + 1
-        window_sums = [0] * window_count
-        current = sum(nums[:k])
-        window_sums[0] = current
-        for start in range(1, window_count):
-            current += nums[start + k - 1] - nums[start - 1]
-            window_sums[start] = current
-
-        left = [0] * window_count
-        for index in range(1, window_count):
-            left[index] = index if window_sums[index] > window_sums[left[index - 1]] else left[index - 1]
-
-        right = [0] * window_count
-        right[-1] = window_count - 1
-        for index in range(window_count - 2, -1, -1):
-            right[index] = index if window_sums[index] >= window_sums[right[index + 1]] else right[index + 1]
-
-        best_total = -1
-        answer = []
-        for middle in range(k, window_count - k):
-            first = left[middle - k]
-            third = right[middle + k]
-            total = window_sums[first] + window_sums[middle] + window_sums[third]
-            if total > best_total:
-                best_total = total
-                answer = [first, middle, third]
-        return answer
+    def maxSumOfThreeSubarrays(self, nums: List[int], k: int) -> List[int]:
+        s = s1 = s2 = s3 = 0
+        mx1 = mx12 = 0
+        idx1, idx12 = 0, ()
+        ans = []
+        for i in range(k * 2, len(nums)):
+            s1 += nums[i - k * 2]
+            s2 += nums[i - k]
+            s3 += nums[i]
+            if i >= k * 3 - 1:
+                if s1 > mx1:
+                    mx1 = s1
+                    idx1 = i - k * 3 + 1
+                if mx1 + s2 > mx12:
+                    mx12 = mx1 + s2
+                    idx12 = (idx1, i - k * 2 + 1)
+                if mx12 + s3 > s:
+                    s = mx12 + s3
+                    ans = [*idx12, i - k + 1]
+                s1 -= nums[i - k * 3 + 1]
+                s2 -= nums[i - k * 2 + 1]
+                s3 -= nums[i - k + 1]
+        return ans

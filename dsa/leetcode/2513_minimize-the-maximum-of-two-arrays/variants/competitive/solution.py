@@ -1,27 +1,64 @@
-from math import gcd
+# Time:  O(log(min(d1, d2)))
+# Space: O(1)
 
-
+# number theory
 class Solution:
-    def minimizeSet(
-        self,
-        divisor1: int,
-        divisor2: int,
-        uniqueCnt1: int,
-        uniqueCnt2: int,
-    ) -> int:
-        common_multiple = divisor1 // gcd(divisor1, divisor2) * divisor2
-        low = 1
-        high = 2 * (uniqueCnt1 + uniqueCnt2)
+    def minimizeSet(self, divisor1, divisor2, uniqueCnt1, uniqueCnt2):
+        """
+        :type divisor1: int
+        :type divisor2: int
+        :type uniqueCnt1: int
+        :type uniqueCnt2: int
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        while low < high:
-            middle = (low + high) // 2
-            enough_for_first = middle - middle // divisor1 >= uniqueCnt1
-            enough_for_second = middle - middle // divisor2 >= uniqueCnt2
-            enough_in_union = middle - middle // common_multiple >= uniqueCnt1 + uniqueCnt2
+        def lcm(a, b):
+            return a//gcd(a, b)*b
 
-            if enough_for_first and enough_for_second and enough_in_union:
-                high = middle
+        def count(cnt, d1, d2):
+            l = lcm(d1, d2)
+            return cnt+cnt//(l-1)-int(cnt%(l-1) == 0)
+        
+        return max(count(uniqueCnt1, divisor1, 1),
+                   count(uniqueCnt2, divisor2, 1),
+                   count(uniqueCnt1+uniqueCnt2, divisor1, divisor2))
+
+
+# Time:  O(log(min(d1, d2)) + logr)
+# Space: O(1)
+# binary search
+class Solution2(object):
+    def minimizeSet(self, divisor1, divisor2, uniqueCnt1, uniqueCnt2):
+        """
+        :type divisor1: int
+        :type divisor2: int
+        :type uniqueCnt1: int
+        :type uniqueCnt2: int
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+
+        def lcm(a, b):
+            return a//gcd(a, b)*b
+
+        def check(cnt):
+            return (cnt-cnt//divisor1 >= uniqueCnt1 and
+                    cnt-cnt//divisor2 >= uniqueCnt2 and
+                    cnt-cnt//l >= uniqueCnt1+uniqueCnt2)
+
+        l = lcm(divisor1, divisor2)
+        left, right = 2, 2**31-1
+        while left <= right:
+            mid = left+(right-left)//2
+            if check(mid):
+                right = mid-1
             else:
-                low = middle + 1
-
-        return low
+                left = mid+1
+        return left

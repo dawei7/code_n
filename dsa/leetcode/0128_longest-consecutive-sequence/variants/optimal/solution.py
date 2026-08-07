@@ -1,15 +1,13 @@
-from typing import List
-
-
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        values = set(nums)
-        best = 0
-        for value in values:
-            if value - 1 in values:
-                continue
-            current = value
-            while current in values:
-                current += 1
-            best = max(best, current - value)
-        return best
+        s = set(nums)
+        ans = 0
+        d = defaultdict(int)
+        for x in nums:
+            y = x
+            while y in s:
+                s.remove(y)
+                y += 1
+            d[x] = d[y] + y - x
+            ans = max(ans, d[x])
+        return ans

@@ -1,22 +1,49 @@
+# Time:  O(n)
+# Space: O(1)
+
+# counting sort
 class Solution:
-    def sortVowels(self, s: str) -> str:
-        vowel_order = "AEIOUaeiou"
-        vowel_index = {char: index for index, char in enumerate(vowel_order)}
-        counts = [0] * len(vowel_order)
+    def sortVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def inplace_counting_sort(nums, reverse=False):  # Time: O(n)
+            if not nums:
+                return
+            count = [0]*(max(nums)+1)
+            for num in nums:
+                count[num] += 1
+            for i in range(1, len(count)):
+                count[i] += count[i-1]
+            for i in reversed(range(len(nums))):  # inplace but unstable sort
+                while nums[i] >= 0:
+                    count[nums[i]] -= 1
+                    j = count[nums[i]]
+                    nums[i], nums[j] = nums[j], ~nums[i]
+            for i in range(len(nums)):
+                nums[i] = ~nums[i]  # restore values
+            if reverse:  # unstable sort
+                nums.reverse()
+    
+        VOWELS = "AEIOUaeiou"
+        LOOKUP = {x:i for i, x in enumerate(VOWELS)}
+        vowels = [LOOKUP[x] for x in s if x in LOOKUP]
+        inplace_counting_sort(vowels, reverse=True)
+        return "".join(VOWELS[vowels.pop()] if x in LOOKUP else x for x in s)
 
-        for char in s:
-            index = vowel_index.get(char)
-            if index is not None:
-                counts[index] += 1
 
-        result = list(s)
-        next_vowel = 0
-        for index, char in enumerate(result):
-            if char not in vowel_index:
-                continue
-            while counts[next_vowel] == 0:
-                next_vowel += 1
-            result[index] = vowel_order[next_vowel]
-            counts[next_vowel] -= 1
-
-        return "".join(result)
+# Time:  O(nlogn)
+# Space: O(1)
+# sort
+class Solution2(object):
+    def sortVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        VOWELS = "AEIOUaeiou"
+        LOOKUP = set(VOWELS)
+        vowels = [x for x in s if x in LOOKUP]
+        vowels.sort(reverse=True)
+        return "".join(vowels.pop() if x in LOOKUP else x for x in s)

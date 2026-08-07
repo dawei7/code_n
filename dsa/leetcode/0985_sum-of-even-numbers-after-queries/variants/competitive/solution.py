@@ -1,21 +1,21 @@
-from typing import List
-
+# Time:  O(n + q)
+# Space: O(1)
 
 class Solution:
-    def sumEvenAfterQueries(
-        self,
-        nums: List[int],
-        queries: List[List[int]],
-    ) -> List[int]:
-        even_sum = sum(value for value in nums if value % 2 == 0)
-        answer = []
-
-        for value, index in queries:
-            if nums[index] % 2 == 0:
-                even_sum -= nums[index]
-            nums[index] += value
-            if nums[index] % 2 == 0:
-                even_sum += nums[index]
-            answer.append(even_sum)
-
-        return answer
+    def sumEvenAfterQueries(self, A, queries):
+        """
+        :type A: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        total = sum(v for v in A if v % 2 == 0)
+        
+        result = []
+        for v, i in queries:
+            if A[i] % 2 == 0:
+                total -= A[i]
+            A[i] += v
+            if A[i] % 2 == 0:
+                total += A[i]
+            result.append(total)
+        return result

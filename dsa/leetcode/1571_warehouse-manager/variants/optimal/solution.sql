@@ -1,12 +1,8 @@
+# Write your MySQL query statement below
 SELECT
-    warehouse.name AS warehouse_name,
-    SUM(
-        warehouse.units
-        * products.Width
-        * products.Length
-        * products.Height
-    ) AS volume
-FROM Warehouse AS warehouse
-JOIN Products AS products
-  ON products.product_id = warehouse.product_id
-GROUP BY warehouse.name;
+    name AS warehouse_name,
+    SUM(width * length * height * units) AS volume
+FROM
+    Warehouse
+    JOIN Products USING (product_id)
+GROUP BY 1;

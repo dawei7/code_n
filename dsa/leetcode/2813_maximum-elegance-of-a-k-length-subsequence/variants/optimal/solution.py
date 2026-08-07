@@ -1,23 +1,20 @@
-from heapq import heappop, heappush
-
-
 class Solution:
     def findMaximumElegance(self, items: List[List[int]], k: int) -> int:
-        items.sort(reverse=True)
-        selected_categories = set()
-        duplicate_profits = []
-        total_profit = 0
-        for profit, category in items[:k]:
-            total_profit += profit
-            if category in selected_categories:
-                heappush(duplicate_profits, profit)
+        items.sort(key=lambda x: -x[0])
+        tot = 0
+        vis = set()
+        dup = []
+        for p, c in items[:k]:
+            tot += p
+            if c not in vis:
+                vis.add(c)
             else:
-                selected_categories.add(category)
-        answer = total_profit + len(selected_categories) ** 2
-        for profit, category in items[k:]:
-            if category in selected_categories or not duplicate_profits:
+                dup.append(p)
+        ans = tot + len(vis) ** 2
+        for p, c in items[k:]:
+            if c in vis or not dup:
                 continue
-            total_profit += profit - heappop(duplicate_profits)
-            selected_categories.add(category)
-            answer = max(answer, total_profit + len(selected_categories) ** 2)
-        return answer
+            vis.add(c)
+            tot += p - dup.pop()
+            ans = max(ans, tot + len(vis) ** 2)
+        return ans

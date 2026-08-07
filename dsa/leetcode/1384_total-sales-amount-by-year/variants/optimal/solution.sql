@@ -1,46 +1,30 @@
-SELECT p.product_id,
-       p.product_name,
-       annual.report_year,
-       SUM(annual.total_amount) AS total_amount
-FROM Product AS p
-JOIN (
-    SELECT product_id,
-           '2018' AS report_year,
-           average_daily_sales * CAST(
-               julianday(MIN(period_end, '2018-12-31'))
-               - julianday(MAX(period_start, '2018-01-01'))
-               + 1 AS INTEGER
-           ) AS total_amount
-    FROM Sales
-    WHERE period_start <= '2018-12-31'
-      AND period_end >= '2018-01-01'
-
-    UNION ALL
-
-    SELECT product_id,
-           '2019' AS report_year,
-           average_daily_sales * CAST(
-               julianday(MIN(period_end, '2019-12-31'))
-               - julianday(MAX(period_start, '2019-01-01'))
-               + 1 AS INTEGER
-           ) AS total_amount
-    FROM Sales
-    WHERE period_start <= '2019-12-31'
-      AND period_end >= '2019-01-01'
-
-    UNION ALL
-
-    SELECT product_id,
-           '2020' AS report_year,
-           average_daily_sales * CAST(
-               julianday(MIN(period_end, '2020-12-31'))
-               - julianday(MAX(period_start, '2020-01-01'))
-               + 1 AS INTEGER
-           ) AS total_amount
-    FROM Sales
-    WHERE period_start <= '2020-12-31'
-      AND period_end >= '2020-01-01'
-) AS annual
-  ON annual.product_id = p.product_id
-GROUP BY p.product_id, p.product_name, annual.report_year
-ORDER BY p.product_id, annual.report_year;
+# Write your MySQL query statement below
+SELECT
+    s.product_id,
+    p.product_name,
+    y.YEAR AS report_year,
+    s.average_daily_sales * (
+        IF(YEAR(s.period_end) > y.YEAR, y.days_of_year, DAYOFYEAR(s.period_end)) - IF(
+            YEAR(s.period_start) < y.YEAR,
+            1,
+            DAYOFYEAR(s.period_start)
+        ) + 1
+    ) AS total_amount
+FROM
+    Sales AS s
+    INNER JOIN (
+        SELECT
+            '2018' AS YEAR,
+            365 AS days_of_year
+        UNION ALL
+        SELECT
+            '2019' AS YEAR,
+            365 AS days_of_year
+        UNION ALL
+        SELECT
+            '2020' AS YEAR,
+            366 AS days_of_year
+    ) AS y
+        ON YEAR(s.period_start) <= y.YEAR AND YEAR(s.period_end) >= y.YEAR
+    INNER JOIN Product AS p ON p.product_id = s.product_id
+ORDER BY s.product_id, y.YEAR;

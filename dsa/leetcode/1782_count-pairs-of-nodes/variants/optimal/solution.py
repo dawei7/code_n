@@ -1,46 +1,23 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def countPairs(
-        self,
-        n: int,
-        edges: List[List[int]],
-        queries: List[int],
+        self, n: int, edges: List[List[int]], queries: List[int]
     ) -> List[int]:
-        degree = [0] * n
-        shared_edges = Counter()
+        cnt = [0] * n
+        g = defaultdict(int)
+        for a, b in edges:
+            a, b = a - 1, b - 1
+            a, b = min(a, b), max(a, b)
+            cnt[a] += 1
+            cnt[b] += 1
+            g[(a, b)] += 1
 
-        for first, second in edges:
-            first -= 1
-            second -= 1
-            degree[first] += 1
-            degree[second] += 1
-            if first > second:
-                first, second = second, first
-            shared_edges[first, second] += 1
-
-        sorted_degrees = sorted(degree)
-        answers = []
-
-        for query in queries:
-            count = 0
-            left = 0
-            right = n - 1
-
-            while left < right:
-                if sorted_degrees[left] + sorted_degrees[right] > query:
-                    count += right - left
-                    right -= 1
-                else:
-                    left += 1
-
-            for (first, second), multiplicity in shared_edges.items():
-                degree_sum = degree[first] + degree[second]
-                if degree_sum > query >= degree_sum - multiplicity:
-                    count -= 1
-
-            answers.append(count)
-
-        return answers
+        s = sorted(cnt)
+        ans = [0] * len(queries)
+        for i, t in enumerate(queries):
+            for j, x in enumerate(s):
+                k = bisect_right(s, t - x, lo=j + 1)
+                ans[i] += n - k
+            for (a, b), v in g.items():
+                if cnt[a] + cnt[b] > t and cnt[a] + cnt[b] - v <= t:
+                    ans[i] -= 1
+        return ans

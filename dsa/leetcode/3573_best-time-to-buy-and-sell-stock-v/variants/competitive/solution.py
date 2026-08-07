@@ -1,23 +1,65 @@
+# Time:  O(n * k)
+# Space: O(k)
+
+# dp
 class Solution:
-    def maximumProfit(self, prices: List[int], k: int) -> int:
-        neg = -(10**30)
-        flat = [neg] * (k + 1)
-        long = [neg] * k
-        short = [neg] * k
-        flat[0] = 0
+    def maximumProfit(self, prices, k):
+        """
+        :type prices: List[int]
+        :type k: int
+        :rtype: int
+        """
+        dp = [0]*(len(prices)+1)
+        result = 0
+        for i in range(k):
+            x, y = float("-inf"), float("-inf")
+            new_dp = [float("-inf")]*(len(prices)+1)
+            for j in range(i, len(prices)):
+                x, y = max(x, dp[j]-prices[j]), max(y, dp[j]+prices[j])
+                new_dp[j+1] = max(new_dp[j], x+prices[j], y-prices[j])
+            dp = new_dp
+            result = max(result, dp[-1])
+        return result
 
-        for price in prices:
-            next_flat = flat[:]
-            next_long = long[:]
-            next_short = short[:]
-            for done in range(k):
-                next_long[done] = max(long[done], flat[done] - price)
-                next_short[done] = max(short[done], flat[done] + price)
-                next_flat[done + 1] = max(
-                    flat[done + 1],
-                    long[done] + price,
-                    short[done] - price,
-                )
-            flat, long, short = next_flat, next_long, next_short
 
-        return max(flat)
+# Time:  O(n * k)
+# Space: O(k)
+# dp
+class Solution:
+    def maximumProfit(self, prices, k):
+        """
+        :type prices: List[int]
+        :type k: int
+        :rtype: int
+        """
+        bought = [float("-inf")]*k
+        sold = [float("-inf")]*k
+        result = [0]*(k+1)
+        for x in prices:
+            for i in reversed(range(k)):
+                result[i+1] = max(result[i+1], bought[i]+x, sold[i]-x)
+                bought[i] = max(bought[i], result[i]-x)
+                sold[i] = max(sold[i], result[i]+x)
+        return result[-1]
+
+
+# Time:  O(n * k)
+# Space: O(k)
+# dp
+class Solution3(object):
+    def maximumProfit(self, prices, k):
+        """
+        :type prices: List[int]
+        :type k: int
+        :rtype: int
+        """
+        bought = [float("-inf")]*k
+        sold = [float("-inf")]*k
+        result = [float("-inf")]*(k+1)
+        result[0] = 0
+        for x in prices:
+            for i in reversed(range(k)):
+                result[i+1] = max(result[i+1], bought[i]+x, sold[i]-x)
+                bought[i] = max(bought[i], result[i]-x)
+                sold[i] = max(sold[i], result[i]+x)
+        return max(result)

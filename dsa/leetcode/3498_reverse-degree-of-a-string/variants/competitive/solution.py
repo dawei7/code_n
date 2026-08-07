@@ -1,3 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def reverseDegree(self, s: str) -> int:
-        return sum((123 - ord(ch)) * index for index, ch in enumerate(s, 1))
+    def reverseDegree(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return sum(i*(26-(ord(x)-ord('a'))) for i, x in enumerate(s, 1))

@@ -1,19 +1,19 @@
-from typing import List
+# Time:  O(n + p)
+# Space: O(p)
+
+import itertools
 
 
 class Solution:
-    def areSentencesSimilar(
-        self,
-        sentence1: List[str],
-        sentence2: List[str],
-        similarPairs: List[List[str]],
-    ) -> bool:
-        if len(sentence1) != len(sentence2):
-            return False
+    def areSentencesSimilar(self, words1, words2, pairs):
+        """
+        :type words1: List[str]
+        :type words2: List[str]
+        :type pairs: List[List[str]]
+        :rtype: bool
+        """
+        if len(words1) != len(words2): return False
+        lookup = set(map(tuple, pairs))
+        return all(w1 == w2 or (w1, w2) in lookup or (w2, w1) in lookup \
+                   for w1, w2 in itertools.izip(words1, words2))
 
-        direct = set()
-        for left, right in similarPairs:
-            direct.add((left, right))
-            direct.add((right, left))
-
-        return all(first == second or (first, second) in direct for first, second in zip(sentence1, sentence2))

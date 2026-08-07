@@ -1,14 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# math, sliding window
 class Solution:
-    def goodIndices(self, s: str) -> List[int]:
-        answer = []
-
-        for index in range(len(s)):
-            representation = str(index)
-            start = index - len(representation) + 1
-            if start >= 0 and s[start : index + 1] == representation:
-                answer.append(index)
-
-        return answer
+    def goodIndices(self, s):
+        """
+        :type s: str
+        :rtype: List[int]
+        """
+        result = []
+        curr, base = 0, 1
+        for i in range(len(s)):
+            if i == base*10:
+                base *= 10
+            curr = (curr%base)*10+(ord(s[i])-ord('0'))
+            if curr == i:
+                result.append(i)
+        return result

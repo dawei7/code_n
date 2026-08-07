@@ -1,53 +1,46 @@
-from heapq import heappop
-from typing import List
+class UnionFind:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.size = [1] * n
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa == pb:
+            return False
+        if self.size[pa] > self.size[pb]:
+            self.p[pb] = pa
+            self.size[pa] += self.size[pb]
+        else:
+            self.p[pa] = pb
+            self.size[pb] += self.size[pa]
+        return True
 
 
 class Solution:
     def processQueries(
-        self,
-        c: int,
-        connections: List[List[int]],
-        queries: List[List[int]],
+        self, c: int, connections: List[List[int]], queries: List[List[int]]
     ) -> List[int]:
-        parent = list(range(c + 1))
-        size = [1] * (c + 1)
-
-        def find(station: int) -> int:
-            while station != parent[station]:
-                parent[station] = parent[parent[station]]
-                station = parent[station]
-            return station
-
-        def union(first: int, second: int) -> None:
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
-                return
-            if size[first_root] < size[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            size[first_root] += size[second_root]
-
-        for first, second in connections:
-            union(first, second)
-
-        component = [find(station) for station in range(c + 1)]
-        online_by_component = {}
-        for station in range(1, c + 1):
-            online_by_component.setdefault(component[station], []).append(station)
-
-        online = [True] * (c + 1)
-        answer = []
-
-        for query_type, station in queries:
-            if query_type == 2:
-                online[station] = False
-            elif online[station]:
-                answer.append(station)
+        uf = UnionFind(c + 1)
+        for u, v in connections:
+            uf.union(u, v)
+        st = [SortedList() for _ in range(c + 1)]
+        for i in range(1, c + 1):
+            st[uf.find(i)].add(i)
+        ans = []
+        for a, x in queries:
+            root = uf.find(x)
+            if a == 1:
+                if x in st[root]:
+                    ans.append(x)
+                elif len(st[root]):
+                    ans.append(st[root][0])
+                else:
+                    ans.append(-1)
             else:
-                heap = online_by_component[component[station]]
-                while heap and not online[heap[0]]:
-                    heappop(heap)
-                answer.append(heap[0] if heap else -1)
-
-        return answer
+                st[root].discard(x)
+        return ans

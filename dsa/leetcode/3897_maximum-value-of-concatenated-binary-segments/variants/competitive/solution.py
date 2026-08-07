@@ -1,22 +1,27 @@
+# Time:  O(r + nlogn)
+# Space: O(r + n)
+
+# greedy
+def precompute(r):
+    pow2 = [1]*(r+1)
+    for i in range(len(pow2)-1):
+        pow2[i+1] = (pow2[i]*2)%MOD
+    return pow2
+
+
+MOD = 10**9+7
+MAX_TOTAL = 2*10**5
+POW2 = precompute(MAX_TOTAL)
 class Solution:
-    def maxValue(self, nums1: list[int], nums0: list[int]) -> int:
-        segments = list(zip(nums1, nums0))
-
-        def order(segment: tuple[int, int]) -> tuple[int, int, int]:
-            ones, zeros = segment
-            if zeros == 0:
-                return (0, 0, 0)
-            if ones == 0:
-                return (2, 0, 0)
-            return (1, -ones, zeros)
-
-        segments.sort(key=order)
-
-        value = 0
-        modulo = 1_000_000_007
-        for ones, zeros in segments:
-            for _ in range(ones):
-                value = (value * 2 + 1) % modulo
-            for _ in range(zeros):
-                value = value * 2 % modulo
-        return value
+    def maxValue(self, nums1, nums0):
+        """
+        :type nums1: List[int]
+        :type nums0: List[int]
+        :rtype: int
+        """
+        segments = [(nums1[i], nums0[i]) for i in range(len(nums1)) if nums0[i]]
+        segments.sort(key=lambda x: (-x[0], x[1]))
+        result = (POW2[sum(nums1[i] for i in range(len(nums0)) if nums0[i] == 0)]-1)%MOD
+        for cnt1, cnt0 in segments:
+            result = (result*POW2[cnt1+cnt0]%MOD+(((POW2[cnt1]-1)%MOD)*POW2[cnt0])%MOD)%MOD
+        return result

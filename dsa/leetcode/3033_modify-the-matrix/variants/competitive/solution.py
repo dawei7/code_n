@@ -1,11 +1,16 @@
+# Time:  O(m * n)
+# Space: O(1)
+
+# array
 class Solution:
-    def modifiedMatrix(self, matrix: List[List[int]]) -> List[List[int]]:
-        answer = [row[:] for row in matrix]
-
-        for col in range(len(matrix[0])):
-            column_maximum = max(row[col] for row in matrix)
-            for row in range(len(matrix)):
-                if answer[row][col] == -1:
-                    answer[row][col] = column_maximum
-
-        return answer
+    def modifiedMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        for j in range(len(matrix[0])):
+            mx = max(matrix[i][j] for i in range(len(matrix)))
+            for i in range(len(matrix)):
+                if matrix[i][j] == -1:
+                    matrix[i][j] = mx
+        return matrix

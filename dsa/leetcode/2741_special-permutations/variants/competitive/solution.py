@@ -1,21 +1,27 @@
+# Time:  O(n^2 * 2^n)
+# Space: O(n * 2^n)
+
+# backtracking, memoization
 class Solution:
-    def specialPerm(self, nums: List[int]) -> int:
-        modulo = 10**9 + 7
-        n = len(nums)
-        dp = [[0] * n for _ in range(1 << n)]
-        for index in range(n):
-            dp[1 << index][index] = 1
-
-        for mask in range(1 << n):
-            for last in range(n):
-                ways = dp[mask][last]
-                if ways == 0:
-                    continue
-                for nxt in range(n):
-                    if mask & (1 << nxt):
+    def specialPerm(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def backtracking(i, mask):
+            if mask == (1<<len(nums))-1:
+                return 1
+            if lookup[i+1][mask] == -1:
+                total = 0
+                for j in range(len(nums)):
+                    if mask&(1<<j):
                         continue
-                    if nums[last] % nums[nxt] == 0 or nums[nxt] % nums[last] == 0:
-                        next_mask = mask | (1 << nxt)
-                        dp[next_mask][nxt] = (dp[next_mask][nxt] + ways) % modulo
+                    if not (i == -1 or nums[i]%nums[j] == 0 or nums[j]%nums[i] == 0):
+                        continue
+                    total = (total+backtracking(j, mask|(1<<j)))%MOD
+                lookup[i+1][mask] = total
+            return lookup[i+1][mask]
 
-        return sum(dp[-1]) % modulo
+        lookup = [[-1]*(1<<len(nums)) for _ in range(len(nums)+1)]
+        return backtracking(-1, 0)

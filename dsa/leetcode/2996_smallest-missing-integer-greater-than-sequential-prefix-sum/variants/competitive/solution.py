@@ -1,15 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def missingInteger(self, nums: List[int]) -> int:
-        prefix_sum = nums[0]
-        for index in range(1, len(nums)):
-            if nums[index] != nums[index - 1] + 1:
+    def missingInteger(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        total = nums[0]
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i-1]+1:
                 break
-            prefix_sum += nums[index]
-
-        present = set(nums)
-        while prefix_sum in present:
-            prefix_sum += 1
-        return prefix_sum
+            total += nums[i]
+        lookup = set(nums)
+        while total in lookup:
+            total += 1
+        return total

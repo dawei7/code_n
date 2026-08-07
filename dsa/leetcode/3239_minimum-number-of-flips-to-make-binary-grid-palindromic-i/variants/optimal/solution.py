@@ -1,15 +1,13 @@
-from typing import List
-
-
 class Solution:
     def minFlips(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-
-        row_mismatches = sum(
-            grid[row][left] != grid[row][columns - 1 - left] for row in range(rows) for left in range(columns // 2)
-        )
-        column_mismatches = sum(
-            grid[top][column] != grid[rows - 1 - top][column] for top in range(rows // 2) for column in range(columns)
-        )
-        return min(row_mismatches, column_mismatches)
+        m, n = len(grid), len(grid[0])
+        cnt1 = cnt2 = 0
+        for row in grid:
+            for j in range(n // 2):
+                if row[j] != row[n - j - 1]:
+                    cnt1 += 1
+        for j in range(n):
+            for i in range(m // 2):
+                if grid[i][j] != grid[m - i - 1][j]:
+                    cnt2 += 1
+        return min(cnt1, cnt2)

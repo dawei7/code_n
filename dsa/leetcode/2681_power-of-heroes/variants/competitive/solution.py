@@ -1,11 +1,17 @@
-class Solution:
-    def sumOfPower(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        nums.sort()
+# Time:  O(nlogn)
+# Space: O(1)
 
-        answer = 0
-        weighted_minima = 0
-        for strength in nums:
-            answer = (answer + strength * strength * (strength + weighted_minima)) % modulus
-            weighted_minima = (2 * weighted_minima + strength) % modulus
-        return answer
+# sort, combinatorics, dp
+class Solution:
+    def sumOfPower(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        nums.sort()
+        result = dp = 0
+        for x in nums:
+            result = (result+(x**2)*(dp+x))%MOD
+            dp = (dp+(dp+x))%MOD
+        return result

@@ -1,28 +1,50 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(k * log(min(n, m, k))), where n is the size of num1, and m is the size of num2.
+# Space: O(min(n, m, k))
 
+from heapq import heappush, heappop
 
 class Solution:
-    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
-        if not nums1 or not nums2 or k <= 0:
-            return []
-
-        heap = [(nums1[index] + nums2[0], index, 0) for index in range(min(k, len(nums1)))]
-        heapify(heap)
+    def kSmallestPairs(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: List[List[int]]
+        """
         pairs = []
+        if len(nums1) > len(nums2):
+            tmp = self.kSmallestPairs(nums2, nums1, k)
+            for pair in tmp:
+                pairs.append([pair[1], pair[0]])
+            return pairs
 
-        while heap and len(pairs) < k:
-            _, left_index, right_index = heappop(heap)
-            pairs.append([nums1[left_index], nums2[right_index]])
-            if right_index + 1 < len(nums2):
-                next_right = right_index + 1
-                heappush(
-                    heap,
-                    (
-                        nums1[left_index] + nums2[next_right],
-                        left_index,
-                        next_right,
-                    ),
-                )
+        min_heap = []
+        def push(i, j):
+            if i < len(nums1) and j < len(nums2):
+                heappush(min_heap, [nums1[i] + nums2[j], i, j])
 
+        push(0, 0)
+        while min_heap and len(pairs) < k:
+            _, i, j = heappop(min_heap)
+            pairs.append([nums1[i], nums2[j]])
+            push(i, j + 1)
+            if j == 0:
+                push(i + 1, 0)  # at most queue min(n, m) space
         return pairs
+
+
+# time: O(mn * log k)
+# space: O(k)
+from heapq import nsmallest
+from itertools import product
+
+
+class Solution2(object):
+    def kSmallestPairs(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        return nsmallest(k, product(nums1, nums2), key=sum)

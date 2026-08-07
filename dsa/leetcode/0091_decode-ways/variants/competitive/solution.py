@@ -1,10 +1,22 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def numDecodings(self, s: str) -> int:
-        two_before = 1
-        one_before = 0 if s[0] == "0" else 1
-        for index in range(1, len(s)):
-            current = one_before if s[index] != "0" else 0
-            if 10 <= int(s[index - 1 : index + 1]) <= 26:
-                current += two_before
-            two_before, one_before = one_before, current
-        return one_before
+    def numDecodings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if len(s) == 0 or s[0] == '0':
+            return 0
+        prev, prev_prev = 1, 0
+        for i in range(len(s)):
+            cur = 0
+            if s[i] != '0':
+                cur = prev
+            if i > 0 and (s[i - 1] == '1' or (s[i - 1] == '2' and s[i] <= '6')):
+                cur += prev_prev
+            prev, prev_prev = cur, prev
+        return prev
+
+

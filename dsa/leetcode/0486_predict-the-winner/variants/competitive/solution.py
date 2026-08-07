@@ -1,13 +1,21 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n)
 
 class Solution:
-    def predictTheWinner(self, nums: List[int]) -> bool:
-        advantage = nums.copy()
-        for length in range(2, len(nums) + 1):
-            for left in range(len(nums) - length + 1):
-                right = left + length - 1
-                take_left = nums[left] - advantage[left + 1]
-                take_right = nums[right] - advantage[left]
-                advantage[left] = max(take_left, take_right)
-        return advantage[0] >= 0
+    def predictTheWinner(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        if len(nums) % 2 == 0 or len(nums) == 1:
+            return True
+
+        dp = [0] * len(nums)
+        for i in reversed(range(len(nums))):
+            dp[i] = nums[i]
+            for j in range(i+1, len(nums)):
+                dp[j] = max(nums[i] - dp[j], nums[j] - dp[j - 1])
+
+        return dp[-1] >= 0
+
+

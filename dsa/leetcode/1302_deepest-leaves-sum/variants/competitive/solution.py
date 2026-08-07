@@ -1,26 +1,21 @@
-from collections import deque
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(w)
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
-        queue = deque([root])
-        level_sum = 0
-
-        while queue:
-            level_sum = 0
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                level_sum += node.val
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
-
-        return level_sum
+    def deepestLeavesSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        curr = [root]
+        while curr:
+            prev, curr = curr, [child for p in curr for child in [p.left, p.right] if child]
+        return sum(node.val for node in prev)

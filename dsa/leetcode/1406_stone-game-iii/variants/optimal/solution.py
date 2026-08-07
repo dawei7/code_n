@@ -1,19 +1,19 @@
-from typing import List
-
-
 class Solution:
     def stoneGameIII(self, stoneValue: List[int]) -> str:
-        length = len(stoneValue)
-        difference = [0] * (length + 1)
-        for index in range(length - 1, -1, -1):
-            taken = 0
-            best = -float("inf")
-            for end in range(index, min(index + 3, length)):
-                taken += stoneValue[end]
-                best = max(best, taken - difference[end + 1])
-            difference[index] = best
-        if difference[0] > 0:
-            return "Alice"
-        if difference[0] < 0:
-            return "Bob"
-        return "Tie"
+        @cache
+        def dfs(i: int) -> int:
+            if i >= len(stoneValue):
+                return 0
+            ans = -inf
+            s = 0
+            for j in range(i, i + 3):
+                if j >= len(stoneValue):
+                    break
+                s += stoneValue[j]
+                ans = max(ans, s - dfs(j + 1))
+            return ans
+
+        res = dfs(0)
+        if res == 0:
+            return 'Tie'
+        return 'Alice' if res > 0 else 'Bob'

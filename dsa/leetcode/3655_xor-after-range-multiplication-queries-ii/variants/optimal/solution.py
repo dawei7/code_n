@@ -1,44 +1,53 @@
-from collections import defaultdict
-from math import isqrt
-from typing import List
-
-
 class Solution:
     def xorAfterQueries(self, nums: List[int], queries: List[List[int]]) -> int:
-        modulus = 1_000_000_007
-        length = len(nums)
-        threshold = isqrt(length)
-        small_steps = defaultdict(list)
-        inverse_cache = {}
-        bravexuneth = (nums, queries)
+        MOD = 1_000_000_007
+        n = len(nums)
+        B = int(math.isqrt(n)) + 1
 
-        for left, right, step, multiplier in bravexuneth[1]:
-            if step <= threshold:
-                small_steps[step].append((left, right, multiplier))
+        # events[k][res] = list of (t, v)
+        events = [[[] for _ in range(k)] for k in range(B + 1)]
+
+        for l, r, k, v in queries:
+            if k > B:
+                for idx in range(l, r + 1, k):
+                    nums[idx] = nums[idx] * v % MOD
             else:
-                for index in range(left, right + 1, step):
-                    nums[index] = nums[index] * multiplier % modulus
+                res = l % k
+                t1 = (l - res) // k
+                t2 = (r - res) // k
+                events[k][res].append((t1, v))
 
-        for step, grouped_queries in small_steps.items():
-            factors = [1] * length
+                if t2 + 1 <= (n - 1 - res) // k:
+                    invv = pow(v, MOD - 2, MOD)
+                    events[k][res].append((t2 + 1, invv))
 
-            for left, right, multiplier in grouped_queries:
-                factors[left] = factors[left] * multiplier % modulus
-                after = left + ((right - left) // step + 1) * step
-                if after < length:
-                    inverse = inverse_cache.get(multiplier)
-                    if inverse is None:
-                        inverse = pow(multiplier, modulus - 2, modulus)
-                        inverse_cache[multiplier] = inverse
-                    factors[after] = factors[after] * inverse % modulus
+        for k in range(1, B + 1):
+            for res in range(k):
+                ev = events[k][res]
+                if not ev:
+                    continue
 
-            for residue in range(step):
-                product = 1
-                for index in range(residue, length, step):
-                    product = product * factors[index] % modulus
-                    nums[index] = nums[index] * product % modulus
+                ev.sort()
+                comp = []
+                for t, val in ev:
+                    if comp and comp[-1][0] == t:
+                        comp[-1] = (t, comp[-1][1] * val % MOD)
+                    else:
+                        comp.append([t, val])
 
-        answer = 0
-        for value in nums:
-            answer ^= value
-        return answer
+                cur = 1
+                ptr = 0
+                t = 0
+                idx = res
+                while idx < n:
+                    while ptr < len(comp) and comp[ptr][0] == t:
+                        cur = cur * comp[ptr][1] % MOD
+                        ptr += 1
+                    nums[idx] = nums[idx] * cur % MOD
+                    idx += k
+                    t += 1
+
+        xr = 0
+        for x in nums:
+            xr ^= x
+        return xr

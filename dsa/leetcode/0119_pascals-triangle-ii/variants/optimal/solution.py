@@ -1,11 +1,7 @@
-from typing import List
-
-
 class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
-        row = [1]
-        coefficient = 1
-        for column in range(1, rowIndex + 1):
-            coefficient = coefficient * (rowIndex - column + 1) // column
-            row.append(coefficient)
-        return row
+        f = [1] * (rowIndex + 1)
+        for i in range(2, rowIndex + 1):
+            for j in range(i - 1, 0, -1):
+                f[j] += f[j - 1]
+        return f

@@ -1,20 +1,11 @@
-from typing import List
-
-
 class Solution:
     def minimumDeletions(self, nums: List[int]) -> int:
-        minimum_index = 0
-        maximum_index = 0
-
-        for index in range(1, len(nums)):
-            if nums[index] < nums[minimum_index]:
-                minimum_index = index
-            if nums[index] > nums[maximum_index]:
-                maximum_index = index
-
-        left, right = sorted((minimum_index, maximum_index))
-        return min(
-            right + 1,
-            len(nums) - left,
-            left + 1 + len(nums) - right,
-        )
+        mi = mx = 0
+        for i, num in enumerate(nums):
+            if num < nums[mi]:
+                mi = i
+            if num > nums[mx]:
+                mx = i
+        if mi > mx:
+            mi, mx = mx, mi
+        return min(mx + 1, len(nums) - mi, mi + 1 + len(nums) - mx)

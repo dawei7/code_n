@@ -1,31 +1,29 @@
-from typing import List
-
-
 class Solution:
     def numMagicSquaresInside(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        magic_values = set(range(1, 10))
+        def check(i: int, j: int) -> int:
+            if i + 3 > m or j + 3 > n:
+                return 0
+            s = set()
+            row = [0] * 3
+            col = [0] * 3
+            a = b = 0
+            for x in range(i, i + 3):
+                for y in range(j, j + 3):
+                    v = grid[x][y]
+                    if v < 1 or v > 9:
+                        return 0
+                    s.add(v)
+                    row[x - i] += v
+                    col[y - j] += v
+                    if x - i == y - j:
+                        a += v
+                    if x - i == 2 - (y - j):
+                        b += v
+            if len(s) != 9 or a != b:
+                return 0
+            if any(x != a for x in row) or any(x != a for x in col):
+                return 0
+            return 1
 
-        def is_magic(top: int, left: int) -> bool:
-            if grid[top + 1][left + 1] != 5:
-                return False
-
-            values = {
-                grid[top + row_offset][left + column_offset] for row_offset in range(3) for column_offset in range(3)
-            }
-            if values != magic_values:
-                return False
-
-            for offset in range(3):
-                if sum(grid[top + offset][left : left + 3]) != 15:
-                    return False
-                if sum(grid[top + row][left + offset] for row in range(3)) != 15:
-                    return False
-
-            return (
-                sum(grid[top + offset][left + offset] for offset in range(3)) == 15
-                and sum(grid[top + offset][left + 2 - offset] for offset in range(3)) == 15
-            )
-
-        return sum(is_magic(top, left) for top in range(rows - 2) for left in range(columns - 2))
+        m, n = len(grid), len(grid[0])
+        return sum(check(i, j) for i in range(m) for j in range(n))

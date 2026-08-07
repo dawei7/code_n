@@ -1,21 +1,19 @@
 class Codec:
     def __init__(self):
-        self.prefix = "https://tinyurl.com/"
-        self.next_code = 0
-        self.short_to_long = {}
-        self.long_to_short = {}
+        self.m = defaultdict()
+        self.idx = 0
+        self.domain = 'https://tinyurl.com/'
 
     def encode(self, longUrl: str) -> str:
-        if longUrl in self.long_to_short:
-            return self.long_to_short[longUrl]
-        shortUrl = f"{self.prefix}{self.next_code}"
-        self.next_code += 1
-        self.long_to_short[longUrl] = shortUrl
-        self.short_to_long[shortUrl] = longUrl
-        return shortUrl
+        """Encodes a URL to a shortened URL."""
+        self.idx += 1
+        self.m[str(self.idx)] = longUrl
+        return f'{self.domain}{self.idx}'
 
     def decode(self, shortUrl: str) -> str:
-        return self.short_to_long[shortUrl]
+        """Decodes a shortened URL to its original URL."""
+        idx = shortUrl.split('/')[-1]
+        return self.m[idx]
 
 
 # Your Codec object will be instantiated and called as such:

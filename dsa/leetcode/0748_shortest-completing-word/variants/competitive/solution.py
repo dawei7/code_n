@@ -1,20 +1,26 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def shortestCompletingWord(self, licensePlate: str, words: List[str]) -> str:
-        required = [0] * 26
-        for character in licensePlate.lower():
-            if "a" <= character <= "z":
-                required[ord(character) - ord("a")] += 1
+    def shortestCompletingWord(self, licensePlate, words):
+        """
+        :type licensePlate: str
+        :type words: List[str]
+        :rtype: str
+        """
+        def contains(counter1, w2):
+            c2 = collections.Counter(w2.lower())
+            c2.subtract(counter1)
+            return all(map(lambda x: x >= 0, c2.values()))
 
-        best = ""
+        result = None
+        counter = collections.Counter(c.lower() for c in licensePlate if c.isalpha())
         for word in words:
-            counts = [0] * 26
-            for character in word:
-                counts[ord(character) - ord("a")] += 1
+            if (result is None or (len(word) < len(result))) and \
+               contains(counter, word):
+                result = word
+        return result
 
-            if all(counts[index] >= required[index] for index in range(26)) and (not best or len(word) < len(best)):
-                best = word
-
-        return best

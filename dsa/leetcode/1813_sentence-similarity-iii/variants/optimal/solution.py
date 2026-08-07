@@ -1,16 +1,13 @@
 class Solution:
     def areSentencesSimilar(self, sentence1: str, sentence2: str) -> bool:
-        first = sentence1.split()
-        second = sentence2.split()
-        if len(first) > len(second):
-            first, second = second, first
-
-        prefix = 0
-        while prefix < len(first) and first[prefix] == second[prefix]:
-            prefix += 1
-
-        suffix = 0
-        while suffix < len(first) - prefix and first[-1 - suffix] == second[-1 - suffix]:
-            suffix += 1
-
-        return prefix + suffix == len(first)
+        words1, words2 = sentence1.split(), sentence2.split()
+        m, n = len(words1), len(words2)
+        if m < n:
+            words1, words2 = words2, words1
+            m, n = n, m
+        i = j = 0
+        while i < n and words1[i] == words2[i]:
+            i += 1
+        while j < n and words1[m - 1 - j] == words2[n - 1 - j]:
+            j += 1
+        return i + j >= n

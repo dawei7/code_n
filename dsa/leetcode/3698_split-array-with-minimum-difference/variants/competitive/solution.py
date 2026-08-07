@@ -1,23 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers
 class Solution:
-    def splitArray(self, nums: List[int]) -> int:
-        increasing_end = 0
-        while increasing_end + 1 < len(nums) and nums[increasing_end] < nums[increasing_end + 1]:
-            increasing_end += 1
-
-        decreasing_start = len(nums) - 1
-        while decreasing_start > 0 and nums[decreasing_start - 1] > nums[decreasing_start]:
-            decreasing_start -= 1
-
-        total = sum(nums)
-        left_sum = 0
-        answer = None
-        for split, value in enumerate(nums[:-1]):
-            left_sum += value
-            if split <= increasing_end and split + 1 >= decreasing_start:
-                difference = abs(2 * left_sum - total)
-                answer = difference if answer is None else min(answer, difference)
-
-        return -1 if answer is None else answer
+    def splitArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left, i = 0, 0
+        while i+1 < len(nums) and nums[i] < nums[i+1]:
+            left += nums[i]
+            i += 1
+        right, j = 0, len(nums)-1
+        while j-1 >= 0 and nums[j] < nums[j-1]:
+            right += nums[j]
+            j -= 1
+        if j-i+1 >= 3:
+            return -1
+        if j-i+1 == 2:
+            return abs((right+nums[j])-(left+nums[i]))
+        return min(abs(right-(left+nums[i])), abs((right+nums[j])-left))

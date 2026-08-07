@@ -1,25 +1,28 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# sort, simulation, stack
 class Solution:
-    def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
-        order = sorted(range(len(positions)), key=positions.__getitem__)
-        right_movers = []
-
-        for robot in order:
-            if directions[robot] == "R":
-                right_movers.append(robot)
+    def survivedRobotsHealths(self, positions, healths, directions):
+        """
+        :type positions: List[int]
+        :type healths: List[int]
+        :type directions: str
+        :rtype: List[int]
+        """
+        stk = []
+        for i in sorted(range(len(positions)), key=lambda x:positions[x]):
+            if directions[i] == 'R':
+                stk.append(i)
                 continue
-
-            while right_movers and healths[robot] > 0:
-                opponent = right_movers[-1]
-                if healths[opponent] < healths[robot]:
-                    healths[opponent] = 0
-                    healths[robot] -= 1
-                    right_movers.pop()
-                elif healths[opponent] == healths[robot]:
-                    healths[opponent] = 0
-                    healths[robot] = 0
-                    right_movers.pop()
-                else:
-                    healths[opponent] -= 1
-                    healths[robot] = 0
-
-        return [health for health in healths if health > 0]
+            while stk:
+                if healths[stk[-1]] == healths[i]:
+                    healths[stk.pop()] = healths[i] = 0
+                    break
+                if healths[stk[-1]] > healths[i]:
+                    healths[i] = 0
+                    healths[stk[-1]] -= 1
+                    break                
+                healths[stk.pop()] = 0
+                healths[i] -= 1
+        return [x for x in healths if x]

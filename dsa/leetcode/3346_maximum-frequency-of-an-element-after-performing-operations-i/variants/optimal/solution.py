@@ -1,26 +1,14 @@
-from collections import Counter, defaultdict
-
-
 class Solution:
     def maxFrequency(self, nums: List[int], k: int, numOperations: int) -> int:
-        counts = Counter(nums)
-        events = defaultdict(int)
-
-        for value in nums:
-            events[value - k] += 1
-            events[value + k + 1] -= 1
-
-        for value in counts:
-            events[value] += 0
-
-        reachable = 0
-        best = 0
-        for target in sorted(events):
-            reachable += events[target]
-            unchanged = counts[target]
-            best = max(
-                best,
-                unchanged + min(numOperations, reachable - unchanged),
-            )
-
-        return best
+        cnt = defaultdict(int)
+        d = defaultdict(int)
+        for x in nums:
+            cnt[x] += 1
+            d[x] += 0
+            d[x - k] += 1
+            d[x + k + 1] -= 1
+        ans = s = 0
+        for x, t in sorted(d.items()):
+            s += t
+            ans = max(ans, min(s, cnt[x] + numOperations))
+        return ans

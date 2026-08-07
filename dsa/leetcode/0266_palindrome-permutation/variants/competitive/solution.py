@@ -1,9 +1,14 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def canPermutePalindrome(self, s: str) -> bool:
-        odd = set()
-        for character in s:
-            if character in odd:
-                odd.remove(character)
-            else:
-                odd.add(character)
-        return len(odd) <= 1
+    def canPermutePalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        return sum(v % 2 for v in collections.Counter(s).values()) < 2
+

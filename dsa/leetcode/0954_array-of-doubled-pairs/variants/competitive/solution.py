@@ -1,20 +1,18 @@
-from collections import Counter
-from typing import List
+# Time:  O(n + klogk)
+# Space: O(k)
+
+import collections
 
 
 class Solution:
-    def canReorderDoubled(self, arr: List[int]) -> bool:
-        counts = Counter(arr)
-        for value in sorted(counts, key=abs):
-            available = counts[value]
-            if available == 0:
-                continue
-            if value == 0:
-                if available % 2:
-                    return False
-                counts[value] = 0
-                continue
-            if counts[2 * value] < available:
+    def canReorderDoubled(self, A):
+        """
+        :type A: List[int]
+        :rtype: bool
+        """
+        count = collections.Counter(A)
+        for x in sorted(count, key=abs):
+            if count[x] > count[2*x]:
                 return False
-            counts[2 * value] -= available
+            count[2*x] -= count[x]
         return True

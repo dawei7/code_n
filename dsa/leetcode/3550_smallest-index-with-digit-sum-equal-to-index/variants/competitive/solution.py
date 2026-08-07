@@ -1,6 +1,18 @@
+# Time:  O(nlogr)
+# Space: O(1)
+
+# array
 class Solution:
-    def smallestIndex(self, nums: List[int]) -> int:
-        for index, value in enumerate(nums[:28]):
-            if sum(map(int, str(value))) == index:
-                return index
-        return -1
+    def smallestIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def total(x):
+            result = 0
+            while x:
+                result += x%10
+                x //= 10
+            return result
+
+        return next((i for i, x in enumerate(nums) if total(x) == i), -1)

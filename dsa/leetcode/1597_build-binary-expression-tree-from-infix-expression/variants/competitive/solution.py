@@ -1,29 +1,43 @@
+# Time:  O(n)
+# Space: O(n)
+
+# Definition for a binary tree node.
+class Node(object):
+    def __init__(self, val=" ", left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 class Solution:
-    def expTree(self, s: str) -> "Node":
-        nodes = []
-        operators = []
-        precedence = {"+": 1, "-": 1, "*": 2, "/": 2}
+    def expTree(self, s):
+        """
+        :type s: str
+        :rtype: Node
+        """
+        def compute(operands, operators):
+            right, left = operands.pop(), operands.pop()
+            operands.append(Node(val=operators.pop(), left=left, right=right))
 
-        def combine() -> None:
-            operator = operators.pop()
-            right = nodes.pop()
-            left = nodes.pop()
-            nodes.append(Node(operator, left, right))
-
-        for token in s:
-            if token.isdigit():
-                nodes.append(Node(token))
-            elif token == "(":
-                operators.append(token)
-            elif token == ")":
-                while operators[-1] != "(":
-                    combine()
+        precedence = {'+':0, '-':0, '*':1, '/':1}
+        operands, operators, operand = [], [], 0
+        for i in range(len(s)):
+            if s[i].isdigit():
+                operand = operand*10 + int(s[i])
+                if i == len(s)-1 or not s[i+1].isdigit():
+                    operands.append(Node(val=str(operand)))
+                    operand = 0
+            elif s[i] == '(':
+                operators.append(s[i])
+            elif s[i] == ')':
+                while operators[-1] != '(':
+                    compute(operands, operators)
                 operators.pop()
-            else:
-                while operators and operators[-1] != "(" and precedence[operators[-1]] >= precedence[token]:
-                    combine()
-                operators.append(token)
-
+            elif s[i] in precedence:
+                while operators and operators[-1] in precedence and \
+                      precedence[operators[-1]] >= precedence[s[i]]:
+                    compute(operands, operators)
+                operators.append(s[i])
         while operators:
-            combine()
-        return nodes[-1]
+            compute(operands, operators)
+        return operands[-1]

@@ -1,35 +1,40 @@
+# Time:  O(logtx + logty)
+# Space: O(1)
+
+# backward simulation
 class Solution:
-    def minMoves(self, sx: int, sy: int, tx: int, ty: int) -> int:
-        moves = 0
-
-        while tx > sx or ty > sy:
-            if tx < sx or ty < sy:
+    def minMoves(self, sx, sy, tx, ty):
+        """
+        :type sx: int
+        :type sy: int
+        :type tx: int
+        :type ty: int
+        :rtype: int
+        """
+        result = 0
+        while (sx, sy) != (tx, ty):
+            if not (sx <= tx and sy <= ty):
                 return -1
-
-            if tx == ty:
-                if tx == 0:
-                    return -1
-                if sy == 0:
-                    ty = 0
-                elif sx == 0:
-                    tx = 0
-                else:
-                    return -1
-            elif tx > ty:
-                if tx > 2 * ty:
-                    if tx % 2:
-                        return -1
-                    tx //= 2
-                else:
-                    tx -= ty
-            else:
-                if ty > 2 * tx:
-                    if ty % 2:
-                        return -1
-                    ty //= 2
-                else:
+            if tx < ty:
+                if tx > ty-tx:
                     ty -= tx
-
-            moves += 1
-
-        return moves if (tx, ty) == (sx, sy) else -1
+                else:
+                    if ty%2:
+                        return -1
+                    ty -= ty//2
+            elif tx > ty:
+                if ty > tx-ty:
+                    tx -= ty
+                else:
+                    if tx%2:
+                        return -1
+                    tx -= tx//2
+            else:
+                if sx == 0:
+                    tx -= ty
+                elif sy == 0:
+                    ty -= tx
+                else:
+                    return -1
+            result += 1
+        return result

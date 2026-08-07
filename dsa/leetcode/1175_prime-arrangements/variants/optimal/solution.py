@@ -1,22 +1,15 @@
 class Solution:
     def numPrimeArrangements(self, n: int) -> int:
-        modulus = 1_000_000_007
-        is_prime = [True] * (n + 1)
-        is_prime[0] = False
-        if n >= 1:
-            is_prime[1] = False
+        def count(n):
+            cnt = 0
+            primes = [True] * (n + 1)
+            for i in range(2, n + 1):
+                if primes[i]:
+                    cnt += 1
+                    for j in range(i + i, n + 1, i):
+                        primes[j] = False
+            return cnt
 
-        candidate = 2
-        while candidate * candidate <= n:
-            if is_prime[candidate]:
-                for multiple in range(candidate * candidate, n + 1, candidate):
-                    is_prime[multiple] = False
-            candidate += 1
-
-        prime_count = sum(is_prime)
-        result = 1
-        for value in range(2, prime_count + 1):
-            result = result * value % modulus
-        for value in range(2, n - prime_count + 1):
-            result = result * value % modulus
-        return result
+        cnt = count(n)
+        ans = factorial(cnt) * factorial(n - cnt)
+        return ans % (10**9 + 7)

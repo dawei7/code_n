@@ -1,16 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def countHomogenous(self, s: str) -> int:
-        modulus = 1_000_000_007
-        total = 0
-        run_length = 0
-        previous = ""
-
-        for character in s:
-            if character == previous:
-                run_length += 1
+    def countHomogenous(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        result = cnt = 0
+        for i in range(len(s)):
+            if i and s[i-1] == s[i]:
+                cnt += 1
             else:
-                previous = character
-                run_length = 1
-            total = (total + run_length) % modulus
-
-        return total
+                cnt = 1
+            result = (result+cnt)%MOD
+        return result

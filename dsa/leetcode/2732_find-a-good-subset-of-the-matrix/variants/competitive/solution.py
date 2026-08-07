@@ -1,17 +1,20 @@
+# Time:  O(m * 2^n)
+# Space: O(2^n)
+
+# bitmasks, constructive algorithms, greedy
 class Solution:
-    def goodSubsetofBinaryMatrix(self, grid: List[List[int]]) -> List[int]:
-        seen = {}
-
-        for index, row in enumerate(grid):
-            mask = sum(bit << column for column, bit in enumerate(row))
-            if mask == 0:
-                return [index]
-
-            for other_mask, other_index in seen.items():
-                if mask & other_mask == 0:
-                    return [other_index, index]
-
-            if mask not in seen:
-                seen[mask] = index
-
+    def goodSubsetofBinaryMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[int]
+        """
+        lookup = {}
+        for i in range(len(grid)):
+            mask = reduce(lambda mask, j: mask|(grid[i][j]<<j), range(len(grid[0])), 0)
+            if not mask:
+                return [i]
+            for mask2, j in lookup.items():
+                if mask2&mask == 0:
+                    return [j, i]
+            lookup[mask] = i
         return []

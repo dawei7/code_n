@@ -1,19 +1,21 @@
+# Time:  O(n)
+# Space: O(n)
+
+# prefix sum, freq table
 class Solution:
-    def countMajoritySubarrays(self, nums: List[int], target: int) -> int:
-        frequency = {0: 1}
-        balance = 0
-        smaller_prefixes = 0
-        answer = 0
-
-        for value in nums:
-            if value == target:
-                smaller_prefixes += frequency.get(balance, 0)
-                balance += 1
-            else:
-                balance -= 1
-                smaller_prefixes -= frequency.get(balance, 0)
-
-            answer += smaller_prefixes
-            frequency[balance] = frequency.get(balance, 0) + 1
-
-        return answer
+    def countMajoritySubarrays(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        cnt = [0]*((2*len(nums)+1)+1)
+        prefix = [0]*((2*len(nums)+1)+1)
+        prefix[0] = cnt[0] = 1
+        result = curr = 0
+        for x in nums:
+            curr += +1 if x == target else -1
+            cnt[curr] += 1
+            prefix[curr] = prefix[curr-1]+cnt[curr]
+            result += prefix[curr-1]
+        return result

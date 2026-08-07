@@ -1,20 +1,27 @@
-from collections import deque
-
+# Time:  sum(O(l * 2^l) for l in range(1, 11)) = O(20 * 2^10) = O(1)
+# Space: O(1)
 
 class Solution:
-    def findInteger(self, k: int, digit1: int, digit2: int) -> int:
-        limit = 2**31 - 1
-        digits = sorted({digit1, digit2})
-        queue = deque(digit for digit in digits if digit != 0)
+    def findInteger(self, k, digit1, digit2):
+        """
+        :type k: int
+        :type digit1: int
+        :type digit2: int
+        :rtype: int
+        """
+        MAX_NUM_OF_DIGITS = 10
+        INT_MAX = 2**31-1
 
-        while queue:
-            value = queue.popleft()
-            if value > k and value % k == 0:
-                return value
-
-            for digit in digits:
-                following = value * 10 + digit
-                if following <= limit:
-                    queue.append(following)
-
+        if digit1 < digit2:
+            digit1, digit2 = digit2, digit1
+        total = 2
+        for l in range(1, MAX_NUM_OF_DIGITS+1):
+            for mask in range(total):
+                curr, bit = 0, total>>1
+                while bit:
+                    curr = curr*10 + (digit1 if mask&bit else digit2)
+                    bit >>= 1
+                if k < curr <= INT_MAX and curr%k == 0:
+                    return curr
+            total <<= 1
         return -1

@@ -1,17 +1,22 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def kthCharacter(self, s: str, k: int) -> str:
-        position_in_word = 1
-
-        for character in s:
-            if character == " ":
-                if k == 0:
-                    return character
+    def kthCharacter(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        l = 0
+        for i in range(len(s)):
+            if s[i] == ' ':
+                l = 0
                 k -= 1
-                position_in_word = 1
             else:
-                if k < position_in_word:
-                    return character
-                k -= position_in_word
-                position_in_word += 1
-
-        return ""
+                l += 1
+                k -= l
+            if k < 0:
+                break
+        return s[i]

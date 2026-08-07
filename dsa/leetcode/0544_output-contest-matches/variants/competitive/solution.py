@@ -1,9 +1,15 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def findContestMatch(self, n: int) -> str:
-        groups = [str(seed) for seed in range(1, n + 1)]
+    def findContestMatch(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        matches = map(str, range(1, n+1))
+        while len(matches)/2:
+            matches = ["({},{})".format(matches[i], matches[-i-1]) for i in range(len(matches)/2)]
+        return matches[0]
 
-        while len(groups) > 1:
-            count = len(groups)
-            groups = [f"({groups[index]},{groups[count - 1 - index]})" for index in range(count // 2)]
 
-        return groups[0]

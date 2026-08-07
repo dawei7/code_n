@@ -1,34 +1,42 @@
-from collections import deque
-from typing import List
+# Time:  O(n^2), n is the number of blocked
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def isEscapePossible(self, blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
-        grid_size = 1_000_000
-        blocked_set = {tuple(cell) for cell in blocked}
-        enclosure_limit = len(blocked) * (len(blocked) - 1) // 2
+    def isEscapePossible(self, blocked, source, target):
+        """
+        :type blocked: List[List[int]]
+        :type source: List[int]
+        :type target: List[int]
+        :rtype: bool
+        """
+        R, C = 10**6, 10**6
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-        def escapes(start, finish):
-            queue = deque([start])
-            seen = {start}
-            while queue and len(seen) <= enclosure_limit:
-                row, col = queue.popleft()
-                if (row, col) == finish:
+        def bfs(blocks, source, target):
+            max_area_surrounded_by_blocks = len(blocks)*(len(blocks)-1)//2
+            lookup = set([source])
+            if len(lookup) > max_area_surrounded_by_blocks:
+                return True
+            q = collections.deque([source])
+            while q:
+                source = q.popleft()
+                if source == target:
                     return True
-                for row_step, col_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row = row + row_step
-                    next_col = col + col_step
-                    next_cell = (next_row, next_col)
-                    if (
-                        0 <= next_row < grid_size
-                        and 0 <= next_col < grid_size
-                        and next_cell not in blocked_set
-                        and next_cell not in seen
-                    ):
-                        seen.add(next_cell)
-                        queue.append(next_cell)
-            return len(seen) > enclosure_limit
-
-        source_cell = tuple(source)
-        target_cell = tuple(target)
-        return escapes(source_cell, target_cell) and escapes(target_cell, source_cell)
+                for direction in directions:
+                    nr, nc = source[0]+direction[0], source[1]+direction[1]
+                    if not ((0 <= nr < R) and
+                            (0 <= nc < C) and 
+                            (nr, nc) not in lookup and
+                            (nr, nc) not in blocks):
+                        continue
+                    lookup.add((nr, nc))
+                    if len(lookup) > max_area_surrounded_by_blocks:
+                        return True
+                    q.append((nr, nc))
+            return False
+        
+        return bfs(set(map(tuple, blocked)), tuple(source), tuple(target)) and \
+               bfs(set(map(tuple, blocked)), tuple(target), tuple(source))

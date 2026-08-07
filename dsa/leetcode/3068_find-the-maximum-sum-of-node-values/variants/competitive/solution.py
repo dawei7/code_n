@@ -1,16 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def maximumValueSum(self, nums: List[int], k: int, edges: List[List[int]]) -> int:
-        best_sum = 0
-        beneficial_toggles = 0
-        smallest_adjustment = float("inf")
-
-        for value in nums:
-            toggled = value ^ k
-            best_sum += max(value, toggled)
-            beneficial_toggles += int(toggled > value)
-            smallest_adjustment = min(smallest_adjustment, abs(toggled - value))
-
-        if beneficial_toggles % 2 == 1:
-            best_sum -= smallest_adjustment
-
-        return best_sum
+    def maximumValueSum(self, nums, k, edges):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        result = parity = 0
+        diff = float("inf")
+        for x in nums:
+            y = x^k
+            result += max(x, y)
+            parity ^= int(x < y)
+            diff = min(diff, abs(x-y))
+        return result-parity*diff

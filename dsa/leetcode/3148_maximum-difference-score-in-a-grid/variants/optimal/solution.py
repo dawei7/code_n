@@ -1,20 +1,14 @@
-from typing import List
-
-
 class Solution:
     def maxScore(self, grid: List[List[int]]) -> int:
-        columns = len(grid[0])
-        prefix_minimum = [10**18] * columns
-        answer = -(10**18)
-
-        for row in grid:
-            left_minimum = 10**18
-            for column, value in enumerate(row):
-                previous_minimum = min(left_minimum, prefix_minimum[column])
-                answer = max(answer, value - previous_minimum)
-
-                current_minimum = min(value, previous_minimum)
-                prefix_minimum[column] = current_minimum
-                left_minimum = current_minimum
-
-        return answer
+        f = [[0] * len(grid[0]) for _ in range(len(grid))]
+        ans = -inf
+        for i, row in enumerate(grid):
+            for j, x in enumerate(row):
+                mi = inf
+                if i:
+                    mi = min(mi, f[i - 1][j])
+                if j:
+                    mi = min(mi, f[i][j - 1])
+                ans = max(ans, x - mi)
+                f[i][j] = min(x, mi)
+        return ans

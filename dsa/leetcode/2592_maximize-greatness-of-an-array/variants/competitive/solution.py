@@ -1,10 +1,28 @@
+# Time:  O(n)
+# Space: O(n)
+
+# freq table, contructive algorithms
 class Solution:
-    def maximizeGreatness(self, nums: List[int]) -> int:
-        frequencies = {}
-        largest_frequency = 0
+    def maximizeGreatness(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return len(nums)-max(collections.Counter(nums).itervalues())
+  
 
-        for value in nums:
-            frequencies[value] = frequencies.get(value, 0) + 1
-            largest_frequency = max(largest_frequency, frequencies[value])
-
-        return len(nums) - largest_frequency
+# Time:  O(nlogn)
+# Space: O(1)
+# sort, greedy, two pointers
+class Solution2(object):
+    def maximizeGreatness(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        left = 0
+        for right in range(len(nums)):
+            if nums[right] > nums[left]:
+                left += 1
+        return left

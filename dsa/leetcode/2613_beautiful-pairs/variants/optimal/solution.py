@@ -1,60 +1,37 @@
-from typing import List
-
-
 class Solution:
     def beautifulPair(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        n = len(nums1)
-        width = max(nums2) + 1
-        trees = {
-            -1: [-1] * (2 * width),
-            1: [-1] * (2 * width),
-        }
+        def dist(x1: int, y1: int, x2: int, y2: int) -> int:
+            return abs(x1 - x2) + abs(y1 - y2)
 
-        def better(i: int, j: int, sign: int) -> int:
-            if i < 0:
-                return j
-            if j < 0:
-                return i
-            key_i = (-nums1[i] + sign * nums2[i], i)
-            key_j = (-nums1[j] + sign * nums2[j], j)
-            return i if key_i <= key_j else j
+        def dfs(l: int, r: int):
+            if l >= r:
+                return inf, -1, -1
+            m = (l + r) >> 1
+            x = points[m][0]
+            d1, pi1, pj1 = dfs(l, m)
+            d2, pi2, pj2 = dfs(m + 1, r)
+            if d1 > d2 or (d1 == d2 and (pi1 > pi2 or (pi1 == pi2 and pj1 > pj2))):
+                d1, pi1, pj1 = d2, pi2, pj2
+            t = [p for p in points[l : r + 1] if abs(p[0] - x) <= d1]
+            t.sort(key=lambda x: x[1])
+            for i in range(len(t)):
+                for j in range(i + 1, len(t)):
+                    if t[j][1] - t[i][1] > d1:
+                        break
+                    pi, pj = sorted([t[i][2], t[j][2]])
+                    d = dist(t[i][0], t[i][1], t[j][0], t[j][1])
+                    if d < d1 or (d == d1 and (pi < pi1 or (pi == pi1 and pj < pj1))):
+                        d1, pi1, pj1 = d, pi, pj
+            return d1, pi1, pj1
 
-        def update(position: int, index: int, sign: int) -> None:
-            tree = trees[sign]
-            position += width
-            tree[position] = better(tree[position], index, sign)
-            position //= 2
-            while position:
-                tree[position] = better(tree[2 * position], tree[2 * position + 1], sign)
-                position //= 2
-
-        def query(left: int, right: int, sign: int) -> int:
-            tree = trees[sign]
-            left += width
-            right += width
-            result = -1
-            while left <= right:
-                if left & 1:
-                    result = better(result, tree[left], sign)
-                    left += 1
-                if not right & 1:
-                    result = better(result, tree[right], sign)
-                    right -= 1
-                left //= 2
-                right //= 2
-            return result
-
-        best = (10**30, (n, n))
-        for i in sorted(range(n), key=lambda index: (nums1[index], index)):
-            y = nums2[i]
-            candidates = (query(0, y, -1), query(y, width - 1, 1))
-            for j in candidates:
-                if j < 0:
-                    continue
-                pair = (min(i, j), max(i, j))
-                distance = abs(nums1[i] - nums1[j]) + abs(nums2[i] - nums2[j])
-                best = min(best, (distance, pair))
-            update(y, i, -1)
-            update(y, i, 1)
-
-        return list(best[1])
+        pl = defaultdict(list)
+        for i, (x, y) in enumerate(zip(nums1, nums2)):
+            pl[(x, y)].append(i)
+        points = []
+        for i, (x, y) in enumerate(zip(nums1, nums2)):
+            if len(pl[(x, y)]) > 1:
+                return [i, pl[(x, y)][1]]
+            points.append((x, y, i))
+        points.sort()
+        _, pi, pj = dfs(0, len(points) - 1)
+        return [pi, pj]

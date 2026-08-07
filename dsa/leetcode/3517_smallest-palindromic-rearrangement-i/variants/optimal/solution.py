@@ -1,16 +1,14 @@
 class Solution:
     def smallestPalindrome(self, s: str) -> str:
-        counts = [0] * 26
-        for char in s:
-            counts[ord(char) - ord("a")] += 1
-
-        left_parts = []
-        middle = ""
-        for index, count in enumerate(counts):
-            char = chr(ord("a") + index)
-            left_parts.append(char * (count // 2))
-            if count % 2:
-                middle = char
-
-        left = "".join(left_parts)
-        return left + middle + left[::-1]
+        cnt = Counter(s)
+        t = []
+        ch = ""
+        for c in ascii_lowercase:
+            v = cnt[c] // 2
+            t.append(c * v)
+            cnt[c] -= v * 2
+            if cnt[c] == 1:
+                ch = c
+        ans = "".join(t)
+        ans = ans + ch + ans[::-1]
+        return ans

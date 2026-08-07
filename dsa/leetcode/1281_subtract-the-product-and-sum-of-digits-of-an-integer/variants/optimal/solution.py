@@ -1,11 +1,8 @@
 class Solution:
     def subtractProductAndSum(self, n: int) -> int:
-        product = 1
-        digit_sum = 0
-
+        x, y = 1, 0
         while n:
-            n, digit = divmod(n, 10)
-            product *= digit
-            digit_sum += digit
-
-        return product - digit_sum
+            n, v = divmod(n, 10)
+            x *= v
+            y += v
+        return x - y

@@ -1,22 +1,50 @@
-from typing import List
+# Time:  O(n * k), n = len(s), k = len(sub)
+# Space: O(m), m = len(mappings)
+
+import collections
 
 
+# brute force
 class Solution:
-    def matchReplacement(
-        self,
-        s: str,
-        sub: str,
-        mappings: List[List[str]],
-    ) -> bool:
-        allowed = {(old, new) for old, new in mappings}
-        width = len(sub)
+    def matchReplacement(self, s, sub, mappings):
+        """
+        :type s: str
+        :type sub: str
+        :type mappings: List[List[str]]
+        :rtype: bool
+        """
+        def transform(x):
+            return ord(x)-ord('0') if x.isdigit() else ord(x)-ord('a')+10 if x.islower() else ord(x)-ord('A')+36
 
-        for start in range(len(s) - width + 1):
-            for offset, old in enumerate(sub):
-                new = s[start + offset]
-                if old != new and (old, new) not in allowed:
-                    break
-            else:
-                return True
+        def check(i):
+            return all(sub[j] == s[i+j] or lookup[sub[j]][s[i+j]] for j in range(len(sub)))
+            
+        lookup = [[0]*62 for _ in range(62)]
+        for a, b in mappings:
+            lookup[transform(a)][transform(b)] = 1
+        s = map(transform, s)
+        sub = map(transform, sub)
+        return any(check(i) for i in range(len(s)-len(sub)+1))
 
-        return False
+
+# Time:  O(n * k), n = len(s), k = len(sub)
+# Space: O(m), m = len(mappings)
+import collections
+
+
+# brute force
+class Solution2(object):
+    def matchReplacement(self, s, sub, mappings):
+        """
+        :type s: str
+        :type sub: str
+        :type mappings: List[List[str]]
+        :rtype: bool
+        """
+        def check(i):
+            return all(sub[j] == s[i+j] or (sub[j], s[i+j]) in lookup for j in range(len(sub)))
+            
+        lookup = set()
+        for a, b in mappings:
+            lookup.add((a, b))
+        return any(check(i) for i in range(len(s)-len(sub)+1))

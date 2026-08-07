@@ -1,18 +1,8 @@
-from typing import List
-
-
 class Solution:
     def maxDistance(self, nums1: List[int], nums2: List[int]) -> int:
-        first = 0
-        answer = 0
-
-        for second, value in enumerate(nums2):
-            while first < len(nums1) and nums1[first] > value:
-                first += 1
-
-            if first == len(nums1):
-                break
-            if first <= second:
-                answer = max(answer, second - first)
-
-        return answer
+        ans = 0
+        nums2 = nums2[::-1]
+        for i, v in enumerate(nums1):
+            j = len(nums2) - bisect_left(nums2, v) - 1
+            ans = max(ans, j - i)
+        return ans

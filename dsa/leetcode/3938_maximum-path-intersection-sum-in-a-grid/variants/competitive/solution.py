@@ -1,28 +1,25 @@
+# Time:  O(n * m)
+# Space: O(1)
+
+import itertools
+
+
+# kadane's algorithm
 class Solution:
-    def maxScore(self, grid: list[list[int]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        best = -(10**18)
-
-        for row in grid:
-            ending = row[0] + row[1]
-            best = max(best, ending)
-            for col in range(2, cols):
-                ending = max(ending + row[col], row[col - 1] + row[col])
-                best = max(best, ending)
-
-        for col in range(cols):
-            ending = grid[0][col] + grid[1][col]
-            best = max(best, ending)
-            for row in range(2, rows):
-                ending = max(
-                    ending + grid[row][col],
-                    grid[row - 1][col] + grid[row][col],
-                )
-                best = max(best, ending)
-
-        for row in range(1, rows - 1):
-            for col in range(1, cols - 1):
-                best = max(best, grid[row][col])
-
-        return best
+    def maxScore(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def modified_kadane(l, get):
+            result = curr = get(0)+get(1)
+            for i in range(2, l):
+                curr = max(curr, get(i-1))+get(i)
+                result = max(result, curr)
+            return result
+        
+        return max(
+            max(modified_kadane(len(grid[0]), lambda x: grid[i][x]) for i in range(len(grid))),
+            max(modified_kadane(len(grid), lambda x: grid[x][j]) for j in range(len(grid[0]))),
+            max(itertools.chain((grid[i][j] for i in range(1, len(grid)-1) for j in range(1, len(grid[0])-1)), (float("-inf"),)))
+        )

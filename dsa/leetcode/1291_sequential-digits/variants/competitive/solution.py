@@ -1,13 +1,24 @@
-from typing import List
+# Time:  O((8 + 1) * 8 / 2) = O(1)
+# Space: O(8) = O(1)
+
+import collections
 
 
 class Solution:
-    def sequentialDigits(self, low: int, high: int) -> List[int]:
-        digits = "123456789"
-        answer = []
-        for length in range(2, 10):
-            for start in range(10 - length):
-                value = int(digits[start : start + length])
-                if low <= value <= high:
-                    answer.append(value)
-        return answer
+    def sequentialDigits(self, low, high):
+        """
+        :type low: int
+        :type high: int
+        :rtype: List[int]
+        """
+        result = []
+        q = collections.deque(range(1, 9))
+        while q:
+            num = q.popleft()
+            if num > high:
+                continue
+            if low <= num:
+                result.append(num)
+            if num%10+1 < 10:
+                q.append(num*10+num%10+1)
+        return result

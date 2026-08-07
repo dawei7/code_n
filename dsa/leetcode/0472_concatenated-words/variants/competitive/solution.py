@@ -1,23 +1,28 @@
-from typing import List
-
+# Time:  O(n * l^2)
+# Space: O(n * l)
 
 class Solution:
-    def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:
-        building_blocks = set()
-        concatenated = []
-
-        for word in sorted(words, key=len):
-            if not word:
-                continue
-            reachable = [False] * (len(word) + 1)
-            reachable[0] = True
-            for start in range(len(word)):
-                if not reachable[start]:
+    def findAllConcatenatedWordsInADict(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        lookup = set(words)
+        result = []
+        for word in words:
+            dp = [False] * (len(word)+1)
+            dp[0] = True
+            for i in range(len(word)):
+                if not dp[i]:
                     continue
-                for end in range(start + 1, len(word) + 1):
-                    if word[start:end] in building_blocks:
-                        reachable[end] = True
-            if reachable[-1]:
-                concatenated.append(word)
-            building_blocks.add(word)
-        return concatenated
+
+                for j in range(i+1, len(word)+1):
+                    if j - i < len(word) and word[i:j] in lookup:
+                        dp[j] = True
+
+                if dp[len(word)]:
+                    result.append(word)
+                    break
+
+        return result
+

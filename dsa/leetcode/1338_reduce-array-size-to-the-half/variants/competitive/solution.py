@@ -1,15 +1,27 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
+import collections
 
+        
 class Solution:
-    def minSetSize(self, arr: List[int]) -> int:
-        target = len(arr) // 2
-        removed = 0
-
-        for selected, frequency in enumerate(sorted(Counter(arr).values(), reverse=True), start=1):
-            removed += frequency
-            if removed >= target:
-                return selected
-
-        raise AssertionError("A legal input must reach its removal target")
+    def minSetSize(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        counting_sort = [0]*len(arr)
+        count = collections.Counter(arr)
+        for c in count.values():
+            counting_sort[c-1] += 1
+        result, total = 0, 0
+        for c in reversed(range(len(arr))):
+            if not counting_sort[c]:
+                continue
+            count = min(counting_sort[c],
+                        ((len(arr)+1)//2 - total - 1)//(c+1) + 1)
+            result += count
+            total += count*(c+1)
+            if total >= (len(arr)+1)//2:
+                break
+        return result

@@ -1,20 +1,10 @@
-from typing import List
-
-
 class Solution:
     def prevPermOpt1(self, arr: List[int]) -> List[int]:
-        pivot = len(arr) - 2
-        while pivot >= 0 and arr[pivot] <= arr[pivot + 1]:
-            pivot -= 1
-
-        if pivot < 0:
-            return arr
-
-        target = len(arr) - 1
-        while arr[target] >= arr[pivot]:
-            target -= 1
-        while target > pivot + 1 and arr[target] == arr[target - 1]:
-            target -= 1
-
-        arr[pivot], arr[target] = arr[target], arr[pivot]
+        n = len(arr)
+        for i in range(n - 1, 0, -1):
+            if arr[i - 1] > arr[i]:
+                for j in range(n - 1, i - 1, -1):
+                    if arr[j] < arr[i - 1] and arr[j] != arr[j - 1]:
+                        arr[i - 1], arr[j] = arr[j], arr[i - 1]
+                        return arr
         return arr

@@ -1,20 +1,25 @@
+# Time:  O(n)
+# Space: O(n)
+
+# bfs
 class Solution:
-    def baseUnitConversions(self, conversions: List[List[int]]) -> List[int]:
-        modulo = 1_000_000_007
-        unit_count = len(conversions) + 1
-        graph = [[] for _ in range(unit_count)]
-
-        for source, target, factor in conversions:
-            graph[source].append((target, factor))
-
-        result = [0] * unit_count
+    def baseUnitConversions(self, conversions):
+        """
+        :type conversions: List[List[int]]
+        :rtype: List[int]
+        """
+        MOD = 10**9+7
+        adj = [[] for _ in range(len(conversions)+1)]
+        for u, v, w in conversions:
+            adj[u].append((v, w))
+        result = [0]*len(adj)
         result[0] = 1
-        stack = [0]
-
-        while stack:
-            source = stack.pop()
-            for target, factor in graph[source]:
-                result[target] = result[source] * factor % modulo
-                stack.append(target)
-
+        q = [0]
+        while q:
+            new_q = []
+            for u in q:
+                for v, w in adj[u]:
+                    result[v] = (result[u]*w)%MOD
+                    new_q.append(v)
+            q = new_q
         return result

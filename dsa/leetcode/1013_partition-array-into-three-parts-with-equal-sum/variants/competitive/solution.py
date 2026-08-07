@@ -1,19 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def canThreePartsEqualSum(self, arr: List[int]) -> bool:
-        total = sum(arr)
+    def canThreePartsEqualSum(self, A):
+        """
+        :type A: List[int]
+        :rtype: bool
+        """
+        total = sum(A)
         if total % 3 != 0:
             return False
-
-        target = total // 3
-        parts = 0
-        current = 0
-        for value in arr:
-            current += value
-            if current == target:
+        parts, curr = 0, 0
+        for x in A:
+            curr += x
+            if curr == total//3:
                 parts += 1
-                current = 0
-
+                curr = 0
         return parts >= 3

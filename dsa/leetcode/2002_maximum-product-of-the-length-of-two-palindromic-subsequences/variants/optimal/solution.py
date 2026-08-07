@@ -1,23 +1,27 @@
 class Solution:
     def maxProduct(self, s: str) -> int:
-        length = len(s)
-        limit = 1 << length
-        palindrome_length = [0] * limit
-
-        for mask in range(1, limit):
-            subsequence = [s[index] for index in range(length) if mask & (1 << index)]
-            if subsequence == subsequence[::-1]:
-                palindrome_length[mask] = len(subsequence)
-
-        best_submask = palindrome_length.copy()
-        for index in range(length):
-            bit = 1 << index
-            for mask in range(limit):
-                if mask & bit:
-                    best_submask[mask] = max(
-                        best_submask[mask],
-                        best_submask[mask ^ bit],
-                    )
-
-        full_mask = limit - 1
-        return max(palindrome_length[mask] * best_submask[full_mask ^ mask] for mask in range(limit))
+        n = len(s)
+        p = [True] * (1 << n)
+        for k in range(1, 1 << n):
+            i, j = 0, n - 1
+            while i < j:
+                while i < j and (k >> i & 1) == 0:
+                    i += 1
+                while i < j and (k >> j & 1) == 0:
+                    j -= 1
+                if i < j and s[i] != s[j]:
+                    p[k] = False
+                    break
+                i, j = i + 1, j - 1
+        ans = 0
+        for i in range(1, 1 << n):
+            if p[i]:
+                mx = ((1 << n) - 1) ^ i
+                j = mx
+                a = i.bit_count()
+                while j:
+                    if p[j]:
+                        b = j.bit_count()
+                        ans = max(ans, a * b)
+                    j = (j - 1) & mx
+        return ans

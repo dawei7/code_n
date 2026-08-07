@@ -1,16 +1,9 @@
-SELECT
-    employees.employee_id
-FROM Employees AS employees
-LEFT JOIN Logs AS logs
-    ON logs.employee_id = employees.employee_id
-GROUP BY
-    employees.employee_id,
-    employees.needed_hours
-HAVING COALESCE(
-    SUM((
-        CAST(strftime('%s', logs.out_time) AS INTEGER)
-        - CAST(strftime('%s', logs.in_time) AS INTEGER)
-        + 59
-    ) / 60),
-    0
-) < employees.needed_hours * 60;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT e.employee_id
+FROM Employees e 
+LEFT JOIN Logs l ON e.employee_id = l.employee_id
+GROUP BY e.employee_id
+HAVING COALESCE(SUM(CEIL(TIMESTAMPDIFF(SECOND, l.in_time, l.out_time) / 60) / 60), 0) < MAX(e.needed_hours)
+ORDER BY NULL;

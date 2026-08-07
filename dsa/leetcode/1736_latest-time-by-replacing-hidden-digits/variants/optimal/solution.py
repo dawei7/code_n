@@ -1,14 +1,12 @@
 class Solution:
     def maximumTime(self, time: str) -> str:
-        digits = list(time)
-
-        if digits[0] == "?":
-            digits[0] = "2" if digits[1] == "?" or digits[1] <= "3" else "1"
-        if digits[1] == "?":
-            digits[1] = "3" if digits[0] == "2" else "9"
-        if digits[3] == "?":
-            digits[3] = "5"
-        if digits[4] == "?":
-            digits[4] = "9"
-
-        return "".join(digits)
+        t = list(time)
+        if t[0] == '?':
+            t[0] = '1' if '4' <= t[1] <= '9' else '2'
+        if t[1] == '?':
+            t[1] = '3' if t[0] == '2' else '9'
+        if t[3] == '?':
+            t[3] = '5'
+        if t[4] == '?':
+            t[4] = '9'
+        return ''.join(t)

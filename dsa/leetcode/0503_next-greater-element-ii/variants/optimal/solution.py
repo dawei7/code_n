@@ -1,15 +1,13 @@
-from typing import List
-
-
 class Solution:
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
-        size = len(nums)
-        answer = [-1] * size
-        stack = []
-        for scan_index in range(2 * size):
-            index = scan_index % size
-            while stack and nums[stack[-1]] < nums[index]:
-                answer[stack.pop()] = nums[index]
-            if scan_index < size:
-                stack.append(index)
-        return answer
+        n = len(nums)
+        ans = [-1] * n
+        stk = []
+        for i in range(n * 2 - 1, -1, -1):
+            i %= n
+            while stk and stk[-1] <= nums[i]:
+                stk.pop()
+            if stk:
+                ans[i] = stk[-1]
+            stk.append(nums[i])
+        return ans

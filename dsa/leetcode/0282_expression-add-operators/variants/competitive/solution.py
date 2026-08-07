@@ -1,26 +1,56 @@
-from typing import List
-
+# Time:  O(4^n)
+# Space: O(n)
 
 class Solution:
-    def addOperators(self, num: str, target: int) -> List[str]:
-        expressions = []
+    def addOperators(self, num, target):
+        """
+        :type num: str
+        :type target: int
+        :rtype: List[str]
+        """
+        result, expr = [], []
+        val, i = 0, 0
+        val_str = ""
+        while i < len(num):
+            val = val * 10 + ord(num[i]) - ord('0')
+            val_str += num[i]
+            # Avoid "00...".
+            if str(val) != val_str:
+                break
+            expr.append(val_str)
+            self.addOperatorsDFS(num, target, i + 1, 0, val, expr, result)
+            expr.pop()
+            i += 1
+        return result
 
-        def search(index: int, expression: str, value: int, last: int) -> None:
-            if index == len(num):
-                if value == target:
-                    expressions.append(expression)
-                return
-            for end in range(index + 1, len(num) + 1):
-                if end > index + 1 and num[index] == "0":
+    def addOperatorsDFS(self, num, target, pos, operand1, operand2, expr, result):
+        if pos == len(num) and operand1 + operand2 == target:
+            result.append("".join(expr))
+        else:
+            val, i = 0, pos
+            val_str = ""
+            while i < len(num):
+                val = val * 10 + ord(num[i]) - ord('0')
+                val_str += num[i]
+                # Avoid "00...".
+                if str(val) != val_str:
                     break
-                token = num[index:end]
-                operand = int(token)
-                if index == 0:
-                    search(end, token, operand, operand)
-                else:
-                    search(end, expression + "+" + token, value + operand, operand)
-                    search(end, expression + "-" + token, value - operand, -operand)
-                    search(end, expression + "*" + token, value - last + last * operand, last * operand)
 
-        search(0, "", 0, 0)
-        return expressions
+                # Case '+':
+                expr.append("+" + val_str)
+                self.addOperatorsDFS(num, target, i + 1, operand1 + operand2, val, expr, result)
+                expr.pop()
+
+                # Case '-':
+                expr.append("-" + val_str)
+                self.addOperatorsDFS(num, target, i + 1, operand1 + operand2, -val, expr, result)
+                expr.pop()
+
+                # Case '*':
+                expr.append("*" + val_str)
+                self.addOperatorsDFS(num, target, i + 1, operand1, operand2 * val, expr, result)
+                expr.pop()
+
+                i += 1
+
+

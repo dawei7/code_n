@@ -1,28 +1,36 @@
-from functools import cache
-from typing import List, Optional
+# Time:  O(n * 4^n / n^(3/2)) ~= sum of Catalan numbers from 1 .. N
+# Space: O(n * 4^n / n^(3/2)) ~= sum of Catalan numbers from 1 .. N
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
 class Solution:
-    def allPossibleFBT(self, n: int) -> List[Optional["TreeNode"]]:
-        @cache
-        def build_shapes(nodes: int) -> tuple[tuple, ...]:
-            if nodes == 1:
-                return ((None, None),)
-            if nodes % 2 == 0:
-                return ()
+    def __init__(self):
+        self.__memo = {1: [TreeNode(0)]}
+    
+    def allPossibleFBT(self, N):
+        """
+        :type N: int
+        :rtype: List[TreeNode]
+        """
+        if N % 2 == 0:
+            return []
 
-            shapes = []
-            for left_nodes in range(1, nodes, 2):
-                right_nodes = nodes - 1 - left_nodes
-                for left in build_shapes(left_nodes):
-                    for right in build_shapes(right_nodes):
-                        shapes.append((left, right))
-            return tuple(shapes)
+        if N not in self.__memo:
+            result = []
+            for i in range(N):
+                for left in self.allPossibleFBT(i):
+                    for right in self.allPossibleFBT(N-1-i):
+                        node = TreeNode(0)
+                        node.left = left
+                        node.right = right
+                        result.append(node)
+            self.__memo[N] = result
 
-        def materialize(shape: tuple) -> "TreeNode":
-            left_shape, right_shape = shape
-            left = materialize(left_shape) if left_shape is not None else None
-            right = materialize(right_shape) if right_shape is not None else None
-            return TreeNode(0, left, right)
+        return self.__memo[N]
+ 
 
-        return [materialize(shape) for shape in build_shapes(n)]

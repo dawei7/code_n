@@ -1,7 +1,6 @@
 class Solution:
     def secondsBetweenTimes(self, startTime: str, endTime: str) -> int:
-        def to_seconds(time: str) -> int:
-            hours, minutes, seconds = map(int, time.split(":"))
-            return hours * 3600 + minutes * 60 + seconds
+        def f(s: str) -> int:
+            return int(s[:2]) * 3600 + int(s[3:5]) * 60 + int(s[6:])
 
-        return to_seconds(endTime) - to_seconds(startTime)
+        return f(endTime) - f(startTime)

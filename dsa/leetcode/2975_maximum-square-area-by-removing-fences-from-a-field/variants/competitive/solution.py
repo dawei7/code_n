@@ -1,27 +1,59 @@
-from typing import List
+# Time:  O(h^2 + v^2)
+# Space: O(h^2 + v^2)
 
-
+# hash table
 class Solution:
-    def maximizeSquareArea(
-        self,
-        m: int,
-        n: int,
-        hFences: List[int],
-        vFences: List[int],
-    ) -> int:
-        horizontal = sorted([1, m, *hFences])
-        vertical = sorted([1, n, *vFences])
+    def maximizeSquareArea(self, m, n, hFences, vFences):
+        """
+        :type m: int
+        :type n: int
+        :type hFences: List[int]
+        :type vFences: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def diff(arr, x):
+            arr.append(1)
+            arr.append(x)
+            return {abs(arr[i]-arr[j]) for i in range(len(arr)) for j in range(i+1, len(arr))}
 
-        horizontal_spans = {
-            horizontal[right] - horizontal[left] for right in range(1, len(horizontal)) for left in range(right)
-        }
-        vertical_spans = {
-            vertical[right] - vertical[left] for right in range(1, len(vertical)) for left in range(right)
-        }
+        lookup = diff(hFences, m)
+        result = -1
+        for x in diff(vFences, n):
+            if x in lookup:
+                result = max(result, x**2)
+        return result%MOD if result != -1 else -1
 
-        common = horizontal_spans & vertical_spans
-        if not common:
-            return -1
 
-        side = max(common)
-        return side * side % 1_000_000_007
+# Time:  O(h^2 + v^2)
+# Space: O(min(h, v)^2)
+# hash table
+class Solution2(object):
+    def maximizeSquareArea(self, m, n, hFences, vFences):
+        """
+        :type m: int
+        :type n: int
+        :type hFences: List[int]
+        :type vFences: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def diff(arr, x, check):
+            arr.append(1)
+            arr.append(x)
+            for i in range(len(arr)):
+                for j in range(i+1, len(arr)):
+                    if not check:
+                        lookup.add(abs(arr[i]-arr[j]))
+                        continue
+                    if abs(arr[i]-arr[j]) in lookup:
+                        result[0] = max(result[0], (arr[i]-arr[j])**2)
+
+        if len(hFences) > len(vFences):
+            hFences, vFences = vFences, hFences
+            m, n = n, m
+        result = [-1]
+        lookup = set()
+        diff(hFences, m, False)
+        diff(vFences, n, True)
+        return result[0]%MOD if result[0] != -1 else -1

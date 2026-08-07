@@ -1,59 +1,95 @@
+# Time:  O(n * (logn)^2 + qlogn)
+# Space: O(n + q)
+
 from sortedcontainers import SortedList
 
 
+# iterative dfs, small-to-large merging, sorted list
 class Solution:
-    def kthSmallest(self, par: List[int], vals: List[int], queries: List[List[int]]) -> List[int]:
-        n = len(vals)
-        children = [[] for _ in range(n)]
+    def kthSmallest(self, par, vals, queries):
+        """
+        :type par: List[int]
+        :type vals: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def small_to_large_merge(sl1, sl2):  # Total Time: O(n * (logn)^2)
+            if len(sl1) < len(sl2):
+                sl1, sl2 = sl2, sl1
+            for x in sl2:  # each node is merged at most O(logn) times
+                if x not in sl1:
+                    sl1.add(x)  # each add costs O(logn)
+            return sl1
 
-        for node in range(1, n):
-            children[par[node]].append(node)
+        def iter_dfs():
+            sl = [SortedList() for _ in range(len(adj))]
+            result = [-1]*len(queries)
+            stk = [(1, (0, 0))]
+            while stk:
+                step, (u, curr) = stk.pop()
+                if step == 1:
+                    curr ^= vals[u]
+                    sl[u].add(curr)
+                    stk.append((2, (u, curr)))
+                    for v in reversed(adj[u]):
+                        stk.append((1, (v, curr)))
+                elif step == 2:
+                    for v in adj[u]:
+                        sl[u] = small_to_large_merge(sl[u], sl[v])
+                    for i in lookup[u]:  # Total Time: O(qlogn)
+                        if queries[i][1]-1 < len(sl[u]):
+                            result[i] = sl[u][queries[i][1]-1]
+            return result
 
-        path_xor = [0] * n
-        path_xor[0] = vals[0]
-        order = [0]
+        adj = [[] for _ in range(len(par))]
+        for u, p in enumerate(par):
+            if p != -1:
+                adj[p].append(u)
+        lookup = [[] for _ in range(len(adj))]
+        for i, (u, _) in enumerate(queries):
+            lookup[u].append(i)
+        return iter_dfs()
 
-        for node in order:
-            for child in children[node]:
-                path_xor[child] = path_xor[node] ^ vals[child]
-                order.append(child)
 
-        narvetholi = (par, vals, queries)
+# Time:  O(n * (logn)^2 + qlogn)
+# Space: O(n + q)
+from sortedcontainers import SortedList
 
-        grouped_queries = [[] for _ in range(n)]
-        for query_index, (node, k) in enumerate(queries):
-            grouped_queries[node].append((query_index, k))
 
-        answers = [-1] * len(queries)
-        bags = [None] * n
+# dfs, small-to-large merging, sorted list
+class Solution2(object):
+    def kthSmallest(self, par, vals, queries):
+        """
+        :type par: List[int]
+        :type vals: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def small_to_large_merge(sl1, sl2):  # Total Time: O(n * (logn)^2)
+            if len(sl1) < len(sl2):
+                sl1, sl2 = sl2, sl1
+            for x in sl2:  # each node is merged at most O(logn) times
+                if x not in sl1:
+                    sl1.add(x)  # each add costs O(logn)
+            return sl1
 
-        for node in reversed(order):
-            heavy_child = -1
+        def dfs(u, curr):
+            curr ^= vals[u]
+            sl = SortedList([curr])
+            for v in adj[u]:
+                sl = small_to_large_merge(sl, dfs(v, curr))
+            for i in lookup[u]:  # Total Time: O(qlogn)
+                if queries[i][1]-1 < len(sl):
+                    result[i] = sl[queries[i][1]-1]
+            return sl
 
-            for child in children[node]:
-                if heavy_child == -1 or len(bags[child]) > len(bags[heavy_child]):
-                    heavy_child = child
-
-            if heavy_child == -1:
-                bag = SortedList()
-            else:
-                bag = bags[heavy_child]
-
-            for child in children[node]:
-                if child == heavy_child:
-                    continue
-
-                for value in bags[child]:
-                    if value not in bag:
-                        bag.add(value)
-
-            if path_xor[node] not in bag:
-                bag.add(path_xor[node])
-
-            bags[node] = bag
-
-            for query_index, k in grouped_queries[node]:
-                if k <= len(bag):
-                    answers[query_index] = bag[k - 1]
-
-        return answers
+        adj = [[] for _ in range(len(par))]
+        for u, p in enumerate(par):
+            if p != -1:
+                adj[p].append(u)
+        lookup = [[] for _ in range(len(adj))]
+        for i, (u, _) in enumerate(queries):
+            lookup[u].append(i)
+        result = [-1]*len(queries)
+        dfs(0, 0)
+        return result

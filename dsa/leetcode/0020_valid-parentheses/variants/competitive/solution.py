@@ -1,11 +1,14 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def isValid(self, s: str) -> bool:
-        matching = {")": "(", "]": "[", "}": "{"}
-        stack = []
-        for bracket in s:
-            if bracket in matching:
-                if not stack or stack.pop() != matching[bracket]:
-                    return False
-            else:
-                stack.append(bracket)
-        return not stack
+    # @return a boolean
+    def isValid(self, s):
+        stack, lookup = [], {"(": ")", "{": "}", "[": "]"}
+        for parenthese in s:
+            if parenthese in lookup:
+                stack.append(parenthese)
+            elif len(stack) == 0 or lookup[stack.pop()] != parenthese:
+                return False
+        return len(stack) == 0
+

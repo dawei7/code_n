@@ -1,13 +1,12 @@
 class Solution:
     def minimumChairs(self, s: str) -> int:
-        occupied = 0
-        answer = 0
-
-        for event in s:
-            if event == "E":
-                occupied += 1
-                answer = max(answer, occupied)
+        cnt = left = 0
+        for c in s:
+            if c == "E":
+                if left:
+                    left -= 1
+                else:
+                    cnt += 1
             else:
-                occupied -= 1
-
-        return answer
+                left += 1
+        return cnt

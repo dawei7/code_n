@@ -1,25 +1,16 @@
-from typing import List
-
-
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        city_count = len(isConnected)
-        visited = [False] * city_count
-        provinces = 0
+        def dfs(i: int):
+            vis[i] = True
+            for j, x in enumerate(isConnected[i]):
+                if not vis[j] and x:
+                    dfs(j)
 
-        for start in range(city_count):
-            if visited[start]:
-                continue
-
-            provinces += 1
-            visited[start] = True
-            stack = [start]
-
-            while stack:
-                city = stack.pop()
-                for neighbor, connected in enumerate(isConnected[city]):
-                    if connected and not visited[neighbor]:
-                        visited[neighbor] = True
-                        stack.append(neighbor)
-
-        return provinces
+        n = len(isConnected)
+        vis = [False] * n
+        ans = 0
+        for i in range(n):
+            if not vis[i]:
+                dfs(i)
+                ans += 1
+        return ans

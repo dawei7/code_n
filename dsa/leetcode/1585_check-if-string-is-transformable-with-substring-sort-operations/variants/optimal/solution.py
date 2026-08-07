@@ -1,20 +1,11 @@
 class Solution:
     def isTransformable(self, s: str, t: str) -> bool:
-        positions = [[] for _ in range(10)]
-        for index, character in enumerate(s):
-            positions[ord(character) - ord("0")].append(index)
-
-        used = [0] * 10
-        for character in t:
-            digit = ord(character) - ord("0")
-            if used[digit] == len(positions[digit]):
+        pos = defaultdict(deque)
+        for i, c in enumerate(s):
+            pos[int(c)].append(i)
+        for c in t:
+            x = int(c)
+            if not pos[x] or any(pos[i] and pos[i][0] < pos[x][0] for i in range(x)):
                 return False
-
-            source_index = positions[digit][used[digit]]
-            for smaller in range(digit):
-                if used[smaller] < len(positions[smaller]) and positions[smaller][used[smaller]] < source_index:
-                    return False
-
-            used[digit] += 1
-
+            pos[x].popleft()
         return True

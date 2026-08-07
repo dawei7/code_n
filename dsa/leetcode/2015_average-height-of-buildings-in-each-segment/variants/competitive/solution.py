@@ -1,32 +1,57 @@
-from collections import defaultdict
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def averageHeightOfBuildings(self, buildings: List[List[int]]) -> List[List[int]]:
-        changes = defaultdict(lambda: [0, 0])
-        for start, end, height in buildings:
-            changes[start][0] += height
-            changes[start][1] += 1
-            changes[end][0] -= height
-            changes[end][1] -= 1
-
-        answer = []
-        total_height = 0
-        active_count = 0
-        previous = None
-
-        for position in sorted(changes):
-            if previous is not None and active_count:
-                average = total_height // active_count
-                if answer and answer[-1][1] == previous and answer[-1][2] == average:
-                    answer[-1][1] = position
+    def averageHeightOfBuildings(self, buildings):
+        """
+        :type buildings: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        points = []
+        for x, y, h in buildings:
+            points.append((x, 1, h))
+            points.append((y, -1, h))
+        points.sort()
+        result = []
+        total = cnt = 0
+        prev = -1
+        for curr, c, h in points:
+            if cnt and curr != prev:
+                if result and result[-1][1] == prev and result[-1][2] == total//cnt:
+                    result[-1][1] = curr
                 else:
-                    answer.append([previous, position, average])
+                    result.append([prev, curr, total//cnt])
+            total += h*c
+            cnt += c
+            prev = curr
+        return result
 
-            height_change, count_change = changes[position]
-            total_height += height_change
-            active_count += count_change
-            previous = position
 
-        return answer
+# Time:  O(nlogn)
+# Space: O(n)
+import collections
+
+
+class Solution2(object):
+    def averageHeightOfBuildings(self, buildings):
+        """
+        :type buildings: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        count = collections.defaultdict(lambda: (0, 0))
+        for x, y, h in buildings:
+            count[x] = (count[x][0]+1, count[x][1]+h)
+            count[y] = (count[y][0]-1, count[y][1]-h)
+        result = []
+        total = cnt = 0
+        prev = -1
+        for curr, (c, h) in sorted(count.items()):
+            if cnt:
+                if result and result[-1][1] == prev and result[-1][2] == total//cnt:
+                    result[-1][1] = curr
+                else:
+                    result.append([prev, curr, total//cnt])
+            total += h
+            cnt += c
+            prev = curr
+        return result

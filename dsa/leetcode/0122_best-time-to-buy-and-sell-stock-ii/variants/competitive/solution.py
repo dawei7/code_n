@@ -1,6 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
 
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        return sum(max(0, prices[index] - prices[index - 1]) for index in range(1, len(prices)))
+    # @param prices, a list of integer
+    # @return an integer
+    def maxProfit(self, prices):
+        profit = 0
+        for i in range(len(prices) - 1):
+            profit += max(0, prices[i + 1] - prices[i])
+        return profit
+
+    def maxProfit2(self, prices):
+        return sum(map(lambda x: max(prices[x + 1] - prices[x], 0),
+                       range(len(prices[:-1]))))
+

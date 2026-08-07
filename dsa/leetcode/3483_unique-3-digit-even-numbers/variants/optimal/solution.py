@@ -1,29 +1,14 @@
-from typing import List
-
-
 class Solution:
     def totalNumbers(self, digits: List[int]) -> int:
-        frequency = [0] * 10
-        for digit in digits:
-            frequency[digit] += 1
-
-        total = 0
-        for hundreds in range(1, 10):
-            if frequency[hundreds] == 0:
+        s = set()
+        for i, a in enumerate(digits):
+            if a & 1:
                 continue
-            frequency[hundreds] -= 1
-
-            for tens in range(10):
-                if frequency[tens] == 0:
+            for j, b in enumerate(digits):
+                if i == j:
                     continue
-                frequency[tens] -= 1
-
-                for units in range(0, 10, 2):
-                    if frequency[units] > 0:
-                        total += 1
-
-                frequency[tens] += 1
-
-            frequency[hundreds] += 1
-
-        return total
+                for k, c in enumerate(digits):
+                    if c == 0 or k in (i, j):
+                        continue
+                    s.add(c * 100 + b * 10 + a)
+        return len(s)

@@ -1,9 +1,16 @@
+# Time:  O(n + q)
+# Space: O(n)
+
+# prefix sum
 class Solution:
-    def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
-        vowels = set("aeiou")
-        prefix = [0]
-
-        for word in words:
-            prefix.append(prefix[-1] + (word[0] in vowels and word[-1] in vowels))
-
-        return [prefix[right + 1] - prefix[left] for left, right in queries]
+    def vowelStrings(self, words, queries):
+        """
+        :type words: List[str]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        VOWELS = {'a', 'e', 'i', 'o', 'u'}
+        prefix = [0]*(len(words)+1)
+        for i, w in enumerate(words):
+            prefix[i+1] = prefix[i]+int(w[0] in VOWELS and w[-1] in VOWELS)
+        return [prefix[r+1]-prefix[l] for l, r in queries]

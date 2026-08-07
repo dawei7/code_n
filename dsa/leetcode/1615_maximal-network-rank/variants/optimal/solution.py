@@ -1,21 +1,12 @@
-from typing import List
-
-
 class Solution:
     def maximalNetworkRank(self, n: int, roads: List[List[int]]) -> int:
-        degree = [0] * n
-        connected = [[False] * n for _ in range(n)]
-
-        for first, second in roads:
-            degree[first] += 1
-            degree[second] += 1
-            connected[first][second] = True
-            connected[second][first] = True
-
-        maximum = 0
-        for first in range(n):
-            for second in range(first + 1, n):
-                rank = degree[first] + degree[second] - connected[first][second]
-                maximum = max(maximum, rank)
-
-        return maximum
+        g = defaultdict(set)
+        for a, b in roads:
+            g[a].add(b)
+            g[b].add(a)
+        ans = 0
+        for a in range(n):
+            for b in range(a + 1, n):
+                if (t := len(g[a]) + len(g[b]) - (a in g[b])) > ans:
+                    ans = t
+        return ans

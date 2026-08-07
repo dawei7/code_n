@@ -1,36 +1,45 @@
-from math import isqrt
+# Time:  O(n * sqrt(r)), r = max(nums)
+# Space: O(sqrt(r))
+
+import collections
 
 
+# number theory
 class Solution:
-    def findValidSplit(self, nums: List[int]) -> int:
-        if len(nums) < 2:
-            return -1
-
-        limit = max(nums)
-        smallest = list(range(limit + 1))
-        for prime in range(2, isqrt(limit) + 1):
-            if smallest[prime] == prime:
-                for multiple in range(prime * prime, limit + 1, prime):
-                    if smallest[multiple] == multiple:
-                        smallest[multiple] = prime
-
-        def prime_factors(value):
-            while value > 1:
-                prime = smallest[value]
-                yield prime
-                while value % prime == 0:
-                    value //= prime
-
-        last = {}
-        for index, value in enumerate(nums):
-            for prime in prime_factors(value):
-                last[prime] = index
-
-        rightmost = 0
-        for index in range(len(nums) - 1):
-            for prime in prime_factors(nums[index]):
-                rightmost = max(rightmost, last[prime])
-            if rightmost == index:
-                return index
-
+    def findValidSplit(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def factorize(x):
+            result = []
+            d = 2
+            while d*d <= x:
+                e = 0
+                while x%d == 0:
+                    x //= d
+                    e += 1
+                if e:
+                    result.append([d, e])
+                d += 1 if d == 2 else 2
+            if x > 1:
+                result.append([x, 1])
+            return result
+        
+        right = collections.Counter()
+        for x in reversed(nums):
+            for p, c in factorize(x):
+                right[p] += c
+        left = collections.Counter()
+        cnt = 0
+        for i in range(len(nums)-1):
+            for p, c in factorize(nums[i]):
+                if not left[p]:
+                    cnt += 1
+                left[p] += c
+                right[p] -= c
+                if not right[p]:
+                    cnt -= 1
+            if not cnt:
+                return i
         return -1

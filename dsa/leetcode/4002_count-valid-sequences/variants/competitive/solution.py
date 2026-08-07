@@ -1,21 +1,26 @@
+# Time:  O(n)
+# Space: O(n)
+
+# stars and bars, combinatorics
+MOD = 10**9+7
+FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
+MAX_N = 5*10**5
+while len(INV) <= MAX_N:
+    FACT.append(FACT[-1]*len(INV) % MOD)
+    INV.append(INV[MOD%len(INV)]*(MOD-MOD//len(INV)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+    INV_FACT.append(INV_FACT[-1]*INV[-1] % MOD)
+
 class Solution:
-    def countValidSequences(self, n: int, k: int) -> int:
-        modulus = 1_000_000_007
+    def countValidSequences(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        def nCr(n, k):
+            return (FACT[n]*INV_FACT[n-k] % MOD) * INV_FACT[k] % MOD
+    
+        def nHr(n, k):
+            return nCr(n+k-1, k)
 
-        def combinations(top: int, bottom: int) -> int:
-            bottom = min(bottom, top - bottom)
-            numerator = 1
-            denominator = 1
-
-            for offset in range(1, bottom + 1):
-                numerator = numerator * (top - bottom + offset) % modulus
-                denominator = denominator * offset % modulus
-
-            return numerator * pow(denominator, modulus - 2, modulus) % modulus
-
-        total = combinations(n - 1, k - 1)
-        if (n - k) % 2 == 1:
-            return total
-
-        all_odd = combinations((n + k) // 2 - 1, k - 1)
-        return (total - all_odd) % modulus
+        return (nHr(k, n-k)-(nHr(k, (n-k)//2) if (n-k)%2 == 0 else 0))%MOD

@@ -1,12 +1,17 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, two pointers, sliding window
 class Solution:
-    def maximumBeauty(self, nums: List[int], k: int) -> int:
+    def maximumBeauty(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
         nums.sort()
         left = 0
-        best = 0
-
-        for right, value in enumerate(nums):
-            while value - nums[left] > 2 * k:
+        for right in range(len(nums)):
+            if nums[right]-nums[left] > k*2:
                 left += 1
-            best = max(best, right - left + 1)
-
-        return best
+        return right-left+1

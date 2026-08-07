@@ -1,15 +1,22 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers, sliding window
 class Solution:
-    def maxFreeTime(self, eventTime: int, k: int, startTime: List[int], endTime: List[int]) -> int:
-        gaps = [startTime[0]]
-        gaps.extend(startTime[i] - endTime[i - 1] for i in range(1, len(startTime)))
-        gaps.append(eventTime - endTime[-1])
-
-        window = sum(gaps[: k + 1])
-        best = window
-        for right in range(k + 1, len(gaps)):
-            window += gaps[right] - gaps[right - k - 1]
-            best = max(best, window)
-        return best
+    def maxFreeTime(self, eventTime, k, startTime, endTime):
+        """
+        :type eventTime: int
+        :type k: int
+        :type startTime: List[int]
+        :type endTime: List[int]
+        :rtype: int
+        """
+        startTime.append(eventTime)
+        endTime.insert(0, 0)
+        result = curr = 0
+        for i in range(len(startTime)):
+            curr += startTime[i]-endTime[i]
+            result = max(result, curr)
+            if i-k >= 0:
+                curr -= startTime[i-k]-endTime[i-k]
+        return result

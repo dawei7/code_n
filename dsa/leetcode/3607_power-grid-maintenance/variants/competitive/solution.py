@@ -1,53 +1,46 @@
-from heapq import heappop
-from typing import List
+# Time:  O(c + n + q), n = len(connections)
+# Space: O(c + n)
 
-
+# dfs, flood fill, sort
 class Solution:
-    def processQueries(
-        self,
-        c: int,
-        connections: List[List[int]],
-        queries: List[List[int]],
-    ) -> List[int]:
-        parent = list(range(c + 1))
-        size = [1] * (c + 1)
-
-        def find(station: int) -> int:
-            while station != parent[station]:
-                parent[station] = parent[parent[station]]
-                station = parent[station]
-            return station
-
-        def union(first: int, second: int) -> None:
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
-                return
-            if size[first_root] < size[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            size[first_root] += size[second_root]
-
-        for first, second in connections:
-            union(first, second)
-
-        component = [find(station) for station in range(c + 1)]
-        online_by_component = {}
-        for station in range(1, c + 1):
-            online_by_component.setdefault(component[station], []).append(station)
-
-        online = [True] * (c + 1)
-        answer = []
-
-        for query_type, station in queries:
-            if query_type == 2:
-                online[station] = False
-            elif online[station]:
-                answer.append(station)
+    def processQueries(self, c, connections, queries):
+        """
+        :type c: int
+        :type connections: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def iter_dfs(i):
+            stk = [i]
+            while stk:
+                u = stk.pop()
+                if lookup[u] != -1:
+                    continue
+                lookup[u] = i
+                for v in reversed(adj[u]):
+                    stk.append(v)
+    
+        adj = [[] for _ in range(c)]
+        for u, v in connections:
+            adj[u-1].append(v-1)
+            adj[v-1].append(u-1)
+        lookup = [-1]*c
+        for i in range(c):
+            iter_dfs(i)
+        groups = [[] for _ in range(c)]
+        for i in reversed(range(c)):
+            groups[lookup[i]].append(i)
+        result = []
+        online = [True]*c
+        for t, x in queries:
+            x -= 1
+            if t == 1:
+                if online[x]:
+                    result.append(x+1)
+                    continue
+                while groups[lookup[x]] and not online[groups[lookup[x]][-1]]:
+                    groups[lookup[x]].pop()
+                result.append(groups[lookup[x]][-1]+1 if groups[lookup[x]] else -1)
             else:
-                heap = online_by_component[component[station]]
-                while heap and not online[heap[0]]:
-                    heappop(heap)
-                answer.append(heap[0] if heap else -1)
-
-        return answer
+                online[x] = False
+        return result

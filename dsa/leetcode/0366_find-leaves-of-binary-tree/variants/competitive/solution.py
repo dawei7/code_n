@@ -1,18 +1,23 @@
-from typing import List, Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
-        rounds = []
-
-        def leaf_height(node: Optional[TreeNode]) -> int:
-            if node is None:
+    def findLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        def findLeavesHelper(node, result):
+            if not node:
                 return -1
-            height = 1 + max(leaf_height(node.left), leaf_height(node.right))
-            if height == len(rounds):
-                rounds.append([])
-            rounds[height].append(node.val)
-            return height
+            level = 1 + max(findLeavesHelper(node.left, result), \
+                            findLeavesHelper(node.right, result))
+            if len(result) < level + 1:
+                result.append([])
+            result[level].append(node.val)
+            return level
 
-        leaf_height(root)
-        return rounds
+        result = []
+        findLeavesHelper(root, result)
+        return result
+

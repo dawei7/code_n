@@ -1,30 +1,21 @@
-from typing import List
-
-
 class Solution:
     def minimumTeachings(
-        self,
-        n: int,
-        languages: List[List[int]],
-        friendships: List[List[int]],
+        self, n: int, languages: List[List[int]], friendships: List[List[int]]
     ) -> int:
-        del n
-        known = [set(values) for values in languages]
-        affected = set()
+        def check(u: int, v: int) -> bool:
+            for x in languages[u - 1]:
+                for y in languages[v - 1]:
+                    if x == y:
+                        return True
+            return False
 
-        for first, second in friendships:
-            first -= 1
-            second -= 1
-            if known[first].isdisjoint(known[second]):
-                affected.add(first)
-                affected.add(second)
-
-        if not affected:
-            return 0
-
-        frequency = {}
-        for person in affected:
-            for language in known[person]:
-                frequency[language] = frequency.get(language, 0) + 1
-
-        return len(affected) - max(frequency.values())
+        s = set()
+        for u, v in friendships:
+            if not check(u, v):
+                s.add(u)
+                s.add(v)
+        cnt = Counter()
+        for u in s:
+            for l in languages[u - 1]:
+                cnt[l] += 1
+        return len(s) - max(cnt.values(), default=0)

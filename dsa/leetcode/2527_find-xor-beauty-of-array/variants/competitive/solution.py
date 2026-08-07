@@ -1,9 +1,14 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import operator
 
 
+# bit manipulation, math
 class Solution:
-    def xorBeauty(self, nums: List[int]) -> int:
-        answer = 0
-        for value in nums:
-            answer ^= value
-        return answer
+    def xorBeauty(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return reduce(operator.xor, nums)

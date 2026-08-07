@@ -1,16 +1,11 @@
-WITH boundaries AS (
-    SELECT
-        id,
-        height,
-        MAX(height) OVER (
-            ORDER BY id
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS left_max,
-        MAX(height) OVER (
-            ORDER BY id DESC
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS right_max
-    FROM Heights
-)
-SELECT SUM(MIN(left_max, right_max) - height) AS total_trapped_water
-FROM boundaries;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            *,
+            MAX(height) OVER (ORDER BY id) AS l,
+            MAX(height) OVER (ORDER BY id DESC) AS r
+        FROM Heights
+    )
+SELECT SUM(LEAST(l, r) - height) AS total_trapped_water
+FROM T;

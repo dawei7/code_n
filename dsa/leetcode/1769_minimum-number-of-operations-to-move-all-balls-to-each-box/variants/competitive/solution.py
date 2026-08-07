@@ -1,22 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minOperations(self, boxes: str) -> List[int]:
-        answer = [0] * len(boxes)
-
-        balls = 0
-        moves = 0
-        for index in range(len(boxes)):
-            answer[index] += moves
-            balls += boxes[index] == "1"
-            moves += balls
-
-        balls = 0
-        moves = 0
-        for index in range(len(boxes) - 1, -1, -1):
-            answer[index] += moves
-            balls += boxes[index] == "1"
-            moves += balls
-
-        return answer
+    def minOperations(self, boxes):
+        """
+        :type boxes: str
+        :rtype: List[int]
+        """
+        result = [0]*len(boxes)
+        for direction in (lambda x:x, reversed):
+            cnt = accu = 0
+            for i in direction(range(len(boxes))):
+                result[i] += accu
+                if boxes[i] == '1':
+                    cnt += 1
+                accu += cnt
+        return result

@@ -1,12 +1,11 @@
 class Solution:
     def countOfPairs(self, n: int, x: int, y: int) -> List[int]:
-        counts = [0] * n
-        for first in range(1, n + 1):
-            for second in range(first + 1, n + 1):
-                distance = min(
-                    second - first,
-                    abs(first - x) + 1 + abs(second - y),
-                    abs(first - y) + 1 + abs(second - x),
-                )
-                counts[distance - 1] += 2
-        return counts
+        x, y = x - 1, y - 1
+        ans = [0] * n
+        for i in range(n):
+            for j in range(i + 1, n):
+                a = j - i
+                b = abs(i - x) + 1 + abs(j - y)
+                c = abs(i - y) + 1 + abs(j - x)
+                ans[min(a, b, c) - 1] += 2
+        return ans

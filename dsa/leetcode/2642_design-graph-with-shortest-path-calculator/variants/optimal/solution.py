@@ -1,36 +1,27 @@
-from heapq import heappop, heappush
-
-
 class Graph:
     def __init__(self, n: int, edges: List[List[int]]):
         self.n = n
-        self.adjacency = [[] for _ in range(n)]
-        for source, target, cost in edges:
-            self.adjacency[source].append((target, cost))
+        self.g = [[inf] * n for _ in range(n)]
+        for f, t, c in edges:
+            self.g[f][t] = c
 
     def addEdge(self, edge: List[int]) -> None:
-        source, target, cost = edge
-        self.adjacency[source].append((target, cost))
+        f, t, c = edge
+        self.g[f][t] = c
 
     def shortestPath(self, node1: int, node2: int) -> int:
-        distance = [float("inf")] * self.n
-        distance[node1] = 0
-        heap = [(0, node1)]
-
-        while heap:
-            cost, node = heappop(heap)
-            if node == node2:
-                return cost
-            if cost != distance[node]:
-                continue
-
-            for neighbor, edge_cost in self.adjacency[node]:
-                candidate = cost + edge_cost
-                if candidate < distance[neighbor]:
-                    distance[neighbor] = candidate
-                    heappush(heap, (candidate, neighbor))
-
-        return -1
+        dist = [inf] * self.n
+        dist[node1] = 0
+        vis = [False] * self.n
+        for _ in range(self.n):
+            t = -1
+            for j in range(self.n):
+                if not vis[j] and (t == -1 or dist[t] > dist[j]):
+                    t = j
+            vis[t] = True
+            for j in range(self.n):
+                dist[j] = min(dist[j], dist[t] + self.g[t][j])
+        return -1 if dist[node2] == inf else dist[node2]
 
 
 # Your Graph object will be instantiated and called as such:

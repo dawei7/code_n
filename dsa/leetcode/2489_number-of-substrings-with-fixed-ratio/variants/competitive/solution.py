@@ -1,15 +1,20 @@
+# Time:  O(n)
+# Space: O(n)
+
+# freq table, prefix sum
 class Solution:
-    def fixedRatio(self, s: str, num1: int, num2: int) -> int:
-        frequencies = {0: 1}
-        score = 0
-        answer = 0
-
-        for character in s:
-            if character == "0":
-                score += num2
-            else:
-                score -= num1
-            answer += frequencies.get(score, 0)
-            frequencies[score] = frequencies.get(score, 0) + 1
-
-        return answer
+    def fixedRatio(self, s, num1, num2):
+        """
+        :type s: str
+        :type num1: int
+        :type num2: int
+        :rtype: int
+        """
+        lookup = collections.Counter()
+        lookup[0] = 1
+        result = curr = 0
+        for c in s:
+            curr += -num2 if c == '0' else +num1
+            result += lookup[curr]
+            lookup[curr] += 1
+        return result

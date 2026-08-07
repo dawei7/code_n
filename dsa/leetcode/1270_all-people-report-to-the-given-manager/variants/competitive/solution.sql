@@ -1,8 +1,11 @@
-SELECT candidate.employee_id
-FROM Employees AS candidate
-JOIN Employees AS direct_manager
-  ON candidate.manager_id = direct_manager.employee_id
-JOIN Employees AS upper_manager
-  ON direct_manager.manager_id = upper_manager.employee_id
-WHERE candidate.employee_id <> 1
-  AND upper_manager.manager_id = 1;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT e1.employee_id 
+FROM   employees e1 
+       LEFT JOIN employees e2 
+              ON e1.manager_id = e2.employee_id 
+       LEFT JOIN employees e3 
+              ON e2.manager_id = e3.employee_id 
+WHERE  e3.manager_id = 1 
+       AND e1.employee_id != 1 

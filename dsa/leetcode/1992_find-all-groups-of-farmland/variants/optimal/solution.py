@@ -1,27 +1,19 @@
-from typing import List
-
-
 class Solution:
     def findFarmland(self, land: List[List[int]]) -> List[List[int]]:
-        rows = len(land)
-        columns = len(land[0])
-        groups = []
-
-        for row in range(rows):
-            for column in range(columns):
-                if land[row][column] == 0:
+        m, n = len(land), len(land[0])
+        ans = []
+        for i in range(m):
+            for j in range(n):
+                if (
+                    land[i][j] == 0
+                    or (j > 0 and land[i][j - 1] == 1)
+                    or (i > 0 and land[i - 1][j] == 1)
+                ):
                     continue
-                if row > 0 and land[row - 1][column] == 1:
-                    continue
-                if column > 0 and land[row][column - 1] == 1:
-                    continue
-
-                bottom = row
-                while bottom + 1 < rows and land[bottom + 1][column] == 1:
-                    bottom += 1
-                right = column
-                while right + 1 < columns and land[row][right + 1] == 1:
-                    right += 1
-                groups.append([row, column, bottom, right])
-
-        return groups
+                x, y = i, j
+                while x + 1 < m and land[x + 1][j] == 1:
+                    x += 1
+                while y + 1 < n and land[x][y + 1] == 1:
+                    y += 1
+                ans.append([i, j, x, y])
+        return ans

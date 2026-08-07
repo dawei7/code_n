@@ -1,3 +1,12 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math, parity
 class Solution:
-    def canReach(self, start: list[int], target: list[int]) -> bool:
-        return (start[0] + start[1]) % 2 == (target[0] + target[1]) % 2
+    def canReach(self, start, target):
+        """
+        :type start: List[int]
+        :type target: List[int]
+        :rtype: bool
+        """
+        return sum(start)%2 == sum(target)%2

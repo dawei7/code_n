@@ -1,22 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxValueAfterReverse(self, nums: List[int]) -> int:
-        base = 0
-        best_gain = 0
-        greatest_lower = float("-inf")
-        least_upper = float("inf")
-
-        for index in range(1, len(nums)):
-            left = nums[index - 1]
-            right = nums[index]
-            edge = abs(left - right)
-            base += edge
-            best_gain = max(best_gain, abs(nums[0] - right) - edge)
-            best_gain = max(best_gain, abs(nums[-1] - left) - edge)
-            greatest_lower = max(greatest_lower, min(left, right))
-            least_upper = min(least_upper, max(left, right))
-
-        best_gain = max(best_gain, 2 * (greatest_lower - least_upper))
-        return base + best_gain
+    def maxValueAfterReverse(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result, add, max_pair, min_pair = 0, 0, float("-inf"), float("inf")
+        for i in range(1, len(nums)):
+            result += abs(nums[i-1]-nums[i])
+            add = max(add,
+                      abs(nums[0]-nums[i]) - abs(nums[i-1]-nums[i]),
+                      abs(nums[-1]-nums[i-1]) - abs(nums[i-1]-nums[i]))
+            min_pair = min(min_pair, max(nums[i-1], nums[i]))
+            max_pair = max(max_pair, min(nums[i-1], nums[i]))
+        return result + max(add, (max_pair-min_pair)*2)

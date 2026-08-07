@@ -1,9 +1,16 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table
 class Solution:
-    def maxFrequencyElements(self, nums: List[int]) -> int:
-        frequencies = Counter(nums)
-        maximum = max(frequencies.values())
-        return sum(count for count in frequencies.values() if count == maximum)
+    def maxFrequencyElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        cnt = collections.Counter(nums)
+        mx = max(cnt.values())
+        return sum(v for v in cnt.values() if v == mx)

@@ -1,17 +1,17 @@
-from typing import List
-
-
 class Solution:
     def maxJumps(self, arr: List[int], d: int) -> int:
-        length = len(arr)
-        best = [1] * length
+        @cache
+        def dfs(i):
+            ans = 1
+            for j in range(i - 1, -1, -1):
+                if i - j > d or arr[j] >= arr[i]:
+                    break
+                ans = max(ans, 1 + dfs(j))
+            for j in range(i + 1, n):
+                if j - i > d or arr[j] >= arr[i]:
+                    break
+                ans = max(ans, 1 + dfs(j))
+            return ans
 
-        for index in sorted(range(length), key=arr.__getitem__):
-            for direction in (-1, 1):
-                for distance in range(1, d + 1):
-                    destination = index + direction * distance
-                    if destination < 0 or destination >= length or arr[destination] >= arr[index]:
-                        break
-                    best[index] = max(best[index], 1 + best[destination])
-
-        return max(best)
+        n = len(arr)
+        return max(dfs(i) for i in range(n))

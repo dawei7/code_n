@@ -1,29 +1,33 @@
-from collections import deque
+# Time:  O(m * n)
+# Space: O(m * n)
+
+import collections
 
 
 class Solution:
-    def maxDistance(self, grid: List[List[int]]) -> int:
-        size = len(grid)
-        queue = deque()
-        seen = [[False] * size for _ in range(size)]
-        for row in range(size):
-            for column in range(size):
-                if grid[row][column] == 1:
-                    queue.append((row, column))
-                    seen[row][column] = True
-
-        if not queue or len(queue) == size * size:
+    def maxDistance(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        q = collections.deque([(i, j) for i in range(len(grid))
+                                      for j in range(len(grid[0])) if grid[i][j] == 1])    
+        if len(q) == len(grid)*len(grid[0]):
             return -1
-
-        distance = -1
-        while queue:
-            for _ in range(len(queue)):
-                row, column = queue.popleft()
-                for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row = row + row_step
-                    next_column = column + column_step
-                    if 0 <= next_row < size and 0 <= next_column < size and not seen[next_row][next_column]:
-                        seen[next_row][next_column] = True
-                        queue.append((next_row, next_column))
-            distance += 1
-        return distance
+        level = -1
+        while q:
+            next_q = collections.deque()
+            while q:
+                x, y = q.popleft()
+                for dx, dy in directions:
+                    nx, ny = x+dx, y+dy
+                    if not (0 <= nx < len(grid) and 
+                            0 <= ny < len(grid[0]) and 
+                            grid[nx][ny] == 0):
+                        continue
+                    next_q.append((nx, ny))
+                    grid[nx][ny] = 1
+            q = next_q
+            level += 1
+        return level

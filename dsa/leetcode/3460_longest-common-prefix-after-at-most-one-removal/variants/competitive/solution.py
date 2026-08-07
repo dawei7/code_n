@@ -1,17 +1,24 @@
-class Solution:
-    def longestCommonPrefix(self, s: str, t: str) -> int:
-        source = 0
-        target = 0
-        removed = False
+# Time:  O(n)
+# Space: O(1)
 
-        while source < len(s) and target < len(t):
-            if s[source] == t[target]:
-                source += 1
-                target += 1
+# two pointers
+class Solution:
+    def longestCommonPrefix(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: int
+        """
+        result = i = j = 0
+        removed = False
+        while i < len(s) and j < len(t):
+            if s[i] == t[j]:
+                result += 1
+                i += 1
+                j += 1
             elif not removed:
                 removed = True
-                source += 1
+                i += 1
             else:
                 break
-
-        return target
+        return result

@@ -1,35 +1,55 @@
-from collections import deque
-from typing import List
+# Time:  O(mlogm + nlogn + m * n)
+# Space: O(n)
+
+import collections
 
 
+# sort, dp, prefix sum, mono deque
 class Solution:
-    def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
-        robots = sorted(robot)
-        factories = sorted(factory)
-        robot_count = len(robots)
-        infinity = 10**30
-        previous = [0] + [infinity] * robot_count
+    def minimumTotalDistance(self, robot, factory):
+        """
+        :type robot: List[int]
+        :type factory: List[List[int]]
+        :rtype: int
+        """
+        robot.sort(), factory.sort()
+        dp = [float("inf")]*(len(robot)+1)  # dp[j] at i: min of factory[:i+1] and robot[:j]
+        dp[0] = 0
+        for i in range(len(factory)):
+            prefix = 0
+            dq = collections.deque([(dp[0]-prefix, 0)])  # pattern of min in the sliding window with size (limit+1)
+            for j in range(1, len(robot)+1):
+                prefix += abs(robot[j-1]-factory[i][0])
+                if j-dq[0][1] == factory[i][1]+1:
+                    dq.popleft()
+                while dq and dq[-1][0] >= dp[j]-prefix:
+                    dq.pop()
+                dq.append((dp[j]-prefix, j))
+                dp[j] = dq[0][0]+prefix
+        return dp[-1]
 
-        for position, capacity in factories:
-            prefix = [0] * (robot_count + 1)
-            for count, robot_position in enumerate(robots, 1):
-                prefix[count] = prefix[count - 1] + abs(robot_position - position)
 
-            current = [infinity] * (robot_count + 1)
-            choices = deque()
+# Time:  O(mlogm + nlogn + m * n * l), l is the max limit
+# Space: O(n)
+import collections
 
-            for count in range(robot_count + 1):
-                value = previous[count] - prefix[count]
-                while choices and (previous[choices[-1]] - prefix[choices[-1]] >= value):
-                    choices.pop()
-                choices.append(count)
 
-                while choices[0] < count - capacity:
-                    choices.popleft()
-
-                start = choices[0]
-                current[count] = prefix[count] + previous[start] - prefix[start]
-
-            previous = current
-
-        return previous[robot_count]
+# sort, dp
+class Solution2(object):
+    def minimumTotalDistance(self, robot, factory):
+        """
+        :type robot: List[int]
+        :type factory: List[List[int]]
+        :rtype: int
+        """
+        robot.sort(), factory.sort()
+        dp = [float("inf")]*(len(robot)+1)  # dp[j] at i: min of factory[:i+1] and robot[:j]
+        dp[0] = 0
+        for i in range(len(factory)):
+            for j in reversed(range(1, len(robot)+1)):
+                curr = 0
+                for k in range(min(factory[i][1], j)+1):
+                    dp[j] = min(dp[j], dp[j-k]+curr)
+                    if (j-1)-k >= 0:
+                        curr += abs(robot[(j-1)-k]-factory[i][0])
+        return dp[-1]

@@ -1,15 +1,8 @@
 class Solution:
     def maxPrice(self, items: List[List[int]], capacity: int) -> float:
-        if sum(weight for _, weight in items) < capacity:
-            return -1
-
-        items.sort(key=lambda item: item[0] / item[1], reverse=True)
-        answer = 0.0
-
-        for price, weight in items:
-            taken = min(capacity, weight)
-            answer += price * taken / weight
-            capacity -= taken
-
-            if capacity == 0:
-                return answer
+        ans = 0
+        for p, w in sorted(items, key=lambda x: x[1] / x[0]):
+            v = min(w, capacity)
+            ans += v / w * p
+            capacity -= v
+        return -1 if capacity else ans

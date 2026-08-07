@@ -1,14 +1,16 @@
+# Time:  O(logn)
+# Space: O(logn)
+
+# greedy
 class Solution:
-    def smallestNumber(self, n: int) -> str:
-        if n < 10:
-            return str(n)
-
-        digits = []
-        for digit in range(9, 1, -1):
-            while n % digit == 0:
-                digits.append(str(digit))
-                n //= digit
-
-        if n != 1:
-            return "-1"
-        return "".join(reversed(digits))
+    def smallestNumber(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        result = []
+        for d in reversed(range(2, 9+1)):
+            while n%d == 0:
+                result.append(d)
+                n //= d
+        return "".join(map(str, reversed(result))) or "1" if n == 1 else "-1"

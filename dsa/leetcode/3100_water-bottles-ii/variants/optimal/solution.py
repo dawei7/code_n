@@ -1,12 +1,9 @@
 class Solution:
     def maxBottlesDrunk(self, numBottles: int, numExchange: int) -> int:
-        drunk = numBottles
-        empty = numBottles
-
-        while empty >= numExchange:
-            empty -= numExchange
+        ans = numBottles
+        while numBottles >= numExchange:
+            numBottles -= numExchange
             numExchange += 1
-            empty += 1
-            drunk += 1
-
-        return drunk
+            ans += 1
+            numBottles += 1
+        return ans

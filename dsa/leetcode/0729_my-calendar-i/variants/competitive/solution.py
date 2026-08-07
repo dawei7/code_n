@@ -1,64 +1,65 @@
-class _Node:
-    def __init__(self):
-        self.covered = False
-        self.left = None
-        self.right = None
+# Time:  O(nlogn) on average, O(n^2) on worst case
+# Space: O(n)
+
+class Node(object):
+    def __init__(self, start, end):
+        self.__start = start
+        self.__end = end
+        self.__left = None
+        self.__right = None
 
 
-class MyCalendar:
-    DOMAIN_LEFT = 0
-    DOMAIN_RIGHT = 10**9 - 1
-
-    def __init__(self):
-        self.root = _Node()
-
-    def _overlaps(self, node, left, right, query_left, query_right):
-        if node is None:
+    def insert(self, node):
+        if node.__start >= self.__end:
+            if not self.__right:
+                self.__right = node
+                return True
+            return self.__right.insert(node)
+        elif node.__end <= self.__start:
+            if not self.__left:
+                self.__left = node
+                return True
+            return self.__left.insert(node)
+        else:
             return False
-        if node.covered:
+
+
+class MyCalendar(object):
+    def __init__(self):
+        self.__root = None
+
+
+    def book(self, start, end):
+        """
+        :type start: int
+        :type end: int
+        :rtype: bool
+        """
+        if self.__root is None:
+            self.__root = Node(start, end)
             return True
+        return self.root.insert(Node(start, end))
 
-        middle = (left + right) // 2
-        if query_right <= middle:
-            return self._overlaps(node.left, left, middle, query_left, query_right)
-        if query_left > middle:
-            return self._overlaps(node.right, middle + 1, right, query_left, query_right)
-        return self._overlaps(node.left, left, middle, query_left, middle) or self._overlaps(
-            node.right, middle + 1, right, middle + 1, query_right
-        )
 
-    def _cover(self, node, left, right, query_left, query_right):
-        if query_left <= left and right <= query_right:
-            node.covered = True
-            node.left = None
-            node.right = None
-            return
+# Time:  O(n^2)
+# Space: O(n)
+class MyCalendar2(object):
 
-        middle = (left + right) // 2
-        if query_left <= middle:
-            if node.left is None:
-                node.left = _Node()
-            self._cover(node.left, left, middle, query_left, query_right)
-        if query_right > middle:
-            if node.right is None:
-                node.right = _Node()
-            self._cover(node.right, middle + 1, right, query_left, query_right)
+    def __init__(self):
+        self.__calendar = []
 
-    def book(self, start: int, end: int) -> bool:
-        query_right = end - 1
-        if self._overlaps(
-            self.root,
-            self.DOMAIN_LEFT,
-            self.DOMAIN_RIGHT,
-            start,
-            query_right,
-        ):
-            return False
-        self._cover(
-            self.root,
-            self.DOMAIN_LEFT,
-            self.DOMAIN_RIGHT,
-            start,
-            query_right,
-        )
+
+    def book(self, start, end):
+        """
+        :type start: int
+        :type end: int
+        :rtype: bool
+        """
+        for i, j in self.__calendar:
+            if start < j and end > i:
+                return False
+        self.__calendar.append((start, end))
         return True
+
+
+

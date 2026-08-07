@@ -1,58 +1,40 @@
-from heapq import heappop, heappush
-
-
 class Solution:
     def modifiedGraphEdges(
         self, n: int, edges: List[List[int]], source: int, destination: int, target: int
     ) -> List[List[int]]:
-        edges = [edge[:] for edge in edges]
-        graph = [[] for _ in range(n)]
-        for index, (u, v, _) in enumerate(edges):
-            graph[u].append((v, index))
-            graph[v].append((u, index))
-
-        def minimum_distances(start: int) -> List[int]:
-            distances = [float("inf")] * n
-            distances[start] = 0
-            heap = [(0, start)]
-            while heap:
-                distance, node = heappop(heap)
-                if distance != distances[node]:
+        def dijkstra(edges: List[List[int]]) -> int:
+            g = [[inf] * n for _ in range(n)]
+            for a, b, w in edges:
+                if w == -1:
                     continue
-                for neighbor, index in graph[node]:
-                    weight = edges[index][2]
-                    if weight == -1:
-                        weight = 1
-                    candidate = distance + weight
-                    if candidate < distances[neighbor]:
-                        distances[neighbor] = candidate
-                        heappush(heap, (candidate, neighbor))
-            return distances
+                g[a][b] = g[b][a] = w
+            dist = [inf] * n
+            dist[source] = 0
+            vis = [False] * n
+            for _ in range(n):
+                k = -1
+                for j in range(n):
+                    if not vis[j] and (k == -1 or dist[k] > dist[j]):
+                        k = j
+                vis[k] = True
+                for j in range(n):
+                    dist[j] = min(dist[j], dist[k] + g[k][j])
+            return dist[destination]
 
-        distance_to_destination = minimum_distances(destination)
-        if distance_to_destination[source] > target:
+        inf = 2 * 10**9
+        d = dijkstra(edges)
+        if d < target:
             return []
-
-        distances = [float("inf")] * n
-        distances[source] = 0
-        heap = [(0, source)]
-        while heap:
-            distance, node = heappop(heap)
-            if distance != distances[node]:
+        ok = d == target
+        for e in edges:
+            if e[2] > 0:
                 continue
-            for neighbor, index in graph[node]:
-                weight = edges[index][2]
-                if weight == -1:
-                    weight = max(1, target - distance - distance_to_destination[neighbor])
-                    edges[index][2] = weight
-                candidate = distance + weight
-                if candidate < distances[neighbor]:
-                    distances[neighbor] = candidate
-                    heappush(heap, (candidate, neighbor))
-
-        if distances[destination] != target:
-            return []
-        for edge in edges:
-            if edge[2] == -1:
-                edge[2] = 2_000_000_000
-        return edges
+            if ok:
+                e[2] = inf
+                continue
+            e[2] = 1
+            d = dijkstra(edges)
+            if d <= target:
+                ok = True
+                e[2] += target - d
+        return edges if ok else []

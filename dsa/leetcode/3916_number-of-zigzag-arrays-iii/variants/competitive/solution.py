@@ -1,58 +1,41 @@
+# Time:  O(n^3)
+# Space: O(n)
+
+# dp, prefix sum, combinatorics, lagrange interpolation
 class Solution:
-    def zigZagArrays(self, n: int, l: int, r: int) -> int:
-        mod = 1_000_000_007
-        value_count = r - l + 1
+    def zigZagArrays(self, n, l, r):
+        """
+        :type n: int
+        :type l: int
+        :type r: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        inv, inv_fact = [[1]*2 for _ in range(2)]
+        def inv_factorial(n):
+            while len(inv) <= n:  # lazy initialization
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+            return inv_fact[n]
+    
+        def f(x):
+            dp = range(x)
+            for _ in range(n-2):
+                new_up = [0]*x
+                for i in range(x-1):
+                    new_up[i+1] = (new_up[i]+dp[~i])%MOD
+                dp = new_up
+            return (reduce(lambda accu, x: (accu+x)%MOD, dp, 0)*2)%MOD
 
-        samples = [0] * (n + 1)
-        for alphabet_size in range(1, n + 1):
-            up = list(range(alphabet_size))
-            down = [alphabet_size - 1 - value for value in range(alphabet_size)]
-
-            for _ in range(3, n + 1):
-                prefix = 0
-                next_up = [0] * alphabet_size
-                for value in range(alphabet_size):
-                    next_up[value] = prefix
-                    prefix = (prefix + down[value]) % mod
-
-                suffix = 0
-                next_down = [0] * alphabet_size
-                for value in range(alphabet_size - 1, -1, -1):
-                    next_down[value] = suffix
-                    suffix = (suffix + up[value]) % mod
-
-                up, down = next_up, next_down
-
-            samples[alphabet_size] = (sum(up) + sum(down)) % mod
-
-        if value_count <= n:
-            return samples[value_count]
-
-        factorial = [1] * (n + 1)
-        inverse_factorial = [1] * (n + 1)
-        for value in range(1, n + 1):
-            factorial[value] = factorial[value - 1] * value % mod
-
-        inverse_factorial[n] = pow(factorial[n], mod - 2, mod)
-        for value in range(n, 0, -1):
-            inverse_factorial[value - 1] = inverse_factorial[value] * value % mod
-
-        prefix_product = [1] * (n + 2)
-        suffix_product = [1] * (n + 2)
-        for value in range(n + 1):
-            prefix_product[value + 1] = prefix_product[value] * (value_count - value) % mod
-        for value in range(n, -1, -1):
-            suffix_product[value] = suffix_product[value + 1] * (value_count - value) % mod
-
-        answer = 0
-        for value, sample in enumerate(samples):
-            term = sample * prefix_product[value] % mod
-            term = term * suffix_product[value + 1] % mod
-            term = term * inverse_factorial[value] % mod
-            term = term * inverse_factorial[n - value] % mod
-            if (n - value) % 2:
-                answer -= term
-            else:
-                answer += term
-
-        return answer % mod
+        m = r-l+1
+        if m <= n+1:
+            return f(m)
+        prefix = [0]*((n+1)+1)
+        prefix[0] = 1
+        for i in range(len(prefix)-1):
+            prefix[i+1] = prefix[i]*(m-1-i)%MOD
+        suffix = [0]*((n+1)+1)
+        suffix[-1] = 1
+        for i in reversed(range(len(suffix)-1)):
+            suffix[i] = suffix[i+1]*(m-1-i)%MOD
+        return reduce(lambda accu, x: (accu+x)%MOD, (f(i+1)*(prefix[i]*suffix[i+1])*(inv_factorial(i)*inv_factorial(n-i)*(-1 if (n-i)%2 else 1)) for i in range(n+1)), 0)

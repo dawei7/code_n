@@ -1,15 +1,23 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(k), k is the number of courses you can take
+
+import collections
+import heapq
 
 
 class Solution:
-    def scheduleCourse(self, courses: List[List[int]]) -> int:
-        elapsed = 0
-        selected = []
+    def scheduleCourse(self, courses):
+        """
+        :type courses: List[List[int]]
+        :rtype: int
+        """
+        courses.sort(key=lambda t_end: t_end[1])
+        max_heap = []
+        now = 0
+        for t, end in courses:
+            now += t
+            heapq.heappush(max_heap, -t)
+            if now > end:
+                now += heapq.heappop(max_heap)
+        return len(max_heap)
 
-        for duration, deadline in sorted(courses, key=lambda course: course[1]):
-            elapsed += duration
-            heappush(selected, -duration)
-            if elapsed > deadline:
-                elapsed += heappop(selected)
-        return len(selected)

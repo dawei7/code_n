@@ -1,29 +1,64 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# iterative dfs, freq table
 class Solution:
-    def countPalindromePaths(self, parent: List[int], s: str) -> int:
-        n = len(parent)
-        children = [[] for _ in range(n)]
+    def countPalindromePaths(self, parent, s):
+        """
+        :type parent: List[int]
+        :type s: str
+        :rtype: int
+        """
+        def iter_dfs():
+            result = 0
+            cnt = collections.defaultdict(int)
+            cnt[0] = 1
+            stk = [(0, 0)]
+            while stk:
+                u, mask = stk.pop()
+                if u:
+                    mask ^= 1<<(ord(s[u])-ord('a'))
+                    result += cnt[mask]+sum(cnt[mask^(1<<i)] if mask^(1<<i) in cnt else 0 for i in range(26))
+                    cnt[mask] += 1
+                for v in reversed(adj[u]):
+                    stk.append((v, mask))
+            return result
 
-        for node in range(1, n):
-            children[parent[node]].append(node)
+        adj = [[] for _ in range(len(parent))]
+        for u, p in enumerate(parent):
+            if p != -1:
+                adj[p].append(u)
+        return iter_dfs()
 
-        frequencies = {0: 1}
-        answer = 0
-        stack = [(0, 0)]
 
-        while stack:
-            node, mask = stack.pop()
+# Time:  O(n)
+# Space: O(n)
+import collections
 
-            for child in children[node]:
-                child_mask = mask ^ (1 << (ord(s[child]) - ord("a")))
-                answer += frequencies.get(child_mask, 0)
 
-                for bit in range(26):
-                    answer += frequencies.get(child_mask ^ (1 << bit), 0)
+# dfs, freq table
+class Solution2(object):
+    def countPalindromePaths(self, parent, s):
+        """
+        :type parent: List[int]
+        :type s: str
+        :rtype: int
+        """
+        def dfs(u, mask):
+            result = 0
+            if u:
+                mask ^= 1<<(ord(s[u])-ord('a'))
+                result += cnt[mask]+sum(cnt[mask^(1<<i)] if mask^(1<<i) in cnt else 0 for i in range(26))
+                cnt[mask] += 1
+            return result+sum(dfs(v, mask) for v in adj[u])
 
-                frequencies[child_mask] = frequencies.get(child_mask, 0) + 1
-                stack.append((child, child_mask))
-
-        return answer
+        adj = [[] for _ in range(len(parent))]
+        for u, p in enumerate(parent):
+            if p != -1:
+                adj[p].append(u)
+        cnt = collections.defaultdict(int)
+        cnt[0] = 1
+        return dfs(0, 0)

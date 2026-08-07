@@ -1,18 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def validSubarrays(self, nums: List[int]) -> int:
-        unresolved = []
-        answer = 0
-
-        for current, value in enumerate(nums):
-            while unresolved and nums[unresolved[-1]] > value:
-                start = unresolved.pop()
-                answer += current - start
-            unresolved.append(current)
-
-        length = len(nums)
-        while unresolved:
-            answer += length - unresolved.pop()
-        return answer
+    def validSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        s = []
+        for num in nums:
+            while s and s[-1] > num:
+                s.pop()
+            s.append(num)
+            result += len(s)
+        return result

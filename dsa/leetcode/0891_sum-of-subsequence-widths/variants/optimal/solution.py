@@ -1,15 +1,9 @@
-from typing import List
-
-
 class Solution:
     def sumSubseqWidths(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        ordered = sorted(nums)
-        answer = 0
-        power = 1
-
-        for index, value in enumerate(ordered):
-            answer += (value - ordered[-1 - index]) * power
-            power = power * 2 % modulus
-
-        return answer % modulus
+        mod = 10**9 + 7
+        nums.sort()
+        ans, p = 0, 1
+        for i, v in enumerate(nums):
+            ans = (ans + (v - nums[-i - 1]) * p) % mod
+            p = (p << 1) % mod
+        return ans

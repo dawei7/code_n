@@ -1,18 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy, combinatorics
 class Solution:
-    def numberOfWays(self, corridor: str) -> int:
-        modulo = 1_000_000_007
-        seat_count = 0
-        previous_second_seat = -1
-        ways = 1
-
-        for index, cell in enumerate(corridor):
-            if cell != "S":
+    def numberOfWays(self, corridor):
+        """
+        :type corridor: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        result, cnt, j = 1, 0, -1
+        for i, x in enumerate(corridor):
+            if x != 'S':
                 continue
-
-            seat_count += 1
-            if seat_count > 2 and seat_count % 2 == 1:
-                ways = ways * (index - previous_second_seat) % modulo
-            if seat_count % 2 == 0:
-                previous_second_seat = index
-
-        return ways if seat_count > 0 and seat_count % 2 == 0 else 0
+            cnt += 1
+            if cnt >= 3 and cnt%2:
+                result = result*(i-j)%MOD
+            j = i
+        return result if cnt and cnt%2 == 0 else 0

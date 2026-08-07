@@ -1,10 +1,18 @@
-from typing import List
-
+# Time:  O(n + l)
+# Space: O(l)
 
 class Solution:
-    def stringShift(self, s: str, shift: List[List[int]]) -> str:
-        net_right = sum(amount if direction == 1 else -amount for direction, amount in shift)
-        net_right %= len(s)
-        if net_right == 0:
-            return s
-        return s[-net_right:] + s[:-net_right]
+    def stringShift(self, s, shift):
+        """
+        :type s: str
+        :type shift: List[List[int]]
+        :rtype: str
+        """
+        left_shifts = 0
+        for direction, amount in shift:
+            if not direction:
+                left_shifts += amount
+            else:
+                left_shifts -= amount
+        left_shifts %= len(s)
+        return s[left_shifts:] + s[:left_shifts]

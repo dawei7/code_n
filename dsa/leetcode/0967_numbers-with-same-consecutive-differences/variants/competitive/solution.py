@@ -1,15 +1,15 @@
-from typing import List
-
+# Time:  O(2^n)
+# Space: O(2^n)
 
 class Solution:
-    def numsSameConsecDiff(self, n: int, k: int) -> List[int]:
-        frontier = list(range(1, 10))
-        for _ in range(n - 1):
-            next_frontier = []
-            for number in frontier:
-                last_digit = number % 10
-                for next_digit in {last_digit - k, last_digit + k}:
-                    if 0 <= next_digit <= 9:
-                        next_frontier.append(number * 10 + next_digit)
-            frontier = next_frontier
-        return frontier
+    def numsSameConsecDiff(self, N, K):
+        """
+        :type N: int
+        :type K: int
+        :rtype: List[int]
+        """
+        curr = range(10)
+        for i in range(N-1):
+            curr = [x*10 + y for x in curr for y in set([x%10 + K, x%10 - K]) 
+                    if x and 0 <= y < 10]
+        return curr

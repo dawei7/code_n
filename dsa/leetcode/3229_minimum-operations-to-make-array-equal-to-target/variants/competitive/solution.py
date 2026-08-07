@@ -1,17 +1,14 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy, lc1526
 class Solution:
-    def minimumOperations(self, nums: List[int], target: List[int]) -> int:
-        previous = target[0] - nums[0]
-        operations = abs(previous)
-
-        for index in range(1, len(nums)):
-            current = target[index] - nums[index]
-            if previous * current > 0:
-                operations += max(0, abs(current) - abs(previous))
-            else:
-                operations += abs(current)
-            previous = current
-
-        return operations
+    def minimumOperations(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: List[int]
+        :rtype: int
+        """
+        for i in range(len(target)):
+            target[i] -= nums[i]
+        return sum(max((target[i] if i < len(target) else 0)-(target[i-1] if i-1 >= 0 else 0), 0) for i in range(len(target)+1))

@@ -1,7 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def reverseStr(self, s: str, k: int) -> str:
-        characters = list(s)
-        for start in range(0, len(characters), 2 * k):
-            end = min(start + k, len(characters))
-            characters[start:end] = reversed(characters[start:end])
-        return "".join(characters)
+    def reverseStr(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        s = list(s)
+        for i in range(0, len(s), 2*k):
+            s[i:i+k] = reversed(s[i:i+k])
+        return "".join(s)
+

@@ -1,27 +1,21 @@
-from typing import List
-
-
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()
-        used = [False] * len(nums)
-        path = []
-        result = []
-
-        def arrange() -> None:
-            if len(path) == len(nums):
-                result.append(path[:])
+        def dfs(i: int):
+            if i == n:
+                ans.append(t[:])
                 return
-            for index, value in enumerate(nums):
-                if used[index]:
+            for j in range(n):
+                if vis[j] or (j and nums[j] == nums[j - 1] and not vis[j - 1]):
                     continue
-                if index > 0 and value == nums[index - 1] and not used[index - 1]:
-                    continue
-                used[index] = True
-                path.append(value)
-                arrange()
-                path.pop()
-                used[index] = False
+                t[i] = nums[j]
+                vis[j] = True
+                dfs(i + 1)
+                vis[j] = False
 
-        arrange()
-        return result
+        n = len(nums)
+        nums.sort()
+        ans = []
+        t = [0] * n
+        vis = [False] * n
+        dfs(0)
+        return ans

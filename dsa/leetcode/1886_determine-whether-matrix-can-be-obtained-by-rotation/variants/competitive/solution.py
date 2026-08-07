@@ -1,23 +1,16 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def findRotation(self, mat: List[List[int]], target: List[List[int]]) -> bool:
-        size = len(mat)
-        possible = 0b1111
-
-        for row in range(size):
-            for column in range(size):
-                value = target[row][column]
-                if mat[row][column] != value:
-                    possible &= ~0b0001
-                if mat[size - 1 - column][row] != value:
-                    possible &= ~0b0010
-                if mat[size - 1 - row][size - 1 - column] != value:
-                    possible &= ~0b0100
-                if mat[column][size - 1 - row] != value:
-                    possible &= ~0b1000
-                if possible == 0:
-                    return False
-
-        return True
+    def findRotation(self, mat, target):
+        """
+        :type mat: List[List[int]]
+        :type target: List[List[int]]
+        :rtype: bool
+        """
+        checks = [lambda i, j: mat[i][j] == target[i][j],
+                  lambda i, j: mat[i][j] == target[j][-1-i],
+                  lambda i, j: mat[i][j] == target[-1-i][-1-j],
+                  lambda i, j: mat[i][j] == target[-1-j][i]]
+        traverse = lambda check: all(check(i, j) for i in range(len(mat)) for j in range(len(mat[0])))
+        return any(traverse(check) for check in checks)

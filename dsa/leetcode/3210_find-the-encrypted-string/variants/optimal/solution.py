@@ -1,4 +1,7 @@
 class Solution:
     def getEncryptedString(self, s: str, k: int) -> str:
-        offset = k % len(s)
-        return s[offset:] + s[:offset]
+        cs = list(s)
+        n = len(s)
+        for i in range(n):
+            cs[i] = s[(i + k) % n]
+        return "".join(cs)

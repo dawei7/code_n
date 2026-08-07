@@ -1,42 +1,22 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def collectTheCoins(self, coins: List[int], edges: List[List[int]]) -> int:
+        g = defaultdict(set)
+        for a, b in edges:
+            g[a].add(b)
+            g[b].add(a)
         n = len(coins)
-        graph = [[] for _ in range(n)]
-        degree = [0] * n
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-            degree[first] += 1
-            degree[second] += 1
-
-        remaining_edges = n - 1
-        leaves = deque(node for node in range(n) if degree[node] == 1 and coins[node] == 0)
-        while leaves:
-            leaf = leaves.popleft()
-            degree[leaf] = 0
-            for neighbor in graph[leaf]:
-                if degree[neighbor] == 0:
-                    continue
-                degree[neighbor] -= 1
-                remaining_edges -= 1
-                if degree[neighbor] == 1 and coins[neighbor] == 0:
-                    leaves.append(neighbor)
-
-        leaves = deque(node for node in range(n) if degree[node] == 1)
-        for _ in range(2):
-            for _ in range(len(leaves)):
-                leaf = leaves.popleft()
-                degree[leaf] = 0
-                for neighbor in graph[leaf]:
-                    if degree[neighbor] == 0:
-                        continue
-                    degree[neighbor] -= 1
-                    remaining_edges -= 1
-                    if degree[neighbor] == 1:
-                        leaves.append(neighbor)
-
-        return max(0, 2 * remaining_edges)
+        q = deque(i for i in range(n) if len(g[i]) == 1 and coins[i] == 0)
+        while q:
+            i = q.popleft()
+            for j in g[i]:
+                g[j].remove(i)
+                if coins[j] == 0 and len(g[j]) == 1:
+                    q.append(j)
+            g[i].clear()
+        for k in range(2):
+            q = [i for i in range(n) if len(g[i]) == 1]
+            for i in q:
+                for j in g[i]:
+                    g[j].remove(i)
+                g[i].clear()
+        return sum(len(g[a]) > 0 and len(g[b]) > 0 for a, b in edges) * 2

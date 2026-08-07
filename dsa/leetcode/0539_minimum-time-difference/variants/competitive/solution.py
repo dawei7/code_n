@@ -1,27 +1,14 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def findMinDifference(self, timePoints: List[str]) -> int:
-        if len(timePoints) > 1440:
-            return 0
-        occupied = [False] * 1440
-        for time_point in timePoints:
-            hour, minute = map(int, time_point.split(":"))
-            value = hour * 60 + minute
-            if occupied[value]:
-                return 0
-            occupied[value] = True
+    def findMinDifference(self, timePoints):
+        """
+        :type timePoints: List[str]
+        :rtype: int
+        """
+        minutes = map(lambda x: int(x[:2]) * 60 + int(x[3:]), timePoints)
+        minutes.sort()
+        return min((y - x) % (24 * 60)  \
+                   for x, y in zip(minutes, minutes[1:] + minutes[:1]))
 
-        first = -1
-        previous = -1
-        minimum = 1440
-        for minute, present in enumerate(occupied):
-            if not present:
-                continue
-            if first < 0:
-                first = minute
-            if previous >= 0:
-                minimum = min(minimum, minute - previous)
-            previous = minute
-        return min(minimum, first + 1440 - previous)

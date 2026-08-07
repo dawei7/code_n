@@ -1,27 +1,24 @@
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
+
+
 class Solution:
-    def buddyStrings(self, s: str, goal: str) -> bool:
-        if len(s) != len(goal):
+    def buddyStrings(self, A, B):
+        """
+        :type A: str
+        :type B: str
+        :rtype: bool
+        """
+        if len(A) != len(B):
             return False
-
-        seen = [False] * 26
-        has_duplicate = False
-        mismatches = []
-
-        for index, (source_letter, goal_letter) in enumerate(zip(s, goal)):
-            letter_index = ord(source_letter) - ord("a")
-            if seen[letter_index]:
-                has_duplicate = True
-            seen[letter_index] = True
-
-            if source_letter != goal_letter:
-                mismatches.append(index)
-                if len(mismatches) > 2:
+        diff = []
+        for a, b in itertools.izip(A, B):
+            if a != b:
+                diff.append((a, b))
+                if len(diff) > 2:
                     return False
+        return (not diff and len(set(A)) < len(A)) or \
+               (len(diff) == 2 and diff[0] == diff[1][::-1])
 
-        if not mismatches:
-            return has_duplicate
-        if len(mismatches) != 2:
-            return False
-
-        first, second = mismatches
-        return s[first] == goal[second] and s[second] == goal[first]

@@ -1,7 +1,12 @@
+# Time:  O(logn) = O(1)
+# Space: O(1)
+
 class Solution:
-    def trailingZeroes(self, n: int) -> int:
-        zeroes = 0
+    # @return an integer
+    def trailingZeroes(self, n):
+        result = 0
         while n > 0:
-            n //= 5
-            zeroes += n
-        return zeroes
+            result += n / 5
+            n /= 5
+        return result
+

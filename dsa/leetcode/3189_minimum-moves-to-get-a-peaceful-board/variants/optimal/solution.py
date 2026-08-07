@@ -1,5 +1,7 @@
 class Solution:
     def minMoves(self, rooks: List[List[int]]) -> int:
-        rows = sorted(x for x, _ in rooks)
-        columns = sorted(y for _, y in rooks)
-        return sum(abs(row - target) + abs(column - target) for target, (row, column) in enumerate(zip(rows, columns)))
+        rooks.sort()
+        ans = sum(abs(x - i) for i, (x, _) in enumerate(rooks))
+        rooks.sort(key=lambda x: x[1])
+        ans += sum(abs(y - j) for j, (_, y) in enumerate(rooks))
+        return ans

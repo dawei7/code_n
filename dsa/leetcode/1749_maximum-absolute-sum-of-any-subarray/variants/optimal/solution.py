@@ -1,15 +1,9 @@
-from typing import List
-
-
 class Solution:
     def maxAbsoluteSum(self, nums: List[int]) -> int:
-        prefix = 0
-        minimum_prefix = 0
-        maximum_prefix = 0
-
-        for value in nums:
-            prefix += value
-            minimum_prefix = min(minimum_prefix, prefix)
-            maximum_prefix = max(maximum_prefix, prefix)
-
-        return maximum_prefix - minimum_prefix
+        f = g = 0
+        ans = 0
+        for x in nums:
+            f = max(f, 0) + x
+            g = min(g, 0) + x
+            ans = max(ans, f, abs(g))
+        return ans

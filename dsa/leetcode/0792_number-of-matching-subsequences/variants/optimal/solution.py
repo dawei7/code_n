@@ -1,21 +1,14 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
-        waiting = defaultdict(list)
-        for word in words:
-            iterator = iter(word)
-            waiting[next(iterator)].append(iterator)
-
-        matched = 0
-        for character in s:
-            advancing = waiting.pop(character, [])
-            for iterator in advancing:
-                next_character = next(iterator, None)
-                if next_character is None:
-                    matched += 1
+        d = defaultdict(deque)
+        for w in words:
+            d[w[0]].append(w)
+        ans = 0
+        for c in s:
+            for _ in range(len(d[c])):
+                t = d[c].popleft()
+                if len(t) == 1:
+                    ans += 1
                 else:
-                    waiting[next_character].append(iterator)
-        return matched
+                    d[t[1]].append(t[1:])
+        return ans

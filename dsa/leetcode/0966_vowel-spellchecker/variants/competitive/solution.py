@@ -1,26 +1,34 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(w)
 
 class Solution:
-    def spellchecker(self, wordlist: List[str], queries: List[str]) -> List[str]:
-        vowels = set("aeiou")
+    def spellchecker(self, wordlist, queries):
+        """
+        :type wordlist: List[str]
+        :type queries: List[str]
+        :rtype: List[str]
+        """
+        vowels = set(['a', 'e', 'i', 'o', 'u'])
+        def todev(word):
+            return "".join('*' if c.lower() in vowels else c.lower()
+                           for c in word)
 
-        def vowel_key(word):
-            return "".join("*" if character in vowels else character for character in word.lower())
+        words = set(wordlist)
+        caps = {}
+        vows = {}
 
-        exact = set(wordlist)
-        lowercase = {}
-        vowel_errors = {}
         for word in wordlist:
-            lowercase.setdefault(word.lower(), word)
-            vowel_errors.setdefault(vowel_key(word), word)
+            caps.setdefault(word.lower(), word)
+            vows.setdefault(todev(word), word)
 
-        answer = []
-        for query in queries:
-            if query in exact:
-                answer.append(query)
-            elif query.lower() in lowercase:
-                answer.append(lowercase[query.lower()])
-            else:
-                answer.append(vowel_errors.get(vowel_key(query), ""))
-        return answer
+        def check(query):
+            if query in words:
+                return query
+            lower = query.lower()
+            if lower in caps:
+                return caps[lower]
+            devow = todev(lower)
+            if devow in vows:
+                return vows[devow]
+            return ""
+        return map(check, queries)

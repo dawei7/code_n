@@ -1,17 +1,25 @@
-from typing import List
-
+# Time:  O(logm + logn)
+# Space: O(1)
 
 class Solution:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        rows, columns = len(matrix), len(matrix[0])
-        left, right = 0, rows * columns - 1
-        while left <= right:
-            middle = (left + right) // 2
-            value = matrix[middle // columns][middle % columns]
-            if value == target:
-                return True
-            if value < target:
-                left = middle + 1
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        if not matrix:
+            return False
+
+        m, n = len(matrix), len(matrix[0])
+        left, right = 0, m * n
+        while left < right:
+            mid = left + (right - left) / 2
+            if matrix[mid / n][mid % n] >= target:
+                right = mid
             else:
-                right = middle - 1
-        return False
+                left = mid + 1
+
+        return left < m * n and matrix[left / n][left % n] == target
+
+

@@ -1,50 +1,47 @@
-def _island_counts(m: int, n: int, positions: list[list[int]]) -> list[int]:
-    parent: dict[int, int] = {}
-    size: dict[int, int] = {}
-    islands = 0
-    result: list[int] = []
+class UnionFind:
+    def __init__(self, n: int):
+        self.p = list(range(n))
+        self.size = [1] * n
 
-    def find(node: int) -> int:
-        root = node
-        while parent[root] != root:
-            root = parent[root]
-        while node != root:
-            parent_node = parent[node]
-            parent[node] = root
-            node = parent_node
-        return root
+    def find(self, x: int):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
 
-    for row, column in positions:
-        node = row * n + column
-        if node in parent:
-            result.append(islands)
-            continue
-        parent[node] = node
-        size[node] = 1
-        islands += 1
-
-        for row_delta, column_delta in ((-1, 0), (1, 0), (0, -1), (0, 1)):
-            neighbor_row = row + row_delta
-            neighbor_column = column + column_delta
-            if not (0 <= neighbor_row < m and 0 <= neighbor_column < n):
-                continue
-            neighbor = neighbor_row * n + neighbor_column
-            if neighbor not in parent:
-                continue
-            root = find(node)
-            neighbor_root = find(neighbor)
-            if root == neighbor_root:
-                continue
-            if size[root] < size[neighbor_root]:
-                root, neighbor_root = neighbor_root, root
-            parent[neighbor_root] = root
-            size[root] += size[neighbor_root]
-            islands -= 1
-
-        result.append(islands)
-    return result
+    def union(self, a: int, b: int) -> bool:
+        pa, pb = self.find(a - 1), self.find(b - 1)
+        if pa == pb:
+            return False
+        if self.size[pa] > self.size[pb]:
+            self.p[pb] = pa
+            self.size[pa] += self.size[pb]
+        else:
+            self.p[pa] = pb
+            self.size[pb] += self.size[pa]
+        return True
 
 
 class Solution:
-    def numIslands2(self, m: int, n: int, positions: list[list[int]]) -> list[int]:
-        return _island_counts(m, n, positions)
+    def numIslands2(self, m: int, n: int, positions: List[List[int]]) -> List[int]:
+        uf = UnionFind(m * n)
+        grid = [[0] * n for _ in range(m)]
+        ans = []
+        dirs = (-1, 0, 1, 0, -1)
+        cnt = 0
+        for i, j in positions:
+            if grid[i][j]:
+                ans.append(cnt)
+                continue
+            grid[i][j] = 1
+            cnt += 1
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if (
+                    0 <= x < m
+                    and 0 <= y < n
+                    and grid[x][y]
+                    and uf.union(i * n + j, x * n + y)
+                ):
+                    cnt -= 1
+            ans.append(cnt)
+        return ans

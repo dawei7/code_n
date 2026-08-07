@@ -1,40 +1,45 @@
-from collections import deque
-from typing import Optional
+# Time:  ctor:     O(n)
+#        insert:   O(1)
+#        get_root: O(1)
+# Space: O(n)
 
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class CBTInserter:
-    def __init__(self, root: Optional[TreeNode]):
-        self.root = root
-        self.incomplete = deque()
-        queue = deque([root])
+class CBTInserter(object):
 
-        while queue:
-            node = queue.popleft()
-            if node.left is None or node.right is None:
-                self.incomplete.append(node)
-            if node.left is not None:
-                queue.append(node.left)
-            if node.right is not None:
-                queue.append(node.right)
+    def __init__(self, root):
+        """
+        :type root: TreeNode
+        """
+        self.__tree = [root]
+        for i in self.__tree:
+            if i.left:
+                self.__tree.append(i.left)
+            if i.right:
+                self.__tree.append(i.right)        
 
-    def insert(self, val: int) -> int:
-        parent = self.incomplete[0]
-        node = TreeNode(val)
-
-        if parent.left is None:
-            parent.left = node
+    def insert(self, v):
+        """
+        :type v: int
+        :rtype: int
+        """
+        n = len(self.__tree)
+        self.__tree.append(TreeNode(v))
+        if n % 2:
+            self.__tree[(n-1)//2].left = self.__tree[-1]
         else:
-            parent.right = node
-            self.incomplete.popleft()
+            self.__tree[(n-1)//2].right = self.__tree[-1]
+        return self.__tree[(n-1)//2].val
 
-        self.incomplete.append(node)
-        return parent.val
+    def get_root(self):
+        """
+        :rtype: TreeNode
+        """
+        return self.__tree[0]
 
-    def get_root(self) -> Optional[TreeNode]:
-        return self.root
+
+

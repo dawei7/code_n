@@ -1,9 +1,12 @@
-WITH seller_totals AS (
-    SELECT seller_id, SUM(price) AS total_price
-    FROM Sales
-    GROUP BY seller_id
-)
-SELECT seller_id
-FROM seller_totals
-WHERE total_price = (SELECT MAX(total_price) FROM seller_totals)
-ORDER BY seller_id;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT seller_id 
+FROM   sales 
+GROUP  BY seller_id 
+HAVING Sum(price) = (SELECT Sum(price) 
+                     FROM   sales 
+                     GROUP  BY seller_id 
+                     ORDER  BY Sum(price) DESC 
+                     LIMIT  1) 
+ORDER  BY NULL

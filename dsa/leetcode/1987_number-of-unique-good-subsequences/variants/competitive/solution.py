@@ -1,15 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def numberOfUniqueGoodSubsequences(self, binary: str) -> int:
-        modulus = 1_000_000_007
-        ending_zero = 0
-        ending_one = 0
-        has_zero = 0
-
-        for bit in binary:
-            if bit == "1":
-                ending_one = (ending_zero + ending_one + 1) % modulus
+    def numberOfUniqueGoodSubsequences(self, binary):
+        """
+        :type binary: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        ends0, ends1 = 0, 0
+        has_zero = False
+        for b in binary:
+            if b == '1':
+                ends1 = (ends0+ends1+1)%MOD  # curr subsequences end with 1 is all prev distinct subsequences appended by 1 and plus "1"
             else:
-                ending_zero = (ending_zero + ending_one) % modulus
-                has_zero = 1
-
-        return (ending_zero + ending_one + has_zero) % modulus
+                ends0 = (ends0+ends1)%MOD  # curr subsequences end with 0 is all prev distinct subsequences appended by 0 and don't plus "0"
+                has_zero = True
+        return (ends0+ends1+int(has_zero))%MOD  # add "0" if has_zero

@@ -1,25 +1,53 @@
-from collections import deque
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(w)
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
-        queue = deque([root])
-        missing_seen = False
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-        while queue:
-            node = queue.popleft()
-            if node is None:
-                missing_seen = True
-                continue
-            if missing_seen:
-                return False
-            queue.append(node.left)
-            queue.append(node.right)
-        return True
+
+class Solution:
+    def isCompleteTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        end = False
+        current = [root]
+        while current:
+            next_level = []
+            for node in current:
+                if not node:
+                    end = True
+                    continue
+                if end:
+                    return False
+                next_level.append(node.left)
+                next_level.append(node.right)
+            current = next_level
+        return  True
+
+
+# Time:  O(n)
+# Space: O(w)
+class Solution2(object):
+    def isCompleteTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        prev_level, current = [], [(root, 1)]
+        count = 0
+        while current:
+            count += len(current)
+            next_level = []
+            for node, v in current:
+                if not node:
+                    continue
+                next_level.append((node.left, 2*v))
+                next_level.append((node.right, 2*v+1))
+            prev_level, current = current, next_level
+        return prev_level[-1][1] == count

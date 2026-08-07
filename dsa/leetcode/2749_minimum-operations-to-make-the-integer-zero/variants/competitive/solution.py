@@ -1,8 +1,24 @@
-class Solution:
-    def makeTheIntegerZero(self, num1: int, num2: int) -> int:
-        for operations in range(1, 61):
-            remaining = num1 - operations * num2
-            if remaining >= operations and remaining.bit_count() <= operations:
-                return operations
+# Time:  O(1)
+# Space: O(1)
 
+# math, linear search, bit manipulations
+class Solution:
+    def makeTheIntegerZero(self, num1, num2):
+        """
+        :type num1: int
+        :type num2: int
+        :rtype: int
+        """
+        def popcount(x):
+            result = 0
+            while x:
+                x &= (x-1)
+                result += 1
+            return result
+
+        for i in range(1, 60+1):
+            if num1-i*num2 < 0:
+                break
+            if popcount(num1-i*num2) <= i <= num1-i*num2:
+                return i
         return -1

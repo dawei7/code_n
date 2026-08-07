@@ -1,19 +1,23 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(w)
+
+class Node(object):
+    def __init__(self, val, children):
+        self.val = val
+        self.children = children
 
 
 class Solution:
-    def levelOrder(self, root: "Node") -> List[List[int]]:
-        if root is None:
+    def levelOrder(self, root):
+        """
+        :type root: Node
+        :rtype: List[List[int]]
+        """
+        if not root:
             return []
+        result, q = [], [root]
+        while q:
+            result.append([node.val for node in q])
+            q = [child for node in q for child in node.children if child]
+        return result
 
-        answer = []
-        queue = deque([root])
-        while queue:
-            level = []
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                level.append(node.val)
-                queue.extend(node.children)
-            answer.append(level)
-        return answer

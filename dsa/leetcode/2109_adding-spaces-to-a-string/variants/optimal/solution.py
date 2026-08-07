@@ -1,15 +1,10 @@
-from typing import List
-
-
 class Solution:
     def addSpaces(self, s: str, spaces: List[int]) -> str:
-        parts: List[str] = []
-        previous = 0
-
-        for index in spaces:
-            parts.append(s[previous:index])
-            parts.append(" ")
-            previous = index
-
-        parts.append(s[previous:])
-        return "".join(parts)
+        ans = []
+        j = 0
+        for i, c in enumerate(s):
+            if j < len(spaces) and i == spaces[j]:
+                ans.append(' ')
+                j += 1
+            ans.append(c)
+        return ''.join(ans)

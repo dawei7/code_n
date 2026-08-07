@@ -1,13 +1,10 @@
 class Solution:
     def countWays(self, ranges: List[List[int]]) -> int:
-        modulus = 1_000_000_007
         ranges.sort()
-        ways = 1
-        current_end = -1
-
+        cnt, mx = 0, -1
         for start, end in ranges:
-            if start > current_end:
-                ways = ways * 2 % modulus
-            current_end = max(current_end, end)
-
-        return ways
+            if start > mx:
+                cnt += 1
+            mx = max(mx, end)
+        mod = 10**9 + 7
+        return pow(2, cnt, mod)

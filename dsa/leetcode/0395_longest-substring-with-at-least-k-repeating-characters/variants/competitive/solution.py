@@ -1,32 +1,32 @@
+# Time:  O(26 * n) = O(n)
+# Space: O(26) = O(1)
+
 class Solution:
-    def longestSubstring(self, s: str, k: int) -> int:
-        best = 0
-        base = ord("a")
+    def longestSubstring(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        def longestSubstringHelper(s, k, start, end):
+            count = [0] * 26
+            for i in range(start, end):
+                count[ord(s[i]) - ord('a')] += 1
+            max_len = 0
+            i = start
+            while i < end:
+                while i < end and count[ord(s[i]) - ord('a')] < k:
+                    i += 1
+                j = i
+                while j < end and count[ord(s[j]) - ord('a')] >= k:
+                    j += 1
 
-        for target_unique in range(1, len(set(s)) + 1):
-            counts = [0] * 26
-            left = 0
-            unique = 0
-            qualified = 0
+                if i == start and j == end:
+                    return end - start
 
-            for right, character in enumerate(s):
-                index = ord(character) - base
-                if counts[index] == 0:
-                    unique += 1
-                counts[index] += 1
-                if counts[index] == k:
-                    qualified += 1
+                max_len = max(max_len, longestSubstringHelper(s, k, i, j))
+                i = j
+            return max_len
 
-                while unique > target_unique:
-                    left_index = ord(s[left]) - base
-                    if counts[left_index] == k:
-                        qualified -= 1
-                    counts[left_index] -= 1
-                    if counts[left_index] == 0:
-                        unique -= 1
-                    left += 1
+        return longestSubstringHelper(s, k, 0, len(s))
 
-                if unique == target_unique == qualified:
-                    best = max(best, right - left + 1)
-
-        return best

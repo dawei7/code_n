@@ -1,26 +1,18 @@
-WITH RankedCalls AS (
-    SELECT
-        contacts.first_name,
-        calls.contact_id,
-        calls.type,
-        calls.duration,
-        ROW_NUMBER() OVER (
-            PARTITION BY calls.type
-            ORDER BY calls.duration DESC, contacts.first_name DESC, calls.contact_id DESC
-        ) AS position
-    FROM Calls AS calls
-    JOIN Contacts AS contacts
-        ON contacts.id = calls.contact_id
+# Time:  O(nlogn)
+# Space: O(n)
+
+# window function
+WITH rank_cte AS (
+    SELECT contact_id AS id, type,
+           ROW_NUMBER() OVER (PARTITION BY type ORDER BY duration DESC) AS row_num,
+           TIME_FORMAT(SEC_TO_TIME(duration), '%H:%i:%s') AS duration_formatted
+    FROM Calls
+), top3_cte AS (
+    SELECT *
+    FROM rank_cte
+    WHERE row_num <= 3
 )
-SELECT
-    first_name,
-    type,
-    printf(
-        '%02d:%02d:%02d',
-        duration / 3600,
-        (duration % 3600) / 60,
-        duration % 60
-    ) AS duration_formatted
-FROM RankedCalls
-WHERE position <= 3
-ORDER BY type DESC, duration DESC, first_name DESC;
+
+SELECT first_name, type, duration_formatted
+FROM top3_cte INNER JOIN contacts USING (id)
+ORDER BY 2, 3 DESC, 1 DESC;

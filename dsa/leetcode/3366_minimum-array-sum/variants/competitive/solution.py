@@ -1,29 +1,88 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# greedy, case works
+# Reference: https://leetcode.com/problems/minimum-array-sum/solutions/6078002/o-n-log-n-greedy/
 class Solution:
-    def minArraySum(self, nums: List[int], k: int, op1: int, op2: int) -> int:
-        infinity = 10**18
-        dp = [[infinity] * (op2 + 1) for _ in range(op1 + 1)]
-        dp[0][0] = 0
+    def minArraySum(self, nums, k, op1, op2):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type op1: int
+        :type op2: int
+        :rtype: int
+        """
+        nums.sort()
 
-        for value in nums:
-            half = (value + 1) // 2
-            options = [(value, 0, 0), (half, 1, 0)]
-            if value >= k:
-                options.append((value - k, 0, 1))
-                options.append(((value - k + 1) // 2, 1, 1))
-            if half >= k:
-                options.append((half - k, 1, 1))
+        left = next((i for i in range(len(nums)) if nums[i] >= k), len(nums))
+        right = next((i for i in range(len(nums)) if nums[i] >= 2*k-1), len(nums))
 
-            next_dp = [[infinity] * (op2 + 1) for _ in range(op1 + 1)]
-            for used1 in range(op1 + 1):
-                for used2 in range(op2 + 1):
-                    current = dp[used1][used2]
-                    if current == infinity:
-                        continue
-                    for transformed, add1, add2 in options:
-                        next1 = used1 + add1
-                        next2 = used2 + add2
-                        if next1 <= op1 and next2 <= op2:
-                            next_dp[next1][next2] = min(next_dp[next1][next2], current + transformed)
-            dp = next_dp
+        lookup, cnt = [False]*len(nums), 0
+        for j in reversed(range(right, len(nums))):
+            if not op1:
+                break
+            op1 -= 1
+            nums[j] = (nums[j]+1)//2
+            if op2:
+                op2 -= 1
+                nums[j] -= k
+        else:
+            j = right-1
 
-        return min(map(min, dp))
+        for i in range(left, j+1):
+            if not op2:
+                break
+            op2 -= 1
+            if k%2 == 1 and nums[i]%2 == 0:
+                lookup[i] = True
+            nums[i] -= k
+        else:
+            i = j+1
+    
+        for j in reversed(range(i, j+1)):
+            if not op1:
+                break
+            op1 -= 1
+            if k%2 == 1 and nums[j]%2 == 1:
+                cnt += 1
+            nums[j] = (nums[j]+1)//2
+        else:
+            j = i-1
+
+        arr = sorted((nums[idx], idx) for idx in range(i))
+        for _ in range(op1):
+            x, idx = arr.pop()
+            nums[idx] = (x+1)//2
+            if cnt and lookup[idx]:
+                cnt -= 1
+                nums[idx] -= 1
+        return sum(nums)
+
+
+# Time:  O(n * op1 * op2)
+# Space: O(op1 * op2)
+# dp
+class Solution2(object):
+    def minArraySum(self, nums, k, op1, op2):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type op1: int
+        :type op2: int
+        :rtype: int
+        """
+        dp = [[sum(nums)]*(op2+1) for _ in range(op1+1)]
+        for x in nums:
+            for i in reversed(range(op1+1)):
+                for j in reversed(range(op2+1)):
+                    if i-1 >= 0:
+                        dp[i][j] = min(dp[i][j], dp[i-1][j]-x+(x+1)//2)
+                    if j-1 >= 0:
+                        if x-k >= 0:
+                            dp[i][j] = min(dp[i][j], dp[i][j-1]-x+(x-k))
+                    if i-1 >= 0 and j-1 >= 0:
+                        if x-k >= 0:
+                            dp[i][j] = min(dp[i][j], dp[i-1][j-1]-x+((x-k)+1)//2)
+                        if (x+1)//2-k >= 0:
+                            dp[i][j] = min(dp[i][j], dp[i-1][j-1]-x+((x+1)//2-k))
+        return dp[op1][op2]

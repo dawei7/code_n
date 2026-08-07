@@ -1,31 +1,37 @@
+# Time:  O(m * n)
+# Space: O(m * n)
+
 class Solution:
-    def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
-        left_length = len(str1)
-        right_length = len(str2)
-        lcs = [[0] * (right_length + 1) for _ in range(left_length + 1)]
-
-        for left in range(1, left_length + 1):
-            for right in range(1, right_length + 1):
-                if str1[left - 1] == str2[right - 1]:
-                    lcs[left][right] = lcs[left - 1][right - 1] + 1
+    def shortestCommonSupersequence(self, str1, str2):
+        """
+        :type str1: str
+        :type str2: str
+        :rtype: str
+        """
+        dp = [[0 for _ in range(len(str2)+1)] for _ in range(2)]
+        bt = [[None for _ in range(len(str2)+1)] for _ in range(len(str1)+1)]
+        for i, c in enumerate(str1):
+            bt[i+1][0] = (i, 0, c)
+        for j, c in enumerate(str2):
+            bt[0][j+1] = (0, j, c)
+        for i in range(len(str1)):
+            for j in range(len(str2)):
+                if dp[i % 2][j+1] > dp[(i+1) % 2][j]:
+                    dp[(i+1) % 2][j+1] = dp[i % 2][j+1]
+                    bt[i+1][j+1] = (i, j+1, str1[i])
                 else:
-                    lcs[left][right] = max(lcs[left - 1][right], lcs[left][right - 1])
-
-        reversed_result = []
-        left = left_length
-        right = right_length
-        while left and right:
-            if str1[left - 1] == str2[right - 1]:
-                reversed_result.append(str1[left - 1])
-                left -= 1
-                right -= 1
-            elif lcs[left - 1][right] > lcs[left][right - 1]:
-                reversed_result.append(str1[left - 1])
-                left -= 1
-            else:
-                reversed_result.append(str2[right - 1])
-                right -= 1
-
-        reversed_result.extend(reversed(str1[:left]))
-        reversed_result.extend(reversed(str2[:right]))
-        return "".join(reversed(reversed_result))
+                    dp[(i+1) % 2][j+1] = dp[(i+1) % 2][j]
+                    bt[i+1][j+1] = (i+1, j, str2[j])
+                if str1[i] != str2[j]:
+                    continue
+                if dp[i % 2][j]+1 > dp[(i+1) % 2][j+1]:
+                    dp[(i+1) % 2][j+1] = dp[i % 2][j]+1
+                    bt[i+1][j+1] = (i, j, str1[i])
+        
+        i, j = len(str1), len(str2)
+        result = []
+        while i != 0 or j != 0:
+            i, j, c = bt[i][j]
+            result.append(c)
+        result.reverse()
+        return "".join(result)

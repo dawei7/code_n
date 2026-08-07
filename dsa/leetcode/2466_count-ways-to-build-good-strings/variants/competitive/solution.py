@@ -1,18 +1,25 @@
+# Time:  O(n)
+# Space: O(n)
+
+# dp
 class Solution:
-    def countGoodStrings(self, low: int, high: int, zero: int, one: int) -> int:
-        modulus = 1_000_000_007
-        ways = [0] * (high + 1)
-        ways[0] = 1
-        answer = 0
-
-        for length in range(1, high + 1):
-            if length >= zero:
-                ways[length] += ways[length - zero]
-            if length >= one:
-                ways[length] += ways[length - one]
-            ways[length] %= modulus
-
-            if length >= low:
-                answer = (answer + ways[length]) % modulus
-
-        return answer
+    def countGoodStrings(self, low, high, zero, one):
+        """
+        :type low: int
+        :type high: int
+        :type zero: int
+        :type one: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        result = 0
+        dp = [0]*(high+1)
+        dp[0] = 1
+        for i in range(1, high+1):
+            if i >= zero:
+                dp[i] = (dp[i]+dp[i-zero])%MOD
+            if i >= one:
+                dp[i] = (dp[i]+dp[i-one])%MOD
+            if i >= low:
+                result = (result+dp[i])%MOD
+        return result

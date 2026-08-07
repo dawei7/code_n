@@ -1,14 +1,10 @@
-from typing import List
-
-
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        left = total = 0
-        best = len(nums) + 1
-        for right, value in enumerate(nums):
-            total += value
-            while total >= target:
-                best = min(best, right - left + 1)
-                total -= nums[left]
-                left += 1
-        return 0 if best > len(nums) else best
+        n = len(nums)
+        s = list(accumulate(nums, initial=0))
+        ans = n + 1
+        for i, x in enumerate(s):
+            j = bisect_left(s, x + target)
+            if j <= n:
+                ans = min(ans, j - i)
+        return ans if ans <= n else 0

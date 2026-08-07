@@ -1,8 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# string
 class Solution:
-    def divideString(self, s: str, k: int, fill: str) -> List[str]:
-        groups = [s[start : start + k] for start in range(0, len(s), k)]
-        groups[-1] += fill * (k - len(groups[-1]))
-        return groups
+    def divideString(self, s, k, fill):
+        """
+        :type s: str
+        :type k: int
+        :type fill: str
+        :rtype: List[str]
+        """
+        return [s[i:i+k] + fill*(i+k-len(s)) for i in range(0, len(s), k)]

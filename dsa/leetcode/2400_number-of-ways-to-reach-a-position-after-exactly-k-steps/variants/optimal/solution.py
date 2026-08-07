@@ -1,11 +1,12 @@
-from math import comb
-
-
 class Solution:
     def numberOfWays(self, startPos: int, endPos: int, k: int) -> int:
-        displacement = endPos - startPos
-        if abs(displacement) > k or (k + displacement) % 2:
-            return 0
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i > j or j < 0:
+                return 0
+            if j == 0:
+                return 1 if i == 0 else 0
+            return (dfs(i + 1, j - 1) + dfs(abs(i - 1), j - 1)) % mod
 
-        right_steps = (k + displacement) // 2
-        return comb(k, right_steps) % 1_000_000_007
+        mod = 10**9 + 7
+        return dfs(abs(startPos - endPos), k)

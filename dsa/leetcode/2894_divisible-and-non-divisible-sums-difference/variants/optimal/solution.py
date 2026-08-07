@@ -1,4 +1,3 @@
 class Solution:
     def differenceOfSums(self, n: int, m: int) -> int:
-        divisible_count = n // m
-        return n * (n + 1) // 2 - m * divisible_count * (divisible_count + 1)
+        return sum(i if i % m else -i for i in range(1, n + 1))

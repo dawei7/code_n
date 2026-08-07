@@ -1,18 +1,29 @@
-class Solution:
-    def palindromePartition(self, s: str, k: int) -> int:
-        length = len(s)
-        cost = [[0] * length for _ in range(length)]
-        for span in range(2, length + 1):
-            for left in range(length - span + 1):
-                right = left + span - 1
-                inner = cost[left + 1][right - 1] if span > 2 else 0
-                cost[left][right] = inner + (s[left] != s[right])
+# Time:  O(k * n^2)
+# Space: O(n^2)
 
-        previous = [float("inf")] * (length + 1)
-        previous[0] = 0
-        for parts in range(1, k + 1):
-            current = [float("inf")] * (length + 1)
-            for end in range(parts, length + 1):
-                current[end] = min(previous[start] + cost[start][end - 1] for start in range(parts - 1, end))
-            previous = current
-        return previous[length]
+class Solution:
+    def palindromePartition(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        # dp1[i][j]: minimum number of changes to make s[i, j] palindrome
+        dp1 = [[0]*len(s) for _ in range(len(s))]
+        for l in range(1, len(s)+1):
+            for i in range(len(s)-l+1):
+                j = i+l-1
+                if i == j-1:
+                    dp1[i][j] = 0 if s[i] == s[j] else 1
+                elif i != j:
+                    dp1[i][j] = dp1[i+1][j-1] if s[i] == s[j] else dp1[i+1][j-1]+1
+
+        # dp2[d][i]: minimum number of changes to divide s[0, i] into d palindromes
+        dp2 = [[float("inf")]*len(s) for _ in range(2)]
+        dp2[1] = dp1[0][:]
+        for d in range(2, k+1):
+            dp2[d%2] = [float("inf")]*len(s)
+            for i in range(d-1, len(s)):  
+                for j in range(d-2, i):
+                    dp2[d%2][i] = min(dp2[d%2][i], dp2[(d-1)%2][j]+dp1[j+1][i])
+        return dp2[k%2][len(s)-1]

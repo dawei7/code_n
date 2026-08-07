@@ -1,16 +1,17 @@
-from typing import List
-
-
 class Solution:
     def maximumSum(self, arr: List[int]) -> int:
-        kept = arr[0]
-        deleted = float("-inf")
-        answer = arr[0]
-
-        for value in arr[1:]:
-            previous_kept = kept
-            kept = max(value, kept + value)
-            deleted = max(previous_kept, deleted + value)
-            answer = max(answer, kept, deleted)
-
-        return answer
+        n = len(arr)
+        left = [0] * n
+        right = [0] * n
+        s = 0
+        for i, x in enumerate(arr):
+            s = max(s, 0) + x
+            left[i] = s
+        s = 0
+        for i in range(n - 1, -1, -1):
+            s = max(s, 0) + arr[i]
+            right[i] = s
+        ans = max(left)
+        for i in range(1, n - 1):
+            ans = max(ans, left[i - 1] + right[i + 1])
+        return ans

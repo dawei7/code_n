@@ -1,6 +1,12 @@
-from typing import List
+# Time:  O(n * (logb + logc))
+# Space: O(1)
 
-
+# fast exponentiation
 class Solution:
-    def getGoodIndices(self, variables: List[List[int]], target: int) -> List[int]:
-        return [index for index, (a, b, c, modulus) in enumerate(variables) if pow(pow(a, b, 10), c, modulus) == target]
+    def getGoodIndices(self, variables, target):
+        """
+        :type variables: List[List[int]]
+        :type target: int
+        :rtype: List[int]
+        """
+        return [i for i, (a, b, c, m) in enumerate(variables) if pow(pow(a, b, 10), c, m) == target]

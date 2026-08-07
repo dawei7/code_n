@@ -1,11 +1,14 @@
+# Time:  O(n)
+# Space: O(n)
+
+# prefix sum
 class Solution:
-    def minimumLevels(self, possible: List[int]) -> int:
-        total = sum(1 if value else -1 for value in possible)
-        alice = 0
-
-        for levels in range(1, len(possible)):
-            alice += 1 if possible[levels - 1] else -1
-            if alice > total - alice:
-                return levels
-
-        return -1
+    def minimumLevels(self, possible):
+        """
+        :type possible: List[int]
+        :rtype: int
+        """
+        prefix = [0]*(len(possible)+1)
+        for i in range(len(possible)):
+            prefix[i+1] = prefix[i]+(+1 if possible[i] else -1)
+        return next((i+1 for i in range(len(possible)-1) if prefix[i+1] > prefix[-1]-prefix[i+1]), -1)

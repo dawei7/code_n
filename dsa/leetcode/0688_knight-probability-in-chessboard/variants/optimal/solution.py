@@ -1,36 +1,14 @@
 class Solution:
-    def knightProbability(
-        self,
-        n: int,
-        k: int,
-        row: int,
-        column: int,
-    ) -> float:
-        moves = (
-            (-2, -1),
-            (-2, 1),
-            (-1, -2),
-            (-1, 2),
-            (1, -2),
-            (1, 2),
-            (2, -1),
-            (2, 1),
-        )
-        current = [[0.0] * n for _ in range(n)]
-        current[row][column] = 1.0
-
-        for _ in range(k):
-            following = [[0.0] * n for _ in range(n)]
-            for current_row in range(n):
-                for current_column in range(n):
-                    if current[current_row][current_column] == 0.0:
-                        continue
-                    contribution = current[current_row][current_column] / 8.0
-                    for row_delta, column_delta in moves:
-                        next_row = current_row + row_delta
-                        next_column = current_column + column_delta
-                        if 0 <= next_row < n and 0 <= next_column < n:
-                            following[next_row][next_column] += contribution
-            current = following
-
-        return sum(map(sum, current))
+    def knightProbability(self, n: int, k: int, row: int, column: int) -> float:
+        f = [[[0] * n for _ in range(n)] for _ in range(k + 1)]
+        for i in range(n):
+            for j in range(n):
+                f[0][i][j] = 1
+        for h in range(1, k + 1):
+            for i in range(n):
+                for j in range(n):
+                    for a, b in pairwise((-2, -1, 2, 1, -2, 1, 2, -1, -2)):
+                        x, y = i + a, j + b
+                        if 0 <= x < n and 0 <= y < n:
+                            f[h][i][j] += f[h - 1][x][y] / 8
+        return f[k][row][column]

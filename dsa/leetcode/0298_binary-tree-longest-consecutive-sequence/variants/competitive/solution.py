@@ -1,18 +1,31 @@
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def longestConsecutive(self, root: Optional["TreeNode"]) -> int:
-        if root is None:
-            return 0
-        best = 0
-        stack = [(root, None, 0)]
-        while stack:
-            node, parent_value, parent_length = stack.pop()
-            length = parent_length + 1 if parent_value is not None and node.val == parent_value + 1 else 1
-            best = max(best, length)
-            if node.right is not None:
-                stack.append((node.right, node.val, length))
-            if node.left is not None:
-                stack.append((node.left, node.val, length))
-        return best
+    def longestConsecutive(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.max_len = 0
+
+        def longestConsecutiveHelper(root):
+            if not root:
+                return 0
+
+            left_len = longestConsecutiveHelper(root.left)
+            right_len = longestConsecutiveHelper(root.right)
+
+            cur_len = 1
+            if root.left and root.left.val == root.val + 1:
+                cur_len = max(cur_len, left_len + 1)
+            if root.right and root.right.val == root.val + 1:
+                cur_len = max(cur_len, right_len + 1)
+
+            self.max_len = max(self.max_len, cur_len)
+
+            return cur_len
+
+        longestConsecutiveHelper(root)
+        return self.max_len
+

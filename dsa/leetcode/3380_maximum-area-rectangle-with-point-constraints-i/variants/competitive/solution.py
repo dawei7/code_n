@@ -1,26 +1,66 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# sort, fenwick tree, hash table
 class Solution:
-    def maxRectangleArea(self, points: List[List[int]]) -> int:
-        point_set = {tuple(point) for point in points}
-        best = -1
+    def maxRectangleArea(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        class BIT(object):  # 0-indexed.
+            def __init__(self, n):
+                self.__bit = [0]*(n+1)  # Extra one for dummy node.
 
-        for first in range(len(points)):
-            x1, y1 = points[first]
-            for second in range(first):
-                x2, y2 = points[second]
-                if x1 == x2 or y1 == y2:
-                    continue
+            def add(self, i, val):
+                i += 1  # Extra one for dummy node.
+                while i < len(self.__bit):
+                    self.__bit[i] += val
+                    i += (i & -i)
 
-                corners = {(x1, y1), (x1, y2), (x2, y1), (x2, y2)}
-                if not corners.issubset(point_set):
-                    continue
+            def query(self, i):
+                i += 1  # Extra one for dummy node.
+                ret = 0
+                while i > 0:
+                    ret += self.__bit[i]
+                    i -= (i & -i)
+                return ret
+    
+        points.sort()
+        y_to_idx = {y:idx for idx, y in enumerate(sorted(set(y for _, y in points)))}
+        bit = BIT(len(y_to_idx))
+        lookup = {}
+        result = -1
+        for i, (x, y) in enumerate(points):
+            y_idx = y_to_idx[y]
+            bit.add(y_idx, +1)
+            if not (i-1 >= 0 and points[i-1][0] == x):
+                continue
+            prev_y_idx = y_to_idx[points[i-1][1]]
+            curr = bit.query(y_idx)-bit.query(prev_y_idx-1)
+            if (prev_y_idx, y_idx) in lookup and lookup[prev_y_idx, y_idx][0] == curr-2:
+                result = max(result, (x-lookup[prev_y_idx, y_idx][1])*(y-points[i-1][1]))
+            lookup[prev_y_idx, y_idx] = (curr, x)
+        return result
 
-                left, right = sorted((x1, x2))
-                bottom, top = sorted((y1, y2))
-                blocked = any(left <= x <= right and bottom <= y <= top and (x, y) not in corners for x, y in points)
-                if not blocked:
-                    best = max(best, (right - left) * (top - bottom))
 
-        return best
+# Time:  O(n^2)
+# Space: O(1)
+# sort, brute force
+class Solution2(object):
+    def maxRectangleArea(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        result = -1
+        points.sort()
+        for i in range(len(points)-3):
+            if points[i][0] != points[i+1][0]:
+                continue
+            j = next((j for j in range(i+2, len(points)-1) if points[i][1] <= points[j][1] <= points[i+1][1]), len(points)-1)
+            if j == len(points)-1 or not (points[j][0] == points[j+1][0] and points[i][1] == points[j][1] and points[i+1][1] == points[j+1][1]):
+                continue
+            result = max(result, (points[i+1][1]-points[i][1])*(points[j][0]-points[i][0]))
+        return result
+ 

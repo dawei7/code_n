@@ -1,13 +1,17 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def maxSatisfaction(self, satisfaction: List[int]) -> int:
-        suffix_sum = 0
-        coefficient = 0
-        for value in sorted(satisfaction, reverse=True):
-            if suffix_sum + value <= 0:
+    def maxSatisfaction(self, satisfaction):
+        """
+        :type satisfaction: List[int]
+        :rtype: int
+        """
+        satisfaction.sort(reverse=True)
+        result, curr = 0, 0
+        for x in satisfaction:
+            curr += x
+            if curr <= 0:
                 break
-            suffix_sum += value
-            coefficient += suffix_sum
-        return coefficient
+            result += curr
+        return result

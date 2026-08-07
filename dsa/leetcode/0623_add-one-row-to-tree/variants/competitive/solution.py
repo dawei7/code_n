@@ -1,39 +1,30 @@
-from collections import deque
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
 
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
 class Solution:
-    def addOneRow(
-        self,
-        root: Optional[TreeNode],
-        val: int,
-        depth: int,
-    ) -> Optional[TreeNode]:
-        if depth == 1:
-            return TreeNode(val, left=root)
-
-        level = 1
-        queue = deque([root])
-        while level < depth - 1:
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
-            level += 1
-
-        for node in queue:
-            old_left = node.left
-            old_right = node.right
-            node.left = TreeNode(val, left=old_left)
-            node.right = TreeNode(val, right=old_right)
+    def addOneRow(self, root, v, d):
+        """
+        :type root: TreeNode
+        :type v: int
+        :type d: int
+        :rtype: TreeNode
+        """
+        if d in (0, 1):
+            node = TreeNode(v)
+            if d == 1:
+                node.left = root
+            else:
+                node.right = root
+            return node
+        if root and d >= 2:
+            root.left = self.addOneRow(root.left,  v, d-1 if d > 2 else 1)
+            root.right = self.addOneRow(root.right, v, d-1 if d > 2 else 0)
         return root
+

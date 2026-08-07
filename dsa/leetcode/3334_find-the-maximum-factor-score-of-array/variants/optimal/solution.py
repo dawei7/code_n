@@ -1,28 +1,15 @@
-from math import gcd, lcm
-from typing import List
-
-
 class Solution:
     def maxScore(self, nums: List[int]) -> int:
-        length = len(nums)
-        prefix_gcd = [0] * (length + 1)
-        prefix_lcm = [1] * (length + 1)
-
-        for index, value in enumerate(nums):
-            prefix_gcd[index + 1] = gcd(prefix_gcd[index], value)
-            prefix_lcm[index + 1] = lcm(prefix_lcm[index], value)
-
-        suffix_gcd = [0] * (length + 1)
-        suffix_lcm = [1] * (length + 1)
-
-        for index in range(length - 1, -1, -1):
-            suffix_gcd[index] = gcd(nums[index], suffix_gcd[index + 1])
-            suffix_lcm[index] = lcm(nums[index], suffix_lcm[index + 1])
-
-        best = prefix_gcd[length] * prefix_lcm[length]
-        for removed in range(length):
-            remaining_gcd = gcd(prefix_gcd[removed], suffix_gcd[removed + 1])
-            remaining_lcm = lcm(prefix_lcm[removed], suffix_lcm[removed + 1])
-            best = max(best, remaining_gcd * remaining_lcm)
-
-        return best
+        n = len(nums)
+        suf_gcd = [0] * (n + 1)
+        suf_lcm = [0] * n + [1]
+        for i in range(n - 1, -1, -1):
+            suf_gcd[i] = gcd(suf_gcd[i + 1], nums[i])
+            suf_lcm[i] = lcm(suf_lcm[i + 1], nums[i])
+        ans = suf_gcd[0] * suf_lcm[0]
+        pre_gcd, pre_lcm = 0, 1
+        for i, x in enumerate(nums):
+            ans = max(ans, gcd(pre_gcd, suf_gcd[i + 1]) * lcm(pre_lcm, suf_lcm[i + 1]))
+            pre_gcd = gcd(pre_gcd, x)
+            pre_lcm = lcm(pre_lcm, x)
+        return ans

@@ -1,16 +1,25 @@
-from typing import List
-
+# Time:  O(s * m * n), s is the size of the array.
+# Space: O(m * n)
 
 class Solution:
-    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
-        best = [[0] * (n + 1) for _ in range(m + 1)]
-        for string in strs:
-            zeros = string.count("0")
-            ones = len(string) - zeros
-            for zero_budget in range(m, zeros - 1, -1):
-                for one_budget in range(n, ones - 1, -1):
-                    best[zero_budget][one_budget] = max(
-                        best[zero_budget][one_budget],
-                        1 + best[zero_budget - zeros][one_budget - ones],
-                    )
-        return best[m][n]
+    def findMaxForm(self, strs, m, n):
+        """
+        :type strs: List[str]
+        :type m: int
+        :type n: int
+        :rtype: int
+        """
+        dp = [[0 for _ in range(n+1)] for _ in range(m+1)]
+        for s in strs:
+            zero_count, one_count = 0, 0
+            for c in s:
+                if c == '0':
+                    zero_count += 1
+                elif c == '1':
+                    one_count += 1
+
+            for i in reversed(range(zero_count, m+1)):
+            	for j in reversed(range(one_count, n+1)):
+                    dp[i][j] = max(dp[i][j], dp[i-zero_count][j-one_count]+1)
+        return dp[m][n]
+

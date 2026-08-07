@@ -1,15 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        waits = [0] * len(temperatures)
-        unresolved = []
+    def dailyTemperatures(self, temperatures):
+        """
+        :type temperatures: List[int]
+        :rtype: List[int]
+        """
+        result = [0] * len(temperatures)
+        stk = []
+        for i in range(len(temperatures)):
+            while stk and \
+                  temperatures[stk[-1]] < temperatures[i]:
+                idx = stk.pop()
+                result[idx] = i-idx
+            stk.append(i)
+        return result
 
-        for index, temperature in enumerate(temperatures):
-            while unresolved and temperatures[unresolved[-1]] < temperature:
-                previous = unresolved.pop()
-                waits[previous] = index - previous
-            unresolved.append(index)
-
-        return waits

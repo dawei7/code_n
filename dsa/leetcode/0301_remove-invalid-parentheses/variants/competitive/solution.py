@@ -1,49 +1,61 @@
-def _remove_invalid(s: str) -> list[str]:
-    remove_left = 0
-    remove_right = 0
-    for character in s:
-        if character == "(":
-            remove_left += 1
-        elif character == ")":
-            if remove_left:
-                remove_left -= 1
-            else:
-                remove_right += 1
-
-    results: set[str] = set()
-    path: list[str] = []
-
-    def search(index: int, balance: int, left: int, right: int) -> None:
-        if len(s) - index < left + right:
-            return
-        if index == len(s):
-            if balance == 0 and left == 0 and right == 0:
-                results.add("".join(path))
-            return
-
-        character = s[index]
-        if character == "(":
-            if left:
-                search(index + 1, balance, left - 1, right)
-            path.append(character)
-            search(index + 1, balance + 1, left, right)
-            path.pop()
-        elif character == ")":
-            if right:
-                search(index + 1, balance, left, right - 1)
-            if balance:
-                path.append(character)
-                search(index + 1, balance - 1, left, right)
-                path.pop()
-        else:
-            path.append(character)
-            search(index + 1, balance, left, right)
-            path.pop()
-
-    search(0, 0, remove_left, remove_right)
-    return sorted(results)
-
+# Time:  O(C(n, c)), try out all possible substrings with the minimum c deletion.
+# Space: O(c), the depth is at most c, and it costs n at each depth
 
 class Solution:
-    def removeInvalidParentheses(self, s: str) -> list[str]:
-        return _remove_invalid(s)
+    def removeInvalidParentheses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        # Calculate the minimum left and right parantheses to remove
+        def findMinRemove(s):
+            left_removed, right_removed = 0, 0
+            for c in s:
+                if c == '(':
+                    left_removed += 1
+                elif c == ')':
+                    if not left_removed:
+                        right_removed += 1
+                    else:
+                        left_removed -= 1
+            return (left_removed, right_removed)
+
+        # Check whether s is valid or not.
+        def isValid(s):
+            sum = 0
+            for c in s:
+                if c == '(':
+                    sum += 1
+                elif c == ')':
+                    sum -= 1
+                if sum < 0:
+                    return False
+            return sum == 0
+
+        def removeInvalidParenthesesHelper(start, left_removed, right_removed):
+            if left_removed == 0 and right_removed == 0:
+                tmp = ""
+                for i, c in enumerate(s):
+                    if i not in removed:
+                        tmp += c
+                if isValid(tmp):
+                    res.append(tmp)
+                return
+
+            for i in range(start, len(s)):
+                if right_removed == 0 and left_removed > 0 and s[i] == '(':
+                    if i == start or s[i] != s[i - 1]:  # Skip duplicated.
+                        removed[i] = True
+                        removeInvalidParenthesesHelper(i + 1, left_removed - 1, right_removed)
+                        del removed[i]
+                elif right_removed > 0 and s[i] == ')':
+                    if i == start or s[i] != s[i - 1]:  # Skip duplicated.
+                        removed[i] = True
+                        removeInvalidParenthesesHelper(i + 1, left_removed, right_removed - 1)
+                        del removed[i]
+
+        res, removed = [], {}
+        (left_removed, right_removed) = findMinRemove(s)
+        removeInvalidParenthesesHelper(0, left_removed, right_removed)
+        return res
+

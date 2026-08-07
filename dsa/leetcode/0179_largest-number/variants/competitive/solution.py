@@ -1,17 +1,12 @@
-from functools import cmp_to_key
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def largestNumber(self, nums: List[int]) -> str:
-        def compare(left: str, right: str) -> int:
-            if left + right > right + left:
-                return -1
-            if left + right < right + left:
-                return 1
-            return 0
+    # @param num, a list of integers
+    # @return a string
+    def largestNumber(self, num):
+        num = [str(x) for x in num]
+        num.sort(cmp=lambda x, y: cmp(y + x, x + y))
+        largest = ''.join(num)
+        return largest.lstrip('0') or '0'
 
-        values = sorted((str(value) for value in nums), key=cmp_to_key(compare))
-        if values[0] == "0":
-            return "0"
-        return "".join(values)

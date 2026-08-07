@@ -1,43 +1,33 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def specialNodes(
-        self,
-        n: int,
-        edges: List[List[int]],
-        x: int,
-        y: int,
-        z: int,
+        self, n: int, edges: List[List[int]], x: int, y: int, z: int
     ) -> int:
-        adjacency = [[] for _ in range(n)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
+        g = [[] for _ in range(n)]
+        for u, v in edges:
+            g[u].append(v)
+            g[v].append(u)
 
-        def distances(start: int) -> List[int]:
-            result = [-1] * n
-            result[start] = 0
-            queue = deque([start])
+        def bfs(i: int) -> List[int]:
+            q = deque([i])
+            dist = [inf] * n
+            dist[i] = 0
+            while q:
+                for _ in range(len(q)):
+                    u = q.popleft()
+                    for v in g[u]:
+                        if dist[v] > dist[u] + 1:
+                            dist[v] = dist[u] + 1
+                            q.append(v)
+            return dist
 
-            while queue:
-                node = queue.popleft()
-                for neighbor in adjacency[node]:
-                    if result[neighbor] == -1:
-                        result[neighbor] = result[node] + 1
-                        queue.append(neighbor)
-
-            return result
-
-        distance_x = distances(x)
-        distance_y = distances(y)
-        distance_z = distances(z)
-
-        answer = 0
-        for node in range(n):
-            first, second, third = sorted((distance_x[node], distance_y[node], distance_z[node]))
-            if first * first + second * second == third * third:
-                answer += 1
-
-        return answer
+        d1 = bfs(x)
+        d2 = bfs(y)
+        d3 = bfs(z)
+        ans = 0
+        for a, b, c in zip(d1, d2, d3):
+            s = a + b + c
+            a, c = min(a, b, c), max(a, b, c)
+            b = s - a - c
+            if a * a + b * b == c * c:
+                ans += 1
+        return ans

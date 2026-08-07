@@ -1,24 +1,13 @@
-from bisect import bisect_right
-from typing import List
-
-
 class Solution:
     def kIncreasing(self, arr: List[int], k: int) -> int:
-        operations = 0
-
-        for start in range(k):
-            tails: List[int] = []
-            length = 0
-
-            for index in range(start, len(arr), k):
-                value = arr[index]
-                position = bisect_right(tails, value)
-                if position == len(tails):
-                    tails.append(value)
+        def lis(arr):
+            t = []
+            for x in arr:
+                idx = bisect_right(t, x)
+                if idx == len(t):
+                    t.append(x)
                 else:
-                    tails[position] = value
-                length += 1
+                    t[idx] = x
+            return len(arr) - len(t)
 
-            operations += length - len(tails)
-
-        return operations
+        return sum(lis(arr[i::k]) for i in range(k))

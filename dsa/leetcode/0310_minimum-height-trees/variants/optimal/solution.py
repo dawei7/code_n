@@ -1,29 +1,23 @@
-from collections import deque
-
-
-def _centers(n: int, edges: list[list[int]]) -> list[int]:
-    if n <= 2:
-        return list(range(n))
-
-    adjacency = [set() for _ in range(n)]
-    for left, right in edges:
-        adjacency[left].add(right)
-        adjacency[right].add(left)
-
-    leaves = deque(node for node in range(n) if len(adjacency[node]) == 1)
-    remaining = n
-    while remaining > 2:
-        layer_size = len(leaves)
-        remaining -= layer_size
-        for _ in range(layer_size):
-            leaf = leaves.popleft()
-            neighbor = adjacency[leaf].pop()
-            adjacency[neighbor].remove(leaf)
-            if len(adjacency[neighbor]) == 1:
-                leaves.append(neighbor)
-    return sorted(leaves)
-
-
 class Solution:
-    def findMinHeightTrees(self, n: int, edges: list[list[int]]) -> list[int]:
-        return _centers(n, edges)
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if n == 1:
+            return [0]
+        g = [[] for _ in range(n)]
+        degree = [0] * n
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+            degree[a] += 1
+            degree[b] += 1
+        q = deque(i for i in range(n) if degree[i] == 1)
+        ans = []
+        while q:
+            ans.clear()
+            for _ in range(len(q)):
+                a = q.popleft()
+                ans.append(a)
+                for b in g[a]:
+                    degree[b] -= 1
+                    if degree[b] == 1:
+                        q.append(b)
+        return ans

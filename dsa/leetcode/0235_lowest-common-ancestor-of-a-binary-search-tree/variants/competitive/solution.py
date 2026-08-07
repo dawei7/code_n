@@ -1,10 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def lowestCommonAncestor(self, root: "TreeNode", p: "TreeNode", q: "TreeNode") -> "TreeNode":
-        current = root
-        while current:
-            if p.val < current.val and q.val < current.val:
-                current = current.left
-            elif p.val > current.val and q.val > current.val:
-                current = current.right
-            else:
-                return current
+    # @param {TreeNode} root
+    # @param {TreeNode} p
+    # @param {TreeNode} q
+    # @return {TreeNode}
+    def lowestCommonAncestor(self, root, p, q):
+        s, b = sorted([p.val, q.val])
+        while not s <= root.val <= b:
+            # Keep searching since root is outside of [s, b].
+            root = root.left if s <= root.val else root.right
+        # s <= root.val <= b.
+        return root
+

@@ -1,29 +1,36 @@
+# Time:  O(n + elogn)
+# Space: O(n + e)
+
 import heapq
-from typing import List
 
 
+# dijkstra's algorithm
 class Solution:
-    def minCost(self, n: int, edges: List[List[int]]) -> int:
-        graph = [[] for _ in range(n)]
-        for source, target, weight in edges:
-            graph[source].append((target, weight))
-            graph[target].append((source, 2 * weight))
+    def minCost(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def dijkstra():
+            best = [float("inf")]*len(adj)
+            best[0] = 0
+            min_heap = [(best[0], 0)]
+            while min_heap:
+                curr, u = heapq.heappop(min_heap)
+                if curr != best[u]:
+                    continue
+                if u == len(adj)-1:
+                    return curr
+                for v, w in adj[u]:
+                    if not (best[v] > curr+w):
+                        continue
+                    best[v] = curr+w
+                    heapq.heappush(min_heap, (best[v], v))
+            return -1
 
-        distances = [float("inf")] * n
-        distances[0] = 0
-        queue = [(0, 0)]
-
-        while queue:
-            distance, node = heapq.heappop(queue)
-            if distance != distances[node]:
-                continue
-            if node == n - 1:
-                return distance
-
-            for neighbor, cost in graph[node]:
-                candidate = distance + cost
-                if candidate < distances[neighbor]:
-                    distances[neighbor] = candidate
-                    heapq.heappush(queue, (candidate, neighbor))
-
-        return -1
+        adj = [[] for _ in range(n)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, 2*w))
+        return dijkstra()

@@ -1,34 +1,35 @@
-from typing import List
-
-
 class Solution:
     def regionsBySlashes(self, grid: List[str]) -> int:
-        side = 3 * len(grid)
-        blocked = [[False] * side for _ in range(side)]
+        def find(x):
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        for row, text in enumerate(grid):
-            for column, character in enumerate(text):
-                if character == "/":
-                    for offset in range(3):
-                        blocked[3 * row + offset][3 * column + 2 - offset] = True
-                elif character == "\\":
-                    for offset in range(3):
-                        blocked[3 * row + offset][3 * column + offset] = True
+        def union(a, b):
+            pa, pb = find(a), find(b)
+            if pa != pb:
+                p[pa] = pb
+                nonlocal size
+                size -= 1
 
-        regions = 0
-        for row in range(side):
-            for column in range(side):
-                if blocked[row][column]:
-                    continue
-                regions += 1
-                blocked[row][column] = True
-                stack = [(row, column)]
-                while stack:
-                    current_row, current_column = stack.pop()
-                    for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        next_row = current_row + row_step
-                        next_column = current_column + column_step
-                        if 0 <= next_row < side and 0 <= next_column < side and not blocked[next_row][next_column]:
-                            blocked[next_row][next_column] = True
-                            stack.append((next_row, next_column))
-        return regions
+        n = len(grid)
+        size = n * n * 4
+        p = list(range(size))
+        for i, row in enumerate(grid):
+            for j, v in enumerate(row):
+                k = i * n + j
+                if i < n - 1:
+                    union(4 * k + 2, (k + n) * 4)
+                if j < n - 1:
+                    union(4 * k + 1, (k + 1) * 4 + 3)
+                if v == '/':
+                    union(4 * k, 4 * k + 3)
+                    union(4 * k + 1, 4 * k + 2)
+                elif v == '\\':
+                    union(4 * k, 4 * k + 1)
+                    union(4 * k + 2, 4 * k + 3)
+                else:
+                    union(4 * k, 4 * k + 1)
+                    union(4 * k + 1, 4 * k + 2)
+                    union(4 * k + 2, 4 * k + 3)
+        return size

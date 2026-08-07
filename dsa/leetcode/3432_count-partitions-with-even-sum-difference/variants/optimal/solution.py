@@ -1,6 +1,9 @@
-from typing import List
-
-
 class Solution:
     def countPartitions(self, nums: List[int]) -> int:
-        return len(nums) - 1 if sum(nums) % 2 == 0 else 0
+        l, r = 0, sum(nums)
+        ans = 0
+        for x in nums[:-1]:
+            l += x
+            r -= x
+            ans += (l - r) % 2 == 0
+        return ans

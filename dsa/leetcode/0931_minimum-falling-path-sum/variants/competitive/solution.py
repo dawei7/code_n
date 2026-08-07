@@ -1,15 +1,13 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(1)
 
 class Solution:
-    def minFallingPathSum(self, matrix: List[List[int]]) -> int:
-        previous = matrix[0][:]
-        size = len(matrix)
-        for row in range(1, size):
-            current = [0] * size
-            for column in range(size):
-                left = max(0, column - 1)
-                right = min(size, column + 2)
-                current[column] = matrix[row][column] + min(previous[left:right])
-            previous = current
-        return min(previous)
+    def minFallingPathSum(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: int
+        """
+        for i in range(1, len(A)):
+            for j in range(len(A[i])):
+                A[i][j] += min(A[i-1][max(j-1, 0):j+2])
+        return min(A[-1])

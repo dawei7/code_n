@@ -1,16 +1,40 @@
-from typing import List
-
+# Time:  O(n * l)
+# Space: O(n)
 
 class Solution:
-    def minDeletionSize(self, strs: List[str]) -> int:
-        resolved = [False] * (len(strs) - 1)
-        deletions = 0
+    def minDeletionSize(self, A):
+        """
+        :type A: List[str]
+        :rtype: int
+        """
+        result = 0
+        unsorted = set(range(len(A)-1))
+        for j in range(len(A[0])):
+            if any(A[i][j] > A[i+1][j] for i in unsorted):
+                result += 1
+            else:
+                unsorted -= set(i for i in unsorted if A[i][j] < A[i+1][j])
+        return result
 
-        for column in range(len(strs[0])):
-            if any(not resolved[row] and strs[row][column] > strs[row + 1][column] for row in range(len(strs) - 1)):
-                deletions += 1
-                continue
-            for row in range(len(strs) - 1):
-                if strs[row][column] < strs[row + 1][column]:
-                    resolved[row] = True
-        return deletions
+
+# Time:  O(n * m)
+# Space: O(n)
+class Solution2(object):
+    def minDeletionSize(self, A):
+        """
+        :type A: List[str]
+        :rtype: int
+        """
+        result = 0
+        is_sorted = [False]*(len(A)-1)
+        for j in range(len(A[0])):
+            tmp = is_sorted[:]
+            for i in range(len(A)-1):
+                if A[i][j] > A[i+1][j] and tmp[i] == False:
+                    result += 1
+                    break
+                if A[i][j] < A[i+1][j]:
+                    tmp[i] = True
+            else:
+                is_sorted = tmp
+        return result

@@ -1,14 +1,33 @@
 class Solution:
     def daysBetweenDates(self, date1: str, date2: str) -> int:
-        days_before_month = (0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
+        def isLeapYear(year: int) -> bool:
+            return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
-        def ordinal(date: str) -> int:
+        def daysInMonth(year: int, month: int) -> int:
+            days = [
+                31,
+                28 + int(isLeapYear(year)),
+                31,
+                30,
+                31,
+                30,
+                31,
+                31,
+                30,
+                31,
+                30,
+                31,
+            ]
+            return days[month - 1]
+
+        def calcDays(date: str) -> int:
             year, month, day = map(int, date.split("-"))
-            previous_year = year - 1
-            days = 365 * previous_year + previous_year // 4 - previous_year // 100 + previous_year // 400
-            days += days_before_month[month] + day
-            if month > 2 and (year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)):
-                days += 1
+            days = 0
+            for y in range(1971, year):
+                days += 365 + int(isLeapYear(y))
+            for m in range(1, month):
+                days += daysInMonth(year, m)
+            days += day
             return days
 
-        return abs(ordinal(date1) - ordinal(date2))
+        return abs(calcDays(date1) - calcDays(date2))

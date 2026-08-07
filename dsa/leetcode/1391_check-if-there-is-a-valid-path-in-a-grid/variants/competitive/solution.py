@@ -1,37 +1,33 @@
-from collections import deque
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def hasValidPath(self, grid: List[List[int]]) -> bool:
-        openings = (
-            (),
-            ((0, -1), (0, 1)),
-            ((-1, 0), (1, 0)),
-            ((0, -1), (1, 0)),
-            ((0, 1), (1, 0)),
-            ((0, -1), (-1, 0)),
-            ((0, 1), (-1, 0)),
-        )
-        rows, columns = len(grid), len(grid[0])
-        queue = deque([(0, 0)])
-        seen = {(0, 0)}
+    def hasValidPath(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: bool
+        """
+        E, S, W, N = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        directions = [
+            [W, E], [N, S],
+            [W, S], [S, E],
+            [W, N], [N, E]
+        ]
 
-        while queue:
-            row, column = queue.popleft()
-            if row == rows - 1 and column == columns - 1:
-                return True
-            for delta_row, delta_column in openings[grid[row][column]]:
-                next_row = row + delta_row
-                next_column = column + delta_column
-                neighbor = (next_row, next_column)
-                if not (0 <= next_row < rows and 0 <= next_column < columns):
-                    continue
-                if neighbor in seen:
-                    continue
-                if (-delta_row, -delta_column) not in openings[grid[next_row][next_column]]:
-                    continue
-                seen.add(neighbor)
-                queue.append(neighbor)
-
-        return False
+        for r, c in directions[grid[0][0]-1]:
+            if not (0 <= r < len(grid) and 0 <= c < len(grid[0])):
+                continue
+            pr, pc = 0, 0
+            while r != len(grid)-1 or c != len(grid[0])-1:
+                for dx, dy in directions[grid[r][c]-1]:
+                    nr, nc = r+dx, c+dy
+                    if (nr == pr and nc == pc) or \
+                       not(0 <= nr < len(grid) and 0 <= nc < len(grid[0])) or \
+                       (-dx, -dy) not in directions[grid[nr][nc]-1]:
+                        continue
+                    pr, pc, r, c = r, c, nr, nc
+                    break
+                else:
+                    return False
+            return True
+        return len(grid) == len(grid[0]) == 1 

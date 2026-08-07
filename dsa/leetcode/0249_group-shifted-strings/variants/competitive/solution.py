@@ -1,7 +1,30 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
+
+
 class Solution:
-    def groupStrings(self, strings: list[str]) -> list[list[str]]:
-        groups = {}
-        for string in strings:
-            key = tuple((ord(string[i]) - ord(string[i - 1])) % 26 for i in range(1, len(string)))
-            groups.setdefault(key, []).append(string)
-        return list(groups.values())
+    # @param {string[]} strings
+    # @return {string[][]}
+    def groupStrings(self, strings):
+        groups = collections.defaultdict(list)
+        for s in strings:  # Grouping.
+            groups[self.hashStr(s)].append(s)
+
+        result = []
+        for key, val in groups.items():
+            result.append(sorted(val))
+
+        return result
+
+    def hashStr(self, s):
+        base = ord(s[0])
+        hashcode = ""
+        for i in range(len(s)):
+            if ord(s[i]) - base >= 0:
+                hashcode += unichr(ord('a') + ord(s[i]) - base)
+            else:
+                hashcode += unichr(ord('a') + ord(s[i]) - base + 26)
+        return hashcode
+

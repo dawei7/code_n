@@ -1,25 +1,17 @@
 class Solution:
     def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:
-        def at_most(limit):
-            frequencies = [0] * (len(nums) + 1)
-            left = 0
-            distinct = 0
-            total = 0
+        def f(k):
+            pos = [0] * len(nums)
+            cnt = Counter()
+            j = 0
+            for i, x in enumerate(nums):
+                cnt[x] += 1
+                while len(cnt) > k:
+                    cnt[nums[j]] -= 1
+                    if cnt[nums[j]] == 0:
+                        cnt.pop(nums[j])
+                    j += 1
+                pos[i] = j
+            return pos
 
-            for right, value in enumerate(nums):
-                if frequencies[value] == 0:
-                    distinct += 1
-                frequencies[value] += 1
-
-                while distinct > limit:
-                    outgoing = nums[left]
-                    frequencies[outgoing] -= 1
-                    if frequencies[outgoing] == 0:
-                        distinct -= 1
-                    left += 1
-
-                total += right - left + 1
-
-            return total
-
-        return at_most(k) - at_most(k - 1)
+        return sum(a - b for a, b in zip(f(k - 1), f(k)))

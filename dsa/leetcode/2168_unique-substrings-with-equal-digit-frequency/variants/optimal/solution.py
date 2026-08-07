@@ -1,27 +1,20 @@
 class Solution:
     def equalDigitFrequency(self, s: str) -> int:
-        seen = set()
-        mod1 = 1_000_000_007
-        mod2 = 1_000_000_009
+        def check(i, j):
+            v = set()
+            for k in range(10):
+                cnt = presum[j + 1][k] - presum[i][k]
+                if cnt > 0:
+                    v.add(cnt)
+                if len(v) > 1:
+                    return False
+            return True
 
-        for left in range(len(s)):
-            counts = [0] * 10
-            distinct = 0
-            maximum = 0
-            hash1 = 0
-            hash2 = 0
-
-            for right in range(left, len(s)):
-                digit = ord(s[right]) - ord("0")
-                if counts[digit] == 0:
-                    distinct += 1
-                counts[digit] += 1
-                maximum = max(maximum, counts[digit])
-                hash1 = (hash1 * 11 + digit + 1) % mod1
-                hash2 = (hash2 * 11 + digit + 1) % mod2
-
-                length = right - left + 1
-                if maximum * distinct == length:
-                    seen.add((length, hash1, hash2))
-
-        return len(seen)
+        n = len(s)
+        presum = [[0] * 10 for _ in range(n + 1)]
+        for i, c in enumerate(s):
+            presum[i + 1][int(c)] += 1
+            for j in range(10):
+                presum[i + 1][j] += presum[i][j]
+        vis = set(s[i : j + 1] for i in range(n) for j in range(i, n) if check(i, j))
+        return len(vis)

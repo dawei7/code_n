@@ -1,30 +1,15 @@
-from typing import List
-
-
 class Solution:
-    def sellingWood(
-        self,
-        m: int,
-        n: int,
-        prices: List[List[int]],
-    ) -> int:
-        best = [[0] * (n + 1) for _ in range(m + 1)]
-        for height, width, price in prices:
-            best[height][width] = price
+    def sellingWood(self, m: int, n: int, prices: List[List[int]]) -> int:
+        @cache
+        def dfs(h: int, w: int) -> int:
+            ans = d[h].get(w, 0)
+            for i in range(1, h // 2 + 1):
+                ans = max(ans, dfs(i, w) + dfs(h - i, w))
+            for i in range(1, w // 2 + 1):
+                ans = max(ans, dfs(h, i) + dfs(h, w - i))
+            return ans
 
-        for height in range(1, m + 1):
-            for width in range(1, n + 1):
-                value = best[height][width]
-                for cut in range(1, height // 2 + 1):
-                    value = max(
-                        value,
-                        best[cut][width] + best[height - cut][width],
-                    )
-                for cut in range(1, width // 2 + 1):
-                    value = max(
-                        value,
-                        best[height][cut] + best[height][width - cut],
-                    )
-                best[height][width] = value
-
-        return best[m][n]
+        d = defaultdict(dict)
+        for h, w, p in prices:
+            d[h][w] = p
+        return dfs(m, n)

@@ -1,7 +1,3 @@
-from collections import Counter, deque
-from typing import List
-
-
 class Solution:
     def watchedVideosByFriends(
         self,
@@ -10,19 +6,17 @@ class Solution:
         id: int,
         level: int,
     ) -> List[str]:
-        queue = deque([id])
-        seen = {id}
-
+        q = deque([id])
+        vis = {id}
         for _ in range(level):
-            for _ in range(len(queue)):
-                person = queue.popleft()
-                for friend in friends[person]:
-                    if friend not in seen:
-                        seen.add(friend)
-                        queue.append(friend)
-
-        counts = Counter()
-        for person in queue:
-            counts.update(watchedVideos[person])
-
-        return sorted(counts, key=lambda video: (counts[video], video))
+            for _ in range(len(q)):
+                i = q.popleft()
+                for j in friends[i]:
+                    if j not in vis:
+                        vis.add(j)
+                        q.append(j)
+        cnt = Counter()
+        for i in q:
+            for v in watchedVideos[i]:
+                cnt[v] += 1
+        return sorted(cnt.keys(), key=lambda k: (cnt[k], k))

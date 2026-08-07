@@ -1,13 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def numberOfArithmeticSlices(self, nums: List[int]) -> int:
-        ending = 0
-        total = 0
+    def numberOfArithmeticSlices(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        res, i = 0, 0
+        while i+2 < len(A):
+            start = i
+            while i+2 < len(A) and A[i+2] + A[i] == 2*A[i+1]:
+                res += i - start + 1
+                i += 1
+            i += 1
 
-        for index in range(2, len(nums)):
-            if nums[index] - nums[index - 1] == nums[index - 1] - nums[index - 2]:
-                ending += 1
-                total += ending
-            else:
-                ending = 0
+        return res
 
-        return total

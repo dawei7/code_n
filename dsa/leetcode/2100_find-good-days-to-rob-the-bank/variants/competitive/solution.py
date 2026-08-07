@@ -1,18 +1,22 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def goodDaysToRobBank(self, security: List[int], time: int) -> List[int]:
-        n = len(security)
-        nonincreasing = [0] * n
-        nondecreasing = [0] * n
-
-        for day in range(1, n):
-            if security[day - 1] >= security[day]:
-                nonincreasing[day] = nonincreasing[day - 1] + 1
-
-        for day in range(n - 2, -1, -1):
-            if security[day] <= security[day + 1]:
-                nondecreasing[day] = nondecreasing[day + 1] + 1
-
-        return [day for day in range(time, n - time) if nonincreasing[day] >= time and nondecreasing[day] >= time]
+    def goodDaysToRobBank(self, security, time):
+        """
+        :type security: List[int]
+        :type time: int
+        :rtype: List[int]
+        """
+        right = [0]
+        for i in reversed(range(1, len(security))):
+            right.append(right[-1]+1 if security[i] >= security[i-1] else 0)
+        right.reverse()
+        result = []
+        left = 0
+        for i in range(len(security)):
+            if left >= time and right[i] >= time:
+                result.append(i)
+            if i+1 < len(security):
+                left = left+1 if security[i] >= security[i+1] else 0
+        return result

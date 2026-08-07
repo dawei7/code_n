@@ -1,8 +1,19 @@
+# Time:  O(logn) = O(1) because n is 32-bit integer
+# Space: O(1)
+
 class Solution:
-    def kthGrammar(self, n: int, k: int) -> int:
-        position = k - 1
-        symbol = 0
-        while position:
-            symbol ^= position & 1
-            position >>= 1
-        return symbol
+    def kthGrammar(self, N, K):
+        """
+        :type N: int
+        :type K: int
+        :rtype: int
+        """
+        def bitCount(n):
+            result = 0
+            while n:
+                n &= n - 1
+                result += 1
+            return result
+
+        return bitCount(K-1) % 2
+

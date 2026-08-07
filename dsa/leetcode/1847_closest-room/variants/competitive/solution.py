@@ -1,61 +1,75 @@
-from bisect import bisect_left, bisect_right
+# Time:  O(nlogn + klogk + klogn)
+# Space: O(n + k)
+
+from sortedcontainers import SortedList
 
 
 class Solution:
-    def closestRoom(self, rooms: list[list[int]], queries: list[list[int]]) -> list[int]:
-        room_ids = sorted(room_id for room_id, _ in rooms)
-        positions = {room_id: index + 1 for index, room_id in enumerate(room_ids)}
-        tree = [0] * (len(room_ids) + 1)
+    def closestRoom(self, rooms, queries):
+        """
+        :type rooms: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def find_closest(ids, r):
+            result, min_dist = -1, float("inf")
+            i = ids.bisect_right(r)
+            if i-1 >= 0 and abs(ids[i-1]-r) < min_dist:
+                min_dist = abs(ids[i-1]-r)
+                result = ids[i-1]
+            if i < len(ids) and abs(ids[i]-r) < min_dist:
+                min_dist = abs(ids[i]-r)
+                result = ids[i]
+            return result
 
-        def add(index: int) -> None:
-            while index < len(tree):
-                tree[index] += 1
-                index += index & -index
+        rooms.sort(key=lambda x: x[1], reverse=True)
+        for i, q in enumerate(queries):
+            q.append(i)
+        queries.sort(key=lambda x: x[1], reverse=True)
+        ids = SortedList()
+        i = 0
+        result = [-1]*len(queries)
+        for r, s, idx in queries:
+            while i < len(rooms) and rooms[i][1] >= s:
+                ids.add(rooms[i][0])
+                i += 1
+            result[idx] = find_closest(ids, r)
+        return result
 
-        def prefix(index: int) -> int:
-            total = 0
-            while index:
-                total += tree[index]
-                index -= index & -index
-            return total
+    
+# Time:  O(nlogn + klogk + klogn)
+# Space: O(n + k)
+from sortedcontainers import SortedList
 
-        def kth(order: int) -> int:
-            index = 0
-            step = 1 << (len(room_ids).bit_length() - 1)
-            while step:
-                following = index + step
-                if following < len(tree) and tree[following] < order:
-                    index = following
-                    order -= tree[following]
-                step >>= 1
-            return index + 1
 
-        rooms.sort(key=lambda room: room[1], reverse=True)
-        indexed_queries = sorted(
-            ((minimum_size, preferred, query_index) for query_index, (preferred, minimum_size) in enumerate(queries)),
-            reverse=True,
-        )
-        answer = [-1] * len(queries)
-        room_index = 0
+class Solution2(object):
+    def closestRoom(self, rooms, queries):
+        """
+        :type rooms: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def find_closest(ids, r):
+            result, min_dist = -1, float("inf")
+            i = ids.bisect_right(r)
+            if i-1 >= 0 and abs(ids[i-1]-r) < min_dist:
+                min_dist = abs(ids[i-1]-r)
+                result = ids[i-1]
+            if i < len(ids) and abs(ids[i]-r) < min_dist:
+                min_dist = abs(ids[i]-r)
+                result = ids[i]
+            return result
 
-        for minimum_size, preferred, query_index in indexed_queries:
-            while room_index < len(rooms) and rooms[room_index][1] >= minimum_size:
-                add(positions[rooms[room_index][0]])
-                room_index += 1
-
-            total = prefix(len(room_ids))
-            if total == 0:
-                continue
-
-            candidates: list[int] = []
-            left_count = prefix(bisect_right(room_ids, preferred))
-            if left_count:
-                candidates.append(room_ids[kth(left_count) - 1])
-
-            count_before_right = prefix(bisect_left(room_ids, preferred))
-            if count_before_right < total:
-                candidates.append(room_ids[kth(count_before_right + 1) - 1])
-
-            answer[query_index] = min(candidates, key=lambda room_id: (abs(room_id - preferred), room_id))
-
-        return answer
+        rooms.sort(key=lambda x: x[1])
+        for i, q in enumerate(queries):
+            q.append(i)
+        queries.sort(key=lambda x: x[1])
+        ids = SortedList(i for i, _ in rooms)        
+        i = 0
+        result = [-1]*len(queries)
+        for r, s, idx in queries:
+            while i < len(rooms) and rooms[i][1] < s:
+                ids.remove(rooms[i][0])
+                i += 1
+            result[idx] = find_closest(ids, r)
+        return result

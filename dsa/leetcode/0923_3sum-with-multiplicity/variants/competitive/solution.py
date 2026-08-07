@@ -1,28 +1,25 @@
-from typing import List
+# Time:  O(n^2), n is the number of disctinct A[i]
+# Space: O(n)
+
+import collections
+import itertools
 
 
 class Solution:
-    def threeSumMulti(self, arr: List[int], target: int) -> int:
-        modulus = 1_000_000_007
-        counts = [0] * 101
-        for value in arr:
-            counts[value] += 1
-
-        answer = 0
-        for first in range(101):
-            for second in range(first, 101):
-                third = target - first - second
-                if third < second or third > 100:
-                    continue
-
-                if first == second == third:
-                    count = counts[first]
-                    answer += count * (count - 1) * (count - 2) // 6
-                elif first == second:
-                    answer += counts[first] * (counts[first] - 1) // 2 * counts[third]
-                elif second == third:
-                    answer += counts[first] * counts[second] * (counts[second] - 1) // 2
-                else:
-                    answer += counts[first] * counts[second] * counts[third]
-
-        return answer % modulus
+    def threeSumMulti(self, A, target):
+        """
+        :type A: List[int]
+        :type target: int
+        :rtype: int
+        """
+        count = collections.Counter(A)
+        result = 0
+        for i, j in itertools.combinations_with_replacement(count, 2):
+            k = target - i - j
+            if i == j == k:
+                result += count[i] * (count[i]-1) * (count[i]-2) // 6
+            elif i == j != k:
+                result += count[i] * (count[i]-1) // 2 * count[k]
+            elif max(i, j) < k:
+                result += count[i] * count[j] * count[k]
+        return result % (10**9 + 7)

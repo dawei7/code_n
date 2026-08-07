@@ -1,36 +1,30 @@
-import sys
-from typing import List
-
-
 class Solution:
-    def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
-        adjacency = [[] for _ in range(n)]
-        for first, second in connections:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
-
-        discovery = [-1] * n
-        low = [0] * n
-        bridges = []
-        timestamp = 0
-        sys.setrecursionlimit(max(200_000, 2 * n + 10))
-
-        def dfs(node: int, parent: int) -> None:
-            nonlocal timestamp
-            discovery[node] = timestamp
-            low[node] = timestamp
-            timestamp += 1
-
-            for neighbor in adjacency[node]:
-                if neighbor == parent:
+    def criticalConnections(
+        self, n: int, connections: List[List[int]]
+    ) -> List[List[int]]:
+        def tarjan(a: int, fa: int):
+            nonlocal now
+            now += 1
+            dfn[a] = low[a] = now
+            for b in g[a]:
+                if b == fa:
                     continue
-                if discovery[neighbor] == -1:
-                    dfs(neighbor, node)
-                    low[node] = min(low[node], low[neighbor])
-                    if low[neighbor] > discovery[node]:
-                        bridges.append([node, neighbor])
+                if not dfn[b]:
+                    tarjan(b, a)
+                    low[a] = min(low[a], low[b])
+                    if low[b] > dfn[a]:
+                        ans.append([a, b])
                 else:
-                    low[node] = min(low[node], discovery[neighbor])
+                    low[a] = min(low[a], dfn[b])
 
-        dfs(0, -1)
-        return bridges
+        g = [[] for _ in range(n)]
+        for a, b in connections:
+            g[a].append(b)
+            g[b].append(a)
+
+        dfn = [0] * n
+        low = [0] * n
+        now = 0
+        ans = []
+        tarjan(0, -1)
+        return ans

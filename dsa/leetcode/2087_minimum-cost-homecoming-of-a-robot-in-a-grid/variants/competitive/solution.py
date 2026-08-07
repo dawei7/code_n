@@ -1,26 +1,15 @@
-from typing import List
-
+# Time:  O(m + n)
+# Space: O(1)
 
 class Solution:
-    def minCost(
-        self,
-        startPos: List[int],
-        homePos: List[int],
-        rowCosts: List[int],
-        colCosts: List[int],
-    ) -> int:
-        total = 0
-
-        row_step = 1 if startPos[0] < homePos[0] else -1
-        for row in range(startPos[0] + row_step, homePos[0] + row_step, row_step):
-            total += rowCosts[row]
-
-        col_step = 1 if startPos[1] < homePos[1] else -1
-        for column in range(
-            startPos[1] + col_step,
-            homePos[1] + col_step,
-            col_step,
-        ):
-            total += colCosts[column]
-
-        return total
+    def minCost(self, startPos, homePos, rowCosts, colCosts):
+        """
+        :type startPos: List[int]
+        :type homePos: List[int]
+        :type rowCosts: List[int]
+        :type colCosts: List[int]
+        :rtype: int
+        """
+        [x0, y0], [x1, y1] = startPos, homePos
+        return (sum(rowCosts[i] for i in range(min(x0, x1), max(x0, x1)+1))-rowCosts[x0]) + \
+               (sum(colCosts[i] for i in range(min(y0, y1), max(y0, y1)+1))-colCosts[y0])

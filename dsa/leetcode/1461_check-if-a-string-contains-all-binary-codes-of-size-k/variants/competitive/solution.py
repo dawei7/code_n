@@ -1,20 +1,33 @@
+# Time:  O(n * k)
+# Space: O(k * 2^k)
+
 class Solution:
-    def hasAllCodes(self, s: str, k: int) -> bool:
-        needed = 1 << k
-        if len(s) - k + 1 < needed:
+    def hasAllCodes(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: bool
+        """
+        return 2**k <= len(s) and len({s[i:i+k] for i in range(len(s)-k+1)}) == 2**k
+    
+
+# Time:  O(n * k)
+# Space: O(2^k)
+class Solution2(object):
+    def hasAllCodes(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: bool
+        """
+        lookup = set()
+        base = 2**k
+        if base > len(s):
             return False
-
-        seen = bytearray(needed)
-        mask = needed - 1
-        window = 0
-        remaining = needed
-
-        for index, character in enumerate(s):
-            window = ((window << 1) & mask) | (character == "1")
-            if index >= k - 1 and not seen[window]:
-                seen[window] = 1
-                remaining -= 1
-                if remaining == 0:
-                    return True
-
-        return False
+        num = 0
+        for i in range(len(s)):
+            num = (num << 1) + (s[i] == '1')
+            if i >= k-1:
+                lookup.add(num)
+                num -= (s[i-k+1] == '1') * (base//2)
+        return len(lookup) == base

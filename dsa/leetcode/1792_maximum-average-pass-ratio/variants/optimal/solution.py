@@ -1,23 +1,9 @@
-from heapq import heapify, heappop, heappush
-from typing import List
-
-
 class Solution:
-    def maxAverageRatio(
-        self,
-        classes: List[List[int]],
-        extraStudents: int,
-    ) -> float:
-        heap = [(-(total - passed) / (total * (total + 1)), passed, total) for passed, total in classes]
-        heapify(heap)
-
+    def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -> float:
+        h = [(a / b - (a + 1) / (b + 1), a, b) for a, b in classes]
+        heapify(h)
         for _ in range(extraStudents):
-            _, passed, total = heappop(heap)
-            passed += 1
-            total += 1
-            heappush(
-                heap,
-                (-(total - passed) / (total * (total + 1)), passed, total),
-            )
-
-        return sum(passed / total for _, passed, total in heap) / len(classes)
+            _, a, b = heappop(h)
+            a, b = a + 1, b + 1
+            heappush(h, (a / b - (a + 1) / (b + 1), a, b))
+        return sum(v[1] / v[2] for v in h) / len(classes)

@@ -1,22 +1,21 @@
-from functools import lru_cache
-
-
 class Solution:
-    def diffWaysToCompute(self, expression: str) -> list[int]:
-        @lru_cache(maxsize=None)
-        def evaluate(part: str) -> tuple[int, ...]:
-            results = []
-            for index, operator in enumerate(part):
-                if operator not in "+-*":
-                    continue
-                for left in evaluate(part[:index]):
-                    for right in evaluate(part[index + 1 :]):
-                        if operator == "+":
-                            results.append(left + right)
-                        elif operator == "-":
-                            results.append(left - right)
-                        else:
-                            results.append(left * right)
-            return tuple(results) if results else (int(part),)
+    def diffWaysToCompute(self, expression: str) -> List[int]:
+        @cache
+        def dfs(exp):
+            if exp.isdigit():
+                return [int(exp)]
+            ans = []
+            for i, c in enumerate(exp):
+                if c in '-+*':
+                    left, right = dfs(exp[:i]), dfs(exp[i + 1 :])
+                    for a in left:
+                        for b in right:
+                            if c == '-':
+                                ans.append(a - b)
+                            elif c == '+':
+                                ans.append(a + b)
+                            else:
+                                ans.append(a * b)
+            return ans
 
-        return list(evaluate(expression))
+        return dfs(expression)

@@ -1,37 +1,20 @@
+# Time:  O(n^2)
+# Space: O(n^2)
+
+# memoization
 class Solution:
-    def maxOperations(self, nums: List[int]) -> int:
-        n = len(nums)
-        choices = [
-            (nums[0] + nums[1], 2),
-            (nums[-2] + nums[-1], 0),
-            (nums[0] + nums[-1], 1),
-        ]
-        answer = 0
+    def maxOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def memoization(left, right, target, lookup):
+            if not right-left+1 >= 2:
+                return 0
+            if lookup[left][right] == -1:
+                lookup[left][right] = max(1+memoization(left+2, right-0, target, lookup) if nums[left]+nums[left+1]   == target else 0,
+                                          1+memoization(left+1, right-1, target, lookup) if nums[left]+nums[right]    == target else 0,
+                                          1+memoization(left+0, right-2, target, lookup) if nums[right-1]+nums[right] == target else 0)
+            return lookup[left][right] 
 
-        for target in {score for score, _ in choices}:
-            base_length = n % 2
-            previous = [0] * (n - base_length + 1)
-
-            for length in range(base_length + 2, n - 1, 2):
-                current = [0] * (n - length + 1)
-
-                for start in range(n - length + 1):
-                    end = start + length - 1
-                    best = 0
-
-                    if nums[start] + nums[start + 1] == target:
-                        best = max(best, 1 + previous[start + 2])
-                    if nums[end - 1] + nums[end] == target:
-                        best = max(best, 1 + previous[start])
-                    if nums[start] + nums[end] == target:
-                        best = max(best, 1 + previous[start + 1])
-
-                    current[start] = best
-
-                previous = current
-
-            for score, start in choices:
-                if score == target:
-                    answer = max(answer, 1 + previous[start])
-
-        return answer
+        return max(memoization(0, len(nums)-1, target, [[-1]*(len(nums)) for _ in range(len(nums))]) for target in {nums[0]+nums[1], nums[0]+nums[-1], nums[-2]+nums[-1]})

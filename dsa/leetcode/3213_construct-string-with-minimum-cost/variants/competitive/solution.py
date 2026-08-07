@@ -1,47 +1,97 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n^2 + w * l)
+# Space: O(t)
+
+import itertools
 
 
+# trie, dp
 class Solution:
-    def minimumCost(self, target: str, words: List[str], costs: List[int]) -> int:
-        base = 911_382_323
-        mask = (1 << 64) - 1
-        target_length = len(target)
-
-        powers = [1] * (target_length + 1)
-        prefix_hash = [0] * (target_length + 1)
-        for index, character in enumerate(target):
-            powers[index + 1] = (powers[index] * base) & mask
-            prefix_hash[index + 1] = (prefix_hash[index] * base + ord(character)) & mask
-
-        costs_by_length: dict[int, dict[int, int]] = defaultdict(dict)
-        for word, cost in zip(words, costs):
-            word_hash = 0
-            for character in word:
-                word_hash = (word_hash * base + ord(character)) & mask
-            bucket = costs_by_length[len(word)]
-            previous_cost = bucket.get(word_hash)
-            if previous_cost is None or cost < previous_cost:
-                bucket[word_hash] = cost
-
-        buckets = [(length, costs_by_length[length]) for length in sorted(costs_by_length) if length <= target_length]
-        infinity = 10**30
-        minimum_cost = [infinity] * (target_length + 1)
-        minimum_cost[0] = 0
-
-        for end in range(1, target_length + 1):
-            best = infinity
-            for length, bucket in buckets:
-                start = end - length
-                if start < 0:
+    def minimumCost(self, target, words, costs):
+        """
+        :type target: str
+        :type words: List[str]
+        :type costs: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        def query(i):
+            curr = trie
+            for j in range(i, len(target)):
+                x = target[j]
+                if x not in curr:
                     break
-                previous = minimum_cost[start]
-                if previous == infinity:
-                    continue
-                segment_hash = (prefix_hash[end] - (prefix_hash[start] * powers[length] & mask)) & mask
-                word_cost = bucket.get(segment_hash)
-                if word_cost is not None:
-                    best = min(best, previous + word_cost)
-            minimum_cost[end] = best
+                curr = curr[x]
+                if "_end" in curr:
+                    dp[j+1] = min(dp[j+1], dp[i]+curr["_end"])
 
-        return -1 if minimum_cost[-1] == infinity else minimum_cost[-1]
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
+        for w, c in itertools.izip(words, costs):
+            node = reduce(dict.__getitem__, w, trie)
+            if "_end" not in node:
+                node["_end"] = INF
+            node["_end"] = min(node["_end"], c)
+        dp = [INF]*(len(target)+1)
+        dp[0] = 0
+        for i in range(len(target)):
+            if dp[i] == INF:
+                continue
+            query(i)
+        return dp[-1] if dp[-1] != INF else -1
+
+
+# Time:  O(n^2 + w * l)
+# Space: O(t)
+import itertools
+
+
+# trie, dp
+class Solution2(object):
+    def minimumCost(self, target, words, costs):
+        """
+        :type target: str
+        :type words: List[str]
+        :type costs: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        class Trie(object):
+            def __init__(self):
+                self.__nodes = []
+                self.__mns = []
+                self.__new_node()
+            
+            def __new_node(self):
+                self.__nodes.append([-1]*26)
+                self.__mns.append(INF)
+                return len(self.__nodes)-1
+
+            def add(self, w, c):
+                curr = 0
+                for x in w:
+                    x = ord(x)-ord('a')
+                    if self.__nodes[curr][x] == -1:
+                        self.__nodes[curr][x] = self.__new_node()
+                    curr = self.__nodes[curr][x]
+                self.__mns[curr] = min(self.__mns[curr], c)
+            
+            def query(self, i):
+                curr = 0
+                for j in range(i, len(target)):
+                    x = ord(target[j])-ord('a')
+                    if self.__nodes[curr][x] == -1:
+                        break
+                    curr = self.__nodes[curr][x]
+                    if self.__mns[curr] != INF:
+                        dp[j+1] = min(dp[j+1], dp[i]+self.__mns[curr])
+    
+        trie = Trie()
+        for w, c in itertools.izip(words, costs):
+            trie.add(w, c)
+        dp = [INF]*(len(target)+1)
+        dp[0] = 0
+        for i in range(len(target)):
+            if dp[i] == INF:
+                continue
+            trie.query(i)
+        return dp[-1] if dp[-1] != INF else -1

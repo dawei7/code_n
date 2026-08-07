@@ -1,25 +1,17 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def minimumDeviation(self, nums: List[int]) -> int:
-        heap = []
-        minimum = float("inf")
-
-        for value in nums:
-            normalized = value * 2 if value % 2 else value
-            heapq.heappush(heap, -normalized)
-            minimum = min(minimum, normalized)
-
-        answer = float("inf")
-        while heap:
-            maximum = -heapq.heappop(heap)
-            answer = min(answer, maximum - minimum)
-            if maximum % 2:
-                break
-            reduced = maximum // 2
-            minimum = min(minimum, reduced)
-            heapq.heappush(heap, -reduced)
-
-        return int(answer)
+        h = []
+        mi = inf
+        for v in nums:
+            if v & 1:
+                v <<= 1
+            h.append(-v)
+            mi = min(mi, v)
+        heapify(h)
+        ans = -h[0] - mi
+        while h[0] % 2 == 0:
+            x = heappop(h) // 2
+            heappush(h, x)
+            mi = min(mi, -x)
+            ans = min(ans, -h[0] - mi)
+        return ans

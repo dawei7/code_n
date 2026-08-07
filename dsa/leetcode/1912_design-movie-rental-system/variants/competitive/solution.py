@@ -1,61 +1,57 @@
-import heapq
-from collections import defaultdict
-from typing import List
+# Time:  ctor:   O(nlogn)
+#        search: O(logn)
+#        rent:   O(logn)
+#        drop:   O(logn)
+#        report: O(logn)
+# Space: O(n)
+
+import collections
+from sortedcontainers import SortedList
 
 
-class MovieRentingSystem:
-    def __init__(self, n: int, entries: List[List[int]]):
-        self.price = {}
-        self.version = {}
-        self.rented = set()
-        self.available = defaultdict(list)
-        self.rented_heap = []
+class MovieRentingSystem(object):
 
-        for shop, movie, price in entries:
-            key = (shop, movie)
-            self.price[key] = price
-            self.version[key] = 0
-            heapq.heappush(self.available[movie], (price, shop, 0))
+    def __init__(self, n, entries):
+        """
+        :type n: int
+        :type entries: List[List[int]]
+        """
+        self.__movie_to_ordered_price_shop = collections.defaultdict(SortedList) 
+        self.__shop_movie_to_price = {}
+        self.__rented_ordered_price_shop_movie = SortedList()
+        for s, m, p in entries:
+            self.__movie_to_ordered_price_shop[m].add((p, s))
+            self.__shop_movie_to_price[s, m] = p
 
-    def search(self, movie: int) -> List[int]:
-        heap = self.available[movie]
-        selected = []
-        while heap and len(selected) < 5:
-            price, shop, version = heapq.heappop(heap)
-            key = (shop, movie)
-            if key not in self.rented and self.version[key] == version:
-                selected.append((price, shop, version))
+    def search(self, movie):
+        """
+        :type movie: int
+        :rtype: List[int]
+        """
+        return [s for _, s in self.__movie_to_ordered_price_shop[movie][:5]]
 
-        for entry in selected:
-            heapq.heappush(heap, entry)
-        return [shop for _, shop, _ in selected]
+    def rent(self, shop, movie):
+        """
+        :type shop: int
+        :type movie: int
+        :rtype: None
+        """
+        price = self.__shop_movie_to_price[shop, movie]
+        self.__movie_to_ordered_price_shop[movie].remove((price, shop))
+        self.__rented_ordered_price_shop_movie.add((price, shop, movie))
 
-    def rent(self, shop: int, movie: int) -> None:
-        key = (shop, movie)
-        self.version[key] += 1
-        self.rented.add(key)
-        heapq.heappush(
-            self.rented_heap,
-            (self.price[key], shop, movie, self.version[key]),
-        )
+    def drop(self, shop, movie):
+        """
+        :type shop: int
+        :type movie: int
+        :rtype: None
+        """
+        price = self.__shop_movie_to_price[shop, movie]
+        self.__movie_to_ordered_price_shop[movie].add((price, shop))
+        self.__rented_ordered_price_shop_movie.remove((price, shop, movie))
 
-    def drop(self, shop: int, movie: int) -> None:
-        key = (shop, movie)
-        self.version[key] += 1
-        self.rented.remove(key)
-        heapq.heappush(
-            self.available[movie],
-            (self.price[key], shop, self.version[key]),
-        )
-
-    def report(self) -> List[List[int]]:
-        selected = []
-        while self.rented_heap and len(selected) < 5:
-            price, shop, movie, version = heapq.heappop(self.rented_heap)
-            key = (shop, movie)
-            if key in self.rented and self.version[key] == version:
-                selected.append((price, shop, movie, version))
-
-        for entry in selected:
-            heapq.heappush(self.rented_heap, entry)
-        return [[shop, movie] for _, shop, movie, _ in selected]
+    def report(self):
+        """
+        :rtype: List[List[int]]
+        """
+        return [[s, m] for _, s, m in self.__rented_ordered_price_shop_movie[:5]]

@@ -1,15 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def secondHighest(self, s: str) -> int:
-        largest = -1
-        second_largest = -1
-
-        for character in s:
-            if "0" <= character <= "9":
-                digit = ord(character) - ord("0")
-                if digit > largest:
-                    second_largest = largest
-                    largest = digit
-                elif second_largest < digit < largest:
-                    second_largest = digit
-
-        return second_largest
+    def secondHighest(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        first = second = -1
+        for c in s:
+            if not c.isdigit():
+                continue
+            d = int(c)
+            if d > first:
+                first, second = d, first
+            elif first > d > second:
+                second = d
+        return second

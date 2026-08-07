@@ -1,23 +1,28 @@
-from typing import List
-
+# Time:  O(logn) ~ O(n)
+# Space: O(1)
 
 class Solution:
-    def search(self, nums: List[int], target: int) -> bool:
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
         left, right = 0, len(nums) - 1
+
         while left <= right:
-            middle = (left + right) // 2
-            if nums[middle] == target:
+            mid = left + (right - left) / 2
+
+            if nums[mid] == target:
                 return True
-            if nums[left] == nums[middle] == nums[right]:
+            elif nums[mid] == nums[left]:
                 left += 1
-                right -= 1
-            elif nums[left] <= nums[middle]:
-                if nums[left] <= target < nums[middle]:
-                    right = middle - 1
-                else:
-                    left = middle + 1
-            elif nums[middle] < target <= nums[right]:
-                left = middle + 1
+            elif (nums[mid] > nums[left] and nums[left] <= target < nums[mid]) or \
+                 (nums[mid] < nums[left] and not (nums[mid] < target <= nums[right])):
+                right = mid - 1
             else:
-                right = middle - 1
+                left = mid + 1
+
         return False
+
+

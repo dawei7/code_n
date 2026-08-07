@@ -1,52 +1,56 @@
-from typing import List
+# Time:  O(n^3)
+# Space: O(n^2)
 
-
+# hungarian algorithm, weighted bipartite matching
 class Solution:
-    def findMinimumTime(self, strength: List[int]) -> int:
-        n = len(strength)
-        row_potential = [0] * (n + 1)
-        column_potential = [0] * (n + 1)
-        matched_row = [0] * (n + 1)
-        previous_column = [0] * (n + 1)
+    def findMinimumTime(self, strength):
+        """
+        :type strength: List[int]
+        :rtype: int
+        """
+        # Template translated from:
+        # https://github.com/kth-competitive-programming/kactl/blob/main/content/graph/WeightedMatching.h
+        def hungarian(a):  # Time: O(n^2 * m), Space: O(n + m)
+            if not a:
+                return 0, []
+            n, m = len(a)+1, len(a[0])+1
+            u, v, p, ans = [0]*n, [0]*m, [0]*m, [0]*(n-1)
+            for i in range(1, n):
+                p[0] = i
+                j0 = 0  # add "dummy" worker 0
+                dist, pre = [float("inf")]*m, [-1]*m
+                done = [False]*(m+1)
+                while True:  # dijkstra
+                    done[j0] = True
+                    i0, j1, delta = p[j0], None, float("inf")
+                    for j in range(1, m):
+                        if done[j]:
+                            continue
+                        cur = a[i0-1][j-1]-u[i0]-v[j]
+                        if cur < dist[j]:
+                            dist[j], pre[j] = cur, j0
+                        if dist[j] < delta:
+                            delta, j1 = dist[j], j
+                    for j in range(m):
+                        if done[j]:
+                            u[p[j]] += delta
+                            v[j] -= delta
+                        else:
+                            dist[j] -= delta
+                    j0 = j1
+                    if not p[j0]:
+                        break
+                while j0:  # update alternating path
+                    j1 = pre[j0]
+                    p[j0], j0 = p[j1], j1
+            for j in range(1, m):
+                if p[j]:
+                    ans[p[j]-1] = j-1
+            return -v[0], ans  # min cost
 
-        for row in range(1, n + 1):
-            matched_row[0] = row
-            column = 0
-            minimum_slack = [float("inf")] * (n + 1)
-            used = [False] * (n + 1)
-
-            while True:
-                used[column] = True
-                current_row = matched_row[column]
-                delta = float("inf")
-                next_column = 0
-
-                for candidate in range(1, n + 1):
-                    if used[candidate]:
-                        continue
-                    cost = (strength[current_row - 1] + candidate - 1) // candidate
-                    slack = cost - row_potential[current_row] - column_potential[candidate]
-                    if slack < minimum_slack[candidate]:
-                        minimum_slack[candidate] = slack
-                        previous_column[candidate] = column
-                    if minimum_slack[candidate] < delta:
-                        delta = minimum_slack[candidate]
-                        next_column = candidate
-
-                for candidate in range(n + 1):
-                    if used[candidate]:
-                        row_potential[matched_row[candidate]] += delta
-                        column_potential[candidate] -= delta
-                    elif candidate:
-                        minimum_slack[candidate] -= delta
-
-                column = next_column
-                if matched_row[column] == 0:
-                    break
-
-            while column:
-                prior = previous_column[column]
-                matched_row[column] = matched_row[prior]
-                column = prior
-
-        return -column_potential[0]
+        K = 1
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+    
+        adj = [[ceil_divide(strength[i], 1+j*K) for j in range(len(strength))] for i in range(len(strength))]
+        return hungarian(adj)[0]

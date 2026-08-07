@@ -1,46 +1,34 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def minCost(self, n: int, edges: List[List[int]], k: int) -> int:
-        graph = [[] for _ in range(n)]
-        for first, second, cost in edges:
-            graph[first].append((second, cost))
-            graph[second].append((first, cost))
-
-        costs = sorted({cost for _, _, cost in edges})
-
-        def can_reach(limit: int) -> bool:
-            distance = [-1] * n
-            distance[0] = 0
-            queue = deque([0])
-
-            while queue:
-                node = queue.popleft()
-                if distance[node] == k:
-                    continue
-
-                for neighbor, cost in graph[node]:
-                    if cost <= limit and distance[neighbor] == -1:
-                        distance[neighbor] = distance[node] + 1
-                        if neighbor == n - 1:
-                            return True
-                        queue.append(neighbor)
-
+        def check(idx: int) -> bool:
+            g = [[] for _ in range(n)]
+            for u, v, _ in edges[: idx + 1]:
+                g[u].append(v)
+                g[v].append(u)
+            q = [0]
+            dist = 0
+            vis = [False] * n
+            vis[0] = True
+            while q:
+                nq = []
+                for u in q:
+                    if u == n - 1:
+                        return dist <= k
+                    for v in g[u]:
+                        if not vis[v]:
+                            vis[v] = True
+                            nq.append(v)
+                q = nq
+                dist += 1
             return False
 
-        if not can_reach(costs[-1]):
-            return -1
-
-        left = 0
-        right = len(costs) - 1
-
-        while left < right:
-            middle = (left + right) // 2
-            if can_reach(costs[middle]):
-                right = middle
+        m = len(edges)
+        edges.sort(key=lambda x: x[2])
+        l, r = 0, m - 1
+        while l < r:
+            mid = (l + r) >> 1
+            if check(mid):
+                r = mid
             else:
-                left = middle + 1
-
-        return costs[left]
+                l = mid + 1
+        return edges[l][2] if check(l) else -1

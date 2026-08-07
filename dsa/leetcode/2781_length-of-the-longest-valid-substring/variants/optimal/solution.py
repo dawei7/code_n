@@ -1,16 +1,11 @@
 class Solution:
     def longestValidSubstring(self, word: str, forbidden: List[str]) -> int:
-        forbidden_set = set(forbidden)
-        left = 0
-        answer = 0
-
-        for right in range(len(word)):
-            earliest = max(left, right - 9)
-            for start in range(right, earliest - 1, -1):
-                if word[start : right + 1] in forbidden_set:
-                    left = start + 1
+        s = set(forbidden)
+        ans = i = 0
+        for j in range(len(word)):
+            for k in range(j, max(j - 10, i - 1), -1):
+                if word[k : j + 1] in s:
+                    i = k + 1
                     break
-
-            answer = max(answer, right - left + 1)
-
-        return answer
+            ans = max(ans, j - i + 1)
+        return ans

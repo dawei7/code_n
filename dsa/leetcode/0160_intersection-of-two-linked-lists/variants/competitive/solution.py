@@ -1,11 +1,17 @@
-from typing import Optional
+# Time:  O(m + n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 class Solution:
-    def getIntersectionNode(self, headA: Optional["ListNode"], headB: Optional["ListNode"]) -> Optional["ListNode"]:
-        first = headA
-        second = headB
-        while first is not second:
-            first = headB if first is None else first.next
-            second = headA if second is None else second.next
-        return first
+    # @param two ListNodes
+    # @return the intersected ListNode
+    def getIntersectionNode(self, headA, headB):
+        curA, curB = headA, headB
+        while curA != curB:
+            curA = curA.next if curA else headB
+            curB = curB.next if curB else headA
+        return curA

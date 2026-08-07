@@ -1,20 +1,35 @@
+# Time:  precompute: O(max(m * n))
+#        runtime:    O(1)
+# Space: O(max(m * n))
+
+# combinatorics
+MOD = 10**9+7
+FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
+def nCr(n, k):
+    while len(INV) <= n:  # lazy initialization
+        FACT.append(FACT[-1]*len(INV) % MOD)
+        INV.append(INV[MOD%len(INV)]*(MOD-MOD//len(INV)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+        INV_FACT.append(INV_FACT[-1]*INV[-1] % MOD)
+    return (FACT[n]*INV_FACT[n-k] % MOD) * INV_FACT[k] % MOD
+
+
 class Solution:
-    def distanceSum(self, m: int, n: int, k: int) -> int:
-        mod = 1_000_000_007
-        cells = m * n
+    def distanceSum(self, m, n, k):
+        """
+        :type m: int
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        def sum_n(n):
+            return (n+1)*n//2
 
-        row_distance = n * n * m * (m * m - 1) // 6
-        column_distance = m * m * n * (n * n - 1) // 6
-        pair_distance = (row_distance + column_distance) % mod
+        def sum_n_square(n):
+            return n*(n+1)*(2*n+1)//6
 
-        chosen = k - 2
-        available = cells - 2
-        chosen = min(chosen, available - chosen)
-        numerator = 1
-        denominator = 1
-        for i in range(1, chosen + 1):
-            numerator = numerator * (available - chosen + i) % mod
-            denominator = denominator * i % mod
+        def f(n):
+            # sum((d*(n-d) for d in range(1, n)))
+            return (n*sum_n(n-1)-sum_n_square(n-1))
 
-        arrangements = numerator * pow(denominator, mod - 2, mod) % mod
-        return pair_distance * arrangements % mod
+        return (f(n)*m*m+f(m)*n*n)*nCr(m*n-2, k-2)%MOD
+ 

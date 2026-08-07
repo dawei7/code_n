@@ -1,17 +1,17 @@
-WITH ranked_students AS (
-    SELECT
-        name,
-        continent,
-        ROW_NUMBER() OVER (
-            PARTITION BY continent
-            ORDER BY name
-        ) AS position
-    FROM Student
-)
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            *,
+            ROW_NUMBER() OVER (
+                PARTITION BY continent
+                ORDER BY name
+            ) AS rk
+        FROM Student
+    )
 SELECT
-    MAX(CASE WHEN continent = 'America' THEN name END) AS America,
-    MAX(CASE WHEN continent = 'Asia' THEN name END) AS Asia,
-    MAX(CASE WHEN continent = 'Europe' THEN name END) AS Europe
-FROM ranked_students
-GROUP BY position
-ORDER BY position;
+    MAX(IF(continent = 'America', name, NULL)) AS 'America',
+    MAX(IF(continent = 'Asia', name, NULL)) AS 'Asia',
+    MAX(IF(continent = 'Europe', name, NULL)) AS 'Europe'
+FROM T
+GROUP BY rk;

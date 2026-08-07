@@ -1,40 +1,83 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n^2)
 
 class Solution:
-    def stoneGameV(self, stoneValue: List[int]) -> int:
+    def stoneGameV(self, stoneValue):
+        """
+        :type stoneValue: List[int]
+        :rtype: int
+        """
         n = len(stoneValue)
-        if n < 2:
-            return 0
-
         prefix = [0]
-        for value in stoneValue:
-            prefix.append(prefix[-1] + value)
+        for v in stoneValue:
+            prefix.append(prefix[-1] + v)
 
-        score = [[0] * n for _ in range(n)]
-        best_left = [[0] * n for _ in range(n)]
-        best_right = [[0] * n for _ in range(n)]
+        mid = range(n)
 
-        for left in range(n - 1, -1, -1):
-            best_left[left][left] = stoneValue[left]
-            best_right[left][left] = stoneValue[left]
-            crossing = left
+        dp = [[0]*n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = stoneValue[i]
 
-            for right in range(left + 1, n):
-                total = prefix[right + 1] - prefix[left]
-                while crossing < right and 2 * (prefix[crossing + 1] - prefix[left]) < total:
-                    crossing += 1
-
-                if crossing == right:
-                    best = best_left[left][right - 1]
+        max_score = 0
+        for l in range(2, n+1):
+            for i in range(n-l+1):
+                j = i+l-1
+                while prefix[mid[i]]-prefix[i] < prefix[j+1]-prefix[mid[i]]:
+                    mid[i] += 1  # Time: O(n^2) in total
+                p = mid[i]
+                max_score = 0
+                if prefix[p]-prefix[i] == prefix[j+1]-prefix[p]:
+                    max_score = max(dp[i][p-1], dp[j][p])
                 else:
-                    left_sum = prefix[crossing + 1] - prefix[left]
-                    left_boundary = crossing if 2 * left_sum == total else crossing - 1
-                    best = best_left[left][left_boundary] if left_boundary >= left else 0
-                    best = max(best, best_right[crossing + 1][right])
+                    if i <= p-2:
+                        max_score = max(max_score, dp[i][p-2])
+                    if p <= j:
+                        max_score = max(max_score, dp[j][p])
+                dp[i][j] = max(dp[i][j-1], (prefix[j+1]-prefix[i]) + max_score)
+                dp[j][i] = max(dp[j][i+1], (prefix[j+1]-prefix[i]) + max_score)
+        return max_score
 
-                score[left][right] = best
-                best_left[left][right] = max(best_left[left][right - 1], best + total)
-                best_right[left][right] = max(best_right[left + 1][right], best + total)
 
-        return score[0][n - 1]
+# Time:  O(n^2)
+# Space: O(n^2)
+class Solution2(object):
+    def stoneGameV(self, stoneValue):
+        """
+        :type stoneValue: List[int]
+        :rtype: int
+        """
+        n = len(stoneValue)
+        prefix = [0]
+        for v in stoneValue:
+            prefix.append(prefix[-1] + v)
+
+        mid = [[0]*n for _ in range(n)]
+        for l in range(1, n+1):
+            for i in range(n-l+1):
+                j = i+l-1
+                p = i if l == 1 else mid[i][j-1]
+                while prefix[p]-prefix[i] < prefix[j+1]-prefix[p]:
+                    p += 1  # Time: O(n^2) in total
+                mid[i][j] = p
+        
+        rmq = [[0]*n for _ in range(n)]
+        for i in range(n):
+            rmq[i][i] = stoneValue[i]
+
+        dp = [[0]*n for _ in range(n)]
+        for l in range(2, n+1):
+            for i in range(n-l+1):
+                j = i+l-1
+                p = mid[i][j]
+                max_score = 0
+                if prefix[p]-prefix[i] == prefix[j+1]-prefix[p]:
+                    max_score = max(rmq[i][p-1], rmq[j][p])
+                else:
+                    if i <= p-2:
+                        max_score = max(max_score, rmq[i][p-2])
+                    if p <= j:
+                        max_score = max(max_score, rmq[j][p])
+                dp[i][j] = max_score
+                rmq[i][j] = max(rmq[i][j-1], (prefix[j+1]-prefix[i]) + max_score)
+                rmq[j][i] = max(rmq[j][i+1], (prefix[j+1]-prefix[i]) + max_score)
+        return dp[0][n-1]

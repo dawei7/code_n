@@ -1,17 +1,5 @@
-from typing import List
-
-
 class Solution:
     def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
-        values = sorted(arr)
-        best_gap = float("inf")
-        pairs = []
-
-        for left, right in zip(values, values[1:]):
-            gap = right - left
-            if gap < best_gap:
-                best_gap = gap
-                pairs = [[left, right]]
-            elif gap == best_gap:
-                pairs.append([left, right])
-        return pairs
+        arr.sort()
+        mi = min(b - a for a, b in pairwise(arr))
+        return [[a, b] for a, b in pairwise(arr) if b - a == mi]

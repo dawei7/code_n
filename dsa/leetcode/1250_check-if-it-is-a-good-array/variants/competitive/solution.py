@@ -1,12 +1,21 @@
-from math import gcd
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def isGoodArray(self, nums: List[int]) -> bool:
-        current = 0
-        for value in nums:
-            current = gcd(current, value)
-            if current == 1:
-                return True
-        return False
+    def isGoodArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+
+        # Bézout's identity
+        result = nums[0]
+        for num in nums:
+            result = gcd(result, num)
+            if result == 1:
+                break
+        return result == 1

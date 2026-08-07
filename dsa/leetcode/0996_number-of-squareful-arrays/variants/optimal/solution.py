@@ -1,33 +1,20 @@
-from collections import Counter
-from math import isqrt
-from typing import List
-
-
 class Solution:
     def numSquarefulPerms(self, nums: List[int]) -> int:
-        remaining = Counter(nums)
-        values = list(remaining)
-        neighbors = {value: [] for value in values}
+        n = len(nums)
+        f = [[0] * n for _ in range(1 << n)]
+        for j in range(n):
+            f[1 << j][j] = 1
+        for i in range(1 << n):
+            for j in range(n):
+                if i >> j & 1:
+                    for k in range(n):
+                        if (i >> k & 1) and k != j:
+                            s = nums[j] + nums[k]
+                            t = int(sqrt(s))
+                            if t * t == s:
+                                f[i][j] += f[i ^ (1 << j)][k]
 
-        for left in values:
-            for right in values:
-                total = left + right
-                root = isqrt(total)
-                if root * root == total:
-                    neighbors[left].append(right)
-
-        def count(previous, unused):
-            if unused == 0:
-                return 1
-
-            total = 0
-            candidates = values if previous is None else neighbors[previous]
-            for value in candidates:
-                if remaining[value] == 0:
-                    continue
-                remaining[value] -= 1
-                total += count(value, unused - 1)
-                remaining[value] += 1
-            return total
-
-        return count(None, len(nums))
+        ans = sum(f[(1 << n) - 1][j] for j in range(n))
+        for v in Counter(nums).values():
+            ans //= factorial(v)
+        return ans

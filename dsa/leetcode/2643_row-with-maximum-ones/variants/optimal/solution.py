@@ -1,12 +1,8 @@
 class Solution:
     def rowAndMaximumOnes(self, mat: List[List[int]]) -> List[int]:
-        best_row = 0
-        best_count = -1
-
-        for row_index, row in enumerate(mat):
-            ones = sum(row)
-            if ones > best_count:
-                best_row = row_index
-                best_count = ones
-
-        return [best_row, best_count]
+        ans = [0, 0]
+        for i, row in enumerate(mat):
+            cnt = sum(row)
+            if ans[1] < cnt:
+                ans = [i, cnt]
+        return ans

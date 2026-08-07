@@ -1,48 +1,110 @@
-from typing import List
+# Time:  O(f * n), f is the max number of unique prime factors
+# Space: O(p + n), p is the total number of unique primes
+
+import collections
+
+
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+        self.size = [1]*n
+
+    def find_set(self, x):
+        if self.set[x] != x:
+            self.set[x] = self.find_set(self.set[x])  # path compression.
+        return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
+            return False
+        self.set[min(x_root, y_root)] = max(x_root, y_root)
+        self.size[max(x_root, y_root)] += self.size[min(x_root, y_root)]
+        return True
 
 
 class Solution:
-    def largestComponentSize(self, nums: List[int]) -> int:
-        parent = list(range(len(nums)))
-        size = [1] * len(nums)
+    def largestComponentSize(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        def prime_factors(i):  # prime factor decomposition
+            result = []
+            d = 2
+            if i%d == 0:
+                while i%d == 0:
+                    i //= d
+                result.append(d)
+            d = 3
+            while d*d <= i:
+                if i%d == 0:
+                    while i%d == 0:
+                        i //= d
+                    result.append(d)
+                d += 2
+            if i != 1:
+                result.append(i)
+            return result
+        
+        union_find = UnionFind(len(A))
+        nodesWithCommonFactor = collections.defaultdict(int)
+        for i in range(len(A)):
+            for factor in prime_factors(A[i]):
+                if factor not in nodesWithCommonFactor:
+                    nodesWithCommonFactor[factor] = i
+                union_find.union_set(nodesWithCommonFactor[factor], i)
+        return max(union_find.size)
 
-        def find(node):
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
 
-        def union(first, second):
-            first = find(first)
-            second = find(second)
-            if first == second:
-                return
-            if size[first] < size[second]:
-                first, second = second, first
-            parent[second] = first
-            size[first] += size[second]
+# Time:  O(f * n), f is the max number of unique prime factors
+# Space: O(p + n), p is the total number of unique primes
+import collections
 
-        owner = {}
-        for index, number in enumerate(nums):
-            remaining = number
-            factor = 2
-            while factor * factor <= remaining:
-                if remaining % factor == 0:
-                    if factor in owner:
-                        union(index, owner[factor])
-                    else:
-                        owner[factor] = index
-                    while remaining % factor == 0:
-                        remaining //= factor
-                factor += 1
-            if remaining > 1:
-                if remaining in owner:
-                    union(index, owner[remaining])
-                else:
-                    owner[remaining] = index
 
-        counts = {}
-        for index in range(len(nums)):
-            root = find(index)
-            counts[root] = counts.get(root, 0) + 1
-        return max(counts.values())
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+        self.size = [1]*n
+
+    def find_set(self, x):
+        if self.set[x] != x:
+            self.set[x] = self.find_set(self.set[x])  # path compression.
+        return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
+            return False
+        self.set[min(x_root, y_root)] = max(x_root, y_root)
+        self.size[max(x_root, y_root)] += self.size[min(x_root, y_root)]
+        return True
+
+
+class Solution2(object):
+    def largestComponentSize(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        def prime_factors(x):  # prime factor decomposition
+            result = []
+            p = 2
+            while p*p <= x:
+                if x%p == 0:
+                    while x%p == 0:
+                        x //= p
+                    result.append(p)
+                p += 1
+            if x != 1:
+                result.append(x)
+            return result
+        
+        union_find = UnionFind(len(A))
+        nodesWithCommonFactor = collections.defaultdict(int)
+        for i in range(len(A)):
+            for factor in prime_factors(A[i]):
+                if factor not in nodesWithCommonFactor:
+                    nodesWithCommonFactor[factor] = i
+                union_find.union_set(nodesWithCommonFactor[factor], i)
+        return max(union_find.size)

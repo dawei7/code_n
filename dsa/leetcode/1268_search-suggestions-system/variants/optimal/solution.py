@@ -1,59 +1,36 @@
-from typing import List
+class Trie:
+    def __init__(self):
+        self.children: List[Union[Trie, None]] = [None] * 26
+        self.v: List[int] = []
 
+    def insert(self, w, i):
+        node = self
+        for c in w:
+            idx = ord(c) - ord('a')
+            if node.children[idx] is None:
+                node.children[idx] = Trie()
+            node = node.children[idx]
+            if len(node.v) < 3:
+                node.v.append(i)
 
-class _TrieNode:
-    __slots__ = ("children", "product", "suggestions")
-
-    def __init__(self) -> None:
-        self.children = {}
-        self.product = None
-        self.suggestions = []
+    def search(self, w):
+        node = self
+        ans = [[] for _ in range(len(w))]
+        for i, c in enumerate(w):
+            idx = ord(c) - ord('a')
+            if node.children[idx] is None:
+                break
+            node = node.children[idx]
+            ans[i] = node.v
+        return ans
 
 
 class Solution:
-    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
-        nodes = [_TrieNode()]
-
-        for product in products:
-            node_index = 0
-            for character in product:
-                child_index = nodes[node_index].children.get(character)
-                if child_index is None:
-                    child_index = len(nodes)
-                    nodes[node_index].children[character] = child_index
-                    nodes.append(_TrieNode())
-                node_index = child_index
-            nodes[node_index].product = product
-
-        path = []
-        stack = [(0, False)]
-        while stack:
-            node_index, exiting = stack.pop()
-            if exiting:
-                path.pop()
-                continue
-
-            path.append(node_index)
-            node = nodes[node_index]
-            if node.product is not None:
-                for prefix_index in path[1:]:
-                    suggestions = nodes[prefix_index].suggestions
-                    if len(suggestions) < 3:
-                        suggestions.append(node.product)
-
-            stack.append((node_index, True))
-            for character in sorted(node.children, reverse=True):
-                stack.append((node.children[character], False))
-
-        answer = []
-        node_index = 0
-        missing = False
-        for character in searchWord:
-            if not missing:
-                child_index = nodes[node_index].children.get(character)
-                if child_index is None:
-                    missing = True
-                else:
-                    node_index = child_index
-            answer.append([] if missing else list(nodes[node_index].suggestions))
-        return answer
+    def suggestedProducts(
+        self, products: List[str], searchWord: str
+    ) -> List[List[str]]:
+        products.sort()
+        trie = Trie()
+        for i, w in enumerate(products):
+            trie.insert(w, i)
+        return [[products[i] for i in v] for v in trie.search(searchWord)]

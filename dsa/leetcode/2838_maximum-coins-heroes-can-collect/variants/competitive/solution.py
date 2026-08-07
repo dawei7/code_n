@@ -1,17 +1,27 @@
-from typing import List
+# Time:  O(nlogn + mlogm)
+# Space: O(n + m)
 
-
+# sort, two pointers
 class Solution:
-    def maximumCoins(self, heroes: List[int], monsters: List[int], coins: List[int]) -> List[int]:
-        monster_rewards = sorted(zip(monsters, coins))
-        answers = [0] * len(heroes)
-        monster_index = 0
-        collected = 0
-
-        for hero_power, hero_index in sorted((power, index) for index, power in enumerate(heroes)):
-            while monster_index < len(monster_rewards) and monster_rewards[monster_index][0] <= hero_power:
-                collected += monster_rewards[monster_index][1]
-                monster_index += 1
-            answers[hero_index] = collected
-
-        return answers
+    def maximumCoins(self, heroes, monsters, coins):
+        """
+        :type heroes: List[int]
+        :type monsters: List[int]
+        :type coins: List[int]
+        :rtype: List[int]
+        """
+        idxs1 = range(len(heroes))
+        idxs1.sort(key=lambda x: heroes[x])
+        idxs2 = range(len(monsters))
+        idxs2.sort(key=lambda x: monsters[x])
+        result = [0]*len(idxs1)
+        i = curr = 0
+        for idx in idxs1:
+            for i in range(i, len(idxs2)):
+                if monsters[idxs2[i]] > heroes[idx]:
+                    break
+                curr += coins[idxs2[i]]
+            else:
+                i = len(idxs2)
+            result[idx] = curr
+        return result

@@ -1,28 +1,26 @@
-from collections import deque
-from typing import List, Optional
+# Time:  O(n)
+# Space: O(h)
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def averageOfLevels(self, root: Optional["TreeNode"]) -> List[float]:
-        averages = []
-        queue = deque([root])
+    def averageOfLevels(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[float]
+        """
+        result = []
+        q = [root]
+        while q:
+            total, count = 0, 0
+            next_q = []
+            for n in q:
+                total += n.val
+                count += 1
+                if n.left:
+                    next_q.append(n.left)
+                if n.right:
+                    next_q.append(n.right)
+            q = next_q
+            result.append(float(total) / count)
+        return result
 
-        while queue:
-            level_size = len(queue)
-            level_sum = 0
-            for _ in range(level_size):
-                node = queue.popleft()
-                level_sum += node.val
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
-            averages.append(level_sum / level_size)
-
-        return averages

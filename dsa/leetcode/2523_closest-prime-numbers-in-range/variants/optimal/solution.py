@@ -1,28 +1,23 @@
-from math import isqrt
-from typing import List
-
-
 class Solution:
     def closestPrimes(self, left: int, right: int) -> List[int]:
-        is_prime = bytearray(b"\x01") * (right + 1)
-        is_prime[0] = 0
-        if right >= 1:
-            is_prime[1] = 0
-
-        for prime in range(2, isqrt(right) + 1):
-            if is_prime[prime]:
-                start = prime * prime
-                count = (right - start) // prime + 1
-                is_prime[start : right + 1 : prime] = b"\x00" * count
-
-        answer = [-1, -1]
-        previous = -1
-
-        for value in range(max(2, left), right + 1):
-            if not is_prime[value]:
-                continue
-            if previous != -1 and (answer[0] == -1 or value - previous < answer[1] - answer[0]):
-                answer = [previous, value]
-            previous = value
-
-        return answer
+        cnt = 0
+        st = [False] * (right + 1)
+        prime = [0] * (right + 1)
+        for i in range(2, right + 1):
+            if not st[i]:
+                prime[cnt] = i
+                cnt += 1
+            j = 0
+            while prime[j] <= right // i:
+                st[prime[j] * i] = 1
+                if i % prime[j] == 0:
+                    break
+                j += 1
+        p = [v for v in prime[:cnt] if left <= v <= right]
+        mi = inf
+        ans = [-1, -1]
+        for a, b in pairwise(p):
+            if (d := b - a) < mi:
+                mi = d
+                ans = [a, b]
+        return ans

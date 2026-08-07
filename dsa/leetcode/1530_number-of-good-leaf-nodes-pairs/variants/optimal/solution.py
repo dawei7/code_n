@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -8,43 +5,28 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def countPairs(self, root: Optional[TreeNode], distance: int) -> int:
-        pairs = 0
-        histograms = {}
-        stack = [(root, False)]
+    def countPairs(self, root: TreeNode, distance: int) -> int:
+        def dfs(root, cnt, i):
+            if root is None or i >= distance:
+                return
+            if root.left is None and root.right is None:
+                cnt[i] += 1
+                return
+            dfs(root.left, cnt, i + 1)
+            dfs(root.right, cnt, i + 1)
 
-        while stack:
-            node, visited = stack.pop()
-            if not visited:
-                stack.append((node, True))
-                if node.right is not None:
-                    stack.append((node.right, False))
-                if node.left is not None:
-                    stack.append((node.left, False))
-                continue
+        if root is None:
+            return 0
+        ans = self.countPairs(root.left, distance) + self.countPairs(
+            root.right, distance
+        )
+        cnt1 = Counter()
+        cnt2 = Counter()
+        dfs(root.left, cnt1, 1)
+        dfs(root.right, cnt2, 1)
 
-            if node.left is None and node.right is None:
-                histogram = [0] * (distance + 1)
-                histogram[0] = 1
-                histograms[node] = histogram
-                continue
-
-            left = histograms.pop(node.left, None)
-            right = histograms.pop(node.right, None)
-            if left is not None and right is not None:
-                for left_distance, left_count in enumerate(left):
-                    if left_count == 0:
-                        continue
-                    for right_distance, right_count in enumerate(right):
-                        if left_distance + right_distance + 2 <= distance:
-                            pairs += left_count * right_count
-
-            histogram = [0] * (distance + 1)
-            for child_histogram in (left, right):
-                if child_histogram is None:
-                    continue
-                for child_distance in range(distance):
-                    histogram[child_distance + 1] += child_histogram[child_distance]
-            histograms[node] = histogram
-
-        return pairs
+        for k1, v1 in cnt1.items():
+            for k2, v2 in cnt2.items():
+                if k1 + k2 <= distance:
+                    ans += v1 * v2
+        return ans

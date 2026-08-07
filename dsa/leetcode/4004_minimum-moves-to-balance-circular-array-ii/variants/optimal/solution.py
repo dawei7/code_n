@@ -1,91 +1,80 @@
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
     def minMoves(self, balance: List[int]) -> int:
-        if sum(balance) < 0:
+        total_balance = sum(balance)
+        if total_balance < 0:
             return -1
 
-        demand = sum(-value for value in balance if value < 0)
-        if demand == 0:
+        n = len(balance)
+        total_deficit = sum(-x for x in balance if x < 0)
+        if total_deficit == 0:
             return 0
 
-        n = len(balance)
         source = n
         sink = n + 1
-        graph = [[] for _ in range(n + 2)]
+        num_nodes = n + 2
 
-        def add_edge(start: int, end: int, capacity: int, cost: int) -> None:
-            forward = [end, len(graph[end]), capacity, cost]
-            backward = [start, len(graph[start]), 0, -cost]
-            graph[start].append(forward)
-            graph[end].append(backward)
+        graph = [[] for _ in range(num_nodes)]
 
-        for index, value in enumerate(balance):
-            if value > 0:
-                add_edge(source, index, value, 0)
-            elif value < 0:
-                add_edge(index, sink, -value, 0)
+        def add_edge(u, v, cap, cost):
+            graph[u].append([v, cap, cost, len(graph[v])])
+            graph[v].append([u, 0, -cost, len(graph[u]) - 1])
 
-        for index in range(n):
-            neighbor = (index + 1) % n
-            add_edge(index, neighbor, demand, 1)
-            add_edge(neighbor, index, demand, 1)
+        for i in range(n):
+            if balance[i] > 0:
+                add_edge(source, i, balance[i], 0)
+            elif balance[i] < 0:
+                add_edge(i, sink, -balance[i], 0)
 
-        infinity = 10**30
-        potential = [0] * (n + 2)
-        delivered = 0
-        answer = 0
+            add_edge(i, (i + 1) % n, inf, 1)
+            add_edge(i, (i - 1 + n) % n, inf, 1)
 
-        while delivered < demand:
-            distance = [infinity] * (n + 2)
-            parent_node = [-1] * (n + 2)
-            parent_edge = [-1] * (n + 2)
-            distance[source] = 0
-            heap = [(0, source)]
+        total_cost = 0
+        current_flow = 0
 
-            while heap:
-                current_distance, node = heappop(heap)
-                if current_distance != distance[node]:
-                    continue
+        while current_flow < total_deficit:
+            dist = [inf] * num_nodes
+            parent_node = [-1] * num_nodes
+            parent_edge = [-1] * num_nodes
+            in_queue = [False] * num_nodes
 
-                for edge_index, edge in enumerate(graph[node]):
-                    next_node, _, capacity, cost = edge
-                    if capacity == 0:
-                        continue
-                    candidate = current_distance + cost + potential[node] - potential[next_node]
-                    if candidate < distance[next_node]:
-                        distance[next_node] = candidate
-                        parent_node[next_node] = node
-                        parent_edge[next_node] = edge_index
-                        heappush(heap, (candidate, next_node))
+            queue = deque([source])
+            dist[source] = 0
+            in_queue[source] = True
 
-            for node in range(n + 2):
-                if distance[node] < infinity:
-                    potential[node] += distance[node]
+            while queue:
+                u = queue.popleft()
+                in_queue[u] = False
 
-            amount = demand - delivered
-            path_cost = 0
-            node = sink
-            while node != source:
-                previous = parent_node[node]
-                edge_index = parent_edge[node]
-                edge = graph[previous][edge_index]
-                amount = min(amount, edge[2])
-                path_cost += edge[3]
-                node = previous
+                for idx, (v, cap, cost, _) in enumerate(graph[u]):
+                    if cap > 0 and dist[v] > dist[u] + cost:
+                        dist[v] = dist[u] + cost
+                        parent_node[v] = u
+                        parent_edge[v] = idx
+                        if not in_queue[v]:
+                            queue.append(v)
+                            in_queue[v] = True
 
-            node = sink
-            while node != source:
-                previous = parent_node[node]
-                edge_index = parent_edge[node]
-                edge = graph[previous][edge_index]
-                edge[2] -= amount
-                graph[node][edge[1]][2] += amount
-                node = previous
+            if dist[sink] == inf:
+                break
 
-            delivered += amount
-            answer += amount * path_cost
+            push_flow = total_deficit - current_flow
+            curr = sink
+            while curr != source:
+                p = parent_node[curr]
+                idx = parent_edge[curr]
+                push_flow = min(push_flow, graph[p][idx][1])
+                curr = p
 
-        return answer
+            curr = sink
+            while curr != source:
+                p = parent_node[curr]
+                idx = parent_edge[curr]
+                rev_idx = graph[p][idx][3]
+                graph[p][idx][1] -= push_flow
+                graph[curr][rev_idx][1] += push_flow
+                curr = p
+
+            current_flow += push_flow
+            total_cost += push_flow * dist[sink]
+
+        return total_cost if current_flow == total_deficit else -1

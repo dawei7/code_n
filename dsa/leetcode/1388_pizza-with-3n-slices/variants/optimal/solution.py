@@ -1,29 +1,15 @@
-from typing import List
-
-
 class Solution:
     def maxSizeSlices(self, slices: List[int]) -> int:
-        choose = len(slices) // 3
-
-        def best_linear(values):
-            impossible = float("-inf")
-            previous_two = [impossible] * (choose + 1)
-            previous_one = [impossible] * (choose + 1)
-            previous_two[0] = 0
-            previous_one[0] = 0
-
-            for value in values:
-                current = previous_one.copy()
-                for count in range(1, choose + 1):
-                    current[count] = max(
-                        previous_one[count],
-                        previous_two[count - 1] + value,
+        def g(nums: List[int]) -> int:
+            m = len(nums)
+            f = [[0] * (n + 1) for _ in range(m + 1)]
+            for i in range(1, m + 1):
+                for j in range(1, n + 1):
+                    f[i][j] = max(
+                        f[i - 1][j], (f[i - 2][j - 1] if i >= 2 else 0) + nums[i - 1]
                     )
-                previous_two, previous_one = previous_one, current
+            return f[m][n]
 
-            return previous_one[choose]
-
-        return max(
-            best_linear(slices[:-1]),
-            best_linear(slices[1:]),
-        )
+        n = len(slices) // 3
+        a, b = g(slices[:-1]), g(slices[1:])
+        return max(a, b)

@@ -1,5 +1,10 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def squareIsWhite(self, coordinates: str) -> bool:
-        column = ord(coordinates[0]) - ord("a")
-        row = int(coordinates[1]) - 1
-        return (column + row) % 2 == 1
+    def squareIsWhite(self, coordinates):
+        """
+        :type coordinates: str
+        :rtype: bool
+        """
+        return (ord(coordinates[0])-ord('a'))%2 != (ord(coordinates[1])-ord('1'))%2

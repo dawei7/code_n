@@ -1,34 +1,43 @@
-from math import lcm
-from typing import List
+# Time:  O(logr * m * 2^m + n * 3^m)
+# Space: O(2^m)
 
-
+# bitmasks, number theory, dp, submask enumeration
 class Solution:
-    def minimumIncrements(self, nums: List[int], target: List[int]) -> int:
-        target_count = len(target)
-        full_mask = (1 << target_count) - 1
-        subset_lcm = [1] * (full_mask + 1)
-        for mask in range(1, full_mask + 1):
-            bit = mask & -mask
-            index = bit.bit_length() - 1
-            subset_lcm[mask] = lcm(subset_lcm[mask ^ bit], target[index])
+    def minimumIncrements(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        infinity = 10**30
-        dp = [infinity] * (full_mask + 1)
+        def lcm(a, b):
+            return a//gcd(a, b)*b
+
+        n = len(nums)
+        m = len(target)
+        lcms = [0]*(1<<m)
+        for mask in range(1<<m):
+            l = 1
+            for i in range(m):
+                if mask&(1<<i):
+                    l = lcm(l, target[i])
+            lcms[mask] = l
+        dp = [INF]*(1<<m)
         dp[0] = 0
-
-        for value in nums:
-            next_dp = dp.copy()
-            for covered, current_cost in enumerate(dp):
-                if current_cost == infinity:
+        for x in nums:
+            for mask in reversed(range(1<<m)):
+                if dp[mask] == INF:
                     continue
-                remaining = full_mask ^ covered
-                subset = remaining
-                while subset:
-                    multiple = subset_lcm[subset]
-                    increment = (-value) % multiple
-                    next_mask = covered | subset
-                    next_dp[next_mask] = min(next_dp[next_mask], current_cost + increment)
-                    subset = (subset - 1) & remaining
-            dp = next_dp
-
-        return dp[full_mask]
+                # submask enumeration:
+                # => sum(nCr(n, k) * 2^k for k in range(n+1)) = (1 + 2)^n = 3^n
+                # => Time: O(3^n), see https://cp-algorithms.com/algebra/all-submasks.html
+                submask = new_mask = (((1<<m)-1)-mask)
+                while submask:
+                    dp[mask|submask] = min(dp[mask|submask], dp[mask]+(lcms[submask]-x%lcms[submask] if x%lcms[submask] else 0))
+                    submask = (submask-1)&new_mask
+        return dp[-1]

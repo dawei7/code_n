@@ -1,16 +1,21 @@
-WITH ranked_departments AS (
-    SELECT
-        dep_id,
-        DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS department_rank
-    FROM Employees
-    GROUP BY dep_id
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH manager_cte AS (
+    SELECT emp_name AS manager_name, dep_id
+    FROM employees
+    WHERE position = 'Manager'
+), dep_rank_cte AS (
+    SELECT dep_id,
+           COUNT(*) AS cnt,
+           DENSE_RANK() OVER(ORDER BY count(*) DESC) AS rnk
+    FROM employees
+    GROUP BY 1
+    ORDER BY NULL
 )
-SELECT
-    employee.emp_name AS manager_name,
-    employee.dep_id
-FROM Employees AS employee
-INNER JOIN ranked_departments AS department
-    ON department.dep_id = employee.dep_id
-WHERE department.department_rank = 1
-  AND employee.position = 'Manager'
-ORDER BY employee.dep_id;
+
+SELECT manager_name, a.dep_id
+FROM manager_cte a
+INNER JOIN dep_rank_cte b ON a.dep_id = b.dep_id
+WHERE rnk = 1
+ORDER BY 2;

@@ -1,19 +1,9 @@
-from typing import List
-
-
 class Solution:
     def hasIncreasingSubarrays(self, nums: List[int], k: int) -> bool:
-        previous_run = 0
-        current_run = 1
-
-        for index in range(1, len(nums)):
-            if nums[index] > nums[index - 1]:
-                current_run += 1
-            else:
-                previous_run = current_run
-                current_run = 1
-
-            if current_run // 2 >= k or min(previous_run, current_run) >= k:
-                return True
-
-        return False
+        mx = pre = cur = 0
+        for i, x in enumerate(nums):
+            cur += 1
+            if i == len(nums) - 1 or x >= nums[i + 1]:
+                mx = max(mx, cur // 2, min(pre, cur))
+                pre, cur = cur, 0
+        return mx >= k

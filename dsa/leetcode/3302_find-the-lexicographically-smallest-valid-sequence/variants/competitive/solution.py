@@ -1,32 +1,32 @@
-from typing import List
+# Time:  O(n + m)
+# Space: O(m)
 
-
+# hash table, greedy
 class Solution:
-    def validSequence(self, word1: str, word2: str) -> List[int]:
-        source_length = len(word1)
-        target_length = len(word2)
-        suffix_matches = [0] * (source_length + 1)
-        matched = 0
-
-        for index in range(source_length - 1, -1, -1):
-            if matched < target_length and word1[index] == word2[target_length - matched - 1]:
-                matched += 1
-            suffix_matches[index] = matched
-
-        answer = []
-        target_index = 0
-        mismatch_available = True
-
-        for index, character in enumerate(word1):
-            if target_index == target_length:
+    def validSequence(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: List[int]
+        """
+        j = len(word2)-1
+        lookup = [-1]*len(word2)
+        for i in reversed(range(len(word1))):
+            if word1[i] != word2[j]:
+                continue
+            lookup[j] = i
+            j -= 1
+            if j == -1:
                 break
-
-            if character == word2[target_index]:
-                answer.append(index)
-                target_index += 1
-            elif mismatch_available and suffix_matches[index + 1] >= target_length - target_index - 1:
-                answer.append(index)
-                target_index += 1
-                mismatch_available = False
-
-        return answer if target_index == target_length else []
+        result = []
+        cnt = 0
+        for i in range(len(word1)):
+            if not (word1[i] == word2[len(result)] or
+                    (cnt == 0 and (len(result)+1 == len(word2) or i < lookup[len(result)+1]))):
+                continue
+            if word1[i] != word2[len(result)]:
+                cnt += 1
+            result.append(i)
+            if len(result) == len(word2):
+                return result
+        return []

@@ -1,29 +1,28 @@
-from math import isqrt
-from typing import List
+# Time:  O(n * m)
+# Space: O(m)
 
-
+# dp, two pointers
 class Solution:
-    def numberOfRoutes(self, grid: List[str], d: int) -> int:
-        modulo = 1_000_000_007
-        width = len(grid[0])
-
-        def spread(values: List[int], row: str, radius: int) -> List[int]:
-            prefix = [0] * (width + 1)
-            for column, value in enumerate(values):
-                prefix[column + 1] = (prefix[column] + value) % modulo
-            return [
-                (prefix[min(width, column + radius + 1)] - prefix[max(0, column - radius)]) % modulo
-                if cell == "."
-                else 0
-                for column, cell in enumerate(row)
-            ]
-
-        entered = [int(cell == ".") for cell in grid[-1]]
-        routes = spread(entered, grid[-1], d)
-        upward_radius = isqrt(d * d - 1)
-
-        for row in reversed(grid[:-1]):
-            entered = spread(routes, row, upward_radius)
-            routes = spread(entered, row, d)
-
-        return sum(routes) % modulo
+    def numberOfRoutes(self, grid, d):
+        """
+        :type grid: List[str]
+        :type d: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def update(dp, d, arr):
+            new_dp = [0]*len(arr)
+            curr = reduce(lambda accu, x: (accu+x)%MOD, (dp[i] for i in range(min(d, len(dp)))), 0)
+            for i in range(len(arr)):
+                if i-d-1 >= 0:
+                    curr = (curr-dp[i-d-1])%MOD
+                if i+d < len(arr):
+                    curr = (curr+dp[i+d])%MOD
+                new_dp[i] = curr if arr[i] == '.' else 0
+            return new_dp
+    
+        dp = [1]*len(grid[0])
+        for i in reversed(range(len(grid))):
+            dp = update(dp, d-1 if i != len(grid)-1 else 0, grid[i])
+            dp = update(dp, d, grid[i])
+        return reduce(lambda accu, x: (accu+x)%MOD, dp, 0)

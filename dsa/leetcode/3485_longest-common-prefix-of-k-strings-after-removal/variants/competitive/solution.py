@@ -1,56 +1,140 @@
-from typing import List
+# Time:  O(l * nlogn)
+# Space: O(n)
 
-
+# sort, sliding window, prefix sum
 class Solution:
-    def longestCommonPrefix(self, words: List[str], k: int) -> List[int]:
-        if len(words) - 1 < k:
-            return [0] * len(words)
+    def longestCommonPrefix(self, words, k):
+        """
+        :type words: List[str]
+        :type k: int
+        :rtype: List[int]
+        """
+        idxs = range(len(words))
+        idxs.sort(key=lambda x: words[x])
+        def longest_common_prefix(k):
+            lcp = [0]*len(words)
+            for i in range(len(words)-(k-1)):
+                left = words[idxs[i]]
+                right = words[idxs[i+(k-1)]]
+                l = min(len(left), len(right))
+                lcp[i] = next((j for j in range(l) if left[j] != right[j]), l)
+            return lcp
+        
+        lcp = longest_common_prefix(k)
+        prefix = [0]*len(words)
+        prefix[0] = lcp[0]
+        for i in range(len(prefix)-1):
+            prefix[i+1] = max(prefix[i], lcp[i+1])
+        suffix = [0]*len(words)
+        suffix[-1] = lcp[-1]
+        for i in reversed(range(len(suffix)-1)):
+            suffix[i] = max(suffix[i+1], lcp[i])
+        result = [0]*len(words)
+        mx = max(longest_common_prefix(k+1))
+        for i in range(len(words)):
+            idx = idxs[i]
+            mx1 = prefix[i-k] if i-k >= 0 else 0
+            mx2 = suffix[i+1] if i+1 < len(words) else 0
+            result[idx] = max(mx, mx1, mx2)
+        return result
+        
 
-        children: list[dict[str, int]] = [{}]
-        counts = [0]
-        depths = [0]
+# Time:  O(n * l)
+# Space: O(t)
+# trie
+class Solution2(object):
+    def longestCommonPrefix(self, words, k):
+        """
+        :type words: List[str]
+        :type k: int
+        :rtype: List[int]
+        """
+        class Trie(object):
+            def __init__(self):
+                self.__root = self.__new_node()
+            
+            def __new_node(self):
+                return {"cnt":0, "max":0}
 
-        for word in words:
-            node = 0
-            for character in word:
-                next_node = children[node].get(character)
-                if next_node is None:
-                    next_node = len(children)
-                    children[node][character] = next_node
-                    children.append({})
-                    counts.append(0)
-                    depths.append(depths[node] + 1)
-                node = next_node
-                counts[node] += 1
+            def update(self, w, d, k):
+                path = [None]*(len(w)+1)
+                path[0] = curr = self.__root
+                for i, x in enumerate(w, 1):
+                    if x not in curr:
+                        curr[x] = self.__new_node()
+                    path[i] = curr = curr[x]
+                for i in reversed(range(len(path))):
+                    curr = path[i]
+                    curr["cnt"] += d
+                    curr["max"] = i if curr["cnt"] >= k else 0
+                    for x in curr.keys():
+                        if len(x) == 1:
+                            curr["max"] = max(curr["max"], curr[x]["max"])
 
-        maximum_depth = max(depths)
-        valid_at_depth = [0] * (maximum_depth + 1)
-        for node in range(1, len(counts)):
-            if counts[node] >= k:
-                valid_at_depth[depths[node]] += 1
+            def query(self):
+                return self.__root["max"]
+        
 
-        previous_valid = [0] * (maximum_depth + 1)
-        latest = 0
-        for depth in range(1, maximum_depth + 1):
-            if valid_at_depth[depth] > 0:
-                latest = depth
-            previous_valid[depth] = latest
+        trie = Trie()
+        for w in words:
+            trie.update(w, +1, k)
+        result = [0]*len(words)
+        for i in range(len(words)):
+            trie.update(words[i], -1, k)
+            result[i] = trie.query()
+            trie.update(words[i], +1, k)
+        return result
 
-        deepest = previous_valid[maximum_depth]
-        disabled_by = [-1] * (maximum_depth + 1)
-        answer: list[int] = []
 
-        for word_index, word in enumerate(words):
-            node = 0
-            for character in word:
-                node = children[node][character]
-                depth = depths[node]
-                if counts[node] == k and valid_at_depth[depth] == 1:
-                    disabled_by[depth] = word_index
+# Time:  O(n * l)
+# Space: O(t)
+# trie
+class Solution_TLE(object):
+    def longestCommonPrefix(self, words, k):
+        """
+        :type words: List[str]
+        :type k: int
+        :rtype: List[int]
+        """
+        class Trie(object):
+            def __init__(self):
+                self.__nodes = []
+                self.__cnt = []
+                self.__mx = []
+                self.__new_node()
+            
+            def __new_node(self):
+                self.__nodes.append([-1]*26)
+                self.__cnt.append(0)
+                self.__mx.append(0)
+                return len(self.__nodes)-1
 
-            candidate = deepest
-            while candidate > 0 and disabled_by[candidate] == word_index:
-                candidate = previous_valid[candidate - 1]
-            answer.append(candidate)
+            def update(self, w, d, k):
+                path = [-1]*(len(w)+1)
+                path[0] = curr = 0
+                for i, c in enumerate(w, 1):
+                    x = ord(c)-ord('a')
+                    if self.__nodes[curr][x] == -1:
+                        self.__nodes[curr][x] = self.__new_node()
+                    path[i] = curr = self.__nodes[curr][x]
+                for i in reversed(range(len(path))):
+                    curr = path[i]
+                    self.__cnt[curr] += d
+                    self.__mx[curr] = i if self.__cnt[curr] >= k else 0
+                    for x in range(len(self.__nodes[curr])):
+                        if self.__nodes[curr][x] != -1:
+                            self.__mx[curr]= max(self.__mx[curr], self.__mx[self.__nodes[curr][x]])
 
-        return answer
+            def query(self):
+                return self.__mx[0]
+        
+
+        result = [0]*len(words)
+        trie = Trie()
+        for w in words:
+            trie.update(w, +1, k)
+        for i in range(len(words)):
+            trie.update(words[i], -1, k)
+            result[i] = trie.query()
+            trie.update(words[i], +1, k)
+        return result

@@ -1,16 +1,13 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def minimumRightShifts(self, nums: List[int]) -> int:
-        n = len(nums)
-        break_index = -1
-
-        for i in range(n - 1):
-            if nums[i] > nums[i + 1]:
-                if break_index != -1:
-                    return -1
-                break_index = i
-
-        if break_index == -1:
-            return 0
-        if nums[-1] > nums[0]:
-            return -1
-        return n - break_index - 1
+    def minimumRightShifts(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        i = next((i for i in range(len(nums)) if not nums[i] < nums[(i+1)%len(nums)]), len(nums))
+        j = next((j for j in range(i+1, len(nums)) if not nums[j%len(nums)] < nums[(j+1)%len(nums)]), len(nums))
+        return len(nums)-(i+1) if j == len(nums) else -1

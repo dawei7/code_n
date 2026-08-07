@@ -1,16 +1,23 @@
-from collections import Counter
-from typing import List
+# Time:  O(n * k) = O(3 * n)
+# Space: O(n + k) = O(n)
+
+import collections
 
 
+# freq table, dp
 class Solution:
-    def unequalTriplets(self, nums: List[int]) -> int:
-        answer = 0
-        left = 0
-        right = len(nums)
-
-        for count in Counter(nums).values():
-            right -= count
-            answer += left * count * right
-            left += count
-
-        return answer
+    def unequalTriplets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        K = 3
+        cnt = collections.Counter()
+        dp = [0]*K  # dp[i]: number of unequal (i+1)-plets
+        for x in nums:
+            cnt[x] += 1
+            other_cnt = 1
+            for i in range(K):
+                dp[i] += other_cnt
+                other_cnt = dp[i]-cnt[x]*other_cnt
+        return dp[K-1]

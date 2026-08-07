@@ -2,24 +2,24 @@ class Solution:
     def fractionToDecimal(self, numerator: int, denominator: int) -> str:
         if numerator == 0:
             return "0"
-
-        negative = (numerator < 0) != (denominator < 0)
-        numerator = abs(numerator)
-        denominator = abs(denominator)
-        integer, remainder = divmod(numerator, denominator)
-        prefix = ("-" if negative else "") + str(integer)
-        if remainder == 0:
-            return prefix
-
-        digits = []
-        positions = {}
-        while remainder != 0:
-            if remainder in positions:
-                start = positions[remainder]
-                digits.insert(start, "(")
-                digits.append(")")
+        ans = []
+        neg = (numerator > 0) ^ (denominator > 0)
+        if neg:
+            ans.append("-")
+        a, b = abs(numerator), abs(denominator)
+        ans.append(str(a // b))
+        a %= b
+        if a == 0:
+            return "".join(ans)
+        ans.append(".")
+        d = {}
+        while a:
+            d[a] = len(ans)
+            a *= 10
+            ans.append(str(a // b))
+            a %= b
+            if a in d:
+                ans.insert(d[a], "(")
+                ans.append(")")
                 break
-            positions[remainder] = len(digits)
-            digit, remainder = divmod(remainder * 10, denominator)
-            digits.append(str(digit))
-        return prefix + "." + "".join(digits)
+        return "".join(ans)

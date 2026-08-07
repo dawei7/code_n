@@ -1,19 +1,12 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def longestEqualSubarray(self, nums: List[int], k: int) -> int:
-        positions_by_value = defaultdict(list)
-        for index, value in enumerate(nums):
-            positions_by_value[value].append(index)
-
-        best = 0
-        for positions in positions_by_value.values():
-            left = 0
-            for right in range(len(positions)):
-                while positions[right] - positions[left] - (right - left) > k:
-                    left += 1
-                best = max(best, right - left + 1)
-
-        return best
+        cnt = Counter()
+        l = 0
+        mx = 0
+        for r, x in enumerate(nums):
+            cnt[x] += 1
+            mx = max(mx, cnt[x])
+            if r - l + 1 - mx > k:
+                cnt[nums[l]] -= 1
+                l += 1
+        return mx

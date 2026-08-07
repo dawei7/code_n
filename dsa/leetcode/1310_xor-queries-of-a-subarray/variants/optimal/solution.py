@@ -1,10 +1,4 @@
-from typing import List
-
-
 class Solution:
     def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
-        prefix = [0]
-        for value in arr:
-            prefix.append(prefix[-1] ^ value)
-
-        return [prefix[right + 1] ^ prefix[left] for left, right in queries]
+        s = list(accumulate(arr, xor, initial=0))
+        return [s[r + 1] ^ s[l] for l, r in queries]

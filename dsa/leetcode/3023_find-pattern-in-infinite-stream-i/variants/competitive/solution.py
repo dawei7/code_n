@@ -1,32 +1,39 @@
-from typing import List, Optional
+# Time:  O(p + n)
+# Space: O(p)
+
+class InfiniteStream:
+    def next(self):
+        pass
 
 
-# Definition for an infinite stream.
-# class InfiniteStream:
-#     def next(self) -> int:
-#         pass
-
-
+# kmp
 class Solution:
-    def findPattern(self, stream: Optional["InfiniteStream"], pattern: List[int]) -> int:
-        prefix = [0] * len(pattern)
-        matched = 0
+    def findPattern(self, stream, pattern):
+        """
+        :type stream: InfiniteStream
+        :type pattern: List[int]
+        :rtype: int
+        """
+        def getPrefix(pattern):
+            prefix = [-1]*len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j+1 > 0 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
 
-        for index in range(1, len(pattern)):
-            while matched and pattern[index] != pattern[matched]:
-                matched = prefix[matched - 1]
-            if pattern[index] == pattern[matched]:
-                matched += 1
-            prefix[index] = matched
-
-        matched = 0
-        index = 0
+        prefix = getPrefix(pattern)
+        i = j = -1
         while True:
-            bit = stream.next()
-            while matched and bit != pattern[matched]:
-                matched = prefix[matched - 1]
-            if bit == pattern[matched]:
-                matched += 1
-            if matched == len(pattern):
-                return index - len(pattern) + 1
-            index += 1
+            d = stream.next()
+            i += 1
+            while j+1 > 0 and pattern[j+1] != d:
+                j = prefix[j]
+            if pattern[j+1] == d:
+                j += 1
+            if j+1 == len(pattern):
+                return i-j
+        return -1

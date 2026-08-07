@@ -1,14 +1,9 @@
-from typing import List
-
-
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        jumps = 0
-        current_end = 0
-        farthest = 0
-        for index in range(len(nums) - 1):
-            farthest = max(farthest, index + nums[index])
-            if index == current_end:
-                jumps += 1
-                current_end = farthest
-        return jumps
+        ans = mx = last = 0
+        for i, x in enumerate(nums[:-1]):
+            mx = max(mx, i + x)
+            if last == i:
+                ans += 1
+                last = mx
+        return ans

@@ -1,16 +1,13 @@
-from collections import defaultdict
-from heapq import heappush, heappushpop
-from typing import List
-
-
 class Solution:
     def highFive(self, items: List[List[int]]) -> List[List[int]]:
-        best = defaultdict(list)
-        for student_id, score in items:
-            scores = best[student_id]
-            if len(scores) < 5:
-                heappush(scores, score)
-            elif score > scores[0]:
-                heappushpop(scores, score)
-
-        return [[student_id, sum(best[student_id]) // 5] for student_id in sorted(best)]
+        d = defaultdict(list)
+        m = 0
+        for i, x in items:
+            d[i].append(x)
+            m = max(m, i)
+        ans = []
+        for i in range(1, m + 1):
+            if xs := d[i]:
+                avg = sum(nlargest(5, xs)) // 5
+                ans.append([i, avg])
+        return ans

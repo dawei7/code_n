@@ -1,30 +1,32 @@
+# Time:  O(s1 * min(s2, n1))
+# Space: O(s2)
+
 class Solution:
-    def getMaxRepetitions(self, s1: str, n1: int, s2: str, n2: int) -> int:
-        if not set(s2).issubset(set(s1)):
-            return 0
+    def getMaxRepetitions(self, s1, n1, s2, n2):
+        """
+        :type s1: str
+        :type n1: int
+        :type s2: str
+        :type n2: int
+        :rtype: int
+        """
+        repeat_count = [0] * (len(s2)+1)
+        lookup = {}
+        j, count = 0, 0
+        for k in range(1, n1+1):
+            for i in range(len(s1)):
+                if s1[i] == s2[j]:
+                    j = (j + 1) % len(s2)
+                    count += (j == 0)
 
-        target_index = 0
-        completed = 0
-        blocks = 0
-        seen = {0: (0, 0)}
-        while blocks < n1:
-            for character in s1:
-                if character == s2[target_index]:
-                    target_index += 1
-                    if target_index == len(s2):
-                        target_index = 0
-                        completed += 1
-            blocks += 1
+            if j in lookup:   # cyclic
+                i = lookup[j]
+                prefix_count = repeat_count[i]
+                pattern_count = (count - repeat_count[i]) * ((n1 - i) // (k - i))
+                suffix_count = repeat_count[i + (n1 - i) % (k - i)] - repeat_count[i]
+                return (prefix_count + pattern_count + suffix_count) / n2
+            lookup[j] = k
+            repeat_count[k] = count
 
-            if target_index in seen:
-                previous_blocks, previous_completed = seen[target_index]
-                cycle_blocks = blocks - previous_blocks
-                cycle_completed = completed - previous_completed
-                cycles = (n1 - blocks) // cycle_blocks
-                blocks += cycles * cycle_blocks
-                completed += cycles * cycle_completed
-                seen.clear()
-            else:
-                seen[target_index] = (blocks, completed)
+        return repeat_count[n1] / n2  # not cyclic iff n1 <= s2
 
-        return completed // n2

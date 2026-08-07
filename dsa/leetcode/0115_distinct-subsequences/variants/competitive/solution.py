@@ -1,11 +1,14 @@
+# Time:  O(n^2)
+# Space: O(n)
+
 class Solution:
-    def numDistinct(self, s: str, t: str) -> int:
-        if len(t) > len(s):
-            return 0
-        dp = [0] * (len(t) + 1)
-        dp[0] = 1
-        for source_character in s:
-            for target_length in range(len(t), 0, -1):
-                if source_character == t[target_length - 1]:
-                    dp[target_length] += dp[target_length - 1]
-        return dp[-1]
+    # @return an integer
+    def numDistinct(self, S, T):
+        ways = [0 for _ in range(len(T) + 1)]
+        ways[0] = 1
+        for S_char in S:
+            for j, T_char in reversed(list(enumerate(T))):
+                if S_char == T_char:
+                    ways[j + 1] += ways[j]
+        return ways[len(T)]
+

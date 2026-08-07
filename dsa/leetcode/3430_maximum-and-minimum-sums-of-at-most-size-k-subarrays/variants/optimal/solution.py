@@ -1,47 +1,56 @@
-from typing import List
-
-
 class Solution:
-    def minMaxSubarraySum(self, nums: List[int], k: int) -> int:
-        n = len(nums)
+    def minMaxSubarraySum(self, nums: list[int], k: int) -> int:
+        subarrays_max_min_sum = 0
 
-        def bounded_pair_count(left: int, right: int) -> int:
-            left = min(left, k - 1)
-            full_until = min(left, k - 1 - right)
-            count = 0
-            if full_until >= 0:
-                count = (full_until + 1) * (right + 1)
-            start = max(0, full_until + 1)
-            if start <= left:
-                terms = left - start + 1
-                count += terms * ((k - start) + (k - left)) // 2
-            return count
+        max_stack: deque[list[int]] = deque([])  # Format: [idx, num, shares].
+        subarrays_max_sum = 0
 
-        def contribution(maximum: bool) -> int:
-            previous = [-1] * n
-            following = [n] * n
-            stack: list[int] = []
-            for i, value in enumerate(nums):
-                while stack and (nums[stack[-1]] <= value if maximum else nums[stack[-1]] >= value):
-                    stack.pop()
-                if stack:
-                    previous[i] = stack[-1]
-                stack.append(i)
+        min_stack: deque[list[int]] = deque([])  # Format: [idx, num, shares].
+        subarrays_min_sum = 0
 
-            stack.clear()
-            for i in range(n - 1, -1, -1):
-                while stack and (nums[stack[-1]] < nums[i] if maximum else nums[stack[-1]] > nums[i]):
-                    stack.pop()
-                if stack:
-                    following[i] = stack[-1]
-                stack.append(i)
+        for end_idx, num in enumerate(nums):
+            start_idx = max(0, end_idx - k + 1)
 
-            total = 0
-            for i, value in enumerate(nums):
-                total += value * bounded_pair_count(
-                    i - previous[i] - 1,
-                    following[i] - i - 1,
-                )
-            return total
+            # Window start idx slides by 1: must update stacks' info.
+            if start_idx > 0:
+                max_stack[0][2] -= 1  # Decrement stack's front num shares.
+                subarrays_max_sum -= max_stack[0][1]
 
-        return contribution(True) + contribution(False)
+                if max_stack[0][0] < start_idx:  # Front num out of window.
+                    max_stack.popleft()
+
+                min_stack[0][2] -= 1  # Decrement stack's front num shares.
+                subarrays_min_sum -= min_stack[0][1]
+
+                if min_stack[0][0] < start_idx:  # Front num out of window.
+                    min_stack.popleft()
+
+            max_shares = 1  # Base case.
+            subarrays_max_sum += num
+
+            while max_stack and max_stack[-1][1] <= num:
+                _, prev_num, prev_shares = max_stack.pop()
+
+                max_shares += prev_shares  # Max shares transition.
+
+                # Reflect transition in max sum.
+                subarrays_max_sum += (num - prev_num) * prev_shares
+
+            max_stack.append([end_idx, num, max_shares])
+
+            min_shares = 1  # Base case.
+            subarrays_min_sum += num
+
+            while min_stack and min_stack[-1][1] >= num:
+                _, prev_num, prev_shares = min_stack.pop()
+
+                min_shares += prev_shares  # Min shares transition.
+
+                # Reflect transition in min sum.
+                subarrays_min_sum += (num - prev_num) * prev_shares
+
+            min_stack.append([end_idx, num, min_shares])
+
+            subarrays_max_min_sum += subarrays_max_sum + subarrays_min_sum
+
+        return subarrays_max_min_sum

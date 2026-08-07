@@ -1,39 +1,23 @@
-from typing import List
-
+# Time:  O(p + r * n), p is the count of all the possible paths in graph,
+#                      r is the count of the result.
+# Space: O(n)
 
 class Solution:
-    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
-        target = len(graph) - 1
-        reverse_graph = [[] for _ in graph]
-        for node, neighbors in enumerate(graph):
-            for neighbor in neighbors:
-                reverse_graph[neighbor].append(node)
-
-        can_reach_target = [False] * len(graph)
-        can_reach_target[target] = True
-        stack = [target]
-        while stack:
-            node = stack.pop()
-            for predecessor in reverse_graph[node]:
-                if not can_reach_target[predecessor]:
-                    can_reach_target[predecessor] = True
-                    stack.append(predecessor)
-
-        if not can_reach_target[0]:
-            return []
-
-        paths = []
-        path = [0]
-
-        def visit(node: int) -> None:
-            if node == target:
-                paths.append(path.copy())
+    def allPathsSourceTarget(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def dfs(graph, curr, path, result):
+            if curr == len(graph)-1:
+                result.append(path[:])
                 return
-            for neighbor in graph[node]:
-                if can_reach_target[neighbor]:
-                    path.append(neighbor)
-                    visit(neighbor)
-                    path.pop()
+            for node in graph[curr]:
+                path.append(node)
+                dfs(graph, node, path, result)
+                path.pop()
 
-        visit(0)
-        return paths
+        result = []
+        dfs(graph, 0, [0], result)
+        return result
+

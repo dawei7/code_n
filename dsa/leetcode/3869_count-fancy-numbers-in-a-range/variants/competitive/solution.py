@@ -1,62 +1,80 @@
-from bisect import bisect_left, bisect_right
-from functools import cache
-from itertools import combinations
+# Time:  O(dlogd + g + d^2 + g * d) = O(g * d + d^2), d = logr, g = len(good)
+# Space: O(g + d)
 
-
+# bfs, dp, principle of inclusion and exclusion
 class Solution:
-    def countFancy(self, l: int, r: int) -> int:
-        def is_good(value: int) -> bool:
-            digits = str(value)
-            return (
-                len(digits) == 1
-                or all(digits[index] < digits[index + 1] for index in range(len(digits) - 1))
-                or all(digits[index] > digits[index + 1] for index in range(len(digits) - 1))
-            )
+    def countFancy(self, l, r):
+        """
+        :type l: int
+        :type r: int
+        :rtype: int
+        """
+        def count(x):
+            def length(n):  # Time: O(logn)
+                result = 0
+                while n:
+                    result += 1
+                    n //= 10
+                return result
 
-        good_sums = {value for value in range(1, 145) if is_good(value)}
+            def total(n):  # Time: O(logn)
+                result = 0
+                while n:
+                    result += i%10
+                    n //= 10
+                return result
 
-        good_numbers: set[int] = set()
-        increasing_digits = "123456789"
-        for length in range(1, len(increasing_digits) + 1):
-            for chosen in combinations(increasing_digits, length):
-                good_numbers.add(int("".join(chosen)))
+            def check(n):  # Time: O(logn)
+                asc = desc = True
+                while n >= 10:
+                    if not (n//10)%10 < n%10:
+                        asc = False
+                    if not (n//10)%10 > n%10:
+                        desc = False
+                    n //= 10
+                return asc or desc
 
-        decreasing_digits = "0123456789"
-        for length in range(1, len(decreasing_digits) + 1):
-            for chosen in combinations(decreasing_digits, length):
-                value = int("".join(reversed(chosen)))
-                if value:
-                    good_numbers.add(value)
+            def bfs(x):  # Time: O(g), g = len(result)
+                result = [i for i in range(1, min(9, x)+1)]
+                for diff in (1, -1):
+                    q = []
+                    for i in range(1, min(9, x)+1):
+                        q.append(i)
+                    while q:
+                        new_q = []
+                        for u in q:
+                            curr = u%10
+                            d = curr+diff
+                            while 0 <= d <= 9:
+                                v = u*10+d
+                                if v <= x:
+                                    new_q.append(v)
+                                    result.append(v)
+                                d += diff
+                        q = new_q
+                return result
 
-        ordered_good = sorted(good_numbers)
-        ordered_overlap = sorted(value for value in good_numbers if sum(map(int, str(value))) in good_sums)
+            def dp(x):  # Time: O(d^2), d = logr
+                l = length(x)
+                mx = l*9
+                dp = [[0]*(mx+1) for _ in range(2)]  # dp[tight][sum]
+                dp[1][0] = 1
+                base = 10**(l-1)
+                for i in range(l):
+                    new_dp = [[0]*(mx+1) for _ in range(2)]
+                    v = (x//base)%10
+                    base //= 10
+                    for t in range(2):
+                        for s in range(mx+1):
+                            if dp[t][s] == 0:
+                                continue
+                            for d in range((v if t == 1 else 9)+1):
+                                new_dp[t == 1 and d == v][s+d] += dp[t][s]
+                    dp = new_dp
+                return sum(dp[0][i]+dp[1][i] for i in range(mx+1) if lookup[i])
 
-        def count_sum_good(bound: int) -> int:
-            if bound <= 0:
-                return 0
+            lookup = [check(i) for i in range(length(x)*9+1)]
+            good = bfs(x)
+            return len(good)+dp(x)-sum(lookup[total(x)] for x in good)
 
-            digits = tuple(map(int, str(bound)))
-
-            @cache
-            def digit_dp(index: int, tight: bool, digit_sum: int) -> int:
-                if index == len(digits):
-                    return int(digit_sum in good_sums)
-
-                limit = digits[index] if tight else 9
-                total = 0
-                for digit in range(limit + 1):
-                    total += digit_dp(
-                        index + 1,
-                        tight and digit == limit,
-                        digit_sum + digit,
-                    )
-                return total
-
-            return digit_dp(0, True, 0)
-
-        def count_in_range(values: list[int]) -> int:
-            return bisect_right(values, r) - bisect_left(values, l)
-
-        return (
-            count_sum_good(r) - count_sum_good(l - 1) + count_in_range(ordered_good) - count_in_range(ordered_overlap)
-        )
+        return count(r)-count(l-1)

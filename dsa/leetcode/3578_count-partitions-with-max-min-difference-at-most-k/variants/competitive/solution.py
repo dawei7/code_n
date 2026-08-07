@@ -1,37 +1,36 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# mono deque, two pointers, sliding window, dp, prefix sum
 class Solution:
-    def countPartitions(self, nums: List[int], k: int) -> int:
-        MOD = 1_000_000_007
-        n = len(nums)
-        min_queue = deque()
-        max_queue = deque()
-        left = 0
-
-        ways = [0] * (n + 1)
-        prefix = [0] * (n + 2)
-        ways[0] = 1
-        prefix[1] = 1
-
-        for right, value in enumerate(nums):
-            while min_queue and nums[min_queue[-1]] >= value:
-                min_queue.pop()
-            min_queue.append(right)
-
-            while max_queue and nums[max_queue[-1]] <= value:
-                max_queue.pop()
-            max_queue.append(right)
-
-            while nums[max_queue[0]] - nums[min_queue[0]] > k:
-                if min_queue[0] == left:
-                    min_queue.popleft()
-                if max_queue[0] == left:
-                    max_queue.popleft()
+    def countPartitions(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        max_dq, min_dq = collections.deque(), collections.deque()
+        dp = [0]*(len(nums)+1)
+        dp[0] = 1
+        left = suffix = 0
+        for right in range(len(nums)):
+            suffix = (suffix+dp[right])%MOD
+            while max_dq and nums[max_dq[-1]] <= nums[right]:
+                max_dq.pop()
+            max_dq.append(right)
+            while min_dq and nums[min_dq[-1]] >= nums[right]:
+                min_dq.pop()
+            min_dq.append(right)
+            while nums[max_dq[0]]-nums[min_dq[0]] > k:
+                if min_dq[0] == left:
+                    min_dq.popleft()
+                if max_dq[0] == left:
+                    max_dq.popleft()
+                suffix = (suffix-dp[left])%MOD
                 left += 1
-
-            ways[right + 1] = (prefix[right + 1] - prefix[left]) % MOD
-            prefix[right + 2] = (prefix[right + 1] + ways[right + 1]) % MOD
-
-        return ways[n]
+            dp[right+1] = suffix
+        return dp[-1]

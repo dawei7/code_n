@@ -1,14 +1,14 @@
-from typing import List
-
-
 class Solution:
     def maxProfit(self, prices: List[int], fee: int) -> int:
-        cash = 0
-        hold = -prices[0]
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i >= len(prices):
+                return 0
+            ans = dfs(i + 1, j)
+            if j:
+                ans = max(ans, prices[i] + dfs(i + 1, 0) - fee)
+            else:
+                ans = max(ans, -prices[i] + dfs(i + 1, 1))
+            return ans
 
-        for price in prices[1:]:
-            previous_cash = cash
-            cash = max(cash, hold + price - fee)
-            hold = max(hold, previous_cash - price)
-
-        return cash
+        return dfs(0, 0)

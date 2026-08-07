@@ -1,16 +1,21 @@
-from typing import List
-
+# Time:  O(n!)
+# Space: O(n)
 
 class Solution:
-    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        seen = {0}
+    def canVisitAllRooms(self, rooms):
+        """
+        :type rooms: List[List[int]]
+        :rtype: bool
+        """
+        lookup = set([0])
         stack = [0]
-
         while stack:
-            room = stack.pop()
-            for key in rooms[room]:
-                if key not in seen:
-                    seen.add(key)
-                    stack.append(key)
+            node = stack.pop()
+            for nei in rooms[node]:
+                if nei not in lookup:
+                    lookup.add(nei)
+                    if len(lookup) == len(rooms):
+                        return True
+                    stack.append(nei)
+        return len(lookup) == len(rooms)
 
-        return len(seen) == len(rooms)

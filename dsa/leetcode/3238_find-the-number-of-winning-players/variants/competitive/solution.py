@@ -1,16 +1,18 @@
-from typing import List
+# Time:  O(p), p = len(pick)
+# Space: O(min(n * c, p)), c = max(y)
+
+import collections
 
 
+# freq table
 class Solution:
-    def winningPlayerCount(self, n: int, pick: List[List[int]]) -> int:
-        counts = [[0] * 11 for _ in range(n)]
-        won = [False] * n
-        winners = 0
-
-        for player, color in pick:
-            counts[player][color] += 1
-            if not won[player] and counts[player][color] > player:
-                won[player] = True
-                winners += 1
-
-        return winners
+    def winningPlayerCount(self, n, pick):
+        """
+        :type n: int
+        :type pick: List[List[int]]
+        :rtype: int
+        """
+        cnts = collections.defaultdict(lambda: collections.defaultdict(int))
+        for x, y in pick:
+            cnts[x][y] += 1
+        return sum(i < max(cnt.values()) for i, cnt in cnts.items())

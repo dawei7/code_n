@@ -1,16 +1,22 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table
 class Solution:
-    def dividePlayers(self, skill: List[int]) -> int:
-        skill.sort()
-        target = skill[0] + skill[-1]
-        chemistry = 0
+    def dividePlayers(self, skill):
+        """
+        :type skill: List[int]
+        :rtype: int
+        """
 
-        for left in range(len(skill) // 2):
-            right = len(skill) - 1 - left
-            if skill[left] + skill[right] != target:
+        target = sum(skill)//(len(skill)//2)
+        cnt = collections.Counter(skill)
+        result = 0
+        for k, v in cnt.items():
+            if target-k not in cnt or cnt[target-k] != cnt[k]:
                 return -1
-            chemistry += skill[left] * skill[right]
-
-        return chemistry
+            result += k*(target-k)*v
+        return result//2

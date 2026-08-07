@@ -1,28 +1,21 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp, bitmasks
 class Solution:
-    def onceTwice(self, nums: List[int]) -> List[int]:
-        seen_once = 0
-        seen_twice = 0
-
-        for value in nums:
-            seen_once = (seen_once ^ value) & ~seen_twice
-            seen_twice = (seen_twice ^ value) & ~seen_once
-
-        differing_bit = (seen_once | seen_twice) & -(seen_once | seen_twice)
-
-        zero_once = 0
-        zero_twice = 0
-        one_once = 0
-        one_twice = 0
-
-        for value in nums:
-            if value & differing_bit:
-                one_once = (one_once ^ value) & ~one_twice
-                one_twice = (one_twice ^ value) & ~one_once
-            else:
-                zero_once = (zero_once ^ value) & ~zero_twice
-                zero_twice = (zero_twice ^ value) & ~zero_once
-
-        if seen_once & differing_bit:
-            return [one_once, zero_twice]
-
-        return [zero_once, one_twice]
+    def onceTwice(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        dp = [0]*3
+        dp[0] = ~0
+        for x in nums:
+            dp = [(x&dp[i-1])|(~x&dp[i]) for i in range(3)]
+        dp2 = [0]*3
+        dp2[0] = ~0
+        for x in nums:
+            if ~x&dp[1] or x&dp[2]:
+                continue
+            dp2 = [(x&dp2[i-1])|(~x&dp2[i]) for i in range(3)]
+        return [dp2[1], (dp2[1]^dp[1])|dp[2]]

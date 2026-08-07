@@ -1,18 +1,18 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h), h is height of binary tree
 
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
-    def maxDepth(self, root: Optional["TreeNode"]) -> int:
+    # @param root, a tree node
+    # @return an integer
+    def maxDepth(self, root):
         if root is None:
             return 0
+        else:
+            return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
 
-        maximum = 0
-        stack = [(root, 1)]
-        while stack:
-            node, depth = stack.pop()
-            maximum = max(maximum, depth)
-            if node.right is not None:
-                stack.append((node.right, depth + 1))
-            if node.left is not None:
-                stack.append((node.left, depth + 1))
-        return maximum

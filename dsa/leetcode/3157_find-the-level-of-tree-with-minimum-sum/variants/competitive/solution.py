@@ -1,26 +1,32 @@
-from collections import deque
+# Time:  O(n)
+# Space: O(w)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        pass
 
 
+# bfs
 class Solution:
-    def minimumLevel(self, root: Optional[TreeNode]) -> int:
-        queue = deque([root])
-        level = 1
-        best_level = 1
-        best_sum = float("inf")
-
-        while queue:
-            level_sum = 0
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                level_sum += node.val
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-
-            if level_sum < best_sum:
-                best_sum = level_sum
-                best_level = level
-            level += 1
-
-        return best_level
+    def minimumLevel(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        q = [root]
+        d = 1
+        result = ((float("inf"), float("inf")))
+        while q:
+            new_q = []
+            total = 0
+            for u in q:
+                if u.left:
+                    new_q.append(u.left)
+                if u.right:
+                    new_q.append(u.right)
+                total += u.val
+            result = min(result, (total, d))
+            q = new_q
+            d += 1
+        return result[-1]

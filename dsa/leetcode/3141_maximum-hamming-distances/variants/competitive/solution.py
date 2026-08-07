@@ -1,25 +1,51 @@
-from collections import deque
-from typing import List
+# Time:  O(m * 2^m)
+# Space: O(2^m)
 
-
+# bitmasks, knapsack dp
 class Solution:
-    def maxHammingDistances(self, nums: List[int], m: int) -> List[int]:
-        size = 1 << m
-        distance = [-1] * size
-        queue = deque()
+    def maxHammingDistances(self, nums, m):
+        """
+        :type nums: List[int]
+        :type m: int
+        :rtype: List[int]
+        """
+        dp = [float("-inf")]*(1<<m)
+        for x in nums:
+            dp[x] = 0
+        for i in range(m):
+            new_dp = dp[:]
+            for mask in range(1<<m):
+                new_dp[mask] = max(new_dp[mask], dp[mask^(1<<i)]+1)
+            dp = new_dp
+        return [dp[x] for x in nums]
 
-        for value in nums:
-            if distance[value] == -1:
-                distance[value] = 0
-                queue.append(value)
 
-        while queue:
-            value = queue.popleft()
-            for bit in range(m):
-                neighbor = value ^ (1 << bit)
-                if distance[neighbor] == -1:
-                    distance[neighbor] = distance[value] + 1
-                    queue.append(neighbor)
-
-        mask = size - 1
-        return [m - distance[value ^ mask] for value in nums]
+# Time:  O(m * 2^m)
+# Space: O(2^m)
+# bitmasks, bfs
+class Solution2(object):
+    def maxHammingDistances(self, nums, m):
+        """
+        :type nums: List[int]
+        :type m: int
+        :rtype: List[int]
+        """
+        q = []
+        dist = [-1]*(1<<m)
+        for x in nums:
+            if dist[x] != -1:
+                continue
+            dist[x] = 0
+            q.append(x)
+        d = 0
+        while q:
+            d += 1
+            new_q = []
+            for u in q:
+                for i in range(m):
+                    if dist[u^(1<<i)] != -1:
+                        continue
+                    dist[u^(1<<i)] = d
+                    new_q.append(u^(1<<i))
+            q = new_q
+        return [m-dist[((1<<m)-1)^x] for x in nums]

@@ -1,24 +1,23 @@
-from typing import List
+# Time:  O(n * 2^n)
+# Space: O(2^n)
 
-
+# bitmasks, dp
 class Solution:
-    def minimumTime(self, power: List[int]) -> int:
-        monster_count = len(power)
-        full_mask = (1 << monster_count) - 1
-        minimum_days = [10**30] * (full_mask + 1)
-        minimum_days[0] = 0
+    def minimumTime(self, power):
+        """
+        :type power: List[int]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
 
-        for mask in range(full_mask + 1):
-            gain = mask.bit_count() + 1
-            for monster, required_power in enumerate(power):
-                monster_bit = 1 << monster
-                if mask & monster_bit:
-                    continue
-                next_mask = mask | monster_bit
-                days = (required_power + gain - 1) // gain
-                minimum_days[next_mask] = min(
-                    minimum_days[next_mask],
-                    minimum_days[mask] + days,
-                )
-
-        return minimum_days[full_mask]
+        INF = float("inf")
+        dp = {0:0}
+        for gain in range(1, len(power)+1):
+            new_dp = collections.defaultdict(lambda:INF)
+            for mask in dp.keys():
+                for i in range(len(power)):
+                    if mask&(1<<i) == 0:
+                        new_dp[mask|(1<<i)] = min(new_dp[mask|(1<<i)], dp[mask]+ceil_divide(power[i], gain))
+            dp = new_dp
+        return dp[(1<<len(power))-1]

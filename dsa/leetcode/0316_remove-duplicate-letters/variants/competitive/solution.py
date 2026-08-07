@@ -1,19 +1,23 @@
-def _remove_duplicate_letters(s: str) -> str:
-    last_index = {letter: index for index, letter in enumerate(s)}
-    stack = []
-    selected = set()
+# Time:  O(n)
+# Space: O(k), k is size of the alphabet
 
-    for index, letter in enumerate(s):
-        if letter in selected:
-            continue
-        while stack and letter < stack[-1] and last_index[stack[-1]] > index:
-            selected.remove(stack.pop())
-        stack.append(letter)
-        selected.add(letter)
-
-    return "".join(stack)
+from collections import Counter
 
 
 class Solution:
-    def removeDuplicateLetters(self, s: str) -> str:
-        return _remove_duplicate_letters(s)
+    def removeDuplicateLetters(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        remaining = Counter(s)
+
+        in_stack, stk = set(), []
+        for c in s:
+            if c not in in_stack:
+                while stk and stk[-1] > c and remaining[stk[-1]]:
+                    in_stack.remove(stk.pop())
+                stk += c
+                in_stack.add(c)
+            remaining[c] -= 1
+        return "".join(stk)

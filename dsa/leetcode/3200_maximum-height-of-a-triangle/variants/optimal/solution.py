@@ -1,11 +1,12 @@
-from math import isqrt
-
-
 class Solution:
     def maxHeightOfTriangle(self, red: int, blue: int) -> int:
-        def height(first: int, second: int) -> int:
-            odd_rows = isqrt(first)
-            even_rows = (isqrt(1 + 4 * second) - 1) // 2
-            return min(2 * odd_rows, 2 * even_rows + 1)
-
-        return max(height(red, blue), height(blue, red))
+        ans = 0
+        for k in range(2):
+            c = [red, blue]
+            i, j = 1, k
+            while i <= c[j]:
+                c[j] -= i
+                j ^= 1
+                ans = max(ans, i)
+                i += 1
+        return ans

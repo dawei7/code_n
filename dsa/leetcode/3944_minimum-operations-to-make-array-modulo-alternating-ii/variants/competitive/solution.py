@@ -1,43 +1,37 @@
+# Time:  O(n + k)
+# Space: O(k)
+
+# freq table, sliding window
 class Solution:
-    def minOperations(self, nums: list[int], k: int) -> int:
-        group_frequencies = [[0] * k for _ in range(2)]
-        for index, value in enumerate(nums):
-            group_frequencies[index & 1][value % k] += 1
+    def minOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def topk(a, k):  # Time: O(k * n)
+            result = [(float("inf"), float("inf"))]*k
+            for idx, x in enumerate(a):
+                tmp = (x, idx)
+                for i in range(len(result)):
+                    if tmp < result[i]:
+                        result[i], tmp = tmp, result[i]
+            return result
 
-        def build_costs(frequencies: list[int]) -> list[int]:
-            total = sum(frequencies)
-            costs = [0] * k
-            costs[0] = sum(count * min(remainder, k - remainder) for remainder, count in enumerate(frequencies))
+        def distance(cnt):
+            total = sum(cnt)
+            c = sum(cnt[i] for i in range(1, k//2+1))
+            dist = [0]*k
+            dist[0] = sum(x*min(i, k-i) for i, x in enumerate(cnt))
+            for i in range(1, len(dist)):
+                dist[i] = dist[i-1]-c+(total-c)-(cnt[((i+k//2))%k] if k%2 else 0)
+                c += cnt[((i+k//2))%k]-cnt[i]
+            return dist
 
-            half = k // 2
-            nearer_clockwise = sum(frequencies[1 : half + 1])
-            current = costs[0]
-
-            for target in range(k - 1):
-                current += total - 2 * nearer_clockwise
-                if k % 2:
-                    current -= frequencies[(target + half + 1) % k]
-                costs[target + 1] = current
-
-                nearer_clockwise += frequencies[(target + half + 1) % k] - frequencies[(target + 1) % k]
-
-            return costs
-
-        even_costs = build_costs(group_frequencies[0])
-        odd_costs = build_costs(group_frequencies[1])
-
-        infinity = 10**30
-        best_odd = second_best_odd = infinity
-        best_odd_remainder = -1
-        for remainder, cost in enumerate(odd_costs):
-            if cost < best_odd:
-                second_best_odd = best_odd
-                best_odd = cost
-                best_odd_remainder = remainder
-            elif cost < second_best_odd:
-                second_best_odd = cost
-
-        return min(
-            cost + (second_best_odd if remainder == best_odd_remainder else best_odd)
-            for remainder, cost in enumerate(even_costs)
-        )
+        cnt = [[0]*k for _ in range(2)]
+        for i, x in enumerate(nums):
+            cnt[i%2][x%k] += 1
+        dist = [distance(cnt[i]) for i in range(2)]
+        top2 = [topk(dist[i], 2) for i in range(2)]
+        return min(top2[0][0][0]+top2[1][1][0], top2[0][1][0]+top2[1][0][0]) if top2[0][0][1] == top2[1][0][1] else top2[0][0][0]+top2[1][0
+][0]

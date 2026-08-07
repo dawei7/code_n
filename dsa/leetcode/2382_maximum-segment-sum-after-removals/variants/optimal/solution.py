@@ -1,44 +1,27 @@
-from typing import List
-
-
 class Solution:
-    def maximumSegmentSum(
-        self,
-        nums: List[int],
-        removeQueries: List[int],
-    ) -> List[int]:
+    def maximumSegmentSum(self, nums: List[int], removeQueries: List[int]) -> List[int]:
+        def find(x):
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
+
+        def merge(a, b):
+            pa, pb = find(a), find(b)
+            p[pa] = pb
+            s[pb] += s[pa]
+
         n = len(nums)
-        parent = list(range(n))
-        segment_sum = [0] * n
-        active = [False] * n
-        answer = [0] * n
-
-        def find(index: int) -> int:
-            while parent[index] != index:
-                parent[index] = parent[parent[index]]
-                index = parent[index]
-            return index
-
-        def union(first: int, second: int) -> None:
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
-                return
-            parent[second_root] = first_root
-            segment_sum[first_root] += segment_sum[second_root]
-
-        maximum = 0
-        for query_index in range(n - 1, -1, -1):
-            answer[query_index] = maximum
-            index = removeQueries[query_index]
-            active[index] = True
-            segment_sum[index] = nums[index]
-
-            if index > 0 and active[index - 1]:
-                union(index, index - 1)
-            if index + 1 < n and active[index + 1]:
-                union(index, index + 1)
-
-            maximum = max(maximum, segment_sum[find(index)])
-
-        return answer
+        p = list(range(n))
+        s = [0] * n
+        ans = [0] * n
+        mx = 0
+        for j in range(n - 1, 0, -1):
+            i = removeQueries[j]
+            s[i] = nums[i]
+            if i and s[find(i - 1)]:
+                merge(i, i - 1)
+            if i < n - 1 and s[find(i + 1)]:
+                merge(i, i + 1)
+            mx = max(mx, s[find(i)])
+            ans[j - 1] = mx
+        return ans

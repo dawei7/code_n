@@ -1,29 +1,52 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n^2 * n!)
+# Space: O(n^2)
+
+class TrieNode(object):
+    def __init__(self):
+        self.indices = []
+        self.children = [None] * 26
+
+    def insert(self, words, i):
+        cur = self
+        for c in words[i]:
+            if not cur.children[ord(c)-ord('a')]:
+                cur.children[ord(c)-ord('a')] = TrieNode()
+            cur = cur.children[ord(c)-ord('a')]
+            cur.indices.append(i)
 
 
 class Solution:
-    def wordSquares(self, words: List[str]) -> List[List[str]]:
-        word_length = len(words[0])
-        by_prefix = defaultdict(list)
-        for word in words:
-            for length in range(word_length + 1):
-                by_prefix[word[:length]].append(word)
+    def wordSquares(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[List[str]]
+        """
+        result = []
 
-        answer = []
-        square = []
+        trie = TrieNode()
+        for i in range(len(words)):
+            trie.insert(words, i)
 
-        def search() -> None:
-            row = len(square)
-            if row == word_length:
-                answer.append(square.copy())
+        curr = []
+        for s in words:
+            curr.append(s)
+            self.wordSquaresHelper(words, trie, curr, result)
+            curr.pop()
+
+        return result
+
+    def wordSquaresHelper(self, words, trie, curr, result):
+        if len(curr) >= len(words[0]):
+            return result.append(list(curr))
+
+        node = trie
+        for s in curr:
+            node = node.children[ord(s[len(curr)]) - ord('a')]
+            if not node:
                 return
 
-            prefix = "".join(square[previous][row] for previous in range(row))
-            for candidate in by_prefix.get(prefix, []):
-                square.append(candidate)
-                search()
-                square.pop()
+        for i in node.indices:
+            curr.append(words[i])
+            self.wordSquaresHelper(words, trie, curr, result)
+            curr.pop()
 
-        search()
-        return answer

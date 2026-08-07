@@ -1,15 +1,27 @@
-from typing import List
+# Time:  O(nlogm), m is max of nums
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def countNicePairs(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        frequencies = {}
-        answer = 0
+    def countNicePairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9 + 7
 
-        for value in nums:
-            key = value - int(str(value)[::-1])
-            answer = (answer + frequencies.get(key, 0)) % modulus
-            frequencies[key] = frequencies.get(key, 0) + 1
-
-        return answer
+        def rev(x):
+            result = 0
+            while x:
+                x, r = divmod(x, 10)
+                result = result*10+r
+            return result
+        
+        result = 0
+        lookup = collections.defaultdict(int)
+        for num in nums:
+            result = (result + lookup[num-rev(num)])%MOD
+            lookup[num-rev(num)] += 1
+        return result

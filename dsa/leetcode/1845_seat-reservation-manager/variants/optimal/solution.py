@@ -1,17 +1,15 @@
-import heapq
-
-
 class SeatManager:
     def __init__(self, n: int):
-        self.next_seat = 1
-        self.released: list[int] = []
+        self.q = list(range(1, n + 1))
 
     def reserve(self) -> int:
-        if self.released:
-            return heapq.heappop(self.released)
-        seat = self.next_seat
-        self.next_seat += 1
-        return seat
+        return heappop(self.q)
 
     def unreserve(self, seatNumber: int) -> None:
-        heapq.heappush(self.released, seatNumber)
+        heappush(self.q, seatNumber)
+
+
+# Your SeatManager object will be instantiated and called as such:
+# obj = SeatManager(n)
+# param_1 = obj.reserve()
+# obj.unreserve(seatNumber)

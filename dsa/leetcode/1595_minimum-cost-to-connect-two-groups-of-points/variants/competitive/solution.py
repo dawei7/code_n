@@ -1,17 +1,22 @@
-from functools import lru_cache
-from typing import List
+# Time:  O(m * n * 2^n)
+# Space: O(2^n)
 
-
+# dp with rolling window
 class Solution:
-    def connectTwoGroups(self, cost: List[List[int]]) -> int:
-        first = len(cost)
-        second = len(cost[0])
-        cheapest_to_second = [min(cost[i][j] for i in range(first)) for j in range(second)]
-
-        @lru_cache(None)
-        def search(i: int, mask: int) -> int:
-            if i == first:
-                return sum(cheapest_to_second[j] for j in range(second) if not mask & (1 << j))
-            return min(cost[i][j] + search(i + 1, mask | (1 << j)) for j in range(second))
-
-        return search(0, 0)
+    def connectTwoGroups(self, cost):
+        """
+        :type cost: List[List[int]]
+        :rtype: int
+        """
+        total = 2**len(cost[0])
+        dp = [[float("inf")]*total for _ in range(2)]
+        dp[0][0] = 0
+        for i in range(len(cost)):
+            dp[(i+1)%2] = [float("inf")]*total
+            for mask in range(total):
+                base = 1
+                for j in range(len(cost[0])):
+                    dp[i%2][mask|base] = min(dp[i%2][mask|base], cost[i][j]+dp[i%2][mask])
+                    dp[(i+1)%2][mask|base] = min(dp[(i+1)%2][mask|base], cost[i][j]+dp[i%2][mask])
+                    base <<= 1
+        return dp[len(cost)%2][-1]

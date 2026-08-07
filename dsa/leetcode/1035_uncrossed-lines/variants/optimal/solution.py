@@ -1,18 +1,11 @@
-from typing import List
-
-
 class Solution:
     def maxUncrossedLines(self, nums1: List[int], nums2: List[int]) -> int:
-        if len(nums1) < len(nums2):
-            nums1, nums2 = nums2, nums1
-
-        previous = [0] * (len(nums2) + 1)
-        for value1 in nums1:
-            current = [0] * (len(nums2) + 1)
-            for index, value2 in enumerate(nums2, start=1):
-                if value1 == value2:
-                    current[index] = previous[index - 1] + 1
+        m, n = len(nums1), len(nums2)
+        f = [[0] * (n + 1) for _ in range(m + 1)]
+        for i, x in enumerate(nums1, 1):
+            for j, y in enumerate(nums2, 1):
+                if x == y:
+                    f[i][j] = f[i - 1][j - 1] + 1
                 else:
-                    current[index] = max(previous[index], current[index - 1])
-            previous = current
-        return previous[-1]
+                    f[i][j] = max(f[i - 1][j], f[i][j - 1])
+        return f[m][n]

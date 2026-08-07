@@ -1,28 +1,13 @@
-from typing import List
-
-
-def _generate_abbreviations(word: str) -> List[str]:
-    length = len(word)
-    result = []
-
-    for mask in range(1 << length):
-        pieces = []
-        abbreviated = 0
-        for index, letter in enumerate(word):
-            if mask & (1 << index):
-                abbreviated += 1
-                continue
-            if abbreviated:
-                pieces.append(str(abbreviated))
-                abbreviated = 0
-            pieces.append(letter)
-        if abbreviated:
-            pieces.append(str(abbreviated))
-        result.append("".join(pieces))
-
-    return result
-
-
 class Solution:
     def generateAbbreviations(self, word: str) -> List[str]:
-        return _generate_abbreviations(word)
+        def dfs(i: int) -> List[str]:
+            if i >= n:
+                return [""]
+            ans = [word[i] + s for s in dfs(i + 1)]
+            for j in range(i + 1, n + 1):
+                for s in dfs(j + 1):
+                    ans.append(str(j - i) + (word[j] if j < n else "") + s)
+            return ans
+
+        n = len(word)
+        return dfs(0)

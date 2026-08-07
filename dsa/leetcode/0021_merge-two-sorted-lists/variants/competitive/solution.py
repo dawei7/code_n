@@ -1,28 +1,33 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
+
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+    def __repr__(self):
+        if self:
+            return "{} -> {}".format(self.val, self.next)
 
 
 class Solution:
-    def mergeTwoLists(
-        self,
-        list1: Optional["ListNode"],
-        list2: Optional["ListNode"],
-    ) -> Optional["ListNode"]:
-        if list1 is None:
-            return list2
-        if list2 is None:
-            return list1
-
-        if list1.val <= list2.val:
-            head, list1 = list1, list1.next
-        else:
-            head, list2 = list2, list2.next
-        tail = head
-
-        while list1 is not None and list2 is not None:
-            if list1.val <= list2.val:
-                tail.next, list1 = list1, list1.next
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        curr = dummy = ListNode(0)
+        while l1 and l2:
+            if l1.val < l2.val:
+                curr.next = l1
+                l1 = l1.next
             else:
-                tail.next, list2 = list2, list2.next
-            tail = tail.next
-        tail.next = list1 if list1 is not None else list2
-        return head
+                curr.next = l2
+                l2 = l2.next
+            curr = curr.next
+        curr.next = l1 or l2
+        return dummy.next
+
+

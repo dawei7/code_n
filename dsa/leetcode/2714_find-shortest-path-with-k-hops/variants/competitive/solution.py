@@ -1,32 +1,41 @@
-from heapq import heappop, heappush
+# Time:  O(n * k + (e * k) * log(n * k))
+# Space: O(n * k + e)
+
+import heapq
 
 
+# dijkstra's algorithm
 class Solution:
-    def shortestPathWithHops(self, n: int, edges: List[List[int]], s: int, d: int, k: int) -> int:
-        graph = [[] for _ in range(n)]
-        for first, second, weight in edges:
-            graph[first].append((second, weight))
-            graph[second].append((first, weight))
-
-        distances = [[float("inf")] * (k + 1) for _ in range(n)]
-        distances[s][0] = 0
-        heap = [(0, s, 0)]
-
-        while heap:
-            distance, node, hops = heappop(heap)
-            if distance != distances[node][hops]:
-                continue
-            if node == d:
-                return distance
-
-            for neighbor, weight in graph[node]:
-                paid_distance = distance + weight
-                if paid_distance < distances[neighbor][hops]:
-                    distances[neighbor][hops] = paid_distance
-                    heappush(heap, (paid_distance, neighbor, hops))
-
-                if hops < k and distance < distances[neighbor][hops + 1]:
-                    distances[neighbor][hops + 1] = distance
-                    heappush(heap, (distance, neighbor, hops + 1))
-
-        return -1
+    def shortestPathWithHops(self, n, edges, s, d, k):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type s: int
+        :type d: int
+        :type k: int
+        :rtype: int
+        """
+        def modified_dijkstra():
+            best = [[float("inf")]*(k+1) for _ in range(len(adj))]
+            best[s][0] = 0
+            min_heap = [(best[s][0], s, 0)]
+            while min_heap:
+                curr, u, cnt = heapq.heappop(min_heap)
+                if curr > best[u][cnt]:
+                    continue
+                if u == d:
+                    return curr
+                for v, w in adj[u]:
+                    if curr+w < best[v][cnt]:
+                        best[v][cnt] = curr+w
+                        heapq.heappush(min_heap, (best[v][cnt], v, cnt))
+                    if cnt+1 <= k and curr < best[v][cnt+1]:
+                        best[v][cnt+1] = curr
+                        heapq.heappush(min_heap, (best[v][cnt+1], v, cnt+1))
+            return -1
+        
+        adj = [[] for _ in range(n)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        return modified_dijkstra()

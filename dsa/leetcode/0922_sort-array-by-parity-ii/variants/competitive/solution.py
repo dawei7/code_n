@@ -1,16 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def sortArrayByParityII(self, nums: List[int]) -> List[int]:
-        even_index = 0
-        odd_index = 1
-
-        while even_index < len(nums):
-            if nums[even_index] % 2:
-                while nums[odd_index] % 2:
-                    odd_index += 2
-                nums[even_index], nums[odd_index] = nums[odd_index], nums[even_index]
-            even_index += 2
-
-        return nums
+    def sortArrayByParityII(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        j = 1
+        for i in range(0, len(A), 2):
+            if A[i] % 2:
+                while A[j] % 2:
+                    j += 2
+                A[i], A[j] = A[j], A[i]
+        return A

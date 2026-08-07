@@ -1,16 +1,22 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
-        frequencies = sorted(Counter(arr).values())
-        remaining = len(frequencies)
-
-        for frequency in frequencies:
-            if frequency > k:
+    def findLeastNumOfUniqueInts(self, arr, k):
+        """
+        :type arr: List[int]
+        :type k: int
+        :rtype: int
+        """
+        count = collections.Counter(arr)
+        result, count_count = len(count), collections.Counter(count.values())
+        for c in range(1, len(arr)+1): 
+            if k < c*count_count[c]:
+                result -= k//c
                 break
-            k -= frequency
-            remaining -= 1
-
-        return remaining
+            k -= c*count_count[c]
+            result -= count_count[c]                
+        return result

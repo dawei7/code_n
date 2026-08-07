@@ -1,32 +1,17 @@
-from collections import Counter, defaultdict
-
-
 class Solution:
     def beautifulSubsets(self, nums: List[int], k: int) -> int:
-        groups = defaultdict(list)
-        for value, frequency in Counter(nums).items():
-            groups[value % k].append((value, frequency))
+        def dfs(i: int) -> None:
+            nonlocal ans
+            if i >= len(nums):
+                ans += 1
+                return
+            dfs(i + 1)
+            if cnt[nums[i] + k] == 0 and cnt[nums[i] - k] == 0:
+                cnt[nums[i]] += 1
+                dfs(i + 1)
+                cnt[nums[i]] -= 1
 
-        answer = 1
-        for group in groups.values():
-            group.sort()
-            not_taken = 1
-            taken = 0
-            previous_value = -k
-
-            for value, frequency in group:
-                choices = (1 << frequency) - 1
-                total = not_taken + taken
-
-                if value - previous_value == k:
-                    next_taken = not_taken * choices
-                else:
-                    next_taken = total * choices
-
-                not_taken = total
-                taken = next_taken
-                previous_value = value
-
-            answer *= not_taken + taken
-
-        return answer - 1
+        ans = -1
+        cnt = Counter()
+        dfs(0)
+        return ans

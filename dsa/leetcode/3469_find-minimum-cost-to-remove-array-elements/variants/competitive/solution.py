@@ -1,22 +1,25 @@
+# Time:  O(n^2)
+# Space: O(n)
+
+import collections
+
+
+# dp, greedy
 class Solution:
-    def minCost(self, nums: List[int]) -> int:
-        size = len(nums)
-        costs = {0: 0}
-        next_index = 1
-
-        while next_index + 1 < size:
-            second = nums[next_index]
-            third = nums[next_index + 1]
-            updated = {
-                next_index: min(cost + max(nums[carried], third) for carried, cost in costs.items()),
-                next_index + 1: min(cost + max(nums[carried], second) for carried, cost in costs.items()),
-            }
-            pair_cost = max(second, third)
-            for carried, cost in costs.items():
-                updated[carried] = cost + pair_cost
-            costs = updated
-            next_index += 2
-
-        if next_index == size:
-            return min(cost + nums[carried] for carried, cost in costs.items())
-        return min(cost + max(nums[carried], nums[next_index]) for carried, cost in costs.items())
+    def minCost(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = collections.defaultdict(lambda: float("inf"))
+        dp[nums[0]] = 0
+        for i in range(1, len(nums)-1, 2):
+            new_dp = collections.defaultdict(lambda: float("inf"))
+            x, y = nums[i], nums[i+1]
+            for z, c in dp.items():
+                v = sorted([x, y, z])
+                new_dp[v[0]] = min(new_dp[v[0]], c+v[2])
+                new_dp[v[2]] = min(new_dp[v[2]], c+v[1])
+            dp = new_dp
+        last = nums[-1] if len(nums)%2 == 0 else 0
+        return min(c+max(x, last) for x, c in dp.items())

@@ -1,12 +1,13 @@
-from typing import List
-
-
 class Solution:
     def minimumReplacement(self, nums: List[int]) -> int:
-        limit = nums[-1]
-        operations = 0
-        for value in reversed(nums[:-1]):
-            pieces = (value + limit - 1) // limit
-            operations += pieces - 1
-            limit = value // pieces
-        return operations
+        ans = 0
+        n = len(nums)
+        mx = nums[-1]
+        for i in range(n - 2, -1, -1):
+            if nums[i] <= mx:
+                mx = nums[i]
+                continue
+            k = (nums[i] + mx - 1) // mx
+            ans += k - 1
+            mx = nums[i] // k
+        return ans

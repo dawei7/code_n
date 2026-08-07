@@ -1,12 +1,11 @@
+# Time:  O(m * n)
+# Space: O(1)
+
+# array
 class Solution:
-    def rowAndMaximumOnes(self, mat: List[List[int]]) -> List[int]:
-        best_row = 0
-        best_count = -1
-
-        for row_index, row in enumerate(mat):
-            ones = sum(row)
-            if ones > best_count:
-                best_row = row_index
-                best_count = ones
-
-        return [best_row, best_count]
+    def rowAndMaximumOnes(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: List[int]
+        """
+        return max(([i, mat[i].count(1)] for i in range(len(mat))), key=lambda x: x[1])

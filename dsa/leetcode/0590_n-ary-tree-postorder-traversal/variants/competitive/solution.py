@@ -1,14 +1,44 @@
-class Solution:
-    def postorder(self, root: "Node") -> list[int]:
-        if root is None:
-            return []
+# Time:  O(n)
+# Space: O(h)
 
-        reversed_postorder = []
-        stack = [root]
+class Node(object):
+    def __init__(self, val, children):
+        self.val = val
+        self.children = children
+
+
+class Solution:
+    def postorder(self, root):
+        """
+        :type root: Node
+        :rtype: List[int]
+        """
+        if not root:
+            return []
+        result, stack = [], [root]
         while stack:
             node = stack.pop()
-            reversed_postorder.append(node.val)
-            stack.extend(node.children)
+            result.append(node.val)
+            for child in node.children:
+                if child:
+                    stack.append(child)
+        return result[::-1]
 
-        reversed_postorder.reverse()
-        return reversed_postorder
+
+class Solution2(object):
+    def postorder(self, root):
+        """
+        :type root: Node
+        :rtype: List[int]
+        """
+        def dfs(root, result):
+            for child in root.children:
+                if child:
+                    dfs(child, result)
+            result.append(root.val)
+        
+        result = []
+        if root:
+            dfs(root, result)
+        return result
+

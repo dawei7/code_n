@@ -1,18 +1,52 @@
-from typing import List
+# Time:  O(n * r), r = max(nums)
+# Space: O(r)
 
-
+# bitmasks, bfs
 class Solution:
-    def minRemovals(self, nums: List[int], target: int) -> int:
-        best = {0: 0}
+    def minRemovals(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        def bfs():
+            dist = {}
+            dist[0] = 0
+            q = [0]
+            while q:
+                new_q = []
+                for k in q:
+                    if k == target:
+                        return dist[k]
+                    for x in nums:
+                        if k^x in dist:
+                            continue
+                        dist[k^x] = dist[k]+1
+                        new_q.append(k^x)
+                q = new_q
+            return -1
 
-        for value in nums:
-            next_best = best.copy()
+        target ^= reduce(lambda accu, x: accu^x, nums, 0)
+        return bfs()
 
-            for xor_value, kept in best.items():
-                candidate = xor_value ^ value
-                next_best[candidate] = max(next_best.get(candidate, -1), kept + 1)
 
-            best = next_best
-
-        kept = best.get(target, -1)
-        return -1 if kept < 0 else len(nums) - kept
+# Time:  O(n * r), r = max(nums)
+# Space: O(r)
+# bitmasks, dp
+class Solution2(object):
+    def minRemovals(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        dp = {}
+        dp[0] = 0
+        for x in nums:
+            target ^= x
+            new_dp = {k:v for k, v in dp.items()}
+            for k in dp.keys():
+                if k^x not in new_dp or new_dp[k^x] > dp[k]+1:
+                    new_dp[k^x] = dp[k]+1
+            dp = new_dp
+        return dp[target] if target in dp else -1

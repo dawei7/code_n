@@ -1,30 +1,37 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(n * rlogn), r = len(roads)
+# Space: O(n)
+
+import itertools
+import heapq
 
 
+# dijkstra's algorithm
 class Solution:
-    def minCost(self, n: int, roads: List[List[int]], appleCost: List[int], k: int) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for city_a, city_b, travel_cost in roads:
-            city_a -= 1
-            city_b -= 1
-            graph[city_a].append((city_b, travel_cost))
-            graph[city_b].append((city_a, travel_cost))
+    def minCost(self, n, roads, appleCost, k):
+        """
+        :type n: int
+        :type roads: List[List[int]]
+        :type appleCost: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        def dijkstra(start):
+            best = [float("inf")]*len(adj)
+            best[start] = 0
+            min_heap = [(0, start)]
+            while min_heap:
+                curr, u = heapq.heappop(min_heap)
+                if best[u] < curr:
+                    continue
+                for v, w in adj[u]:                
+                    if best[v] <= curr+w:
+                        continue
+                    best[v] = curr+w
+                    heapq.heappush(min_heap, (curr+w, v))
+            return best
 
-        answer = appleCost[:]
-        heap = [(cost, city) for city, cost in enumerate(answer)]
-        heapify(heap)
-        round_trip_factor = k + 1
-
-        while heap:
-            cost, city = heappop(heap)
-            if cost != answer[city]:
-                continue
-
-            for neighbor, travel_cost in graph[city]:
-                candidate = cost + round_trip_factor * travel_cost
-                if candidate < answer[neighbor]:
-                    answer[neighbor] = candidate
-                    heappush(heap, (candidate, neighbor))
-
-        return answer
+        adj = [[] for _ in range(n)]
+        for a, b, c in roads:
+            adj[a-1].append((b-1, c))
+            adj[b-1].append((a-1, c))
+        return [min(a+d*(k+1) for a, d in itertools.izip(appleCost, dijkstra(u))) for u in range(n)]

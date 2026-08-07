@@ -1,31 +1,40 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# flood fill, bfs, math
 class Solution:
-    def countPairs(self, n: int, edges: List[List[int]]) -> int:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-
-        seen = [False] * n
-        remaining = n
-        answer = 0
-
-        for start in range(n):
-            if seen[start]:
+    def countPairs(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def bfs(adj, u, lookup):
+            q = [u]
+            lookup[u] = 1
+            result = 1
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = 1
+                        result += 1
+                        new_q.append(v)
+                q = new_q
+            return result
+        
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        lookup = [0]*n
+        result = 0
+        for u in range(n):
+            if lookup[u]:
                 continue
-            seen[start] = True
-            stack = [start]
-            size = 0
-            while stack:
-                node = stack.pop()
-                size += 1
-                for neighbor in graph[node]:
-                    if not seen[neighbor]:
-                        seen[neighbor] = True
-                        stack.append(neighbor)
-            remaining -= size
-            answer += size * remaining
-
-        return answer
+            cnt = bfs(adj, u, lookup)
+            result += cnt*(n-cnt)
+            n -= cnt
+        return result

@@ -1,14 +1,8 @@
-WITH scored AS (
-    SELECT
-        team_id,
-        team_name,
-        wins * 3 + draws AS points
-    FROM TeamStats
-)
+# Write your MySQL query statement below
 SELECT
     team_id,
     team_name,
-    points,
-    RANK() OVER (ORDER BY points DESC) AS position
-FROM scored
-ORDER BY points DESC, team_name ASC;
+    wins * 3 + draws points,
+    RANK() OVER (ORDER BY (wins * 3 + draws) DESC) position
+FROM TeamStats
+ORDER BY 3 DESC, 2;

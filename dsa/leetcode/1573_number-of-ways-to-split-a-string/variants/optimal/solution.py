@@ -1,35 +1,19 @@
 class Solution:
     def numWays(self, s: str) -> int:
-        modulus = 1_000_000_007
-        length = len(s)
-        total_ones = s.count("1")
+        def find(x):
+            t = 0
+            for i, c in enumerate(s):
+                t += int(c == '1')
+                if t == x:
+                    return i
 
-        if total_ones % 3 != 0:
+        cnt, m = divmod(sum(c == '1' for c in s), 3)
+        if m:
             return 0
-        if total_ones == 0:
-            return ((length - 1) * (length - 2) // 2) % modulus
-
-        target = total_ones // 3
-        first_end = 0
-        first_next = 0
-        second_end = 0
-        second_next = 0
-        seen_ones = 0
-
-        for index, bit in enumerate(s):
-            if bit == "0":
-                continue
-
-            seen_ones += 1
-            if seen_ones == target:
-                first_end = index
-            if seen_ones == target + 1:
-                first_next = index
-            if seen_ones == 2 * target:
-                second_end = index
-            if seen_ones == 2 * target + 1:
-                second_next = index
-
-        first_choices = first_next - first_end
-        second_choices = second_next - second_end
-        return (first_choices * second_choices) % modulus
+        n = len(s)
+        mod = 10**9 + 7
+        if cnt == 0:
+            return ((n - 1) * (n - 2) // 2) % mod
+        i1, i2 = find(cnt), find(cnt + 1)
+        j1, j2 = find(cnt * 2), find(cnt * 2 + 1)
+        return (i2 - i1) * (j2 - j1) % (10**9 + 7)

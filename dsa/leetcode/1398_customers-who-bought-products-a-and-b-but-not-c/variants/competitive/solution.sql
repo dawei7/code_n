@@ -1,10 +1,19 @@
-SELECT c.customer_id,
-       c.customer_name
-FROM Customers AS c
-JOIN Orders AS o
-  ON o.customer_id = c.customer_id
-GROUP BY c.customer_id, c.customer_name
-HAVING SUM(CASE WHEN o.product_name = 'A' THEN 1 ELSE 0 END) > 0
-   AND SUM(CASE WHEN o.product_name = 'B' THEN 1 ELSE 0 END) > 0
-   AND SUM(CASE WHEN o.product_name = 'C' THEN 1 ELSE 0 END) = 0
-ORDER BY c.customer_id;
+# Time:  O(m + n)
+# Space: O(m + n)
+
+SELECT c.customer_id, 
+       c.customer_name 
+FROM   customers AS c 
+       INNER JOIN (SELECT customer_id, 
+                          SUM(CASE 
+                                WHEN product_name = 'A' THEN 1 
+                                WHEN product_name = 'B' THEN 1 
+                                WHEN product_name = 'C' THEN -1 
+                                ELSE 0 
+                              END) AS total 
+                   FROM   (SELECT DISTINCT customer_id, 
+                                           product_name 
+                           FROM   orders) t 
+                   GROUP  BY customer_id 
+                   HAVING total = 2) AS o 
+               ON c.customer_id = o.customer_id;

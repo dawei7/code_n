@@ -1,11 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def maximumPossibleSize(self, nums: List[int]) -> int:
-        answer = 0
-        maximum = 0
-
-        for value in nums:
-            if value >= maximum:
-                answer += 1
-                maximum = value
-
-        return answer
+    def maximumPossibleSize(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = prev = 0
+        for x in nums:
+            if prev <= x:
+                prev = x
+                result += 1
+        return result

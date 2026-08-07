@@ -2,11 +2,12 @@ class Solution:
     def canConvert(self, str1: str, str2: str) -> bool:
         if str1 == str2:
             return True
-
-        mapping = {}
-        for source, target in zip(str1, str2):
-            if source in mapping and mapping[source] != target:
+        if len(set(str2)) == 26:
+            return False
+        d = {}
+        for a, b in zip(str1, str2):
+            if a not in d:
+                d[a] = b
+            elif d[a] != b:
                 return False
-            mapping[source] = target
-
-        return len(set(str2)) < 26
+        return True

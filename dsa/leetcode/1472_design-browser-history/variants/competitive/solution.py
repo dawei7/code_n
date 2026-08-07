@@ -1,21 +1,40 @@
-class BrowserHistory:
-    def __init__(self, homepage: str):
-        self.history = [homepage]
-        self.current = 0
-        self.last = 0
+# Time:  ctor  : O(1)
+#        visit : O(n)
+#        back  : O(1)
+#        foward: O(1)
+# Space: O(n)
 
-    def visit(self, url: str) -> None:
-        self.current += 1
-        if self.current == len(self.history):
-            self.history.append(url)
-        else:
-            self.history[self.current] = url
-        self.last = self.current
+class BrowserHistory(object):
 
-    def back(self, steps: int) -> str:
-        self.current = max(0, self.current - steps)
-        return self.history[self.current]
+    def __init__(self, homepage):
+        """
+        :type homepage: str
+        """
+        self.__history = [homepage]
+        self.__curr = 0        
 
-    def forward(self, steps: int) -> str:
-        self.current = min(self.last, self.current + steps)
-        return self.history[self.current]
+    def visit(self, url):
+        """
+        :type url: str
+        :rtype: None
+        """
+        while len(self.__history) > self.__curr+1:
+            self.__history.pop()
+        self.__history.append(url)
+        self.__curr += 1
+
+    def back(self, steps):
+        """
+        :type steps: int
+        :rtype: str
+        """
+        self.__curr = max(self.__curr-steps, 0)
+        return self.__history[self.__curr]
+
+    def forward(self, steps):
+        """
+        :type steps: int
+        :rtype: str
+        """
+        self.__curr = min(self.__curr+steps, len(self.__history)-1)
+        return self.__history[self.__curr]

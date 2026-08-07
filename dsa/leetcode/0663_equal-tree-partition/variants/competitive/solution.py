@@ -1,14 +1,27 @@
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+
+
 class Solution:
     def checkEqualTree(self, root):
-        subtree_sums = []
-
-        def total(node):
-            if node is None:
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def getSumHelper(node, lookup):
+            if not node:
                 return 0
-            value = node.val + total(node.left) + total(node.right)
-            subtree_sums.append(value)
-            return value
+            total = node.val + \
+                    getSumHelper(node.left, lookup) + \
+                    getSumHelper(node.right, lookup)
+            lookup[total] += 1
+            return total
 
-        tree_sum = total(root)
-        subtree_sums.pop()
-        return tree_sum % 2 == 0 and tree_sum // 2 in subtree_sums
+        lookup = collections.defaultdict(int)
+        total = getSumHelper(root, lookup)
+        if total == 0:
+            return lookup[total] > 1
+        return total%2 == 0 and (total/2) in lookup
+

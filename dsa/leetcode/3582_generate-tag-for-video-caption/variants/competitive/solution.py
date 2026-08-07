@@ -1,21 +1,34 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def generateTag(self, caption: str) -> str:
-        tag = ["#"]
-        seen_word = False
-        inside_word = False
-
-        for char in caption:
-            if len(tag) == 100:
-                break
-            if char == " ":
-                inside_word = False
+    def generateTag(self, caption):
+        """
+        :type caption: str
+        :rtype: str
+        """
+        L = 100
+        result = ['#']
+        for i in range(len(caption)):
+            if caption[i] == ' ':
                 continue
+            result.append(caption[i].upper() if i == 0 or caption[i-1] == ' ' else caption[i].lower())
+            if len(result) == L:
+                break
+        if 1 < len(result):
+            result[1] = result[1].lower()
+        return "".join(result)
 
-            if not inside_word:
-                tag.append(char.upper() if seen_word else char.lower())
-                seen_word = True
-                inside_word = True
-            else:
-                tag.append(char.lower())
 
-        return "".join(tag)
+# Time:  O(n)
+# Space: O(n)
+# string
+class Solution2(object):
+    def generateTag(self, caption):
+        """
+        :type caption: str
+        :rtype: str
+        """
+        L = 100
+        return ('#'+"".join(x.lower() if i == 0 else x[0].upper()+x[1:].lower() for i, x in enumerate(caption.split())))[:L]

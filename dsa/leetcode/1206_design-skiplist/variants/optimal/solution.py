@@ -1,56 +1,64 @@
 class Node:
-    def __init__(self, value: int, height: int):
-        self.value = value
-        self.forward = [None] * height
+    __slots__ = ['val', 'next']
+
+    def __init__(self, val: int, level: int):
+        self.val = val
+        self.next = [None] * level
 
 
 class Skiplist:
-    MAX_LEVEL = 32
+    max_level = 32
+    p = 0.25
 
     def __init__(self):
-        self.head = Node(-1, self.MAX_LEVEL)
-        self.random_state = 0x6D2B79F5
-
-    def nextBit(self) -> int:
-        state = self.random_state
-        state ^= (state << 13) & 0xFFFFFFFF
-        state ^= state >> 17
-        state ^= (state << 5) & 0xFFFFFFFF
-        self.random_state = state & 0xFFFFFFFF
-        return state & 1
-
-    def randomHeight(self) -> int:
-        height = 1
-        while height < self.MAX_LEVEL and self.nextBit():
-            height += 1
-        return height
-
-    def predecessors(self, target: int):
-        update = [self.head] * self.MAX_LEVEL
-        current = self.head
-        for level in range(self.MAX_LEVEL - 1, -1, -1):
-            while current.forward[level] is not None and current.forward[level].value < target:
-                current = current.forward[level]
-            update[level] = current
-        return update
+        self.head = Node(-1, self.max_level)
+        self.level = 0
 
     def search(self, target: int) -> bool:
-        candidate = self.predecessors(target)[0].forward[0]
-        return candidate is not None and candidate.value == target
+        curr = self.head
+        for i in range(self.level - 1, -1, -1):
+            curr = self.find_closest(curr, i, target)
+            if curr.next[i] and curr.next[i].val == target:
+                return True
+        return False
 
     def add(self, num: int) -> None:
-        update = self.predecessors(num)
-        node = Node(num, self.randomHeight())
-        for level in range(len(node.forward)):
-            node.forward[level] = update[level].forward[level]
-            update[level].forward[level] = node
+        curr = self.head
+        level = self.random_level()
+        node = Node(num, level)
+        self.level = max(self.level, level)
+        for i in range(self.level - 1, -1, -1):
+            curr = self.find_closest(curr, i, num)
+            if i < level:
+                node.next[i] = curr.next[i]
+                curr.next[i] = node
 
     def erase(self, num: int) -> bool:
-        update = self.predecessors(num)
-        target = update[0].forward[0]
-        if target is None or target.value != num:
-            return False
-        for level in range(len(target.forward)):
-            if update[level].forward[level] is target:
-                update[level].forward[level] = target.forward[level]
-        return True
+        curr = self.head
+        ok = False
+        for i in range(self.level - 1, -1, -1):
+            curr = self.find_closest(curr, i, num)
+            if curr.next[i] and curr.next[i].val == num:
+                curr.next[i] = curr.next[i].next[i]
+                ok = True
+        while self.level > 1 and self.head.next[self.level - 1] is None:
+            self.level -= 1
+        return ok
+
+    def find_closest(self, curr: Node, level: int, target: int) -> Node:
+        while curr.next[level] and curr.next[level].val < target:
+            curr = curr.next[level]
+        return curr
+
+    def random_level(self) -> int:
+        level = 1
+        while level < self.max_level and random.random() < self.p:
+            level += 1
+        return level
+
+
+# Your Skiplist object will be instantiated and called as such:
+# obj = Skiplist()
+# param_1 = obj.search(target)
+# obj.add(num)
+# param_3 = obj.erase(num)

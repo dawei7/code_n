@@ -1,16 +1,19 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n^2)
+# Space: O(n^2)
+
+import collections
 
 
 class Solution:
-    def tupleSameProduct(self, nums: List[int]) -> int:
-        pair_count = defaultdict(int)
-        answer = 0
-
-        for right in range(len(nums)):
-            for left in range(right):
-                product = nums[left] * nums[right]
-                answer += 8 * pair_count[product]
-                pair_count[product] += 1
-
-        return answer
+    def tupleSameProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        count = collections.Counter()
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)): 
+                result += count[nums[i]*nums[j]]
+                count[nums[i]*nums[j]] += 1
+        return 8*result

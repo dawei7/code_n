@@ -1,18 +1,8 @@
+# Write your MySQL query statement below
 SELECT
-    signup.user_id,
-    ROUND(
-        COALESCE(
-            AVG(
-                CASE
-                    WHEN confirmation.action = 'confirmed' THEN 1.0
-                    WHEN confirmation.action = 'timeout' THEN 0.0
-                END
-            ),
-            0
-        ),
-        2
-    ) AS confirmation_rate
-FROM Signups AS signup
-LEFT JOIN Confirmations AS confirmation
-    ON confirmation.user_id = signup.user_id
-GROUP BY signup.user_id;
+    user_id,
+    ROUND(IFNULL(SUM(action = 'confirmed') / COUNT(1), 0), 2) AS confirmation_rate
+FROM
+    SignUps
+    LEFT JOIN Confirmations USING (user_id)
+GROUP BY 1;

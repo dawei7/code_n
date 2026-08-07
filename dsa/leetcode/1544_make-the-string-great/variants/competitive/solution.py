@@ -1,11 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def makeGood(self, s: str) -> str:
-        stack = []
-
-        for character in s:
-            if stack and stack[-1] != character and stack[-1].lower() == character.lower():
-                stack.pop()
+    def makeGood(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        stk = []
+        for ch in s:
+            counter_ch = ch.upper() if ch.islower() else ch.lower()
+            if stk and stk[-1] == counter_ch:
+                stk.pop()
             else:
-                stack.append(character)
-
-        return "".join(stack)
+                stk.append(ch)
+        return "".join(stk)

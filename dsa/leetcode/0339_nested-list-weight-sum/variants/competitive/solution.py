@@ -1,15 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def depthSum(self, nestedList: List[NestedInteger]) -> int:
-        def weighted_sum(values: List[NestedInteger], depth: int) -> int:
-            total = 0
-            for value in values:
-                if value.isInteger():
-                    total += value.getInteger() * depth
+    def depthSum(self, nestedList):
+        """
+        :type nestedList: List[NestedInteger]
+        :rtype: int
+        """
+        def depthSumHelper(nestedList, depth):
+            res = 0
+            for l in nestedList:
+                if l.isInteger():
+                    res += l.getInteger() * depth
                 else:
-                    total += weighted_sum(value.getList(), depth + 1)
-            return total
+                    res += depthSumHelper(l.getList(), depth + 1)
+            return res
+        return depthSumHelper(nestedList, 1)
 
-        return weighted_sum(nestedList, 1)

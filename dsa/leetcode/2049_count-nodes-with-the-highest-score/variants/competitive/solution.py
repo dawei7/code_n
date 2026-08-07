@@ -1,38 +1,60 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def countHighestScoreNodes(self, parents: List[int]) -> int:
-        node_count = len(parents)
-        children = [[] for _ in parents]
-        for node in range(1, node_count):
-            children[parents[node]].append(node)
+    def countHighestScoreNodes(self, parents):
+        """
+        :type parents: List[int]
+        :rtype: int
+        """
+        def iter_dfs(adj):
+            result = [0]*2
+            stk = [(1, (0, [0]))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    i, ret = args
+                    cnts = [[0] for _ in range(len(adj[i]))]
+                    stk.append((2, (cnts, ret)))
+                    for j, child in enumerate(adj[i]):
+                        stk.append((1, (child, cnts[j])))
+                elif step == 2:
+                    cnts, ret = args
+                    ret[0] = sum(cnt[0] for cnt in cnts)+1
+                    score = max((len(adj)-ret[0]), 1)*reduce(lambda x, y: x*y[0], cnts, 1)
+                    if score > result[0]:
+                        result[:] = [score, 1]
+                    elif score == result[0]:
+                        result[1] += 1
+            return result[1]
 
-        order = []
-        stack = [0]
-        while stack:
-            node = stack.pop()
-            order.append(node)
-            stack.extend(children[node])
+        adj = [[] for _ in range(len(parents))]  # Space: O(n)
+        for i in range(1, len(parents)):
+            adj[parents[i]].append(i)
+        return iter_dfs(adj)
 
-        subtree_size = [1] * node_count
-        highest_score = 0
-        highest_count = 0
 
-        for node in reversed(order):
-            score = 1
-            for child in children[node]:
-                subtree_size[node] += subtree_size[child]
-                score *= subtree_size[child]
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def countHighestScoreNodes(self, parents):
+        """
+        :type parents: List[int]
+        :rtype: int
+        """
+        def dfs(adj, i, result):
+            cnts = [dfs(adj, child, result) for child in adj[i]]
+            total = sum(cnts)+1
+            score = max((len(adj)-total), 1)*reduce(lambda x, y: x*y, cnts, 1)
+            if score > result[0]:
+                result[:] = [score, 1]
+            elif score == result[0]:
+                result[1] += 1
+            return total
 
-            parent_side = node_count - subtree_size[node]
-            if parent_side:
-                score *= parent_side
-
-            if score > highest_score:
-                highest_score = score
-                highest_count = 1
-            elif score == highest_score:
-                highest_count += 1
-
-        return highest_count
+        adj = [[] for _ in range(len(parents))]  # Space: O(n)
+        for i in range(1, len(parents)):
+            adj[parents[i]].append(i)
+        result = [0]*2
+        dfs(adj, 0, result)
+        return result[1]

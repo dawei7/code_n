@@ -1,30 +1,44 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(n)
 
 class Solution:
-    def countPyramids(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
+    def countPyramids(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def count(grid, reverse):
+            def get_grid(i, j):
+                return grid[~i][j] if reverse else grid[i][j]
 
-        def count_orientation(row_order: range) -> int:
-            supporting = [0] * columns
-            total = 0
+            result = 0
+            dp = [0]*len(grid[0])
+            for i in range(1, len(grid)):
+                new_dp = [0]*len(grid[0])
+                for j in range(1, len(grid[0])-1):
+                    if get_grid(i, j) == get_grid(i-1, j-1) == get_grid(i-1, j) == get_grid(i-1, j+1) == 1:
+                        new_dp[j] = min(dp[j-1], dp[j+1])+1
+                dp = new_dp
+                result += sum(dp)
+            return result
+        
+        return count(grid, False) + count(grid, True)
 
-            for row in row_order:
-                current = [0] * columns
-                for column in range(columns):
-                    if grid[row][column] == 0:
-                        continue
-                    current[column] = 1
-                    if 0 < column < columns - 1:
-                        current[column] += min(
-                            supporting[column - 1],
-                            supporting[column],
-                            supporting[column + 1],
-                        )
-                    total += current[column] - 1
-                supporting = current
 
-            return total
-
-        return count_orientation(range(rows - 1, -1, -1)) + count_orientation(range(rows))
+# Time:  O(m * n)
+# Space: O(m * n)
+class Solution2(object):
+    def countPyramids(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def count(grid):
+            dp = [[0 for _ in range(len(grid[0]))] for _ in range(len(grid))]
+            for i in range(1, len(grid)):
+                for j in range(1, len(grid[0])-1):
+                    if grid[i][j] == grid[i-1][j-1] == grid[i-1][j] == grid[i-1][j+1] == 1:
+                        dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i-1][j+1])+1
+            return sum(sum(row) for row in dp)
+        
+        return count(grid) + count(grid[::-1])

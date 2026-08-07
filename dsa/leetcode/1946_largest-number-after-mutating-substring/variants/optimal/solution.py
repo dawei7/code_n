@@ -1,19 +1,12 @@
-from typing import List
-
-
 class Solution:
     def maximumNumber(self, num: str, change: List[int]) -> str:
-        digits = list(num)
-        mutating = False
-
-        for index, character in enumerate(digits):
-            digit = int(character)
-            replacement = change[digit]
-
-            if replacement > digit:
-                digits[index] = str(replacement)
-                mutating = True
-            elif replacement < digit and mutating:
+        s = list(num)
+        changed = False
+        for i, c in enumerate(s):
+            d = str(change[int(c)])
+            if changed and d < c:
                 break
-
-        return "".join(digits)
+            if d > c:
+                changed = True
+                s[i] = d
+        return "".join(s)

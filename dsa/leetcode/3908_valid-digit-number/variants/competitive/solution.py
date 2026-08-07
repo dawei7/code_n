@@ -1,16 +1,34 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# math
 class Solution:
-    def validDigit(self, n: int, x: int) -> bool:
-        if n == 0:
-            return False
+    def validDigit(self, n, x):
+        """
+        :type n: int
+        :type x: int
+        :rtype: bool
+        """
+        result = False
+        while n:
+            n, r = divmod(n, 10)
+            if r != x:
+                continue
+            if not n:
+                return False
+            result = True
+        return result
 
-        found = False
-        leading_digit = 0
 
-        while n > 0:
-            digit = n % 10
-            if digit == x:
-                found = True
-            leading_digit = digit
-            n //= 10
-
-        return found and leading_digit != x
+# Time:  O(logn)
+# Space: O(logn)
+# math
+class Solution2(object):
+    def validDigit(self, n, x):
+        """
+        :type n: int
+        :type x: int
+        :rtype: bool
+        """
+        digits = map(int, str(n))
+        return x != digits[0] and x in digits

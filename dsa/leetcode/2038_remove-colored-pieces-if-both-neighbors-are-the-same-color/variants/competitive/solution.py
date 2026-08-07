@@ -1,13 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def winnerOfGame(self, colors: str) -> bool:
-        alice_moves = 0
-        bob_moves = 0
-
-        for index in range(1, len(colors) - 1):
-            if colors[index - 1] == colors[index] == colors[index + 1]:
-                if colors[index] == "A":
-                    alice_moves += 1
-                else:
-                    bob_moves += 1
-
-        return alice_moves > bob_moves
+    def winnerOfGame(self, colors):
+        """
+        :type colors: str
+        :rtype: bool
+        """
+        cnt1 = cnt2 = 0
+        for i in range(1, len(colors)-1):
+            if not (colors[i-1] == colors[i] == colors[i+1]):
+                continue
+            if colors[i] == 'A':
+                cnt1 += 1
+            else:
+                cnt2 += 1
+        return cnt1 > cnt2

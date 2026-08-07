@@ -1,7 +1,3 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def maxProbability(
         self,
@@ -11,27 +7,20 @@ class Solution:
         start_node: int,
         end_node: int,
     ) -> float:
-        graph = [[] for _ in range(n)]
-        for (first, second), probability in zip(edges, succProb):
-            graph[first].append((second, probability))
-            graph[second].append((first, probability))
-
-        best = [0.0] * n
-        best[start_node] = 1.0
-        heap = [(-1.0, start_node)]
-
-        while heap:
-            negative_probability, node = heapq.heappop(heap)
-            probability = -negative_probability
-            if node == end_node:
-                return probability
-            if probability < best[node]:
+        g: List[List[Tuple[int, float]]] = [[] for _ in range(n)]
+        for (a, b), p in zip(edges, succProb):
+            g[a].append((b, p))
+            g[b].append((a, p))
+        pq = [(-1, start_node)]
+        dist = [0] * n
+        dist[start_node] = 1
+        while pq:
+            w, a = heappop(pq)
+            w = -w
+            if dist[a] > w:
                 continue
-
-            for neighbor, edge_probability in graph[node]:
-                candidate = probability * edge_probability
-                if candidate > best[neighbor]:
-                    best[neighbor] = candidate
-                    heapq.heappush(heap, (-candidate, neighbor))
-
-        return 0.0
+            for b, p in g[a]:
+                if (t := w * p) > dist[b]:
+                    dist[b] = t
+                    heappush(pq, (-t, b))
+        return dist[end_node]

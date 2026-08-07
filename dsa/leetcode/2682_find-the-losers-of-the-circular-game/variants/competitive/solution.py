@@ -1,12 +1,19 @@
+# Time:  O(n)
+# Space: O(n)
+
+# hash table, simulation
 class Solution:
-    def circularGameLosers(self, n: int, k: int) -> List[int]:
-        visited = [False] * n
-        current = 0
-        turn = 1
-
-        while not visited[current]:
-            visited[current] = True
-            current = (current + turn * k) % n
-            turn += 1
-
-        return [index + 1 for index, received in enumerate(visited) if not received]
+    def circularGameLosers(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[int]
+        """
+        lookup = [False]*n
+        idx = 0
+        for i in range(n):
+            if lookup[idx]:
+                break
+            lookup[idx] = True
+            idx = (idx+(i+1)*k)%n
+        return [i+1 for i in range(n) if not lookup[i]]

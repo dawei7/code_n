@@ -1,34 +1,31 @@
 class Solution:
-    def minimumTotalPrice(self, n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:
-        adjacency = [[] for _ in range(n)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
-
-        usage = [0] * n
-
-        def count_path(node: int, parent: int, target: int) -> bool:
-            if node == target:
-                usage[node] += 1
+    def minimumTotalPrice(
+        self, n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]
+    ) -> int:
+        def dfs(i: int, fa: int, k: int) -> bool:
+            cnt[i] += 1
+            if i == k:
                 return True
-            for neighbor in adjacency[node]:
-                if neighbor != parent and count_path(neighbor, node, target):
-                    usage[node] += 1
-                    return True
-            return False
+            ok = any(j != fa and dfs(j, i, k) for j in g[i])
+            if not ok:
+                cnt[i] -= 1
+            return ok
 
+        def dfs2(i: int, fa: int) -> (int, int):
+            a = cnt[i] * price[i]
+            b = a // 2
+            for j in g[i]:
+                if j != fa:
+                    x, y = dfs2(j, i)
+                    a += min(x, y)
+                    b += x
+            return a, b
+
+        g = [[] for _ in range(n)]
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        cnt = Counter()
         for start, end in trips:
-            count_path(start, -1, end)
-
-        def minimize(node: int, parent: int) -> tuple[int, int]:
-            full = usage[node] * price[node]
-            halved = usage[node] * (price[node] // 2)
-            for neighbor in adjacency[node]:
-                if neighbor == parent:
-                    continue
-                child_full, child_halved = minimize(neighbor, node)
-                full += min(child_full, child_halved)
-                halved += child_full
-            return full, halved
-
-        return min(minimize(0, -1))
+            dfs(start, -1, end)
+        return min(dfs2(0, -1))

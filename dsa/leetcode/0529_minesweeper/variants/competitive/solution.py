@@ -1,34 +1,79 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n)
+# Space: O(m + n)
 
-
+# dfs
 class Solution:
-    def updateBoard(self, board: List[List[str]], click: List[int]) -> List[List[str]]:
-        start_row, start_col = click
-        if board[start_row][start_col] == "M":
-            board[start_row][start_col] = "X"
+    def updateBoard(self, board, click):
+        """
+        :type board: List[List[str]]
+        :type click: List[int]
+        :rtype: List[List[str]]
+        """
+        if board[click[0]][click[1]] == 'M':
+            board[click[0]][click[1]] = 'X'
             return board
-
-        rows, cols = len(board), len(board[0])
-        queue = deque([(start_row, start_col)])
-        board[start_row][start_col] = "B"
-
-        while queue:
-            row, col = queue.popleft()
-            neighbors = [
-                (next_row, next_col)
-                for next_row in range(max(0, row - 1), min(rows, row + 2))
-                for next_col in range(max(0, col - 1), min(cols, col + 2))
-                if (next_row, next_col) != (row, col)
-            ]
-            mines = sum(board[next_row][next_col] == "M" for next_row, next_col in neighbors)
-            if mines:
-                board[row][col] = str(mines)
+        stk = [click]
+        while stk:
+            r, c = stk.pop()
+            cnt = 0
+            adj = []
+            for dr in range(-1, 2):
+                for dc in range(-1, 2):
+                    if dr == dc == 0:
+                        continue
+                    nr, nc = r+dr, c+dc
+                    if not (0 <= nr < len(board) and 0 <= nc < len(board[r])):
+                        continue
+                    if board[nr][nc] == 'M':
+                        cnt += 1
+                    elif board[nr][nc] == 'E':
+                        adj.append((nr, nc))
+            if cnt:
+                board[r][c] = chr(cnt + ord('0'))
                 continue
+            board[r][c] = 'B'
+            for nr, nc in adj:
+                board[nr][nc] = ' '
+                stk.append((nr, nc))
+        return board
 
-            for next_row, next_col in neighbors:
-                if board[next_row][next_col] == "E":
-                    board[next_row][next_col] = "B"
-                    queue.append((next_row, next_col))
 
+# Time:  O(m * n)
+# Space: O(m + n)
+# dfs
+class Solution2(object):
+    def updateBoard(self, board, click):
+        """
+        :type board: List[List[str]]
+        :type click: List[int]
+        :rtype: List[List[str]]
+        """
+        if board[click[0]][click[1]] == 'M':
+            board[click[0]][click[1]] = 'X'
+            return board
+        q = [click]
+        while q:
+            new_q = []
+            for r, c in q:
+                cnt = 0
+                adj = []
+                for dr in range(-1, 2):
+                    for dc in range(-1, 2):
+                        if dr == dc == 0:
+                            continue
+                        nr, nc = r+dr, c+dc
+                        if not (0 <= nr < len(board) and 0 <= nc < len(board[r])):
+                            continue
+                        if board[nr][nc] == 'M':
+                            cnt += 1
+                        elif board[nr][nc] == 'E':
+                            adj.append((nr, nc))
+                if cnt:
+                    board[r][c] = chr(cnt + ord('0'))
+                    continue
+                board[r][c] = 'B'
+                for nr, nc in adj:
+                    board[nr][nc] = ' '
+                    new_q.append((nr, nc))
+            q = new_q
         return board

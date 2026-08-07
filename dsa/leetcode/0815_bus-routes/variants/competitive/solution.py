@@ -1,35 +1,42 @@
-from collections import defaultdict, deque
-from typing import List
+# Time:  O(|V| + |E|)
+# Space: O(|V| + |E|)
+
+import collections
 
 
 class Solution:
-    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
-        if source == target:
+    def numBusesToDestination(self, routes, S, T):
+        """
+        :type routes: List[List[int]]
+        :type S: int
+        :type T: int
+        :rtype: int
+        """
+        if S == T:
             return 0
 
-        routes_by_stop = defaultdict(list)
-        for route_index, stops in enumerate(routes):
-            for stop in stops:
-                routes_by_stop[stop].append(route_index)
+        to_route = collections.defaultdict(set)
+        for i, route in enumerate(routes):
+            for stop in route:
+                to_route[stop].add(i)
 
-        queue = deque([source])
-        visited_stops = {source}
-        visited_routes = set()
-        buses = 0
-
-        while queue:
-            buses += 1
-            for _ in range(len(queue)):
-                stop = queue.popleft()
-                for route_index in routes_by_stop[stop]:
-                    if route_index in visited_routes:
-                        continue
-                    visited_routes.add(route_index)
-                    for next_stop in routes[route_index]:
-                        if next_stop == target:
-                            return buses
-                        if next_stop not in visited_stops:
-                            visited_stops.add(next_stop)
-                            queue.append(next_stop)
+        result = 1
+        q = [S]
+        lookup = set([S])
+        while q:
+            next_q = []
+            for stop in q:
+                for i in to_route[stop]:
+                    for next_stop in routes[i]:
+                        if next_stop in lookup:
+                            continue
+                        if next_stop == T:
+                            return result
+                        next_q.append(next_stop)
+                        to_route[next_stop].remove(i)
+                        lookup.add(next_stop)
+            q = next_q
+            result += 1
 
         return -1
+

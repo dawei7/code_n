@@ -1,32 +1,46 @@
-from collections import Counter
-from typing import List
+# Time:  O(n + logm), n is the length of text, m is the number of fonts
+# Space: O(1)
+
+import collections
+
+
+class FontInfo(object):
+    def getWidth(self, fontSize, ch):
+        """
+        :type fontSize: int
+        :type ch: char
+        :rtype int
+        """
+        pass
+    
+    def getHeight(self, fontSize):
+        """
+        :type fontSize: int
+        :rtype int
+        """
+        pass
 
 
 class Solution:
-    def maxFont(
-        self,
-        text: str,
-        w: int,
-        h: int,
-        fonts: List[int],
-        fontInfo: "FontInfo",
-    ) -> int:
-        frequencies = Counter(text)
+    def maxFont(self, text, w, h, fonts, fontInfo):
+        """
+        :type text: str
+        :type w: int
+        :type h: int
+        :type fonts: List[int]
+        :type fontInfo: FontInfo
+        :rtype: int
+        """
+        def check(count, w, h, fonts, fontInfo, x):  # Time: O(1)
+            return (fontInfo.getHeight(fonts[x]) <= h and
+                    sum(cnt * fontInfo.getWidth(fonts[x], c) for c, cnt in count.items()) <= w)
 
-        def fits(font: int) -> bool:
-            if fontInfo.getHeight(font) > h:
-                return False
-            width = sum(frequency * fontInfo.getWidth(font, character) for character, frequency in frequencies.items())
-            return width <= w
-
-        left = 0
-        right = len(fonts) - 1
-        answer = -1
+        count = collections.Counter(text)
+        left, right = 0, len(fonts)-1
         while left <= right:
-            middle = (left + right) // 2
-            if fits(fonts[middle]):
-                answer = fonts[middle]
-                left = middle + 1
+            mid = left + (right-left)//2
+            if not check(count, w, h, fonts, fontInfo, mid):
+                right = mid-1
             else:
-                right = middle - 1
-        return answer
+                left = mid+1
+        return fonts[right] if right >= 0 else -1

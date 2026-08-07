@@ -1,95 +1,79 @@
-MODULO = 1_000_000_007
+# Time:  O(nlog n + qlogn)
+# Spece: O(nlogn)
 
-
+# dfs, binary lifting
 class Solution:
-    def distinctPaths(
-        self,
-        n: int,
-        parent: list[int],
-        gates: list[list[int]],
-        queries: list[list[int]],
-    ) -> int:
-        levels = n.bit_length()
-        children = [[] for _ in range(n)]
-        for node in range(1, n):
-            children[parent[node]].append(node)
+    def distinctPaths(self, n, parent, gates, queries):
+        """
+        :type n: int
+        :type parent: List[int]
+        :type gates: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        BB, BR, RB, RR = range(4)
+        def ceil_log2(x):
+            return (x-1).bit_length()
 
-        depth = [0] * n
-        stack = [0]
-        while stack:
-            node = stack.pop()
-            for child in children[node]:
-                depth[child] = depth[node] + 1
-                stack.append(child)
-
-        ancestors = [[0] * n for _ in range(levels)]
-        ancestors[0] = [0 if node == 0 else parent[node] for node in range(n)]
-        matrices = [[(0, 0, 0, 0) for _ in range(n)] for _ in range(levels)]
-        matrices[0] = [(blue, white, white, red) for red, blue, white in gates]
-
-        def multiply(
-            left: tuple[int, int, int, int],
-            right: tuple[int, int, int, int],
-        ) -> tuple[int, int, int, int]:
-            a, b, c, d = left
-            e, f, g, h = right
+        def mult(x, y):
             return (
-                (a * e + b * g) % MODULO,
-                (a * f + b * h) % MODULO,
-                (c * e + d * g) % MODULO,
-                (c * f + d * h) % MODULO,
+                (x[BB]*y[BB]+x[BR]*y[RB])%MOD,
+                (x[BB]*y[BR]+x[BR]*y[RR])%MOD,
+                (x[RB]*y[BB]+x[RR]*y[RB])%MOD,
+                (x[RB]*y[BR]+x[RR]*y[RR])%MOD,
             )
 
-        for bit in range(1, levels):
-            previous_ancestors = ancestors[bit - 1]
-            current_ancestors = ancestors[bit]
-            previous_matrices = matrices[bit - 1]
-            current_matrices = matrices[bit]
-            for node in range(n):
-                middle = previous_ancestors[node]
-                current_ancestors[node] = previous_ancestors[middle]
-                current_matrices[node] = multiply(previous_matrices[node], previous_matrices[middle])
+        def lca(a, b):
+            if depth[a] < depth[b]:
+                a, b = b, a
+            d = depth[a]-depth[b]
+            for k in range(len(par)):
+                if d&(1<<k):
+                    a = par[k][a]
+            if a == b:
+                return a
+            for k in reversed(range(len(par))):
+                if par[k][a] != par[k][b]:
+                    a, b = par[k][a], par[k][b]
+            return par[0][a]
 
-        def lift(node: int, distance: int) -> int:
-            bit = 0
-            while distance:
-                if distance & 1:
-                    node = ancestors[bit][node]
-                distance >>= 1
-                bit += 1
-            return node
+        def count(u, card, t):
+            if u == l:
+                return 1
+            d = depth[u]-depth[t]
+            b, r = 1 if card == 0 else 0, 1 if card == 1 else 0
+            for k in range(len(par)):
+                if not d&(1<<k):
+                    continue
+                b, r = (b*cnt[k][u][BB]+r*cnt[k][u][RB])%MOD, (b*cnt[k][u][BR]+r*cnt[k][u][RR])%MOD
+                u = par[k][u]
+            return (b+r)%MOD
 
-        def lowest_common_ancestor(first: int, second: int) -> int:
-            if depth[first] < depth[second]:
-                first, second = second, first
-            first = lift(first, depth[first] - depth[second])
-            if first == second:
-                return first
-
-            for bit in range(levels - 1, -1, -1):
-                if ancestors[bit][first] != ancestors[bit][second]:
-                    first = ancestors[bit][first]
-                    second = ancestors[bit][second]
-            return ancestors[0][first]
-
-        def count_paths(node: int, ancestor: int, card: int) -> int:
-            product = (1, 0, 0, 1)
-            distance = depth[node] - depth[ancestor]
-            bit = 0
-            while distance:
-                if distance & 1:
-                    product = multiply(product, matrices[bit][node])
-                    node = ancestors[bit][node]
-                distance >>= 1
-                bit += 1
-
-            row = 2 * card
-            return (product[row] + product[row + 1]) % MODULO
-
-        answer = 0
-        for alice_node, alice_card, bob_node, bob_card in queries:
-            ancestor = lowest_common_ancestor(alice_node, bob_node)
-            alice_paths = count_paths(alice_node, ancestor, alice_card)
-            bob_paths = count_paths(bob_node, ancestor, bob_card)
-            answer ^= alice_paths * bob_paths % MODULO
-        return answer
+        adj = [[] for _ in range(n)]
+        for u in range(n):
+            if parent[u] != -1:
+                adj[parent[u]].append(u)
+        depth = [0]*n
+        stk = [0]
+        while stk:
+            u = stk.pop()
+            for v in reversed(adj[u]):
+                depth[v] = depth[u]+1
+                stk.append(v)
+        par = [[0]*n for _ in range(ceil_log2(n-1)+1)]
+        cnt = [[(0,)*4 for _ in range(n)] for _ in range(ceil_log2(n-1)+1)]
+        for u in range(n):
+            par[0][u] = parent[u]
+            cnt[0][u] = (gates[u][1], gates[u][2], gates[u][2], gates[u][0])
+        for k in range(1, len(par)):
+            for u in range(n):
+                if par[k-1][u] == -1:
+                    continue
+                par[k][u] = par[k-1][par[k-1][u]]
+                cnt[k][u] = mult(cnt[k-1][u], cnt[k-1][par[k-1][u]])
+        result = 0
+        for q in queries:
+            l = lca(q[0], q[2])
+            result ^= (count(q[0], q[1], l)*count(q[2], q[3], l))%MOD
+        return result

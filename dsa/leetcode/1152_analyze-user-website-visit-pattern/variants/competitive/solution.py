@@ -1,16 +1,22 @@
-from collections import Counter, defaultdict
-from itertools import combinations
+# Time:  O(n^3)
+# Space: O(n^3)
+
+import collections
+import itertools
 
 
 class Solution:
-    def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:
-        histories = defaultdict(list)
-        for _, user, site in sorted(zip(timestamp, username, website)):
-            histories[user].append(site)
-
-        scores = Counter()
-        for sites in histories.values():
-            scores.update(set(combinations(sites, 3)))
-
-        best = min(scores, key=lambda pattern: (-scores[pattern], pattern))
-        return list(best)
+    def mostVisitedPattern(self, username, timestamp, website):
+        """
+        :type username: List[str]
+        :type timestamp: List[int]
+        :type website: List[str]
+        :rtype: List[str]
+        """
+        lookup = collections.defaultdict(list)
+        A = zip(timestamp, username, website)
+        A.sort()
+        for t, u, w in A:
+            lookup[u].append(w)
+        count = sum([collections.Counter(set(itertools.combinations(lookup[u], 3))) for u in lookup], collections.Counter())
+        return list(min(count, key=lambda x: (-count[x], x)))

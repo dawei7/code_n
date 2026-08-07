@@ -1,6 +1,8 @@
-SELECT
-    ABS(
-        MAX(CASE WHEN department = 'Marketing' THEN salary END) -
-        MAX(CASE WHEN department = 'Engineering' THEN salary END)
-    ) AS salary_difference
-FROM Salaries;
+# Write your MySQL query statement below
+SELECT MAX(s) - MIN(s) AS salary_difference
+FROM
+    (
+        SELECT MAX(salary) AS s
+        FROM Salaries
+        GROUP BY department
+    ) AS t;

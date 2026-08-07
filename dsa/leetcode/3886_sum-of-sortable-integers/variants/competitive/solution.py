@@ -1,51 +1,23 @@
+# Time:  O(nlog(logn))
+# Space: O(n)
+
+# prefix sum, number theory
 class Solution:
-    def sortableIntegers(self, nums: list[int]) -> int:
-        n = len(nums)
+    def sortableIntegers(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def check(k):
+            return len(nums)%k == 0 and all(prefix[i] <= suffix[i] and (prefix2[i+k-1]-prefix2[i])+(1 if nums[i+k-1] > nums[i] else 0) <= 1 for i in range(0, len(nums), k))
 
-        suffix_minimum = [0] * n
-        suffix_minimum[-1] = nums[-1]
-        for index in range(n - 2, -1, -1):
-            suffix_minimum[index] = min(nums[index], suffix_minimum[index + 1])
-
-        good_cut = [True] * (n + 1)
-        prefix_maximum = nums[0]
-        for cut in range(1, n):
-            good_cut[cut] = prefix_maximum <= suffix_minimum[cut]
-            prefix_maximum = max(prefix_maximum, nums[cut])
-
-        divisors = []
-        candidate = 1
-        while candidate * candidate <= n:
-            if n % candidate == 0:
-                divisors.append(candidate)
-                paired = n // candidate
-                if paired != candidate:
-                    divisors.append(paired)
-            candidate += 1
-
-        answer = 0
-        for block_length in divisors:
-            if any(not good_cut[cut] for cut in range(block_length, n, block_length)):
-                continue
-
-            sortable = True
-            for start in range(0, n, block_length):
-                descents = 0
-                previous = nums[start + block_length - 1]
-
-                for index in range(start, start + block_length):
-                    current = nums[index]
-                    if previous > current:
-                        descents += 1
-                        if descents > 1:
-                            sortable = False
-                            break
-                    previous = current
-
-                if not sortable:
-                    break
-
-            if sortable:
-                answer += block_length
-
-        return answer
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = max(prefix[i], nums[i])
+        suffix = [float("inf")]*(len(nums)+1)
+        for i in reversed(range(len(nums))):
+            suffix[i] = min(suffix[i+1], nums[i])
+        prefix2 = [0]*(len(nums))
+        for i in range(len(nums)-1):
+            prefix2[i+1] = prefix2[i]+(1 if nums[i] > nums[i+1] else 0)
+        return sum(k for k in range(1, len(nums)+1) if check(k))

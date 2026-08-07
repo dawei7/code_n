@@ -1,44 +1,60 @@
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+
+
+# hash table, prefix sum
 class Solution:
-    def longestBalanced(self, s: str) -> int:
-        best = 1
+    def longestBalanced(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def count1():
+            result = cnt = 0
+            for i in range(len(s)):
+                cnt += 1
+                if i+1 == len(s) or s[i+1] != s[i]:
+                    result = max(result, cnt)
+                    cnt = 0
+            return result
 
-        run = 0
-        previous = ""
-        for char in s:
-            if char == previous:
-                run += 1
-            else:
-                previous = char
-                run = 1
-            best = max(best, run)
-
-        alphabet = "abc"
-        for excluded in alphabet:
-            allowed = [char for char in alphabet if char != excluded]
-            difference = 0
-            earliest = {0: -1}
-
-            for index, char in enumerate(s):
-                if char == excluded:
-                    difference = 0
-                    earliest = {0: index}
-                    continue
-
-                difference += 1 if char == allowed[0] else -1
-                if difference in earliest:
-                    best = max(best, index - earliest[difference])
+        def count2(a, b):
+            result = cnt = 0
+            lookup = collections.defaultdict(int, {cnt:-1})
+            for i, x in enumerate(s):
+                if x == a:
+                    cnt += 1
+                elif x == b:
+                    cnt -= 1
                 else:
-                    earliest[difference] = index
-
-        counts = [0, 0, 0]
-        earliest_state = {(0, 0): -1}
-
-        for index, char in enumerate(s):
-            counts[ord(char) - ord("a")] += 1
-            state = (counts[0] - counts[1], counts[0] - counts[2])
-            if state in earliest_state:
-                best = max(best, index - earliest_state[state])
-            else:
-                earliest_state[state] = index
-
-        return best
+                    cnt = 0
+                    lookup = collections.defaultdict(int, {cnt:i})
+                    continue
+                if cnt in lookup:
+                    result = max(result, i-lookup[cnt])
+                else:
+                    lookup[cnt] = i
+            return result
+    
+        def count3():
+            result = a = b = 0
+            lookup = collections.defaultdict(int, {(a, b):-1})
+            for i, x in enumerate(s):
+                if x == 'a':
+                    a += 1
+                elif x == 'b':
+                    b += 1
+                else:
+                    a -= 1
+                    b -= 1
+                if (a, b) in lookup:
+                    result = max(result, i-lookup[a, b])
+                else:
+                    lookup[a, b] = i
+            return result
+        
+        return max(count1(), 
+                   count2('a', 'b'), count2('b', 'c'), count2('c', 'a'),
+                   count3())

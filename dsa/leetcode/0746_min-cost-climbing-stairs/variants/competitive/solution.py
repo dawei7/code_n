@@ -1,13 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minCostClimbingStairs(self, cost: List[int]) -> int:
-        two_before = 0
-        one_before = 0
+    def minCostClimbingStairs(self, cost):
+        """
+        :type cost: List[int]
+        :rtype: int
+        """
+        dp = [0] * 3
+        for i in reversed(range(len(cost))):
+            dp[i%3] = cost[i] + min(dp[(i+1)%3], dp[(i+2)%3])
+        return min(dp[0], dp[1])
 
-        for step_cost in cost:
-            current = step_cost + min(two_before, one_before)
-            two_before, one_before = one_before, current
-
-        return min(two_before, one_before)

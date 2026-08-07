@@ -1,7 +1,8 @@
-SELECT 'bull' AS word, COUNT(*) AS count
+# Time:  O(n)
+# Space: O(n)
+
+SELECT "bull" AS word, SUM(IF(content LIKE "% bull %", 1, 0)) AS count
 FROM Files
-WHERE content LIKE '% bull %'
 UNION ALL
-SELECT 'bear' AS word, COUNT(*) AS count
-FROM Files
-WHERE content LIKE '% bear %';
+SELECT "bear" AS word, SUM(IF(content LIKE "% bear %", 1, 0)) AS count
+FROM Files;

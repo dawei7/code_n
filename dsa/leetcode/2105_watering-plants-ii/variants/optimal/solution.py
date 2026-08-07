@@ -1,34 +1,17 @@
-from typing import List
-
-
 class Solution:
-    def minimumRefill(
-        self,
-        plants: List[int],
-        capacityA: int,
-        capacityB: int,
-    ) -> int:
-        left = 0
-        right = len(plants) - 1
-        remaining_a = capacityA
-        remaining_b = capacityB
-        refills = 0
-
-        while left < right:
-            if remaining_a < plants[left]:
-                refills += 1
-                remaining_a = capacityA
-            remaining_a -= plants[left]
-
-            if remaining_b < plants[right]:
-                refills += 1
-                remaining_b = capacityB
-            remaining_b -= plants[right]
-
-            left += 1
-            right -= 1
-
-        if left == right and max(remaining_a, remaining_b) < plants[left]:
-            refills += 1
-
-        return refills
+    def minimumRefill(self, plants: List[int], capacityA: int, capacityB: int) -> int:
+        a, b = capacityA, capacityB
+        ans = 0
+        i, j = 0, len(plants) - 1
+        while i < j:
+            if a < plants[i]:
+                ans += 1
+                a = capacityA
+            a -= plants[i]
+            if b < plants[j]:
+                ans += 1
+                b = capacityB
+            b -= plants[j]
+            i, j = i + 1, j - 1
+        ans += i == j and max(a, b) < plants[i]
+        return ans

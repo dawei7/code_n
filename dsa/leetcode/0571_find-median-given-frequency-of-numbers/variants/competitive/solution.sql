@@ -1,20 +1,16 @@
-WITH frequency_ranges AS (
-    SELECT
-        num,
-        frequency,
-        SUM(frequency) OVER (
-            ORDER BY num
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS cumulative,
-        SUM(frequency) OVER () AS total_frequency
-    FROM Numbers
-),
-middle_values AS (
-    SELECT num
-    FROM frequency_ranges
-    WHERE 2 * cumulative >= total_frequency
-      AND 2 * (cumulative - frequency) <= total_frequency
-)
-SELECT ROUND(AVG(num), 1) AS median
-FROM middle_values;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT AVG(n.Number) AS median 
+FROM Numbers n LEFT JOIN
+(
+SELECT Number, @prev := @count AS prevNumber, (@count := @count + Frequency) AS countNumber
+FROM Numbers, 
+(SELECT @count := 0, @prev := 0, @total := (SELECT SUM(Frequency) FROM Numbers)) temp ORDER BY Number
+) n2
+ON n.Number = n2.Number
+WHERE 
+(prevNumber < floor((@total+1)/2) AND countNumber >= floor((@total+1)/2))
+OR
+(prevNumber < floor((@total+2)/2) AND countNumber >= floor((@total+2)/2))
 

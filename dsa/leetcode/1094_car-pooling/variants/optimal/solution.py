@@ -1,16 +1,8 @@
-from typing import List
-
-
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-        changes = [0] * 1001
-        for passengers, start, end in trips:
-            changes[start] += passengers
-            changes[end] -= passengers
-
-        passengers_aboard = 0
-        for change in changes:
-            passengers_aboard += change
-            if passengers_aboard > capacity:
-                return False
-        return True
+        mx = max(e[2] for e in trips)
+        d = [0] * (mx + 1)
+        for x, f, t in trips:
+            d[f] += x
+            d[t] -= x
+        return all(s <= capacity for s in accumulate(d))

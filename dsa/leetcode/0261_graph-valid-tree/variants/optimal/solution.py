@@ -1,26 +1,15 @@
-from typing import List
-
-
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
-        if len(edges) != n - 1:
-            return False
-        parent = list(range(n))
-        size = [1] * n
+        def find(x: int) -> int:
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        for left, right in edges:
-            left_root = find(left)
-            right_root = find(right)
-            if left_root == right_root:
+        p = list(range(n))
+        for a, b in edges:
+            pa, pb = find(a), find(b)
+            if pa == pb:
                 return False
-            if size[left_root] < size[right_root]:
-                left_root, right_root = right_root, left_root
-            parent[right_root] = left_root
-            size[left_root] += size[right_root]
-        return True
+            p[pa] = pb
+            n -= 1
+        return n == 1

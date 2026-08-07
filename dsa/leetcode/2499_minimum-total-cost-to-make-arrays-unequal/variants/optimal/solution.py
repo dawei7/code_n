@@ -1,28 +1,21 @@
-from collections import Counter
-
-
 class Solution:
     def minimumTotalCost(self, nums1: List[int], nums2: List[int]) -> int:
-        frequencies = Counter()
-        cost = 0
-        selected = 0
-        dominant_value = 0
-        dominant_count = 0
+        ans = same = 0
+        cnt = Counter()
+        for i, (a, b) in enumerate(zip(nums1, nums2)):
+            if a == b:
+                same += 1
+                ans += i
+                cnt[a] += 1
 
-        for index, (left, right) in enumerate(zip(nums1, nums2)):
-            if left == right:
-                cost += index
-                selected += 1
-                frequencies[left] += 1
-                if frequencies[left] > dominant_count:
-                    dominant_value = left
-                    dominant_count = frequencies[left]
-
-        for index, (left, right) in enumerate(zip(nums1, nums2)):
-            if dominant_count * 2 <= selected:
+        m = lead = 0
+        for k, v in cnt.items():
+            if v * 2 > same:
+                m = v * 2 - same
+                lead = k
                 break
-            if left != right and left != dominant_value and right != dominant_value:
-                cost += index
-                selected += 1
-
-        return cost if dominant_count * 2 <= selected else -1
+        for i, (a, b) in enumerate(zip(nums1, nums2)):
+            if m and a != b and a != lead and b != lead:
+                ans += i
+                m -= 1
+        return -1 if m else ans

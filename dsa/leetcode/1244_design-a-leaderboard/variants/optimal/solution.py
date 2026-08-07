@@ -1,15 +1,26 @@
-from heapq import nlargest
-
-
 class Leaderboard:
     def __init__(self):
-        self.scores = {}
+        self.d = defaultdict(int)
+        self.rank = SortedList()
 
     def addScore(self, playerId: int, score: int) -> None:
-        self.scores[playerId] = self.scores.get(playerId, 0) + score
+        if playerId not in self.d:
+            self.d[playerId] = score
+            self.rank.add(score)
+        else:
+            self.rank.remove(self.d[playerId])
+            self.d[playerId] += score
+            self.rank.add(self.d[playerId])
 
     def top(self, K: int) -> int:
-        return sum(nlargest(K, self.scores.values()))
+        return sum(self.rank[-K:])
 
     def reset(self, playerId: int) -> None:
-        del self.scores[playerId]
+        self.rank.remove(self.d.pop(playerId))
+
+
+# Your Leaderboard object will be instantiated and called as such:
+# obj = Leaderboard()
+# obj.addScore(playerId,score)
+# param_2 = obj.top(K)
+# obj.reset(playerId)

@@ -1,32 +1,25 @@
-from collections import deque
-
-
 class Solution:
     def kSimilarity(self, s1: str, s2: str) -> int:
-        if s1 == s2:
-            return 0
+        def next(s):
+            i = 0
+            while s[i] == s2[i]:
+                i += 1
+            res = []
+            for j in range(i + 1, n):
+                if s[j] == s2[i] and s[j] != s2[j]:
+                    res.append(s2[: i + 1] + s[i + 1 : j] + s[i] + s[j + 1 :])
+            return res
 
-        queue = deque([(s1, 0)])
-        seen = {s1}
-
-        while queue:
-            current, swaps = queue.popleft()
-            first_mismatch = next(index for index in range(len(current)) if current[index] != s2[index])
-
-            for index in range(first_mismatch + 1, len(current)):
-                if current[index] != s2[first_mismatch] or current[index] == s2[index]:
-                    continue
-
-                characters = list(current)
-                characters[first_mismatch], characters[index] = (
-                    characters[index],
-                    characters[first_mismatch],
-                )
-                neighbor = "".join(characters)
-                if neighbor == s2:
-                    return swaps + 1
-                if neighbor not in seen:
-                    seen.add(neighbor)
-                    queue.append((neighbor, swaps + 1))
-
-        return 0
+        q = deque([s1])
+        vis = {s1}
+        ans, n = 0, len(s1)
+        while 1:
+            for _ in range(len(q)):
+                s = q.popleft()
+                if s == s2:
+                    return ans
+                for nxt in next(s):
+                    if nxt not in vis:
+                        vis.add(nxt)
+                        q.append(nxt)
+            ans += 1

@@ -1,18 +1,22 @@
-from math import gcd
-from typing import List
+# Time:  O(nlogr), r = max(nums)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minimumSplits(self, nums: List[int]) -> int:
-        groups = 1
-        common = 0
+    def minimumSplits(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        for value in nums:
-            extended = gcd(common, value)
-            if extended == 1:
-                groups += 1
-                common = value
-            else:
-                common = extended
-
-        return groups
+        result, g = 1, 0
+        for x in nums:
+            g = gcd(g, x)
+            if g == 1:
+                g = x
+                result += 1
+        return result

@@ -1,32 +1,20 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def findShortestCycle(self, n: int, edges: List[List[int]]) -> int:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+        def bfs(u: int, v: int) -> int:
+            dist = [inf] * n
+            dist[u] = 0
+            q = deque([u])
+            while q:
+                i = q.popleft()
+                for j in g[i]:
+                    if (i, j) != (u, v) and (j, i) != (u, v) and dist[j] == inf:
+                        dist[j] = dist[i] + 1
+                        q.append(j)
+            return dist[v] + 1
 
-        shortest = n + 1
-        for start in range(n):
-            distance = [-1] * n
-            parent = [-1] * n
-            distance[start] = 0
-            queue = deque([start])
-
-            while queue:
-                node = queue.popleft()
-                for neighbor in graph[node]:
-                    if distance[neighbor] == -1:
-                        distance[neighbor] = distance[node] + 1
-                        parent[neighbor] = node
-                        queue.append(neighbor)
-                    elif parent[node] != neighbor:
-                        shortest = min(
-                            shortest,
-                            distance[node] + distance[neighbor] + 1,
-                        )
-
-        return -1 if shortest == n + 1 else shortest
+        g = defaultdict(set)
+        for u, v in edges:
+            g[u].add(v)
+            g[v].add(u)
+        ans = min(bfs(u, v) for u, v in edges)
+        return ans if ans < inf else -1

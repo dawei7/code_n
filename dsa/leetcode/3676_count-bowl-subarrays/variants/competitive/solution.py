@@ -1,20 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# mono stack
 class Solution:
-    def bowlSubarrays(self, nums: List[int]) -> int:
-        answer = 0
-        stack: list[tuple[int, int]] = []
-
-        for right, value in enumerate(nums):
-            while stack and stack[-1][0] < value:
-                _, left = stack.pop()
-                if right - left >= 2:
-                    answer += 1
-
-            if stack and right - stack[-1][1] >= 2:
-                answer += 1
-
-            stack.append((value, right))
-
-        return answer
+    def bowlSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        stk = []
+        for i in range(len(nums)):
+            while stk and nums[stk[-1]] < nums[i]:
+                stk.pop()
+                if stk:
+                    result += 1
+            stk.append(i)
+        return result

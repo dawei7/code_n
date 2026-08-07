@@ -1,10 +1,7 @@
-from typing import List
-
-
 class LogSystem:
     def __init__(self):
         self.logs = []
-        self.prefix_length = {
+        self.d = {
             "Year": 4,
             "Month": 7,
             "Day": 10,
@@ -17,7 +14,11 @@ class LogSystem:
         self.logs.append((id, timestamp))
 
     def retrieve(self, start: str, end: str, granularity: str) -> List[int]:
-        length = self.prefix_length[granularity]
-        lower = start[:length]
-        upper = end[:length]
-        return [identifier for identifier, timestamp in self.logs if lower <= timestamp[:length] <= upper]
+        i = self.d[granularity]
+        return [id for id, ts in self.logs if start[:i] <= ts[:i] <= end[:i]]
+
+
+# Your LogSystem object will be instantiated and called as such:
+# obj = LogSystem()
+# obj.put(id,timestamp)
+# param_2 = obj.retrieve(start,end,granularity)

@@ -1,20 +1,42 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers, sliding window
 class Solution:
-    def countSubarrays(self, nums: List[int], k: int) -> int:
-        maximum = max(nums)
-        left = 0
-        maximum_count = 0
-        answer = 0
-
-        for value in nums:
-            if value == maximum:
-                maximum_count += 1
-            while maximum_count >= k:
-                if nums[left] == maximum:
-                    maximum_count -= 1
+    def countSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        mx = max(nums)
+        result = left = cnt = 0
+        for right in range(len(nums)):
+            cnt += int(nums[right] == mx)
+            while cnt == k:
+                cnt -= int(nums[left] == mx)
                 left += 1
-            answer += left
+            result += left
+        return result
 
-        return answer
+
+# Time:  O(n)
+# Space: O(1)
+# two pointers, sliding window
+class Solution2(object):
+    def countSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        mx = max(nums)
+        result = (len(nums)+1)*len(nums)//2
+        left = cnt = 0
+        for right in range(len(nums)):
+            cnt += int(nums[right] == mx)
+            while cnt == k:
+                cnt -= int(nums[left] == mx)
+                left += 1
+            result -= right-left+1
+        return result

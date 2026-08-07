@@ -1,34 +1,33 @@
 # """
 # This is ArrayReader's API interface.
-# You should not implement it, or speculate about its implementation.
+# You should not implement it, or speculate about its implementation
 # """
-# class ArrayReader:
-#     def compareSub(self, l: int, r: int, x: int, y: int) -> int:
-#         ...
+# class ArrayReader(object):
+# 	 # Compares the sum of arr[l..r] with the sum of arr[x..y]
+# 	 # return 1 if sum(arr[l..r]) > sum(arr[x..y])
+# 	 # return 0 if sum(arr[l..r]) == sum(arr[x..y])
+# 	 # return -1 if sum(arr[l..r]) < sum(arr[x..y])
+#    def compareSub(self, l: int, r: int, x: int, y: int) -> int:
 #
-#     def length(self) -> int:
-#         ...
+# 	 # Returns the length of the array
+#    def length(self) -> int:
+#
 
 
 class Solution:
-    def getIndex(self, reader: "ArrayReader") -> int:
-        left = 0
-        right = reader.length() - 1
-
+    def getIndex(self, reader: 'ArrayReader') -> int:
+        left, right = 0, reader.length() - 1
         while left < right:
-            length = right - left + 1
-            half = length // 2
-            left_end = left + half - 1
-            right_start = left + half
-            right_end = right if length % 2 == 0 else right - 1
-            comparison = reader.compareSub(left, left_end, right_start, right_end)
-
-            if comparison > 0:
-                right = left_end
-            elif comparison < 0:
-                left = right_start
-                right = right_end
+            t1, t2, t3 = (
+                left,
+                left + (right - left) // 3,
+                left + ((right - left) // 3) * 2 + 1,
+            )
+            cmp = reader.compareSub(t1, t2, t2 + 1, t3)
+            if cmp == 0:
+                left = t3 + 1
+            elif cmp == 1:
+                right = t2
             else:
-                return right
-
+                left, right = t2 + 1, t3
         return left

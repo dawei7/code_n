@@ -1,9 +1,10 @@
-SELECT
-    user_id,
-    COUNT(*) AS prompt_count,
-    ROUND(AVG(tokens), 2) AS avg_tokens
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT user_id,
+       COUNT(prompt) AS prompt_count,
+       ROUND(AVG(tokens), 2) AS avg_tokens
 FROM prompts
-GROUP BY user_id
-HAVING COUNT(*) >= 3
-   AND MAX(tokens) > AVG(tokens)
-ORDER BY avg_tokens DESC, user_id ASC;
+GROUP BY 1
+HAVING prompt_count >= 3 AND MAX(tokens) > avg_tokens
+ORDER BY 3 DESC, 1;

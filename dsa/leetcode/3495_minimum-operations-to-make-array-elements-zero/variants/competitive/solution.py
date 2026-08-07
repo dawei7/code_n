@@ -1,21 +1,22 @@
-from typing import List
+# Time:  O(qlogr)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minOperations(self, queries: List[List[int]]) -> int:
-        def prefix_steps(upto: int) -> int:
+    def minOperations(self, queries):
+        """
+        :type queries: List[List[int]]
+        :rtype: int
+        """
+        result = 0
+        for l, r in queries:
             total = 0
-            start = 1
-            steps = 1
-            while start <= upto:
-                next_start = start * 4
-                total += (min(upto + 1, next_start) - start) * steps
-                start = next_start
-                steps += 1
-            return total
-
-        answer = 0
-        for left, right in queries:
-            required = prefix_steps(right) - prefix_steps(left - 1)
-            answer += (required + 1) // 2
-        return answer
+            base = i = 1
+            while base <= r:
+                nl, nr = max(l, base), min(r, 4*base-1)
+                if nl <= nr:
+                    total += i*(nr-nl+1)
+                i += 1
+                base *= 4
+            result += (total+1)//2
+        return result

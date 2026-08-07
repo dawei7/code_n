@@ -1,32 +1,24 @@
+primes = []
+x = 2
+M = 1000
+while len(primes) < M:
+    is_prime = True
+    for p in primes:
+        if p * p > x:
+            break
+        if x % p == 0:
+            is_prime = False
+            break
+    if is_prime:
+        primes.append(x)
+    x += 1
+
+
 class Solution:
     def minNumberOfPrimes(self, n: int, m: int) -> int:
-        is_prime = [True] * (n + 1)
-        if n >= 0:
-            is_prime[0] = False
-        if n >= 1:
-            is_prime[1] = False
-
-        limit = int(n**0.5)
-        for value in range(2, limit + 1):
-            if is_prime[value]:
-                for multiple in range(value * value, n + 1, value):
-                    is_prime[multiple] = False
-
-        primes = []
-        for value in range(2, n + 1):
-            if is_prime[value]:
-                primes.append(value)
-                if len(primes) == m:
-                    break
-
-        unreachable = n + 1
-        dp = [unreachable] * (n + 1)
-        dp[0] = 0
-
-        for total in range(1, n + 1):
-            for prime in primes:
-                if prime > total:
-                    break
-                dp[total] = min(dp[total], dp[total - prime] + 1)
-
-        return dp[n] if dp[n] != unreachable else -1
+        min = lambda x, y: x if x < y else y
+        f = [0] + [inf] * n
+        for x in primes[:m]:
+            for i in range(x, n + 1):
+                f[i] = min(f[i], f[i - x] + 1)
+        return f[n] if f[n] < inf else -1

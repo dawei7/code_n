@@ -1,8 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
-        first = set(nums1)
-        second = set(nums2)
-        return [list(first - second), list(second - first)]
+    def findDifference(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[List[int]]
+        """
+        lookup = [set(nums1), set(nums2)]
+        return [list(lookup[0]-lookup[1]), list(lookup[1]-lookup[0])]

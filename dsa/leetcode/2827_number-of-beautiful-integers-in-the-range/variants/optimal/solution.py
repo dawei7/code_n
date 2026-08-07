@@ -1,44 +1,22 @@
-from functools import cache
-
-
 class Solution:
     def numberOfBeautifulIntegers(self, low: int, high: int, k: int) -> int:
-        def count(bound: int) -> int:
-            if bound <= 0:
-                return 0
+        @cache
+        def dfs(pos: int, mod: int, diff: int, lead: int, limit: int) -> int:
+            if pos >= len(s):
+                return mod == 0 and diff == 10
+            up = int(s[pos]) if limit else 9
+            ans = 0
+            for i in range(up + 1):
+                if i == 0 and lead:
+                    ans += dfs(pos + 1, mod, diff, 1, limit and i == up)
+                else:
+                    nxt = diff + (1 if i % 2 == 1 else -1)
+                    ans += dfs(pos + 1, (mod * 10 + i) % k, nxt, 0, limit and i == up)
+            return ans
 
-            digits = str(bound)
-
-            @cache
-            def dp(
-                position: int,
-                remainder: int,
-                balance: int,
-                tight: bool,
-                started: bool,
-            ) -> int:
-                if position == len(digits):
-                    return int(started and remainder == 0 and balance == 0)
-
-                limit = int(digits[position]) if tight else 9
-                total = 0
-
-                for digit in range(limit + 1):
-                    next_tight = tight and digit == limit
-                    if not started and digit == 0:
-                        total += dp(position + 1, 0, 0, next_tight, False)
-                    else:
-                        next_balance = balance + (1 if digit % 2 == 0 else -1)
-                        total += dp(
-                            position + 1,
-                            (remainder * 10 + digit) % k,
-                            next_balance,
-                            next_tight,
-                            True,
-                        )
-
-                return total
-
-            return dp(0, 0, 0, True, False)
-
-        return count(high) - count(low - 1)
+        s = str(high)
+        a = dfs(0, 0, 10, 1, 1)
+        dfs.cache_clear()
+        s = str(low - 1)
+        b = dfs(0, 0, 10, 1, 1)
+        return a - b

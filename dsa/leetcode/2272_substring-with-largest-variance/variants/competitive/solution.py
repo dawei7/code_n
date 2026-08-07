@@ -1,34 +1,31 @@
-from collections import Counter
+# Time:  O(a^2 * n), a is the size of alphabets
+# Space: O(a)
+
+import itertools
 
 
+# kadane's algorithm
 class Solution:
-    def largestVariance(self, s: str) -> int:
-        totals = Counter(s)
-        answer = 0
-
-        for major in totals:
-            for minor in totals:
-                if major == minor:
+    def largestVariance(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def modified_kadane(a, x, y):
+            result = curr = 0
+            lookup = [0]*2
+            remain = [a.count(x), a.count(y)]
+            for c in a:
+                if c not in (x, y):
                     continue
+                lookup[c != x] = 1
+                remain[c != x] -= 1
+                curr += 1 if c == x else -1
+                if curr < 0 and remain[0] and remain[1]:
+                    curr = lookup[0] = lookup[1] = 0  # reset states if the remain has both x, y
+                if lookup[0] and lookup[1]:
+                    result = max(result, curr)  # update result if x, y both exist
+            return result
 
-                major_count = 0
-                minor_count = 0
-                remaining_minor = totals[minor]
-
-                for character in s:
-                    if character == major:
-                        major_count += 1
-                    elif character == minor:
-                        minor_count += 1
-                        remaining_minor -= 1
-                    else:
-                        continue
-
-                    if minor_count > 0:
-                        answer = max(answer, major_count - minor_count)
-
-                    if major_count < minor_count and remaining_minor > 0:
-                        major_count = 0
-                        minor_count = 0
-
-        return answer
+        alphabets = set(s)
+        return max(modified_kadane(s, x, y) for x, y in itertools.permutations(alphabets, 2)) if len(alphabets) >= 2 else 0

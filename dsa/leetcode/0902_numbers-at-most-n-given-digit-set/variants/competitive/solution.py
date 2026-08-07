@@ -1,19 +1,21 @@
-from bisect import bisect_left
-from typing import List
-
+# Time:  O(logn)
+# Space: O(logn)
 
 class Solution:
-    def atMostNGivenDigitSet(self, digits: List[str], n: int) -> int:
-        boundary = str(n)
-        choices = len(digits)
-        length = len(boundary)
-        total = sum(choices**size for size in range(1, length))
+    def atMostNGivenDigitSet(self, D, N):
+        """
+        :type D: List[str]
+        :type N: int
+        :rtype: int
+        """
+        str_N = str(N)
+        set_D = set(D)
+        result = sum(len(D)**i for i in range(1, len(str_N)))
+        i = 0
+        while i < len(str_N):
+            result += sum(c < str_N[i] for c in D) * (len(D)**(len(str_N)-i-1))
+            if str_N[i] not in set_D:
+                break
+            i += 1
+        return result + int(i == len(str_N))
 
-        for index, target in enumerate(boundary):
-            smaller = bisect_left(digits, target)
-            remaining = length - index - 1
-            total += smaller * choices**remaining
-            if smaller == choices or digits[smaller] != target:
-                return total
-
-        return total + 1

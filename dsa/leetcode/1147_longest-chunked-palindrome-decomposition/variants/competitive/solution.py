@@ -1,42 +1,29 @@
+# Time:  O(n)
+# Space: O(1)
+
+# Rabin-Karp Algorithm
 class Solution:
-    def longestDecomposition(self, text: str) -> int:
-        base = 911_382_323
-        moduli = (1_000_000_007, 1_000_000_009)
-        left = 0
-        right = len(text) - 1
-        chunk_left = 0
-        left_hashes = [0, 0]
-        right_hashes = [0, 0]
-        powers = [1, 1]
-        pending_length = 0
-        chunks = 0
+    def longestDecomposition(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        def compare(text, l, s1, s2):
+            for i in range(l):
+                if text[s1+i] != text[s2+i]:
+                    return False
+            return True
 
-        while left < right:
-            left_code = ord(text[left]) - ord("a") + 1
-            right_code = ord(text[right]) - ord("a") + 1
-            pending_length += 1
-            for position, modulus in enumerate(moduli):
-                left_hashes[position] = (left_hashes[position] * base + left_code) % modulus
-                right_hashes[position] = (right_code * powers[position] + right_hashes[position]) % modulus
-
-            hashes_match = left_hashes == right_hashes
-            characters_match = hashes_match and all(
-                text[chunk_left + offset] == text[right + offset] for offset in range(pending_length)
-            )
-            if characters_match:
-                chunks += 2
-                chunk_left = left + 1
-                left_hashes = [0, 0]
-                right_hashes = [0, 0]
-                powers = [1, 1]
-                pending_length = 0
-            else:
-                for position, modulus in enumerate(moduli):
-                    powers[position] = powers[position] * base % modulus
-
-            left += 1
-            right -= 1
-
-        if left == right or pending_length:
-            chunks += 1
-        return chunks
+        MOD = 10**9+7
+        D = 26
+        result = 0
+        left, right, l, pow_D = 0, 0, 0, 1
+        for i in range(len(text)):
+            left = (D*left + (ord(text[i])-ord('a'))) % MOD
+            right = (pow_D*(ord(text[-1-i])-ord('a')) + right) % MOD
+            l += 1
+            pow_D = (pow_D*D) % MOD 
+            if left == right and compare(text, l, i-l+1, len(text)-1-i):
+                result += 1
+                left, right, l, pow_D = 0, 0, 0, 1
+        return result

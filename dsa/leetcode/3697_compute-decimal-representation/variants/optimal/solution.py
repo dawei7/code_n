@@ -1,17 +1,11 @@
-from typing import List
-
-
 class Solution:
     def decimalRepresentation(self, n: int) -> List[int]:
-        components = []
-        place_value = 1
-
+        ans = []
+        p = 1
         while n:
-            digit = n % 10
-            if digit:
-                components.append(digit * place_value)
-            n //= 10
-            place_value *= 10
-
-        components.reverse()
-        return components
+            n, v = divmod(n, 10)
+            if v:
+                ans.append(p * v)
+            p *= 10
+        ans.reverse()
+        return ans

@@ -1,18 +1,10 @@
 class Solution:
     def countDaysTogether(
-        self,
-        arriveAlice: str,
-        leaveAlice: str,
-        arriveBob: str,
-        leaveBob: str,
+        self, arriveAlice: str, leaveAlice: str, arriveBob: str, leaveBob: str
     ) -> int:
-        days_before_month = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
-
-        def ordinal(date: str) -> int:
-            month = int(date[:2])
-            day = int(date[3:])
-            return days_before_month[month - 1] + day
-
-        overlap_start = max(ordinal(arriveAlice), ordinal(arriveBob))
-        overlap_end = min(ordinal(leaveAlice), ordinal(leaveBob))
-        return max(0, overlap_end - overlap_start + 1)
+        a = max(arriveAlice, arriveBob)
+        b = min(leaveAlice, leaveBob)
+        days = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+        x = sum(days[: int(a[:2]) - 1]) + int(a[3:])
+        y = sum(days[: int(b[:2]) - 1]) + int(b[3:])
+        return max(y - x + 1, 0)

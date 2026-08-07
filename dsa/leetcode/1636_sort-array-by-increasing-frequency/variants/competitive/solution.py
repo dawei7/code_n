@@ -1,8 +1,14 @@
-from collections import Counter
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def frequencySort(self, nums: List[int]) -> List[int]:
-        frequency = Counter(nums)
-        return sorted(nums, key=lambda value: (frequency[value], -value))
+    def frequencySort(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        count = collections.Counter(nums)
+        return sorted(nums, key=lambda x: (count[x], -x))

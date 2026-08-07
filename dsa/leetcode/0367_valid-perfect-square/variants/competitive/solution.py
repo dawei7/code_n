@@ -1,17 +1,18 @@
-class Solution:
-    def isPerfectSquare(self, num: int) -> bool:
-        if num == 1:
-            return True
+# Time:  O(logn)
+# Space: O(1)
 
-        left = 1
-        right = num // 2
+class Solution:
+    def isPerfectSquare(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        left, right = 1, num
         while left <= right:
-            middle = (left + right) // 2
-            square = middle * middle
-            if square == num:
-                return True
-            if square < num:
-                left = middle + 1
+            mid = left + (right - left) // 2
+            if mid >= num / mid:
+                right = mid - 1
             else:
-                right = middle - 1
-        return False
+                left = mid + 1
+        return left == num / left and num % left == 0
+

@@ -1,6 +1,12 @@
 class Solution:
     def largestInteger(self, num: int) -> int:
-        digits = str(num)
-        odd = sorted(character for character in digits if int(character) % 2)
-        even = sorted(character for character in digits if int(character) % 2 == 0)
-        return int("".join(odd.pop() if int(character) % 2 else even.pop() for character in digits))
+        nums = [int(c) for c in str(num)]
+        cnt = Counter(nums)
+        idx = [8, 9]
+        ans = 0
+        for x in nums:
+            while cnt[idx[x & 1]] == 0:
+                idx[x & 1] -= 2
+            ans = ans * 10 + idx[x & 1]
+            cnt[idx[x & 1]] -= 1
+        return ans

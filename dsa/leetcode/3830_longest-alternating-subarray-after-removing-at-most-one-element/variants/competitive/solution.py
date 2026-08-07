@@ -1,39 +1,74 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# dp
 class Solution:
-    def longestAlternating(self, nums: List[int]) -> int:
-        n = len(nums)
-        left_up = [1] * n
-        left_down = [1] * n
-        right_up = [1] * n
-        right_down = [1] * n
+    def longestAlternating(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = up1 = up0 = down1 = down0 = 1
+        for i in range(len(nums)-1):
+            if nums[i] < nums[i+1]:
+                up1, up0, down1, down0 = down1+1, down0+1, down0, 1
+            elif nums[i] > nums[i+1]:
+                up1, up0, down1, down0 = up0, 1, up1+1, up0+1
+            else:
+                up1, up0, down1, down0 = up0, 1, down0, 1
+            result = max(result, up1, down1)
+        return result
 
-        answer = 1
-        for i in range(1, n):
-            if nums[i - 1] < nums[i]:
-                left_up[i] = left_down[i - 1] + 1
-                answer = max(answer, left_up[i])
-            elif nums[i - 1] > nums[i]:
-                left_down[i] = left_up[i - 1] + 1
-                answer = max(answer, left_down[i])
 
-        for i in range(n - 2, -1, -1):
-            if nums[i] < nums[i + 1]:
-                right_up[i] = right_down[i + 1] + 1
-            elif nums[i] > nums[i + 1]:
-                right_down[i] = right_up[i + 1] + 1
+# Time:  O(n)
+# Space: O(1)
+# dp
+class Solution2(object):
+    def longestAlternating(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = up0 = down0 = 1
+        up1 = down1 = 0
+        for i in range(len(nums)-1):
+            if nums[i] < nums[i+1]:
+                up1, up0, down1, down0 = down1+1, down0+1, down0, 1
+            elif nums[i] > nums[i+1]:
+                up1, up0, down1, down0 = up0, 1, up1+1, up0+1
+            else:
+                up1, up0, down1, down0 = up0, 1, down0, 1
+            result = max(result, up1, down1, up0, down0)
+        return result
 
-        for removed in range(1, n - 1):
-            if nums[removed - 1] < nums[removed + 1]:
-                answer = max(
-                    answer,
-                    left_down[removed - 1] + right_down[removed + 1],
-                )
-            elif nums[removed - 1] > nums[removed + 1]:
-                answer = max(
-                    answer,
-                    left_up[removed - 1] + right_up[removed + 1],
-                )
 
-        return answer
+# Time:  O(n)
+# Space: O(n)
+# prefix sum
+class Solution3(object):
+    def longestAlternating(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left = [1]*len(nums)
+        for i in range(1, len(nums)):
+            diff = cmp(nums[i-1], nums[i])
+            if not diff:
+                continue
+            left[i] = left[i-1]+1 if i-2 >= 0 and cmp(nums[i-2], nums[i-1]) == -diff else 2
+        right = [1]*len(nums)
+        for i in reversed(range(len(nums)-1)):
+            diff = cmp(nums[i], nums[i+1])
+            if not diff:
+                continue
+            right[i] = right[i+1]+1 if i+2 < len(nums) and cmp(nums[i+1], nums[i+2]) == -diff else 2
+        result = max(left)
+        for i in range(1, len(nums)-1):
+            diff = cmp(nums[i-1], nums[i+1])
+            if not diff:
+                continue
+            l = (left[i-1] if i-2 >= 0 and cmp(nums[i-2], nums[i-1]) == -diff else 1)
+            r = (right[i+1] if i+2 < len(nums) and cmp(nums[i+1], nums[i+2]) == -diff else 1)
+            result = max(result, l+r)
+        return result

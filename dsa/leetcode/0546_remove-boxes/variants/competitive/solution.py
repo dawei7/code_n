@@ -1,27 +1,27 @@
-from functools import lru_cache
-from typing import List
-
+# Time:  O(n^3) ~ O(n^4)
+# Space: O(n^3)
 
 class Solution:
-    def removeBoxes(self, boxes: List[int]) -> int:
-        @lru_cache(maxsize=None)
-        def best(left: int, right: int, carried: int) -> int:
-            if left > right:
-                return 0
+    def removeBoxes(self, boxes):
+        """
+        :type boxes: List[int]
+        :rtype: int
+        """
+        def dfs(boxes, l, r, k, lookup):
+            if l > r: return 0
+            if lookup[l][r][k]: return lookup[l][r][k]
 
-            while right > left and boxes[right] == boxes[right - 1]:
-                right -= 1
-                carried += 1
+            ll, kk = l, k
+            while l < r and boxes[l+1] == boxes[l]:
+                l += 1
+                k += 1
+            result = dfs(boxes, l+1, r, 0, lookup) + (k+1) ** 2
+            for i in range(l+1, r+1):
+                if boxes[i] == boxes[l]:
+                    result = max(result, dfs(boxes, l+1, i-1, 0, lookup) + dfs(boxes, i, r, k+1, lookup))
+            lookup[ll][r][kk] = result
+            return result
 
-            answer = best(left, right - 1, 0) + (carried + 1) ** 2
+        lookup = [[[0]*len(boxes) for _ in range(len(boxes)) ] for _ in range(len(boxes)) ]
+        return dfs(boxes, 0, len(boxes)-1, 0, lookup)
 
-            for index in range(left, right):
-                if boxes[index] == boxes[right]:
-                    answer = max(
-                        answer,
-                        best(left, index, carried + 1) + best(index + 1, right - 1, 0),
-                    )
-
-            return answer
-
-        return best(0, len(boxes) - 1, 0)

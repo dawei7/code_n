@@ -1,32 +1,33 @@
 """
 # Definition for a Node.
 class Node:
-    def __init__(self, val: Optional[int] = None, children: Optional[List['Node']] = None):
+    def __init__(self, val=None, children=None):
         self.val = val
         self.children = children if children is not None else []
 """
 
 
 class Solution:
-    def diameter(self, root: "Node") -> int:
-        order = []
-        stack = [root]
-        while stack:
-            node = stack.pop()
-            order.append(node)
-            stack.extend(node.children)
+    def diameter(self, root: 'Node') -> int:
+        """
+        :type root: 'Node'
+        :rtype: int
+        """
 
-        height = {}
-        answer = 0
-        for node in reversed(order):
-            longest = second = 0
-            for child in node.children:
-                candidate = height[child] + 1
-                if candidate > longest:
-                    longest, second = candidate, longest
-                elif candidate > second:
-                    second = candidate
-            answer = max(answer, longest + second)
-            height[node] = longest
+        def dfs(root):
+            if root is None:
+                return 0
+            nonlocal ans
+            m1 = m2 = 0
+            for child in root.children:
+                t = dfs(child)
+                if t > m1:
+                    m2, m1 = m1, t
+                elif t > m2:
+                    m2 = t
+            ans = max(ans, m1 + m2)
+            return 1 + m1
 
-        return answer
+        ans = 0
+        dfs(root)
+        return ans

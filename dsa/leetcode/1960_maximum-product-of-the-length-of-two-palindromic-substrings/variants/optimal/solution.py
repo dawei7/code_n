@@ -1,43 +1,34 @@
 class Solution:
     def maxProduct(self, s: str) -> int:
-        length = len(s)
-        radius = [0] * length
-        left = 0
-        right = -1
+        n = len(s)
+        hlen = [0] * n
+        center = right = 0
 
-        for center in range(length):
-            current = 1 if center > right else min(radius[left + right - center], right - center + 1)
+        for i in range(n):
+            if i < right:
+                hlen[i] = min(right - i, hlen[2 * center - i])
+            while (
+                0 <= i - 1 - hlen[i]
+                and i + 1 + hlen[i] < len(s)
+                and s[i - 1 - hlen[i]] == s[i + 1 + hlen[i]]
+            ):
+                hlen[i] += 1
+            if right < i + hlen[i]:
+                center, right = i, i + hlen[i]
 
-            while center - current >= 0 and center + current < length and s[center - current] == s[center + current]:
-                current += 1
+        prefix = [0] * n
+        suffix = [0] * n
 
-            radius[center] = current
-            if center + current - 1 > right:
-                left = center - current + 1
-                right = center + current - 1
+        for i in range(n):
+            prefix[i + hlen[i]] = max(prefix[i + hlen[i]], 2 * hlen[i] + 1)
+            suffix[i - hlen[i]] = max(suffix[i - hlen[i]], 2 * hlen[i] + 1)
 
-        ending = [0] * length
-        starting = [0] * length
+        for i in range(1, n):
+            prefix[~i] = max(prefix[~i], prefix[~i + 1] - 2)
+            suffix[i] = max(suffix[i], suffix[i - 1] - 2)
 
-        for center, current in enumerate(radius):
-            palindrome_length = 2 * current - 1
-            ending[center + current - 1] = max(
-                ending[center + current - 1],
-                palindrome_length,
-            )
-            starting[center - current + 1] = max(
-                starting[center - current + 1],
-                palindrome_length,
-            )
+        for i in range(1, n):
+            prefix[i] = max(prefix[i - 1], prefix[i])
+            suffix[~i] = max(suffix[~i], suffix[~i + 1])
 
-        for index in range(length - 2, -1, -1):
-            ending[index] = max(ending[index], ending[index + 1] - 2)
-        for index in range(1, length):
-            ending[index] = max(ending[index], ending[index - 1])
-
-        for index in range(1, length):
-            starting[index] = max(starting[index], starting[index - 1] - 2)
-        for index in range(length - 2, -1, -1):
-            starting[index] = max(starting[index], starting[index + 1])
-
-        return max(ending[index] * starting[index + 1] for index in range(length - 1))
+        return max(prefix[i - 1] * suffix[i] for i in range(1, n))

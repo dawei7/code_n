@@ -1,18 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def dominantIndex(self, nums: List[int]) -> int:
-        largest = -1
-        second_largest = -1
-        largest_index = -1
+    def dominantIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        m = max(nums)
+        if all(m >= 2*x for x in nums if x != m):
+            return nums.index(m)
+        return -1
 
-        for index, value in enumerate(nums):
-            if value > largest:
-                second_largest = largest
-                largest = value
-                largest_index = index
-            elif value > second_largest:
-                second_largest = value
-
-        return largest_index if largest >= 2 * second_largest else -1

@@ -1,14 +1,35 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def judgeCircle(self, moves: str) -> bool:
-        horizontal = 0
-        vertical = 0
+    def judgeCircle(self, moves):
+        """
+        :type moves: str
+        :rtype: bool
+        """
+        count = collections.Counter(moves)
+        return count['L'] == count['R'] and count['U'] == count['D']
+
+ 
+# Time:  O(n)
+# Space: O(1)
+class Solution:
+    def judgeCircle(self, moves):
+        """
+        :type moves: str
+        :rtype: bool
+        """
+        v, h = 0, 0
         for move in moves:
-            if move == "R":
-                horizontal += 1
-            elif move == "L":
-                horizontal -= 1
-            elif move == "U":
-                vertical += 1
-            else:
-                vertical -= 1
-        return horizontal == 0 and vertical == 0
+            if move == 'U':
+                v += 1
+            elif move == 'D':
+                v -= 1
+            elif move == 'R':
+                h += 1
+            elif move == 'L':
+                h -= 1
+        return v == 0 and h == 0

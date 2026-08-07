@@ -1,15 +1,16 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def lastRemaining(self, n: int) -> int:
-        head = 1
-        step = 1
-        remaining = n
-        left_to_right = True
-
-        while remaining > 1:
-            if left_to_right or remaining % 2 == 1:
-                head += step
-            remaining //= 2
+    def lastRemaining(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        start, step, direction = 1, 2, 1
+        while n > 1:
+            start += direction * (step * (n//2) - step//2)
+            n //= 2
             step *= 2
-            left_to_right = not left_to_right
-
-        return head
+            direction *= -1
+        return start

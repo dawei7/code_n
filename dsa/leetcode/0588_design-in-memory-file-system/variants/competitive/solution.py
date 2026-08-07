@@ -1,40 +1,82 @@
-class _Node:
+# Time:  ls: O(l + klogk), l is the path length, k is the number of entries in the last level directory
+#        mkdir: O(l)
+#        addContentToFile: O(l + c), c is the content size
+#        readContentFromFile: O(l + c)
+# Space: O(n + s), n is the number of dir/file nodes, s is the total content size.
+
+class TrieNode(object):
+
     def __init__(self):
+        self.is_file = False
         self.children = {}
-        self.content = None
+        self.content = ""
 
+class FileSystem(object):
 
-class FileSystem:
     def __init__(self):
-        self.root = _Node()
+        self.__root = TrieNode()
 
-    def _parts(self, path):
-        return [part for part in path.split("/") if part]
 
-    def _walk(self, path, create=False):
-        node = self.root
-        for part in self._parts(path):
-            if create:
-                node = node.children.setdefault(part, _Node())
-            else:
-                node = node.children[part]
-        return node
+    def ls(self, path):
+        """
+        :type path: str
+        :rtype: List[str]
+        """
+        curr = self.__getNode(path)
 
-    def ls(self, path: str) -> list[str]:
-        node = self._walk(path)
-        if node.content is not None:
-            return [self._parts(path)[-1]]
-        return sorted(node.children)
+        if curr.is_file:
+            return [self.__split(path, '/')[-1]]
 
-    def mkdir(self, path: str) -> None:
-        self._walk(path, create=True)
+        return sorted(curr.children.keys())
 
-    def addContentToFile(self, filePath: str, content: str) -> None:
-        node = self._walk(filePath, create=True)
-        if node.content is None:
-            node.content = []
-        node.content.append(content)
 
-    def readContentFromFile(self, filePath: str) -> str:
-        node = self._walk(filePath)
-        return "".join(node.content)
+    def mkdir(self, path):
+        """
+        :type path: str
+        :rtype: void
+        """
+        curr = self.__putNode(path)
+        curr.is_file = False
+
+
+    def addContentToFile(self, filePath, content):
+        """
+        :type filePath: str
+        :type content: str
+        :rtype: void
+        """
+        curr = self.__putNode(filePath)
+        curr.is_file = True
+        curr.content += content
+
+
+    def readContentFromFile(self, filePath):
+        """
+        :type filePath: str
+        :rtype: str
+        """
+        return self.__getNode(filePath).content
+
+
+    def __getNode(self, path):
+        curr = self.__root
+        for s in self.__split(path, '/'):
+            curr = curr.children[s]
+        return curr
+
+
+    def __putNode(self, path):
+        curr = self.__root
+        for s in self.__split(path, '/'):
+            if s not in curr.children:
+                curr.children[s] = TrieNode()
+            curr = curr.children[s]
+        return curr
+
+
+    def __split(self, path, delim):
+        if path == '/':
+            return []
+        return path.split('/')[1:]
+
+

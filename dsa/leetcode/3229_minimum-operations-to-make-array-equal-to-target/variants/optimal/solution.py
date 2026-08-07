@@ -1,17 +1,14 @@
-from typing import List
-
-
 class Solution:
     def minimumOperations(self, nums: List[int], target: List[int]) -> int:
-        previous = target[0] - nums[0]
-        operations = abs(previous)
-
-        for index in range(1, len(nums)):
-            current = target[index] - nums[index]
-            if previous * current > 0:
-                operations += max(0, abs(current) - abs(previous))
+        n = len(nums)
+        f = abs(target[0] - nums[0])
+        for i in range(1, n):
+            x = target[i] - nums[i]
+            y = target[i - 1] - nums[i - 1]
+            if x * y > 0:
+                d = abs(x) - abs(y)
+                if d > 0:
+                    f += d
             else:
-                operations += abs(current)
-            previous = current
-
-        return operations
+                f += abs(x)
+        return f

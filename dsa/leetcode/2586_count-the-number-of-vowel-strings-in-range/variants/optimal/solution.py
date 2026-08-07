@@ -1,4 +1,5 @@
 class Solution:
     def vowelStrings(self, words: List[str], left: int, right: int) -> int:
-        vowels = set("aeiou")
-        return sum(word[0] in vowels and word[-1] in vowels for word in words[left : right + 1])
+        return sum(
+            w[0] in 'aeiou' and w[-1] in 'aeiou' for w in words[left : right + 1]
+        )

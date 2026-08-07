@@ -1,12 +1,12 @@
+# Time:  O(n * d)
+# Space: O(1)
+
+# brute force
 class Solution:
-    def maxDivScore(self, nums: List[int], divisors: List[int]) -> int:
-        best_divisor = min(divisors)
-        best_score = -1
-
-        for divisor in divisors:
-            score = sum(value % divisor == 0 for value in nums)
-            if score > best_score or (score == best_score and divisor < best_divisor):
-                best_divisor = divisor
-                best_score = score
-
-        return best_divisor
+    def maxDivScore(self, nums, divisors):
+        """
+        :type nums: List[int]
+        :type divisors: List[int]
+        :rtype: int
+        """
+        return max(divisors, key=lambda d: (sum(x%d == 0 for x in nums), -d))

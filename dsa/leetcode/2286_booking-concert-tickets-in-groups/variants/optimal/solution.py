@@ -1,87 +1,96 @@
-from typing import List
+class Node:
+    __slots__ = "l", "r", "s", "mx"
+
+    def __init__(self):
+        self.l = self.r = 0
+        self.s = self.mx = 0
+
+
+class SegmentTree:
+    def __init__(self, n, m):
+        self.m = m
+        self.tr = [Node() for _ in range(n << 2)]
+        self.build(1, 1, n)
+
+    def build(self, u, l, r):
+        self.tr[u].l, self.tr[u].r = l, r
+        if l == r:
+            self.tr[u].s = self.tr[u].mx = self.m
+            return
+        mid = (l + r) >> 1
+        self.build(u << 1, l, mid)
+        self.build(u << 1 | 1, mid + 1, r)
+        self.pushup(u)
+
+    def modify(self, u, x, v):
+        if self.tr[u].l == x and self.tr[u].r == x:
+            self.tr[u].s = self.tr[u].mx = v
+            return
+        mid = (self.tr[u].l + self.tr[u].r) >> 1
+        if x <= mid:
+            self.modify(u << 1, x, v)
+        else:
+            self.modify(u << 1 | 1, x, v)
+        self.pushup(u)
+
+    def query_sum(self, u, l, r):
+        if self.tr[u].l >= l and self.tr[u].r <= r:
+            return self.tr[u].s
+        mid = (self.tr[u].l + self.tr[u].r) >> 1
+        v = 0
+        if l <= mid:
+            v += self.query_sum(u << 1, l, r)
+        if r > mid:
+            v += self.query_sum(u << 1 | 1, l, r)
+        return v
+
+    def query_idx(self, u, l, r, k):
+        if self.tr[u].mx < k:
+            return 0
+        if self.tr[u].l == self.tr[u].r:
+            return self.tr[u].l
+        mid = (self.tr[u].l + self.tr[u].r) >> 1
+        if self.tr[u << 1].mx >= k:
+            return self.query_idx(u << 1, l, r, k)
+        if r > mid:
+            return self.query_idx(u << 1 | 1, l, r, k)
+        return 0
+
+    def pushup(self, u):
+        self.tr[u].s = self.tr[u << 1].s + self.tr[u << 1 | 1].s
+        self.tr[u].mx = max(self.tr[u << 1].mx, self.tr[u << 1 | 1].mx)
 
 
 class BookMyShow:
     def __init__(self, n: int, m: int):
-        self._rows = n
-        self._seats_per_row = m
-        self._remaining = [m] * n
-        self._maximum = [0] * (4 * n)
-        self._total = [0] * (4 * n)
-        self._build(1, 0, n - 1)
+        self.n = n
+        self.tree = SegmentTree(n, m)
 
     def gather(self, k: int, maxRow: int) -> List[int]:
-        row = self._first_with_at_least(1, 0, self._rows - 1, maxRow, k)
-        if row == -1:
+        maxRow += 1
+        i = self.tree.query_idx(1, 1, maxRow, k)
+        if i == 0:
             return []
-
-        first_seat = self._seats_per_row - self._remaining[row]
-        self._remaining[row] -= k
-        self._update(1, 0, self._rows - 1, row)
-        return [row, first_seat]
+        s = self.tree.query_sum(1, i, i)
+        self.tree.modify(1, i, s - k)
+        return [i - 1, self.tree.m - s]
 
     def scatter(self, k: int, maxRow: int) -> bool:
-        if self._prefix_total(1, 0, self._rows - 1, maxRow) < k:
+        maxRow += 1
+        if self.tree.query_sum(1, 1, maxRow) < k:
             return False
-
-        while k:
-            row = self._first_with_at_least(1, 0, self._rows - 1, maxRow, 1)
-            booked = min(k, self._remaining[row])
-            self._remaining[row] -= booked
-            k -= booked
-            self._update(1, 0, self._rows - 1, row)
-
+        i = self.tree.query_idx(1, 1, maxRow, 1)
+        for j in range(i, self.n + 1):
+            s = self.tree.query_sum(1, j, j)
+            if s >= k:
+                self.tree.modify(1, j, s - k)
+                return True
+            k -= s
+            self.tree.modify(1, j, 0)
         return True
 
-    def _build(self, node: int, left: int, right: int) -> None:
-        if left == right:
-            self._maximum[node] = self._seats_per_row
-            self._total[node] = self._seats_per_row
-            return
-        middle = (left + right) // 2
-        self._build(node * 2, left, middle)
-        self._build(node * 2 + 1, middle + 1, right)
-        self._pull(node)
 
-    def _pull(self, node: int) -> None:
-        self._maximum[node] = max(self._maximum[node * 2], self._maximum[node * 2 + 1])
-        self._total[node] = self._total[node * 2] + self._total[node * 2 + 1]
-
-    def _update(self, node: int, left: int, right: int, index: int) -> None:
-        if left == right:
-            self._maximum[node] = self._remaining[index]
-            self._total[node] = self._remaining[index]
-            return
-        middle = (left + right) // 2
-        if index <= middle:
-            self._update(node * 2, left, middle, index)
-        else:
-            self._update(node * 2 + 1, middle + 1, right, index)
-        self._pull(node)
-
-    def _first_with_at_least(
-        self,
-        node: int,
-        left: int,
-        right: int,
-        max_row: int,
-        needed: int,
-    ) -> int:
-        if left > max_row or self._maximum[node] < needed:
-            return -1
-        if left == right:
-            return left
-        middle = (left + right) // 2
-        result = self._first_with_at_least(node * 2, left, middle, max_row, needed)
-        if result != -1:
-            return result
-        return self._first_with_at_least(node * 2 + 1, middle + 1, right, max_row, needed)
-
-    def _prefix_total(self, node: int, left: int, right: int, max_row: int) -> int:
-        if right <= max_row:
-            return self._total[node]
-        middle = (left + right) // 2
-        total = self._prefix_total(node * 2, left, middle, max_row)
-        if max_row > middle:
-            total += self._prefix_total(node * 2 + 1, middle + 1, right, max_row)
-        return total
+# Your BookMyShow object will be instantiated and called as such:
+# obj = BookMyShow(n, m)
+# param_1 = obj.gather(k,maxRow)
+# param_2 = obj.scatter(k,maxRow)

@@ -1,18 +1,13 @@
-from math import gcd
-from typing import List
-
-
 class Solution:
     def replaceNonCoprimes(self, nums: List[int]) -> List[int]:
-        stack = []
-
-        for value in nums:
-            stack.append(value)
-            while len(stack) >= 2:
-                common = gcd(stack[-2], stack[-1])
-                if common == 1:
+        stk = []
+        for x in nums:
+            stk.append(x)
+            while len(stk) > 1:
+                x, y = stk[-2:]
+                g = gcd(x, y)
+                if g == 1:
                     break
-                right = stack.pop()
-                stack[-1] = stack[-1] // common * right
-
-        return stack
+                stk.pop()
+                stk[-1] = x * y // g
+        return stk

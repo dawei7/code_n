@@ -1,20 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minimumDeletions(self, nums: List[int]) -> int:
-        minimum_index = 0
-        maximum_index = 0
-
-        for index in range(1, len(nums)):
-            if nums[index] < nums[minimum_index]:
-                minimum_index = index
-            if nums[index] > nums[maximum_index]:
-                maximum_index = index
-
-        left, right = sorted((minimum_index, maximum_index))
-        return min(
-            right + 1,
-            len(nums) - left,
-            left + 1 + len(nums) - right,
-        )
+    def minimumDeletions(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        i, j = nums.index(min(nums)), nums.index(max(nums))
+        if i > j:
+            i, j = j, i
+        return min((i+1)+(len(nums)-j), j+1, len(nums)-i)

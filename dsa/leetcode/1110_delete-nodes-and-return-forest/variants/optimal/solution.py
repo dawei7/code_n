@@ -5,19 +5,23 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
-        deleted = set(to_delete)
-        forest = []
-
-        def dfs(node, is_root):
-            if node is None:
+    def delNodes(
+        self, root: Optional[TreeNode], to_delete: List[int]
+    ) -> List[TreeNode]:
+        def dfs(root: Optional[TreeNode]) -> Optional[TreeNode]:
+            if root is None:
                 return None
-            remove = node.val in deleted
-            if is_root and not remove:
-                forest.append(node)
-            node.left = dfs(node.left, remove)
-            node.right = dfs(node.right, remove)
-            return None if remove else node
+            root.left, root.right = dfs(root.left), dfs(root.right)
+            if root.val not in s:
+                return root
+            if root.left:
+                ans.append(root.left)
+            if root.right:
+                ans.append(root.right)
+            return None
 
-        dfs(root, True)
-        return forest
+        s = set(to_delete)
+        ans = []
+        if dfs(root):
+            ans.append(root)
+        return ans

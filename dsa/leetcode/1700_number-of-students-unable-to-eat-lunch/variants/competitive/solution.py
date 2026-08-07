@@ -1,15 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
-        remaining = [0, 0]
-        for preference in students:
-            remaining[preference] += 1
-
-        for index, sandwich in enumerate(sandwiches):
-            if remaining[sandwich] == 0:
-                return len(sandwiches) - index
-            remaining[sandwich] -= 1
-
-        return 0
+    def countStudents(self, students, sandwiches):
+        """
+        :type students: List[int]
+        :type sandwiches: List[int]
+        :rtype: int
+        """
+        count = collections.Counter(students)
+        for i, s in enumerate(sandwiches):
+            if not count[s]:
+                break
+            count[s] -= 1
+        else:
+            i = len(sandwiches)
+        return len(sandwiches)-i

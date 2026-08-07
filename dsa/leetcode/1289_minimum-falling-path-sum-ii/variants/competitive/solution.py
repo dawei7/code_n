@@ -1,25 +1,17 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
+
+import heapq
 
 
 class Solution:
-    def minFallingPathSum(self, grid: List[List[int]]) -> int:
-        length = len(grid)
-        previous = grid[0][:]
-
-        for row in range(1, length):
-            smallest = second_smallest = float("inf")
-            smallest_column = -1
-            for column, value in enumerate(previous):
-                if value < smallest:
-                    second_smallest = smallest
-                    smallest = value
-                    smallest_column = column
-                elif value < second_smallest:
-                    second_smallest = value
-
-            previous = [
-                grid[row][column] + (second_smallest if column == smallest_column else smallest)
-                for column in range(length)
-            ]
-
-        return min(previous)
+    def minFallingPathSum(self, arr):
+        """
+        :type arr: List[List[int]]
+        :rtype: int
+        """
+        for i in range(1, len(arr)):
+            smallest_two = heapq.nsmallest(2, arr[i-1])
+            for j in range(len(arr[0])):
+                arr[i][j] += smallest_two[1] if arr[i-1][j] == smallest_two[0] else smallest_two[0]
+        return min(arr[-1])

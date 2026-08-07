@@ -1,32 +1,21 @@
-from heapq import heappop, heappush
-
-
 class Solution:
     def trapRainWater(self, heightMap: List[List[int]]) -> int:
-        rows = len(heightMap)
-        columns = len(heightMap[0])
-        if rows < 3 or columns < 3:
-            return 0
-
-        visited = [[False] * columns for _ in range(rows)]
-        frontier = []
-
-        for row in range(rows):
-            for column in range(columns):
-                if row in (0, rows - 1) or column in (0, columns - 1):
-                    visited[row][column] = True
-                    heappush(frontier, (heightMap[row][column], row, column))
-
-        trapped = 0
-        while frontier:
-            wall, row, column = heappop(frontier)
-            for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_delta
-                next_column = column + column_delta
-                if 0 <= next_row < rows and 0 <= next_column < columns and not visited[next_row][next_column]:
-                    visited[next_row][next_column] = True
-                    terrain = heightMap[next_row][next_column]
-                    trapped += max(0, wall - terrain)
-                    heappush(frontier, (max(wall, terrain), next_row, next_column))
-
-        return trapped
+        m, n = len(heightMap), len(heightMap[0])
+        vis = [[False] * n for _ in range(m)]
+        pq = []
+        for i in range(m):
+            for j in range(n):
+                if i == 0 or i == m - 1 or j == 0 or j == n - 1:
+                    heappush(pq, (heightMap[i][j], i, j))
+                    vis[i][j] = True
+        ans = 0
+        dirs = (-1, 0, 1, 0, -1)
+        while pq:
+            h, i, j = heappop(pq)
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if x >= 0 and x < m and y >= 0 and y < n and not vis[x][y]:
+                    ans += max(0, h - heightMap[x][y])
+                    vis[x][y] = True
+                    heappush(pq, (max(h, heightMap[x][y]), x, y))
+        return ans

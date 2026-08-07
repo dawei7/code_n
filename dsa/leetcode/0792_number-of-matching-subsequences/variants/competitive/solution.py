@@ -1,21 +1,22 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n + w), n is the size of S, w is the size of words
+# Space: O(k), k is the number of words
+
+import collections
 
 
 class Solution:
-    def numMatchingSubseq(self, s: str, words: List[str]) -> int:
-        waiting = defaultdict(list)
+    def numMatchingSubseq(self, S, words):
+        """
+        :type S: str
+        :type words: List[str]
+        :rtype: int
+        """
+        waiting = collections.defaultdict(list)
         for word in words:
-            iterator = iter(word)
-            waiting[next(iterator)].append(iterator)
+            it = iter(word)
+            waiting[next(it, None)].append(it)
+        for c in S:
+            for it in waiting.pop(c, ()):
+                waiting[next(it, None)].append(it)
+        return len(waiting[None])
 
-        matched = 0
-        for character in s:
-            advancing = waiting.pop(character, [])
-            for iterator in advancing:
-                next_character = next(iterator, None)
-                if next_character is None:
-                    matched += 1
-                else:
-                    waiting[next_character].append(iterator)
-        return matched

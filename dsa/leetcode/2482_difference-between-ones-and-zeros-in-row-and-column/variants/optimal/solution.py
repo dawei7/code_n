@@ -1,19 +1,14 @@
-from typing import List
-
-
 class Solution:
     def onesMinusZeros(self, grid: List[List[int]]) -> List[List[int]]:
-        row_count = len(grid)
-        column_count = len(grid[0])
-        row_balance = [2 * sum(row) - column_count for row in grid]
-        column_ones = [0] * column_count
-
-        for row in grid:
-            for column, value in enumerate(row):
-                column_ones[column] += value
-
-        column_balance = [2 * ones - row_count for ones in column_ones]
-
-        return [
-            [row_balance[row] + column_balance[column] for column in range(column_count)] for row in range(row_count)
-        ]
+        m, n = len(grid), len(grid[0])
+        rows = [0] * m
+        cols = [0] * n
+        for i, row in enumerate(grid):
+            for j, v in enumerate(row):
+                rows[i] += v
+                cols[j] += v
+        diff = [[0] * n for _ in range(m)]
+        for i, r in enumerate(rows):
+            for j, c in enumerate(cols):
+                diff[i][j] = r + c - (n - r) - (m - c)
+        return diff

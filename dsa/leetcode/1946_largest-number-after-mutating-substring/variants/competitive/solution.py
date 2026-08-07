@@ -1,19 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maximumNumber(self, num: str, change: List[int]) -> str:
-        digits = list(num)
-        mutating = False
-
-        for index, character in enumerate(digits):
-            digit = int(character)
-            replacement = change[digit]
-
-            if replacement > digit:
-                digits[index] = str(replacement)
-                mutating = True
-            elif replacement < digit and mutating:
-                break
-
-        return "".join(digits)
+    def maximumNumber(self, num, change):
+        """
+        :type num: str
+        :type change: List[int]
+        :rtype: str
+        """
+        mutated = False
+        result = map(int, list(num))
+        for i, d in enumerate(result):
+            if change[d] < d:
+                if mutated:
+                    break
+            elif change[d] > d:
+                result[i] = str(change[d])
+                mutated = True
+        return "".join(map(str, result))

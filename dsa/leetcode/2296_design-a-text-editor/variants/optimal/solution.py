@@ -1,23 +1,33 @@
 class TextEditor:
     def __init__(self):
-        self._left = []
-        self._right = []
+        self.left = []
+        self.right = []
 
     def addText(self, text: str) -> None:
-        self._left.extend(text)
+        self.left.extend(list(text))
 
     def deleteText(self, k: int) -> int:
-        deleted = min(k, len(self._left))
-        if deleted:
-            del self._left[-deleted:]
-        return deleted
+        k = min(k, len(self.left))
+        for _ in range(k):
+            self.left.pop()
+        return k
 
     def cursorLeft(self, k: int) -> str:
-        for _ in range(min(k, len(self._left))):
-            self._right.append(self._left.pop())
-        return "".join(self._left[-10:])
+        k = min(k, len(self.left))
+        for _ in range(k):
+            self.right.append(self.left.pop())
+        return ''.join(self.left[-10:])
 
     def cursorRight(self, k: int) -> str:
-        for _ in range(min(k, len(self._right))):
-            self._left.append(self._right.pop())
-        return "".join(self._left[-10:])
+        k = min(k, len(self.right))
+        for _ in range(k):
+            self.left.append(self.right.pop())
+        return ''.join(self.left[-10:])
+
+
+# Your TextEditor object will be instantiated and called as such:
+# obj = TextEditor()
+# obj.addText(text)
+# param_2 = obj.deleteText(k)
+# param_3 = obj.cursorLeft(k)
+# param_4 = obj.cursorRight(k)

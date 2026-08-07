@@ -1,18 +1,16 @@
-from typing import List
-
-
 class Solution:
-    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        next_city = list(range(1, n + 1))
-        distance = n - 1
-        answer = []
-
-        for source, destination in queries:
-            while next_city[source] < destination:
-                successor = next_city[source]
-                next_city[source] = destination
-                source = successor
-                distance -= 1
-            answer.append(distance)
-
-        return answer
+    def shortestDistanceAfterQueries(
+        self, n: int, queries: List[List[int]]
+    ) -> List[int]:
+        nxt = list(range(1, n))
+        ans = []
+        cnt = n - 1
+        for u, v in queries:
+            if 0 < nxt[u] < v:
+                i = nxt[u]
+                while i < v:
+                    cnt -= 1
+                    nxt[i], i = 0, nxt[i]
+                nxt[u] = v
+            ans.append(cnt)
+        return ans

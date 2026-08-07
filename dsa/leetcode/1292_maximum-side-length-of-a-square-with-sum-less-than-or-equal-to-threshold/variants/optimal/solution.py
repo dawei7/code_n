@@ -1,28 +1,23 @@
-from typing import List
-
-
 class Solution:
     def maxSideLength(self, mat: List[List[int]], threshold: int) -> int:
-        rows = len(mat)
-        columns = len(mat[0])
-        prefix = [[0] * (columns + 1) for _ in range(rows + 1)]
-        for row in range(rows):
-            for column in range(columns):
-                prefix[row + 1][column + 1] = (
-                    mat[row][column] + prefix[row][column + 1] + prefix[row + 1][column] - prefix[row][column]
-                )
+        def check(k: int) -> bool:
+            for i in range(m - k + 1):
+                for j in range(n - k + 1):
+                    v = s[i + k][j + k] - s[i][j + k] - s[i + k][j] + s[i][j]
+                    if v <= threshold:
+                        return True
+            return False
 
-        def square_sum(row: int, column: int, side: int) -> int:
-            return (
-                prefix[row + side][column + side]
-                - prefix[row][column + side]
-                - prefix[row + side][column]
-                + prefix[row][column]
-            )
-
-        best = 0
-        for row in range(rows):
-            for column in range(columns):
-                while row + best < rows and column + best < columns and square_sum(row, column, best + 1) <= threshold:
-                    best += 1
-        return best
+        m, n = len(mat), len(mat[0])
+        s = [[0] * (n + 1) for _ in range(m + 1)]
+        for i, row in enumerate(mat, 1):
+            for j, x in enumerate(row, 1):
+                s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + x
+        l, r = 0, min(m, n)
+        while l < r:
+            mid = (l + r + 1) >> 1
+            if check(mid):
+                l = mid
+            else:
+                r = mid - 1
+        return l

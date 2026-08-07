@@ -1,3 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def countOdds(self, low: int, high: int) -> int:
-        return (high + 1) // 2 - low // 2
+    def countOdds(self, low, high):
+        """
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        return (high+1)//2 - ((low-1)+1)//2

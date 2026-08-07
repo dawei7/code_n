@@ -1,20 +1,15 @@
-from typing import List
-
-
 class Solution:
     def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:
-        ordered_boxes = sorted(boxes)
-        clearance = []
-        minimum_height = float("inf")
-        for room_height in warehouse:
-            minimum_height = min(minimum_height, room_height)
-            clearance.append(minimum_height)
-
-        box_index = 0
-        for room_height in reversed(clearance):
-            if box_index == len(ordered_boxes):
+        n = len(warehouse)
+        left = [warehouse[0]] * n
+        for i in range(1, n):
+            left[i] = min(left[i - 1], warehouse[i])
+        boxes.sort()
+        i, j = 0, n - 1
+        while i < len(boxes):
+            while j >= 0 and left[j] < boxes[i]:
+                j -= 1
+            if j < 0:
                 break
-            if ordered_boxes[box_index] <= room_height:
-                box_index += 1
-
-        return box_index
+            i, j = i + 1, j - 1
+        return i

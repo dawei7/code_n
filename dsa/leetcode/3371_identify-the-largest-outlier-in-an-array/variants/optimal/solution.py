@@ -1,20 +1,12 @@
-from collections import Counter
-
-
 class Solution:
     def getLargestOutlier(self, nums: List[int]) -> int:
-        total = sum(nums)
-        counts = Counter(nums)
-        answer = -(10**9)
-
-        for outlier in counts:
-            remaining = total - outlier
-            if remaining % 2:
+        s = sum(nums)
+        cnt = Counter(nums)
+        ans = -inf
+        for x, v in cnt.items():
+            t = s - x
+            if t % 2 or cnt[t // 2] == 0:
                 continue
-
-            sum_element = remaining // 2
-            available = counts[sum_element] - (sum_element == outlier)
-            if available > 0:
-                answer = max(answer, outlier)
-
-        return answer
+            if x != t // 2 or v > 1:
+                ans = max(ans, x)
+        return ans

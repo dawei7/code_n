@@ -1,18 +1,22 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def maxOperations(self, nums: List[int], k: int) -> int:
-        unmatched = Counter()
-        operations = 0
-
-        for value in nums:
-            complement = k - value
-            if unmatched[complement] > 0:
-                unmatched[complement] -= 1
-                operations += 1
+    def maxOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        count = collections.Counter()
+        result = 0
+        for x in nums:
+            if k-x in count and count[k-x]:
+                count[k-x] -= 1
+                result += 1
             else:
-                unmatched[value] += 1
-
-        return operations
+                count[x] += 1
+        return result

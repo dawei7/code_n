@@ -1,65 +1,94 @@
-from collections import deque
-from typing import List
+# Time:  O(n * log(n * r)) = O(nlogn + nlogr), r = max(nums)
+# Space: O(n)
+
+import collections
 
 
+# prefix sum, dp, convex hull trick, wqs binary search, alien trick
 class Solution:
-    def minPartitionScore(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        prefix = [0]
-        for value in nums:
-            prefix.append(prefix[-1] + value)
+    def minPartitionScore(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        infinity = 10**100
-        previous = [infinity] * (n + 1)
-        previous[0] = 0
+        def check(l1, l2, l3):
+            return (l2[1]-l1[1])*(l2[0]-l3[0]) < (l3[1]-l2[1])*(l1[0]-l2[0])
 
-        def evaluate(line: tuple[int, int], x: int) -> int:
-            slope, intercept = line
-            return slope * x + intercept
+        def max_lambda():
+            mx, total = 0, prefix[-1]*(prefix[-1]+1)//2
+            for i in range(1, len(nums)):
+                c1, c2 = prefix[i], prefix[-1]-prefix[i]
+                mx = max(mx, total-(c1*(c1+1)//2+c2*(c2+1)//2))
+            return mx
 
-        def is_redundant(
-            first: tuple[int, int],
-            middle: tuple[int, int],
-            last: tuple[int, int],
-        ) -> bool:
-            first_slope, first_intercept = first
-            middle_slope, middle_intercept = middle
-            last_slope, last_intercept = last
-            return (middle_intercept - first_intercept) * (middle_slope - last_slope) >= (
-                last_intercept - middle_intercept
-            ) * (first_slope - middle_slope)
-
-        for groups in range(1, k + 1):
-            current = [infinity] * (n + 1)
-
-            start = groups - 1
-            start_sum = prefix[start]
-            hull = deque(
-                [
-                    (
-                        -start_sum,
-                        previous[start] + (start_sum * start_sum - start_sum) // 2,
-                    )
-                ]
-            )
-
-            for end in range(groups, n + 1):
-                total = prefix[end]
-                while len(hull) >= 2 and evaluate(hull[0], total) >= evaluate(hull[1], total):
+        def f(l):
+            dp = cnt = 0
+            hull = collections.deque([(0, 0, 0)])
+            for i in range(len(nums)):
+                x = prefix[i+1]
+                while len(hull) >= 2 and hull[0][0]*x+hull[0][1] > hull[1][0]*x+hull[1][1]:
                     hull.popleft()
+                dp, cnt = (hull[0][0]*x+hull[0][1])+(x*x+x)//2+l, hull[0][2]+1
+                line = (-x, dp+(x*x-x)//2, cnt)
+                while len(hull) >= 2 and not check(hull[-2], hull[-1], line):
+                    hull.pop()
+                hull.append(line)
+            return dp, cnt
 
-                current[end] = (total * total + total) // 2 + evaluate(hull[0], total)
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        mx = max_lambda()
+        assert(f(mx)[1] == 1)
+        l = binary_search(0, mx, lambda x: f(x)[1] <= k)
+        return f(l)[0]-k*l
 
-                if previous[end] < infinity:
-                    split_sum = prefix[end]
-                    new_line = (
-                        -split_sum,
-                        previous[end] + (split_sum * split_sum - split_sum) // 2,
-                    )
-                    while len(hull) >= 2 and is_redundant(hull[-2], hull[-1], new_line):
+
+# Time:  O(n * k)
+# Space: O(n)
+import collections
+
+
+# prefix sum, dp, convex hull trick
+class Solution2(object):
+    def minPartitionScore(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def check(l1, l2, l3):
+            return (l2[1]-l1[1])*(l2[0]-l3[0]) < (l3[1]-l2[1])*(l1[0]-l2[0])
+
+        INF = float("inf")
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        dp = [INF]*(len(nums)+1)
+        dp[0] = 0
+        for j in range(k):
+            new_dp = [INF]*(len(nums)+1)
+            hull = collections.deque()
+            for i in range(j, len(nums)):
+                if dp[i] is not INF:
+                    x = prefix[i]
+                    line = (-x, dp[i]+(x*x-x)//2)
+                    while len(hull) >= 2 and not check(hull[-2], hull[-1], line):
                         hull.pop()
-                    hull.append(new_line)
-
-            previous = current
-
-        return previous[n]
+                    hull.append(line)
+                x = prefix[i+1]
+                while len(hull) >= 2 and hull[0][0]*x+hull[0][1] >= hull[1][0]*x+hull[1][1]:
+                    hull.popleft()
+                new_dp[i+1] = hull[0][0]*x+hull[0][1]+(x*x+x)//2
+            dp = new_dp
+        return dp[-1]

@@ -1,21 +1,21 @@
-from bisect import bisect_right
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def maxTwoEvents(self, events: List[List[int]]) -> int:
+    def maxTwoEvents(self, events):
+        """
+        :type events: List[List[int]]
+        :rtype: int
+        """
         events.sort()
-        starts = [event[0] for event in events]
-        suffix_best = [0] * (len(events) + 1)
-
-        for index in range(len(events) - 1, -1, -1):
-            suffix_best[index] = max(
-                suffix_best[index + 1],
-                events[index][2],
-            )
-
-        answer = 0
-        for start, end, value in events:
-            next_index = bisect_right(starts, end)
-            answer = max(answer, value + suffix_best[next_index])
-        return answer
+        result = best = 0
+        min_heap = []
+        for left, right, v in events:
+            heapq.heappush(min_heap, (right, v))
+            while min_heap and min_heap[0][0] < left:
+                best = max(best, heapq.heappop(min_heap)[1])
+            result = max(result, best+v)
+        return result

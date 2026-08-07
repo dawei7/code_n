@@ -1,23 +1,19 @@
-from threading import Event
-
-
 class Foo:
     def __init__(self):
-        self.first_done = Event()
-        self.second_done = Event()
+        self.l2 = threading.Lock()
+        self.l3 = threading.Lock()
+        self.l2.acquire()
+        self.l3.acquire()
 
-    def first(self, printFirst: "Callable[[], None]") -> None:
-        # printFirst() outputs "first". Do not change or remove this line.
+    def first(self, printFirst: 'Callable[[], None]') -> None:
         printFirst()
-        self.first_done.set()
+        self.l2.release()
 
-    def second(self, printSecond: "Callable[[], None]") -> None:
-        self.first_done.wait()
-        # printSecond() outputs "second". Do not change or remove this line.
+    def second(self, printSecond: 'Callable[[], None]') -> None:
+        self.l2.acquire()
         printSecond()
-        self.second_done.set()
+        self.l3.release()
 
-    def third(self, printThird: "Callable[[], None]") -> None:
-        self.second_done.wait()
-        # printThird() outputs "third". Do not change or remove this line.
+    def third(self, printThird: 'Callable[[], None]') -> None:
+        self.l3.acquire()
         printThird()

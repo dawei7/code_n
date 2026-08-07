@@ -1,16 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def numSubarrayBoundedMax(self, nums: List[int], left: int, right: int) -> int:
-        last_too_large = -1
-        last_in_range = -1
-        total = 0
-        for index, value in enumerate(nums):
-            if value > right:
-                last_too_large = index
-            if left <= value <= right:
-                last_in_range = index
-            if last_in_range > last_too_large:
-                total += last_in_range - last_too_large
-        return total
+    def numSubarrayBoundedMax(self, A, L, R):
+        """
+        :type A: List[int]
+        :type L: int
+        :type R: int
+        :rtype: int
+        """
+        def count(A, bound):
+            result, curr = 0, 0
+            for i in A :
+                curr = curr + 1 if i <= bound else 0
+                result += curr
+            return result
+
+        return count(A, R) - count(A, L-1)
+

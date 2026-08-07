@@ -1,18 +1,14 @@
-from typing import List
-
-
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
-        answer = [0] * len(nums)
-        left = 0
-        right = len(nums) - 1
-
-        for write in range(len(nums) - 1, -1, -1):
-            if abs(nums[left]) > abs(nums[right]):
-                answer[write] = nums[left] * nums[left]
-                left += 1
+        ans = []
+        i, j = 0, len(nums) - 1
+        while i <= j:
+            a = nums[i] * nums[i]
+            b = nums[j] * nums[j]
+            if a > b:
+                ans.append(a)
+                i += 1
             else:
-                answer[write] = nums[right] * nums[right]
-                right -= 1
-
-        return answer
+                ans.append(b)
+                j -= 1
+        return ans[::-1]

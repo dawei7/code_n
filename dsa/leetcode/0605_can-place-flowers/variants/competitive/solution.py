@@ -1,25 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def canPlaceFlowers(
-        self,
-        flowerbed: list[int],
-        n: int,
-    ) -> bool:
-        if n == 0:
-            return True
-
-        planted = 0
-        index = 0
-
-        while index < len(flowerbed):
-            left_empty = index == 0 or flowerbed[index - 1] == 0
-            right_empty = index == len(flowerbed) - 1 or flowerbed[index + 1] == 0
-
-            if flowerbed[index] == 0 and left_empty and right_empty:
-                planted += 1
-                if planted >= n:
-                    return True
-                index += 2
-            else:
-                index += 1
-
+    def canPlaceFlowers(self, flowerbed, n):
+        """
+        :type flowerbed: List[int]
+        :type n: int
+        :rtype: bool
+        """
+        for i in range(len(flowerbed)):
+            if flowerbed[i] == 0 and (i == 0 or flowerbed[i-1] == 0) and \
+                (i == len(flowerbed)-1 or flowerbed[i+1] == 0):
+                flowerbed[i] = 1
+                n -= 1
+            if n <= 0:
+                return True
         return False
+

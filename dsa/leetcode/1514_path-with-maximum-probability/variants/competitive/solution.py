@@ -1,37 +1,39 @@
+# Time:  O((|E| + |V|) * log|V|) = O(|E| * log|V|) by using binary heap,
+#        if we can further to use Fibonacci heap, it would be O(|E| + |V| * log|V|)
+# Space: O(|E| + |V|) = O(|E|)
+
+import collections
+import itertools
 import heapq
-from typing import List
 
 
 class Solution:
-    def maxProbability(
-        self,
-        n: int,
-        edges: List[List[int]],
-        succProb: List[float],
-        start_node: int,
-        end_node: int,
-    ) -> float:
-        graph = [[] for _ in range(n)]
-        for (first, second), probability in zip(edges, succProb):
-            graph[first].append((second, probability))
-            graph[second].append((first, probability))
-
-        best = [0.0] * n
-        best[start_node] = 1.0
-        heap = [(-1.0, start_node)]
-
-        while heap:
-            negative_probability, node = heapq.heappop(heap)
-            probability = -negative_probability
-            if node == end_node:
-                return probability
-            if probability < best[node]:
+    def maxProbability(self, n, edges, succProb, start, end):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type succProb: List[float]
+        :type start: int
+        :type end: int
+        :rtype: float
+        """
+        adj = collections.defaultdict(list)
+        for (u, v), p in itertools.izip(edges, succProb):
+            adj[u].append((v, p))
+            adj[v].append((u, p))
+        max_heap = [(-1.0, start)]
+        result, lookup = collections.defaultdict(float), set()
+        result[start] = 1.0
+        while max_heap and len(lookup) != len(adj):
+            curr, u = heapq.heappop(max_heap)
+            if u in lookup:
                 continue
-
-            for neighbor, edge_probability in graph[node]:
-                candidate = probability * edge_probability
-                if candidate > best[neighbor]:
-                    best[neighbor] = candidate
-                    heapq.heappush(heap, (-candidate, neighbor))
-
-        return 0.0
+            lookup.add(u)
+            for v, w in adj[u]:
+                if v in lookup:
+                    continue
+                if v in result and result[v] >= -curr*w:
+                    continue
+                result[v] = -curr*w
+                heapq.heappush(max_heap, (-result[v], v))
+        return result[end]

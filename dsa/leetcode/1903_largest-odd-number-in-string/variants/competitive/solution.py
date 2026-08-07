@@ -1,6 +1,13 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def largestOddNumber(self, num: str) -> str:
-        for index in range(len(num) - 1, -1, -1):
-            if int(num[index]) % 2:
-                return num[: index + 1]
+    def largestOddNumber(self, num):
+        """
+        :type num: str
+        :rtype: str
+        """
+        for i in reversed(range(len(num))):
+            if int(num[i])%2:
+                return num[:i+1]
         return ""

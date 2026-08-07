@@ -1,15 +1,7 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def minStoneSum(self, piles: List[int], k: int) -> int:
-        largest_first = [-pile for pile in piles]
-        heapq.heapify(largest_first)
-
+        pq = [-x for x in piles]
+        heapify(pq)
         for _ in range(k):
-            largest = -heapq.heappop(largest_first)
-            remaining = largest - largest // 2
-            heapq.heappush(largest_first, -remaining)
-
-        return -sum(largest_first)
+            heapreplace(pq, pq[0] // 2)
+        return -sum(pq)

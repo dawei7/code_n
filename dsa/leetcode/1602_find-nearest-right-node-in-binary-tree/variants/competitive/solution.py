@@ -1,22 +1,28 @@
-from collections import deque
-from typing import Optional
+# Time:  O(n)
+# Space: O(w)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        pass
 
 
 class Solution:
-    def findNearestRightNode(
-        self,
-        root: "TreeNode",
-        u: "TreeNode",
-    ) -> Optional["TreeNode"]:
-        queue = deque([root])
-        while queue:
-            level_size = len(queue)
-            for index in range(level_size):
-                node = queue.popleft()
-                if node is u:
-                    return queue[0] if index + 1 < level_size else None
+    def findNeartestRightNode(self, root, u):
+        """
+        :type root: TreeNode
+        :type u: TreeNode
+        :rtype: TreeNode
+        """
+        q = [root]
+        while q:
+            new_q = []
+            for i, node in enumerate(q):
+                if node == u:
+                    return q[i+1] if i+1 < len(q) else None
                 if node.left:
-                    queue.append(node.left)
+                    new_q.append(node.left)
                 if node.right:
-                    queue.append(node.right)
+                    new_q.append(node.right)
+            q = new_q
         return None

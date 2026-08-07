@@ -1,42 +1,24 @@
-from typing import List
-
-
 class Solution:
     def possibleToStamp(
-        self,
-        grid: List[List[int]],
-        stampHeight: int,
-        stampWidth: int,
+        self, grid: List[List[int]], stampHeight: int, stampWidth: int
     ) -> bool:
-        rows = len(grid)
-        columns = len(grid[0])
-        occupied = [[0] * (columns + 1) for _ in range(rows + 1)]
-        for row in range(rows):
-            running = 0
-            for column in range(columns):
-                running += grid[row][column]
-                occupied[row + 1][column + 1] = occupied[row][column + 1] + running
-
-        difference = [[0] * (columns + 1) for _ in range(rows + 1)]
-        for top in range(rows - stampHeight + 1):
-            bottom = top + stampHeight
-            for left in range(columns - stampWidth + 1):
-                right = left + stampWidth
-                total = occupied[bottom][right] - occupied[top][right] - occupied[bottom][left] + occupied[top][left]
-                if total == 0:
-                    difference[top][left] += 1
-                    difference[bottom][left] -= 1
-                    difference[top][right] -= 1
-                    difference[bottom][right] += 1
-
-        for row in range(rows):
-            for column in range(columns):
-                if row:
-                    difference[row][column] += difference[row - 1][column]
-                if column:
-                    difference[row][column] += difference[row][column - 1]
-                if row and column:
-                    difference[row][column] -= difference[row - 1][column - 1]
-                if grid[row][column] == 0 and difference[row][column] == 0:
+        m, n = len(grid), len(grid[0])
+        s = [[0] * (n + 1) for _ in range(m + 1)]
+        for i, row in enumerate(grid, 1):
+            for j, v in enumerate(row, 1):
+                s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + v
+        d = [[0] * (n + 2) for _ in range(m + 2)]
+        for i in range(1, m - stampHeight + 2):
+            for j in range(1, n - stampWidth + 2):
+                x, y = i + stampHeight - 1, j + stampWidth - 1
+                if s[x][y] - s[x][j - 1] - s[i - 1][y] + s[i - 1][j - 1] == 0:
+                    d[i][j] += 1
+                    d[i][y + 1] -= 1
+                    d[x + 1][j] -= 1
+                    d[x + 1][y + 1] += 1
+        for i, row in enumerate(grid, 1):
+            for j, v in enumerate(row, 1):
+                d[i][j] += d[i - 1][j] + d[i][j - 1] - d[i - 1][j - 1]
+                if v == 0 and d[i][j] == 0:
                     return False
         return True

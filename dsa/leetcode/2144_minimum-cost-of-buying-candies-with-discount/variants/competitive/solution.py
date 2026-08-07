@@ -1,7 +1,12 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minimumCost(self, cost: List[int]) -> int:
-        ordered = sorted(cost, reverse=True)
-        return sum(price for index, price in enumerate(ordered) if index % 3 != 2)
+    def minimumCost(self, cost):
+        """
+        :type cost: List[int]
+        :rtype: int
+        """
+        cost.sort(reverse=True)
+        return sum(x for i, x in enumerate(cost) if i%3 != 2)

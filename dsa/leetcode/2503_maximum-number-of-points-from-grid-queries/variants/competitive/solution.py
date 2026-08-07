@@ -1,24 +1,37 @@
+# Time:  O((m * n + q) * log(m * n))
+# Space: O(m * n)
+
 import heapq
 
 
+# bfs, heap, prefix sum, binary search
 class Solution:
-    def maxPoints(self, grid: List[List[int]], queries: List[int]) -> List[int]:
-        rows, columns = len(grid), len(grid[0])
-        ordered = sorted((threshold, index) for index, threshold in enumerate(queries))
-        answer = [0] * len(queries)
-        frontier = [(grid[0][0], 0, 0)]
-        seen = {(0, 0)}
-        reached = 0
-
-        for threshold, query_index in ordered:
-            while frontier and frontier[0][0] < threshold:
-                _, row, column = heapq.heappop(frontier)
-                reached += 1
-                for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row, next_column = row + dr, column + dc
-                    if 0 <= next_row < rows and 0 <= next_column < columns and (next_row, next_column) not in seen:
-                        seen.add((next_row, next_column))
-                        heapq.heappush(frontier, (grid[next_row][next_column], next_row, next_column))
-            answer[query_index] = reached
-
-        return answer
+    def maxPoints(self, grid, queries):
+        """
+        :type grid: List[List[int]]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        min_heap = [(grid[0][0], 0, 0)]
+        lookup = [[False]*len(grid[0]) for _ in range(len(grid))]
+        lookup[0][0] = True
+        mx = 0
+        cnt = collections.Counter()
+        while min_heap:
+            curr, i, j = heapq.heappop(min_heap)
+            mx = max(mx, curr)
+            cnt[mx] += 1
+            for di, dj in directions:
+                ni, nj = i+di, j+dj
+                if not (0 <= ni < len(grid) and
+                        0 <= nj < len(grid[0]) and
+                        not lookup[ni][nj]):
+                    continue
+                lookup[ni][nj] = True
+                heapq.heappush(min_heap, (grid[ni][nj], ni, nj))
+        vals = sorted(cnt.keys())
+        prefix = [0]*(len(vals)+1)
+        for i in range(len(vals)):
+            prefix[i+1] += prefix[i]+cnt[vals[i]]
+        return map(lambda x: prefix[bisect.bisect_left(vals, x)], queries)

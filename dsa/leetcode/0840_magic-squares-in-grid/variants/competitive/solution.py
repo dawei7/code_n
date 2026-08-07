@@ -1,31 +1,38 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
 
 class Solution:
-    def numMagicSquaresInside(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        magic_values = set(range(1, 10))
-
-        def is_magic(top: int, left: int) -> bool:
-            if grid[top + 1][left + 1] != 5:
-                return False
-
-            values = {
-                grid[top + row_offset][left + column_offset] for row_offset in range(3) for column_offset in range(3)
-            }
-            if values != magic_values:
-                return False
-
-            for offset in range(3):
-                if sum(grid[top + offset][left : left + 3]) != 15:
+    def numMagicSquaresInside(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def magic(grid, r, c):
+            expect = k * (k**2+1) // 2
+            nums = set()
+            min_num = float("inf")
+            sum_diag, sum_anti = 0, 0
+            for i in range(k):
+                sum_diag += grid[r+i][c+i]
+                sum_anti += grid[r+i][c+k-1-i]
+                sum_r, sum_c = 0, 0
+                for j in range(k):
+                    min_num = min(min_num, grid[r+i][c+j])
+                    nums.add(grid[r+i][c+j])
+                    sum_r += grid[r+i][c+j]
+                    sum_c += grid[r+j][c+i]
+                if not (sum_r == sum_c == expect):
                     return False
-                if sum(grid[top + row][left + offset] for row in range(3)) != 15:
-                    return False
+            return sum_diag == sum_anti == expect and \
+                len(nums) == k**2 and \
+                min_num == 1
 
-            return (
-                sum(grid[top + offset][left + offset] for offset in range(3)) == 15
-                and sum(grid[top + offset][left + 2 - offset] for offset in range(3)) == 15
-            )
+        k = 3
+        result = 0
+        for r in range(len(grid)-k+1):
+            for c in range(len(grid[r])-k+1):
+                if magic(grid, r, c):
+                    result += 1
+        return result
 
-        return sum(is_magic(top, left) for top in range(rows - 2) for left in range(columns - 2))

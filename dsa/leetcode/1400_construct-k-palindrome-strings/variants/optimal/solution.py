@@ -1,9 +1,6 @@
-from collections import Counter
-
-
 class Solution:
     def canConstruct(self, s: str, k: int) -> bool:
-        if k > len(s):
+        if len(s) < k:
             return False
-        odd_count = sum(frequency % 2 for frequency in Counter(s).values())
-        return odd_count <= k
+        cnt = Counter(s)
+        return sum(v & 1 for v in cnt.values()) <= k

@@ -1,24 +1,56 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def placeWordInCrossword(self, board: List[List[str]], word: str) -> bool:
-        def matches(segment) -> bool:
-            if len(segment) != len(word):
-                return False
-            forward = all(cell == " " or cell == letter for cell, letter in zip(segment, word))
-            backward = all(cell == " " or cell == letter for cell, letter in zip(segment, reversed(word)))
-            return forward or backward
+    def placeWordInCrossword(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        def get_val(mat, i, j, transposed):
+            return mat[i][j] if not transposed else mat[j][i]
 
-        lines = list(board) + list(zip(*board))
-        for line in lines:
-            segment = []
-            for cell in (*line, "#"):
-                if cell == "#":
-                    if matches(segment):
+        def get_vecs(mat, transposed):
+            for i in range(len(mat) if not transposed else len(mat[0])):
+                yield (get_val(mat, i, j, transposed) for j in range(len(mat[0]) if not transposed else len(mat)))
+
+        for direction in (lambda x: iter(x), reversed):
+            for transposed in range(2):
+                for row in get_vecs(board, transposed):
+                    it, matched = direction(word), True
+                    for c in row:
+                        if c == '#':
+                            if next(it, None) is None and matched:
+                                return True
+                            it, matched = direction(word), True
+                            continue
+                        if not matched:
+                            continue
+                        nc = next(it, None)
+                        matched = (nc is not None) and c in (nc, ' ')
+                    if (next(it, None) is None) and matched:
                         return True
-                    segment = []
-                else:
-                    segment.append(cell)
+        return False
 
+
+# Time:  O(m * n)
+# Space: O(m * n)
+class Solution2(object):
+    def placeWordInCrossword(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        words = [word, word[::-1]]
+        for mat in (board, zip(*board)):
+            for row in mat:
+                blocks = ''.join(row).split('#')
+                for s in blocks:
+                    if len(s) != len(word):
+                        continue
+                    for w in words:
+                        if all(s[i] in (w[i], ' ') for i in range(len(s))):
+                            return True
         return False

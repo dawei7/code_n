@@ -1,25 +1,26 @@
+# Time:   O(nlogn)
+# Space : O(n)
+
+import itertools
 import heapq
-from typing import List
 
 
 class Solution:
-    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
-        workers = sorted(
-            (minimum_wage / worker_quality, worker_quality) for worker_quality, minimum_wage in zip(quality, wage)
-        )
+    def mincostToHireWorkers(self, quality, wage, K):
+        """
+        :type quality: List[int]
+        :type wage: List[int]
+        :type K: int
+        :rtype: float
+        """
+        result, qsum = float("inf"), 0
+        max_heap = []
+        for r, q in sorted([float(w)/q, q] for w, q in itertools.izip(wage, quality)):
+            qsum += q
+            heapq.heappush(max_heap, -q)
+            if len(max_heap) > K:
+                qsum -= -heapq.heappop(max_heap)
+            if len(max_heap) == K:
+                result = min(result, qsum*r)
+        return result
 
-        largest_qualities = []
-        quality_sum = 0
-        best_cost = float("inf")
-
-        for ratio, worker_quality in workers:
-            heapq.heappush(largest_qualities, -worker_quality)
-            quality_sum += worker_quality
-
-            if len(largest_qualities) > k:
-                quality_sum += heapq.heappop(largest_qualities)
-
-            if len(largest_qualities) == k:
-                best_cost = min(best_cost, quality_sum * ratio)
-
-        return best_cost

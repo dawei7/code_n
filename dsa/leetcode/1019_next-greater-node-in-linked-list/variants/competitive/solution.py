@@ -1,23 +1,24 @@
-from typing import List, Optional
-
+# Time:  O(n)
+# Space: O(n)
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
 class Solution:
-    def nextLargerNodes(self, head: Optional[ListNode]) -> List[int]:
-        values = []
-        while head is not None:
-            values.append(head.val)
+    def nextLargerNodes(self, head):
+        """
+        :type head: ListNode
+        :rtype: List[int]
+        """
+        result, stk = [], []
+        while head:
+            while stk and stk[-1][1] < head.val:
+                result[stk.pop()[0]] = head.val
+            stk.append([len(result), head.val])
+            result.append(0)
             head = head.next
-
-        answer = [0] * len(values)
-        stack = []
-        for index, value in enumerate(values):
-            while stack and values[stack[-1]] < value:
-                answer[stack.pop()] = value
-            stack.append(index)
-
-        return answer
+        return result

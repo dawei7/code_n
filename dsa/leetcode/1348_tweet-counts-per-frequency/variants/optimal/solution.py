@@ -1,20 +1,27 @@
-from collections import defaultdict
-from typing import List
-
-
 class TweetCounts:
-    _WIDTHS = {"minute": 60, "hour": 3600, "day": 86400}
-
     def __init__(self):
-        self.times = defaultdict(list)
+        self.d = {"minute": 60, "hour": 3600, "day": 86400}
+        self.data = defaultdict(SortedList)
 
     def recordTweet(self, tweetName: str, time: int) -> None:
-        self.times[tweetName].append(time)
+        self.data[tweetName].add(time)
 
-    def getTweetCountsPerFrequency(self, freq: str, tweetName: str, startTime: int, endTime: int) -> List[int]:
-        width = self._WIDTHS[freq]
-        counts = [0] * ((endTime - startTime) // width + 1)
-        for time in self.times.get(tweetName, ()):
-            if startTime <= time <= endTime:
-                counts[(time - startTime) // width] += 1
-        return counts
+    def getTweetCountsPerFrequency(
+        self, freq: str, tweetName: str, startTime: int, endTime: int
+    ) -> List[int]:
+        f = self.d[freq]
+        tweets = self.data[tweetName]
+        t = startTime
+        ans = []
+        while t <= endTime:
+            l = tweets.bisect_left(t)
+            r = tweets.bisect_left(min(t + f, endTime + 1))
+            ans.append(r - l)
+            t += f
+        return ans
+
+
+# Your TweetCounts object will be instantiated and called as such:
+# obj = TweetCounts()
+# obj.recordTweet(tweetName,time)
+# param_2 = obj.getTweetCountsPerFrequency(freq,tweetName,startTime,endTime)

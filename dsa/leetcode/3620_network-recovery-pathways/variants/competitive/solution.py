@@ -1,57 +1,64 @@
-from collections import deque
-from typing import List
+# Time:  O((n + e) * logr), r = max(e[2] for e in edges)
+# Space: O(n + e)
 
-
+# binary search, topological sort, dp
 class Solution:
-    def findMaxPathScore(self, edges: List[List[int]], online: List[bool], k: int) -> int:
-        node_count = len(online)
-        adjacency = [[] for _ in range(node_count)]
-        indegree = [0] * node_count
+    def findMaxPathScore(self, edges, online, k):
+        """
+        :type edges: List[List[int]]
+        :type online: List[bool]
+        :type k: int
+        :rtype: int
+        """
+        INF = float("inf")
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if not check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
 
-        for source, target, cost in edges:
-            adjacency[source].append((target, cost))
-            indegree[target] += 1
+        def topological_sort():
+            in_degree = [0]*len(adj)
+            for u in range(len(adj)):
+                for v, _ in adj[u]:
+                    in_degree[v] += 1
+            result = []
+            q = [u for u in range(len(adj)) if not in_degree[u]]
+            while q:
+                new_q = []
+                for u in q:
+                    result.append(u)
+                    for v, _ in adj[u]:
+                        in_degree[v] -= 1
+                        if in_degree[v]:
+                            continue
+                        new_q.append(v)
+                q = new_q
+            return result
 
-        queue = deque(node for node in range(node_count) if indegree[node] == 0)
-        topological_order = []
-        while queue:
-            node = queue.popleft()
-            topological_order.append(node)
-            for neighbor, _ in adjacency[node]:
-                indegree[neighbor] -= 1
-                if indegree[neighbor] == 0:
-                    queue.append(neighbor)
-
-        def feasible(minimum_cost: int) -> bool:
-            distance = [k + 1] * node_count
-            distance[0] = 0
-
-            for node in topological_order:
-                if not online[node] or distance[node] > k:
+        def check(x):
+            dist = [INF]*len(adj)
+            dist[0] = 0
+            for u in order:
+                if dist[u] == INF:
                     continue
-                for neighbor, cost in adjacency[node]:
-                    new_distance = distance[node] + cost
-                    if (
-                        online[neighbor]
-                        and cost >= minimum_cost
-                        and new_distance < distance[neighbor]
-                        and new_distance <= k
-                    ):
-                        distance[neighbor] = new_distance
+                for v, c in adj[u]:
+                    if not (c >= x and online[v]):
+                        continue
+                    dist[v] = min(dist[v], dist[u]+c)
+            return dist[-1] <= k
 
-            return distance[-1] <= k
-
-        costs = sorted({cost for _, _, cost in edges})
-        answer = -1
-        left = 0
-        right = len(costs) - 1
-
-        while left <= right:
-            middle = (left + right) // 2
-            if feasible(costs[middle]):
-                answer = costs[middle]
-                left = middle + 1
-            else:
-                right = middle - 1
-
-        return answer
+        adj = [[] for _ in range(len(online))]
+        for u, v, c in edges:
+            adj[u].append((v, c))
+        order = topological_sort()
+        left, right = INF, 0
+        for u in range(len(adj)):
+            for _, c in adj[u]:
+                left = min(left, c)
+                right = max(right, c)
+        result = binary_search_right(left, right, check)
+        return result if result >= left else -1

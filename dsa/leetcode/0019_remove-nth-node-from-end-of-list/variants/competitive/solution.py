@@ -1,17 +1,31 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+    def __repr__(self):
+        if self is None:
+            return "Nil"
+        else:
+            return "{} -> {}".format(self.val, repr(self.next))
 
 class Solution:
-    def removeNthFromEnd(self, head: Optional["ListNode"], n: int) -> Optional["ListNode"]:
-        fast = head
-        for _ in range(n):
-            fast = fast.next
-        if fast is None:
-            return head.next
+    # @return a ListNode
+    def removeNthFromEnd(self, head, n):
+        dummy = ListNode(-1)
+        dummy.next = head
+        slow, fast = dummy, dummy
 
-        slow = head
-        while fast.next is not None:
+        for i in range(n):
             fast = fast.next
-            slow = slow.next
+
+        while fast.next:
+            slow, fast = slow.next, fast.next
+
         slow.next = slow.next.next
-        return head
+
+        return dummy.next
+

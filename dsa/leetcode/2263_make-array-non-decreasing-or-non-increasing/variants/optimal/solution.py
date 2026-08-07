@@ -1,21 +1,14 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def convertArray(self, nums: List[int]) -> int:
-        def non_decreasing_cost(values: List[int]) -> int:
-            maximums = []
-            cost = 0
-            for value in values:
-                heapq.heappush(maximums, -value)
-                largest = -maximums[0]
-                if largest > value:
-                    cost += largest - value
-                    heapq.heapreplace(maximums, -value)
-            return cost
+        def solve(nums):
+            n = len(nums)
+            f = [[0] * 1001 for _ in range(n + 1)]
+            for i, x in enumerate(nums, 1):
+                mi = inf
+                for j in range(1001):
+                    if mi > f[i - 1][j]:
+                        mi = f[i - 1][j]
+                    f[i][j] = mi + abs(x - j)
+            return min(f[n])
 
-        return min(
-            non_decreasing_cost(nums),
-            non_decreasing_cost([-value for value in nums]),
-        )
+        return min(solve(nums), solve(nums[::-1]))

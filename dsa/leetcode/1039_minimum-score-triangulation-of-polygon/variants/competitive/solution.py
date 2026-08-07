@@ -1,17 +1,17 @@
-from typing import List
-
+# Time:  O(n^3)
+# Space: O(n^2)
 
 class Solution:
-    def minScoreTriangulation(self, values: List[int]) -> int:
-        vertex_count = len(values)
-        dp = [[0] * vertex_count for _ in range(vertex_count)]
-
-        for length in range(3, vertex_count + 1):
-            for left in range(vertex_count - length + 1):
-                right = left + length - 1
-                dp[left][right] = min(
-                    dp[left][middle] + dp[middle][right] + values[left] * values[middle] * values[right]
-                    for middle in range(left + 1, right)
-                )
-
-        return dp[0][vertex_count - 1]
+    def minScoreTriangulation(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        dp = [[0 for _ in range(len(A))] for _ in range(len(A))]
+        for p in range(3, len(A)+1):
+            for i in range(len(A)-p+1):
+                j = i+p-1
+                dp[i][j] = float("inf")
+                for k in range(i+1, j):
+                    dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j] + A[i]*A[j]*A[k])
+        return dp[0][-1]

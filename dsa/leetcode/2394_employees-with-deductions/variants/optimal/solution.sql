@@ -1,16 +1,14 @@
-SELECT
-    employees.employee_id
-FROM Employees AS employees
-LEFT JOIN Logs AS logs
-    ON logs.employee_id = employees.employee_id
-GROUP BY
-    employees.employee_id,
-    employees.needed_hours
-HAVING COALESCE(
-    SUM((
-        CAST(strftime('%s', logs.out_time) AS INTEGER)
-        - CAST(strftime('%s', logs.in_time) AS INTEGER)
-        + 59
-    ) / 60),
-    0
-) < employees.needed_hours * 60;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            employee_id,
+            SUM(ceiling(TIMESTAMPDIFF(second, in_time, out_time) / 60)) / 60 AS tot
+        FROM Logs
+        GROUP BY employee_id
+    )
+SELECT employee_id
+FROM
+    Employees
+    LEFT JOIN T USING (employee_id)
+WHERE IFNULL(tot, 0) < needed_hours;

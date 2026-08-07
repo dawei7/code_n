@@ -1,7 +1,3 @@
-from collections import deque
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -10,17 +6,14 @@ from typing import Optional
 #         self.right = right
 class Solution:
     def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
-        queue = deque([root])
-        level_sum = 0
-
-        while queue:
-            level_sum = 0
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                level_sum += node.val
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
-
-        return level_sum
+        q = deque([root])
+        while q:
+            ans = 0
+            for _ in range(len(q)):
+                node = q.popleft()
+                ans += node.val
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+        return ans

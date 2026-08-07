@@ -1,41 +1,21 @@
-from typing import List
-
-
 class Solution:
     def medianOfUniquenessArray(self, nums: List[int]) -> int:
-        n = len(nums)
-        total_subarrays = n * (n + 1) // 2
-        target_rank = (total_subarrays + 1) // 2
-
-        def reaches_target(limit: int) -> bool:
-            frequencies = {}
-            left = 0
-            count = 0
-
-            for right, value in enumerate(nums):
-                frequencies[value] = frequencies.get(value, 0) + 1
-
-                while len(frequencies) > limit:
-                    outgoing = nums[left]
-                    frequencies[outgoing] -= 1
-                    if frequencies[outgoing] == 0:
-                        del frequencies[outgoing]
-                    left += 1
-
-                count += right - left + 1
-                if count >= target_rank:
+        def check(mx: int) -> bool:
+            cnt = defaultdict(int)
+            k = l = 0
+            for r, x in enumerate(nums):
+                cnt[x] += 1
+                while len(cnt) > mx:
+                    y = nums[l]
+                    cnt[y] -= 1
+                    if cnt[y] == 0:
+                        cnt.pop(y)
+                    l += 1
+                k += r - l + 1
+                if k >= (m + 1) // 2:
                     return True
-
             return False
 
-        low = 1
-        high = len(set(nums))
-
-        while low < high:
-            middle = (low + high) // 2
-            if reaches_target(middle):
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        n = len(nums)
+        m = (1 + n) * n // 2
+        return bisect_left(range(n), True, key=check)

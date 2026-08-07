@@ -1,15 +1,13 @@
 class Solution:
     def betterCompression(self, compressed: str) -> str:
-        frequency = [0] * 26
-        index = 0
-
-        while index < len(compressed):
-            letter = compressed[index]
-            index += 1
-            count = 0
-            while index < len(compressed) and compressed[index].isdigit():
-                count = count * 10 + ord(compressed[index]) - ord("0")
-                index += 1
-            frequency[ord(letter) - ord("a")] += count
-
-        return "".join(chr(ord("a") + offset) + str(count) for offset, count in enumerate(frequency) if count)
+        cnt = Counter()
+        i, n = 0, len(compressed)
+        while i < n:
+            j = i + 1
+            x = 0
+            while j < n and compressed[j].isdigit():
+                x = x * 10 + int(compressed[j])
+                j += 1
+            cnt[compressed[i]] += x
+            i = j
+        return "".join(sorted(f"{k}{v}" for k, v in cnt.items()))

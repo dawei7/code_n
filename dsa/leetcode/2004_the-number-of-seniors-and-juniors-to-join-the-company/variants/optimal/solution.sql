@@ -1,31 +1,33 @@
-WITH RankedCandidates AS (
-    SELECT
-        employee_id,
-        experience,
-        salary,
-        SUM(salary) OVER (
-            PARTITION BY experience
-            ORDER BY salary, employee_id
-        ) AS running_salary
-    FROM Candidates
-),
-SeniorBudget AS (
-    SELECT
-        COUNT(*) AS accepted_seniors,
-        COALESCE(MAX(running_salary), 0) AS senior_spending
-    FROM RankedCandidates
-    WHERE experience = 'Senior'
-      AND running_salary <= 70000
-)
+# Write your MySQL query statement below
+WITH
+    s AS (
+        SELECT
+            employee_id,
+            SUM(salary) OVER (ORDER BY salary) AS cur
+        FROM Candidates
+        WHERE experience = 'Senior'
+    ),
+    j AS (
+        SELECT
+            employee_id,
+            IFNULL(
+                SELECT
+                    MAX(cur)
+                FROM s
+                WHERE cur <= 70000,
+                0
+            ) + SUM(salary) OVER (ORDER BY salary) AS cur
+        FROM Candidates
+        WHERE experience = 'Junior'
+    )
 SELECT
     'Senior' AS experience,
-    accepted_seniors AS accepted_candidates
-FROM SeniorBudget
+    COUNT(employee_id) AS accepted_candidates
+FROM s
+WHERE cur <= 70000
 UNION ALL
 SELECT
     'Junior' AS experience,
-    COUNT(*) AS accepted_candidates
-FROM RankedCandidates
-CROSS JOIN SeniorBudget
-WHERE experience = 'Junior'
-  AND running_salary <= 70000 - senior_spending;
+    COUNT(employee_id) AS accepted_candidates
+FROM j
+WHERE cur <= 70000;

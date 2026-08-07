@@ -1,35 +1,33 @@
-from typing import List, Optional
-
-
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def findMode(self, root: Optional[TreeNode]) -> List[int]:
-        stack = []
-        node = root
-        previous = None
-        run_length = best_length = 0
-        modes = []
+    def findMode(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        def inorder(root, prev, cnt, max_cnt, result):
+            if not root:
+                return prev, cnt, max_cnt
 
-        while stack or node is not None:
-            while node is not None:
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-            if previous is not None and node.val == previous:
-                run_length += 1
-            else:
-                previous = node.val
-                run_length = 1
-            if run_length > best_length:
-                best_length = run_length
-                modes = [node.val]
-            elif run_length == best_length:
-                modes.append(node.val)
-            node = node.right
-        return modes
+            prev, cnt, max_cnt = inorder(root.left, prev, cnt, max_cnt, result)
+            if prev:
+                if root.val == prev.val:
+                    cnt += 1
+                else:
+                    cnt = 1
+            if cnt > max_cnt:
+                max_cnt = cnt
+                del result[:]
+                result.append(root.val)
+            elif cnt == max_cnt:
+                result.append(root.val)
+            return inorder(root.right, root, cnt, max_cnt, result)
+
+        if not root:
+            return []
+        result = []
+        inorder(root, None, 1, 0, result)
+        return result
+

@@ -1,53 +1,56 @@
-from collections import deque
-from typing import List
+HOLE, MOUSE_START, CAT_START = 0, 1, 2
+MOUSE_TURN, CAT_TURN = 0, 1
+MOUSE_WIN, CAT_WIN, TIE = 1, 2, 0
 
 
 class Solution:
     def catMouseGame(self, graph: List[List[int]]) -> int:
-        DRAW, MOUSE, CAT = 0, 1, 2
-        MOUSE_TURN, CAT_TURN = 0, 1
-        n = len(graph)
-
-        outcome = [[[DRAW, DRAW] for _ in range(n)] for _ in range(n)]
-        degree = [[[0, 0] for _ in range(n)] for _ in range(n)]
-
-        for mouse in range(n):
-            for cat in range(1, n):
-                degree[mouse][cat][MOUSE_TURN] = len(graph[mouse])
-                degree[mouse][cat][CAT_TURN] = sum(neighbor != 0 for neighbor in graph[cat])
-
-        queue = deque()
-        for cat in range(1, n):
-            for turn in (MOUSE_TURN, CAT_TURN):
-                outcome[0][cat][turn] = MOUSE
-                queue.append((0, cat, turn, MOUSE))
-
-        for node in range(1, n):
-            for turn in (MOUSE_TURN, CAT_TURN):
-                outcome[node][node][turn] = CAT
-                queue.append((node, node, turn, CAT))
-
-        while queue:
-            mouse, cat, turn, winner = queue.popleft()
-
-            if turn == MOUSE_TURN:
-                parents = ((mouse, previous_cat, CAT_TURN) for previous_cat in graph[cat] if previous_cat != 0)
+        def get_prev_states(state):
+            m, c, t = state
+            pt = t ^ 1
+            pre = []
+            if pt == CAT_TURN:
+                for pc in graph[c]:
+                    if pc != HOLE:
+                        pre.append((m, pc, pt))
             else:
-                parents = ((previous_mouse, cat, MOUSE_TURN) for previous_mouse in graph[mouse])
+                for pm in graph[m]:
+                    pre.append((pm, c, pt))
+            return pre
 
-            for parent_mouse, parent_cat, parent_turn in parents:
-                if outcome[parent_mouse][parent_cat][parent_turn] != DRAW:
-                    continue
-
-                player = MOUSE if parent_turn == MOUSE_TURN else CAT
-                if winner == player:
-                    outcome[parent_mouse][parent_cat][parent_turn] = winner
-                    queue.append((parent_mouse, parent_cat, parent_turn, winner))
-                    continue
-
-                degree[parent_mouse][parent_cat][parent_turn] -= 1
-                if degree[parent_mouse][parent_cat][parent_turn] == 0:
-                    outcome[parent_mouse][parent_cat][parent_turn] = winner
-                    queue.append((parent_mouse, parent_cat, parent_turn, winner))
-
-        return outcome[1][2][MOUSE_TURN]
+        n = len(graph)
+        ans = [[[0, 0] for _ in range(n)] for _ in range(n)]
+        degree = [[[0, 0] for _ in range(n)] for _ in range(n)]
+        for i in range(n):
+            for j in range(1, n):
+                degree[i][j][MOUSE_TURN] = len(graph[i])
+                degree[i][j][CAT_TURN] = len(graph[j])
+            for j in graph[HOLE]:
+                degree[i][j][CAT_TURN] -= 1
+        q = deque()
+        for j in range(1, n):
+            ans[0][j][MOUSE_TURN] = ans[0][j][CAT_TURN] = MOUSE_WIN
+            q.append((0, j, MOUSE_TURN))
+            q.append((0, j, CAT_TURN))
+        for i in range(1, n):
+            ans[i][i][MOUSE_TURN] = ans[i][i][CAT_TURN] = CAT_WIN
+            q.append((i, i, MOUSE_TURN))
+            q.append((i, i, CAT_TURN))
+        while q:
+            state = q.popleft()
+            t = ans[state[0]][state[1]][state[2]]
+            for prev_state in get_prev_states(state):
+                pm, pc, pt = prev_state
+                if ans[pm][pc][pt] == TIE:
+                    win = (t == MOUSE_WIN and pt == MOUSE_TURN) or (
+                        t == CAT_WIN and pt == CAT_TURN
+                    )
+                    if win:
+                        ans[pm][pc][pt] = t
+                        q.append(prev_state)
+                    else:
+                        degree[pm][pc][pt] -= 1
+                        if degree[pm][pc][pt] == 0:
+                            ans[pm][pc][pt] = t
+                            q.append(prev_state)
+        return ans[MOUSE_START][CAT_START][MOUSE_TURN]

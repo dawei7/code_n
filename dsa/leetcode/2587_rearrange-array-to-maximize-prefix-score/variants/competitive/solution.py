@@ -1,13 +1,17 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, greedy
 class Solution:
-    def maxScore(self, nums: List[int]) -> int:
+    def maxScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         nums.sort(reverse=True)
-        prefix_sum = 0
-        score = 0
-
-        for value in nums:
-            prefix_sum += value
-            if prefix_sum <= 0:
-                break
-            score += 1
-
-        return score
+        curr = 0
+        for i, x in enumerate(nums):
+            curr += x
+            if curr <= 0:
+                return i
+        return len(nums)

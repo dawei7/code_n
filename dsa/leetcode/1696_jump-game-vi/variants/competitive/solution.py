@@ -1,19 +1,23 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(k)
+
+import collections
 
 
 class Solution:
-    def maxResult(self, nums: List[int], k: int) -> int:
-        best_score = [0] * len(nums)
-        best_score[0] = nums[0]
-        candidates = deque([0])
-
-        for index in range(1, len(nums)):
-            while candidates[0] < index - k:
-                candidates.popleft()
-            best_score[index] = nums[index] + best_score[candidates[0]]
-            while candidates and best_score[candidates[-1]] <= best_score[index]:
-                candidates.pop()
-            candidates.append(index)
-
-        return best_score[-1]
+    def maxResult(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        score = 0
+        dq = collections.deque()
+        for i, num in enumerate(nums):
+            if dq and dq[0][0] == i-k-1:
+                dq.popleft()
+            score = num if not dq else dq[0][1]+num
+            while dq and dq[-1][1] <= score:
+                dq.pop()
+            dq.append((i, score))
+        return score

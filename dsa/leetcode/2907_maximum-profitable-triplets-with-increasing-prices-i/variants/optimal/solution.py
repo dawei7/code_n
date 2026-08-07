@@ -1,22 +1,15 @@
-from typing import List
-
-
 class Solution:
     def maxProfit(self, prices: List[int], profits: List[int]) -> int:
-        answer = -1
-
-        for middle in range(1, len(prices) - 1):
-            left_profit = -1
-            for left in range(middle):
-                if prices[left] < prices[middle]:
-                    left_profit = max(left_profit, profits[left])
-
-            right_profit = -1
-            for right in range(middle + 1, len(prices)):
-                if prices[middle] < prices[right]:
-                    right_profit = max(right_profit, profits[right])
-
-            if left_profit != -1 and right_profit != -1:
-                answer = max(answer, left_profit + profits[middle] + right_profit)
-
-        return answer
+        n = len(prices)
+        ans = -1
+        for j, x in enumerate(profits):
+            left = right = 0
+            for i in range(j):
+                if prices[i] < prices[j] and left < profits[i]:
+                    left = profits[i]
+            for k in range(j + 1, n):
+                if prices[j] < prices[k] and right < profits[k]:
+                    right = profits[k]
+            if left and right:
+                ans = max(ans, left + x + right)
+        return ans

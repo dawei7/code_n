@@ -1,4 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def transformArray(self, nums: List[int]) -> List[int]:
-        odd_count = sum(value & 1 for value in nums)
-        return [0] * (len(nums) - odd_count) + [1] * odd_count
+    def transformArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        cnt = 0
+        for x in nums:
+            if x%2:
+                continue
+            nums[cnt] = 0
+            cnt += 1
+        for i in range(cnt, len(nums)):
+            nums[i] = 1
+        return nums

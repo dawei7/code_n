@@ -1,15 +1,20 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def flatten(self, root: Optional["TreeNode"]) -> None:
-        current = root
-        while current is not None:
-            if current.left is not None:
-                predecessor = current.left
-                while predecessor.right is not None:
-                    predecessor = predecessor.right
-                predecessor.right = current.right
-                current.right = current.left
-                current.left = None
-            current = current.right
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        while root:
+            if root.left:
+                pre = root.left
+                while pre.right:
+                    pre = pre.right
+                pre.right = root.right
+                root.right = root.left
+                root.left = None
+            root = root.right

@@ -1,18 +1,21 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def minIncrease(self, nums: list[int]) -> int:
-        def cost(index: int) -> int:
-            required = max(nums[index - 1], nums[index + 1]) + 1
-            return max(0, required - nums[index])
-
-        n = len(nums)
-        if n % 2 == 1:
-            return sum(cost(index) for index in range(1, n - 1, 2))
-
-        current = sum(cost(index) for index in range(2, n - 1, 2))
-        answer = current
-
-        for even_index in range(2, n - 1, 2):
-            current += cost(even_index - 1) - cost(even_index)
-            answer = min(answer, current)
-
-        return answer
+    def minIncrease(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = 0
+        if len(nums)%2:
+            for i in range(1, len(nums)-1, 2):
+                dp += max((max(nums[i-1], nums[i+1])+1)-nums[i], 0)
+            return dp
+        dp2 = 0
+        for i in range(1, len(nums)-1, 2):
+            dp += max((max(nums[i-1], nums[i+1])+1)-nums[i], 0)
+            dp2 += max((max(nums[i], nums[i+2])+1)-nums[i+1], 0)
+            dp2 = min(dp2, dp)
+        return dp2

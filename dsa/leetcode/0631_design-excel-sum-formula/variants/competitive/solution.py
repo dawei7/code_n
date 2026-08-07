@@ -1,68 +1,89 @@
-from collections import Counter, defaultdict
-from typing import List
+# Time:  set: O((r * c)^2)
+#        get: O(1)
+#        sum: O((r * c)^2)
+# Space: O(r * c)
+
+import collections
 
 
-class Excel:
-    def __init__(self, height: int, width: str):
-        self.values = [[0] * (ord(width) - ord("A") + 1) for _ in range(height)]
-        self.formulas = {}
-        self.dependents = defaultdict(Counter)
+class Excel(object):
 
-    def cell(self, reference):
-        return int(reference[1:]) - 1, ord(reference[0]) - ord("A")
+    def __init__(self, H, W):
+        """
+        :type H: int
+        :type W: str
+        """
+        self.__exl = [[0 for _ in range(ord(W)-ord('A')+1)] \
+                      for _ in range(H+1)]
+        self.__fward = collections.defaultdict(lambda : collections.defaultdict(int))
+        self.__bward = collections.defaultdict(set)
 
-    def references(self, references):
-        result = Counter()
-        for reference in references:
-            endpoints = reference.split(":")
-            top, left = self.cell(endpoints[0])
-            bottom, right = self.cell(endpoints[-1])
-            for row in range(top, bottom + 1):
-                for column in range(left, right + 1):
-                    result[row, column] += 1
+
+    def set(self, r, c, v):
+        """
+        :type r: int
+        :type c: str
+        :type v: int
+        :rtype: void
+        """
+        self.__reset_dependency(r, c)
+        self.__update_others(r, c, v)
+
+
+    def get(self, r, c):
+        """
+        :type r: int
+        :type c: str
+        :rtype: int
+        """
+        return self.__exl[r][ord(c) - ord('A')]
+
+
+    def sum(self, r, c, strs):
+        """
+        :type r: int
+        :type c: str
+        :type strs: List[str]
+        :rtype: int
+        """
+        self.__reset_dependency(r, c)
+        result = self.__calc_and_update_dependency(r, c, strs)
+        self.__update_others(r, c, result)
         return result
 
-    def remove_formula(self, cell):
-        formula = self.formulas.pop(cell, None)
-        if formula is None:
-            return
-        for source, multiplicity in formula.items():
-            targets = self.dependents[source]
-            targets[cell] -= multiplicity
-            if targets[cell] == 0:
-                del targets[cell]
-            if not targets:
-                del self.dependents[source]
 
-    def propagate(self, cell, difference):
-        if difference == 0:
-            return
-        for target, multiplicity in list(self.dependents.get(cell, {}).items()):
-            change = difference * multiplicity
-            self.values[target[0]][target[1]] += change
-            self.propagate(target, change)
+    def __reset_dependency(self, r, c):
+        key = (r, c)
+        if key in self.__bward.keys():
+            for k in self.__bward[key]:
+                self.__fward[k].pop(key, None)
+            self.__bward[key] = set()
 
-    def set(self, row: int, column: str, val: int) -> None:
-        cell = row - 1, ord(column) - ord("A")
-        old_value = self.values[cell[0]][cell[1]]
-        self.remove_formula(cell)
-        self.values[cell[0]][cell[1]] = val
-        self.propagate(cell, val - old_value)
 
-    def get(self, row: int, column: str) -> int:
-        return self.values[row - 1][ord(column) - ord("A")]
+    def __calc_and_update_dependency(self, r, c, strs):
+        result = 0
+        for s in strs:
+            s, e = s.split(':')[0], s.split(':')[1] if ':' in s else s
+            left, right, top, bottom = ord(s[0])-ord('A'), ord(e[0])-ord('A'), int(s[1:]), int(e[1:])
+            for i in range(top, bottom+1):
+                for j in range(left, right+1):
+                    result += self.__exl[i][j]
+                    self.__fward[(i, chr(ord('A')+j))][(r, c)] += 1
+                    self.__bward[(r, c)].add((i, chr(ord('A')+j)))
+        return result
 
-    def sum(self, row: int, column: str, numbers: List[str]) -> int:
-        cell = row - 1, ord(column) - ord("A")
-        old_value = self.values[cell[0]][cell[1]]
-        self.remove_formula(cell)
 
-        formula = self.references(numbers)
-        value = sum(self.values[source[0]][source[1]] * multiplicity for source, multiplicity in formula.items())
-        self.formulas[cell] = formula
-        for source, multiplicity in formula.items():
-            self.dependents[source][cell] += multiplicity
+    def __update_others(self, r, c, v):
+        prev = self.__exl[r][ord(c)-ord('A')]
+        self.__exl[r][ord(c)-ord('A')] = v
+        q = collections.deque()
+        q.append(((r, c), v-prev))
+        while q:
+            key, diff = q.popleft()
+            if key in self.__fward:
+                for k, count in self.__fward[key].iteritems():
+                    q.append((k, diff*count))
+                    self.__exl[k[0]][ord(k[1])-ord('A')] += diff*count
 
-        self.values[cell[0]][cell[1]] = value
-        self.propagate(cell, value - old_value)
-        return value
+
+

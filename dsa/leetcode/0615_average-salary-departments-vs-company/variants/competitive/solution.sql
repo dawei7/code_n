@@ -1,30 +1,24 @@
-WITH salary_rows AS (
-    SELECT
-        strftime('%Y-%m', salary.pay_date) AS pay_month,
-        employee.department_id,
-        salary.amount,
-        AVG(salary.amount) OVER (
-            PARTITION BY strftime('%Y-%m', salary.pay_date)
-        ) AS company_average
-    FROM Salary AS salary
-    JOIN Employee AS employee
-        ON employee.employee_id = salary.employee_id
-), department_averages AS (
-    SELECT
-        pay_month,
-        department_id,
-        AVG(amount) AS department_average,
-        MAX(company_average) AS company_average
-    FROM salary_rows
-    GROUP BY pay_month, department_id
-)
-SELECT
-    pay_month,
-    department_id,
-    CASE
-        WHEN department_average > company_average THEN 'higher'
-        WHEN department_average < company_average THEN 'lower'
-        ELSE 'same'
-    END AS comparison
-FROM department_averages
-ORDER BY pay_month, department_id;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT department_salary.pay_month, department_id,
+CASE
+  WHEN department_avg < company_avg THEN 'lower'
+  WHEN department_avg > company_avg THEN 'higher'
+  ELSE 'same'
+END AS comparison
+FROM
+(
+  SELECT department_id, AVG(amount) AS department_avg, date_format(pay_date, '%Y-%m') AS pay_month
+  FROM salary JOIN employee ON salary.employee_id = employee.employee_id
+  GROUP BY department_id, pay_month
+) AS department_salary
+JOIN
+(
+  SELECT AVG(amount) AS company_avg,  date_format(pay_date, '%Y-%m') AS pay_month
+  FROM salary
+  GROUP BY date_format(pay_date, '%Y-%m')
+) AS company_salary
+ON department_salary.pay_month = company_salary.pay_month
+;
+

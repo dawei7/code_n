@@ -1,22 +1,32 @@
-from typing import List
+# Time:  O(n + m), m = len(roads)
+# Space: O(n + m)
 
-
+# bfs
 class Solution:
-    def minScore(self, n: int, roads: List[List[int]]) -> int:
-        graph = [[] for _ in range(n + 1)]
-        for city_a, city_b, distance in roads:
-            graph[city_a].append((city_b, distance))
-            graph[city_b].append((city_a, distance))
+    def minScore(self, n, roads):
+        """
+        :type n: int
+        :type roads: List[List[int]]
+        :rtype: int
+        """
+        def bfs():
+            lookup = [False]*len(adj)
+            q = [0]
+            lookup[0] = True
+            while q:
+                new_q = []
+                for u in q:
+                    for v, _ in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+            return lookup
 
-        answer = float("inf")
-        seen = {1}
-        stack = [1]
-        while stack:
-            city = stack.pop()
-            for neighbor, distance in graph[city]:
-                answer = min(answer, distance)
-                if neighbor not in seen:
-                    seen.add(neighbor)
-                    stack.append(neighbor)
-
-        return answer
+        adj = [[] for _ in range(n)]
+        for u, v, w in roads:
+            adj[u-1].append((v-1, w))
+            adj[v-1].append((u-1, w))
+        lookup = bfs()
+        return min(w for u, _, w in roads if lookup[u-1])

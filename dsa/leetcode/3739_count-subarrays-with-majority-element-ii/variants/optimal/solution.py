@@ -1,19 +1,32 @@
+class BinaryIndexedTree:
+    __slots__ = "n", "c"
+
+    def __init__(self, n: int):
+        self.n = n
+        self.c = [0] * (n + 1)
+
+    def update(self, x: int, delta: int) -> None:
+        while x <= self.n:
+            self.c[x] += delta
+            x += x & -x
+
+    def query(self, x: int) -> int:
+        s = 0
+        while x:
+            s += self.c[x]
+            x -= x & -x
+        return s
+
+
 class Solution:
     def countMajoritySubarrays(self, nums: List[int], target: int) -> int:
-        frequency = {0: 1}
-        balance = 0
-        smaller_prefixes = 0
-        answer = 0
-
-        for value in nums:
-            if value == target:
-                smaller_prefixes += frequency.get(balance, 0)
-                balance += 1
-            else:
-                balance -= 1
-                smaller_prefixes -= frequency.get(balance, 0)
-
-            answer += smaller_prefixes
-            frequency[balance] = frequency.get(balance, 0) + 1
-
-        return answer
+        n = len(nums)
+        tree = BinaryIndexedTree(n * 2 + 1)
+        s = n + 1
+        tree.update(s, 1)
+        ans = 0
+        for x in nums:
+            s += 1 if x == target else -1
+            ans += tree.query(s - 1)
+            tree.update(s, 1)
+        return ans

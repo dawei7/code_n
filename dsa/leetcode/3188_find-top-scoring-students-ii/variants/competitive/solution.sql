@@ -1,38 +1,40 @@
-WITH mandatory_counts AS (
-    SELECT major, COUNT(*) AS mandatory_count
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH best_enrollments_cte AS (
+    SELECT student_id, course_id, MIN(grade) AS grade
+    FROM enrollments
+    GROUP BY 1, 2
+    ORDER BY NULL
+), major_mandatory_grade_a_count_cte AS (
+    SELECT s.student_id, s.major, COUNT(*) AS cnt
+    FROM best_enrollments_cte e INNER JOIN students s ON e.student_id = s.student_id INNER JOIN courses c ON e.course_id = c.course_id
+    WHERE s.major = c.major AND mandatory = 'yes' and e.grade = 'A'
+    GROUP BY 1
+    ORDER BY NULL
+), major_mandatory_count_cte AS (
+    SELECT major, COUNT(*) AS cnt
     FROM courses
-    WHERE mandatory = 'Yes'
-    GROUP BY major
-),
-student_stats AS (
-    SELECT
-        s.student_id,
-        s.major,
-        AVG(e.GPA) AS average_gpa,
-        COUNT(DISTINCT CASE
-            WHEN c.major = s.major
-             AND c.mandatory = 'Yes'
-             AND e.grade = 'A'
-            THEN c.course_id
-        END) AS passed_mandatory,
-        COUNT(DISTINCT CASE
-            WHEN c.major = s.major
-             AND c.mandatory = 'No'
-             AND e.grade IN ('A', 'B')
-            THEN c.course_id
-        END) AS passed_electives
-    FROM students AS s
-    LEFT JOIN enrollments AS e
-        ON e.student_id = s.student_id
-    LEFT JOIN courses AS c
-        ON c.course_id = e.course_id
-    GROUP BY s.student_id, s.major
+    WHERE mandatory = 'yes'
+    GROUP BY 1
+    ORDER BY NULL
+), major_elective_grade_a_or_b_count_cte AS (
+    SELECT s.student_id, s.major, COUNT(*) AS cnt
+    FROM best_enrollments_cte e INNER JOIN students s ON e.student_id = s.student_id INNER JOIN courses c ON e.course_id = c.course_id
+    WHERE s.major = c.major AND c.mandatory = 'no' and e.grade <= 'B'
+    GROUP BY 1
+    ORDER BY NULL
+), gpa_cte AS (
+    SELECT e.student_id, AVG(e.gpa) AS gpa
+    FROM enrollments e
+    GROUP BY 1
+    ORDER BY NULL
 )
-SELECT ss.student_id
-FROM student_stats AS ss
-LEFT JOIN mandatory_counts AS mc
-    ON mc.major = ss.major
-WHERE ss.passed_mandatory = COALESCE(mc.mandatory_count, 0)
-  AND ss.passed_electives >= 2
-  AND ss.average_gpa >= 2.5
-ORDER BY ss.student_id;
+
+SELECT c1.student_id
+FROM major_mandatory_grade_a_count_cte c1
+     INNER JOIN major_mandatory_count_cte c2 ON c1.major = c2.major
+     INNER JOIN major_elective_grade_a_or_b_count_cte c3 ON c1.student_id = c3.student_id
+     INNER JOIN gpa_cte c4 ON c1.student_id = c4.student_id
+WHERE c1.cnt = c2.cnt AND c3.cnt >= 2 AND c4.gpa >= 2.5
+ORDER BY 1;

@@ -1,25 +1,51 @@
+# Time:  O(mlogm + nlogn)
+# Space: O(1)
+
+# sort, greedy
 class Solution:
-    def minimumCost(self, m: int, n: int, horizontalCut: List[int], verticalCut: List[int]) -> int:
+    def minimumCost(self, m, n, horizontalCut, verticalCut):
+        """
+        :type m: int
+        :type n: int
+        :type horizontalCut: List[int]
+        :type verticalCut: List[int]
+        :rtype: int
+        """
+        horizontalCut.sort()
+        verticalCut.sort()
+        result = 0
+        cnt_h = cnt_v = 1
+        while horizontalCut or verticalCut:
+            if not verticalCut or (horizontalCut and horizontalCut[-1] > verticalCut[-1]):
+                result += horizontalCut.pop()*cnt_h
+                cnt_v += 1
+            else:
+                result += verticalCut.pop()*cnt_v
+                cnt_h += 1
+        return result
+
+
+# Time:  O(mlogm + nlogn)
+# Space: O(1)
+# sort, greedy
+class Solution2(object):
+    def minimumCost(self, m, n, horizontalCut, verticalCut):
+        """
+        :type m: int
+        :type n: int
+        :type horizontalCut: List[int]
+        :type verticalCut: List[int]
+        :rtype: int
+        """
         horizontalCut.sort(reverse=True)
         verticalCut.sort(reverse=True)
-        horizontal_index = vertical_index = 0
-        horizontal_pieces = vertical_pieces = 1
-        total = 0
-
-        while horizontal_index < len(horizontalCut) and vertical_index < len(verticalCut):
-            if horizontalCut[horizontal_index] >= verticalCut[vertical_index]:
-                total += horizontalCut[horizontal_index] * vertical_pieces
-                horizontal_pieces += 1
-                horizontal_index += 1
+        result = i = j = 0
+        while i < len(horizontalCut) or j < len(verticalCut):
+            if j == len(verticalCut) or (i < len(horizontalCut) and horizontalCut[i] > verticalCut[j]):
+                result += horizontalCut[i]*(j+1)
+                i += 1
             else:
-                total += verticalCut[vertical_index] * horizontal_pieces
-                vertical_pieces += 1
-                vertical_index += 1
+                result += verticalCut[j]*(i+1)
+                j += 1
+        return result
 
-        while horizontal_index < len(horizontalCut):
-            total += horizontalCut[horizontal_index] * vertical_pieces
-            horizontal_index += 1
-        while vertical_index < len(verticalCut):
-            total += verticalCut[vertical_index] * horizontal_pieces
-            vertical_index += 1
-        return total

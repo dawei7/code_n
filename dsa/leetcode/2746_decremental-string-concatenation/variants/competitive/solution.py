@@ -1,22 +1,24 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def minimizeConcatenatedLength(self, words: List[str]) -> int:
-        current = {(words[0][0], words[0][-1]): len(words[0])}
-
-        for word in words[1:]:
-            first = word[0]
-            last = word[-1]
-            length = len(word)
-            next_states = {}
-
-            for (left, right), total in current.items():
-                append_key = (left, last)
-                append_length = total + length - (right == first)
-                next_states[append_key] = min(next_states.get(append_key, float("inf")), append_length)
-
-                prepend_key = (first, right)
-                prepend_length = total + length - (last == left)
-                next_states[prepend_key] = min(next_states.get(prepend_key, float("inf")), prepend_length)
-
-            current = next_states
-
-        return min(current.values())
+    def minimizeConcatenatedLength(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        dp = [[float("-inf")]*26 for _ in range(2)]
+        dp[0][ord(words[0][-1])-ord('a')] = dp[1][ord(words[0][0])-ord('a')] = 0
+        for i in range(1, len(words)):
+            new_dp = [[float("-inf")]*26 for _ in range(2)]
+            for right in range(2):
+                for c in range(26):
+                    if dp[right][c] == float("-inf"):
+                        continue
+                    l = c if right else ord(words[i-1][0])-ord('a')
+                    r = c if not right else ord(words[i-1][-1])-ord('a')
+                    new_dp[0][r] = max(new_dp[0][r], dp[right][c]+int(ord(words[i][-1])-ord('a') == l))
+                    new_dp[1][l] = max(new_dp[1][l], dp[right][c]+int(r == ord(words[i][0])-ord('a')))
+            dp = new_dp
+        return sum(len(w) for w in words)-max(dp[right][c] for right in range(2) for c in range(26))

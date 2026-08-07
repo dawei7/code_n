@@ -1,32 +1,20 @@
 class Solution:
     def colorGrid(self, n: int, m: int, sources: list[list[int]]) -> list[list[int]]:
-        grid = [[0] * m for _ in range(n)]
-        frontier = []
-
-        for row, column, color in sources:
-            grid[row][column] = color
-            frontier.append((row, column))
-
-        directions = ((-1, 0), (1, 0), (0, -1), (0, 1))
-
-        while frontier:
-            next_colors = {}
-
-            for row, column in frontier:
-                color = grid[row][column]
-                for row_delta, column_delta in directions:
-                    next_row = row + row_delta
-                    next_column = column + column_delta
-
-                    if not (0 <= next_row < n and 0 <= next_column < m and grid[next_row][next_column] == 0):
+        ans = [[0] * m for _ in range(n)]
+        q = sources
+        dirs = (-1, 0, 1, 0, -1)
+        for r, c, color in q:
+            ans[r][c] = color
+        while q:
+            vis = defaultdict(int)
+            for r, c, color in q:
+                for a, b in pairwise(dirs):
+                    x, y = r + a, c + b
+                    if not 0 <= x < n or not 0 <= y < m or ans[x][y]:
                         continue
-
-                    cell = (next_row, next_column)
-                    next_colors[cell] = max(next_colors.get(cell, 0), color)
-
-            frontier = []
-            for (row, column), color in next_colors.items():
-                grid[row][column] = color
-                frontier.append((row, column))
-
-        return grid
+                    vis[(x, y)] = max(vis[(x, y)], color)
+            q.clear()
+            for (x, y), color in vis.items():
+                q.append((x, y, color))
+                ans[x][y] = color
+        return ans

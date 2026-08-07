@@ -1,31 +1,45 @@
-from functools import cache
-from typing import List
+# Time:  O(m * n * 2^(m * n))
+# Space: O(2^(m * n))
 
-
+# dp, bitmasks
 class Solution:
-    def removeOnes(self, grid: List[List[int]]) -> int:
-        rows, columns = len(grid), len(grid[0])
-        cell_count = rows * columns
-        initial_mask = 0
-        clear_masks = [0] * cell_count
+    def removeOnes(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        rows = [0]*len(grid)
+        mask, bit = 0, 1
+        for _ in range(len(grid[0])):
+            mask += bit
+            bit <<= 1
+        for i in range(len(grid)):
+            rows[i] = mask
+            mask <<= len(grid[0])
 
-        for row in range(rows):
-            for column in range(columns):
-                position = row * columns + column
-                if grid[row][column]:
-                    initial_mask |= 1 << position
+        cols = [0]*len(grid[0])
+        mask, bit = 0, 1
+        for _ in range(len(grid)):
+            mask += bit
+            bit <<= len(grid[0])
+        for j in range(len(grid[0])):
+            cols[j] = mask
+            mask <<= 1
 
-                for other_column in range(columns):
-                    clear_masks[position] |= 1 << (row * columns + other_column)
-                for other_row in range(rows):
-                    clear_masks[position] |= 1 << (other_row * columns + column)
+        full_mask = (1<<(len(grid)*len(grid[0])))-1
+        masks = [[full_mask for _ in range(len(grid[0]))] for _ in range(len(grid))]
+        target, bit = 0, 1
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                target += bit*grid[i][j]
+                masks[i][j] -= (rows[i]+cols[j]-bit)
+                bit <<= 1
 
-        @cache
-        def best(mask: int) -> int:
-            if mask == 0:
-                return 0
-            return 1 + min(
-                best(mask & ~clear_masks[position]) for position in range(cell_count) if mask & (1 << position)
-            )
-
-        return best(initial_mask)
+        dp = [float("inf") for _ in range(target+1)]
+        dp[0] = 0
+        for mask in range(1, target+1):
+            for i in range(len(grid)):
+                for j in range(len(grid[0])):
+                    if grid[i][j]:
+                        dp[mask] = min(dp[mask], dp[mask&masks[i][j]]+1)
+        return dp[target]

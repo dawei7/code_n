@@ -1,8 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def minSteps(self, s: str, t: str) -> int:
-        balances = [0] * 26
-        offset = ord("a")
-        for source, target in zip(s, t):
-            balances[ord(source) - offset] += 1
-            balances[ord(target) - offset] -= 1
-        return sum(balance for balance in balances if balance > 0)
+    def minSteps(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: int
+        """
+        diff = collections.Counter(s) - collections.Counter(t)
+        return sum(diff.values())

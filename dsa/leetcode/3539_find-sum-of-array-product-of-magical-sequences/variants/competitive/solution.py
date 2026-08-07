@@ -1,52 +1,84 @@
-from functools import cache
+# Time:  O(n * k * m^2)
+# Space: O(k * m^2)
 
-
+# dp, combinatorics
 class Solution:
-    def magicalSum(self, m: int, k: int, nums: List[int]) -> int:
-        modulus = 1_000_000_007
+    def magicalSum(self, m, k, nums):
+        """
+        :type m: int
+        :type k: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x).count('1')
 
-        combinations = [[0] * (m + 1) for _ in range(m + 1)]
-        for total in range(m + 1):
-            combinations[total][0] = 1
-            combinations[total][total] = 1
-            for chosen in range(1, total):
-                combinations[total][chosen] = (
-                    combinations[total - 1][chosen - 1] + combinations[total - 1][chosen]
-                ) % modulus
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        for _ in range(m+1):
+            fact.append(fact[-1]*len(inv) % MOD)
+            inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+            inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+        dp = [[[0]*(m+1) for _ in range(k+1)] for _ in range(m+1)]  # dp[c][b][l]: sum of carry c with b set bits with remain size of l
+        dp[0][0][m] = 1
+        for x in nums:
+            new_dp = [[[0]*(m+1) for _ in range(k+1)] for _ in range(m+1)]
+            for c in range(m+1):
+                for b in range(k+1):
+                    for l in range(m+1):
+                        if not dp[c][b][l]:
+                            continue
+                        base = 1
+                        for cnt in range(l+1):
+                            nc, nb, nl  = (c+cnt)>>1, b+((c+cnt)&1), l-cnt
+                            if nb > k:
+                                continue
+                            new_dp[nc][nb][nl] = (new_dp[nc][nb][nl]+dp[c][b][l]*base*inv_fact[cnt]) % MOD
+                            base = (base*x)%MOD
+            dp = new_dp
+        return (reduce(lambda accu, x: (accu+x)%MOD, (dp[c][k-popcount(c)][0] for c in range(m+1) if k-popcount(c) >= 0), 0)*fact[m])%MOD
 
-        powers = []
-        for value in nums:
-            row = [1] * (m + 1)
-            for count in range(1, m + 1):
-                row[count] = (row[count - 1] * value) % modulus
-            powers.append(row)
 
-        @cache
-        def dp(
-            index: int,
-            remaining: int,
-            set_bits: int,
-            carry: int,
-        ) -> int:
-            if index == len(nums):
-                return int(remaining == 0 and set_bits + carry.bit_count() == k)
 
-            answer = 0
-            for take in range(remaining + 1):
-                combined = carry + take
-                next_set_bits = set_bits + (combined & 1)
-                if next_set_bits <= k:
-                    answer += (
-                        combinations[remaining][take]
-                        * powers[index][take]
-                        * dp(
-                            index + 1,
-                            remaining - take,
-                            next_set_bits,
-                            combined >> 1,
-                        )
-                    )
+# Time:  O(n * k * m^2)
+# Space: O(k * m^2)
+# dp, combinatorics
+class Solution2(object):
+    def magicalSum(self, m, k, nums):
+        """
+        :type m: int
+        :type k: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x).count('1')
 
-            return answer % modulus
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def nCr(n, k):
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+            return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
 
-        return dp(0, m, 0, 0)
+        dp = [[[0]*(m+1) for _ in range(k+1)] for _ in range(m+1)]  # dp[c][b][l]: sum of carry c with b set bits with remain size of l
+        dp[0][0][m] = 1
+        for x in nums:
+            new_dp = [[[0]*(m+1) for _ in range(k+1)] for _ in range(m+1)]
+            for c in range(m+1):
+                for b in range(k+1):
+                    for l in range(m+1):
+                        if not dp[c][b][l]:
+                            continue
+                        base = 1
+                        for cnt in range(l+1):
+                            nc, nb, nl  = (c+cnt)>>1, b+((c+cnt)&1), l-cnt
+                            if nb > k:
+                                continue
+                            new_dp[nc][nb][nl] = (new_dp[nc][nb][nl]+dp[c][b][l]*base*nCr(l, cnt)) % MOD
+                            base = (base*x)%MOD
+            dp = new_dp
+        return reduce(lambda accu, x: (accu+x)%MOD, (dp[c][k-popcount(c)][0] for c in range(m+1) if k-popcount(c) >= 0), 0)
+

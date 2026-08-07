@@ -1,18 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def getSumAbsoluteDifferences(self, nums: List[int]) -> List[int]:
-        total = sum(nums)
-        left_sum = 0
-        n = len(nums)
-        answer = []
-
-        for index, value in enumerate(nums):
-            right_sum = total - left_sum - value
-            left_cost = value * index - left_sum
-            right_cost = right_sum - value * (n - index - 1)
-            answer.append(left_cost + right_cost)
-            left_sum += value
-
-        return answer
+    def getSumAbsoluteDifferences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        prefix, suffix = 0, sum(nums)
+        result = []
+        for i, num in enumerate(nums):
+            suffix -= num
+            result.append((i*num-prefix) + (suffix-((len(nums)-1)-i)*num))
+            prefix += num
+        return result

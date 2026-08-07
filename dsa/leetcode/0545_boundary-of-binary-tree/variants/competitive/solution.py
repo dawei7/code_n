@@ -1,46 +1,46 @@
-from typing import List, Optional
+# Time:  O(n)
+# Space: O(h)
 
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def boundaryOfBinaryTree(self, root: Optional["TreeNode"]) -> List[int]:
-        if root is None:
+    def boundaryOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        def leftBoundary(root, nodes):
+            if not root or (not root.left and not root.right):
+                return
+            nodes.append(root.val)
+            if not root.left:
+                leftBoundary(root.right, nodes)
+            else:
+                leftBoundary(root.left, nodes)
+
+        def rightBoundary(root, nodes):
+            if not root or (not root.left and not root.right):
+                return
+            if not root.right:
+                rightBoundary(root.left, nodes)
+            else:
+                rightBoundary(root.right, nodes)
+            nodes.append(root.val)
+
+        def leaves(root, nodes):
+            if not root:
+                return
+            if not root.left and not root.right:
+                nodes.append(root.val)
+                return
+            leaves(root.left, nodes)
+            leaves(root.right, nodes)
+
+        if not root:
             return []
 
-        def is_leaf(node: "TreeNode") -> bool:
-            return node.left is None and node.right is None
+        nodes = [root.val]
+        leftBoundary(root.left, nodes)
+        leaves(root.left, nodes)
+        leaves(root.right, nodes)
+        rightBoundary(root.right, nodes)
+        return nodes
 
-        boundary = [root.val]
-
-        node = root.left
-        while node is not None:
-            if not is_leaf(node):
-                boundary.append(node.val)
-            node = node.left if node.left is not None else node.right
-
-        stack = [root]
-        while stack:
-            node = stack.pop()
-            if is_leaf(node):
-                if node is not root:
-                    boundary.append(node.val)
-                continue
-            if node.right is not None:
-                stack.append(node.right)
-            if node.left is not None:
-                stack.append(node.left)
-
-        right_boundary = []
-        node = root.right
-        while node is not None:
-            if not is_leaf(node):
-                right_boundary.append(node.val)
-            node = node.right if node.right is not None else node.left
-
-        boundary.extend(reversed(right_boundary))
-        return boundary

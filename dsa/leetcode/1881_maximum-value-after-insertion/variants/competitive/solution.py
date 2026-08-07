@@ -1,12 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def maxValue(self, n: str, x: int) -> str:
-        digit = str(x)
-        if n[0] == "-":
-            for index in range(1, len(n)):
-                if n[index] > digit:
-                    return n[:index] + digit + n[index:]
+    def maxValue(self, n, x):
+        """
+        :type n: str
+        :type x: int
+        :rtype: str
+        """
+        check = (lambda i: str(x) > n[i]) if n[0] != '-' else (lambda i: str(x) < n[i])
+        for i in range(len(n)):
+            if check(i):
+                break
         else:
-            for index, current in enumerate(n):
-                if current < digit:
-                    return n[:index] + digit + n[index:]
-        return n + digit
+            i = len(n)
+        return n[:i] + str(x) + n[i:]

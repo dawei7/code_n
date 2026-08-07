@@ -1,24 +1,30 @@
-from typing import List
-
-
 class Solution:
     def sortMatrix(self, grid: List[List[int]]) -> List[List[int]]:
         n = len(grid)
-
-        def sort_diagonal(row: int, col: int, reverse: bool) -> None:
-            cells = []
-            r, c = row, col
-            while r < n and c < n:
-                cells.append((r, c))
-                r += 1
-                c += 1
-            values = sorted((grid[r][c] for r, c in cells), reverse=reverse)
-            for (r, c), value in zip(cells, values):
-                grid[r][c] = value
-
-        for row in range(n):
-            sort_diagonal(row, 0, True)
-        for col in range(1, n):
-            sort_diagonal(0, col, False)
-
+        for k in range(n - 2, -1, -1):
+            i, j = k, 0
+            t = []
+            while i < n and j < n:
+                t.append(grid[i][j])
+                i += 1
+                j += 1
+            t.sort()
+            i, j = k, 0
+            while i < n and j < n:
+                grid[i][j] = t.pop()
+                i += 1
+                j += 1
+        for k in range(n - 2, 0, -1):
+            i, j = k, n - 1
+            t = []
+            while i >= 0 and j >= 0:
+                t.append(grid[i][j])
+                i -= 1
+                j -= 1
+            t.sort()
+            i, j = k, n - 1
+            while i >= 0 and j >= 0:
+                grid[i][j] = t.pop()
+                i -= 1
+                j -= 1
         return grid

@@ -1,21 +1,10 @@
 class Solution:
     def minimumIndex(self, nums: List[int]) -> int:
-        candidate = nums[0]
-        balance = 0
-        for value in nums:
-            if balance == 0:
-                candidate = value
-            balance += 1 if value == candidate else -1
-
-        total = nums.count(candidate)
-        left = 0
-        n = len(nums)
-
-        for i in range(n - 1):
-            if nums[i] == candidate:
-                left += 1
-
-            if left * 2 > i + 1 and (total - left) * 2 > n - i - 1:
-                return i
-
+        x, cnt = Counter(nums).most_common(1)[0]
+        cur = 0
+        for i, v in enumerate(nums, 1):
+            if v == x:
+                cur += 1
+                if cur * 2 > i and (cnt - cur) * 2 > len(nums) - i:
+                    return i - 1
         return -1

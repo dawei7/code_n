@@ -1,22 +1,23 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def canReach(self, arr: List[int], start: int) -> bool:
-        queue = deque([start])
-        seen = bytearray(len(arr))
-        seen[start] = 1
-
-        while queue:
-            index = queue.popleft()
-            if arr[index] == 0:
+    def canReach(self, arr, start):
+        """
+        :type arr: List[int]
+        :type start: int
+        :rtype: bool
+        """
+        q, lookup = collections.deque([start]), set([start])
+        while q:
+            i = q.popleft()
+            if not arr[i]:
                 return True
-
-            jump = arr[index]
-            for destination in (index - jump, index + jump):
-                if 0 <= destination < len(arr) and not seen[destination]:
-                    seen[destination] = 1
-                    queue.append(destination)
-
+            for j in [i-arr[i], i+arr[i]]:
+                if 0 <= j < len(arr) and j not in lookup:
+                    lookup.add(j)
+                    q.append(j) 
         return False

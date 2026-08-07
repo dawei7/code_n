@@ -1,20 +1,13 @@
 class Solution:
-    def calPoints(self, operations: list[str]) -> int:
-        scores = []
-        total = 0
-        for operation in operations:
-            if operation == "C":
-                total -= scores.pop()
-            elif operation == "D":
-                score = scores[-1] * 2
-                scores.append(score)
-                total += score
-            elif operation == "+":
-                score = scores[-1] + scores[-2]
-                scores.append(score)
-                total += score
+    def calPoints(self, operations: List[str]) -> int:
+        stk = []
+        for op in operations:
+            if op == "+":
+                stk.append(stk[-1] + stk[-2])
+            elif op == "D":
+                stk.append(stk[-1] << 1)
+            elif op == "C":
+                stk.pop()
             else:
-                score = int(operation)
-                scores.append(score)
-                total += score
-        return total
+                stk.append(int(op))
+        return sum(stk)

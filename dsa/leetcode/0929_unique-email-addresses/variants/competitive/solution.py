@@ -1,11 +1,19 @@
-from typing import List
-
+# Time:  O(n * l)
+# Space: O(n * l)
 
 class Solution:
-    def numUniqueEmails(self, emails: List[str]) -> int:
-        recipients = set()
+    def numUniqueEmails(self, emails):
+        """
+        :type emails: List[str]
+        :rtype: int
+        """
+        def convert(email):
+            name, domain = email.split('@')
+            name = name[:name.index('+')]
+            return "".join(["".join(name.split(".")), '@', domain])
+
+        lookup = set()
         for email in emails:
-            local, domain = email.split("@")
-            local = local.split("+", 1)[0].replace(".", "")
-            recipients.add(local + "@" + domain)
-        return len(recipients)
+            lookup.add(convert(email))
+        return len(lookup)
+  

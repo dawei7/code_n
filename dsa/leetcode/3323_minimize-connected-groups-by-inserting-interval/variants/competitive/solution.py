@@ -1,23 +1,23 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# sort, prefix sum, two pointers, sliding window
 class Solution:
-    def minConnectedGroups(self, intervals: List[List[int]], k: int) -> int:
+    def minConnectedGroups(self, intervals, k):
+        """
+        :type intervals: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
         intervals.sort()
-        merged = []
-
-        for start, end in intervals:
-            if merged and start <= merged[-1][1]:
-                merged[-1][1] = max(merged[-1][1], end)
-            else:
-                merged.append([start, end])
-
+        result = 0
+        prefix = [0]*(len(intervals)+1)
+        mx = float("-inf")
         left = 0
-        most_joined = 1
-
-        for right in range(len(merged)):
-            while merged[right][0] - merged[left][1] > k:
+        for right in range(len(intervals)):
+            prefix[right+1] = prefix[right]+int(mx < intervals[right][0])
+            mx = max(mx, intervals[right][1])
+            while intervals[right][0]-intervals[left][1] > k:
                 left += 1
-            most_joined = max(most_joined, right - left + 1)
-
-        return len(merged) - most_joined + 1
+            result = max(result, prefix[right+1]-prefix[left+1])
+        return prefix[-1]-result

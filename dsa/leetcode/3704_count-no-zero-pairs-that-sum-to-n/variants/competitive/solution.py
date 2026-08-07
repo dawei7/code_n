@@ -1,35 +1,60 @@
+# Time:  O(10 * 2^4 * logn)
+# Space: O(2^3)
+
+# dp
 class Solution:
-    def countNoZeroPairs(self, n: int) -> int:
-        digits = [int(digit) for digit in reversed(str(n))]
-        digits.append(0)
-
-        states = {(0, True, True): 1}
-
-        for position, target_digit in enumerate(digits):
-            next_states: dict[tuple[int, bool, bool], int] = {}
-
-            for (carry, a_active, b_active), ways in states.items():
-                a_digits = range(1, 10) if position == 0 else range(10)
-                b_digits = range(1, 10) if position == 0 else range(10)
-
-                if not a_active:
-                    a_digits = (0,)
-                if not b_active:
-                    b_digits = (0,)
-
-                for a_digit in a_digits:
-                    for b_digit in b_digits:
-                        digit_sum = a_digit + b_digit + carry
-                        if digit_sum % 10 != target_digit:
+    def countNoZeroPairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        dp = [[[0]*2 for _ in range(2)] for _ in range(2)]  # dp[carry][a is finished][b is finished]
+        dp[0][0][0] = 1
+        start = 1
+        while n:
+            n, d = divmod(n, 10)
+            new_dp = [[[0]*2 for _ in range(2)] for _ in range(2)]
+            for c in range(2):
+                for i in range(2):
+                    for j in range(2):
+                        if not dp[c][i][j]:
                             continue
+                        for x in range(start, (9 if not i else 0)+1):
+                            for nc in range(2):
+                                y = (d+nc*10)-(c+x)
+                                if not (start <= y <= (9 if not j else 0)):
+                                    continue
+                                new_dp[nc][i or not x][j or not y] += dp[c][i][j]
+            start = 0
+            dp = new_dp
+        return sum(dp[0][i][j] for i in range(2) for j in range(2))
 
-                        state = (
-                            digit_sum // 10,
-                            a_active and a_digit != 0,
-                            b_active and b_digit != 0,
-                        )
-                        next_states[state] = next_states.get(state, 0) + ways
 
-            states = next_states
-
-        return states.get((0, False, False), 0)
+# Time:  O(10^2 * 2^3 * logn)
+# Space: O(2^3)
+# dp
+class Solution2(object):
+    def countNoZeroPairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        dp = [[[0]*2 for _ in range(2)] for _ in range(2)]  # dp[carry][a is finished][b is finished]
+        dp[0][0][0] = 1
+        start = 1
+        while n:
+            n, d = divmod(n, 10)
+            new_dp = [[[0]*2 for _ in range(2)] for _ in range(2)]
+            for c in range(2):
+                for i in range(2):
+                    for j in range(2):
+                        if not dp[c][i][j]:
+                            continue
+                        for x in range(start, (9 if not i else 0)+1):
+                            for y in range(start, (9 if not j else 0)+1):
+                                if (c+x+y)%10 != d:
+                                    continue
+                                new_dp[(c+x+y)//10][i or not x][j or not y] += dp[c][i][j]
+            start = 0
+            dp = new_dp
+        return sum(dp[0][i][j] for i in range(2) for j in range(2))

@@ -1,25 +1,15 @@
-from typing import List
-
-
 class Solution:
     def tictactoe(self, moves: List[List[int]]) -> str:
-        rows = [0, 0, 0]
-        columns = [0, 0, 0]
-        diagonal = 0
-        anti_diagonal = 0
-
-        for turn, (row, column) in enumerate(moves):
-            value = 1 if turn % 2 == 0 else -1
-            rows[row] += value
-            columns[column] += value
-            if row == column:
-                diagonal += value
-            if row + column == 2:
-                anti_diagonal += value
-
-        lines = rows + columns + [diagonal, anti_diagonal]
-        if 3 in lines:
-            return "A"
-        if -3 in lines:
-            return "B"
-        return "Draw" if len(moves) == 9 else "Pending"
+        n = len(moves)
+        cnt = [0] * 8
+        for k in range(n - 1, -1, -2):
+            i, j = moves[k]
+            cnt[i] += 1
+            cnt[j + 3] += 1
+            if i == j:
+                cnt[6] += 1
+            if i + j == 2:
+                cnt[7] += 1
+            if any(v == 3 for v in cnt):
+                return "B" if k & 1 else "A"
+        return "Draw" if n == 9 else "Pending"

@@ -1,23 +1,33 @@
+# Time:  O((r - l)^3 * logn)
+# Space: O((r - l)^2)
+
+import itertools
+
+
+# matrix fast exponentiation
 class Solution:
-    def zigZagArrays(self, n: int, l: int, r: int) -> int:
-        modulus = 1_000_000_007
-        value_count = r - l + 1
-        state = list(range(value_count))
-        transition = [[0] * (value_count - value) + [1] * value for value in range(value_count)]
-
-        def apply(matrix: list[list[int]], vector: list[int]) -> list[int]:
-            return [sum(coefficient * count for coefficient, count in zip(row, vector)) % modulus for row in matrix]
-
-        def multiply(left: list[list[int]], right: list[list[int]]) -> list[list[int]]:
-            right_columns = list(zip(*right))
-            return [[sum(a * b for a, b in zip(row, column)) % modulus for column in right_columns] for row in left]
-
-        exponent = n - 2
-        while exponent:
-            if exponent & 1:
-                state = apply(transition, state)
-            exponent >>= 1
-            if exponent:
-                transition = multiply(transition, transition)
-
-        return 2 * sum(state) % modulus
+    def zigZagArrays(self, n, l, r):
+        """
+        :type n: int
+        :type l: int
+        :type r: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def matrix_mult(A, B):
+            ZB = zip(*B)
+            return [[sum(a*b % MOD for a, b in itertools.izip(row, col)) % MOD for col in ZB] for row in A]
+ 
+        def matrix_expo(A, K):
+            result = [[int(i == j) for j in range(len(A))] for i in range(len(A))]
+            while K:
+                if K % 2:
+                    result = matrix_mult(result, A)
+                A = matrix_mult(A, A)
+                K /= 2
+            return result
+    
+        r -= l
+        matrix = [[int(i+j < r) for j in range(r+1)] for i in range(r+1)]
+        matrix_pow_t = matrix_expo(matrix, n-1)
+        return (reduce(lambda accu, x: (accu+x)%MOD, matrix_mult([[1]*(r+1)], matrix_pow_t)[0], 0)*2)%MOD

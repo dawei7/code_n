@@ -1,21 +1,27 @@
-from typing import List
-
+# Time:  O(m * n), m is the max of rollMax
+# Space: O(m)
 
 class Solution:
-    def dieSimulator(self, n: int, rollMax: List[int]) -> int:
-        modulus = 1_000_000_007
-        states = [[0] * (rollMax[face] + 1) for face in range(6)]
-        for face in range(6):
-            states[face][1] = 1
+    def dieSimulator(self, n, rollMax):
+        """
+        :type n: int
+        :type rollMax: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def sum_mod(array):
+            return reduce(lambda x, y: (x+y)%MOD, array)
 
-        for _ in range(1, n):
-            next_states = [[0] * (rollMax[face] + 1) for face in range(6)]
-            face_totals = [sum(row) % modulus for row in states]
-            all_total = sum(face_totals) % modulus
-            for face in range(6):
-                next_states[face][1] = (all_total - face_totals[face]) % modulus
-                for run_length in range(1, rollMax[face]):
-                    next_states[face][run_length + 1] = states[face][run_length]
-            states = next_states
-
-        return sum(sum(row) for row in states) % modulus
+        dp = [[1] + [0]*(rollMax[i]-1) for i in range(6)]  # 0-indexed
+        for _ in range(n-1):
+            new_dp = [[0]*rollMax[i] for i in range(6)]
+            for i in range(6):
+                for k in range(rollMax[i]):
+                    for j in range(6):
+                        if i == j:
+                            if k < rollMax[i]-1:  # 0-indexed
+                                new_dp[j][k+1] = (new_dp[j][k+1]+dp[i][k])%MOD
+                        else:
+                            new_dp[j][0] = (new_dp[j][0]+dp[i][k])%MOD
+            dp = new_dp
+        return sum_mod(sum_mod(row) for row in dp)

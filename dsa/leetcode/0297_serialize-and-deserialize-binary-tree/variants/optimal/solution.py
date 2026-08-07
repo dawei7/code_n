@@ -1,35 +1,57 @@
-from typing import Optional
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
 
 class Codec:
-    def serialize(self, root: Optional["TreeNode"]) -> str:
-        tokens = []
-        stack = [root]
-        while stack:
-            node = stack.pop()
-            if node is None:
-                tokens.append("#")
-                continue
-            tokens.append(str(node.val))
-            stack.append(node.right)
-            stack.append(node.left)
-        return ",".join(tokens)
+    def serialize(self, root):
+        """Encodes a tree to a single string.
 
-    def deserialize(self, data: str) -> Optional["TreeNode"]:
-        tokens = data.split(",")
-        if tokens[0] == "#":
-            return None
-        root = TreeNode(int(tokens[0]))
-        stack = [(root, 0)]
-        for token in tokens[1:]:
-            child = None if token == "#" else TreeNode(int(token))
-            parent, slot = stack[-1]
-            if slot == 0:
-                parent.left = child
-                stack[-1] = (parent, 1)
+        :type root: TreeNode
+        :rtype: str
+        """
+        if root is None:
+            return ""
+        q = deque([root])
+        ans = []
+        while q:
+            node = q.popleft()
+            if node:
+                ans.append(str(node.val))
+                q.append(node.left)
+                q.append(node.right)
             else:
-                parent.right = child
-                stack.pop()
-            if child is not None:
-                stack.append((child, 0))
+                ans.append("#")
+        return ",".join(ans)
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """
+        if not data:
+            return None
+        vals = data.split(",")
+        root = TreeNode(int(vals[0]))
+        q = deque([root])
+        i = 1
+        while q:
+            node = q.popleft()
+            if vals[i] != "#":
+                node.left = TreeNode(int(vals[i]))
+                q.append(node.left)
+            i += 1
+            if vals[i] != "#":
+                node.right = TreeNode(int(vals[i]))
+                q.append(node.right)
+            i += 1
         return root
+
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))

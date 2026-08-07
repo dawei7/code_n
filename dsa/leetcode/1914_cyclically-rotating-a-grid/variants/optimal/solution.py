@@ -1,26 +1,34 @@
-from typing import List
-
-
 class Solution:
     def rotateGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
-        rows = len(grid)
-        columns = len(grid[0])
-        result = [row[:] for row in grid]
+        def rotate(p: int, k: int):
+            nums = []
+            for j in range(p, n - p - 1):
+                nums.append(grid[p][j])
+            for i in range(p, m - p - 1):
+                nums.append(grid[i][n - p - 1])
+            for j in range(n - p - 1, p, -1):
+                nums.append(grid[m - p - 1][j])
+            for i in range(m - p - 1, p, -1):
+                nums.append(grid[i][p])
+            k %= len(nums)
+            if k == 0:
+                return
+            nums = nums[k:] + nums[:k]
+            k = 0
+            for j in range(p, n - p - 1):
+                grid[p][j] = nums[k]
+                k += 1
+            for i in range(p, m - p - 1):
+                grid[i][n - p - 1] = nums[k]
+                k += 1
+            for j in range(n - p - 1, p, -1):
+                grid[m - p - 1][j] = nums[k]
+                k += 1
+            for i in range(m - p - 1, p, -1):
+                grid[i][p] = nums[k]
+                k += 1
 
-        for layer in range(min(rows, columns) // 2):
-            top = left = layer
-            bottom = rows - 1 - layer
-            right = columns - 1 - layer
-
-            coordinates = []
-            coordinates.extend((row, left) for row in range(top, bottom + 1))
-            coordinates.extend((bottom, column) for column in range(left + 1, right + 1))
-            coordinates.extend((row, right) for row in range(bottom - 1, top - 1, -1))
-            coordinates.extend((top, column) for column in range(right - 1, left, -1))
-
-            shift = k % len(coordinates)
-            for index, (row, column) in enumerate(coordinates):
-                target_row, target_column = coordinates[(index + shift) % len(coordinates)]
-                result[target_row][target_column] = grid[row][column]
-
-        return result
+        m, n = len(grid), len(grid[0])
+        for p in range(min(m, n) >> 1):
+            rotate(p, k)
+        return grid

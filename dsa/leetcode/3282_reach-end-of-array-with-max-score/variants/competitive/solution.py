@@ -1,13 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def findMaximumScore(self, nums: List[int]) -> int:
-        maximum = 0
-        score = 0
-
-        for value in nums[:-1]:
-            maximum = max(maximum, value)
-            score += maximum
-
-        return score
+    def findMaximumScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = mx = 0
+        for x in nums:
+            result += mx
+            mx = max(mx, x)
+        return result

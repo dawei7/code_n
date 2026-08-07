@@ -1,25 +1,85 @@
-class Fancy:
+# Time:  O(1)
+# Space: O(n)
+
+MOD = 10**9+7
+
+class Fancy(object):
+
     def __init__(self):
-        self.modulus = 1_000_000_007
-        self.values = []
-        self.multiplier = 1
-        self.increment = 0
-        self.inverse_multiplier = 1
+        self.__arr = []
+        self.__ops = [[1, 0]]
 
-    def append(self, val: int) -> None:
-        normalized = (val - self.increment) * self.inverse_multiplier
-        self.values.append(normalized % self.modulus)
+    def append(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """
+        self.__arr.append(val)
+        self.__ops.append(self.__ops[-1][:])
 
-    def addAll(self, inc: int) -> None:
-        self.increment = (self.increment + inc) % self.modulus
+    def addAll(self, inc):
+        """
+        :type inc: int
+        :rtype: None
+        """
+        self.__ops[-1][1] = (self.__ops[-1][1]+inc) % MOD
 
-    def multAll(self, m: int) -> None:
-        self.multiplier = self.multiplier * m % self.modulus
-        self.increment = self.increment * m % self.modulus
-        inverse = pow(m, self.modulus - 2, self.modulus)
-        self.inverse_multiplier = self.inverse_multiplier * inverse % self.modulus
+    def multAll(self, m):
+        """
+        :type m: int
+        :rtype: None
+        """
+        self.__ops[-1] = [(self.__ops[-1][0]*m) % MOD, (self.__ops[-1][1]*m) % MOD]
 
-    def getIndex(self, idx: int) -> int:
-        if idx >= len(self.values):
+    def getIndex(self, idx):
+        """
+        :type idx: int
+        :rtype: int
+        """
+        if idx >= len(self.__arr):
             return -1
-        return (self.values[idx] * self.multiplier + self.increment) % self.modulus
+        a1, b1 = self.__ops[idx]
+        a2, b2 = self.__ops[-1]
+        a = a2*pow(a1, MOD-2, MOD)%MOD  # O(logMOD), we treat it as O(1) here
+        b = (b2 - b1*a) % MOD
+        return (self.__arr[idx]*a + b) % MOD
+
+
+# Time:  O(1)
+# Space: O(n)
+class Fancy2(object):
+
+    def __init__(self):
+        self.__arr = []
+        self.__op = [1, 0]
+
+    def append(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """
+        self.__arr.append((val-self.__op[1])*pow(self.__op[0], MOD-2, MOD)%MOD)  # O(logMOD), we treat it as O(1) here
+
+    def addAll(self, inc):
+        """
+        :type inc: int
+        :rtype: None
+        """
+        self.__op[1] = (self.__op[1]+inc) % MOD
+
+    def multAll(self, m):
+        """
+        :type m: int
+        :rtype: None
+        """
+        self.__op = [(self.__op[0]*m) % MOD, (self.__op[1]*m) % MOD]
+
+    def getIndex(self, idx):
+        """
+        :type idx: int
+        :rtype: int
+        """
+        if idx >= len(self.__arr):
+            return -1
+        a, b = self.__op
+        return (self.__arr[idx]*a + b) % MOD

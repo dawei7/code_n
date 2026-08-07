@@ -1,41 +1,56 @@
-from bisect import bisect_left, bisect_right
-from collections import defaultdict, deque
-from typing import List
+# Time:  ctor:          O(1)
+#        addPacket:     O(logn)
+#        forwardPacket: O(logn)
+#        getCount:      O(logn)
+# Space: O(n)
+
+import collections
+from sortedcontainers import SortedList
 
 
-class Router:
-    def __init__(self, memoryLimit: int):
-        self.limit = memoryLimit
-        self.queue = deque()
-        self.packets = set()
-        self.timestamps = defaultdict(list)
-        self.left_index = defaultdict(int)
+# queue, sorted list
+class Router(object):
 
-    def addPacket(self, source: int, destination: int, timestamp: int) -> bool:
-        packet = (source, destination, timestamp)
-        if packet in self.packets:
+    def __init__(self, memoryLimit):
+        """
+        :type memoryLimit: int
+        """
+        self.__size = memoryLimit
+        self.__q = collections.deque()
+        self.__lookup = collections.defaultdict(SortedList)
+
+
+    def addPacket(self, source, destination, timestamp):
+        """
+        :type source: int
+        :type destination: int
+        :type timestamp: int
+        :rtype: bool
+        """
+        if (timestamp, source) in self.__lookup[destination]:
             return False
-
-        if len(self.queue) == self.limit:
-            self._remove_oldest()
-
-        self.queue.append(packet)
-        self.packets.add(packet)
-        self.timestamps[destination].append(timestamp)
+        self.__lookup[destination].add((timestamp, source))
+        if len(self.__q) == self.__size:
+            s, d, t = self.__q.popleft()
+            self.__lookup[d].remove((t, s))
+        self.__q.append((source, destination, timestamp))
         return True
 
-    def forwardPacket(self) -> List[int]:
-        if not self.queue:
+    def forwardPacket(self):
+        """
+        :rtype: List[int]
+        """
+        if not self.__q:
             return []
-        return list(self._remove_oldest())
+        s, d, t = self.__q.popleft()
+        self.__lookup[d].remove((t, s))
+        return [s, d, t]
 
-    def getCount(self, destination: int, startTime: int, endTime: int) -> int:
-        values = self.timestamps.get(destination, [])
-        left = self.left_index.get(destination, 0)
-        return bisect_right(values, endTime, lo=left) - bisect_left(values, startTime, lo=left)
-
-    def _remove_oldest(self):
-        packet = self.queue.popleft()
-        self.packets.remove(packet)
-        self.left_index[packet[1]] += 1
-        return packet
+    def getCount(self, destination, startTime, endTime):
+        """
+        :type destination: int
+        :type startTime: int
+        :type endTime: int
+        :rtype: int
+        """
+        return self.__lookup[destination].bisect_left((endTime+1, 0))-self.__lookup[destination].bisect_left((startTime, 0))

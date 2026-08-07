@@ -1,21 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# stack
 class Solution:
-    def lastVisitedIntegers(self, nums: List[int]) -> List[int]:
-        seen = []
-        answer = []
-        consecutive_queries = 0
-
-        for value in nums:
-            if value == -1:
-                consecutive_queries += 1
-                if consecutive_queries <= len(seen):
-                    answer.append(seen[-consecutive_queries])
-                else:
-                    answer.append(-1)
-            else:
-                seen.append(value)
-                consecutive_queries = 0
-
-        return answer
+    def lastVisitedIntegers(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        PREV = "prev"
+        result, stk = [], []
+        i = -1
+        for x in words:
+            if x == PREV:
+                result.append(stk[i] if i >= 0 else -1)
+                i -= 1
+                continue
+            stk.append(int(x))
+            i = len(stk)-1
+        return result

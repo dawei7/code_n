@@ -1,29 +1,33 @@
+# Time:  O(1)
+# Space: O(1)
+
 from fractions import Fraction
 
 
 class Solution:
-    def isRationalEqual(self, s: str, t: str) -> bool:
-        def parse(text):
-            repeating = ""
-            if "(" in text:
-                main, repeating = text[:-1].split("(")
-            else:
-                main = text
+    def isRationalEqual(self, S, T):
+        """
+        :type S: str
+        :type T: str
+        :rtype: bool
+        """
+        def frac(S):
+            if '.' not in S:
+                return Fraction(int(S), 1)
 
-            if "." in main:
-                integer, non_repeating = main.split(".")
-            else:
-                integer, non_repeating = main, ""
+            i = S.index('.')
+            result = Fraction(int(S[:i]), 1)
+            non_int_part = S[i+1:]
+            if '(' not in non_int_part:
+                if non_int_part:
+                    result += Fraction(int(non_int_part), 10**len(non_int_part))
+                return result
 
-            value = Fraction(int(integer), 1)
-            finite_length = len(non_repeating)
-            if non_repeating:
-                value += Fraction(int(non_repeating), 10**finite_length)
-            if repeating:
-                value += Fraction(
-                    int(repeating),
-                    10**finite_length * (10 ** len(repeating) - 1),
-                )
-            return value
+            i = non_int_part.index('(')
+            if i:
+                result += Fraction(int(non_int_part[:i]), 10**i)
+            repeat_part = non_int_part[i+1:-1]
+            result += Fraction(int(repeat_part), 10**i * (10**len(repeat_part)-1))
+            return result
 
-        return parse(s) == parse(t)
+        return frac(S) == frac(T)

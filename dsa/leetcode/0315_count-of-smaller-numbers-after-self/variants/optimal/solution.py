@@ -1,30 +1,33 @@
-from typing import List
+class BinaryIndexedTree:
+    def __init__(self, n):
+        self.n = n
+        self.c = [0] * (n + 1)
 
+    @staticmethod
+    def lowbit(x):
+        return x & -x
 
-def _count_smaller(nums: List[int]) -> List[int]:
-    ranks = {value: rank for rank, value in enumerate(sorted(set(nums)), 1)}
-    tree = [0] * (len(ranks) + 1)
+    def update(self, x, delta):
+        while x <= self.n:
+            self.c[x] += delta
+            x += BinaryIndexedTree.lowbit(x)
 
-    def prefix_sum(index: int) -> int:
-        total = 0
-        while index > 0:
-            total += tree[index]
-            index -= index & -index
-        return total
-
-    def add(index: int) -> None:
-        while index < len(tree):
-            tree[index] += 1
-            index += index & -index
-
-    answer = [0] * len(nums)
-    for index in range(len(nums) - 1, -1, -1):
-        rank = ranks[nums[index]]
-        answer[index] = prefix_sum(rank - 1)
-        add(rank)
-    return answer
+    def query(self, x):
+        s = 0
+        while x > 0:
+            s += self.c[x]
+            x -= BinaryIndexedTree.lowbit(x)
+        return s
 
 
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
-        return _count_smaller(nums)
+        alls = sorted(set(nums))
+        m = {v: i for i, v in enumerate(alls, 1)}
+        tree = BinaryIndexedTree(len(m))
+        ans = []
+        for v in nums[::-1]:
+            x = m[v]
+            tree.update(x, 1)
+            ans.append(tree.query(x - 1))
+        return ans[::-1]

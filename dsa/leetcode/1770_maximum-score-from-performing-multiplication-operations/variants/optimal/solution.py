@@ -1,17 +1,13 @@
-from typing import List
-
-
 class Solution:
     def maximumScore(self, nums: List[int], multipliers: List[int]) -> int:
-        operation_count = len(multipliers)
-        scores = [0] * (operation_count + 1)
+        @cache
+        def f(i, j, k):
+            if k >= m or i >= n or j < 0:
+                return 0
+            a = f(i + 1, j, k + 1) + nums[i] * multipliers[k]
+            b = f(i, j - 1, k + 1) + nums[j] * multipliers[k]
+            return max(a, b)
 
-        for operation in range(operation_count - 1, -1, -1):
-            multiplier = multipliers[operation]
-            for left_taken in range(operation + 1):
-                right_index = len(nums) - 1 - (operation - left_taken)
-                take_left = multiplier * nums[left_taken] + scores[left_taken + 1]
-                take_right = multiplier * nums[right_index] + scores[left_taken]
-                scores[left_taken] = max(take_left, take_right)
-
-        return scores[0]
+        n = len(nums)
+        m = len(multipliers)
+        return f(0, n - 1, 0)

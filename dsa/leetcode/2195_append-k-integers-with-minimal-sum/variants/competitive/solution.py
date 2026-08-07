@@ -1,20 +1,40 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# greedy
 class Solution:
-    def minimalKSum(self, nums: List[int], k: int) -> int:
-        next_missing = 1
-        total = 0
+    def minimalKSum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = k*(k+1)//2
+        curr = k+1
+        for x in sorted(set(nums)):
+            if x < curr:
+                result += curr-x
+                curr += 1
+        return result
 
-        for value in sorted(set(nums)):
-            if value > next_missing:
-                take = min(k, value - next_missing)
-                end = next_missing + take - 1
-                total += (next_missing + end) * take // 2
-                k -= take
-                if k == 0:
-                    return total
-            next_missing = value + 1
 
-        end = next_missing + k - 1
-        return total + (next_missing + end) * k // 2
+# Time:  O(nlogn)
+# Space: O(n)
+# greedy
+class Solution2(object):
+    def minimalKSum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = prev = 0
+        nums.append(float("inf"))
+        for x in sorted(set(nums)):
+            if not k:
+                break
+            cnt = min((x-1)-prev, k)
+            k -= cnt
+            result += ((prev+1)+(prev+cnt))*cnt//2
+            prev = x
+        return result

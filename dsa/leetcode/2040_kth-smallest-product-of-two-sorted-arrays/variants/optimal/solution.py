@@ -1,35 +1,16 @@
-from bisect import bisect_left, bisect_right
-from typing import List
-
-
 class Solution:
     def kthSmallestProduct(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        if len(nums1) > len(nums2):
-            nums1, nums2 = nums2, nums1
-
-        def count_at_most(limit: int) -> int:
-            count = 0
-
-            for first in nums1:
-                if first > 0:
-                    count += bisect_right(nums2, limit // first)
-                elif first == 0:
-                    if limit >= 0:
-                        count += len(nums2)
+        def count(p: int) -> int:
+            cnt = 0
+            n = len(nums2)
+            for x in nums1:
+                if x > 0:
+                    cnt += bisect_right(nums2, p / x)
+                elif x < 0:
+                    cnt += n - bisect_left(nums2, p / x)
                 else:
-                    threshold = -((-limit) // first)
-                    count += len(nums2) - bisect_left(nums2, threshold)
+                    cnt += n * int(p >= 0)
+            return cnt
 
-            return count
-
-        low = -(10**10)
-        high = 10**10
-
-        while low < high:
-            middle = (low + high) // 2
-            if count_at_most(middle) >= k:
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        mx = max(abs(nums1[0]), abs(nums1[-1])) * max(abs(nums2[0]), abs(nums2[-1]))
+        return bisect_left(range(-mx, mx + 1), k, key=count) - mx

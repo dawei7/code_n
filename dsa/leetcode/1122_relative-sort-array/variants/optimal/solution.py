@@ -1,17 +1,4 @@
-from typing import List
-
-
 class Solution:
     def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        counts = [0] * 1001
-        for value in arr1:
-            counts[value] += 1
-
-        answer: List[int] = []
-        for value in arr2:
-            answer.extend([value] * counts[value])
-            counts[value] = 0
-
-        for value, frequency in enumerate(counts):
-            answer.extend([value] * frequency)
-        return answer
+        pos = {x: i for i, x in enumerate(arr2)}
+        return sorted(arr1, key=lambda x: pos.get(x, 1000 + x))

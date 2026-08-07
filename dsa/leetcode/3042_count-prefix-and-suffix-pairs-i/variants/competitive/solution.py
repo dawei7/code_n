@@ -1,13 +1,38 @@
+# Time:  O(n * l)
+# Space: O(t)
+
+import collections
+
+
+# trie
 class Solution:
-    def countPrefixSuffixPairs(self, words: List[str]) -> int:
-        pairs = 0
+    def countPrefixSuffixPairs(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
+        result = 0
+        for w in words:
+            curr = trie
+            for i in range(len(w)):
+                curr = curr[w[i], w[~i]]
+                result += curr["_cnt"] if "_cnt" in curr else 0
+            curr["_cnt"] = curr["_cnt"]+1 if "_cnt" in curr else 1
+        return result
 
-        for first_index in range(len(words)):
-            first = words[first_index]
 
-            for second_index in range(first_index + 1, len(words)):
-                second = words[second_index]
-                if second.startswith(first) and second.endswith(first):
-                    pairs += 1
-
-        return pairs
+# Time:  O(n^2 * l)
+# Space: O(1)
+# brute force
+class Solution2(object):
+    def countPrefixSuffixPairs(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        def check(i, j):
+            return words[j].startswith(words[i]) and words[j].endswith(words[i])
+    
+        return sum(check(i, j) for i in range(len(words)) for j in range(i+1, len(words)))

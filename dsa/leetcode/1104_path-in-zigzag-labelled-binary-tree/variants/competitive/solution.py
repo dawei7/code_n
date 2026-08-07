@@ -1,13 +1,17 @@
-from typing import List
-
+# Time:  O(logn)
+# Space: O(logn)
 
 class Solution:
-    def pathInZigZagTree(self, label: int) -> List[int]:
-        reversed_path = []
-        while label:
-            reversed_path.append(label)
-            depth = label.bit_length() - 1
-            start = 1 << depth
-            end = (1 << (depth + 1)) - 1
-            label = (start + end - label) // 2
-        return reversed_path[::-1]
+    def pathInZigZagTree(self, label):
+        """
+        :type label: int
+        :rtype: List[int]
+        """
+        count = 2**label.bit_length()
+        result = []
+        while label >= 1:
+            result.append(label)
+            label = ((count//2) + ((count-1)-label)) // 2
+            count //= 2
+        result.reverse()
+        return result

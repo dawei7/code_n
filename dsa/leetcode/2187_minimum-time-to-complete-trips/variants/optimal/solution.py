@@ -1,22 +1,6 @@
-from typing import List
-
-
 class Solution:
     def minimumTime(self, time: List[int], totalTrips: int) -> int:
-        low = 1
-        high = min(time) * totalTrips
-
-        while low < high:
-            middle = (low + high) // 2
-            completed = 0
-            for duration in time:
-                completed += middle // duration
-                if completed >= totalTrips:
-                    break
-
-            if completed >= totalTrips:
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        mx = min(time) * totalTrips
+        return bisect_left(
+            range(mx), totalTrips, key=lambda x: sum(x // v for v in time)
+        )

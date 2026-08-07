@@ -1,23 +1,20 @@
-from typing import List
-
-
 class Solution:
     def maximumBobPoints(self, numArrows: int, aliceArrows: List[int]) -> List[int]:
-        best_score = -1
-        best_allocation = [0] * 12
-
-        for mask in range(1 << 12):
-            allocation = [0] * 12
-            used = 0
-            score = 0
-            for section in range(12):
-                if mask & (1 << section):
-                    allocation[section] = aliceArrows[section] + 1
-                    used += allocation[section]
-                    score += section
-            if used <= numArrows and score > best_score:
-                allocation[0] += numArrows - used
-                best_score = score
-                best_allocation = allocation
-
-        return best_allocation
+        st = mx = 0
+        m = len(aliceArrows)
+        for mask in range(1, 1 << m):
+            cnt = s = 0
+            for i, x in enumerate(aliceArrows):
+                if mask >> i & 1:
+                    s += i
+                    cnt += x + 1
+            if cnt <= numArrows and s > mx:
+                mx = s
+                st = mask
+        ans = [0] * m
+        for i, x in enumerate(aliceArrows):
+            if st >> i & 1:
+                ans[i] = x + 1
+                numArrows -= ans[i]
+        ans[0] += numArrows
+        return ans

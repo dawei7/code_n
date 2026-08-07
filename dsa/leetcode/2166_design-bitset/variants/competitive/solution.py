@@ -1,31 +1,73 @@
-class Bitset:
-    def __init__(self, size: int):
-        self.bits = [0] * size
-        self.flipped = 0
-        self.ones = 0
+# Time:  ctor:     O(n)
+#        fix:      O(1)
+#        unfix:    O(1)
+#        flip:     O(1)
+#        all:      O(1)
+#        one:      O(1)
+#        count:    O(1)
+#        toString: O(n)
+# Space: O(n)
 
-    def fix(self, idx: int) -> None:
-        if self.bits[idx] ^ self.flipped == 0:
-            self.bits[idx] = 1 ^ self.flipped
-            self.ones += 1
+# design
+class Bitset(object):
 
-    def unfix(self, idx: int) -> None:
-        if self.bits[idx] ^ self.flipped == 1:
-            self.bits[idx] = self.flipped
-            self.ones -= 1
+    def __init__(self, size):
+        """
+        :type size: int
+        """
+        self.__lookup = [False]*size
+        self.__flip = False
+        self.__cnt = 0
 
-    def flip(self) -> None:
-        self.flipped ^= 1
-        self.ones = len(self.bits) - self.ones
+    def fix(self, idx):
+        """
+        :type idx: int
+        :rtype: None
+        """
+        if self.__lookup[idx] == self.__flip:
+            self.__lookup[idx] = not self.__lookup[idx]
+            self.__cnt += 1
+            
+    def unfix(self, idx):
+        """
+        :type idx: int
+        :rtype: None
+        """
+        if self.__lookup[idx] != self.__flip:
+            self.__lookup[idx] = not self.__lookup[idx]
+            self.__cnt -= 1
 
-    def all(self) -> bool:
-        return self.ones == len(self.bits)
+    def flip(self):
+        """
+        :rtype: None
+        """
+        self.__flip = not self.__flip
+        self.__cnt = len(self.__lookup)-self.__cnt
+        
 
-    def one(self) -> bool:
-        return self.ones > 0
+    def all(self):
+        """
+        :rtype: bool
+        """
+        return self.__cnt == len(self.__lookup)
 
-    def count(self) -> int:
-        return self.ones
+    def one(self):
+        """
+        :rtype: bool
+        """
+        return self.__cnt >= 1
 
-    def toString(self) -> str:
-        return "".join(str(bit ^ self.flipped) for bit in self.bits)
+    def count(self):
+        """
+        :rtype: int
+        """
+        return self.__cnt
+
+    def toString(self):
+        """
+        :rtype: str
+        """
+        result = ['']*len(self.__lookup)
+        for i, x in enumerate(self.__lookup):
+            result[i] = '1' if x != self.__flip else '0'
+        return "".join(result)

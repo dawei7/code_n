@@ -1,12 +1,12 @@
-WITH classified AS (
-    SELECT
-        tiv_2016,
-        COUNT(*) OVER (PARTITION BY tiv_2015) AS value_count,
-        COUNT(*) OVER (PARTITION BY lat, lon) AS location_count
-    FROM Insurance
-)
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            tiv_2016,
+            COUNT(1) OVER (PARTITION BY tiv_2015) AS cnt1,
+            COUNT(1) OVER (PARTITION BY lat, lon) AS cnt2
+        FROM Insurance
+    )
 SELECT ROUND(SUM(tiv_2016), 2) AS tiv_2016
-FROM classified
-WHERE value_count > 1
-  AND location_count = 1;
-
+FROM T
+WHERE cnt1 > 1 AND cnt2 = 1;

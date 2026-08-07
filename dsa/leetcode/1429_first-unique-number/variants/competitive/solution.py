@@ -1,20 +1,39 @@
-from collections import deque
-from typing import List
+# Time:  ctor: O(k)
+#        add: O(1)
+#        showFirstUnique: O(1)
+# Space: O(n)
+
+import collections
 
 
-class FirstUnique:
-    def __init__(self, nums: List[int]):
-        self.counts = {}
-        self.unique = deque()
-        for value in nums:
-            self.add(value)
+class FirstUnique(object):
 
-    def showFirstUnique(self) -> int:
-        while self.unique and self.counts[self.unique[0]] > 1:
-            self.unique.popleft()
-        return self.unique[0] if self.unique else -1
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.__q = collections.OrderedDict()
+        self.__dup = set()
+        for num in nums:
+            self.add(num)
 
-    def add(self, value: int) -> None:
-        self.counts[value] = self.counts.get(value, 0) + 1
-        if self.counts[value] == 1:
-            self.unique.append(value)
+    def showFirstUnique(self):
+        """
+        :rtype: int
+        """
+        if self.__q:
+            return next(iter(self.__q))
+        return -1
+    
+    def add(self, value):
+        """
+        :type value: int
+        :rtype: None
+        """
+        if value not in self.__dup and value not in self.__q:
+            self.__q[value] = None
+            return
+        if value in self.__q:
+            self.__q.pop(value)
+            self.__dup.add(value)
+

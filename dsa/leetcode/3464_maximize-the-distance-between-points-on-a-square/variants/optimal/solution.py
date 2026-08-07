@@ -1,63 +1,37 @@
 class Solution:
     def maxDistance(self, side: int, points: List[List[int]], k: int) -> int:
-        perimeter = 4 * side
-        positions = []
-
+        nums = []
         for x, y in points:
-            if y == 0:
-                positions.append(x)
-            elif x == side:
-                positions.append(side + y)
+            if x == 0:
+                nums.append(y)
             elif y == side:
-                positions.append(3 * side - x)
+                nums.append(side + x)
+            elif x == side:
+                nums.append(side * 3 - y)
             else:
-                positions.append(4 * side - y)
+                nums.append(side * 4 - x)
+        nums.sort()
 
-        positions.sort()
-        count = len(positions)
-        extended = positions + [position + perimeter for position in positions]
-        doubled_count = 2 * count
-        levels = (k - 1).bit_length()
-
-        def can_place(minimum: int) -> bool:
-            next_index = [doubled_count] * (doubled_count + 1)
-            right = 1
-
-            for left in range(doubled_count):
-                if right <= left:
-                    right = left + 1
-                target = extended[left] + minimum
-                while right < doubled_count and extended[right] < target:
-                    right += 1
-                next_index[left] = right
-
-            jumps = [next_index]
-            for _ in range(1, levels):
-                previous = jumps[-1]
-                jumps.append([previous[previous[index]] for index in range(doubled_count + 1)])
-
-            for start in range(count):
-                current = start
-                remaining = k - 1
-                bit = 0
-                while remaining:
-                    if remaining & 1:
-                        current = jumps[bit][current]
-                    remaining >>= 1
-                    bit += 1
-
-                if current < doubled_count and extended[current] <= positions[start] + perimeter - minimum:
+        def check(lo: int) -> bool:
+            for start in nums:
+                end = start + side * 4 - lo
+                cur = start
+                ok = True
+                for _ in range(k - 1):
+                    j = bisect_left(nums, cur + lo)
+                    if j == len(nums) or nums[j] > end:
+                        ok = False
+                        break
+                    cur = nums[j]
+                if ok:
                     return True
-
             return False
 
-        low = 1
-        high = side
-        while low < high:
-            middle = (low + high + 1) // 2
-            if can_place(middle):
-                low = middle
+        l, r = 1, side
+        while l < r:
+            mid = (l + r + 1) >> 1
+            if check(mid):
+                l = mid
             else:
-                high = middle - 1
-
-        return low
+                r = mid - 1
+        return l

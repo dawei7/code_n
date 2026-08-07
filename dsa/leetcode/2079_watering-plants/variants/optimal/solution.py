@@ -1,17 +1,11 @@
-from typing import List
-
-
 class Solution:
     def wateringPlants(self, plants: List[int], capacity: int) -> int:
-        steps = 0
-        water = capacity
-
-        for index, requirement in enumerate(plants):
-            if water < requirement:
-                steps += 2 * index
-                water = capacity
-
-            steps += 1
-            water -= requirement
-
-        return steps
+        ans, water = 0, capacity
+        for i, p in enumerate(plants):
+            if water >= p:
+                water -= p
+                ans += 1
+            else:
+                water = capacity - p
+                ans += i * 2 + 1
+        return ans

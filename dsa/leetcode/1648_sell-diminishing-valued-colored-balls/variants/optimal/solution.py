@@ -1,26 +1,27 @@
-from typing import List
-
-
 class Solution:
     def maxProfit(self, inventory: List[int], orders: int) -> int:
-        modulus = 1_000_000_007
-        levels = sorted(inventory, reverse=True) + [0]
-        profit = 0
-
-        for index in range(len(inventory)):
-            colors = index + 1
-            high = levels[index]
-            low = levels[index + 1]
-            band_size = (high - low) * colors
-
-            if orders >= band_size:
-                profit += colors * (high + low + 1) * (high - low) // 2
-                orders -= band_size
+        inventory.sort(reverse=True)
+        mod = 10**9 + 7
+        ans = i = 0
+        n = len(inventory)
+        while orders > 0:
+            while i < n and inventory[i] >= inventory[0]:
+                i += 1
+            nxt = 0
+            if i < n:
+                nxt = inventory[i]
+            cnt = i
+            x = inventory[0] - nxt
+            tot = cnt * x
+            if tot > orders:
+                decr = orders // cnt
+                a1, an = inventory[0] - decr + 1, inventory[0]
+                ans += (a1 + an) * decr // 2 * cnt
+                ans += (inventory[0] - decr) * (orders % cnt)
             else:
-                full_levels, remainder = divmod(orders, colors)
-                cutoff = high - full_levels
-                profit += colors * (high + cutoff + 1) * full_levels // 2
-                profit += remainder * cutoff
-                break
-
-        return profit % modulus
+                a1, an = nxt + 1, inventory[0]
+                ans += (a1 + an) * x // 2 * cnt
+                inventory[0] = nxt
+            orders -= tot
+            ans %= mod
+        return ans

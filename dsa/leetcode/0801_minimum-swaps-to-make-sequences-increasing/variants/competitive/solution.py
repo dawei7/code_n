@@ -1,23 +1,21 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minSwap(self, nums1: List[int], nums2: List[int]) -> int:
-        keep = 0
-        swap = 1
+    def minSwap(self, A, B):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :rtype: int
+        """
+        dp_no_swap, dp_swap = [0]*2, [1]*2
+        for i in range(1, len(A)):
+            dp_no_swap[i%2], dp_swap[i%2] = float("inf"), float("inf")
+            if A[i-1] < A[i] and B[i-1] < B[i]:
+                dp_no_swap[i%2] = min(dp_no_swap[i%2], dp_no_swap[(i-1)%2])
+                dp_swap[i%2] = min(dp_swap[i%2], dp_swap[(i-1)%2]+1)
+            if A[i-1] < B[i] and B[i-1] < A[i]:
+                dp_no_swap[i%2] = min(dp_no_swap[i%2], dp_swap[(i-1)%2])
+                dp_swap[i%2] = min(dp_swap[i%2], dp_no_swap[(i-1)%2]+1)
+        return min(dp_no_swap[(len(A)-1)%2], dp_swap[(len(A)-1)%2])
 
-        for index in range(1, len(nums1)):
-            next_keep = float("inf")
-            next_swap = float("inf")
-
-            if nums1[index] > nums1[index - 1] and nums2[index] > nums2[index - 1]:
-                next_keep = keep
-                next_swap = swap + 1
-
-            if nums1[index] > nums2[index - 1] and nums2[index] > nums1[index - 1]:
-                next_keep = min(next_keep, swap)
-                next_swap = min(next_swap, keep + 1)
-
-            keep, swap = next_keep, next_swap
-
-        return int(min(keep, swap))

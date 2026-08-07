@@ -1,9 +1,32 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string, two pointers
 class Solution:
-    def makePalindrome(self, s: str) -> bool:
-        mismatches = 0
-        for left in range(len(s) // 2):
-            if s[left] != s[~left]:
-                mismatches += 1
-                if mismatches > 2:
+    def makePalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        return sum(s[i] != s[~i] for i in range(len(s)//2)) <= 2
+
+
+# Time:  O(n)
+# Space: O(1)
+# string, two pointers
+class Solution2(object):
+    def makePalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        cnt = 0
+        left, right = 0, len(s)-1
+        while left < right:
+            if s[left] != s[right]:
+                cnt += 1
+                if cnt > 2:
                     return False
+            left += 1
+            right -= 1
         return True

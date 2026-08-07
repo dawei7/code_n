@@ -1,27 +1,28 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import bisect
 
 
 class Solution:
-    def minAbsoluteSumDiff(self, nums1: List[int], nums2: List[int]) -> int:
-        ordered = sorted(nums1)
-        total = 0
-        best_reduction = 0
+    def minAbsoluteSumDiff(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
 
-        for first, second in zip(nums1, nums2):
-            difference = abs(first - second)
-            total += difference
-
-            position = bisect_left(ordered, second)
-            if position < len(ordered):
-                best_reduction = max(
-                    best_reduction,
-                    difference - abs(ordered[position] - second),
-                )
-            if position > 0:
-                best_reduction = max(
-                    best_reduction,
-                    difference - abs(ordered[position - 1] - second),
-                )
-
-        return (total - best_reduction) % 1_000_000_007
+        sorted_nums1 = sorted(nums1)
+        result = max_change = 0
+        for i in range(len(nums2)):
+            diff = abs(nums1[i]-nums2[i])
+            result = (result+diff)%MOD
+            if diff < max_change:
+                continue
+            j = bisect.bisect_left(sorted_nums1, nums2[i])
+            if j != len(sorted_nums1):
+                max_change = max(max_change, diff-abs(sorted_nums1[j]-nums2[i]))
+            if j != 0:
+                max_change = max(max_change, diff-abs(sorted_nums1[j-1]-nums2[i]))
+        return (result-max_change)%MOD

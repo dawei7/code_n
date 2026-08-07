@@ -1,41 +1,17 @@
-from typing import List
-
-
 class Solution:
     def longestLine(self, mat: List[List[int]]) -> int:
-        if not mat or not mat[0]:
-            return 0
-
-        columns = len(mat[0])
-        vertical = [0] * columns
-        diagonal = [0] * columns
-        anti_diagonal = [0] * columns
-        longest = 0
-
-        for row in mat:
-            horizontal = 0
-            next_diagonal = [0] * columns
-            next_anti_diagonal = [0] * columns
-
-            for column, value in enumerate(row):
-                if value == 0:
-                    horizontal = 0
-                    vertical[column] = 0
-                    continue
-
-                horizontal += 1
-                vertical[column] += 1
-                next_diagonal[column] = 1 + (diagonal[column - 1] if column > 0 else 0)
-                next_anti_diagonal[column] = 1 + (anti_diagonal[column + 1] if column + 1 < columns else 0)
-                longest = max(
-                    longest,
-                    horizontal,
-                    vertical[column],
-                    next_diagonal[column],
-                    next_anti_diagonal[column],
-                )
-
-            diagonal = next_diagonal
-            anti_diagonal = next_anti_diagonal
-
-        return longest
+        m, n = len(mat), len(mat[0])
+        a = [[0] * (n + 2) for _ in range(m + 2)]
+        b = [[0] * (n + 2) for _ in range(m + 2)]
+        c = [[0] * (n + 2) for _ in range(m + 2)]
+        d = [[0] * (n + 2) for _ in range(m + 2)]
+        ans = 0
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if mat[i - 1][j - 1]:
+                    a[i][j] = a[i - 1][j] + 1
+                    b[i][j] = b[i][j - 1] + 1
+                    c[i][j] = c[i - 1][j - 1] + 1
+                    d[i][j] = d[i - 1][j + 1] + 1
+                    ans = max(ans, a[i][j], b[i][j], c[i][j], d[i][j])
+        return ans

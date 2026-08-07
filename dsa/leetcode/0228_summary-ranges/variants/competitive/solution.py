@@ -1,14 +1,38 @@
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
+import re
+
+
 class Solution:
-    def summaryRanges(self, nums: list[int]) -> list[str]:
+    # @param {integer[]} nums
+    # @return {string[]}
+    def summaryRanges(self, nums):
         ranges = []
-        index = 0
-        while index < len(nums):
-            start = index
-            while index + 1 < len(nums) and nums[index + 1] == nums[index] + 1:
-                index += 1
-            if start == index:
-                ranges.append(str(nums[start]))
+        if not nums:
+            return ranges
+
+        start, end = nums[0], nums[0]
+        for i in range(1, len(nums) + 1):
+            if i < len(nums) and nums[i] == end + 1:
+                end = nums[i]
             else:
-                ranges.append(f"{nums[start]}->{nums[index]}")
-            index += 1
+                interval = str(start)
+                if start != end:
+                    interval += "->" + str(end)
+                ranges.append(interval)
+                if i < len(nums):
+                    start = end = nums[i]
+
         return ranges
+
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    # @param {integer[]} nums
+    # @return {string[]}
+    def summaryRanges(self, nums):
+        return [re.sub('->.*>', '->', '->'.join(repr(n) for _, n in g))
+            for _, g in itertools.groupby(enumerate(nums), lambda i_n: i_n[1]-i_n[0])]
+

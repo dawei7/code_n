@@ -1,15 +1,10 @@
-from typing import List
-
-
 class Solution:
     def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
-        stack = []
-        next_pop = 0
-
-        for value in pushed:
-            stack.append(value)
-            while stack and next_pop < len(popped) and stack[-1] == popped[next_pop]:
-                stack.pop()
-                next_pop += 1
-
-        return next_pop == len(popped)
+        stk = []
+        i = 0
+        for x in pushed:
+            stk.append(x)
+            while stk and stk[-1] == popped[i]:
+                stk.pop()
+                i += 1
+        return i == len(popped)

@@ -1,25 +1,18 @@
-from typing import List
-
-
 class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
-        graph = [[] for _ in range(n + 1)]
-        for first, second in dislikes:
-            graph[first].append(second)
-            graph[second].append(first)
+        def dfs(i, c):
+            color[i] = c
+            for j in g[i]:
+                if color[j] == c:
+                    return False
+                if color[j] == 0 and not dfs(j, 3 - c):
+                    return False
+            return True
 
-        colors = [0] * (n + 1)
-        for person in range(1, n + 1):
-            if colors[person] != 0:
-                continue
-            colors[person] = 1
-            stack = [person]
-            while stack:
-                current = stack.pop()
-                for neighbor in graph[current]:
-                    if colors[neighbor] == 0:
-                        colors[neighbor] = -colors[current]
-                        stack.append(neighbor)
-                    elif colors[neighbor] == colors[current]:
-                        return False
-        return True
+        g = defaultdict(list)
+        color = [0] * n
+        for a, b in dislikes:
+            a, b = a - 1, b - 1
+            g[a].append(b)
+            g[b].append(a)
+        return all(c or dfs(i, 1) for i, c in enumerate(color))

@@ -1,8 +1,3 @@
-from math import cos, pi, sin, sqrt
-from random import random
-from typing import List
-
-
 class Solution:
     def __init__(self, radius: float, x_center: float, y_center: float):
         self.radius = radius
@@ -10,9 +5,8 @@ class Solution:
         self.y_center = y_center
 
     def randPoint(self) -> List[float]:
-        distance = self.radius * sqrt(random())
-        angle = 2 * pi * random()
-        return [
-            self.x_center + distance * cos(angle),
-            self.y_center + distance * sin(angle),
-        ]
+        length = math.sqrt(random.uniform(0, self.radius**2))
+        degree = random.uniform(0, 1) * 2 * math.pi
+        x = self.x_center + length * math.cos(degree)
+        y = self.y_center + length * math.sin(degree)
+        return [x, y]

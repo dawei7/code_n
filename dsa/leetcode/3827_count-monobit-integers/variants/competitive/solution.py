@@ -1,10 +1,11 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# bitmasks
 class Solution:
-    def countMonobit(self, n: int) -> int:
-        count = 1
-        value = 1
-
-        while value <= n:
-            count += 1
-            value = (value << 1) | 1
-
-        return count
+    def countMonobit(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        return (n+1).bit_length()

@@ -1,26 +1,13 @@
-from typing import List
-
-
 class Solution:
     def minSwapsCouples(self, row: List[int]) -> int:
-        seating = row[:]
-        position = [0] * len(seating)
-        for seat, person in enumerate(seating):
-            position[person] = seat
+        def find(x: int) -> int:
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        swaps = 0
-        for first_seat in range(0, len(seating), 2):
-            person = seating[first_seat]
-            partner = person ^ 1
-            second_seat = first_seat + 1
-            if seating[second_seat] == partner:
-                continue
-
-            partner_seat = position[partner]
-            displaced = seating[second_seat]
-            seating[second_seat], seating[partner_seat] = partner, displaced
-            position[partner] = second_seat
-            position[displaced] = partner_seat
-            swaps += 1
-
-        return swaps
+        n = len(row) >> 1
+        p = list(range(n))
+        for i in range(0, len(row), 2):
+            a, b = row[i] >> 1, row[i + 1] >> 1
+            p[find(a)] = find(b)
+        return n - sum(i == find(i) for i in range(n))

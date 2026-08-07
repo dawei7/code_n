@@ -1,41 +1,45 @@
-from typing import List
-
-
 class Solution:
     def largestMagicSquare(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
+        m, n = len(grid), len(grid[0])
+        rowsum = [[0] * (n + 1) for _ in range(m + 1)]
+        colsum = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                rowsum[i][j] = rowsum[i][j - 1] + grid[i - 1][j - 1]
+                colsum[i][j] = colsum[i - 1][j] + grid[i - 1][j - 1]
 
-        row_prefix = [[0] * (columns + 1) for _ in range(rows)]
-        column_prefix = [[0] * columns for _ in range(rows + 1)]
-        down_right = [[0] * (columns + 1) for _ in range(rows + 1)]
-        down_left = [[0] * (columns + 1) for _ in range(rows + 1)]
+        def check(x1, y1, x2, y2):
+            val = rowsum[x1 + 1][y2 + 1] - rowsum[x1 + 1][y1]
+            for i in range(x1 + 1, x2 + 1):
+                if rowsum[i + 1][y2 + 1] - rowsum[i + 1][y1] != val:
+                    return False
+            for j in range(y1, y2 + 1):
+                if colsum[x2 + 1][j + 1] - colsum[x1][j + 1] != val:
+                    return False
+            s, i, j = 0, x1, y1
+            while i <= x2:
+                s += grid[i][j]
+                i += 1
+                j += 1
+            if s != val:
+                return False
+            s, i, j = 0, x1, y2
+            while i <= x2:
+                s += grid[i][j]
+                i += 1
+                j -= 1
+            if s != val:
+                return False
+            return True
 
-        for row in range(rows):
-            for column in range(columns):
-                value = grid[row][column]
-                row_prefix[row][column + 1] = row_prefix[row][column] + value
-                column_prefix[row + 1][column] = column_prefix[row][column] + value
-                down_right[row + 1][column + 1] = down_right[row][column] + value
-                down_left[row + 1][column] = down_left[row][column + 1] + value
-
-        for side in range(min(rows, columns), 1, -1):
-            for top in range(rows - side + 1):
-                bottom = top + side
-                for left in range(columns - side + 1):
-                    right = left + side
-                    target = down_right[bottom][right] - down_right[top][left]
-                    other_diagonal = down_left[bottom][left] - down_left[top][right]
-                    if other_diagonal != target:
-                        continue
-
-                    if any(row_prefix[row][right] - row_prefix[row][left] != target for row in range(top, bottom)):
-                        continue
-                    if any(
-                        column_prefix[bottom][column] - column_prefix[top][column] != target
-                        for column in range(left, right)
-                    ):
-                        continue
-                    return side
-
+        for k in range(min(m, n), 1, -1):
+            i = 0
+            while i + k - 1 < m:
+                j = 0
+                while j + k - 1 < n:
+                    i2, j2 = i + k - 1, j + k - 1
+                    if check(i, j, i2, j2):
+                        return k
+                    j += 1
+                i += 1
         return 1

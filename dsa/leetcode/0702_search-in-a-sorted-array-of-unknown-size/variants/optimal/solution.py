@@ -1,20 +1,21 @@
+# """
+# This is ArrayReader's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+# class ArrayReader:
+#    def get(self, index: int) -> int:
+
+
 class Solution:
     def search(self, reader: "ArrayReader", target: int) -> int:
-        left = 0
-        right = 1
-
-        while reader.get(right) < target:
-            left = right + 1
-            right *= 2
-
-        while left <= right:
-            middle = (left + right) // 2
-            value = reader.get(middle)
-            if value == target:
-                return middle
-            if value < target:
-                left = middle + 1
+        r = 1
+        while reader.get(r) < target:
+            r <<= 1
+        l = r >> 1
+        while l < r:
+            mid = (l + r) >> 1
+            if reader.get(mid) >= target:
+                r = mid
             else:
-                right = middle - 1
-
-        return -1
+                l = mid + 1
+        return l if reader.get(l) == target else -1

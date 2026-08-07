@@ -1,23 +1,22 @@
-WITH ranked_sales AS (
-    SELECT
-        seller_id,
-        item_id,
-        ROW_NUMBER() OVER (
-            PARTITION BY seller_id
-            ORDER BY order_date
-        ) AS sale_number
-    FROM Orders
-)
+# Write your MySQL query statement below
 SELECT
     u.user_id AS seller_id,
     CASE
-        WHEN i.item_brand = u.favorite_brand THEN 'yes'
+        WHEN u.favorite_brand = i.item_brand THEN 'yes'
         ELSE 'no'
-    END AS `2nd_item_fav_brand`
-FROM Users AS u
-LEFT JOIN ranked_sales AS r
-    ON r.seller_id = u.user_id
-    AND r.sale_number = 2
-LEFT JOIN Items AS i
-    ON i.item_id = r.item_id
-ORDER BY seller_id;
+    END AS 2nd_item_fav_brand
+FROM
+    users AS u
+    LEFT JOIN (
+        SELECT
+            order_date,
+            item_id,
+            seller_id,
+            RANK() OVER (
+                PARTITION BY seller_id
+                ORDER BY order_date
+            ) AS rk
+        FROM orders
+    ) AS o
+        ON u.user_id = o.seller_id AND o.rk = 2
+    LEFT JOIN items AS i ON o.item_id = i.item_id;

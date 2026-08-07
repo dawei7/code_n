@@ -1,6 +1,12 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def stableMountains(self, height: List[int], threshold: int) -> List[int]:
-        return [index for index in range(1, len(height)) if height[index - 1] > threshold]
+    def stableMountains(self, height, threshold):
+        """
+        :type height: List[int]
+        :type threshold: int
+        :rtype: List[int]
+        """
+        return [i for i in range(1, len(height)) if height[i-1] > threshold]

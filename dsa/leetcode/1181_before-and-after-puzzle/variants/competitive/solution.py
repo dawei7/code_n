@@ -1,23 +1,30 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(l * rlogr)  , l is the max length of phrases
+#                      , r is the number of result, could be up to O(n^2)
+# Space: O(l * (n + r)), n is the number of phrases
+
+import collections
 
 
 class Solution:
-    def beforeAndAfterPuzzles(self, phrases: List[str]) -> List[str]:
-        last_words = []
-        suffixes = []
-        by_first = defaultdict(list)
+    def beforeAndAfterPuzzles(self, phrases):
+        """
+        :type phrases: List[str]
+        :rtype: List[str]
+        """
+        lookup = collections.defaultdict(list)
+        for i, phrase in enumerate(phrases):
+            right = phrase.rfind(' ')
+            word = phrase if right == -1 else phrase[right+1:]
+            lookup[word].append(i)
 
-        for index, phrase in enumerate(phrases):
-            words = phrase.split()
-            last_words.append(words[-1])
-            suffixes.append(phrase[len(words[0]) :])
-            by_first[words[0]].append(index)
-
-        merged = set()
-        for before, last_word in enumerate(last_words):
-            for after in by_first.get(last_word, ()):
-                if before != after:
-                    merged.add(phrases[before] + suffixes[after])
-
-        return sorted(merged)
+        result_set = set()
+        for i, phrase in enumerate(phrases):
+            left = phrase.find(' ')
+            word = phrase if left == -1 else phrase[:left]
+            if word not in lookup:
+                continue
+            for j in lookup[word]:
+                if j == i:
+                    continue
+                result_set.add(phrases[j] + phrase[len(word):])
+        return sorted(result_set)

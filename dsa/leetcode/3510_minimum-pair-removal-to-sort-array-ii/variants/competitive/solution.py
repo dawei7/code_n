@@ -1,57 +1,42 @@
-import heapq
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+from sortedcontainers import SortedList
 
 
+# simulation, doubly linked list, sorted list
 class Solution:
-    def minimumPairRemoval(self, nums: List[int]) -> int:
-        size = len(nums)
-        if size < 2:
-            return 0
+    def minimumPairRemoval(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def add(i):
+            if 0 <= i < right[i] < len(nums):
+                sl.add([nums[i]+nums[right[i]], i])
+                if nums[i] > nums[right[i]]:
+                    cnt[0] += 1
 
-        values = nums[:]
-        previous = [index - 1 for index in range(size)]
-        following = [index + 1 for index in range(size)]
-        following[-1] = -1
-        active = [True] * size
+        def remove(i):
+            if 0 <= i < right[i] < len(nums):
+                sl.remove([nums[i]+nums[right[i]], i])
+                if nums[i] > nums[right[i]]:
+                    cnt[0] -= 1
 
-        heap = [(values[index] + values[index + 1], index, index + 1) for index in range(size - 1)]
-        heapq.heapify(heap)
-        inversions = sum(values[index] > values[index + 1] for index in range(size - 1))
-
-        operations = 0
-        while inversions:
-            while True:
-                pair_sum, left, right = heapq.heappop(heap)
-                if (
-                    active[left]
-                    and active[right]
-                    and following[left] == right
-                    and values[left] + values[right] == pair_sum
-                ):
-                    break
-
-            before = previous[left]
-            after = following[right]
-
-            if before != -1:
-                inversions -= values[before] > values[left]
-            inversions -= values[left] > values[right]
-            if after != -1:
-                inversions -= values[right] > values[after]
-
-            values[left] = pair_sum
-            active[right] = False
-            following[left] = after
-            if after != -1:
-                previous[after] = left
-
-            if before != -1:
-                inversions += values[before] > values[left]
-                heapq.heappush(heap, (values[before] + values[left], before, left))
-            if after != -1:
-                inversions += values[left] > values[after]
-                heapq.heappush(heap, (values[left] + values[after], left, after))
-
-            operations += 1
-
-        return operations
+        left = range(-1, (len(nums)+1)-1)
+        right = range(1, len(nums)+1)
+        cnt = [sum(nums[i] > nums[i+1] for i in range(len(nums)-1))]
+        sl = SortedList([nums[i]+nums[i+1], i] for i in range(len(nums)-1))
+        result = 0
+        while cnt[0]:
+            _, i = sl[0]
+            remove(left[i])
+            remove(i)
+            remove(right[i])
+            nums[i] += nums[right[i]]
+            left[right[right[i]]] = i
+            right[i] = right[right[i]]
+            add(left[i])
+            add(i)
+            result += 1
+        return result

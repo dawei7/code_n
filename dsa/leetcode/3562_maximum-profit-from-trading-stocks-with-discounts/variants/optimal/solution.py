@@ -1,39 +1,39 @@
 class Solution:
-    def maxProfit(self, n: int, present: list[int], future: list[int], hierarchy: list[list[int]], budget: int) -> int:
-        children: list[list[int]] = [[] for _ in range(n)]
-        for boss, employee in hierarchy:
-            children[boss - 1].append(employee - 1)
-        unreachable = -(10**9)
+    def maxProfit(
+        self,
+        n: int,
+        present: List[int],
+        future: List[int],
+        hierarchy: List[List[int]],
+        budget: int,
+    ) -> int:
+        max = lambda a, b: a if a > b else b
+        g = [[] for _ in range(n + 1)]
+        for u, v in hierarchy:
+            g[u].append(v)
 
-        def merge(left: list[int], right: list[int]) -> list[int]:
-            combined = [unreachable] * (budget + 1)
-            for left_cost, left_profit in enumerate(left):
-                if left_profit == unreachable:
-                    continue
-                for right_cost in range(budget - left_cost + 1):
-                    right_profit = right[right_cost]
-                    if right_profit != unreachable:
-                        total_cost = left_cost + right_cost
-                        combined[total_cost] = max(combined[total_cost], left_profit + right_profit)
-            return combined
+        def dfs(u: int):
+            nxt = [[0, 0] for _ in range(budget + 1)]
+            for v in g[u]:
+                fv = dfs(v)
+                for j in range(budget, -1, -1):
+                    for jv in range(j + 1):
+                        for pre in (0, 1):
+                            val = nxt[j - jv][pre] + fv[jv][pre]
+                            if val > nxt[j][pre]:
+                                nxt[j][pre] = val
 
-        def visit(employee: int) -> tuple[list[int], list[int]]:
-            skip_children = [0] + [unreachable] * budget
-            buy_children = skip_children.copy()
-            for child in children[employee]:
-                child_without_discount, child_with_discount = visit(child)
-                skip_children = merge(skip_children, child_without_discount)
-                buy_children = merge(buy_children, child_with_discount)
-            results: list[list[int]] = []
-            for price in (present[employee], present[employee] // 2):
-                current = skip_children.copy()
-                for child_cost in range(budget - price + 1):
-                    child_profit = buy_children[child_cost]
-                    if child_profit != unreachable:
-                        total_cost = child_cost + price
-                        current[total_cost] = max(current[total_cost], child_profit + future[employee] - price)
-                results.append(current)
-            return (results[0], results[1])
+            f = [[0, 0] for _ in range(budget + 1)]
+            price = future[u - 1]
 
-        root_without_discount, _ = visit(0)
-        return max(root_without_discount)
+            for j in range(budget + 1):
+                for pre in (0, 1):
+                    cost = present[u - 1] // (pre + 1)
+                    if j >= cost:
+                        f[j][pre] = max(nxt[j][0], nxt[j - cost][1] + (price - cost))
+                    else:
+                        f[j][pre] = nxt[j][0]
+
+            return f
+
+        return dfs(1)[budget][0]

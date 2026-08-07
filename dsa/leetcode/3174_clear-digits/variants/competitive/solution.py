@@ -1,11 +1,39 @@
+# Time:  O(n)
+# Space: O(1)
+
+# two pointers
 class Solution:
-    def clearDigits(self, s: str) -> str:
-        stack = []
+    def clearDigits(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        s = list(s)
+        j = 0
+        for i, x in enumerate(s):
+            if x.isdigit():
+                j -= 1
+                continue
+            s[j] = x
+            j += 1
+        while len(s) > j:
+            s.pop()
+        return "".join(s)
 
-        for character in s:
-            if character.isdigit():
-                stack.pop()
-            else:
-                stack.append(character)
 
-        return "".join(stack)
+# Time:  O(n)
+# Space: O(1)
+# stack
+class Solution2(object):
+    def clearDigits(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = []
+        for x in s:
+            if x.isdigit():
+                result.pop()
+                continue
+            result.append(x)
+        return "".join(result)

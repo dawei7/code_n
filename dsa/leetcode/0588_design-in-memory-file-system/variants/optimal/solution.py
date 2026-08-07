@@ -1,40 +1,61 @@
-class _Node:
+class Trie:
     def __init__(self):
+        self.name = None
+        self.isFile = False
+        self.content = []
         self.children = {}
-        self.content = None
+
+    def insert(self, path, isFile):
+        node = self
+        ps = path.split('/')
+        for p in ps[1:]:
+            if p not in node.children:
+                node.children[p] = Trie()
+            node = node.children[p]
+        node.isFile = isFile
+        if isFile:
+            node.name = ps[-1]
+        return node
+
+    def search(self, path):
+        node = self
+        if path == '/':
+            return node
+        ps = path.split('/')
+        for p in ps[1:]:
+            if p not in node.children:
+                return None
+            node = node.children[p]
+        return node
 
 
 class FileSystem:
     def __init__(self):
-        self.root = _Node()
+        self.root = Trie()
 
-    def _parts(self, path):
-        return [part for part in path.split("/") if part]
-
-    def _walk(self, path, create=False):
-        node = self.root
-        for part in self._parts(path):
-            if create:
-                node = node.children.setdefault(part, _Node())
-            else:
-                node = node.children[part]
-        return node
-
-    def ls(self, path: str) -> list[str]:
-        node = self._walk(path)
-        if node.content is not None:
-            return [self._parts(path)[-1]]
-        return sorted(node.children)
+    def ls(self, path: str) -> List[str]:
+        node = self.root.search(path)
+        if node is None:
+            return []
+        if node.isFile:
+            return [node.name]
+        return sorted(node.children.keys())
 
     def mkdir(self, path: str) -> None:
-        self._walk(path, create=True)
+        self.root.insert(path, False)
 
     def addContentToFile(self, filePath: str, content: str) -> None:
-        node = self._walk(filePath, create=True)
-        if node.content is None:
-            node.content = []
+        node = self.root.insert(filePath, True)
         node.content.append(content)
 
     def readContentFromFile(self, filePath: str) -> str:
-        node = self._walk(filePath)
-        return "".join(node.content)
+        node = self.root.search(filePath)
+        return ''.join(node.content)
+
+
+# Your FileSystem object will be instantiated and called as such:
+# obj = FileSystem()
+# param_1 = obj.ls(path)
+# obj.mkdir(path)
+# obj.addContentToFile(filePath,content)
+# param_4 = obj.readContentFromFile(filePath)

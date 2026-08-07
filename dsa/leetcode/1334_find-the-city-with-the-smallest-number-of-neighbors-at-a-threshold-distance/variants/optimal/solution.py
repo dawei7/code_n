@@ -1,36 +1,28 @@
-from typing import List
-
-
 class Solution:
-    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
-        infinity = float("inf")
-        distances = [[infinity] * n for _ in range(n)]
+    def findTheCity(
+        self, n: int, edges: List[List[int]], distanceThreshold: int
+    ) -> int:
+        def dijkstra(u: int) -> int:
+            dist = [inf] * n
+            dist[u] = 0
+            vis = [False] * n
+            for _ in range(n):
+                k = -1
+                for j in range(n):
+                    if not vis[j] and (k == -1 or dist[k] > dist[j]):
+                        k = j
+                vis[k] = True
+                for j in range(n):
+                    # dist[j] = min(dist[j], dist[k] + g[k][j])
+                    if dist[k] + g[k][j] < dist[j]:
+                        dist[j] = dist[k] + g[k][j]
+            return sum(d <= distanceThreshold for d in dist)
 
-        for city in range(n):
-            distances[city][city] = 0
-
-        for first, second, weight in edges:
-            distances[first][second] = weight
-            distances[second][first] = weight
-
-        for intermediate in range(n):
-            through = distances[intermediate]
-            for source in range(n):
-                source_to_intermediate = distances[source][intermediate]
-                if source_to_intermediate == infinity:
-                    continue
-                row = distances[source]
-                for destination in range(n):
-                    candidate = source_to_intermediate + through[destination]
-                    if candidate < row[destination]:
-                        row[destination] = candidate
-
-        answer = -1
-        fewest = n
-        for city, row in enumerate(distances):
-            reachable = sum(other != city and distance <= distanceThreshold for other, distance in enumerate(row))
-            if reachable <= fewest:
-                fewest = reachable
-                answer = city
-
-        return answer
+        g = [[inf] * n for _ in range(n)]
+        for f, t, w in edges:
+            g[f][t] = g[t][f] = w
+        ans, cnt = n, inf
+        for i in range(n - 1, -1, -1):
+            if (t := dijkstra(i)) < cnt:
+                cnt, ans = t, i
+        return ans

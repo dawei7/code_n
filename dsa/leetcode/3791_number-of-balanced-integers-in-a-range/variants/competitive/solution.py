@@ -1,43 +1,101 @@
-from functools import lru_cache
+# Time:  O((logn)^2)
+# Space: O(logn)
 
-
+# dp
 class Solution:
-    def countBalanced(self, low: int, high: int) -> int:
-        @lru_cache(None)
-        def ways(remaining: int, difference: int, next_is_odd: bool) -> int:
-            if remaining == 0:
-                return int(difference == 0)
+    def countBalanced(self, low, high):
+        """
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        def count(n):
+            digits = []
+            while n:
+                n, r = divmod(n, 10)
+                digits.append(r)
+            digits.reverse()
+            dp = [[0]*2 for _ in range(len(digits)*9+1)]
+            dp[0][1] = 1
+            for i in range(len(digits)):
+                new_dp = [[0]*2 for _ in range(len(digits)*9+1)]
+                for curr in range(len(dp)):
+                    curr -= len(digits)//2*9
+                    for tight in range(2):
+                        if not dp[curr][tight]:
+                            continue
+                        bound = digits[i] if tight else 9
+                        for d in range(bound+1):
+                            new_dp[curr-d if i&1 else curr+d][tight and d == bound] += dp[curr][tight]
+                dp = new_dp
+            return dp[0][0]
+        
+        return count(high+1)-count(low)
 
-            total = 0
-            for digit in range(10):
-                next_difference = difference + digit if next_is_odd else difference - digit
-                total += ways(remaining - 1, next_difference, not next_is_odd)
-            return total
 
-        def count_up_to(bound: int) -> int:
-            if bound < 10:
-                return 0
+# Time:  O((logn)^2)
+# Space: O((logn)^2)
+# memoization
+class Solution2(object):
+    def countBalanced(self, low, high):
+        """
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        def count(n):
+            digits = []
+            while n:
+                n, r = divmod(n, 10)
+                digits.append(r)
+            digits.reverse()
+            memo = [[-1]*(len(digits)*9+1) for _ in range(len(digits))]
+            def memoization(i, curr, tight):
+                if i == len(digits):
+                    return curr == 0
+                if not tight and memo[i][curr] != -1:
+                    return memo[i][curr]
+                bound = digits[i] if tight else 9
+                result = 0
+                for d in range(bound+1):
+                    result += memoization(i+1, curr-d if i&1 else curr+d, tight and d == bound)
+                if not tight:
+                    memo[i][curr] = result
+                return result
+            
+            return memoization(0, 0, True)
+        
+        return count(high)-count(low-1)
 
-            digits = [int(char) for char in str(bound)]
-            digit_count = len(digits)
-            total = 0
 
-            for length in range(2, digit_count):
-                for first_digit in range(1, 10):
-                    total += ways(length - 1, first_digit, False)
-
-            difference = 0
-            for position, limit in enumerate(digits):
-                first = position == 0
-                for digit in range(1 if first else 0, limit):
-                    next_difference = difference + digit if position % 2 == 0 else difference - digit
-                    total += ways(
-                        digit_count - position - 1,
-                        next_difference,
-                        position % 2 == 1,
-                    )
-                difference += limit if position % 2 == 0 else -limit
-
-            return total + int(difference == 0)
-
-        return count_up_to(high) - count_up_to(low - 1)
+# Time:  O((logn)^2)
+# Space: O((logn)^2)
+# memoization
+class Solution3(object):
+    def countBalanced(self, low, high):
+        """
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        def count(n):
+            digits = []
+            while n:
+                n, r = divmod(n, 10)
+                digits.append(r)
+            digits.reverse()
+            memo = [[[-1]*2 for _ in range(len(digits)*9+1)] for _ in range(len(digits))]
+            def memoization(i, curr, tight):
+                if i == len(digits):
+                    return int(curr == 0)
+                if memo[i][curr][tight] == -1:
+                    bound = digits[i] if tight else 9
+                    result = 0
+                    for d in range(bound+1):
+                        result += memoization(i+1, curr-d if i&1 else curr+d, tight and d == bound)
+                    memo[i][curr][tight] = result
+                return memo[i][curr][tight]
+            
+            return memoization(0, 0, True)
+        
+        return count(high)-count(low-1)

@@ -1,14 +1,15 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
-        best = 0
-        current = 0
-        for value in nums:
-            if value == 1:
-                current += 1
-                best = max(best, current)
-            else:
-                current = 0
-        return best
+    def findMaxConsecutiveOnes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result, local_max = 0, 0
+        for n in nums:
+            local_max = (local_max + 1 if n else 0)
+            result = max(result, local_max)
+        return result
+

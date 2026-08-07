@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -8,39 +5,37 @@ from typing import List, Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def boundaryOfBinaryTree(self, root: Optional["TreeNode"]) -> List[int]:
-        if root is None:
-            return []
+    def boundaryOfBinaryTree(self, root: Optional[TreeNode]) -> List[int]:
+        def dfs(nums: List[int], root: Optional[TreeNode], i: int):
+            if root is None:
+                return
+            if i == 0:
+                if root.left != root.right:
+                    nums.append(root.val)
+                    if root.left:
+                        dfs(nums, root.left, i)
+                    else:
+                        dfs(nums, root.right, i)
+            elif i == 1:
+                if root.left == root.right:
+                    nums.append(root.val)
+                else:
+                    dfs(nums, root.left, i)
+                    dfs(nums, root.right, i)
+            else:
+                if root.left != root.right:
+                    nums.append(root.val)
+                    if root.right:
+                        dfs(nums, root.right, i)
+                    else:
+                        dfs(nums, root.left, i)
 
-        def is_leaf(node: "TreeNode") -> bool:
-            return node.left is None and node.right is None
-
-        boundary = [root.val]
-
-        node = root.left
-        while node is not None:
-            if not is_leaf(node):
-                boundary.append(node.val)
-            node = node.left if node.left is not None else node.right
-
-        stack = [root]
-        while stack:
-            node = stack.pop()
-            if is_leaf(node):
-                if node is not root:
-                    boundary.append(node.val)
-                continue
-            if node.right is not None:
-                stack.append(node.right)
-            if node.left is not None:
-                stack.append(node.left)
-
-        right_boundary = []
-        node = root.right
-        while node is not None:
-            if not is_leaf(node):
-                right_boundary.append(node.val)
-            node = node.right if node.right is not None else node.left
-
-        boundary.extend(reversed(right_boundary))
-        return boundary
+        ans = [root.val]
+        if root.left == root.right:
+            return ans
+        left, leaves, right = [], [], []
+        dfs(left, root.left, 0)
+        dfs(leaves, root, 1)
+        dfs(right, root.right, 2)
+        ans += left + leaves + right[::-1]
+        return ans

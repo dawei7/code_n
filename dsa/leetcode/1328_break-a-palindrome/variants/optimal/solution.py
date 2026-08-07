@@ -1,11 +1,14 @@
 class Solution:
     def breakPalindrome(self, palindrome: str) -> str:
-        if len(palindrome) == 1:
+        n = len(palindrome)
+        if n == 1:
             return ""
-        characters = list(palindrome)
-        for index in range(len(characters) // 2):
-            if characters[index] != "a":
-                characters[index] = "a"
-                return "".join(characters)
-        characters[-1] = "b"
-        return "".join(characters)
+        s = list(palindrome)
+        i = 0
+        while i < n // 2 and s[i] == "a":
+            i += 1
+        if i == n // 2:
+            s[-1] = "b"
+        else:
+            s[i] = "a"
+        return "".join(s)

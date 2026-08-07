@@ -1,38 +1,35 @@
-WITH ranked_inventory AS (
-    SELECT
-        inventory.*,
-        ROW_NUMBER() OVER (
-            PARTITION BY store_id
-            ORDER BY price DESC, inventory_id
-        ) AS most_expensive_rank,
-        ROW_NUMBER() OVER (
-            PARTITION BY store_id
-            ORDER BY price, inventory_id
-        ) AS cheapest_rank
-    FROM inventory
-),
-product_counts AS (
-    SELECT store_id, COUNT(DISTINCT product_name) AS product_count
-    FROM inventory
-    GROUP BY store_id
-)
-SELECT
-    stores.store_id,
-    stores.store_name,
-    stores.location,
-    expensive.product_name AS most_exp_product,
-    cheap.product_name AS cheapest_product,
-    ROUND(1.0 * cheap.quantity / expensive.quantity, 2) AS imbalance_ratio
-FROM stores
-JOIN product_counts
-    ON product_counts.store_id = stores.store_id
-JOIN ranked_inventory AS expensive
-    ON expensive.store_id = stores.store_id
-   AND expensive.most_expensive_rank = 1
-JOIN ranked_inventory AS cheap
-    ON cheap.store_id = stores.store_id
-   AND cheap.cheapest_rank = 1
-WHERE product_counts.product_count >= 3
-  AND expensive.quantity < cheap.quantity
-ORDER BY imbalance_ratio DESC, stores.store_name;
+# Time:  O(n^2 * logn)
+# Space: O(n^2)
 
+WITH stores_cte AS (
+  SELECT s.store_id,
+         s.store_name,
+         s.location,
+         MAX(i.price) AS max_price,
+         MIN(i.price) AS min_price
+  FROM stores s
+  INNER JOIN inventory i ON s.store_id = i.store_id
+  GROUP BY 1, 3
+  HAVING COUNT(DISTINCT i.product_name) >= 3
+  ORDER BY NULL
+),
+products_cte AS (
+  SELECT i.store_id,
+         s.store_name,
+         s.location,
+         i.quantity,
+         i.product_name,
+         i.price
+  FROM inventory i
+  INNER JOIN stores_cte s ON i.store_id = s.store_id AND (i.price = s.max_price OR i.price = s.min_price)
+)
+
+SELECT p1.store_id,
+       p1.store_name,
+       p1.location,
+       p1.product_name AS most_exp_product,
+       p2.product_name AS cheapest_product,
+       ROUND(p2.quantity / p1.quantity, 2) AS imbalance_ratio
+FROM products_cte p1
+INNER JOIN products_cte p2 ON p1.store_id = p2.store_id AND p1.price > p2.price AND p1.quantity < p2.quantity
+ORDER BY 6 DESC, 2;

@@ -1,40 +1,31 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(m * n)
 
 class Solution:
-    def numDistinctIslands(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        visited = set()
-        shapes = set()
+    def numDistinctIslands(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = {'l':[-1,  0], 'r':[ 1,  0], \
+                      'u':[ 0,  1], 'd':[ 0, -1]}
 
-        for origin_row in range(rows):
-            for origin_column in range(columns):
-                origin = (origin_row, origin_column)
-                if grid[origin_row][origin_column] == 0 or origin in visited:
-                    continue
+        def dfs(i, j, grid, island):
+            if not (0 <= i < len(grid) and \
+                    0 <= j < len(grid[0]) and \
+                    grid[i][j] > 0):
+                return False
+            grid[i][j] *= -1
+            for k, v in directions.items():
+                island.append(k)
+                dfs(i+v[0], j+v[1], grid, island)
+            return True
 
-                visited.add(origin)
-                stack = [origin]
-                offsets = set()
+        islands = set()
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                island = []
+                if dfs(i, j, grid, island):
+                    islands.add("".join(island))
+        return len(islands)
 
-                while stack:
-                    row, column = stack.pop()
-                    offsets.add((row - origin_row, column - origin_column))
-
-                    for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        next_row = row + row_step
-                        next_column = column + column_step
-                        neighbor = (next_row, next_column)
-                        if (
-                            0 <= next_row < rows
-                            and 0 <= next_column < columns
-                            and grid[next_row][next_column] == 1
-                            and neighbor not in visited
-                        ):
-                            visited.add(neighbor)
-                            stack.append(neighbor)
-
-                shapes.add(frozenset(offsets))
-
-        return len(shapes)

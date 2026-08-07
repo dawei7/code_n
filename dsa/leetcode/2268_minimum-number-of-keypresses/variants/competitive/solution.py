@@ -1,7 +1,14 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
+# greedy, sort
 class Solution:
-    def minimumKeypresses(self, s: str) -> int:
-        frequencies = sorted(Counter(s).values(), reverse=True)
-        return sum(frequency * (index // 9 + 1) for index, frequency in enumerate(frequencies))
+    def minimumKeypresses(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return sum(cnt*(i//9+1) for i, cnt in enumerate(sorted(collections.Counter(s).itervalues(), reverse=True)))

@@ -1,23 +1,27 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def depthSumInverse(self, nestedList: List[NestedInteger]) -> int:
-        depth_sums = []
-        maximum_integer_depth = 0
+    def depthSumInverse(self, nestedList):
+        """
+        :type nestedList: List[NestedInteger]
+        :rtype: int
+        """
+        def depthSumInverseHelper(list, depth, result):
+            if len(result) < depth + 1:
+                result.append(0)
+            if list.isInteger():
+                result[depth] += list.getInteger()
+            else:
+                for l in list.getList():
+                    depthSumInverseHelper(l, depth + 1, result)
 
-        def collect(values: List[NestedInteger], depth: int) -> None:
-            nonlocal maximum_integer_depth
-            for value in values:
-                if value.isInteger():
-                    while len(depth_sums) < depth:
-                        depth_sums.append(0)
-                    depth_sums[depth - 1] += value.getInteger()
-                    maximum_integer_depth = max(maximum_integer_depth, depth)
-                else:
-                    collect(value.getList(), depth + 1)
+        result = []
+        for list in nestedList:
+            depthSumInverseHelper(list, 0, result)
 
-        collect(nestedList, 1)
-        return sum(
-            depth_sum * (maximum_integer_depth - depth + 1) for depth, depth_sum in enumerate(depth_sums, start=1)
-        )
+        sum = 0
+        for i in reversed(range(len(result))):
+            sum += result[i] * (len(result) - i)
+        return sum
+

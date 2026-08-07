@@ -2,18 +2,11 @@ class Solution:
     def countKthRoots(self, l: int, r: int, k: int) -> int:
         if k == 1:
             return r - l + 1
-
-        def count_at_most(limit: int) -> int:
-            if limit < 0:
-                return 0
-
-            low, high = 0, limit
-            while low <= high:
-                middle = (low + high) // 2
-                if middle**k <= limit:
-                    low = middle + 1
-                else:
-                    high = middle - 1
-            return low
-
-        return count_at_most(r) - count_at_most(l - 1)
+        ans = 0
+        for x in count():
+            y = x**k
+            if y > r:
+                break
+            if l <= y <= r:
+                ans += 1
+        return ans

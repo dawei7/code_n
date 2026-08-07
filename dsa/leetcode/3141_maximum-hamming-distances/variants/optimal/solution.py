@@ -1,25 +1,18 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def maxHammingDistances(self, nums: List[int], m: int) -> List[int]:
-        size = 1 << m
-        distance = [-1] * size
-        queue = deque()
-
-        for value in nums:
-            if distance[value] == -1:
-                distance[value] = 0
-                queue.append(value)
-
-        while queue:
-            value = queue.popleft()
-            for bit in range(m):
-                neighbor = value ^ (1 << bit)
-                if distance[neighbor] == -1:
-                    distance[neighbor] = distance[value] + 1
-                    queue.append(neighbor)
-
-        mask = size - 1
-        return [m - distance[value ^ mask] for value in nums]
+        dist = [-1] * (1 << m)
+        for x in nums:
+            dist[x] = 0
+        q = nums
+        k = 1
+        while q:
+            t = []
+            for x in q:
+                for i in range(m):
+                    y = x ^ (1 << i)
+                    if dist[y] == -1:
+                        t.append(y)
+                        dist[y] = k
+            q = t
+            k += 1
+        return [m - dist[x ^ ((1 << m) - 1)] for x in nums]

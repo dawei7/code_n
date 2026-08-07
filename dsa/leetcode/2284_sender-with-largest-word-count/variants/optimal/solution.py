@@ -1,11 +1,10 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def largestWordCount(self, messages: List[str], senders: List[str]) -> str:
-        totals = defaultdict(int)
+        cnt = Counter()
         for message, sender in zip(messages, senders):
-            totals[sender] += message.count(" ") + 1
-
-        return max(totals, key=lambda sender: (totals[sender], sender))
+            cnt[sender] += message.count(" ") + 1
+        ans = senders[0]
+        for k, v in cnt.items():
+            if cnt[ans] < v or (cnt[ans] == v and ans < k):
+                ans = k
+        return ans

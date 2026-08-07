@@ -1,7 +1,3 @@
 class Solution:
     def minOperations(self, s: str) -> int:
-        smallest = 26
-        for character in s:
-            if character != "a":
-                smallest = min(smallest, ord(character) - ord("a"))
-        return 0 if smallest == 26 else 26 - smallest
+        return max((26 - (ord(c) - 97) for c in s if c != "a"), default=0)

@@ -1,12 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy, math
 class Solution:
-    def minimumReplacement(self, nums: List[int]) -> int:
-        limit = nums[-1]
-        operations = 0
-        for value in reversed(nums[:-1]):
-            pieces = (value + limit - 1) // limit
-            operations += pieces - 1
-            limit = value // pieces
-        return operations
+    def minimumReplacement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+
+        result = 0
+        curr = nums[-1]
+        for x in reversed(nums):
+            cnt = ceil_divide(x, curr)
+            result += cnt-1
+            curr = x//cnt
+        return result

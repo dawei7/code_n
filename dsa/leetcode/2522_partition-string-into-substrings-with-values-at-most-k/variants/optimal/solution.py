@@ -1,18 +1,17 @@
 class Solution:
     def minimumPartition(self, s: str, k: int) -> int:
-        parts = 0
-        value = 0
+        @cache
+        def dfs(i):
+            if i >= n:
+                return 0
+            res, v = inf, 0
+            for j in range(i, n):
+                v = v * 10 + int(s[j])
+                if v > k:
+                    break
+                res = min(res, dfs(j + 1))
+            return res + 1
 
-        for character in s:
-            digit = int(character)
-            if digit > k:
-                return -1
-
-            extended = value * 10 + digit
-            if extended > k:
-                parts += 1
-                value = digit
-            else:
-                value = extended
-
-        return parts + 1
+        n = len(s)
+        ans = dfs(0)
+        return ans if ans < inf else -1

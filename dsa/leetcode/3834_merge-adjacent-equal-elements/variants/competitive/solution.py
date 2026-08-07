@@ -1,11 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# stack, simulation
 class Solution:
-    def mergeAdjacent(self, nums: List[int]) -> List[int]:
-        merged = []
-
-        for number in nums:
-            while merged and merged[-1] == number:
-                merged.pop()
-                number *= 2
-            merged.append(number)
-
-        return merged
+    def mergeAdjacent(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result = []
+        for x in nums:
+            while result and result[-1] == x:
+                result.pop()
+                x *= 2
+            result.append(x)
+        return result

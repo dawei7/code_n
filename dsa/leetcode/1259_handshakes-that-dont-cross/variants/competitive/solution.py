@@ -1,8 +1,40 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def numberOfWays(self, numPeople: int) -> int:
-        modulus = 1_000_000_007
-        catalan = 1
-        for k in range(numPeople // 2):
-            catalan = catalan * (2 * (2 * k + 1)) % modulus
-            catalan = catalan * pow(k + 2, modulus - 2, modulus) % modulus
-        return catalan
+    def numberOfWays(self, num_people):
+        """
+        :type num_people: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def inv(x, m):  # Euler's Theorem
+            return pow(x, m-2, m)  # O(logMOD) = O(1)
+
+        def nCr(n, k, m):
+            if n-k < k:
+                return nCr(n, n-k, m)
+            result = 1
+            for i in range(1, k+1):
+                result = result*(n-k+i)*inv(i, m)%m
+            return result
+
+        n = num_people//2
+        return nCr(2*n, n, MOD)*inv(n+1, MOD) % MOD  # Catalan number
+
+
+# Time:  O(n^2)
+# Space: O(n)
+class Solution2(object):
+    def numberOfWays(self, num_people):
+        """
+        :type num_people: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [0]*(num_people//2+1)
+        dp[0] = 1
+        for k in range(1, num_people//2+1):
+            for i in range(k):
+                dp[k] = (dp[k] + dp[i]*dp[k-1-i]) % MOD
+        return dp[num_people//2]

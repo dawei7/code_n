@@ -1,14 +1,24 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
     def checkPossibility(self, nums):
-        changes = 0
-        for index in range(1, len(nums)):
-            if nums[index - 1] <= nums[index]:
-                continue
-            changes += 1
-            if changes > 1:
-                return False
-            if index == 1 or nums[index - 2] <= nums[index]:
-                nums[index - 1] = nums[index]
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        modified, prev = False, nums[0]
+        for i in range(1, len(nums)):
+            if prev > nums[i]:
+                if modified:
+                    return False
+                if i-2 < 0 or nums[i-2] <= nums[i]:
+                    prev = nums[i]    # nums[i-1] = nums[i], prev = nums[i]
+#               else:
+#                   prev = nums[i-1]  # nums[i] = nums[i-1], prev = nums[i]
+                modified = True
             else:
-                nums[index] = nums[index - 1]
+                prev = nums[i]
         return True
+
+

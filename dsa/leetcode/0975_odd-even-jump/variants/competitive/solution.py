@@ -1,31 +1,31 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def oddEvenJumps(self, arr: List[int]) -> int:
-        n = len(arr)
-
-        def destinations(order):
-            result = [-1] * n
+    def oddEvenJumps(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        def findNext(idx):
+            result = [None]*len(idx)
             stack = []
-            for index in order:
-                while stack and stack[-1] < index:
-                    result[stack.pop()] = index
-                stack.append(index)
+            for i in idx:
+                while stack and stack[-1] < i:
+                    result[stack.pop()] = i
+                stack.append(i)
             return result
+        
+        idx = sorted(range(len(A)), key = lambda i: A[i])
+        next_higher = findNext(idx)
+        idx.sort(key = lambda i: -A[i])
+        next_lower = findNext(idx)
 
-        higher = destinations(sorted(range(n), key=lambda i: (arr[i], i)))
-        lower = destinations(sorted(range(n), key=lambda i: (-arr[i], i)))
-
-        odd = [False] * n
-        even = [False] * n
-        odd[-1] = True
-        even[-1] = True
-
-        for i in range(n - 2, -1, -1):
-            if higher[i] != -1:
-                odd[i] = even[higher[i]]
-            if lower[i] != -1:
-                even[i] = odd[lower[i]]
-
+        odd, even = [False]*len(A), [False]*len(A)
+        odd[-1], even[-1] = True, True
+        for i in reversed(range(len(A)-1)):
+            if next_higher[i]:
+                odd[i] = even[next_higher[i]]
+            if next_lower[i]:
+                even[i] = odd[next_lower[i]]
         return sum(odd)

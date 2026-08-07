@@ -1,13 +1,34 @@
-from typing import List
+# Time:  O(n + m)
+# Space: O(n)
 
-
+# hash table, optimized from solution2
 class Solution:
-    def arrayChange(self, nums: List[int], operations: List[List[int]]) -> List[int]:
-        position = {value: index for index, value in enumerate(nums)}
+    def arrayChange(self, nums, operations):
+        """
+        :type nums: List[int]
+        :type operations: List[List[int]]
+        :rtype: List[int]
+        """
+        lookup = {x:i for i, x in enumerate(nums)}
+        for x, y in operations:
+            lookup[y] = lookup.pop(x)
+        for x, i in lookup.items():
+            nums[i] = x
+        return nums
 
-        for old_value, new_value in operations:
-            index = position.pop(old_value)
-            nums[index] = new_value
-            position[new_value] = index
 
+# Time:  O(n + m)
+# Space: O(n)
+# hash table
+class Solution2(object):
+    def arrayChange(self, nums, operations):
+        """
+        :type nums: List[int]
+        :type operations: List[List[int]]
+        :rtype: List[int]
+        """
+        lookup = {x:i for i, x in enumerate(nums)}
+        for x, y in operations:
+            nums[lookup[x]] = y
+            lookup[y] = lookup.pop(x)
         return nums

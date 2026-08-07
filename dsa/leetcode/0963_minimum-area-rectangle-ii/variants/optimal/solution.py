@@ -1,26 +1,23 @@
-from math import sqrt
-from typing import List
-
-
 class Solution:
     def minAreaFreeRect(self, points: List[List[int]]) -> float:
-        coordinates = {tuple(point) for point in points}
-        minimum = float("inf")
-
-        for ax, ay in coordinates:
-            for bx, by in coordinates:
-                if (ax, ay) == (bx, by):
-                    continue
-                abx, aby = bx - ax, by - ay
-                for cx, cy in coordinates:
-                    if (ax, ay) == (cx, cy) or (bx, by) == (cx, cy):
-                        continue
-                    acx, acy = cx - ax, cy - ay
-                    if abx * acx + aby * acy != 0:
-                        continue
-                    if (bx + cx - ax, by + cy - ay) not in coordinates:
-                        continue
-                    area = sqrt((abx * abx + aby * aby) * (acx * acx + acy * acy))
-                    minimum = min(minimum, area)
-
-        return 0.0 if minimum == float("inf") else minimum
+        s = {(x, y) for x, y in points}
+        n = len(points)
+        ans = inf
+        for i in range(n):
+            x1, y1 = points[i]
+            for j in range(n):
+                if j != i:
+                    x2, y2 = points[j]
+                    for k in range(j + 1, n):
+                        if k != i:
+                            x3, y3 = points[k]
+                            x4 = x2 - x1 + x3
+                            y4 = y2 - y1 + y3
+                            if (x4, y4) in s:
+                                v21 = (x2 - x1, y2 - y1)
+                                v31 = (x3 - x1, y3 - y1)
+                                if v21[0] * v31[0] + v21[1] * v31[1] == 0:
+                                    w = sqrt(v21[0] ** 2 + v21[1] ** 2)
+                                    h = sqrt(v31[0] ** 2 + v31[1] ** 2)
+                                    ans = min(ans, w * h)
+        return 0 if ans == inf else ans

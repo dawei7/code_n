@@ -1,17 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minAdjacentSwaps(self, nums: list[int], a: int, b: int) -> int:
-        MOD = 1_000_000_007
-        middle = 0
-        high = 0
-        swaps = 0
-
-        for value in nums:
-            if value < a:
-                swaps += middle + high
-            elif value <= b:
-                swaps += high
-                middle += 1
+    def minAdjacentSwaps(self, nums, a, b):
+        """
+        :type nums: List[int]
+        :type a: int
+        :type b: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        result = cnt1 = cnt2 = 0
+        for x in nums:
+            if x < a:
+                result = (result+(cnt1+cnt2))%MOD
+            elif x <= b:
+                cnt1 += 1
+                result = (result+cnt2)%MOD
             else:
-                high += 1
-
-        return swaps % MOD
+                cnt2 += 1
+        return result

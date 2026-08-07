@@ -1,29 +1,19 @@
-from typing import List
+p = []
+for i in range(1 << 14):
+    s = bin(i)[2:]
+    if s == s[::-1]:
+        p.append(i)
 
 
 class Solution:
     def minOperations(self, nums: List[int]) -> List[int]:
-        def nearest_distance(value: int) -> int:
-            length = value.bit_length()
-            half_length = (length + 1) // 2
-            prefix = value >> (length - half_length)
-
-            def mirror(half: int) -> int:
-                palindrome = half
-                remaining = half >> 1 if length % 2 else half
-                while remaining:
-                    palindrome = (palindrome << 1) | (remaining & 1)
-                    remaining >>= 1
-                return palindrome
-
-            candidates = {
-                (1 << (length - 1)) - 1,
-                (1 << length) + 1,
-            }
-            for half in (prefix - 1, prefix, prefix + 1):
-                if half > 0:
-                    candidates.add(mirror(half))
-
-            return min(abs(value - candidate) for candidate in candidates)
-
-        return [nearest_distance(value) for value in nums]
+        ans = []
+        for x in nums:
+            i = bisect_left(p, x)
+            times = inf
+            if i < len(p):
+                times = min(times, p[i] - x)
+            if i >= 1:
+                times = min(times, x - p[i - 1])
+            ans.append(times)
+        return ans

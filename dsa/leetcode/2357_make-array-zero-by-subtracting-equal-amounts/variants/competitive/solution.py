@@ -1,6 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def minimumOperations(self, nums: List[int]) -> int:
-        return len({value for value in nums if value > 0})
+    def minimumOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return len({x for x in nums if x})

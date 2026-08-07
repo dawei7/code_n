@@ -1,34 +1,45 @@
-from typing import List
+# Time:  O(r^2 + n * r), r = max(nums)
+# Space: O(r^2)
 
-
+# dp
 class Solution:
-    def longestSubsequence(self, nums: List[int]) -> int:
-        max_value = 300
-        dp = [[0] * (max_value + 1) for _ in range(max_value + 1)]
-        suffix_best = [[0] * (max_value + 2) for _ in range(max_value + 1)]
-        seen = [False] * (max_value + 1)
-        answer = 1
+    def longestSubsequence(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 2
+        mx = max(nums)
+        dp = [[0]*mx for _ in range(mx)]
+        for x in nums:
+            x -= 1
+            for nx in range(len(dp[x])):
+                d = abs(nx-x)
+                dp[x][d] = max(dp[x][d], dp[nx][d]+1)
+            for d in reversed(range(len(dp[x])-1)):
+                dp[x][d] = max(dp[x][d], dp[x][d+1])
+            result = max(result, dp[x][0])
+        return result
 
-        for value in nums:
-            updates = [0] * (max_value + 1)
-            for previous in range(1, max_value + 1):
-                if not seen[previous]:
-                    continue
-                difference = abs(value - previous)
-                updates[difference] = max(
-                    updates[difference],
-                    max(2, suffix_best[previous][difference] + 1),
-                )
 
-            for difference, length in enumerate(updates):
-                if length > dp[value][difference]:
-                    dp[value][difference] = length
-                    answer = max(answer, length)
-
-            running = 0
-            for difference in range(max_value, -1, -1):
-                running = max(running, dp[value][difference])
-                suffix_best[value][difference] = running
-            seen[value] = True
-
-        return answer
+# Time:  O(r^2 + n * r), r = max(nums)
+# Space: O(r^2)
+# dp
+class Solution2(object):
+    def longestSubsequence(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 2
+        mx = max(nums)
+        dp = [[0]*mx for _ in range(mx)]
+        for x in reversed(nums):
+            x -= 1
+            for nx in range(len(dp[x])):
+                d = abs(nx-x)
+                dp[x][d] = max(dp[x][d], dp[nx][d]+1)
+            for d in range(1, len(dp[x])):
+                dp[x][d] = max(dp[x][d], dp[x][d-1])
+            result = max(result, dp[x][-1])
+        return result

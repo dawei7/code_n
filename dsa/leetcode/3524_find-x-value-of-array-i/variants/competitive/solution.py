@@ -1,19 +1,22 @@
+# Time:  O(n * k)
+# Space: O(k)
+
+# dp
 class Solution:
-    def resultArray(self, nums: List[int], k: int) -> List[int]:
-        result = [0] * k
-        ending = [0] * k
-
-        for value in nums:
-            remainder = value % k
-            next_ending = [0] * k
-            next_ending[remainder] += 1
-
-            for previous, count in enumerate(ending):
-                next_ending[(previous * remainder) % k] += count
-
-            for x, count in enumerate(next_ending):
-                result[x] += count
-
-            ending = next_ending
-
+    def resultArray(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        result = [0]*k
+        dp = [0]*k
+        for x in nums:
+            new_dp = [0]*k
+            new_dp[x%k] += 1
+            for i, c in enumerate(dp):
+                new_dp[i*x%k] += c
+            for i, c in enumerate(new_dp):
+                result[i] += c 
+            dp = new_dp
         return result

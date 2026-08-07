@@ -1,21 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def dietPlanPerformance(self, calories: List[int], k: int, lower: int, upper: int) -> int:
-        window_sum = sum(calories[:k])
-        score = 0
-
-        if window_sum < lower:
-            score -= 1
-        elif window_sum > upper:
-            score += 1
-
-        for right in range(k, len(calories)):
-            window_sum += calories[right] - calories[right - k]
-            if window_sum < lower:
-                score -= 1
-            elif window_sum > upper:
-                score += 1
-
-        return score
+    def dietPlanPerformance(self, calories, k, lower, upper):
+        """
+        :type calories: List[int]
+        :type k: int
+        :type lower: int
+        :type upper: int
+        :rtype: int
+        """
+        total = sum(itertools.islice(calories, 0, k))
+        result = int(total > upper)-int(total < lower)
+        for i in range(k, len(calories)):
+            total += calories[i]-calories[i-k]
+            result += int(total > upper)-int(total < lower)
+        return result

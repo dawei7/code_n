@@ -1,17 +1,13 @@
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
     def maxTransactions(self, transactions: List[int]) -> int:
-        selected = []
-        balance = 0
-
-        for amount in transactions:
-            heappush(selected, amount)
-            balance += amount
-
-            if balance < 0:
-                balance -= heappop(selected)
-
-        return len(selected)
+        st = SortedList()
+        s = 0
+        ans = len(transactions)
+        for x in transactions:
+            s += x
+            st.add(x)
+            while s < 0:
+                y = st.pop(0)
+                s -= y
+                ans -= 1
+        return ans

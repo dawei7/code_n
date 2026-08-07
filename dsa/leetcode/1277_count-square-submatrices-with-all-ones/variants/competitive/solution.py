@@ -1,21 +1,16 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def countSquares(self, matrix: List[List[int]]) -> int:
-        columns = len(matrix[0])
-        dp = [0] * (columns + 1)
-        total = 0
-
-        for row in matrix:
-            above_left = 0
-            for column, value in enumerate(row, start=1):
-                above = dp[column]
-                if value == 1:
-                    dp[column] = 1 + min(above, dp[column - 1], above_left)
-                    total += dp[column]
-                else:
-                    dp[column] = 0
-                above_left = above
-
-        return total
+    def countSquares(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        for i in range(1, len(matrix)):
+            for j in range(1, len(matrix[0])):
+                if not matrix[i][j]:
+                    continue
+                l = min(matrix[i-1][j], matrix[i][j-1])
+                matrix[i][j] = l+1 if matrix[i-l][j-l] else l
+        return sum(x for row in matrix for x in row)

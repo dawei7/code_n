@@ -1,12 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
-        largest = 0
-        second_largest = 0
-
-        for value in nums:
-            if value > largest:
-                largest, second_largest = value, largest
-            elif value > second_largest:
-                second_largest = value
-
-        return (largest - 1) * (second_largest - 1)
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        m1 = m2 = 0
+        for num in nums:
+            if num > m1:
+                m1, m2 = num, m1
+            elif num > m2:
+                m2 = num
+        return (m1-1)*(m2-1)

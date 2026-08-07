@@ -1,18 +1,17 @@
-from typing import List
-
+# Time:  O(logn)
+# Space: O(1)
 
 class Solution:
-    def fixedPoint(self, arr: List[int]) -> int:
-        left = 0
-        right = len(arr)
-
-        while left < right:
-            middle = (left + right) // 2
-            if arr[middle] < middle:
-                left = middle + 1
+    def fixedPoint(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        left, right = 0, len(A)-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if A[mid] >= mid:
+                right = mid-1
             else:
-                right = middle
-
-        if left < len(arr) and arr[left] == left:
-            return left
-        return -1
+                left = mid+1
+        return left if A[left] == left else -1

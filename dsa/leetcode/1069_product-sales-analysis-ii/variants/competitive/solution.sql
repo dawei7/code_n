@@ -1,4 +1,8 @@
-SELECT product_id, SUM(quantity) AS total_quantity
-FROM Sales
-GROUP BY product_id
-ORDER BY product_id;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT product_id, 
+       Sum(quantity) AS total_quantity 
+FROM   sales 
+GROUP  BY product_id 
+ORDER  BY NULL 

@@ -1,14 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def maxScore(self, nums: List[int], x: int) -> int:
-        unreachable = -(10**30)
-        best = [unreachable, unreachable]
-        best[nums[0] % 2] = nums[0]
-
-        for value in nums[1:]:
-            parity = value % 2
-            best[parity] = max(
-                best[parity] + value,
-                best[1 - parity] + value - x,
-            )
-
-        return max(best)
+    def maxScore(self, nums, x):
+        """
+        :type nums: List[int]
+        :type x: int
+        :rtype: int
+        """
+        dp = [float("-inf")]*2
+        dp[nums[0]%2] = nums[0]
+        for i in range(1, len(nums)):
+            dp[nums[i]%2] = max(dp[nums[i]%2], dp[(nums[i]+1)%2]-x)+nums[i]
+        return max(dp)

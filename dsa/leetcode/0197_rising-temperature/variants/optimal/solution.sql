@@ -1,5 +1,6 @@
-SELECT current.id AS id
-FROM Weather AS current
-INNER JOIN Weather AS previous
-    ON julianday(current.recordDate) = julianday(previous.recordDate) + 1
-WHERE current.temperature > previous.temperature;
+# Write your MySQL query statement below
+SELECT w1.id
+FROM
+    Weather AS w1
+    JOIN Weather AS w2
+        ON DATEDIFF(w1.recordDate, w2.recordDate) = 1 AND w1.temperature > w2.temperature;

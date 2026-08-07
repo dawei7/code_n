@@ -1,21 +1,14 @@
 class Solution:
     def largestInteger(self, nums: List[int], k: int) -> int:
-        if k == len(nums):
-            return max(nums)
-
-        frequencies = {}
-        for value in nums:
-            frequencies[value] = frequencies.get(value, 0) + 1
+        def f(k: int) -> int:
+            for i, x in enumerate(nums):
+                if i != k and x == nums[k]:
+                    return -1
+            return nums[k]
 
         if k == 1:
-            return max(
-                (value for value, count in frequencies.items() if count == 1),
-                default=-1,
-            )
-
-        answer = -1
-        if frequencies[nums[0]] == 1:
-            answer = nums[0]
-        if frequencies[nums[-1]] == 1:
-            answer = max(answer, nums[-1])
-        return answer
+            cnt = Counter(nums)
+            return max((x for x, v in cnt.items() if v == 1), default=-1)
+        if k == len(nums):
+            return max(nums)
+        return max(f(0), f(len(nums) - 1))

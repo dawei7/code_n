@@ -1,18 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# mono stack
 class Solution:
-    def validSubarraySize(self, nums: List[int], threshold: int) -> int:
-        stack: List[int] = []
-
-        for right in range(len(nums) + 1):
-            value = nums[right] if right < len(nums) else -1
-            while stack and nums[stack[-1]] > value:
-                minimum = nums[stack.pop()]
-                left = stack[-1] if stack else -1
-                length = right - left - 1
-                if minimum * length > threshold:
-                    return length
-            stack.append(right)
-
+    def validSubarraySize(self, nums, threshold):
+        """
+        :type nums: List[int]
+        :type threshold: int
+        :rtype: int
+        """
+        stk = [-1]
+        for i in range(len(nums)+1):
+            while stk[-1] != -1 and (i == len(nums) or nums[stk[-1]] >= nums[i]):
+                if nums[stk.pop()]*((i-1)-stk[-1]) > threshold:
+                    return (i-1)-stk[-1]
+            stk.append(i)
         return -1

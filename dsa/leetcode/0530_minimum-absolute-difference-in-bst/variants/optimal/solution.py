@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -8,20 +5,17 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def getMinimumDifference(self, root: Optional["TreeNode"]) -> int:
-        stack = []
-        node = root
-        previous = None
-        minimum = float("inf")
+    def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
+        def dfs(root: Optional[TreeNode]):
+            if root is None:
+                return
+            dfs(root.left)
+            nonlocal pre, ans
+            ans = min(ans, root.val - pre)
+            pre = root.val
+            dfs(root.right)
 
-        while stack or node is not None:
-            while node is not None:
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-            if previous is not None:
-                minimum = min(minimum, node.val - previous)
-            previous = node.val
-            node = node.right
-
-        return int(minimum)
+        pre = -inf
+        ans = inf
+        dfs(root)
+        return ans

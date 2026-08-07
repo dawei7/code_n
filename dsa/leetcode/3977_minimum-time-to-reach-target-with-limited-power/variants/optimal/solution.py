@@ -1,6 +1,3 @@
-from heapq import heappop, heappush
-
-
 class Solution:
     def minTimeMaxPower(
         self,
@@ -11,32 +8,23 @@ class Solution:
         source: int,
         target: int,
     ) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for node, neighbor, travel_time in edges:
-            graph[node].append((neighbor, travel_time))
-
-        infinity = 10**30
-        best_time = [[infinity] * (power + 1) for _ in range(n)]
-        best_time[source][power] = 0
-        heap = [(0, source, power)]
-
-        while heap:
-            elapsed, node, remaining = heappop(heap)
-            if elapsed != best_time[node][remaining]:
+        g = [[] for _ in range(n)]
+        for u, v, t in edges:
+            g[u].append((v, t))
+        dist = [[inf] * (power + 1) for _ in range(n)]
+        dist[source][power] = 0
+        pq = [(0, -power, source)]
+        while pq:
+            d, p, u = heappop(pq)
+            p = -p
+            if u == target:
+                return [d, p]
+            if d > dist[u][p] or p < cost[u]:
                 continue
-            if remaining < cost[node]:
-                continue
-
-            next_power = remaining - cost[node]
-            for neighbor, travel_time in graph[node]:
-                arrival = elapsed + travel_time
-                if arrival < best_time[neighbor][next_power]:
-                    best_time[neighbor][next_power] = arrival
-                    heappush(heap, (arrival, neighbor, next_power))
-
-        minimum_time = min(best_time[target])
-        if minimum_time == infinity:
-            return [-1, -1]
-
-        maximum_power = max(remaining for remaining, elapsed in enumerate(best_time[target]) if elapsed == minimum_time)
-        return [minimum_time, maximum_power]
+            p -= cost[u]
+            for v, t in g[u]:
+                nd = d + t
+                if nd < dist[v][p]:
+                    dist[v][p] = nd
+                    heappush(pq, (nd, -p, v))
+        return [-1, -1]

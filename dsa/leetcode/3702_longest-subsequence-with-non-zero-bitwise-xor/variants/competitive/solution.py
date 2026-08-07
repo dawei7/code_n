@@ -1,18 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# bitmasks
 class Solution:
-    def longestSubsequence(self, nums: List[int]) -> int:
-        total_xor = 0
-        has_nonzero = False
-
-        for value in nums:
-            total_xor ^= value
-            if value != 0:
-                has_nonzero = True
-
-        if not has_nonzero:
-            return 0
-        if total_xor != 0:
-            return len(nums)
-        return len(nums) - 1
+    def longestSubsequence(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return len(nums)-int(reduce(lambda accu, x: accu^x, nums, 0) == 0) if any(x for x in nums) else 0

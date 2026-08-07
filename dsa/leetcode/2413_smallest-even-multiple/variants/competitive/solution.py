@@ -1,3 +1,11 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math, bit manipulation
 class Solution:
-    def smallestEvenMultiple(self, n: int) -> int:
-        return n if n % 2 == 0 else 2 * n
+    def smallestEvenMultiple(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        return n<<(n&1)

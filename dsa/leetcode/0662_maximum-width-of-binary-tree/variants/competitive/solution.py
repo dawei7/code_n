@@ -1,20 +1,21 @@
-from collections import deque
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
     def widthOfBinaryTree(self, root):
-        maximum = 0
-        queue = deque([(root, 0)])
-        while queue:
-            level_start = queue[0][1]
-            level_end = 0
-            for _ in range(len(queue)):
-                node, position = queue.popleft()
-                position -= level_start
-                level_end = position
-                if node.left is not None:
-                    queue.append((node.left, position * 2))
-                if node.right is not None:
-                    queue.append((node.right, position * 2 + 1))
-            maximum = max(maximum, level_end + 1)
-        return maximum
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(node, i, depth, leftmosts):
+            if not node:
+                return 0
+            if depth >= len(leftmosts):
+                leftmosts.append(i)
+            return max(i-leftmosts[depth]+1, \
+                       dfs(node.left, i*2, depth+1, leftmosts), \
+                       dfs(node.right, i*2+1, depth+1, leftmosts))
+
+        leftmosts = []
+        return dfs(root, 1, 0, leftmosts)
+

@@ -1,32 +1,65 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def maximumGap(self, nums: List[int]) -> int:
+    def maximumGap(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         if len(nums) < 2:
             return 0
-        lowest = min(nums)
-        highest = max(nums)
-        if lowest == highest:
+
+        # Init bucket.
+        max_val, min_val = max(nums), min(nums)
+        gap = max(1, (max_val - min_val) / (len(nums) - 1))
+        bucket_size = (max_val - min_val) / gap + 1
+        bucket = [{'min':float("inf"), 'max':float("-inf")} \
+                    for _ in range(bucket_size)]
+
+        # Find the bucket where the n should be put.
+        for n in nums:
+            # min_val / max_val is in the first / last bucket.
+            if n in (max_val, min_val):
+                continue
+            i = (n - min_val) / gap
+            bucket[i]['min'] = min(bucket[i]['min'], n)
+            bucket[i]['max'] = max(bucket[i]['max'], n)
+
+        # Count each bucket gap between the first and the last bucket.
+        max_gap, pre_bucket_max = 0, min_val
+        for i in range(bucket_size):
+            # Skip the bucket it empty.
+            if bucket[i]['min'] == float("inf") and \
+                bucket[i]['max'] == float("-inf"):
+                continue
+            max_gap = max(max_gap, bucket[i]['min'] - pre_bucket_max)
+            pre_bucket_max = bucket[i]['max']
+        # Count the last bucket.
+        max_gap = max(max_gap, max_val - pre_bucket_max)
+
+        return max_gap
+
+
+# Time:  O(nlogn)
+# Space: O(n)
+class Solution2(object):
+    def maximumGap(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        if len(nums) < 2:
             return 0
 
-        width = (highest - lowest + len(nums) - 2) // (len(nums) - 1)
-        bucket_count = (highest - lowest) // width + 1
-        bucket_min = [None] * bucket_count
-        bucket_max = [None] * bucket_count
+        nums.sort()
+        pre = nums[0]
+        max_gap = float("-inf")
 
-        for value in nums:
-            index = (value - lowest) // width
-            current_min = bucket_min[index]
-            current_max = bucket_max[index]
-            bucket_min[index] = value if current_min is None else min(current_min, value)
-            bucket_max[index] = value if current_max is None else max(current_max, value)
+        for i in nums:
+            max_gap = max(max_gap, i - pre)
+            pre = i
+        return max_gap
 
-        best = 0
-        previous_max = lowest
-        for current_min, current_max in zip(bucket_min, bucket_max):
-            if current_min is None or current_max is None:
-                continue
-            best = max(best, current_min - previous_max)
-            previous_max = current_max
-        return best
+

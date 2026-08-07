@@ -1,16 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# dp
 class Solution:
-    def maxScore(self, a: List[int], b: List[int]) -> int:
-        negative_infinity = float("-inf")
-        best = [0, negative_infinity, negative_infinity, negative_infinity, negative_infinity]
-
-        for value in b:
-            for chosen in range(3, -1, -1):
-                best[chosen + 1] = max(
-                    best[chosen + 1],
-                    best[chosen] + a[chosen] * value,
-                )
-
-        return int(best[4])
+    def maxScore(self, a, b):
+        """
+        :type a: List[int]
+        :type b: List[int]
+        :rtype: int
+        """
+        dp = [float("-inf")]*(len(a)+1)
+        dp[0] = 0
+        for x in b:
+            for i in reversed(range(1, len(dp))):
+                dp[i] = max(dp[i], dp[i-1]+x*a[i-1])
+        return dp[-1]

@@ -1,31 +1,55 @@
-from collections import deque
-from typing import List
+# Time:  ctor:                 O(1)
+#        addRider:             O(1)
+#        addDriver:            O(1)
+#        matchDriverWithRider: O(1)
+#        cancelRider:          O(1)
+# Space: O(n)
+
+import collections
 
 
-class RideSharingSystem:
+# ordered dict
+class RideSharingSystem(object):
+
     def __init__(self):
-        self.riders = deque()
-        self.drivers = deque()
-        self.active_riders = set()
+        self.__riders = collections.OrderedDict()
+        self.__drivers = collections.OrderedDict()
+        
 
-    def addRider(self, riderId: int) -> None:
-        self.riders.append(riderId)
-        self.active_riders.add(riderId)
+    def addRider(self, riderId):
+        """
+        :type riderId: int
+        :rtype: None
+        """
+        self.__riders[riderId] = True
+        
 
-    def addDriver(self, driverId: int) -> None:
-        self.drivers.append(driverId)
+    def addDriver(self, driverId):
+        """
+        :type driverId: int
+        :rtype: None
+        """
+        self.__drivers[driverId] = True
+        
 
-    def matchDriverWithRider(self) -> List[int]:
-        while self.riders and self.riders[0] not in self.active_riders:
-            self.riders.popleft()
-
-        if not self.riders or not self.drivers:
+    def matchDriverWithRider(self):
+        """
+        :rtype: List[int]
+        """
+        if not self.__riders or not self.__drivers:
             return [-1, -1]
+        r = next(iter(self.__riders))
+        d = next(iter(self.__drivers))
+        del self.__riders[r]
+        del self.__drivers[d]
+        return [d, r]
+    
 
-        rider_id = self.riders.popleft()
-        driver_id = self.drivers.popleft()
-        self.active_riders.remove(rider_id)
-        return [driver_id, rider_id]
-
-    def cancelRider(self, riderId: int) -> None:
-        self.active_riders.discard(riderId)
+    def cancelRider(self, riderId):
+        """
+        :type riderId: int
+        :rtype: None
+        """
+        if riderId in self.__riders:
+            del self.__riders[riderId]
+        

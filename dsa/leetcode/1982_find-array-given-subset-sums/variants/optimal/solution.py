@@ -1,31 +1,20 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def recoverArray(self, n: int, sums: List[int]) -> List[int]:
-        current = sorted(sums)
-        answer = []
-
-        for _ in range(n):
-            magnitude = current[1] - current[0]
-            remaining = Counter(current)
-            without = []
-            with_value = []
-
-            for total in current:
-                if remaining[total] == 0:
-                    continue
-                without.append(total)
-                with_value.append(total + magnitude)
-                remaining[total] -= 1
-                remaining[total + magnitude] -= 1
-
-            if 0 in without:
-                answer.append(magnitude)
-                current = without
-            else:
-                answer.append(-magnitude)
-                current = with_value
-
-        return answer
+        m = -min(sums)
+        sl = SortedList(x + m for x in sums)
+        sl.remove(0)
+        ans = [sl[0]]
+        for i in range(1, n):
+            for j in range(1 << i):
+                if j >> (i - 1) & 1:
+                    s = sum(ans[k] for k in range(i) if j >> k & 1)
+                    sl.remove(s)
+            ans.append(sl[0])
+        for i in range(1 << n):
+            s = sum(ans[j] for j in range(n) if i >> j & 1)
+            if s == m:
+                for j in range(n):
+                    if i >> j & 1:
+                        ans[j] *= -1
+                break
+        return ans

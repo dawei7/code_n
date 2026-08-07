@@ -1,7 +1,6 @@
 class Solution:
     def largestGoodInteger(self, num: str) -> str:
-        best = ""
-        for index in range(len(num) - 2):
-            if num[index] == num[index + 1] == num[index + 2] and num[index] > best:
-                best = num[index]
-        return best * 3
+        for i in range(9, -1, -1):
+            if (s := str(i) * 3) in num:
+                return s
+        return ""

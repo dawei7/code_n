@@ -1,21 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table, dp
 class Solution:
-    def maxFrequency(self, nums: List[int], k: int) -> int:
-        base = nums.count(k)
-        best_gain = 0
-
-        for source in range(1, 51):
-            if source == k:
-                continue
-            current = 0
-            for value in nums:
-                if value == source:
-                    current += 1
-                elif value == k:
-                    current -= 1
-                current = max(0, current)
-                best_gain = max(best_gain, current)
-
-        return base + best_gain
+    def maxFrequency(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = 0
+        cnt = collections.defaultdict(int)
+        for x in nums:
+            cnt[x] = max(cnt[x], cnt[k])+1
+            result = max(result+int(x == k), cnt[x])
+        return result

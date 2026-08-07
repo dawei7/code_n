@@ -1,21 +1,16 @@
 class Solution:
     def countSubstrings(self, s: str, t: str) -> int:
-        width = len(t)
-        previous_equal = [0] * (width + 1)
-        previous_one_difference = [0] * (width + 1)
-        total = 0
-
-        for char_s in s:
-            current_equal = [0] * (width + 1)
-            current_one_difference = [0] * (width + 1)
-            for j, char_t in enumerate(t, 1):
-                if char_s == char_t:
-                    current_equal[j] = previous_equal[j - 1] + 1
-                    current_one_difference[j] = previous_one_difference[j - 1]
-                else:
-                    current_one_difference[j] = previous_equal[j - 1] + 1
-                total += current_one_difference[j]
-            previous_equal = current_equal
-            previous_one_difference = current_one_difference
-
-        return total
+        ans = 0
+        m, n = len(s), len(t)
+        for i, a in enumerate(s):
+            for j, b in enumerate(t):
+                if a != b:
+                    l = r = 0
+                    while i > l and j > l and s[i - l - 1] == t[j - l - 1]:
+                        l += 1
+                    while (
+                        i + r + 1 < m and j + r + 1 < n and s[i + r + 1] == t[j + r + 1]
+                    ):
+                        r += 1
+                    ans += (l + 1) * (r + 1)
+        return ans

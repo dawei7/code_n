@@ -1,7 +1,14 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def checkPowersOfThree(self, n: int) -> bool:
-        while n:
-            n, digit = divmod(n, 3)
-            if digit == 2:
+    def checkPowersOfThree(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        while n > 0:
+            if n%3 == 2:
                 return False
+            n //= 3
         return True

@@ -1,17 +1,12 @@
-from typing import List
-
-
 class Solution:
     def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
-        difference = [0] * 52
-        for start, end in ranges:
-            difference[start] += 1
-            difference[end + 1] -= 1
-
-        active = 0
-        for value in range(1, right + 1):
-            active += difference[value]
-            if value >= left and active == 0:
+        diff = [0] * 52
+        for l, r in ranges:
+            diff[l] += 1
+            diff[r + 1] -= 1
+        s = 0
+        for i, x in enumerate(diff):
+            s += x
+            if s <= 0 and left <= i <= right:
                 return False
-
         return True

@@ -1,30 +1,27 @@
+# Time:  O(n)
+# Space: O(1)
+
+# two pointers
 class Solution:
-    def mergeArrays(self, nums1: List[List[int]], nums2: List[List[int]]) -> List[List[int]]:
-        first = 0
-        second = 0
-        merged = []
-
-        while first < len(nums1) and second < len(nums2):
-            first_id, first_value = nums1[first]
-            second_id, second_value = nums2[second]
-
-            if first_id == second_id:
-                merged.append([first_id, first_value + second_value])
-                first += 1
-                second += 1
-            elif first_id < second_id:
-                merged.append([first_id, first_value])
-                first += 1
+    def mergeArrays(self, nums1, nums2):
+        """
+        :type nums1: List[List[int]]
+        :type nums2: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        result = []
+        i = j = 0
+        while i < len(nums1) or j < len(nums2):
+            if j == len(nums2) or (i < len(nums1) and nums1[i][0] < nums2[j][0]):
+                if result and result[-1][0] == nums1[i][0]:
+                    result[-1][1] += nums1[i][1]
+                else:
+                    result.append(nums1[i])
+                i += 1
             else:
-                merged.append([second_id, second_value])
-                second += 1
-
-        while first < len(nums1):
-            merged.append(nums1[first][:])
-            first += 1
-
-        while second < len(nums2):
-            merged.append(nums2[second][:])
-            second += 1
-
-        return merged
+                if result and result[-1][0] == nums2[j][0]:
+                    result[-1][1] += nums2[j][1]
+                else:
+                    result.append(nums2[j])
+                j += 1
+        return result

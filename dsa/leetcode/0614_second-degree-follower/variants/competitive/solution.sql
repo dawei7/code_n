@@ -1,12 +1,8 @@
-WITH active_followers AS (
-    SELECT DISTINCT follower AS user_id
-    FROM Follow
-)
-SELECT
-    relationships.followee AS follower,
-    COUNT(*) AS num
-FROM Follow AS relationships
-JOIN active_followers
-    ON active_followers.user_id = relationships.followee
-GROUP BY relationships.followee
-ORDER BY follower;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT f1.follower, COUNT(DISTINCT f2.follower) AS num
+FROM follow f1
+JOIN follow f2 ON f1.follower = f2.followee
+GROUP BY f1.follower
+

@@ -1,13 +1,16 @@
-from math import isqrt
-
-
 class Solution:
     def sumOfLargestPrimes(self, s: str) -> int:
-        primes: set[int] = set()
-        for start in range(len(s)):
-            value = 0
-            for digit in s[start:]:
-                value = value * 10 + int(digit)
-                if value > 1 and all((value % divisor for divisor in range(2, isqrt(value) + 1))):
-                    primes.add(value)
-        return sum(sorted(primes)[-3:])
+        def is_prime(x: int) -> bool:
+            if x < 2:
+                return False
+            return all(x % i for i in range(2, int(sqrt(x)) + 1))
+
+        st = set()
+        n = len(s)
+        for i in range(n):
+            x = 0
+            for j in range(i, n):
+                x = x * 10 + int(s[j])
+                if is_prime(x):
+                    st.add(x)
+        return sum(sorted(st)[-3:])

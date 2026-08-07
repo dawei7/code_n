@@ -1,33 +1,29 @@
-class Solution:
-    def maximumPrimeDifference(self, nums: List[int]) -> int:
-        primes = {
-            2,
-            3,
-            5,
-            7,
-            11,
-            13,
-            17,
-            19,
-            23,
-            29,
-            31,
-            37,
-            41,
-            43,
-            47,
-            53,
-            59,
-            61,
-            67,
-            71,
-            73,
-            79,
-            83,
-            89,
-            97,
-        }
+# Time:  O(r + n), r = max(nums)
+# Space: O(r)
 
-        first = next(index for index, value in enumerate(nums) if value in primes)
-        last = next(index for index in range(len(nums) - 1, -1, -1) if nums[index] in primes)
-        return last - first
+# linear sieve of eratosthenes, number theory
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return spf
+
+
+MAX_N = 100
+SPF = linear_sieve_of_eratosthenes(MAX_N)
+class Solution:
+    def maximumPrimeDifference(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left = next(i for i in range(len(nums)) if SPF[nums[i]] == nums[i])
+        right = next(i for i in reversed(range(len(nums))) if SPF[nums[i]] == nums[i])
+        return right-left

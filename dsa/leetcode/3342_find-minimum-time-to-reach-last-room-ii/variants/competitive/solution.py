@@ -1,31 +1,34 @@
-from heapq import heappop, heappush
+# Time:  O(n * m * logn(n * m))
+# Space: O(n * m)
+
+import heapq
 
 
+# dijkstra's algorithm
 class Solution:
-    def minTimeToReach(self, moveTime: List[List[int]]) -> int:
-        rows = len(moveTime)
-        columns = len(moveTime[0])
-        distances = [[float("inf")] * columns for _ in range(rows)]
-        distances[0][0] = 0
-        queue = [(0, 0, 0)]
-
-        while queue:
-            time, row, column = heappop(queue)
-
-            if time != distances[row][column]:
-                continue
-            if row == rows - 1 and column == columns - 1:
-                return time
-
-            duration = 1 if (row + column) % 2 == 0 else 2
-            for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_delta
-                next_column = column + column_delta
-
-                if 0 <= next_row < rows and 0 <= next_column < columns:
-                    next_time = max(time, moveTime[next_row][next_column]) + duration
-                    if next_time < distances[next_row][next_column]:
-                        distances[next_row][next_column] = next_time
-                        heappush(queue, (next_time, next_row, next_column))
-
-        return -1
+    def minTimeToReach(self, moveTime):
+        """
+        :type moveTime: List[List[int]]
+        :rtype: int
+        """
+        def dijkstra(start, target):
+            DIRECTIONS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+            dist = [[float("inf")]*len(moveTime[0]) for _ in range(len(moveTime))]
+            dist[start[0]][start[1]] = 0
+            min_heap = [(dist[start[0]][start[1]], start[0], start[1])]
+            while min_heap:
+                curr, i, j = heapq.heappop(min_heap)
+                if curr != dist[i][j]:
+                    continue
+                if (i, j) == target:
+                    break
+                for di, dj in DIRECTIONS:
+                    ni, nj = i+di, j+dj
+                    c = (i+j)%2+1
+                    if not (0 <= ni < len(moveTime) and 0 <= nj < len(moveTime[0]) and dist[ni][nj] > max(moveTime[ni][nj], curr)+c):
+                        continue
+                    dist[ni][nj] = max(moveTime[ni][nj], curr)+c
+                    heapq.heappush(min_heap, (dist[ni][nj], ni, nj))
+            return dist[target[0]][target[1]]
+    
+        return dijkstra((0, 0), (len(moveTime)-1, len(moveTime[0])-1))

@@ -1,26 +1,25 @@
+# Time:  O(n)
+# Space: O(1)
+
+# two pointers
 class Solution:
-    def canChange(self, start: str, target: str) -> bool:
-        n = len(start)
+    def canChange(self, start, target):
+        """
+        :type start: str
+        :type target: str
+        :rtype: bool
+        """
         i = j = 0
-
-        while i < n or j < n:
-            while i < n and start[i] == "_":
+        while True:
+            while i < len(start) and start[i] == '_':
                 i += 1
-            while j < n and target[j] == "_":
+            while j < len(target) and target[j] == '_':
                 j += 1
-
-            if i == n or j == n:
-                return i == n and j == n
-
-            piece = start[i]
-            if piece != target[j]:
-                return False
-            if piece == "L" and i < j:
-                return False
-            if piece == "R" and i > j:
-                return False
-
+            if i == len(start) and j == len(target):
+                break
+            if i == len(start) or j == len(target) or start[i] != target[j] or \
+               (start[i] == 'L' and i < j) or (start[i] == 'R' and i > j):
+                    return False
             i += 1
             j += 1
-
         return True

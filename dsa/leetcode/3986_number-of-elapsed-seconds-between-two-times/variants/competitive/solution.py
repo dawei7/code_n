@@ -1,7 +1,16 @@
-class Solution:
-    def secondsBetweenTimes(self, startTime: str, endTime: str) -> int:
-        def to_seconds(time: str) -> int:
-            hours, minutes, seconds = map(int, time.split(":"))
-            return hours * 3600 + minutes * 60 + seconds
+# Time:  O(1)
+# Space: O(1)
 
-        return to_seconds(endTime) - to_seconds(startTime)
+# string
+class Solution:
+    def secondsBetweenTimes(self, startTime, endTime):
+        """
+        :type startTime: str
+        :type endTime: str
+        :rtype: int
+        """
+        def to_seconds(x):
+            h, m, s = map(int, x.split(':'))
+            return h*60*60+m*60+s
+        
+        return to_seconds(endTime)-to_seconds(startTime)

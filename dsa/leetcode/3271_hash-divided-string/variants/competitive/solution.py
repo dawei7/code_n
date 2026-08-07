@@ -1,11 +1,13 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def stringHash(self, s: str, k: int) -> str:
-        result = []
-
-        for start in range(0, len(s), k):
-            group_sum = 0
-            for index in range(start, start + k):
-                group_sum += ord(s[index]) - ord("a")
-            result.append(chr(ord("a") + group_sum % 26))
-
+    def stringHash(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        result = (chr(ord('a')+reduce(lambda accu, x: (accu+x)%26,  (ord(s[i+j])-ord('a') for j in range(k)), 0)) for i in range(0, len(s), k))
         return "".join(result)

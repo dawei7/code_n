@@ -1,13 +1,23 @@
-from typing import List
-
+# Time:  O(nlon + n * t), t is the value of target.
+# Space: O(t)
 
 class Solution:
-    def combinationSum4(self, nums: List[int], target: int) -> int:
-        ways = [0] * (target + 1)
-        ways[0] = 1
+    def combinationSum4(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        dp = [0] * (target+1)
+        dp[0] = 1
+        nums.sort()
 
-        for total in range(1, target + 1):
-            for number in nums:
-                if number <= total:
-                    ways[total] += ways[total - number]
-        return ways[target]
+        for i in range(1, target+1):
+            for j in range(len(nums)):
+                if nums[j] <= i:
+                    dp[i] += dp[i - nums[j]]
+                else:
+                    break
+
+        return dp[target]
+

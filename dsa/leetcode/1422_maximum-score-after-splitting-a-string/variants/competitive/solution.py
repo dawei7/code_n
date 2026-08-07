@@ -1,12 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def maxScore(self, s: str) -> int:
-        left_zeros = 0
-        right_ones = s.count("1")
-        best = 0
-        for character in s[:-1]:
-            if character == "0":
-                left_zeros += 1
+    def maxScore(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result, zeros, ones = 0, 0, 0
+        for i in range(1, len(s)-1):
+            if s[i] == '0':
+                zeros += 1
             else:
-                right_ones -= 1
-            best = max(best, left_zeros + right_ones)
-        return best
+                ones += 1
+            result = max(result, zeros-ones)
+        return result + ones + (s[0] == '0') + (s[-1] == '1')

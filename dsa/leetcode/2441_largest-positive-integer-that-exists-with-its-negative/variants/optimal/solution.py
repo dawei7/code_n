@@ -1,7 +1,4 @@
-from typing import List
-
-
 class Solution:
     def findMaxK(self, nums: List[int]) -> int:
-        values = set(nums)
-        return max((value for value in values if value > 0 and -value in values), default=-1)
+        s = set(nums)
+        return max((x for x in s if -x in s), default=-1)

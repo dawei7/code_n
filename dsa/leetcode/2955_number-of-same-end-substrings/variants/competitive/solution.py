@@ -1,21 +1,21 @@
-from typing import List
+# Time:  O(26 * (n + q))
+# Space: O(26 * n)
 
-
+# freq table, prefix sum
 class Solution:
-    def sameEndSubstringCount(self, s: str, queries: List[List[int]]) -> List[int]:
-        prefix = [[0] * 26]
-
-        for character in s:
-            current = prefix[-1].copy()
-            current[ord(character) - ord("a")] += 1
-            prefix.append(current)
-
-        answer = []
-        for left, right in queries:
-            total = 0
-            for letter in range(26):
-                frequency = prefix[right + 1][letter] - prefix[left][letter]
-                total += frequency * (frequency + 1) // 2
-            answer.append(total)
-
-        return answer
+    def sameEndSubstringCount(self, s, queries):
+        """
+        :type s: str
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        prefix = [[0]*26]
+        for i in range(len(s)):
+            prefix.append(prefix[-1][:])
+            prefix[-1][ord(s[i])-ord('a')] += 1
+        result = [0]*len(queries)
+        for i, (l, r) in enumerate(queries):
+            for j in range(26):
+                cnt = prefix[r+1][j]-prefix[l][j]
+                result[i] += (1+cnt)*cnt//2
+        return result

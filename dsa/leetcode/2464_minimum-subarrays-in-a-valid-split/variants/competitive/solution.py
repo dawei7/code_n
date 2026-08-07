@@ -1,37 +1,22 @@
-from math import isqrt
-from typing import List
+# Time:  O(n^2 * logr), r = max(nums)
+# Space: O(n)
 
-
+# dp
 class Solution:
-    def validSubarraySplit(self, nums: List[int]) -> int:
-        maximum = max(nums)
-        smallest_factor = list(range(maximum + 1))
+    def validSubarraySplit(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        for factor in range(2, isqrt(maximum) + 1):
-            if smallest_factor[factor] != factor:
-                continue
-            for multiple in range(factor * factor, maximum + 1, factor):
-                if smallest_factor[multiple] == multiple:
-                    smallest_factor[multiple] = factor
-
-        n = len(nums)
-        infinity = n + 1
-        splits = [0] + [infinity] * n
-        best_start = {}
-
-        for index, value in enumerate(nums):
-            factors = []
-            remaining = value
-            while remaining > 1:
-                prime = smallest_factor[remaining]
-                factors.append(prime)
-                while remaining % prime == 0:
-                    remaining //= prime
-
-            for prime in factors:
-                best_start[prime] = min(best_start.get(prime, infinity), splits[index])
-
-            if factors:
-                splits[index + 1] = 1 + min(best_start[prime] for prime in factors)
-
-        return -1 if splits[n] > n else splits[n]
+        dp = [float("inf")]*(len(nums)+1)  # dp[i]: min number of subarrays in nums[:i]
+        dp[0] = 0
+        for i in range(1, len(nums)+1):
+            for j in range(i):
+                 if gcd(nums[j], nums[i-1]) != 1:
+                     dp[i] = min(dp[i], dp[j]+1)
+        return dp[-1] if dp[-1] != float("inf") else -1

@@ -1,25 +1,21 @@
-from typing import List
-
-
 class Solution:
     def duplicateZeros(self, arr: List[int]) -> None:
-        duplicates = 0
-        last = len(arr) - 1
-        source = 0
-
-        while source <= last - duplicates:
-            if arr[source] == 0:
-                if source == last - duplicates:
-                    arr[last] = 0
-                    last -= 1
-                    break
-                duplicates += 1
-            source += 1
-
-        for source in range(last - duplicates, -1, -1):
-            if arr[source] == 0:
-                arr[source + duplicates] = 0
-                duplicates -= 1
-                arr[source + duplicates] = 0
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        n = len(arr)
+        i, k = -1, 0
+        while k < n:
+            i += 1
+            k += 1 if arr[i] else 2
+        j = n - 1
+        if k == n + 1:
+            arr[j] = 0
+            i, j = i - 1, j - 1
+        while ~j:
+            if arr[i] == 0:
+                arr[j] = arr[j - 1] = arr[i]
+                j -= 1
             else:
-                arr[source + duplicates] = arr[source]
+                arr[j] = arr[i]
+            i, j = i - 1, j - 1

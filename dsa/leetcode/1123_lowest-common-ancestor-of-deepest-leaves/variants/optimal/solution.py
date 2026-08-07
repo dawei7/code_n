@@ -1,18 +1,20 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def lcaDeepestLeaves(self, root: Optional["TreeNode"]) -> Optional["TreeNode"]:
-        def summarize(node):
-            if node is None:
-                return 0, None
+    def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        def dfs(root):
+            if root is None:
+                return None, 0
+            l, d1 = dfs(root.left)
+            r, d2 = dfs(root.right)
+            if d1 > d2:
+                return l, d1 + 1
+            if d1 < d2:
+                return r, d2 + 1
+            return root, d1 + 1
 
-            left_height, left_answer = summarize(node.left)
-            right_height, right_answer = summarize(node.right)
-            if left_height > right_height:
-                return left_height + 1, left_answer
-            if right_height > left_height:
-                return right_height + 1, right_answer
-            return left_height + 1, node
-
-        return summarize(root)[1]
+        return dfs(root)[0]

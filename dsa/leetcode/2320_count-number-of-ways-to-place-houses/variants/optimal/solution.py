@@ -1,14 +1,10 @@
 class Solution:
     def countHousePlacements(self, n: int) -> int:
-        modulus = 1_000_000_007
-        ending_empty = 1
-        ending_house = 1
-
-        for _ in range(2, n + 1):
-            ending_empty, ending_house = (
-                ending_empty + ending_house,
-                ending_empty,
-            )
-
-        one_side = (ending_empty + ending_house) % modulus
-        return one_side * one_side % modulus
+        mod = 10**9 + 7
+        f = [1] * n
+        g = [1] * n
+        for i in range(1, n):
+            f[i] = g[i - 1]
+            g[i] = (f[i - 1] + g[i - 1]) % mod
+        v = f[-1] + g[-1]
+        return v * v % mod

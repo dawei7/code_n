@@ -1,24 +1,21 @@
-from typing import List
-
+# Time:  O(n * 2^n)
+# Space: O(n * 2^n)
 
 class Solution:
-    def letterCasePermutation(self, s: str) -> List[str]:
-        characters = list(s)
-        permutations = []
-
-        def generate(index: int) -> None:
-            if index == len(characters):
-                permutations.append("".join(characters))
-                return
-            if characters[index].isalpha():
-                original = characters[index]
-                characters[index] = original.lower()
-                generate(index + 1)
-                characters[index] = original.upper()
-                generate(index + 1)
-                characters[index] = original
+    def letterCasePermutation(self, S):
+        """
+        :type S: str
+        :rtype: List[str]
+        """
+        result = [[]]
+        for c in S:
+            if c.isalpha():
+                for i in range(len(result)):
+                    result.append(result[i][:])
+                    result[i].append(c.lower())
+                    result[-1].append(c.upper())
             else:
-                generate(index + 1)
+                for s in result:
+                    s.append(c)
+        return map("".join, result)
 
-        generate(0)
-        return permutations

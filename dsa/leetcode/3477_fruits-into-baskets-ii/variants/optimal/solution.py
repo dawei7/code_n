@@ -1,16 +1,12 @@
-from typing import List
-
-
 class Solution:
     def numOfUnplacedFruits(self, fruits: List[int], baskets: List[int]) -> int:
-        unplaced = 0
-
-        for fruit in fruits:
-            for index, capacity in enumerate(baskets):
-                if capacity >= fruit:
-                    baskets[index] = 0
+        n = len(fruits)
+        vis = [False] * n
+        ans = n
+        for x in fruits:
+            for i, y in enumerate(baskets):
+                if y >= x and not vis[i]:
+                    vis[i] = True
+                    ans -= 1
                     break
-            else:
-                unplaced += 1
-
-        return unplaced
+        return ans

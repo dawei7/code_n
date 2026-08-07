@@ -1,6 +1,7 @@
+# Time:  O(n)
+# Space: O(1)
+
 SELECT name
-FROM Customer
-WHERE referee_id <> 2
-   OR referee_id IS NULL
-ORDER BY name, id;
+FROM customer 
+WHERE referee_id is NULL OR referee_id != 2;
 

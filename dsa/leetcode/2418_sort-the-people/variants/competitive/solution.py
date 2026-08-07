@@ -1,12 +1,14 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# sort
 class Solution:
-    def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
-        return [
-            name
-            for _, name in sorted(
-                zip(heights, names),
-                reverse=True,
-            )
-        ]
+    def sortPeople(self, names, heights):
+        """
+        :type names: List[str]
+        :type heights: List[int]
+        :rtype: List[str]
+        """
+        order = range(len(names))
+        order.sort(key=lambda x: heights[x], reverse=True)
+        return [names[i] for i in order]

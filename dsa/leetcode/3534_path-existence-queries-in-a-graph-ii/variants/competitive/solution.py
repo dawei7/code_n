@@ -1,52 +1,48 @@
+# Time:  O((n + q) * logn)
+# Space: O(nlogn)
+
+# prefix sum, greedy, binary lifting
 class Solution:
-    def pathExistenceQueries(self, n: int, nums: List[int], maxDiff: int, queries: List[List[int]]) -> List[int]:
-        order = sorted(range(n), key=lambda node: nums[node])
-        values = [nums[node] for node in order]
-        position = [0] * n
+    def pathExistenceQueries(self, n, nums, maxDiff, queries):
+        """
+        :type n: int
+        :type nums: List[int]
+        :type maxDiff: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def ceil_log2_x(x):
+            return (x-1).bit_length() if x-1 >= 0 else -1
 
-        for index, node in enumerate(order):
-            position[node] = index
-
-        farthest = [0] * n
-        right = 0
-
-        for left in range(n):
-            if right < left:
-                right = left
-            while right + 1 < n and values[right + 1] - values[left] <= maxDiff:
-                right += 1
-            farthest[left] = right
-
-        jumps = [farthest]
-        for _ in range(1, n.bit_length()):
-            previous = jumps[-1]
-            jumps.append([previous[previous[index]] for index in range(n)])
-
-        answer = []
-        for source, target in queries:
-            left, right = sorted(
-                (
-                    position[source],
-                    position[target],
-                )
-            )
-
-            if left == right:
-                answer.append(0)
+        sorted_i = sorted((i for i in range(n)), key=lambda i : nums[i])
+        i_to_idx = [0]*n
+        for idx, i in enumerate(sorted_i):
+            i_to_idx[i] = idx
+        prefix = [0]*n
+        for i in range(n-1):
+            prefix[i+1] = prefix[i]+int(nums[sorted_i[i+1]]-nums[sorted_i[i]] > maxDiff)
+        P = [[n-1]*n for _ in range(ceil_log2_x(n-1)+1)]
+        left = 0
+        for right in range(n):
+            while nums[sorted_i[right]]-nums[sorted_i[left]] > maxDiff:
+                P[0][left] = right-1
+                left += 1
+        for i in range(len(P)-1):
+            for j in range(n):
+                P[i+1][j] = P[i][P[i][j]]
+        result = [-1]*len(queries)
+        for idx, (i, j) in enumerate(queries):
+            if i == j:
+                result[idx] = 0
                 continue
-
-            current = left
-            distance = 0
-
-            for power in range(len(jumps) - 1, -1, -1):
-                next_position = jumps[power][current]
-                if current < next_position < right:
-                    current = next_position
-                    distance += 1 << power
-
-            if jumps[0][current] >= right:
-                answer.append(distance + 1)
-            else:
-                answer.append(-1)
-
-        return answer
+            if prefix[i_to_idx[i]] != prefix[i_to_idx[j]]:
+                continue
+            if i_to_idx[i] > i_to_idx[j]:
+                i, j = j, i
+            curr, l = i_to_idx[i], 0
+            for k in reversed(range(len(P))):
+                if P[k][curr] < i_to_idx[j]:
+                    curr = P[k][curr]
+                    l += 1<<k
+            result[idx] = l+1
+        return result

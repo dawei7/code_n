@@ -1,6 +1,4 @@
 class Solution:
     def reversePrefix(self, word: str, ch: str) -> str:
-        boundary = word.find(ch)
-        if boundary == -1:
-            return word
-        return word[: boundary + 1][::-1] + word[boundary + 1 :]
+        i = word.find(ch)
+        return word if i == -1 else word[i::-1] + word[i + 1 :]

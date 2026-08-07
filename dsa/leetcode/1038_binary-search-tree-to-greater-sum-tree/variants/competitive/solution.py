@@ -1,19 +1,28 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
 class Solution:
-    def bstToGst(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        running_sum = 0
-        stack = []
-        node = root
-
-        while node is not None or stack:
-            while node is not None:
-                stack.append(node)
-                node = node.right
-            node = stack.pop()
-            running_sum += node.val
-            node.val = running_sum
-            node = node.left
-
-        return root
+    def bstToGst(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        def bstToGstHelper(root, prev):
+            if not root:
+                return root
+            bstToGstHelper(root.right, prev)
+            root.val += prev[0]
+            prev[0] = root.val
+            bstToGstHelper(root.left, prev)
+            return root
+        
+        prev = [0]
+        return bstToGstHelper(root, prev)

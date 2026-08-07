@@ -1,4 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# math
 class Solution:
-    def minimumCost(self, nums: list[int], k: int) -> int:
-        operations = (sum(nums) - 1) // k
-        return operations * (operations + 1) // 2 % 1_000_000_007
+    def minimumCost(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+        
+        cnt = ceil_divide(sum(nums), k)-1
+        return ((1+cnt)*cnt//2)%MOD

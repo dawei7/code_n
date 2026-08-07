@@ -1,21 +1,30 @@
-from functools import lru_cache
-
+# Time:  O(n!)
+# Space: O(n)
 
 class Solution:
-    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
-        if desiredTotal <= 0:
-            return True
-        if maxChoosableInteger * (maxChoosableInteger + 1) // 2 < desiredTotal:
+    def canIWin(self, maxChoosableInteger, desiredTotal):
+        """
+        :type maxChoosableInteger: int
+        :type desiredTotal: int
+        :rtype: bool
+        """
+        def canIWinHelper(maxChoosableInteger, desiredTotal, visited, lookup):
+            if visited in lookup:
+                return lookup[visited]
+
+            mask = 1
+            for i in range(maxChoosableInteger):
+                if visited & mask == 0:
+                    if i + 1 >= desiredTotal or \
+                       not canIWinHelper(maxChoosableInteger, desiredTotal - (i + 1), visited | mask, lookup):
+                        lookup[visited] = True
+                        return True
+                mask <<= 1
+            lookup[visited] = False
             return False
 
-        @lru_cache(None)
-        def can_win(used: int, remaining: int) -> bool:
-            for choice in range(maxChoosableInteger, 0, -1):
-                bit = 1 << (choice - 1)
-                if used & bit:
-                    continue
-                if choice >= remaining or not can_win(used | bit, remaining - choice):
-                    return True
+        if (1 + maxChoosableInteger) * (maxChoosableInteger / 2) < desiredTotal:
             return False
 
-        return can_win(0, desiredTotal)
+        return canIWinHelper(maxChoosableInteger, desiredTotal, 0, {})
+

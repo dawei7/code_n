@@ -1,10 +1,13 @@
+# Time:  O(n) if hash join, O(nlogn) if merge join
+# Space: O(n)
+
 SELECT
-    employee.name,
-    bonus.bonus
-FROM Employee AS employee
-LEFT JOIN Bonus AS bonus
-    ON bonus.empId = employee.empId
-WHERE bonus.bonus < 1000
-   OR bonus.bonus IS NULL
-ORDER BY employee.name, employee.empId;
+    Employee.name, Bonus.bonus
+FROM
+    Employee
+        LEFT JOIN
+    Bonus ON Employee.empid = Bonus.empid
+WHERE
+    Bonus.bonus < 1000 OR Bonus.bonus IS NULL
+;
 

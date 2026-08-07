@@ -1,21 +1,22 @@
+# Time:  O(m * n)
+# Space: O(1)
+
 class Solution:
-    def countSubstrings(self, s: str, t: str) -> int:
-        width = len(t)
-        previous_equal = [0] * (width + 1)
-        previous_one_difference = [0] * (width + 1)
-        total = 0
+    def countSubstrings(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: int
+        """
+        def count(i, j):  # for each possible alignment, count the number of substrs that differ by 1 char
+            result = left_cnt = right_cnt = 0  # left and right consecutive same counts relative to the different char
+            for k in range(min(len(s)-i, len(t)-j)):
+                right_cnt += 1
+                if s[i+k] != t[j+k]:
+                    left_cnt, right_cnt = right_cnt, 0
+                    # prev_i = i+k-prev+1
+                result += left_cnt  # target substrs are [s[left_i+c:i+k+1] for c in range(left_cnt)]
+            return result
 
-        for char_s in s:
-            current_equal = [0] * (width + 1)
-            current_one_difference = [0] * (width + 1)
-            for j, char_t in enumerate(t, 1):
-                if char_s == char_t:
-                    current_equal[j] = previous_equal[j - 1] + 1
-                    current_one_difference[j] = previous_one_difference[j - 1]
-                else:
-                    current_one_difference[j] = previous_equal[j - 1] + 1
-                total += current_one_difference[j]
-            previous_equal = current_equal
-            previous_one_difference = current_one_difference
-
-        return total
+        return sum(count(i, 0) for i in range(len(s))) + \
+               sum(count(0, j) for j in range(1, len(t)))

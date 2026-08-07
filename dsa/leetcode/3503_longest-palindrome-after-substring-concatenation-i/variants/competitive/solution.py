@@ -1,44 +1,42 @@
+# Time:  O(n * m)
+# Space: O(n + m)
+
+# manacher's algorithm, dp
 class Solution:
-    def longestPalindrome(self, s: str, t: str) -> int:
-        def longest_palindrome_from(text: str) -> List[int]:
-            longest = [1] * len(text)
+    def longestPalindrome(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: int
+        """
+        def manacher(s):
+            s = '^#' + '#'.join(s) + '#$'
+            P = [0]*len(s)
+            C, R = 0, 0
+            for i in range(1, len(s)-1):
+                i_mirror = 2*C-i
+                if R > i:
+                    P[i] = min(R-i, P[i_mirror])
+                while s[i+1+P[i]] == s[i-1-P[i]]:
+                    P[i] += 1
+                if i+P[i] > R:
+                    C, R = i, i+P[i]
+            return P
 
-            for center in range(len(text)):
-                left = right = center
-                while left >= 0 and right < len(text) and text[left] == text[right]:
-                    longest[left] = max(longest[left], right - left + 1)
-                    left -= 1
-                    right += 1
+        def longest_palindrome(s):
+            result = [0]*(len(s)+1)
+            P = manacher(s)
+            for i in range(1, len(P)-1):
+                result[(i-P[i])//2] = P[i]
+            return result
 
-                left, right = center, center + 1
-                while left >= 0 and right < len(text) and text[left] == text[right]:
-                    longest[left] = max(longest[left], right - left + 1)
-                    left -= 1
-                    right += 1
-
-            return longest
-
-        reversed_t = t[::-1]
-        palindrome_s = longest_palindrome_from(s)
-        palindrome_t = longest_palindrome_from(reversed_t)
-        answer = max(max(palindrome_s), max(palindrome_t))
-
-        next_row = [0] * (len(t) + 1)
-        for i in range(len(s) - 1, -1, -1):
-            current_row = [0] * (len(t) + 1)
-            for j in range(len(t) - 1, -1, -1):
-                if s[i] != reversed_t[j]:
-                    continue
-
-                middle_s = palindrome_s[i + 1] if i + 1 < len(s) else 0
-                middle_t = palindrome_t[j + 1] if j + 1 < len(t) else 0
-                current_row[j] = 2 + max(
-                    middle_s,
-                    middle_t,
-                    next_row[j + 1],
-                )
-                answer = max(answer, current_row[j])
-
-            next_row = current_row
-
-        return answer
+        t = t[::-1]
+        p1 = longest_palindrome(s)
+        p2 = longest_palindrome(t)
+        result = 0
+        dp = [[0]*(len(t)+1) for _ in range(len(s)+1)]
+        for i in range(len(s)):
+            for j in range(len(t)):
+                dp[i+1][j+1] = dp[i][j]+2 if s[i] == t[j] else 0
+                result = max(result, dp[i+1][j+1]+max(p1[i+int(s[i] == t[j])] , p2[j+int(s[i] == t[j])]))
+        return result

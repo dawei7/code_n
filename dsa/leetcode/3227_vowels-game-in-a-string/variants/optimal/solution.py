@@ -1,3 +1,4 @@
 class Solution:
     def doesAliceWin(self, s: str) -> bool:
-        return any(character in "aeiou" for character in s)
+        vowels = set("aeiou")
+        return any(c in vowels for c in s)

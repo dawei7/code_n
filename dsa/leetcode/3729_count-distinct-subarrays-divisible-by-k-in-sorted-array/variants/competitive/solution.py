@@ -1,30 +1,60 @@
-from math import gcd
+# Time:  O(n)
+# Space: O(min(n, k))
+
+import collections
 
 
+# prefix sum, freq table
 class Solution:
-    def numGoodSubarrays(self, nums: list[int], k: int) -> int:
-        remainder_frequency = {0: 1}
-        remainder = 0
-        occurrence_count = 0
-        for value in nums:
-            remainder = (remainder + value) % k
-            occurrence_count += remainder_frequency.get(remainder, 0)
-            remainder_frequency[remainder] = remainder_frequency.get(remainder, 0) + 1
+    def numGoodSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = prefix = 0
+        cnt = collections.defaultdict(int)
+        cnt[0] = 1
+        i = 0
+        while i < len(nums):
+            j, prefix2 = i, prefix
+            while j < len(nums) and nums[j] == nums[i]:
+                prefix2 = (prefix2+nums[j])%k
+                result += cnt[prefix2]
+                j += 1
+            while i < j:
+                prefix = (prefix+nums[i])%k
+                cnt[prefix] += 1
+                i += 1
+        return result
 
-        duplicate_count = 0
-        run_start = 0
-        while run_start < len(nums):
-            run_end = run_start + 1
-            while run_end < len(nums) and nums[run_end] == nums[run_start]:
-                run_end += 1
 
-            run_length = run_end - run_start
-            divisible_length_step = k // gcd(nums[run_start], k)
-            divisible_length_count = run_length // divisible_length_step
-            duplicate_count += (
-                divisible_length_count * run_length
-                - divisible_length_step * divisible_length_count * (divisible_length_count + 1) // 2
-            )
-            run_start = run_end
+# Time:  O(n)
+# Space: O(min(n, k))
+import collections
 
-        return occurrence_count - duplicate_count
+
+# prefix sum, freq table
+class Solution2(object):
+    def numGoodSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = prefix = 0
+        cnt = collections.defaultdict(int)
+        cnt[0] = 1
+        for x in nums:
+            prefix = (prefix+x)%k
+            result += cnt[prefix]
+            cnt[prefix] += 1
+        l = 0
+        for i in range(len(nums)):
+            l += 1
+            if i+1 == len(nums) or nums[i+1] != nums[i]:
+                for j in range(1, l+1):
+                    if nums[i]*j%k == 0:
+                        result -= (l-j+1)-1
+                l = 0
+        return result

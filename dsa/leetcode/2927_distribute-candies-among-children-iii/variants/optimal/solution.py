@@ -1,14 +1,10 @@
-from typing import List
-
-
 class Solution:
     def distributeCandies(self, n: int, limit: int) -> int:
-        def unrestricted(total: int) -> int:
-            if total < 0:
-                return 0
-            return (total + 1) * (total + 2) // 2
-
-        step = limit + 1
-        return (
-            unrestricted(n) - 3 * unrestricted(n - step) + 3 * unrestricted(n - 2 * step) - unrestricted(n - 3 * step)
-        )
+        if n > 3 * limit:
+            return 0
+        ans = comb(n + 2, 2)
+        if n > limit:
+            ans -= 3 * comb(n - limit + 1, 2)
+        if n - 2 >= 2 * limit:
+            ans += 3 * comb(n - 2 * limit, 2)
+        return ans

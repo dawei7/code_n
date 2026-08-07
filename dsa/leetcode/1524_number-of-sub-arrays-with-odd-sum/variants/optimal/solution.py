@@ -1,17 +1,10 @@
-from typing import List
-
-
 class Solution:
     def numOfSubarrays(self, arr: List[int]) -> int:
-        even = 1
-        odd = 0
-        parity = 0
-
-        for value in arr:
-            parity ^= value & 1
-            if parity:
-                odd += 1
-            else:
-                even += 1
-
-        return even * odd % 1_000_000_007
+        mod = 10**9 + 7
+        cnt = [1, 0]
+        ans = s = 0
+        for x in arr:
+            s += x
+            ans = (ans + cnt[s & 1 ^ 1]) % mod
+            cnt[s & 1] += 1
+        return ans

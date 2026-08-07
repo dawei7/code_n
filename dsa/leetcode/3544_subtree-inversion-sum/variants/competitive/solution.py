@@ -1,49 +1,93 @@
+# Time:  O(n)
+# Space: O(n)
+
+# iterative dfs, tree dp
 class Solution:
-    def subtreeInversionSum(self, edges: List[List[int]], nums: List[int], k: int) -> int:
-        n = len(nums)
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+    def subtreeInversionSum(self, edges, nums, k):
+        """
+        :type edges: List[List[int]]
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def iter_dfs():
+            dp = []
+            ret = [0]*3
+            stk = [(1, (0, -1, ret))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    u, p, ret = args
+                    dp.append([0]*2)
+                    ret[:] = [nums[u], 0, 0]
+                    stk.append((4, (u, p, ret)))
+                    stk.append((2, (u, p, ret, 0)))
+                elif step == 2:
+                    u, p, ret, i = args
+                    if i == len(adj[u]):
+                        continue
+                    v = adj[u][i]
+                    stk.append((2, (u, p, ret, i+1)))
+                    if v == p:
+                        continue
+                    new_ret = [0]*3
+                    stk.append((3, (u, p, new_ret, ret, i)))
+                    stk.append((1, (v, u, new_ret)))
+                elif step == 3:
+                    u, p, new_ret, ret, i = args
+                    ret[0] += new_ret[0]
+                    ret[1] += new_ret[1]
+                    ret[2] += new_ret[2]
+                elif step == 4:
+                    u, p, ret = args
+                    ret[1] = max(ret[1], dp[-1][1]-2*ret[0])
+                    ret[2] = max(ret[2], dp[-1][0]+2*ret[0])
+                    dp.pop()
+                    if len(dp)-k >= 0:
+                        dp[len(dp)-k][0] += ret[1]
+                        dp[len(dp)-k][1] += ret[2]
+            return ret[0]+ret[1]
 
-        parent = [-2] * n
-        parent[0] = -1
-        order = [0]
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor != parent[node]:
-                    parent[neighbor] = node
-                    order.append(neighbor)
+        adj = [[] for _ in range(len(nums))]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        return iter_dfs()
 
-        even = [None] * n
-        odd = [None] * n
 
-        for node in reversed(order):
-            keep_even = [nums[node]] * (k + 1)
-            keep_odd = [-nums[node]] * (k + 1)
-            invert_even = -nums[node]
-            invert_odd = nums[node]
-
-            for child in graph[node]:
-                if parent[child] != node:
+# Time:  O(n)
+# Space: O(n)
+# dfs, tree dp
+class Solution2(object):
+    def subtreeInversionSum(self, edges, nums, k):
+        """
+        :type edges: List[List[int]]
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def dfs(u, p):
+            dp.append([0]*2)
+            total, pos, neg = nums[u], 0, 0
+            for v in adj[u]:
+                if v == p:
                     continue
-                child_even = even[child]
-                child_odd = odd[child]
+                new_total, new_pos, new_neg = dfs(v, u)
+                total += new_total
+                pos += new_pos
+                neg += new_neg
+            pos = max(pos, dp[-1][1]-2*total)
+            neg = max(neg, dp[-1][0]+2*total)
+            dp.pop()
+            if len(dp)-k >= 0:
+                dp[len(dp)-k][0] += pos
+                dp[len(dp)-k][1] += neg
+            return total, pos, neg
 
-                for distance in range(k):
-                    keep_even[distance] += child_even[distance + 1]
-                    keep_odd[distance] += child_odd[distance + 1]
-                keep_even[k] += child_even[k]
-                keep_odd[k] += child_odd[k]
-                invert_even += child_odd[1]
-                invert_odd += child_even[1]
-
-                even[child] = None
-                odd[child] = None
-
-            keep_even[k] = max(keep_even[k], invert_even)
-            keep_odd[k] = max(keep_odd[k], invert_odd)
-            even[node] = keep_even
-            odd[node] = keep_odd
-
-        return even[0][k]
+        adj = [[] for _ in range(len(nums))]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        dp = []
+        total, pos, neg = dfs(0, -1)
+        return total+pos

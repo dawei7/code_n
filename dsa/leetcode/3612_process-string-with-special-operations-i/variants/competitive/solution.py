@@ -1,27 +1,35 @@
-from collections import deque
+# Time:  O(r), r = len(result)
+# Space: O(r)
+
+import collections
 
 
+# simulation, deque
 class Solution:
-    def processStr(self, s: str) -> str:
-        result = deque()
-        is_reversed = False
-
-        for character in s:
-            if character == "*":
-                if result:
-                    if is_reversed:
-                        result.popleft()
-                    else:
-                        result.pop()
-            elif character == "#":
-                result.extend(list(result))
-            elif character == "%":
-                is_reversed = not is_reversed
-            elif is_reversed:
-                result.appendleft(character)
+    def processStr(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = collections.deque()
+        right = True
+        for x in s:
+            if x == '*':
+                if not result:
+                    continue
+                if right:
+                    result.pop()
+                else:
+                    result.popleft()
+            elif x == '#':
+                result.extend(result)
+            elif x == '%':
+                right = not right
             else:
-                result.append(character)
-
-        if is_reversed:
-            return "".join(reversed(result))
+                if right:
+                    result.append(x)
+                else:
+                    result.appendleft(x)
+        if not right:
+            result.reverse()
         return "".join(result)

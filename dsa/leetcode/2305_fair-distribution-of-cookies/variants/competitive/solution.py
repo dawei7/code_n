@@ -1,27 +1,23 @@
-from typing import List
+# Time:  O(k * 3^n)
+# Space: O(2^n)
 
-
+# dp, submask enumeration
 class Solution:
-    def distributeCookies(self, cookies: List[int], k: int) -> int:
-        cookies.sort(reverse=True)
-        loads = [0] * k
-        answer = sum(cookies)
-
-        def search(bag_index: int) -> None:
-            nonlocal answer
-            if bag_index == len(cookies):
-                answer = min(answer, max(loads))
-                return
-
-            bag = cookies[bag_index]
-            used = set()
-            for child in range(k):
-                if loads[child] in used or loads[child] + bag >= answer:
-                    continue
-                used.add(loads[child])
-                loads[child] += bag
-                search(bag_index + 1)
-                loads[child] -= bag
-
-        search(0)
-        return answer
+    def distributeCookies(self, cookies, k):
+        """
+        :type cookies: List[int]
+        :type k: int
+        :rtype: int
+        """
+        total = [0]*(1<<len(cookies))
+        for mask in range(1<<len(cookies)):
+            total[mask] = sum(cookies[i] for i in range(len(cookies)) if mask&(1<<i))
+        dp = [[float("inf")]*(1<<len(cookies)) for _ in range(2)]
+        dp[0][0] = 0
+        for i in range(k):
+            for mask in range(1<<len(cookies)):
+                submask = mask
+                while submask:
+                    dp[(i+1)%2][mask] = min(dp[(i+1)%2][mask], max(total[submask], dp[i%2][mask^submask]))
+                    submask = (submask-1)&mask
+        return dp[k%2][-1]

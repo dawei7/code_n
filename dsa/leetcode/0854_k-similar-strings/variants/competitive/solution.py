@@ -1,32 +1,40 @@
-from collections import deque
+# Time:  O(n * n!/(c_a!*...*c_z!), n is the length of A, B,
+#                                  c_a...c_z is the count of each alphabet,
+#                                  n = sum(c_a...c_z)
+# Space: O(n * n!/(c_a!*...*c_z!)
+
+import collections
 
 
 class Solution:
-    def kSimilarity(self, s1: str, s2: str) -> int:
-        if s1 == s2:
-            return 0
+    def kSimilarity(self, A, B):
+        """
+        :type A: str
+        :type B: str
+        :rtype: int
+        """
+        def neighbors(s, B):
+            for i, c in enumerate(s):
+                if c != B[i]:
+                    break
+            t = list(s)
+            for j in range(i+1, len(s)):
+                if t[j] == B[i]:
+                    t[i], t[j] = t[j], t[i]
+                    yield "".join(t)
+                    t[j], t[i] = t[i], t[j]
 
-        queue = deque([(s1, 0)])
-        seen = {s1}
+        q = collections.deque([A])
+        lookup = set()
+        result = 0
+        while q:
+            for _ in range(len(q)):
+                s = q.popleft()
+                if s == B:
+                    return result
+                for t in neighbors(s, B):
+                    if t not in lookup:
+                        lookup.add(t)
+                        q.append(t)
+            result += 1
 
-        while queue:
-            current, swaps = queue.popleft()
-            first_mismatch = next(index for index in range(len(current)) if current[index] != s2[index])
-
-            for index in range(first_mismatch + 1, len(current)):
-                if current[index] != s2[first_mismatch] or current[index] == s2[index]:
-                    continue
-
-                characters = list(current)
-                characters[first_mismatch], characters[index] = (
-                    characters[index],
-                    characters[first_mismatch],
-                )
-                neighbor = "".join(characters)
-                if neighbor == s2:
-                    return swaps + 1
-                if neighbor not in seen:
-                    seen.add(neighbor)
-                    queue.append((neighbor, swaps + 1))
-
-        return 0

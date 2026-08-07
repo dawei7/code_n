@@ -1,17 +1,24 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:
-        projects = sorted(zip(capital, profits))
-        available = []
-        project_index = 0
+    def findMaximizedCapital(self, k, W, Profits, Capital):
+        """
+        :type k: int
+        :type W: int
+        :type Profits: List[int]
+        :type Capital: List[int]
+        :rtype: int
+        """
+        curr = []
+        future = sorted(zip(Capital, Profits), reverse=True)
         for _ in range(k):
-            while project_index < len(projects) and projects[project_index][0] <= w:
-                heappush(available, -projects[project_index][1])
-                project_index += 1
-            if not available:
-                break
-            w -= heappop(available)
-        return w
+            while future and future[-1][0] <= W:
+                heapq.heappush(curr, -future.pop()[1])
+            if curr:
+                W -= heapq.heappop(curr)
+        return W
+

@@ -1,27 +1,16 @@
-from typing import List
-
-
 class Solution:
     def numSubmat(self, mat: List[List[int]]) -> int:
-        columns = len(mat[0])
-        heights = [0] * columns
-        answer = 0
-
-        for row in mat:
-            stack = []
-            ending_here = 0
-
-            for column, value in enumerate(row):
-                heights[column] = heights[column] + 1 if value else 0
-                width = 1
-
-                while stack and stack[-1][0] >= heights[column]:
-                    height, previous_width = stack.pop()
-                    ending_here -= height * previous_width
-                    width += previous_width
-
-                stack.append((heights[column], width))
-                ending_here += heights[column] * width
-                answer += ending_here
-
-        return answer
+        m, n = len(mat), len(mat[0])
+        g = [[0] * n for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if mat[i][j]:
+                    g[i][j] = 1 if j == 0 else 1 + g[i][j - 1]
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                col = inf
+                for k in range(i, -1, -1):
+                    col = min(col, g[k][j])
+                    ans += col
+        return ans

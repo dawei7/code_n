@@ -1,16 +1,19 @@
 class Solution:
     def minimumWhiteTiles(self, floor: str, numCarpets: int, carpetLen: int) -> int:
-        length = len(floor)
-        previous = [0] * (length + 1)
-        for index, tile in enumerate(floor, 1):
-            previous[index] = previous[index - 1] + (tile == "1")
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i >= n:
+                return 0
+            if floor[i] == "0":
+                return dfs(i + 1, j)
+            if j == 0:
+                return s[-1] - s[i]
+            return min(1 + dfs(i + 1, j), dfs(i + carpetLen, j - 1))
 
-        for _ in range(numCarpets):
-            current = [0] * (length + 1)
-            for index in range(1, length + 1):
-                leave_visible = current[index - 1] + (floor[index - 1] == "1")
-                cover = previous[max(0, index - carpetLen)]
-                current[index] = min(leave_visible, cover)
-            previous = current
-
-        return previous[length]
+        n = len(floor)
+        s = [0] * (n + 1)
+        for i, c in enumerate(floor):
+            s[i + 1] = s[i] + int(c == "1")
+        ans = dfs(0, numCarpets)
+        dfs.cache_clear()
+        return ans

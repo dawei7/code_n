@@ -1,14 +1,26 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def convertToBase7(self, num: int) -> str:
-        if num == 0:
-            return "0"
+    def convertToBase7(self, num):
+        if num < 0:
+            return '-' + self.convertToBase7(-num)
+        result = ''
+        while num:
+            result = str(num % 7) + result
+            num //= 7
+        return result if result else '0'
 
-        negative = num < 0
-        value = abs(num)
-        digits = []
-        while value:
-            value, remainder = divmod(value, 7)
-            digits.append(str(remainder))
 
-        representation = "".join(reversed(digits))
-        return f"-{representation}" if negative else representation
+class Solution2(object):
+    def convertToBase7(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        if num < 0:
+            return '-' + self.convertToBase7(-num)
+        if num < 7:
+            return str(num)
+        return self.convertToBase7(num // 7) + str(num % 7)
+

@@ -1,35 +1,32 @@
+# Time:  O(n^2)
+# Space: O(n)
+
+import collections
+
+
+# dp
 class Solution:
-    def countWinningSequences(self, s: str) -> int:
-        modulus = 1_000_000_007
-        moves = {"F": 0, "W": 1, "E": 2}
-        n = len(s)
-        offset = n
-        width = 2 * n + 1
-
-        def score(bob: int, alice: int) -> int:
-            if bob == alice:
-                return 0
-            return 1 if (bob - alice) % 3 == 1 else -1
-
-        dp = [[0] * width for _ in range(3)]
-        alice = moves[s[0]]
-        for bob in range(3):
-            dp[bob][offset + score(bob, alice)] = 1
-
-        for round_index in range(1, n):
-            alice = moves[s[round_index]]
-            next_dp = [[0] * width for _ in range(3)]
-
-            for previous in range(3):
-                for difference in range(-round_index, round_index + 1):
-                    ways = dp[previous][offset + difference]
-                    if ways == 0:
+    def countWinningSequences(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        lookup = {x:i for i, x in enumerate("FWE")}
+        dp = [collections.defaultdict(int) for _ in range(3)]
+        for i, c in enumerate(s):
+            new_dp = [collections.defaultdict(int) for _ in range(3)]
+            x = lookup[c]
+            for j in range(3):
+                diff = (j-x+1)%3-1
+                if i == 0:
+                    new_dp[j][diff] = 1
+                    continue
+                for k in range(3):
+                    if k == j:
                         continue
-                    for bob in range(3):
-                        if bob != previous:
-                            index = offset + difference + score(bob, alice)
-                            next_dp[bob][index] = (next_dp[bob][index] + ways) % modulus
-
-            dp = next_dp
-
-        return sum(dp[last][offset + difference] for last in range(3) for difference in range(1, n + 1)) % modulus
+                    for v, c in dp[k].iteritems():
+                        new_dp[j][v+diff] = (new_dp[j][v+diff]+c)%MOD
+            dp = new_dp
+        return reduce(lambda accu, x: (accu+x)%MOD, (c for j in range(3) for v, c in dp[j].iteritems() if v >= 1), 0)
+    

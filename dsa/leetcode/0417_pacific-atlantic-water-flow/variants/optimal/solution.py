@@ -1,34 +1,39 @@
-from collections import deque
-
-
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        rows = len(heights)
-        columns = len(heights[0])
-
-        def reverse_reachable(starts):
-            reached = set(starts)
-            queue = deque(starts)
-            while queue:
-                row, column = queue.popleft()
-                for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row = row + row_delta
-                    next_column = column + column_delta
-                    next_cell = (next_row, next_column)
+        def bfs(q: Deque[Tuple[int, int]], vis: List[List[bool]]) -> None:
+            while q:
+                x, y = q.popleft()
+                for dx, dy in pairwise(dirs):
+                    nx, ny = x + dx, y + dy
                     if (
-                        0 <= next_row < rows
-                        and 0 <= next_column < columns
-                        and next_cell not in reached
-                        and heights[next_row][next_column] >= heights[row][column]
+                        0 <= nx < m
+                        and 0 <= ny < n
+                        and not vis[nx][ny]
+                        and heights[nx][ny] >= heights[x][y]
                     ):
-                        reached.add(next_cell)
-                        queue.append(next_cell)
-            return reached
+                        vis[nx][ny] = True
+                        q.append((nx, ny))
 
-        pacific_starts = {(0, column) for column in range(columns)}
-        pacific_starts.update((row, 0) for row in range(rows))
-        atlantic_starts = {(rows - 1, column) for column in range(columns)}
-        atlantic_starts.update((row, columns - 1) for row in range(rows))
+        m, n = len(heights), len(heights[0])
+        vis1 = [[False] * n for _ in range(m)]
+        vis2 = [[False] * n for _ in range(m)]
+        q1: Deque[Tuple[int, int]] = deque()
+        q2: Deque[Tuple[int, int]] = deque()
+        dirs = (-1, 0, 1, 0, -1)
 
-        both = reverse_reachable(pacific_starts) & reverse_reachable(atlantic_starts)
-        return [[row, column] for row in range(rows) for column in range(columns) if (row, column) in both]
+        for i in range(m):
+            q1.append((i, 0))
+            vis1[i][0] = True
+            q2.append((i, n - 1))
+            vis2[i][n - 1] = True
+
+        for j in range(n):
+            q1.append((0, j))
+            vis1[0][j] = True
+            q2.append((m - 1, j))
+            vis2[m - 1][j] = True
+
+        bfs(q1, vis1)
+        bfs(q2, vis2)
+
+        return [(i, j) for i in range(m) for j in range(n) if vis1[i][j] and vis2[i][j]]

@@ -1,33 +1,48 @@
-from typing import List
+# Time:  ctor:        O(n^2)
+#        adjacentSum: O(1)
+#.       diagonalSum: O(1)
+# Space: O(n^2)
+
+# hash table
+class neighborSum(object):
+    ADJACENTS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+    DIAGONALS = ((1, 1), (1, -1), (-1, 1), (-1, -1))
 
 
-class NeighborSum:
-    def __init__(self, grid: List[List[int]]):
-        side = len(grid)
-        value_count = side * side
-        self.adjacent = [0] * value_count
-        self.diagonal = [0] * value_count
+    def __init__(self, grid):
+        """
+        :type grid: List[List[int]]
+        """
+        self.__grid = grid
+        self.__lookup = [None]*(len(grid)*len(grid[0]))
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                self.__lookup[grid[i][j]] = (i, j)
 
-        adjacent_directions = ((-1, 0), (0, -1), (0, 1), (1, 0))
-        diagonal_directions = ((-1, -1), (-1, 1), (1, -1), (1, 1))
 
-        for row in range(side):
-            for column in range(side):
-                value = grid[row][column]
-                for row_change, column_change in adjacent_directions:
-                    neighbor_row = row + row_change
-                    neighbor_column = column + column_change
-                    if 0 <= neighbor_row < side and 0 <= neighbor_column < side:
-                        self.adjacent[value] += grid[neighbor_row][neighbor_column]
+    def adjacentSum(self, value):
+        """
+        :type value: int
+        :rtype: int
+        """
+        return self.__sum(value, neighborSum.ADJACENTS)
+    
 
-                for row_change, column_change in diagonal_directions:
-                    neighbor_row = row + row_change
-                    neighbor_column = column + column_change
-                    if 0 <= neighbor_row < side and 0 <= neighbor_column < side:
-                        self.diagonal[value] += grid[neighbor_row][neighbor_column]
+    def diagonalSum(self, value):
+        """
+        :type value: int
+        :rtype: int
+        """
+        return self.__sum(value, neighborSum.DIAGONALS)
 
-    def adjacentSum(self, value: int) -> int:
-        return self.adjacent[value]
 
-    def diagonalSum(self, value: int) -> int:
-        return self.diagonal[value]
+    def __sum(self, value, directions):
+        i, j = self.__lookup[value]
+        total = 0
+        for di, dj in directions:
+            ni, nj = i+di, j+dj
+            if not (0 <= ni < len(self.__grid) and 0 <= nj < len(self.__grid[0])):
+                continue
+            total += self.__grid[ni][nj]
+        return total
+

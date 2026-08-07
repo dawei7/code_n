@@ -1,33 +1,35 @@
 class Solution:
     def maximumSumOfHeights(self, maxHeights: List[int]) -> int:
         n = len(maxHeights)
-        left = [0] * n
-        stack = []
-
-        for i, height in enumerate(maxHeights):
-            while stack and maxHeights[stack[-1]] > height:
-                stack.pop()
-            if stack:
-                previous = stack[-1]
-                left[i] = left[previous] + (i - previous) * height
-            else:
-                left[i] = (i + 1) * height
-            stack.append(i)
-
-        right = [0] * n
-        stack.clear()
-        answer = 0
-
+        stk = []
+        left = [-1] * n
+        for i, x in enumerate(maxHeights):
+            while stk and maxHeights[stk[-1]] > x:
+                stk.pop()
+            if stk:
+                left[i] = stk[-1]
+            stk.append(i)
+        stk = []
+        right = [n] * n
         for i in range(n - 1, -1, -1):
-            height = maxHeights[i]
-            while stack and maxHeights[stack[-1]] > height:
-                stack.pop()
-            if stack:
-                next_index = stack[-1]
-                right[i] = right[next_index] + (next_index - i) * height
+            x = maxHeights[i]
+            while stk and maxHeights[stk[-1]] >= x:
+                stk.pop()
+            if stk:
+                right[i] = stk[-1]
+            stk.append(i)
+        f = [0] * n
+        for i, x in enumerate(maxHeights):
+            if i and x >= maxHeights[i - 1]:
+                f[i] = f[i - 1] + x
             else:
-                right[i] = (n - i) * height
-            answer = max(answer, left[i] + right[i] - height)
-            stack.append(i)
-
-        return answer
+                j = left[i]
+                f[i] = x * (i - j) + (f[j] if j != -1 else 0)
+        g = [0] * n
+        for i in range(n - 1, -1, -1):
+            if i < n - 1 and maxHeights[i] >= maxHeights[i + 1]:
+                g[i] = g[i + 1] + maxHeights[i]
+            else:
+                j = right[i]
+                g[i] = maxHeights[i] * (j - i) + (g[j] if j != n else 0)
+        return max(a + b - c for a, b, c in zip(f, g, maxHeights))

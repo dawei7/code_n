@@ -1,11 +1,7 @@
-from typing import List
-
-
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        ending_here = nums[0]
-        best = nums[0]
-        for value in nums[1:]:
-            ending_here = max(value, ending_here + value)
-            best = max(best, ending_here)
-        return best
+        ans = f = nums[0]
+        for x in nums[1:]:
+            f = max(f, 0) + x
+            ans = max(ans, f)
+        return ans

@@ -1,18 +1,6 @@
-from typing import List
-
-
 class Solution:
     def minimumSize(self, nums: List[int], maxOperations: int) -> int:
-        low = 1
-        high = max(nums)
+        def check(mx: int) -> bool:
+            return sum((x - 1) // mx for x in nums) <= maxOperations
 
-        while low < high:
-            penalty = (low + high) // 2
-            required = sum((balls - 1) // penalty for balls in nums)
-
-            if required <= maxOperations:
-                high = penalty
-            else:
-                low = penalty + 1
-
-        return low
+        return bisect_left(range(1, max(nums) + 1), True, key=check) + 1

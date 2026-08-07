@@ -1,15 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Spce:  O(1)
 
 class Solution:
-    def sumSubseqWidths(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        ordered = sorted(nums)
-        answer = 0
-        power = 1
+    def sumSubseqWidths(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        M = 10**9+7
+        # sum(A[i] * (2^i - 2^(len(A)-1-i))), i = 0..len(A)-1
+        # <=>
+        # sum(((A[i] - A[len(A)-1-i]) * 2^i), i = 0..len(A)-1
+        result, c = 0, 1
+        A.sort()
+        for i in range(len(A)):
+            result = (result + (A[i]-A[len(A)-1-i])*c % M) % M
+            c = (c<<1) % M
+        return result
 
-        for index, value in enumerate(ordered):
-            answer += (value - ordered[-1 - index]) * power
-            power = power * 2 % modulus
-
-        return answer % modulus

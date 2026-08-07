@@ -1,23 +1,25 @@
-from typing import List
+# Time:  O(nlogr)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def minMirrorPairDistance(self, nums: List[int]) -> int:
-        latest_by_reversed_value = {}
-        minimum = len(nums)
+    def minMirrorPairDistance(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        def reverse(n):
+            result = 0
+            while n:
+                result = result*10+n%10
+                n //= 10
+            return result
 
-        for index, value in enumerate(nums):
-            previous = latest_by_reversed_value.get(value)
-            if previous is not None:
-                minimum = min(minimum, index - previous)
-                if minimum == 1:
-                    return 1
-
-            reversed_value = 0
-            remaining = value
-            while remaining:
-                reversed_value = reversed_value * 10 + remaining % 10
-                remaining //= 10
-            latest_by_reversed_value[reversed_value] = index
-
-        return -1 if minimum == len(nums) else minimum
+        result = INF
+        lookup = {}
+        for i, x in enumerate(nums):
+            if x in lookup:
+                result = min(result, i-lookup[x])
+            lookup[reverse(x)] = i
+        return result if result is not INF else -1

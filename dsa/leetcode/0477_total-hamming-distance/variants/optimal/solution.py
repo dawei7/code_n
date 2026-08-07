@@ -1,13 +1,8 @@
-from typing import List
-
-
 class Solution:
     def totalHammingDistance(self, nums: List[int]) -> int:
-        total = 0
-        width = max(nums, default=0).bit_length()
-        for bit in range(width):
-            ones = 0
-            for value in nums:
-                ones += (value >> bit) & 1
-            total += ones * (len(nums) - ones)
-        return total
+        ans, n = 0, len(nums)
+        for i in range(32):
+            a = sum(x >> i & 1 for x in nums)
+            b = n - a
+            ans += a * b
+        return ans

@@ -1,9 +1,14 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def maximumTotalCost(self, nums: List[int]) -> int:
-        added = nums[0]
-        subtracted = float("-inf")
-
-        for value in nums[1:]:
-            added, subtracted = max(added, subtracted) + value, added - value
-
-        return max(added, subtracted)
+    def maximumTotalCost(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = [nums[0], float("-inf")]
+        for i in range(1, len(nums)):
+            dp[:] = [max(dp)+nums[i], dp[0]-nums[i]]
+        return max(dp)

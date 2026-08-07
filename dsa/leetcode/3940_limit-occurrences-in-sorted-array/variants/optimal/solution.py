@@ -1,11 +1,13 @@
 class Solution:
     def limitOccurrences(self, nums: list[int], k: int) -> list[int]:
-        write = 0
-
-        for value in nums:
-            if write < k or nums[write - k] != value:
-                nums[write] = value
-                write += 1
-
-        del nums[write:]
-        return nums
+        n = len(nums)
+        cnt = l = 1
+        for r in range(1, n):
+            if nums[r] != nums[r - 1]:
+                cnt = 1
+            else:
+                cnt += 1
+            if cnt <= k:
+                nums[l] = nums[r]
+                l += 1
+        return nums[:l]

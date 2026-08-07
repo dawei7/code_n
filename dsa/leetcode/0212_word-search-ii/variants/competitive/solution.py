@@ -1,31 +1,57 @@
-from typing import List
+# Time:  O(m * n * 4 * 3^(h - 1)) ~= O(m * n * 3^h), h is the height of trie
+# Space: O(t), t is the number of nodes in trie
+
+class TrieNode(object):
+    # Initialize your data structure here.
+    def __init__(self):
+        self.is_string = False
+        self.leaves = {}
+
+    # Inserts a word into the trie.
+    def insert(self, word):
+        cur = self
+        for c in word:
+            if not c in cur.leaves:
+                cur.leaves[c] = TrieNode()
+            cur = cur.leaves[c]
+        cur.is_string = True
 
 
 class Solution:
-    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
-        root = {}
+    def findWords(self, board, words):
+        """
+        :type board: List[List[str]]
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        visited = [[False for j in range(len(board[0]))] for i in range(len(board))]
+        result = {}
+        trie = TrieNode()
         for word in words:
-            node = root
-            for character in word:
-                node = node.setdefault(character, {})
-            node[None] = word
-        found = set()
-        rows, columns = len(board), len(board[0])
+            trie.insert(word)
 
-        def visit(row, column, node):
-            character = board[row][column]
-            if character not in node:
-                return
-            child = node[character]
-            if None in child:
-                found.add(child[None])
-            board[row][column] = "#"
-            for next_row, next_column in ((row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1)):
-                if 0 <= next_row < rows and 0 <= next_column < columns and board[next_row][next_column] != "#":
-                    visit(next_row, next_column, child)
-            board[row][column] = character
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                self.findWordsRecu(board, trie, 0, i, j, visited, [], result)
 
-        for row in range(rows):
-            for column in range(columns):
-                visit(row, column, root)
-        return list(found)
+        return result.keys()
+
+    def findWordsRecu(self, board, trie, cur, i, j, visited, cur_word, result):
+        if not trie or i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or visited[i][j]:
+            return
+
+        if board[i][j] not in trie.leaves:
+            return
+
+        cur_word.append(board[i][j])
+        next_node = trie.leaves[board[i][j]]
+        if next_node.is_string:
+            result["".join(cur_word)] = True
+
+        visited[i][j] = True
+        self.findWordsRecu(board, next_node, cur + 1, i + 1, j, visited, cur_word, result)
+        self.findWordsRecu(board, next_node, cur + 1, i - 1, j, visited, cur_word, result)
+        self.findWordsRecu(board, next_node, cur + 1, i, j + 1, visited, cur_word, result)
+        self.findWordsRecu(board, next_node, cur + 1, i, j - 1, visited, cur_word, result)
+        visited[i][j] = False
+        cur_word.pop()

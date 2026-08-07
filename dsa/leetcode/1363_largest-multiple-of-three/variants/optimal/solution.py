@@ -1,42 +1,22 @@
-from typing import List
-
-
 class Solution:
     def largestMultipleOfThree(self, digits: List[int]) -> str:
-        counts = [0] * 10
-        total = 0
-        for digit in digits:
-            counts[digit] += 1
-            total += digit
-
-        def remove_one(remainder: int) -> bool:
-            for digit in range(remainder, 10, 3):
-                if counts[digit]:
-                    counts[digit] -= 1
-                    return True
-            return False
-
-        def remove_two(remainder: int) -> bool:
-            removed = []
-            for digit in range(remainder, 10, 3):
-                while counts[digit] and len(removed) < 2:
-                    counts[digit] -= 1
-                    removed.append(digit)
-                if len(removed) == 2:
-                    return True
-            for digit in removed:
-                counts[digit] += 1
-            return False
-
-        remainder = total % 3
-        if remainder == 1:
-            if not remove_one(1):
-                remove_two(2)
-        elif remainder == 2:
-            if not remove_one(2):
-                remove_two(1)
-
-        answer = "".join(str(digit) * counts[digit] for digit in range(9, -1, -1))
-        if not answer:
+        digits.sort()
+        n = len(digits)
+        f = [[-inf] * 3 for _ in range(n + 1)]
+        f[0][0] = 0
+        for i, x in enumerate(digits, 1):
+            for j in range(3):
+                f[i][j] = max(f[i - 1][j], f[i - 1][(j - x % 3 + 3) % 3] + 1)
+        if f[n][0] <= 0:
             return ""
-        return "0" if answer[0] == "0" else answer
+        arr = []
+        j = 0
+        for i in range(n, 0, -1):
+            k = (j - digits[i - 1] % 3 + 3) % 3
+            if f[i - 1][k] + 1 == f[i][j]:
+                arr.append(digits[i - 1])
+                j = k
+        i = 0
+        while i < len(arr) - 1 and arr[i] == 0:
+            i += 1
+        return "".join(map(str, arr[i:]))

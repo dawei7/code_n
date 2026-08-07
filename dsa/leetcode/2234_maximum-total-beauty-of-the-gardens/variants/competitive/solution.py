@@ -1,51 +1,164 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
+
+import bisect
 
 
+# sort, prefix sum, greedy, two pointers, improved from solution3
 class Solution:
-    def maximumBeauty(
-        self,
-        flowers: List[int],
-        newFlowers: int,
-        target: int,
-        full: int,
-        partial: int,
-    ) -> int:
-        flowers = sorted(min(value, target) for value in flowers)
-        count = len(flowers)
-        prefix = [0]
-        for value in flowers:
-            prefix.append(prefix[-1] + value)
+    def maximumBeauty(self, flowers, newFlowers, target, full, partial):
+        """
+        :type flowers: List[int]
+        :type newFlowers: int
+        :type target: int
+        :type full: int
+        :type partial: int
+        :rtype: int
+        """
+        flowers.sort()
+        n = bisect.bisect_left(flowers, target)
+        prefix, suffix = 0, sum(flowers[i] for i in range(n))
+        result = left = 0
+        for right in range(n+1):
+            if right:
+                suffix -= flowers[right-1]
+            total = newFlowers-((n-right)*target-suffix)
+            if total < 0:
+                continue
+            while not (left == right or (left and (total+prefix)//left <= flowers[left])):
+                prefix += flowers[left]
+                left += 1
+            mn = min((total+prefix)//left if left else 0, target-1)
+            result = max(result, mn*partial+(len(flowers)-right)*full)
+        return result
 
-        already_complete = count - bisect_left(flowers, target)
-        answer = 0
 
-        for complete_count in range(already_complete, count + 1):
-            incomplete_count = count - complete_count
-            completion_cost = complete_count * target - (prefix[count] - prefix[incomplete_count])
-            if completion_cost > newFlowers:
+# Time:  O(nlogn)
+# Space: O(1)
+import bisect
+
+
+# sort, prefix sum, greedy, two pointers, improved from solution4
+class Solution2(object):
+    def maximumBeauty(self, flowers, newFlowers, target, full, partial):
+        """
+        :type flowers: List[int]
+        :type newFlowers: int
+        :type target: int
+        :type full: int
+        :type partial: int
+        :rtype: int
+        """
+        flowers.sort()
+        n = bisect.bisect_left(flowers, target)
+        prefix = [0]*(n+1)
+        for i in range(n):
+            prefix[i+1] = prefix[i]+flowers[i]
+        result = suffix = 0
+        left = n
+        for right in reversed(range(n+1)):
+            if right != n:
+                suffix += flowers[right]
+            total = newFlowers-((n-right)*target-suffix)
+            if total < 0:
+                continue
+            left = min(left, right)
+            while not (left == 0 or (prefix[left]-prefix[left-1])*left-prefix[left] <= total):
+                left -= 1
+            mn = min((total+prefix[left])//left if left else 0, target-1)
+            result = max(result, mn*partial+(len(flowers)-right)*full)
+        return result
+
+
+# Time:  O(nlogn)
+# Space: O(n)
+import bisect
+
+
+# sort, prefix sum, greedy, binary search
+class Solution3(object):
+    def maximumBeauty(self, flowers, newFlowers, target, full, partial):
+        """
+        :type flowers: List[int]
+        :type newFlowers: int
+        :type target: int
+        :type full: int
+        :type partial: int
+        :rtype: int
+        """
+        def check(prefix, total, x):
+            return x and (total+prefix[x])//x <= prefix[x+1]-prefix[x]
+
+        def binary_search(prefix, total, left, right):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(prefix, total, mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
+    
+        flowers.sort()
+        n = bisect.bisect_left(flowers, target)
+        prefix = [0]*(n+1)
+        for i in range(n):
+            prefix[i+1] = prefix[i]+flowers[i]
+        suffix = sum(flowers[i] for i in range(n))
+        result = left = 0
+        for right in range(n+1):
+            if right:
+                suffix -= flowers[right-1]
+            total = newFlowers-((n-right)*target-suffix)
+            if total < 0:
+                continue
+            left = binary_search(prefix, total, 0, right-1)
+            mn = min((total+prefix[left])//left if left else 0, target-1)
+            result = max(result, mn*partial+(len(flowers)-right)*full)
+        return result
+
+
+# Time:  O(nlogn)
+# Space: O(n)
+import bisect
+
+
+# sort, prefix sum, greedy, binary search
+class Solution4(object):
+    def maximumBeauty(self, flowers, newFlowers, target, full, partial):
+        """
+        :type flowers: List[int]
+        :type newFlowers: int
+        :type target: int
+        :type full: int
+        :type partial: int
+        :rtype: int
+        """
+        def check(prefix, total, x):
+            return (prefix[x]-prefix[x-1])*x-prefix[x] <= total
+
+        def binary_search_right(prefix, total, left, right):
+            while left <= right:
+                mid = left+(right-left)//2
+                if not check(prefix, total, mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
+    
+        flowers.sort()
+        n = bisect.bisect_left(flowers, target)
+        prefix = [0]*(n+1)
+        for i in range(n):
+            prefix[i+1] = prefix[i]+flowers[i]
+        result = suffix = 0
+        left = n
+        for right in reversed(range(n+1)):
+            if right != n:
+                suffix += flowers[right]
+            total = newFlowers-((n-right)*target-suffix)
+            if total < 0:
                 break
-
-            beauty = complete_count * full
-            if incomplete_count:
-                remaining = newFlowers - completion_cost
-                low = flowers[0]
-                high = target - 1
-                while low <= high:
-                    level = (low + high) // 2
-                    raised_count = bisect_left(
-                        flowers,
-                        level,
-                        0,
-                        incomplete_count,
-                    )
-                    cost = level * raised_count - prefix[raised_count]
-                    if cost <= remaining:
-                        low = level + 1
-                    else:
-                        high = level - 1
-                beauty += high * partial
-
-            answer = max(answer, beauty)
-
-        return answer
+            left = binary_search_right(prefix, total, 1, right)
+            mn = min((total+prefix[left])//left if left else 0, target-1)
+            result = max(result, mn*partial+(len(flowers)-right)*full)
+        return result

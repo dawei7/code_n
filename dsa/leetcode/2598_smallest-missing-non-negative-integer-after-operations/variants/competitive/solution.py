@@ -1,13 +1,37 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(k), k = value
+
+import collections
 
 
+# freq table
 class Solution:
-    def findSmallestInteger(self, nums: List[int], value: int) -> int:
-        remainder_counts = Counter(number % value for number in nums)
-        mex = 0
+    def findSmallestInteger(self, nums, value):
+        """
+        :type nums: List[int]
+        :type value: int
+        :rtype: int
+        """
+        cnt = collections.Counter(x%value for x in nums)
+        mn = min((cnt[i], i) for i in range(value))[1]
+        return value*cnt[mn]+mn
+        
 
-        while remainder_counts[mex % value]:
-            remainder_counts[mex % value] -= 1
-            mex += 1
+# Time:  O(n)
+# Space: O(k), k = value
+import collections
 
-        return mex
+
+# freq table
+class Solution2(object):
+    def findSmallestInteger(self, nums, value):
+        """
+        :type nums: List[int]
+        :type value: int
+        :rtype: int
+        """
+        cnt = collections.Counter(x%value for x in nums)
+        for i in range(len(nums)+1):
+            if not cnt[i%value]:
+                return i
+            cnt[i%value] -= 1

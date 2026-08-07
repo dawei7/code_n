@@ -1,10 +1,14 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def largestLocal(self, grid: List[List[int]]) -> List[List[int]]:
-        n = len(grid)
-        return [
-            [max(grid[row + dr][col + dc] for dr in range(3) for dc in range(3)) for col in range(n - 2)]
-            for row in range(n - 2)
-        ]
+    def largestLocal(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def find_max(i, j):
+            return max(grid[ni][nj] for ni in range(i, i+3) for nj in range(j, j+3))
+
+        return [[find_max(i, j) for j in range(len(grid[0])-2)] for i in range(len(grid)-2)]

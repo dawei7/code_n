@@ -1,9 +1,7 @@
-DELETE FROM Person
-WHERE EXISTS (
-    SELECT 1
-    FROM Person AS keeper
-    WHERE keeper.email = Person.email
-      AND keeper.id < Person.id
-);
-SELECT id, email
-FROM Person;
+# Time:  O(n^2)
+# Space: O(n)
+
+DELETE p1
+FROM Person p1, Person p2
+WHERE p1.Email = p2.Email AND p1.Id > p2.Id
+

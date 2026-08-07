@@ -1,7 +1,10 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def arrayRankTransform(self, arr: List[int]) -> List[int]:
-        ranks = {value: rank for rank, value in enumerate(sorted(set(arr)), start=1)}
-        return [ranks[value] for value in arr]
+    def arrayRankTransform(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+        return map({x: i+1 for i, x in enumerate(sorted(set(arr)))}.get, arr)

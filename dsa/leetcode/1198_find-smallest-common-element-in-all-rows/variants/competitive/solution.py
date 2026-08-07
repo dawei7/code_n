@@ -1,14 +1,37 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(n)
 
 class Solution:
-    def smallestCommonElement(self, mat: List[List[int]]) -> int:
-        frequencies = [0] * 10001
-        required = len(mat)
+    def smallestCommonElement(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        # values could be duplicated in each row
+        intersections = set(mat[0])
+        for i in range(1, len(mat)):
+            intersections &= set(mat[i])
+            if not intersections:
+                return -1
+        return min(intersections)
 
+
+# Time:  O(m * n)
+# Space: O(n)
+import collections
+
+
+class Solution2(object):
+    def smallestCommonElement(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        # assumed value is unique in each row
+        counter = collections.Counter()
         for row in mat:
-            for value in row:
-                frequencies[value] += 1
-                if frequencies[value] == required:
-                    return value
+            for c in row:
+                counter[c] += 1
+                if counter[c] == len(mat):
+                    return c
         return -1

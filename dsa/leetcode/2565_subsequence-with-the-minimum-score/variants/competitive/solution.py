@@ -1,39 +1,25 @@
+# Time:  O(n)
+# Space: O(n)
+
+# two pointers, dp
 class Solution:
-    def minimumScore(self, s: str, t: str) -> int:
-        n = len(s)
-        m = len(t)
-
-        suffix_start = [-1] * (m + 1)
-        suffix_start[m] = n
-        s_index = n - 1
-
-        for t_index in range(m - 1, -1, -1):
-            while s_index >= 0 and s[s_index] != t[t_index]:
-                s_index -= 1
-            if s_index < 0:
-                break
-            suffix_start[t_index] = s_index
-            s_index -= 1
-
-        answer = m
-        suffix_index = 0
-        prefix_end = -1
-        s_index = 0
-
-        for prefix_length in range(m + 1):
-            if suffix_index < prefix_length:
-                suffix_index = prefix_length
-            while suffix_index < m and suffix_start[suffix_index] <= prefix_end:
-                suffix_index += 1
-            answer = min(answer, suffix_index - prefix_length)
-
-            if prefix_length == m:
-                break
-            while s_index < n and s[s_index] != t[prefix_length]:
-                s_index += 1
-            if s_index == n:
-                break
-            prefix_end = s_index
-            s_index += 1
-
-        return answer
+    def minimumScore(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: int
+        """
+        right = [-1]*len(s)  # right[i]: min removed rightmost index in s[i:]
+        j = len(t)-1
+        for i in reversed(range(len(s))):
+            if j >= 0 and t[j] == s[i]:
+                j -= 1
+            right[i] = j
+        result = j+1
+        left = 0  # left at i: max removed leftmost index in s[:i]
+        for i in range(len(s)):
+            result = max(min(result, right[i]-left+1), 0)
+            if left < len(t) and t[left] == s[i]:
+                left += 1
+        result = min(result, len(t)-left)
+        return result

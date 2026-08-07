@@ -1,17 +1,17 @@
 class Solution:
     def findScore(self, nums: List[int]) -> int:
-        marked = [False] * len(nums)
-        score = 0
-
-        for value, index in sorted((value, index) for index, value in enumerate(nums)):
-            if marked[index]:
-                continue
-
-            score += value
-            marked[index] = True
-            if index > 0:
-                marked[index - 1] = True
-            if index + 1 < len(nums):
-                marked[index + 1] = True
-
-        return score
+        n = len(nums)
+        vis = [False] * n
+        q = [(x, i) for i, x in enumerate(nums)]
+        heapify(q)
+        ans = 0
+        while q:
+            x, i = heappop(q)
+            ans += x
+            vis[i] = True
+            for j in (i - 1, i + 1):
+                if 0 <= j < n:
+                    vis[j] = True
+            while q and vis[q[0][1]]:
+                heappop(q)
+        return ans

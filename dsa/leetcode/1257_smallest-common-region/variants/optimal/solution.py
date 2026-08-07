@@ -1,18 +1,18 @@
-from typing import List
-
-
 class Solution:
-    def findSmallestRegion(self, regions: List[List[str]], region1: str, region2: str) -> str:
-        parent = {}
-        for group in regions:
-            for child in group[1:]:
-                parent[child] = group[0]
-        ancestors = set()
-        while True:
-            ancestors.add(region1)
-            if region1 not in parent:
-                break
-            region1 = parent[region1]
-        while region2 not in ancestors:
-            region2 = parent[region2]
-        return region2
+    def findSmallestRegion(
+        self, regions: List[List[str]], region1: str, region2: str
+    ) -> str:
+        g = {}
+        for r in regions:
+            x = r[0]
+            for y in r[1:]:
+                g[y] = x
+        s = set()
+        x = region1
+        while x in g:
+            s.add(x)
+            x = g[x]
+        x = region2
+        while x in g and x not in s:
+            x = g[x]
+        return x

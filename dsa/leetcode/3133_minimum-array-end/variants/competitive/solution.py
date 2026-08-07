@@ -1,14 +1,20 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# bit manipulation
 class Solution:
-    def minEnd(self, n: int, x: int) -> int:
-        remaining = n - 1
-        answer = x
-        bit = 1
-
-        while remaining:
-            if answer & bit == 0:
-                if remaining & 1:
-                    answer |= bit
-                remaining >>= 1
-            bit <<= 1
-
-        return answer
+    def minEnd(self, n, x):
+        """
+        :type n: int
+        :type x: int
+        :rtype: int
+        """
+        n -= 1
+        base_n = base_x = 1
+        while base_n <= n:
+            if (x&base_x) == 0:
+                if n&base_n:
+                    x |= base_x
+                base_n <<= 1
+            base_x <<= 1
+        return x

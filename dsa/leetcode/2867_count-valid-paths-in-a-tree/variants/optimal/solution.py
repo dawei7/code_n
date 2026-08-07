@@ -1,53 +1,53 @@
+class UnionFind:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.size = [1] * n
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa == pb:
+            return False
+        if self.size[pa] > self.size[pb]:
+            self.p[pb] = pa
+            self.size[pa] += self.size[pb]
+        else:
+            self.p[pa] = pb
+            self.size[pb] += self.size[pa]
+        return True
+
+
+mx = 10**5 + 10
+prime = [True] * (mx + 1)
+prime[0] = prime[1] = False
+for i in range(2, mx + 1):
+    if prime[i]:
+        for j in range(i * i, mx + 1, i):
+            prime[j] = False
+
+
 class Solution:
     def countPaths(self, n: int, edges: List[List[int]]) -> int:
-        is_prime = [True] * (n + 1)
-        is_prime[0] = is_prime[1] = False
+        g = [[] for _ in range(n + 1)]
+        uf = UnionFind(n + 1)
+        for u, v in edges:
+            g[u].append(v)
+            g[v].append(u)
+            if prime[u] + prime[v] == 0:
+                uf.union(u, v)
 
-        value = 2
-        while value * value <= n:
-            if is_prime[value]:
-                for multiple in range(value * value, n + 1, value):
-                    is_prime[multiple] = False
-            value += 1
-
-        graph = [[] for _ in range(n + 1)]
-        for left, right in edges:
-            graph[left].append(right)
-            graph[right].append(left)
-
-        component_size = [0] * (n + 1)
-        for start in range(1, n + 1):
-            if is_prime[start] or component_size[start]:
-                continue
-
-            component_size[start] = -1
-            stack = [start]
-            nodes = []
-
-            while stack:
-                node = stack.pop()
-                nodes.append(node)
-                for neighbor in graph[node]:
-                    if not is_prime[neighbor] and component_size[neighbor] == 0:
-                        component_size[neighbor] = -1
-                        stack.append(neighbor)
-
-            size = len(nodes)
-            for node in nodes:
-                component_size[node] = size
-
-        answer = 0
-        for prime in range(2, n + 1):
-            if not is_prime[prime]:
-                continue
-
-            previous = 0
-            for neighbor in graph[prime]:
-                if is_prime[neighbor]:
-                    continue
-                size = component_size[neighbor]
-                answer += previous * size
-                previous += size
-            answer += previous
-
-        return answer
+        ans = 0
+        for i in range(1, n + 1):
+            if prime[i]:
+                t = 0
+                for j in g[i]:
+                    if not prime[j]:
+                        cnt = uf.size[uf.find(j)]
+                        ans += cnt
+                        ans += t * cnt
+                        t += cnt
+        return ans

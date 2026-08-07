@@ -1,14 +1,32 @@
+# Time:  O(n^2)
+# Space: O(n^2)
+
+# simulation, math
+MOD = 10**9+7
+FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
+def lazy_init(n):
+    while len(INV) <= n:  # lazy initialization
+        FACT.append(FACT[-1]*len(INV) % MOD)
+        INV.append(INV[MOD%len(INV)]*(MOD-MOD//len(INV)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+        INV_FACT.append(INV_FACT[-1]*INV[-1] % MOD)
+
+def factorial(n):
+    lazy_init(n)
+    return FACT[n]
+
+def inv_factorial(n):
+    lazy_init(n)
+    return INV_FACT[n]
+
 class Solution:
-    def sumOfBlocks(self, n: int) -> int:
-        modulo = 1_000_000_007
-        next_value = 1
-        total = 0
-
-        for block_length in range(1, n + 1):
-            block_product = 1
-            for _ in range(block_length):
-                block_product = block_product * next_value % modulo
-                next_value += 1
-            total = (total + block_product) % modulo
-
-        return total
+    def sumOfBlocks(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """        
+        result, left = 0, 1
+        for l in range(n):
+            right = left+l
+            result = (result+(factorial(right)*inv_factorial(left-1)))%MOD
+            left = right+1
+        return result

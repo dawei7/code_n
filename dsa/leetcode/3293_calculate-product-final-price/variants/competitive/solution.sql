@@ -1,8 +1,9 @@
-SELECT
-    p.product_id,
-    p.price * (100 - COALESCE(d.discount, 0)) / 100 AS final_price,
-    p.category
-FROM Products AS p
-LEFT JOIN Discounts AS d
-    ON d.category = p.category
-ORDER BY p.product_id;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT p.product_id,
+       p.price * IFNULL(1 - d.discount / 100, 1) AS final_price,
+       p.category
+FROM products p
+LEFT JOIN discounts d ON p.category = d.category
+ORDER BY 1;

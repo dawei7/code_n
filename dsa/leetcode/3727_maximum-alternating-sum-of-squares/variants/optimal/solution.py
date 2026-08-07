@@ -1,5 +1,7 @@
 class Solution:
-    def maxAlternatingSum(self, nums: list[int]) -> int:
-        squares = sorted(value * value for value in nums)
-        negative_count = len(squares) // 2
-        return sum(squares[negative_count:]) - sum(squares[:negative_count])
+    def maxAlternatingSum(self, nums: List[int]) -> int:
+        nums.sort(key=lambda x: x * x)
+        n = len(nums)
+        s1 = sum(x * x for x in nums[: n // 2])
+        s2 = sum(x * x for x in nums[n // 2 :])
+        return s2 - s1

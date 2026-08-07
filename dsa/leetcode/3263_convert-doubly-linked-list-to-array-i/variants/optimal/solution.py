@@ -10,9 +10,8 @@ class Node:
 
 class Solution:
     def toArray(self, root: "Optional[Node]") -> List[int]:
-        values = []
-        current = root
-        while current is not None:
-            values.append(current.val)
-            current = current.next
-        return values
+        ans = []
+        while root:
+            ans.append(root.val)
+            root = root.next
+        return ans

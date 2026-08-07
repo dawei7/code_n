@@ -1,14 +1,10 @@
+# Write your MySQL query statement below
 SELECT
     CASE
-        WHEN ny.excellent > ca.excellent THEN 'New York University'
-        WHEN ny.excellent < ca.excellent THEN 'California University'
+        WHEN n1.cnt > n2.cnt THEN 'New York University'
+        WHEN n1.cnt < n2.cnt THEN 'California University'
         ELSE 'No Winner'
     END AS winner
-FROM (
-    SELECT COUNT(CASE WHEN score >= 90 THEN 1 END) AS excellent
-    FROM NewYork
-) AS ny
-CROSS JOIN (
-    SELECT COUNT(CASE WHEN score >= 90 THEN 1 END) AS excellent
-    FROM California
-) AS ca;
+FROM
+    (SELECT COUNT(1) AS cnt FROM NewYork WHERE score >= 90) AS n1,
+    (SELECT COUNT(1) AS cnt FROM California WHERE score >= 90) AS n2;

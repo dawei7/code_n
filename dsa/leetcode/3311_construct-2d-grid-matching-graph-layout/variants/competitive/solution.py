@@ -1,50 +1,43 @@
-from collections import deque
+# Time:  O(n)
+# Space: O(n)
 
-
+# bfs, constructive algorithms
 class Solution:
-    def constructGridLayout(self, n: int, edges: List[List[int]]) -> List[List[int]]:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-
-        minimum_degree = min(map(len, graph))
-        corners = {node for node in range(n) if len(graph[node]) == minimum_degree}
-        start = next(iter(corners))
-
-        parent = [-1] * n
-        parent[start] = start
-        queue = deque([start])
-        end = start
-
-        while queue:
-            node = queue.popleft()
-            if node != start and node in corners:
-                end = node
-                break
-            for neighbor in graph[node]:
-                if parent[neighbor] == -1:
-                    parent[neighbor] = node
-                    queue.append(neighbor)
-
-        first_row = []
-        while end != start:
-            first_row.append(end)
-            end = parent[end]
-        first_row.append(start)
-        first_row.reverse()
-
-        layout = [first_row]
-        used = set(first_row)
-
-        while len(used) < n:
-            next_row = []
-            for node in layout[-1]:
-                for neighbor in graph[node]:
-                    if neighbor not in used:
-                        used.add(neighbor)
-                        next_row.append(neighbor)
-                        break
-            layout.append(next_row)
-
-        return layout
+    def constructGridLayout(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def bfs(u):
+            dist = [0]*n
+            dist[u] = 1
+            q = [u]
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if dist[v]:
+                            continue
+                        dist[v] = dist[u]+1
+                        new_q.append(v)
+                q = new_q
+            return dist
+    
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        mn = min(len(x) for x in adj)
+        corners = [u for u in range(n) if len(adj[u]) == mn]
+        dist1 = bfs(corners[0])
+        corners.sort(key=lambda x: dist1[x])
+        dist2 = bfs(corners[1])
+        c = dist1[corners[1]]
+        r = n//c
+        result = [[0]*c for _ in range(r)]
+        for u in range(n):
+            i = ((dist1[u]+dist2[u])-(1+c))//2
+            j = (dist1[u]-1)-i
+            result[i][j] = u
+        return result

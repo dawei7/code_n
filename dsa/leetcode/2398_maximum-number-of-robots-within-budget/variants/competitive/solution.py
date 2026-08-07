@@ -1,34 +1,58 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# sliding window, two pointers, mono deque
 class Solution:
-    def maximumRobots(
-        self,
-        chargeTimes: List[int],
-        runningCosts: List[int],
-        budget: int,
-    ) -> int:
-        maximum_charge_indices = deque()
-        running_sum = 0
-        left = 0
-        best = 0
-
-        for right, charge_time in enumerate(chargeTimes):
-            running_sum += runningCosts[right]
-            while maximum_charge_indices and chargeTimes[maximum_charge_indices[-1]] <= charge_time:
-                maximum_charge_indices.pop()
-            maximum_charge_indices.append(right)
-
-            while (
-                maximum_charge_indices
-                and chargeTimes[maximum_charge_indices[0]] + (right - left + 1) * running_sum > budget
-            ):
-                if maximum_charge_indices[0] == left:
-                    maximum_charge_indices.popleft()
-                running_sum -= runningCosts[left]
+    def maximumRobots(self, chargeTimes, runningCosts, budget):
+        """
+        :type chargeTimes: List[int]
+        :type runningCosts: List[int]
+        :type budget: int
+        :rtype: int
+        """
+        result = left = curr = 0
+        dq = collections.deque()
+        for right in range(len(chargeTimes)):
+            while dq and chargeTimes[dq[-1]] <= chargeTimes[right]:
+                dq.pop()
+            dq.append(right)
+            curr += runningCosts[right]
+            if chargeTimes[dq[0]]+(right-left+1)*curr > budget:
+                if dq[0] == left:
+                    dq.popleft()
+                curr -= runningCosts[left]
                 left += 1
+        return right-left+1
 
-            best = max(best, right - left + 1)
 
-        return best
+# Time:  O(n)
+# Space: O(n)
+import collections
+
+
+# sliding window, two pointers, mono deque
+class Solution2(object):
+    def maximumRobots(self, chargeTimes, runningCosts, budget):
+        """
+        :type chargeTimes: List[int]
+        :type runningCosts: List[int]
+        :type budget: int
+        :rtype: int
+        """
+        result = left = curr = 0
+        dq = collections.deque()
+        for right in range(len(chargeTimes)):
+            while dq and chargeTimes[dq[-1]] <= chargeTimes[right]:
+                dq.pop()
+            dq.append(right)
+            curr += runningCosts[right]
+            while dq and chargeTimes[dq[0]]+(right-left+1)*curr > budget:
+                if dq[0] == left:
+                    dq.popleft()
+                curr -= runningCosts[left]
+                left += 1
+            result = max(result, right-left+1)            
+        return result

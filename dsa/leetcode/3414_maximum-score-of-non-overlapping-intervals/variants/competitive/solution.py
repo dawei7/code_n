@@ -1,36 +1,57 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn + n * k^2)
+# Space: O(n * k^2)
+
+import bisect
 
 
+# dp, binary search
 class Solution:
-    def maximumWeight(self, intervals: List[List[int]]) -> List[int]:
-        ordered = sorted((right, left, weight, index) for index, (left, right, weight) in enumerate(intervals))
-        ends = [item[0] for item in ordered]
-        n = len(ordered)
-        impossible = (-1, ())
-        dp = [[(0, ())] * (n + 1)] + [[impossible] * (n + 1) for _ in range(4)]
+    def maximumWeight(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[int]
+        """
+        K = 4
+        lookup = {}
+        for i, (l, r, w) in enumerate(intervals):
+            if (r, l, w) not in lookup:
+                lookup[r, l, w] = i
+        sorted_intervals = sorted(lookup.keys(), key=lambda x: x[0])
+        dp = [[[0, []] for _ in range(K+1)] for _ in range(len(sorted_intervals)+1)]
+        for i in range(len(dp)-1):
+            j = bisect.bisect_right(sorted_intervals, (sorted_intervals[i][1], 0, 0))-1
+            idx = lookup[sorted_intervals[i]]
+            for k in range(1, len(dp[i])):
+                new_dp = [dp[j+1][k-1][0]-sorted_intervals[i][2], dp[j+1][k-1][1][:]]
+                insort(new_dp[1], idx)
+                dp[i+1][k] = min(dp[i][k], new_dp)
+        return dp[len(sorted_intervals)][K][1]
 
-        for chosen in range(1, 5):
-            for i in range(1, n + 1):
-                best = dp[chosen][i - 1]
-                _, left, weight, original_index = ordered[i - 1]
-                previous = bisect_left(ends, left, 0, i - 1)
-                score, indices = dp[chosen - 1][previous]
 
-                if score >= 0:
-                    candidate = (
-                        score + weight,
-                        tuple(sorted((*indices, original_index))),
-                    )
-                    if candidate[0] > best[0] or (candidate[0] == best[0] and candidate[1] < best[1]):
-                        best = candidate
+# Time:  O(nlogn + n * k^2)
+# Space: O(n * k^2)
+import bisect
 
-                dp[chosen][i] = best
 
-        answer = (0, ())
-        for chosen in range(1, 5):
-            candidate = dp[chosen][n]
-            if candidate[0] > answer[0] or (candidate[0] == answer[0] and candidate[1] < answer[1]):
-                answer = candidate
-
-        return list(answer[1])
+# dp, binary search
+class Solution2(object):
+    def maximumWeight(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[int]
+        """
+        K = 4
+        lookup = {}
+        for i, (l, r, w) in enumerate(intervals):
+            if (l, r, w) not in lookup:
+                lookup[l, r, w] = i
+        sorted_intervals = sorted(lookup.keys(), key=lambda x: x[0])
+        dp = [[[0, []] for _ in range(K+1)] for _ in range(len(sorted_intervals)+1)]
+        for i in reversed(range(len(dp)-1)):
+            j = bisect.bisect_right(sorted_intervals, (sorted_intervals[i][1]+1, 0, 0))
+            idx = lookup[sorted_intervals[i]]
+            for k in range(1, len(dp[i])):
+                new_dp = [dp[j][k-1][0]-sorted_intervals[i][2], dp[j][k-1][1][:]]
+                insort(new_dp[1], idx)
+                dp[i][k] = min(dp[i+1][k], new_dp)
+        return dp[0][K][1]

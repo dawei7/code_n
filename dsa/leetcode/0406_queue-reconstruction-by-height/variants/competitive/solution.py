@@ -1,31 +1,42 @@
+# Time:  O(n * sqrt(n))
+# Space: O(n)
+
 class Solution:
-    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
-        length = len(people)
-        fenwick = [0] * (length + 1)
+    def reconstructQueue(self, people):
+        """
+        :type people: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        people.sort(key=lambda h_k: (-h_k[0], h_k[1]))
 
-        def add(index, delta):
-            while index <= length:
-                fenwick[index] += delta
-                index += index & -index
+        blocks = [[]]
+        for p in people:
+            index = p[1]
 
-        def find_by_order(order):
-            index = 0
-            step = 1 << (length.bit_length() - 1)
-            while step:
-                candidate = index + step
-                if candidate <= length and fenwick[candidate] < order:
-                    index = candidate
-                    order -= fenwick[candidate]
-                step >>= 1
-            return index + 1
+            for i, block in enumerate(blocks):
+                if index <= len(block):
+                    break
+                index -= len(block)
+            block.insert(index, p)
 
-        for position in range(1, length + 1):
-            add(position, 1)
+            if len(block) * len(block) > len(people):
+                blocks.insert(i+1, block[len(block)/2:])
+                del block[len(block)/2:]
 
-        queue = [None] * length
-        for person in sorted(people, key=lambda item: (item[0], -item[1])):
-            position = find_by_order(person[1] + 1)
-            queue[position - 1] = person
-            add(position, -1)
+        return [p for block in blocks for p in block]
 
-        return queue
+
+# Time:  O(n^2)
+# Space: O(n)
+class Solution2(object):
+    def reconstructQueue(self, people):
+        """
+        :type people: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        people.sort(key=lambda h_k1: (-h_k1[0], h_k1[1]))
+        result = []
+        for p in people:
+            result.insert(p[1], p)
+        return result
+

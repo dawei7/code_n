@@ -1,54 +1,39 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def minPushBox(self, grid: List[List[str]]) -> int:
-        rows, columns = len(grid), len(grid[0])
-        box = player = target = None
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] == "B":
-                    box = (row, column)
-                elif grid[row][column] == "S":
-                    player = (row, column)
-                elif grid[row][column] == "T":
-                    target = (row, column)
+        def f(i: int, j: int) -> int:
+            return i * n + j
 
-        def free(cell, blocked_box):
-            row, column = cell
-            return 0 <= row < rows and 0 <= column < columns and grid[row][column] != "#" and cell != blocked_box
+        def check(i: int, j: int) -> bool:
+            return 0 <= i < m and 0 <= j < n and grid[i][j] != "#"
 
-        def can_reach(start, goal, blocked_box):
-            queue = deque([start])
-            seen = {start}
-            while queue:
-                row, column = queue.popleft()
-                if (row, column) == goal:
-                    return True
-                for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    nxt = (row + dr, column + dc)
-                    if nxt not in seen and free(nxt, blocked_box):
-                        seen.add(nxt)
-                        queue.append(nxt)
-            return False
-
-        queue = deque([(box, player, 0)])
-        seen = {(box, player)}
-        while queue:
-            current_box, current_player, pushes = queue.popleft()
-            if current_box == target:
-                return pushes
-            row, column = current_box
-            for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                stand = (row - dr, column - dc)
-                destination = (row + dr, column + dc)
-                if not free(destination, current_box) or not free(stand, current_box):
+        for i, row in enumerate(grid):
+            for j, c in enumerate(row):
+                if c == "S":
+                    si, sj = i, j
+                elif c == "B":
+                    bi, bj = i, j
+        m, n = len(grid), len(grid[0])
+        dirs = (-1, 0, 1, 0, -1)
+        q = deque([(f(si, sj), f(bi, bj), 0)])
+        vis = [[False] * (m * n) for _ in range(m * n)]
+        vis[f(si, sj)][f(bi, bj)] = True
+        while q:
+            s, b, d = q.popleft()
+            bi, bj = b // n, b % n
+            if grid[bi][bj] == "T":
+                return d
+            si, sj = s // n, s % n
+            for a, b in pairwise(dirs):
+                sx, sy = si + a, sj + b
+                if not check(sx, sy):
                     continue
-                if not can_reach(current_player, stand, current_box):
-                    continue
-                state = (destination, current_box)
-                if state not in seen:
-                    seen.add(state)
-                    queue.append((destination, current_box, pushes + 1))
+                if sx == bi and sy == bj:
+                    bx, by = bi + a, bj + b
+                    if not check(bx, by) or vis[f(sx, sy)][f(bx, by)]:
+                        continue
+                    vis[f(sx, sy)][f(bx, by)] = True
+                    q.append((f(sx, sy), f(bx, by), d + 1))
+                elif not vis[f(sx, sy)][f(bi, bj)]:
+                    vis[f(sx, sy)][f(bi, bj)] = True
+                    q.appendleft((f(sx, sy), f(bi, bj), d))
         return -1

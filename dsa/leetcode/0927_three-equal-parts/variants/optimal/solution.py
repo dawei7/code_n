@@ -1,35 +1,20 @@
-from typing import List
-
-
 class Solution:
     def threeEqualParts(self, arr: List[int]) -> List[int]:
-        one_count = sum(arr)
-        if one_count == 0:
-            return [0, 2]
-        if one_count % 3:
+        def find(x):
+            s = 0
+            for i, v in enumerate(arr):
+                s += v
+                if s == x:
+                    return i
+
+        n = len(arr)
+        cnt, mod = divmod(sum(arr), 3)
+        if mod:
             return [-1, -1]
+        if cnt == 0:
+            return [0, n - 1]
 
-        ones_per_part = one_count // 3
-        first = second = third = -1
-        seen = 0
-
-        for index, bit in enumerate(arr):
-            if bit == 0:
-                continue
-            if seen == 0:
-                first = index
-            elif seen == ones_per_part:
-                second = index
-            elif seen == 2 * ones_per_part:
-                third = index
-            seen += 1
-
-        i, j, k = first, second, third
-        while k < len(arr) and arr[i] == arr[j] == arr[k]:
-            i += 1
-            j += 1
-            k += 1
-
-        if k == len(arr):
-            return [i - 1, j]
-        return [-1, -1]
+        i, j, k = find(1), find(cnt + 1), find(cnt * 2 + 1)
+        while k < n and arr[i] == arr[j] == arr[k]:
+            i, j, k = i + 1, j + 1, k + 1
+        return [i - 1, j] if k == n else [-1, -1]

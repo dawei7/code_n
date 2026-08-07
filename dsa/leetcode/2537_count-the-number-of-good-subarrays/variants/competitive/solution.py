@@ -1,23 +1,25 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# two pointers, sliding window
 class Solution:
-    def countGood(self, nums: List[int], k: int) -> int:
-        frequencies = defaultdict(int)
-        pairs = 0
-        left = 0
-        answer = 0
-
-        for right, value in enumerate(nums):
-            pairs += frequencies[value]
-            frequencies[value] += 1
-
-            while pairs >= k:
-                answer += len(nums) - right
-                outgoing = nums[left]
-                frequencies[outgoing] -= 1
-                pairs -= frequencies[outgoing]
+    def countGood(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = curr = left = 0
+        cnt = collections.Counter()
+        for right in range(len(nums)):
+            curr += cnt[nums[right]]
+            cnt[nums[right]] += 1
+            while curr >= k:
+                cnt[nums[left]] -= 1
+                curr -= cnt[nums[left]]
                 left += 1
-
-        return answer
+            result += left
+        return result

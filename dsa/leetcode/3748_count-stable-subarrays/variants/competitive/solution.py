@@ -1,29 +1,26 @@
-from typing import List
+# Time:  O(n + q)
+# Space: O(n)
 
-
+# prefix sum
 class Solution:
-    def countStableSubarrays(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        n = len(nums)
-        prefix = [0] * (n + 1)
-        run_start = 0
+    def countStableSubarrays(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def count(n):
+            return (n+1)*n//2
 
-        for index in range(n):
-            if index > 0 and nums[index - 1] > nums[index]:
-                run_start = index
-            prefix[index + 1] = prefix[index] + index - run_start + 1
-
-        run_ends = [0] * n
-        run_end = n - 1
-        for index in range(n - 1, -1, -1):
-            if index == n - 1 or nums[index] > nums[index + 1]:
-                run_end = index
-            run_ends[index] = run_end
-
-        answers = []
-        for left, right in queries:
-            boundary = min(run_ends[left], right)
-            first_length = boundary - left + 1
-            first_count = first_length * (first_length + 1) // 2
-            answers.append(first_count + prefix[right + 1] - prefix[boundary + 1])
-
-        return answers
+        right = range(len(nums))
+        for i in reversed(range(len(nums)-1)):
+            if nums[i] <= nums[i+1]:
+                right[i] = right[i+1]
+        prefix = [0]*(len(nums)+1)
+        curr = 0
+        for i in range(len(nums)):
+            if i-1 >= 0 and nums[i-1] > nums[i]:
+                curr = 0
+            curr += 1
+            prefix[i+1] = prefix[i]+curr
+        return [count(min(right[l], r)-l+1)+(prefix[r+1]-prefix[min(right[l], r)+1]) for l, r in queries]

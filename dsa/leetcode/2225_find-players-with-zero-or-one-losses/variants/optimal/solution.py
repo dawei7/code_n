@@ -1,13 +1,12 @@
-from typing import List
-
-
 class Solution:
     def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
-        losses = {}
+        cnt = Counter()
         for winner, loser in matches:
-            losses.setdefault(winner, 0)
-            losses[loser] = losses.get(loser, 0) + 1
-        return [
-            sorted(player for player, count in losses.items() if count == 0),
-            sorted(player for player, count in losses.items() if count == 1),
-        ]
+            if winner not in cnt:
+                cnt[winner] = 0
+            cnt[loser] += 1
+        ans = [[], []]
+        for x, v in sorted(cnt.items()):
+            if v < 2:
+                ans[v].append(x)
+        return ans

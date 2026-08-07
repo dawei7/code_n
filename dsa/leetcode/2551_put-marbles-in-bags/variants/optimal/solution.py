@@ -1,9 +1,4 @@
 class Solution:
     def putMarbles(self, weights: List[int], k: int) -> int:
-        boundary_costs = sorted(left + right for left, right in zip(weights, weights[1:]))
-        cuts = k - 1
-
-        if cuts == 0:
-            return 0
-
-        return sum(boundary_costs[-cuts:]) - sum(boundary_costs[:cuts])
+        arr = sorted(a + b for a, b in pairwise(weights))
+        return sum(arr[len(arr) - k + 1 :]) - sum(arr[: k - 1])

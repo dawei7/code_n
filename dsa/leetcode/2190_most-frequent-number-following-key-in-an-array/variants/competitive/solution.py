@@ -1,16 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table
 class Solution:
-    def mostFrequent(self, nums: List[int], key: int) -> int:
-        follower_counts = [0] * 1001
-        answer = 0
-
-        for index in range(len(nums) - 1):
-            if nums[index] == key:
-                target = nums[index + 1]
-                follower_counts[target] += 1
-                if follower_counts[target] > follower_counts[answer]:
-                    answer = target
-
-        return answer
+    def mostFrequent(self, nums, key):
+        """
+        :type nums: List[int]
+        :type key: int
+        :rtype: int
+        """
+        return collections.Counter(nums[i+1] for i in range(len(nums)-1) if nums[i] == key).most_common(1)[0][0]

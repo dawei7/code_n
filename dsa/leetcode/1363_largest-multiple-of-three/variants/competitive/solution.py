@@ -1,42 +1,53 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def largestMultipleOfThree(self, digits: List[int]) -> str:
-        counts = [0] * 10
-        total = 0
-        for digit in digits:
-            counts[digit] += 1
-            total += digit
+    def largestMultipleOfThree(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: str
+        """
+        lookup = {0: [],
+                  1: [(1,), (4,), (7,), (2, 2), (5, 2), (5, 5), (8, 2), (8, 5), (8, 8)],
+                  2: [(2,), (5,), (8,), (1, 1), (4, 1), (4, 4), (7, 1), (7, 4), (7, 7)]}
+        count = collections.Counter(digits)
+        for deletes in lookup[sum(digits)%3]:
+            delete_count = collections.Counter(deletes)
+            if all(count[k] >= v for k, v in delete_count.items()):
+                for k, v in delete_count.items():
+                    count[k] -= v
+                break
+        result = "".join(str(d)*count[d] for d in reversed(range(10)))
+        return "0" if result and result[0] == '0' else result
+    
 
-        def remove_one(remainder: int) -> bool:
-            for digit in range(remainder, 10, 3):
-                if counts[digit]:
-                    counts[digit] -= 1
-                    return True
-            return False
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def largestMultipleOfThree(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: str
+        """
+        def candidates_gen(r):
+            if r == 0:
+                return
+            for i in range(10):
+                yield [i]
+            for i in range(10):
+                for j in range(i+1):
+                    yield [i, j]
 
-        def remove_two(remainder: int) -> bool:
-            removed = []
-            for digit in range(remainder, 10, 3):
-                while counts[digit] and len(removed) < 2:
-                    counts[digit] -= 1
-                    removed.append(digit)
-                if len(removed) == 2:
-                    return True
-            for digit in removed:
-                counts[digit] += 1
-            return False
-
-        remainder = total % 3
-        if remainder == 1:
-            if not remove_one(1):
-                remove_two(2)
-        elif remainder == 2:
-            if not remove_one(2):
-                remove_two(1)
-
-        answer = "".join(str(digit) * counts[digit] for digit in range(9, -1, -1))
-        if not answer:
-            return ""
-        return "0" if answer[0] == "0" else answer
+        count, r = collections.Counter(digits), sum(digits)%3
+        for deletes in candidates_gen(r):
+            delete_count = collections.Counter(deletes)
+            if sum(deletes)%3 == r and \
+               all(count[k] >= v for k, v in delete_count.items()):
+                for k, v in delete_count.items():
+                    count[k] -= v
+                break
+        result = "".join(str(d)*count[d] for d in reversed(range(10)))
+        return "0" if result and result[0] == '0' else result

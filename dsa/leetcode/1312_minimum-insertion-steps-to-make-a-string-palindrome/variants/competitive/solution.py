@@ -1,16 +1,20 @@
+# Time:  O(n^2)
+# Space: O(n)
+
 class Solution:
-    def minInsertions(self, s: str) -> int:
-        n = len(s)
-        dp = [0] * n
+    def minInsertions(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def longestCommonSubsequence(text1, text2):
+            if len(text1) < len(text2):
+                return self.longestCommonSubsequence(text2, text1)
+            dp = [[0 for _ in range(len(text2)+1)] for _ in range(2)]
+            for i in range(1, len(text1)+1):
+                for j in range(1, len(text2)+1):
+                    dp[i%2][j] = dp[(i-1)%2][j-1]+1 if text1[i-1] == text2[j-1] \
+                                 else max(dp[(i-1)%2][j], dp[i%2][j-1])
+            return dp[len(text1)%2][len(text2)]
 
-        for left in range(n - 2, -1, -1):
-            diagonal = 0
-            for right in range(left + 1, n):
-                below = dp[right]
-                if s[left] == s[right]:
-                    dp[right] = diagonal
-                else:
-                    dp[right] = 1 + min(dp[right], dp[right - 1])
-                diagonal = below
-
-        return dp[-1]
+        return len(s)-longestCommonSubsequence(s, s[::-1])

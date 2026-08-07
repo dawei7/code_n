@@ -1,10 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def findClosestNumber(self, nums: List[int]) -> int:
-        closest = nums[0]
-        for value in nums[1:]:
-            if abs(value) < abs(closest) or (abs(value) == abs(closest) and value > closest):
-                closest = value
-        return closest
+    def findClosestNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return max(nums, key=lambda x:(-abs(x), x))

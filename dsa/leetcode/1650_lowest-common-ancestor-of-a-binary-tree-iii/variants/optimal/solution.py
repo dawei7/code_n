@@ -1,18 +1,22 @@
 """
 # Definition for a Node.
 class Node:
-    def __init__(self, val=0, left=None, right=None, parent=None):
+    def __init__(self, val):
         self.val = val
-        self.left = left
-        self.right = right
-        self.parent = parent
+        self.left = None
+        self.right = None
+        self.parent = None
 """
 
 
 class Solution:
     def lowestCommonAncestor(self, p: "Node", q: "Node") -> "Node":
-        first, second = p, q
-        while first is not second:
-            first = first.parent if first is not None else q
-            second = second.parent if second is not None else p
-        return first
+        vis = set()
+        node = p
+        while node:
+            vis.add(node)
+            node = node.parent
+        node = q
+        while node not in vis:
+            node = node.parent
+        return node

@@ -1,17 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def bestClosingTime(self, customers: str) -> int:
-        penalty = customers.count("Y")
-        best_penalty = penalty
-        best_hour = 0
-
-        for hour, customer in enumerate(customers, start=1):
-            if customer == "Y":
-                penalty -= 1
-            else:
-                penalty += 1
-
-            if penalty < best_penalty:
-                best_penalty = penalty
-                best_hour = hour
-
-        return best_hour
+    def bestClosingTime(self, customers):
+        """
+        :type customers: str
+        :rtype: int
+        """
+        result = mx = curr = 0
+        for i, x in enumerate(customers):
+            curr += 1 if x == 'Y' else -1
+            if curr > mx:
+                mx = curr
+                result = i+1
+        return result

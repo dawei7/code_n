@@ -1,10 +1,10 @@
-from typing import List
-
-
 class Solution:
     def generatePossibleNextMoves(self, currentState: str) -> List[str]:
-        return [
-            currentState[:index] + "--" + currentState[index + 2 :]
-            for index in range(len(currentState) - 1)
-            if currentState[index : index + 2] == "++"
-        ]
+        s = list(currentState)
+        ans = []
+        for i, (a, b) in enumerate(pairwise(s)):
+            if a == b == "+":
+                s[i] = s[i + 1] = "-"
+                ans.append("".join(s))
+                s[i] = s[i + 1] = "+"
+        return ans

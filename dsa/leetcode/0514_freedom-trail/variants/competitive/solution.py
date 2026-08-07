@@ -1,19 +1,30 @@
+# Time:  O(k) ~ O(k * r^2)
+# Space: O(r)
+
+import collections
+
+
 class Solution:
-    def findRotateSteps(self, ring: str, key: str) -> int:
-        size = len(ring)
-        infinity = 10**9
-        costs = [infinity] * size
-        costs[0] = 0
+    def findRotateSteps(self, ring, key):
+        """
+        :type ring: str
+        :type key: str
+        :rtype: int
+        """
+        lookup = collections.defaultdict(list)
+        for i in range(len(ring)):
+            lookup[ring[i]].append(i)
 
-        for character in key:
-            transformed = costs + costs
-            for index in range(1, 2 * size):
-                transformed[index] = min(transformed[index], transformed[index - 1] + 1)
-            for index in range(2 * size - 2, -1, -1):
-                transformed[index] = min(transformed[index], transformed[index + 1] + 1)
-            costs = [
-                min(transformed[index], transformed[index + size]) if ring[index] == character else infinity
-                for index in range(size)
-            ]
+        dp = [[0] * len(ring) for _ in range(2)]
+        prev = [0]
+        for i in range(1, len(key)+1):
+            dp[i%2] = [float("inf")] * len(ring)
+            for j in lookup[key[i-1]]:
+                for k in prev:
+                    dp[i%2][j] = min(dp[i%2][j],
+                                     min((k+len(ring)-j) % len(ring), \
+                                         (j+len(ring)-k) % len(ring)) + \
+                                     dp[(i-1) % 2][k])
+            prev = lookup[key[i-1]]
+        return min(dp[len(key)%2]) + len(key)
 
-        return min(costs) + len(key)

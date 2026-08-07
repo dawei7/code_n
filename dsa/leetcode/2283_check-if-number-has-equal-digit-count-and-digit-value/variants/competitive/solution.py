@@ -1,7 +1,15 @@
-class Solution:
-    def digitCount(self, num: str) -> bool:
-        frequencies = [0] * 10
-        for digit in num:
-            frequencies[ord(digit) - ord("0")] += 1
+# Time:  O(n)
+# Space: O(1)
 
-        return all(frequencies[index] == ord(required) - ord("0") for index, required in enumerate(num))
+import collections
+
+
+# freq table
+class Solution:
+    def digitCount(self, num):
+        """
+        :type num: str
+        :rtype: bool
+        """
+        cnt = collections.Counter(num)
+        return all(cnt[str(i)] == int(x) for i, x in enumerate(num))

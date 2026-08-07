@@ -1,16 +1,23 @@
 class Solution:
     def maxPotholes(self, road: str, budget: int) -> int:
-        runs = sorted(
-            (len(block) for block in road.split(".") if block),
-            reverse=True,
-        )
-
-        repaired = 0
-        for length in runs:
-            if budget <= 1:
+        road += "."
+        n = len(road)
+        cnt = [0] * n
+        k = 0
+        for c in road:
+            if c == "x":
+                k += 1
+            elif k:
+                cnt[k] += 1
+                k = 0
+        ans = 0
+        for k in range(n - 1, 0, -1):
+            if cnt[k] == 0:
+                continue
+            t = min(budget // (k + 1), cnt[k])
+            ans += t * k
+            budget -= t * (k + 1)
+            if budget == 0:
                 break
-            fixed = min(length, budget - 1)
-            repaired += fixed
-            budget -= fixed + 1
-
-        return repaired
+            cnt[k - 1] += cnt[k] - t
+        return ans

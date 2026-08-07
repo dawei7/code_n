@@ -1,36 +1,32 @@
+# Time:  O(n^2 * k)
+# Space: O(n * k)
+
 class Solution:
-    def getLengthOfOptimalCompression(self, s: str, k: int) -> int:
-        n = len(s)
-        infinity = n + 1
-        dp = [[infinity] * (k + 1) for _ in range(n + 1)]
-        for deletions in range(k + 1):
-            dp[n][deletions] = 0
+    def getLengthOfOptimalCompression(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        def length(cnt):
+            l = 2 if cnt >= 2 else 1
+            while cnt >= 10:
+                l += 1
+                cnt //= 10
+            return l
 
-        for start in range(n - 1, -1, -1):
-            for deletions in range(k + 1):
-                if deletions > 0:
-                    dp[start][deletions] = dp[start + 1][deletions - 1]
-
-                kept = 0
-                removed = 0
-                for end in range(start, n):
-                    if s[end] == s[start]:
-                        kept += 1
+        dp = [[len(s)]*(k+1) for _ in range(len(s)+1)]
+        dp[0][0] = 0
+        for i in range(1, len(s)+1):
+            for j in range(k+1):
+                if i-1 >= 0 and j-1 >= 0:
+                    dp[i][j] = min(dp[i][j], dp[i-1][j-1])
+                keep = delete = 0
+                for m in range(i, len(s)+1):
+                    if s[i-1] == s[m-1]:
+                        keep += 1
                     else:
-                        removed += 1
-                    if removed > deletions:
-                        break
-
-                    encoded_length = 1
-                    if kept >= 100:
-                        encoded_length = 4
-                    elif kept >= 10:
-                        encoded_length = 3
-                    elif kept >= 2:
-                        encoded_length = 2
-                    dp[start][deletions] = min(
-                        dp[start][deletions],
-                        encoded_length + dp[end + 1][deletions - removed],
-                    )
-
-        return dp[0][k]
+                        delete += 1
+                    if j+delete <= k:
+                        dp[m][j+delete] = min(dp[m][j+delete], dp[i-1][j]+length(keep))
+        return dp[len(s)][k]

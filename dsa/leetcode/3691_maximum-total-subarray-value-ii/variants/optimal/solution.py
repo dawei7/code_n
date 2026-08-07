@@ -1,54 +1,50 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+class SparseTableRMQ:
+    def __init__(self, data: List[int]):
+        self.n = len(data)
+        self.max_log = self.n.bit_length() + 1
+        self.f_max = [[0] * self.max_log for _ in range(self.n)]
+        self.f_min = [[0] * self.max_log for _ in range(self.n)]
+
+        self.lg = [0] * (self.n + 1)
+        for i in range(2, self.n + 1):
+            self.lg[i] = self.lg[i >> 1] + 1
+
+        for i in range(self.n):
+            self.f_max[i][0] = data[i]
+            self.f_min[i][0] = data[i]
+
+        for j in range(1, self.max_log):
+            for i in range(self.n - (1 << j) + 1):
+                self.f_max[i][j] = max(
+                    self.f_max[i][j - 1], self.f_max[i + (1 << (j - 1))][j - 1]
+                )
+                self.f_min[i][j] = min(
+                    self.f_min[i][j - 1], self.f_min[i + (1 << (j - 1))][j - 1]
+                )
+
+    def query_max(self, l: int, r: int) -> int:
+        k = self.lg[r - l + 1]
+        return max(self.f_max[l][k], self.f_max[r - (1 << k) + 1][k])
+
+    def query_min(self, l: int, r: int) -> int:
+        k = self.lg[r - l + 1]
+        return min(self.f_min[l][k], self.f_min[r - (1 << k) + 1][k])
 
 
 class Solution:
     def maxTotalValue(self, nums: List[int], k: int) -> int:
         n = len(nums)
-        size = 1 << (n - 1).bit_length()
-        minimum = [10**30] * (2 * size)
-        maximum = [-1] * (2 * size)
-        for index, value in enumerate(nums):
-            minimum[size + index] = value
-            maximum[size + index] = value
-        for index in range(size - 1, 0, -1):
-            minimum[index] = min(minimum[2 * index], minimum[2 * index + 1])
-            maximum[index] = max(maximum[2 * index], maximum[2 * index + 1])
+        st = SparseTableRMQ(nums)
+        pq = []
+        for l in range(n):
+            val = st.query_max(l, n - 1) - st.query_min(l, n - 1)
+            heappush(pq, (-val, l, n - 1))
 
-        def subarray_value(left: int, right: int) -> int:
-            left += size
-            right += size + 1
-            low = 10**30
-            high = -1
-            while left < right:
-                if left & 1:
-                    low = min(low, minimum[left])
-                    high = max(high, maximum[left])
-                    left += 1
-                if right & 1:
-                    right -= 1
-                    low = min(low, minimum[right])
-                    high = max(high, maximum[right])
-                left //= 2
-                right //= 2
-            return high - low
-
-        suffix_low = [0] * n
-        suffix_high = [0] * n
-        suffix_low[-1] = suffix_high[-1] = nums[-1]
-        for index in range(n - 2, -1, -1):
-            suffix_low[index] = min(nums[index], suffix_low[index + 1])
-            suffix_high[index] = max(nums[index], suffix_high[index + 1])
-
-        heap = [(-(suffix_high[left] - suffix_low[left]), left, n - 1) for left in range(n)]
-        heapify(heap)
-        answer = 0
-
+        ans = 0
         for _ in range(k):
-            negative_value, left, right = heappop(heap)
-            answer -= negative_value
-            if right > left:
-                right -= 1
-                heappush(heap, (-subarray_value(left, right), left, right))
-
-        return answer
+            val, l, r = heappop(pq)
+            ans += -val
+            if r > l:
+                val = st.query_max(l, r - 1) - st.query_min(l, r - 1)
+                heappush(pq, (-val, l, r - 1))
+        return ans

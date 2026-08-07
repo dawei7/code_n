@@ -1,17 +1,16 @@
-from typing import List
-
-
 class Solution:
     def findLongestWord(self, s: str, dictionary: List[str]) -> str:
-        def is_subsequence(word: str) -> bool:
-            index = 0
-            for character in s:
-                if index < len(word) and word[index] == character:
-                    index += 1
-            return index == len(word)
+        def check(s: str, t: str) -> bool:
+            m, n = len(s), len(t)
+            i = j = 0
+            while i < m and j < n:
+                if s[i] == t[j]:
+                    i += 1
+                j += 1
+            return i == m
 
-        answer = ""
-        for word in dictionary:
-            if is_subsequence(word) and (len(word) > len(answer) or (len(word) == len(answer) and word < answer)):
-                answer = word
-        return answer
+        ans = ""
+        for t in dictionary:
+            if check(t, s) and (len(ans) < len(t) or (len(ans) == len(t) and ans > t)):
+                ans = t
+        return ans

@@ -1,44 +1,39 @@
-from typing import List
-
-
 class Solution:
     def lengthAfterTransformations(self, s: str, t: int, nums: List[int]) -> int:
-        mod = 1_000_000_007
-        alphabet_size = 26
+        mod = 10**9 + 7
+        m = 26
 
-        def multiply_matrices(left, right):
-            product = [[0] * alphabet_size for _ in range(alphabet_size)]
-            for source in range(alphabet_size):
-                product_row = product[source]
-                for middle, left_value in enumerate(left[source]):
-                    if left_value == 0:
-                        continue
-                    for destination, right_value in enumerate(right[middle]):
-                        product_row[destination] = (product_row[destination] + left_value * right_value) % mod
-            return product
+        cnt = [0] * m
+        for c in s:
+            cnt[ord(c) - ord("a")] += 1
 
-        def multiply_vector(vector, matrix):
-            product = [0] * alphabet_size
-            for source, count in enumerate(vector):
-                if count == 0:
-                    continue
-                for destination, ways in enumerate(matrix[source]):
-                    product[destination] = (product[destination] + count * ways) % mod
-            return product
+        matrix = [[0] * m for _ in range(m)]
+        for i, x in enumerate(nums):
+            for j in range(1, x + 1):
+                matrix[i][(i + j) % m] = 1
 
-        transition = [[0] * alphabet_size for _ in range(alphabet_size)]
-        for source, length in enumerate(nums):
-            for shift in range(1, length + 1):
-                transition[source][(source + shift) % alphabet_size] = 1
+        def matmul(a: List[List[int]], b: List[List[int]]) -> List[List[int]]:
+            n, p, q = len(a), len(b), len(b[0])
+            res = [[0] * q for _ in range(n)]
+            for i in range(n):
+                for k in range(p):
+                    if a[i][k]:
+                        for j in range(q):
+                            res[i][j] = (res[i][j] + a[i][k] * b[k][j]) % mod
+            return res
 
-        counts = [0] * alphabet_size
-        for char in s:
-            counts[ord(char) - ord("a")] += 1
+        def matpow(mat: List[List[int]], power: int) -> List[List[int]]:
+            res = [[int(i == j) for j in range(m)] for i in range(m)]
+            while power:
+                if power % 2:
+                    res = matmul(res, mat)
+                mat = matmul(mat, mat)
+                power //= 2
+            return res
 
-        while t > 0:
-            if t & 1:
-                counts = multiply_vector(counts, transition)
-            transition = multiply_matrices(transition, transition)
-            t >>= 1
+        cnt = [cnt]
+        factor = matpow(matrix, t)
+        result = matmul(cnt, factor)[0]
 
-        return sum(counts) % mod
+        ans = sum(result) % mod
+        return ans

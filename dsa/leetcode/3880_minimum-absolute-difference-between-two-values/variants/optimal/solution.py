@@ -1,17 +1,10 @@
 class Solution:
     def minAbsoluteDifference(self, nums: list[int]) -> int:
-        last_one = -1
-        last_two = -1
-        answer = len(nums) + 1
-
-        for index, value in enumerate(nums):
-            if value == 1:
-                if last_two >= 0:
-                    answer = min(answer, index - last_two)
-                last_one = index
-            elif value == 2:
-                if last_one >= 0:
-                    answer = min(answer, index - last_one)
-                last_two = index
-
-        return -1 if answer > len(nums) else answer
+        n = len(nums)
+        ans = n + 1
+        last = [-inf] * 3
+        for i, x in enumerate(nums):
+            if x:
+                ans = min(ans, i - last[3 - x])
+                last[x] = i
+        return -1 if ans > n else ans

@@ -1,23 +1,43 @@
-from typing import List
+# Time:  ctor: O(n * logh)
+#        get:  O(logh)
+# Space: O(n * logh)
 
+# binary jump solution (frequently used in competitive programming)
+# Template:
+# https://github.com/kamyu104/FacebookHackerCup-2019/blob/master/Final%20Round/little_boat_on_the_sea.py
+class TreeAncestor(object):
 
-class TreeAncestor:
-    def __init__(self, n: int, parent: List[int]):
-        levels = max(1, n.bit_length())
-        self.up = [list(parent)]
+    def __init__(self, n, parent):
+        """
+        :type n: int
+        :type parent: List[int]
+        """
+        par = [[p] if p != -1 else [] for p in parent]
+        q = [par[i] for i, p in enumerate(parent) if p != -1]
+        i = 0
+        while q:
+            new_q = []
+            for p in q:
+                if not (i < len(par[p[i]])):
+                    continue
+                p.append(par[p[i]][i])
+                new_q.append(p)
+            q = new_q
+            i += 1
+        self.__parent = par
 
-        for _ in range(1, levels):
-            previous = self.up[-1]
-            current = [-1 if ancestor == -1 else previous[ancestor] for ancestor in previous]
-            self.up.append(current)
-
-    def getKthAncestor(self, node: int, k: int) -> int:
-        bit = 0
-
-        while k and node != -1:
-            if k & 1:
-                node = self.up[bit][node]
-            k >>= 1
-            bit += 1
-
+    def getKthAncestor(self, node, k):
+        """
+        :type node: int
+        :type k: int
+        :rtype: int
+        """
+        par, i, pow_i_of_2 = self.__parent, 0, 1
+        while pow_i_of_2 <= k:
+            if k & pow_i_of_2:
+                if not (i < len(par[node])):
+                    return -1
+                node = par[node][i]
+            i += 1
+            pow_i_of_2 *= 2
         return node

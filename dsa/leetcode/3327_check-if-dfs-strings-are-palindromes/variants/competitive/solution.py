@@ -1,45 +1,93 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# iterative dfs, manacher's algorithm
 class Solution:
-    def findAnswer(self, parent: List[int], s: str) -> List[bool]:
-        node_count = len(parent)
-        children = [[] for _ in range(node_count)]
-        for node in range(1, node_count):
-            children[parent[node]].append(node)
+    def findAnswer(self, parent, s):
+        """
+        :type parent: List[int]
+        :type s: str
+        :rtype: List[bool]
+        """
+        def manacher(s):
+            s = '^#' + '#'.join(s) + '#$'
+            P = [0]*len(s)
+            C, R = 0, 0
+            for i in range(1, len(s)-1):
+                i_mirror = 2*C-i
+                if R > i:
+                    P[i] = min(R-i, P[i_mirror])
+                while s[i+1+P[i]] == s[i-1-P[i]]:
+                    P[i] += 1
+                if i+P[i] > R:
+                    C, R = i, i+P[i]
+            return P
+    
+        def iter_dfs(u):
+            cnt = 0
+            curr = []
+            lookup = [None]*len(adj)
+            stk = [(1, (0,))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    u = args[0]
+                    stk.append((2, (u, cnt)))
+                    for v in reversed(adj[u]):
+                        stk.append((1, (v,)))
+                elif step == 2:
+                    u, left = args
+                    curr.append(s[u])
+                    lookup[u] = (left, cnt)
+                    cnt += 1
+            return curr, lookup
 
-        starts = [0] * node_count
-        ends = [0] * node_count
-        postorder = []
-        stack = [(0, False)]
+        adj = [[] for _ in range(len(parent))]
+        for v in range(1, len(parent)):
+            adj[parent[v]].append(v)
+        curr, lookup = iter_dfs(0)
+        P = manacher(curr)
+        return [P[(2*(left+1)+2*(right+1))//2] >= right-left+1 for left, right in lookup]
 
-        while stack:
-            node, expanded = stack.pop()
-            if expanded:
-                postorder.append(s[node])
-                ends[node] = len(postorder)
-                continue
 
-            starts[node] = len(postorder)
-            stack.append((node, True))
-            for child in reversed(children[node]):
-                stack.append((child, False))
+# Time:  O(n)
+# Space: O(n)
+# dfs, manacher's algorithm
+class Solution2(object):
+    def findAnswer(self, parent, s):
+        """
+        :type parent: List[int]
+        :type s: str
+        :rtype: List[bool]
+        """
+        def manacher(s):
+            s = '^#' + '#'.join(s) + '#$'
+            P = [0]*len(s)
+            C, R = 0, 0
+            for i in range(1, len(s)-1):
+                i_mirror = 2*C-i
+                if R > i:
+                    P[i] = min(R-i, P[i_mirror])
+                while s[i+1+P[i]] == s[i-1-P[i]]:
+                    P[i] += 1
+                if i+P[i] > R:
+                    C, R = i, i+P[i]
+            return P
+    
+        def dfs(u):
+            left = cnt[0]
+            for v in adj[u]:
+                dfs(v)
+            curr.append(s[u])
+            lookup[u] = (left, cnt[0])
+            cnt[0] += 1
 
-        transformed = "^#" + "#".join(postorder) + "#$"
-        radius = [0] * len(transformed)
-        center = 0
-        right = 0
-
-        for index in range(1, len(transformed) - 1):
-            if index < right:
-                mirror = 2 * center - index
-                radius[index] = min(right - index, radius[mirror])
-
-            while transformed[index + radius[index] + 1] == transformed[index - radius[index] - 1]:
-                radius[index] += 1
-
-            if index + radius[index] > right:
-                center = index
-                right = index + radius[index]
-
-        return [radius[starts[node] + ends[node] + 1] >= ends[node] - starts[node] for node in range(node_count)]
+        adj = [[] for _ in range(len(parent))]
+        for v in range(1, len(parent)):
+            adj[parent[v]].append(v)
+        cnt = [0]
+        curr = []
+        lookup = [None]*len(adj)
+        dfs(0)
+        P = manacher(curr)
+        return [P[(2*(left+1)+2*(right+1))//2] >= right-left+1 for left, right in lookup]

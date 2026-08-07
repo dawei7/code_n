@@ -1,17 +1,20 @@
-from typing import List
+# Time:  O(sqrt(n))
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def maximumEvenSplit(self, finalSum: int) -> List[int]:
-        if finalSum % 2:
+    def maximumEvenSplit(self, finalSum):
+        """
+        :type finalSum: int
+        :rtype: List[int]
+        """
+        if finalSum%2:
             return []
-
-        answer = []
-        next_even = 2
-        while finalSum >= next_even:
-            answer.append(next_even)
-            finalSum -= next_even
-            next_even += 2
-
-        answer[-1] += finalSum
-        return answer
+        result = []
+        i = 2
+        while i <= finalSum:
+            result.append(i)
+            finalSum -= i
+            i += 2
+        result[-1] += finalSum
+        return result

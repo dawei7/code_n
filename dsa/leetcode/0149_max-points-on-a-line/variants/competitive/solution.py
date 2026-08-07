@@ -1,32 +1,39 @@
-from collections import defaultdict
-from math import gcd
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
 
+import collections
+
+
+# Definition for a point
+class Point(object):
+    def __init__(self, a=0, b=0):
+        self.x = a
+        self.y = b
 
 class Solution:
-    def maxPoints(self, points: List[List[int]]) -> int:
-        count = len(points)
-        if count <= 2:
-            return count
-
-        answer = 2
-        for index, (x1, y1) in enumerate(points):
-            directions = defaultdict(int)
-            for x2, y2 in points[index + 1 :]:
-                dx = x2 - x1
-                dy = y2 - y1
-                if dx == 0:
-                    direction = (0, 1)
-                elif dy == 0:
-                    direction = (1, 0)
+    def maxPoints(self, points):
+        """
+        :type points: List[Point]
+        :rtype: int
+        """
+        max_points = 0
+        for i, start in enumerate(points):
+            slope_count, same = collections.defaultdict(int), 1
+            for j in range(i + 1, len(points)):
+                end = points[j]
+                if start.x == end.x and start.y == end.y:
+                    same += 1
                 else:
-                    divisor = gcd(abs(dx), abs(dy))
-                    dx //= divisor
-                    dy //= divisor
-                    if dx < 0:
-                        dx = -dx
-                        dy = -dy
-                    direction = (dx, dy)
-                directions[direction] += 1
-            answer = max(answer, max(directions.values(), default=0) + 1)
-        return answer
+                    slope = float("inf")
+                    if start.x - end.x != 0:
+                        slope = (start.y - end.y) * 1.0 / (start.x - end.x)
+                    slope_count[slope] += 1
+
+            current_max = same
+            for slope in slope_count:
+                current_max = max(current_max, slope_count[slope] + same)
+
+            max_points = max(max_points, current_max)
+
+        return max_points
+

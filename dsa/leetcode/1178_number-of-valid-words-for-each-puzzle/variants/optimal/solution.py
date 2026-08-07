@@ -1,31 +1,21 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:
-        counts = Counter()
-        for word in words:
+        cnt = Counter()
+        for w in words:
             mask = 0
-            for character in set(word):
-                mask |= 1 << (ord(character) - ord("a"))
-            if mask.bit_count() <= 7:
-                counts[mask] += 1
+            for c in w:
+                mask |= 1 << (ord(c) - ord("a"))
+            cnt[mask] += 1
 
-        answers = []
-        for puzzle in puzzles:
-            required = 1 << (ord(puzzle[0]) - ord("a"))
-            optional = 0
-            for character in puzzle[1:]:
-                optional |= 1 << (ord(character) - ord("a"))
-
-            total = 0
-            submask = optional
-            while True:
-                total += counts[submask | required]
-                if submask == 0:
-                    break
-                submask = (submask - 1) & optional
-            answers.append(total)
-
-        return answers
+        ans = []
+        for p in puzzles:
+            mask = 0
+            for c in p:
+                mask |= 1 << (ord(c) - ord("a"))
+            x, i, j = 0, ord(p[0]) - ord("a"), mask
+            while j:
+                if j >> i & 1:
+                    x += cnt[j]
+                j = (j - 1) & mask
+            ans.append(x)
+        return ans

@@ -1,23 +1,18 @@
-from typing import List
-
-
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        candidates.sort()
-        result = []
-        path = []
-
-        def search(start: int, remaining: int) -> None:
-            if remaining == 0:
-                result.append(path[:])
+        def dfs(i: int, s: int):
+            if s == 0:
+                ans.append(t[:])
                 return
-            for index in range(start, len(candidates)):
-                value = candidates[index]
-                if value > remaining:
-                    break
-                path.append(value)
-                search(index, remaining - value)
-                path.pop()
+            if s < candidates[i]:
+                return
+            for j in range(i, len(candidates)):
+                t.append(candidates[j])
+                dfs(j, s - candidates[j])
+                t.pop()
 
-        search(0, target)
-        return result
+        candidates.sort()
+        t = []
+        ans = []
+        dfs(0, target)
+        return ans

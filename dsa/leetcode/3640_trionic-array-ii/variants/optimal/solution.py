@@ -1,37 +1,40 @@
-from typing import List
-
-
 class Solution:
     def maxSumTrionic(self, nums: List[int]) -> int:
-        negative_infinity = float("-inf")
-        increasing = negative_infinity
-        decreasing = negative_infinity
-        trionic = negative_infinity
-        answer = negative_infinity
+        n = len(nums)
+        i = 0
+        ans = -inf
+        while i < n:
+            l = i
+            i += 1
+            while i < n and nums[i - 1] < nums[i]:
+                i += 1
+            if i == l + 1:
+                continue
 
-        for index in range(1, len(nums)):
-            previous = nums[index - 1]
-            current = nums[index]
+            p = i - 1
+            s = nums[p - 1] + nums[p]
+            while i < n and nums[i - 1] > nums[i]:
+                s += nums[i]
+                i += 1
+            if i == p + 1 or i == n or nums[i - 1] == nums[i]:
+                continue
 
-            if current > previous:
-                next_increasing = max(previous + current, increasing + current)
-                next_trionic = max(decreasing + current, trionic + current)
-                next_decreasing = negative_infinity
-            elif current < previous:
-                next_increasing = negative_infinity
-                next_decreasing = max(
-                    increasing + current,
-                    decreasing + current,
-                )
-                next_trionic = negative_infinity
-            else:
-                next_increasing = negative_infinity
-                next_decreasing = negative_infinity
-                next_trionic = negative_infinity
+            q = i - 1
+            s += nums[i]
+            i += 1
+            mx = t = 0
+            while i < n and nums[i - 1] < nums[i]:
+                t += nums[i]
+                i += 1
+                mx = max(mx, t)
+            s += mx
 
-            increasing = next_increasing
-            decreasing = next_decreasing
-            trionic = next_trionic
-            answer = max(answer, trionic)
+            mx = t = 0
+            for j in range(p - 2, l - 1, -1):
+                t += nums[j]
+                mx = max(mx, t)
+            s += mx
 
-        return int(answer)
+            ans = max(ans, s)
+            i = q
+        return ans

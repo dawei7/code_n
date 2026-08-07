@@ -1,28 +1,28 @@
+# Definition for polynomial singly-linked list.
+# class PolyNode:
+#     def __init__(self, x=0, y=0, next=None):
+#         self.coefficient = x
+#         self.power = y
+#         self.next = next
+
+
 class Solution:
     def addPoly(self, poly1: "PolyNode", poly2: "PolyNode") -> "PolyNode":
-        dummy = PolyNode()
-        tail = dummy
-
-        while poly1 is not None and poly2 is not None:
+        dummy = curr = PolyNode()
+        while poly1 and poly2:
             if poly1.power > poly2.power:
-                tail.next = PolyNode(poly1.coefficient, poly1.power)
+                curr.next = poly1
                 poly1 = poly1.next
-            elif poly2.power > poly1.power:
-                tail.next = PolyNode(poly2.coefficient, poly2.power)
+                curr = curr.next
+            elif poly1.power < poly2.power:
+                curr.next = poly2
                 poly2 = poly2.next
+                curr = curr.next
             else:
-                coefficient = poly1.coefficient + poly2.coefficient
-                if coefficient != 0:
-                    tail.next = PolyNode(coefficient, poly1.power)
+                if c := poly1.coefficient + poly2.coefficient:
+                    curr.next = PolyNode(c, poly1.power)
+                    curr = curr.next
                 poly1 = poly1.next
                 poly2 = poly2.next
-                if coefficient == 0:
-                    continue
-            tail = tail.next
-
-        remaining = poly1 if poly1 is not None else poly2
-        while remaining is not None:
-            tail.next = PolyNode(remaining.coefficient, remaining.power)
-            tail = tail.next
-            remaining = remaining.next
+        curr.next = poly1 or poly2
         return dummy.next

@@ -1,42 +1,54 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def diameterOfBinaryTree(self, root: Optional["TreeNode"]) -> int:
-        if root is None:
-            return 0
+    def diameterOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def iter_dfs(node):
+            result = 0
+            stk = [(1, [node, [0]])]
+            while stk:
+                step, params = stk.pop()
+                if step == 1:
+                    node, ret = params
+                    if not node:
+                        continue
+                    ret1, ret2 = [0], [0]
+                    stk.append((2, [node, ret1, ret2, ret]))
+                    stk.append((1, [node.right, ret2]))
+                    stk.append((1, [node.left, ret1]))
+                elif step == 2:
+                    node, ret1, ret2, ret = params
+                    result = max(result, ret1[0]+ret2[0])
+                    ret[0] = 1+max(ret1[0], ret2[0])
+            return result
+        
+        return iter_dfs(root)
 
-        diameter = 0
-        stack = [[root, 0, 0, 0]]
 
-        while stack:
-            frame = stack[-1]
-            node = frame[0]
-
-            if frame[1] == 0:
-                frame[1] = 1
-                if node.left is not None:
-                    stack.append([node.left, 0, 0, 0])
-            elif frame[1] == 1:
-                frame[1] = 2
-                if node.right is not None:
-                    stack.append([node.right, 0, 0, 0])
-            else:
-                height = 1 + max(frame[2], frame[3])
-                diameter = max(diameter, frame[2] + frame[3])
-                stack.pop()
-
-                if stack:
-                    parent = stack[-1]
-                    if parent[1] == 1:
-                        parent[2] = height
-                    else:
-                        parent[3] = height
-
-        return diameter
+# Time:  O(n)
+# Space: O(h)
+class Solution2(object):
+    def diameterOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(root):
+            if not root: 
+                return 0, 0
+            left_d, left_h = dfs(root.left)
+            right_d, right_h = dfs(root.right)
+            return max(left_d, right_d, left_h+right_h), 1+max(left_h, right_h)
+ 
+        return dfs(root)[0]

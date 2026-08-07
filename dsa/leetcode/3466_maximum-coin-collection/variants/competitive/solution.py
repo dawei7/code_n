@@ -1,34 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def maxCoins(self, lane1: List[int], lane2: List[int]) -> int:
-        unreachable = -(10**30)
-        no_switch = unreachable
-        one_switch = unreachable
-        two_switches = unreachable
-        answer = unreachable
-
-        for first, second in zip(lane1, lane2):
-            next_no_switch = max(
-                first,
-                no_switch + first,
-            )
-            next_one_switch = max(
-                second,
-                one_switch + second,
-                no_switch + second,
-            )
-            next_two_switches = max(
-                two_switches + first,
-                one_switch + first,
-            )
-
-            no_switch = next_no_switch
-            one_switch = next_one_switch
-            two_switches = next_two_switches
-            answer = max(
-                answer,
-                no_switch,
-                one_switch,
-                two_switches,
-            )
-
-        return answer
+    def maxCoins(self, lane1, lane2):
+        """
+        :type lane1: List[int]
+        :type lane2: List[int]
+        :rtype: int
+        """
+        result = dp1 = dp12 = dp121 = float("-inf")
+        for i in range(len(lane1)):
+            dp1 = max(dp1, 0)+lane1[i]
+            dp12 = max(max(dp12, 0)+lane2[i], dp1)
+            dp121 = max(max(dp121, 0)+lane1[i], dp12)
+            result = max(result, dp1, dp121)
+        return result

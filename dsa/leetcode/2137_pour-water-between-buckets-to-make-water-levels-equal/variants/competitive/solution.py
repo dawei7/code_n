@@ -1,23 +1,24 @@
-from typing import List
+# Time:  O(nlogr)
+# Space: O(1)
 
-
+# binary search
 class Solution:
-    def equalizeWater(self, buckets: List[int], loss: int) -> float:
-        left = float(min(buckets))
-        right = float(max(buckets))
-        retained = 1.0 - loss / 100.0
+    def equalizeWater(self, buckets, loss):
+        """
+        :type buckets: List[int]
+        :type loss: int
+        :rtype: float
+        """
+        def check(buckets, rate, x):
+            return sum(b-x for b in buckets if b-x > 0)*rate >= sum(x-b for b in buckets if x-b > 0)
 
-        for _ in range(60):
-            middle = (left + right) / 2.0
-            surplus = 0.0
-            deficit = 0.0
-            for amount in buckets:
-                if amount > middle:
-                    surplus += amount - middle
-                else:
-                    deficit += middle - amount
-            if surplus * retained >= deficit:
-                left = middle
+        EPS = 1e-5
+        rate = (100-loss)/100.0
+        left, right = float(min(buckets)), float(sum(buckets))/len(buckets)
+        while right-left > EPS:
+            mid = left + (right-left)/2
+            if not check(buckets, rate, mid):
+                right = mid
             else:
-                right = middle
+                left = mid
         return left

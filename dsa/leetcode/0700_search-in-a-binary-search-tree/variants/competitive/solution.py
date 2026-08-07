@@ -1,13 +1,24 @@
+# Time:  O(h)
+# Space: O(1)
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def searchBST(self, root, val: int):
-        current = root
-
-        while current is not None:
-            if current.val == val:
-                return current
-            if val < current.val:
-                current = current.left
+    def searchBST(self, root, val):
+        """
+        :type root: TreeNode
+        :type val: int
+        :rtype: TreeNode
+        """
+        while root and val != root.val:
+            if val < root.val:
+                root = root.left
             else:
-                current = current.right
+                root = root.right
+        return root
 
-        return None

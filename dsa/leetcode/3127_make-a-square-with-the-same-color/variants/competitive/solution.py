@@ -1,12 +1,16 @@
+# Time:  O((n - w + 1)^2 * w^2)
+# Space: O(1)
+
+import collections
+
+
+# array
 class Solution:
-    def canMakeSquare(self, grid: List[List[str]]) -> bool:
-        for row in range(2):
-            for column in range(2):
-                black = sum(
-                    grid[row + row_offset][column + column_offset] == "B"
-                    for row_offset in range(2)
-                    for column_offset in range(2)
-                )
-                if black != 2:
-                    return True
-        return False
+    def canMakeSquare(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: bool
+        """
+        N, W = 3, 2
+        return any(max(collections.Counter(grid[i+h][j+w] for h in range(W) for w in range(W)).itervalues()) >= W**2-1
+                   for i in range(N-W+1) for j in range(N-W+1))

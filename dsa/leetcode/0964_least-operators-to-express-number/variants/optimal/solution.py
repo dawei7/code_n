@@ -1,23 +1,14 @@
 class Solution:
     def leastOpsExpressTarget(self, x: int, target: int) -> int:
-        positive = negative = 0
-        position = 0
+        @cache
+        def dfs(v: int) -> int:
+            if x >= v:
+                return min(v * 2 - 1, 2 * (x - v))
+            k = 2
+            while x**k < v:
+                k += 1
+            if x**k - v < v:
+                return min(k + dfs(x**k - v), k - 1 + dfs(v - x ** (k - 1)))
+            return k - 1 + dfs(v - x ** (k - 1))
 
-        while target:
-            target, digit = divmod(target, x)
-            if position == 0:
-                positive = digit * 2
-                negative = (x - digit) * 2
-            else:
-                next_positive = min(
-                    positive + digit * position,
-                    negative + (digit + 1) * position,
-                )
-                next_negative = min(
-                    positive + (x - digit) * position,
-                    negative + (x - digit - 1) * position,
-                )
-                positive, negative = next_positive, next_negative
-            position += 1
-
-        return min(positive, negative + position) - 1
+        return dfs(target)

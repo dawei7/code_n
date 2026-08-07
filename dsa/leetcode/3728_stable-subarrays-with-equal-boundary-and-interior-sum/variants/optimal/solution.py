@@ -1,15 +1,11 @@
 class Solution:
-    def countStableSubarrays(self, capacity: list[int]) -> int:
-        prefix = [0]
-        for value in capacity:
-            prefix.append(prefix[-1] + value)
-
-        eligible = {}
-        result = 0
-        for right in range(2, len(capacity)):
-            left = right - 2
-            key = (capacity[left], prefix[left] + 2 * capacity[left])
-            eligible[key] = eligible.get(key, 0) + 1
-            result += eligible.get((capacity[right], prefix[right]), 0)
-
-        return result
+    def countStableSubarrays(self, capacity: List[int]) -> int:
+        s = list(accumulate(capacity, initial=0))
+        n = len(capacity)
+        ans = 0
+        cnt = defaultdict(int)
+        for r in range(2, n):
+            l = r - 2
+            cnt[(capacity[l], capacity[l] + s[l + 1])] += 1
+            ans += cnt[(capacity[r], s[r])]
+        return ans

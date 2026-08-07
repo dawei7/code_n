@@ -1,28 +1,58 @@
-from typing import List
+# Time:  O(rlogr + n * b), r = max(f for f, _ in items)
+# Space: O(r + b)
 
-
+# freq table, knapsack dp, greedy
 class Solution:
-    def maximumSaleItems(self, items: List[List[int]], budget: int) -> int:
-        maximum_factor = max(factor for factor, _ in items)
-        frequencies = [0] * (maximum_factor + 1)
-        for factor, _ in items:
-            frequencies[factor] += 1
+    def maximumSaleItems(self, items, budget):
+        """
+        :type items: List[List[int]]
+        :type budget: int
+        :rtype: int
+        """
+        NEG_INF = float("-inf")
+        cnt = [0]*(max(f for f, _ in items)+1)
+        for f, _ in items:
+            cnt[f] += 1
+        total = [0]*len(cnt)
+        for i in range(1, len(total)):
+            if not cnt[i]:
+                continue
+            for j in range(i, len(total), i):
+                total[i] += cnt[j]
+        dp = [NEG_INF]*(budget+1)
+        dp[0] = 0
+        for f, p in items:
+            for i in reversed(range(p, len(dp))):
+                dp[i] = max(dp[i], dp[i-p]+total[f])
+        min_p = min(p for _, p in items)
+        return max(x+(budget-i)//min_p for i, x in enumerate(dp))
 
-        divisible_counts = [0] * (maximum_factor + 1)
-        for factor in range(1, maximum_factor + 1):
-            divisible_counts[factor] = sum(
-                frequencies[multiple] for multiple in range(factor, maximum_factor + 1, factor)
-            )
 
-        dp = [0] * (budget + 1)
-        for factor, price in items:
-            first_value = divisible_counts[factor]
-            previous = dp[:]
-            for capacity in range(price, budget + 1):
-                dp[capacity] = max(
-                    dp[capacity],
-                    previous[capacity - price] + first_value,
-                    dp[capacity - price] + 1,
-                )
-
-        return dp[budget]
+# Time:  O(rlogr + n * b), r = max(f for f, _ in items)
+# Space: O(r + b)
+# freq table, knapsack dp, greedy
+class Solution2(object):
+    def maximumSaleItems(self, items, budget):
+        """
+        :type items: List[List[int]]
+        :type budget: int
+        :rtype: int
+        """
+        NEG_INF = float("-inf")
+        cnt = [0]*(max(f for f, _ in items)+1)
+        for f, _ in items:
+            cnt[f] += 1
+        total = [0]*len(cnt)
+        for i in range(1, len(total)):
+            if not cnt[i]:
+                continue
+            for j in range(i, len(total), i):
+                total[i] += cnt[j]
+        dp = [NEG_INF]*(budget+1)
+        dp[0] = 0
+        for f, p in items:
+            for i in reversed(range(p, len(dp))):
+                dp[i] = max(dp[i], dp[i-p]+total[f])
+            for i in range(p, len(dp)):
+                dp[i] = max(dp[i], dp[i-p]+1)
+        return max(dp)

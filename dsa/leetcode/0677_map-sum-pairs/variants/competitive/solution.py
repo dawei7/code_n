@@ -1,27 +1,55 @@
-class _TrieNode:
+# Time:  O(n), n is the length of key
+# Space: O(t), t is the number of nodes in trie
+
+import collections
+
+
+class MapSum(object):
+
     def __init__(self):
-        self.children = {}
-        self.total = 0
+        """
+        Initialize your data structure here.
+        """
+        _trie = lambda: collections.defaultdict(_trie)
+        self.__root = _trie()
 
 
-class MapSum:
-    def __init__(self):
-        self.root = _TrieNode()
-        self.values = {}
+    def insert(self, key, val):
+        """
+        :type key: str
+        :type val: int
+        :rtype: void
+        """
+        # Time: O(n)
+        curr = self.__root
+        for c in key:
+            curr = curr[c]
+        delta = val
+        if "_end" in curr:
+            delta -= curr["_end"]
 
-    def insert(self, key: str, val: int) -> None:
-        delta = val - self.values.get(key, 0)
-        self.values[key] = val
-        node = self.root
-        node.total += delta
-        for character in key:
-            node = node.children.setdefault(character, _TrieNode())
-            node.total += delta
+        curr = self.__root
+        for c in key:
+            curr = curr[c]
+            if "_count" in curr:
+                curr["_count"] += delta
+            else:
+                curr["_count"] = delta
+        curr["_end"] = val
 
-    def sum(self, prefix: str) -> int:
-        node = self.root
-        for character in prefix:
-            node = node.children.get(character)
-            if node is None:
+
+    def sum(self, prefix):
+        """
+        :type prefix: str
+        :rtype: int
+        """
+        # Time: O(n)
+        curr = self.__root
+        for c in prefix:
+            if c not in curr:
                 return 0
-        return node.total
+            curr = curr[c]
+        return curr["_count"]
+
+
+

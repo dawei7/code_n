@@ -1,41 +1,28 @@
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
     def minimumWeight(
-        self,
-        n: int,
-        edges: List[List[int]],
-        src1: int,
-        src2: int,
-        dest: int,
+        self, n: int, edges: List[List[int]], src1: int, src2: int, dest: int
     ) -> int:
-        graph = [[] for _ in range(n)]
-        reverse = [[] for _ in range(n)]
-        for source, target, weight in edges:
-            graph[source].append((target, weight))
-            reverse[target].append((source, weight))
-
-        def dijkstra(start: int, adjacency: List[List[tuple[int, int]]]):
-            distance = [float("inf")] * n
-            distance[start] = 0
-            heap = [(0, start)]
-
-            while heap:
-                current, node = heappop(heap)
-                if current != distance[node]:
+        def dijkstra(g, u):
+            dist = [inf] * n
+            dist[u] = 0
+            q = [(0, u)]
+            while q:
+                d, u = heappop(q)
+                if d > dist[u]:
                     continue
-                for neighbor, weight in adjacency[node]:
-                    candidate = current + weight
-                    if candidate < distance[neighbor]:
-                        distance[neighbor] = candidate
-                        heappush(heap, (candidate, neighbor))
-            return distance
+                for v, w in g[u]:
+                    if dist[v] > dist[u] + w:
+                        dist[v] = dist[u] + w
+                        heappush(q, (dist[v], v))
+            return dist
 
-        from_first = dijkstra(src1, graph)
-        from_second = dijkstra(src2, graph)
-        to_destination = dijkstra(dest, reverse)
-
-        answer = min(from_first[node] + from_second[node] + to_destination[node] for node in range(n))
-        return -1 if answer == float("inf") else answer
+        g = defaultdict(list)
+        rg = defaultdict(list)
+        for f, t, w in edges:
+            g[f].append((t, w))
+            rg[t].append((f, w))
+        d1 = dijkstra(g, src1)
+        d2 = dijkstra(g, src2)
+        d3 = dijkstra(rg, dest)
+        ans = min(sum(v) for v in zip(d1, d2, d3))
+        return -1 if ans >= inf else ans

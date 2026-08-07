@@ -1,12 +1,15 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def firstDayBeenInAllRooms(self, nextVisit: List[int]) -> int:
-        modulo = 1_000_000_007
-        first_day = [0] * len(nextVisit)
+    def firstDayBeenInAllRooms(self, nextVisit):
+        """
+        :type nextVisit: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
 
-        for room in range(len(nextVisit) - 1):
-            first_day[room + 1] = (2 * first_day[room] - first_day[nextVisit[room]] + 2) % modulo
-
-        return first_day[-1]
+        dp = [0]*len(nextVisit)
+        for i in range(1, len(dp)):
+            dp[i] = (dp[i-1]+1+(dp[i-1]-dp[nextVisit[i-1]])+1)%MOD
+        return dp[-1]

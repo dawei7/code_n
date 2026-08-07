@@ -1,27 +1,27 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def minSwaps(self, grid: List[List[int]]) -> int:
-        n = len(grid)
-        trailing_zeros = []
-        for row in grid:
-            zeros = 0
-            for value in reversed(row):
-                if value == 1:
+    def minSwaps(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        result = 0
+        for target in reversed(range(1, len(grid))):
+            row_idx = len(grid)-1-target
+            while row_idx < len(grid):
+                row = grid[row_idx]
+                if not sum(itertools.islice(row, len(row)-target, len(row))):
                     break
-                zeros += 1
-            trailing_zeros.append(zeros)
-
-        swaps = 0
-        for position in range(n):
-            required = n - position - 1
-            candidate = position
-            while candidate < n and trailing_zeros[candidate] < required:
-                candidate += 1
-            if candidate == n:
+                row_idx += 1
+            else:
                 return -1
-            swaps += candidate - position
-            trailing_zeros[position + 1 : candidate + 1] = trailing_zeros[position:candidate]
-            trailing_zeros[position] = required
-        return swaps
+            while row_idx != len(grid)-1-target:
+                grid[row_idx], grid[row_idx-1] = grid[row_idx-1], grid[row_idx]
+                result += 1
+                row_idx -= 1
+        return result

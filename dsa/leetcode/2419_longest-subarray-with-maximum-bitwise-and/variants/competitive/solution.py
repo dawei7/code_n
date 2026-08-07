@@ -1,16 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# bit manipulation
 class Solution:
-    def longestSubarray(self, nums: List[int]) -> int:
-        maximum = max(nums)
-        longest = 0
-        current = 0
-
-        for value in nums:
-            if value == maximum:
-                current += 1
-                longest = max(longest, current)
+    def longestSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        mx = max(nums)
+        result, l = 1, 0
+        for x in nums:
+            if x == mx:
+                l += 1
+                result = max(result, l)
             else:
-                current = 0
-        return longest
+                l = 0
+        return result

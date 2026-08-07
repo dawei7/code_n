@@ -1,42 +1,40 @@
-from heapq import heappop, heappush
+# Time:  O((n * p + e * p) * log(n * p))
+# Space: O(n * p)
+
+import heapq
 
 
+# dijkstra's algorithm
 class Solution:
-    def minTimeMaxPower(
-        self,
-        n: int,
-        edges: List[List[int]],
-        power: int,
-        cost: List[int],
-        source: int,
-        target: int,
-    ) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for node, neighbor, travel_time in edges:
-            graph[node].append((neighbor, travel_time))
-
-        infinity = 10**30
-        best_time = [[infinity] * (power + 1) for _ in range(n)]
-        best_time[source][power] = 0
-        heap = [(0, source, power)]
-
-        while heap:
-            elapsed, node, remaining = heappop(heap)
-            if elapsed != best_time[node][remaining]:
+    def minTimeMaxPower(self, n, edges, power, cost, source, target):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type power: int
+        :type cost: List[int]
+        :type source: int
+        :type target: int
+        :rtype: List[int]
+        """
+        adj = [[] for _ in range(n)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+        dist = [[float("inf")]*(power+1) for _ in range(n)]
+        dist[source][power] = 0
+        min_heap = [(dist[source][power] , -power, source)]
+        while min_heap:
+            t, p, u = heapq.heappop(min_heap)
+            p = -p
+            if t > dist[u][p]:
                 continue
-            if remaining < cost[node]:
+            if u == target:
+                return [t, p]
+            np = p-cost[u]
+            if np < 0:
                 continue
-
-            next_power = remaining - cost[node]
-            for neighbor, travel_time in graph[node]:
-                arrival = elapsed + travel_time
-                if arrival < best_time[neighbor][next_power]:
-                    best_time[neighbor][next_power] = arrival
-                    heappush(heap, (arrival, neighbor, next_power))
-
-        minimum_time = min(best_time[target])
-        if minimum_time == infinity:
-            return [-1, -1]
-
-        maximum_power = max(remaining for remaining, elapsed in enumerate(best_time[target]) if elapsed == minimum_time)
-        return [minimum_time, maximum_power]
+            for v, w in adj[u]:
+                if t+w >= dist[v][np]:
+                    continue
+                dist[v][np] = t+w
+                heapq.heappush(min_heap, (dist[v][np], -np, v))
+        return [-1, -1]

@@ -1,30 +1,25 @@
 class Solution:
     def digitsCount(self, d: int, low: int, high: int) -> int:
-        def count_up_to(limit: int) -> int:
-            if limit <= 0:
-                return 0
+        return self.f(high, d) - self.f(low - 1, d)
 
-            total = 0
-            place = 1
-            while place <= limit:
-                lower = limit % place
-                current = (limit // place) % 10
-                higher = limit // (place * 10)
+    def f(self, n, d):
+        @cache
+        def dfs(pos, cnt, lead, limit):
+            if pos <= 0:
+                return cnt
+            up = a[pos] if limit else 9
+            ans = 0
+            for i in range(up + 1):
+                if i == 0 and lead:
+                    ans += dfs(pos - 1, cnt, lead, limit and i == up)
+                else:
+                    ans += dfs(pos - 1, cnt + (i == d), False, limit and i == up)
+            return ans
 
-                if d != 0:
-                    total += higher * place
-                    if current > d:
-                        total += place
-                    elif current == d:
-                        total += lower + 1
-                elif higher > 0:
-                    total += (higher - 1) * place
-                    if current > 0:
-                        total += place
-                    else:
-                        total += lower + 1
-
-                place *= 10
-            return total
-
-        return count_up_to(high) - count_up_to(low - 1)
+        a = [0] * 11
+        l = 0
+        while n:
+            l += 1
+            a[l] = n % 10
+            n //= 10
+        return dfs(l, 0, True, True)

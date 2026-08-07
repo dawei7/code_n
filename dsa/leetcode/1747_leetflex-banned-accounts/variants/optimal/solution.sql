@@ -1,8 +1,9 @@
-SELECT DISTINCT first_session.account_id
-FROM LogInfo AS first_session
-JOIN LogInfo AS second_session
-    ON second_session.account_id = first_session.account_id
-    AND second_session.ip_address <> first_session.ip_address
-    AND first_session.login <= second_session.logout
-    AND second_session.login <= first_session.logout
-ORDER BY first_session.account_id ASC;
+# Write your MySQL query statement below
+SELECT DISTINCT
+    a.account_id
+FROM
+    LogInfo AS a
+    JOIN LogInfo AS b
+        ON a.account_id = b.account_id
+        AND a.ip_address != b.ip_address
+        AND a.login BETWEEN b.login AND b.logout;

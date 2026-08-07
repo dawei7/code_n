@@ -1,18 +1,17 @@
-from functools import reduce
-from operator import or_
-from typing import List
+# Time:  O(min(2^n, m * n)), m is the 'bitwise or' of nums
+# Space: O(min(2^n, m))
+
+import collections
 
 
 class Solution:
-    def countMaxOrSubsets(self, nums: List[int]) -> int:
-        target = reduce(or_, nums)
-
-        def count(index: int, current: int) -> int:
-            if current == target:
-                return 1 << (len(nums) - index)
-            if index == len(nums):
-                return 0
-
-            return count(index + 1, current) + count(index + 1, current | nums[index])
-
-        return count(0, 0)
+    def countMaxOrSubsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = collections.Counter([0])
+        for x in nums:
+            for k, v in dp.items():
+                dp[k|x] += v
+        return dp[reduce(lambda x, y: x|y, nums)]

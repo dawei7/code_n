@@ -1,16 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maximumAlternatingSubarraySum(self, nums: List[int]) -> int:
-        add = nums[0]
-        subtract = float("-inf")
-        answer = add
+    def maximumAlternatingSubarraySum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def kadane(nums, start):
+            result = float("-inf")
+            curr = odd = 0
+            for i in range(start, len(nums)):
+                curr = (curr+nums[i]) if not odd else max(curr-nums[i], 0)
+                result = max(result, curr)
+                odd ^= 1
+            return result
 
-        for value in nums[1:]:
-            next_add = max(value, subtract + value)
-            next_subtract = add - value
-            add, subtract = next_add, next_subtract
-            answer = max(answer, add, subtract)
-
-        return int(answer)
+        return max(kadane(nums, 0), kadane(nums, 1))

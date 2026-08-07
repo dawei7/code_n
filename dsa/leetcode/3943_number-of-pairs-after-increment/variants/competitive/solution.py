@@ -1,72 +1,50 @@
-from collections import Counter
-from math import isqrt
+# Time:  O(n + m + q * sqrt(m * n)), n = len(nums1), m = len(nums2)
+# Space: O(n + m)
+
+import collections
 
 
+# freq table, sqrt decomposition
 class Solution:
-    def numberOfPairs(
-        self,
-        nums1: list[int],
-        nums2: list[int],
-        queries: list[list[int]],
-    ) -> list[int]:
-        fixed_frequencies = Counter(nums1)
-        fixed_items = list(fixed_frequencies.items())
-        length = len(nums2)
-        block_size = isqrt((length * len(fixed_items) + 1) // 2) + 1
-        block_count = (length + block_size - 1) // block_size
-        lazy = [0] * block_count
-        block_frequencies = [
-            Counter(nums2[start : min(start + block_size, length)]) for start in range(0, length, block_size)
-        ]
+    def numberOfPairs(self, nums1, nums2, queries):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
 
-        def update_boundary(block: int, left: int, right: int, delta: int) -> None:
-            start = block * block_size
-            end = min(start + block_size, length)
-            offset = lazy[block]
-            if offset:
-                for index in range(start, end):
-                    nums2[index] += offset
-                lazy[block] = 0
-
-            for index in range(left, right + 1):
-                nums2[index] += delta
-            block_frequencies[block] = Counter(nums2[start:end])
-
-        answer = []
-        for query in queries:
-            if query[0] == 1:
-                _, left, right, delta = query
-                left_block = left // block_size
-                right_block = right // block_size
-                if left_block == right_block:
-                    update_boundary(left_block, left, right, delta)
-                    continue
-
-                update_boundary(
-                    left_block,
-                    left,
-                    (left_block + 1) * block_size - 1,
-                    delta,
-                )
-                update_boundary(
-                    right_block,
-                    right_block * block_size,
-                    right,
-                    delta,
-                )
-                for block in range(left_block + 1, right_block):
-                    lazy[block] += delta
+        def update(cnt, left, right, val):
+            for i in range(left, right+1):
+                cnt[nums2[i]] -= 1
+                if not cnt[nums2[i]]:
+                    del cnt[nums2[i]]
+                nums2[i] += val
+                cnt[nums2[i]] += 1
+    
+        cnt1 = collections.defaultdict(int)
+        for x in nums1:
+            cnt1[x] += 1
+        B = int((len(cnt1)*len(nums2))**0.5)+1
+        cnt2 = [collections.defaultdict(int) for _ in range(ceil_divide(len(nums2), B))]
+        for i in range(len(cnt2)): 
+            for j in range(i*B, min(i*B+B, len(nums2))):
+                cnt2[i][nums2[j]] += 1
+        lazy = [0]*len(cnt2)
+        result = []
+        for q in queries:
+            if q[0] == 2:
+                tot = q[1]
+                result.append(sum(cnt2[i][(tot-x)-lazy[i]]*c for x, c in cnt1.items() for i in range(len(cnt2)) if (tot-x)-lazy[i] in cnt2[i]))
                 continue
-
-            target = query[1]
-            pair_count = 0
-            for block, frequencies in enumerate(block_frequencies):
-                adjusted_target = target - lazy[block]
-                for value, multiplicity in fixed_items:
-                    pair_count += multiplicity * frequencies.get(
-                        adjusted_target - value,
-                        0,
-                    )
-            answer.append(pair_count)
-
-        return answer
+            x, y, val = q[1], q[2], q[3]
+            if x//B == y//B:
+                update(cnt2[x//B], x, y, val)
+                continue
+            update(cnt2[x//B], x, ((x//B)+1)*B-1, val)
+            for i in range((x//B)+1, y//B):
+                lazy[i] += val
+            update(cnt2[y//B], (y//B)*B, y, val)
+        return result

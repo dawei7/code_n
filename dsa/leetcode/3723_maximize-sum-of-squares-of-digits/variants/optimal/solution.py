@@ -1,7 +1,10 @@
 class Solution:
     def maxSumOfSquares(self, num: int, sum: int) -> str:
-        if sum > 9 * num:
+        if num * 9 < sum:
             return ""
-
-        nines, remainder = divmod(sum, 9)
-        return "9" * nines + (str(remainder) if remainder else "") + "0" * (num - nines - (remainder > 0))
+        k, s = divmod(sum, 9)
+        ans = "9" * k
+        if s:
+            ans += digits[s]
+        ans += "0" * (num - len(ans))
+        return ans

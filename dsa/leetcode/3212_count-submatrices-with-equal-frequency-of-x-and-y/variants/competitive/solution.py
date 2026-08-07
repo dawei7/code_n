@@ -1,26 +1,48 @@
-from typing import List
+# Time:  O(n * m)
+# Space: O(n * m)
 
-
+# dp
 class Solution:
-    def numberOfSubmatrices(self, grid: List[List[str]]) -> int:
-        columns = len(grid[0])
-        column_balance = [0] * columns
-        column_x_count = [0] * columns
-        answer = 0
+    def numberOfSubmatrices(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        result = 0
+        dp1 = [[0]*(len(grid[0])+1) for _ in range(len(grid)+1)]
+        dp2 = [[0]*(len(grid[0])+1) for _ in range(len(grid)+1)]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                dp1[i+1][j+1] = dp1[i][j+1]+dp1[i+1][j]-dp1[i][j]+int(grid[i][j] == 'X')
+                dp2[i+1][j+1] = dp2[i][j+1]+dp2[i+1][j]-dp2[i][j]+int(grid[i][j] == 'Y')
+                result += int(dp1[i+1][j+1] == dp2[i+1][j+1] != 0)
+        return result
 
-        for row in grid:
-            prefix_balance = 0
-            prefix_x_count = 0
-            for column, value in enumerate(row):
-                if value == "X":
-                    column_balance[column] += 1
-                    column_x_count[column] += 1
-                elif value == "Y":
-                    column_balance[column] -= 1
 
-                prefix_balance += column_balance[column]
-                prefix_x_count += column_x_count[column]
-                if prefix_balance == 0 and prefix_x_count > 0:
-                    answer += 1
-
-        return answer
+# Time:  O(n * m)
+# Space: O(n * m)
+# dp
+class Solution2(object):
+    def numberOfSubmatrices(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        result = 0
+        dp1 = [[0]*len(grid[0]) for _ in range(len(grid))]
+        dp2 = [[0]*len(grid[0]) for _ in range(len(grid))]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i-1 >= 0:
+                    dp1[i][j] += dp1[i-1][j]
+                    dp2[i][j] += dp2[i-1][j]
+                if j-1 >= 0:
+                    dp1[i][j] += dp1[i][j-1]
+                    dp2[i][j] += dp2[i][j-1]
+                if i-1 >= 0 and j-1 >= 0:
+                    dp1[i][j] -= dp1[i-1][j-1]
+                    dp2[i][j] -= dp2[i-1][j-1]
+                dp1[i][j] += int(grid[i][j] == 'X')
+                dp2[i][j] += int(grid[i][j] == 'Y')
+                result += int(dp1[i][j] == dp2[i][j] != 0)
+        return result

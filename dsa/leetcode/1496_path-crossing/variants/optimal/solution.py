@@ -1,22 +1,18 @@
 class Solution:
     def isPathCrossing(self, path: str) -> bool:
-        x = 0
-        y = 0
-        visited = {(0, 0)}
-
-        for move in path:
-            if move == "N":
-                y += 1
-            elif move == "S":
-                y -= 1
-            elif move == "E":
-                x += 1
-            else:
-                x -= 1
-
-            position = (x, y)
-            if position in visited:
+        i = j = 0
+        vis = {(0, 0)}
+        for c in path:
+            match c:
+                case 'N':
+                    i -= 1
+                case 'S':
+                    i += 1
+                case 'E':
+                    j += 1
+                case 'W':
+                    j -= 1
+            if (i, j) in vis:
                 return True
-            visited.add(position)
-
+            vis.add((i, j))
         return False

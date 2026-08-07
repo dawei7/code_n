@@ -1,26 +1,28 @@
+# Time:  O(n)
+# Space: O(n)
+
+# greedy
 class Solution:
-    def smallestBeautifulString(self, s: str, k: int) -> str:
-        characters = list(s)
-        alphabet_end = ord("a") + k
+    def smallestBeautifulString(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        def check(i):
+            return (i-1 < 0 or arr[i-1] != arr[i]) and (i-2 < 0 or arr[i-2] != arr[i])
 
-        for index in range(len(characters) - 1, -1, -1):
-            for code in range(ord(characters[index]) + 1, alphabet_end):
-                candidate = chr(code)
-                if index >= 1 and candidate == characters[index - 1]:
-                    continue
-                if index >= 2 and candidate == characters[index - 2]:
-                    continue
-
-                characters[index] = candidate
-                for suffix_index in range(index + 1, len(characters)):
-                    for suffix_code in range(ord("a"), alphabet_end):
-                        suffix_character = chr(suffix_code)
-                        if suffix_character == characters[suffix_index - 1]:
-                            continue
-                        if suffix_index >= 2 and suffix_character == characters[suffix_index - 2]:
-                            continue
-                        characters[suffix_index] = suffix_character
-                        break
-                return "".join(characters)
-
-        return ""
+        arr = map(lambda x: ord(x)-ord('a'), s)
+        for i in reversed(range(len(arr))):
+            arr[i] += 1
+            while not check(i):
+                arr[i] += 1
+            if arr[i] < k:
+                break
+        else:
+            return ""
+        for j in range(i+1, len(arr)):
+            arr[j] = 0
+            while not check(j):
+                arr[j] += 1
+        return "".join(map(lambda x: chr(ord('a')+x), arr))

@@ -1,22 +1,32 @@
 class Solution:
-    def remainingMethods(self, n: int, k: int, invocations: List[List[int]]) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for source, target in invocations:
-            graph[source].append(target)
+    def remainingMethods(
+        self, n: int, k: int, invocations: List[List[int]]
+    ) -> List[int]:
+        def dfs(i: int):
+            suspicious[i] = True
+            for j in g[i]:
+                if not suspicious[j]:
+                    dfs(j)
 
+        def dfs2(i: int):
+            vis[i] = True
+            for j in f[i]:
+                if not vis[j]:
+                    suspicious[j] = False
+                    dfs2(j)
+
+        f = [[] for _ in range(n)]
+        g = [[] for _ in range(n)]
+        for a, b in invocations:
+            f[a].append(b)
+            f[b].append(a)
+            g[a].append(b)
         suspicious = [False] * n
-        suspicious[k] = True
-        stack = [k]
+        dfs(k)
 
-        while stack:
-            method = stack.pop()
-            for target in graph[method]:
-                if not suspicious[target]:
-                    suspicious[target] = True
-                    stack.append(target)
-
-        for source, target in invocations:
-            if not suspicious[source] and suspicious[target]:
-                return list(range(n))
-
-        return [method for method in range(n) if not suspicious[method]]
+        vis = [False] * n
+        ans = []
+        for i in range(n):
+            if not suspicious[i] and not vis[i]:
+                dfs2(i)
+        return [i for i in range(n) if not suspicious[i]]

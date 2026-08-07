@@ -1,12 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# math
 class Solution:
-    def averageValue(self, nums: List[int]) -> int:
-        total = 0
-        count = 0
-        for value in nums:
-            if value % 6 == 0:
-                total += value
-                count += 1
-        return total // count if count else 0
+    def averageValue(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        total = cnt = 0
+        for x in nums:
+            if x%6:
+                continue
+            total += x
+            cnt += 1
+        return total//cnt if cnt else 0

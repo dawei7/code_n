@@ -1,17 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# freq table
 class Solution:
-    def findThePrefixCommonArray(self, A: List[int], B: List[int]) -> List[int]:
-        frequency = [0] * (len(A) + 1)
-        common = 0
-        prefix_common = []
-
-        for value_a, value_b in zip(A, B):
-            for value in (value_a, value_b):
-                frequency[value] += 1
-                if frequency[value] == 2:
-                    common += 1
-            prefix_common.append(common)
-
-        return prefix_common
+    def findThePrefixCommonArray(self, A, B):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :rtype: List[int]
+        """
+        result = [0]*len(A)
+        cnt = collections.Counter()
+        curr = 0
+        for i, (a, b) in enumerate(itertools.izip(A, B)):
+            cnt[a] += 1
+            if cnt[a] == 2:
+                curr += 1
+            cnt[b] += 1
+            if cnt[b] == 2:
+                curr += 1
+            result[i] = curr
+        return result

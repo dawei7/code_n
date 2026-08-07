@@ -1,35 +1,27 @@
-from bisect import bisect_right
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, two pointers, sliding window
 class Solution:
-    def maximumCoins(self, coins: List[List[int]], k: int) -> int:
-        def best_starting_at_left(intervals: List[List[int]]) -> int:
-            intervals.sort()
-            n = len(intervals)
-            starts = [left for left, _, _ in intervals]
-            prefix = [0] * (n + 1)
-            for index, (left, right, value) in enumerate(intervals):
-                prefix[index + 1] = prefix[index] + (right - left + 1) * value
-
-            answer = 0
-            for index in range(n):
-                window_right = intervals[index][0] + k - 1
-                last = bisect_right(starts, window_right) - 1
-                if last < index:
-                    continue
-
-                current = prefix[last] - prefix[index]
-                left, right, value = intervals[last]
-                overlap = min(right, window_right) - left + 1
-                if overlap > 0:
-                    current += overlap * value
-                answer = max(answer, current)
-
-            return answer
-
-        reflected = [[-right, -left, value] for left, right, value in coins]
-        return max(
-            best_starting_at_left([interval[:] for interval in coins]),
-            best_starting_at_left(reflected),
-        )
+    def maximumCoins(self, coins, k):
+        """
+        :type coins: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def max_amount():
+            coins.sort()
+            result = curr = left = 0
+            for right in range(len(coins)):
+                curr += (coins[right][1]-coins[right][0]+1)*coins[right][2]
+                while coins[right][1]-coins[left][1]+1 > k:
+                    curr -= (coins[left][1]-coins[left][0]+1)*coins[left][2]
+                    left += 1
+                result = max(result, curr-max((coins[right][1]-coins[left][0]+1)-k, 0)*coins[left][2])
+            return result
+    
+        result = max_amount()
+        for i, (l, r, w) in enumerate(coins):
+            coins[i][:] = [-r, -l, w]
+        result = max(result, max_amount())
+        return result

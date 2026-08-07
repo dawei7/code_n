@@ -1,25 +1,25 @@
-from typing import Optional
-
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def sortedListToBST(self, head: Optional["ListNode"]) -> Optional["TreeNode"]:
-        size = 0
-        node = head
-        while node is not None:
-            size += 1
-            node = node.next
-
-        cursor = head
-
-        def build(count: int):
-            nonlocal cursor
-            if count == 0:
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        def dfs(i: int, j: int) -> Optional[TreeNode]:
+            if i > j:
                 return None
-            left = build(count // 2)
-            root = TreeNode(cursor.val)
-            cursor = cursor.next
-            root.left = left
-            root.right = build(count - count // 2 - 1)
-            return root
+            mid = (i + j) >> 1
+            l, r = dfs(i, mid - 1), dfs(mid + 1, j)
+            return TreeNode(nums[mid], l, r)
 
-        return build(size)
+        nums = []
+        while head:
+            nums.append(head.val)
+            head = head.next
+        return dfs(0, len(nums) - 1)

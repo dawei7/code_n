@@ -1,14 +1,20 @@
+# Time:  O(logn)
+# Space: O(logn)
+
 class Solution:
-    def confusingNumber(self, n: int) -> bool:
-        rotated_digit = {0: 0, 1: 1, 6: 9, 8: 8, 9: 6}
-        original = n
-        rotated = 0
-
-        while n:
-            digit = n % 10
-            if digit not in rotated_digit:
+    def confusingNumber(self, N):
+        """
+        :type N: int
+        :rtype: bool
+        """
+        lookup = {"0":"0", "1":"1", "6":"9", "8":"8", "9":"6"}
+        
+        S = str(N)
+        result = []
+        for i in range(len(S)):
+            if S[i] not in lookup:
                 return False
-            rotated = rotated * 10 + rotated_digit[digit]
-            n //= 10
-
-        return rotated != original
+        for i in range((len(S)+1)//2):
+            if S[i] != lookup[S[-(i+1)]]:
+                return True
+        return False

@@ -1,55 +1,72 @@
-from typing import List
-
-
-def _select(nums: List[int], rank: int) -> int:
-    left = 0
-    right = len(nums) - 1
-    while left <= right:
-        middle = (left + right) // 2
-        pivot = sorted((nums[left], nums[middle], nums[right]))[1]
-        lower = scan = left
-        upper = right
-        while scan <= upper:
-            if nums[scan] < pivot:
-                nums[lower], nums[scan] = nums[scan], nums[lower]
-                lower += 1
-                scan += 1
-            elif nums[scan] > pivot:
-                nums[scan], nums[upper] = nums[upper], nums[scan]
-                upper -= 1
-            else:
-                scan += 1
-        if rank < lower:
-            right = lower - 1
-        elif rank > upper:
-            left = upper + 1
-        else:
-            return pivot
-    raise RuntimeError("unreachable rank")
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def wiggleSort(self, nums: List[int]) -> None:
-        length = len(nums)
-        if length < 2:
-            return
-        median = _select(nums, length // 2)
+    def wiggleSort(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        nums.sort()
+        mid = (len(nums) - 1) / 2
+        nums[::2], nums[1::2] = nums[mid::-1], nums[:mid:-1]
 
-        def virtual(index: int) -> int:
-            return (1 + 2 * index) % (length | 1)
 
-        lower = scan = 0
-        upper = length - 1
-        while scan <= upper:
-            mapped = virtual(scan)
-            if nums[mapped] > median:
-                low_mapped = virtual(lower)
-                nums[low_mapped], nums[mapped] = nums[mapped], nums[low_mapped]
-                lower += 1
-                scan += 1
-            elif nums[mapped] < median:
-                high_mapped = virtual(upper)
-                nums[mapped], nums[high_mapped] = nums[high_mapped], nums[mapped]
-                upper -= 1
-            else:
-                scan += 1
+# Time:  O(n) ~ O(n^2)
+# Space: O(1)
+# Tri Partition (aka Dutch National Flag Problem) with virtual index solution.
+from random import randint
+
+
+class Solution2(object):
+    def wiggleSort(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        def nth_element(nums, n, compare=lambda a, b: a < b):
+            def tri_partition(nums, left, right, target, compare):
+                mid = left
+                while mid <= right:
+                    if nums[mid] == target:
+                        mid += 1
+                    elif compare(nums[mid], target):
+                        nums[left], nums[mid] = nums[mid], nums[left]
+                        left += 1
+                        mid += 1
+                    else:
+                        nums[mid], nums[right] = nums[right], nums[mid]
+                        right -= 1
+                return left, right
+
+            left, right = 0, len(nums)-1
+            while left <= right:
+                pivot_idx = randint(left, right)
+                pivot_left, pivot_right = tri_partition(nums, left, right, nums[pivot_idx], compare)
+                if pivot_left <= n <= pivot_right:
+                    return
+                elif pivot_left > n:
+                    right = pivot_left-1
+                else:  # pivot_right < n.
+                    left = pivot_right+1
+
+        def reversedTriPartitionWithVI(nums, val):
+            def idx(i, N):
+                return (1 + 2 * (i)) % N
+
+            N = len(nums) / 2 * 2 + 1
+            i, j, n = 0, 0, len(nums) - 1
+            while j <= n:
+                if nums[idx(j, N)] > val:
+                    nums[idx(i, N)], nums[idx(j, N)] = nums[idx(j, N)], nums[idx(i, N)]
+                    i += 1
+                    j += 1
+                elif nums[idx(j, N)] < val:
+                    nums[idx(j, N)], nums[idx(n, N)] = nums[idx(n, N)], nums[idx(j, N)]
+                    n -= 1
+                else:
+                    j += 1
+
+        mid = (len(nums)-1)//2
+        nth_element(nums, mid)
+        reversedTriPartitionWithVI(nums, nums[mid])

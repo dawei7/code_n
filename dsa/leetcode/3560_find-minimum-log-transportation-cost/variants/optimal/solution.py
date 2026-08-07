@@ -1,3 +1,4 @@
 class Solution:
     def minCuttingCost(self, n: int, m: int, k: int) -> int:
-        return max(0, max(n, m) - k) * k
+        x = max(n, m)
+        return 0 if x <= k else k * (x - k)

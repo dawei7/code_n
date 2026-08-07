@@ -1,21 +1,19 @@
 class Solution:
     def validUtf8(self, data: List[int]) -> bool:
-        remaining = 0
-
-        for byte in data:
-            if remaining:
-                if byte >> 6 != 0b10:
+        cnt = 0
+        for v in data:
+            if cnt > 0:
+                if v >> 6 != 0b10:
                     return False
-                remaining -= 1
-            elif byte >> 7 == 0:
-                continue
-            elif byte >> 5 == 0b110:
-                remaining = 1
-            elif byte >> 4 == 0b1110:
-                remaining = 2
-            elif byte >> 3 == 0b11110:
-                remaining = 3
+                cnt -= 1
+            elif v >> 7 == 0:
+                cnt = 0
+            elif v >> 5 == 0b110:
+                cnt = 1
+            elif v >> 4 == 0b1110:
+                cnt = 2
+            elif v >> 3 == 0b11110:
+                cnt = 3
             else:
                 return False
-
-        return remaining == 0
+        return cnt == 0

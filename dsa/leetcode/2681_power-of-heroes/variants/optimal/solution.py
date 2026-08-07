@@ -1,11 +1,11 @@
 class Solution:
     def sumOfPower(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
+        mod = 10**9 + 7
         nums.sort()
-
-        answer = 0
-        weighted_minima = 0
-        for strength in nums:
-            answer = (answer + strength * strength * (strength + weighted_minima)) % modulus
-            weighted_minima = (2 * weighted_minima + strength) % modulus
-        return answer
+        ans = 0
+        p = 0
+        for x in nums[::-1]:
+            ans = (ans + (x * x % mod) * x) % mod
+            ans = (ans + x * p) % mod
+            p = (p * 2 + x * x) % mod
+        return ans

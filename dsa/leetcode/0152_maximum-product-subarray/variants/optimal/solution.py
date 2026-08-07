@@ -1,15 +1,9 @@
-from typing import List
-
-
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        best = nums[0]
-        high = nums[0]
-        low = nums[0]
-        for value in nums[1:]:
-            if value < 0:
-                high, low = low, high
-            high = max(value, high * value)
-            low = min(value, low * value)
-            best = max(best, high)
-        return best
+        ans = f = g = nums[0]
+        for x in nums[1:]:
+            ff, gg = f, g
+            f = max(x, ff * x, gg * x)
+            g = min(x, ff * x, gg * x)
+            ans = max(ans, f)
+        return ans

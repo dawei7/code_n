@@ -1,91 +1,137 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(n^2 * logn)
+# Space: O(n)
+
+import heapq
 
 
+# l1 isotonic regression, heap, greedy
 class Solution:
-    def minMoves(self, balance: List[int]) -> int:
+    def minMoves(self, balance):
+        """
+        :type balance: List[int]
+        :rtype: int
+        """
+        def clamp(x, l, r):
+            return min(max(x, l), r)
+    
+        def cost(i):
+            result = prefix = 0
+            max_heap = []
+            for j in range(len(balance)):
+                prefix += balance[(i+j)%len(balance)]
+                c = clamp(prefix, 0, total)
+                result += abs(prefix-c)
+                # heap-based l1 isotonic regression, reference: https://codeforces.com/contest/13/problem/C
+                heapq.heappush(max_heap, -c)
+                if -max_heap[0] > c:
+                    result += -heapq.heappop(max_heap)-c
+                    heapq.heappush(max_heap, -c)
+            return result
+
+        total = sum(balance)
+        return min(cost(i) for i in range(len(balance))) if total >= 0 else -1
+
+
+# Time:  O(F * E * logV) = O(n^2 * logn), V = O(n), E = O(n), and each augmentation saturates a supply or demand edge, so there are only O(n) augmentations
+# Space: O(V + E) = O(n)
+# min-cost max-flow, ssp, dijkstra's algorithm, johnson potential
+import heapq
+
+
+# Time: O(F * E * logV)
+# Space: O(V + E)
+# Template: https://github.com/kth-competitive-programming/kactl/blob/main/content/graph/MinCostMaxFlow.h
+INF = float("inf")
+class Edge(object):
+    def __init__(self, from_node, to, rev, cap, cost, flow):
+        self.from_node = from_node
+        self.to = to
+        self.rev = rev
+        self.cap = cap
+        self.cost = cost
+        self.flow = flow
+
+
+class MCMF(object):
+    def __init__(self, n):
+        self.N = n
+        self.ed = [[] for _ in range(n)]
+        self.seen = [0]*n
+        self.dist = [INF]*n
+        self.pi = [0]*n
+        self.par = [None]*n
+
+    def addEdge(self, from_node, to, cap, cost):
+        if from_node == to:
+            return
+        self.ed[from_node].append(Edge(from_node, to, len(self.ed[to]), cap, cost, 0))
+        self.ed[to].append(Edge(to, from_node, len(self.ed[from_node])-1, 0, -cost, 0))
+
+    def path(self, s):
+        self.seen = [0]*self.N
+        self.dist = [INF]*self.N
+        self.par = [None]*self.N
+        self.dist[s] = 0
+        q = [(0, s)]
+        while q:
+            d, u = heapq.heappop(q)
+            if d != self.dist[u]:
+                continue
+            self.seen[u] = 1
+            for edge in self.ed[u]:
+                if edge.cap-edge.flow <= 0:
+                    continue
+                val = d+self.pi[u]-self.pi[edge.to]+edge.cost
+                if val < self.dist[edge.to]:
+                    self.dist[edge.to] = val
+                    self.par[edge.to] = edge
+                    heapq.heappush(q, (val, edge.to))
+        for i in range(self.N):
+            if self.dist[i] != INF:
+                self.pi[i] += self.dist[i]
+
+    def maxflow(self, s, t):
+        total_flow = total_cost = 0
+        while True:
+            self.path(s)
+            if not self.seen[t]:
+                break
+            flow = INF
+            edge = self.par[t]
+            while edge:
+                flow = min(flow, edge.cap-edge.flow)
+                edge = self.par[edge.from_node]
+            total_flow += flow
+            edge = self.par[t]
+            while edge:
+                edge.flow += flow
+                self.ed[edge.to][edge.rev].flow -= flow
+                edge = self.par[edge.from_node]
+        for edges in self.ed:
+            for edge in edges:
+                total_cost += edge.cost*edge.flow
+        return total_flow, total_cost//2
+
+
+class Solution2(object):
+    def minMoves(self, balance):
+        """
+        :type balance: List[int]
+        :rtype: int
+        """
         if sum(balance) < 0:
             return -1
-
-        demand = sum(-value for value in balance if value < 0)
-        if demand == 0:
-            return 0
-
-        n = len(balance)
-        source = n
-        sink = n + 1
-        graph = [[] for _ in range(n + 2)]
-
-        def add_edge(start: int, end: int, capacity: int, cost: int) -> None:
-            forward = [end, len(graph[end]), capacity, cost]
-            backward = [start, len(graph[start]), 0, -cost]
-            graph[start].append(forward)
-            graph[end].append(backward)
-
-        for index, value in enumerate(balance):
-            if value > 0:
-                add_edge(source, index, value, 0)
-            elif value < 0:
-                add_edge(index, sink, -value, 0)
-
-        for index in range(n):
-            neighbor = (index + 1) % n
-            add_edge(index, neighbor, demand, 1)
-            add_edge(neighbor, index, demand, 1)
-
-        infinity = 10**30
-        potential = [0] * (n + 2)
-        delivered = 0
-        answer = 0
-
-        while delivered < demand:
-            distance = [infinity] * (n + 2)
-            parent_node = [-1] * (n + 2)
-            parent_edge = [-1] * (n + 2)
-            distance[source] = 0
-            heap = [(0, source)]
-
-            while heap:
-                current_distance, node = heappop(heap)
-                if current_distance != distance[node]:
-                    continue
-
-                for edge_index, edge in enumerate(graph[node]):
-                    next_node, _, capacity, cost = edge
-                    if capacity == 0:
-                        continue
-                    candidate = current_distance + cost + potential[node] - potential[next_node]
-                    if candidate < distance[next_node]:
-                        distance[next_node] = candidate
-                        parent_node[next_node] = node
-                        parent_edge[next_node] = edge_index
-                        heappush(heap, (candidate, next_node))
-
-            for node in range(n + 2):
-                if distance[node] < infinity:
-                    potential[node] += distance[node]
-
-            amount = demand - delivered
-            path_cost = 0
-            node = sink
-            while node != source:
-                previous = parent_node[node]
-                edge_index = parent_edge[node]
-                edge = graph[previous][edge_index]
-                amount = min(amount, edge[2])
-                path_cost += edge[3]
-                node = previous
-
-            node = sink
-            while node != source:
-                previous = parent_node[node]
-                edge_index = parent_edge[node]
-                edge = graph[previous][edge_index]
-                edge[2] -= amount
-                graph[node][edge[1]][2] += amount
-                node = previous
-
-            delivered += amount
-            answer += amount * path_cost
-
-        return answer
+        source, sink = len(balance), len(balance)+1
+        mcmf = MCMF(len(balance)+2)
+        for i in range(len(balance)):
+            mcmf.addEdge(i, (i+1)%len(balance), INF, 1)
+            mcmf.addEdge((i+1)%len(balance), i, INF, 1)
+        demand = 0
+        for i in range(len(balance)):
+            if balance[i] > 0:
+                mcmf.addEdge(source, i, balance[i], 0)
+            elif balance[i] < 0:
+                mcmf.addEdge(i, sink, -balance[i], 0)
+                demand += -balance[i]
+        flow, cost = mcmf.maxflow(source, sink)
+        return cost if flow == demand else -1

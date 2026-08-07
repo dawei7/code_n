@@ -1,14 +1,22 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# knapsack dp
 class Solution:
-    def numberOfWays(self, n: int, x: int) -> int:
-        mod = 1_000_000_007
-        dp = [0] * (n + 1)
+    def numberOfWays(self, n, x):
+        """
+        :type n: int
+        :type x: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+
+        dp = [0]*(n+1)
         dp[0] = 1
-
-        base = 1
-        while base**x <= n:
-            power = base**x
-            for total in range(n, power - 1, -1):
-                dp[total] = (dp[total] + dp[total - power]) % mod
-            base += 1
-
-        return dp[n]
+        for i in range(1, n+1):
+            i_pow_x = i**x
+            if i_pow_x > n:
+                break
+            for j in reversed(range(i_pow_x, n+1)):
+                dp[j] = (dp[j]+dp[j-i_pow_x])%MOD
+        return dp[-1]

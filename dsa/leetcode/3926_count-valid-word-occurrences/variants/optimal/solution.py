@@ -1,34 +1,20 @@
-from collections import Counter
-
-
 class Solution:
-    def countWordOccurrences(
-        self,
-        chunks: list[str],
-        queries: list[str],
-    ) -> list[int]:
-        text = "".join(chunks)
-        word_counts: Counter[str] = Counter()
-        word_start = -1
-
-        for index, character in enumerate(text):
-            is_letter = "a" <= character <= "z"
-            is_joiner = (
-                character == "-"
-                and index > 0
-                and index + 1 < len(text)
-                and "a" <= text[index - 1] <= "z"
-                and "a" <= text[index + 1] <= "z"
-            )
-
-            if is_letter or is_joiner:
-                if word_start == -1:
-                    word_start = index
-            elif word_start != -1:
-                word_counts[text[word_start:index]] += 1
-                word_start = -1
-
-        if word_start != -1:
-            word_counts[text[word_start:]] += 1
-
-        return [word_counts[query] for query in queries]
+    def countWordOccurrences(self, chunks: list[str], queries: list[str]) -> list[int]:
+        s = "".join(chunks)
+        n = len(s)
+        cnt = defaultdict(int)
+        i = 0
+        while i < n:
+            if s[i] in " -":
+                i += 1
+                continue
+            j = i
+            while (
+                j < n
+                and s[j] != " "
+                and (s[j] != "-" or (j + 1 < n and s[j + 1] not in " -"))
+            ):
+                j += 1
+            cnt[s[i:j]] += 1
+            i = j
+        return [cnt[q] for q in queries]

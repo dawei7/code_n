@@ -1,19 +1,13 @@
-def _remove_duplicate_letters(s: str) -> str:
-    last_index = {letter: index for index, letter in enumerate(s)}
-    stack = []
-    selected = set()
-
-    for index, letter in enumerate(s):
-        if letter in selected:
-            continue
-        while stack and letter < stack[-1] and last_index[stack[-1]] > index:
-            selected.remove(stack.pop())
-        stack.append(letter)
-        selected.add(letter)
-
-    return "".join(stack)
-
-
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
-        return _remove_duplicate_letters(s)
+        last = {c: i for i, c in enumerate(s)}
+        stk = []
+        vis = set()
+        for i, c in enumerate(s):
+            if c in vis:
+                continue
+            while stk and stk[-1] > c and last[stk[-1]] > i:
+                vis.remove(stk.pop())
+            stk.append(c)
+            vis.add(c)
+        return ''.join(stk)

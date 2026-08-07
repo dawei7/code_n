@@ -1,27 +1,27 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def findMaximums(self, nums: List[int]) -> List[int]:
-        answer = [0] * len(nums)
-        stack = []
+    def findMaximums(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def find_bound(nums, direction, init):
+            result = [0]*len(nums)
+            stk = [init]
+            for i in direction(range(len(nums))):
+                while stk[-1] != init and nums[stk[-1]] >= nums[i]:
+                    stk.pop()
+                result[i] = stk[-1]
+                stk.append(i)
+            return result
 
-        for right in range(len(nums) + 1):
-            current = -1 if right == len(nums) else nums[right]
-
-            while stack and nums[stack[-1]] >= current:
-                index = stack.pop()
-                left = stack[-1] if stack else -1
-                width = right - left - 1
-                answer[width - 1] = max(
-                    answer[width - 1],
-                    nums[index],
-                )
-
-            if right < len(nums):
-                stack.append(right)
-
-        for index in range(len(nums) - 2, -1, -1):
-            answer[index] = max(answer[index], answer[index + 1])
-
-        return answer
+        left = find_bound(nums, lambda x: x, -1)
+        right = find_bound(nums, reversed, len(nums))
+        result = [-1]*len(nums)
+        for i, v in enumerate(nums):
+            result[((right[i]-1)-left[i])-1] = max(result[((right[i]-1)-left[i])-1], v)
+        for i in reversed(range(len(nums)-1)):
+            result[i] = max(result[i], result[i+1])
+        return result

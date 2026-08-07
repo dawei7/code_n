@@ -1,23 +1,21 @@
-from typing import List
-
-
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        def sift_down(root: int, end: int) -> None:
-            while 2 * root + 1 <= end:
-                child = 2 * root + 1
-                if child + 1 <= end and nums[child] < nums[child + 1]:
-                    child += 1
-                if nums[root] >= nums[child]:
-                    return
-                nums[root], nums[child] = nums[child], nums[root]
-                root = child
+        def quick_sort(l, r):
+            if l >= r:
+                return
+            x = nums[randint(l, r)]
+            i, j, k = l - 1, r + 1, l
+            while k < j:
+                if nums[k] < x:
+                    nums[i + 1], nums[k] = nums[k], nums[i + 1]
+                    i, k = i + 1, k + 1
+                elif nums[k] > x:
+                    j -= 1
+                    nums[j], nums[k] = nums[k], nums[j]
+                else:
+                    k = k + 1
+            quick_sort(l, i)
+            quick_sort(j, r)
 
-        for root in range(len(nums) // 2 - 1, -1, -1):
-            sift_down(root, len(nums) - 1)
-
-        for end in range(len(nums) - 1, 0, -1):
-            nums[0], nums[end] = nums[end], nums[0]
-            sift_down(0, end - 1)
-
+        quick_sort(0, len(nums) - 1)
         return nums

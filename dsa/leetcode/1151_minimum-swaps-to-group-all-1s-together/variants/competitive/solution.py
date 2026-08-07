@@ -1,11 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minSwaps(self, data: List[int]) -> int:
-        ones = sum(data)
-        if ones <= 1:
-            return 0
-        zeros = ones - sum(data[:ones])
-        best = zeros
-        for right in range(ones, len(data)):
-            zeros += data[right - ones] - data[right]
-            best = min(best, zeros)
-        return best
+    def minSwaps(self, data):
+        """
+        :type data: List[int]
+        :rtype: int
+        """
+        total_count = sum(data)
+        result, count, left = 0, 0, 0
+        for i in range(len(data)):
+            count += data[i]
+            if i-left+1 > total_count: 
+                count -= data[left]
+                left += 1
+            result = max(result, count)
+        return total_count-result

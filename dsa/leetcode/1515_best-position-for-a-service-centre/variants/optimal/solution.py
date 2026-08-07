@@ -1,34 +1,28 @@
-import math
-from typing import List
-
-
 class Solution:
     def getMinDistSum(self, positions: List[List[int]]) -> float:
-        min_x = min(point[0] for point in positions)
-        max_x = max(point[0] for point in positions)
-        min_y = min(point[1] for point in positions)
-        max_y = max(point[1] for point in positions)
-
-        def total(x: float, y: float) -> float:
-            return sum(math.hypot(px - x, py - y) for px, py in positions)
-
-        def best_at_x(x: float) -> float:
-            low, high = min_y, max_y
-            for _ in range(70):
-                first = (2 * low + high) / 3
-                second = (low + 2 * high) / 3
-                if total(x, first) <= total(x, second):
-                    high = second
-                else:
-                    low = first
-            return total(x, (low + high) / 2)
-
-        low, high = min_x, max_x
-        for _ in range(70):
-            first = (2 * low + high) / 3
-            second = (low + 2 * high) / 3
-            if best_at_x(first) <= best_at_x(second):
-                high = second
-            else:
-                low = first
-        return best_at_x((low + high) / 2)
+        n = len(positions)
+        x = y = 0
+        for x1, y1 in positions:
+            x += x1
+            y += y1
+        x, y = x / n, y / n
+        decay = 0.999
+        eps = 1e-6
+        alpha = 0.5
+        while 1:
+            grad_x = grad_y = 0
+            dist = 0
+            for x1, y1 in positions:
+                a = x - x1
+                b = y - y1
+                c = sqrt(a * a + b * b)
+                grad_x += a / (c + 1e-8)
+                grad_y += b / (c + 1e-8)
+                dist += c
+            dx = grad_x * alpha
+            dy = grad_y * alpha
+            x -= dx
+            y -= dy
+            alpha *= decay
+            if abs(dx) <= eps and abs(dy) <= eps:
+                return dist

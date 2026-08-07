@@ -1,17 +1,39 @@
-from typing import List
+# Time:  O(|V| + |E|)
+# Space: O(|V|)
+
+# """
+# This is HtmlParser's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+class HtmlParser(object):
+   def getUrls(self, url):
+       """
+       :type url: str
+       :rtype List[str]
+       """
+       pass
 
 
 class Solution:
-    def crawl(self, startUrl: str, htmlParser: "HtmlParser") -> List[str]:
-        hostname = startUrl.split("/", 3)[2]
-        visited = {startUrl}
-        stack = [startUrl]
+    def crawl(self, startUrl, htmlParser):
+        """
+        :type startUrl: str
+        :type htmlParser: HtmlParser
+        :rtype: List[str]
+        """
+        SCHEME = "http://"
+        def hostname(url):
+            pos = url.find('/', len(SCHEME))
+            if pos == -1:
+                return url
+            return url[:pos]
 
-        while stack:
-            current = stack.pop()
-            for neighbor in htmlParser.getUrls(current):
-                if neighbor.split("/", 3)[2] == hostname and neighbor not in visited:
-                    visited.add(neighbor)
-                    stack.append(neighbor)
-
-        return list(visited)
+        result = [startUrl]
+        lookup = set(result)
+        for from_url in result:
+            name = hostname(from_url)
+            for to_url in htmlParser.getUrls(from_url):
+                if to_url not in lookup and name == hostname(to_url):
+                    result.append(to_url)
+                    lookup.add(to_url)
+        return result

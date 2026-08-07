@@ -1,23 +1,19 @@
-from typing import List
 
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def binarySearchableNumbers(self, nums: List[int]) -> int:
-        length = len(nums)
-        suffix_minimum = [float("inf")] * (length + 1)
-
-        for index in range(length - 1, -1, -1):
-            suffix_minimum[index] = min(
-                nums[index],
-                suffix_minimum[index + 1],
-            )
-
-        answer = 0
-        prefix_maximum = float("-inf")
-
-        for index, value in enumerate(nums):
-            if prefix_maximum < value < suffix_minimum[index + 1]:
-                answer += 1
-            prefix_maximum = max(prefix_maximum, value)
-
-        return answer
+    def binarySearchableNumbers(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        right = [float("inf")]*(len(nums)+1)
+        for i in reversed(range(1, len(nums)+1)):
+            right[i-1] = min(right[i], nums[i-1])
+        result, left = set(), float("-inf")
+        for i in range(len(nums)):
+            if left <= nums[i] <= right[i+1]:
+                result.add(nums[i])
+            left = max(left, nums[i])
+        return len(result)

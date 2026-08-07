@@ -1,9 +1,8 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def makeEqual(self, words: List[str]) -> bool:
-        word_count = len(words)
-        frequencies = Counter(character for word in words for character in word)
-        return all(count % word_count == 0 for count in frequencies.values())
+        cnt = Counter()
+        for w in words:
+            for c in w:
+                cnt[c] += 1
+        n = len(words)
+        return all(v % n == 0 for v in cnt.values())

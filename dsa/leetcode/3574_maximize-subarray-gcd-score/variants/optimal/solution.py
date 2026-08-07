@@ -1,27 +1,22 @@
-from math import gcd
-
-
 class Solution:
     def maxGCDScore(self, nums: List[int], k: int) -> int:
-        answer = 0
         n = len(nums)
-
-        for left in range(n):
-            common = 0
-            minimum_twos = 100
-            minimum_count = 0
-
-            for right in range(left, n):
-                value = nums[right]
-                common = gcd(common, value)
-                twos = (value & -value).bit_length() - 1
-                if twos < minimum_twos:
-                    minimum_twos = twos
-                    minimum_count = 1
-                elif twos == minimum_twos:
-                    minimum_count += 1
-
-                multiplier = 2 if minimum_count <= k else 1
-                answer = max(answer, (right - left + 1) * common * multiplier)
-
-        return answer
+        cnt = [0] * n
+        for i, x in enumerate(nums):
+            while x % 2 == 0:
+                cnt[i] += 1
+                x //= 2
+        ans = 0
+        for l in range(n):
+            g = 0
+            mi = inf
+            t = 0
+            for r in range(l, n):
+                g = gcd(g, nums[r])
+                if cnt[r] < mi:
+                    mi = cnt[r]
+                    t = 1
+                elif cnt[r] == mi:
+                    t += 1
+                ans = max(ans, (g if t > k else g * 2) * (r - l + 1))
+        return ans

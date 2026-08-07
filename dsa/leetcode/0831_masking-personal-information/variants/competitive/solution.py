@@ -1,12 +1,19 @@
-class Solution:
-    def maskPII(self, s: str) -> str:
-        if "@" in s:
-            name, domain = s.lower().split("@")
-            return name[0] + "*****" + name[-1] + "@" + domain
+# Time:  O(1)
+# Space: O(1)
 
-        digits = "".join(character for character in s if character.isdigit())
-        country_length = len(digits) - 10
-        local_mask = "***-***-" + digits[-4:]
-        if country_length == 0:
-            return local_mask
-        return "+" + "*" * country_length + "-" + local_mask
+class Solution:
+    def maskPII(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+        if '@' in S:
+            first, after = S.split('@')
+            return "{}*****{}@{}".format(first[0], first[-1], after).lower()
+
+        digits = filter(lambda x: x.isdigit(), S)
+        local = "***-***-{}".format(digits[-4:])
+        if len(digits) == 10:
+            return local
+        return "+{}-{}".format('*' * (len(digits) - 10), local)
+

@@ -1,34 +1,65 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
+# dfs solution with stack
 class Solution:
-    def maxSumBST(self, root: Optional[TreeNode]) -> int:
-        summaries = {}
-        best = 0
-        stack = [(root, False)]
-
-        while stack:
-            node, expanded = stack.pop()
-            if not expanded:
-                stack.append((node, True))
-                if node.right is not None:
-                    stack.append((node.right, False))
-                if node.left is not None:
-                    stack.append((node.left, False))
+    def maxSumBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        result = 0
+        stk = [[root, None, []]]
+        while stk:
+            node, tmp, ret = stk.pop()
+            if tmp:
+                lvalid, lsum, lmin, lmax = tmp[0]
+                rvalid, rsum, rmin, rmax = tmp[1]
+                if lvalid and rvalid and lmax < node.val < rmin:
+                    total = lsum + node.val + rsum
+                    result = max(result, total)
+                    ret[:] = [True, total, min(lmin, node.val), max(node.val, rmax)]
+                    continue
+                ret[:] = [False, 0, 0, 0]
                 continue
+            if not node:
+                ret[:] = [True, 0, float("inf"), float("-inf")]
+                continue
+            new_tmp = [[], []]
+            stk.append([node, new_tmp, ret])
+            stk.append([node.right, None, new_tmp[1]])
+            stk.append([node.left, None, new_tmp[0]])
+        return result
 
-            left = summaries.get(node.left, (True, float("inf"), float("-inf"), 0))
-            right = summaries.get(node.right, (True, float("inf"), float("-inf"), 0))
-            if left[0] and right[0] and left[2] < node.val < right[1]:
-                total = left[3] + node.val + right[3]
-                summaries[node] = (
-                    True,
-                    min(left[1], node.val),
-                    max(right[2], node.val),
-                    total,
-                )
-                best = max(best, total)
-            else:
-                summaries[node] = (False, 0, 0, 0)
 
-        return best
+# Time:  O(n)
+# Space: O(h)
+# dfs solution with recursion
+class Solution2(object):
+    def maxSumBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(node, result):
+            if not node:
+                return True, 0, float("inf"), float("-inf")
+            lvalid, lsum, lmin, lmax = dfs(node.left, result)
+            rvalid, rsum, rmin, rmax = dfs(node.right, result)
+            if lvalid and rvalid and lmax < node.val < rmin:
+                total = lsum + node.val + rsum
+                result[0] = max(result[0], total)
+                return True, total, min(lmin, node.val), max(node.val, rmax)
+            return False, 0, 0, 0
+
+        result = [0]
+        dfs(root, result)
+        return result[0]

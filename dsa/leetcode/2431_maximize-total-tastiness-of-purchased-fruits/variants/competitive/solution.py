@@ -1,28 +1,25 @@
-from typing import List
+# Time:  O(n * a * c), n = len(price), a = maxAmount, c = maxCoupons
+# Space: O(a * c)
+
+import itertools
 
 
+# dp
 class Solution:
-    def maxTastiness(
-        self,
-        price: List[int],
-        tastiness: List[int],
-        maxAmount: int,
-        maxCoupons: int,
-    ) -> int:
-        best = [[0] * (maxAmount + 1) for _ in range(maxCoupons + 1)]
-
-        for cost, value in zip(price, tastiness):
-            discounted = cost // 2
-            for coupons in range(maxCoupons, -1, -1):
-                row = best[coupons]
-                previous = best[coupons - 1] if coupons else None
-                for budget in range(maxAmount, -1, -1):
-                    if budget >= cost:
-                        row[budget] = max(row[budget], row[budget - cost] + value)
-                    if previous is not None and budget >= discounted:
-                        row[budget] = max(
-                            row[budget],
-                            previous[budget - discounted] + value,
-                        )
-
-        return best[maxCoupons][maxAmount]
+    def maxTastiness(self, price, tastiness, maxAmount, maxCoupons):
+        """
+        :type price: List[int]
+        :type tastiness: List[int]
+        :type maxAmount: int
+        :type maxCoupons: int
+        :rtype: int
+        """
+        dp = [[0]*(maxCoupons+1) for _ in range(maxAmount+1)]
+        for p, t in itertools.izip(price, tastiness):
+            for i in reversed(range(p//2, maxAmount+1)):
+                for j in reversed(range(maxCoupons+1)):
+                    if i-p >= 0:
+                        dp[i][j] = max(dp[i][j], t+dp[i-p][j])
+                    if j-1 >= 0:
+                        dp[i][j] = max(dp[i][j], t+dp[i-p//2][j-1])
+        return dp[maxAmount][maxCoupons]

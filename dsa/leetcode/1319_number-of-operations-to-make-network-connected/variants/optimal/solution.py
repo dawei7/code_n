@@ -1,30 +1,17 @@
-from typing import List
-
-
 class Solution:
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
-        if len(connections) < n - 1:
-            return -1
+        def find(x: int) -> int:
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        parent = list(range(n))
-        size = [1] * n
-        components = n
-
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        for left, right in connections:
-            left_root = find(left)
-            right_root = find(right)
-            if left_root == right_root:
-                continue
-            if size[left_root] < size[right_root]:
-                left_root, right_root = right_root, left_root
-            parent[right_root] = left_root
-            size[left_root] += size[right_root]
-            components -= 1
-
-        return components - 1
+        cnt = 0
+        p = list(range(n))
+        for a, b in connections:
+            pa, pb = find(a), find(b)
+            if pa == pb:
+                cnt += 1
+            else:
+                p[pa] = pb
+                n -= 1
+        return -1 if n - 1 > cnt else n - 1

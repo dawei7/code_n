@@ -1,26 +1,21 @@
-from typing import List
-
-
 class Solution:
     def maxRectangleArea(self, points: List[List[int]]) -> int:
-        point_set = {tuple(point) for point in points}
-        best = -1
-
-        for first in range(len(points)):
-            x1, y1 = points[first]
-            for second in range(first):
-                x2, y2 = points[second]
-                if x1 == x2 or y1 == y2:
+        def check(x1: int, y1: int, x2: int, y2: int) -> bool:
+            cnt = 0
+            for x, y in points:
+                if x < x1 or x > x2 or y < y1 or y > y2:
                     continue
-
-                corners = {(x1, y1), (x1, y2), (x2, y1), (x2, y2)}
-                if not corners.issubset(point_set):
+                if (x == x1 or x == x2) and (y == y1 or y == y2):
+                    cnt += 1
                     continue
+                return False
+            return cnt == 4
 
-                left, right = sorted((x1, x2))
-                bottom, top = sorted((y1, y2))
-                blocked = any(left <= x <= right and bottom <= y <= top and (x, y) not in corners for x, y in points)
-                if not blocked:
-                    best = max(best, (right - left) * (top - bottom))
-
-        return best
+        ans = -1
+        for i, (x1, y1) in enumerate(points):
+            for x2, y2 in points[:i]:
+                x3, y3 = min(x1, x2), min(y1, y2)
+                x4, y4 = max(x1, x2), max(y1, y2)
+                if check(x3, y3, x4, y4):
+                    ans = max(ans, (x4 - x3) * (y4 - y3))
+        return ans

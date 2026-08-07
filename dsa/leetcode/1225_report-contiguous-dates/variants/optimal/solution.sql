@@ -1,24 +1,30 @@
-WITH periods AS (
-    SELECT fail_date AS period_date, 'failed' AS period_state
-    FROM Failed
-    WHERE fail_date BETWEEN '2019-01-01' AND '2019-12-31'
-    UNION ALL
-    SELECT success_date AS period_date, 'succeeded' AS period_state
-    FROM Succeeded
-    WHERE success_date BETWEEN '2019-01-01' AND '2019-12-31'
-),
-islands AS (
-    SELECT period_state,
-           period_date,
-           DATE(
-               period_date,
-               PRINTF('-%d day', ROW_NUMBER() OVER (PARTITION BY period_state ORDER BY period_date))
-           ) AS island_key
-    FROM periods
-)
-SELECT period_state,
-       MIN(period_date) AS start_date,
-       MAX(period_date) AS end_date
-FROM islands
-GROUP BY period_state, island_key
-ORDER BY start_date;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT fail_date AS dt, 'failed' AS st
+        FROM Failed
+        WHERE YEAR(fail_date) = 2019
+        UNION ALL
+        SELECT success_date AS dt, 'succeeded' AS st
+        FROM Succeeded
+        WHERE YEAR(success_date) = 2019
+    )
+SELECT
+    st AS period_state,
+    MIN(dt) AS start_date,
+    MAX(dt) AS end_date
+FROM
+    (
+        SELECT
+            *,
+            SUBDATE(
+                dt,
+                RANK() OVER (
+                    PARTITION BY st
+                    ORDER BY dt
+                )
+            ) AS pt
+        FROM T
+    ) AS t
+GROUP BY 1, pt
+ORDER BY 2;

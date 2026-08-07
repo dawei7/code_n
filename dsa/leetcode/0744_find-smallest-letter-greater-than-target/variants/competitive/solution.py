@@ -1,16 +1,16 @@
-from typing import List
+# Time:  O(logn)
+# Space: O(1)
+
+import bisect
 
 
 class Solution:
-    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
-        left = 0
-        right = len(letters)
+    def nextGreatestLetter(self, letters, target):
+        """
+        :type letters: List[str]
+        :type target: str
+        :rtype: str
+        """
+        i = bisect.bisect_right(letters, target)
+        return letters[0] if i == len(letters) else letters[i]
 
-        while left < right:
-            middle = (left + right) // 2
-            if letters[middle] <= target:
-                left = middle + 1
-            else:
-                right = middle
-
-        return letters[left % len(letters)]

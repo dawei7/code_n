@@ -1,28 +1,31 @@
+# Time:  O(nlogr), r = max(price)-min(price)
+# Space: O(1)
+
+# binary search, greedy
 class Solution:
-    def maximumTastiness(self, price: List[int], k: int) -> int:
+    def maximumTastiness(self, price, k):
+        """
+        :type price: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def check(x):  # max cnt if smallest absolute difference >= x
+            cnt = prev = 0
+            for i in range(len(price)):
+                if prev and price[i]-prev < x:
+                    continue
+                cnt += 1
+                if cnt == k:
+                    break
+                prev = price[i]
+            return cnt >= k
+
         price.sort()
-
-        def can_select(minimum_gap: int) -> bool:
-            chosen = 1
-            last_price = price[0]
-
-            for index in range(1, len(price)):
-                if price[index] - last_price >= minimum_gap:
-                    chosen += 1
-                    last_price = price[index]
-                    if chosen == k:
-                        return True
-
-            return False
-
-        low = 0
-        high = (price[-1] - price[0]) // (k - 1)
-
-        while low <= high:
-            middle = (low + high) // 2
-            if can_select(middle):
-                low = middle + 1
+        left, right = 1, price[-1]-price[0]
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(mid):
+                right = mid-1
             else:
-                high = middle - 1
-
-        return high
+                left = mid+1
+        return right

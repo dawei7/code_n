@@ -1,17 +1,55 @@
-from typing import List
+# Time:  O(n + r)
+# Space: O(r)
 
-
+# if r is small, this is better
 class Solution:
-    def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
-        difference = [0] * 52
-        for start, end in ranges:
-            difference[start] += 1
-            difference[end + 1] -= 1
+    def isCovered(self, ranges, left, right):
+        """
+        :type ranges: List[List[int]]
+        :type left: int
+        :type right: int
+        :rtype: bool
+        """
+        RANGE_SIZE = 50
 
-        active = 0
-        for value in range(1, right + 1):
-            active += difference[value]
-            if value >= left and active == 0:
+        interval = [0]*(RANGE_SIZE+1)
+        for l, r in ranges:
+            interval[l-1] += 1
+            interval[(r-1)+1] -= 1
+        cnt = 0
+        for i in range((right-1)+1):
+            cnt += interval[i]
+            if i >= left-1 and not cnt:
                 return False
-
         return True
+
+
+# Time:  O(nlogn)
+# Space: O(1)
+# if r is big, this is better
+class Solution2(object):
+    def isCovered(self, ranges, left, right):
+        """
+        :type ranges: List[List[int]]
+        :type left: int
+        :type right: int
+        :rtype: bool
+        """
+        ranges.sort()
+        for l, r in ranges:
+            if l <= left <= r:
+                left = r+1
+        return left > right
+
+
+# Time:  O(n * r)
+# Space: O(1)
+class Solution3(object):
+    def isCovered(self, ranges, left, right):
+        """
+        :type ranges: List[List[int]]
+        :type left: int
+        :type right: int
+        :rtype: bool
+        """
+        return all(any(l <= i <= r for l, r in ranges) for i in range(left, right+1))

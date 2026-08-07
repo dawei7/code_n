@@ -1,32 +1,62 @@
-from typing import List
+# Time:  O(m * n * k) = O(m * n)
+# Space: O(min(m, n) * k) = O(min(m, n))
 
-
+# dp
 class Solution:
-    def maximumAmount(self, coins: List[List[int]]) -> int:
-        negative_infinity = -(10**18)
-        rows = len(coins)
-        columns = len(coins[0])
-        dp = [[negative_infinity] * 3 for _ in range(columns)]
+    def maximumAmount(self, coins):
+        """
+        :type coins: List[List[int]]
+        :rtype: int
+        """
+        K = 2
+        mn = min(len(coins), len(coins[0]))
+        mx = max(len(coins), len(coins[0]))
+        get = (lambda i, j: coins[i][j]) if len(coins) == mx else (lambda i, j: coins[j][i])
+        dp = [[float("-inf")]*(K+1) for _ in range(mn)] 
+        for i in range(mx):
+            new_dp = [[float("-inf")]*(K+1) for _ in range(mn)]
+            for j in range(mn):
+                for k in range(K+1):
+                    if i == 0 and j == 0:
+                        new_dp[j][k] = max(get(i, j), 0) if k-1 >= 0 else get(i, j)
+                        continue
+                    if i-1 >= 0:
+                        new_dp[j][k] = max(new_dp[j][k], dp[j][k]+get(i, j))
+                        if k-1 >= 0:
+                            new_dp[j][k] = max(new_dp[j][k], dp[j][k-1])
+                    if j-1 >= 0:
+                        new_dp[j][k] = max(new_dp[j][k], new_dp[j-1][k]+get(i, j))
+                        if k-1 >= 0:
+                            new_dp[j][k] = max(new_dp[j][k], new_dp[j-1][k-1])
+            dp = new_dp
+        return dp[-1][-1]
 
-        for row in range(rows):
-            for column in range(columns):
-                if row == 0 and column == 0:
-                    incoming = [0, negative_infinity, negative_infinity]
-                else:
-                    incoming = [
-                        max(
-                            dp[column][used],
-                            dp[column - 1][used] if column > 0 else negative_infinity,
-                        )
-                        for used in range(3)
-                    ]
 
-                value = coins[row][column]
-                current = [score + value for score in incoming]
-                if value < 0:
-                    for used in range(2):
-                        current[used + 1] = max(current[used + 1], incoming[used])
-
-                dp[column] = current
-
-        return max(dp[-1])
+# Time:  O(m * n * k) = O(m * n)
+# Space: O(n * k) = O(n)
+# dp
+class Solution2(object):
+    def maximumAmount(self, coins):
+        """
+        :type coins: List[List[int]]
+        :rtype: int
+        """
+        K = 2
+        dp = [[float("-inf")]*(K+1) for _ in range(len(coins[0]))] 
+        for i in range(len(coins)):
+            new_dp = [[float("-inf")]*(K+1) for _ in range(len(coins[0]))]
+            for j in range(len(coins[0])):
+                for k in range((K+1)):
+                    if i == 0 and j == 0:
+                        new_dp[j][k] = max(coins[i][j], 0) if k-1 >= 0 else coins[i][j]
+                        continue
+                    if i-1 >= 0:
+                        new_dp[j][k] = max(new_dp[j][k], dp[j][k]+coins[i][j])
+                        if k-1 >= 0:
+                            new_dp[j][k] = max(new_dp[j][k], dp[j][k-1])
+                    if j-1 >= 0:
+                        new_dp[j][k] = max(new_dp[j][k], new_dp[j-1][k]+coins[i][j])
+                        if k-1 >= 0:
+                            new_dp[j][k] = max(new_dp[j][k], new_dp[j-1][k-1])
+            dp = new_dp
+        return dp[-1][-1]

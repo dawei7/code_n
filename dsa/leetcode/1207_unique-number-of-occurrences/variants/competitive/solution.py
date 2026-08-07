@@ -1,8 +1,31 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def uniqueOccurrences(self, arr: List[int]) -> bool:
-        frequencies = Counter(arr).values()
-        return len(set(frequencies)) == len(frequencies)
+    def uniqueOccurrences(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: bool
+        """
+        count = collections.Counter(arr)
+        lookup = set()
+        for v in count.values():
+            if v in lookup:
+                return False
+            lookup.add(v)
+        return True
+
+
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def uniqueOccurrences(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: bool
+        """
+        count = collections.Counter(arr)
+        return len(count) == len(set(count.values()))

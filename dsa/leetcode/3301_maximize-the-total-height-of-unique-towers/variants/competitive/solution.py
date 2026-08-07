@@ -1,17 +1,18 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, greedy
 class Solution:
-    def maximumTotalSum(self, maximumHeight: List[int]) -> int:
-        maximumHeight.sort(reverse=True)
-        next_height = 10**18
-        total = 0
-
-        for limit in maximumHeight:
-            height = min(limit, next_height - 1)
-            if height <= 0:
+    def maximumTotalSum(self, maximumHeight):
+        """
+        :type maximumHeight: List[int]
+        :rtype: int
+        """
+        maximumHeight.sort()
+        result, prev = 0, maximumHeight[-1]+1
+        for x in reversed(maximumHeight):
+            prev = min(x, prev-1)
+            if prev == 0:
                 return -1
-            total += height
-            next_height = height
-
-        return total
+            result += prev
+        return result

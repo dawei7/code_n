@@ -1,67 +1,81 @@
+# Time:  O(n * k + q * k * logn)
+# Space: O(n * k)
+
+# segment tree
 class Solution:
-    def resultArray(self, nums: List[int], k: int, queries: List[List[int]]) -> List[int]:
-        n = len(nums)
-        size = 1
-        while size < n:
-            size *= 2
+    def resultArray(self, nums, k, queries):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        # Template:
+        # https://github.com/kamyu104/LeetCode-Solutions/blob/master/Python/block-placement-queries.py
+        class SegmentTree(object):
+            def __init__(self, N,
+                         build_fn=lambda _: None,
+                         query_fn=lambda x, y: y if x is None else x if y is None else max(x, y),
+                         update_fn=lambda x: x):
+                self.tree = [None]*(1<<((N-1).bit_length()+1))
+                self.base = len(self.tree)>>1
+                self.query_fn = query_fn
+                self.update_fn = update_fn
+                for i in range(self.base, self.base+N):
+                    self.tree[i] = build_fn(i-self.base)
+                for i in reversed(range(1, self.base)):
+                    self.tree[i] = query_fn(self.tree[i<<1], self.tree[(i<<1)+1])
 
-        products = [1 % k] * (2 * size)
-        counts = [[0] * k for _ in range(2 * size)]
+            def update(self, i, h):
+                x = self.base+i
+                self.tree[x] = self.update_fn(h)
+                while x > 1:
+                    x >>= 1
+                    self.tree[x] = self.query_fn(self.tree[x<<1], self.tree[(x<<1)+1])
 
-        for index, value in enumerate(nums):
-            remainder = value % k
-            products[size + index] = remainder
-            counts[size + index][remainder] = 1
+            def query(self, L, R):
+                L += self.base
+                R += self.base
+                left = right = None
+                while L <= R:
+                    if L & 1:
+                        left = self.query_fn(left, self.tree[L])
+                        L += 1
+                    if R & 1 == 0:
+                        right = self.query_fn(self.tree[R], right)
+                        R -= 1
+                    L >>= 1
+                    R >>= 1
+                return self.query_fn(left, right)
+        
+        def build(i):
+            x = nums[i]%k
+            cnt = [0]*(k+1)
+            cnt[x] = 1
+            cnt[-1] = x
+            return cnt
 
-        def merge(left_product, left_counts, right_product, right_counts):
-            merged_counts = left_counts.copy()
-            for remainder, count in enumerate(right_counts):
-                merged_counts[(left_product * remainder) % k] += count
-            return (left_product * right_product) % k, merged_counts
-
-        def pull(node):
-            products[node], counts[node] = merge(
-                products[2 * node],
-                counts[2 * node],
-                products[2 * node + 1],
-                counts[2 * node + 1],
-            )
-
-        for node in range(size - 1, 0, -1):
-            pull(node)
-
-        def update(index, value):
-            node = size + index
-            remainder = value % k
-            products[node] = remainder
-            counts[node] = [0] * k
-            counts[node][remainder] = 1
-            node //= 2
-            while node:
-                pull(node)
-                node //= 2
-
-        def suffix_summary(start):
-            left_product = right_product = 1 % k
-            left_counts = [0] * k
-            right_counts = [0] * k
-            left = size + start
-            right = size + n
-
-            while left < right:
-                if left % 2:
-                    left_product, left_counts = merge(left_product, left_counts, products[left], counts[left])
-                    left += 1
-                if right % 2:
-                    right -= 1
-                    right_product, right_counts = merge(products[right], counts[right], right_product, right_counts)
-                left //= 2
-                right //= 2
-
-            return merge(left_product, left_counts, right_product, right_counts)
-
-        result = []
-        for index, value, start, x in queries:
-            update(index, value)
-            result.append(suffix_summary(start)[1][x])
+        def update(x):
+            x %= k
+            cnt = [0]*(k+1)
+            cnt[x] = 1
+            cnt[-1] = x
+            return cnt
+            
+        def query(x, y):
+            if x is None:
+                return y
+            if y is None:
+                return x
+            cnt = x[:]
+            for i in range(k):
+                cnt[x[-1]*i%k] += y[i]
+            cnt[-1] = x[-1]*y[-1]%k
+            return cnt
+        
+        st = SegmentTree(len(nums), build_fn=build, update_fn=update, query_fn=query)
+        result = [0]*len(queries)
+        for idx, (i, v, s, x) in enumerate(queries):
+            st.update(i, v)
+            result[idx] = st.query(s, len(nums)-1)[x]
         return result

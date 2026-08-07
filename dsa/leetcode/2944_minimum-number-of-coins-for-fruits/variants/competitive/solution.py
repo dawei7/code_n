@@ -1,22 +1,70 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# dp, mono deque
 class Solution:
-    def minimumCoins(self, prices: List[int]) -> int:
-        fruit_count = len(prices)
-        cost = [0] * (fruit_count + 1)
-        candidates = deque([fruit_count])
+    def minimumCoins(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        dp = [float("inf")]*(len(prices)+1)
+        dp[0] = 0
+        dq = collections.deque()
+        j = 0
+        for i in range(len(prices)):
+            while dq and dp[dq[-1]]+prices[dq[-1]] >= dp[i]+prices[i]:
+                dq.pop()
+            dq.append(i)
+            while j+(j+1) < i:
+                assert(len(dq) != 0)
+                if dq[0] == j:
+                    dq.popleft()
+                j += 1
+            dp[i+1] = dp[dq[0]]+prices[dq[0]]
+        return dp[-1]
 
-        for index in range(fruit_count - 1, -1, -1):
-            right = min(fruit_count, 2 * index + 2)
-            while candidates[0] > right:
-                candidates.popleft()
 
-            cost[index] = prices[index] + cost[candidates[0]]
+# Time:  O(nlogn)
+# Space: O(n)
+# dp, sorted list
+from sortedcontainers import SortedList
 
-            while candidates and cost[candidates[-1]] >= cost[index]:
-                candidates.pop()
-            candidates.append(index)
 
-        return cost[0]
+class Solution2(object):
+    def minimumCoins(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        dp = [float("inf")]*(len(prices)+1)
+        dp[0] = 0
+        sl = SortedList()
+        j = 0
+        for i in range(len(prices)):
+            sl.add((dp[i]+prices[i], i))
+            while j+(j+1) < i:
+                sl.remove(((dp[j]+prices[j], j)))
+                j += 1
+            dp[i+1] = sl[0][0]
+        return dp[-1]
+
+
+# Time:  O(n^2)
+# Space: O(n)
+# dp
+class Solution3(object):
+    def minimumCoins(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        dp = [float("inf")]*(len(prices)+1)
+        dp[0] = 0
+        for i in range(len(prices)):
+            for j in range(i//2, i+1):
+                dp[i+1] = min(dp[i+1], dp[j]+prices[j])
+        return dp[-1]

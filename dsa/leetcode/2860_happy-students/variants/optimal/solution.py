@@ -2,13 +2,11 @@ class Solution:
     def countWays(self, nums: List[int]) -> int:
         nums.sort()
         n = len(nums)
-        answer = int(nums[0] > 0)
-
-        for selected in range(1, n):
-            if nums[selected - 1] < selected < nums[selected]:
-                answer += 1
-
-        if nums[-1] < n:
-            answer += 1
-
-        return answer
+        ans = 0
+        for i in range(n + 1):
+            if i and nums[i - 1] >= i:
+                continue
+            if i < n and nums[i] <= i:
+                continue
+            ans += 1
+        return ans

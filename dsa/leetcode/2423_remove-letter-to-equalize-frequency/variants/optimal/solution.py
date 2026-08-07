@@ -1,16 +1,9 @@
-from collections import Counter
-
-
 class Solution:
     def equalFrequency(self, word: str) -> bool:
-        counts = Counter(word)
-
-        for character in counts:
-            counts[character] -= 1
-            positive_frequencies = {frequency for frequency in counts.values() if frequency > 0}
-            counts[character] += 1
-
-            if len(positive_frequencies) <= 1:
+        cnt = Counter(word)
+        for c in cnt.keys():
+            cnt[c] -= 1
+            if len(set(v for v in cnt.values() if v)) == 1:
                 return True
-
+            cnt[c] += 1
         return False

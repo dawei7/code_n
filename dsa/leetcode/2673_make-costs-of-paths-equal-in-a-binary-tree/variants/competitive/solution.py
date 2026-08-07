@@ -1,14 +1,16 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minIncrements(self, n: int, cost: List[int]) -> int:
-        increments = 0
-
-        for parent in range(n // 2 - 1, -1, -1):
-            left = 2 * parent + 1
-            right = left + 1
-            increments += abs(cost[left] - cost[right])
-            cost[parent] += max(cost[left], cost[right])
-
-        return increments
+    def minIncrements(self, n, cost):
+        """
+        :type n: int
+        :type cost: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in reversed(range(n//2)):
+            result += abs(cost[2*i+1]-cost[2*i+2])
+            cost[i] += max(cost[2*i+1], cost[2*i+2])
+        return result

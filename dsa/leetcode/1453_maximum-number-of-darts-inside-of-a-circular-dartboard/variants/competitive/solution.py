@@ -1,43 +1,38 @@
-from math import acos, atan2, hypot, pi
-from typing import List
+# Time:  O(n^2 * logn)
+# Space: O(n)
+
+import math
 
 
+# angle sweep solution
+# great explanation:
+# https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/discuss/636345/Python-O(n3)-and-O(n2logn)-solution-explained-in-detail-with-pictures
 class Solution:
-    def numPoints(self, darts: List[List[int]], r: int) -> int:
-        best = 1
-        diameter = 2.0 * r
-        tolerance = 1e-10
-
-        for anchor_index, (anchor_x, anchor_y) in enumerate(darts):
-            events = []
-
-            for point_index, (x, y) in enumerate(darts):
-                if point_index == anchor_index:
+    def numPoints(self, points, r):
+        """
+        :type points: List[List[int]]
+        :type r: int
+        :rtype: int
+        """
+        def count_points(points, r, i):
+            angles = []
+            for j in range(len(points)):
+                if i == j:
                     continue
-
-                dx = x - anchor_x
-                dy = y - anchor_y
-                distance = hypot(dx, dy)
-                if distance > diameter + tolerance:
+                dx, dy = points[i][0]-points[j][0], points[i][1]-points[j][1]
+                d = math.sqrt(dx**2 + dy**2)
+                if d > 2*r:
                     continue
-
-                direction = atan2(dy, dx)
-                half_width = acos(min(1.0, distance / diameter))
-                start = direction - half_width
-                end = direction + half_width
-
-                for shift in (0.0, 2.0 * pi):
-                    events.append((start + shift, 1))
-                    events.append((end + shift, -1))
-
-            events.sort(key=lambda event: (event[0], -event[1]))
-
-            active = 1
-            for _, delta in events:
-                if delta == 1:
-                    active += 1
-                    best = max(best, active)
+                delta, angle = math.acos(d/(2*r)), math.atan2(dy, dx)
+                angles.append((angle-delta, 0)), angles.append((angle+delta, 1))
+            angles.sort()
+            result, count = 1, 1
+            for _, is_closed in angles:  # angle sweep
+                if not is_closed:
+                    count += 1
                 else:
-                    active -= 1
+                    count -= 1
+                result = max(result, count)
+            return result
 
-        return best
+        return max(count_points(points, r, i) for i in range(len(points)))

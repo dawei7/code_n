@@ -1,25 +1,27 @@
+# Time:  O(m + n)
+# Space: O(1)
+
 class Solution:
-    def isOneEditDistance(self, s: str, t: str) -> bool:
-        if abs(len(s) - len(t)) > 1:
+    def isOneEditDistance(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        m, n = len(s), len(t)
+        if m > n:
+            return self.isOneEditDistance(t, s)
+        if n - m > 1:
             return False
-        if len(s) > len(t):
-            s, t = t, s
 
-        first = 0
-        second = 0
-        edits = 0
-        while first < len(s) and second < len(t):
-            if s[first] == t[second]:
-                first += 1
-                second += 1
-                continue
-            edits += 1
-            if edits > 1:
-                return False
-            if len(s) == len(t):
-                first += 1
-            second += 1
+        i, shift = 0, n - m
+        while i < m and s[i] == t[i]:
+            i += 1
+        if shift == 0:
+            i += 1
+        while i < m and s[i] == t[i + shift]:
+            i += 1
 
-        if second < len(t):
-            edits += 1
-        return edits == 1
+        return i == m
+
+

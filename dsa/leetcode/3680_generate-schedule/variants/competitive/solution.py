@@ -1,72 +1,41 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(1)
 
-
+# constructive algorithms
 class Solution:
-    def generateSchedule(self, n: int) -> List[List[int]]:
-        if n < 5:
-            return []
-
-        total = n if n % 2 == 0 else n + 1
-        teams = list(range(total))
-        rounds = []
-
-        for _ in range(total - 1):
-            games = []
-            for index in range(total // 2):
-                home = teams[index]
-                away = teams[total - 1 - index]
-                if home < n and away < n:
-                    games.append((home, away))
-            rounds.append(games)
-            teams = [teams[0], teams[-1], *teams[1:-1]]
-
-        all_rounds = []
-        for games in rounds:
-            all_rounds.append(games)
-            all_rounds.append([(away, home) for home, away in games])
-
-        parents = []
-        previous_states = {}
-
-        for round_index, games in enumerate(all_rounds):
-            states = {}
-            if round_index == 0:
-                for last in range(len(games)):
-                    states[last] = (None, 0 if last != 0 else 1)
-            else:
-                previous_games = all_rounds[round_index - 1]
-                previous_options = list(previous_states)[:3]
-                supported_firsts = []
-
-                for first, game in enumerate(games):
-                    for previous_last in previous_options:
-                        if set(previous_games[previous_last]).isdisjoint(game):
-                            supported_firsts.append((first, previous_last))
-                            break
-
-                for last in range(len(games)):
-                    for first, previous_last in supported_firsts:
-                        if first != last:
-                            states[last] = (previous_last, first)
-                            break
-
-            parents.append(states)
-            previous_states = states
-
-        choices = [None] * len(all_rounds)
-        last = next(iter(previous_states))
-
-        for round_index in range(len(all_rounds) - 1, -1, -1):
-            previous_last, first = parents[round_index][last]
-            choices[round_index] = (first, last)
-            last = previous_last
-
-        schedule = []
-        for games, choice in zip(all_rounds, choices):
-            first, last = choice
-            order = [first]
-            order.extend(index for index in range(len(games)) if index not in (first, last))
-            order.append(last)
-            schedule.extend([list(games[index]) for index in order])
-
-        return schedule
+    def generateSchedule(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        result = []
+        if n <= 4:
+            return result
+        l = 1
+        if n%2 == 0:
+            for i in range(0, n, 2):
+                result.append([i, i+l])
+            for i in range(0, n, 2):
+                result.append([i+l, i])
+            for i in range(1, n, 2):
+                result.append([i, (i+l)%n])
+            for i in range(1, n, 2):
+                result.append([(i+l)%n, i])
+        else:
+            for i in range(0, 2*n, 2):
+                result.append([i%n, (i+l)%n])
+            for i in range(0, 2*n, 2):
+                result.append([(i+l)%n, i%n])
+        for l in range(2, (n+1)//2):
+            j = result[-1][0]+1
+            for i in range(j, j+n):
+                result.append([i%n, (i+l)%n])
+            j = result[-1][1]-1
+            for i in range(j, j+n):
+                result.append([(i+l)%n, i%n])
+        if n%2 == 0:
+            l = n//2
+            j = result[-1][0]-1
+            for i in range(j, j+n):
+                result.append([i%n, (i+l)%n])
+        return result

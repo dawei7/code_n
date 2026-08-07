@@ -1,13 +1,8 @@
-from typing import List
-
-
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        farthest = 0
-        for index, jump in enumerate(nums):
-            if index > farthest:
+        mx = 0
+        for i, x in enumerate(nums):
+            if mx < i:
                 return False
-            farthest = max(farthest, index + jump)
-            if farthest >= len(nums) - 1:
-                return True
+            mx = max(mx, i + x)
         return True

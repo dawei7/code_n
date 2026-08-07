@@ -1,43 +1,26 @@
+# Time:  O(m * n)
+# Space: O(min(m, n))
+
+# prefix sum
 class Solution:
-    def differenceOfDistinctValues(self, grid: List[List[int]]) -> List[List[int]]:
-        rows = len(grid)
-        columns = len(grid[0])
-        answer = [[0] * columns for _ in range(rows)]
+    def differenceOfDistinctValues(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def update(i, j):
+            lookup = set()
+            for k in range(min(len(grid)-i, len(grid[0])-j)):
+                result[i+k][j+k] = len(lookup)
+                lookup.add(grid[i+k][j+k])
+            lookup.clear()
+            for k in reversed(range(min(len(grid)-i, len(grid[0])-j))):
+                result[i+k][j+k] = abs(result[i+k][j+k]-len(lookup))
+                lookup.add(grid[i+k][j+k])
 
-        for row in range(rows):
-            seen = set()
-            r, c = row, 0
-            while r < rows and c < columns:
-                answer[r][c] = len(seen)
-                seen.add(grid[r][c])
-                r += 1
-                c += 1
-
-        for column in range(1, columns):
-            seen = set()
-            r, c = 0, column
-            while r < rows and c < columns:
-                answer[r][c] = len(seen)
-                seen.add(grid[r][c])
-                r += 1
-                c += 1
-
-        for row in range(rows - 1, -1, -1):
-            seen = set()
-            r, c = row, columns - 1
-            while r >= 0 and c >= 0:
-                answer[r][c] = abs(answer[r][c] - len(seen))
-                seen.add(grid[r][c])
-                r -= 1
-                c -= 1
-
-        for column in range(columns - 2, -1, -1):
-            seen = set()
-            r, c = rows - 1, column
-            while r >= 0 and c >= 0:
-                answer[r][c] = abs(answer[r][c] - len(seen))
-                seen.add(grid[r][c])
-                r -= 1
-                c -= 1
-
-        return answer
+        result = [[0]*len(grid[0]) for _ in range(len(grid))]
+        for j in range(len(grid[0])):
+            update(0, j)
+        for i in range(1, len(grid)):
+            update(i, 0)
+        return result

@@ -1,21 +1,25 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, math, gcd
 class Solution:
-    def minimumLines(self, stockPrices: List[List[int]]) -> int:
-        if len(stockPrices) == 1:
-            return 0
-
+    def minimumLines(self, stockPrices):
+        """
+        :type stockPrices: List[List[int]]
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+    
         stockPrices.sort()
-        lines = 1
-
-        for index in range(2, len(stockPrices)):
-            previous_day_change = stockPrices[index - 1][0] - stockPrices[index - 2][0]
-            previous_price_change = stockPrices[index - 1][1] - stockPrices[index - 2][1]
-            current_day_change = stockPrices[index][0] - stockPrices[index - 1][0]
-            current_price_change = stockPrices[index][1] - stockPrices[index - 1][1]
-
-            if previous_price_change * current_day_change != current_price_change * previous_day_change:
-                lines += 1
-
-        return lines
+        result = 0
+        prev = None
+        for i in range(1, len(stockPrices)):
+            dy, dx = stockPrices[i][1]-stockPrices[i-1][1], stockPrices[i][0]-stockPrices[i-1][0]
+            g = gcd(dy, dx)
+            if not prev or prev != (dy//g, dx//g):
+                prev = (dy//g, dx//g)
+                result += 1
+        return result

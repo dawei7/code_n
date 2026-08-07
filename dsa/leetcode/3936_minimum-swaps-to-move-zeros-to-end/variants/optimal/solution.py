@@ -1,5 +1,16 @@
 class Solution:
     def minimumSwaps(self, nums: list[int]) -> int:
-        zero_count = nums.count(0)
-        suffix_start = len(nums) - zero_count
-        return sum(nums[index] != 0 for index in range(suffix_start, len(nums)))
+        ans = 0
+        n = len(nums)
+        i, j = 0, n - 1
+        while i < j:
+            while i < n and nums[i] != 0:
+                i += 1
+            while j and nums[j] == 0:
+                j -= 1
+            if i >= j:
+                break
+            ans += 1
+            i += 1
+            j -= 1
+        return ans

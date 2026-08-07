@@ -1,17 +1,31 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+class Codec(object):
+
+    def encode(self, strs):
+        """Encodes a list of strings to a single string.
+
+        :type strs: List[str]
+        :rtype: str
+        """
+        encoded_str = ""
+        for s in strs:
+            encoded_str += "%0*x" % (8, len(s)) + s
+        return encoded_str
 
 
-class Codec:
-    def encode(self, strs: List[str]) -> str:
-        return "".join(f"{len(value)}#{value}" for value in strs)
+    def decode(self, s):
+        """Decodes a single string to a list of strings.
 
-    def decode(self, data: str) -> List[str]:
-        values = []
-        cursor = 0
-        while cursor < len(data):
-            separator = data.index("#", cursor)
-            length = int(data[cursor:separator])
-            start = separator + 1
-            values.append(data[start : start + length])
-            cursor = start + length
-        return values
+        :type s: str
+        :rtype: List[str]
+        """
+        i = 0
+        strs = []
+        while i < len(s):
+            l = int(s[i:i+8], 16)
+            strs.append(s[i+8:i+8+l])
+            i += 8+l
+        return strs
+

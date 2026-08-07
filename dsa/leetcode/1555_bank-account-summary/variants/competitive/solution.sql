@@ -1,26 +1,20 @@
-WITH balance_changes AS (
-    SELECT paid_by AS user_id, -amount AS credit_change
-    FROM Transactions
-    UNION ALL
-    SELECT paid_to AS user_id, amount AS credit_change
-    FROM Transactions
-),
-net_changes AS (
-    SELECT user_id, SUM(credit_change) AS credit_change
-    FROM balance_changes
-    GROUP BY user_id
-)
-SELECT
-    users.user_id,
-    users.user_name,
-    users.credit + COALESCE(net_changes.credit_change, 0) AS credit,
-    CASE
-        WHEN users.credit + COALESCE(net_changes.credit_change, 0) < 0
-            THEN 'Yes'
-        ELSE 'No'
-    END AS credit_limit_breached
-FROM Users AS users
-LEFT JOIN net_changes
-  ON net_changes.user_id = users.user_id
-ORDER BY users.user_id ASC;
+# Time:  O(m + n)
+# Space: O(m + n)
 
+SELECT user_id,
+       user_name,
+       (credit - IFNULL(out_cash, 0) + IFNULL(in_cash, 0)) AS credit,
+       IF((credit - IFNULL(out_cash, 0) + IFNULL(in_cash, 0)) < 0, 'Yes', 'No') AS credit_limit_breached
+FROM Users users
+LEFT JOIN
+  (SELECT paid_by,
+          SUM(amount) AS out_cash
+   FROM TRANSACTION
+   GROUP BY paid_by
+   ORDER BY NULL) out_tmp ON users.user_id = out_tmp.paid_by
+LEFT JOIN
+  (SELECT paid_to,
+          SUM(amount) AS in_cash
+   FROM TRANSACTION
+   GROUP BY paid_to
+   ORDER BY NULL) in_tmp ON users.user_id = in_tmp.paid_to;

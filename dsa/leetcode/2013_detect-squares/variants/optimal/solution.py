@@ -1,27 +1,25 @@
-from collections import Counter, defaultdict
-from typing import List
-
-
 class DetectSquares:
     def __init__(self):
-        self.points = Counter()
-        self.rows = defaultdict(Counter)
+        self.cnt = defaultdict(Counter)
 
     def add(self, point: List[int]) -> None:
         x, y = point
-        self.points[(x, y)] += 1
-        self.rows[y][x] += 1
+        self.cnt[x][y] += 1
 
     def count(self, point: List[int]) -> int:
-        x, y = point
-        squares = 0
+        x1, y1 = point
+        if x1 not in self.cnt:
+            return 0
+        ans = 0
+        for x2 in self.cnt.keys():
+            if x2 != x1:
+                d = x2 - x1
+                ans += self.cnt[x2][y1] * self.cnt[x1][y1 + d] * self.cnt[x2][y1 + d]
+                ans += self.cnt[x2][y1] * self.cnt[x1][y1 - d] * self.cnt[x2][y1 - d]
+        return ans
 
-        for other_x, horizontal_count in self.rows[y].items():
-            side = other_x - x
-            if side == 0:
-                continue
 
-            squares += horizontal_count * self.points[(x, y + side)] * self.points[(other_x, y + side)]
-            squares += horizontal_count * self.points[(x, y - side)] * self.points[(other_x, y - side)]
-
-        return squares
+# Your DetectSquares object will be instantiated and called as such:
+# obj = DetectSquares()
+# obj.add(point)
+# param_2 = obj.count(point)

@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     def checkIfExist(self, arr: List[int]) -> bool:
-        seen = set()
-        for value in arr:
-            if 2 * value in seen or (value % 2 == 0 and value // 2 in seen):
+        s = set()
+        for x in arr:
+            if x * 2 in s or (x % 2 == 0 and x // 2 in s):
                 return True
-            seen.add(value)
+            s.add(x)
         return False

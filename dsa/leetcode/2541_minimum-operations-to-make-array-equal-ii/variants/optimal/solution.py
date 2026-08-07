@@ -1,22 +1,14 @@
-from typing import List
-
-
 class Solution:
     def minOperations(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        if k == 0:
-            return 0 if nums1 == nums2 else -1
-
-        balance = 0
-        operations = 0
-
-        for current, target in zip(nums1, nums2):
-            difference = current - target
-            if difference % k:
+        a = b = 0
+        for x, y in zip(nums1, nums2):
+            if x == y:
+                continue
+            if k == 0 or (x - y) % k:
                 return -1
-
-            units = difference // k
-            balance += units
-            if units > 0:
-                operations += units
-
-        return operations if balance == 0 else -1
+            t = (x - y) // k
+            if t < 0:
+                a += -t
+            else:
+                b += t
+        return a if a == b else -1

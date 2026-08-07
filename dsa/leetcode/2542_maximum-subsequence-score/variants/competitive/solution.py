@@ -1,21 +1,26 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+import itertools
 import heapq
-from typing import List
 
 
+# greedy, heap
 class Solution:
-    def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        selected = []
-        selected_sum = 0
-        answer = 0
-
-        for second, first in sorted(zip(nums2, nums1), reverse=True):
-            heapq.heappush(selected, first)
-            selected_sum += first
-
-            if len(selected) > k:
-                selected_sum -= heapq.heappop(selected)
-
-            if len(selected) == k:
-                answer = max(answer, selected_sum * second)
-
-        return answer
+    def maxScore(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = curr = 0
+        min_heap = []
+        for a, b in sorted(itertools.izip(nums1, nums2), key=lambda x: x[1],  reverse=True):
+            curr += a
+            heapq.heappush(min_heap, a)
+            if len(min_heap) > k:
+                curr -= heapq.heappop(min_heap)
+            if len(min_heap) == k:
+                result = max(result, curr*b)
+        return result

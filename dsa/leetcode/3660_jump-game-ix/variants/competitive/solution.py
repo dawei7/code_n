@@ -1,27 +1,44 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# graph, prefix sum
 class Solution:
-    def maxValue(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        suffix_min = nums.copy()
-        for i in range(n - 2, -1, -1):
-            suffix_min[i] = min(nums[i], suffix_min[i + 1])
+    def maxValue(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result = [0]*len(nums)
+        result[0] = nums[0]
+        for i in range(len(nums)-1):
+            result[i+1] = max(result[i], nums[i+1])
+        mn = float("inf")
+        for i in reversed(range(len(nums))):
+            if result[i] > mn:
+                result[i] = result[i+1]
+            mn = min(mn, nums[i])
+        return result
 
-        answer = [0] * n
-        start = 0
-        segment_max = nums[0]
 
-        for i in range(n - 1):
-            segment_max = max(segment_max, nums[i])
-            if segment_max <= suffix_min[i + 1]:
-                for j in range(start, i + 1):
-                    answer[j] = segment_max
-                start = i + 1
-                segment_max = nums[start]
-
-        segment_max = max(segment_max, nums[-1])
-        for j in range(start, n):
-            answer[j] = segment_max
-
-        return answer
+# Time:  O(n)
+# Space: O(n)
+# graph, prefix sum
+class Solution2(object):
+    def maxValue(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        suffix = [float("inf")]*(len(nums)+1)
+        for i in reversed(range(len(nums))):
+            suffix[i] = min(suffix[i+1], nums[i])
+        result = [0]*len(nums)
+        mx = left = 0
+        for right in range(len(nums)):
+            mx = max(mx, nums[right])
+            if mx > suffix[right+1]:
+                continue
+            while left <= right:
+                result[left] = mx
+                left += 1
+        return result

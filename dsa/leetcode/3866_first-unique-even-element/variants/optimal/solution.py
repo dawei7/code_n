@@ -1,11 +1,7 @@
 class Solution:
     def firstUniqueEven(self, nums: list[int]) -> int:
-        counts = [0] * 101
-        for value in nums:
-            counts[value] += 1
-
-        for value in nums:
-            if value % 2 == 0 and counts[value] == 1:
-                return value
-
+        cnt = Counter(nums)
+        for x in nums:
+            if x % 2 == 0 and cnt[x] == 1:
+                return x
         return -1

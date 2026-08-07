@@ -1,20 +1,23 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        kept = []
-        balance = 0
-        for char in s:
-            if char == "(":
-                balance += 1
-            elif char == ")":
-                if balance == 0:
-                    continue
-                balance -= 1
-            kept.append(char)
-
-        result = []
-        for char in reversed(kept):
-            if char == "(" and balance:
-                balance -= 1
+        stk = []
+        x = 0
+        for c in s:
+            if c == ')' and x == 0:
                 continue
-            result.append(char)
-        return "".join(reversed(result))
+            if c == '(':
+                x += 1
+            elif c == ')':
+                x -= 1
+            stk.append(c)
+        x = 0
+        ans = []
+        for c in stk[::-1]:
+            if c == '(' and x == 0:
+                continue
+            if c == ')':
+                x += 1
+            elif c == '(':
+                x -= 1
+            ans.append(c)
+        return ''.join(ans[::-1])

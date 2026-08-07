@@ -1,14 +1,9 @@
-from typing import List
-
-
 class Solution:
     def smallestCommonElement(self, mat: List[List[int]]) -> int:
-        frequencies = [0] * 10001
-        required = len(mat)
-
+        cnt = Counter()
         for row in mat:
-            for value in row:
-                frequencies[value] += 1
-                if frequencies[value] == required:
-                    return value
+            for x in row:
+                cnt[x] += 1
+                if cnt[x] == len(mat):
+                    return x
         return -1

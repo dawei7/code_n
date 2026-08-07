@@ -1,21 +1,17 @@
 class Solution:
     def longestPalindrome(self, word1: str, word2: str) -> int:
-        combined = word1 + word2
-        boundary = len(word1)
-        lengths = [0] * len(combined)
-        answer = 0
-
-        for left in range(len(combined) - 1, -1, -1):
-            diagonal = 0
-            lengths[left] = 1
-            for right in range(left + 1, len(combined)):
-                below = lengths[right]
-                if combined[left] == combined[right]:
-                    lengths[right] = diagonal + 2
-                    if left < boundary <= right:
-                        answer = max(answer, lengths[right])
+        s = word1 + word2
+        n = len(s)
+        f = [[0] * n for _ in range(n)]
+        for i in range(n):
+            f[i][i] = 1
+        ans = 0
+        for i in range(n - 2, -1, -1):
+            for j in range(i + 1, n):
+                if s[i] == s[j]:
+                    f[i][j] = f[i + 1][j - 1] + 2
+                    if i < len(word1) <= j:
+                        ans = max(ans, f[i][j])
                 else:
-                    lengths[right] = max(lengths[right], lengths[right - 1])
-                diagonal = below
-
-        return answer
+                    f[i][j] = max(f[i + 1][j], f[i][j - 1])
+        return ans

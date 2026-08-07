@@ -1,25 +1,27 @@
+# Time:  O(nlogn + klogk + klogn)
+# space: O(n + k)
+
 import heapq
-from typing import List
 
 
 class Solution:
-    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+    def minInterval(self, intervals, queries):
+        """
+        :type intervals: List[List[int]]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
         intervals.sort()
-        ordered_queries = sorted((value, index) for index, value in enumerate(queries))
-        answers = [-1] * len(queries)
-        active = []
-        interval_index = 0
-
-        for query, original_index in ordered_queries:
-            while interval_index < len(intervals) and intervals[interval_index][0] <= query:
-                left, right = intervals[interval_index]
-                heapq.heappush(active, (right - left + 1, right))
-                interval_index += 1
-
-            while active and active[0][1] < query:
-                heapq.heappop(active)
-
-            if active:
-                answers[original_index] = active[0][0]
-
-        return answers
+        queries = [(q, i) for i, q in enumerate(queries)]
+        queries.sort()
+        min_heap = []
+        i = 0
+        result =[-1]*len(queries)
+        for q, idx in queries:
+            while i != len(intervals) and intervals[i][0] <= q:
+                heapq.heappush(min_heap, [intervals[i][1]-intervals[i][0]+1, i])
+                i += 1
+            while min_heap and intervals[min_heap[0][1]][1] < q:
+                heapq.heappop(min_heap)
+            result[idx] = min_heap[0][0] if min_heap else -1
+        return result

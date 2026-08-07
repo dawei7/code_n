@@ -1,16 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array, two pointers
 class Solution:
-    def captureForts(self, forts: List[int]) -> int:
-        best = 0
-        previous = -1
-
-        for index, value in enumerate(forts):
-            if value == 0:
+    def captureForts(self, forts):
+        """
+        :type forts: List[int]
+        :rtype: int
+        """
+        result = left = 0
+        for right in range(len(forts)):
+            if not forts[right]:
                 continue
-            if previous != -1 and value != forts[previous]:
-                best = max(best, index - previous - 1)
-            previous = index
-
-        return best
+            if forts[right] == -forts[left]:
+                result = max(result, right-left-1)
+            left = right
+        return result

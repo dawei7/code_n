@@ -1,15 +1,23 @@
-from typing import List
+# Time:  O(n^3)
+# Space: O(1)
 
 
 class Solution:
-    def largestTriangleArea(self, points: List[List[int]]) -> float:
-        largest_doubled_area = 0
-        for first in range(len(points) - 2):
-            ax, ay = points[first]
-            for second in range(first + 1, len(points) - 1):
-                bx, by = points[second]
-                for third in range(second + 1, len(points)):
-                    cx, cy = points[third]
-                    doubled_area = abs((bx - ax) * (cy - ay) - (by - ay) * (cx - ax))
-                    largest_doubled_area = max(largest_doubled_area, doubled_area)
-        return largest_doubled_area / 2.0
+    def largestTriangleArea(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: float
+        """
+        result = 0
+        for i in range(len(points)-2):
+            for j in range(i+1, len(points)-1):
+                for k in range(j+1, len(points)):
+                    result = max(result,
+                                 0.5 * abs(points[i][0] * points[j][1] +
+                                           points[j][0] * points[k][1] +
+                                           points[k][0] * points[i][1] -
+                                           points[j][0] * points[i][1] -
+                                           points[k][0] * points[j][1] -
+                                           points[i][0] * points[k][1]))
+        return result
+

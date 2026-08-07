@@ -1,23 +1,14 @@
-from typing import List
-
-
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        window_length = len(p)
-        if window_length > len(s):
-            return []
-
-        pattern_counts = [0] * 26
-        window_counts = [0] * 26
-        for index in range(window_length):
-            pattern_counts[ord(p[index]) - ord("a")] += 1
-            window_counts[ord(s[index]) - ord("a")] += 1
-
-        answer = [0] if window_counts == pattern_counts else []
-        for right in range(window_length, len(s)):
-            left = right - window_length
-            window_counts[ord(s[left]) - ord("a")] -= 1
-            window_counts[ord(s[right]) - ord("a")] += 1
-            if window_counts == pattern_counts:
-                answer.append(left + 1)
-        return answer
+        m, n = len(s), len(p)
+        ans = []
+        if m < n:
+            return ans
+        cnt1 = Counter(p)
+        cnt2 = Counter(s[: n - 1])
+        for i in range(n - 1, m):
+            cnt2[s[i]] += 1
+            if cnt1 == cnt2:
+                ans.append(i - n + 1)
+            cnt2[s[i - n + 1]] -= 1
+        return ans

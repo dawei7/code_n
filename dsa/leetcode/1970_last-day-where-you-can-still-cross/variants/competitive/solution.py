@@ -1,51 +1,62 @@
-from typing import List
+# Time:  O(m * n + c *  α(c)) = O(m * n)
+# Space: O(m * n)
+
+class UnionFind(object):  # Time: O(n * α(n)), Space: O(n)
+    def __init__(self, n):
+        self.set = range(n)
+        self.rank = [0]*n
+
+    def find_set(self, x):
+        stk = []
+        while self.set[x] != x:  # path compression
+            stk.append(x)
+            x = self.set[x]
+        while stk:
+            self.set[stk.pop()] = x
+        return x
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
+            return False
+        if self.rank[x_root] < self.rank[y_root]:  # union by rank
+            self.set[x_root] = y_root
+        elif self.rank[x_root] > self.rank[y_root]:
+            self.set[y_root] = x_root
+        else:
+            self.set[y_root] = x_root
+            self.rank[x_root] += 1
+        return True
 
 
 class Solution:
-    def latestDayToCross(self, row: int, col: int, cells: List[List[int]]) -> int:
-        cell_count = row * col
-        top = cell_count
-        bottom = cell_count + 1
-        parent = list(range(cell_count + 2))
-        size = [1] * (cell_count + 2)
-        land = [False] * cell_count
+    def latestDayToCross(self, row, col, cells):
+        """
+        :type row: int
+        :type col: int
+        :type cells: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        def index(n, i, j):
+            return i*n+j
 
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        def union(left: int, right: int) -> None:
-            left_root = find(left)
-            right_root = find(right)
-            if left_root == right_root:
-                return
-            if size[left_root] < size[right_root]:
-                left_root, right_root = right_root, left_root
-            parent[right_root] = left_root
-            size[left_root] += size[right_root]
-
-        for day in range(cell_count - 1, -1, -1):
-            current_row = cells[day][0] - 1
-            current_col = cells[day][1] - 1
-            index = current_row * col + current_col
-            land[index] = True
-
-            if current_row == 0:
-                union(index, top)
-            if current_row == row - 1:
-                union(index, bottom)
-
-            for row_delta, col_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                neighbor_row = current_row + row_delta
-                neighbor_col = current_col + col_delta
-                if 0 <= neighbor_row < row and 0 <= neighbor_col < col:
-                    neighbor = neighbor_row * col + neighbor_col
-                    if land[neighbor]:
-                        union(index, neighbor)
-
-            if find(top) == find(bottom):
-                return day
-
-        return 0
+        start, end = row*col, row*col+1
+        uf = UnionFind(row*col+2)
+        lookup = [[False]*col for _ in range(row)]
+        for i in reversed(range(len(cells))):
+            r, c = cells[i]
+            r, c = r-1, c-1
+            for dr, dc in directions:
+                nr, nc = r+dr, c+dc
+                if not (0 <= nr < row and 0 <= nc < col and lookup[nr][nc]):
+                    continue
+                uf.union_set(index(col, r, c), index(col, nr, nc))
+            if r == 0:
+                uf.union_set(start, index(col, r, c))
+            if r == row-1:
+                uf.union_set(end, index(col, r, c))
+            if uf.find_set(start) == uf.find_set(end):
+                return i
+            lookup[r][c] = True
+        return -1

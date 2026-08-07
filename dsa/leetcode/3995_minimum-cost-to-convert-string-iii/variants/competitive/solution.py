@@ -1,27 +1,73 @@
+# Time:  O(n * r * l)
+# Space: O(min(n, l))
+
+# dp
 class Solution:
-    def minCost(self, source: str, target: str, rules: list[list[str]], costs: list[int]) -> int:
-        n = len(source)
-        infinity = 10**30
-        dp = [infinity] * (n + 1)
+    def minCost(self, source, target, rules, costs):
+        """
+        :type source: str
+        :type target: str
+        :type rules: List[List[str]]
+        :type costs: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        w = min(max(r for _, r in rules), len(source))+1
+        dp = [INF]*w
         dp[0] = 0
-        prepared = [
-            (pattern, replacement, cost + pattern.count("*")) for (pattern, replacement), cost in zip(rules, costs)
-        ]
-
-        for index in range(n):
-            if dp[index] == infinity:
+        for i in range(len(source)):
+            dp[(i-1)%w] = INF
+            if dp[i%w] is INF:
                 continue
-            if source[index] == target[index]:
-                dp[index + 1] = min(dp[index + 1], dp[index])
-
-            for pattern, replacement, total_cost in prepared:
-                end = index + len(pattern)
-                if end > n or not target.startswith(replacement, index):
+            if source[i] == target[i]:
+                dp[(i+1)%w] = min(dp[(i+1)%w], dp[i%w])
+            for j, (p, r) in enumerate(rules):
+                c = costs[j]
+                if i+len(p) >= len(source)+1:
                     continue
-                if all(
-                    pattern[offset] == "*" or pattern[offset] == source[index + offset]
-                    for offset in range(len(pattern))
-                ):
-                    dp[end] = min(dp[end], dp[index] + total_cost)
+                for k in range(len(p)):
+                    if r[k] != target[i+k]:
+                        break
+                    if p[k] == '*':
+                        c += 1
+                    elif p[k] != source[i+k]:
+                        break
+                else:
+                    dp[(i+len(p))%w] = min(dp[(i+len(p))%w], dp[i%w]+c)
+        return dp[len(source)%w] if dp[len(source)%w] is not INF else -1
 
-        return -1 if dp[n] == infinity else dp[n]
+
+# Time:  O(n * r * l)
+# Space: O(n)
+# dp
+class Solution2(object):
+    def minCost(self, source, target, rules, costs):
+        """
+        :type source: str
+        :type target: str
+        :type rules: List[List[str]]
+        :type costs: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        dp = [INF]*(len(source)+1)
+        dp[0] = 0
+        for i in range(len(source)):
+            if dp[i] is INF:
+                continue
+            if source[i] == target[i]:
+                dp[i+1] = min(dp[i+1], dp[i])
+            for j, (p, r) in enumerate(rules):
+                c = costs[j]
+                if i+len(p) >= len(dp):
+                    continue
+                for k in range(len(p)):
+                    if r[k] != target[i+k]:
+                        break
+                    if p[k] == '*':
+                        c += 1
+                    elif p[k] != source[i+k]:
+                        break
+                else:
+                    dp[i+len(p)] = min(dp[i+len(p)], dp[i]+c)
+        return dp[-1] if dp[-1] is not INF else -1

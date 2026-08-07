@@ -1,27 +1,20 @@
-from typing import List
+# Time:  O(n/1+n/2+...+n/n) = O(nlogn), n is the max of nums
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def sumOfFlooredPairs(self, nums: List[int]) -> int:
-        modulo = 1_000_000_007
-        maximum = max(nums)
-        frequency = [0] * (maximum + 1)
-        for value in nums:
-            frequency[value] += 1
-
-        prefix_count = [0] * (maximum + 1)
-        for value in range(1, maximum + 1):
-            prefix_count[value] = prefix_count[value - 1] + frequency[value]
-
-        answer = 0
-        for denominator in range(1, maximum + 1):
-            denominator_count = frequency[denominator]
-            if denominator_count == 0:
-                continue
-
-            for lower in range(denominator, maximum + 1, denominator):
-                upper = min(lower + denominator - 1, maximum)
-                numerator_count = prefix_count[upper] - prefix_count[lower - 1]
-                answer += denominator_count * (lower // denominator) * numerator_count
-
-        return answer % modulo
+    def sumOfFlooredPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        prefix, counter = [0]*(max(nums)+1), collections.Counter(nums)
+        for num, cnt in counter.items():
+            for j in range(num, len(prefix), num):
+                prefix[j] += counter[num]
+        for i in range(len(prefix)-1):
+            prefix[i+1] += prefix[i]
+        return reduce(lambda total, num: (total+prefix[num])%MOD, nums, 0)

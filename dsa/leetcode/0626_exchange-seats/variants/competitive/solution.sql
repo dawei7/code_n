@@ -1,11 +1,11 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
 SELECT
-    id,
-    CASE
-        WHEN MOD(id, 2) = 1 THEN COALESCE(
-            LEAD(student) OVER (ORDER BY id),
-            student
-        )
-        ELSE LAG(student) OVER (ORDER BY id)
-    END AS student
-FROM Seat
-ORDER BY id;
+    s1.id, COALESCE(s2.student, s1.student) AS student
+FROM
+    seat s1
+        LEFT JOIN
+    seat s2 ON ((s1.id + 1) ^ 1) - 1 = s2.id
+ORDER BY s1.id;
+

@@ -1,116 +1,87 @@
-from math import gcd
+class Node:
+    __slots__ = "l", "r", "g"
+
+    def __init__(self, l: int, r: int):
+        self.l = l
+        self.r = r
+        self.g = 0
+
+
+class SegmentTree:
+    __slots__ = "tr"
+
+    def __init__(self, n: int):
+        self.tr: list[Node | None] = [None] * (n << 2)
+        self.build(1, 1, n)
+
+    def build(self, u: int, l: int, r: int):
+        self.tr[u] = Node(l, r)
+        if l == r:
+            return
+        mid = (l + r) >> 1
+        self.build(u << 1, l, mid)
+        self.build(u << 1 | 1, mid + 1, r)
+
+    def pushup(self, u: int):
+        self.tr[u].g = gcd(self.tr[u << 1].g, self.tr[u << 1 | 1].g)
+
+    def modify(self, u: int, x: int, v: int):
+        if self.tr[u].l == self.tr[u].r:
+            self.tr[u].g = v
+            return
+        mid = (self.tr[u].l + self.tr[u].r) >> 1
+        if x <= mid:
+            self.modify(u << 1, x, v)
+        else:
+            self.modify(u << 1 | 1, x, v)
+        self.pushup(u)
+
+    def query(self, u: int, l: int, r: int) -> int:
+        if l > r:
+            return 0
+        if self.tr[u].l >= l and self.tr[u].r <= r:
+            return self.tr[u].g
+        mid = (self.tr[u].l + self.tr[u].r) >> 1
+        if r <= mid:
+            return self.query(u << 1, l, r)
+        if l > mid:
+            return self.query(u << 1 | 1, l, r)
+        return gcd(self.query(u << 1, l, mid), self.query(u << 1 | 1, mid + 1, r))
 
 
 class Solution:
     def countGoodSubseq(self, nums: list[int], p: int, queries: list[list[int]]) -> int:
         n = len(nums)
-        factor_limit = 1
-        for value in nums:
-            if value % p == 0:
-                factor_limit = max(factor_limit, value // p)
-        for _, value in queries:
-            if value % p == 0:
-                factor_limit = max(factor_limit, value // p)
+        tree = SegmentTree(n)
+        cnt = 0
 
-        smallest_prime = list(range(factor_limit + 1))
-        for prime in range(2, int(factor_limit**0.5) + 1):
-            if smallest_prime[prime] != prime:
+        for i, x in enumerate(nums, 1):
+            if x % p == 0:
+                tree.modify(1, i, x)
+                cnt += 1
+
+        ans = 0
+        for idx, val in queries:
+            if nums[idx] % p == 0:
+                tree.modify(1, idx + 1, 0)
+                cnt -= 1
+            if val % p == 0:
+                tree.modify(1, idx + 1, val)
+                cnt += 1
+            nums[idx] = val
+
+            if tree.tr[1].g != p:
                 continue
-            for multiple in range(prime * prime, factor_limit + 1, prime):
-                if smallest_prime[multiple] == multiple:
-                    smallest_prime[multiple] = prime
 
-        factor_cache: list[tuple[int, ...] | None] = [None] * (factor_limit + 1)
-        factor_cache[1] = ()
-
-        def distinct_factors(value: int) -> tuple[int, ...]:
-            cached = factor_cache[value]
-            if cached is not None:
-                return cached
-            original = value
-            factors: list[int] = []
-            while value > 1:
-                prime = smallest_prime[value]
-                factors.append(prime)
-                while value % prime == 0:
-                    value //= prime
-            result = tuple(factors)
-            factor_cache[original] = result
-            return result
-
-        scaled = [value // p if value % p == 0 else 0 for value in nums]
-        active_count = sum(value > 0 for value in scaled)
-
-        size = 1
-        while size < n:
-            size *= 2
-        tree = [0] * (2 * size)
-        tree[size : size + n] = scaled
-        for node in range(size - 1, 0, -1):
-            tree[node] = gcd(tree[2 * node], tree[2 * node + 1])
-
-        factor_counts = [0] * (factor_limit + 1)
-        factor_index_xors = [0] * (factor_limit + 1)
-        all_indices_xor = 0
-        for index, value in enumerate(scaled):
-            all_indices_xor ^= index
-            if value == 0:
+            if cnt < n or n > 6:
+                ans += 1
                 continue
-            for prime in distinct_factors(value):
-                factor_counts[prime] += 1
-                factor_index_xors[prime] ^= index
 
-        critical_indices: dict[int, int] = {}
-        for prime in range(2, factor_limit + 1):
-            if factor_counts[prime] == n - 1:
-                missing = all_indices_xor ^ factor_index_xors[prime]
-                critical_indices[missing] = critical_indices.get(missing, 0) + 1
+            for i in range(1, n + 1):
+                left_g = tree.query(1, 1, i - 1)
+                right_g = tree.query(1, i + 1, n)
+                if gcd(left_g, right_g) == p:
+                    ans += 1
+                    break
 
-        def detach_critical(prime: int) -> None:
-            if factor_counts[prime] != n - 1:
-                return
-            missing = all_indices_xor ^ factor_index_xors[prime]
-            remaining = critical_indices[missing] - 1
-            if remaining:
-                critical_indices[missing] = remaining
-            else:
-                del critical_indices[missing]
-
-        def attach_critical(prime: int) -> None:
-            if factor_counts[prime] != n - 1:
-                return
-            missing = all_indices_xor ^ factor_index_xors[prime]
-            critical_indices[missing] = critical_indices.get(missing, 0) + 1
-
-        answer = 0
-        for index, value in queries:
-            old_scaled = scaled[index]
-            new_scaled = value // p if value % p == 0 else 0
-
-            old_factors = set(distinct_factors(old_scaled)) if old_scaled else set()
-            new_factors = set(distinct_factors(new_scaled)) if new_scaled else set()
-
-            for prime in old_factors ^ new_factors:
-                detach_critical(prime)
-                if prime in old_factors:
-                    factor_counts[prime] -= 1
-                else:
-                    factor_counts[prime] += 1
-                factor_index_xors[prime] ^= index
-                attach_critical(prime)
-
-            if bool(old_scaled) != bool(new_scaled):
-                active_count += 1 if new_scaled else -1
-
-            scaled[index] = new_scaled
-            node = size + index
-            tree[node] = new_scaled
-            node //= 2
-            while node:
-                tree[node] = gcd(tree[2 * node], tree[2 * node + 1])
-                node //= 2
-
-            if tree[1] == 1 and (active_count < n or len(critical_indices) < n):
-                answer += 1
-
-        return answer
+        return ans

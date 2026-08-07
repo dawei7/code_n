@@ -1,27 +1,18 @@
-from typing import List
-
-
 class Solution:
     def numberWays(self, hats: List[List[int]]) -> int:
-        modulus = 1_000_000_007
-        people = len(hats)
-        people_by_hat = [[] for _ in range(41)]
-        for person, choices in enumerate(hats):
-            for hat in choices:
-                people_by_hat[hat].append(person)
-
-        dp = [0] * (1 << people)
-        dp[0] = 1
-        for hat in range(1, 41):
-            next_dp = dp.copy()
-            for mask, count in enumerate(dp):
-                if count == 0:
-                    continue
-                for person in people_by_hat[hat]:
-                    bit = 1 << person
-                    if mask & bit == 0:
-                        next_mask = mask | bit
-                        next_dp[next_mask] = (next_dp[next_mask] + count) % modulus
-            dp = next_dp
-
-        return dp[-1]
+        g = defaultdict(list)
+        for i, h in enumerate(hats):
+            for v in h:
+                g[v].append(i)
+        mod = 10**9 + 7
+        n = len(hats)
+        m = max(max(h) for h in hats)
+        f = [[0] * (1 << n) for _ in range(m + 1)]
+        f[0][0] = 1
+        for i in range(1, m + 1):
+            for j in range(1 << n):
+                f[i][j] = f[i - 1][j]
+                for k in g[i]:
+                    if j >> k & 1:
+                        f[i][j] = (f[i][j] + f[i - 1][j ^ (1 << k)]) % mod
+        return f[m][-1]

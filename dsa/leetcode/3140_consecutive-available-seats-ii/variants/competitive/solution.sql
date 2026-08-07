@@ -1,30 +1,25 @@
-WITH AvailableSeats AS (
-    SELECT
-        seat_id,
-        seat_id - ROW_NUMBER() OVER (ORDER BY seat_id) AS group_id
+# Time:  O(nlogn)
+# Space: O(n)
+
+# window function
+WITH window_cte AS (
+    SELECT seat_id, free,
+           ROW_NUMBER() OVER (ORDER BY seat_id DESC) as rnk
     FROM Cinema
     WHERE free = 1
-),
-Sequences AS (
-    SELECT
-        MIN(seat_id) AS first_seat_id,
-        MAX(seat_id) AS last_seat_id,
-        COUNT(*) AS consecutive_seats_len
-    FROM AvailableSeats
+), group_cte AS (
+    SELECT seat_id, (rnk + seat_id) AS group_id
+    FROM window_cte
+), segment_cte AS (
+    SELECT MIN(seat_id) AS first_seat_id,
+           MAX(seat_id) AS last_seat_id,
+           COUNT(*) AS consecutive_seats_len
+    FROM group_cte
     GROUP BY group_id
-),
-RankedSequences AS (
-    SELECT
-        first_seat_id,
-        last_seat_id,
-        consecutive_seats_len,
-        DENSE_RANK() OVER (ORDER BY consecutive_seats_len DESC) AS length_rank
-    FROM Sequences
+    ORDER BY NULL
 )
-SELECT
-    first_seat_id,
-    last_seat_id,
-    consecutive_seats_len
-FROM RankedSequences
-WHERE length_rank = 1
-ORDER BY first_seat_id ASC;
+
+SELECT *
+FROM segment_cte
+WHERE consecutive_seats_len = (SELECT MAX(consecutive_seats_len) FROM segment_cte)
+ORDER BY 1;

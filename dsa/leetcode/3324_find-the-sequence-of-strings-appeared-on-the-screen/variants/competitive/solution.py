@@ -1,17 +1,11 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(1)
 
-
+# string
 class Solution:
-    def stringSequence(self, target: str) -> List[str]:
-        screen = []
-        sequence = []
-
-        for desired in target:
-            screen.append("a")
-            sequence.append("".join(screen))
-
-            while screen[-1] != desired:
-                screen[-1] = chr(ord(screen[-1]) + 1)
-                sequence.append("".join(screen))
-
-        return sequence
+    def stringSequence(self, target):
+        """
+        :type target: str
+        :rtype: List[str]
+        """
+        return [target[:i]+chr(x) for i in range(len(target)) for x in range(ord('a'), ord(target[i])+1)]

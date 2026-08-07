@@ -1,18 +1,21 @@
-from typing import List
-
+# Time: O(n)
+# Space:O(1)
 
 class Solution:
-    def reverseWords(self, s: List[str]) -> None:
-        def reverse(left: int, right: int) -> None:
-            while left < right:
-                s[left], s[right] = s[right], s[left]
-                left += 1
-                right -= 1
+    def reverseWords(self, s):
+        """
+        :type s: a list of 1 length strings (List[str])
+        :rtype: nothing
+        """
+        def reverse(s, begin, end):
+            for i in range((end - begin) / 2):
+                s[begin + i], s[end - 1 - i] = s[end - 1 - i], s[begin + i]
 
-        reverse(0, len(s) - 1)
+        reverse(s, 0, len(s))
+        i = 0
+        for j in range(len(s) + 1):
+            if j == len(s) or s[j] == ' ':
+                reverse(s, i, j)
+                i = j + 1
 
-        start = 0
-        for end in range(len(s) + 1):
-            if end == len(s) or s[end] == " ":
-                reverse(start, end - 1)
-                start = end + 1
+

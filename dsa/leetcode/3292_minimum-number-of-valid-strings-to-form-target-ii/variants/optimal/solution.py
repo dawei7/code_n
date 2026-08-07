@@ -1,42 +1,48 @@
-from typing import List
+class Hashing:
+    __slots__ = ["mod", "h", "p"]
+
+    def __init__(self, s: List[str], base: int, mod: int):
+        self.mod = mod
+        self.h = [0] * (len(s) + 1)
+        self.p = [1] * (len(s) + 1)
+        for i in range(1, len(s) + 1):
+            self.h[i] = (self.h[i - 1] * base + ord(s[i - 1])) % mod
+            self.p[i] = (self.p[i - 1] * base) % mod
+
+    def query(self, l: int, r: int) -> int:
+        return (self.h[r] - self.h[l - 1] * self.p[r - l + 1]) % self.mod
 
 
 class Solution:
     def minValidStrings(self, words: List[str], target: str) -> int:
-        target_length = len(target)
-        longest = [0] * target_length
+        def f(i: int) -> int:
+            l, r = 0, min(n - i, m)
+            while l < r:
+                mid = (l + r + 1) >> 1
+                sub = hashing.query(i + 1, i + mid)
+                if sub in s[mid]:
+                    l = mid
+                else:
+                    r = mid - 1
+            return l
 
-        for word in words:
-            combined = word + "{" + target
-            z = [0] * len(combined)
-            left = right = 0
-            for index in range(1, len(combined)):
-                if index <= right:
-                    z[index] = min(right - index + 1, z[index - left])
-                while index + z[index] < len(combined) and combined[z[index]] == combined[index + z[index]]:
-                    z[index] += 1
-                if index + z[index] - 1 > right:
-                    left = index
-                    right = index + z[index] - 1
-
-            offset = len(word) + 1
-            for start in range(target_length):
-                if z[offset + start] > longest[start]:
-                    longest[start] = z[offset + start]
-
-        pieces = 0
-        current_end = 0
-        farthest = 0
-        for start, match_length in enumerate(longest):
-            if start > farthest:
-                return -1
-            farthest = max(farthest, start + match_length)
-            if start == current_end:
-                if farthest == start:
+        base, mod = 13331, 998244353
+        hashing = Hashing(target, base, mod)
+        m = max(len(w) for w in words)
+        s = [set() for _ in range(m + 1)]
+        for w in words:
+            h = 0
+            for j, c in enumerate(w, 1):
+                h = (h * base + ord(c)) % mod
+                s[j].add(h)
+        ans = last = mx = 0
+        n = len(target)
+        for i in range(n):
+            dist = f(i)
+            mx = max(mx, i + dist)
+            if i == last:
+                if i == mx:
                     return -1
-                pieces += 1
-                current_end = farthest
-                if current_end >= target_length:
-                    return pieces
-
-        return -1
+                last = mx
+                ans += 1
+        return ans

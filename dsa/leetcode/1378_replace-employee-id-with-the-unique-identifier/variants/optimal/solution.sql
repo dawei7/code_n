@@ -1,5 +1,5 @@
-SELECT u.unique_id, e.name
-FROM Employees AS e
-LEFT JOIN EmployeeUNI AS u
-  ON u.id = e.id
-ORDER BY e.id;
+# Write your MySQL query statement below
+SELECT unique_id, name
+FROM
+    Employees
+    LEFT JOIN EmployeeUNI USING (id);

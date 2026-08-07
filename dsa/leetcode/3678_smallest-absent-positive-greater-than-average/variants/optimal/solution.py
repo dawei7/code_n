@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     def smallestAbsent(self, nums: List[int]) -> int:
-        present = set(nums)
-        candidate = max(1, sum(nums) // len(nums) + 1)
-        while candidate in present:
-            candidate += 1
-        return candidate
+        s = set(nums)
+        ans = max(1, sum(nums) // len(nums) + 1)
+        while ans in s:
+            ans += 1
+        return ans

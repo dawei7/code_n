@@ -1,19 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def diStringMatch(self, s: str) -> List[int]:
-        low = 0
-        high = len(s)
-        permutation = []
-
-        for character in s:
-            if character == "I":
-                permutation.append(low)
-                low += 1
+    def diStringMatch(self, S):
+        """
+        :type S: str
+        :rtype: List[int]
+        """
+        result = []
+        left, right = 0, len(S)
+        for c in S:
+            if c == 'I':
+                result.append(left)
+                left += 1
             else:
-                permutation.append(high)
-                high -= 1
-
-        permutation.append(low)
-        return permutation
+                result.append(right)
+                right -= 1
+        result.append(left)
+        return result

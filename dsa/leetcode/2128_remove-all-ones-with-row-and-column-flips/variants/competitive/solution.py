@@ -1,12 +1,10 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def removeOnes(self, grid: List[List[int]]) -> bool:
-        first = grid[0]
-        for row in grid[1:]:
-            should_match = row[0] == first[0]
-            for column in range(1, len(first)):
-                if (row[column] == first[column]) != should_match:
-                    return False
-        return True
+    def removeOnes(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: bool
+        """
+        return all(grid[i] == grid[0] or all(grid[i][j] != grid[0][j] for j in range(len(grid[0]))) for i in range(1, len(grid)))

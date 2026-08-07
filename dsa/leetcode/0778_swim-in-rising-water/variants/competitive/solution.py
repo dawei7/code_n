@@ -1,28 +1,45 @@
-import heapq
-from typing import List
+# Time:  O(n^2)
+# Space: O(n^2)
+
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+
+    def find_set(self, x):
+        if self.set[x] != x:
+            self.set[x] = self.find_set(self.set[x])  # path compression.
+        return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
+            return False
+        self.set[min(x_root, y_root)] = max(x_root, y_root)
+        return True
 
 
 class Solution:
-    def swimInWater(self, grid: List[List[int]]) -> int:
-        side = len(grid)
-        frontier = [(grid[0][0], 0, 0)]
-        visited = {(0, 0)}
-        water_level = 0
+    def swimInWater(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        n = len(grid)
+        positions = [None] * (n**2)
+        for i in range(n):
+            for j in range(n):
+                positions[grid[i][j]] = (i, j)
+        directions = ((-1, 0), (1, 0), (0, -1), (0, 1))
 
-        while frontier:
-            elevation, row, column = heapq.heappop(frontier)
-            water_level = max(water_level, elevation)
-            if row == side - 1 and column == side - 1:
-                return water_level
+        union_find = UnionFind(n**2)
+        for elevation in range(n**2):
+            i, j = positions[elevation]
+            for direction in directions:
+                x, y = i+direction[0], j+direction[1]
+                if 0 <= x < n and 0 <= y < n and grid[x][y] <= elevation:
+                    union_find.union_set(i*n+j, x*n+y)
+                    if union_find.find_set(0) == union_find.find_set(n**2-1):
+                        return elevation
+        return n**2-1
 
-            for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_delta
-                next_column = column + column_delta
-                if 0 <= next_row < side and 0 <= next_column < side and (next_row, next_column) not in visited:
-                    visited.add((next_row, next_column))
-                    heapq.heappush(
-                        frontier,
-                        (grid[next_row][next_column], next_row, next_column),
-                    )
 
-        raise ValueError("the destination must be reachable")

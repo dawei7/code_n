@@ -1,18 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def canEat(self, candiesCount: List[int], queries: List[List[int]]) -> List[bool]:
-        prefix = [0]
-        for count in candiesCount:
-            prefix.append(prefix[-1] + count)
-
-        answer = []
-        for favorite_type, favorite_day, daily_cap in queries:
-            minimum_eaten = favorite_day + 1
-            maximum_eaten = minimum_eaten * daily_cap
-            before = prefix[favorite_type]
-            through = prefix[favorite_type + 1]
-            answer.append(before < maximum_eaten and minimum_eaten <= through)
-
-        return answer
+    def canEat(self, candiesCount, queries):
+        """
+        :type candiesCount: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[bool]
+        """
+        prefix = [0]*(len(candiesCount)+1)
+        for i, c in enumerate(candiesCount):
+            prefix[i+1] = prefix[i]+c
+        return [prefix[t]//c < d+1 <= prefix[t+1]//1 for t, d, c in queries]

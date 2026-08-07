@@ -1,23 +1,27 @@
-from math import gcd
-from typing import List
+# Time:  O(n^2)
+# Space: O(1)
 
-
+# math, number theory, constructive algorithms
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        n = len(nums)
-        ones = nums.count(1)
-        if ones:
-            return n - ones
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        shortest = n + 1
-        for left in range(n):
-            subarray_gcd = 0
-            for right in range(left, n):
-                subarray_gcd = gcd(subarray_gcd, nums[right])
-                if subarray_gcd == 1:
-                    shortest = min(shortest, right - left + 1)
+        cnt = nums.count(1)
+        if cnt:
+            return len(nums)-cnt
+        result = float("inf")
+        for i in range(len(nums)): 
+            g = nums[i]
+            for j in range(i+1, len(nums)):
+                g = gcd(g, nums[j])
+                if g == 1:
+                    result = min(result, j-i)
                     break
-
-        if shortest == n + 1:
-            return -1
-        return shortest - 1 + n - 1
+        return result+(len(nums)-1) if result != float("inf") else -1

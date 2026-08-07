@@ -1,12 +1,12 @@
+# Time:  O(mlogm), m = O(logn)
+# Space: O(m)
+
+# sort, greedy
 class Solution:
-    def splitNum(self, num: int) -> int:
-        digits = sorted(str(num))
-        first = second = 0
-
-        for index, digit in enumerate(digits):
-            if index % 2 == 0:
-                first = first * 10 + int(digit)
-            else:
-                second = second * 10 + int(digit)
-
-        return first + second
+    def splitNum(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        sorted_num = "".join(sorted(str(num)))
+        return int(sorted_num[::2])+int(sorted_num[1::2])

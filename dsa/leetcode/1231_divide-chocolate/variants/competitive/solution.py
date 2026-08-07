@@ -1,25 +1,27 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def maximizeSweetness(self, sweetness: List[int], k: int) -> int:
-        pieces_needed = k + 1
-        low = min(sweetness)
-        high = sum(sweetness) // pieces_needed
+    def maximizeSweetness(self, sweetness, K):
+        """
+        :type sweetness: List[int]
+        :type K: int
+        :rtype: int
+        """
+        def check(sweetness, K, x):
+            curr, cuts = 0, 0
+            for s in sweetness:
+                curr += s
+                if curr >= x:
+                    cuts += 1
+                    curr = 0
+            return cuts >= K+1
 
-        while low < high:
-            candidate = (low + high + 1) // 2
-            pieces = 0
-            current = 0
-            for value in sweetness:
-                current += value
-                if current >= candidate:
-                    pieces += 1
-                    current = 0
-
-            if pieces >= pieces_needed:
-                low = candidate
+        left, right = min(sweetness), sum(sweetness)//(K+1)
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(sweetness, K, mid):
+                right = mid-1
             else:
-                high = candidate - 1
-
-        return low
+                left = mid+1
+        return right

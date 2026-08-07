@@ -1,11 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def largestAltitude(self, gain: List[int]) -> int:
-        altitude = 0
-        highest = 0
-        for change in gain:
-            altitude += change
-            highest = max(highest, altitude)
-        return highest
+    def largestAltitude(self, gain):
+        """
+        :type gain: List[int]
+        :rtype: int
+        """
+        result = curr = 0
+        for g in gain:
+            curr += g
+            result = max(result, curr)
+        return result

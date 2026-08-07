@@ -1,32 +1,32 @@
-from typing import List
-
-
 class Solution:
-    def maxTargetNodes(self, edges1: List[List[int]], edges2: List[List[int]]) -> List[int]:
-        def color_tree(edges: List[List[int]]) -> tuple[List[int], List[int]]:
-            node_count = len(edges) + 1
-            graph = [[] for _ in range(node_count)]
+    def maxTargetNodes(
+        self, edges1: List[List[int]], edges2: List[List[int]]
+    ) -> List[int]:
+        def build(edges: List[List[int]]) -> List[List[int]]:
+            n = len(edges) + 1
+            g = [[] for _ in range(n)]
             for a, b in edges:
-                graph[a].append(b)
-                graph[b].append(a)
+                g[a].append(b)
+                g[b].append(a)
+            return g
 
-            parity = [-1] * node_count
-            parity[0] = 0
-            counts = [1, 0]
-            stack = [0]
+        def dfs(
+            g: List[List[int]], a: int, fa: int, c: List[int], d: int, cnt: List[int]
+        ):
+            c[a] = d
+            cnt[d] += 1
+            for b in g[a]:
+                if b != fa:
+                    dfs(g, b, a, c, d ^ 1, cnt)
 
-            while stack:
-                node = stack.pop()
-                for neighbor in graph[node]:
-                    if parity[neighbor] == -1:
-                        parity[neighbor] = parity[node] ^ 1
-                        counts[parity[neighbor]] += 1
-                        stack.append(neighbor)
-
-            return parity, counts
-
-        parity1, counts1 = color_tree(edges1)
-        _, counts2 = color_tree(edges2)
-        best_second_tree = max(counts2)
-
-        return [counts1[color] + best_second_tree for color in parity1]
+        g1 = build(edges1)
+        g2 = build(edges2)
+        n, m = len(g1), len(g2)
+        c1 = [0] * n
+        c2 = [0] * m
+        cnt1 = [0, 0]
+        cnt2 = [0, 0]
+        dfs(g2, 0, -1, c2, 0, cnt2)
+        dfs(g1, 0, -1, c1, 0, cnt1)
+        t = max(cnt2)
+        return [t + cnt1[c1[i]] for i in range(n)]

@@ -1,24 +1,44 @@
-from typing import List
+# Time:  O(n * l), l = max(len(g) for g in garbage) = O(10)
+# Space: O(1)
 
-
+# simulation, prefix sum
 class Solution:
-    def garbageCollection(
-        self,
-        garbage: List[str],
-        travel: List[int],
-    ) -> int:
-        total_time = sum(map(len, garbage))
-        last_house = {"M": 0, "P": 0, "G": 0}
+    def garbageCollection(self, garbage, travel):
+        """
+        :type garbage: List[str]
+        :type travel: List[int]
+        :rtype: int
+        """
+        result = 0
+        lookup = {}
+        for i in range(len(garbage)):
+            for c in garbage[i]:
+                lookup[c] = i
+            if i+1 < len(travel):
+                travel[i+1] += travel[i]
+            result += len(garbage[i])
+        result += sum(travel[v-1] for _, v in lookup.items() if v-1 >= 0)
+        return result
 
-        for index, waste_at_house in enumerate(garbage):
-            for waste_type in waste_at_house:
-                last_house[waste_type] = index
 
-        travel_prefix = [0]
-        for minutes in travel:
-            travel_prefix.append(travel_prefix[-1] + minutes)
-
-        for waste_type in "MPG":
-            total_time += travel_prefix[last_house[waste_type]]
-
-        return total_time
+# Time:  O(n * l), l = max(len(g) for g in garbage) = O(10)
+# Space: O(1)
+# simulation, prefix sum
+class Solution2(object):
+    def garbageCollection(self, garbage, travel):
+        """
+        :type garbage: List[str]
+        :type travel: List[int]
+        :rtype: int
+        """
+        result = 0
+        for t in 'MPG':
+            curr = 0
+            for i in range(len(garbage)):
+                cnt = garbage[i].count(t) 
+                if cnt:
+                    result += curr+cnt
+                    curr = 0
+                if i < len(travel):
+                    curr += travel[i]
+        return result

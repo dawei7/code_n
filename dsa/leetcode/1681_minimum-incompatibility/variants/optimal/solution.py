@@ -1,41 +1,38 @@
-from collections import Counter
-from functools import lru_cache
-from typing import List
-
-
 class Solution:
     def minimumIncompatibility(self, nums: List[int], k: int) -> int:
         n = len(nums)
-        group_size = n // k
-        if max(Counter(nums).values()) > k:
-            return -1
-
-        group_cost = [-1] * (1 << n)
-        for mask in range(1 << n):
-            if mask.bit_count() != group_size:
+        m = n // k
+        g = [-1] * (1 << n)
+        for i in range(1, 1 << n):
+            if i.bit_count() != m:
                 continue
-            values = [nums[index] for index in range(n) if mask >> index & 1]
-            if len(set(values)) != group_size:
+            s = set()
+            mi, mx = 20, 0
+            for j, x in enumerate(nums):
+                if i >> j & 1:
+                    if x in s:
+                        break
+                    s.add(x)
+                    mi = min(mi, x)
+                    mx = max(mx, x)
+            if len(s) == m:
+                g[i] = mx - mi
+        f = [inf] * (1 << n)
+        f[0] = 0
+        for i in range(1 << n):
+            if f[i] == inf:
                 continue
-            group_cost[mask] = max(values) - min(values)
-
-        full_mask = (1 << n) - 1
-
-        @lru_cache(None)
-        def best(used_mask: int) -> int:
-            if used_mask == full_mask:
-                return 0
-
-            remaining = full_mask ^ used_mask
-            anchor = remaining & -remaining
-            answer = float("inf")
-            group_mask = remaining
-            while group_mask:
-                cost = group_cost[group_mask]
-                if group_mask & anchor and cost >= 0:
-                    answer = min(answer, cost + best(used_mask | group_mask))
-                group_mask = (group_mask - 1) & remaining
-            return answer
-
-        result = best(0)
-        return -1 if result == float("inf") else int(result)
+            s = set()
+            mask = 0
+            for j, x in enumerate(nums):
+                if (i >> j & 1) == 0 and x not in s:
+                    s.add(x)
+                    mask |= 1 << j
+            if len(s) < m:
+                continue
+            j = mask
+            while j:
+                if g[j] != -1:
+                    f[i | j] = min(f[i | j], f[i] + g[j])
+                j = (j - 1) & mask
+        return f[-1] if f[-1] != inf else -1

@@ -1,71 +1,20 @@
-class _Node:
-    def __init__(self):
-        self.maximum = 0
-        self.lazy = 0
-        self.left = None
-        self.right = None
-
-
 class MyCalendarTwo:
-    DOMAIN_LEFT = 0
-    DOMAIN_RIGHT = 10**9 - 1
-
     def __init__(self):
-        self.root = _Node()
+        self.sd = SortedDict()
 
-    def _query(self, node, left, right, query_left, query_right):
-        if query_left <= left and right <= query_right:
-            return node.maximum
-
-        middle = (left + right) // 2
-        best = 0
-        if query_left <= middle and node.left is not None:
-            best = self._query(node.left, left, middle, query_left, query_right)
-        if query_right > middle and node.right is not None:
-            best = max(
-                best,
-                self._query(node.right, middle + 1, right, query_left, query_right),
-            )
-        return node.lazy + best
-
-    def _add(self, node, left, right, query_left, query_right):
-        if query_left <= left and right <= query_right:
-            node.maximum += 1
-            node.lazy += 1
-            return
-
-        middle = (left + right) // 2
-        if query_left <= middle:
-            if node.left is None:
-                node.left = _Node()
-            self._add(node.left, left, middle, query_left, query_right)
-        if query_right > middle:
-            if node.right is None:
-                node.right = _Node()
-            self._add(node.right, middle + 1, right, query_left, query_right)
-
-        left_maximum = node.left.maximum if node.left is not None else 0
-        right_maximum = node.right.maximum if node.right is not None else 0
-        node.maximum = node.lazy + max(left_maximum, right_maximum)
-
-    def book(self, start: int, end: int) -> bool:
-        query_right = end - 1
-        if (
-            self._query(
-                self.root,
-                self.DOMAIN_LEFT,
-                self.DOMAIN_RIGHT,
-                start,
-                query_right,
-            )
-            >= 2
-        ):
-            return False
-        self._add(
-            self.root,
-            self.DOMAIN_LEFT,
-            self.DOMAIN_RIGHT,
-            start,
-            query_right,
-        )
+    def book(self, startTime: int, endTime: int) -> bool:
+        self.sd[startTime] = self.sd.get(startTime, 0) + 1
+        self.sd[endTime] = self.sd.get(endTime, 0) - 1
+        s = 0
+        for v in self.sd.values():
+            s += v
+            if s > 2:
+                self.sd[startTime] -= 1
+                self.sd[endTime] += 1
+                return False
         return True
+
+
+# Your MyCalendarTwo object will be instantiated and called as such:
+# obj = MyCalendarTwo()
+# param_1 = obj.book(startTime,endTime)

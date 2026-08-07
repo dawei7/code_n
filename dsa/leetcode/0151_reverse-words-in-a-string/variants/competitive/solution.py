@@ -1,3 +1,9 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def reverseWords(self, s: str) -> str:
-        return " ".join(reversed(s.split()))
+    # @param s, a string
+    # @return a string
+    def reverseWords(self, s):
+        return ' '.join(reversed(s.split()))
+

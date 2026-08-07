@@ -1,49 +1,32 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
 
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def str2tree(self, s: str) -> Optional["TreeNode"]:
-        if not s:
-            return None
+    def str2tree(self, s):
+        """
+        :type s: str
+        :rtype: TreeNode
+        """
+        def str2treeHelper(s, i):
+            start = i
+            if s[i] == '-': i += 1
+            while i < len(s) and s[i].isdigit(): i += 1
+            node = TreeNode(int(s[start:i]))
+            if i < len(s) and s[i] == '(':
+                i += 1
+                node.left, i = str2treeHelper(s, i)
+                i += 1
+            if i < len(s) and s[i] == '(':
+                i += 1
+                node.right, i = str2treeHelper(s, i)
+                i += 1
+            return node, i
 
-        stack = []
-        root = None
-        cursor = 0
-        while cursor < len(s):
-            character = s[cursor]
-            if character == "(":
-                if cursor + 1 < len(s) and s[cursor + 1] == ")":
-                    stack[-1][1] += 1
-                    cursor += 2
-                else:
-                    cursor += 1
-                continue
-            if character == ")":
-                stack.pop()
-                cursor += 1
-                continue
+        return str2treeHelper(s, 0)[0] if s else None
 
-            start = cursor
-            if s[cursor] == "-":
-                cursor += 1
-            while cursor < len(s) and s[cursor].isdigit():
-                cursor += 1
-            node = TreeNode(int(s[start:cursor]))
-            if stack:
-                parent, slot = stack[-1]
-                if slot == 0:
-                    parent.left = node
-                else:
-                    parent.right = node
-                stack[-1][1] += 1
-            else:
-                root = node
-            stack.append([node, 0])
-
-        return root

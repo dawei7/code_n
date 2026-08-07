@@ -1,25 +1,8 @@
 class Solution:
-    def canPlaceFlowers(
-        self,
-        flowerbed: list[int],
-        n: int,
-    ) -> bool:
-        if n == 0:
-            return True
-
-        planted = 0
-        index = 0
-
-        while index < len(flowerbed):
-            left_empty = index == 0 or flowerbed[index - 1] == 0
-            right_empty = index == len(flowerbed) - 1 or flowerbed[index + 1] == 0
-
-            if flowerbed[index] == 0 and left_empty and right_empty:
-                planted += 1
-                if planted >= n:
-                    return True
-                index += 2
-            else:
-                index += 1
-
-        return False
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        flowerbed = [0] + flowerbed + [0]
+        for i in range(1, len(flowerbed) - 1):
+            if sum(flowerbed[i - 1 : i + 2]) == 0:
+                flowerbed[i] = 1
+                n -= 1
+        return n <= 0

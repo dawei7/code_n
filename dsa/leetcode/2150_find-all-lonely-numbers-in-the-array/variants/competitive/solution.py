@@ -1,12 +1,12 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# freq table
 class Solution:
-    def findLonely(self, nums: List[int]) -> List[int]:
-        frequencies = Counter(nums)
-        return [
-            value
-            for value, count in frequencies.items()
-            if count == 1 and value - 1 not in frequencies and value + 1 not in frequencies
-        ]
+    def findLonely(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        cnt = collections.Counter(nums)
+        return [x for x in nums if cnt[x] == 1 and x-1 not in cnt and x+1 not in cnt]

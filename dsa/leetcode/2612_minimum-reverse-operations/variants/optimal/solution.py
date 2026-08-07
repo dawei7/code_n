@@ -1,51 +1,27 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
-    def minReverseOperations(self, n: int, p: int, banned: List[int], k: int) -> List[int]:
-        values = [list(range(parity, n, 2)) for parity in range(2)]
-        parent = [list(range(len(values[parity]) + 1)) for parity in range(2)]
-
-        def find(parity: int, index: int) -> int:
-            root = index
-            while parent[parity][root] != root:
-                root = parent[parity][root]
-            while parent[parity][index] != index:
-                following = parent[parity][index]
-                parent[parity][index] = root
-                index = following
-            return root
-
-        def remove(index: int) -> None:
-            parity = index & 1
-            compressed = index // 2
-            parent[parity][compressed] = find(parity, compressed + 1)
-
-        for index in banned:
-            remove(index)
-        remove(p)
-
-        answer = [-1] * n
-        answer[p] = 0
-        queue = deque([p])
-
-        while queue:
-            current = queue.popleft()
-            left_start = max(0, current - k + 1)
-            right_start = min(n - k, current)
-            low = 2 * left_start + k - 1 - current
-            high = 2 * right_start + k - 1 - current
-            parity = low & 1
-
-            first = (low - parity + 1) // 2
-            last = (high - parity) // 2
-            cursor = find(parity, first)
-            while cursor <= last:
-                next_position = values[parity][cursor]
-                answer[next_position] = answer[current] + 1
-                queue.append(next_position)
-                parent[parity][cursor] = find(parity, cursor + 1)
-                cursor = find(parity, cursor)
-
-        return answer
+    def minReverseOperations(
+        self, n: int, p: int, banned: List[int], k: int
+    ) -> List[int]:
+        ans = [-1] * n
+        ans[p] = 0
+        ts = [SortedSet() for _ in range(2)]
+        for i in range(n):
+            ts[i % 2].add(i)
+        ts[p % 2].remove(p)
+        for i in banned:
+            ts[i % 2].remove(i)
+        ts[0].add(n)
+        ts[1].add(n)
+        q = deque([p])
+        while q:
+            i = q.popleft()
+            mi = max(i - k + 1, k - i - 1)
+            mx = min(i + k - 1, n * 2 - k - i - 1)
+            s = ts[mi % 2]
+            j = s.bisect_left(mi)
+            while s[j] <= mx:
+                q.append(s[j])
+                ans[s[j]] = ans[i] + 1
+                s.remove(s[j])
+                j = s.bisect_left(mi)
+        return ans

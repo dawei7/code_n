@@ -1,15 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
+# freq table
 class Solution:
-    def countOppositeParity(self, nums: list[int]) -> list[int]:
-        answer = [0] * len(nums)
-        even_to_right = 0
-        odd_to_right = 0
-
-        for index in range(len(nums) - 1, -1, -1):
-            if nums[index] % 2:
-                answer[index] = even_to_right
-                odd_to_right += 1
-            else:
-                answer[index] = odd_to_right
-                even_to_right += 1
-
-        return answer
+    def countOppositeParity(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result = [0]*len(nums)
+        cnt = [0]*2
+        for i in reversed(range(len(nums))):
+            result[i] = cnt[1^(nums[i]%2)]
+            cnt[nums[i]%2] += 1
+        return result

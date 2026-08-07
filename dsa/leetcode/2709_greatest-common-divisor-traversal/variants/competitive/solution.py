@@ -1,50 +1,64 @@
+# Time:  precompute: O(sqrt(r)), r = max(nums)
+#        runtime:    O(n * (logr + pi(sqrt(r))) = O(n * (logr + sqrt(r)/log(sqrt(r)))), pi(n) = number of primes in a range [1, n] = O(n/logn) by prime number theorem, see https://en.wikipedia.org/wiki/Prime_number_theorem
+# Space: O(sqrt(r) + nlogr)
+
+# linear sieve of eratosthenes, number theory, bfs
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return primes
+
+
+MAX_NUM = 10**5
+PRIMES = linear_sieve_of_eratosthenes(int(MAX_NUM**0.5))
 class Solution:
-    def canTraverseAllPairs(self, nums: List[int]) -> bool:
-        if len(nums) == 1:
-            return True
-        if 1 in nums:
-            return False
+    def canTraverseAllPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        def prime_factors(x):
+            factors = collections.Counter()
+            for p in PRIMES:
+                if p*p > x:
+                    break
+                while x%p == 0:
+                    factors[p] += 1
+                    x //= p
+            if x != 1:
+                factors[x] += 1
+            return factors
 
-        parent = list(range(len(nums)))
-        size = [1] * len(nums)
+        def bfs():
+            lookup = [False]*len(nums)
+            lookup[0] = True
+            q = [0]
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+            return all(lookup)
 
-        def find(node):
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        def union(first, second):
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
-                return
-            if size[first_root] < size[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            size[first_root] += size[second_root]
-
-        maximum = max(nums)
-        smallest_factor = list(range(maximum + 1))
-        factor = 2
-        while factor * factor <= maximum:
-            if smallest_factor[factor] == factor:
-                for multiple in range(factor * factor, maximum + 1, factor):
-                    if smallest_factor[multiple] == multiple:
-                        smallest_factor[multiple] = factor
-            factor += 1
-
-        factor_owner = {}
-        for index, value in enumerate(nums):
-            remaining = value
-            while remaining > 1:
-                factor = smallest_factor[remaining]
-                if factor in factor_owner:
-                    union(index, factor_owner[factor])
-                else:
-                    factor_owner[factor] = index
-                while remaining % factor == 0:
-                    remaining //= factor
-
-        root = find(0)
-        return all(find(index) == root for index in range(1, len(nums)))
+        adj = [[] for _ in range(len(nums))]
+        lookup = {}
+        for i, x in enumerate(nums):
+            for p in prime_factors(x):
+                if p not in lookup:
+                    lookup[p] = i
+                    continue
+                adj[i].append(lookup[p])
+                adj[lookup[p]].append(i)
+        return bfs()

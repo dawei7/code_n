@@ -1,15 +1,26 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def findMinArrowShots(self, points: List[List[int]]) -> int:
+    def findMinArrowShots(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
         if not points:
             return 0
-        points.sort(key=lambda interval: interval[1])
-        arrows = 1
-        arrow = points[0][1]
-        for start, end in points[1:]:
-            if start > arrow:
-                arrows += 1
-                arrow = end
-        return arrows
+
+        points.sort()
+
+        result = 0
+        i = 0
+        while i < len(points):
+            j = i + 1
+            right_bound = points[i][1]
+            while j < len(points) and points[j][0] <= right_bound:
+                right_bound = min(right_bound, points[j][1])
+                j += 1
+            result += 1
+            i = j
+        return result
+

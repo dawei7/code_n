@@ -1,14 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def jump(self, nums: List[int]) -> int:
-        jumps = 0
-        current_end = 0
-        farthest = 0
-        for index in range(len(nums) - 1):
-            farthest = max(farthest, index + nums[index])
-            if index == current_end:
-                jumps += 1
-                current_end = farthest
-        return jumps
+    # @param A, a list of integers
+    # @return an integer
+    def jump(self, A):
+        jump_count = 0
+        reachable = 0
+        curr_reachable = 0
+        for i, length in enumerate(A):
+            if i > reachable:
+                return -1
+            if i > curr_reachable:
+                curr_reachable = reachable
+                jump_count += 1
+            reachable = max(reachable, i + length)
+        return jump_count
+
+

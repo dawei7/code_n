@@ -1,16 +1,18 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def removeKdigits(self, num: str, k: int) -> str:
-        stack = []
-        remaining = k
+    def removeKdigits(self, num, k):
+        """
+        :type num: str
+        :type k: int
+        :rtype: str
+        """
+        result = []
+        for d in num:
+            while k and result and result[-1] > d:
+                result.pop()
+                k -= 1
+            result.append(d)
+        return ''.join(result).lstrip('0')[:-k or None] or '0'
 
-        for digit in num:
-            while remaining and stack and stack[-1] > digit:
-                stack.pop()
-                remaining -= 1
-            stack.append(digit)
-
-        if remaining:
-            del stack[-remaining:]
-
-        normalized = "".join(stack).lstrip("0")
-        return normalized or "0"

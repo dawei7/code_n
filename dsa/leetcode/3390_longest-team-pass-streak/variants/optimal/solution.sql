@@ -1,40 +1,51 @@
-WITH pass_results AS (
-    SELECT
-        passing_team.team_name,
-        p.time_stamp,
-        CASE
-            WHEN passing_team.team_name = receiving_team.team_name THEN 1
-            ELSE 0
-        END AS successful
-    FROM Passes AS p
-    INNER JOIN Teams AS passing_team
-        ON passing_team.player_id = p.pass_from
-    INNER JOIN Teams AS receiving_team
-        ON receiving_team.player_id = p.pass_to
-),
-streak_groups AS (
-    SELECT
-        team_name,
-        successful,
-        SUM(CASE WHEN successful = 0 THEN 1 ELSE 0 END) OVER (
-            PARTITION BY team_name
-            ORDER BY time_stamp
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS streak_group
-    FROM pass_results
-),
-streak_lengths AS (
-    SELECT
-        team_name,
-        streak_group,
-        SUM(successful) AS streak_length
-    FROM streak_groups
-    WHERE successful = 1
-    GROUP BY team_name, streak_group
-)
+WITH
+    PassesWithTeams AS (
+        SELECT
+            p.pass_from,
+            p.pass_to,
+            t1.team_name AS team_from,
+            t2.team_name AS team_to,
+            IF(t1.team_name = t2.team_name, 1, 0) same_team_flag,
+            p.time_stamp
+        FROM
+            Passes p
+            JOIN Teams t1 ON p.pass_from = t1.player_id
+            JOIN Teams t2 ON p.pass_to = t2.player_id
+    ),
+    StreakGroups AS (
+        SELECT
+            team_from AS team_name,
+            time_stamp,
+            same_team_flag,
+            SUM(
+                CASE
+                    WHEN same_team_flag = 0 THEN 1
+                    ELSE 0
+                END
+            ) OVER (
+                PARTITION BY team_from
+                ORDER BY time_stamp
+            ) AS group_id
+        FROM PassesWithTeams
+    ),
+    StreakLengths AS (
+        SELECT
+            team_name,
+            group_id,
+            COUNT(*) AS streak_length
+        FROM StreakGroups
+        WHERE same_team_flag = 1
+        GROUP BY 1, 2
+    ),
+    LongestStreaks AS (
+        SELECT
+            team_name,
+            MAX(streak_length) AS longest_streak
+        FROM StreakLengths
+        GROUP BY 1
+    )
 SELECT
     team_name,
-    MAX(streak_length) AS longest_streak
-FROM streak_lengths
-GROUP BY team_name
-ORDER BY team_name;
+    longest_streak
+FROM LongestStreaks
+ORDER BY 1;

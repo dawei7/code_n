@@ -1,41 +1,69 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n + s)
+# Space: O(n + s)
+
+import random
 
 
+# bfs, flood fill, quick select
 class Solution:
-    def maxAlternatingSum(self, nums: List[int], swaps: List[List[int]]) -> int:
-        parent = list(range(len(nums)))
-        size = [1] * len(nums)
+    def maxAlternatingSum(self, nums, swaps):
+        """
+        :type nums: List[int]
+        :type swaps: List[List[int]]
+        :rtype: int
+        """
+        def nth_element(nums, n, compare=lambda a, b: a < b):
+            def tri_partition(nums, left, right, target, compare):
+                mid = left
+                while mid <= right:
+                    if nums[mid] == target:
+                        mid += 1
+                    elif compare(nums[mid], target):
+                        nums[left], nums[mid] = nums[mid], nums[left]
+                        left += 1
+                        mid += 1
+                    else:
+                        nums[mid], nums[right] = nums[right], nums[mid]
+                        right -= 1
+                return left, right
 
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
+            left, right = 0, len(nums)-1
+            while left <= right:
+                pivot_idx = random.randint(left, right)
+                pivot_left, pivot_right = tri_partition(nums, left, right, nums[pivot_idx], compare)
+                if pivot_left <= n <= pivot_right:
+                    return
+                elif pivot_left > n:
+                    right = pivot_left-1
+                else:  # pivot_right < n.
+                    left = pivot_right+1
 
-        for left, right in swaps:
-            left_root = find(left)
-            right_root = find(right)
-            if left_root == right_root:
+        def bfs(u):
+            q = []
+            if lookup[u]:
+                return q
+            lookup[u] = True
+            q.append(u)
+            for u in q:
+                for v in adj[u]:
+                    if lookup[v]:
+                        continue
+                    lookup[v] = True
+                    q.append(v)
+            return q
+    
+        adj = [[] for _ in range(len(nums))]
+        for i, j in swaps:
+            adj[i].append(j)
+            adj[j].append(i)
+        lookup = [False]*len(adj)
+        result = sum(nums)
+        for u in range(len(nums)):
+            g = bfs(u)
+            if not g:
                 continue
-            if size[left_root] < size[right_root]:
-                left_root, right_root = right_root, left_root
-            parent[right_root] = left_root
-            size[left_root] += size[right_root]
-
-        values_by_root = defaultdict(list)
-        even_positions_by_root = defaultdict(int)
-        for index, value in enumerate(nums):
-            root = find(index)
-            values_by_root[root].append(value)
-            if index % 2 == 0:
-                even_positions_by_root[root] += 1
-
-        answer = 0
-        for root, values in values_by_root.items():
-            values.sort()
-            positive_count = even_positions_by_root[root]
-            positive_start = len(values) - positive_count
-            answer += 2 * sum(values[positive_start:]) - sum(values)
-
-        return answer
+            l = sum(i%2 for i in g)
+            arr = [nums[i] for i in g]
+            nth_element(arr, l)
+            result -= 2*sum(arr[i] for i in range(l))
+        return result

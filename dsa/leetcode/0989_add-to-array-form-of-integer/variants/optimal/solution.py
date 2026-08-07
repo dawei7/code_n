@@ -1,19 +1,10 @@
-from typing import List
-
-
 class Solution:
     def addToArrayForm(self, num: List[int], k: int) -> List[int]:
-        answer = []
-        index = len(num) - 1
-        carry = k
-
-        while index >= 0 or carry:
-            total = carry
-            if index >= 0:
-                total += num[index]
-            answer.append(total % 10)
-            carry = total // 10
-            index -= 1
-
-        answer.reverse()
-        return answer
+        ans = []
+        i = len(num) - 1
+        while i >= 0 or k:
+            k += 0 if i < 0 else num[i]
+            k, x = divmod(k, 10)
+            ans.append(x)
+            i -= 1
+        return ans[::-1]

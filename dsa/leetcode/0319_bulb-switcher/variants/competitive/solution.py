@@ -1,6 +1,15 @@
-from math import isqrt
+# Time:  O(1)
+# Space: O(1)
+
+import math
 
 
 class Solution:
-    def bulbSwitch(self, n: int) -> int:
-        return isqrt(n)
+    def bulbSwitch(self, n):
+        """
+        type n: int
+        rtype: int
+        """
+        # The number of full squares.
+        return int(math.sqrt(n))
+

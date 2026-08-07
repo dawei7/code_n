@@ -1,13 +1,15 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
-        intervals.sort(key=lambda interval: (interval[0], -interval[1]))
-        remaining = 0
-        farthest_right = -1
-        for _, right in intervals:
-            if right > farthest_right:
-                remaining += 1
-                farthest_right = right
-        return remaining
+    def removeCoveredIntervals(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        intervals.sort(key=lambda x: [x[0], -x[1]])
+        result, max_right = 0, 0
+        for left, right in intervals:
+            result += int(right > max_right)
+            max_right = max(max_right, right)
+        return result

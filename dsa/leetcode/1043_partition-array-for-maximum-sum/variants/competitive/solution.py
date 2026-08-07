@@ -1,17 +1,19 @@
-from typing import List
-
+# Time:  O(n * k)
+# Space: O(k)
 
 class Solution:
-    def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:
-        dp = [0] * (len(arr) + 1)
-
-        for end in range(1, len(arr) + 1):
-            current_max = 0
-            for length in range(1, min(k, end) + 1):
-                current_max = max(current_max, arr[end - length])
-                dp[end] = max(
-                    dp[end],
-                    dp[end - length] + current_max * length,
-                )
-
-        return dp[-1]
+    def maxSumAfterPartitioning(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: int
+        """
+        W = K+1
+        dp = [0]*W
+        for i in range(len(A)):
+            curr_max = 0
+            # dp[i % W] = 0;  # no need in this problem
+            for k in range(1, min(K, i+1) + 1):
+                curr_max = max(curr_max, A[i-k+1])
+                dp[i % W] = max(dp[i % W], (dp[(i-k) % W] if i >= k else 0) + curr_max*k)
+        return dp[(len(A)-1) % W]

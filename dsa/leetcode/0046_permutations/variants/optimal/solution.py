@@ -1,18 +1,19 @@
-from typing import List
-
-
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        result = []
-
-        def arrange(first: int) -> None:
-            if first == len(nums):
-                result.append(nums[:])
+        def dfs(i: int):
+            if i >= n:
+                ans.append(t[:])
                 return
-            for index in range(first, len(nums)):
-                nums[first], nums[index] = nums[index], nums[first]
-                arrange(first + 1)
-                nums[first], nums[index] = nums[index], nums[first]
+            for j, x in enumerate(nums):
+                if not vis[j]:
+                    vis[j] = True
+                    t[i] = x
+                    dfs(i + 1)
+                    vis[j] = False
 
-        arrange(0)
-        return result
+        n = len(nums)
+        vis = [False] * n
+        t = [0] * n
+        ans = []
+        dfs(0)
+        return ans

@@ -1,28 +1,31 @@
-from bisect import bisect_left, bisect_right
-from typing import List
+class BinaryIndexedTree:
+    def __init__(self, n):
+        self.n = n
+        self.c = [0] * (n + 1)
+
+    @staticmethod
+    def lowbit(x):
+        return x & -x
+
+    def update(self, x, delta):
+        while x <= self.n:
+            self.c[x] += delta
+            x += BinaryIndexedTree.lowbit(x)
+
+    def query(self, x):
+        s = 0
+        while x:
+            s += self.c[x]
+            x -= BinaryIndexedTree.lowbit(x)
+        return s
 
 
 class Solution:
     def numberOfPairs(self, nums1: List[int], nums2: List[int], diff: int) -> int:
-        differences = [first - second for first, second in zip(nums1, nums2)]
-        coordinates = sorted(set(differences))
-        tree = [0] * (len(coordinates) + 1)
-
-        def query(index: int) -> int:
-            total = 0
-            while index > 0:
-                total += tree[index]
-                index -= index & -index
-            return total
-
-        def add(index: int) -> None:
-            while index < len(tree):
-                tree[index] += 1
-                index += index & -index
-
-        answer = 0
-        for value in differences:
-            answer += query(bisect_right(coordinates, value + diff))
-            add(bisect_left(coordinates, value) + 1)
-
-        return answer
+        tree = BinaryIndexedTree(10**5)
+        ans = 0
+        for a, b in zip(nums1, nums2):
+            v = a - b
+            ans += tree.query(v + diff + 40000)
+            tree.update(v + 40000, 1)
+        return ans

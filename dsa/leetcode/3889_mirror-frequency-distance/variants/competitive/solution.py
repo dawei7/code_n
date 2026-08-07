@@ -1,18 +1,18 @@
+# Time:  O(n + 36)
+# Space: O(36)
+
+# freq table
 class Solution:
-    def mirrorFrequency(self, s: str) -> int:
-        frequencies = [0] * 36
-
-        for character in s:
-            if character <= "9":
-                index = ord(character) - ord("0")
+    def mirrorFrequency(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        
+        cnt1, cnt2 = [0]*10, [0]*26
+        for x in s:
+            if x.isdigit():
+                cnt1[ord(x)-ord('0')] += 1
             else:
-                index = 10 + ord(character) - ord("a")
-            frequencies[index] += 1
-
-        answer = 0
-        for index in range(5):
-            answer += abs(frequencies[index] - frequencies[9 - index])
-        for index in range(13):
-            answer += abs(frequencies[10 + index] - frequencies[35 - index])
-
-        return answer
+                cnt2[ord(x)-ord('a')] += 1
+        return sum(abs(cnt1[i]-cnt1[~i]) for i in range(len(cnt1)//2))+sum(abs(cnt2[i]-cnt2[~i]) for i in range(len(cnt2)//2))

@@ -1,13 +1,11 @@
-from typing import List
-
-
 class Solution:
     def sortByReflection(self, nums: List[int]) -> List[int]:
-        def reflection(value: int) -> int:
-            reflected = 0
-            while value:
-                reflected = (reflected << 1) | (value & 1)
-                value >>= 1
-            return reflected
+        def f(x: int) -> int:
+            y = 0
+            while x:
+                y = y << 1 | (x & 1)
+                x >>= 1
+            return y
 
-        return sorted(nums, key=lambda value: (reflection(value), value))
+        nums.sort(key=lambda x: (f(x), x))
+        return nums

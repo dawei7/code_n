@@ -1,7 +1,13 @@
-from typing import List
+# Time:  O(n + min(8, n))
+# Space: O(min(8, n))
 
-
+# hash table
 class Solution:
-    def recoverOrder(self, order: List[int], friends: List[int]) -> List[int]:
-        friend_ids = set(friends)
-        return [participant for participant in order if participant in friend_ids]
+    def recoverOrder(self, order, friends):
+        """
+        :type order: List[int]
+        :type friends: List[int]
+        :rtype: List[int]
+        """
+        lookup = set(friends)
+        return [x for x in order if x in lookup]

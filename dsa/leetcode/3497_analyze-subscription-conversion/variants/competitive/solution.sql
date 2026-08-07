@@ -1,15 +1,19 @@
-SELECT
-    user_id,
-    ROUND(AVG(CASE
-        WHEN activity_type = 'free_trial' THEN activity_duration
-    END), 2) AS trial_avg_duration,
-    ROUND(AVG(CASE
-        WHEN activity_type = 'paid' THEN activity_duration
-    END), 2) AS paid_avg_duration
-FROM UserActivity
-WHERE activity_type IN ('free_trial', 'paid')
-GROUP BY user_id
-HAVING
-    COUNT(CASE WHEN activity_type = 'free_trial' THEN 1 END) > 0
-    AND COUNT(CASE WHEN activity_type = 'paid' THEN 1 END) > 0
-ORDER BY user_id;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT a.user_id,
+       ROUND(a.avg_trial, 2) AS trial_avg_duration,
+       ROUND(b.avg_paid, 2) AS paid_avg_duration
+FROM (SELECT user_id, AVG(activity_duration) AS avg_trial
+      FROM UserActivity
+      WHERE activity_type = "free_trial"
+      GROUP BY 1
+      ORDER BY NULL) a
+     INNER JOIN
+     (SELECT user_id, AVG(activity_duration) AS avg_paid
+      FROM UserActivity
+      WHERE activity_type = "paid"
+      GROUP BY 1
+      ORDER BY NULL) b
+     ON a.user_id = b.user_id
+ORDER BY 1;

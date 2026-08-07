@@ -1,12 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minOperations(self, logs: List[str]) -> int:
-        depth = 0
-        for operation in logs:
-            if operation == "../":
-                depth = max(0, depth - 1)
-            elif operation != "./":
-                depth += 1
-        return depth
+    def minOperations(self, logs):
+        """
+        :type logs: List[str]
+        :rtype: int
+        """
+        result = 0
+        for log in logs:
+            if log == "../":
+                if result > 0:
+                    result -= 1
+            elif log != "./":
+                result += 1
+        return result

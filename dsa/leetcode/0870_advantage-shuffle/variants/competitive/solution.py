@@ -1,23 +1,25 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def advantageCount(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        available = sorted(nums1)
-        opponents = sorted(
-            ((value, index) for index, value in enumerate(nums2)),
-            reverse=True,
-        )
-        result = [0] * len(nums1)
-        smallest = 0
-        largest = len(available) - 1
+    def advantageCount(self, A, B):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :rtype: List[int]
+        """
+        sortedA = sorted(A)
+        sortedB = sorted(B)
 
-        for opponent, index in opponents:
-            if available[largest] > opponent:
-                result[index] = available[largest]
-                largest -= 1
+        candidates = {b: [] for b in B}
+        others = []
+        j = 0
+        for a in sortedA:
+            if a > sortedB[j]:
+                candidates[sortedB[j]].append(a)
+                j += 1
             else:
-                result[index] = available[smallest]
-                smallest += 1
+                others.append(a)
+        return [candidates[b].pop() if candidates[b] else others.pop()
+                for b in B]
 
-        return result

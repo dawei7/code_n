@@ -1,12 +1,10 @@
 class Solution:
-    def maxAscendingSum(self, nums: list[int]) -> int:
-        best = current = nums[0]
-
-        for previous, value in zip(nums, nums[1:]):
-            if value > previous:
-                current += value
+    def maxAscendingSum(self, nums: List[int]) -> int:
+        ans = t = 0
+        for i, v in enumerate(nums):
+            if i == 0 or v > nums[i - 1]:
+                t += v
+                ans = max(ans, t)
             else:
-                current = value
-            best = max(best, current)
-
-        return best
+                t = v
+        return ans

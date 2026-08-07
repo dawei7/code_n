@@ -1,18 +1,45 @@
+# Time:  O(n)
+# Space: O(n)
+
+# prefix sum
 class Solution:
-    def findValidElements(self, nums: list[int]) -> list[int]:
-        n = len(nums)
-        valid = [False] * n
+    def findValidElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        right = [True]*len(nums)
+        mx = 0
+        for i in reversed(range(len(nums))):
+            right[i] = mx < nums[i]
+            mx = max(mx, nums[i])
+        result = []
+        mx = 0
+        for i in range(len(nums)):
+            left = mx < nums[i]
+            mx = max(mx, nums[i])
+            if left or right[i]:
+                result.append(nums[i])
+        return result
 
-        maximum = 0
-        for index, value in enumerate(nums):
-            if value > maximum:
-                valid[index] = True
-                maximum = value
 
-        maximum = 0
-        for index in range(n - 1, -1, -1):
-            if nums[index] > maximum:
-                valid[index] = True
-                maximum = nums[index]
-
-        return [value for index, value in enumerate(nums) if valid[index]]
+# Time:  O(n)
+# Space: O(n)
+# prefix sum
+class Solution2(object):
+    def findValidElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        left = [True]*len(nums)
+        mx = 0
+        for i in range(len(nums)):
+            left[i] = mx < nums[i]
+            mx = max(mx, nums[i])
+        right = [True]*len(nums)
+        mx = 0
+        for i in reversed(range(len(nums))):
+            right[i] = mx < nums[i]
+            mx = max(mx, nums[i])
+        return [nums[i] for i in range(len(nums)) if left[i] or right[i]]

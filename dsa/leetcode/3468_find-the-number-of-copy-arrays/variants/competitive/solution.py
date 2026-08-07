@@ -1,9 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def countArrays(self, original: List[int], bounds: List[List[int]]) -> int:
-        lower, upper = bounds[0]
-        base = original[0]
-        for index in range(1, len(original)):
-            offset = original[index] - base
-            lower = max(lower, bounds[index][0] - offset)
-            upper = min(upper, bounds[index][1] - offset)
-        return max(0, upper - lower + 1)
+    def countArrays(self, original, bounds):
+        """
+        :type original: List[int]
+        :type bounds: List[List[int]]
+        :rtype: int
+        """
+        left, right = bounds[0]
+        result = right-left+1
+        for i in range(1, len(original)):
+            diff = original[i]-original[i-1]
+            left = max(left+diff, bounds[i][0])
+            right = min(right+diff, bounds[i][1])
+            result = min(result, max(right-left+1, 0))
+        return result

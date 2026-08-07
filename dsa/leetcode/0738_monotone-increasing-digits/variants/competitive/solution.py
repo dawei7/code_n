@@ -1,14 +1,19 @@
+# Time:  O(logn) = O(1)
+# Space: O(logn) = O(1)
+
 class Solution:
-    def monotoneIncreasingDigits(self, n: int) -> int:
-        digits = list(str(n))
-        suffix_start = len(digits)
+    def monotoneIncreasingDigits(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        nums = map(int, list(str(N)))
+        leftmost_inverted_idx = len(nums)
+        for i in reversed(range(1, len(nums))):
+            if nums[i-1] > nums[i]:
+                leftmost_inverted_idx = i
+                nums[i-1] -= 1
+        for i in range(leftmost_inverted_idx, len(nums)):
+            nums[i] = 9
+        return int("".join(map(str, nums)))
 
-        for index in range(len(digits) - 1, 0, -1):
-            if digits[index - 1] > digits[index]:
-                digits[index - 1] = str(int(digits[index - 1]) - 1)
-                suffix_start = index
-
-        for index in range(suffix_start, len(digits)):
-            digits[index] = "9"
-
-        return int("".join(digits))

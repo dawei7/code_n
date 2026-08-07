@@ -1,15 +1,18 @@
+# Time:  O(sqrt(n))
+# Space: O(1)
+
 class Solution:
-    def checkPerfectNumber(self, num: int) -> bool:
-        if num <= 1:
+    def checkPerfectNumber(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        if num <= 0:
             return False
 
-        divisor_sum = 1
-        divisor = 2
-        while divisor * divisor <= num:
-            if num % divisor == 0:
-                divisor_sum += divisor
-                complement = num // divisor
-                if complement != divisor:
-                    divisor_sum += complement
-            divisor += 1
-        return divisor_sum == num
+        sqrt_num = int(num ** 0.5)
+        total = sum(i+num//i for i in range(1, sqrt_num+1) if num%i == 0)
+        if sqrt_num ** 2 == num:
+            total -= sqrt_num
+        return total - num == num
+

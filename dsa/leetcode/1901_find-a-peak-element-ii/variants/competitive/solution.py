@@ -1,25 +1,25 @@
-from typing import List
-
+# Time:  O(min(n, m) * log(max(n, m)))
+# Space: O(1)
 
 class Solution:
-    def findPeakGrid(self, mat: List[List[int]]) -> List[int]:
-        row_count = len(mat)
-        column_count = len(mat[0])
-        low = 0
-        high = column_count - 1
+    def findPeakGrid(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: List[int]
+        """
+        def get_vec(mat, i):
+            return mat[i] if len(mat) > len(mat[0]) else (mat[j][i] for j in range(len(mat)))
 
-        while low <= high:
-            column = (low + high) // 2
-            row = max(range(row_count), key=lambda index: mat[index][column])
-            value = mat[row][column]
-            left = mat[row][column - 1] if column > 0 else -1
-            right = mat[row][column + 1] if column + 1 < column_count else -1
+        def check(mat, x):
+            return max(get_vec(mat, x)) > max(get_vec(mat, x+1))
 
-            if value > left and value > right:
-                return [row, column]
-            if right > value:
-                low = column + 1
+        left, right = 0, (max(len(mat), len(mat[0]))-1)-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(mat, mid):
+                right = mid-1
             else:
-                high = column - 1
-
-        raise RuntimeError("the matrix contract guarantees a peak")
+                left = mid+1
+        mav_val = max(get_vec(mat, left))
+        result = [left, next(i for i, x in enumerate(get_vec(mat, left)) if x == mav_val)]
+        return result if len(mat) > len(mat[0]) else result[::-1]

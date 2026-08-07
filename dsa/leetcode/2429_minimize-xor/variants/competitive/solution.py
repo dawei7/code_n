@@ -1,20 +1,25 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# bit manipulation, greedy
 class Solution:
-    def minimizeXor(self, num1: int, num2: int) -> int:
-        remaining = num2.bit_count()
-        answer = 0
-
-        for bit in range(29, -1, -1):
-            mask = 1 << bit
-            if remaining > 0 and num1 & mask:
-                answer |= mask
-                remaining -= 1
-
-        bit = 0
-        while remaining > 0:
-            mask = 1 << bit
-            if answer & mask == 0:
-                answer |= mask
-                remaining -= 1
-            bit += 1
-
-        return answer
+    def minimizeXor(self, num1, num2):
+        """
+        :type num1: int
+        :type num2: int
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x)[2:].count('1')
+        
+        cnt1, cnt2 = popcount(num1), popcount(num2)
+        result = num1
+        cnt = abs(cnt1-cnt2)
+        expect = 1 if cnt1 >= cnt2 else 0
+        i = 0
+        while cnt:
+            if ((num1>>i)&1) == expect:
+                cnt -= 1
+                result ^= 1<<i
+            i += 1
+        return result

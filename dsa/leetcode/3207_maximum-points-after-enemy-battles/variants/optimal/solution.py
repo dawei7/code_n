@@ -1,10 +1,11 @@
-from typing import List
-
-
 class Solution:
     def maximumPoints(self, enemyEnergies: List[int], currentEnergy: int) -> int:
-        minimum_energy = min(enemyEnergies)
-        if currentEnergy < minimum_energy:
+        enemyEnergies.sort()
+        if currentEnergy < enemyEnergies[0]:
             return 0
-        available_energy = currentEnergy + sum(enemyEnergies) - minimum_energy
-        return available_energy // minimum_energy
+        ans = 0
+        for i in range(len(enemyEnergies) - 1, -1, -1):
+            ans += currentEnergy // enemyEnergies[0]
+            currentEnergy %= enemyEnergies[0]
+            currentEnergy += enemyEnergies[i]
+        return ans

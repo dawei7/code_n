@@ -1,19 +1,21 @@
+# Time:  O(n^2), n is the number of steps
+# Space: O(n)
+    
 class Solution:
-    def numWays(self, steps: int, arrLen: int) -> int:
-        modulus = 1_000_000_007
-        width = min(arrLen, steps // 2 + 1)
-        counts = [0] * width
-        counts[0] = 1
-
-        for _ in range(steps):
-            next_counts = [0] * width
-            for position in range(width):
-                total = counts[position]
-                if position > 0:
-                    total += counts[position - 1]
-                if position + 1 < width:
-                    total += counts[position + 1]
-                next_counts[position] = total % modulus
-            counts = next_counts
-
-        return counts[0]
+    def numWays(self, steps, arrLen):
+        """
+        :type steps: int
+        :type arrLen: int
+        :rtype: int
+        """
+        MOD = int(1e9+7)
+        l = min(1+steps//2, arrLen)
+        dp = [0]*(l+2)
+        dp[1] = 1
+        while steps > 0:
+            steps -= 1
+            new_dp = [0]*(l+2)
+            for i in range(1, l+1):
+                new_dp[i] = (dp[i] + dp[i-1] + dp[i+1]) % MOD
+            dp = new_dp
+        return dp[1]

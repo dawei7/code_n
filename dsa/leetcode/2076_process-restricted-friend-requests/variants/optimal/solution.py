@@ -1,44 +1,26 @@
-from typing import List
-
-
 class Solution:
     def friendRequests(
-        self,
-        n: int,
-        restrictions: List[List[int]],
-        requests: List[List[int]],
+        self, n: int, restrictions: List[List[int]], requests: List[List[int]]
     ) -> List[bool]:
-        parent = list(range(n))
-        size = [1] * n
+        def find(x: int) -> int:
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        def find(person: int) -> int:
-            while person != parent[person]:
-                parent[person] = parent[parent[person]]
-                person = parent[person]
-            return person
-
-        result = []
-        for first, second in requests:
-            first_root = find(first)
-            second_root = find(second)
-            allowed = True
-
-            if first_root != second_root:
-                for restricted_first, restricted_second in restrictions:
-                    restricted_first_root = find(restricted_first)
-                    restricted_second_root = find(restricted_second)
-                    if (restricted_first_root == first_root and restricted_second_root == second_root) or (
-                        restricted_first_root == second_root and restricted_second_root == first_root
-                    ):
-                        allowed = False
+        p = list(range(n))
+        ans = []
+        for u, v in requests:
+            pu, pv = find(u), find(v)
+            if pu == pv:
+                ans.append(True)
+            else:
+                ok = True
+                for x, y in restrictions:
+                    px, py = find(x), find(y)
+                    if (pu == px and pv == py) or (pu == py and pv == px):
+                        ok = False
                         break
-
-                if allowed:
-                    if size[first_root] < size[second_root]:
-                        first_root, second_root = second_root, first_root
-                    parent[second_root] = first_root
-                    size[first_root] += size[second_root]
-
-            result.append(allowed)
-
-        return result
+                ans.append(ok)
+                if ok:
+                    p[pu] = pv
+        return ans

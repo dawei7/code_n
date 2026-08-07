@@ -1,30 +1,24 @@
-from typing import List
-
-
 class Solution:
     def maxCompatibilitySum(
-        self,
-        students: List[List[int]],
-        mentors: List[List[int]],
+        self, students: List[List[int]], mentors: List[List[int]]
     ) -> int:
-        count = len(students)
-        scores = [[sum(a == b for a, b in zip(student, mentor)) for mentor in mentors] for student in students]
+        def dfs(i: int, s: int):
+            if i >= m:
+                nonlocal ans
+                ans = max(ans, s)
+                return
+            for j in range(m):
+                if not vis[j]:
+                    vis[j] = True
+                    dfs(i + 1, s + g[i][j])
+                    vis[j] = False
 
-        dp = [-1] * (1 << count)
-        dp[0] = 0
-
-        for mask in range(1 << count):
-            student = mask.bit_count()
-            if student == count:
-                continue
-
-            for mentor in range(count):
-                bit = 1 << mentor
-                if not mask & bit:
-                    next_mask = mask | bit
-                    dp[next_mask] = max(
-                        dp[next_mask],
-                        dp[mask] + scores[student][mentor],
-                    )
-
-        return dp[-1]
+        ans = 0
+        m = len(students)
+        vis = [False] * m
+        g = [[0] * m for _ in range(m)]
+        for i, x in enumerate(students):
+            for j, y in enumerate(mentors):
+                g[i][j] = sum(a == b for a, b in zip(x, y))
+        dfs(0, 0)
+        return ans

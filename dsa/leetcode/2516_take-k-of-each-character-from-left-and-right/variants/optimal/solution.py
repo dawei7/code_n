@@ -1,25 +1,13 @@
 class Solution:
     def takeCharacters(self, s: str, k: int) -> int:
-        total = [0, 0, 0]
-        for character in s:
-            total[ord(character) - ord("a")] += 1
-
-        if any(count < k for count in total):
+        cnt = Counter(s)
+        if any(cnt[c] < k for c in "abc"):
             return -1
-
-        allowed = [count - k for count in total]
-        window = [0, 0, 0]
-        left = 0
-        longest_kept = 0
-
-        for right, character in enumerate(s):
-            index = ord(character) - ord("a")
-            window[index] += 1
-
-            while window[index] > allowed[index]:
-                window[ord(s[left]) - ord("a")] -= 1
-                left += 1
-
-            longest_kept = max(longest_kept, right - left + 1)
-
-        return len(s) - longest_kept
+        mx = j = 0
+        for i, c in enumerate(s):
+            cnt[c] -= 1
+            while cnt[c] < k:
+                cnt[s[j]] += 1
+                j += 1
+            mx = max(mx, i - j + 1)
+        return len(s) - mx

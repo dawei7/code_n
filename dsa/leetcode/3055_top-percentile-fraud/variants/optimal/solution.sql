@@ -1,16 +1,15 @@
-WITH ranked_claims AS (
-    SELECT
-        policy_id,
-        state,
-        fraud_score,
-        RANK() OVER (
-            PARTITION BY state
-            ORDER BY fraud_score DESC
-        ) AS score_rank,
-        COUNT(*) OVER (PARTITION BY state) AS state_count
-    FROM Fraud
-)
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            *,
+            RANK() OVER (
+                PARTITION BY state
+                ORDER BY fraud_score DESC
+            ) AS rk
+        FROM Fraud
+    )
 SELECT policy_id, state, fraud_score
-FROM ranked_claims
-WHERE score_rank <= CEIL(state_count * 0.05)
-ORDER BY state ASC, fraud_score DESC, policy_id ASC;
+FROM T
+WHERE rk = 1
+ORDER BY 2, 3 DESC, 1;

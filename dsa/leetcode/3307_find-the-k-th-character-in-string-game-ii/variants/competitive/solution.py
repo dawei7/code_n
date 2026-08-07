@@ -1,13 +1,17 @@
+# Time:  O(logr) = O(1)
+# Space: O(1)
+
+# bitmasks
 class Solution:
-    def kthCharacter(self, k: int, operations: List[int]) -> str:
-        shift = 0
-        index = k - 1
-        operation = 0
-
-        while index:
-            if index & 1:
-                shift += operations[operation]
-            operation += 1
-            index >>= 1
-
-        return chr(ord("a") + shift % 26)
+    def kthCharacter(self, k, operations):
+        """
+        :type k: int
+        :type operations: List[int]
+        :rtype: str
+        """
+        result = 0
+        k -= 1
+        for i in range(min(len(operations), k.bit_length())):
+            if k&(1<<i):
+                result = (result+operations[i])%26
+        return chr(ord('a')+result)

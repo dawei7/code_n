@@ -1,41 +1,23 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(n)
 
 class Solution:
-    def longestLine(self, mat: List[List[int]]) -> int:
-        if not mat or not mat[0]:
-            return 0
+    def longestLine(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: int
+        """
+        if not M: return 0
+        result = 0
+        dp = [[[0] * 4 for _ in range(len(M[0]))] for _ in range(2)]
+        for i in range(len(M)):
+            for j in range(len(M[0])):
+                dp[i % 2][j][:] = [0] * 4
+                if M[i][j] == 1:
+                    dp[i % 2][j][0] = dp[i % 2][j - 1][0]+1 if j > 0 else 1
+                    dp[i % 2][j][1] = dp[(i-1) % 2][j][1]+1 if i > 0 else 1
+                    dp[i % 2][j][2] = dp[(i-1) % 2][j-1][2]+1 if (i > 0 and j > 0) else 1
+                    dp[i % 2][j][3] = dp[(i-1) % 2][j+1][3]+1 if (i > 0 and j < len(M[0])-1) else 1
+                    result = max(result, max(dp[i % 2][j]))
+        return result
 
-        columns = len(mat[0])
-        vertical = [0] * columns
-        diagonal = [0] * columns
-        anti_diagonal = [0] * columns
-        longest = 0
-
-        for row in mat:
-            horizontal = 0
-            next_diagonal = [0] * columns
-            next_anti_diagonal = [0] * columns
-
-            for column, value in enumerate(row):
-                if value == 0:
-                    horizontal = 0
-                    vertical[column] = 0
-                    continue
-
-                horizontal += 1
-                vertical[column] += 1
-                next_diagonal[column] = 1 + (diagonal[column - 1] if column > 0 else 0)
-                next_anti_diagonal[column] = 1 + (anti_diagonal[column + 1] if column + 1 < columns else 0)
-                longest = max(
-                    longest,
-                    horizontal,
-                    vertical[column],
-                    next_diagonal[column],
-                    next_anti_diagonal[column],
-                )
-
-            diagonal = next_diagonal
-            anti_diagonal = next_anti_diagonal
-
-        return longest

@@ -1,33 +1,19 @@
-from math import lcm
-
-
 class Solution:
     def findKthSmallest(self, coins: List[int], k: int) -> int:
-        reduced = []
-        for coin in sorted(coins):
-            if not any(coin % kept == 0 for kept in reduced):
-                reduced.append(coin)
+        def check(mx: int) -> bool:
+            cnt = 0
+            for i in range(1, 1 << len(coins)):
+                v = 1
+                for j, x in enumerate(coins):
+                    if i >> j & 1:
+                        v = lcm(v, x)
+                        if v > mx:
+                            break
+                m = i.bit_count()
+                if m & 1:
+                    cnt += mx // v
+                else:
+                    cnt -= mx // v
+            return cnt >= k
 
-        upper = min(reduced) * k
-        coefficients = {}
-        for mask in range(1, 1 << len(reduced)):
-            multiple = 1
-            parity = 0
-            for index, coin in enumerate(reduced):
-                if mask >> index & 1:
-                    multiple = lcm(multiple, coin)
-                    parity ^= 1
-            if multiple <= upper:
-                coefficients[multiple] = coefficients.get(multiple, 0) + (1 if parity else -1)
-
-        def count(limit: int) -> int:
-            return sum(coefficient * (limit // multiple) for multiple, coefficient in coefficients.items())
-
-        low, high = 1, upper
-        while low < high:
-            middle = (low + high) // 2
-            if count(middle) >= k:
-                high = middle
-            else:
-                low = middle + 1
-        return low
+        return bisect_left(range(10**11), True, key=check)

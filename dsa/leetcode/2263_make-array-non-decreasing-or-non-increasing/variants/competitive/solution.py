@@ -1,21 +1,49 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
 import heapq
-from typing import List
 
 
+# greedy, heap
 class Solution:
-    def convertArray(self, nums: List[int]) -> int:
-        def non_decreasing_cost(values: List[int]) -> int:
-            maximums = []
-            cost = 0
-            for value in values:
-                heapq.heappush(maximums, -value)
-                largest = -maximums[0]
-                if largest > value:
-                    cost += largest - value
-                    heapq.heapreplace(maximums, -value)
-            return cost
+    def convertArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def f(nums):
+            result = 0
+            max_heap = []
+            for x in nums:
+                if max_heap and x < -max_heap[0]:
+                    result += -heapq.heappop(max_heap)-x
+                    heapq.heappush(max_heap, -x)
+                heapq.heappush(max_heap, -x)
+            return result
+        
+        return min(f(nums), f((x for x in reversed(nums))))
 
-        return min(
-            non_decreasing_cost(nums),
-            non_decreasing_cost([-value for value in nums]),
-        )
+
+# Time:  O(n^2)
+# Space: O(n)
+import collections
+
+
+# dp
+class Solution2(object):
+    def convertArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        vals = sorted(set(nums))
+        def f(nums):
+            dp = collections.defaultdict(int)  # dp[i]: min(cnt(j) for j in vals if j <= i)
+            for x in nums:
+                prev = -1
+                for i in vals:
+                    dp[i] = min(dp[i]+abs(i-x), dp[prev]) if prev != -1 else dp[i]+abs(i-x)
+                    prev = i
+            return dp[vals[-1]]
+
+        return min(f(nums), f((x for x in reversed(nums))))

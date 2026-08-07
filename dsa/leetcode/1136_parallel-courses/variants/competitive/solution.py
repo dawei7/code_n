@@ -1,25 +1,31 @@
-from collections import deque
-from typing import List
+# Time:  O(|V| + |E|)
+# Space: O(|E|)
+
+import collections
 
 
 class Solution:
-    def minimumSemesters(self, n: int, relations: List[List[int]]) -> int:
-        graph = [[] for _ in range(n + 1)]
-        indegree = [0] * (n + 1)
-        for prerequisite, course in relations:
-            graph[prerequisite].append(course)
-            indegree[course] += 1
+    def minimumSemesters(self, N, relations):
+        """
+        :type N: int
+        :type relations: List[List[int]]
+        :rtype: int
+        """
+        g = collections.defaultdict(list)
+        in_degree = [0]*N
+        for x, y in relations:
+            g[x-1].append(y-1)
+            in_degree[y-1] += 1
+        q = collections.deque([(1, i) for i in range(N) if not in_degree[i]])
 
-        queue = deque(course for course in range(1, n + 1) if indegree[course] == 0)
-        completed = 0
-        semesters = 0
-        while queue:
-            semesters += 1
-            for _ in range(len(queue)):
-                course = queue.popleft()
-                completed += 1
-                for next_course in graph[course]:
-                    indegree[next_course] -= 1
-                    if indegree[next_course] == 0:
-                        queue.append(next_course)
-        return semesters if completed == n else -1
+        result = 0
+        count = N
+        while q:
+            level, u = q.popleft()
+            count -= 1
+            result = level
+            for v in g[u]:
+                in_degree[v] -= 1
+                if not in_degree[v]:
+                    q.append((level+1, v))
+        return result if count == 0 else -1

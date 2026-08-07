@@ -1,14 +1,30 @@
-# Definition of commonBits API.
-# def commonBits(num: int) -> int:
+# Time:  O(logr)
+# Space: O(1)
+
+# bit manipulation
 class Solution:
-    def findNumber(self) -> int:
-        zero_count = commonBits(0)
-        answer = 0
+    def findNumber(self):
+        """
+        :rtype: int
+        """
+        BIT_COUNT = 30
+        result = 0
+        prev = commonBits(0)
+        for i in range(BIT_COUNT):
+            curr = commonBits(1<<i)
+            if curr-prev == 1:
+                result |= 1<<i
+            prev = curr
+        return result
 
-        for bit in range(30):
-            next_zero_count = commonBits(1 << bit)
-            if next_zero_count > zero_count:
-                answer |= 1 << bit
-            zero_count = next_zero_count
 
-        return answer
+# Time:  O(logr)
+# Space: O(1)
+# bit manipulation
+class Solution2(object):
+    def findNumber(self):
+        """
+        :rtype: int
+        """
+        BIT_COUNT = 30
+        return reduce(lambda accu, i: accu|(1<<i if commonBits(1<<i)-commonBits(1<<i) == 1 else 0), range(BIT_COUNT), 0)

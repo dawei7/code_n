@@ -1,19 +1,18 @@
-WITH Friends AS (
-    SELECT user1_id AS user_id, user2_id AS friend_id
-    FROM Friendship
-    UNION
-    SELECT user2_id AS user_id, user1_id AS friend_id
-    FROM Friendship
-)
-SELECT
-    f.user_id,
-    liked.page_id,
-    COUNT(*) AS friends_likes
-FROM Friends AS f
-JOIN Likes AS liked
-  ON liked.user_id = f.friend_id
-LEFT JOIN Likes AS own
-  ON own.user_id = f.user_id
- AND own.page_id = liked.page_id
-WHERE own.user_id IS NULL
-GROUP BY f.user_id, liked.page_id;
+# Write your MySQL query statement below
+WITH
+    S AS (
+        SELECT * FROM Friendship
+        UNION
+        SELECT user2_id, user1_id FROM Friendship
+    )
+SELECT user1_id AS user_id, page_id, COUNT(1) AS friends_likes
+FROM
+    S AS s
+    LEFT JOIN Likes AS l ON s.user2_id = l.user_id
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM Likes AS l2
+        WHERE user1_id = l2.user_id AND l.page_id = l2.page_id
+    )
+GROUP BY user1_id, page_id;

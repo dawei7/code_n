@@ -1,14 +1,16 @@
-def digit_signature(value):
-    counts = [0] * 10
-    while value:
-        counts[value % 10] += 1
-        value //= 10
-    return tuple(counts)
+# Time:  O((logn)^2) = O(1) due to n is a 32-bit number
+# Space: O(logn) = O(1)
 
-
-POWER_OF_TWO_SIGNATURES = {digit_signature(1 << exponent) for exponent in range(34)}
+import collections
 
 
 class Solution:
-    def reorderedPowerOf2(self, n: int) -> bool:
-        return digit_signature(n) in POWER_OF_TWO_SIGNATURES
+    def reorderedPowerOf2(self, N):
+        """
+        :type N: int
+        :rtype: bool
+        """
+        count = collections.Counter(str(N))
+        return any(count == collections.Counter(str(1 << i))
+                   for i in range(31))
+

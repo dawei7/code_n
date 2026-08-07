@@ -1,4 +1,14 @@
 class Solution:
     def largestPalindrome(self, n: int) -> int:
-        residues = (9, 987, 123, 597, 677, 1218, 877, 475)
-        return residues[n - 1]
+        mx = 10**n - 1
+        for a in range(mx, mx // 10, -1):
+            b = x = a
+            while b:
+                x = x * 10 + b % 10
+                b //= 10
+            t = mx
+            while t * t >= x:
+                if x % t == 0:
+                    return x % 1337
+                t -= 1
+        return 9

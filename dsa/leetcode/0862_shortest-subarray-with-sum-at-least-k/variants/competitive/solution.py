@@ -1,23 +1,29 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def shortestSubarray(self, nums: List[int], k: int) -> int:
-        candidates = deque([(0, 0)])
-        prefix_sum = 0
-        best_length = len(nums) + 1
+    def shortestSubarray(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: int
+        """
+        accumulated_sum = [0]*(len(A)+1)
+        for i in range(len(A)):
+            accumulated_sum[i+1] = accumulated_sum[i]+A[i]
 
-        for end, value in enumerate(nums, 1):
-            prefix_sum += value
+        result = float("inf")
+        mono_increasing_q = collections.deque()
+        for i, curr in enumerate(accumulated_sum):
+            while mono_increasing_q and curr <= \
+                    accumulated_sum[mono_increasing_q[-1]]:
+                mono_increasing_q.pop()
+            while mono_increasing_q and \
+                    curr-accumulated_sum[mono_increasing_q[0]] >= K:
+                result = min(result, i-mono_increasing_q.popleft())
+            mono_increasing_q.append(i)
+        return result if result != float("inf") else -1
 
-            while candidates and prefix_sum - candidates[0][1] >= k:
-                start, _ = candidates.popleft()
-                best_length = min(best_length, end - start)
-
-            while candidates and candidates[-1][1] >= prefix_sum:
-                candidates.pop()
-
-            candidates.append((end, prefix_sum))
-
-        return best_length if best_length <= len(nums) else -1

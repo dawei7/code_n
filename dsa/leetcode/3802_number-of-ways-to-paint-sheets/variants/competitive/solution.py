@@ -1,23 +1,28 @@
-from bisect import bisect_right
-from typing import List
+# Time:  O(mlogm)
+# Space: O(m)
 
-
+# sort, prefix sum, two pointers
 class Solution:
-    def numberOfWays(self, n: int, limit: List[int]) -> int:
-        modulo = 1_000_000_007
-        threshold = n - 1
-        capacities = sorted(min(value, threshold) for value in limit)
-        color_count = len(capacities)
-
-        prefix = [0]
-        for value in capacities:
-            prefix.append(prefix[-1] + value)
-
-        ways = 0
-        for value in capacities:
-            first = bisect_right(capacities, threshold - value)
-            partner_count = color_count - first
-            ways += partner_count * (value - threshold) + prefix[color_count] - prefix[first]
-            ways -= max(0, 2 * value - threshold)
-
-        return ways % modulo
+    def numberOfWays(self, n, limit):
+        """
+        :type n: int
+        :type limit: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        limit.sort()
+        suffix = [0]*(len(limit)+1)
+        for i in reversed(range(len(suffix)-1)):
+            limit[i] = min(limit[i], n-1)
+            suffix[i] = suffix[i+1]+limit[i]
+        result = j = 0
+        for i in reversed(range(len(limit))):
+            while j < len(limit):
+                if limit[i]+limit[j] >= n:
+                    break
+                j += 1
+            cnt = (limit[i]-n+1)*(len(limit)-j)+suffix[j]
+            if i >= j:
+                cnt -= limit[i]+limit[i]-n+1
+            result = (result+cnt)%MOD
+        return result

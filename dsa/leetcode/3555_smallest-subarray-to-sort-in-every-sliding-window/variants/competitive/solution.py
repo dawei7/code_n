@@ -1,22 +1,40 @@
+# Time:  O(n)
+# Space: O(n)
+
+# mono stack, two pointers
 class Solution:
-    def minSubarraySort(self, nums: list[int], k: int) -> list[int]:
-        answers: list[int] = []
-        for start in range(len(nums) - k + 1):
-            window = nums[start : start + k]
-            left = 0
-            while left + 1 < k and window[left] <= window[left + 1]:
-                left += 1
-            if left == k - 1:
-                answers.append(0)
-                continue
-            right = k - 1
-            while window[right - 1] <= window[right]:
-                right -= 1
-            core_minimum = min(window[left : right + 1])
-            core_maximum = max(window[left : right + 1])
-            while left > 0 and window[left - 1] > core_minimum:
-                left -= 1
-            while right + 1 < k and window[right + 1] < core_maximum:
-                right += 1
-            answers.append(right - left + 1)
-        return answers
+    def minSubarraySort(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        def count(nums):
+            nxt, stk = [n]*n, []
+            for i in reversed(range(n)):
+                while not (not stk or nums[stk[-1]] >= nums[i]):
+                    stk.pop()
+                if stk:
+                    nxt[i] = stk[-1]
+                stk.append(i)
+            result = []
+            j, left = 0, -1
+            for i in range(1, n):
+                if nums[i] < nums[i-1]:
+                    left = i
+                if i < k-1:
+                    continue
+                j = max(j, i-(k-1))
+                while not nxt[j] > left:
+                    j = nxt[j]  # or j += 1
+                result.append(max(i-nxt[j]+1, 0))
+            return result
+
+        n = len(nums)
+        if k == 1:
+            return [0]*(n-k+1)
+        right = count(nums)
+        for i in range((n+1)//2):
+            nums[i], nums[~i] = -nums[~i], -nums[i]
+        left = count(nums)
+        return [max(k-left[~i]-right[i], 0) for i in range(n-k+1)]

@@ -1,79 +1,95 @@
-from collections import defaultdict
-from typing import List
-import sys
+# Time:  O(n + e)
+# Space: O(n + e)
 
-sys.setrecursionlimit(100000)
+import collections
 
 
+# iterative dfs, two pointers, sliding window, prefix sum
 class Solution:
-    def longestSpecialPath(self, edges: List[List[int]], nums: List[int]) -> List[int]:
-        node_count = len(nums)
-        graph: list[list[tuple[int, int]]] = [[] for _ in range(node_count)]
-        for first_node, second_node, length in edges:
-            graph[first_node].append((second_node, length))
-            graph[second_node].append((first_node, length))
+    def longestSpecialPath(self, edges, nums):
+        """
+        :type edges: List[List[int]]
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def iter_dfs():
+            result = [float("inf")]*2
+            lookup = collections.defaultdict(lambda: -1)
+            prefix = [0]
+            stk = [(1, (0, -1, 0, [-1]*2))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    u, p, d, left = args
+                    prev_d, lookup[nums[u]-1] = lookup[nums[u]-1], d
+                    new_left = left[:]
+                    curr = prev_d
+                    for i in range(len(new_left)):
+                        if curr > new_left[i]:
+                            curr, new_left[i] = new_left[i], curr
+                    result = min(result, [-(prefix[(d-1)+1]-prefix[new_left[1]+1]), d-new_left[1]])
+                    stk.append((4, (u, prev_d)))
+                    stk.append((2, (u, p, d, new_left, 0)))
+                elif step == 2:
+                    u, p, d, left, i = args
+                    if i == len(adj[u]):
+                        continue
+                    stk.append((2, (u, p, d, left, i+1)))
+                    v, l = adj[u][i]
+                    if v == p:
+                        continue
+                    prefix.append(prefix[-1]+l)
+                    stk.append((3, None))
+                    stk.append((1, (v, u, d+1, left)))
+                elif step == 3:
+                    prefix.pop()
+                elif step == 4:
+                    u, prev_d = args
+                    lookup[nums[u]-1] = prev_d
+            return [-result[0], result[1]]
+    
+        adj = [[] for _ in range(len(nums))]
+        for u, v, l in edges:
+            adj[u].append((v, l))
+            adj[v].append((u, l))        
+        return iter_dfs()
 
-        positions: dict[int, list[int]] = defaultdict(list)
-        prefix_distance = [0] * node_count
-        best_length = 0
-        best_nodes = 1
 
-        def dfs(
-            node: int,
-            parent: int,
-            depth: int,
-            distance: int,
-            largest_second: tuple[int, int],
-            next_second: tuple[int, int],
-            largest_third: int,
-        ) -> None:
-            nonlocal best_length, best_nodes
+# Time:  O(n + e)
+# Space: O(h)
+import collections
 
-            value = nums[node]
-            value_positions = positions[value]
 
-            if value_positions:
-                new_second = value_positions[-1]
-                if largest_second[1] == value:
-                    largest_second = (new_second, value)
-                elif next_second[1] == value:
-                    next_second = (new_second, value)
-                    if next_second[0] > largest_second[0]:
-                        largest_second, next_second = next_second, largest_second
-                elif new_second > largest_second[0]:
-                    next_second = largest_second
-                    largest_second = (new_second, value)
-                elif new_second > next_second[0]:
-                    next_second = (new_second, value)
-
-            if len(value_positions) >= 2:
-                largest_third = max(largest_third, value_positions[-2])
-
-            value_positions.append(depth)
-            prefix_distance[depth] = distance
-
-            left_depth = max(largest_third, next_second[0]) + 1
-            path_length = distance - prefix_distance[left_depth]
-            path_nodes = depth - left_depth + 1
-            if path_length > best_length:
-                best_length = path_length
-                best_nodes = path_nodes
-            elif path_length == best_length and path_nodes < best_nodes:
-                best_nodes = path_nodes
-
-            for child, edge_length in graph[node]:
-                if child != parent:
-                    dfs(
-                        child,
-                        node,
-                        depth + 1,
-                        distance + edge_length,
-                        largest_second,
-                        next_second,
-                        largest_third,
-                    )
-
-            value_positions.pop()
-
-        dfs(0, -1, 0, 0, (-1, -1), (-1, -2), -1)
-        return [best_length, best_nodes]
+# dfs, two pointers, sliding window, prefix sum
+class Solution2(object):
+    def longestSpecialPath(self, edges, nums):
+        """
+        :type edges: List[List[int]]
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def dfs(u, p, d, left):
+            prev_d, lookup[nums[u]-1] = lookup[nums[u]-1], d
+            new_left = left[:]
+            curr = prev_d
+            for i in range(len(new_left)):
+                if curr > new_left[i]:
+                    curr, new_left[i] = new_left[i], curr
+            result[0] = min(result[0], [-(prefix[(d-1)+1]-prefix[new_left[1]+1]), d-new_left[1]])
+            for v, l in adj[u]:
+                if v == p:
+                    continue
+                prefix.append(prefix[-1]+l)
+                dfs(v, u, d+1, new_left)
+                prefix.pop()
+            lookup[nums[u]-1] = prev_d
+    
+        adj = [[] for _ in range(len(nums))]
+        for u, v, l in edges:
+            adj[u].append((v, l))
+            adj[v].append((u, l))
+        lookup = collections.defaultdict(lambda: -1)
+        prefix = [0]
+        result = [[float("inf"), float("inf")]]
+        dfs(0, -1, 0, [-1]*2)
+        return [-result[0][0], result[0][1]]

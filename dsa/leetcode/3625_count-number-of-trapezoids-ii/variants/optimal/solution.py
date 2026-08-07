@@ -1,41 +1,42 @@
-from collections import defaultdict
-from math import gcd
-from typing import List
-
-
 class Solution:
     def countTrapezoids(self, points: List[List[int]]) -> int:
-        segments_by_slope = defaultdict(int)
-        segments_by_line = defaultdict(int)
-        diagonals_by_midpoint = defaultdict(int)
-        diagonals_by_midpoint_and_slope = defaultdict(int)
+        n = len(points)
 
-        for i, (x1, y1) in enumerate(points):
-            for x2, y2 in points[i + 1 :]:
-                dx = x2 - x1
-                dy = y2 - y1
-                divisor = gcd(abs(dx), abs(dy))
-                dx //= divisor
-                dy //= divisor
-                if dx < 0 or (dx == 0 and dy < 0):
-                    dx = -dx
-                    dy = -dy
+        # cnt1: k -> (b -> count)
+        cnt1: dict[float, dict[float, int]] = defaultdict(lambda: defaultdict(int))
+        # cnt2: p -> (k -> count)
+        cnt2: dict[int, dict[float, int]] = defaultdict(lambda: defaultdict(int))
 
-                slope = (dy, dx)
-                line = (slope, dy * x1 - dx * y1)
-                midpoint = (x1 + x2, y1 + y2)
+        for i in range(n):
+            x1, y1 = points[i]
+            for j in range(i):
+                x2, y2 = points[j]
+                dx, dy = x2 - x1, y2 - y1
 
-                segments_by_slope[slope] += 1
-                segments_by_line[line] += 1
-                diagonals_by_midpoint[midpoint] += 1
-                diagonals_by_midpoint_and_slope[(midpoint, slope)] += 1
+                if dx == 0:
+                    k = 1e9
+                    b = x1
+                else:
+                    k = dy / dx
+                    b = (y1 * dx - x1 * dy) / dx
 
-        parallel_side_pairs = sum(count * (count - 1) // 2 for count in segments_by_slope.values()) - sum(
-            count * (count - 1) // 2 for count in segments_by_line.values()
-        )
+                cnt1[k][b] += 1
 
-        parallelograms = sum(count * (count - 1) // 2 for count in diagonals_by_midpoint.values()) - sum(
-            count * (count - 1) // 2 for count in diagonals_by_midpoint_and_slope.values()
-        )
+                p = (x1 + x2 + 2000) * 4000 + (y1 + y2 + 2000)
+                cnt2[p][k] += 1
 
-        return parallel_side_pairs - parallelograms
+        ans = 0
+
+        for e in cnt1.values():
+            s = 0
+            for t in e.values():
+                ans += s * t
+                s += t
+
+        for e in cnt2.values():
+            s = 0
+            for t in e.values():
+                ans -= s * t
+                s += t
+
+        return ans

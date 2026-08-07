@@ -1,23 +1,18 @@
 class Solution:
     def canTransform(self, start: str, end: str) -> bool:
-        left = 0
-        right = 0
-        length = len(start)
-
-        while True:
-            while left < length and start[left] == "X":
-                left += 1
-            while right < length and end[right] == "X":
-                right += 1
-
-            if left == length or right == length:
-                return left == length and right == length
-            if start[left] != end[right]:
+        n = len(start)
+        i = j = 0
+        while 1:
+            while i < n and start[i] == 'X':
+                i += 1
+            while j < n and end[j] == 'X':
+                j += 1
+            if i >= n and j >= n:
+                return True
+            if i >= n or j >= n or start[i] != end[j]:
                 return False
-            if start[left] == "L" and left < right:
+            if start[i] == 'L' and i < j:
                 return False
-            if start[left] == "R" and left > right:
+            if start[i] == 'R' and i > j:
                 return False
-
-            left += 1
-            right += 1
+            i, j = i + 1, j + 1

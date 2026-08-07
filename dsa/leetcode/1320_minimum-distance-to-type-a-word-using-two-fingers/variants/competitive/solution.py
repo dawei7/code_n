@@ -1,21 +1,41 @@
+# Time:  O(26n)
+# Space: O(26)
+
 class Solution:
-    def minimumDistance(self, word: str) -> int:
-        def distance(first: int, second: int) -> int:
-            if first == 26 or second == 26:
+    def minimumDistance(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        def distance(a, b):
+            return abs(a//6 - b//6) + abs(a%6 - b%6)
+
+        dp = [0]*26
+        for i in range(len(word)-1):
+            b, c = ord(word[i])-ord('A'), ord(word[i+1])-ord('A')
+            dp[b] = max(dp[a] - distance(a, c) + distance(b, c) for a in range(26))
+        return sum(distance(ord(word[i])-ord('A'), ord(word[i+1])-ord('A')) for i in range(len(word)-1)) - max(dp)
+
+
+# Time:  O(52n)
+# Space: O(52)
+class Solution2(object):
+    def minimumDistance(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        def distance(a, b):
+            if -1 in [a, b]:
                 return 0
-            return abs(first // 6 - second // 6) + abs(first % 6 - second % 6)
+            return abs(a//6 - b//6) + abs(a%6 - b%6)
 
-        letters = [ord(character) - ord("A") for character in word]
-        costs = [float("inf")] * 27
-        costs[26] = 0
-        previous = letters[0]
-
-        for target in letters[1:]:
-            next_costs = [float("inf")] * 27
-            for other, cost in enumerate(costs):
-                next_costs[other] = min(next_costs[other], cost + distance(previous, target))
-                next_costs[previous] = min(next_costs[previous], cost + distance(other, target))
-            costs = next_costs
-            previous = target
-
-        return min(costs)
+        dp = {(-1, -1): 0}
+        for c in word:
+            c = ord(c)-ord('A')
+            new_dp = {}
+            for a, b in dp:
+                new_dp[c, b] = min(new_dp.get((c, b), float("inf")), dp[a, b] + distance(a, c))
+                new_dp[a, c] = min(new_dp.get((a, c), float("inf")), dp[a, b] + distance(b, c))
+            dp = new_dp
+        return min(dp.values())

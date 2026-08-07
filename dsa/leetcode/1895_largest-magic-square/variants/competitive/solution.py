@@ -1,41 +1,39 @@
-from typing import List
-
+# Time:  O(max(m, n) * min(m, n)^3)
+# Space: O(m + n)
 
 class Solution:
-    def largestMagicSquare(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
+    def largestMagicSquare(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def get_sum(prefix, a, b):
+            return prefix[b+1]-prefix[a]
 
-        row_prefix = [[0] * (columns + 1) for _ in range(rows)]
-        column_prefix = [[0] * columns for _ in range(rows + 1)]
-        down_right = [[0] * (columns + 1) for _ in range(rows + 1)]
-        down_left = [[0] * (columns + 1) for _ in range(rows + 1)]
+        def check(grid, prefix_row, prefix_col, l, i, j):
+            diag, anti_diag = 0, 0
+            for d in range(l):
+                diag += grid[i+d][j+d]
+                anti_diag += grid[i+d][j+l-1-d]
+            if diag != anti_diag:
+                return False
+            for ni in range(i, i+l):
+                if diag != get_sum(prefix_row[ni], j, j+l-1):
+                    return False
+            for nj in range(j, j+l):
+                if diag != get_sum(prefix_col[nj], i, i+l-1):
+                    return False  
+            return True
 
-        for row in range(rows):
-            for column in range(columns):
-                value = grid[row][column]
-                row_prefix[row][column + 1] = row_prefix[row][column] + value
-                column_prefix[row + 1][column] = column_prefix[row][column] + value
-                down_right[row + 1][column + 1] = down_right[row][column] + value
-                down_left[row + 1][column] = down_left[row][column + 1] + value
-
-        for side in range(min(rows, columns), 1, -1):
-            for top in range(rows - side + 1):
-                bottom = top + side
-                for left in range(columns - side + 1):
-                    right = left + side
-                    target = down_right[bottom][right] - down_right[top][left]
-                    other_diagonal = down_left[bottom][left] - down_left[top][right]
-                    if other_diagonal != target:
-                        continue
-
-                    if any(row_prefix[row][right] - row_prefix[row][left] != target for row in range(top, bottom)):
-                        continue
-                    if any(
-                        column_prefix[bottom][column] - column_prefix[top][column] != target
-                        for column in range(left, right)
-                    ):
-                        continue
-                    return side
-
+        prefix_row = [[0]*(len(grid[0])+1) for _ in range(len(grid))]
+        prefix_col = [[0]*(len(grid)+1) for _ in range(len(grid[0]))]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                prefix_row[i][j+1] = prefix_row[i][j] + grid[i][j]
+                prefix_col[j][i+1] = prefix_col[j][i] + grid[i][j]
+        for l in reversed(range(1, min(len(grid), len(grid[0]))+1)):
+            for i in range(len(grid)-(l-1)):
+                for j in range(len(grid[0])-(l-1)):
+                    if check(grid, prefix_row, prefix_col, l, i, j):
+                        return l
         return 1

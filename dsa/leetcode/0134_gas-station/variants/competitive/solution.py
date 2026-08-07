@@ -1,16 +1,21 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        total = 0
-        tank = 0
-        start = 0
-        for index, (available, required) in enumerate(zip(gas, cost)):
-            difference = available - required
-            total += difference
-            tank += difference
-            if tank < 0:
-                start = index + 1
-                tank = 0
-        return start if total >= 0 else -1
+    # @param gas, a list of integers
+    # @param cost, a list of integers
+    # @return an integer
+    def canCompleteCircuit(self, gas, cost):
+        start, total_sum, current_sum = 0, 0, 0
+        for i in range(len(gas)):
+            diff = gas[i] - cost[i]
+            current_sum += diff
+            total_sum += diff
+            if current_sum < 0:
+                start = i + 1
+                current_sum = 0
+        if total_sum >= 0:
+            return start
+
+        return -1
+

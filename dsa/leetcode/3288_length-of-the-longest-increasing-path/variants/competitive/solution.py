@@ -1,21 +1,33 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import bisect
 
 
+# sort, binary search, longest increasing subsequence, lis
 class Solution:
-    def maxPathLength(self, coordinates: List[List[int]], k: int) -> int:
-        target_x, target_y = coordinates[k]
-
-        def longest_chain(points: List[List[int]]) -> int:
-            tails = []
-            for _, y in sorted(points, key=lambda point: (point[0], -point[1])):
-                position = bisect_left(tails, y)
-                if position == len(tails):
-                    tails.append(y)
+    def maxPathLength(self, coordinates, k):
+        """
+        :type coordinates: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def longest_increasing_subsequence(arr):
+            result = []
+            for x in arr:
+                i = bisect.bisect_left(result, x)
+                if i == len(result):
+                    result.append(x)
                 else:
-                    tails[position] = y
-            return len(tails)
+                    result[i] = x
+            return len(result)
 
-        lower = [point for point in coordinates if point[0] < target_x and point[1] < target_y]
-        upper = [point for point in coordinates if point[0] > target_x and point[1] > target_y]
-        return longest_chain(lower) + 1 + longest_chain(upper)
+        target = coordinates[k]
+        coordinates.sort(key=lambda x: (x[0], -x[1]))
+        left, right = [], []
+        for x, y in coordinates:
+            if x < target[0] and y < target[1]:
+                left.append(y)
+            elif x > target[0] and y > target[1]:
+                right.append(y)
+        return longest_increasing_subsequence(left)+1+longest_increasing_subsequence(right)

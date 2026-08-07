@@ -1,18 +1,20 @@
-from typing import List
+# Time:  O(m + r * logn), m = len(groups), n = len(elements), r = max(groups)
+# Space: O(r)
 
-
+# hash table, number theory
 class Solution:
-    def assignElements(self, groups: List[int], elements: List[int]) -> List[int]:
-        max_group = max(groups)
-        first_index = {}
-        for index, value in enumerate(elements):
-            if value <= max_group and value not in first_index:
-                first_index[value] = index
-
-        best_for_value = [-1] * (max_group + 1)
-        for value, index in first_index.items():
-            for multiple in range(value, max_group + 1, value):
-                if best_for_value[multiple] == -1 or index < best_for_value[multiple]:
-                    best_for_value[multiple] = index
-
-        return [best_for_value[group] for group in groups]
+    def assignElements(self, groups, elements):
+        """
+        :type groups: List[int]
+        :type elements: List[int]
+        :rtype: List[int]
+        """
+        mx = max(groups)
+        lookup = [-1]*mx
+        for i, x in enumerate(elements):
+            if x > mx or lookup[x-1] != -1:
+                continue
+            for y in range(x, mx+1, x):
+                if lookup[y-1] == -1:
+                    lookup[y-1] = i
+        return [lookup[x-1] for x in groups]   

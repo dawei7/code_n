@@ -1,6 +1,8 @@
-SELECT DISTINCT p.user_id
-FROM Purchases AS p
-CROSS JOIN Parameters AS bounds
-WHERE p.time_stamp BETWEEN bounds.startDate AND bounds.endDate
-  AND p.amount >= bounds.minAmount
-ORDER BY p.user_id;
+CREATE PROCEDURE getUserIDs(startDate DATE, endDate DATE, minAmount INT)
+BEGIN
+    # Write your MySQL query statement below.
+    SELECT DISTINCT user_id
+    FROM Purchases
+    WHERE amount >= minAmount AND time_stamp BETWEEN startDate AND endDate
+    ORDER BY user_id;
+END;

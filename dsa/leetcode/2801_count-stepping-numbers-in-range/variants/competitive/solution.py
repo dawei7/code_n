@@ -1,36 +1,29 @@
-from functools import lru_cache
+# Time:  O(n)
+# Space: O(1)
 
-MOD = 10**9 + 7
-
-
+# dp
 class Solution:
-    def countSteppingNumbers(self, low: str, high: str) -> int:
-        def count_at_most(bound: str) -> int:
-            @lru_cache(None)
-            def dp(index: int, previous: int, started: bool, tight: bool) -> int:
-                if index == len(bound):
-                    return int(started)
+    def countSteppingNumbers(self, low, high):
+        """
+        :type low: str
+        :type high: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def f(s):
+            dp = [[0]*10 for _ in range(2)]
+            for j in range(1, ord(s[0])-ord('0')+1):
+                dp[0][j] = 1
+            prefix = True
+            for i in range(1, len(s)):
+                for j in range(10):
+                    dp[i%2][j] = int(j != 0)
+                    if j-1 >= 0:
+                        dp[i%2][j] = (dp[i%2][j]+(dp[(i-1)%2][j-1]-int(prefix and (ord(s[i-1])-ord('0')) == j-1 and j > (ord(s[i])-ord('0')))))%MOD
+                    if j+1 < 10:
+                        dp[i%2][j] = (dp[i%2][j]+(dp[(i-1)%2][j+1]-int(prefix and (ord(s[i-1])-ord('0')) == j+1 and j > (ord(s[i])-ord('0')))))%MOD
+                if abs(ord(s[i])-ord(s[i-1])) != 1:
+                    prefix = False
+            return reduce(lambda x, y: (x+y)%MOD, dp[(len(s)-1)%2])
 
-                limit = int(bound[index]) if tight else 9
-                total = 0
-                for digit in range(limit + 1):
-                    next_tight = tight and digit == int(bound[index])
-                    if not started and digit == 0:
-                        total += dp(index + 1, -1, False, next_tight)
-                    elif not started or abs(digit - previous) == 1:
-                        total += dp(index + 1, digit, True, next_tight)
-                return total % MOD
-
-            return dp(0, -1, False, True)
-
-        def decrement(value: str) -> str:
-            digits = list(value)
-            index = len(digits) - 1
-            while digits[index] == "0":
-                digits[index] = "9"
-                index -= 1
-            digits[index] = str(int(digits[index]) - 1)
-            result = "".join(digits).lstrip("0")
-            return result or "0"
-
-        return (count_at_most(high) - count_at_most(decrement(low))) % MOD
+        return (f(high)-f(str(int(low)-1)))%MOD

@@ -1,21 +1,56 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 # Definition for a Node.
-# class Node:
-#     def __init__(self, val=None, children=None):
-#         self.val = val
-#         self.children = children
+class Node(object):
+    def __init__(self, val=None, children=None):
+        pass
 
 
 class Solution:
-    def findRoot(self, tree: List["Node"]) -> "Node":
-        root_value = 0
+    def findRoot(self, tree):
+        """
+        :type tree: List['Node']
+        :rtype: 'Node'
+        """
+        root = 0
         for node in tree:
-            root_value ^= node.val
+            root ^= id(node)
             for child in node.children:
-                root_value ^= child.val
-
+                root ^= id(child)
         for node in tree:
-            if node.val == root_value:
+            if id(node) == root:
                 return node
+        return None
+
+
+class Solution2(object):
+    def findRoot(self, tree):
+        """
+        :type tree: List['Node']
+        :rtype: 'Node'
+        """
+        root = 0
+        for node in tree:
+            root ^= node.val
+            for child in node.children:
+                root ^= child.val
+        for node in tree:
+            if node.val == root:
+                return node
+        return None
+
+
+class Solution3(object):
+    def findRoot(self, tree):
+        """
+        :type tree: List['Node']
+        :rtype: 'Node'
+        """
+        root = 0
+        for node in tree:
+            root += node.val-sum(child.val for child in node.children)
+        for node in tree:
+            if node.val == root:
+                return node
+        return None

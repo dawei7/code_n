@@ -1,15 +1,17 @@
+mx = 10**5 + 10
+mod = 10**9 + 7
+f = [1] + [0] * mx
+g = [1] + [0] * mx
+
+for i in range(1, mx):
+    f[i] = f[i - 1] * i % mod
+    g[i] = pow(f[i], mod - 2, mod)
+
+
+def comb(m: int, n: int) -> int:
+    return f[m] * g[n] * g[m - n] % mod
+
+
 class Solution:
     def countGoodArrays(self, n: int, m: int, k: int) -> int:
-        modulo = 1_000_000_007
-        slots = n - 1
-        selected = min(k, slots - k)
-
-        numerator = 1
-        denominator = 1
-        for value in range(1, selected + 1):
-            numerator = numerator * (slots - selected + value) % modulo
-            denominator = denominator * value % modulo
-
-        combinations = numerator * pow(denominator, modulo - 2, modulo) % modulo
-        changes = slots - k
-        return m * combinations % modulo * pow(m - 1, changes, modulo) % modulo
+        return comb(n - 1, k) * m * pow(m - 1, n - k - 1, mod) % mod

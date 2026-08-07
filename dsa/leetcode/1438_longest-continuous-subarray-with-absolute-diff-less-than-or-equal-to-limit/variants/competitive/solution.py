@@ -1,29 +1,60 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def longestSubarray(self, nums: List[int], limit: int) -> int:
-        min_deque = deque()
-        max_deque = deque()
+    def longestSubarray(self, nums, limit):
+        """
+        :type nums: List[int]
+        :type limit: int
+        :rtype: int
+        """
+        max_dq, min_dq = collections.deque(), collections.deque()
         left = 0
-        best = 0
+        for right, num in enumerate(nums):
+            while max_dq and nums[max_dq[-1]] <= num:
+                max_dq.pop()
+            max_dq.append(right)
+            while min_dq and nums[min_dq[-1]] >= num:
+                min_dq.pop()
+            min_dq.append(right)
+            if nums[max_dq[0]]-nums[min_dq[0]] > limit:
+                if max_dq[0] == left:
+                    max_dq.popleft()
+                if min_dq[0] == left:
+                    min_dq.popleft()
+                left += 1  # advance left by one to not count in result
+        return len(nums)-left
 
-        for right, value in enumerate(nums):
-            while min_deque and nums[min_deque[-1]] >= value:
-                min_deque.pop()
-            while max_deque and nums[max_deque[-1]] <= value:
-                max_deque.pop()
-            min_deque.append(right)
-            max_deque.append(right)
 
-            while nums[max_deque[0]] - nums[min_deque[0]] > limit:
-                if min_deque[0] == left:
-                    min_deque.popleft()
-                if max_deque[0] == left:
-                    max_deque.popleft()
+# Time:  O(n)
+# Space: O(n)
+import collections
+
+
+class Solution2(object):
+    def longestSubarray(self, nums, limit):
+        """
+        :type nums: List[int]
+        :type limit: int
+        :rtype: int
+        """
+        max_dq, min_dq = collections.deque(), collections.deque()
+        result, left = 0, 0
+        for right, num in enumerate(nums):
+            while max_dq and nums[max_dq[-1]] <= num:
+                max_dq.pop()
+            max_dq.append(right)
+            while min_dq and nums[min_dq[-1]] >= num:
+                min_dq.pop()
+            min_dq.append(right)
+            while nums[max_dq[0]]-nums[min_dq[0]] > limit:  # both always exist "right" element
+                if max_dq[0] == left:
+                    max_dq.popleft()
+                if min_dq[0] == left:
+                    min_dq.popleft()
                 left += 1
-
-            best = max(best, right - left + 1)
-
-        return best
+            result = max(result, right-left+1)
+        return result

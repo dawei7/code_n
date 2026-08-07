@@ -1,29 +1,31 @@
-from collections import deque
-from typing import List
-
+# Time:  O(|V| + |E|) = O(|E|) since graph is connected, O(|E|) >= O(|V|) 
+# Space: O(|V| + |E|) = O(|E|)
 
 class Solution:
-    def networkBecomesIdle(self, edges: List[List[int]], patience: List[int]) -> int:
-        graph = [[] for _ in patience]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-
-        distance = [-1] * len(patience)
-        distance[0] = 0
-        queue = deque([0])
-
-        while queue:
-            server = queue.popleft()
-            for neighbor in graph[server]:
-                if distance[neighbor] == -1:
-                    distance[neighbor] = distance[server] + 1
-                    queue.append(neighbor)
-
-        last_arrival = 0
-        for server in range(1, len(patience)):
-            round_trip = 2 * distance[server]
-            last_send = ((round_trip - 1) // patience[server]) * patience[server]
-            last_arrival = max(last_arrival, last_send + round_trip)
-
-        return last_arrival + 1
+    def networkBecomesIdle(self, edges, patience):
+        """
+        :type edges: List[List[int]]
+        :type patience: List[int]
+        :rtype: int
+        """
+        adj = [[] for _ in range(len(patience))]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        q = [0]
+        lookup = [False]*len(patience)
+        lookup[0] = True
+        step = 1
+        result = 0
+        while q:
+            new_q = []
+            for u in q:
+                for v in adj[u]:
+                    if lookup[v]:
+                        continue
+                    lookup[v] = True
+                    new_q.append(v)
+                    result = max(result, ((step*2)-1)//patience[v]*patience[v] + (step*2))
+            q = new_q
+            step += 1
+        return 1+result

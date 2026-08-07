@@ -1,17 +1,19 @@
-from typing import List
+# Time:  O(logn)
+# Space: O(1)
 
-
+# math
 class Solution:
-    def decimalRepresentation(self, n: int) -> List[int]:
-        components = []
-        place_value = 1
-
+    def decimalRepresentation(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        result = []
+        base = 1
         while n:
-            digit = n % 10
-            if digit:
-                components.append(digit * place_value)
-            n //= 10
-            place_value *= 10
-
-        components.reverse()
-        return components
+            n, r = divmod(n, 10)
+            if r:
+                result.append(r*base)
+            base *= 10
+        result.reverse()
+        return result

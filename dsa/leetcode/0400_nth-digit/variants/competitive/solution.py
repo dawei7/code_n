@@ -1,16 +1,21 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def findNthDigit(self, n: int) -> int:
-        digits = 1
-        count = 9
-        start = 1
+    def findNthDigit(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        digit_len = 1
+        while n > digit_len * 9 * (10 ** (digit_len-1)):
+            n -= digit_len  * 9 * (10 ** (digit_len-1))
+            digit_len += 1
 
-        while n > digits * count:
-            n -= digits * count
-            digits += 1
-            count *= 10
-            start *= 10
+        num = 10 ** (digit_len-1) + (n-1)/digit_len
 
-        offset = n - 1
-        number = start + offset // digits
-        index = offset % digits
-        return number // (10 ** (digits - 1 - index)) % 10
+        nth_digit = num / (10 ** ((digit_len-1) - ((n-1)%digit_len)))
+        nth_digit %= 10
+
+        return nth_digit
+

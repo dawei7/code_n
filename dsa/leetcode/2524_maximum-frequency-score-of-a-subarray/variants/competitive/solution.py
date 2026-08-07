@@ -1,40 +1,67 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# two pointers, sliding window freq table, hash table
 class Solution:
-    def maxFrequencyScore(self, nums: List[int], k: int) -> int:
-        modulus = 1_000_000_007
-        totals = Counter(nums)
-        powers = {}
+    def maxFrequencyScore(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        lookup = {}
+        def powmod(n, p):
+            if (n, p) not in lookup:
+                lookup[n, p] = (lookup[n, p-1]*n)%MOD if p >= 2 else n%MOD  # assumed powmod(n, p-1) was accessed before powmod(n, p)
+            return lookup[n, p]
 
-        for value, total in totals.items():
-            row = [1] * (total + 1)
-            for exponent in range(1, total + 1):
-                row[exponent] = row[exponent - 1] * value % modulus
-            powers[value] = row
+        result = curr = 0
+        cnt = collections.Counter()
+        for i in range(len(nums)):
+            if i >= k:
+                curr = (curr-powmod(nums[i-k], cnt[nums[i-k]]))%MOD
+                cnt[nums[i-k]] -= 1
+                if cnt[nums[i-k]]:
+                    curr = (curr+powmod(nums[i-k], cnt[nums[i-k]]))%MOD
+            if cnt[nums[i]]:
+               curr = (curr-powmod(nums[i], cnt[nums[i]]))%MOD
+            cnt[nums[i]] += 1
+            curr = (curr+powmod(nums[i], cnt[nums[i]]))%MOD
+            if i >= k-1:
+                result = max(result, curr)
+        return result
 
-        counts = Counter()
-        score = 0
-        answer = 0
 
-        for index, value in enumerate(nums):
-            old_count = counts[value]
-            if old_count:
-                score -= powers[value][old_count]
-            counts[value] = old_count + 1
-            score += powers[value][old_count + 1]
+# Time:  O(nlogn)
+# Space: O(n)
+import collections
 
-            if index >= k:
-                outgoing = nums[index - k]
-                old_count = counts[outgoing]
-                score -= powers[outgoing][old_count]
-                counts[outgoing] = old_count - 1
-                if old_count > 1:
-                    score += powers[outgoing][old_count - 1]
 
-            score %= modulus
-            if index >= k - 1:
-                answer = max(answer, score)
-
-        return answer
+# two pointers, sliding window, freq table
+class Solution2(object):
+    def maxFrequencyScore(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        result = curr = 0
+        cnt = collections.Counter()
+        for i in range(len(nums)):
+            if i >= k:
+                curr = (curr-pow(nums[i-k], cnt[nums[i-k]], MOD))%MOD
+                cnt[nums[i-k]] -= 1
+                if cnt[nums[i-k]]:
+                    curr = (curr+pow(nums[i-k], cnt[nums[i-k]], MOD))%MOD
+            if cnt[nums[i]]:
+               curr = (curr-pow(nums[i], cnt[nums[i]], MOD))%MOD
+            cnt[nums[i]] += 1
+            curr = (curr+pow(nums[i], cnt[nums[i]], MOD))%MOD
+            if i >= k-1:
+                result = max(result, curr)
+        return result

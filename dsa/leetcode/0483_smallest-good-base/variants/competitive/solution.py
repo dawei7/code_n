@@ -1,22 +1,20 @@
+# Time:  O(logn * log(logn))
+# Space: O(1)
+
+import math
+
+
 class Solution:
-    def smallestGoodBase(self, n: str) -> str:
-        number = int(n)
-        for exponent in range(number.bit_length() - 1, 1, -1):
-            low = 2
-            high = 1 << ((number.bit_length() + exponent - 1) // exponent)
-            while low <= high:
-                base = (low + high) // 2
-                total = 1
-                term = 1
-                for _ in range(exponent):
-                    term *= base
-                    total += term
-                    if total > number:
-                        break
-                if total == number:
-                    return str(base)
-                if total < number:
-                    low = base + 1
-                else:
-                    high = base - 1
-        return str(number - 1)
+    def smallestGoodBase(self, n):
+        """
+        :type n: str
+        :rtype: str
+        """
+        num = int(n)
+        max_len = int(math.log(num,2))
+        for l in range(max_len, 1, -1):
+            b = int(num ** (l**-1))
+            if (b**(l+1)-1) // (b-1) == num:
+                return str(b)
+        return str(num-1)
+

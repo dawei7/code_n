@@ -1,25 +1,24 @@
+# Time:  O(n)
+# Space: O(1)
+
+# sliding window, two pointers
 class Solution:
-    def takeCharacters(self, s: str, k: int) -> int:
-        total = [0, 0, 0]
-        for character in s:
-            total[ord(character) - ord("a")] += 1
-
-        if any(count < k for count in total):
+    def takeCharacters(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        cnt = [0]*3
+        for c in s:
+            cnt[ord(c)-ord('a')] += 1
+        if min(cnt) < k:
             return -1
-
-        allowed = [count - k for count in total]
-        window = [0, 0, 0]
-        left = 0
-        longest_kept = 0
-
-        for right, character in enumerate(s):
-            index = ord(character) - ord("a")
-            window[index] += 1
-
-            while window[index] > allowed[index]:
-                window[ord(s[left]) - ord("a")] -= 1
+        result = left = 0
+        for right in range(len(s)):
+            cnt[ord(s[right])-ord('a')] -= 1
+            while cnt[ord(s[right])-ord('a')] < k:
+                cnt[ord(s[left])-ord('a')] += 1
                 left += 1
-
-            longest_kept = max(longest_kept, right - left + 1)
-
-        return len(s) - longest_kept
+            result = max(result, right-left+1)
+        return len(s)-result

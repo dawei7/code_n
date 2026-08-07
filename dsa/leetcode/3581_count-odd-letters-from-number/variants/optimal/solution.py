@@ -1,22 +1,23 @@
+d = {
+    0: "zero",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine",
+}
+
+
 class Solution:
     def countOddLetters(self, n: int) -> int:
-        words = (
-            "zero",
-            "one",
-            "two",
-            "three",
-            "four",
-            "five",
-            "six",
-            "seven",
-            "eight",
-            "nine",
-        )
-        parity = 0
-
+        mask = 0
         while n:
-            for letter in words[n % 10]:
-                parity ^= 1 << (ord(letter) - ord("a"))
+            x = n % 10
             n //= 10
-
-        return parity.bit_count()
+            for c in d[x]:
+                mask ^= 1 << (ord(c) - ord("a"))
+        return mask.bit_count()

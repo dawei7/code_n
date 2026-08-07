@@ -1,32 +1,16 @@
-from typing import List
-
-
 class Solution:
-    def maxTotalFruits(
-        self,
-        fruits: List[List[int]],
-        startPos: int,
-        k: int,
-    ) -> int:
-        left = 0
-        window_total = 0
-        answer = 0
-
-        for right, (right_position, amount) in enumerate(fruits):
-            window_total += amount
-
-            while left <= right:
-                left_distance = max(0, startPos - fruits[left][0])
-                right_distance = max(0, right_position - startPos)
-                steps = min(
-                    2 * left_distance + right_distance,
-                    left_distance + 2 * right_distance,
-                )
-                if steps <= k:
-                    break
-                window_total -= fruits[left][1]
-                left += 1
-
-            answer = max(answer, window_total)
-
-        return answer
+    def maxTotalFruits(self, fruits: List[List[int]], startPos: int, k: int) -> int:
+        ans = i = s = 0
+        for j, (pj, fj) in enumerate(fruits):
+            s += fj
+            while (
+                i <= j
+                and pj
+                - fruits[i][0]
+                + min(abs(startPos - fruits[i][0]), abs(startPos - fruits[j][0]))
+                > k
+            ):
+                s -= fruits[i][1]
+                i += 1
+            ans = max(ans, s)
+        return ans

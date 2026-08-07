@@ -1,76 +1,61 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+# tarjan's algorithm, SCC, strongly connected compoenents
+# reference: https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm
+def strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N), Space: O(|V|) = O(N)
+    def strongconnect(v):
+        index[v] = index_counter[0]
+        lowlinks[v] = index_counter[0]
+        index_counter[0] += 1
+        stack_set[v] = True
+        stack.append(v)
+        for w in adj[v]:
+            if index[w] == -1:
+                strongconnect(w)
+                lowlinks[v] = min(lowlinks[v], lowlinks[w])
+            elif stack_set[w]:
+                lowlinks[v] = min(lowlinks[v], index[w])
+        if lowlinks[v] == index[v]:
+            connected_component = []
+            w = None
+            while w != v:
+                w = stack.pop()
+                stack_set[w] = False
+                connected_component.append(w)
+            result.append(connected_component)
+
+    index_counter, index, lowlinks = [0], [-1]*len(adj), [-1]*len(adj)
+    stack, stack_set = [], [False]*len(adj)
+    result = []
+    for v in range(len(adj)):
+        if index[v] == -1:
+            strongconnect(v)
+    return result
 
 
 class Solution:
-    def minRunesToAdd(
-        self,
-        n: int,
-        crystals: List[int],
-        flowFrom: List[int],
-        flowTo: List[int],
-    ) -> int:
-        graph = [[] for _ in range(n)]
-        reverse_graph = [[] for _ in range(n)]
-        for source, target in zip(flowFrom, flowTo):
-            graph[source].append(target)
-            reverse_graph[target].append(source)
-
-        reachable = [False] * n
-        stack = list(crystals)
-        for node in crystals:
-            reachable[node] = True
-        while stack:
-            node = stack.pop()
-            for neighbor in graph[node]:
-                if not reachable[neighbor]:
-                    reachable[neighbor] = True
-                    stack.append(neighbor)
-
-        visited = [False] * n
-        finish_order = []
-        for start in range(n):
-            if visited[start]:
-                continue
-            visited[start] = True
-            stack = [(start, False)]
-            while stack:
-                node, expanded = stack.pop()
-                if expanded:
-                    finish_order.append(node)
-                    continue
-                stack.append((node, True))
-                for neighbor in graph[node]:
-                    if not visited[neighbor]:
-                        visited[neighbor] = True
-                        stack.append((neighbor, False))
-
-        component = [-1] * n
-        component_count = 0
-        for start in reversed(finish_order):
-            if component[start] != -1:
-                continue
-            component[start] = component_count
-            stack = [start]
-            while stack:
-                node = stack.pop()
-                for neighbor in reverse_graph[node]:
-                    if component[neighbor] == -1:
-                        component[neighbor] = component_count
-                        stack.append(neighbor)
-            component_count += 1
-
-        component_reachable = [False] * component_count
-        for node in range(n):
-            if reachable[node]:
-                component_reachable[component[node]] = True
-
-        has_unreachable_incoming = [False] * component_count
-        for source, target in zip(flowFrom, flowTo):
-            source_component = component[source]
-            target_component = component[target]
-            if source_component != target_component and not component_reachable[target_component]:
-                has_unreachable_incoming[target_component] = True
-
-        return sum(
-            not component_reachable[index] and not has_unreachable_incoming[index] for index in range(component_count)
-        )
+    def minRunesToAdd(self, n, crystals, flowFrom, flowTo):
+        """
+        :type n: int
+        :type crystals: List[int]
+        :type flowFrom: List[int]
+        :type flowTo: List[int]
+        :rtype: int
+        """
+        adj = [[] for _ in range(n)]
+        for i in range(len(flowFrom)):
+            adj[flowFrom[i]].append(flowTo[i])
+        lookup = [-1]*n
+        sccs = strongly_connected_components(adj)
+        for i, scc in enumerate(sccs):
+            for x in scc:
+                lookup[x] = i
+        result = [False]*len(sccs)
+        for u in range(n):
+            for v in adj[u]:
+                if lookup[v] != lookup[u]:
+                    result[lookup[v]] = True
+        for x in crystals:
+            result[lookup[x]] = True
+        return sum(not x for x in result)

@@ -1,20 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def strongPasswordCheckerII(self, password: str) -> bool:
-        if len(password) < 8:
-            return False
-
-        has_lowercase = False
-        has_uppercase = False
-        has_digit = False
-        has_special = False
-        special = set("!@#$%^&*()-+")
-
-        for index, character in enumerate(password):
-            if index and character == password[index - 1]:
-                return False
-            has_lowercase |= character.islower()
-            has_uppercase |= character.isupper()
-            has_digit |= character.isdigit()
-            has_special |= character in special
-
-        return has_lowercase and has_uppercase and has_digit and has_special
+    def strongPasswordCheckerII(self, password):
+        """
+        :type password: str
+        :rtype: bool
+        """
+        SPECIAL = set("!@#$%^&*()-+")
+        return (len(password) >= 8 and
+                any(c.islower() for c in password) and
+                any(c.isupper() for c in password) and
+                any(c.isdigit() for c in password) and
+                any(c in SPECIAL for c in password) and
+                all(password[i] != password[i+1] for i in range(len(password)-1)))

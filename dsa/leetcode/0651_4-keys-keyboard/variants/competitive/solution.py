@@ -1,13 +1,39 @@
+# Time:  O(1)
+# Space: O(1)
+
+
 class Solution:
-    def maxA(self, n: int) -> int:
-        best = [0] * (n + 1)
-        for presses in range(1, n + 1):
-            best[presses] = best[presses - 1] + 1
-            for multiplier in range(2, 6):
-                phase_cost = multiplier + 1
-                if phase_cost <= presses:
-                    best[presses] = max(
-                        best[presses],
-                        best[presses - phase_cost] * multiplier,
-                    )
-        return best[n]
+    def maxA(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        if N < 7:
+            return N
+        if N == 10:
+            return 20  # the following rule doesn't hold when N = 10
+
+        n = N // 5 + 1  # n3 + n4 increases one every 5 keys
+        # (1) n     =     n3 +     n4
+        # (2) N + 1 = 4 * n3 + 5 * n4
+        #     5 x (1) - (2) => 5*n - N - 1 = n3
+        n3 = 5*n - N - 1
+        n4 = n - n3
+        return 3**n3 * 4**n4
+
+
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def maxA(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        if N < 7:
+            return N
+        dp = range(N+1)
+        for i in range(7, N+1):
+            dp[i % 6] = max(dp[(i-4) % 6]*3, dp[(i-5) % 6]*4)
+        return dp[N % 6]
+

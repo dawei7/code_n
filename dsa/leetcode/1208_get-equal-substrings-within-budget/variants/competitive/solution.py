@@ -1,12 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def equalSubstring(self, s: str, t: str, maxCost: int) -> int:
+    def equalSubstring(self, s, t, maxCost):
+        """
+        :type s: str
+        :type t: str
+        :type maxCost: int
+        :rtype: int
+        """
         left = 0
-        current_cost = 0
-        best = 0
-        for right, (source, target) in enumerate(zip(s, t)):
-            current_cost += abs(ord(source) - ord(target))
-            while current_cost > maxCost:
-                current_cost -= abs(ord(s[left]) - ord(t[left]))
+        for right in range(len(s)):
+            maxCost -= abs(ord(s[right])-ord(t[right]))
+            if maxCost < 0:
+                maxCost += abs(ord(s[left])-ord(t[left]))
                 left += 1
-            best = max(best, right - left + 1)
-        return best
+        return (right+1)-left

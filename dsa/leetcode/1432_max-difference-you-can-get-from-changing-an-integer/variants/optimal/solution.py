@@ -1,20 +1,15 @@
 class Solution:
     def maxDiff(self, num: int) -> int:
-        digits = str(num)
-
-        maximum = digits
-        for digit in digits:
-            if digit != "9":
-                maximum = digits.replace(digit, "9")
+        a, b = str(num), str(num)
+        for c in a:
+            if c != "9":
+                a = a.replace(c, "9")
                 break
-
-        minimum = digits
-        if digits[0] != "1":
-            minimum = digits.replace(digits[0], "1")
+        if b[0] != "1":
+            b = b.replace(b[0], "1")
         else:
-            for digit in digits[1:]:
-                if digit not in {"0", "1"}:
-                    minimum = digits.replace(digit, "0")
+            for c in b[1:]:
+                if c not in "01":
+                    b = b.replace(c, "0")
                     break
-
-        return int(maximum) - int(minimum)
+        return int(a) - int(b)

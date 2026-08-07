@@ -1,10 +1,12 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort
 class Solution:
-    def minimumAverage(self, nums: List[int]) -> float:
+    def minimumAverage(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: float
+        """
         nums.sort()
-        answer = float("inf")
-
-        for left in range(len(nums) // 2):
-            right = len(nums) - 1 - left
-            answer = min(answer, (nums[left] + nums[right]) / 2)
-
-        return answer
+        return min((nums[i]+nums[~i])/2.0 for i in range(len(nums)//2))

@@ -1,20 +1,11 @@
 class Solution:
     def kInversePairs(self, n: int, k: int) -> int:
-        modulo = 1_000_000_007
-        maximum = n * (n - 1) // 2
-        if k > maximum:
-            return 0
-        k = min(k, maximum - k)
-
-        previous = [0] * (k + 1)
-        previous[0] = 1
-        for length in range(1, n + 1):
-            current = [0] * (k + 1)
-            window = 0
-            for inversions in range(k + 1):
-                window += previous[inversions]
-                if inversions >= length:
-                    window -= previous[inversions - length]
-                current[inversions] = window % modulo
-            previous = current
-        return previous[k]
+        mod = 10**9 + 7
+        f = [1] + [0] * k
+        s = [0] * (k + 2)
+        for i in range(1, n + 1):
+            for j in range(1, k + 1):
+                f[j] = (s[j + 1] - s[max(0, j - (i - 1))]) % mod
+            for j in range(1, k + 2):
+                s[j] = (s[j - 1] + f[j - 1]) % mod
+        return f[k]

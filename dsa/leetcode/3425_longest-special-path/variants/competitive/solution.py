@@ -1,48 +1,87 @@
-from typing import List
+# Time:  O(n + e)
+# Space: O(n + e)
+
+import collections
 
 
+# iterative dfs, two pointers, sliding window, prefix sum
 class Solution:
-    def longestSpecialPath(self, edges: List[List[int]], nums: List[int]) -> List[int]:
-        graph = [[] for _ in nums]
-        for u, v, length in edges:
-            graph[u].append((v, length))
-            graph[v].append((u, length))
+    def longestSpecialPath(self, edges, nums):
+        """
+        :type edges: List[List[int]]
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def iter_dfs():
+            result = [float("inf")]*2
+            lookup = collections.defaultdict(lambda: -1)
+            prefix = [0]
+            stk = [(1, (0, -1, 0, -1))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    u, p, d, left = args
+                    prev_d, lookup[nums[u]-1] = lookup[nums[u]-1], d
+                    left = max(left, prev_d)
+                    result = min(result, [-(prefix[(d-1)+1]-prefix[left+1]), d-left])
+                    stk.append((4, (u, prev_d)))
+                    stk.append((2, (u, p, d, left, 0)))
+                elif step == 2:
+                    u, p, d, left, i = args
+                    if i == len(adj[u]):
+                        continue
+                    stk.append((2, (u, p, d, left, i+1)))
+                    v, l = adj[u][i]
+                    if v == p:
+                        continue
+                    prefix.append(prefix[-1]+l)
+                    stk.append((3, None))
+                    stk.append((1, (v, u, d+1, left)))
+                elif step == 3:
+                    prefix.pop()
+                elif step == 4:
+                    u, prev_d = args
+                    lookup[nums[u]-1] = prev_d
+            return [-result[0], result[1]]
+    
+        adj = [[] for _ in range(len(nums))]
+        for u, v, l in edges:
+            adj[u].append((v, l))
+            adj[v].append((u, l))        
+        return iter_dfs()
 
-        best_length = 0
-        best_nodes = 1
-        path_distances = []
-        last_depth = {}
-        stack = [(0, 0, -1, 0, 0)]
 
-        while stack:
-            event, node, parent, distance, left = stack.pop()
+# Time:  O(n + e)
+# Space: O(n + e)
+import collections
 
-            if event == 1:
-                path_distances.pop()
-                if distance == -1:
-                    del last_depth[node]
-                else:
-                    last_depth[node] = distance
-                continue
 
-            depth = len(path_distances)
-            path_distances.append(distance)
-            value = nums[node]
-            previous_depth = last_depth.get(value, -1)
-            left = max(left, previous_depth + 1)
-
-            length = distance - path_distances[left]
-            nodes = depth - left + 1
-            if length > best_length:
-                best_length = length
-                best_nodes = nodes
-            elif length == best_length:
-                best_nodes = min(best_nodes, nodes)
-
-            last_depth[value] = depth
-            stack.append((1, value, -1, previous_depth, 0))
-            for neighbor, weight in reversed(graph[node]):
-                if neighbor != parent:
-                    stack.append((0, neighbor, node, distance + weight, left))
-
-        return [best_length, best_nodes]
+# dfs, two pointers, sliding window, prefix sum
+class Solution2(object):
+    def longestSpecialPath(self, edges, nums):
+        """
+        :type edges: List[List[int]]
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def dfs(u, p, d, left):
+            prev_d, lookup[nums[u]-1] = lookup[nums[u]-1], d
+            left = max(left, prev_d)
+            result[0] = min(result[0], [-(prefix[(d-1)+1]-prefix[left+1]), d-left])
+            for v, l in adj[u]:
+                if v == p:
+                    continue
+                prefix.append(prefix[-1]+l)
+                dfs(v, u, d+1, left)
+                prefix.pop()
+            lookup[nums[u]-1] = prev_d
+    
+        adj = [[] for _ in range(len(nums))]
+        for u, v, l in edges:
+            adj[u].append((v, l))
+            adj[v].append((u, l))
+        lookup = collections.defaultdict(lambda: -1)
+        prefix = [0]
+        result = [[float("inf"), float("inf")]]
+        dfs(0, -1, 0, -1)
+        return [-result[0][0], result[0][1]]

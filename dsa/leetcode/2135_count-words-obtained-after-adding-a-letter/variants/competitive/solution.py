@@ -1,22 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def wordCount(
-        self,
-        startWords: List[str],
-        targetWords: List[str],
-    ) -> int:
-        def mask(word: str) -> int:
-            value = 0
-            for letter in word:
-                value |= 1 << (ord(letter) - ord("a"))
-            return value
+    def wordCount(self, startWords, targetWords):
+        """
+        :type startWords: List[str]
+        :type targetWords: List[str]
+        :rtype: int
+        """
+        def bitmask(w):
+            return reduce(lambda x, y: x|y, (1 << (ord(c)-ord('a')) for i, c in enumerate(w)))
 
-        starts = {mask(word) for word in startWords}
-        answer = 0
-        for word in targetWords:
-            target = mask(word)
-            if any((target ^ (1 << (ord(letter) - ord("a")))) in starts for letter in word):
-                answer += 1
-        return answer
+        lookup = set(bitmask(w) for w in startWords)
+        result = 0 
+        for w in targetWords: 
+            mask = bitmask(w)
+            result += any(mask ^ (1 << ord(c)-ord('a')) in lookup for c in w)
+        return result 

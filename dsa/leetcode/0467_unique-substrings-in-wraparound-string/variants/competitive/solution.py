@@ -1,13 +1,21 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def findSubstringInWraproundString(self, p: str) -> int:
-        longest = [0] * 26
-        run = 0
-        for index, character in enumerate(p):
-            if index > 0 and (ord(character) - ord(p[index - 1])) % 26 == 1:
-                run += 1
-            else:
-                run = 1
-            ending = ord(character) - ord("a")
-            if run > longest[ending]:
-                longest[ending] = run
-        return sum(longest)
+    def findSubstringInWraproundString(self, p):
+        """
+        :type p: str
+        :rtype: int
+        """
+        letters = [0] * 26
+        result, length = 0, 0
+        for i in range(len(p)):
+            curr = ord(p[i]) - ord('a')
+            if i > 0 and ord(p[i-1]) != (curr-1)%26 + ord('a'):
+                length = 0
+            length += 1
+            if length > letters[curr]:
+                result += length - letters[curr]
+                letters[curr] = length
+        return result
+

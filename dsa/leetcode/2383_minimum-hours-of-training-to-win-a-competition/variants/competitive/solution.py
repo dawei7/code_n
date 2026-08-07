@@ -1,23 +1,24 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
+# greedy
 class Solution:
-    def minNumberOfHours(
-        self,
-        initialEnergy: int,
-        initialExperience: int,
-        energy: List[int],
-        experience: List[int],
-    ) -> int:
-        energy_training = max(0, sum(energy) + 1 - initialEnergy)
-        experience_training = 0
-        current_experience = initialExperience
-
-        for opponent_experience in experience:
-            if current_experience <= opponent_experience:
-                needed = opponent_experience + 1 - current_experience
-                experience_training += needed
-                current_experience += needed
-            current_experience += opponent_experience
-
-        return energy_training + experience_training
+    def minNumberOfHours(self, initialEnergy, initialExperience, energy, experience):
+        """
+        :type initialEnergy: int
+        :type initialExperience: int
+        :type energy: List[int]
+        :type experience: List[int]
+        :rtype: int
+        """
+        result = 0
+        for hp, ex in itertools.izip(energy, experience):
+            inc1 = max((hp+1)-initialEnergy, 0)
+            inc2 = max((ex+1)-initialExperience, 0)
+            result += inc1+inc2
+            initialEnergy += inc1-hp
+            initialExperience += inc2+ex
+        return result

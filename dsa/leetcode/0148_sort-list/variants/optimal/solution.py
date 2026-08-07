@@ -1,57 +1,28 @@
-from typing import Optional
-
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def sortList(self, head: Optional["ListNode"]) -> Optional["ListNode"]:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if head is None or head.next is None:
             return head
-
-        length = 0
-        node = head
-        while node is not None:
-            length += 1
-            node = node.next
-
-        dummy = ListNode(0, head)
-        width = 1
-        while width < length:
-            previous = dummy
-            current = dummy.next
-            while current is not None:
-                left = current
-                right = self._split(left, width)
-                current = self._split(right, width)
-                merged_head, merged_tail = self._merge(left, right)
-                previous.next = merged_head
-                previous = merged_tail
-            width *= 2
-        return dummy.next
-
-    def _split(self, head: Optional["ListNode"], width: int) -> Optional["ListNode"]:
-        if head is None:
-            return None
-        for _ in range(1, width):
-            if head.next is None:
-                break
-            head = head.next
-        following = head.next
-        head.next = None
-        return following
-
-    def _merge(
-        self, left: Optional["ListNode"], right: Optional["ListNode"]
-    ) -> tuple[Optional["ListNode"], "ListNode"]:
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        l1, l2 = head, slow.next
+        slow.next = None
+        l1, l2 = self.sortList(l1), self.sortList(l2)
         dummy = ListNode()
         tail = dummy
-        while left is not None and right is not None:
-            if left.val <= right.val:
-                tail.next = left
-                left = left.next
+        while l1 and l2:
+            if l1.val <= l2.val:
+                tail.next = l1
+                l1 = l1.next
             else:
-                tail.next = right
-                right = right.next
+                tail.next = l2
+                l2 = l2.next
             tail = tail.next
-        tail.next = left if left is not None else right
-        while tail.next is not None:
-            tail = tail.next
-        return dummy.next, tail
+        tail.next = l1 or l2
+        return dummy.next

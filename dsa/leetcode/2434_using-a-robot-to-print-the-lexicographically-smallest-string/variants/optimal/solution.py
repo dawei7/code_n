@@ -1,20 +1,14 @@
 class Solution:
     def robotWithString(self, s: str) -> str:
-        remaining = [0] * 26
-        for character in s:
-            remaining[ord(character) - ord("a")] += 1
-
-        stack = []
-        written = []
-        smallest = 0
-
-        for character in s:
-            index = ord(character) - ord("a")
-            stack.append(character)
-            remaining[index] -= 1
-            while smallest < 26 and remaining[smallest] == 0:
-                smallest += 1
-            while stack and (smallest == 26 or ord(stack[-1]) - ord("a") <= smallest):
-                written.append(stack.pop())
-
-        return "".join(written)
+        cnt = Counter(s)
+        ans = []
+        stk = []
+        mi = 'a'
+        for c in s:
+            cnt[c] -= 1
+            while mi < 'z' and cnt[mi] == 0:
+                mi = chr(ord(mi) + 1)
+            stk.append(c)
+            while stk and stk[-1] <= mi:
+                ans.append(stk.pop())
+        return ''.join(ans)

@@ -1,27 +1,42 @@
-class _TrieNode:
+class Trie:
     def __init__(self):
-        self.children = {}
-        self.total = 0
+        self.children: List[Trie | None] = [None] * 26
+        self.val: int = 0
+
+    def insert(self, w: str, x: int):
+        node = self
+        for c in w:
+            idx = ord(c) - ord('a')
+            if node.children[idx] is None:
+                node.children[idx] = Trie()
+            node = node.children[idx]
+            node.val += x
+
+    def search(self, w: str) -> int:
+        node = self
+        for c in w:
+            idx = ord(c) - ord('a')
+            if node.children[idx] is None:
+                return 0
+            node = node.children[idx]
+        return node.val
 
 
 class MapSum:
     def __init__(self):
-        self.root = _TrieNode()
-        self.values = {}
+        self.d = defaultdict(int)
+        self.tree = Trie()
 
     def insert(self, key: str, val: int) -> None:
-        delta = val - self.values.get(key, 0)
-        self.values[key] = val
-        node = self.root
-        node.total += delta
-        for character in key:
-            node = node.children.setdefault(character, _TrieNode())
-            node.total += delta
+        x = val - self.d[key]
+        self.d[key] = val
+        self.tree.insert(key, x)
 
     def sum(self, prefix: str) -> int:
-        node = self.root
-        for character in prefix:
-            node = node.children.get(character)
-            if node is None:
-                return 0
-        return node.total
+        return self.tree.search(prefix)
+
+
+# Your MapSum object will be instantiated and called as such:
+# obj = MapSum()
+# obj.insert(key,val)
+# param_2 = obj.sum(prefix)

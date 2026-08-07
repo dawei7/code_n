@@ -1,12 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def countMatches(
-        self,
-        items: List[List[str]],
-        ruleKey: str,
-        ruleValue: str,
-    ) -> int:
-        field_index = {"type": 0, "color": 1, "name": 2}[ruleKey]
-        return sum(item[field_index] == ruleValue for item in items)
+    def countMatches(self, items, ruleKey, ruleValue):
+        """
+        :type items: List[List[str]]
+        :type ruleKey: str
+        :type ruleValue: str
+        :rtype: int
+        """
+        rule = {"type":0, "color":1, "name":2}
+        return sum(item[rule[ruleKey]] == ruleValue for item in items)

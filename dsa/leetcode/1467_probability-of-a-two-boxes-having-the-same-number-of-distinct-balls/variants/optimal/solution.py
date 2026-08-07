@@ -1,23 +1,17 @@
-from math import comb
-
-
 class Solution:
     def getProbability(self, balls: List[int]) -> float:
-        total = sum(balls)
-        half = total // 2
-        states = {(0, 0): 1}
+        @cache
+        def dfs(i: int, j: int, diff: int) -> float:
+            if i >= k:
+                return 1 if j == 0 and diff == 0 else 0
+            if j < 0:
+                return 0
+            ans = 0
+            for x in range(balls[i] + 1):
+                y = 1 if x == balls[i] else (-1 if x == 0 else 0)
+                ans += dfs(i + 1, j - x, diff + y) * comb(balls[i], x)
+            return ans
 
-        for count in balls:
-            next_states = {}
-            for (used, difference), ways in states.items():
-                for take in range(count + 1):
-                    next_used = used + take
-                    if next_used > half:
-                        break
-                    next_difference = difference + (take > 0) - (take < count)
-                    key = (next_used, next_difference)
-                    next_states[key] = next_states.get(key, 0) + ways * comb(count, take)
-            states = next_states
-
-        favorable = states.get((half, 0), 0)
-        return favorable / comb(total, half)
+        n = sum(balls) >> 1
+        k = len(balls)
+        return dfs(0, n, 0) / comb(n << 1, n)

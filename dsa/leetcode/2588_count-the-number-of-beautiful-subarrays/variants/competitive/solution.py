@@ -1,12 +1,21 @@
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+
+
+# freq table, combinatorics
 class Solution:
-    def beautifulSubarrays(self, nums: List[int]) -> int:
-        prefix_counts = {0: 1}
-        prefix_xor = 0
-        answer = 0
-
-        for value in nums:
-            prefix_xor ^= value
-            answer += prefix_counts.get(prefix_xor, 0)
-            prefix_counts[prefix_xor] = prefix_counts.get(prefix_xor, 0) + 1
-
-        return answer
+    def beautifulSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        cnt = collections.Counter()
+        cnt[0] = 1
+        result = curr = 0
+        for x in nums:
+            curr ^= x
+            result += cnt[curr]
+            cnt[curr] += 1
+        return result

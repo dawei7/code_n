@@ -1,45 +1,46 @@
-from collections import deque
-from typing import List
+# Time:  O(k^2 + r + c), r = len(rowConditions), c = len(colConditions)
+# Space: O(k + r + c)
 
-
+# topological sort
 class Solution:
-    def buildMatrix(
-        self,
-        k: int,
-        rowConditions: List[List[int]],
-        colConditions: List[List[int]],
-    ) -> List[List[int]]:
-        def topological_order(conditions: List[List[int]]) -> List[int]:
-            adjacency = [[] for _ in range(k + 1)]
-            indegree = [0] * (k + 1)
+    def buildMatrix(self, k, rowConditions, colConditions):
+        """
+        :type k: int
+        :type rowConditions: List[List[int]]
+        :type colConditions: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def topological_sort(conditions):
+            adj = [[] for _ in range(k)]
+            in_degree = [0]*k
+            for u, v in conditions:
+                u -= 1
+                v -= 1
+                adj[u].append(v)
+                in_degree[v] += 1
+            result = []
+            q = [u for u in range(k) if not in_degree[u]]
+            while q:
+                new_q = []
+                for u in q:
+                    result.append(u)
+                    for v in adj[u]:
+                        in_degree[v] -= 1
+                        if in_degree[v]:
+                            continue
+                        new_q.append(v)
+                q = new_q
+            return result
 
-            for before, after in conditions:
-                adjacency[before].append(after)
-                indegree[after] += 1
-
-            queue = deque(value for value in range(1, k + 1) if indegree[value] == 0)
-            order = []
-
-            while queue:
-                value = queue.popleft()
-                order.append(value)
-                for neighbor in adjacency[value]:
-                    indegree[neighbor] -= 1
-                    if indegree[neighbor] == 0:
-                        queue.append(neighbor)
-
-            return order if len(order) == k else []
-
-        row_order = topological_order(rowConditions)
-        column_order = topological_order(colConditions)
-        if not row_order or not column_order:
+        row_order = topological_sort(rowConditions)
+        if len(row_order) != k:
             return []
-
-        row_position = {value: index for index, value in enumerate(row_order)}
-        column_position = {value: index for index, value in enumerate(column_order)}
-        matrix = [[0] * k for _ in range(k)]
-
-        for value in range(1, k + 1):
-            matrix[row_position[value]][column_position[value]] = value
-
-        return matrix
+        col_order = topological_sort(colConditions)
+        if len(col_order) != k:
+            return []
+        row_idx = {x:i for i, x in enumerate(row_order)}
+        col_idx = {x:i for i, x in enumerate(col_order)}
+        result = [[0]*k for _ in range(k)]
+        for i in range(k):
+            result[row_idx[i]][col_idx[i]] = i+1
+        return result

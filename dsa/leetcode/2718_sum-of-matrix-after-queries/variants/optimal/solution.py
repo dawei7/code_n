@@ -1,19 +1,15 @@
 class Solution:
     def matrixSumQueries(self, n: int, queries: List[List[int]]) -> int:
-        seen_rows = set()
-        seen_columns = set()
-        total = 0
-
-        for query_type, index, value in reversed(queries):
-            if query_type == 0:
-                if index in seen_rows:
-                    continue
-                seen_rows.add(index)
-                total += value * (n - len(seen_columns))
+        row = set()
+        col = set()
+        ans = 0
+        for t, i, v in queries[::-1]:
+            if t == 0:
+                if i not in row:
+                    ans += v * (n - len(col))
+                    row.add(i)
             else:
-                if index in seen_columns:
-                    continue
-                seen_columns.add(index)
-                total += value * (n - len(seen_rows))
-
-        return total
+                if i not in col:
+                    ans += v * (n - len(row))
+                    col.add(i)
+        return ans

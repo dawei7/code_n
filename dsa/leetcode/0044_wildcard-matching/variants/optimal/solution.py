@@ -1,16 +1,13 @@
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
-        previous = [False] * (len(p) + 1)
-        previous[0] = True
-        for index, token in enumerate(p, start=1):
-            previous[index] = token == "*" and previous[index - 1]
+        @cache
+        def dfs(i: int, j: int) -> bool:
+            if i >= len(s):
+                return j >= len(p) or (p[j] == "*" and dfs(i, j + 1))
+            if j >= len(p):
+                return False
+            if p[j] == "*":
+                return dfs(i + 1, j) or dfs(i + 1, j + 1) or dfs(i, j + 1)
+            return (p[j] == "?" or s[i] == p[j]) and dfs(i + 1, j + 1)
 
-        for char in s:
-            current = [False] * (len(p) + 1)
-            for index, token in enumerate(p, start=1):
-                if token == "*":
-                    current[index] = current[index - 1] or previous[index]
-                else:
-                    current[index] = previous[index - 1] and (token == "?" or token == char)
-            previous = current
-        return previous[-1]
+        return dfs(0, 0)

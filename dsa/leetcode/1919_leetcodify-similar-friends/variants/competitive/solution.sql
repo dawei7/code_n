@@ -1,12 +1,13 @@
-SELECT DISTINCT
-    friendship.user1_id,
-    friendship.user2_id
-FROM Friendship AS friendship
-INNER JOIN Listens AS first_user
-    ON first_user.user_id = friendship.user1_id
-INNER JOIN Listens AS second_user
-    ON second_user.user_id = friendship.user2_id
-   AND second_user.song_id = first_user.song_id
-   AND second_user.day = first_user.day
-GROUP BY friendship.user1_id, friendship.user2_id, first_user.day
-HAVING COUNT(DISTINCT first_user.song_id) >= 3;
+# Time:  O(n * l), n is the number of users, l is the number of listens
+# Space: O(n * l)
+
+SELECT DISTINCT a.user_id user1_id,
+                b.user_id user2_id
+FROM   friendship c
+       INNER JOIN listens a ON c.user1_id = a.user_id
+       INNER JOIN listens b ON c.user2_id = b.user_id AND a.day = b.day AND a.song_id = b.song_id
+GROUP  BY c.user1_id,
+          c.user2_id,
+          a.day
+HAVING Count(DISTINCT a.song_id) >= 3
+ORDER  BY NULL;

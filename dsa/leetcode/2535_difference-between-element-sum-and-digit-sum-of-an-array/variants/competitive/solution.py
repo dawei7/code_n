@@ -1,14 +1,18 @@
-from typing import List
+# Time:  O(nlogr), r = max(nums)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def differenceOfSum(self, nums: List[int]) -> int:
-        element_sum = sum(nums)
-        digit_sum = 0
+    def differenceOfSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def total(x):
+            result = 0
+            while x:
+                result += x%10
+                x //= 10
+            return result
 
-        for value in nums:
-            while value:
-                digit_sum += value % 10
-                value //= 10
-
-        return abs(element_sum - digit_sum)
+        return abs(sum(nums)-sum(total(x) for x in nums))

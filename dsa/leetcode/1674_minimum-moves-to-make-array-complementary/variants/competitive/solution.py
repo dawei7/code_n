@@ -1,26 +1,22 @@
-from typing import List
-
+# Time:  O(n + k)
+# Space: O(k)
 
 class Solution:
-    def minMoves(self, nums: List[int], limit: int) -> int:
-        difference = [0] * (2 * limit + 2)
-
-        for index in range(len(nums) // 2):
-            first = nums[index]
-            second = nums[-1 - index]
-            low = 1 + min(first, second)
-            exact = first + second
-            high = limit + max(first, second)
-
-            difference[2] += 2
-            difference[low] -= 1
-            difference[exact] -= 1
-            difference[exact + 1] += 1
-            difference[high + 1] += 1
-
-        answer = len(nums)
-        moves = 0
-        for target in range(2, 2 * limit + 1):
-            moves += difference[target]
-            answer = min(answer, moves)
-        return answer
+    def minMoves(self, nums, limit):
+        """
+        :type nums: List[int]
+        :type limit: int
+        :rtype: int
+        """
+        diff = [0]*(2*(limit+1))
+        for i in range(len(nums)//2):
+            left, right = nums[i], nums[-1-i]
+            diff[min(left, right)+1] -= 1        # if target total grows to min(left, right)+1, one less move
+            diff[left+right] -= 1                # if target total grows to left+right, one less move
+            diff[left+right+1] += 1              # if target total grows to left+right+1, one more move
+            diff[max(left, right)+limit+1] += 1  # if target total grows to max(left, right)+limit+1, one more move
+        result = count = len(nums)               # default is to move all nums
+        for total in range(2, 2*limit+1):       # enumerate all possible target totals
+            count += diff[total]
+            result = min(result, count)
+        return result

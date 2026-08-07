@@ -1,14 +1,12 @@
-WITH first_logins AS (
-    SELECT
-        player_id,
-        MIN(event_date) AS first_login
-    FROM Activity
-    GROUP BY player_id
-)
-SELECT
-    ROUND(1.0 * COUNT(returned.player_id) / COUNT(*), 2) AS fraction
-FROM first_logins AS firsts
-LEFT JOIN Activity AS returned
-    ON returned.player_id = firsts.player_id
-   AND returned.event_date = date(firsts.first_login, '+1 day');
+# Time:  O(n)
+# Space: O(n)
 
+SELECT Round(Count(NULLIF(a.event_date, NULL)) / Count(*), 2) fraction 
+FROM   activity a 
+       RIGHT JOIN (SELECT player_id, 
+                          Min(event_date) event_date 
+                   FROM   activity 
+                   GROUP  BY player_id 
+                   ORDER  BY NULL) b 
+               ON Datediff(a.event_date, b.event_date) = 1 
+                  AND a.player_id = b.player_id 

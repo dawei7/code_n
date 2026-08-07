@@ -1,25 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def checkRecord(self, n: int) -> int:
-        modulus = 1_000_000_007
-        states = [[1, 0, 0], [0, 0, 0]]
+    def checkRecord(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        M = 1000000007
+        a0l0, a0l1, a0l2, a1l0, a1l1, a1l2 = 1, 0, 0, 0, 0, 0
+        for i in range(n+1):
+            a0l2, a0l1, a0l0 = a0l1, a0l0, (a0l0 + a0l1 + a0l2) % M
+            a1l2, a1l1, a1l0 = a1l1, a1l0, (a0l0 + a1l0 + a1l1 + a1l2) % M
+        return a1l0
 
-        for _ in range(n):
-            next_states = [[0, 0, 0], [0, 0, 0]]
-
-            for absences in range(2):
-                for late_streak in range(3):
-                    ways = states[absences][late_streak]
-
-                    next_states[absences][0] = (next_states[absences][0] + ways) % modulus
-
-                    if absences == 0:
-                        next_states[1][0] = (next_states[1][0] + ways) % modulus
-
-                    if late_streak < 2:
-                        next_states[absences][late_streak + 1] = (
-                            next_states[absences][late_streak + 1] + ways
-                        ) % modulus
-
-            states = next_states
-
-        return sum(sum(row) for row in states) % modulus

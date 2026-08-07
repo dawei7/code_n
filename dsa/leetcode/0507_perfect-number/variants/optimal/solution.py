@@ -1,15 +1,12 @@
 class Solution:
     def checkPerfectNumber(self, num: int) -> bool:
-        if num <= 1:
+        if num == 1:
             return False
-
-        divisor_sum = 1
-        divisor = 2
-        while divisor * divisor <= num:
-            if num % divisor == 0:
-                divisor_sum += divisor
-                complement = num // divisor
-                if complement != divisor:
-                    divisor_sum += complement
-            divisor += 1
-        return divisor_sum == num
+        s, i = 1, 2
+        while i <= num // i:
+            if num % i == 0:
+                s += i
+                if i != num // i:
+                    s += num // i
+            i += 1
+        return s == num

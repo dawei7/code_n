@@ -1,32 +1,21 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def numberOfCleanRooms(self, room: List[List[int]]) -> int:
-        rows = len(room)
-        columns = len(room[0])
-        directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
-        row = column = direction = 0
-        states = set()
-        cleaned = set()
-
-        while (row, column, direction) not in states:
-            states.add((row, column, direction))
-            cleaned.add((row, column))
-
-            row_step, column_step = directions[direction]
-            next_row = row + row_step
-            next_column = column + column_step
-            if (
-                next_row < 0
-                or next_row >= rows
-                or next_column < 0
-                or next_column >= columns
-                or room[next_row][next_column] == 1
-            ):
-                direction = (direction + 1) % 4
+    def numberOfCleanRooms(self, room):
+        """
+        :type room: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        result = r = c = d = 0
+        while not room[r][c]&(1<<(d+1)):
+            result += (room[r][c]>>1) == 0
+            room[r][c] |= (1<<(d+1))
+            dr, dc = directions[d]
+            nr, nc = r+dr, c+dc
+            if 0 <= nr < len(room) and 0 <= nc < len(room[0]) and not (room[nr][nc]&1):
+                r, c = nr, nc
             else:
-                row = next_row
-                column = next_column
-
-        return len(cleaned)
+                d = (d+1)%4
+        return result

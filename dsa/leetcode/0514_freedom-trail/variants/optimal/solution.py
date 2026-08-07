@@ -1,19 +1,16 @@
 class Solution:
     def findRotateSteps(self, ring: str, key: str) -> int:
-        size = len(ring)
-        infinity = 10**9
-        costs = [infinity] * size
-        costs[0] = 0
-
-        for character in key:
-            transformed = costs + costs
-            for index in range(1, 2 * size):
-                transformed[index] = min(transformed[index], transformed[index - 1] + 1)
-            for index in range(2 * size - 2, -1, -1):
-                transformed[index] = min(transformed[index], transformed[index + 1] + 1)
-            costs = [
-                min(transformed[index], transformed[index + size]) if ring[index] == character else infinity
-                for index in range(size)
-            ]
-
-        return min(costs) + len(key)
+        m, n = len(key), len(ring)
+        pos = defaultdict(list)
+        for i, c in enumerate(ring):
+            pos[c].append(i)
+        f = [[inf] * n for _ in range(m)]
+        for j in pos[key[0]]:
+            f[0][j] = min(j, n - j) + 1
+        for i in range(1, m):
+            for j in pos[key[i]]:
+                for k in pos[key[i - 1]]:
+                    f[i][j] = min(
+                        f[i][j], f[i - 1][k] + min(abs(j - k), n - abs(j - k)) + 1
+                    )
+        return min(f[-1][j] for j in pos[key[-1]])

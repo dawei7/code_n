@@ -1,12 +1,18 @@
+# Time:  O(sqrt(n))
+# Space: O(1)
+
+# simulation
 class Solution:
-    def maxBottlesDrunk(self, numBottles: int, numExchange: int) -> int:
-        drunk = numBottles
-        empty = numBottles
-
-        while empty >= numExchange:
-            empty -= numExchange
+    def maxBottlesDrunk(self, numBottles, numExchange):
+        """
+        :type numBottles: int
+        :type numExchange: int
+        :rtype: int
+        """
+        result = numBottles
+        while numBottles >= numExchange:
+            numBottles -= numExchange
             numExchange += 1
-            empty += 1
-            drunk += 1
-
-        return drunk
+            result += 1
+            numBottles += 1
+        return result

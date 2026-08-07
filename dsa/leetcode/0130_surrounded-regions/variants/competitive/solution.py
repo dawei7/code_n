@@ -1,34 +1,47 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n)
+# Space: O(m + n)
+
+import collections
 
 
 class Solution:
-    def solve(self, board: List[List[str]]) -> None:
-        if not board or not board[0]:
+    def solve(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: void Do not return anything, modify board in-place instead.
+        """
+        if not board:
             return
-        rows = len(board)
-        columns = len(board[0])
-        queue = deque()
 
-        def preserve(row, column):
-            if 0 <= row < rows and 0 <= column < columns and board[row][column] == "O":
-                board[row][column] = "#"
-                queue.append((row, column))
+        q = collections.deque()
 
-        for row in range(rows):
-            preserve(row, 0)
-            preserve(row, columns - 1)
-        for column in range(columns):
-            preserve(0, column)
-            preserve(rows - 1, column)
+        for i in range(len(board)):
+            if board[i][0] == 'O':
+                board[i][0] = 'V'
+                q.append((i, 0))
+            if board[i][len(board[0])-1] == 'O':
+                board[i][len(board[0])-1] = 'V'
+                q.append((i, len(board[0])-1))
 
-        while queue:
-            row, column = queue.popleft()
-            preserve(row + 1, column)
-            preserve(row - 1, column)
-            preserve(row, column + 1)
-            preserve(row, column - 1)
+        for j in range(1, len(board[0])-1):
+            if board[0][j] == 'O':
+                board[0][j] = 'V'
+                q.append((0, j))
+            if board[len(board)-1][j] == 'O':
+                board[len(board)-1][j] = 'V'
+                q.append((len(board)-1, j))
 
-        for row in range(rows):
-            for column in range(columns):
-                board[row][column] = "O" if board[row][column] == "#" else "X"
+        while q:
+            i, j = q.popleft()
+            for x, y in [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]:
+                if 0 <= x < len(board) and 0 <= y < len(board[0]) and \
+                   board[x][y] == 'O':
+                    board[x][y] = 'V'
+                    q.append((x, y))
+
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] != 'V':
+                    board[i][j] = 'X'
+                else:
+                    board[i][j] = 'O'

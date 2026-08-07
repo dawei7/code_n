@@ -1,37 +1,78 @@
-from collections import Counter
-from typing import List
+# Time:  O((m + n) * k), where m is string length, n is dictionary size, k is word length
+# Space: O(n * k)
+
+import collections
 
 
 class Solution:
-    def findSubstring(self, s: str, words: List[str]) -> List[int]:
-        word_length = len(words[0])
-        required = Counter(words)
-        result = []
+    def findSubstring(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        if not words:
+            return []
 
-        for offset in range(word_length):
-            left = offset
-            used = 0
-            window = Counter()
-            for right in range(offset, len(s) - word_length + 1, word_length):
-                word = s[right : right + word_length]
-                if word not in required:
-                    window.clear()
-                    used = 0
-                    left = right + word_length
-                    continue
+        result, m, n, k = [], len(s), len(words), len(words[0])
+        if m < n*k:
+            return result
 
-                window[word] += 1
-                used += 1
-                while window[word] > required[word]:
-                    left_word = s[left : left + word_length]
-                    window[left_word] -= 1
-                    used -= 1
-                    left += word_length
+        lookup = collections.defaultdict(int)
+        for i in words:
+            lookup[i] += 1                # Space: O(n * k)
 
-                if used == len(words):
-                    result.append(left)
-                    left_word = s[left : left + word_length]
-                    window[left_word] -= 1
-                    used -= 1
-                    left += word_length
+        for i in range(k):               # Time:  O(k)
+            left, count = i, 0
+            tmp = collections.defaultdict(int)
+            for j in range(i, m-k+1, k): # Time:  O(m / k)
+                s1 = s[j:j+k]             # Time:  O(k)
+                if s1 in lookup:
+                    tmp[s1] += 1
+                    count += 1
+                    while tmp[s1] > lookup[s1]:
+                        tmp[s[left:left+k]] -= 1
+                        count -= 1
+                        left += k
+                    if count == n:
+                        result.append(left)
+                else:
+                    tmp = collections.defaultdict(int)
+                    count = 0
+                    left = j+k
         return result
+
+
+# Time:  O(m * n * k), where m is string length, n is dictionary size, k is word length
+# Space: O(n * k)
+class Solution2(object):
+    def findSubstring(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        result, m, n, k = [], len(s), len(words), len(words[0])
+        if m < n*k:
+            return result
+
+        lookup = collections.defaultdict(int)
+        for i in words:
+            lookup[i] += 1                            # Space: O(n * k)
+
+        for i in range(m+1-k*n):                     # Time: O(m)
+            cur, j = collections.defaultdict(int), 0
+            while j < n:                              # Time: O(n)
+                word = s[i+j*k:i+j*k+k]               # Time: O(k)
+                if word not in lookup:
+                    break
+                cur[word] += 1
+                if cur[word] > lookup[word]:
+                    break
+                j += 1
+            if j == n:
+                result.append(i)
+
+        return result
+
+

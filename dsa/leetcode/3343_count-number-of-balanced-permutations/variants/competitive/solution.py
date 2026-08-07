@@ -1,61 +1,51 @@
+# Time:  O(9 * (9 * n / 2) * (n / 2)) = O(n^2)
+# Space: O((9 * n / 2) * (n / 2)) = O(n^2)
+
+# dp, combinatorics
 class Solution:
-    def countBalancedPermutations(self, num: str) -> int:
-        modulus = 1_000_000_007
-        length = len(num)
-        total = sum(ord(digit) - ord("0") for digit in num)
+    def countBalancedPermutations(self, num):
+        """
+        :type num: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def lazy_init(n):
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
 
-        if total % 2 == 1:
+        def nCr(n, k):
+            lazy_init(n)
+            return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
+
+        def factorial(n):
+            lazy_init(n)
+            return fact[n]
+
+        def inv_factorial(n):
+            lazy_init(n)
+            return inv_fact[n]
+    
+        total = sum(ord(x)-ord('0') for x in num)
+        if total%2:
             return 0
-
-        even_slots = (length + 1) // 2
-        odd_slots = length // 2
-        target = total // 2
-
-        factorial = [1] * (length + 1)
-        for value in range(1, length + 1):
-            factorial[value] = factorial[value - 1] * value % modulus
-
-        inverse_factorial = [1] * (length + 1)
-        inverse_factorial[length] = pow(factorial[length], modulus - 2, modulus)
-        for value in range(length, 0, -1):
-            inverse_factorial[value - 1] = inverse_factorial[value] * value % modulus
-
-        velunexorai = num
-        counts = [0] * 10
-        for digit in velunexorai:
-            counts[ord(digit) - ord("0")] += 1
-
-        dp = [[0] * (target + 1) for _ in range(even_slots + 1)]
+        total //= 2
+        cnt = [0]*10
+        for x in num:
+            cnt[ord(x)-ord('0')] += 1
+        even = len(num)//2
+        dp = [[0]*(even+1) for _ in range(total+1)]
         dp[0][0] = 1
-
-        for digit, count in enumerate(counts):
-            if count == 0:
+        for i, x in enumerate(cnt):
+            if not x:
                 continue
-
-            options = []
-            minimum_even = max(0, count - odd_slots)
-            maximum_even = min(count, even_slots)
-            for even_count in range(minimum_even, maximum_even + 1):
-                contribution = digit * even_count
-                if contribution <= target:
-                    weight = inverse_factorial[even_count] * inverse_factorial[count - even_count] % modulus
-                    options.append((even_count, contribution, weight))
-
-            next_dp = [[0] * (target + 1) for _ in range(even_slots + 1)]
-            for used_even in range(even_slots + 1):
-                for current_sum, ways in enumerate(dp[used_even]):
-                    if ways == 0:
+            for j in reversed(range(total+1)):
+                for k in reversed(range(even+1)):
+                    if not dp[j][k]:
                         continue
-
-                    for extra_even, contribution, weight in options:
-                        next_used = used_even + extra_even
-                        next_sum = current_sum + contribution
-                        if next_used <= even_slots and next_sum <= target:
-                            next_dp[next_used][next_sum] = (next_dp[next_used][next_sum] + ways * weight) % modulus
-
-            dp = next_dp
-
-        answer = dp[even_slots][target]
-        answer = answer * factorial[even_slots] % modulus
-        answer = answer * factorial[odd_slots] % modulus
-        return answer
+                    for c in range(1, x+1):
+                        if j+c*i <= total and k+c <= even:
+                            dp[j+c*i][k+c] = (dp[j+c*i][k+c]+dp[j][k]*nCr(x, c))%MOD
+        return dp[total][even]*factorial(even)*factorial(len(num)-even)*reduce(lambda accu, x: (accu*x)%MOD, (inv_factorial(x) for x in cnt), 1)%MOD

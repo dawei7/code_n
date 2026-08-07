@@ -1,14 +1,13 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort
 class Solution:
-    def divideArray(self, nums: List[int], k: int) -> List[List[int]]:
+    def divideArray(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[List[int]]
+        """
         nums.sort()
-        answer = []
-
-        for start in range(0, len(nums), 3):
-            if nums[start + 2] - nums[start] > k:
-                return []
-            answer.append(nums[start : start + 3])
-
-        return answer
+        return [nums[i:i+3] for i in range(0, len(nums), 3)] if all(nums[i+2]-nums[i] <= k for i in range(0, len(nums), 3)) else []

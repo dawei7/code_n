@@ -1,17 +1,27 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
 class Solution:
-    def longestZigZag(self, root: Optional[TreeNode]) -> int:
-        longest = 0
-        stack = [(root, 0, 0)]
+    def longestZigZag(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(node, result):
+            if not node:
+                return [-1, -1]
+            left, right = dfs(node.left, result), dfs(node.right, result)
+            result[0] = max(result[0], left[1]+1, right[0]+1)
+            return [left[1]+1, right[0]+1]
 
-        while stack:
-            node, left_length, right_length = stack.pop()
-            longest = max(longest, left_length, right_length)
-            if node.left is not None:
-                stack.append((node.left, right_length + 1, 0))
-            if node.right is not None:
-                stack.append((node.right, 0, left_length + 1))
-
-        return longest
+        result = [0]
+        dfs(root, result)
+        return result[0]

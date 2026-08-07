@@ -1,69 +1,54 @@
-from collections import deque
-from functools import lru_cache
-from typing import List
+# Time:  O(p * n^2 + p^2 + p^2 * 2^p) = O(p^2 * 2^p)
+# Space: O(p^2 + n^2 + p * 2^p) = O(p * 2^p)
 
-
+# bfs, bitmasks, dp
 class Solution:
-    def maxMoves(self, kx: int, ky: int, positions: List[List[int]]) -> int:
-        pawns = len(positions)
-        points = positions + [[kx, ky]]
-        moves = (
-            (1, 2),
-            (1, -2),
-            (-1, 2),
-            (-1, -2),
-            (2, 1),
-            (2, -1),
-            (-2, 1),
-            (-2, -1),
-        )
+    def maxMoves(self, kx, ky, positions):
+        """
+        :type kx: int
+        :type ky: int
+        :type positions: List[List[int]]
+        :rtype: int
+        """
+        N = 50
+        DIRECTIONS = ((1, 2), (-1, 2), (1, -2), (-1, -2), (2, 1), (-2, 1), (2, -1), (-2, -1))
+        POS_INF = float("inf")
+        NEG_INF = float("-inf")
+        def popcount(r):
+            return bin(r)[2:].count('1')
+    
+        def bfs(r, c):
+            dist = [[POS_INF]*N for _ in range(N)]
+            dist[r][c] = 0
+            q = [(r, c)]
+            while q:
+                new_q = []
+                for r, c in q:
+                    for dr, dc in DIRECTIONS:
+                        nr, nc = r+dr, c+dc
+                        if not (0 <= nr < N and 0 <= nc < N and dist[nr][nc] == POS_INF):
+                            continue
+                        dist[nr][nc] = dist[r][c]+1
+                        new_q.append((nr, nc))
+                q = new_q
+            return dist
 
-        distances = [[0] * (pawns + 1) for _ in range(pawns + 1)]
-
-        for source_index, (source_x, source_y) in enumerate(points[:-1]):
-            targets = {tuple(points[target_index]): target_index for target_index in range(source_index + 1, pawns + 1)}
-            board = [[-1] * 50 for _ in range(50)]
-            board[source_x][source_y] = 0
-            queue = deque([(source_x, source_y)])
-
-            while queue:
-                x, y = queue.popleft()
-                target_index = targets.pop((x, y), None)
-                if target_index is not None:
-                    distance = board[x][y]
-                    distances[source_index][target_index] = distance
-                    distances[target_index][source_index] = distance
-                    if not targets:
-                        break
-
-                for dx, dy in moves:
-                    next_x = x + dx
-                    next_y = y + dy
-                    if 0 <= next_x < 50 and 0 <= next_y < 50 and board[next_x][next_y] == -1:
-                        board[next_x][next_y] = board[x][y] + 1
-                        queue.append((next_x, next_y))
-
-        @lru_cache(None)
-        def play(current: int, remaining: int) -> int:
-            if remaining == 0:
-                return 0
-
-            alice_turn = (pawns - remaining.bit_count()) % 2 == 0
-            result = -1 if alice_turn else float("inf")
-            choices = remaining
-
-            while choices:
-                pawn_bit = choices & -choices
-                pawn_index = pawn_bit.bit_length() - 1
-                total = distances[current][pawn_index] + play(pawn_index, remaining ^ pawn_bit)
-
-                if alice_turn:
-                    result = max(result, total)
-                else:
-                    result = min(result, total)
-
-                choices -= pawn_bit
-
-            return result
-
-        return play(pawns, (1 << pawns) - 1)
+        p = len(positions)
+        positions.append([kx, ky])
+        dist = [[0]*(p+1) for _ in range(p+1)]
+        for i, (r, c) in enumerate(positions):
+            d = bfs(r, c)
+            for j in range(i+1, p+1):
+                dist[j][i] = dist[i][j] = d[positions[j][0]][positions[j][1]]
+        dp = [[POS_INF if popcount(mask)&1 else NEG_INF]*p for mask in range(1<<p)]
+        dp[-1] = [0]*p
+        for mask in reversed(range(1, 1<<p)):
+            fn = (max, min)[(popcount(mask)&1)^1]
+            for i in range(p):
+                if (mask&(1<<i)) == 0:
+                    continue
+                for j in range(p):
+                    if j == i or (mask&(1<<j)) == 0:
+                        continue
+                    dp[mask^(1<<i)][j] = fn(dp[mask^(1<<i)][j], dp[mask][i]+dist[i][j])
+        return max(dp[1<<i][i]+dist[i][p] for i in range(p))

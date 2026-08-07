@@ -1,36 +1,27 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def recoverTree(self, root: Optional["TreeNode"]) -> None:
-        first = second = previous = None
-        current = root
+    def recoverTree(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
 
-        while current is not None:
-            if current.left is None:
-                if previous is not None and previous.val > current.val:
-                    if first is None:
-                        first = previous
-                    second = current
-                previous = current
-                current = current.right
-                continue
+        def dfs(root):
+            if root is None:
+                return
+            nonlocal prev, first, second
+            dfs(root.left)
+            if prev and prev.val > root.val:
+                if first is None:
+                    first = prev
+                second = root
+            prev = root
+            dfs(root.right)
 
-            predecessor = current.left
-            while predecessor.right is not None and predecessor.right is not current:
-                predecessor = predecessor.right
-
-            if predecessor.right is None:
-                predecessor.right = current
-                current = current.left
-            else:
-                predecessor.right = None
-                if previous is not None and previous.val > current.val:
-                    if first is None:
-                        first = previous
-                    second = current
-                previous = current
-                current = current.right
-
-        if first is not None and second is not None:
-            first.val, second.val = second.val, first.val
+        prev = first = second = None
+        dfs(root)
+        first.val, second.val = second.val, first.val

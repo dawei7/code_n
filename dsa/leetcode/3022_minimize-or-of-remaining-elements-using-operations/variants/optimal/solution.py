@@ -1,26 +1,20 @@
-from typing import List
-
-
 class Solution:
     def minOrAfterOperations(self, nums: List[int], k: int) -> int:
-        answer = 0
-        zero_mask = 0
-        all_bits = (1 << 30) - 1
-
-        for bit in range(29, -1, -1):
-            zero_mask |= 1 << bit
-            operations = 0
-            segment_and = all_bits
-
-            for value in nums:
-                segment_and &= value
-                if segment_and & zero_mask:
-                    operations += 1
+        ans = 0
+        rans = 0
+        for i in range(29, -1, -1):
+            test = ans + (1 << i)
+            cnt = 0
+            val = 0
+            for num in nums:
+                if val == 0:
+                    val = test & num
                 else:
-                    segment_and = all_bits
-
-            if operations > k:
-                answer |= 1 << bit
-                zero_mask ^= 1 << bit
-
-        return answer
+                    val &= test & num
+                if val:
+                    cnt += 1
+            if cnt > k:
+                rans += 1 << i
+            else:
+                ans += 1 << i
+        return rans

@@ -1,19 +1,20 @@
-WITH connections AS (
-    SELECT user1_id AS user_id, user2_id AS friend_id
-    FROM Friendship
+# Time:  O(n^3), n is the number of users
+# Space: O(n^2)
+
+WITH friendship_cte AS
+(
+    SELECT * FROM Friendship
     UNION ALL
-    SELECT user2_id AS user_id, user1_id AS friend_id
-    FROM Friendship
+    SELECT user2_id AS user1_id, user1_id AS user2_id FROM Friendship
 )
-SELECT
-    friendship.user1_id,
-    friendship.user2_id,
-    COUNT(*) AS common_friend
-FROM Friendship AS friendship
-JOIN connections AS first_user
-  ON first_user.user_id = friendship.user1_id
-JOIN connections AS second_user
-  ON second_user.user_id = friendship.user2_id
- AND second_user.friend_id = first_user.friend_id
-GROUP BY friendship.user1_id, friendship.user2_id
-HAVING COUNT(*) >= 3;
+
+SELECT a.user1_id, a.user2_id, COUNT(*) AS common_friend
+FROM Friendship AS a
+INNER JOIN friendship_cte AS b
+ON b.user1_id = a.user2_id
+WHERE EXISTS (SELECT 1 FROM friendship_cte AS c
+              WHERE c.user1_id = a.user1_id
+              AND c.user2_id = b.user2_id)
+GROUP BY a.user1_id, a.user2_id
+HAVING common_friend >= 3
+ORDER BY NULL;

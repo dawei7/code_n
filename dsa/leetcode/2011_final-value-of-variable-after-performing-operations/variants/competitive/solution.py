@@ -1,6 +1,10 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def finalValueAfterOperations(self, operations: List[str]) -> int:
-        return sum(1 if "+" in operation else -1 for operation in operations)
+    def finalValueAfterOperations(self, operations):
+        """
+        :type operations: List[str]
+        :rtype: int
+        """
+        return sum(1 if '+' == op[1] else -1 for op in operations)

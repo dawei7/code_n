@@ -1,34 +1,22 @@
-WITH DistinctListens AS (
-    SELECT DISTINCT user_id, song_id, day
-    FROM Listens
-),
-QualifiedDays AS (
-    SELECT
-        first_user.user_id AS user1_id,
-        second_user.user_id AS user2_id,
-        first_user.day
-    FROM DistinctListens AS first_user
-    INNER JOIN DistinctListens AS second_user
-        ON first_user.day = second_user.day
-       AND first_user.song_id = second_user.song_id
-       AND first_user.user_id < second_user.user_id
-    GROUP BY first_user.user_id, second_user.user_id, first_user.day
-    HAVING COUNT(*) >= 3
-),
-QualifiedPairs AS (
-    SELECT DISTINCT user1_id, user2_id
-    FROM QualifiedDays
-),
-NewPairs AS (
-    SELECT pair.user1_id, pair.user2_id
-    FROM QualifiedPairs AS pair
-    LEFT JOIN Friendship AS friendship
-        ON friendship.user1_id = pair.user1_id
-       AND friendship.user2_id = pair.user2_id
-    WHERE friendship.user1_id IS NULL
-)
-SELECT user1_id AS user_id, user2_id AS recommended_id
-FROM NewPairs
-UNION ALL
-SELECT user2_id AS user_id, user1_id AS recommended_id
-FROM NewPairs;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT user1_id, user2_id FROM Friendship
+        UNION
+        SELECT user2_id AS user1_id, user1_id AS user2_id FROM Friendship
+    )
+SELECT DISTINCT l1.user_id, l2.user_id AS recommended_id
+FROM
+    Listens AS l1,
+    Listens AS l2
+WHERE
+    l1.day = l2.day
+    AND l1.song_id = l2.song_id
+    AND l1.user_id != l2.user_id
+    AND NOT EXISTS (
+        SELECT 1
+        FROM T AS t
+        WHERE l1.user_id = t.user1_id AND l2.user_id = t.user2_id
+    )
+GROUP BY l1.day, l1.user_id, l2.user_id
+HAVING COUNT(DISTINCT l1.song_id) >= 3;

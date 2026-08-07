@@ -1,21 +1,71 @@
-from typing import List
+# Time:  ctor:   O(1)
+#        update: O(1)
+#        get:    O(u), u is the number of updates
+# Space: O(u)
+
+class SubrectangleQueries(object):
+
+    def __init__(self, rectangle):
+        """
+        :type rectangle: List[List[int]]
+        """
+        self.__rectangle = rectangle
+        self.__updates = []
+        
+
+    def updateSubrectangle(self, row1, col1, row2, col2, newValue):
+        """
+        :type row1: int
+        :type col1: int
+        :type row2: int
+        :type col2: int
+        :type newValue: int
+        :rtype: None
+        """
+        self.__updates.append((row1, col1, row2, col2, newValue))
+
+    def getValue(self, row, col):
+        """
+        :type row: int
+        :type col: int
+        :rtype: int
+        """
+        for (row1, col1, row2, col2, newValue) in reversed(self.__updates):
+            if row1 <= row <= row2 and col1 <= col <= col2:
+                return newValue
+        return self.__rectangle[row][col]
 
 
-class SubrectangleQueries:
-    def __init__(self, rectangle: List[List[int]]):
-        self.rectangle = rectangle
+# Time:  ctor:   O(1)
+#        update: O(m * n)
+#        get:    O(1)
+# Space: O(1)
+class SubrectangleQueries2(object):
 
-    def updateSubrectangle(
-        self,
-        row1: int,
-        col1: int,
-        row2: int,
-        col2: int,
-        newValue: int,
-    ) -> None:
-        for row in range(row1, row2 + 1):
-            for col in range(col1, col2 + 1):
-                self.rectangle[row][col] = newValue
+    def __init__(self, rectangle):
+        """
+        :type rectangle: List[List[int]]
+        """
+        self.__rectangle = rectangle
+        
 
-    def getValue(self, row: int, col: int) -> int:
-        return self.rectangle[row][col]
+    def updateSubrectangle(self, row1, col1, row2, col2, newValue):
+        """
+        :type row1: int
+        :type col1: int
+        :type row2: int
+        :type col2: int
+        :type newValue: int
+        :rtype: None
+        """
+        for r in range(row1, row2+1):
+            for c in range(col1, col2+1):
+                self.__rectangle[r][c] = newValue
+
+    def getValue(self, row, col):
+        """
+        :type row: int
+        :type col: int
+        :rtype: int
+        """
+        return self.__rectangle[row][col]

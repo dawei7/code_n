@@ -1,12 +1,19 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, greedy
 class Solution:
-    def minProcessingTime(
-        self,
-        processorTime: List[int],
-        tasks: List[int],
-    ) -> int:
+    def minProcessingTime(self, processorTime, tasks):
+        """
+        :type processorTime: List[int]
+        :type tasks: List[int]
+        :rtype: int
+        """
+        K = 4
         processorTime.sort()
         tasks.sort(reverse=True)
-        return max(start_time + tasks[4 * index] for index, start_time in enumerate(processorTime))
+        result = 0
+        for i in range(len(processorTime)):
+            for j in range(K):
+                result = max(result, processorTime[i]+tasks[i*K+j])
+        return result

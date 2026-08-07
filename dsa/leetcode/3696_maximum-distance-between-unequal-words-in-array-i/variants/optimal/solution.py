@@ -1,15 +1,10 @@
-from typing import List
-
-
 class Solution:
     def maxDistance(self, words: List[str]) -> int:
-        answer = 0
-        last_index = len(words) - 1
-
-        for index, word in enumerate(words):
-            if word != words[0]:
-                answer = max(answer, index + 1)
-            if word != words[last_index]:
-                answer = max(answer, last_index - index + 1)
-
-        return answer
+        n = len(words)
+        ans = 0
+        for i in range(n):
+            if words[i] != words[0]:
+                ans = max(ans, i + 1)
+            if words[i] != words[-1]:
+                ans = max(ans, n - i)
+        return ans

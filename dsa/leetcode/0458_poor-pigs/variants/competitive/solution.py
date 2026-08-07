@@ -1,9 +1,16 @@
+# Time:  O(1)
+# Space: O(1)
+
+import math
+
+
 class Solution:
-    def poorPigs(self, buckets: int, minutesToDie: int, minutesToTest: int) -> int:
-        states = minutesToTest // minutesToDie + 1
-        pigs = 0
-        capacity = 1
-        while capacity < buckets:
-            capacity *= states
-            pigs += 1
-        return pigs
+    def poorPigs(self, buckets, minutesToDie, minutesToTest):
+        """
+        :type buckets: int
+        :type minutesToDie: int
+        :type minutesToTest: int
+        :rtype: int
+        """
+        return int(math.ceil(math.log(buckets) / math.log(minutesToTest / minutesToDie + 1)))
+

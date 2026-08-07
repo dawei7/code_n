@@ -1,45 +1,31 @@
-from collections import Counter
+# Time:  O(26 * n)
+# Space: O(26)
 
-
+# freq table, dp
 class Solution:
-    def makeStringGood(self, s: str) -> int:
-        frequencies = [0] * 26
-        for character, frequency in Counter(s).items():
-            frequencies[ord(character) - ord("a")] = frequency
-
-        answer = len(s)
-        for target in range(1, max(frequencies) + 1):
-            dp = [float("inf")] * 27
-            dp[0] = 0
-
-            for index in range(26):
-                frequency = frequencies[index]
-                individual_cost = min(
-                    frequency,
-                    abs(frequency - target),
-                )
-                dp[index + 1] = min(
-                    dp[index + 1],
-                    dp[index] + individual_cost,
-                )
-
-                if index == 25:
+    def makeStringGood(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        result = len(s)
+        for f in range(min(x for x in cnt if x), max(cnt)+1):
+            # dp1: min number of the last one of the operations is insert
+            # dp2: min number of the last one of the operations is delete
+            dp1 = dp2 = 0
+            for i in range(26):
+                if not cnt[i]:
                     continue
-
-                next_frequency = frequencies[index + 1]
-                pair_cost = float("inf")
-                for current_goal in (0, target):
-                    for next_goal in (0, target):
-                        surplus = max(frequency - current_goal, 0)
-                        deficit = max(next_goal - next_frequency, 0)
-                        cost = abs(frequency - current_goal) + abs(next_frequency - next_goal) - min(surplus, deficit)
-                        pair_cost = min(pair_cost, cost)
-
-                dp[index + 2] = min(
-                    dp[index + 2],
-                    dp[index] + pair_cost,
-                )
-
-            answer = min(answer, dp[26])
-
-        return answer
+                if cnt[i] >= f:
+                    new_dp1 = len(s)
+                    new_dp2 = min(dp1, dp2)+(cnt[i]-f)
+                else:
+                    free = (cnt[i-1]-f if cnt[i-1] >= f else cnt[i-1]) if i-1 >= 0 else 0
+                    new_dp1 = min(min(dp1, dp2)+(f-cnt[i]), dp2+max((f-cnt[i])-free, 0))
+                    new_dp2 = min(dp1, dp2)+cnt[i]
+                dp1, dp2 = new_dp1, new_dp2
+            result = min(result, dp1, dp2)
+        return result

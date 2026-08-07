@@ -1,25 +1,26 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
-        ordered = sorted(tokens)
-        left = 0
-        right = len(ordered) - 1
-        score = 0
-        best = 0
-
+    def bagOfTokensScore(self, tokens, P):
+        """
+        :type tokens: List[int]
+        :type P: int
+        :rtype: int
+        """
+        tokens.sort()
+        result, points = 0, 0
+        left, right = 0, len(tokens)-1
         while left <= right:
-            if power >= ordered[left]:
-                power -= ordered[left]
+            if P >= tokens[left]:
+                P -= tokens[left]
                 left += 1
-                score += 1
-                best = max(best, score)
-            elif score > 0 and left < right:
-                power += ordered[right]
+                points += 1
+                result = max(result, points)
+            elif points > 0:
+                points -= 1
+                P += tokens[right]
                 right -= 1
-                score -= 1
             else:
                 break
-
-        return best
+        return result

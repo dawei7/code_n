@@ -1,19 +1,13 @@
-from typing import List
-
-
 class Solution:
     def minTime(self, skill: List[int], mana: List[int]) -> int:
-        prefix = [0]
-        for value in skill:
-            prefix.append(prefix[-1] + value)
-
-        start = 0
-        previous_mana = mana[0]
-        for current_mana in mana[1:]:
-            start = max(
-                start + previous_mana * prefix[wizard + 1] - current_mana * prefix[wizard]
-                for wizard in range(len(skill))
-            )
-            previous_mana = current_mana
-
-        return start + previous_mana * prefix[-1]
+        max = lambda a, b: a if a > b else b
+        n = len(skill)
+        f = [0] * n
+        for x in mana:
+            tot = 0
+            for i in range(n):
+                tot = max(tot, f[i]) + skill[i] * x
+            f[-1] = tot
+            for i in range(n - 2, -1, -1):
+                f[i] = f[i + 1] - skill[i + 1] * x
+        return f[-1]

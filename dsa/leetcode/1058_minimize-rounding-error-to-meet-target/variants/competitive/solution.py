@@ -1,34 +1,56 @@
-from typing import List
+# Time:  O(n) on average
+# Space: O(n)
+
+import math
+import random
 
 
 class Solution:
-    def minimizeError(self, prices: List[str], target: int) -> str:
-        scale = 1000
-        fraction_counts = [0] * scale
-        floor_sum = 0
-        floor_error = 0
-        non_integer_count = 0
+    def minimizeError(self, prices, target):
+        """
+        :type prices: List[str]
+        :type target: int
+        :rtype: str
+        """
+        def kthElement(nums, k, compare=lambda a, b: a < b):
+            def PartitionAroundPivot(left, right, pivot_idx, nums, compare):
+                new_pivot_idx = left
+                nums[pivot_idx], nums[right] = nums[right], nums[pivot_idx]
+                for i in range(left, right):
+                    if compare(nums[i], nums[right]):
+                        nums[i], nums[new_pivot_idx] = nums[new_pivot_idx], nums[i]
+                        new_pivot_idx += 1
 
-        for price in prices:
-            whole_text, fraction_text = price.split(".")
-            whole = int(whole_text)
-            fraction = int(fraction_text)
-            floor_sum += whole
-            floor_error += fraction
-            if fraction:
-                fraction_counts[fraction] += 1
-                non_integer_count += 1
+                nums[right], nums[new_pivot_idx] = nums[new_pivot_idx], nums[right]
+                return new_pivot_idx
 
-        round_up_needed = target - floor_sum
-        if round_up_needed < 0 or round_up_needed > non_integer_count:
+            left, right = 0, len(nums) - 1
+            while left <= right:
+                pivot_idx = random.randint(left, right)
+                new_pivot_idx = PartitionAroundPivot(left, right, pivot_idx, nums, compare)
+                if new_pivot_idx == k:
+                    return
+                elif new_pivot_idx > k:
+                    right = new_pivot_idx - 1
+                else:  # new_pivot_idx < k.
+                    left = new_pivot_idx + 1
+        
+        errors = []
+        lower, upper = 0, 0
+        for i, p in enumerate(map(float, prices)):
+            lower += int(math.floor(p))
+            upper += int(math.ceil(p))
+            if p != math.floor(p):
+                errors.append(p-math.floor(p))
+        if not lower <= target <= upper:
             return "-1"
 
-        error = floor_error
-        for fraction in range(scale - 1, 0, -1):
-            take = min(round_up_needed, fraction_counts[fraction])
-            error += take * (scale - 2 * fraction)
-            round_up_needed -= take
-            if round_up_needed == 0:
-                break
-
-        return f"{error // scale}.{error % scale:03d}"
+        lower_round_count = upper-target
+        kthElement(errors, lower_round_count)
+        result = 0.0
+        for i in range(len(errors)):
+            if i < lower_round_count:
+                result += errors[i]
+            else:
+                result += 1.0-errors[i]
+        return "{:.3f}".format(result)

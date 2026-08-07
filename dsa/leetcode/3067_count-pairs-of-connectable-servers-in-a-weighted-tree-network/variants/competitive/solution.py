@@ -1,29 +1,107 @@
-import sys
+# Time:  O(n^2)
+# Space: O(n)
 
-
+# iterative dfs
 class Solution:
-    def countPairsOfConnectableServers(self, edges: List[List[int]], signalSpeed: int) -> List[int]:
-        n = len(edges) + 1
-        graph = [[] for _ in range(n)]
-        for first, second, weight in edges:
-            graph[first].append((second, weight))
-            graph[second].append((first, weight))
+    def countPairsOfConnectableServers(self, edges, signalSpeed):
+        """
+        :type edges: List[List[int]]
+        :type signalSpeed: int
+        :rtype: List[int]
+        """
+        def iter_dfs(u, p, dist):
+            result = 0
+            stk = [(u, p, dist)]
+            while stk:
+                u, p, dist = stk.pop()
+                if dist%signalSpeed == 0:
+                    result += 1
+                for v, w in reversed(adj[u]):
+                    if v == p:
+                        continue
+                    stk.append((v, u, dist+w))
+            return result
+        
+        adj = [[] for _ in range(len(edges)+1)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        result = [0]*(len(edges)+1)
+        for u in range(len(result)):
+            curr = 0
+            for v, w in adj[u]:
+                cnt = iter_dfs(v, u, w)
+                result[u] += curr*cnt
+                curr += cnt
+        return result
 
-        sys.setrecursionlimit(max(sys.getrecursionlimit(), 2 * n + 50))
 
-        def count_divisible(node: int, parent: int, distance: int) -> int:
-            count = int(distance % signalSpeed == 0)
-            for neighbor, weight in graph[node]:
-                if neighbor != parent:
-                    count += count_divisible(neighbor, node, distance + weight)
-            return count
+# Time:  O(n^2)
+# Space: O(n)
+# dfs
+class Solution2(object):
+    def countPairsOfConnectableServers(self, edges, signalSpeed):
+        """
+        :type edges: List[List[int]]
+        :type signalSpeed: int
+        :rtype: List[int]
+        """
+        def dfs(u, p, dist):
+            cnt = 1 if dist%signalSpeed == 0 else 0
+            for v, w in adj[u]:
+                if v == p:
+                    continue
+                cnt += dfs(v, u, dist+w)
+            return cnt
+        
+        adj = [[] for _ in range(len(edges)+1)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        result = [0]*(len(edges)+1)
+        for u in range(len(result)):
+            curr = 0
+            for v, w in adj[u]:
+                cnt = dfs(v, u, w)
+                result[u] += curr*cnt
+                curr += cnt
+        return result
 
-        answer = [0] * n
-        for root in range(n):
-            qualifying_before = 0
-            for neighbor, weight in graph[root]:
-                branch_count = count_divisible(neighbor, root, weight)
-                answer[root] += qualifying_before * branch_count
-                qualifying_before += branch_count
 
-        return answer
+# Time:  O(n^2)
+# Space: O(n)
+# bfs
+class Solution3(object):
+    def countPairsOfConnectableServers(self, edges, signalSpeed):
+        """
+        :type edges: List[List[int]]
+        :type signalSpeed: int
+        :rtype: List[int]
+        """
+        def bfs(u, p, dist):
+            result = 0
+            q = [(u, p, dist)]
+            while q:
+                new_q = []
+                for u, p, dist in q:
+                    if dist%signalSpeed == 0:
+                        result += 1
+                    for v, w in adj[u]:
+                        if v == p:
+                            continue
+                        new_q.append((v, u, dist+w))
+                q = new_q
+            return result
+        
+        adj = [[] for _ in range(len(edges)+1)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        result = [0]*(len(edges)+1)
+        for u in range(len(result)):
+            curr = 0
+            for v, w in adj[u]:
+                cnt = bfs(v, u, w)
+                result[u] += curr*cnt
+                curr += cnt
+        return result

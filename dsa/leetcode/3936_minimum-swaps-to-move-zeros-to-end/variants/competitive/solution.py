@@ -1,5 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def minimumSwaps(self, nums: list[int]) -> int:
-        zero_count = nums.count(0)
-        suffix_start = len(nums) - zero_count
-        return sum(nums[index] != 0 for index in range(suffix_start, len(nums)))
+    def minimumSwaps(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(nums[i] != 0 for i in range(len(nums)-nums.count(0), len(nums)))

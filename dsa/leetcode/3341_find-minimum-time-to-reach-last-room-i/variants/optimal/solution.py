@@ -1,30 +1,20 @@
-from heapq import heappop, heappush
-
-
 class Solution:
     def minTimeToReach(self, moveTime: List[List[int]]) -> int:
-        rows = len(moveTime)
-        columns = len(moveTime[0])
-        distances = [[float("inf")] * columns for _ in range(rows)]
-        distances[0][0] = 0
-        queue = [(0, 0, 0)]
-
-        while queue:
-            time, row, column = heappop(queue)
-
-            if time != distances[row][column]:
+        n, m = len(moveTime), len(moveTime[0])
+        dist = [[inf] * m for _ in range(n)]
+        dist[0][0] = 0
+        pq = [(0, 0, 0)]
+        dirs = (-1, 0, 1, 0, -1)
+        while 1:
+            d, i, j = heappop(pq)
+            if i == n - 1 and j == m - 1:
+                return d
+            if d > dist[i][j]:
                 continue
-            if row == rows - 1 and column == columns - 1:
-                return time
-
-            for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_delta
-                next_column = column + column_delta
-
-                if 0 <= next_row < rows and 0 <= next_column < columns:
-                    next_time = max(time, moveTime[next_row][next_column]) + 1
-                    if next_time < distances[next_row][next_column]:
-                        distances[next_row][next_column] = next_time
-                        heappush(queue, (next_time, next_row, next_column))
-
-        return -1
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if 0 <= x < n and 0 <= y < m:
+                    t = max(moveTime[x][y], dist[i][j]) + 1
+                    if dist[x][y] > t:
+                        dist[x][y] = t
+                        heappush(pq, (t, x, y))

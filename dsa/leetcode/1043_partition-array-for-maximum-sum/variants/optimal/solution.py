@@ -1,17 +1,10 @@
-from typing import List
-
-
 class Solution:
     def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:
-        dp = [0] * (len(arr) + 1)
-
-        for end in range(1, len(arr) + 1):
-            current_max = 0
-            for length in range(1, min(k, end) + 1):
-                current_max = max(current_max, arr[end - length])
-                dp[end] = max(
-                    dp[end],
-                    dp[end - length] + current_max * length,
-                )
-
-        return dp[-1]
+        n = len(arr)
+        f = [0] * (n + 1)
+        for i in range(1, n + 1):
+            mx = 0
+            for j in range(i, max(0, i - k), -1):
+                mx = max(mx, arr[j - 1])
+                f[i] = max(f[i], f[j - 1] + mx * (i - j + 1))
+        return f[n]

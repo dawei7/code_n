@@ -1,19 +1,17 @@
-from typing import List
-
-
 class Solution:
     def findBall(self, grid: List[List[int]]) -> List[int]:
-        columns = len(grid[0])
-        answer = []
+        def dfs(i: int, j: int) -> int:
+            if i == m:
+                return j
+            if j == 0 and grid[i][j] == -1:
+                return -1
+            if j == n - 1 and grid[i][j] == 1:
+                return -1
+            if grid[i][j] == 1 and grid[i][j + 1] == -1:
+                return -1
+            if grid[i][j] == -1 and grid[i][j - 1] == 1:
+                return -1
+            return dfs(i + 1, j + 1) if grid[i][j] == 1 else dfs(i + 1, j - 1)
 
-        for start in range(columns):
-            column = start
-            for row in grid:
-                next_column = column + row[column]
-                if next_column < 0 or next_column >= columns or row[next_column] != row[column]:
-                    column = -1
-                    break
-                column = next_column
-            answer.append(column)
-
-        return answer
+        m, n = len(grid), len(grid[0])
+        return [dfs(0, j) for j in range(n)]

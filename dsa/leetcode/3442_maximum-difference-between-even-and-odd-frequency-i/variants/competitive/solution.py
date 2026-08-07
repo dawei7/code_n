@@ -1,9 +1,22 @@
-from collections import Counter
+# Time:  O(n + 26)
+# Space: O(26)
 
-
+# freq table
 class Solution:
-    def maxDifference(self, s: str) -> int:
-        frequencies = Counter(s).values()
-        largest_odd = max(count for count in frequencies if count % 2)
-        smallest_even = min(count for count in frequencies if count % 2 == 0)
-        return largest_odd - smallest_even
+    def maxDifference(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        mn, mx = float("inf"), 0
+        for x in cnt:
+            if not x:
+                continue
+            if x%2 == 0:
+                mn = min(mn, x)
+            else:
+                mx = max(mx, x)
+        return mx-mn

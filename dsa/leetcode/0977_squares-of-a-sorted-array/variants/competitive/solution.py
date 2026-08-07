@@ -1,18 +1,24 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import bisect
 
 
 class Solution:
-    def sortedSquares(self, nums: List[int]) -> List[int]:
-        answer = [0] * len(nums)
-        left = 0
-        right = len(nums) - 1
-
-        for write in range(len(nums) - 1, -1, -1):
-            if abs(nums[left]) > abs(nums[right]):
-                answer[write] = nums[left] * nums[left]
-                left += 1
+    def sortedSquares(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        right = bisect.bisect_left(A, 0)
+        left = right-1
+        result = []
+        while 0 <= left or right < len(A):
+            if right == len(A) or \
+               (0 <= left and A[left]**2 < A[right]**2):
+                result.append(A[left]**2)
+                left -= 1
             else:
-                answer[write] = nums[right] * nums[right]
-                right -= 1
-
-        return answer
+                result.append(A[right]**2)
+                right += 1
+        return result

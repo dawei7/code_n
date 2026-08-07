@@ -1,21 +1,19 @@
-from itertools import permutations
-
-
 class Solution:
     def minimumString(self, a: str, b: str, c: str) -> str:
-        def merge(first: str, second: str) -> str:
-            if second in first:
-                return first
+        def f(s: str, t: str) -> str:
+            if s in t:
+                return t
+            if t in s:
+                return s
+            m, n = len(s), len(t)
+            for i in range(min(m, n), 0, -1):
+                if s[-i:] == t[:i]:
+                    return s + t[i:]
+            return s + t
 
-            for overlap in range(min(len(first), len(second)), 0, -1):
-                if first.endswith(second[:overlap]):
-                    return first + second[overlap:]
-            return first + second
-
-        best = None
-        for order in permutations((a, b, c)):
-            candidate = merge(merge(order[0], order[1]), order[2])
-            if best is None or (len(candidate), candidate) < (len(best), best):
-                best = candidate
-
-        return best
+        ans = ""
+        for a, b, c in permutations((a, b, c)):
+            s = f(f(a, b), c)
+            if ans == "" or len(s) < len(ans) or (len(s) == len(ans) and s < ans):
+                ans = s
+        return ans

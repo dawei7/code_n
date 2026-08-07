@@ -1,10 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        first = nums[0]
-        for value in nums:
-            if value != first:
-                return 1
-        return 0
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return 0 if all(x == nums[0] for x in nums) else 1

@@ -1,13 +1,48 @@
+# Time:  O(max(h, k))
+# Space: O(h)
+
 class Solution:
-    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        stack = []
-        current = root
-        while True:
-            while current is not None:
-                stack.append(current)
-                current = current.left
-            current = stack.pop()
-            k -= 1
-            if k == 0:
-                return current.val
-            current = current.right
+    # @param {TreeNode} root
+    # @param {integer} k
+    # @return {integer}
+    def kthSmallest(self, root, k):
+        s, cur, rank = [], root, 0
+
+        while s or cur:
+            if cur:
+                s.append(cur)
+                cur = cur.left
+            else:
+                cur = s.pop()
+                rank += 1
+                if rank == k:
+                    return cur.val
+                cur = cur.right
+
+        return float("-inf")
+
+
+# time: O(max(h, k))
+# space: O(h)
+
+from itertools import islice
+
+
+class Solution2(object):
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        def gen_inorder(root):
+            if root:
+                for n in gen_inorder(root.left):
+                    yield n
+
+                yield root.val
+
+                for n in gen_inorder(root.right):
+                    yield n
+
+        return next(islice(gen_inorder(root), k-1, k))

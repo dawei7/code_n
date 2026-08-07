@@ -1,16 +1,11 @@
-from typing import List
-
-
 class Solution:
     def validMountainArray(self, arr: List[int]) -> bool:
         n = len(arr)
         if n < 3:
             return False
-        peak = 0
-        while peak + 1 < n and arr[peak] < arr[peak + 1]:
-            peak += 1
-        if peak == 0 or peak == n - 1:
-            return False
-        while peak + 1 < n and arr[peak] > arr[peak + 1]:
-            peak += 1
-        return peak == n - 1
+        i, j = 0, n - 1
+        while i + 1 < n - 1 and arr[i] < arr[i + 1]:
+            i += 1
+        while j - 1 > 0 and arr[j - 1] > arr[j]:
+            j -= 1
+        return i == j

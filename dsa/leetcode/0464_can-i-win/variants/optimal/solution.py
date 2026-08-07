@@ -1,21 +1,13 @@
-from functools import lru_cache
-
-
 class Solution:
     def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
-        if desiredTotal <= 0:
-            return True
-        if maxChoosableInteger * (maxChoosableInteger + 1) // 2 < desiredTotal:
+        @cache
+        def dfs(mask: int, s: int) -> bool:
+            for i in range(1, maxChoosableInteger + 1):
+                if mask >> i & 1 ^ 1:
+                    if s + i >= desiredTotal or not dfs(mask | 1 << i, s + i):
+                        return True
             return False
 
-        @lru_cache(None)
-        def can_win(used: int, remaining: int) -> bool:
-            for choice in range(maxChoosableInteger, 0, -1):
-                bit = 1 << (choice - 1)
-                if used & bit:
-                    continue
-                if choice >= remaining or not can_win(used | bit, remaining - choice):
-                    return True
+        if (1 + maxChoosableInteger) * maxChoosableInteger // 2 < desiredTotal:
             return False
-
-        return can_win(0, desiredTotal)
+        return dfs(0, 0)

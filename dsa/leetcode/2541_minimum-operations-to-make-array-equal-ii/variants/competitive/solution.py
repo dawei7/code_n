@@ -1,22 +1,26 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
+# greedy
 class Solution:
-    def minOperations(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        if k == 0:
-            return 0 if nums1 == nums2 else -1
-
-        balance = 0
-        operations = 0
-
-        for current, target in zip(nums1, nums2):
-            difference = current - target
-            if difference % k:
+    def minOperations(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: int
+        """
+        cnt1 = cnt2 = 0
+        for x, y in itertools.izip(nums1, nums2):
+            if y == x:
+                continue
+            if k == 0 or (y-x)%k:
                 return -1
-
-            units = difference // k
-            balance += units
-            if units > 0:
-                operations += units
-
-        return operations if balance == 0 else -1
+            if x < y:
+                cnt1 += (y-x)//k
+            else:
+                cnt2 += (x-y)//k
+        return cnt1 if cnt1 == cnt2 else -1

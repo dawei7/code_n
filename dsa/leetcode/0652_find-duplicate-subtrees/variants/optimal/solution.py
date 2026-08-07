@@ -1,21 +1,23 @@
-from collections import defaultdict
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def findDuplicateSubtrees(self, root):
-        structure_ids = {}
-        frequencies = defaultdict(int)
-        duplicates = []
+    def findDuplicateSubtrees(
+        self, root: Optional[TreeNode]
+    ) -> List[Optional[TreeNode]]:
+        def dfs(root):
+            if root is None:
+                return '#'
+            v = f'{root.val},{dfs(root.left)},{dfs(root.right)}'
+            counter[v] += 1
+            if counter[v] == 2:
+                ans.append(root)
+            return v
 
-        def identify(node):
-            if node is None:
-                return 0
-            key = (node.val, identify(node.left), identify(node.right))
-            structure_id = structure_ids.setdefault(key, len(structure_ids) + 1)
-            frequencies[structure_id] += 1
-            if frequencies[structure_id] == 2:
-                duplicates.append(node)
-            return structure_id
-
-        identify(root)
-        return duplicates
+        ans = []
+        counter = Counter()
+        dfs(root)
+        return ans

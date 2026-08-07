@@ -1,25 +1,24 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# mono stack
 class Solution:
-    def maximumBooks(self, books: List[int]) -> int:
-        best_ending_here = [0] * len(books)
-        boundaries: list[int] = []
-        answer = 0
-
-        for index, capacity in enumerate(books):
-            transformed = capacity - index
-            while boundaries and books[boundaries[-1]] - boundaries[-1] >= transformed:
-                boundaries.pop()
-
-            previous = boundaries[-1] if boundaries else -1
-            length = min(capacity, index - previous)
-            segment_sum = length * (2 * capacity - length + 1) // 2
-            best_ending_here[index] = segment_sum
-            if previous >= 0:
-                best_ending_here[index] += best_ending_here[previous]
-
-            answer = max(answer, best_ending_here[index])
-            boundaries.append(index)
-
-        return answer
+    def maximumBooks(self, books):
+        """
+        :type books: List[int]
+        :rtype: int
+        """
+        def count(right, l):
+            left = max(right-l+1, 0)
+            return (left+right)*(right-left+1)//2
+        
+        result = curr = 0
+        stk = [-1]
+        for i in range(len(books)):
+            while stk[-1] != -1 and books[stk[-1]] >= books[i]-(i-stk[-1]):
+                j = stk.pop()
+                curr -= count(books[j], j-stk[-1])
+            curr += count(books[i], i-stk[-1])
+            stk.append(i)
+            result = max(result, curr)
+        return result

@@ -1,22 +1,18 @@
 class Solution:
     def findLexSmallestString(self, s: str, a: int, b: int) -> str:
-        smallest = s
-        seen = {s}
-        stack = [s]
-        while stack:
-            current = stack.pop()
-            smallest = min(smallest, current)
-
-            digits = list(current)
-            for index in range(1, len(digits), 2):
-                digits[index] = str((int(digits[index]) + a) % 10)
-            added = "".join(digits)
-            if added not in seen:
-                seen.add(added)
-                stack.append(added)
-
-            rotated = current[-b:] + current[:-b]
-            if rotated not in seen:
-                seen.add(rotated)
-                stack.append(rotated)
-        return smallest
+        q = deque([s])
+        vis = {s}
+        ans = s
+        while q:
+            s = q.popleft()
+            if ans > s:
+                ans = s
+            t1 = ''.join(
+                [str((int(c) + a) % 10) if i & 1 else c for i, c in enumerate(s)]
+            )
+            t2 = s[-b:] + s[:-b]
+            for t in (t1, t2):
+                if t not in vis:
+                    vis.add(t)
+                    q.append(t)
+        return ans

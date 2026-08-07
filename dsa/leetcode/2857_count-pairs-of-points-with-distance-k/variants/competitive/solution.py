@@ -1,12 +1,21 @@
+# Time:  O(n * k)
+# Space: O(n)
+
+import collections
+
+
+# freq table
 class Solution:
-    def countPairs(self, coordinates: List[List[int]], k: int) -> int:
-        answer = 0
-        seen = {}
-
+    def countPairs(self, coordinates, k):
+        """
+        :type coordinates: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        result = 0
+        cnt = collections.Counter()
         for x, y in coordinates:
-            for x_distance in range(k + 1):
-                partner = (x ^ x_distance, y ^ (k - x_distance))
-                answer += seen.get(partner, 0)
-            seen[(x, y)] = seen.get((x, y), 0) + 1
-
-        return answer
+            for i in range(k+1):
+                result += cnt.get((x^i, y^(k-i)), 0)
+            cnt[(x, y)] += 1
+        return result

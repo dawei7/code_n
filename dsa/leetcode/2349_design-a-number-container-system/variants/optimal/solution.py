@@ -1,20 +1,21 @@
-import heapq
-
-
 class NumberContainers:
     def __init__(self):
-        self.index_to_number = {}
-        self.number_to_indices = {}
+        self.d = {}
+        self.g = defaultdict(SortedSet)
 
     def change(self, index: int, number: int) -> None:
-        if self.index_to_number.get(index) == number:
-            return
-        self.index_to_number[index] = number
-        heap = self.number_to_indices.setdefault(number, [])
-        heapq.heappush(heap, index)
+        if index in self.d:
+            old_number = self.d[index]
+            self.g[old_number].remove(index)
+        self.d[index] = number
+        self.g[number].add(index)
 
     def find(self, number: int) -> int:
-        heap = self.number_to_indices.get(number, [])
-        while heap and self.index_to_number.get(heap[0]) != number:
-            heapq.heappop(heap)
-        return heap[0] if heap else -1
+        ids = self.g[number]
+        return ids[0] if ids else -1
+
+
+# Your NumberContainers object will be instantiated and called as such:
+# obj = NumberContainers()
+# obj.change(index,number)
+# param_2 = obj.find(number)

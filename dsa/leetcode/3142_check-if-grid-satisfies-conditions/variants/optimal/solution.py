@@ -1,16 +1,10 @@
-from typing import List
-
-
 class Solution:
     def satisfiesConditions(self, grid: List[List[int]]) -> bool:
-        rows = len(grid)
-        columns = len(grid[0])
-
-        for row in range(rows):
-            for column in range(columns):
-                if row + 1 < rows and grid[row][column] != grid[row + 1][column]:
+        m, n = len(grid), len(grid[0])
+        for i, row in enumerate(grid):
+            for j, x in enumerate(row):
+                if i + 1 < m and x != grid[i + 1][j]:
                     return False
-                if column + 1 < columns and grid[row][column] == grid[row][column + 1]:
+                if j + 1 < n and x == grid[i][j + 1]:
                     return False
-
         return True

@@ -1,31 +1,37 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+    def __repr__(self):
+        if self:
+            return "{} -> {}".format(self.val, repr(self.next))
 
 class Solution:
-    def reorderList(self, head: Optional["ListNode"]) -> None:
-        if head is None or head.next is None:
-            return
+    # @param head, a ListNode
+    # @return nothing
+    def reorderList(self, head):
+        if head == None or head.next == None:
+            return head
 
-        slow = fast = head
-        while fast.next is not None and fast.next.next is not None:
-            slow = slow.next
-            fast = fast.next.next
+        fast, slow, prev = head, head, None
+        while fast != None and fast.next != None:
+            fast, slow, prev = fast.next.next, slow.next, slow
+        current, prev.next, prev = slow, None, None
 
-        second = slow.next
-        slow.next = None
-        previous = None
-        while second is not None:
-            following = second.next
-            second.next = previous
-            previous = second
-            second = following
+        while current != None:
+            current.next, prev, current = prev, current, current.next
 
-        first = head
-        second = previous
-        while second is not None:
-            first_next = first.next
-            second_next = second.next
-            first.next = second
-            second.next = first_next
-            first = first_next
-            second = second_next
+        l1, l2 = head, prev
+        dummy = ListNode(0)
+        current = dummy
+
+        while l1 != None and l2 != None:
+            current.next, current, l1 = l1, l1, l1.next
+            current.next, current, l2 = l2, l2, l2.next
+
+        return dummy.next
+

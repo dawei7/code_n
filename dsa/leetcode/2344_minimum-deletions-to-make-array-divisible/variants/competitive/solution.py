@@ -1,17 +1,22 @@
-from math import gcd
-from typing import List
+# Time:  O(n + m + logr), r is max(numsDivide)
+# Space: O(1)
 
-
+# gcd
 class Solution:
-    def minOperations(self, nums: List[int], numsDivide: List[int]) -> int:
-        common = 0
-        for value in numsDivide:
-            common = gcd(common, value)
+    def minOperations(self, nums, numsDivide):
+        """
+        :type nums: List[int]
+        :type numsDivide: List[int]
+        :rtype: int
+        """
+        def gcd(a, b):  # Time: O(log(min(a, b)))
+            while b:
+                a, b = b, a%b
+            return a
 
-        candidate = min(
-            (value for value in nums if common % value == 0),
-            default=None,
-        )
-        if candidate is None:
-            return -1
-        return sum(value < candidate for value in nums)
+        g = reduce(gcd, numsDivide)
+        mn = float("inf")
+        for x in nums:
+            if g%x == 0:
+                mn = min(mn, x)
+        return sum(x < mn for x in nums) if mn != float("inf") else -1

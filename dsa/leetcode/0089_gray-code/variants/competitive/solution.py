@@ -1,6 +1,27 @@
-from typing import List
-
+# Time:  O(2^n)
+# Space: O(1)
 
 class Solution:
-    def grayCode(self, n: int) -> List[int]:
-        return [value ^ (value >> 1) for value in range(1 << n)]
+    def grayCode(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        result = [0]
+        for i in range(n):
+            for n in reversed(result):
+                result.append(1 << i | n)
+        return result
+
+
+# Proof of closed form formula could be found here:
+# http://math.stackexchange.com/questions/425894/proof-of-closed-form-formula-to-convert-a-binary-number-to-its-gray-code
+class Solution2(object):
+    def grayCode(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        return [i >> 1 ^ i for i in range(1 << n)]
+
+

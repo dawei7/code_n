@@ -1,32 +1,61 @@
+# Time:  O(logn)
+# Space: O(1)
+
+import itertools
+
+
 class Solution:
-    def knightDialer(self, n: int) -> int:
-        modulus = 1_000_000_007
-        moves = ((4, 6), (6, 8), (7, 9), (4, 8), (0, 3, 9), (), (0, 1, 7), (2, 6), (1, 3), (2, 4))
-        transition = [[0] * 10 for _ in range(10)]
-        for source, destinations in enumerate(moves):
-            for destination in destinations:
-                transition[destination][source] = 1
+    def knightDialer(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        def matrix_expo(A, K):
+            result = [[int(i==j) for j in range(len(A))] \
+                      for i in range(len(A))]
+            while K:
+                if K % 2:
+                    result = matrix_mult(result, A)
+                A = matrix_mult(A, A)
+                K /= 2
+            return result
 
-        def multiply(left, right):
-            product = [[0] * 10 for _ in range(10)]
-            for row in range(10):
-                for middle in range(10):
-                    if left[row][middle] == 0:
-                        continue
-                    for column in range(10):
-                        product[row][column] = (
-                            product[row][column] + left[row][middle] * right[middle][column]
-                        ) % modulus
-            return product
+        def matrix_mult(A, B):
+            ZB = zip(*B)
+            return [[sum(a*b for a, b in itertools.izip(row, col)) % M \
+                     for col in ZB] for row in A]
+        
+        M = 10**9 + 7
+        T = [[0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+             [0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+             [0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+             [1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [1, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+             [0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+             [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+             [0, 0, 1, 0, 1, 0, 0, 0, 0, 0]]
+        return sum(map(sum, matrix_expo(T, N-1))) % M
 
-        def apply(matrix, vector):
-            return [sum(matrix[row][column] * vector[column] for column in range(10)) % modulus for row in range(10)]
 
-        counts = [1] * 10
-        exponent = n - 1
-        while exponent:
-            if exponent & 1:
-                counts = apply(transition, counts)
-            transition = multiply(transition, transition)
-            exponent //= 2
-        return sum(counts) % modulus
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def knightDialer(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        M = 10**9 + 7
+        moves = [[4, 6], [6, 8], [7, 9], [4, 8], [3, 9, 0], [],
+                 [1, 7, 0], [2, 6], [1, 3], [2, 4]]
+
+        dp = [[1 for _ in range(10)] for _ in range(2)]
+        for i in range(N-1):
+            dp[(i+1) % 2] = [0] * 10
+            for j in range(10):
+                for nei in moves[j]:
+                    dp[(i+1) % 2][nei] += dp[i % 2][j]
+                    dp[(i+1) % 2][nei] %= M
+        return sum(dp[(N-1) % 2]) % M

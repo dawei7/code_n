@@ -1,11 +1,9 @@
 class Solution:
     def minimumLevels(self, possible: List[int]) -> int:
-        total = sum(1 if value else -1 for value in possible)
-        alice = 0
-
-        for levels in range(1, len(possible)):
-            alice += 1 if possible[levels - 1] else -1
-            if alice > total - alice:
-                return levels
-
+        s = sum(-1 if x == 0 else 1 for x in possible)
+        t = 0
+        for i, x in enumerate(possible[:-1], 1):
+            t += -1 if x == 0 else 1
+            if t > s - t:
+                return i
         return -1

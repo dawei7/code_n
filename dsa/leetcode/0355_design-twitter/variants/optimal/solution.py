@@ -1,45 +1,50 @@
-import heapq
-from collections import defaultdict
-from typing import List
-
-
 class Twitter:
     def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.user_tweets = defaultdict(list)
+        self.user_following = defaultdict(set)
+        self.tweets = defaultdict()
         self.time = 0
-        self.tweets = defaultdict(list)
-        self.following = defaultdict(set)
 
     def postTweet(self, userId: int, tweetId: int) -> None:
+        """
+        Compose a new tweet.
+        """
         self.time += 1
-        posts = self.tweets[userId]
-        posts.append((self.time, tweetId))
-        if len(posts) > 10:
-            del posts[0]
+        self.user_tweets[userId].append(tweetId)
+        self.tweets[tweetId] = self.time
 
     def getNewsFeed(self, userId: int) -> List[int]:
-        sources = set(self.following[userId])
-        sources.add(userId)
-        heap = []
-        for source in sources:
-            posts = self.tweets[source]
-            if posts:
-                index = len(posts) - 1
-                timestamp, tweet_id = posts[index]
-                heap.append((-timestamp, tweet_id, source, index))
-        heapq.heapify(heap)
-
-        feed = []
-        while heap and len(feed) < 10:
-            _, tweet_id, source, index = heapq.heappop(heap)
-            feed.append(tweet_id)
-            if index > 0:
-                index -= 1
-                timestamp, older_id = self.tweets[source][index]
-                heapq.heappush(heap, (-timestamp, older_id, source, index))
-        return feed
+        """
+        Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
+        """
+        following = self.user_following[userId]
+        users = set(following)
+        users.add(userId)
+        tweets = [self.user_tweets[u][::-1][:10] for u in users]
+        tweets = sum(tweets, [])
+        return nlargest(10, tweets, key=lambda tweet: self.tweets[tweet])
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        self.following[followerId].add(followeeId)
+        """
+        Follower follows a followee. If the operation is invalid, it should be a no-op.
+        """
+        self.user_following[followerId].add(followeeId)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        self.following[followerId].discard(followeeId)
+        """
+        Follower unfollows a followee. If the operation is invalid, it should be a no-op.
+        """
+        following = self.user_following[followerId]
+        if followeeId in following:
+            following.remove(followeeId)
+
+
+# Your Twitter object will be instantiated and called as such:
+# obj = Twitter()
+# obj.postTweet(userId,tweetId)
+# param_2 = obj.getNewsFeed(userId)
+# obj.follow(followerId,followeeId)
+# obj.unfollow(followerId,followeeId)

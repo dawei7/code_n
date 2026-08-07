@@ -1,24 +1,20 @@
 class Solution:
     def hasValidPath(self, grid: List[List[str]]) -> bool:
-        rows, columns = len(grid), len(grid[0])
-        path_length = rows + columns - 1
-        if path_length % 2 == 1 or grid[0][0] == ")" or grid[-1][-1] == "(":
+        @cache
+        def dfs(i: int, j: int, k: int) -> bool:
+            d = 1 if grid[i][j] == "(" else -1
+            k += d
+            if k < 0 or k > m - i + n - j:
+                return False
+            if i == m - 1 and j == n - 1:
+                return k == 0
+            for a, b in pairwise((0, 1, 0)):
+                x, y = i + a, j + b
+                if 0 <= x < m and 0 <= y < n and dfs(x, y, k):
+                    return True
             return False
 
-        states = [set() for _ in range(columns)]
-        for row in range(rows):
-            for column in range(columns):
-                previous = set()
-                if row == 0 and column == 0:
-                    previous.add(0)
-                else:
-                    if row > 0:
-                        previous.update(states[column])
-                    if column > 0:
-                        previous.update(states[column - 1])
-
-                delta = 1 if grid[row][column] == "(" else -1
-                remaining = rows - row - 1 + columns - column - 1
-                states[column] = {balance + delta for balance in previous if 0 <= balance + delta <= remaining}
-
-        return 0 in states[-1]
+        m, n = len(grid), len(grid[0])
+        if (m + n - 1) % 2 or grid[0][0] == ")" or grid[m - 1][n - 1] == "(":
+            return False
+        return dfs(0, 0, 0)

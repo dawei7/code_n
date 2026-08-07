@@ -1,36 +1,62 @@
+# Time:  O(n^3 * 4^n) = O(1), n = 4
+# Space: O(n^2) = O(1)
+
+from operator import add, sub, mul, truediv
 from fractions import Fraction
-from functools import lru_cache
 
 
 class Solution:
-    def judgePoint24(self, cards: list[int]) -> bool:
-        @lru_cache(maxsize=None)
-        def can_make(values):
-            if len(values) == 1:
-                return values[0] == 24
+    def judgePoint24(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        if len(nums) == 1:
+            return abs(nums[0]-24) < 1e-6
+        ops = [add, sub, mul, truediv]
+        for i in range(len(nums)):
+            for j in range(len(nums)):
+                if i == j:
+                    continue
+                next_nums = [nums[k] for k in range(len(nums)) if i != k != j]
+                for op in ops:
+                    if ((op is add or op is mul) and j > i) or \
+                       (op == truediv and nums[j] == 0):
+                        continue
+                    next_nums.append(op(nums[i], nums[j]))
+                    if self.judgePoint24(next_nums):
+                        return True
+                    next_nums.pop()
+        return False
 
-            for left_index in range(len(values)):
-                for right_index in range(left_index + 1, len(values)):
-                    left = values[left_index]
-                    right = values[right_index]
-                    remaining = [
-                        values[index] for index in range(len(values)) if index not in (left_index, right_index)
-                    ]
-                    results = {
-                        left + right,
-                        left - right,
-                        right - left,
-                        left * right,
-                    }
-                    if right != 0:
-                        results.add(left / right)
-                    if left != 0:
-                        results.add(right / left)
 
-                    for result in results:
-                        next_values = tuple(sorted([*remaining, result]))
-                        if can_make(next_values):
+# Time:  O(n^3 * 4^n) = O(1), n = 4
+# Space: O(n^2) = O(1)
+class Solution2(object):
+    def judgePoint24(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        def dfs(nums):
+            if len(nums) == 1:
+                return nums[0] == 24
+            ops = [add, sub, mul, truediv]
+            for i in range(len(nums)):
+                for j in range(len(nums)):
+                    if i == j:
+                        continue
+                    next_nums = [nums[k] for k in range(len(nums))
+                                 if i != k != j]
+                    for op in ops:
+                        if ((op is add or op is mul) and j > i) or \
+                           (op == truediv and nums[j] == 0):
+                            continue
+                        next_nums.append(op(nums[i], nums[j]))
+                        if dfs(next_nums):
                             return True
+                        next_nums.pop()
             return False
 
-        return can_make(tuple(sorted(Fraction(card) for card in cards)))
+        return dfs(map(Fraction, nums))
+

@@ -1,50 +1,58 @@
+# Time:  O(n)
+# Space: O(n)
+
+# union find
 class Solution:
-    def maxActivated(self, points: list[list[int]]) -> int:
-        n = len(points)
-        parent = list(range(n))
-        size = [1] * n
+    def maxActivated(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
+            def __init__(self, n):
+                self.set = range(n)
+                self.rank = [0]*n
+                self.size = [1]*n
 
-        def find(node: int) -> int:
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
+            def find_set(self, x):
+                stk = []
+                while self.set[x] != x:  # path compression
+                    stk.append(x)
+                    x = self.set[x]
+                while stk:
+                    self.set[stk.pop()] = x
+                return x
 
-        def union(a: int, b: int) -> None:
-            root_a = find(a)
-            root_b = find(b)
-            if root_a == root_b:
-                return
-            if size[root_a] < size[root_b]:
-                root_a, root_b = root_b, root_a
-            parent[root_b] = root_a
-            size[root_a] += size[root_b]
+            def union_set(self, x, y):
+                x, y = self.find_set(x), self.find_set(y)
+                if x == y:
+                    return False
+                if self.rank[x] > self.rank[y]:  # union by rank
+                    x, y = y, x
+                elif self.rank[x] == self.rank[y]:
+                    self.rank[y] += 1
+                self.set[x] = self.set[y]
+                self.size[y] += self.size[x]
+                return True
+            
+            def total(self, x):
+                return self.size[self.find_set(x)]
 
-        x_owner = {}
-        y_owner = {}
-
-        for i, (x, y) in enumerate(points):
-            if x in x_owner:
-                union(i, x_owner[x])
-            else:
-                x_owner[x] = i
-
-            if y in y_owner:
-                union(i, y_owner[y])
-            else:
-                y_owner[y] = i
-
-        largest = 0
-        second_largest = 0
-
-        for i in range(n):
-            if find(i) != i:
+        N_DIM, N_ADD = 2, 1
+        uf = UnionFind(len(points))
+        lookup = [{} for _ in range(N_DIM)]
+        for i, p in enumerate(points):
+            for j in range(len(lookup)):
+                if p[j] in lookup[j]:
+                    uf.union_set(i, lookup[j][p[j]])
+                else:
+                    lookup[j][p[j]] = i
+        top = [0]*min(N_ADD+1, len(points))
+        for i in range(len(points)):
+            if uf.find_set(i) != i:
                 continue
-            component_size = size[i]
-            if component_size > largest:
-                second_largest = largest
-                largest = component_size
-            elif component_size > second_largest:
-                second_largest = component_size
-
-        return largest + second_largest + 1
+            s = uf.total(i)
+            for j in range(len(top)):
+                if s > top[j]:
+                    top[j], s = s,top[j]
+        return sum(top)+N_ADD

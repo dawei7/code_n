@@ -1,44 +1,73 @@
-class TrieNode:
+# Time:  ctor:         O(1)
+#        insert:       O(n)
+#        count_word:   O(n)
+#        count_prefix: O(n)
+#        erase:        O(n)
+# Space: O(t), t is the number of nodes in trie
+
+class Node:
     def __init__(self):
-        self.children = {}
-        self.prefix_count = 0
-        self.word_count = 0
+        self.children = [None]*26
+        self.pcnt = 0
+        self.cnt = 0
 
+class Trie(object):
 
-class Trie:
     def __init__(self):
-        self.root = TrieNode()
+        self.__trie = Node()
 
-    def insert(self, word: str) -> None:
-        node = self.root
-        for character in word:
-            node = node.children.setdefault(character, TrieNode())
-            node.prefix_count += 1
-        node.word_count += 1
+    def insert(self, word):
+        """
+        :type word: str
+        :rtype: None
+        """
+        curr = self.__trie
+        curr.pcnt += 1
+        for c in word:
+            if curr.children[ord(c)-ord('a')] is None:
+                curr.children[ord(c)-ord('a')] = Node()
+            curr = curr.children[ord(c)-ord('a')]
+            curr.pcnt += 1
+        curr.cnt += 1
 
-    def countWordsEqualTo(self, word: str) -> int:
-        node = self.root
-        for character in word:
-            if character not in node.children:
+    def countWordsEqualTo(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        curr = self.__trie
+        for c in word:
+            if curr.children[ord(c)-ord('a')] is None:
                 return 0
-            node = node.children[character]
-        return node.word_count
+            curr = curr.children[ord(c)-ord('a')]
+        return curr.cnt
 
-    def countWordsStartingWith(self, prefix: str) -> int:
-        node = self.root
-        for character in prefix:
-            if character not in node.children:
+    def countWordsStartingWith(self, prefix):
+        """
+        :type prefix: str
+        :rtype: int
+        """
+        curr = self.__trie
+        for c in prefix:
+            if curr.children[ord(c)-ord('a')] is None:
                 return 0
-            node = node.children[character]
-        return node.prefix_count
+            curr = curr.children[ord(c)-ord('a')]
+        return curr.pcnt
 
-    def erase(self, word: str) -> None:
-        node = self.root
-        path = []
-        for character in word:
-            node = node.children[character]
-            path.append(node)
-
-        for path_node in path:
-            path_node.prefix_count -= 1
-        node.word_count -= 1
+    def erase(self, word):
+        """
+        :type word: str
+        :rtype: None
+        """
+        cnt = self.countWordsEqualTo(word)
+        if not cnt:
+            return
+        curr = self.__trie
+        curr.pcnt -= 1
+        for c in word:
+            if curr.children[ord(c)-ord('a')].pcnt == 1:
+                curr.children[ord(c)-ord('a')] = None  # delete all unused nodes
+                return
+            curr = curr.children[ord(c)-ord('a')]
+            curr.pcnt -= 1
+        curr.cnt -= 1

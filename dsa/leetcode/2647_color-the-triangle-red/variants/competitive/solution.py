@@ -1,18 +1,17 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(1)
 
-
+# constructive algorithms
 class Solution:
-    def colorRed(self, n: int) -> List[List[int]]:
+    def colorRed(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
         result = [[1, 1]]
-
-        for row in range(2, n + 1):
-            offset = (n - row) % 4
-            start = offset % 3 + 1
-
-            if offset % 2:
-                result.append([row, start])
+        for i in range(2, n+1):
+            if i%2 == n%2:
+                result.extend([i, j] for j in range((1 if i%4 == n%4 else 3), 2*i, 2))
             else:
-                for column in range(start, 2 * row, 2):
-                    result.append([row, column])
-
+                result.append([i, (2 if i%4 == (n-1)%4 else 1)])
         return result

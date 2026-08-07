@@ -1,26 +1,26 @@
+# Time:  O(m * n * log(m * n))
+# Space: O(m * n)
+
+import collections
+
+
+# sort, dp
 class Solution:
-    def maxIncreasingCells(self, mat: List[List[int]]) -> int:
-        rows = len(mat)
-        columns = len(mat[0])
-        positions = {}
-
-        for row in range(rows):
-            for column in range(columns):
-                positions.setdefault(mat[row][column], []).append((row, column))
-
-        row_best = [0] * rows
-        column_best = [0] * columns
-        answer = 0
-
-        for value in sorted(positions):
-            updates = []
-            for row, column in positions[value]:
-                length = 1 + max(row_best[row], column_best[column])
-                updates.append((row, column, length))
-                answer = max(answer, length)
-
-            for row, column, length in updates:
-                row_best[row] = max(row_best[row], length)
-                column_best[column] = max(column_best[column], length)
-
-        return answer
+    def maxIncreasingCells(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        lookup = collections.defaultdict(list)
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                lookup[mat[i][j]].append((i, j))
+        dp = [[0]*len(mat[0]) for _ in range(len(mat))]
+        row, col = [0]*len(mat), [0]*len(mat[0])
+        for x in sorted(lookup.keys()):
+            for i, j in lookup[x]:
+                dp[i][j] = max(row[i], col[j])+1
+            for i, j in lookup[x]:
+                row[i] = max(row[i], dp[i][j])
+                col[j] = max(col[j], dp[i][j])
+        return max(row)

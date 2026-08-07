@@ -1,21 +1,13 @@
 class Solution:
     def waysToReachTarget(self, target: int, types: List[List[int]]) -> int:
-        modulus = 1_000_000_007
-        ways = [0] * (target + 1)
-        ways[0] = 1
-
-        for count, marks in types:
-            next_ways = [0] * (target + 1)
-            expired_distance = (count + 1) * marks
-
-            for score in range(target + 1):
-                next_ways[score] = ways[score]
-                if score >= marks:
-                    next_ways[score] += next_ways[score - marks]
-                if score >= expired_distance:
-                    next_ways[score] -= ways[score - expired_distance]
-                next_ways[score] %= modulus
-
-            ways = next_ways
-
-        return ways[target]
+        n = len(types)
+        mod = 10**9 + 7
+        f = [[0] * (target + 1) for _ in range(n + 1)]
+        f[0][0] = 1
+        for i in range(1, n + 1):
+            count, marks = types[i - 1]
+            for j in range(target + 1):
+                for k in range(count + 1):
+                    if j >= k * marks:
+                        f[i][j] = (f[i][j] + f[i - 1][j - k * marks]) % mod
+        return f[n][target]

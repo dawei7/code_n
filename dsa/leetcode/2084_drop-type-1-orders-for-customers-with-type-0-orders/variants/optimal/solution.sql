@@ -1,8 +1,10 @@
-SELECT order_id, customer_id, order_type
-FROM (
-    SELECT
-        Orders.*,
-        MIN(order_type) OVER (PARTITION BY customer_id) AS minimum_type
-    FROM Orders
-) AS classified
-WHERE order_type = minimum_type;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT DISTINCT customer_id
+        FROM Orders
+        WHERE order_type = 0
+    )
+SELECT *
+FROM Orders AS o
+WHERE order_type = 0 OR NOT EXISTS (SELECT 1 FROM T AS t WHERE t.customer_id = o.customer_id);

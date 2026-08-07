@@ -1,57 +1,38 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def minimumPairRemoval(self, nums: List[int]) -> int:
-        size = len(nums)
-        if size < 2:
-            return 0
+        n = len(nums)
+        sl = SortedList()
+        idx = SortedList(range(n))
+        inv = 0
+        for i in range(n - 1):
+            sl.add((nums[i] + nums[i + 1], i))
+            if nums[i] > nums[i + 1]:
+                inv += 1
+        ans = 0
+        while inv:
+            ans += 1
+            s, i = sl.pop(0)
+            pos = idx.index(i)
+            j = idx[pos + 1]
+            if nums[i] > nums[j]:
+                inv -= 1
+            if pos > 0:
+                h = idx[pos - 1]
+                if nums[h] > nums[i]:
+                    inv -= 1
+                sl.remove((nums[h] + nums[i], h))
+                if nums[h] > s:
+                    inv += 1
+                sl.add((nums[h] + s, h))
+            if pos + 2 < len(idx):
+                k = idx[pos + 2]
+                if nums[j] > nums[k]:
+                    inv -= 1
+                sl.remove((nums[j] + nums[k], j))
+                if s > nums[k]:
+                    inv += 1
+                sl.add((s + nums[k], i))
 
-        values = nums[:]
-        previous = [index - 1 for index in range(size)]
-        following = [index + 1 for index in range(size)]
-        following[-1] = -1
-        active = [True] * size
-
-        heap = [(values[index] + values[index + 1], index, index + 1) for index in range(size - 1)]
-        heapq.heapify(heap)
-        inversions = sum(values[index] > values[index + 1] for index in range(size - 1))
-
-        operations = 0
-        while inversions:
-            while True:
-                pair_sum, left, right = heapq.heappop(heap)
-                if (
-                    active[left]
-                    and active[right]
-                    and following[left] == right
-                    and values[left] + values[right] == pair_sum
-                ):
-                    break
-
-            before = previous[left]
-            after = following[right]
-
-            if before != -1:
-                inversions -= values[before] > values[left]
-            inversions -= values[left] > values[right]
-            if after != -1:
-                inversions -= values[right] > values[after]
-
-            values[left] = pair_sum
-            active[right] = False
-            following[left] = after
-            if after != -1:
-                previous[after] = left
-
-            if before != -1:
-                inversions += values[before] > values[left]
-                heapq.heappush(heap, (values[before] + values[left], before, left))
-            if after != -1:
-                inversions += values[left] > values[after]
-                heapq.heappush(heap, (values[left] + values[after], left, after))
-
-            operations += 1
-
-        return operations
+            nums[i] = s
+            idx.remove(j)
+        return ans

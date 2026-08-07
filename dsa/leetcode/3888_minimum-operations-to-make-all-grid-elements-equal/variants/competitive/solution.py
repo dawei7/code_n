@@ -1,98 +1,50 @@
-from collections import deque
+# Time:  O(m * n)
+# Space: O(k * n)
 
-
+# sliding window, greedy, difference array
 class Solution:
-    def minOperations(self, grid: list[list[int]], k: int) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        start_columns = columns - k + 1
-
-        base_columns = [0] * start_columns
-        coefficient_columns = [0] * start_columns
-        recent_rows = deque()
-
-        lower_bound = max(max(row) for row in grid)
-        upper_bound = None
-        forced_target = None
-        base_total = 0
-        coefficient_total = 0
-
-        def require_nonnegative(coefficient: int, base: int) -> bool:
-            nonlocal lower_bound, upper_bound
-
-            if coefficient > 0:
-                lower_bound = max(lower_bound, -(base // coefficient))
-            elif coefficient < 0:
-                bound = (-base) // coefficient
-                upper_bound = bound if upper_bound is None else min(upper_bound, bound)
-            elif base < 0:
-                return False
-
-            return True
-
-        def require_zero(coefficient: int, base: int) -> bool:
-            nonlocal forced_target
-
-            if coefficient == 0:
-                return base == 0
-            if (-base) % coefficient != 0:
-                return False
-
-            target = (-base) // coefficient
-            if forced_target is not None and forced_target != target:
-                return False
-            forced_target = target
-            return True
-
-        for row in range(rows):
-            if len(recent_rows) == k:
-                expired_bases, expired_coefficients = recent_rows.popleft()
-                for column in range(start_columns):
-                    base_columns[column] -= expired_bases[column]
-                    coefficient_columns[column] -= expired_coefficients[column]
-
-            row_bases = [0] * start_columns
-            row_coefficients = [0] * start_columns
-            base_window = 0
-            coefficient_window = 0
-
-            for column in range(columns):
-                if column < start_columns:
-                    base_window += base_columns[column]
-                    coefficient_window += coefficient_columns[column]
-
-                expired_column = column - k
-                if 0 <= expired_column < start_columns:
-                    base_window -= base_columns[expired_column]
-                    coefficient_window -= coefficient_columns[expired_column]
-
-                current_base = grid[row][column] + base_window
-                current_coefficient = coefficient_window
-
-                if row + k <= rows and column + k <= columns:
-                    operation_base = -current_base
-                    operation_coefficient = 1 - current_coefficient
-
-                    if not require_nonnegative(operation_coefficient, operation_base):
+    def minOperations(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        c, target, mn = 0, 0, float("-inf")
+        found = False
+        lookup = [[0]*len(grid[0]) for _ in range(k)]
+        cnt = [0]*len(grid[0])
+        for i in range(len(grid)):
+            total = 0
+            for j in range(len(grid[0])):
+                total += cnt[j]
+                diff = -(grid[i][j]+total)  # grid[i][j]+total+diff = target
+                if i+k-1 < len(grid) and j+k-1 < len(grid[0]):
+                    lookup[i%k][j] = diff
+                    cnt[j] += diff
+                    total += diff
+                    c += diff
+                    if i%k == 0 and j%k == 0:  # target+diff >= 0, target >= -diff
+                        mn = max(mn, -diff)
+                    elif not diff >= 0:  # diff >= 0
                         return -1
-
-                    row_bases[column] = operation_base
-                    row_coefficients[column] = operation_coefficient
-                    base_columns[column] += operation_base
-                    coefficient_columns[column] += operation_coefficient
-                    base_window += operation_base
-                    coefficient_window += operation_coefficient
-                    base_total += operation_base
-                    coefficient_total += operation_coefficient
-                elif not require_zero(current_coefficient - 1, current_base):
-                    return -1
-
-            recent_rows.append((row_bases, row_coefficients))
-
-        target = lower_bound if forced_target is None else forced_target
-        if target < lower_bound:
+                else:
+                    if (i//k+1)*k <= len(grid) and (j//k+1)*k <= len(grid[0]):
+                        if diff:
+                            return -1
+                    else:
+                        if not found:
+                            found = True
+                            target = -diff
+                        elif target != -diff:
+                            return -1
+                if j-k+1 >= 0:
+                    total -= cnt[j-k+1]
+            if i-k+1 >= 0:
+                for j in range(len(grid[0])):
+                    cnt[j] -= lookup[(i-k+1)%k][j]
+                    lookup[(i-k+1)%k][j] = 0
+        if not found:
+            target = mn
+        elif target < mn:
             return -1
-        if upper_bound is not None and target > upper_bound:
-            return -1
-
-        return coefficient_total * target + base_total
+        return c+target*((len(grid)//k)*(len(grid[0])//k))

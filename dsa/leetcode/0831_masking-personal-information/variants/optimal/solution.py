@@ -1,12 +1,9 @@
 class Solution:
     def maskPII(self, s: str) -> str:
-        if "@" in s:
-            name, domain = s.lower().split("@")
-            return name[0] + "*****" + name[-1] + "@" + domain
-
-        digits = "".join(character for character in s if character.isdigit())
-        country_length = len(digits) - 10
-        local_mask = "***-***-" + digits[-4:]
-        if country_length == 0:
-            return local_mask
-        return "+" + "*" * country_length + "-" + local_mask
+        if s[0].isalpha():
+            s = s.lower()
+            return s[0] + '*****' + s[s.find('@') - 1 :]
+        s = ''.join(c for c in s if c.isdigit())
+        cnt = len(s) - 10
+        suf = '***-***-' + s[-4:]
+        return suf if cnt == 0 else f'+{"*" * cnt}-{suf}'

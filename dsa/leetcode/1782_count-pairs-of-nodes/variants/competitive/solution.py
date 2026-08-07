@@ -1,46 +1,71 @@
-from collections import Counter
-from typing import List
+# Time:  O(n + e + q)
+# Space: O(n + e)
+
+import collections
+import itertools
 
 
+# pure counting solution
 class Solution:
-    def countPairs(
-        self,
-        n: int,
-        edges: List[List[int]],
-        queries: List[int],
-    ) -> List[int]:
-        degree = [0] * n
-        shared_edges = Counter()
+    def countPairs(self, n, edges, queries):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
+        degree = [0]*(n+1)
+        shared = collections.Counter((min(n1, n2), max(n1, n2)) for n1, n2 in edges)
+        for u, v in edges:
+            degree[u] += 1
+            degree[v] += 1
+        cnt = [0]*(2*(max(degree[1:])+1))
+        count = collections.Counter(degree[1:])
+        for i, j in itertools.product(count, count):  # Time: O(d^2) = O(e)
+            if i < j:
+                cnt[i+j] += count[i]*count[j]
+            elif i == j:
+                cnt[i+j] += count[i]*(count[i]-1)//2
+        for (i, j), shared_degree in shared.items():
+            cnt[degree[i]+degree[j]] -= 1
+            cnt[degree[i]+degree[j]-shared_degree] += 1
+        for i in reversed(range(len(cnt)-1)):  # accumulate
+            cnt[i] += cnt[i+1]
+        return [cnt[q+1] if q+1 < len(cnt) else 0 for q in queries]
 
-        for first, second in edges:
-            first -= 1
-            second -= 1
-            degree[first] += 1
-            degree[second] += 1
-            if first > second:
-                first, second = second, first
-            shared_edges[first, second] += 1
 
-        sorted_degrees = sorted(degree)
-        answers = []
+# Time:  O(nlogn + q * (n + e))
+# Space: O(n + e)
+import collections
 
-        for query in queries:
-            count = 0
-            left = 0
-            right = n - 1
 
+# two pointers solution
+class Solution2(object):
+    def countPairs(self, n, edges, queries):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
+        degree = [0]*(n+1)
+        shared = collections.Counter((min(n1, n2), max(n1, n2)) for n1, n2 in edges)
+        for n1, n2 in edges:
+            degree[n1] += 1
+            degree[n2] += 1
+        sorted_degree = sorted(degree)
+        result = []
+        for k, q in enumerate(queries):
+            left, right = 1, n
+            cnt = 0
             while left < right:
-                if sorted_degrees[left] + sorted_degrees[right] > query:
-                    count += right - left
+                if q < sorted_degree[left]+sorted_degree[right]:
+                    cnt += right-left
                     right -= 1
                 else:
                     left += 1
-
-            for (first, second), multiplicity in shared_edges.items():
-                degree_sum = degree[first] + degree[second]
-                if degree_sum > query >= degree_sum - multiplicity:
-                    count -= 1
-
-            answers.append(count)
-
-        return answers
+            for (i, j), shared_degree in shared.items():
+                if degree[i]+degree[j]-shared_degree <= q < degree[i]+degree[j]:
+                    cnt -= 1
+            result.append(cnt)
+        return result

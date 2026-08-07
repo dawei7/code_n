@@ -1,23 +1,17 @@
-from collections import Counter
-from typing import List
-
+# Time:  O(n + klogk), k is the distinct number of changed
+# Space: O(k)
 
 class Solution:
-    def findOriginalArray(self, changed: List[int]) -> List[int]:
-        if len(changed) % 2:
+    def findOriginalArray(self, changed):
+        """
+        :type changed: List[int]
+        :rtype: List[int]
+        """
+        if len(changed)%2:
             return []
-
-        remaining = Counter(changed)
-        original = []
-
-        for value in sorted(changed):
-            if remaining[value] == 0:
-                continue
-            if remaining[2 * value] == 0:
+        cnts = collections.Counter(changed)
+        for x in sorted(cnts.keys()):
+            if cnts[x] > cnts[2*x]:
                 return []
-
-            original.append(value)
-            remaining[value] -= 1
-            remaining[2 * value] -= 1
-
-        return original
+            cnts[2*x] -= cnts[x] if x else cnts[x]//2
+        return list(cnts.elements())

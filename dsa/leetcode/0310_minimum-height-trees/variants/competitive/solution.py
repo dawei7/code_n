@@ -1,29 +1,43 @@
-from collections import deque
+# Time:  O(n)
+# Space: O(n)
 
-
-def _centers(n: int, edges: list[list[int]]) -> list[int]:
-    if n <= 2:
-        return list(range(n))
-
-    adjacency = [set() for _ in range(n)]
-    for left, right in edges:
-        adjacency[left].add(right)
-        adjacency[right].add(left)
-
-    leaves = deque(node for node in range(n) if len(adjacency[node]) == 1)
-    remaining = n
-    while remaining > 2:
-        layer_size = len(leaves)
-        remaining -= layer_size
-        for _ in range(layer_size):
-            leaf = leaves.popleft()
-            neighbor = adjacency[leaf].pop()
-            adjacency[neighbor].remove(leaf)
-            if len(adjacency[neighbor]) == 1:
-                leaves.append(neighbor)
-    return sorted(leaves)
+import collections
 
 
 class Solution:
-    def findMinHeightTrees(self, n: int, edges: list[list[int]]) -> list[int]:
-        return _centers(n, edges)
+    def findMinHeightTrees(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: List[int]
+        """
+        if n == 1:
+            return [0]
+
+        neighbors = collections.defaultdict(set)
+        for u, v in edges:
+            neighbors[u].add(v)
+            neighbors[v].add(u)
+
+        pre_level, unvisited = [], set()
+        for i in range(n):
+            if len(neighbors[i]) == 1:  # A leaf.
+                pre_level.append(i)
+            unvisited.add(i)
+
+        # A graph can have 2 MHTs at most.
+        # BFS from the leaves until the number
+        # of the unvisited nodes is less than 3.
+        while len(unvisited) > 2:
+            cur_level = []
+            for u in pre_level:
+                unvisited.remove(u)
+                for v in neighbors[u]:
+                    if v in unvisited:
+                        neighbors[v].remove(u)
+                        if len(neighbors[v]) == 1:
+                            cur_level.append(v)
+            pre_level = cur_level
+
+        return list(unvisited)
+

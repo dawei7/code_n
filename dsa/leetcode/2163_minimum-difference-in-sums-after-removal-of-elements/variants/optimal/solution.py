@@ -1,34 +1,27 @@
-from heapq import heapreplace, heapify
-from typing import List
-
-
 class Solution:
     def minimumDifference(self, nums: List[int]) -> int:
-        n = len(nums) // 3
+        m = len(nums)
+        n = m // 3
 
-        left_heap = [-value for value in nums[:n]]
-        heapify(left_heap)
-        left_sum = sum(nums[:n])
-        left = [0] * (2 * n)
-        left[n - 1] = left_sum
+        s = 0
+        pre = [0] * (m + 1)
+        q1 = []
+        for i, x in enumerate(nums[: n * 2], 1):
+            s += x
+            heappush(q1, -x)
+            if len(q1) > n:
+                s -= -heappop(q1)
+            pre[i] = s
 
-        for index in range(n, 2 * n):
-            value = nums[index]
-            if value < -left_heap[0]:
-                removed = -heapreplace(left_heap, -value)
-                left_sum += value - removed
-            left[index] = left_sum
+        s = 0
+        suf = [0] * (m + 1)
+        q2 = []
+        for i in range(m, n, -1):
+            x = nums[i - 1]
+            s += x
+            heappush(q2, x)
+            if len(q2) > n:
+                s -= heappop(q2)
+            suf[i] = s
 
-        right_heap = nums[2 * n :]
-        heapify(right_heap)
-        right_sum = sum(right_heap)
-        answer = left[2 * n - 1] - right_sum
-
-        for index in range(2 * n - 1, n - 1, -1):
-            value = nums[index]
-            if value > right_heap[0]:
-                removed = heapreplace(right_heap, value)
-                right_sum += value - removed
-            answer = min(answer, left[index - 1] - right_sum)
-
-        return answer
+        return min(pre[i] - suf[i + 1] for i in range(n, n * 2 + 1))

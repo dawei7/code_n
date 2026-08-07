@@ -1,20 +1,18 @@
+# Time:  O(1)
+# Space: O(1)
+
 import math
 
 
+# math, law of cosines
 class Solution:
-    def internalAngles(self, sides: list[int]) -> list[float]:
-        a, b, c = sorted(sides)
-        if a + b <= c:
-            return []
-
-        def angle(opposite: int, adjacent_1: int, adjacent_2: int) -> float:
-            cosine = (adjacent_1 * adjacent_1 + adjacent_2 * adjacent_2 - opposite * opposite) / (
-                2 * adjacent_1 * adjacent_2
-            )
-            return math.degrees(math.acos(max(-1.0, min(1.0, cosine))))
-
-        return [
-            angle(a, b, c),
-            angle(b, a, c),
-            angle(c, a, b),
-        ]
+    def internalAngles(self, sides):
+        """
+        :type sides: List[int]
+        :rtype: List[float]
+        """
+        sides.sort()
+        a, b, c = sides
+        return [acos((b*b+c*c-a*a)/(2.0*b*c))*(180.0/math.pi),
+                acos((a*a+c*c-b*b)/(2.0*a*c))*(180.0/math.pi),
+                acos((a*a+b*b-c*c)/(2.0*a*b))*(180.0/math.pi)] if a+b > c else []

@@ -1,28 +1,37 @@
-from collections import deque
-from typing import Optional
+# Time:  O(n)
+# Space: O(w)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
 class Solution:
-    def isEvenOddTree(self, root: Optional["TreeNode"]) -> bool:
-        queue = deque([root])
-        even_level = True
-
-        while queue:
-            previous = 0 if even_level else float("inf")
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                if even_level:
-                    if node.val % 2 == 0 or node.val <= previous:
+    def isEvenOddTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        q = [root]
+        is_odd = False
+        while q:
+            new_q = []
+            prev = None
+            for node in q:
+                if is_odd:
+                    if node.val%2 or (prev and prev.val <= node.val):
                         return False
-                elif node.val % 2 == 1 or node.val >= previous:
-                    return False
-
-                previous = node.val
+                else:
+                    if not node.val%2 or (prev and prev.val >= node.val):
+                        return False
                 if node.left:
-                    queue.append(node.left)
+                    new_q.append(node.left)
                 if node.right:
-                    queue.append(node.right)
-
-            even_level = not even_level
-
+                    new_q.append(node.right)
+                prev = node
+            q = new_q
+            is_odd = not is_odd
         return True

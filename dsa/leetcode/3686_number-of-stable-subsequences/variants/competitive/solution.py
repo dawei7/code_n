@@ -1,17 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# dp
 class Solution:
-    def countStableSubsequences(self, nums: List[int]) -> int:
-        modulo = 1_000_000_007
-        endings = [[0, 0], [0, 0]]
-
-        for value in nums:
-            parity = value & 1
-            other = parity ^ 1
-            new_run_one = (1 + endings[other][0] + endings[other][1]) % modulo
-            new_run_two = endings[parity][0]
-            endings[parity][0] = (endings[parity][0] + new_run_one) % modulo
-            endings[parity][1] = (endings[parity][1] + new_run_two) % modulo
-
-        return sum(map(sum, endings)) % modulo
+    def countStableSubsequences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [[0]*2 for _ in range(2)]  # dp[p][i]: count of subsequences that end with exactly (i+1) consecutive numbers of parity p
+        for x in nums:
+            p = x%2
+            dp[p][1] = (dp[p][1]+dp[p][0])%MOD
+            dp[p][0] = (dp[p][0]+1+dp[1^p][0]+dp[1^p][1])%MOD
+        return sum(dp[p][i] for p in range(2) for i in range(2))%MOD

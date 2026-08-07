@@ -1,24 +1,18 @@
-from typing import List
+# Time:  O(m * n * k)
+# Space: O(n * k)
 
-
+# dp
 class Solution:
-    def numberOfPaths(self, grid: List[List[int]], k: int) -> int:
-        modulus = 1_000_000_007
-        columns = len(grid[0])
-        ways = [[0] * k for _ in range(columns)]
-
-        for row in range(len(grid)):
-            for column in range(columns):
-                value = grid[row][column] % k
-                current = [0] * k
-                if row == 0 and column == 0:
-                    current[value] = 1
-                else:
-                    for remainder in range(k):
-                        count = ways[column][remainder] if row else 0
-                        if column:
-                            count += ways[column - 1][remainder]
-                        current[(remainder + value) % k] = count % modulus
-                ways[column] = current
-
-        return ways[-1][0]
+    def numberOfPaths(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [[0 for _ in range(k)] for _ in range(len(grid[0]))]
+        dp[0][0] = 1
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                dp[j] = [((dp[j-1][(l-grid[i][j])%k] if j-1 >= 0 else 0)+dp[j][(l-grid[i][j])%k])%MOD for l in range(k)]
+        return dp[-1][0]

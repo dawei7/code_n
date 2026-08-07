@@ -1,23 +1,29 @@
-from typing import List
+# Time:  O(1)
+# Space: O(1)
+
+from collections import deque
 
 
-class Vector2D:
-    def __init__(self, vec: List[List[int]]):
-        self.vec = vec
-        self.row = 0
-        self.column = 0
+class Vector2D(object):
 
-    def _advance(self) -> None:
-        while self.row < len(self.vec) and self.column == len(self.vec[self.row]):
-            self.row += 1
-            self.column = 0
+    def __init__(self, vec2d):
+        """
+        Initialize your data structure here.
+        :type vec2d: List[List[int]]
+        """
+        self.stack = deque((len(v), iter(v)) for v in vec2d if v)
 
-    def next(self) -> int:
-        self._advance()
-        value = self.vec[self.row][self.column]
-        self.column += 1
-        return value
+    def next(self):
+        """
+        :rtype: int
+        """
+        length, iterator = self.stack.popleft()
+        if length > 1:
+            self.stack.appendleft((length-1, iterator))
+        return next(iterator)
 
-    def hasNext(self) -> bool:
-        self._advance()
-        return self.row < len(self.vec)
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return bool(self.stack)

@@ -1,27 +1,20 @@
-from typing import List
-
+# Time:  O(m * nlogn)
+# Space: O(1)
 
 class Solution:
-    def largestSubmatrix(self, matrix: List[List[int]]) -> int:
-        columns = len(matrix[0])
-        heights = [0] * columns
-        order = list(range(columns))
-        best = 0
-
+    def largestSubmatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        for c in range(len(matrix[0])):
+            h = 0
+            for r in range(len(matrix)):
+                h = h+1 if matrix[r][c] == 1 else 0
+                matrix[r][c] = h
+        result = 0
         for row in matrix:
-            positive = []
-            zero = []
-
-            for column in order:
-                if row[column] == 1:
-                    heights[column] += 1
-                    positive.append(column)
-                else:
-                    heights[column] = 0
-                    zero.append(column)
-
-            order = positive + zero
-            for width, column in enumerate(positive, 1):
-                best = max(best, width * heights[column])
-
-        return best
+            row.sort()
+            for c in range(len(row)):
+                result = max(result, (len(row)-c) * row[c])
+        return result

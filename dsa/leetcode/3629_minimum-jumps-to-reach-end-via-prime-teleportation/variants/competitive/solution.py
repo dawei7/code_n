@@ -1,55 +1,61 @@
-from collections import defaultdict, deque
-from typing import List
+# Time:  precompute: O(r)
+#        runtime:    O(nlogr)
+# Space: O(r + nlogr)
+
+import collections
 
 
+# number theory, bfs
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return spf
+
+
+MAX_NUM = 10**6
+SPF = linear_sieve_of_eratosthenes(MAX_NUM)
 class Solution:
-    def minJumps(self, nums: List[int]) -> int:
-        n = len(nums)
-        if n == 1:
-            return 0
-
-        maximum = max(nums)
-        is_prime = bytearray(b"\x01") * (maximum + 1)
-        if maximum >= 0:
-            is_prime[0] = 0
-        if maximum >= 1:
-            is_prime[1] = 0
-        limit = int(maximum**0.5)
-        for prime in range(2, limit + 1):
-            if is_prime[prime]:
-                start = prime * prime
-                count = (maximum - start) // prime + 1
-                is_prime[start : maximum + 1 : prime] = b"\x00" * count
-
-        indices_by_value = defaultdict(list)
-        for index, value in enumerate(nums):
-            indices_by_value[value].append(index)
-
-        distance = [-1] * n
-        distance[0] = 0
-        queue = deque([0])
-        used_primes = set()
-
-        while queue:
-            index = queue.popleft()
-            next_distance = distance[index] + 1
-
-            for neighbor in (index - 1, index + 1):
-                if 0 <= neighbor < n and distance[neighbor] == -1:
-                    if neighbor == n - 1:
-                        return next_distance
-                    distance[neighbor] = next_distance
-                    queue.append(neighbor)
-
-            prime = nums[index]
-            if is_prime[prime] and prime not in used_primes:
-                used_primes.add(prime)
-                for multiple in range(prime, maximum + 1, prime):
-                    for neighbor in indices_by_value.get(multiple, ()):
-                        if distance[neighbor] == -1:
-                            if neighbor == n - 1:
-                                return next_distance
-                            distance[neighbor] = next_distance
-                            queue.append(neighbor)
-
-        return distance[-1]
+    def minJumps(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        adj = collections.defaultdict(list)
+        for i, x in enumerate(nums):
+            while x != 1:
+                p = SPF[x]
+                while x%p == 0:
+                    x //= p
+                adj[p].append(i)
+        dist = [-1]*len(nums)
+        dist[0] = 0
+        q = [0]
+        while q:
+            new_q = []
+            for i in q:
+                if i == len(nums)-1:
+                    return dist[-1]
+                for di in (-1, +1):
+                    ni = i+di
+                    if 0 <= ni < len(nums) and dist[ni] == -1:
+                        dist[ni] = dist[i]+1
+                        new_q.append(ni)
+                p = nums[i]
+                if SPF[p] != p or p not in adj:
+                    continue
+                for ni in adj[p]:
+                    if dist[ni] != -1:
+                        continue
+                    dist[ni] = dist[i]+1
+                    new_q.append(ni)
+                del adj[p]
+            q = new_q
+        return -1

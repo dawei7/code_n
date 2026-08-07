@@ -1,18 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def maximumXorProduct(self, a: int, b: int, n: int) -> int:
-        modulo = 1_000_000_007
-        mask = (1 << n) - 1
-        first = a & ~mask
-        second = b & ~mask
-
-        for bit_index in range(n - 1, -1, -1):
-            bit = 1 << bit_index
-            if (a & bit) == (b & bit):
-                first |= bit
-                second |= bit
-            elif first < second:
-                first |= bit
-            else:
-                second |= bit
-
-        return (first % modulo) * (second % modulo) % modulo
+    def maximumXorProduct(self, a, b, n):
+        """
+        :type a: int
+        :type b: int
+        :type n: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        for i in reversed(range(n)):
+            base = 1<<i
+            if min(a, b)&base == 0:
+                a, b = a^base, b^base
+        return (a%MOD)*(b%MOD)%MOD

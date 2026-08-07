@@ -1,8 +1,12 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def construct2DArray(self, original: List[int], m: int, n: int) -> List[List[int]]:
-        if len(original) != m * n:
-            return []
-        return [original[start : start + n] for start in range(0, len(original), n)]
+    def construct2DArray(self, original, m, n):
+        """
+        :type original: List[int]
+        :type m: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        return [original[i:i+n] for i in range(0, len(original), n)] if len(original) == m*n else []

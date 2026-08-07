@@ -1,12 +1,10 @@
 class Solution:
     def numberOfWays(self, s: str) -> int:
-        singles = [0, 0]
-        pairs = [0, 0]
-        ways = 0
-        for character in s:
-            building = ord(character) - ord("0")
-            other = 1 - building
-            ways += pairs[other]
-            pairs[building] += singles[other]
-            singles[building] += 1
-        return ways
+        l = [0, 0]
+        r = [s.count("0"), s.count("1")]
+        ans = 0
+        for x in map(int, s):
+            r[x] -= 1
+            ans += l[x ^ 1] * r[x ^ 1]
+            l[x] += 1
+        return ans

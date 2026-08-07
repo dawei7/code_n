@@ -1,13 +1,27 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def maxPower(self, s: str) -> int:
-        current = 1
-        best = 1
-
-        for index in range(1, len(s)):
-            if s[index] == s[index - 1]:
-                current += 1
+    def maxPower(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result, count = 1, 1
+        for i in range(1, len(s)):
+            if s[i] == s[i-1]:
+                count += 1
             else:
-                current = 1
-            best = max(best, current)
+                count = 1
+            result = max(result, count)
+        return result
 
-        return best
+
+# Time:  O(n)
+# Space: O(n)
+import itertools
+
+
+class Solution2(object):
+    def maxPower(self, s):
+        return max(len(list(v)) for _, v in itertools.groupby(s))

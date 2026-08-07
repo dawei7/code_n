@@ -1,23 +1,35 @@
-from typing import List
+# Time:  O(n * 2^n)
+# Space: O(n)
 
-
+# bitmasks
 class Solution:
-    def maximumBobPoints(self, numArrows: int, aliceArrows: List[int]) -> List[int]:
-        best_score = -1
-        best_allocation = [0] * 12
-
-        for mask in range(1 << 12):
-            allocation = [0] * 12
-            used = 0
+    def maximumBobPoints(self, numArrows, aliceArrows):
+        """
+        :type numArrows: int
+        :type aliceArrows: List[int]
+        :rtype: List[int]
+        """
+        def check(mask, numArrows):
             score = 0
-            for section in range(12):
-                if mask & (1 << section):
-                    allocation[section] = aliceArrows[section] + 1
-                    used += allocation[section]
-                    score += section
-            if used <= numArrows and score > best_score:
-                allocation[0] += numArrows - used
-                best_score = score
-                best_allocation = allocation
-
-        return best_allocation
+            cnt = [0]*len(aliceArrows)
+            i, base = 0, 1
+            for k, a in enumerate(aliceArrows):
+                if mask&1:
+                    need = a+1
+                    if need > numArrows:
+                        return 0, [0]*len(aliceArrows)
+                    numArrows -= need
+                    cnt[k] = need
+                    score += k
+                mask >>= 1
+            cnt[-1] += numArrows
+            return score, cnt
+        
+        result = [0]*len(aliceArrows)
+        best = 0
+        for mask in range(1, 2**len(aliceArrows)):
+            score, cnt = check(mask, numArrows)
+            if score > best:
+                best = score
+                result = cnt
+        return result

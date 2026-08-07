@@ -1,21 +1,32 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(k)
+
+import collections
 
 
-class ZigzagIterator:
-    def __init__(self, v1: List[int], v2: List[int]):
-        self.active = deque()
-        if v1:
-            self.active.append((v1, 0))
-        if v2:
-            self.active.append((v2, 0))
+class ZigzagIterator(object):
 
-    def next(self) -> int:
-        values, index = self.active.popleft()
-        value = values[index]
-        if index + 1 < len(values):
-            self.active.append((values, index + 1))
-        return value
+    def __init__(self, v1, v2):
+        """
+        Initialize your q structure here.
+        :type v1: List[int]
+        :type v2: List[int]
+        """
+        self.q = collections.deque([(len(v), iter(v)) for v in (v1, v2) if v])
 
-    def hasNext(self) -> bool:
-        return bool(self.active)
+    def next(self):
+        """
+        :rtype: int
+        """
+        len, iter = self.q.popleft()
+        if len > 1:
+            self.q.append((len-1, iter))
+        return next(iter)
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return bool(self.q)
+
+

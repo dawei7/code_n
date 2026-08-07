@@ -1,46 +1,13 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        rows = len(matrix)
-        columns = len(matrix[0])
-        outdegree = [[0] * columns for _ in range(rows)]
+        @cache
+        def dfs(i: int, j: int) -> int:
+            ans = 0
+            for a, b in pairwise((-1, 0, 1, 0, -1)):
+                x, y = i + a, j + b
+                if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+                    ans = max(ans, dfs(x, y))
+            return ans + 1
 
-        for row in range(rows):
-            for column in range(columns):
-                for next_row, next_column in (
-                    (row - 1, column),
-                    (row + 1, column),
-                    (row, column - 1),
-                    (row, column + 1),
-                ):
-                    if (
-                        0 <= next_row < rows
-                        and 0 <= next_column < columns
-                        and matrix[next_row][next_column] > matrix[row][column]
-                    ):
-                        outdegree[row][column] += 1
-
-        queue = deque((row, column) for row in range(rows) for column in range(columns) if outdegree[row][column] == 0)
-        layers = 0
-        while queue:
-            layers += 1
-            for _ in range(len(queue)):
-                row, column = queue.popleft()
-                for next_row, next_column in (
-                    (row - 1, column),
-                    (row + 1, column),
-                    (row, column - 1),
-                    (row, column + 1),
-                ):
-                    if (
-                        0 <= next_row < rows
-                        and 0 <= next_column < columns
-                        and matrix[next_row][next_column] < matrix[row][column]
-                    ):
-                        outdegree[next_row][next_column] -= 1
-                        if outdegree[next_row][next_column] == 0:
-                            queue.append((next_row, next_column))
-        return layers
+        m, n = len(matrix), len(matrix[0])
+        return max(dfs(i, j) for i in range(m) for j in range(n))

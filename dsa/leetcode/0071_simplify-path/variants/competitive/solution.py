@@ -1,12 +1,15 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def simplifyPath(self, path: str) -> str:
-        directories = []
-        for component in path.split("/"):
-            if component == "" or component == ".":
-                continue
-            if component == "..":
-                if directories:
-                    directories.pop()
-            else:
-                directories.append(component)
-        return "/" + "/".join(directories)
+    # @param path, a string
+    # @return a string
+    def simplifyPath(self, path):
+        stack, tokens = [], path.split("/")
+        for token in tokens:
+            if token == ".." and stack:
+                stack.pop()
+            elif token != ".." and token != "." and token:
+                stack.append(token)
+        return "/" + "/".join(stack)
+

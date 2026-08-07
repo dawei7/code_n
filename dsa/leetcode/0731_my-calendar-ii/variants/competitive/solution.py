@@ -1,71 +1,27 @@
-class _Node:
-    def __init__(self):
-        self.maximum = 0
-        self.lazy = 0
-        self.left = None
-        self.right = None
+# Time:  O(n^2)
+# Space: O(n)
 
-
-class MyCalendarTwo:
-    DOMAIN_LEFT = 0
-    DOMAIN_RIGHT = 10**9 - 1
+class MyCalendarTwo(object):
 
     def __init__(self):
-        self.root = _Node()
+        self.__overlaps = []
+        self.__calendar = []
 
-    def _query(self, node, left, right, query_left, query_right):
-        if query_left <= left and right <= query_right:
-            return node.maximum
 
-        middle = (left + right) // 2
-        best = 0
-        if query_left <= middle and node.left is not None:
-            best = self._query(node.left, left, middle, query_left, query_right)
-        if query_right > middle and node.right is not None:
-            best = max(
-                best,
-                self._query(node.right, middle + 1, right, query_left, query_right),
-            )
-        return node.lazy + best
-
-    def _add(self, node, left, right, query_left, query_right):
-        if query_left <= left and right <= query_right:
-            node.maximum += 1
-            node.lazy += 1
-            return
-
-        middle = (left + right) // 2
-        if query_left <= middle:
-            if node.left is None:
-                node.left = _Node()
-            self._add(node.left, left, middle, query_left, query_right)
-        if query_right > middle:
-            if node.right is None:
-                node.right = _Node()
-            self._add(node.right, middle + 1, right, query_left, query_right)
-
-        left_maximum = node.left.maximum if node.left is not None else 0
-        right_maximum = node.right.maximum if node.right is not None else 0
-        node.maximum = node.lazy + max(left_maximum, right_maximum)
-
-    def book(self, start: int, end: int) -> bool:
-        query_right = end - 1
-        if (
-            self._query(
-                self.root,
-                self.DOMAIN_LEFT,
-                self.DOMAIN_RIGHT,
-                start,
-                query_right,
-            )
-            >= 2
-        ):
-            return False
-        self._add(
-            self.root,
-            self.DOMAIN_LEFT,
-            self.DOMAIN_RIGHT,
-            start,
-            query_right,
-        )
+    def book(self, start, end):
+        """
+        :type start: int
+        :type end: int
+        :rtype: bool
+        """
+        for i, j in self.__overlaps:
+            if start < j and end > i:
+                return False
+        for i, j in self.__calendar:
+            if start < j and end > i:
+                self.__overlaps.append((max(start, i), min(end, j)))
+        self.__calendar.append((start, end))
         return True
+
+
+

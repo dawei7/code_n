@@ -1,30 +1,14 @@
 class Solution:
     def splitString(self, s: str) -> bool:
-        n = len(s)
-
-        for first_end in range(1, n):
-            previous = int(s[:first_end])
-            position = first_end
-
-            while position < n and previous > 0:
-                target = previous - 1
-                if target == 0:
-                    if all(char == "0" for char in s[position:]):
-                        return True
-                    break
-
-                cursor = position
-                value = 0
-                while cursor < n and value < target:
-                    value = value * 10 + int(s[cursor])
-                    cursor += 1
-
-                if value != target:
-                    break
-
-                position = cursor
-                previous = target
-                if position == n:
+        def dfs(i: int, x: int) -> bool:
+            if i >= len(s):
+                return True
+            y = 0
+            r = len(s) - 1 if x < 0 else len(s)
+            for j in range(i, r):
+                y = y * 10 + int(s[j])
+                if (x < 0 or x - y == 1) and dfs(j + 1, y):
                     return True
+            return False
 
-        return False
+        return dfs(0, -1)

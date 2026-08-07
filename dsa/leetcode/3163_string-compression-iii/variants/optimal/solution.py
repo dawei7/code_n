@@ -1,12 +1,11 @@
 class Solution:
     def compressedString(self, word: str) -> str:
-        pieces = []
-        start = 0
-        while start < len(word):
-            end = start
-            while end < len(word) and word[end] == word[start] and end - start < 9:
-                end += 1
-            pieces.append(str(end - start))
-            pieces.append(word[start])
-            start = end
-        return "".join(pieces)
+        g = groupby(word)
+        ans = []
+        for c, v in g:
+            k = len(list(v))
+            while k:
+                x = min(9, k)
+                ans.append(str(x) + c)
+                k -= x
+        return "".join(ans)

@@ -1,13 +1,35 @@
+# Time:  O(n)
+# Space: O(26)
+
+# combinatorics
 class Solution:
-    def appealSum(self, s: str) -> int:
-        last_index = [-1] * 26
-        ending_appeal = 0
-        total = 0
+    def appealSum(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = curr = 0
+        lookup = [-1]*26
+        for i, c in enumerate(s):
+            result += (i-lookup[ord(c)-ord('a')])*(len(s)-i)
+            lookup[ord(c)-ord('a')] = i
+        return result
 
-        for index, character in enumerate(s):
-            letter = ord(character) - ord("a")
-            ending_appeal += index - last_index[letter]
-            total += ending_appeal
-            last_index[letter] = index
 
-        return total
+# Time:  O(n)
+# Space: O(26)
+# counting
+class Solution2(object):
+    def appealSum(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = cnt = 0
+        lookup = [-1]*26
+        for i, c in enumerate(s):
+            cnt += i-lookup[ord(c)-ord('a')]
+            lookup[ord(c)-ord('a')] = i
+            result += cnt
+        return result
+

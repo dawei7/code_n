@@ -1,12 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def shortestDistance(self, wordsDict: list[str], word1: str, word2: str) -> int:
-        latest1 = latest2 = -1
-        answer = len(wordsDict)
-        for index, word in enumerate(wordsDict):
-            if word == word1:
-                latest1 = index
-            elif word == word2:
-                latest2 = index
-            if latest1 >= 0 and latest2 >= 0:
-                answer = min(answer, abs(latest1 - latest2))
-        return answer
+    # @param {string[]} words
+    # @param {string} word1
+    # @param {string} word2
+    # @return {integer}
+    def shortestDistance(self, words, word1, word2):
+        dist = float("inf")
+        i, index1, index2 = 0, None, None
+        while i < len(words):
+            if words[i] == word1:
+                index1 = i
+            elif words[i] == word2:
+                index2 = i
+
+            if index1 is not None and index2 is not None:
+                dist = min(dist, abs(index1 - index2))
+            i += 1
+
+        return dist
+

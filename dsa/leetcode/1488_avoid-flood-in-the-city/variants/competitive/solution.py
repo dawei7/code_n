@@ -1,47 +1,33 @@
-from collections import defaultdict, deque
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
+import heapq
 
 
 class Solution:
-    def avoidFlood(self, rains: List[int]) -> List[int]:
-        future = defaultdict(deque)
-        for day, lake in enumerate(rains):
-            if lake > 0:
-                future[lake].append(day)
-
-        full = set()
-        current_deadline = {}
-        deadlines = []
-        result = [1] * len(rains)
-
-        for day, lake in enumerate(rains):
-            if lake > 0:
-                result[day] = -1
-                future[lake].popleft()
-
-                if lake in full:
+    def avoidFlood(self, rains):
+        """
+        :type rains: List[int]
+        :rtype: List[int]
+        """
+        lookup = collections.defaultdict(list)
+        i = len(rains)-1
+        for lake in reversed(rains):
+            lookup[lake].append(i)
+            i -= 1
+        result, min_heap = [], []
+        for i, lake in enumerate(rains):
+            if lake:
+                if len(lookup[lake]) >= 2:
+                    lookup[lake].pop()
+                    heapq.heappush(min_heap, lookup[lake][-1])
+                result.append(-1)
+            elif min_heap:
+                j = heapq.heappop(min_heap)
+                if j < i:
                     return []
-
-                full.add(lake)
-                if future[lake]:
-                    deadline = future[lake][0]
-                    current_deadline[lake] = deadline
-                    heappush(deadlines, (deadline, lake))
-                else:
-                    current_deadline.pop(lake, None)
-                continue
-
-            while deadlines:
-                deadline, urgent_lake = deadlines[0]
-                if urgent_lake in full and current_deadline.get(urgent_lake) == deadline:
-                    break
-                heappop(deadlines)
-
-            if deadlines:
-                _, urgent_lake = heappop(deadlines)
-                full.remove(urgent_lake)
-                current_deadline.pop(urgent_lake, None)
-                result[day] = urgent_lake
-
-        return result
+                result.append(rains[j])
+            else:
+                result.append(1)
+        return result if not min_heap else []

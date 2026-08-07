@@ -1,7 +1,9 @@
-SELECT
-    transaction_date,
-    SUM(CASE WHEN amount % 2 = 1 THEN amount ELSE 0 END) AS odd_sum,
-    SUM(CASE WHEN amount % 2 = 0 THEN amount ELSE 0 END) AS even_sum
+# Time:  O(nlogn)
+# Space: O(1)
+
+SELECT transaction_date, 
+       SUM(IF(amount%2 != 0, amount, 0)) AS odd_sum,
+       SUM(IF(amount%2 = 0, amount, 0)) AS even_sum
 FROM transactions
-GROUP BY transaction_date
-ORDER BY transaction_date;
+GROUP BY 1
+ORDER BY 1;

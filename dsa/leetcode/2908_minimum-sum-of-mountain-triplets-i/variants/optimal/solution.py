@@ -1,18 +1,12 @@
-from typing import List
-
-
 class Solution:
     def minimumSum(self, nums: List[int]) -> int:
-        suffix_minimum = nums[:]
-        for index in range(len(nums) - 2, -1, -1):
-            suffix_minimum[index] = min(nums[index], suffix_minimum[index + 1])
-
-        answer = float("inf")
-        prefix_minimum = nums[0]
-        for middle in range(1, len(nums) - 1):
-            right_minimum = suffix_minimum[middle + 1]
-            if prefix_minimum < nums[middle] and right_minimum < nums[middle]:
-                answer = min(answer, prefix_minimum + nums[middle] + right_minimum)
-            prefix_minimum = min(prefix_minimum, nums[middle])
-
-        return -1 if answer == float("inf") else int(answer)
+        n = len(nums)
+        right = [inf] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            right[i] = min(right[i + 1], nums[i])
+        ans = left = inf
+        for i, x in enumerate(nums):
+            if left < x and right[i + 1] < x:
+                ans = min(ans, left + x + right[i + 1])
+            left = min(left, x)
+        return -1 if ans == inf else ans

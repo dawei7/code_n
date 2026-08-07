@@ -1,19 +1,16 @@
 class Solution:
     def numWays(self, steps: int, arrLen: int) -> int:
-        modulus = 1_000_000_007
-        width = min(arrLen, steps // 2 + 1)
-        counts = [0] * width
-        counts[0] = 1
+        @cache
+        def dfs(i, j):
+            if i > j or i >= arrLen or i < 0 or j < 0:
+                return 0
+            if i == 0 and j == 0:
+                return 1
+            ans = 0
+            for k in range(-1, 2):
+                ans += dfs(i + k, j - 1)
+                ans %= mod
+            return ans
 
-        for _ in range(steps):
-            next_counts = [0] * width
-            for position in range(width):
-                total = counts[position]
-                if position > 0:
-                    total += counts[position - 1]
-                if position + 1 < width:
-                    total += counts[position + 1]
-                next_counts[position] = total % modulus
-            counts = next_counts
-
-        return counts[0]
+        mod = 10**9 + 7
+        return dfs(0, steps)

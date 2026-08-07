@@ -1,22 +1,22 @@
-from typing import List
-
+# Time:  O(nlogr)
+# Space: O(1)
 
 class Solution:
-    def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        low = 1
-        high = max(piles)
+    def minEatingSpeed(self, piles, H):
+        """
+        :type piles: List[int]
+        :type H: int
+        :rtype: int
+        """
+        def possible(piles, H, K):
+            return sum((pile-1)//K+1 for pile in piles) <= H
 
-        while low < high:
-            speed = (low + high) // 2
-            required_hours = 0
-            for pile in piles:
-                required_hours += (pile + speed - 1) // speed
-                if required_hours > h:
-                    break
-
-            if required_hours <= h:
-                high = speed
+        left, right = 1, max(piles)
+        while left <= right:
+            mid = left + (right-left)//2
+            if possible(piles, H, mid):
+                right = mid-1
             else:
-                low = speed + 1
+                left = mid+1
+        return left
 
-        return low

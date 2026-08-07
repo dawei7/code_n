@@ -1,12 +1,19 @@
-from typing import List
-
+# Time:  O(m + n)
+# Space: O(m + n)
 
 class Solution:
-    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        next_greater = {}
-        stack = []
-        for value in nums2:
-            while stack and stack[-1] < value:
-                next_greater[stack.pop()] = value
-            stack.append(value)
-        return [next_greater.get(value, -1) for value in nums1]
+    def nextGreaterElement(self, findNums, nums):
+        """
+        :type findNums: List[int]
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        stk, lookup = [], {}
+        for num in nums:
+            while stk and num > stk[-1]:
+                lookup[stk.pop()] = num
+            stk.append(num)
+        while stk:
+            lookup[stk.pop()] = -1
+        return map(lambda x : lookup[x], findNums)
+

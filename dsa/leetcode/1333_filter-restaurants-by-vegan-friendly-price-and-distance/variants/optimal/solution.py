@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     def filterRestaurants(
         self,
@@ -9,13 +6,9 @@ class Solution:
         maxPrice: int,
         maxDistance: int,
     ) -> List[int]:
-        eligible = []
-
-        for restaurant_id, rating, is_vegan, price, distance in restaurants:
-            if veganFriendly and not is_vegan:
-                continue
-            if price <= maxPrice and distance <= maxDistance:
-                eligible.append((rating, restaurant_id))
-
-        eligible.sort(reverse=True)
-        return [restaurant_id for _, restaurant_id in eligible]
+        restaurants.sort(key=lambda x: (-x[1], -x[0]))
+        ans = []
+        for idx, _, vegan, price, dist in restaurants:
+            if vegan >= veganFriendly and price <= maxPrice and dist <= maxDistance:
+                ans.append(idx)
+        return ans

@@ -1,22 +1,14 @@
-from typing import List
-
-
 class Solution:
     def findMissingAndRepeatedValues(self, grid: List[List[int]]) -> List[int]:
         n = len(grid)
-        limit = n * n
-        observed_sum = 0
-        observed_square_sum = 0
-
+        cnt = [0] * (n * n + 1)
         for row in grid:
-            for value in row:
-                observed_sum += value
-                observed_square_sum += value * value
-
-        expected_sum = limit * (limit + 1) // 2
-        expected_square_sum = limit * (limit + 1) * (2 * limit + 1) // 6
-        difference = observed_sum - expected_sum
-        pair_sum = (observed_square_sum - expected_square_sum) // difference
-        repeated = (difference + pair_sum) // 2
-        missing = pair_sum - repeated
-        return [repeated, missing]
+            for v in row:
+                cnt[v] += 1
+        ans = [0] * 2
+        for i in range(1, n * n + 1):
+            if cnt[i] == 2:
+                ans[0] = i
+            if cnt[i] == 0:
+                ans[1] = i
+        return ans

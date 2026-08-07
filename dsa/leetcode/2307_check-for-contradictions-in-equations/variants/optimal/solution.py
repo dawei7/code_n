@@ -1,33 +1,30 @@
-from typing import List
-
-
 class Solution:
-    def checkContradictions(self, equations: List[List[str]], values: List[float]) -> bool:
-        parent = {}
-        ratio = {}
+    def checkContradictions(
+        self, equations: List[List[str]], values: List[float]
+    ) -> bool:
+        def find(x: int) -> int:
+            if p[x] != x:
+                root = find(p[x])
+                w[x] *= w[p[x]]
+                p[x] = root
+            return p[x]
 
-        def find(variable: str) -> str:
-            if parent[variable] != variable:
-                previous_parent = parent[variable]
-                parent[variable] = find(previous_parent)
-                ratio[variable] *= ratio[previous_parent]
-            return parent[variable]
-
-        for (left, right), value in zip(equations, values):
-            for variable in (left, right):
-                if variable not in parent:
-                    parent[variable] = variable
-                    ratio[variable] = 1.0
-
-            left_root = find(left)
-            right_root = find(right)
-
-            if left_root == right_root:
-                if abs(ratio[left] / ratio[right] - value) >= 1e-5:
-                    return True
-                continue
-
-            parent[left_root] = right_root
-            ratio[left_root] = value * ratio[right] / ratio[left]
-
+        d = defaultdict(int)
+        n = 0
+        for e in equations:
+            for s in e:
+                if s not in d:
+                    d[s] = n
+                    n += 1
+        p = list(range(n))
+        w = [1.0] * n
+        eps = 1e-5
+        for (a, b), v in zip(equations, values):
+            a, b = d[a], d[b]
+            pa, pb = find(a), find(b)
+            if pa != pb:
+                p[pb] = pa
+                w[pb] = v * w[a] / w[b]
+            elif abs(v * w[a] - w[b]) >= eps:
+                return True
         return False

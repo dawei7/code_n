@@ -1,34 +1,80 @@
+# Time:  O(10^6), the most times of finding x is 665502 (k = 7, n = 30)
+# Space: O(1)
+
 class Solution:
-    def kMirror(self, k: int, n: int) -> int:
-        def is_base_k_palindrome(number: int) -> bool:
-            digits = []
-            while number:
-                digits.append(number % k)
-                number //= k
-            return digits == digits[::-1]
+    def kMirror(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: int
+        """
+        def mirror(n, base, odd):
+            result = n
+            if odd:
+                n //= base
+            while n:
+                result = result*base+n%base
+                n //= base
+            return result
 
-        total = 0
-        found = 0
-        length = 1
+        def num_gen(base):
+            prefix_num, total = [1]*2, [base]*2
+            odd = 1
+            while True:
+                x = mirror(prefix_num[odd], base, odd)
+                prefix_num[odd] += 1
+                if prefix_num[odd] == total[odd]:
+                    total[odd] *= base
+                    odd ^= 1
+                yield x
 
-        while found < n:
-            half_length = (length + 1) // 2
-            start = 10 ** (half_length - 1)
-            stop = 10**half_length
+        def reverse(n, base):
+            result = 0
+            while n:
+                result = result*base+n%base
+                n = n//base
+            return result
 
-            for half in range(start, stop):
-                text = str(half)
-                if length % 2 == 0:
-                    palindrome = int(text + text[::-1])
+        def mirror_num(gen, base):
+            while True:
+                x = next(gen)
+                if x == reverse(x, base):
+                    break
+            return x
+
+        base1, base2 = k, 10  # (10, k) is slower
+        gen = num_gen(base1)
+        return sum(mirror_num(gen, base2) for _ in range(n))
+
+
+# Time:  O(10^6), the most times of finding x is 665502 (k = 7, n = 30)
+# Space: O(1)
+class Solution2(object):
+    def kMirror(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: int
+        """
+        def num_gen(k):
+            digits = ['0']
+            while True:
+                for i in range(len(digits)//2, len(digits)): 
+                    if int(digits[i])+1 < k:
+                        digits[i] = digits[-1-i] = str(int(digits[i])+1)
+                        break
+                    digits[i] = digits[-1-i] = '0'
                 else:
-                    palindrome = int(text + text[-2::-1])
+                    digits.insert(0, '1')
+                    digits[-1] = '1'
+                yield "".join(digits)
+        
+        def mirror_num(gen):
+            while True:
+                x = int(next(gen, k), k)
+                if str(x) == str(x)[::-1]:
+                    break
+            return x
 
-                if is_base_k_palindrome(palindrome):
-                    total += palindrome
-                    found += 1
-                    if found == n:
-                        return total
-
-            length += 1
-
-        return total
+        gen = num_gen(k)
+        return sum(mirror_num(gen) for _ in range(n))

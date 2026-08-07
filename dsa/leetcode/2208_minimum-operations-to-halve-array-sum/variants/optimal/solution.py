@@ -1,20 +1,13 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def halveArray(self, nums: List[int]) -> int:
-        heap = [-float(value) for value in nums]
-        heapq.heapify(heap)
-        target = sum(nums) / 2
-        reduction = 0.0
-        operations = 0
-
-        while reduction < target:
-            largest = -heapq.heappop(heap)
-            half = largest / 2
-            reduction += half
-            operations += 1
-            heapq.heappush(heap, -half)
-
-        return operations
+        s = sum(nums) / 2
+        pq = []
+        for x in nums:
+            heappush(pq, -x)
+        ans = 0
+        while s > 0:
+            t = -heappop(pq) / 2
+            s -= t
+            heappush(pq, -t)
+            ans += 1
+        return ans

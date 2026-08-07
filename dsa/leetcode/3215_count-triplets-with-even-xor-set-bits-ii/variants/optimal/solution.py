@@ -1,14 +1,12 @@
-from typing import List
-
-
 class Solution:
     def tripletCount(self, a: List[int], b: List[int], c: List[int]) -> int:
-        def parity_counts(values: List[int]) -> tuple[int, int]:
-            odd = sum(value.bit_count() & 1 for value in values)
-            return len(values) - odd, odd
-
-        a_even, a_odd = parity_counts(a)
-        b_even, b_odd = parity_counts(b)
-        c_even, c_odd = parity_counts(c)
-
-        return a_even * b_even * c_even + a_even * b_odd * c_odd + a_odd * b_even * c_odd + a_odd * b_odd * c_even
+        cnt1 = Counter(x.bit_count() & 1 for x in a)
+        cnt2 = Counter(x.bit_count() & 1 for x in b)
+        cnt3 = Counter(x.bit_count() & 1 for x in c)
+        ans = 0
+        for i in range(2):
+            for j in range(2):
+                for k in range(2):
+                    if (i + j + k) & 1 ^ 1:
+                        ans += cnt1[i] * cnt2[j] * cnt3[k]
+        return ans

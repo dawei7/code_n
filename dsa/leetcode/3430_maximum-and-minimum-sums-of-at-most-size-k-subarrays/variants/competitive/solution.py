@@ -1,47 +1,69 @@
-from typing import List
+# Time:  O(n)
+# Space: O(k)
+
+import collections
 
 
+# two pointers, sliding window, mono deque
 class Solution:
-    def minMaxSubarraySum(self, nums: List[int], k: int) -> int:
-        n = len(nums)
+    def minMaxSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def count(check):
+            result = total = 0
+            dq = collections.deque()
+            for right in range(len(nums)):
+                while dq and not check(nums[dq[-1]], nums[right]):
+                    i = dq.pop()
+                    cnt = i-(dq[-1]+1 if dq else max(right-k+1, 0))+1
+                    total -= cnt*nums[i]
+                cnt = right-(dq[-1]+1 if dq else max(right-k+1, 0))+1
+                dq.append(right)
+                total += cnt*nums[right]
+                result += total
+                if right-(k-1) >= 0:
+                    total -= nums[dq[0]]
+                    if dq[0] == right-(k-1):
+                        dq.popleft()
+            return result
+    
+        return count(lambda a, b: a < b)+count(lambda a, b: a > b)
 
-        def bounded_pair_count(left: int, right: int) -> int:
-            left = min(left, k - 1)
-            full_until = min(left, k - 1 - right)
-            count = 0
-            if full_until >= 0:
-                count = (full_until + 1) * (right + 1)
-            start = max(0, full_until + 1)
-            if start <= left:
-                terms = left - start + 1
-                count += terms * ((k - start) + (k - left)) // 2
-            return count
 
-        def contribution(maximum: bool) -> int:
-            previous = [-1] * n
-            following = [n] * n
-            stack: list[int] = []
-            for i, value in enumerate(nums):
-                while stack and (nums[stack[-1]] <= value if maximum else nums[stack[-1]] >= value):
-                    stack.pop()
-                if stack:
-                    previous[i] = stack[-1]
-                stack.append(i)
+# Time:  O(n)
+# Space: O(k)
+import collections
 
-            stack.clear()
-            for i in range(n - 1, -1, -1):
-                while stack and (nums[stack[-1]] < nums[i] if maximum else nums[stack[-1]] > nums[i]):
-                    stack.pop()
-                if stack:
-                    following[i] = stack[-1]
-                stack.append(i)
 
-            total = 0
-            for i, value in enumerate(nums):
-                total += value * bounded_pair_count(
-                    i - previous[i] - 1,
-                    following[i] - i - 1,
-                )
-            return total
-
-        return contribution(True) + contribution(False)
+# two pointers, sliding window, mono deque
+class Solution2(object):
+    def minMaxSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def count(check):
+            result = total = 0
+            dq = collections.deque()
+            for right in range(len(nums)):
+                left = right
+                while dq and not check(nums[dq[-1][0]], nums[right]):
+                    i, left = dq.pop()
+                    total -= (i-left+1)*nums[i]
+                dq.append([right, left])
+                total += (right-left+1)*nums[right]
+                result += total
+                if right-(k-1) >= 0:
+                    total -= nums[dq[0][0]]
+                    if dq[0][0] == right-(k-1):
+                        dq.popleft()
+                    else:
+                        assert(dq[0][1] == right-(k-1))
+                        dq[0][1] += 1
+            return result
+    
+        return count(lambda a, b: a < b)+count(lambda a, b: a > b)

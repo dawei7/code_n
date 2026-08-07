@@ -1,12 +1,24 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# math
 class Solution:
-    def sumAndMultiply(self, n: int) -> int:
-        concatenated = 0
-        digit_sum = 0
+    def sumAndMultiply(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def reverse(n):
+            result = 0
+            while n:
+                n, r = divmod(n, 10)
+                result = result*10+r
+            return result
 
-        for character in str(n):
-            digit = int(character)
-            if digit != 0:
-                concatenated = concatenated * 10 + digit
-                digit_sum += digit
-
-        return concatenated * digit_sum
+        total = x = 0
+        while n:
+            n, r = divmod(n, 10)
+            total += r
+            if r:
+                x = x*10+r
+        return reverse(x)*total

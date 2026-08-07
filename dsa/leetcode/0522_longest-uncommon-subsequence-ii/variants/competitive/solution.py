@@ -1,25 +1,31 @@
-from collections import Counter
-from typing import List
-
+# Time:  O(l * n^2)
+# Space: O(1)
 
 class Solution:
-    def findLUSlength(self, strs: List[str]) -> int:
-        frequencies = Counter(strs)
+    def findLUSlength(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: int
+        """
+        def isSubsequence(a, b):
+            i = 0
+            for j in range(len(b)):
+                if i >= len(a):
+                    break
+                if a[i] == b[j]:
+                    i += 1
+            return i == len(a)
 
-        def is_subsequence(candidate: str, container: str) -> bool:
-            index = 0
-            for character in container:
-                if index < len(candidate) and candidate[index] == character:
-                    index += 1
-            return index == len(candidate)
-
-        ordered = sorted(enumerate(strs), key=lambda item: len(item[1]), reverse=True)
-        for candidate_index, candidate in ordered:
-            if frequencies[candidate] != 1:
-                continue
-            if all(
-                other_index == candidate_index or not is_subsequence(candidate, other)
-                for other_index, other in enumerate(strs)
-            ):
-                return len(candidate)
+        strs.sort(key=len, reverse=True)
+        for i in range(len(strs)):
+            all_of = True
+            for j in range(len(strs)):
+                if len(strs[j]) < len(strs[i]):
+                    break
+                if i != j and isSubsequence(strs[i], strs[j]):
+                    all_of = False
+                    break
+            if all_of:
+                return len(strs[i])
         return -1
+

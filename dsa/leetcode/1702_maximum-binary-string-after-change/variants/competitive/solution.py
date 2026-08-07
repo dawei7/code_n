@@ -1,9 +1,20 @@
-class Solution:
-    def maximumBinaryString(self, binary: str) -> str:
-        first_zero = binary.find("0")
-        if first_zero == -1:
-            return binary
+# Time:  O(n)
+# Space: O(n)
 
-        zero_count = binary.count("0")
-        remaining_zero = first_zero + zero_count - 1
-        return "1" * remaining_zero + "0" + "1" * (len(binary) - remaining_zero - 1)
+class Solution:
+    def maximumBinaryString(self, binary):
+        """
+        :type binary: str
+        :rtype: str
+        """
+        result = list(binary)
+        zeros = ones = 0
+        for i, c in enumerate(result):
+            if c == '0':
+                zeros += 1
+            elif zeros == 0:
+                ones += 1
+            result[i] = '1'
+        if ones != len(result):
+            result[zeros+ones-1] = '0'
+        return "".join(result)

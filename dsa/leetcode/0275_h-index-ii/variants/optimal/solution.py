@@ -1,15 +1,11 @@
-from typing import List
-
-
 class Solution:
     def hIndex(self, citations: List[int]) -> int:
-        paper_count = len(citations)
-        left = 0
-        right = paper_count
+        n = len(citations)
+        left, right = 0, n
         while left < right:
-            middle = (left + right) // 2
-            if citations[middle] >= paper_count - middle:
-                right = middle
+            mid = (left + right + 1) >> 1
+            if citations[n - mid] >= mid:
+                left = mid
             else:
-                left = middle + 1
-        return paper_count - left
+                right = mid - 1
+        return left

@@ -1,22 +1,13 @@
-from typing import List
-
-
 class Solution:
     def secondGreaterElement(self, nums: List[int]) -> List[int]:
-        answer = [-1] * len(nums)
-        waiting_first = []
-        waiting_second = []
-
-        for index, value in enumerate(nums):
-            while waiting_second and nums[waiting_second[-1]] < value:
-                answer[waiting_second.pop()] = value
-
-            moved = []
-            while waiting_first and nums[waiting_first[-1]] < value:
-                moved.append(waiting_first.pop())
-            while moved:
-                waiting_second.append(moved.pop())
-
-            waiting_first.append(index)
-
-        return answer
+        arr = [(x, i) for i, x in enumerate(nums)]
+        arr.sort(key=lambda x: -x[0])
+        sl = SortedList()
+        n = len(nums)
+        ans = [-1] * n
+        for _, i in arr:
+            j = sl.bisect_right(i)
+            if j + 1 < len(sl):
+                ans[i] = nums[sl[j + 1]]
+            sl.add(i)
+        return ans

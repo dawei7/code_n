@@ -1,24 +1,22 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minSwaps(self, nums: List[int]) -> int:
-        even_count = sum(value % 2 == 0 for value in nums)
-        odd_count = len(nums) - even_count
+    def minSwaps(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def count(start):
+            it = iter(j for j in range(start, len(nums), 2))
+            return sum(abs(next(it)-i) for i in range(len(nums)) if nums[i]%2)
 
-        if abs(even_count - odd_count) > 1:
-            return -1
-
-        def cost(start_with_even: bool) -> int:
-            target = 0 if start_with_even else 1
-            swaps = 0
-
-            for index, value in enumerate(nums):
-                if value % 2 == 0:
-                    swaps += abs(index - target)
-                    target += 2
-
-            return swaps
-
-        if even_count > odd_count:
-            return cost(True)
-        if odd_count > even_count:
-            return cost(False)
-        return min(cost(True), cost(False))
+        cnt = sum(x%2 for x in nums)
+        if cnt == len(nums)-cnt:
+            return min(count(0), count(1))
+        if cnt == (len(nums)-cnt)+1:
+            return count(0)
+        if cnt+1 == len(nums)-cnt:
+            return count(1)
+        return -1

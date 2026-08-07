@@ -1,71 +1,49 @@
+# Time:  O(26 * n)
+# Space: O(26)
+
+# freq table, counting sort, greedy, combinatorics
 class Solution:
-    def smallestPalindrome(self, s: str, k: int) -> str:
-        frequencies = [0] * 26
-        for char in s:
-            frequencies[ord(char) - ord("a")] += 1
-
-        half_counts = [count // 2 for count in frequencies]
-        middle = ""
-        for index, count in enumerate(frequencies):
-            if count % 2:
-                middle = chr(ord("a") + index)
+    def smallestPalindrome(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        cnt = [0]*26
+        for i in range(len(s)//2):
+            cnt[ord(s[i])-ord('a')] += 1
+        total, count, remain = 0, 1, 0
+        for i in reversed(range(len(cnt))):
+            for c in range(1, cnt[i]+1):
+                total += 1
+                count = count*total//c
+                if count >= k:
+                    remain = cnt[i]-c
+                    break
+            if count >= k:
                 break
-
-        def capped_binomial(n: int, r: int, limit: int) -> int:
-            if limit <= 1:
-                return limit
-            r = min(r, n - r)
-            value = 1
-            for step in range(1, r + 1):
-                value = value * (n - r + step) // step
-                if value >= limit:
-                    return limit
-            return value
-
-        def capped_permutations(counts: list[int], limit: int) -> int:
-            ways = 1
-            used = 0
-            for count in counts:
-                if count == 0:
+        else:
+            return ""
+        result = []
+        for j in range(i+1):
+            x = chr(ord('a')+j)
+            for _ in range(cnt[j] if j != i else remain):
+                cnt[j] -= 1
+                result.append(x)
+        while total:
+            for j in range(i, len(cnt)):
+                if not cnt[j]:
                     continue
-                factor_limit = (limit + ways - 1) // ways
-                ways *= capped_binomial(used + count, count, factor_limit)
-                if ways >= limit:
-                    return limit
-                used += count
-            return ways
-
-        remaining = sum(half_counts)
-        if remaining == 0:
-            return middle if k == 1 else ""
-
-        left = []
-        while remaining:
-            limit = k * remaining
-            total = capped_permutations(half_counts, limit)
-            chosen = -1
-
-            if total >= limit:
-                for index, count in enumerate(half_counts):
-                    if count:
-                        chosen = index
-                        break
-            else:
-                for index, count in enumerate(half_counts):
-                    if count == 0:
-                        continue
-                    block = total * count // remaining
-                    if k > block:
-                        k -= block
-                    else:
-                        chosen = index
-                        break
-
-            if chosen == -1:
-                return ""
-            left.append(chr(ord("a") + chosen))
-            half_counts[chosen] -= 1
-            remaining -= 1
-
-        half = "".join(left)
-        return half + middle + half[::-1]
+                new_count = count*cnt[j]//total
+                if new_count < k:
+                    k -= new_count
+                    continue
+                count = new_count
+                cnt[j] -= 1
+                total -= 1
+                result.append(chr(ord('a')+j))
+                break
+        if len(s)%2:
+            result.append(s[len(s)//2])
+        result.extend((result[i] for i in reversed(range(len(result)-len(s)%2))))
+        return "".join(result)

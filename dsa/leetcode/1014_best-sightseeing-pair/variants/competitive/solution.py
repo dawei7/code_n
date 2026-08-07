@@ -1,13 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxScoreSightseeingPair(self, values: List[int]) -> int:
-        best_left = values[0]
-        answer = 0
-
-        for index in range(1, len(values)):
-            answer = max(answer, best_left + values[index] - index)
-            best_left = max(best_left, values[index] + index)
-
-        return answer
+    def maxScoreSightseeingPair(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        result, curr = 0, 0
+        for x in A:
+            result = max(result, curr+x)
+            curr = max(curr, x)-1
+        return result

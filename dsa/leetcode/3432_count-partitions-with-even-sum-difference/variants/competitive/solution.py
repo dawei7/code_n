@@ -1,6 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# prefix sum
 class Solution:
-    def countPartitions(self, nums: List[int]) -> int:
-        return len(nums) - 1 if sum(nums) % 2 == 0 else 0
+    def countPartitions(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = left = 0
+        right = sum(nums)
+        for i in range(len(nums)-1):
+            left += nums[i]
+            right -= nums[i]
+            if left%2 == right%2:
+                result += 1
+        return result

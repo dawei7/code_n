@@ -1,32 +1,28 @@
+# Time:  O(n + m)
+# Space: O(n + m)
+
+# z-function
 class Solution:
-    def minStartingIndex(self, s: str, pattern: str) -> int:
-        def z_values(text: str) -> list[int]:
-            values = [0] * len(text)
-            left = 0
-            right = 0
-
-            for index in range(1, len(text)):
-                if index <= right:
-                    values[index] = min(right - index + 1, values[index - left])
-                while index + values[index] < len(text) and text[values[index]] == text[index + values[index]]:
-                    values[index] += 1
-                if index + values[index] - 1 > right:
-                    left = index
-                    right = index + values[index] - 1
-
-            return values
-
-        source_length = len(s)
-        pattern_length = len(pattern)
-        forward = z_values(pattern + "#" + s)
-        backward = z_values(pattern[::-1] + "#" + s[::-1])
-        offset = pattern_length + 1
-
-        for start in range(source_length - pattern_length + 1):
-            prefix = min(pattern_length, forward[offset + start])
-            reversed_start = source_length - start - pattern_length
-            suffix = min(pattern_length, backward[offset + reversed_start])
-            if prefix + suffix >= pattern_length - 1:
-                return start
-
-        return -1
+    def minStartingIndex(self, s, pattern):
+        """
+        :type s: str
+        :type pattern: str
+        :rtype: int
+        """
+        K = 1
+        # Template: https://cp-algorithms.com/string/z-function.html
+        def z_function(s):  # Time: O(n), Space: O(n)
+            z = [0]*len(s)
+            l, r = 0, 0
+            for i in range(1, len(z)):
+                if i <= r:
+                    z[i] = min(r-i+1, z[i-l])
+                while i+z[i] < len(z) and s[z[i]] == s[i+z[i]]:
+                    z[i] += 1
+                if i+z[i]-1 > r:
+                    l, r = i, i+z[i]-1
+            return z
+        
+        z1 = z_function(pattern+s)
+        z2 = z_function(pattern[::-1]+s[::-1])
+        return next((i for i in range(len(s)-len(pattern)+1) if z1[len(pattern)+i]+K+z2[len(s)-i] >= len(pattern)), -1)

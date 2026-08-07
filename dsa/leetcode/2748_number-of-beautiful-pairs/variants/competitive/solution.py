@@ -1,20 +1,25 @@
-from math import gcd
+# Time:  O(nlogr)
+# Space: O(1)
 
-
+# number theory, freq table
 class Solution:
-    def countBeautifulPairs(self, nums: List[int]) -> int:
-        first_digit_counts = [0] * 10
-        pairs = 0
+    def countBeautifulPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        for value in nums:
-            last_digit = value % 10
-            for first_digit in range(1, 10):
-                if gcd(first_digit, last_digit) == 1:
-                    pairs += first_digit_counts[first_digit]
-
-            first_digit = value
-            while first_digit >= 10:
-                first_digit //= 10
-            first_digit_counts[first_digit] += 1
-
-        return pairs
+        result = 0
+        cnt = [0]*10
+        for x in nums:
+            for i in range(1, 10):
+                if gcd(i, x%10) == 1:
+                    result += cnt[i]
+            while x >= 10:
+                x //= 10
+            cnt[x] += 1
+        return result

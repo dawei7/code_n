@@ -1,31 +1,60 @@
-from math import isqrt
+# Time:  precompute: O(r)
+#        runtime:    O(nlogr), prime gap is ln(r) on average
+# Space: O(r)
+
+# number theory, prime gap
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return primes, spf
 
 
+MAX_NUMS = 10**5+3
+PRIMES, SPF = linear_sieve_of_eratosthenes(MAX_NUMS)
 class Solution:
-    def minOperations(self, nums: list[int]) -> int:
-        maximum = max(nums)
-        limit = max(4, 2 * maximum + 2)
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = curr = 0
+        for i, x in enumerate(nums):
+            if i%2 == 0:
+                while SPF[x] != x:
+                    x += 1
+                    result += 1
+            else:
+                while SPF[x] == x:
+                    x += 1
+                    result += 1
+        return result
 
-        is_prime = bytearray(b"\x01") * (limit + 1)
-        is_prime[0:2] = b"\x00\x00"
-        for prime in range(2, isqrt(limit) + 1):
-            if is_prime[prime]:
-                start = prime * prime
-                count = (limit - start) // prime + 1
-                is_prime[start : limit + 1 : prime] = b"\x00" * count
 
-        next_prime = [0] * (maximum + 1)
-        nearest = 0
-        for value in range(limit, -1, -1):
-            if is_prime[value]:
-                nearest = value
-            if value <= maximum:
-                next_prime[value] = nearest
+# Time:  precompute: O(r)
+#        runtime:    O(nlogn)
+# Space: O(r)
+import bisect
 
-        operations = 0
-        for index, value in enumerate(nums):
-            if index % 2 == 0:
-                operations += next_prime[value] - value
-            elif is_prime[value]:
-                operations += 2 if value == 2 else 1
-        return operations
+
+# number theory, binary search
+class Solution2(object):
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = curr = 0
+        for i, x in enumerate(nums):
+            if i%2 == 0:
+                result += PRIMES[bisect.bisect_left(PRIMES, x)]-x
+            else:
+                result += 2 if x == 2 else 1 if SPF[x] == x else 0
+        return result

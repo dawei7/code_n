@@ -1,12 +1,17 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# math
 class Solution:
-    def checkDivisibility(self, n: int) -> bool:
-        original = n
-        digit_sum = 0
-        digit_product = 1
-
-        while n:
-            n, digit = divmod(n, 10)
-            digit_sum += digit
-            digit_product *= digit
-
-        return original % (digit_sum + digit_product) == 0
+    def checkDivisibility(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        curr = n
+        total, product = 0, 1
+        while curr:
+            curr, r = divmod(curr, 10)
+            total += r
+            product *= r
+        return n%(total+product) == 0

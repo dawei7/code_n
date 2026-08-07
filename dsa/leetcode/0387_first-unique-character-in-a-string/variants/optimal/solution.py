@@ -1,13 +1,7 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        counts = [0] * 26
-        base = ord("a")
-
-        for character in s:
-            counts[ord(character) - base] += 1
-
-        for index, character in enumerate(s):
-            if counts[ord(character) - base] == 1:
-                return index
-
+        cnt = Counter(s)
+        for i, c in enumerate(s):
+            if cnt[c] == 1:
+                return i
         return -1

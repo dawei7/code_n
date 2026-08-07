@@ -1,16 +1,12 @@
 class Solution:
     def minArrayLength(self, nums: List[int], k: int) -> int:
-        if 0 in nums:
-            return 1
-
-        groups = 1
-        product = nums[0]
-
-        for value in nums[1:]:
-            if product <= k // value:
-                product *= value
+        ans, y = 1, nums[0]
+        for x in nums[1:]:
+            if x == 0:
+                return 1
+            if x * y <= k:
+                y *= x
             else:
-                groups += 1
-                product = value
-
-        return groups
+                y = x
+                ans += 1
+        return ans

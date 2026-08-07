@@ -1,3 +1,3 @@
 class Solution:
     def scoreOfString(self, s: str) -> int:
-        return sum(abs(ord(left) - ord(right)) for left, right in zip(s, s[1:]))
+        return sum(abs(a - b) for a, b in pairwise(map(ord, s)))

@@ -1,27 +1,25 @@
 class Solution:
     def convertNumber(self, s: str) -> str:
-        words = (
-            ("zero", "0"),
-            ("one", "1"),
-            ("two", "2"),
-            ("three", "3"),
-            ("four", "4"),
-            ("five", "5"),
-            ("six", "6"),
-            ("seven", "7"),
-            ("eight", "8"),
-            ("nine", "9"),
-        )
-        converted = []
-        index = 0
-
-        while index < len(s):
-            for word, digit in words:
-                if s.startswith(word, index):
-                    converted.append(digit)
-                    index += len(word)
+        d = [
+            "zero",
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine",
+        ]
+        i, n = 0, len(s)
+        ans = []
+        while i < n:
+            for j, t in enumerate(d):
+                m = len(t)
+                if i + m <= n and s[i : i + m] == t:
+                    ans.append(str(j))
+                    i += m - 1
                     break
-            else:
-                index += 1
-
-        return "".join(converted)
+            i += 1
+        return "".join(ans)

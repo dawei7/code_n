@@ -1,11 +1,31 @@
-from typing import List
+# Time:  O(n + m), m is the max number of nums
+# Space: O(m)
+
+import collections
 
 
 class Solution:
-    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
-        counts = [0] * 102
-        for value in nums:
-            counts[value + 1] += 1
-        for index in range(1, len(counts)):
-            counts[index] += counts[index - 1]
-        return [counts[value] for value in nums]
+    def smallerNumbersThanCurrent(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        count = collections.Counter(nums)
+        for i in range(max(nums)+1):
+            count[i] += count[i-1]
+        return [count[i-1] for i in nums]
+
+
+# Time:  O(nlogn)
+# Space: O(n)
+import bisect
+
+
+class Solution2(object):
+    def smallerNumbersThanCurrent(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        sorted_nums = sorted(nums)
+        return [bisect.bisect_left(sorted_nums, i) for i in nums]

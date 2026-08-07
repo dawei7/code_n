@@ -1,26 +1,29 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def maxRatings(self, units: List[List[int]]) -> int:
+    def maxRatings(self, units):
+        """
+        :type units: List[List[int]]
+        :rtype: int
+        """
+        def top2(a):  # Time: O(k * n)
+            mn1 = mn2 = float("inf")
+            for x in a:
+                if x < mn1:
+                    mn1, mn2 = x, mn1
+                elif x < mn2:
+                    mn2 = x
+            return mn1, mn2
+    
         if len(units[0]) == 1:
             return sum(row[0] for row in units)
-
-        global_minimum = float("inf")
-        minimum_second = float("inf")
-        second_sum = 0
-
+        total = 0
+        mn1 = mn2 = float("inf")
         for row in units:
-            first = float("inf")
-            second = float("inf")
-            for value in row:
-                if value < first:
-                    first, second = value, first
-                elif value < second:
-                    second = value
-
-            global_minimum = min(global_minimum, first)
-            minimum_second = min(minimum_second, second)
-            second_sum += second
-
-        return int(global_minimum + second_sum - minimum_second)
+            m1, m2 = top2(row)
+            total += m2
+            mn1 = min(mn1, m1)
+            mn2 = min(mn2, m2)
+        return total-mn2+mn1

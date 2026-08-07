@@ -1,17 +1,45 @@
+# Time:  O(n * k)
+# Space: O(n * k)
+
+import collections
+
+
+# dp
 class Solution:
-    def maximumLength(self, nums: List[int], k: int) -> int:
-        best_by_value = {}
-        best_for_budget = [0] * (k + 1)
+    def maximumLength(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        lookup = {x:i for i, x in enumerate(set(nums))}
+        dp = [[0]*len(lookup) for _ in range(k+1)]
+        result = [0]*(k+1)
+        for x in nums:
+            x = lookup[x]
+            for i in reversed(range(k+1)):
+                dp[i][x] = max(dp[i][x], result[i-1] if i-1 >= 0 else 0)+1
+                result[i] = max(result[i], dp[i][x])
+        return result[k]
 
-        for value in nums:
-            ending_at_value = best_by_value.setdefault(value, [0] * (k + 1))
 
-            for changes in range(k, -1, -1):
-                length = ending_at_value[changes] + 1
-                if changes > 0:
-                    length = max(length, best_for_budget[changes - 1] + 1)
+# Time:  O(n * k)
+# Space: O(n * k)
+import collections
 
-                ending_at_value[changes] = length
-                best_for_budget[changes] = max(best_for_budget[changes], length)
 
-        return best_for_budget[k]
+# dp
+class Solution2(object):
+    def maximumLength(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        dp = [collections.defaultdict(int) for _ in range(k+1)]
+        result = [0]*(k+1)
+        for x in nums:
+            for i in reversed(range(k+1)):
+                dp[i][x] = max(dp[i][x], result[i-1] if i-1 >= 0 else 0)+1
+                result[i] = max(result[i], dp[i][x])
+        return result[k]

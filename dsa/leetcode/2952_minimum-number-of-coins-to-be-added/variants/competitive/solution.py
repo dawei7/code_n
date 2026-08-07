@@ -1,19 +1,53 @@
-from typing import List
+# Time:  O(nlogn + logt)
+# Space: O(1)
 
-
+# lc0330
+# sort, greedy
 class Solution:
-    def minimumAddedCoins(self, coins: List[int], target: int) -> int:
-        ordered = sorted(coins)
-        index = 0
-        reachable = 0
-        added = 0
+    def minimumAddedCoins(self, coins, target):
+        """
+        :type coins: List[int]
+        :type target: int
+        :rtype: int
+        """
+        coins.sort()
+        result = reachable = 0
+        for x in coins:
+            # if x > target:
+            #     break
+            while not reachable >= x-1:
+                result += 1
+                reachable += reachable+1
+            reachable += x
+        while not reachable >= target:
+            result += 1
+            reachable += reachable+1
+        return result
 
-        while reachable < target:
-            if index < len(ordered) and ordered[index] <= reachable + 1:
-                reachable += ordered[index]
-                index += 1
-            else:
-                reachable += reachable + 1
-                added += 1
 
-        return added
+# Time:  O(nlogn + logt)
+# Space: O(1)
+# lc0330
+# sort, greedy
+class Solution2(object):
+    def minimumAddedCoins(self, coins, target):
+        """
+        :type coins: List[int]
+        :type target: int
+        :rtype: int
+        """
+        coins.sort()
+        result = reachable = 0
+        for x in coins:
+            while not reachable >= x-1:
+                result += 1
+                reachable += reachable+1
+                if reachable >= target:
+                    return result
+            reachable += x
+            if reachable >= target:
+                return result
+        while not reachable >= target:
+            result += 1
+            reachable += reachable+1
+        return result

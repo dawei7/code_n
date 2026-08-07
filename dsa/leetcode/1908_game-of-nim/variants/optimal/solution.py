@@ -1,9 +1,14 @@
-from typing import List
-
-
 class Solution:
     def nimGame(self, piles: List[int]) -> bool:
-        nim_sum = 0
-        for stones in piles:
-            nim_sum ^= stones
-        return nim_sum != 0
+        @cache
+        def dfs(st):
+            lst = list(st)
+            for i, x in enumerate(lst):
+                for j in range(1, x + 1):
+                    lst[i] -= j
+                    if not dfs(tuple(lst)):
+                        return True
+                    lst[i] += j
+            return False
+
+        return dfs(tuple(piles))

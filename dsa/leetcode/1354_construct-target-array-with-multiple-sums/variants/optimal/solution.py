@@ -1,25 +1,14 @@
-from heapq import heapify, heappop, heappush
-from typing import List
-
-
 class Solution:
     def isPossible(self, target: List[int]) -> bool:
-        if len(target) == 1:
-            return target[0] == 1
-
-        total = sum(target)
-        heap = [-value for value in target]
-        heapify(heap)
-
-        while True:
-            largest = -heappop(heap)
-            rest = total - largest
-            if largest == 1 or rest == 1:
-                return True
-            if rest == 0 or rest >= largest:
+        s = sum(target)
+        pq = [-x for x in target]
+        heapify(pq)
+        while -pq[0] > 1:
+            mx = -heappop(pq)
+            t = s - mx
+            if t == 0 or mx - t < 1:
                 return False
-            previous = largest % rest
-            if previous == 0:
-                return False
-            total = rest + previous
-            heappush(heap, -previous)
+            x = (mx % t) or t
+            heappush(pq, -x)
+            s = s - mx + x
+        return True

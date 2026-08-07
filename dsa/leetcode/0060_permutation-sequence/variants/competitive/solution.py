@@ -1,15 +1,25 @@
-class Solution:
-    def getPermutation(self, n: int, k: int) -> str:
-        digits = [str(value) for value in range(1, n + 1)]
-        block_size = 1
-        for value in range(2, n):
-            block_size *= value
+# Time:  O(n^2)
+# Space: O(n)
 
-        rank = k - 1
-        answer = []
-        while digits:
-            index, rank = divmod(rank, block_size)
-            answer.append(digits.pop(index))
-            if digits:
-                block_size //= len(digits)
-        return "".join(answer)
+import math
+
+# Cantor ordering solution
+class Solution:
+    def getPermutation(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: str
+        """
+        seq, k, fact = "", k - 1, math.factorial(n - 1)
+        perm = [i for i in range(1, n + 1)]
+        for i in reversed(range(n)):
+            curr = perm[k / fact]
+            seq += str(curr)
+            perm.remove(curr)
+            if i > 0:
+                k %= fact
+                fact /= i
+        return seq
+
+

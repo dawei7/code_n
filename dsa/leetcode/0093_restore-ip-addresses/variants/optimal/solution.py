@@ -1,32 +1,24 @@
-from typing import List
-
-
 class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
-        result = []
-        segments = []
+        def check(i: int, j: int) -> int:
+            if s[i] == "0" and i != j:
+                return False
+            return 0 <= int(s[i : j + 1]) <= 255
 
-        def restore(index: int) -> None:
-            remaining_segments = 4 - len(segments)
-            remaining_characters = len(s) - index
-            if not remaining_segments <= remaining_characters <= 3 * remaining_segments:
+        def dfs(i: int):
+            if i >= n and len(t) == 4:
+                ans.append(".".join(t))
                 return
-            if len(segments) == 4:
-                result.append(".".join(segments))
+            if i >= n or len(t) >= 4:
                 return
+            for j in range(i, min(i + 3, n)):
+                if check(i, j):
+                    t.append(s[i : j + 1])
+                    dfs(j + 1)
+                    t.pop()
 
-            for length in range(1, 4):
-                end = index + length
-                if end > len(s):
-                    break
-                segment = s[index:end]
-                if length > 1 and segment[0] == "0":
-                    break
-                if int(segment) > 255:
-                    break
-                segments.append(segment)
-                restore(end)
-                segments.pop()
-
-        restore(0)
-        return result
+        n = len(s)
+        ans = []
+        t = []
+        dfs(0)
+        return ans

@@ -1,30 +1,35 @@
-from typing import List
+# Time:  precompute: O(r)
+#        runtime:    O(n)
+# Space: O(r) 
 
+# greedy, number theory
+def linear_sieve_of_eratosthenes(n):
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return spf
 
-_LIMIT = 1_000_000
-_SMALLEST_FACTOR = [0] * (_LIMIT + 1)
-for _factor in range(2, 1001):
-    if _SMALLEST_FACTOR[_factor] != 0:
-        continue
-    for _multiple in range(_factor * _factor, _LIMIT + 1, _factor):
-        if _SMALLEST_FACTOR[_multiple] == 0:
-            _SMALLEST_FACTOR[_multiple] = _factor
-
-
+MAX_N = 10**6
+SPF = linear_sieve_of_eratosthenes(MAX_N)
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        values = nums[:]
-        operations = 0
-
-        for index in range(len(values) - 2, -1, -1):
-            if values[index] <= values[index + 1]:
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in reversed(range(len(nums)-1)):
+            if nums[i] <= nums[i+1]:
                 continue
-
-            factor = _SMALLEST_FACTOR[values[index]]
-            if factor == 0 or factor > values[index + 1]:
+            if SPF[nums[i]] > nums[i+1]:
                 return -1
-
-            values[index] = factor
-            operations += 1
-
-        return operations
+            nums[i] = SPF[nums[i]]
+            result += 1
+        return result

@@ -1,18 +1,15 @@
-from functools import reduce
-from operator import or_
-from typing import List
-
-
 class Solution:
     def countMaxOrSubsets(self, nums: List[int]) -> int:
-        target = reduce(or_, nums)
+        def dfs(i, t):
+            nonlocal ans, mx
+            if i == len(nums):
+                if t == mx:
+                    ans += 1
+                return
+            dfs(i + 1, t)
+            dfs(i + 1, t | nums[i])
 
-        def count(index: int, current: int) -> int:
-            if current == target:
-                return 1 << (len(nums) - index)
-            if index == len(nums):
-                return 0
-
-            return count(index + 1, current) + count(index + 1, current | nums[index])
-
-        return count(0, 0)
+        ans = 0
+        mx = reduce(lambda x, y: x | y, nums)
+        dfs(0, 0)
+        return ans

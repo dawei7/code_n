@@ -1,23 +1,22 @@
-class Solution:
-    def minNumberOfFrogs(self, croakOfFrogs: str) -> int:
-        sound = "croak"
-        waiting = [0] * 4
-        active = 0
-        maximum_active = 0
+# Time:  O(n)
+# Space: O(1)
 
-        for character in croakOfFrogs:
-            stage = sound.find(character)
-            if stage == 0:
-                waiting[0] += 1
-                active += 1
-                maximum_active = max(maximum_active, active)
-            elif stage > 0 and waiting[stage - 1] > 0:
-                waiting[stage - 1] -= 1
-                if stage == 4:
-                    active -= 1
-                else:
-                    waiting[stage] += 1
+class Solution:
+    def minNumberOfFrogs(self, croakOfFrogs):
+        """
+        :type croakOfFrogs: str
+        :rtype: int
+        """
+        S = "croak"
+        lookup = [0]*len(S)
+        result = 0
+        for c in croakOfFrogs:
+            i = S.find(c)
+            lookup[i] += 1
+            if lookup[i-1]:
+                lookup[i-1] -= 1
+            elif i == 0:
+                result += 1
             else:
                 return -1
-
-        return maximum_active if active == 0 else -1
+        return result if result == lookup[-1] else -1

@@ -1,30 +1,16 @@
-from math import isqrt
-from typing import List
-
-
 class Solution:
     def sumFourDivisors(self, nums: List[int]) -> int:
-        total = 0
+        def f(x: int) -> int:
+            i = 2
+            cnt, s = 2, x + 1
+            while i <= x // i:
+                if x % i == 0:
+                    cnt += 1
+                    s += i
+                    if i * i != x:
+                        cnt += 1
+                        s += x // i
+                i += 1
+            return s if cnt == 4 else 0
 
-        for value in nums:
-            divisor_sum = 1 + value
-            interior_pairs = 0
-
-            for divisor in range(2, isqrt(value) + 1):
-                if value % divisor != 0:
-                    continue
-
-                other = value // divisor
-                if divisor == other:
-                    interior_pairs = 2
-                    break
-
-                interior_pairs += 1
-                if interior_pairs > 1:
-                    break
-                divisor_sum += divisor + other
-
-            if interior_pairs == 1:
-                total += divisor_sum
-
-        return total
+        return sum(f(x) for x in nums)

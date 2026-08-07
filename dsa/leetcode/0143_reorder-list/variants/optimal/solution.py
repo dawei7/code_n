@@ -1,31 +1,27 @@
-from typing import Optional
-
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def reorderList(self, head: Optional["ListNode"]) -> None:
-        if head is None or head.next is None:
-            return
-
-        slow = fast = head
-        while fast.next is not None and fast.next.next is not None:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        fast = slow = head
+        while fast.next and fast.next.next:
             slow = slow.next
             fast = fast.next.next
 
-        second = slow.next
+        cur = slow.next
         slow.next = None
-        previous = None
-        while second is not None:
-            following = second.next
-            second.next = previous
-            previous = second
-            second = following
 
-        first = head
-        second = previous
-        while second is not None:
-            first_next = first.next
-            second_next = second.next
-            first.next = second
-            second.next = first_next
-            first = first_next
-            second = second_next
+        pre = None
+        while cur:
+            t = cur.next
+            cur.next = pre
+            pre, cur = cur, t
+        cur = head
+
+        while pre:
+            t = pre.next
+            pre.next = cur.next
+            cur.next = pre
+            cur, pre = pre.next, t

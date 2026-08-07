@@ -1,21 +1,44 @@
+# Time:  O((m + n)^2)
+# Space: O((m + n)^2)
+
 class Solution:
-    def longestPalindrome(self, word1: str, word2: str) -> int:
-        combined = word1 + word2
-        boundary = len(word1)
-        lengths = [0] * len(combined)
-        answer = 0
-
-        for left in range(len(combined) - 1, -1, -1):
-            diagonal = 0
-            lengths[left] = 1
-            for right in range(left + 1, len(combined)):
-                below = lengths[right]
-                if combined[left] == combined[right]:
-                    lengths[right] = diagonal + 2
-                    if left < boundary <= right:
-                        answer = max(answer, lengths[right])
+    def longestPalindrome(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        s = word1+word2
+        dp = [[0]*len(s) for _ in range(len(s))]
+        result = 0
+        for j in range(len(s)):
+            dp[j][j] = 1
+            for i in reversed(range(j)):
+                if s[i] == s[j]:
+                    dp[i][j] = 2 if i+1 == j else dp[i+1][j-1] + 2
+                    if i < len(word1) <= j:
+                        result = max(result, dp[i][j])
                 else:
-                    lengths[right] = max(lengths[right], lengths[right - 1])
-                diagonal = below
+                    dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+        return result
 
-        return answer
+
+# Time:  O((m + n)^2)
+# Space: O((m + n)^2)
+class Solution2(object):
+    def longestPalindrome(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        s = word1+word2
+        dp = [[0]*len(s) for _ in range(len(s))]
+        for j in range(len(s)):
+            dp[j][j] = 1
+            for i in reversed(range(j)):
+                if s[i] == s[j]:
+                    dp[i][j] = 2 if i+1 == j else dp[i+1][j-1] + 2
+                else:
+                    dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+        return max([dp[i][j] for i in range(len(word1)) for j in range(len(word1), len(s)) if s[i] == s[j]] or [0])

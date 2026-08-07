@@ -1,13 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
+# sliding window
 class Solution:
-    def minimumRecolors(self, blocks: str, k: int) -> int:
-        white_count = blocks[:k].count("W")
-        answer = white_count
-
-        for right in range(k, len(blocks)):
-            if blocks[right - k] == "W":
-                white_count -= 1
-            if blocks[right] == "W":
-                white_count += 1
-            answer = min(answer, white_count)
-
-        return answer
+    def minimumRecolors(self, blocks, k):
+        """
+        :type blocks: str
+        :type k: int
+        :rtype: int
+        """
+        result = k
+        curr = 0
+        for i, x in enumerate(blocks):
+            curr += int(blocks[i] == 'W')
+            if i+1-k < 0:
+                continue
+            result = min(result, curr)
+            curr -= int(blocks[i+1-k] == 'W')
+        return result

@@ -1,12 +1,14 @@
 class Solution:
     def stringCount(self, n: int) -> int:
-        modulus = 1_000_000_007
-        return (
-            pow(26, n, modulus)
-            - 3 * pow(25, n, modulus)
-            - n * pow(25, n - 1, modulus)
-            + 3 * pow(24, n, modulus)
-            + 2 * n * pow(24, n - 1, modulus)
-            - pow(23, n, modulus)
-            - n * pow(23, n - 1, modulus)
-        ) % modulus
+        @cache
+        def dfs(i: int, l: int, e: int, t: int) -> int:
+            if i == 0:
+                return int(l == 1 and e == 2 and t == 1)
+            a = dfs(i - 1, l, e, t) * 23 % mod
+            b = dfs(i - 1, min(1, l + 1), e, t)
+            c = dfs(i - 1, l, min(2, e + 1), t)
+            d = dfs(i - 1, l, e, min(1, t + 1))
+            return (a + b + c + d) % mod
+
+        mod = 10**9 + 7
+        return dfs(n, 0, 0, 0)

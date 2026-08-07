@@ -1,28 +1,31 @@
-from math import gcd, lcm
-from typing import List
+# Time:  O(nlogr)
+# Space: O(n)
 
-
+# prefix sum
 class Solution:
-    def maxScore(self, nums: List[int]) -> int:
-        length = len(nums)
-        prefix_gcd = [0] * (length + 1)
-        prefix_lcm = [1] * (length + 1)
+    def maxScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        for index, value in enumerate(nums):
-            prefix_gcd[index + 1] = gcd(prefix_gcd[index], value)
-            prefix_lcm[index + 1] = lcm(prefix_lcm[index], value)
+        def lcm(a, b):
+            return a//gcd(a, b)*b
 
-        suffix_gcd = [0] * (length + 1)
-        suffix_lcm = [1] * (length + 1)
-
-        for index in range(length - 1, -1, -1):
-            suffix_gcd[index] = gcd(nums[index], suffix_gcd[index + 1])
-            suffix_lcm[index] = lcm(nums[index], suffix_lcm[index + 1])
-
-        best = prefix_gcd[length] * prefix_lcm[length]
-        for removed in range(length):
-            remaining_gcd = gcd(prefix_gcd[removed], suffix_gcd[removed + 1])
-            remaining_lcm = lcm(prefix_lcm[removed], suffix_lcm[removed + 1])
-            best = max(best, remaining_gcd * remaining_lcm)
-
-        return best
+        right1 = [0]*(len(nums)+1)
+        right2 = [0]*(len(nums)+1)
+        right2[-1] = 1
+        for i in reversed(range(len(nums))):
+            right1[i] = gcd(right1[i+1], nums[i])
+            right2[i] = lcm(right2[i+1], nums[i])
+        result = right1[0]*right2[0]
+        curr1, curr2 = 0, 1
+        for i in range(len(nums)):
+            result = max(result, gcd(curr1, right1[i+1])*lcm(curr2, right2[i+1]))
+            curr1 = gcd(curr1, nums[i])
+            curr2 = lcm(curr2, nums[i])
+        return result

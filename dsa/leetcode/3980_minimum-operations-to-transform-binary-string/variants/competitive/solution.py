@@ -1,27 +1,56 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minOperations(self, s1: str, s2: str) -> int:
-        impossible = 10**9
-        no_pair = 0
-        cleared = impossible
+    def minOperations(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: int
+        """
+        if s1 == "1" and s2 == "0":
+            return -1
+        result = 0
+        changed = False
+        for i in range(len(s1)):
+            curr = '0' if changed else s1[i]
+            changed = False
+            if curr == s2[i]:
+                continue
+            if curr == '0':
+                result += 1
+            elif i+1 < len(s1):
+                result += 1 if s1[i+1] == '1' else 2
+                changed = True
+            else:
+                result += 2
+        return result
 
-        for index, target_char in enumerate(s2):
-            original = int(s1[index])
-            target = int(target_char)
-            next_no_pair = impossible
-            next_cleared = impossible
 
-            for cost, current in ((no_pair, original), (cleared, 0)):
-                if current <= target:
-                    next_no_pair = min(
-                        next_no_pair,
-                        cost + target - current,
-                    )
 
-                if index + 1 < len(s1):
-                    next_original = int(s1[index + 1])
-                    pair_cost = cost + (1 - current) + (1 - next_original) + 1 + target
-                    next_cleared = min(next_cleared, pair_cost)
-
-            no_pair, cleared = next_no_pair, next_cleared
-
-        return -1 if no_pair == impossible else no_pair
+# Time:  O(n)
+# Space: O(n)
+# greedy
+class Solution2(object):
+    def minOperations(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: int
+        """
+        if s1 == "1" and s2 == "0":
+            return -1
+        s1 = list(s1)
+        result = 0
+        for i in range(len(s1)):
+            if s1[i] == s2[i]:
+                continue
+            if s1[i] == '0':
+                result += 1
+            elif i+1 < len(s1):
+                result += 1 if s1[i+1] == '1' else 2
+                s1[i+1] = '0'
+            else:
+                result += 2
+        return result

@@ -1,25 +1,32 @@
-from collections import defaultdict, deque
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
+# hash table, sort, deque, sliding window
 class Solution:
-    def maxRequests(self, requests: list[list[int]], k: int, window: int) -> int:
-        times_by_user = defaultdict(list)
-
-        for user, time in requests:
-            times_by_user[user].append(time)
-
-        kept = 0
-
-        for times in times_by_user.values():
-            times.sort()
-            active = deque()
-
-            for time in times:
-                while active and time - active[0] > window:
-                    active.popleft()
-
-                if len(active) < k:
-                    active.append(time)
-                    kept += 1
-
-        return kept
+    def maxRequests(self, requests, k, window):
+        """
+        :type requests: List[List[int]]
+        :type k: int
+        :type window: int
+        :rtype: int
+        """
+        lookup = collections.defaultdict(list)
+        for u, t in requests:
+            lookup[u].append(t)
+        result = len(requests)
+        for l in lookup.values():
+            l.sort()
+            dq = collections.deque()
+            for x in l:
+                dq.append(x)
+                if len(dq) <= k:
+                    continue
+                if dq[-1]-dq[0] > window:
+                    dq.popleft()
+                    continue
+                dq.pop()
+                result -= 1                    
+        return result

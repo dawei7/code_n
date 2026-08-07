@@ -1,10 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum
 class Solution:
-    def waysToSplitArray(self, nums: List[int]) -> int:
+    def waysToSplitArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         total = sum(nums)
-        left = 0
-        answer = 0
-        for value in nums[:-1]:
-            left += value
-            if left >= total - left:
-                answer += 1
-        return answer
+        result = curr = 0
+        for i in range(len(nums)-1):
+            curr += nums[i]
+            result += int(curr >= total-curr)
+        return result

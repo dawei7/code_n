@@ -1,24 +1,21 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def increasingBST(self, root: Optional["TreeNode"]) -> Optional["TreeNode"]:
-        dummy = TreeNode()
-        tail = dummy
-        stack = []
-        current = root
+    def increasingBST(self, root: TreeNode) -> TreeNode:
+        def dfs(root):
+            if root is None:
+                return
+            nonlocal prev
+            dfs(root.left)
+            prev.right = root
+            root.left = None
+            prev = root
+            dfs(root.right)
 
-        while stack or current is not None:
-            while current is not None:
-                stack.append(current)
-                current = current.left
-
-            current = stack.pop()
-            original_right = current.right
-            current.left = None
-            tail.right = current
-            tail = current
-            current = original_right
-
-        tail.right = None
+        dummy = prev = TreeNode(right=root)
+        dfs(root)
         return dummy.right

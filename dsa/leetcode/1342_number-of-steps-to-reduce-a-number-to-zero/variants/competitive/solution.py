@@ -1,10 +1,14 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def numberOfSteps(self, num: int) -> int:
-        steps = 0
+    def numberOfSteps (self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        result = 0
         while num:
-            if num & 1:
-                num -= 1
-            else:
-                num //= 2
-            steps += 1
-        return steps
+            result += 2 if num%2 else 1
+            num //= 2
+        return max(result-1, 0)

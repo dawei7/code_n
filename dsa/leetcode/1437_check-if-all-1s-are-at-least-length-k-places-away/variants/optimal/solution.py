@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     def kLengthApart(self, nums: List[int], k: int) -> bool:
-        previous = None
-        for index, value in enumerate(nums):
-            if value == 1:
-                if previous is not None and index - previous <= k:
+        j = -inf
+        for i, x in enumerate(nums):
+            if x:
+                if i - j - 1 < k:
                     return False
-                previous = index
+                j = i
         return True

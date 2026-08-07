@@ -1,32 +1,77 @@
-from typing import List
+# Time:  O(n * 4^n)
+# Space: O(1)
 
-
+# iterative solution
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
         if not digits:
             return []
 
-        letters = {
-            "2": "abc",
-            "3": "def",
-            "4": "ghi",
-            "5": "jkl",
-            "6": "mno",
-            "7": "pqrs",
-            "8": "tuv",
-            "9": "wxyz",
-        }
+        lookup = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+        total = 1
+        for digit in digits:
+            total *= len(lookup[int(digit)])
         result = []
-        path = []
-
-        def build(index: int) -> None:
-            if index == len(digits):
-                result.append("".join(path))
-                return
-            for letter in letters[digits[index]]:
-                path.append(letter)
-                build(index + 1)
-                path.pop()
-
-        build(0)
+        for i in range(total):
+            base, curr = total, []
+            for digit in digits:
+                choices = lookup[int(digit)]
+                base //= len(choices)
+                curr.append(choices[(i//base)%len(choices)])
+            result.append("".join(curr))
         return result
+
+
+# Time:  O(n * 4^n)
+# Space: O(1)
+# iterative solution
+class Solution2(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        if not digits:
+            return []
+
+        result = [""]
+        lookup = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+        for digit in reversed(digits):
+            choices = lookup[int(digit)]
+            m, n = len(choices), len(result)
+            result.extend([result[i % n] for i in range(n, m*n)])
+            for i in range(m*n):
+                result[i] = choices[i//n] + result[i]
+        return result
+
+
+# Time:  O(n * 4^n)
+# Space: O(n)
+# recursive solution
+class Solution3(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        lookup = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+
+        def letterCombinationsRecu(result, digits, curr, n):
+            if n == len(digits):
+                result.append("".join(curr))
+                return
+            for choice in lookup[int(digits[n])]:
+                curr.append(choice)
+                letterCombinationsRecu(result, digits, curr, n+1)
+                curr.pop()
+
+        if not digits:
+            return []
+        result = []
+        letterCombinationsRecu(result, digits, [], 0)
+        return result
+

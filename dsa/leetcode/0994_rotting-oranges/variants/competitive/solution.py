@@ -1,32 +1,36 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(m * n)
+
+import collections
 
 
 class Solution:
-    def orangesRotting(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        queue = []
-        fresh = 0
+    def orangesRotting(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] == 2:
-                    queue.append((row, column, 0))
-                elif grid[row][column] == 1:
-                    fresh += 1
+        count = 0
+        q = collections.deque()
+        for r, row in enumerate(grid):
+            for c, val in enumerate(row):
+                if val == 2:
+                    q.append((r, c, 0))
+                elif val == 1:
+                    count += 1
 
-        head = 0
-        minutes = 0
-        while head < len(queue):
-            row, column, minute = queue[head]
-            head += 1
-            minutes = max(minutes, minute)
-            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_step
-                next_column = column + column_step
-                if 0 <= next_row < rows and 0 <= next_column < columns and grid[next_row][next_column] == 1:
-                    grid[next_row][next_column] = 2
-                    fresh -= 1
-                    queue.append((next_row, next_column, minute + 1))
-
-        return minutes if fresh == 0 else -1
+        result = 0
+        while q:
+            r, c, result = q.popleft()
+            for d in directions:
+                nr, nc = r+d[0], c+d[1]
+                if not (0 <= nr < len(grid) and \
+                        0 <= nc < len(grid[r])):
+                    continue
+                if grid[nr][nc] == 1:
+                    count -= 1
+                    grid[nr][nc] = 2
+                    q.append((nr, nc, result+1))
+        return result if count == 0 else -1

@@ -1,11 +1,18 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def findLucky(self, arr: List[int]) -> int:
-        frequencies = Counter(arr)
-        return max(
-            (value for value, frequency in frequencies.items() if value == frequency),
-            default=-1,
-        )
+    def findLucky(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        count = collections.Counter(arr)
+        result = -1
+        for k, v in count.items():
+            if k == v:
+                result = max(result, k)
+        return result

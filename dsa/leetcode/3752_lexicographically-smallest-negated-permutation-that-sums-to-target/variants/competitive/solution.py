@@ -1,19 +1,30 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy, two pointers
 class Solution:
-    def lexSmallestNegatedPerm(self, n: int, target: int) -> List[int]:
-        total = n * (n + 1) // 2
-        if abs(target) > total or (total - target) % 2 != 0:
+    def lexSmallestNegatedPerm(self, n, target):
+        """
+        :type n: int
+        :type target: int
+        :rtype: List[int]
+        """
+        def count(x):
+            return (x+1)*x//2
+
+        total = count(n)
+        if abs(target) > total or (target-total)%2:
             return []
-
-        negative_sum = (total - target) // 2
-        is_negative = [False] * (n + 1)
-        for value in range(n, 0, -1):
-            if negative_sum >= value:
-                is_negative[value] = True
-                negative_sum -= value
-
-        answer = [-value for value in range(n, 0, -1) if is_negative[value]]
-        answer.extend(value for value in range(1, n + 1) if not is_negative[value])
-        return answer
+        result = [0]*n
+        left, right = 0, n-1
+        for i in reversed(range(1, n+1)):
+            if target-(-i) <= count(i-1):
+                target -= -i
+                result[left] = -i
+                left += 1
+            else:
+                target -= i
+                result[right] = i
+                right -= 1
+        return result
+    

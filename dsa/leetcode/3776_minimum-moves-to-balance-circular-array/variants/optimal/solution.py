@@ -1,34 +1,21 @@
-from typing import List
-
-
 class Solution:
     def minMoves(self, balance: List[int]) -> int:
         if sum(balance) < 0:
             return -1
-
-        negative_index = next(
-            (index for index, amount in enumerate(balance) if amount < 0),
-            None,
-        )
-        if negative_index is None:
+        mn = min(balance)
+        if mn >= 0:
             return 0
-
+        need = -mn
+        i = balance.index(mn)
         n = len(balance)
-        deficit = -balance[negative_index]
-        donors = []
-        for index, amount in enumerate(balance):
-            if amount > 0:
-                clockwise = (index - negative_index) % n
-                counterclockwise = (negative_index - index) % n
-                donors.append((min(clockwise, counterclockwise), amount))
-
-        donors.sort()
-        moves = 0
-        for distance, amount in donors:
-            transferred = min(deficit, amount)
-            moves += transferred * distance
-            deficit -= transferred
-            if deficit == 0:
-                return moves
-
-        return -1
+        ans = 0
+        for j in range(1, n):
+            a = balance[(i - j + n) % n]
+            b = balance[(i + j - n) % n]
+            c1 = min(a, need)
+            need -= c1
+            ans += c1 * j
+            c2 = min(b, need)
+            need -= c2
+            ans += c2 * j
+        return ans

@@ -1,27 +1,28 @@
-SELECT results
-FROM (
-    SELECT top_user.name AS results, 1 AS position
-    FROM (
-        SELECT u.name, COUNT(*) AS rating_count
-        FROM Users AS u
-        JOIN MovieRating AS r ON r.user_id = u.user_id
-        GROUP BY u.user_id, u.name
-        ORDER BY rating_count DESC, u.name
-        LIMIT 1
-    ) AS top_user
+# Time:  O(nlogn), n is the number of movie_rating
+# Space: O(n)
 
-    UNION ALL
-
-    SELECT top_movie.title AS results, 2 AS position
-    FROM (
-        SELECT m.title, AVG(r.rating) AS average_rating
-        FROM Movies AS m
-        JOIN MovieRating AS r ON r.movie_id = m.movie_id
-        WHERE r.created_at >= '2020-02-01'
-          AND r.created_at < '2020-03-01'
-        GROUP BY m.movie_id, m.title
-        ORDER BY average_rating DESC, m.title
-        LIMIT 1
-    ) AS top_movie
-) AS winners
-ORDER BY position;
+(SELECT b.name AS results 
+ FROM   (SELECT a.user_id, 
+                Count(*) AS cnt 
+         FROM   movie_rating a 
+         GROUP  BY a.user_id) a 
+        INNER JOIN users b 
+               ON a.user_id = b.user_id 
+ ORDER  BY a.cnt DESC, 
+           b.name ASC 
+ LIMIT  1) 
+UNION ALL 
+(SELECT b.movie_name 
+ FROM   (SELECT a.movie_name, 
+                Avg(a.rating) AS max_rating 
+         FROM   (SELECT a.rating,
+                        b.title AS movie_name 
+                 FROM   movie_rating a 
+                        INNER JOIN movies b 
+                                ON a.movie_id = b.movie_id 
+                 WHERE  a.created_at BETWEEN '2020-02-01' AND '2020-02-29') a 
+         GROUP  BY a.movie_name) b 
+ ORDER  BY b.max_rating DESC, 
+           b.movie_name ASC 
+ LIMIT  1); 
+ 

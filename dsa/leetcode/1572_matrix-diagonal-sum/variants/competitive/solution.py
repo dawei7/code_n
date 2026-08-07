@@ -1,16 +1,10 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def diagonalSum(self, mat: List[List[int]]) -> int:
-        size = len(mat)
-        total = 0
-
-        for index in range(size):
-            total += mat[index][index]
-            total += mat[index][size - 1 - index]
-
-        if size % 2 == 1:
-            total -= mat[size // 2][size // 2]
-
-        return total
+    def diagonalSum(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        return sum(mat[i][i]+mat[~i][i] for i in range(len(mat))) - (mat[len(mat)//2][len(mat)//2] if len(mat)%2 == 1 else 0)

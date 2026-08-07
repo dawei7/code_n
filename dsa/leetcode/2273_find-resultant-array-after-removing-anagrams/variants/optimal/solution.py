@@ -1,16 +1,13 @@
 class Solution:
     def removeAnagrams(self, words: List[str]) -> List[str]:
-        result = []
-        previous_signature = None
+        def check(s: str, t: str) -> bool:
+            if len(s) != len(t):
+                return True
+            cnt = Counter(s)
+            for c in t:
+                cnt[c] -= 1
+                if cnt[c] < 0:
+                    return True
+            return False
 
-        for word in words:
-            counts = [0] * 26
-            for character in word:
-                counts[ord(character) - ord("a")] += 1
-            signature = tuple(counts)
-
-            if signature != previous_signature:
-                result.append(word)
-                previous_signature = signature
-
-        return result
+        return [words[0]] + [t for s, t in pairwise(words) if check(s, t)]

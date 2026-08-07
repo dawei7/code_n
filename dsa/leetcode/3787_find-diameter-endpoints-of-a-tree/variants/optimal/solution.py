@@ -1,31 +1,31 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def findSpecialNodes(self, n: int, edges: List[List[int]]) -> str:
-        graph = [[] for _ in range(n)]
-        for u, v in edges:
-            graph[u].append(v)
-            graph[v].append(u)
+        g = [[] for _ in range(n)]
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
 
-        def distances(start: int) -> List[int]:
-            distance = [-1] * n
-            distance[start] = 0
-            queue = deque([start])
-            while queue:
-                node = queue.popleft()
-                for neighbor in graph[node]:
-                    if distance[neighbor] == -1:
-                        distance[neighbor] = distance[node] + 1
-                        queue.append(neighbor)
-            return distance
+        def bfs(start: int):
+            dist = [-1] * n
+            dist[start] = 0
+            q = deque([start])
+            far = start
+            while q:
+                u = q.popleft()
+                if dist[u] > dist[far]:
+                    far = u
+                for v in g[u]:
+                    if dist[v] == -1:
+                        dist[v] = dist[u] + 1
+                        q.append(v)
+            return far, dist
 
-        from_zero = distances(0)
-        endpoint_a = max(range(n), key=from_zero.__getitem__)
-        from_a = distances(endpoint_a)
-        endpoint_b = max(range(n), key=from_a.__getitem__)
-        from_b = distances(endpoint_b)
-        diameter = from_a[endpoint_b]
-
-        return "".join("1" if max(from_a[node], from_b[node]) == diameter else "0" for node in range(n))
+        a, _ = bfs(0)
+        b, dist1 = bfs(a)
+        _, dist2 = bfs(b)
+        d = dist1[b]
+        ans = ["0"] * n
+        for i in range(n):
+            if dist1[i] == d or dist2[i] == d:
+                ans[i] = "1"
+        return "".join(ans)

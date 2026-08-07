@@ -1,12 +1,11 @@
-from typing import List
-
-
 class Solution:
     def printVertically(self, s: str) -> List[str]:
         words = s.split()
-        height = max(map(len, words))
-        rows = []
-        for row in range(height):
-            characters = [word[row] if row < len(word) else " " for word in words]
-            rows.append("".join(characters).rstrip())
-        return rows
+        n = max(len(w) for w in words)
+        ans = []
+        for j in range(n):
+            t = [w[j] if j < len(w) else ' ' for w in words]
+            while t[-1] == ' ':
+                t.pop()
+            ans.append(''.join(t))
+        return ans

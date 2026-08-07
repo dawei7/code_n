@@ -1,18 +1,17 @@
-from typing import List
-
-
 class Solution:
     def colorRed(self, n: int) -> List[List[int]]:
-        result = [[1, 1]]
-
-        for row in range(2, n + 1):
-            offset = (n - row) % 4
-            start = offset % 3 + 1
-
-            if offset % 2:
-                result.append([row, start])
+        ans = [[1, 1]]
+        k = 0
+        for i in range(n, 1, -1):
+            if k == 0:
+                for j in range(1, i << 1, 2):
+                    ans.append([i, j])
+            elif k == 1:
+                ans.append([i, 2])
+            elif k == 2:
+                for j in range(3, i << 1, 2):
+                    ans.append([i, j])
             else:
-                for column in range(start, 2 * row, 2):
-                    result.append([row, column])
-
-        return result
+                ans.append([i, 1])
+            k = (k + 1) % 4
+        return ans

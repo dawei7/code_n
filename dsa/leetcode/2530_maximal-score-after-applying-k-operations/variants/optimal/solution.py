@@ -1,16 +1,10 @@
-from heapq import heapify, heappop, heappush
-from typing import List
-
-
 class Solution:
     def maxKelements(self, nums: List[int], k: int) -> int:
-        heap = [-value for value in nums]
-        heapify(heap)
-        score = 0
-
+        h = [-v for v in nums]
+        heapify(h)
+        ans = 0
         for _ in range(k):
-            value = -heappop(heap)
-            score += value
-            heappush(heap, -((value + 2) // 3))
-
-        return score
+            v = -heappop(h)
+            ans += v
+            heappush(h, -(ceil(v / 3)))
+        return ans

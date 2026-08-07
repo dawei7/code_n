@@ -1,6 +1,6 @@
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
-        total = 0
-        for character in columnTitle:
-            total = total * 26 + ord(character) - ord("A") + 1
-        return total
+        ans = 0
+        for c in map(ord, columnTitle):
+            ans = ans * 26 + c - ord("A") + 1
+        return ans

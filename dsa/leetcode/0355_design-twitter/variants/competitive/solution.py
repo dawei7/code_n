@@ -1,45 +1,99 @@
+# Time:  O(u + klogk), k is most recently number of tweets,
+#                      u is the number of the user's following.
+# Space: O(t + f), t is the total number of tweets,
+#                  f is the total number of followings.
+
+import collections
 import heapq
-from collections import defaultdict
-from typing import List
+import random
 
 
-class Twitter:
+class Twitter(object):
+
     def __init__(self):
-        self.time = 0
-        self.tweets = defaultdict(list)
-        self.following = defaultdict(set)
+        """
+        Initialize your data structure here.
+        """
+        self.__number_of_most_recent_tweets = 10
+        self.__followings = collections.defaultdict(set)
+        self.__messages = collections.defaultdict(list)
+        self.__time = 0
 
-    def postTweet(self, userId: int, tweetId: int) -> None:
-        self.time += 1
-        posts = self.tweets[userId]
-        posts.append((self.time, tweetId))
-        if len(posts) > 10:
-            del posts[0]
+    def postTweet(self, userId, tweetId):
+        """
+        Compose a new tweet.
+        :type userId: int
+        :type tweetId: int
+        :rtype: void
+        """
+        self.__time += 1
+        self.__messages[userId].append((self.__time, tweetId))
 
-    def getNewsFeed(self, userId: int) -> List[int]:
-        sources = set(self.following[userId])
-        sources.add(userId)
-        heap = []
-        for source in sources:
-            posts = self.tweets[source]
-            if posts:
-                index = len(posts) - 1
-                timestamp, tweet_id = posts[index]
-                heap.append((-timestamp, tweet_id, source, index))
-        heapq.heapify(heap)
+    def getNewsFeed(self, userId):
+        """
+        Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
+        :type userId: int
+        :rtype: List[int]
+        """
+        def nth_element(nums, n, compare=lambda a, b: a < b):
+            def tri_partition(nums, left, right, target, compare):
+                mid = left
+                while mid <= right:
+                    if nums[mid] == target:
+                        mid += 1
+                    elif compare(nums[mid], target):
+                        nums[left], nums[mid] = nums[mid], nums[left]
+                        left += 1
+                        mid += 1
+                    else:
+                        nums[mid], nums[right] = nums[right], nums[mid]
+                        right -= 1
+                return left, right
 
-        feed = []
-        while heap and len(feed) < 10:
-            _, tweet_id, source, index = heapq.heappop(heap)
-            feed.append(tweet_id)
-            if index > 0:
-                index -= 1
-                timestamp, older_id = self.tweets[source][index]
-                heapq.heappush(heap, (-timestamp, older_id, source, index))
-        return feed
+            left, right = 0, len(nums)-1
+            while left <= right:
+                pivot_idx = random.randint(left, right)
+                pivot_left, pivot_right = tri_partition(nums, left, right, nums[pivot_idx], compare)
+                if pivot_left <= n <= pivot_right:
+                    return
+                elif pivot_left > n:
+                    right = pivot_left-1
+                else:  # pivot_right < n.
+                    left = pivot_right+1
 
-    def follow(self, followerId: int, followeeId: int) -> None:
-        self.following[followerId].add(followeeId)
+        candidates = []
+        if self.__messages[userId]:
+            candidates.append((-self.__messages[userId][-1][0], userId, 0))
+        for uid in self.__followings[userId]:
+            if self.__messages[uid]:
+                candidates.append((-self.__messages[uid][-1][0], uid, 0))
+        nth_element(candidates, self.__number_of_most_recent_tweets-1)
+        max_heap = candidates[:self.__number_of_most_recent_tweets]
+        heapq.heapify(max_heap)
+        result = []
+        while max_heap and len(result) < self.__number_of_most_recent_tweets:
+            t, uid, curr = heapq.heappop(max_heap)
+            nxt = curr + 1
+            if nxt != len(self.__messages[uid]):
+                heapq.heappush(max_heap, (-self.__messages[uid][-(nxt+1)][0], uid, nxt))
+            result.append(self.__messages[uid][-(curr+1)][1])
+        return result
 
-    def unfollow(self, followerId: int, followeeId: int) -> None:
-        self.following[followerId].discard(followeeId)
+    def follow(self, followerId, followeeId):
+        """
+        Follower follows a followee. If the operation is invalid, it should be a no-op.
+        :type followerId: int
+        :type followeeId: int
+        :rtype: void
+        """
+        if followerId != followeeId:
+            self.__followings[followerId].add(followeeId)
+
+    def unfollow(self, followerId, followeeId):
+        """
+        Follower unfollows a followee. If the operation is invalid, it should be a no-op.
+        :type followerId: int
+        :type followeeId: int
+        :rtype: void
+        """
+        self.__followings[followerId].discard(followeeId)

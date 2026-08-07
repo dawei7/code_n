@@ -1,12 +1,16 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def validWordSquare(self, words: List[str]) -> bool:
-        for row, word in enumerate(words):
-            for column, character in enumerate(word):
-                if column >= len(words) or row >= len(words[column]):
-                    return False
-                if words[column][row] != character:
-                    return False
+    def validWordSquare(self, words):
+        """
+        :type words: List[str]
+        :rtype: bool
+        """
+        for i in range(len(words)):
+            for j in range(len(words[i])):
+                if j >= len(words) or i >= len(words[j]) or \
+                   words[j][i] != words[i][j]:
+                   return False
         return True
+

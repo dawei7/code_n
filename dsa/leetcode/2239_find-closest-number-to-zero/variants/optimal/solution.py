@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     def findClosestNumber(self, nums: List[int]) -> int:
-        closest = nums[0]
-        for value in nums[1:]:
-            if abs(value) < abs(closest) or (abs(value) == abs(closest) and value > closest):
-                closest = value
-        return closest
+        ans, d = 0, inf
+        for x in nums:
+            if (y := abs(x)) < d or (y == d and x > ans):
+                ans, d = x, y
+        return ans

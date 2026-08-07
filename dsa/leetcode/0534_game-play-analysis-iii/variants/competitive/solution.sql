@@ -1,10 +1,12 @@
-SELECT
-    player_id,
-    event_date,
-    SUM(games_played) OVER (
-        PARTITION BY player_id
-        ORDER BY event_date
-        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-    ) AS games_played_so_far
-FROM Activity
-ORDER BY player_id, event_date;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT player_id, 
+       event_date, 
+       @accum := games_played + ( @prev = ( @prev := player_id ) ) * @accum 
+       games_played_so_far 
+FROM   activity, 
+       (SELECT @accum := 0, 
+               @prev := -1) init 
+ORDER  BY player_id, 
+          event_date 

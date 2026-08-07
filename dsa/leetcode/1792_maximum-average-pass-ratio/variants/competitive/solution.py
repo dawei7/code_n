@@ -1,23 +1,24 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(n + mlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def maxAverageRatio(
-        self,
-        classes: List[List[int]],
-        extraStudents: int,
-    ) -> float:
-        heap = [(-(total - passed) / (total * (total + 1)), passed, total) for passed, total in classes]
-        heapify(heap)
+    def maxAverageRatio(self, classes, extraStudents):
+        """
+        :type classes: List[List[int]]
+        :type extraStudents: int
+        :rtype: float
+        """
+        def profit(a, b):
+            return float(a+1)/(b+1)-float(a)/b
 
-        for _ in range(extraStudents):
-            _, passed, total = heappop(heap)
-            passed += 1
-            total += 1
-            heappush(
-                heap,
-                (-(total - passed) / (total * (total + 1)), passed, total),
-            )
-
-        return sum(passed / total for _, passed, total in heap) / len(classes)
+        max_heap = [(-profit(a, b), a, b) for a, b in classes]
+        heapq.heapify(max_heap)
+        while extraStudents:
+            v, a, b = heapq.heappop(max_heap)
+            a, b = a+1, b+1
+            heapq.heappush(max_heap, (-profit(a, b), a, b))
+            extraStudents -= 1
+        return sum(float(a)/b for v, a, b in max_heap)/len(classes)

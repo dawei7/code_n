@@ -1,31 +1,23 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+# freq table, greedy
 class Solution:
-    def lexSmallestAfterDeletion(self, s: str) -> str:
-        remaining = [0] * 26
-        for char in s:
-            remaining[ord(char) - ord("a")] += 1
-
-        kept = [0] * 26
-        stack = []
-
-        for char in s:
-            char_index = ord(char) - ord("a")
-            remaining[char_index] -= 1
-
-            while stack and stack[-1] > char:
-                top_index = ord(stack[-1]) - ord("a")
-                if kept[top_index] + remaining[top_index] == 1:
-                    break
-                kept[top_index] -= 1
-                stack.pop()
-
-            stack.append(char)
-            kept[char_index] += 1
-
-        while stack:
-            top_index = ord(stack[-1]) - ord("a")
-            if kept[top_index] == 1:
-                break
-            kept[top_index] -= 1
-            stack.pop()
-
-        return "".join(stack)
+    def lexSmallestAfterDeletion(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        result = []
+        for x in s:
+            while result and result[-1] > x and cnt[ord(result[-1])-ord('a')] != 1:
+                cnt[ord(result[-1])-ord('a')] -= 1
+                result.pop()
+            result.append(x)
+        while cnt[ord(result[-1])-ord('a')] != 1:
+            cnt[ord(result[-1])-ord('a')] -= 1
+            result.pop()
+        return "".join(result)

@@ -1,17 +1,16 @@
-from bisect import bisect_right
-from typing import List
-
-
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
-        tails: List[int] = []
-
-        for value in nums:
-            transformed = -value
-            position = bisect_right(tails, transformed)
-            if position == len(tails):
-                tails.append(transformed)
+        g = []
+        for x in nums:
+            l, r = 0, len(g)
+            while l < r:
+                mid = (l + r) >> 1
+                if g[mid] < x:
+                    r = mid
+                else:
+                    l = mid + 1
+            if l == len(g):
+                g.append(x)
             else:
-                tails[position] = transformed
-
-        return len(tails)
+                g[l] = x
+        return len(g)

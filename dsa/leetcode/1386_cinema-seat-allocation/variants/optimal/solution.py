@@ -1,29 +1,13 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
-    def maxNumberOfFamilies(
-        self,
-        n: int,
-        reservedSeats: List[List[int]],
-    ) -> int:
-        occupied = defaultdict(int)
-        for row, seat in reservedSeats:
-            if 2 <= seat <= 9:
-                occupied[row] |= 1 << seat
-
-        left_block = sum(1 << seat for seat in range(2, 6))
-        middle_block = sum(1 << seat for seat in range(4, 8))
-        right_block = sum(1 << seat for seat in range(6, 10))
-
-        families = 2 * (n - len(occupied))
-        for mask in occupied.values():
-            left_free = mask & left_block == 0
-            right_free = mask & right_block == 0
-            if left_free and right_free:
-                families += 2
-            elif left_free or right_free or mask & middle_block == 0:
-                families += 1
-
-        return families
+    def maxNumberOfFamilies(self, n: int, reservedSeats: List[List[int]]) -> int:
+        d = defaultdict(int)
+        for i, j in reservedSeats:
+            d[i] |= 1 << (10 - j)
+        masks = (0b0111100000, 0b0000011110, 0b0001111000)
+        ans = (n - len(d)) * 2
+        for x in d.values():
+            for mask in masks:
+                if (x & mask) == 0:
+                    x |= mask
+                    ans += 1
+        return ans

@@ -1,19 +1,18 @@
-from typing import List
+# Time:  O(m + n)
+# Space: O(m + n)
 
-
+# hash table
 class Solution:
-    def minNumber(self, nums1: List[int], nums2: List[int]) -> int:
-        present = [False] * 10
-        for digit in nums1:
-            present[digit] = True
-
-        common = 10
-        for digit in nums2:
-            if present[digit]:
-                common = min(common, digit)
-        if common < 10:
-            return common
-
-        first = min(nums1)
-        second = min(nums2)
-        return min(10 * first + second, 10 * second + first)
+    def minNumber(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        common = set(nums1)&set(nums2)
+        if common:
+            return min(common)
+        mn1, mn2 = min(nums1), min(nums2)
+        if mn1 > mn2:
+            mn1, mn2 = mn2, mn1
+        return 10*mn1+mn2

@@ -1,25 +1,17 @@
-from typing import List
-
-
 class Solution:
     def validPartition(self, nums: List[int]) -> bool:
-        n = len(nums)
-        dp_i_minus_3 = True
-        dp_i_minus_2 = False
-        dp_i_minus_1 = nums[0] == nums[1]
-
-        if n == 2:
-            return dp_i_minus_1
-
-        for i in range(3, n + 1):
-            pair = nums[i - 2] == nums[i - 1]
-            triple_equal = nums[i - 3] == nums[i - 2] == nums[i - 1]
-            triple_consecutive = nums[i - 3] + 1 == nums[i - 2] and nums[i - 2] + 1 == nums[i - 1]
-            current = dp_i_minus_2 and pair or dp_i_minus_3 and (triple_equal or triple_consecutive)
-            dp_i_minus_3, dp_i_minus_2, dp_i_minus_1 = (
-                dp_i_minus_2,
-                dp_i_minus_1,
-                current,
+        @cache
+        def dfs(i: int) -> bool:
+            if i >= n:
+                return True
+            a = i + 1 < n and nums[i] == nums[i + 1]
+            b = i + 2 < n and nums[i] == nums[i + 1] == nums[i + 2]
+            c = (
+                i + 2 < n
+                and nums[i + 1] - nums[i] == 1
+                and nums[i + 2] - nums[i + 1] == 1
             )
+            return (a and dfs(i + 2)) or ((b or c) and dfs(i + 3))
 
-        return dp_i_minus_1
+        n = len(nums)
+        return dfs(0)

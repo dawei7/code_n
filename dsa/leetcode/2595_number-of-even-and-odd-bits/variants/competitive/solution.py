@@ -1,11 +1,14 @@
+# Time:  O(1)
+# Space: O(1)
+
+# bit manipulation
 class Solution:
-    def evenOddBit(self, n: int) -> List[int]:
-        counts = [0, 0]
-        index = 0
+    def evenOddBit(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        def popcount(x):
+            return bin(x)[2:].count('1')
 
-        while n:
-            counts[index & 1] += n & 1
-            n >>= 1
-            index += 1
-
-        return counts
+        return [popcount(n&0b0101010101), popcount(n&0b1010101010)]

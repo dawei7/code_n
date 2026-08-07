@@ -1,12 +1,14 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minDeletion(self, nums: List[int]) -> int:
-        deletions = 0
-        for index in range(len(nums) - 1):
-            if (index - deletions) % 2 == 0 and nums[index] == nums[index + 1]:
-                deletions += 1
-        if (len(nums) - deletions) % 2:
-            deletions += 1
-        return deletions
+    def minDeletion(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(nums)-1):
+            result += int(i%2 == result%2 and nums[i] == nums[i+1])
+        return result+(len(nums)-result)%2

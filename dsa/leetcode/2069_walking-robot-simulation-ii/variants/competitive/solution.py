@@ -1,42 +1,98 @@
-from typing import List
+# Time:  O(1)
+# Space: O(1)
 
+class Robot(object):
 
-class Robot:
-    def __init__(self, width: int, height: int):
-        self.width = width
-        self.height = height
-        self.perimeter = 2 * (width + height) - 4
-        self.position = 0
-        self.has_moved = False
+    def __init__(self, width, height):
+        """
+        :type width: int
+        :type height: int
+        """
+        self.__w = width
+        self.__h = height
+        self.__curr = 0
 
-    def step(self, num: int) -> None:
-        self.position = (self.position + num) % self.perimeter
-        self.has_moved = True
+    def move(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        self.__curr += num
 
-    def getPos(self) -> List[int]:
-        horizontal = self.width - 1
-        vertical = self.height - 1
-        position = self.position
+    def getPos(self):
+        """
+        :rtype: List[int]
+        """
+        n = self.__curr % (2*((self.__w-1)+(self.__h-1)))
+        if n < self.__w:
+            return [n, 0]
+        n -= self.__w-1
+        if n < self.__h:
+            return [self.__w-1, n]
+        n -= self.__h-1
+        if n < self.__w:
+            return [(self.__w-1)-n, self.__h-1]
+        n -= self.__w-1
+        return [0, (self.__h-1)-n]
 
-        if position <= horizontal:
-            return [position, 0]
-        if position <= horizontal + vertical:
-            return [horizontal, position - horizontal]
-        if position <= 2 * horizontal + vertical:
-            return [2 * horizontal + vertical - position, vertical]
-        return [0, self.perimeter - position]
-
-    def getDir(self) -> str:
-        horizontal = self.width - 1
-        vertical = self.height - 1
-        position = self.position
-
-        if position == 0:
-            return "South" if self.has_moved else "East"
-        if position <= horizontal:
-            return "East"
-        if position <= horizontal + vertical:
+    def getDir(self):
+        """
+        :rtype: str
+        """
+        n = self.__curr % (2*((self.__w-1)+(self.__h-1)))
+        if n < self.__w:
+            return "South" if n == 0 and self.__curr else "East"
+        n -= self.__w-1
+        if n < self.__h:
             return "North"
-        if position <= 2 * horizontal + vertical:
+        n -= self.__h-1
+        if n < self.__w:
             return "West"
+        n -= self.__w-1
         return "South"
+
+
+# Time:  O(1)
+# Space: O(1)
+class Robot2(object):
+
+    def __init__(self, width, height):
+        """
+        :type width: int
+        :type height: int
+        """
+        self.__w = width
+        self.__h = height
+        self.__curr = 0
+
+    def move(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        self.__curr += num
+
+    def getPos(self):
+        """
+        :rtype: List[int]
+        """
+        return self.__getPosDir()[0] 
+
+    def getDir(self):
+        """
+        :rtype: str
+        """
+        return self.__getPosDir()[1]
+
+    def __getPosDir(self):
+        n = self.__curr % (2*((self.__w-1)+(self.__h-1)))
+        if n < self.__w:
+            return [[n, 0], "South" if n == 0 and self.__curr else "East"]
+        n -= self.__w-1
+        if n < self.__h:
+            return [[self.__w-1, n], "North"]
+        n -= self.__h-1
+        if n < self.__w:
+            return [[(self.__w-1)-n, self.__h-1], "West"]
+        n -= self.__w-1
+        return [[0, (self.__h-1)-n], "South"]

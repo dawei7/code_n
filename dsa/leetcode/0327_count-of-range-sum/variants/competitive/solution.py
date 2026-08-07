@@ -1,51 +1,83 @@
-from typing import List
-
-
-def _count_range_sums(nums: List[int], lower: int, upper: int) -> int:
-    prefixes = [0]
-    for value in nums:
-        prefixes.append(prefixes[-1] + value)
-    buffer = [0] * len(prefixes)
-
-    def sort_and_count(left: int, right: int) -> int:
-        if right - left <= 1:
-            return 0
-        middle = (left + right) // 2
-        count = sort_and_count(left, middle) + sort_and_count(middle, right)
-
-        lower_index = upper_index = middle
-        for first in range(left, middle):
-            while lower_index < right and prefixes[lower_index] - prefixes[first] < lower:
-                lower_index += 1
-            while upper_index < right and prefixes[upper_index] - prefixes[first] <= upper:
-                upper_index += 1
-            count += upper_index - lower_index
-
-        first = left
-        second = middle
-        output = left
-        while first < middle and second < right:
-            if prefixes[first] <= prefixes[second]:
-                buffer[output] = prefixes[first]
-                first += 1
-            else:
-                buffer[output] = prefixes[second]
-                second += 1
-            output += 1
-        while first < middle:
-            buffer[output] = prefixes[first]
-            first += 1
-            output += 1
-        while second < right:
-            buffer[output] = prefixes[second]
-            second += 1
-            output += 1
-        prefixes[left:right] = buffer[left:right]
-        return count
-
-    return sort_and_count(0, len(prefixes))
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
-        return _count_range_sums(nums, lower, upper)
+    def countRangeSum(self, nums, lower, upper):
+        """
+        :type nums: List[int]
+        :type lower: int
+        :type upper: int
+        :rtype: int
+        """
+        def countAndMergeSort(sums, start, end, lower, upper):
+            if end - start <= 1:  # The size of range [start, end) less than 2 is always with count 0.
+                return 0
+            mid = start + (end - start) / 2
+            count = countAndMergeSort(sums, start, mid, lower, upper) + \
+                    countAndMergeSort(sums, mid, end, lower, upper)
+            j, k, r = mid, mid, mid
+            tmp = []
+            for i in range(start, mid):
+                # Count the number of range sums that lie in [lower, upper].
+                while k < end and sums[k] - sums[i] < lower:
+                    k += 1
+                while j < end and sums[j] - sums[i] <= upper:
+                    j += 1
+                count += j - k
+
+                # Merge the two sorted arrays into tmp.
+                while r < end and sums[r] < sums[i]:
+                    tmp.append(sums[r])
+                    r += 1
+                tmp.append(sums[i])
+            # Copy tmp back to sums.
+            sums[start:start+len(tmp)] = tmp
+            return count
+
+        sums = [0] * (len(nums) + 1)
+        for i in range(len(nums)):
+            sums[i + 1] = sums[i] + nums[i]
+        return countAndMergeSort(sums, 0, len(sums), lower, upper)
+
+
+# Divide and Conquer solution.
+class Solution2(object):
+    def countRangeSum(self, nums, lower, upper):
+        """
+        :type nums: List[int]
+        :type lower: int
+        :type upper: int
+        :rtype: int
+        """
+        def countAndMergeSort(sums, start, end, lower, upper):
+            if end - start <= 0:  # The size of range [start, end] less than 2 is always with count 0.
+                return 0
+
+            mid = start + (end - start) / 2
+            count = countAndMergeSort(sums, start, mid, lower, upper) + \
+                    countAndMergeSort(sums, mid + 1, end, lower, upper)
+            j, k, r = mid + 1, mid + 1, mid + 1
+            tmp = []
+            for i in range(start, mid + 1):
+                # Count the number of range sums that lie in [lower, upper].
+                while k <= end and sums[k] - sums[i] < lower:
+                    k += 1
+                while j <= end and sums[j] - sums[i] <= upper:
+                    j += 1
+                count += j - k
+
+                # Merge the two sorted arrays into tmp.
+                while r <= end and sums[r] < sums[i]:
+                    tmp.append(sums[r])
+                    r += 1
+                tmp.append(sums[i])
+
+            # Copy tmp back to sums
+            sums[start:start+len(tmp)] = tmp
+            return count
+
+        sums = [0] * (len(nums) + 1)
+        for i in range(len(nums)):
+            sums[i + 1] = sums[i] + nums[i]
+        return countAndMergeSort(sums, 0, len(sums) - 1, lower, upper)
+

@@ -1,14 +1,16 @@
-from typing import List
-
-
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
-        rank = {character: index for index, character in enumerate(order)}
-
-        def ordered(first, second):
-            for left, right in zip(first, second):
-                if left != right:
-                    return rank[left] < rank[right]
-            return len(first) <= len(second)
-
-        return all(ordered(first, second) for first, second in zip(words, words[1:]))
+        m = {c: i for i, c in enumerate(order)}
+        for i in range(20):
+            prev = -1
+            valid = True
+            for x in words:
+                curr = -1 if i >= len(x) else m[x[i]]
+                if prev > curr:
+                    return False
+                if prev == curr:
+                    valid = False
+                prev = curr
+            if valid:
+                return True
+        return True

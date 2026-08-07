@@ -1,13 +1,24 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def wiggleMaxLength(self, nums: List[int]) -> int:
-        up = 1
-        down = 1
-        for index in range(1, len(nums)):
-            if nums[index] > nums[index - 1]:
-                up = down + 1
-            elif nums[index] < nums[index - 1]:
-                down = up + 1
-        return max(up, down)
+    def wiggleMaxLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) < 2:
+            return len(nums)
+
+        length, up = 1, None
+
+        for i in range(1, len(nums)):
+            if nums[i - 1] < nums[i] and (up is None or up is False):
+                length += 1
+                up = True
+            elif nums[i - 1] > nums[i] and (up is None or up is True):
+                length += 1
+                up = False
+
+        return length
+

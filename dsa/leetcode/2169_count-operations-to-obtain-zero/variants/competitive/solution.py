@@ -1,12 +1,16 @@
+# Time:  O(log(min(m, n)))
+# Space: O(1)
+
+# gcd-like solution
 class Solution:
-    def countOperations(self, num1: int, num2: int) -> int:
-        operations = 0
-
-        while num1 and num2:
-            if num1 >= num2:
-                quotient, num1 = divmod(num1, num2)
-            else:
-                quotient, num2 = divmod(num2, num1)
-            operations += quotient
-
-        return operations
+    def countOperations(self, num1, num2):
+        """
+        :type num1: int
+        :type num2: int
+        :rtype: int
+        """
+        result = 0
+        while num2:
+            result += num1//num2
+            num1, num2 = num2, num1%num2
+        return result

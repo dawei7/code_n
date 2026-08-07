@@ -1,21 +1,30 @@
+# Time:  precompute: O(max_n^2 + max_y * min(max_n, max_x))
+#        runtime:    O(min(n, x))
+# Space: O(max_n^2 + max_y * min(max_n, max_x))
+
+MOD = 10**9+7
+MAX_N = MAX_X = MAX_Y = 1000
+R = min(MAX_N, MAX_X)
+NCR = [[0]*(MAX_N+1) for _ in range(MAX_N+1)]
+DP = [[0]*(MAX_N+1) for _ in range(MAX_N+1)]
+NCR[0][0] = DP[0][0] = 1
+for i in range(1, MAX_N+1):
+    NCR[i][0] = 1
+    for j in range(1, i+1):
+        NCR[i][j] = (NCR[i-1][j]+NCR[i-1][j-1])%MOD
+        DP[i][j] = (DP[i-1][j]*j+DP[i-1][j-1]*j)%MOD
+POW = [[1]*(R+1) for _ in range(MAX_Y+1)]
+for i in range(1, MAX_Y+1):
+    for j in range(1, R+1):
+        POW[i][j] = (POW[i][j-1]*i)%MOD
+
+# dp, combinatorics
 class Solution:
-    def numberOfWays(self, n: int, x: int, y: int) -> int:
-        modulus = 1_000_000_007
-        limit = min(n, x)
-
-        stirling = [0] * (limit + 1)
-        stirling[0] = 1
-        for performers in range(1, n + 1):
-            for bands in range(min(performers, limit), 0, -1):
-                stirling[bands] = (stirling[bands - 1] + bands * stirling[bands]) % modulus
-            stirling[0] = 0
-
-        answer = 0
-        stage_choices = 1
-        score_choices = 1
-        for bands in range(1, limit + 1):
-            stage_choices = stage_choices * (x - bands + 1) % modulus
-            score_choices = score_choices * y % modulus
-            answer = (answer + stirling[bands] * stage_choices * score_choices) % modulus
-
-        return answer
+    def numberOfWays(self, n, x, y):
+        """
+        :type n: int
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        return reduce(lambda accu, x: (accu+x)%MOD, (NCR[x][i]*DP[n][i]*POW[y][i] for i in range(1, min(n, x)+1)), 0)

@@ -1,21 +1,22 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def shortestToChar(self, s: str, c: str) -> List[int]:
-        length = len(s)
-        distances = [length] * length
+    def shortestToChar(self, S, C):
+        """
+        :type S: str
+        :type C: str
+        :rtype: List[int]
+        """
+        result = [len(S)] * len(S)
+        prev = -len(S)
+        for i in itertools.chain(range(len(S)),
+                                 reversed(range(len(S)))):
+            if S[i] == C:
+                prev = i
+            result[i] = min(result[i], abs(i-prev))
+        return result
 
-        previous = -length
-        for index, character in enumerate(s):
-            if character == c:
-                previous = index
-            distances[index] = index - previous
-
-        following = 2 * length
-        for index in range(length - 1, -1, -1):
-            if s[index] == c:
-                following = index
-            distances[index] = min(distances[index], following - index)
-
-        return distances

@@ -1,19 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def longestBeautifulSubstring(self, word: str) -> int:
-        best = 0
-        current_length = 1
-        distinct_groups = 1
-
-        for index in range(1, len(word)):
-            if word[index] < word[index - 1]:
-                current_length = 1
-                distinct_groups = 1
+    def longestBeautifulSubstring(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        result = 0
+        l = cnt = 1
+        for i in range(len(word)-1):
+            if word[i] > word[i+1]:
+                l = cnt = 1
             else:
-                current_length += 1
-                if word[index] > word[index - 1]:
-                    distinct_groups += 1
-
-            if distinct_groups == 5:
-                best = max(best, current_length)
-
-        return best
+                l += 1
+                cnt += int(word[i] < word[i+1])
+            if cnt == 5:
+                result = max(result, l)
+        return result

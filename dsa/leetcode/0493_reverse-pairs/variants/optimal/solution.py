@@ -1,40 +1,29 @@
-from typing import List
-
-
 class Solution:
     def reversePairs(self, nums: List[int]) -> int:
-        buffer = [0] * len(nums)
-
-        def sort_and_count(left, right):
-            if right - left <= 1:
+        def merge_sort(l, r):
+            if l >= r:
                 return 0
-            middle = (left + right) // 2
-            count = sort_and_count(left, middle) + sort_and_count(middle, right)
-
-            partner = middle
-            for index in range(left, middle):
-                while partner < right and nums[index] > 2 * nums[partner]:
-                    partner += 1
-                count += partner - middle
-
-            first, second, write = left, middle, left
-            while first < middle and second < right:
-                if nums[first] <= nums[second]:
-                    buffer[write] = nums[first]
-                    first += 1
+            mid = (l + r) >> 1
+            ans = merge_sort(l, mid) + merge_sort(mid + 1, r)
+            t = []
+            i, j = l, mid + 1
+            while i <= mid and j <= r:
+                if nums[i] <= 2 * nums[j]:
+                    i += 1
                 else:
-                    buffer[write] = nums[second]
-                    second += 1
-                write += 1
-            while first < middle:
-                buffer[write] = nums[first]
-                first += 1
-                write += 1
-            while second < right:
-                buffer[write] = nums[second]
-                second += 1
-                write += 1
-            nums[left:right] = buffer[left:right]
-            return count
+                    ans += mid - i + 1
+                    j += 1
+            i, j = l, mid + 1
+            while i <= mid and j <= r:
+                if nums[i] <= nums[j]:
+                    t.append(nums[i])
+                    i += 1
+                else:
+                    t.append(nums[j])
+                    j += 1
+            t.extend(nums[i : mid + 1])
+            t.extend(nums[j : r + 1])
+            nums[l : r + 1] = t
+            return ans
 
-        return sort_and_count(0, len(nums))
+        return merge_sort(0, len(nums) - 1)

@@ -1,28 +1,25 @@
+# Time:  O(1)
+# Space: O(1)
+
+# simulation
 class Solution:
-    def minCostSetTime(
-        self,
-        startAt: int,
-        moveCost: int,
-        pushCost: int,
-        targetSeconds: int,
-    ) -> int:
-        def entry_cost(minutes: int, seconds: int) -> int:
-            digits = f"{minutes:02d}{seconds:02d}".lstrip("0")
-            finger = str(startAt)
-            cost = 0
+    def minCostSetTime(self, startAt, moveCost, pushCost, targetSeconds):
+        """
+        :type startAt: int
+        :type moveCost: int
+        :type pushCost: int
+        :type targetSeconds: int
+        :rtype: int
+        """     
+        def cost(m, s):
+            if not (0 <= m <= 99 and s <= 99):
+                return float("inf")
+            result = 0
+            curr = startAt
+            for x in map(int, list(str(m*100 + s))):
+                result += (moveCost if x != curr else 0)+pushCost
+                curr = x
+            return result
 
-            for digit in digits:
-                if digit != finger:
-                    cost += moveCost
-                    finger = digit
-                cost += pushCost
-
-            return cost
-
-        best = float("inf")
-        for minutes in range(100):
-            seconds = targetSeconds - 60 * minutes
-            if 0 <= seconds <= 99:
-                best = min(best, entry_cost(minutes, seconds))
-
-        return int(best)
+        m, s = divmod(targetSeconds, 60)
+        return min(cost(m, s), cost(m-1, s+60))

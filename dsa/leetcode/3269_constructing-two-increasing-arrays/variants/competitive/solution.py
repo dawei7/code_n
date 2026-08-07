@@ -1,25 +1,26 @@
+# Time:  O(m * n)
+# Space: O(min(m, n))
+
+# dp
 class Solution:
-    def minLargest(self, nums1: List[int], nums2: List[int]) -> int:
-        def next_value(previous: int, parity: int) -> int:
-            candidate = previous + 1
-            if candidate % 2 != parity:
-                candidate += 1
-            return candidate
-
-        second_length = len(nums2)
-        previous_row = [0] * (second_length + 1)
-        for second_index, parity in enumerate(nums2, 1):
-            previous_row[second_index] = next_value(previous_row[second_index - 1], parity)
-
-        for first_index, first_parity in enumerate(nums1, 1):
-            current_row = [0] * (second_length + 1)
-            current_row[0] = next_value(previous_row[0], first_parity)
-
-            for second_index, second_parity in enumerate(nums2, 1):
-                take_first = next_value(previous_row[second_index], first_parity)
-                take_second = next_value(current_row[second_index - 1], second_parity)
-                current_row[second_index] = min(take_first, take_second)
-
-            previous_row = current_row
-
-        return previous_row[second_length]
+    def minLargest(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        if len(nums1) < len(nums2):
+            nums1, nums2 = nums2, nums1
+        dp = [float("inf")]*(len(nums2)+1)
+        dp[0] = 0
+        for i in range(len(nums1)+1):
+            for j in range(len(nums2)+1):
+                if not i and not j:
+                    continue
+                curr = float("inf")
+                if i-1 >= 0:
+                    curr = min(curr, dp[j]+(2 if dp[j]%2 == nums1[i-1]%2 else 1))
+                if j-1 >= 0:
+                    curr = min(curr, dp[j-1]+(2 if dp[j-1]%2 == nums2[j-1]%2 else 1))
+                dp[j] = curr
+        return dp[-1]

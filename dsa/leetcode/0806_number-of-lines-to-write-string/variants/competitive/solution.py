@@ -1,15 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def numberOfLines(self, widths: List[int], s: str) -> List[int]:
-        lines = 1
-        current_width = 0
-        for char in s:
-            char_width = widths[ord(char) - ord("a")]
-            if current_width + char_width > 100:
-                lines += 1
-                current_width = char_width
-            else:
-                current_width += char_width
-        return [lines, current_width]
+    def numberOfLines(self, widths, S):
+        """
+        :type widths: List[int]
+        :type S: str
+        :rtype: List[int]
+        """
+        result = [1, 0]
+        for c in S:
+            w = widths[ord(c)-ord('a')]
+            result[1] += w
+            if result[1] > 100:
+                result[0] += 1
+                result[1] = w
+        return result
+

@@ -1,14 +1,11 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        def next_value(number: int) -> int:
-            total = 0
-            while number:
-                number, digit = divmod(number, 10)
-                total += digit * digit
-            return total
-
-        slow, fast = n, next_value(n)
-        while slow != fast:
-            slow = next_value(slow)
-            fast = next_value(next_value(fast))
-        return slow == 1
+        vis = set()
+        while n != 1 and n not in vis:
+            vis.add(n)
+            x = 0
+            while n:
+                n, v = divmod(n, 10)
+                x += v * v
+            n = x
+        return n == 1

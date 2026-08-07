@@ -1,20 +1,25 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def totalFruit(self, fruits: List[int]) -> int:
-        counts = {}
-        left = 0
-        best = 0
+    def totalFruit(self, tree):
+        """
+        :type tree: List[int]
+        :rtype: int
+        """
+        count = collections.defaultdict(int)
+        result, i = 0, 0
+        for j, v in enumerate(tree):
+            count[v] += 1
+            while len(count) > 2:
+                count[tree[i]] -= 1
+                if count[tree[i]] == 0:
+                    del count[tree[i]]
+                i += 1
+            result = max(result, j-i+1)
+        return result
+ 
 
-        for right, fruit in enumerate(fruits):
-            counts[fruit] = counts.get(fruit, 0) + 1
-            while len(counts) > 2:
-                left_fruit = fruits[left]
-                counts[left_fruit] -= 1
-                if counts[left_fruit] == 0:
-                    del counts[left_fruit]
-                left += 1
-            best = max(best, right - left + 1)
-
-        return best

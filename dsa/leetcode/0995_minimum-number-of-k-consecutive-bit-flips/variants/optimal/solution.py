@@ -1,20 +1,15 @@
-from typing import List
-
-
 class Solution:
     def minKBitFlips(self, nums: List[int], k: int) -> int:
-        active_parity = 0
-        flips = 0
-
-        for index in range(len(nums)):
-            if index >= k and nums[index - k] == 2:
-                active_parity ^= 1
-
-            if nums[index] == active_parity:
-                if index + k > len(nums):
+        n = len(nums)
+        d = [0] * (n + 1)
+        ans = s = 0
+        for i, x in enumerate(nums):
+            s += d[i]
+            if s % 2 == x:
+                if i + k > n:
                     return -1
-                nums[index] = 2
-                active_parity ^= 1
-                flips += 1
-
-        return flips
+                d[i] += 1
+                d[i + k] -= 1
+                s += 1
+                ans += 1
+        return ans

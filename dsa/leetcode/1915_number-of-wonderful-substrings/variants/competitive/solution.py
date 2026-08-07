@@ -1,15 +1,19 @@
+# Time:  O(n)
+# Space: O(2^10)
+
 class Solution:
-    def wonderfulSubstrings(self, word: str) -> int:
-        frequencies = [0] * (1 << 10)
-        frequencies[0] = 1
-        mask = 0
-        answer = 0
-
-        for character in word:
-            mask ^= 1 << (ord(character) - ord("a"))
-            answer += frequencies[mask]
-            for bit in range(10):
-                answer += frequencies[mask ^ (1 << bit)]
-            frequencies[mask] += 1
-
-        return answer
+    def wonderfulSubstrings(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        ALPHABET_SIZE = 10
+        count = [0]*(2**ALPHABET_SIZE)
+        count[0] = 1
+        result = curr = 0
+        for c in word:
+            curr ^= 1<<(ord(c)-ord('a'))
+            result += count[curr]
+            result += sum(count[curr^(1<<i)] for i in range(ALPHABET_SIZE))
+            count[curr] += 1
+        return result

@@ -1,24 +1,21 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
 
 
 class Solution:
-    def numFactoredBinaryTrees(self, arr: List[int]) -> int:
-        modulus = 1_000_000_007
-        values = sorted(arr)
-        ways = {}
-        total = 0
+    def numFactoredBinaryTrees(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        M = 10**9 + 7
+        A.sort()
+        dp = {}
+        for i in range(len(A)):
+            dp[A[i]] = 1
+            for j in range(i):
+                if A[i] % A[j] == 0 and A[i] // A[j] in dp:
+                    dp[A[i]] += dp[A[j]] * dp[A[i] // A[j]]
+                    dp[A[i]] %= M
+        return sum(dp.values()) % M
 
-        for index, root in enumerate(values):
-            root_ways = 1
-            for factor_index in range(index):
-                left = values[factor_index]
-                if root % left != 0:
-                    continue
-                right = root // left
-                if right in ways:
-                    root_ways += ways[left] * ways[right]
-
-            ways[root] = root_ways % modulus
-            total = (total + ways[root]) % modulus
-
-        return total

@@ -1,28 +1,19 @@
 class Solution:
     def maximumTastiness(self, price: List[int], k: int) -> int:
+        def check(x: int) -> bool:
+            cnt, pre = 0, -x
+            for cur in price:
+                if cur - pre >= x:
+                    pre = cur
+                    cnt += 1
+            return cnt >= k
+
         price.sort()
-
-        def can_select(minimum_gap: int) -> bool:
-            chosen = 1
-            last_price = price[0]
-
-            for index in range(1, len(price)):
-                if price[index] - last_price >= minimum_gap:
-                    chosen += 1
-                    last_price = price[index]
-                    if chosen == k:
-                        return True
-
-            return False
-
-        low = 0
-        high = (price[-1] - price[0]) // (k - 1)
-
-        while low <= high:
-            middle = (low + high) // 2
-            if can_select(middle):
-                low = middle + 1
+        l, r = 0, price[-1] - price[0]
+        while l < r:
+            mid = (l + r + 1) >> 1
+            if check(mid):
+                l = mid
             else:
-                high = middle - 1
-
-        return high
+                r = mid - 1
+        return l

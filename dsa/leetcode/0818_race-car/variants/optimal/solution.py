@@ -1,24 +1,12 @@
 class Solution:
     def racecar(self, target: int) -> int:
         dp = [0] * (target + 1)
-
-        for distance in range(1, target + 1):
-            accelerations = distance.bit_length()
-            overshoot_position = (1 << accelerations) - 1
-
-            if overshoot_position == distance:
-                dp[distance] = accelerations
+        for i in range(1, target + 1):
+            k = i.bit_length()
+            if i == 2**k - 1:
+                dp[i] = k
                 continue
-
-            best = accelerations + 1 + dp[overshoot_position - distance]
-            forward_position = (1 << (accelerations - 1)) - 1
-
-            for backward_accelerations in range(accelerations - 1):
-                backward_distance = (1 << backward_accelerations) - 1
-                remaining = distance - forward_position + backward_distance
-                candidate = accelerations + backward_accelerations + 1 + dp[remaining]
-                best = min(best, candidate)
-
-            dp[distance] = best
-
+            dp[i] = dp[2**k - 1 - i] + k + 1
+            for j in range(k - 1):
+                dp[i] = min(dp[i], dp[i - (2 ** (k - 1) - 2**j)] + k - 1 + j + 2)
         return dp[target]

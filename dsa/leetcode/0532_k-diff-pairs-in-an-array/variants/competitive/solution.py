@@ -1,10 +1,20 @@
-from collections import Counter
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def findPairs(self, nums: List[int], k: int) -> int:
-        frequencies = Counter(nums)
-        if k == 0:
-            return sum(frequency >= 2 for frequency in frequencies.values())
-        return sum(value + k in frequencies for value in frequencies)
+    def findPairs(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        if k < 0: return 0
+        result, lookup = set(), set()
+        for num in nums:
+            if num-k in lookup:
+                result.add(num-k)
+            if num+k in lookup:
+                result.add(num)
+            lookup.add(num)
+        return len(result)
+

@@ -1,23 +1,18 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+import collections
 
 
+# freq table
 class Solution:
-    def minimumOperations(self, nums: List[int]) -> int:
-        if len(nums) == 1:
-            return 0
-
-        even = Counter(nums[::2]).most_common(2)
-        odd = Counter(nums[1::2]).most_common(2)
-        even += [(None, 0)] * (2 - len(even))
-        odd += [(None, 0)] * (2 - len(odd))
-
-        if even[0][0] != odd[0][0]:
-            unchanged = even[0][1] + odd[0][1]
-        else:
-            unchanged = max(
-                even[0][1] + odd[1][1],
-                even[1][1] + odd[0][1],
-            )
-
-        return len(nums) - unchanged
+    def minimumOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        even_top = collections.Counter(nums[i] for i in range(0, len(nums), 2)).most_common(2)  # Time: O(nlogk)
+        odd_top = collections.Counter(nums[i] for i in range(1, len(nums), 2)).most_common(2)  # Time: O(nlogk)
+        if not odd_top or even_top[0][0] != odd_top[0][0]:
+            return len(nums)-even_top[0][1]-(odd_top[0][1] if odd_top else 0)
+        return min(len(nums)-even_top[0][1]-(odd_top[1][1] if len(odd_top) == 2 else 0),
+                   len(nums)-odd_top[0][1]-(even_top[1][1] if len(even_top) == 2 else 0))

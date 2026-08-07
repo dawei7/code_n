@@ -1,20 +1,12 @@
-from typing import List
-
-
 class Solution:
     def goodIndices(self, nums: List[int], k: int) -> List[int]:
-        size = len(nums)
-        non_increasing = [1] * size
-        non_decreasing = [1] * size
-
-        for index in range(1, size):
-            if nums[index - 1] >= nums[index]:
-                non_increasing[index] = non_increasing[index - 1] + 1
-
-        for index in range(size - 2, -1, -1):
-            if nums[index] <= nums[index + 1]:
-                non_decreasing[index] = non_decreasing[index + 1] + 1
-
-        return [
-            index for index in range(k, size - k) if non_increasing[index - 1] >= k and non_decreasing[index + 1] >= k
-        ]
+        n = len(nums)
+        decr = [1] * (n + 1)
+        incr = [1] * (n + 1)
+        for i in range(2, n - 1):
+            if nums[i - 1] <= nums[i - 2]:
+                decr[i] = decr[i - 1] + 1
+        for i in range(n - 3, -1, -1):
+            if nums[i + 1] <= nums[i + 2]:
+                incr[i] = incr[i + 1] + 1
+        return [i for i in range(k, n - k) if decr[i] >= k and incr[i] >= k]

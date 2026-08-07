@@ -1,20 +1,35 @@
-from math import isqrt
+# Time:  precompute:  O(sqrt(r))
+#        runtime:     O(logr + log(sqrt(r))) = O(logr)
+# Space: O(sqrt(r))
+
+import bisect
 
 
+# number theory, binary search
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return primes  # len(primes) = O(n/(logn-1)), reference: https://math.stackexchange.com/questions/264544/how-to-find-number-of-prime-numbers-up-to-to-n
+
+
+MAX_R = 10**9
+PRIMES = linear_sieve_of_eratosthenes(int(MAX_R**0.5))
 class Solution:
-    def nonSpecialCount(self, l: int, r: int) -> int:
-        limit = isqrt(r)
-        is_prime = [True] * (limit + 1)
-        if limit >= 0:
-            is_prime[0] = False
-        if limit >= 1:
-            is_prime[1] = False
+    def nonSpecialCount(self, l, r):
+        """
+        :type l: int
+        :type r: int
+        :rtype: int
+        """
+        def count(x):
+            return x-bisect.bisect_right(PRIMES, int(x**0.5))
 
-        for factor in range(2, isqrt(limit) + 1):
-            if is_prime[factor]:
-                start = factor * factor
-                is_prime[start : limit + 1 : factor] = [False] * ((limit - start) // factor + 1)
-
-        first_root = isqrt(l - 1) + 1
-        special = sum(is_prime[root] for root in range(first_root, limit + 1))
-        return r - l + 1 - special
+        return count(r)-count(l-1)

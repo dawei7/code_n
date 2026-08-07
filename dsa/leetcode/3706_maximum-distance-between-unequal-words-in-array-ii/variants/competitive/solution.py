@@ -1,19 +1,14 @@
-from typing import List
+# Time:  O(n * l)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def maxDistance(self, words: List[str]) -> int:
-        n = len(words)
-        best = 0
-
-        for right in range(n - 1, 0, -1):
-            if words[right] != words[0]:
-                best = right + 1
-                break
-
-        for left in range(1, n):
-            if words[left] != words[-1]:
-                best = max(best, n - left)
-                break
-
-        return best
+    def maxDistance(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        for i in range(len(words)//2+1):
+            if words[~i] != words[0] or words[i] != words[-1]:
+                return len(words)-i
+        return 0

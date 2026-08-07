@@ -1,23 +1,23 @@
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def pathSum(self, root: Optional["TreeNode"], targetSum: int) -> List[List[int]]:
-        result = []
-        path = []
-
-        def search(node, remaining):
-            if node is None:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        def dfs(root, s):
+            if root is None:
                 return
-            path.append(node.val)
-            remaining -= node.val
-            if node.left is None and node.right is None:
-                if remaining == 0:
-                    result.append(path.copy())
-            else:
-                search(node.left, remaining)
-                search(node.right, remaining)
-            path.pop()
+            s += root.val
+            t.append(root.val)
+            if root.left is None and root.right is None and s == targetSum:
+                ans.append(t[:])
+            dfs(root.left, s)
+            dfs(root.right, s)
+            t.pop()
 
-        search(root, targetSum)
-        return result
+        ans = []
+        t = []
+        dfs(root, 0)
+        return ans

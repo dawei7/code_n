@@ -1,17 +1,22 @@
-from typing import List
+# Time:  O(nlogr), r is max(candies)
+# Space: O(1)
 
-
+# binary search
 class Solution:
-    def maximumCandies(self, candies: List[int], k: int) -> int:
-        low = 1
-        high = min(max(candies), sum(candies) // k)
-        answer = 0
-        while low <= high:
-            portion = (low + high) // 2
-            children = sum(pile // portion for pile in candies)
-            if children >= k:
-                answer = portion
-                low = portion + 1
+    def maximumCandies(self, candies, k):
+        """
+        :type candies: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def check(x):
+            return sum(c//x for c in candies) >= k
+
+        left, right = 1, max(candies)
+        while left <= right:
+            mid = left+(right-left)//2
+            if not check(mid):
+                right = mid-1
             else:
-                high = portion - 1
-        return answer
+                left = mid+1
+        return right

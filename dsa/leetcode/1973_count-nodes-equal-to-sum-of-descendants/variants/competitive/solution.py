@@ -1,33 +1,57 @@
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        pass
 
 
 class Solution:
-    def equalToDescendants(self, root: Optional["TreeNode"]) -> int:
-        stack = [(root, False)]
-        subtree_sums = {}
-        answer = 0
+    def equalToDescendants(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        def iter_dfs(node):
+            result = 0
+            stk = [(1, [node, [0]])]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    node, ret = args
+                    if not node:
+                        continue
+                    ret1, ret2 = [0], [0]
+                    stk.append((2, [node, ret1, ret2, ret]))
+                    stk.append((1, [node.right, ret2]))
+                    stk.append((1, [node.left, ret1]))
+                elif step == 2:
+                    node, ret1, ret2, ret = args
+                    if node.val == ret1[0]+ret2[0]:
+                        result += 1
+                    ret[0] = ret1[0]+ret2[0]+node.val
+            return result
 
-        while stack:
-            node, visited = stack.pop()
-            if node is None:
-                continue
-            if not visited:
-                stack.append((node, True))
-                stack.append((node.right, False))
-                stack.append((node.left, False))
-                continue
+        return iter_dfs(root)
 
-            descendant_sum = subtree_sums.get(node.left, 0) + subtree_sums.get(node.right, 0)
-            if node.val == descendant_sum:
-                answer += 1
-            subtree_sums[node] = node.val + descendant_sum
 
-        return answer
+# Time:  O(n)
+# Space: O(h)
+class Solution2(object):
+    def equalToDescendants(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        def dfs(node, result):
+            if not node:
+                return 0
+            total = dfs(node.left, result) + dfs(node.right, result)
+            if node.val == total:
+                result[0] += 1
+            return total+node.val
+
+        result = [0]
+        dfs(root, result)
+        return result[0]

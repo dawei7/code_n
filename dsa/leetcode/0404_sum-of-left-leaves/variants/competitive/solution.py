@@ -1,20 +1,19 @@
+# Time:  O(n)
+# Space: O(h)
+
 class Solution:
-    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
-        if root is None:
-            return 0
+    def sumOfLeftLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def sumOfLeftLeavesHelper(root, is_left):
+            if not root:
+                return 0
+            if not root.left and not root.right:
+                return root.val if is_left else 0
+            return sumOfLeftLeavesHelper(root.left, True) + \
+                   sumOfLeftLeavesHelper(root.right, False)
 
-        total = 0
-        stack = [(root, False)]
+        return sumOfLeftLeavesHelper(root, False)
 
-        while stack:
-            node, is_left = stack.pop()
-            if node.left is None and node.right is None:
-                if is_left:
-                    total += node.val
-                continue
-            if node.right is not None:
-                stack.append((node.right, False))
-            if node.left is not None:
-                stack.append((node.left, True))
-
-        return total

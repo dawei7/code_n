@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     def sumOfDigits(self, nums: List[int]) -> int:
-        value = min(nums)
-        digit_sum = 0
-        while value:
-            digit_sum += value % 10
-            value //= 10
-        return int(digit_sum % 2 == 0)
+        x = min(nums)
+        s = 0
+        while x:
+            s += x % 10
+            x //= 10
+        return s & 1 ^ 1

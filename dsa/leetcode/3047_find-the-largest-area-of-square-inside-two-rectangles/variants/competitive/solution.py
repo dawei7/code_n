@@ -1,22 +1,33 @@
+# Time:  O(n^2)
+# Space: O(1)
+
+# brute force, math
 class Solution:
-    def largestSquareArea(
-        self,
-        bottomLeft: List[List[int]],
-        topRight: List[List[int]],
-    ) -> int:
-        largest_side = 0
+    def largestSquareArea(self, bottomLeft, topRight):
+        """
+        :type bottomLeft: List[List[int]]
+        :type topRight: List[List[int]]
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(bottomLeft)):
+            for j in range(i+1, len(bottomLeft)):
+                max_x = max(bottomLeft[i][0], bottomLeft[j][0])
+                min_x = min(topRight[i][0], topRight[j][0])
+                max_y = max(bottomLeft[i][1], bottomLeft[j][1])
+                min_y = min(topRight[i][1], topRight[j][1])
+                result = max(result, min(min_x-max_x, min_y-max_y))
+        return result**2
 
-        for first in range(len(bottomLeft)):
-            for second in range(first + 1, len(bottomLeft)):
-                overlap_width = min(topRight[first][0], topRight[second][0]) - max(
-                    bottomLeft[first][0], bottomLeft[second][0]
-                )
-                overlap_height = min(topRight[first][1], topRight[second][1]) - max(
-                    bottomLeft[first][1], bottomLeft[second][1]
-                )
-                largest_side = max(
-                    largest_side,
-                    min(overlap_width, overlap_height),
-                )
 
-        return largest_side * largest_side
+# Time:  O(n^2)
+# Space: O(1)
+# brute force, math
+class Solution2(object):
+    def largestSquareArea(self, bottomLeft, topRight):
+        """
+        :type bottomLeft: List[List[int]]
+        :type topRight: List[List[int]]
+        :rtype: int
+        """
+        return max(max(min(min(topRight[i][0], topRight[j][0])-max(bottomLeft[i][0], bottomLeft[j][0]), min(topRight[i][1], topRight[j][1])-max(bottomLeft[i][1], bottomLeft[j][1])) for i in range(len(bottomLeft)) for j in range(i+1, len(bottomLeft))), 0)**2

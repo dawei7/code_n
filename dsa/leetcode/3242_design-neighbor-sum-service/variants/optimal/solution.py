@@ -1,33 +1,30 @@
-from typing import List
-
-
 class NeighborSum:
+
     def __init__(self, grid: List[List[int]]):
-        side = len(grid)
-        value_count = side * side
-        self.adjacent = [0] * value_count
-        self.diagonal = [0] * value_count
-
-        adjacent_directions = ((-1, 0), (0, -1), (0, 1), (1, 0))
-        diagonal_directions = ((-1, -1), (-1, 1), (1, -1), (1, 1))
-
-        for row in range(side):
-            for column in range(side):
-                value = grid[row][column]
-                for row_change, column_change in adjacent_directions:
-                    neighbor_row = row + row_change
-                    neighbor_column = column + column_change
-                    if 0 <= neighbor_row < side and 0 <= neighbor_column < side:
-                        self.adjacent[value] += grid[neighbor_row][neighbor_column]
-
-                for row_change, column_change in diagonal_directions:
-                    neighbor_row = row + row_change
-                    neighbor_column = column + column_change
-                    if 0 <= neighbor_row < side and 0 <= neighbor_column < side:
-                        self.diagonal[value] += grid[neighbor_row][neighbor_column]
+        self.grid = grid
+        self.d = {}
+        self.dirs = ((-1, 0, 1, 0, -1), (-1, 1, 1, -1, -1))
+        for i, row in enumerate(grid):
+            for j, x in enumerate(row):
+                self.d[x] = (i, j)
 
     def adjacentSum(self, value: int) -> int:
-        return self.adjacent[value]
+        return self.cal(value, 0)
+
+    def cal(self, value: int, k: int):
+        i, j = self.d[value]
+        s = 0
+        for a, b in pairwise(self.dirs[k]):
+            x, y = i + a, j + b
+            if 0 <= x < len(self.grid) and 0 <= y < len(self.grid[0]):
+                s += self.grid[x][y]
+        return s
 
     def diagonalSum(self, value: int) -> int:
-        return self.diagonal[value]
+        return self.cal(value, 1)
+
+
+# Your NeighborSum object will be instantiated and called as such:
+# obj = NeighborSum(grid)
+# param_1 = obj.adjacentSum(value)
+# param_2 = obj.diagonalSum(value)

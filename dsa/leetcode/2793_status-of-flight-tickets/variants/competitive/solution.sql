@@ -1,20 +1,13 @@
-WITH RankedPassengers AS (
-    SELECT
-        p.passenger_id,
-        f.capacity,
-        ROW_NUMBER() OVER (
-            PARTITION BY p.flight_id
-            ORDER BY p.booking_time
-        ) AS booking_rank
-    FROM Passengers AS p
-    INNER JOIN Flights AS f
-        ON f.flight_id = p.flight_id
+# Time:  O(nlogn + m)
+# Space: O(n + m)
+
+WITH rank_cte AS (
+    SELECT passenger_id, capacity,
+           RANK() OVER (PARTITION BY a.flight_id ORDER BY booking_time) AS rnk
+    FROM Passengers a LEFT JOIN Flights b ON a.flight_id = b.flight_id
 )
-SELECT
-    passenger_id,
-    CASE
-        WHEN booking_rank <= capacity THEN 'Confirmed'
-        ELSE 'Waitlist'
-    END AS Status
-FROM RankedPassengers
+
+SELECT passenger_id,
+       IF (rnk <= capacity, 'Confirmed', 'Waitlist') AS Status
+FROM rank_cte
 ORDER BY passenger_id;

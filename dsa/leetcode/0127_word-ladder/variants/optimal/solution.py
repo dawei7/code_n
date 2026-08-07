@@ -1,25 +1,23 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        unvisited = set(wordList)
-        if endWord not in unvisited:
-            return 0
-        queue = deque([(beginWord, 1)])
-        unvisited.discard(beginWord)
-        while queue:
-            word, length = queue.popleft()
-            for index, original in enumerate(word):
-                for replacement in "abcdefghijklmnopqrstuvwxyz":
-                    if replacement == original:
-                        continue
-                    candidate = word[:index] + replacement + word[index + 1 :]
-                    if candidate not in unvisited:
-                        continue
-                    if candidate == endWord:
-                        return length + 1
-                    unvisited.remove(candidate)
-                    queue.append((candidate, length + 1))
+        words = set(wordList)
+        q = deque([beginWord])
+        ans = 1
+        while q:
+            ans += 1
+            for _ in range(len(q)):
+                s = q.popleft()
+                s = list(s)
+                for i in range(len(s)):
+                    ch = s[i]
+                    for j in range(26):
+                        s[i] = chr(ord('a') + j)
+                        t = ''.join(s)
+                        if t not in words:
+                            continue
+                        if t == endWord:
+                            return ans
+                        q.append(t)
+                        words.remove(t)
+                    s[i] = ch
         return 0

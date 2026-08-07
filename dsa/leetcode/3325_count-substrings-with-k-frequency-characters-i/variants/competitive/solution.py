@@ -1,23 +1,23 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+# freq table, two pointers, sliding window
 class Solution:
-    def numberOfSubstrings(self, s: str, k: int) -> int:
-        frequencies = [0] * 26
-        left = 0
-        qualifying = 0
-        answer = 0
-
-        for character in s:
-            index = ord(character) - ord("a")
-            frequencies[index] += 1
-            if frequencies[index] == k:
-                qualifying += 1
-
-            while qualifying:
-                left_index = ord(s[left]) - ord("a")
-                if frequencies[left_index] == k:
-                    qualifying -= 1
-                frequencies[left_index] -= 1
-                left += 1
-
-            answer += left
-
-        return answer
+    def numberOfSubstrings(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        def count():
+            cnt = [0]*26
+            result= left = 0
+            for right in range(len(s)):
+                cnt[ord(s[right])-ord('a')] += 1
+                while cnt[ord(s[right])-ord('a')] == k:
+                    cnt[ord(s[left])-ord('a')] -= 1
+                    left += 1
+                result += right-left+1
+            return result
+                
+        return (len(s)+1)*len(s)//2-count()

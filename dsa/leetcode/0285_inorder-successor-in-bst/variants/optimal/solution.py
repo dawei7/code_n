@@ -1,14 +1,18 @@
-from typing import Optional
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
 
 class Solution:
-    def inorderSuccessor(self, root: "TreeNode", p: "TreeNode") -> Optional["TreeNode"]:
-        successor = None
-        node = root
-        while node is not None:
-            if node.val > p.val:
-                successor = node
-                node = node.left
+    def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]:
+        ans = None
+        while root:
+            if root.val > p.val:
+                ans = root
+                root = root.left
             else:
-                node = node.right
-        return successor
+                root = root.right
+        return ans

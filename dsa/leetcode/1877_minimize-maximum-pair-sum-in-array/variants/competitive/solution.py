@@ -1,7 +1,11 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def minPairSum(self, nums: List[int]) -> int:
+    def minPairSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         nums.sort()
-        return max(nums[index] + nums[-index - 1] for index in range(len(nums) // 2))
+        return max(nums[i]+nums[-1-i] for i in range(len(nums)//2))

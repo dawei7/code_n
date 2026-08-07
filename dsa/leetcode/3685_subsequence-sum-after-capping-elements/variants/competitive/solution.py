@@ -1,30 +1,52 @@
-from typing import List
+# Time:  O(nlogn + n * k + klogn) = O(nlogn + n * k)
+# Space: O(k)
 
-
+# sort, dp, bitmasks
 class Solution:
-    def subsequenceSumAfterCapping(self, nums: List[int], k: int) -> List[bool]:
-        n = len(nums)
-        frequency = [0] * (n + 1)
-        for value in nums:
-            frequency[value] += 1
-
-        reachable = 1
-        mask = (1 << (k + 1)) - 1
-        fixed_count = 0
-        answer = []
-
-        for cap in range(1, n + 1):
-            for _ in range(frequency[cap]):
-                reachable |= reachable << cap
-                reachable &= mask
-
-            fixed_count += frequency[cap]
-            capped_count = n - fixed_count
-            possible = False
-            for copies in range(min(capped_count, k // cap) + 1):
-                if (reachable >> (k - copies * cap)) & 1:
-                    possible = True
+    def subsequenceSumAfterCapping(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[bool]
+        """
+        result = [False]*len(nums)
+        nums.sort()
+        mask = (1<<(k+1))-1
+        dp = 1
+        i = 0
+        for x in range(1, len(nums)+1):
+            while i < len(nums) and nums[i] < x:
+                dp |= (dp<<nums[i])&mask
+                i += 1
+            for j in range(max(k%x, k-(len(nums)-i)*x), k+1, x):
+                if dp&(1<<j):
+                    result[x-1] = True
                     break
-            answer.append(possible)
+        return result
 
-        return answer
+
+# Time:  O(nlogn + n * k + klogn) = O(nlogn + n * k)
+# Space: O(k)
+# sort, dp
+class Solution2(object):
+    def subsequenceSumAfterCapping(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[bool]
+        """
+        result = [False]*len(nums)
+        nums.sort()
+        dp = [False]*(k+1)
+        dp[0] = True
+        i = 0
+        for x in range(1, len(nums)+1):
+            while i < len(nums) and nums[i] < x:
+                for j in reversed(range(nums[i], k+1)):
+                    dp[j] = dp[j] or dp[j-nums[i]]
+                i += 1
+            for j in range(max(k%x, k-(len(nums)-i)*x), k+1, x):
+                if dp[j]:
+                    result[x-1] = True
+                    break
+        return result

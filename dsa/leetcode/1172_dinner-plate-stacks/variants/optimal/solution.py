@@ -1,44 +1,38 @@
-import heapq
-
-
 class DinnerPlates:
     def __init__(self, capacity: int):
         self.capacity = capacity
         self.stacks = []
-        self.available = []
+        self.not_full = SortedSet()
 
     def push(self, val: int) -> None:
-        while self.available and (
-            self.available[0] >= len(self.stacks) or len(self.stacks[self.available[0]]) == self.capacity
-        ):
-            heapq.heappop(self.available)
-
-        if not self.available:
-            index = len(self.stacks)
-            self.stacks.append([])
-            heapq.heappush(self.available, index)
-
-        index = self.available[0]
-        self.stacks[index].append(val)
-        if len(self.stacks[index]) == self.capacity:
-            heapq.heappop(self.available)
+        if not self.not_full:
+            self.stacks.append([val])
+            if self.capacity > 1:
+                self.not_full.add(len(self.stacks) - 1)
+        else:
+            index = self.not_full[0]
+            self.stacks[index].append(val)
+            if len(self.stacks[index]) == self.capacity:
+                self.not_full.discard(index)
 
     def pop(self) -> int:
-        while self.stacks and not self.stacks[-1]:
-            self.stacks.pop()
-        if not self.stacks:
-            return -1
         return self.popAtStack(len(self.stacks) - 1)
 
     def popAtStack(self, index: int) -> int:
         if index < 0 or index >= len(self.stacks) or not self.stacks[index]:
             return -1
+        val = self.stacks[index].pop()
+        if index == len(self.stacks) - 1 and not self.stacks[-1]:
+            while self.stacks and not self.stacks[-1]:
+                self.not_full.discard(len(self.stacks) - 1)
+                self.stacks.pop()
+        else:
+            self.not_full.add(index)
+        return val
 
-        was_full = len(self.stacks[index]) == self.capacity
-        value = self.stacks[index].pop()
-        if was_full:
-            heapq.heappush(self.available, index)
 
-        while self.stacks and not self.stacks[-1]:
-            self.stacks.pop()
-        return value
+# Your DinnerPlates object will be instantiated and called as such:
+# obj = DinnerPlates(capacity)
+# obj.push(val)
+# param_2 = obj.pop()
+# param_3 = obj.popAtStack(index)

@@ -1,4 +1,12 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# bitmasks
 class Solution:
-    def minimumFlips(self, n: int) -> int:
-        bits = bin(n)[2:]
-        return sum(left != right for left, right in zip(bits, reversed(bits)))
+    def minimumFlips(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        l = n.bit_length()
+        return sum(2 for i in range(l//2) if (n>>i)&1 != (n>>((l-1)-i))&1)

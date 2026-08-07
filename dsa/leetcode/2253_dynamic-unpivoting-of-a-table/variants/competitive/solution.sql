@@ -1,27 +1,21 @@
+# Time:  O(n * m)
+# Space: O(n * m)
+
 CREATE PROCEDURE UnpivotProducts()
 BEGIN
     SET SESSION group_concat_max_len = 1000000;
-
-    SELECT GROUP_CONCAT(
+    
+    SET @sql_query = NULL;
+	  SELECT GROUP_CONCAT(
         CONCAT(
-            'SELECT product_id, ',
-            QUOTE(column_name),
-            ' AS store, `',
-            REPLACE(column_name, '`', '``'),
-            '` AS price FROM Products WHERE `',
-            REPLACE(column_name, '`', '``'),
-            '` IS NOT NULL'
-        )
-        ORDER BY ordinal_position
-        SEPARATOR ' UNION ALL '
+            'SELECT product_id, "', column_name, '" AS store, ', column_name, ' AS price FROM products WHERE ', column_name, ' IS NOT NULL'
+        ) SEPARATOR ' UNION ALL '
     )
-    INTO @unpivot_query
+    INTO @sql_query
     FROM information_schema.columns
-    WHERE table_schema = DATABASE()
-      AND table_name = 'Products'
-      AND column_name <> 'product_id';
-
-    PREPARE unpivot_statement FROM @unpivot_query;
-    EXECUTE unpivot_statement;
-    DEALLOCATE PREPARE unpivot_statement;
+    WHERE table_name = 'products' AND column_name != 'product_id';
+    
+    PREPARE sql_query FROM @sql_query;
+    EXECUTE sql_query;
+    DEALLOCATE PREPARE sql_query;
 END

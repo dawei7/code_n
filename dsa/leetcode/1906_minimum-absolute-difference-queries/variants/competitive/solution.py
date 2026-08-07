@@ -1,23 +1,56 @@
-from typing import List
-
+# Time:  O(r * (n + q)), r is the max of nums
+# Space: O(r * n)
 
 class Solution:
-    def minDifference(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        prefix = [[0] * 101]
-        for number in nums:
-            counts = prefix[-1].copy()
-            counts[number] += 1
-            prefix.append(counts)
-
-        answers = []
-        for left, right in queries:
-            previous = 0
-            best = 101
-            for value in range(1, 101):
-                if prefix[right + 1][value] == prefix[left][value]:
+    def minDifference(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        INF = float("inf")
+        prefix = [[0]*(max(nums)+1)]
+        for num in nums:
+            prefix.append(prefix[-1][:])
+            prefix[-1][num] += 1
+        result = []
+        for l, r in queries:
+            min_diff, prev = INF, -1
+            for num in range(len(prefix[0])):
+                if not (prefix[l][num] < prefix[r+1][num]):
                     continue
-                if previous:
-                    best = min(best, value - previous)
-                previous = value
-            answers.append(-1 if best == 101 else best)
-        return answers
+                if prev != -1:
+                    min_diff = min(min_diff, num-prev)
+                prev = num
+            result.append(min_diff if min_diff != INF else -1)
+        return result
+
+
+# Time:  O(r + n + q * r * logn), r is the max of nums
+# Space: O(r + n)
+import bisect
+
+
+class Solution2(object):
+    def minDifference(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        INF = float("inf")
+        idxs = [[] for _ in range(max(nums)+1)]
+        for i, num in enumerate(nums):
+            idxs[num].append(i)
+        result = []
+        for l, r in queries:
+            min_diff, prev = INF, -1
+            for num in range(len(idxs)):
+                i = bisect.bisect_left(idxs[num], l)
+                if not (i < len(idxs[num]) and idxs[num][i] <= r):
+                    continue
+                if prev != -1:
+                    min_diff = min(min_diff, num-prev)
+                prev = num
+            result.append(min_diff if min_diff != INF else -1)
+        return result

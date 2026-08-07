@@ -1,24 +1,21 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def numSubseq(self, nums: List[int], target: int) -> int:
-        modulus = 1_000_000_007
+    def numSubseq(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        MOD = 10**9 + 7
         nums.sort()
-
-        powers = [1] * (len(nums) + 1)
-        for exponent in range(1, len(powers)):
-            powers[exponent] = (powers[exponent - 1] * 2) % modulus
-
-        left = 0
-        right = len(nums) - 1
-        answer = 0
-
+        result = 0
+        left, right = 0, len(nums)-1
         while left <= right:
-            if nums[left] + nums[right] <= target:
-                answer = (answer + powers[right - left]) % modulus
-                left += 1
-            else:
+            if nums[left]+nums[right] > target:
                 right -= 1
-
-        return answer
+            else:
+                result = (result+pow(2, right-left, MOD))%MOD
+                left += 1
+        return result

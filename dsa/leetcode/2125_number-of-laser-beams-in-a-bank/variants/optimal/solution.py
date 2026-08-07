@@ -1,15 +1,8 @@
-from typing import List
-
-
 class Solution:
     def numberOfBeams(self, bank: List[str]) -> int:
-        previous_devices = 0
-        beams = 0
-
+        ans = pre = 0
         for row in bank:
-            devices = row.count("1")
-            if devices:
-                beams += previous_devices * devices
-                previous_devices = devices
-
-        return beams
+            if (cur := row.count("1")) > 0:
+                ans += pre * cur
+                pre = cur
+        return ans

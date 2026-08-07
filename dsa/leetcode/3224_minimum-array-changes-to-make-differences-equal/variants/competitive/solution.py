@@ -1,23 +1,31 @@
+# Time:  O(n + k)
+# Space: O(k)
+
+# prefix sum, difference array
 class Solution:
-    def minChanges(self, nums: List[int], k: int) -> int:
-        savings_delta = [0] * (k + 2)
-        pair_count = len(nums) // 2
+    def minChanges(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        diff = [0]*((k+1)+1)
+        def update(left, right, d):
+            diff[left] += d
+            diff[right+1] -= d
 
-        for index in range(pair_count):
-            left = nums[index]
-            right = nums[-index - 1]
-            difference = abs(left - right)
-            one_change_limit = max(left, right, k - left, k - right)
-
-            savings_delta[0] += 1
-            savings_delta[one_change_limit + 1] -= 1
-            savings_delta[difference] += 1
-            savings_delta[difference + 1] -= 1
-
-        best_savings = 0
-        current_savings = 0
-        for target in range(k + 1):
-            current_savings += savings_delta[target]
-            best_savings = max(best_savings, current_savings)
-
-        return 2 * pair_count - best_savings
+        for i in range(len(nums)//2):
+            curr = abs(nums[i]-nums[~i])
+            mx = max(nums[i]-0, k-nums[i], nums[~i]-0, k-nums[~i])
+            # 1 change for i in range(0, curr)
+            update(0, curr-1, 1)
+            # 1 change for i in range(curr+1, mx+1)
+            update(curr+1, mx, 1)
+            # 2 changes for i in range(mx+1, k+1)
+            update(mx+1, k, 2)
+        result = len(nums)//2
+        curr = 0
+        for i in range(k+1):
+            curr += diff[i]
+            result = min(result, curr)
+        return result

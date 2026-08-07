@@ -1,9 +1,13 @@
+# Time:  O(m * nlogn)
+# Space: O(1)
+
+# array
 class Solution:
-    def deleteGreatestValue(self, grid: List[List[int]]) -> int:
+    def deleteGreatestValue(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
         for row in grid:
             row.sort()
-
-        answer = 0
-        for column in range(len(grid[0])):
-            answer += max(row[column] for row in grid)
-        return answer
+        return sum(max(grid[i][j] for i in range(len(grid))) for j in range(len(grid[0])))

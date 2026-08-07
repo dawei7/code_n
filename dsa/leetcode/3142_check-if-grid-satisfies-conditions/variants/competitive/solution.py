@@ -1,16 +1,12 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def satisfiesConditions(self, grid: List[List[int]]) -> bool:
-        rows = len(grid)
-        columns = len(grid[0])
-
-        for row in range(rows):
-            for column in range(columns):
-                if row + 1 < rows and grid[row][column] != grid[row + 1][column]:
-                    return False
-                if column + 1 < columns and grid[row][column] == grid[row][column + 1]:
-                    return False
-
-        return True
+    def satisfiesConditions(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: bool
+        """
+        return (all(grid[i][j] == grid[i+1][j] for j in range(len(grid[0])) for i in range(len(grid)-1)) and 
+                all(grid[0][j] != grid[0][j+1] for j in range(len(grid[0])-1)))

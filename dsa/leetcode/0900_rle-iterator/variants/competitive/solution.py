@@ -1,21 +1,30 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+class RLEIterator(object):
+
+    def __init__(self, A):
+        """
+        :type A: List[int]
+        """
+        self.__A = A
+        self.__i = 0
+        self.__cnt = 0
+
+    def next(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        while self.__i < len(self.__A):
+            if  n > self.__A[self.__i] - self.__cnt:
+                n -= self.__A[self.__i] - self.__cnt
+                self.__cnt = 0
+                self.__i += 2
+            else:
+                self.__cnt += n
+                return self.__A[self.__i+1]
+        return -1
 
 
-class RLEIterator:
-    def __init__(self, encoding: List[int]):
-        self.encoding = encoding
-        self.index = 0
-        self.remaining = encoding[0]
 
-    def next(self, n: int) -> int:
-        while self.index < len(self.encoding) and n > self.remaining:
-            n -= self.remaining
-            self.index += 2
-            if self.index < len(self.encoding):
-                self.remaining = self.encoding[self.index]
-
-        if self.index == len(self.encoding):
-            return -1
-
-        self.remaining -= n
-        return self.encoding[self.index + 1]

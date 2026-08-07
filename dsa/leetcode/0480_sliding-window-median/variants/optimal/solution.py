@@ -1,66 +1,65 @@
-from collections import Counter
-from heapq import heappop, heappush
-from typing import List
+class MedianFinder:
+    def __init__(self, k: int):
+        self.k = k
+        self.small = []
+        self.large = []
+        self.delayed = defaultdict(int)
+        self.small_size = 0
+        self.large_size = 0
+
+    def add_num(self, num: int):
+        if not self.small or num <= -self.small[0]:
+            heappush(self.small, -num)
+            self.small_size += 1
+        else:
+            heappush(self.large, num)
+            self.large_size += 1
+        self.rebalance()
+
+    def find_median(self) -> float:
+        return -self.small[0] if self.k & 1 else (-self.small[0] + self.large[0]) / 2
+
+    def remove_num(self, num: int):
+        self.delayed[num] += 1
+        if num <= -self.small[0]:
+            self.small_size -= 1
+            if num == -self.small[0]:
+                self.prune(self.small)
+        else:
+            self.large_size -= 1
+            if num == self.large[0]:
+                self.prune(self.large)
+        self.rebalance()
+
+    def prune(self, pq: List[int]):
+        sign = -1 if pq is self.small else 1
+        while pq and sign * pq[0] in self.delayed:
+            self.delayed[sign * pq[0]] -= 1
+            if self.delayed[sign * pq[0]] == 0:
+                self.delayed.pop(sign * pq[0])
+            heappop(pq)
+
+    def rebalance(self):
+        if self.small_size > self.large_size + 1:
+            heappush(self.large, -heappop(self.small))
+            self.small_size -= 1
+            self.large_size += 1
+            self.prune(self.small)
+        elif self.small_size < self.large_size:
+            heappush(self.small, -heappop(self.large))
+            self.large_size -= 1
+            self.small_size += 1
+            self.prune(self.large)
 
 
 class Solution:
     def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
-        small, large = [], []
-        delayed = Counter()
-        small_size = large_size = 0
-
-        def prune(heap, lower):
-            while heap:
-                value = -heap[0] if lower else heap[0]
-                if delayed[value] == 0:
-                    break
-                heappop(heap)
-                delayed[value] -= 1
-
-        def balance():
-            nonlocal small_size, large_size
-            if small_size > large_size + 1:
-                heappush(large, -heappop(small))
-                small_size -= 1
-                large_size += 1
-                prune(small, True)
-            elif small_size < large_size:
-                heappush(small, -heappop(large))
-                small_size += 1
-                large_size -= 1
-                prune(large, False)
-
-        def insert(value):
-            nonlocal small_size, large_size
-            if not small or value <= -small[0]:
-                heappush(small, -value)
-                small_size += 1
-            else:
-                heappush(large, value)
-                large_size += 1
-            balance()
-
-        def erase(value):
-            nonlocal small_size, large_size
-            delayed[value] += 1
-            if value <= -small[0]:
-                small_size -= 1
-                if value == -small[0]:
-                    prune(small, True)
-            else:
-                large_size -= 1
-                if large and value == large[0]:
-                    prune(large, False)
-            balance()
-
-        def median():
-            return float(-small[0]) if k % 2 else (-small[0] + large[0]) / 2.0
-
-        for value in nums[:k]:
-            insert(value)
-        answer = [median()]
-        for index in range(k, len(nums)):
-            insert(nums[index])
-            erase(nums[index - k])
-            answer.append(median())
-        return answer
+        finder = MedianFinder(k)
+        for x in nums[:k]:
+            finder.add_num(x)
+        ans = [finder.find_median()]
+        for i in range(k, len(nums)):
+            finder.add_num(nums[i])
+            finder.remove_num(nums[i - k])
+            ans.append(finder.find_median())
+        return ans

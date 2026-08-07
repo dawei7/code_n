@@ -1,23 +1,21 @@
-from typing import List
-
-
 class Solution:
     def splitArray(self, nums: List[int]) -> int:
-        increasing_end = 0
-        while increasing_end + 1 < len(nums) and nums[increasing_end] < nums[increasing_end + 1]:
-            increasing_end += 1
-
-        decreasing_start = len(nums) - 1
-        while decreasing_start > 0 and nums[decreasing_start - 1] > nums[decreasing_start]:
-            decreasing_start -= 1
-
-        total = sum(nums)
-        left_sum = 0
-        answer = None
-        for split, value in enumerate(nums[:-1]):
-            left_sum += value
-            if split <= increasing_end and split + 1 >= decreasing_start:
-                difference = abs(2 * left_sum - total)
-                answer = difference if answer is None else min(answer, difference)
-
-        return -1 if answer is None else answer
+        s = list(accumulate(nums))
+        n = len(nums)
+        f = [True] * n
+        for i in range(1, n):
+            f[i] = f[i - 1]
+            if nums[i] <= nums[i - 1]:
+                f[i] = False
+        g = [True] * n
+        for i in range(n - 2, -1, -1):
+            g[i] = g[i + 1]
+            if nums[i] <= nums[i + 1]:
+                g[i] = False
+        ans = inf
+        for i in range(n - 1):
+            if f[i] and g[i + 1]:
+                s1 = s[i]
+                s2 = s[n - 1] - s[i]
+                ans = min(ans, abs(s1 - s2))
+        return ans if ans < inf else -1

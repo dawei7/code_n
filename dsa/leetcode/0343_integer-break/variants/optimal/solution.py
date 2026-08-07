@@ -1,11 +1,7 @@
 class Solution:
     def integerBreak(self, n: int) -> int:
-        if n <= 3:
-            return n - 1
-
-        threes, remainder = divmod(n, 3)
-        if remainder == 0:
-            return 3**threes
-        if remainder == 1:
-            return 3 ** (threes - 1) * 4
-        return 3**threes * 2
+        f = [1] * (n + 1)
+        for i in range(2, n + 1):
+            for j in range(1, i):
+                f[i] = max(f[i], f[i - j] * j, (i - j) * j)
+        return f[n]

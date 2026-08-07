@@ -1,45 +1,45 @@
-from collections import Counter
-from typing import List
+# Time:  O(l + q)
+# Space: O(l)
+
+import collections
 
 
 class Solution:
-    def gridIllumination(self, n: int, lamps: List[List[int]], queries: List[List[int]]) -> List[int]:
-        active = set()
-        rows = Counter()
-        columns = Counter()
-        diagonals = Counter()
-        anti_diagonals = Counter()
-
-        for row, column in lamps:
-            if (row, column) in active:
+    def gridIllumination(self, N, lamps, queries):
+        """
+        :type N: int
+        :type lamps: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        lookup = set()
+        row = collections.defaultdict(int)
+        col = collections.defaultdict(int)
+        diag = collections.defaultdict(int)
+        anti = collections.defaultdict(int)
+        
+        for r, c in lamps:
+            if (r, c) in lookup:
                 continue
-            active.add((row, column))
-            rows[row] += 1
-            columns[column] += 1
-            diagonals[row - column] += 1
-            anti_diagonals[row + column] += 1
-
-        answer = []
-        for row, column in queries:
-            answer.append(
-                int(
-                    rows[row] > 0
-                    or columns[column] > 0
-                    or diagonals[row - column] > 0
-                    or anti_diagonals[row + column] > 0
-                )
-            )
-
-            for row_step in (-1, 0, 1):
-                for column_step in (-1, 0, 1):
-                    neighbor = (row + row_step, column + column_step)
-                    if neighbor not in active:
+            lookup.add((r, c))
+            row[r] += 1
+            col[c] += 1
+            diag[r-c] += 1
+            anti[r+c] += 1
+        
+        result = []
+        for r, c in queries:
+            if not (row[r] or col[c] or diag[r-c] or anti[r+c]):
+                result.append(0)
+                continue
+            result.append(1)                
+            for nr in range(max(r-1, 0), min(r+1, N-1)+1):
+                for nc in range(max(c-1, 0), min(c+1, N-1)+1):
+                    if (nr, nc) not in lookup:
                         continue
-                    active.remove(neighbor)
-                    lamp_row, lamp_column = neighbor
-                    rows[lamp_row] -= 1
-                    columns[lamp_column] -= 1
-                    diagonals[lamp_row - lamp_column] -= 1
-                    anti_diagonals[lamp_row + lamp_column] -= 1
-
-        return answer
+                    lookup.remove((nr, nc))
+                    row[nr] -= 1
+                    col[nc] -= 1
+                    diag[nr-nc] -= 1
+                    anti[nr+nc] -= 1
+        return result

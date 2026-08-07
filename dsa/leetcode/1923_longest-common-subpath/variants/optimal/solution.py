@@ -1,52 +1,37 @@
-from typing import List
-
-
 class Solution:
     def longestCommonSubpath(self, n: int, paths: List[List[int]]) -> int:
-        del n
-        paths.sort(key=len)
-        base = 100_003
-        modulus_one = 1_000_000_007
-        modulus_two = 1_000_000_009
+        def check(k: int) -> bool:
+            cnt = Counter()
+            for h in hh:
+                vis = set()
+                for i in range(1, len(h) - k + 1):
+                    j = i + k - 1
+                    x = (h[j] - h[i - 1] * p[j - i + 1]) % mod
+                    if x not in vis:
+                        vis.add(x)
+                        cnt[x] += 1
+            return max(cnt.values()) == m
 
-        def hashes(path: List[int], length: int) -> set[tuple[int, int]]:
-            if length == 0:
-                return {(0, 0)}
-
-            power_one = pow(base, length, modulus_one)
-            power_two = pow(base, length, modulus_two)
-            hash_one = 0
-            hash_two = 0
-            for value in path[:length]:
-                encoded = value + 1
-                hash_one = (hash_one * base + encoded) % modulus_one
-                hash_two = (hash_two * base + encoded) % modulus_two
-
-            result = {(hash_one, hash_two)}
-            for right in range(length, len(path)):
-                outgoing = path[right - length] + 1
-                incoming = path[right] + 1
-                hash_one = (hash_one * base + incoming - outgoing * power_one) % modulus_one
-                hash_two = (hash_two * base + incoming - outgoing * power_two) % modulus_two
-                result.add((hash_one, hash_two))
-
-            return result
-
-        def shared(length: int) -> bool:
-            common = hashes(paths[0], length)
-            for path in paths[1:]:
-                common.intersection_update(hashes(path, length))
-                if not common:
-                    return False
-            return True
-
-        low = 0
-        high = len(paths[0])
-        while low < high:
-            middle = (low + high + 1) // 2
-            if shared(middle):
-                low = middle
+        m = len(paths)
+        mx = max(len(path) for path in paths)
+        base = 133331
+        mod = 2**64 + 1
+        p = [0] * (mx + 1)
+        p[0] = 1
+        for i in range(1, len(p)):
+            p[i] = p[i - 1] * base % mod
+        hh = []
+        for path in paths:
+            k = len(path)
+            h = [0] * (k + 1)
+            for i, x in enumerate(path, 1):
+                h[i] = h[i - 1] * base % mod + x
+            hh.append(h)
+        l, r = 0, min(len(path) for path in paths)
+        while l < r:
+            mid = (l + r + 1) >> 1
+            if check(mid):
+                l = mid
             else:
-                high = middle - 1
-
-        return low
+                r = mid - 1
+        return l

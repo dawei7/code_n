@@ -1,17 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def partitionLabels(self, s: str) -> List[int]:
-        last_position = {character: index for index, character in enumerate(s)}
-        partitions = []
-        partition_start = 0
-        partition_end = 0
+    def partitionLabels(self, S):
+        """
+        :type S: str
+        :rtype: List[int]
+        """
+        lookup = {c: i for i, c in enumerate(S)}
+        first, last = 0, 0
+        result = []
+        for i, c in enumerate(S):
+            last = max(last, lookup[c])
+            if i == last:
+                result.append(i-first+1)
+                first = i+1
+        return result
 
-        for index, character in enumerate(s):
-            partition_end = max(partition_end, last_position[character])
-            if index == partition_end:
-                partitions.append(index - partition_start + 1)
-                partition_start = index + 1
-
-        return partitions

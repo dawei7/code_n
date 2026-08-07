@@ -1,32 +1,57 @@
-from typing import Optional
+# Time:  O(1), amortized
+# Space: O(h)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
-class BSTIterator:
-    def __init__(self, root: Optional["TreeNode"]):
-        self.stack = []
-        self.values = []
-        self.index = -1
-        self._push_left(root)
+class BSTIterator(object):
 
-    def _push_left(self, node: Optional["TreeNode"]) -> None:
+    def __init__(self, root):
+        """
+        :type root: TreeNode
+        """
+        self.__stk = []
+        self.__traversalLeft(root)
+        self.__vals = []
+        self.__pos = -1
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return self.__pos+1 != len(self.__vals) or self.__stk
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        self.__pos += 1
+        if self.__pos == len(self.__vals):
+            node = self.__stk.pop()
+            self.__traversalLeft(node.right)
+            self.__vals.append(node.val)
+        return self.__vals[self.__pos]
+        
+    def hasPrev(self):
+        """
+        :rtype: bool
+        """
+        return self.__pos-1 >= 0
+
+    def prev(self):
+        """
+        :rtype: int
+        """
+        self.__pos -= 1
+        return self.__vals[self.__pos]
+    
+    def __traversalLeft(self, node):
         while node is not None:
-            self.stack.append(node)
+            self.__stk.append(node)
             node = node.left
 
-    def hasNext(self) -> bool:
-        return self.index + 1 < len(self.values) or bool(self.stack)
-
-    def next(self) -> int:
-        self.index += 1
-        if self.index == len(self.values):
-            node = self.stack.pop()
-            self.values.append(node.val)
-            self._push_left(node.right)
-        return self.values[self.index]
-
-    def hasPrev(self) -> bool:
-        return self.index > 0
-
-    def prev(self) -> int:
-        self.index -= 1
-        return self.values[self.index]

@@ -3,18 +3,17 @@
  * @param {Array} args
  * @return {Function}
  */
-var partial = function(fn, args) {
-    return function(...restArgs) {
-        const merged = [];
-        let restIndex = 0;
-
-        for (const arg of args) {
-            merged.push(arg === "_" ? restArgs[restIndex++] : arg);
+var partial = function (fn, args) {
+    return function (...restArgs) {
+        let i = 0;
+        for (let j = 0; j < args.length; ++j) {
+            if (args[j] === '_') {
+                args[j] = restArgs[i++];
+            }
         }
-        while (restIndex < restArgs.length) {
-            merged.push(restArgs[restIndex++]);
+        while (i < restArgs.length) {
+            args.push(restArgs[i++]);
         }
-
-        return fn.apply(this, merged);
+        return fn.apply(this, args);
     };
 };

@@ -1,13 +1,12 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        if n < 0:
-            x = 1.0 / x
-            n = -n
+        def qpow(a: float, n: int) -> float:
+            ans = 1
+            while n:
+                if n & 1:
+                    ans *= a
+                a *= a
+                n >>= 1
+            return ans
 
-        result = 1.0
-        while n:
-            if n & 1:
-                result *= x
-            x *= x
-            n >>= 1
-        return result
+        return qpow(x, n) if n >= 0 else 1 / qpow(x, -n)

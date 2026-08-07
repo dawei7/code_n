@@ -1,25 +1,16 @@
-from typing import List
-
-
 class Solution:
     def insert(
-        self,
-        intervals: List[List[int]],
-        newInterval: List[int],
+        self, intervals: List[List[int]], newInterval: List[int]
     ) -> List[List[int]]:
-        result = []
-        index = 0
-        start, end = newInterval
+        def merge(intervals: List[List[int]]) -> List[List[int]]:
+            intervals.sort()
+            ans = [intervals[0]]
+            for s, e in intervals[1:]:
+                if ans[-1][1] < s:
+                    ans.append([s, e])
+                else:
+                    ans[-1][1] = max(ans[-1][1], e)
+            return ans
 
-        while index < len(intervals) and intervals[index][1] < start:
-            result.append(intervals[index][:])
-            index += 1
-
-        while index < len(intervals) and intervals[index][0] <= end:
-            start = min(start, intervals[index][0])
-            end = max(end, intervals[index][1])
-            index += 1
-
-        result.append([start, end])
-        result.extend(interval[:] for interval in intervals[index:])
-        return result
+        intervals.append(newInterval)
+        return merge(intervals)

@@ -1,28 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minFlips(self, s: str) -> int:
-        length = len(s)
-        mismatches_starting_zero = 0
-        mismatches_starting_one = 0
-        minimum_flips = length
-
-        for right in range(2 * length):
-            character = s[right % length]
-            expected_zero = "0" if right % 2 == 0 else "1"
-            mismatches_starting_zero += character != expected_zero
-            mismatches_starting_one += character == expected_zero
-
-            if right >= length:
-                left = right - length
-                outgoing = s[left % length]
-                outgoing_expected_zero = "0" if left % 2 == 0 else "1"
-                mismatches_starting_zero -= outgoing != outgoing_expected_zero
-                mismatches_starting_one -= outgoing == outgoing_expected_zero
-
-            if right >= length - 1:
-                minimum_flips = min(
-                    minimum_flips,
-                    mismatches_starting_zero,
-                    mismatches_starting_one,
-                )
-
-        return minimum_flips
+    def minFlips(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = float("inf")
+        cnt1 = cnt2 = 0
+        for i in range(2*len(s)-1 if len(s)%2 else len(s)):
+            if i >= len(s):
+                cnt1 -= int(s[i%len(s)])^((i-len(s))%2)^0
+                cnt2 -= int(s[i%len(s)])^((i-len(s))%2)^1
+            cnt1 += int(s[i%len(s)])^(i%2)^0
+            cnt2 += int(s[i%len(s)])^(i%2)^1
+            if i >= len(s)-1:
+                result = min(result, cnt1, cnt2)
+        return result

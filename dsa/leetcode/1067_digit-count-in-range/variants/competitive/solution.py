@@ -1,30 +1,22 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def digitsCount(self, d: int, low: int, high: int) -> int:
-        def count_up_to(limit: int) -> int:
-            if limit <= 0:
-                return 0
-
-            total = 0
-            place = 1
-            while place <= limit:
-                lower = limit % place
-                current = (limit // place) % 10
-                higher = limit // (place * 10)
-
-                if d != 0:
-                    total += higher * place
-                    if current > d:
-                        total += place
-                    elif current == d:
-                        total += lower + 1
-                elif higher > 0:
-                    total += (higher - 1) * place
-                    if current > 0:
-                        total += place
-                    else:
-                        total += lower + 1
-
-                place *= 10
-            return total
-
-        return count_up_to(high) - count_up_to(low - 1)
+    def digitsCount(self, d, low, high):
+        """
+        :type d: int
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        def digitsCount(n, k):
+            pivot, result = 1, 0
+            while n >= pivot:
+                result += (n//(10*pivot))*pivot + \
+                           min(pivot, max(n%(10*pivot) - k*pivot + 1, 0))
+                if k == 0:
+                    result -= pivot
+                pivot *= 10
+            return result+1
+        
+        return digitsCount(high, d) - digitsCount(low-1, d)

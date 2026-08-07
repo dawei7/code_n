@@ -1,44 +1,87 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table, prefix sum, greedy
 class Solution:
-    def maximumMEX(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        remaining = [0] * (n + 1)
-        for value in nums:
-            if value <= n:
-                remaining[value] += 1
-
+    def maximumMEX(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        ver = -1
+        lookup = [ver]*len(nums)
+        suffix = [0]*len(nums)
+        ver += 1
         mex = 0
-        while remaining[mex] > 0:
-            mex += 1
-
-        result = []
-        index = 0
-        while index < n:
-            if mex == 0:
-                value = nums[index]
-                if value <= n:
-                    remaining[value] -= 1
-                result.append(0)
-                index += 1
-                continue
-
-            segment_mex = mex
-            unseen = segment_mex
-            seen = set()
-            while unseen > 0:
-                value = nums[index]
-                if value <= n:
-                    remaining[value] -= 1
-                if value < segment_mex and value not in seen:
-                    seen.add(value)
-                    unseen -= 1
-                index += 1
-
-            result.append(segment_mex)
-            mex = 0
-            while remaining[mex] > 0:
+        for i in reversed(range(len(nums))):
+            if nums[i] < len(lookup):
+                lookup[nums[i]] = ver
+            while mex < len(lookup) and lookup[mex] == ver:
                 mex += 1
+            suffix[i] = mex
+        result = []
+        ver += 1
+        mex = 0
+        j = 0
+        for i in range(len(nums)):
+            if not suffix[j]:
+                break
+            if nums[i] < len(lookup):
+                lookup[nums[i]] = ver
+            while mex < len(lookup) and lookup[mex] == ver:
+                mex += 1
+            if mex != suffix[j]:
+                continue
+            result.append(mex)
+            ver += 1
+            mex = 0
+            j = i+1
+        result.extend(0 for _ in range(len(nums)-j))
+        return result
 
+
+# Time:  O(n)
+# Space: O(n)
+# hash table, freq table, greedy
+class Solution2(object):
+    def maximumMEX(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        ver = -1
+        lookup = [ver]*len(nums)
+        cnt = [0]*len(nums)
+        ver += 1
+        mex = 0
+        for i in range(len(nums)):
+            if nums[i] < len(lookup):
+                lookup[nums[i]] = ver
+                cnt[nums[i]] += 1
+            while mex < len(lookup) and lookup[mex] == ver:
+                mex += 1
+        new_suffix = suffix = mex
+        result = []
+        ver += 1
+        mex = 0
+        j = 0
+        for i in range(len(nums)):
+            if not suffix:
+                break
+            curr = 0
+            if nums[i] < len(lookup):
+                lookup[nums[i]] = ver
+                cnt[nums[i]] -= 1
+                if not cnt[nums[i]] and nums[i] < new_suffix:
+                    new_suffix = nums[i]
+            while mex < len(lookup) and lookup[mex] == ver:
+                mex += 1
+            if mex != suffix:
+                continue
+            result.append(mex)
+            ver += 1
+            mex = 0
+            j = i+1
+            suffix = new_suffix
+        result.extend(0 for _ in range(len(nums)-j))
         return result

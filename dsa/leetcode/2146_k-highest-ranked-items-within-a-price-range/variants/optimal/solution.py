@@ -1,46 +1,27 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def highestRankedKItems(
-        self,
-        grid: List[List[int]],
-        pricing: List[int],
-        start: List[int],
-        k: int,
+        self, grid: List[List[int]], pricing: List[int], start: List[int], k: int
     ) -> List[List[int]]:
-        rows = len(grid)
-        columns = len(grid[0])
+        m, n = len(grid), len(grid[0])
+        row, col = start
         low, high = pricing
-        start_row, start_column = start
-        queue = deque([(start_row, start_column, 0)])
-        visited = {(start_row, start_column)}
-        ranked = []
-
-        while queue:
-            row, column, distance = queue.popleft()
-            price = grid[row][column]
-            if low <= price <= high:
-                ranked.append((distance, price, row, column))
-
-            for row_step, column_step in (
-                (1, 0),
-                (-1, 0),
-                (0, 1),
-                (0, -1),
-            ):
-                next_row = row + row_step
-                next_column = column + column_step
-                next_cell = (next_row, next_column)
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and grid[next_row][next_column] != 0
-                    and next_cell not in visited
-                ):
-                    visited.add(next_cell)
-                    queue.append((next_row, next_column, distance + 1))
-
-        ranked.sort()
-        return [[row, column] for _, _, row, column in ranked[:k]]
+        q = deque([(row, col)])
+        pq = []
+        if low <= grid[row][col] <= high:
+            pq.append((0, grid[row][col], row, col))
+        grid[row][col] = 0
+        dirs = (-1, 0, 1, 0, -1)
+        step = 0
+        while q:
+            step += 1
+            for _ in range(len(q)):
+                x, y = q.popleft()
+                for a, b in pairwise(dirs):
+                    nx, ny = x + a, y + b
+                    if 0 <= nx < m and 0 <= ny < n and grid[nx][ny] > 0:
+                        if low <= grid[nx][ny] <= high:
+                            pq.append((step, grid[nx][ny], nx, ny))
+                        grid[nx][ny] = 0
+                        q.append((nx, ny))
+        pq.sort()
+        return [list(x[2:]) for x in pq[:k]]

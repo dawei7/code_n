@@ -1,24 +1,26 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def balanceBST(self, root: TreeNode) -> TreeNode:
-        nodes = []
-        stack = []
-        current = root
+        def dfs(root: TreeNode):
+            if root is None:
+                return
+            dfs(root.left)
+            nums.append(root.val)
+            dfs(root.right)
 
-        while current is not None or stack:
-            while current is not None:
-                stack.append(current)
-                current = current.left
-            current = stack.pop()
-            nodes.append(current)
-            current = current.right
-
-        def build(left, right):
-            if left > right:
+        def build(i: int, j: int) -> TreeNode:
+            if i > j:
                 return None
-            middle = (left + right) // 2
-            node = nodes[middle]
-            node.left = build(left, middle - 1)
-            node.right = build(middle + 1, right)
-            return node
+            mid = (i + j) >> 1
+            left = build(i, mid - 1)
+            right = build(mid + 1, j)
+            return TreeNode(nums[mid], left, right)
 
-        return build(0, len(nodes) - 1)
+        nums = []
+        dfs(root)
+        return build(0, len(nums) - 1)

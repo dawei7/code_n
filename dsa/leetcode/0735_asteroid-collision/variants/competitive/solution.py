@@ -1,22 +1,44 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
-        survivors = []
+    def asteroidCollision(self, asteroids):
+        """
+        :type asteroids: List[int]
+        :rtype: List[int]
+        """
+        result = []
+        for x in asteroids:
+            if x > 0:
+                result.append(x)
+                continue
+            while result and 0 < result[-1] < -x:
+                result.pop()
+            if result and 0 < result[-1]:
+                if result[-1] == -x:
+                    result.pop()
+                continue
+            result.append(x)
+        return result
 
-        for asteroid in asteroids:
-            alive = True
-            while alive and asteroid < 0 and survivors and survivors[-1] > 0:
-                if survivors[-1] < -asteroid:
-                    survivors.pop()
-                elif survivors[-1] == -asteroid:
-                    survivors.pop()
-                    alive = False
-                else:
-                    alive = False
 
-            if alive:
-                survivors.append(asteroid)
-
-        return survivors
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def asteroidCollision(self, asteroids):
+        """
+        :type asteroids: List[int]
+        :rtype: List[int]
+        """
+        result = []
+        for x in asteroids:
+            while result and x < 0 < result[-1]:
+                if result[-1] < -x:
+                    result.pop()
+                    continue
+                elif result[-1] == -x:
+                    result.pop()
+                break
+            else:
+                result.append(x)
+        return result

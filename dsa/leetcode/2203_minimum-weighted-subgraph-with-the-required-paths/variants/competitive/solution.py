@@ -1,41 +1,42 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O((|E| + |V|) * log|V|) = O(|E| * log|V|),
+#        if we can further to use Fibonacci heap, it would be O(|E| + |V| * log|V|)
+# Space: O(|E| + |V|) = O(|E|)
+
+import heapq
 
 
+# dijkstra's algorithm
 class Solution:
-    def minimumWeight(
-        self,
-        n: int,
-        edges: List[List[int]],
-        src1: int,
-        src2: int,
-        dest: int,
-    ) -> int:
-        graph = [[] for _ in range(n)]
-        reverse = [[] for _ in range(n)]
-        for source, target, weight in edges:
-            graph[source].append((target, weight))
-            reverse[target].append((source, weight))
-
-        def dijkstra(start: int, adjacency: List[List[tuple[int, int]]]):
-            distance = [float("inf")] * n
-            distance[start] = 0
-            heap = [(0, start)]
-
-            while heap:
-                current, node = heappop(heap)
-                if current != distance[node]:
+    def minimumWeight(self, n, edges, src1, src2, dest):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type src1: int
+        :type src2: int
+        :type dest: int
+        :rtype: int
+        """
+        def dijkstra(adj, start):
+            best = [float("inf")]*len(adj)
+            best[start] = 0
+            min_heap = [(0, start)]
+            while min_heap:
+                curr, u = heapq.heappop(min_heap)
+                if best[u] < curr:
                     continue
-                for neighbor, weight in adjacency[node]:
-                    candidate = current + weight
-                    if candidate < distance[neighbor]:
-                        distance[neighbor] = candidate
-                        heappush(heap, (candidate, neighbor))
-            return distance
-
-        from_first = dijkstra(src1, graph)
-        from_second = dijkstra(src2, graph)
-        to_destination = dijkstra(dest, reverse)
-
-        answer = min(from_first[node] + from_second[node] + to_destination[node] for node in range(n))
-        return -1 if answer == float("inf") else answer
+                for v, w in adj[u]:                
+                    if best[v] <= curr+w:
+                        continue
+                    best[v] = curr+w
+                    heapq.heappush(min_heap, (curr+w, v))
+            return best
+    
+        adj1, adj2 = [[[] for _ in range(n)] for _ in range(2)]
+        for u, v, w in edges:
+            adj1[u].append((v, w))
+            adj2[v].append((u, w))
+        dist1 = dijkstra(adj1, src1)
+        dist2 = dijkstra(adj1, src2)
+        dist3 = dijkstra(adj2, dest)
+        result = min(dist1[i]+dist2[i]+dist3[i] for i in range(n))
+        return result if result != float("inf") else -1

@@ -1,15 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum, greedy
 class Solution:
-    def makeArrayPositive(self, nums: List[int]) -> int:
-        operations = 0
-        last_replaced = -1
-
-        for right in range(2, len(nums)):
-            total = 0
-            for left in range(right, max(-1, right - 5), -1):
-                total += nums[left]
-                if right - left >= 2 and last_replaced < left and total <= 0:
-                    operations += 1
-                    last_replaced = right
-                    break
-
-        return operations
+    def makeArrayPositive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MAX_VAL = 10**18
+        result = 0
+        prev1 = nums[0]+nums[1]
+        prev2 = nums[0]
+        max_prev3 = 0
+        for i in range(2, len(nums)):
+            prefix = prev1+nums[i]
+            if prefix-max_prev3 <= 0:
+                prefix = prev1+MAX_VAL
+                result += 1
+            max_prev3 = max(max_prev3, prev2)
+            prev1, prev2 = prefix, prev1
+        return result

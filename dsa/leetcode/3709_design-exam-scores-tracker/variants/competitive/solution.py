@@ -1,16 +1,33 @@
-from bisect import bisect_left, bisect_right
+# Time:  ctor:        O(1)
+#        record:      O(1)
+#        totalScore: O(logn)
+# Space: O(n)
+
+import bisect
 
 
-class ExamTracker:
+# prefix sum, binary search
+class ExamTracker(object):
+
     def __init__(self):
-        self.times: list[int] = []
-        self.prefix: list[int] = [0]
+        self.__times = []
+        self.__prefix = [0]
 
-    def record(self, time: int, score: int) -> None:
-        self.times.append(time)
-        self.prefix.append(self.prefix[-1] + score)
+    def record(self, time, score):
+        """
+        :type time: int
+        :type score: int
+        :rtype: None
+        """
+        self.__times.append(time)
+        self.__prefix.append(self.__prefix[-1]+score)
 
-    def totalScore(self, startTime: int, endTime: int) -> int:
-        left = bisect_left(self.times, startTime)
-        right = bisect_right(self.times, endTime)
-        return self.prefix[right] - self.prefix[left]
+    def totalScore(self, startTime, endTime):
+        """
+        :type startTime: int
+        :type endTime: int
+        :rtype: int
+        """
+        i = bisect.bisect_left(self.__times, startTime)
+        j = bisect.bisect_right(self.__times, endTime)-1
+        return self.__prefix[j+1]-self.__prefix[i]

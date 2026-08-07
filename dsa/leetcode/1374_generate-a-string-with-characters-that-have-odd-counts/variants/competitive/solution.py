@@ -1,5 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def generateTheString(self, n: int) -> str:
-        if n % 2 == 1:
-            return "a" * n
-        return "a" * (n - 1) + "b"
+    def generateTheString(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        result = ['a']*(n-1)
+        result.append('a' if n%2 else 'b')
+        return "".join(result)

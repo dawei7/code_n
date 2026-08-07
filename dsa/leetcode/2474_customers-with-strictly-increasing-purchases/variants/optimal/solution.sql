@@ -1,32 +1,18 @@
-WITH yearly_purchases AS (
-    SELECT
-        customer_id,
-        CAST(strftime('%Y', order_date) AS INTEGER) AS order_year,
-        SUM(price) AS total_purchase
-    FROM Orders
-    GROUP BY
-        customer_id,
-        CAST(strftime('%Y', order_date) AS INTEGER)
-),
-compared_years AS (
-    SELECT
-        customer_id,
-        order_year,
-        total_purchase,
-        LAG(total_purchase) OVER (
-            PARTITION BY customer_id
-            ORDER BY order_year
-        ) AS previous_total
-    FROM yearly_purchases
-)
-SELECT customer_id
-FROM compared_years
+# Write your MySQL query statement below
+SELECT
+    customer_id
+FROM
+    (
+        SELECT
+            customer_id,
+            YEAR(order_date),
+            SUM(price) AS total,
+            YEAR(order_date) - RANK() OVER (
+                PARTITION BY customer_id
+                ORDER BY SUM(price)
+            ) AS rk
+        FROM Orders
+        GROUP BY customer_id, YEAR(order_date)
+    ) AS t
 GROUP BY customer_id
-HAVING COUNT(*) = MAX(order_year) - MIN(order_year) + 1
-   AND SUM(
-       CASE
-           WHEN previous_total IS NOT NULL
-                AND total_purchase <= previous_total THEN 1
-           ELSE 0
-       END
-   ) = 0;
+HAVING COUNT(DISTINCT rk) = 1;

@@ -1,11 +1,14 @@
-from typing import List
-
-
 class Solution:
     def numUniqueEmails(self, emails: List[str]) -> int:
-        recipients = set()
+        s = set()
         for email in emails:
             local, domain = email.split("@")
-            local = local.split("+", 1)[0].replace(".", "")
-            recipients.add(local + "@" + domain)
-        return len(recipients)
+            t = []
+            for c in local:
+                if c == ".":
+                    continue
+                if c == "+":
+                    break
+                t.append(c)
+            s.add("".join(t) + "@" + domain)
+        return len(s)

@@ -1,23 +1,37 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def isSelfCrossing(self, distance: List[int]) -> bool:
-        for index in range(3, len(distance)):
-            if distance[index] >= distance[index - 2] and distance[index - 1] <= distance[index - 3]:
+    def isSelfCrossing(self, x):
+        """
+        :type x: List[int]
+        :rtype: bool
+        """
+        if len(x) >= 5 and x[3] == x[1] and x[4] + x[0] >= x[2]:
+            # Crossing in a loop:
+            #     2
+            # 3 ┌────┐
+            #   └─══>┘1
+            #   4  0  (overlapped)
+            return True
+
+        for i in range(3, len(x)):
+            if x[i] >= x[i - 2] and x[i - 3] >= x[i - 1]:
+                # Case 1:
+                #    i-2
+                # i-1┌─┐
+                #    └─┼─>i
+                #     i-3
                 return True
-            if (
-                index >= 4
-                and distance[index - 1] == distance[index - 3]
-                and distance[index] + distance[index - 4] >= distance[index - 2]
-            ):
-                return True
-            if (
-                index >= 5
-                and distance[index - 2] >= distance[index - 4]
-                and distance[index] + distance[index - 4] >= distance[index - 2]
-                and distance[index - 1] <= distance[index - 3]
-                and distance[index - 1] + distance[index - 5] >= distance[index - 3]
-            ):
+            elif i >= 5 and x[i - 4] <= x[i - 2] and x[i] + x[i - 4] >= x[i - 2] and \
+                            x[i - 1] <= x[i - 3] and x[i - 5] + x[i - 1] >= x[i - 3]:
+                # Case 2:
+                #    i-4
+                #    ┌──┐
+                #    │i<┼─┐
+                # i-3│ i-5│i-1
+                #    └────┘
+                #      i-2
                 return True
         return False
+

@@ -1,33 +1,83 @@
-from math import lcm
+# Time:  O(n * 2^n * (log(mx) + log(k * mn))) = O(n * 2^n * logk), mn = min(coins), mx = max(coins)
+# Space: O(2^n)
+
+import itertools
 
 
+# binary search, principle of inclusion and exclusion, number theory
 class Solution:
-    def findKthSmallest(self, coins: List[int], k: int) -> int:
-        reduced = []
-        for coin in sorted(coins):
-            if not any(coin % kept == 0 for kept in reduced):
-                reduced.append(coin)
+    def findKthSmallest(self, coins, k):
+        """
+        :type coins: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+        
+        def lcm(a, b):
+            return a//gcd(a, b)*b
+        
+        def check(target):
+            return sum((-1 if (i+1)&1 else +1)*(target//l) for i in range(1, len(coins)+1) for l in lookup[i]) >= k
 
-        upper = min(reduced) * k
-        coefficients = {}
-        for mask in range(1, 1 << len(reduced)):
-            multiple = 1
-            parity = 0
-            for index, coin in enumerate(reduced):
-                if mask >> index & 1:
-                    multiple = lcm(multiple, coin)
-                    parity ^= 1
-            if multiple <= upper:
-                coefficients[multiple] = coefficients.get(multiple, 0) + (1 if parity else -1)
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        def count(limit: int) -> int:
-            return sum(coefficient * (limit // multiple) for multiple, coefficient in coefficients.items())
+        lookup = [[] for _ in range(len(coins)+1)]
+        for i in range(1, len(coins)+1):
+            for comb in itertools.combinations(coins, i):
+                lookup[i].append(reduce(lcm, comb))
+        mn = min(coins)
+        l = 1
+        for i in range(1, 25+1):
+            l = lcm(l, i)
+        return binary_search(mn, k*mn, check)
 
-        low, high = 1, upper
-        while low < high:
-            middle = (low + high) // 2
-            if count(middle) >= k:
-                high = middle
-            else:
-                low = middle + 1
-        return low
+
+# Time:  O(n * 2^n * (log(mx) + log(k * mn))) = O(n * 2^n * logk), mn = min(coins), mx = max(coins)
+# Space: O(2^n)
+# binary search, principle of inclusion and exclusion, number theory
+class Solution2(object):
+    def findKthSmallest(self, coins, k):
+        """
+        :type coins: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x).count('1')
+
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+        
+        def lcm(a, b):
+            return a//gcd(a, b)*b
+    
+        def check(target):
+            return sum((-1 if (i+1)&1 else +1)*(target//l) for i in range(1, len(coins)+1) for l in lookup[i]) >= k
+
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
+    
+        lookup = [[] for _ in range(len(coins)+1)]
+        for mask in range(1, 1<<len(coins)):
+            lookup[popcount(mask)].append(reduce(lcm, (coins[i] for i in range(len(coins)) if mask&(1<<i))))
+        mn = min(coins)
+        return binary_search(mn, k*mn, check)

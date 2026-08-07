@@ -1,36 +1,65 @@
-from typing import List
+# Time:  O(n) on average
+# Space: O(1)
+
+# quick select solution
+from random import randint
 
 
 class Solution:
-    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        def distance(index):
-            x, y = points[index]
-            return x * x + y * y
+    def kClosest(self, points, K):
+        """
+        :type points: List[List[int]]
+        :type K: int
+        :rtype: List[List[int]]
+        """
+        def dist(point):
+            return point[0]**2 + point[1]**2
+        
+        def kthElement(nums, k, compare):
+            def PartitionAroundPivot(left, right, pivot_idx, nums, compare):
+                new_pivot_idx = left
+                nums[pivot_idx], nums[right] = nums[right], nums[pivot_idx]
+                for i in range(left, right):
+                    if compare(nums[i], nums[right]):
+                        nums[i], nums[new_pivot_idx] = nums[new_pivot_idx], nums[i]
+                        new_pivot_idx += 1
 
-        left = 0
-        right = len(points) - 1
-        target = k - 1
+                nums[right], nums[new_pivot_idx] = nums[new_pivot_idx], nums[right]
+                return new_pivot_idx
 
-        while left <= right:
-            pivot = distance((left + right) // 2)
-            i = left
-            j = right
+            left, right = 0, len(nums) - 1
+            while left <= right:
+                pivot_idx = randint(left, right)
+                new_pivot_idx = PartitionAroundPivot(left, right, pivot_idx, nums, compare)
+                if new_pivot_idx == k:
+                    return
+                elif new_pivot_idx > k:
+                    right = new_pivot_idx - 1
+                else:  # new_pivot_idx < k.
+                    left = new_pivot_idx + 1
+                    
+        kthElement(points, K-1, lambda a, b: dist(a) < dist(b))
+        return points[:K]
 
-            while i <= j:
-                while distance(i) < pivot:
-                    i += 1
-                while distance(j) > pivot:
-                    j -= 1
-                if i <= j:
-                    points[i], points[j] = points[j], points[i]
-                    i += 1
-                    j -= 1
+    
+# Time:  O(nlogk)
+# Space: O(k)
+import heapq
 
-            if target <= j:
-                right = j
-            elif target >= i:
-                left = i
-            else:
-                break
 
-        return points[:k]
+class Solution2(object):
+    def kClosest(self, points, K):
+        """
+        :type points: List[List[int]]
+        :type K: int
+        :rtype: List[List[int]]
+        """
+        def dist(point):
+            return point[0]**2 + point[1]**2
+        
+        max_heap = []
+        for point in points:
+            heapq.heappush(max_heap, (-dist(point), point))
+            if len(max_heap) > K:
+                heapq.heappop(max_heap)
+        return [heapq.heappop(max_heap)[1] for _ in range(len(max_heap))]

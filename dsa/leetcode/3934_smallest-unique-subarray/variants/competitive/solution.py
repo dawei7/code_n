@@ -1,69 +1,40 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
+# rolling hash, binary search
 class Solution:
-    def smallestUniqueSubarray(self, nums: List[int]) -> int:
-        transitions = [{}]
-        suffix_link = [-1]
-        maximum_length = [0]
-        occurrences = [0]
-        last = 0
-
-        for value in nums:
-            current = len(transitions)
-            transitions.append({})
-            suffix_link.append(0)
-            maximum_length.append(maximum_length[last] + 1)
-            occurrences.append(1)
-
-            state = last
-            while state != -1 and value not in transitions[state]:
-                transitions[state][value] = current
-                state = suffix_link[state]
-
-            if state == -1:
-                suffix_link[current] = 0
-            else:
-                target = transitions[state][value]
-                if maximum_length[state] + 1 == maximum_length[target]:
-                    suffix_link[current] = target
+    def smallestUniqueSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        B = 29
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
                 else:
-                    clone = len(transitions)
-                    transitions.append(transitions[target].copy())
-                    suffix_link.append(suffix_link[target])
-                    maximum_length.append(maximum_length[state] + 1)
-                    occurrences.append(0)
+                    left = mid+1
+            return left
 
-                    while state != -1 and transitions[state].get(value) == target:
-                        transitions[state][value] = clone
-                        state = suffix_link[state]
+        def get_hash(l, r):
+            return (prefix[r+1]-prefix[l]*base[r-l+1])%MOD if l <= r else 0
 
-                    suffix_link[target] = clone
-                    suffix_link[current] = clone
-
-            last = current
-
-        length_counts = [0] * (len(nums) + 1)
-        for length in maximum_length:
-            length_counts[length] += 1
-        for length in range(1, len(length_counts)):
-            length_counts[length] += length_counts[length - 1]
-
-        order = [0] * len(transitions)
-        for state in range(len(transitions) - 1, -1, -1):
-            length = maximum_length[state]
-            length_counts[length] -= 1
-            order[length_counts[length]] = state
-
-        for state in reversed(order[1:]):
-            occurrences[suffix_link[state]] += occurrences[state]
-
-        answer = len(nums)
-        for state in range(1, len(transitions)):
-            if occurrences[state] == 1:
-                answer = min(
-                    answer,
-                    maximum_length[suffix_link[state]] + 1,
-                )
-
-        return answer
+        def check(l):
+            cnt = collections.defaultdict(int)
+            for i in range(len(nums)-l+1):
+                cnt[get_hash(i, i+l-1)] += 1
+            return any(x == 1 for x in cnt.values())
+    
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(prefix)-1):
+            prefix[i+1] = (prefix[i]*B+nums[i])%MOD
+        base = [1]*(len(nums)+1)
+        for i in range(len(base)-1):
+            base[i+1] = (base[i]*B)%MOD
+        return binary_search(1, len(nums)-1, check)

@@ -1,19 +1,29 @@
-from math import gcd
-
+# Time:  O(logn)
+# Space: O(1)
 
 class Solution:
-    def nthMagicalNumber(self, n: int, a: int, b: int) -> int:
-        modulus = 1_000_000_007
-        least_common_multiple = a // gcd(a, b) * b
-        low = 1
-        high = n * min(a, b)
+    def nthMagicalNumber(self, N, A, B):
+        """
+        :type N: int
+        :type A: int
+        :type B: int
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a % b
+            return a
 
-        while low < high:
-            middle = (low + high) // 2
-            count = middle // a + middle // b - middle // least_common_multiple
-            if count >= n:
-                high = middle
+        def check(A, B, N, lcm, target):
+            return target//A + target//B - target//lcm >= N
+
+        lcm = A*B // gcd(A, B)
+        left, right = min(A, B), max(A, B)*N
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(A, B, N, lcm, mid):
+                right = mid-1
             else:
-                low = middle + 1
+                left = mid+1
+        return left % (10**9 + 7)
 
-        return low % modulus

@@ -1,27 +1,26 @@
-from typing import Optional
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
 
 
 class Solution:
-    def copyRandomList(self, head: Optional["Node"]) -> Optional["Node"]:
-        current = head
-        while current is not None:
-            copy = Node(current.val, current.next)
-            current.next = copy
-            current = copy.next
-
-        current = head
-        while current is not None:
-            copy = current.next
-            copy.random = current.random.next if current.random is not None else None
-            current = copy.next
-
-        dummy = Node(0)
-        copy_tail = dummy
-        current = head
-        while current is not None:
-            copy = current.next
-            current.next = copy.next
-            copy_tail.next = copy
-            copy_tail = copy
-            current = current.next
+    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":
+        d = {}
+        dummy = tail = Node(0)
+        cur = head
+        while cur:
+            node = Node(cur.val)
+            tail.next = node
+            tail = tail.next
+            d[cur] = node
+            cur = cur.next
+        cur = head
+        while cur:
+            d[cur].random = d[cur.random] if cur.random else None
+            cur = cur.next
         return dummy.next

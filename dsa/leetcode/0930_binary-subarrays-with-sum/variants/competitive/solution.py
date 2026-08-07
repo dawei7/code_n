@@ -1,20 +1,26 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# Two pointers solution
 class Solution:
-    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
-        def at_most(limit: int) -> int:
-            if limit < 0:
-                return 0
-            left = 0
-            window_sum = 0
-            count = 0
-            for right, value in enumerate(nums):
-                window_sum += value
-                while window_sum > limit:
-                    window_sum -= nums[left]
-                    left += 1
-                count += right - left + 1
-            return count
-
-        return at_most(goal) - at_most(goal - 1)
+    def numSubarraysWithSum(self, A, S):
+        """
+        :type A: List[int]
+        :type S: int
+        :rtype: int
+        """
+        result = 0
+        left, right, sum_left, sum_right = 0, 0, 0, 0
+        for i, a in enumerate(A):
+            sum_left += a
+            while left < i and sum_left > S:
+                sum_left -= A[left]
+                left += 1
+            sum_right += a
+            while right < i and \
+                  (sum_right > S or (sum_right == S and not A[right])):
+                sum_right -= A[right]
+                right += 1
+            if sum_left == S:
+                result += right-left+1
+        return result

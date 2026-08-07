@@ -1,26 +1,23 @@
 class Solution:
     def minCost(self, nums: list[int], queries: list[list[int]]) -> list[int]:
         n = len(nums)
-        right = [0] * n
-        left = [0] * n
-
-        for i in range(n - 1):
-            gap = nums[i + 1] - nums[i]
-
-            right_cost = gap
-            if i == 0 or gap < nums[i] - nums[i - 1]:
-                right_cost = 1
-            right[i + 1] = right[i] + right_cost
-
-            left_cost = gap
-            if i + 1 == n - 1 or gap <= nums[i + 2] - nums[i + 1]:
-                left_cost = 1
-            left[i + 1] = left[i] + left_cost
-
-        answer = []
-        for start, target in queries:
-            if start < target:
-                answer.append(right[target] - right[start])
-            else:
-                answer.append(left[start] - left[target])
-        return answer
+        s1 = [0] * n
+        s2 = [0] * n
+        for i in range(1, n):
+            c1 = (
+                nums[i] - nums[i - 1]
+                if i > 1 and nums[i - 1] - nums[i - 2] <= nums[i] - nums[i - 1]
+                else 1
+            )
+            c2 = (
+                nums[i] - nums[i - 1]
+                if i < n - 1 and nums[i] - nums[i - 1] > nums[i + 1] - nums[i]
+                else 1
+            )
+            s1[i] = s1[i - 1] + c1
+            s2[i] = s2[i - 1] + c2
+        m = len(queries)
+        ans = [0] * m
+        for i, (l, r) in enumerate(queries):
+            ans[i] = s1[r] - s1[l] if l < r else s2[l] - s2[r]
+        return ans

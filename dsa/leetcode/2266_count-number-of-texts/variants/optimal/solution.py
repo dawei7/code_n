@@ -1,26 +1,15 @@
-from collections import deque
+mod = 10**9 + 7
+f = [1, 1, 2, 4]
+g = [1, 1, 2, 4]
+for _ in range(100000):
+    f.append((f[-1] + f[-2] + f[-3]) % mod)
+    g.append((g[-1] + g[-2] + g[-3] + g[-4]) % mod)
 
 
 class Solution:
     def countTexts(self, pressedKeys: str) -> int:
-        modulus = 1_000_000_007
-
-        def count_run(length: int, maximum_press_count: int) -> int:
-            recent = deque([1])
-            for _ in range(length):
-                current = sum(recent) % modulus
-                recent.append(current)
-                if len(recent) > maximum_press_count:
-                    recent.popleft()
-            return recent[-1]
-
-        answer = 1
-        start = 0
-        for end in range(1, len(pressedKeys) + 1):
-            if end < len(pressedKeys) and pressedKeys[end] == pressedKeys[start]:
-                continue
-            maximum = 4 if pressedKeys[start] in "79" else 3
-            answer = answer * count_run(end - start, maximum) % modulus
-            start = end
-
-        return answer
+        ans = 1
+        for c, s in groupby(pressedKeys):
+            m = len(list(s))
+            ans = ans * (g[m] if c in "79" else f[m]) % mod
+        return ans

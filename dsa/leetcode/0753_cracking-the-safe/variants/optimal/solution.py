@@ -1,20 +1,17 @@
 class Solution:
     def crackSafe(self, n: int, k: int) -> str:
-        modulus = k ** (n - 1)
-        next_digit = [0] * modulus
-        stack = [(0, -1)]
-        digits = []
+        def dfs(u):
+            for x in range(k):
+                e = u * 10 + x
+                if e not in vis:
+                    vis.add(e)
+                    v = e % mod
+                    dfs(v)
+                    ans.append(str(x))
 
-        while stack:
-            vertex, incoming_digit = stack[-1]
-            digit = next_digit[vertex]
-            if digit < k:
-                next_digit[vertex] += 1
-                next_vertex = (vertex * k + digit) % modulus
-                stack.append((next_vertex, digit))
-            else:
-                stack.pop()
-                if incoming_digit >= 0:
-                    digits.append(str(incoming_digit))
-
-        return "".join(digits) + "0" * (n - 1)
+        mod = 10 ** (n - 1)
+        vis = set()
+        ans = []
+        dfs(0)
+        ans.append("0" * (n - 1))
+        return "".join(ans)

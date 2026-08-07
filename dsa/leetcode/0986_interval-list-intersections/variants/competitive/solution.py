@@ -1,25 +1,29 @@
-from typing import List
+# Time:  O(m + n)
+# Space: O(1)
+
+# Definition for an interval.
+class Interval(object):
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e
 
 
 class Solution:
-    def intervalIntersection(
-        self,
-        firstList: List[List[int]],
-        secondList: List[List[int]],
-    ) -> List[List[int]]:
-        first = 0
-        second = 0
-        answer = []
-
-        while first < len(firstList) and second < len(secondList):
-            start = max(firstList[first][0], secondList[second][0])
-            end = min(firstList[first][1], secondList[second][1])
-            if start <= end:
-                answer.append([start, end])
-
-            if firstList[first][1] < secondList[second][1]:
-                first += 1
+    def intervalIntersection(self, A, B):
+        """
+        :type A: List[Interval]
+        :type B: List[Interval]
+        :rtype: List[Interval]
+        """
+        result = []
+        i, j = 0, 0
+        while i < len(A) and j < len(B):
+            left = max(A[i].start, B[j].start)
+            right = min(A[i].end, B[j].end)
+            if left <= right:
+                result.append(Interval(left, right))
+            if A[i].end < B[j].end:
+                i += 1
             else:
-                second += 1
-
-        return answer
+                j += 1
+        return result

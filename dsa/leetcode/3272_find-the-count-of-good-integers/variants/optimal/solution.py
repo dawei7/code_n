@@ -1,32 +1,21 @@
-from collections import Counter
-from math import factorial
-
-
 class Solution:
     def countGoodIntegers(self, n: int, k: int) -> int:
-        half_length = (n + 1) // 2
-        signatures = set()
-
-        for half in range(10 ** (half_length - 1), 10**half_length):
-            left = str(half)
-            palindrome = left + left[-1 - (n % 2) :: -1]
-            if int(palindrome) % k == 0:
-                signatures.add("".join(sorted(palindrome)))
-
-        answer = 0
-        for signature in signatures:
-            counts = Counter(signature)
-            permutations = factorial(n)
-            for count in counts.values():
-                permutations //= factorial(count)
-
-            if counts["0"] > 0:
-                leading_zero = factorial(n - 1) // factorial(counts["0"] - 1)
-                for digit, count in counts.items():
-                    if digit != "0":
-                        leading_zero //= factorial(count)
-                permutations -= leading_zero
-
-            answer += permutations
-
-        return answer
+        fac = [factorial(i) for i in range(n + 1)]
+        ans = 0
+        vis = set()
+        base = 10 ** ((n - 1) // 2)
+        for i in range(base, base * 10):
+            s = str(i)
+            s += s[::-1][n % 2 :]
+            if int(s) % k:
+                continue
+            t = "".join(sorted(s))
+            if t in vis:
+                continue
+            vis.add(t)
+            cnt = Counter(t)
+            res = (n - cnt["0"]) * fac[n - 1]
+            for x in cnt.values():
+                res //= fac[x]
+            ans += res
+        return ans

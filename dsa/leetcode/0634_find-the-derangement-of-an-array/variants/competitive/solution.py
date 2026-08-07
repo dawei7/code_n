@@ -1,8 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def findDerangement(self, n: int) -> int:
-        modulus = 1_000_000_007
-        two_back = 1
-        one_back = 0
-        for size in range(2, n + 1):
-            two_back, one_back = one_back, (size - 1) * (one_back + two_back) % modulus
-        return one_back
+    def findDerangement(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        M = 1000000007
+        mul, total = 1, 0
+        for i in reversed(range(n+1)):
+            total = (total + M + (1 if i % 2 == 0 else -1) * mul) % M
+            mul = (mul * i) % M
+        return total
+

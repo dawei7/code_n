@@ -1,36 +1,32 @@
-WITH LotDurations AS (
-    SELECT
-        car_id,
-        lot_id,
-        SUM(strftime('%s', exit_time) - strftime('%s', entry_time)) AS duration_seconds
-    FROM ParkingTransactions
-    GROUP BY car_id, lot_id
-),
-RankedLots AS (
-    SELECT
-        car_id,
-        lot_id,
-        ROW_NUMBER() OVER (
-            PARTITION BY car_id
-            ORDER BY duration_seconds DESC, lot_id ASC
-        ) AS position
-    FROM LotDurations
-),
-CarTotals AS (
-    SELECT
-        car_id,
-        SUM(fee_paid) AS total_fee_paid,
-        SUM(strftime('%s', exit_time) - strftime('%s', entry_time)) AS duration_seconds
-    FROM ParkingTransactions
-    GROUP BY car_id
-)
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            car_id,
+            lot_id,
+            SUM(TIMESTAMPDIFF(SECOND, entry_time, exit_time)) AS duration
+        FROM ParkingTransactions
+        GROUP BY 1, 2
+    ),
+    P AS (
+        SELECT
+            *,
+            RANK() OVER (
+                PARTITION BY car_id
+                ORDER BY duration DESC
+            ) AS rk
+        FROM T
+    )
 SELECT
-    totals.car_id,
-    totals.total_fee_paid,
-    ROUND(totals.total_fee_paid * 3600.0 / totals.duration_seconds, 2) AS avg_hourly_fee,
-    lots.lot_id AS most_time_lot
-FROM CarTotals AS totals
-JOIN RankedLots AS lots
-    ON lots.car_id = totals.car_id
-   AND lots.position = 1
-ORDER BY totals.car_id;
+    t1.car_id,
+    SUM(fee_paid) AS total_fee_paid,
+    ROUND(
+        SUM(fee_paid) / (SUM(TIMESTAMPDIFF(SECOND, entry_time, exit_time)) / 3600),
+        2
+    ) AS avg_hourly_fee,
+    t2.lot_id AS most_time_lot
+FROM
+    ParkingTransactions AS t1
+    LEFT JOIN P AS t2 ON t1.car_id = t2.car_id AND t2.rk = 1
+GROUP BY 1
+ORDER BY 1;

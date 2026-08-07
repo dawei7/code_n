@@ -1,16 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def modifyString(self, s: str) -> str:
-        characters = list(s)
-
-        for index, character in enumerate(characters):
-            if character != "?":
+    def modifyString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        s = list(s)
+        for i in range(len(s)):
+            if s[i] != '?':
                 continue
-
-            previous = characters[index - 1] if index > 0 else ""
-            following = characters[index + 1] if index + 1 < len(characters) else ""
-            for replacement in "abc":
-                if replacement != previous and replacement != following:
-                    characters[index] = replacement
+            for c in ('a', 'b', 'c'):
+                if (i == 0 or s[i-1] != c) and (i == len(s)-1 or c != s[i+1]):
                     break
-
-        return "".join(characters)
+            s[i] = c
+        return "".join(s)

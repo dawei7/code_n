@@ -1,13 +1,27 @@
-from bisect import bisect_right
-from itertools import accumulate
-from random import random
-from typing import List
+# Time:  ctor: O(n)
+#        pickIndex: O(logn)
+# Space: O(n)
+
+import random
+import bisect
 
 
 class Solution:
-    def __init__(self, w: List[int]):
-        self.prefix_sums = list(accumulate(w))
-        self.total = self.prefix_sums[-1]
 
-    def pickIndex(self) -> int:
-        return bisect_right(self.prefix_sums, random() * self.total)
+    def __init__(self, w):
+        """
+        :type w: List[int]
+        """
+        self.__prefix_sum = list(w)
+        for i in range(1, len(w)):
+            self.__prefix_sum[i] += self.__prefix_sum[i-1]
+
+    def pickIndex(self):
+        """
+        :rtype: int
+        """
+        target = random.randint(0, self.__prefix_sum[-1]-1)
+        return bisect.bisect_right(self.__prefix_sum, target)
+
+
+

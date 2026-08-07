@@ -1,25 +1,19 @@
-from typing import List
-
-
 class Solution:
     def maximizeSweetness(self, sweetness: List[int], k: int) -> int:
-        pieces_needed = k + 1
-        low = min(sweetness)
-        high = sum(sweetness) // pieces_needed
+        def check(x: int) -> bool:
+            s = cnt = 0
+            for v in sweetness:
+                s += v
+                if s >= x:
+                    s = 0
+                    cnt += 1
+            return cnt > k
 
-        while low < high:
-            candidate = (low + high + 1) // 2
-            pieces = 0
-            current = 0
-            for value in sweetness:
-                current += value
-                if current >= candidate:
-                    pieces += 1
-                    current = 0
-
-            if pieces >= pieces_needed:
-                low = candidate
+        l, r = 0, sum(sweetness)
+        while l < r:
+            mid = (l + r + 1) >> 1
+            if check(mid):
+                l = mid
             else:
-                high = candidate - 1
-
-        return low
+                r = mid - 1
+        return l

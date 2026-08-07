@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -9,14 +6,12 @@ from typing import Optional
 #         self.right = right
 class Solution:
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
-        def visit(node: Optional[TreeNode], prefix: int) -> int:
-            if node is None:
+        def dfs(root: Optional[TreeNode], x: int) -> int:
+            if root is None:
                 return 0
+            x = x << 1 | root.val
+            if root.left == root.right:
+                return x
+            return dfs(root.left, x) + dfs(root.right, x)
 
-            current = prefix * 2 + node.val
-            if node.left is None and node.right is None:
-                return current
-
-            return visit(node.left, current) + visit(node.right, current)
-
-        return visit(root, 0)
+        return dfs(root, 0)

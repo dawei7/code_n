@@ -1,19 +1,42 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(1)
 
 class Solution:
-    def triangleNumber(self, nums: List[int]) -> int:
+    def triangleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
         nums.sort()
-        count = 0
-
-        for largest in range(len(nums) - 1, 1, -1):
-            left = 0
-            right = largest - 1
+        for i in reversed(range(2, len(nums))):
+            left, right = 0, i-1
             while left < right:
-                if nums[left] + nums[right] > nums[largest]:
-                    count += right - left
+                if nums[left]+nums[right] > nums[i]:
+                    result += right-left
                     right -= 1
                 else:
                     left += 1
+        return result
 
-        return count
+
+# Time:  O(n^2)
+# Space: O(1)
+class Solution2(object):
+    def triangleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        nums.sort()
+        for i in range(len(nums)-2):
+            if nums[i] == 0:
+                continue
+            k = i+2
+            for j in range(i+1, len(nums)-1):
+                while k < len(nums) and nums[i] + nums[j] > nums[k]:
+                    k += 1
+                result += k-j-1
+        return result
+

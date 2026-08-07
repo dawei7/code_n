@@ -1,9 +1,7 @@
-from typing import List
-
-
 class Solution:
     def intersection(self, nums: List[List[int]]) -> List[int]:
-        common = set(nums[0])
-        for values in nums[1:]:
-            common.intersection_update(values)
-        return sorted(common)
+        cnt = [0] * 1001
+        for arr in nums:
+            for x in arr:
+                cnt[x] += 1
+        return [x for x, v in enumerate(cnt) if v == len(nums)]

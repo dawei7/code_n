@@ -1,30 +1,25 @@
-from collections import defaultdict, deque
-
-
 class Solution:
     def longestBalanced(self, s: str) -> int:
-        zeros = s.count("0")
-        ones = len(s) - zeros
-        length_limit = 2 * min(zeros, ones)
+        cnt0 = s.count("0")
+        cnt1 = len(s) - cnt0
+        pos = {0: [-1]}
+        ans = pre = 0
+        for i, c in enumerate(s):
+            pre += 1 if c == "1" else -1
+            pos.setdefault(pre, []).append(i)
 
-        prefix_indices = defaultdict(deque)
-        prefix_indices[0].append(0)
-        balance = 0
-        best = 0
+            ans = max(ans, i - pos[pre][0])
+            if pre - 2 in pos:
+                p = pos[pre - 2]
+                if (i - p[0] - 2) // 2 < cnt0:
+                    ans = max(ans, i - p[0])
+                elif len(p) > 1:
+                    ans = max(ans, i - p[1])
 
-        for right, character in enumerate(s, start=1):
-            balance += 1 if character == "1" else -1
-            minimum_left = right - length_limit
-
-            for target in (balance - 2, balance, balance + 2):
-                candidates = prefix_indices.get(target)
-                if not candidates:
-                    continue
-                while candidates and candidates[0] < minimum_left:
-                    candidates.popleft()
-                if candidates:
-                    best = max(best, right - candidates[0])
-
-            prefix_indices[balance].append(right)
-
-        return best
+            if pre + 2 in pos:
+                p = pos[pre + 2]
+                if (i - p[0] - 2) // 2 < cnt1:
+                    ans = max(ans, i - p[0])
+                elif len(p) > 1:
+                    ans = max(ans, i - p[1])
+        return ans

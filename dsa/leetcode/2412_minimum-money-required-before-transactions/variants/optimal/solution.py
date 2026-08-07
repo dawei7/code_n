@@ -1,8 +1,10 @@
-from typing import List
-
-
 class Solution:
     def minimumMoney(self, transactions: List[List[int]]) -> int:
-        unavoidable_loss = sum(max(0, cost - cashback) for cost, cashback in transactions)
-        final_bottleneck = max(min(cost, cashback) for cost, cashback in transactions)
-        return unavoidable_loss + final_bottleneck
+        s = sum(max(0, a - b) for a, b in transactions)
+        ans = 0
+        for a, b in transactions:
+            if a > b:
+                ans = max(ans, s + b)
+            else:
+                ans = max(ans, s + a)
+        return ans

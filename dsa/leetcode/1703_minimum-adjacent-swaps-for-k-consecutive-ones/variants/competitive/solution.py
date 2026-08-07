@@ -1,24 +1,22 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def minMoves(self, nums: List[int], k: int) -> int:
-        adjusted = []
-        for index, value in enumerate(nums):
-            if value == 1:
-                adjusted.append(index - len(adjusted))
+    def minMoves(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def moves(i, j):
+            return prefix[j+1]-prefix[i]
 
-        prefix = [0]
-        for position in adjusted:
-            prefix.append(prefix[-1] + position)
-
-        answer = float("inf")
-        for left in range(len(adjusted) - k + 1):
-            right = left + k
-            middle = left + k // 2
-            median = adjusted[middle]
-            left_cost = median * (middle - left) - (prefix[middle] - prefix[left])
-            right_cost = (prefix[right] - prefix[middle + 1]) - median * (right - middle - 1)
-            answer = min(answer, left_cost + right_cost)
-
-        return int(answer)
+        idxs = [i for i, x in enumerate(nums) if x]
+        prefix = [0]*(len(idxs)+1)
+        for i in range(len(idxs)):
+            prefix[i+1] = prefix[i]+idxs[i]
+        result = float("inf")
+        for i in range(len(idxs)-k+1):
+            result = min(result, -moves(i, i+k//2-1) + moves(i+(k+1)//2, i+k-1))  # take each i+k//2 as median, find min dist to median
+        result -= (k//2)*((k+1)//2)  # rollback extra moves to the expected positions
+        return result

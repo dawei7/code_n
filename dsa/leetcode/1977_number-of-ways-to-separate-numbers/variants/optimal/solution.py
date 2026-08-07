@@ -1,41 +1,26 @@
-from array import array
-
-
 class Solution:
     def numberOfCombinations(self, num: str) -> int:
-        if num[0] == "0":
-            return 0
+        def cmp(i, j, k):
+            x = lcp[i][j]
+            return x >= k or num[i + x] >= num[j + x]
 
-        modulus = 1_000_000_007
-        length = len(num)
-        lcp = [array("H", [0]) * (length + 1) for _ in range(length + 1)]
+        mod = 10**9 + 7
+        n = len(num)
+        lcp = [[0] * (n + 1) for _ in range(n + 1)]
+        for i in range(n - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                if num[i] == num[j]:
+                    lcp[i][j] = 1 + lcp[i + 1][j + 1]
 
-        for left in range(length - 2, -1, -1):
-            left_row = lcp[left]
-            next_row = lcp[left + 1]
-            for right in range(left + 1, length):
-                if num[left] == num[right]:
-                    left_row[right] = next_row[right + 1] + 1
-
-        prefix = [array("I", [0]) * (length + 1) for _ in range(length + 1)]
-
-        for end in range(1, length + 1):
-            row = prefix[end]
-            for current_length in range(1, end + 1):
-                start = end - current_length
-                ways = 0
-
-                if num[start] != "0":
-                    if start == 0:
-                        ways = 1
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        dp[0][0] = 1
+        for i in range(1, n + 1):
+            for j in range(1, i + 1):
+                v = 0
+                if num[i - j] != '0':
+                    if i - j - j >= 0 and cmp(i - j, i - j - j, j):
+                        v = dp[i - j][j]
                     else:
-                        ways = prefix[start][min(current_length - 1, start)]
-                        if start >= current_length:
-                            previous_start = start - current_length
-                            common = lcp[previous_start][start]
-                            if common >= current_length or num[previous_start + common] <= num[start + common]:
-                                ways += (prefix[start][current_length] - prefix[start][current_length - 1]) % modulus
-
-                row[current_length] = (row[current_length - 1] + ways) % modulus
-
-        return prefix[length][length]
+                        v = dp[i - j][min(j - 1, i - j)]
+                dp[i][j] = (dp[i][j - 1] + v) % mod
+        return dp[n][n]

@@ -1,15 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def maximumEnergy(self, energy: List[int], k: int) -> int:
-        suffix = [0] * k
-        answer = -(10**18)
-
-        for index in range(len(energy) - 1, -1, -1):
-            residue = index % k
-            total = energy[index] + suffix[residue]
-            suffix[residue] = total
-            answer = max(answer, total)
-
-        return answer
+    def maximumEnergy(self, energy, k):
+        """
+        :type energy: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = float("-inf")
+        for i in range(k):
+            curr = 0
+            for j in reversed(range(((len(energy)-i)-1)%k, len(energy)-i, k)):  # range(len(energy)-1-i, -1, -k)
+                curr += energy[j]
+                result = max(result, curr)
+        return result

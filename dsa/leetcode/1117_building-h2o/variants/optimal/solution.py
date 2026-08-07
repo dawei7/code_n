@@ -1,22 +1,20 @@
-from threading import Barrier, Semaphore
+from threading import Semaphore
 
 
 class H2O:
     def __init__(self):
-        self.hydrogen_slots = Semaphore(2)
-        self.oxygen_slots = Semaphore(1)
-        self.molecule = Barrier(3)
+        self.h = Semaphore(2)
+        self.o = Semaphore(0)
 
     def hydrogen(self, releaseHydrogen: "Callable[[], None]") -> None:
-        self.hydrogen_slots.acquire()
-        self.molecule.wait()
+        self.h.acquire()
         # releaseHydrogen() outputs "H". Do not change or remove this line.
         releaseHydrogen()
-        self.hydrogen_slots.release()
+        if self.h._value == 0:
+            self.o.release()
 
     def oxygen(self, releaseOxygen: "Callable[[], None]") -> None:
-        self.oxygen_slots.acquire()
-        self.molecule.wait()
+        self.o.acquire()
         # releaseOxygen() outputs "O". Do not change or remove this line.
         releaseOxygen()
-        self.oxygen_slots.release()
+        self.h.release(2)

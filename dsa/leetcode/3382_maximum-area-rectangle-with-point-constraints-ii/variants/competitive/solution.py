@@ -1,65 +1,45 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# sort, fenwick tree, hash table
 class Solution:
-    def maxRectangleArea(self, xCoord: List[int], yCoord: List[int]) -> int:
-        points = list(zip(xCoord, yCoord))
-        columns = defaultdict(list)
-        for x, y in points:
-            columns[x].append(y)
+    def maxRectangleArea(self, xCoord, yCoord):
+        """
+        :type xCoord: List[int]
+        :type yCoord: List[int]
+        :rtype: int
+        """
+        class BIT(object):  # 0-indexed.
+            def __init__(self, n):
+                self.__bit = [0]*(n+1)  # Extra one for dummy node.
 
-        segment_columns = defaultdict(list)
-        for x, ys in columns.items():
-            ys.sort()
-            for lower, upper in zip(ys, ys[1:]):
-                segment_columns[lower, upper].append(x)
+            def add(self, i, val):
+                i += 1  # Extra one for dummy node.
+                while i < len(self.__bit):
+                    self.__bit[i] += val
+                    i += (i & -i)
 
-        candidates = []
-        for (lower, upper), xs in segment_columns.items():
-            xs.sort()
-            for left, right in zip(xs, xs[1:]):
-                candidates.append((left, right, lower, upper))
-
-        if not candidates:
-            return -1
-
-        y_rank = {value: index + 1 for index, value in enumerate(sorted(set(yCoord)))}
-        size = len(y_rank)
-        tree = [0] * (size + 1)
-
-        def add(index: int) -> None:
-            while index <= size:
-                tree[index] += 1
-                index += index & -index
-
-        def prefix(index: int) -> int:
-            total = 0
-            while index:
-                total += tree[index]
-                index -= index & -index
-            return total
-
-        def range_count(lower: int, upper: int) -> int:
-            return prefix(y_rank[upper]) - prefix(y_rank[lower] - 1)
-
-        events = []
-        for query_index, (left, right, lower, upper) in enumerate(candidates):
-            events.append((right, query_index, 1, lower, upper))
-            events.append((left - 1, query_index, -1, lower, upper))
-        events.sort()
-
-        sorted_points = sorted(points)
-        point_index = 0
-        counts = [0] * len(candidates)
-        for limit, query_index, sign, lower, upper in events:
-            while point_index < len(sorted_points) and sorted_points[point_index][0] <= limit:
-                add(y_rank[sorted_points[point_index][1]])
-                point_index += 1
-            counts[query_index] += sign * range_count(lower, upper)
-
-        answer = -1
-        for count, (left, right, lower, upper) in zip(counts, candidates):
-            if count == 4:
-                answer = max(answer, (right - left) * (upper - lower))
-        return answer
+            def query(self, i):
+                i += 1  # Extra one for dummy node.
+                ret = 0
+                while i > 0:
+                    ret += self.__bit[i]
+                    i -= (i & -i)
+                return ret
+    
+        points = sorted((xCoord[i], yCoord[i]) for i in range(len(xCoord)))
+        y_to_idx = {y:idx for idx, y in enumerate(sorted(set(yCoord)))}
+        bit = BIT(len(y_to_idx))
+        lookup = {}
+        result = -1
+        for i, (x, y) in enumerate(points):
+            y_idx = y_to_idx[y]
+            bit.add(y_idx, +1)
+            if not (i-1 >= 0 and points[i-1][0] == x):
+                continue
+            prev_y_idx = y_to_idx[points[i-1][1]]
+            curr = bit.query(y_idx)-bit.query(prev_y_idx-1)
+            if (prev_y_idx, y_idx) in lookup and lookup[prev_y_idx, y_idx][0] == curr-2:
+                result = max(result, (x-lookup[prev_y_idx, y_idx][1])*(y-points[i-1][1]))
+            lookup[prev_y_idx, y_idx] = (curr, x)
+        return result

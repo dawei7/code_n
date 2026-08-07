@@ -1,17 +1,27 @@
-from collections import deque
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def predictPartyVictory(self, senate: str) -> str:
-        size = len(senate)
-        radiant = deque(index for index, party in enumerate(senate) if party == "R")
-        dire = deque(index for index, party in enumerate(senate) if party == "D")
-
-        while radiant and dire:
-            radiant_index = radiant.popleft()
-            dire_index = dire.popleft()
-            if radiant_index < dire_index:
-                radiant.append(radiant_index + size)
+    def predictPartyVictory(self, senate):
+        """
+        :type senate: str
+        :rtype: str
+        """
+        n = len(senate)
+        radiant, dire = collections.deque(), collections.deque()
+        for i, c in enumerate(senate):
+            if c == 'R':
+                radiant.append(i)
             else:
-                dire.append(dire_index + size)
-        return "Radiant" if radiant else "Dire"
+                dire.append(i)
+        while radiant and dire:
+            r_idx, d_idx = radiant.popleft(), dire.popleft()
+            if r_idx < d_idx:
+                radiant.append(r_idx+n)
+            else:
+                dire.append(d_idx+n)
+        return "Radiant" if len(radiant) > len(dire) else "Dire"
+

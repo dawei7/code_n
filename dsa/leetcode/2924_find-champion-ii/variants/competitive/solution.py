@@ -1,17 +1,36 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+# graph, hash table
+class Solution2(object):
+    def findChampion(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        lookup = [False]*n
+        for u, v in edges:
+            lookup[v] = True
+        result = -1
+        for u in range(n):
+            if lookup[u]:
+                continue
+            if result != -1:
+                return -1
+            result = u
+        return result
 
 
-class Solution:
-    def findChampion(self, n: int, edges: List[List[int]]) -> int:
-        has_stronger_team = [False] * n
-        for _, weaker in edges:
-            has_stronger_team[weaker] = True
-
-        champion = -1
-        for team, has_stronger in enumerate(has_stronger_team):
-            if not has_stronger:
-                if champion != -1:
-                    return -1
-                champion = team
-
-        return champion
+# Time:  O(n)
+# Space: O(n)
+# graph, hash table
+class Solution2(object):
+    def findChampion(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        lookup = {v for _, v in edges}
+        return next(u for u in range(n) if u not in lookup) if len(lookup) == n-1 else -1

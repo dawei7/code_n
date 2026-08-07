@@ -1,18 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
 
 class Solution:
-    def maxDistToClosest(self, seats: List[int]) -> int:
-        best = 0
-        previous = -1
+    def maxDistToClosest(self, seats):
+        """
+        :type seats: List[int]
+        :rtype: int
+        """
+        prev, result = -1, 1
+        for i in range(len(seats)):
+            if seats[i]:
+                if prev < 0:
+                    result = i
+                else:
+                    result = max(result, (i-prev)//2)
+                prev = i
+        return max(result, len(seats)-1-prev)
 
-        for index, occupied in enumerate(seats):
-            if occupied == 0:
-                continue
-            if previous < 0:
-                best = index
-            else:
-                best = max(best, (index - previous) // 2)
-            previous = index
-
-        return max(best, len(seats) - 1 - previous)

@@ -1,4 +1,12 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort
 class Solution:
-    def findValueOfPartition(self, nums: List[int]) -> int:
+    def findValueOfPartition(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         nums.sort()
-        return min(right - left for left, right in zip(nums, nums[1:]))
+        return min(nums[i+1]-nums[i] for i in range(len(nums)-1))

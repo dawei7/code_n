@@ -1,10 +1,21 @@
-from typing import List
-
+from functools import reduce
+# Time:  O(m * n)
+# Space: O(n)
 
 class Solution:
-    def minimumTotal(self, triangle: List[List[int]]) -> int:
-        dp = triangle[-1][:]
-        for row_index in range(len(triangle) - 2, -1, -1):
-            for column, value in enumerate(triangle[row_index]):
-                dp[column] = value + min(dp[column], dp[column + 1])
-        return dp[0]
+    # @param triangle, a list of lists of integers
+    # @return an integer
+    def minimumTotal(self, triangle):
+        if not triangle:
+            return 0
+
+        cur = triangle[0] + [float("inf")]
+        for i in range(1, len(triangle)):
+            next = []
+            next.append(triangle[i][0] + cur[0])
+            for j in range(1, i + 1):
+                next.append(triangle[i][j] + min(cur[j - 1], cur[j]))
+            cur = next + [float("inf")]
+
+        return reduce(min, cur)
+

@@ -1,14 +1,12 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def areSimilar(self, mat: List[List[int]], k: int) -> bool:
-        column_count = len(mat[0])
-        shift = k % column_count
-
-        for row in mat:
-            for column, value in enumerate(row):
-                if value != row[(column + shift) % column_count]:
-                    return False
-
-        return True
+    def areSimilar(self, mat, k):
+        """
+        :type mat: List[List[int]]
+        :type k: int
+        :rtype: bool
+        """
+        return all(row[i] == row[(i+k)%len(row)]for row in mat for i in range(len(row)))

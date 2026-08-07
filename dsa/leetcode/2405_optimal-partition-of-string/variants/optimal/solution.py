@@ -1,13 +1,9 @@
 class Solution:
     def partitionString(self, s: str) -> int:
-        partitions = 1
-        used_letters = 0
-
-        for letter in s:
-            letter_bit = 1 << (ord(letter) - ord("a"))
-            if used_letters & letter_bit:
-                partitions += 1
-                used_letters = 0
-            used_letters |= letter_bit
-
-        return partitions
+        ans, mask = 1, 0
+        for x in map(lambda c: ord(c) - ord("a"), s):
+            if mask >> x & 1:
+                ans += 1
+                mask = 0
+            mask |= 1 << x
+        return ans

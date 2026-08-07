@@ -1,13 +1,34 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# greedy, trick
+# reference: https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/solutions/3203994/java-c-python-1-line-solution/
 class Solution:
-    def minOperations(self, n: int) -> int:
-        operations = 0
+    def minOperations(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x)[2:].count('1')
 
+        return popcount(n^(n*0b11))
+
+
+# Time:  O(logn)
+# Space: O(1)
+# greedy
+class Solution2(object):
+    def minOperations(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        result = 0
         while n:
-            lowest_bit = n & -n
-            if n & (lowest_bit << 1):
-                n += lowest_bit
-            else:
-                n -= lowest_bit
-            operations += 1
-
-        return operations
+            if n&1:
+                n >>= 1
+                n += n&1
+                result += 1
+            n >>= 1
+        return result

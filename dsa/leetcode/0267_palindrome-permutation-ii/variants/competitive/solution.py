@@ -1,32 +1,49 @@
-from collections import Counter
-from typing import List
+# Time:  O(n * n!)
+# Space: O(n)
+
+import collections
+import itertools
 
 
 class Solution:
-    def generatePalindromes(self, s: str) -> List[str]:
-        counts = Counter(s)
-        odd = [character for character, count in counts.items() if count % 2]
-        if len(odd) > 1:
-            return []
-        center = odd[0] if odd else ""
-        half = sorted(character for character, count in counts.items() for _ in range(count // 2))
-        used = [False] * len(half)
-        path = []
-        palindromes = []
+    def generatePalindromes(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        cnt = collections.Counter(s)
+        mid = ''.join(k for k, v in cnt.items() if v % 2)
+        chars = ''.join(k * (v / 2) for k, v in cnt.items())
+        return self.permuteUnique(mid, chars) if len(mid) < 2 else []
 
-        def generate() -> None:
-            if len(path) == len(half):
-                left = "".join(path)
-                palindromes.append(left + center + left[::-1])
-                return
-            for index, character in enumerate(half):
-                if used[index] or (index and half[index - 1] == character and not used[index - 1]):
-                    continue
-                used[index] = True
-                path.append(character)
-                generate()
-                path.pop()
-                used[index] = False
+    def permuteUnique(self, mid, nums):
+        result = []
+        used = [False] * len(nums)
+        self.permuteUniqueRecu(mid, result, used, [], nums)
+        return result
 
-        generate()
-        return palindromes
+    def permuteUniqueRecu(self, mid, result, used, cur, nums):
+        if len(cur) == len(nums):
+            half_palindrome = ''.join(cur)
+            result.append(half_palindrome + mid + half_palindrome[::-1])
+            return
+        for i in range(len(nums)):
+            if not used[i] and not (i > 0 and nums[i-1] == nums[i] and used[i-1]):
+                used[i] = True
+                cur.append(nums[i])
+                self.permuteUniqueRecu(mid, result, used, cur, nums)
+                cur.pop()
+                used[i] = False
+
+class Solution2(object):
+    def generatePalindromes(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        cnt = collections.Counter(s)
+        mid = tuple(k for k, v in cnt.items() if v % 2)
+        chars = ''.join(k * (v / 2) for k, v in cnt.items())
+        return [''.join(half_palindrome + mid + half_palindrome[::-1]) \
+                for half_palindrome in set(itertools.permutations(chars))] if len(mid) < 2 else []
+

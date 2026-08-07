@@ -1,45 +1,46 @@
+# Time:  O(n + m * α(n)) ~= O(n + m)
+# Space: O(n)
+
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+        self.count = n
+
+    def find_set(self, x):
+        if self.set[x] != x:
+            self.set[x] = self.find_set(self.set[x])  # path compression.
+        return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
+            return False
+        self.set[max(x_root, y_root)] = min(x_root, y_root)
+        self.count -= 1
+        return True
+
+
 class Solution:
-    def maxNumEdgesToRemove(self, n: int, edges: List[List[int]]) -> int:
-        class DisjointSet:
-            def __init__(self, size: int) -> None:
-                self.parent = list(range(size + 1))
-                self.rank = [0] * (size + 1)
-                self.components = size
-
-            def find(self, node: int) -> int:
-                while self.parent[node] != node:
-                    self.parent[node] = self.parent[self.parent[node]]
-                    node = self.parent[node]
-                return node
-
-            def union(self, left: int, right: int) -> bool:
-                root_left = self.find(left)
-                root_right = self.find(right)
-                if root_left == root_right:
-                    return False
-                if self.rank[root_left] < self.rank[root_right]:
-                    root_left, root_right = root_right, root_left
-                self.parent[root_right] = root_left
-                if self.rank[root_left] == self.rank[root_right]:
-                    self.rank[root_left] += 1
-                self.components -= 1
-                return True
-
-        alice = DisjointSet(n)
-        bob = DisjointSet(n)
-        used = 0
-
-        for edge_type, left, right in edges:
-            if edge_type == 3 and alice.union(left, right):
-                bob.union(left, right)
-                used += 1
-
-        for edge_type, left, right in edges:
-            if edge_type == 1 and alice.union(left, right):
-                used += 1
-            elif edge_type == 2 and bob.union(left, right):
-                used += 1
-
-        if alice.components != 1 or bob.components != 1:
-            return -1
-        return len(edges) - used
+    def maxNumEdgesToRemove(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        result = 0
+        union_find_a, union_find_b = UnionFind(n), UnionFind(n)
+        for t, i, j in edges:
+            if t != 3:
+                continue
+            a = union_find_a.union_set(i-1, j-1)
+            b = union_find_b.union_set(i-1, j-1)
+            if not a and not b:
+                result += 1
+        for t, i, j in edges:
+            if t == 1:
+                if not union_find_a.union_set(i-1, j-1):
+                    result += 1
+            elif t == 2:
+                if not union_find_b.union_set(i-1, j-1):
+                    result += 1
+        return result if union_find_a.count == union_find_b.count == 1 else -1

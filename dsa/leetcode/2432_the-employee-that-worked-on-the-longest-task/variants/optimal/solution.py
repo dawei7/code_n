@@ -1,17 +1,9 @@
-from typing import List
-
-
 class Solution:
     def hardestWorker(self, n: int, logs: List[List[int]]) -> int:
-        best_duration = -1
-        best_employee = n
-        previous_end = 0
-
-        for employee, end_time in logs:
-            duration = end_time - previous_end
-            if duration > best_duration or (duration == best_duration and employee < best_employee):
-                best_duration = duration
-                best_employee = employee
-            previous_end = end_time
-
-        return best_employee
+        last = mx = ans = 0
+        for uid, t in logs:
+            t -= last
+            if mx < t or (mx == t and ans > uid):
+                ans, mx = uid, t
+            last += t
+        return ans

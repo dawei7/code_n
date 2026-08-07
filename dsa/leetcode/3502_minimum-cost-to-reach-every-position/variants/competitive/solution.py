@@ -1,10 +1,13 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum
 class Solution:
-    def minCosts(self, cost: List[int]) -> List[int]:
-        answer = []
-        best = cost[0]
-
-        for value in cost:
-            best = min(best, value)
-            answer.append(best)
-
-        return answer
+    def minCosts(self, cost):
+        """
+        :type cost: List[int]
+        :rtype: List[int]
+        """
+        for i in range(1, len(cost)):
+            cost[i] = min(cost[i], cost[i-1])
+        return cost

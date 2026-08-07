@@ -1,27 +1,25 @@
 class Solution:
     def minimumMoves(self, grid: List[List[int]]) -> int:
-        extras = []
-        empty = []
-        for row in range(3):
-            for col in range(3):
-                stones = grid[row][col]
-                if stones == 0:
-                    empty.append((row, col))
-                else:
-                    extras.extend([(row, col)] * (stones - 1))
-
-        k = len(empty)
-        dp = [float("inf")] * (1 << k)
-        dp[0] = 0
-        for mask in range(1 << k):
-            extra_index = mask.bit_count()
-            if extra_index == k:
-                continue
-            source_row, source_col = extras[extra_index]
-            for target_index, (target_row, target_col) in enumerate(empty):
-                if mask & (1 << target_index):
-                    continue
-                next_mask = mask | (1 << target_index)
-                distance = abs(source_row - target_row) + abs(source_col - target_col)
-                dp[next_mask] = min(dp[next_mask], dp[mask] + distance)
-        return dp[-1]
+        q = deque([tuple(tuple(row) for row in grid)])
+        vis = set(q)
+        ans = 0
+        dirs = (-1, 0, 1, 0, -1)
+        while 1:
+            for _ in range(len(q)):
+                cur = q.popleft()
+                if all(x for row in cur for x in row):
+                    return ans
+                for i in range(3):
+                    for j in range(3):
+                        if cur[i][j] > 1:
+                            for a, b in pairwise(dirs):
+                                x, y = i + a, j + b
+                                if 0 <= x < 3 and 0 <= y < 3 and cur[x][y] < 2:
+                                    nxt = [list(row) for row in cur]
+                                    nxt[i][j] -= 1
+                                    nxt[x][y] += 1
+                                    nxt = tuple(tuple(row) for row in nxt)
+                                    if nxt not in vis:
+                                        vis.add(nxt)
+                                        q.append(nxt)
+            ans += 1

@@ -1,4 +1,4 @@
 class Solution:
     def countVowels(self, word: str) -> int:
-        length = len(word)
-        return sum((index + 1) * (length - index) for index, character in enumerate(word) if character in "aeiou")
+        n = len(word)
+        return sum((i + 1) * (n - i) for i, c in enumerate(word) if c in 'aeiou')

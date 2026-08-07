@@ -1,4 +1,14 @@
+# Time:  O(m + n)
+# Space: O(n)
+
 class Solution:
-    def numJewelsInStones(self, jewels: str, stones: str) -> int:
-        jewel_types = set(jewels)
-        return sum(stone in jewel_types for stone in stones)
+    def numJewelsInStones(self, J, S):
+        """
+        :type J: str
+        :type S: str
+        :rtype: int
+        """
+        lookup = set(J)
+        return sum(s in lookup for s in S)
+
+

@@ -1,51 +1,24 @@
-from bisect import bisect_left
+# Time:  O(nlogn)
+# Space: O(n)
+
+from sortedcontainers import SortedList
 
 
+# sorted list, binary search
 class Solution:
-    def minAbsoluteDifference(self, nums: List[int], x: int) -> int:
-        values = sorted(set(nums))
-        size = len(values)
-        tree = [0] * (size + 1)
-
-        def add(index: int) -> None:
-            index += 1
-            while index <= size:
-                tree[index] += 1
-                index += index & -index
-
-        def prefix(end: int) -> int:
-            count = 0
-            while end:
-                count += tree[end]
-                end -= end & -end
-            return count
-
-        def kth(order: int) -> int:
-            index = 0
-            step = 1 << (size.bit_length() - 1)
-            while step:
-                candidate = index + step
-                if candidate <= size and tree[candidate] < order:
-                    index = candidate
-                    order -= tree[candidate]
-                step >>= 1
-            return index
-
-        answer = float("inf")
-        inserted = 0
-
-        for right, value in enumerate(nums):
-            if right < x:
-                continue
-
-            add(bisect_left(values, nums[right - x]))
-            inserted += 1
-            position = bisect_left(values, value)
-            before = prefix(position)
-
-            if before:
-                answer = min(answer, value - values[kth(before)])
-            if before < inserted:
-                answer = min(answer, values[kth(before + 1)] - value)
-
-        return answer
+    def minAbsoluteDifference(self, nums, x):
+        """
+        :type nums: List[int]
+        :type x: int
+        :rtype: int
+        """
+        result = float("inf")
+        sl = SortedList()
+        for i in range(x, len(nums)):
+            sl.add(nums[i-x])
+            j = sl.bisect_left(nums[i])
+            if j-1 >= 0:
+                result = min(result, nums[i]-sl[j-1])
+            if j < len(sl):
+                result = min(result, sl[j]-nums[i])
+        return result

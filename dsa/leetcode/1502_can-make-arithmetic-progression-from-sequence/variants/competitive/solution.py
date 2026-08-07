@@ -1,21 +1,23 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
-        n = len(arr)
-        low = min(arr)
-        high = max(arr)
-        span = high - low
-
-        if span == 0:
+    def canMakeArithmeticProgression(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: bool
+        """
+        m = min(arr)
+        d = (max(arr)-m)//(len(arr)-1)
+        if not d:
             return True
-        if span % (n - 1) != 0:
-            return False
-
-        difference = span // (n - 1)
-        values = set(arr)
-        if len(values) != n:
-            return False
-
-        return all(low + index * difference in values for index in range(n))
+        i = 0
+        while i < len(arr):
+            if arr[i] == m+i*d:
+                i += 1
+            else:
+                j, r = divmod(arr[i]-m, d)
+                if r or j >= len(arr) or arr[i] == arr[j]:
+                    return False
+                arr[i], arr[j] = arr[j], arr[i]
+        return True

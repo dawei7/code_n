@@ -1,17 +1,21 @@
-from typing import List
+# Time:  O(nlogn + mlogm)
+# Space: O(1)
 
-
+# greedy, sort
 class Solution:
-    def matchPlayersAndTrainers(
-        self,
-        players: List[int],
-        trainers: List[int],
-    ) -> int:
+    def matchPlayersAndTrainers(self, players, trainers):
+        """
+        :type players: List[int]
+        :type trainers: List[int]
+        :rtype: int
+        """
         players.sort()
         trainers.sort()
-
-        player_index = 0
-        for capacity in trainers:
-            if player_index < len(players) and players[player_index] <= capacity:
-                player_index += 1
-        return player_index
+        result = 0
+        for x in trainers:
+            if players[result] > x:
+                continue
+            result += 1
+            if result == len(players):
+                break
+        return result

@@ -1,14 +1,18 @@
-class Solution:
-    def isSumEqual(
-        self,
-        firstWord: str,
-        secondWord: str,
-        targetWord: str,
-    ) -> bool:
-        def numerical_value(word: str) -> int:
-            value = 0
-            for character in word:
-                value = value * 10 + ord(character) - ord("a")
-            return value
+# Time:  O(n)
+# Space: O(1)
 
-        return numerical_value(firstWord) + numerical_value(secondWord) == numerical_value(targetWord)
+class Solution:
+    def isSumEqual(self, firstWord, secondWord, targetWord):
+        """
+        :type firstWord: str
+        :type secondWord: str
+        :type targetWord: str
+        :rtype: bool
+        """
+        def stoi(s):
+            result = 0
+            for c in s:
+                result = result*10 + ord(c)-ord('a')
+            return result
+        
+        return stoi(firstWord) + stoi(secondWord) == stoi(targetWord)

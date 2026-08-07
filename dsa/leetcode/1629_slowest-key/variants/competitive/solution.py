@@ -1,14 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def slowestKey(self, releaseTimes: List[int], keysPressed: str) -> str:
-        best_key = keysPressed[0]
-        best_duration = releaseTimes[0]
-        for index in range(1, len(releaseTimes)):
-            duration = releaseTimes[index] - releaseTimes[index - 1]
-            key = keysPressed[index]
-            if duration > best_duration or (duration == best_duration and key > best_key):
-                best_duration = duration
-                best_key = key
-        return best_key
+    def slowestKey(self, releaseTimes, keysPressed):
+        """
+        :type releaseTimes: List[int]
+        :type keysPressed: str
+        :rtype: str
+        """
+        result, lookup = 'a', collections.Counter()
+        for i, c in enumerate(keysPressed):
+            lookup[c] = max(lookup[c], releaseTimes[i]-(releaseTimes[i-1] if i > 0 else 0))
+            if lookup[c] > lookup[result] or lookup[c] == lookup[result] and c > result:
+                result = c
+        return result

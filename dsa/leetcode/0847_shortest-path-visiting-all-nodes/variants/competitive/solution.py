@@ -1,26 +1,28 @@
-from collections import deque
-from typing import List
+# Time:  O(n * 2^n)
+# Space: O(n * 2^n)
+
+import collections
 
 
 class Solution:
-    def shortestPathLength(self, graph: List[List[int]]) -> int:
-        node_count = len(graph)
-        if node_count == 1:
-            return 0
+    def shortestPathLength(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: int
+        """
+        dp = [[float("inf")]*(len(graph))
+              for _ in range(1 << len(graph))]
+        q = collections.deque()
+        for i in range(len(graph)):
+            dp[1 << i][i] = 0
+            q.append((1 << i, i))
+        while q:
+            state, node = q.popleft()
+            steps = dp[state][node]
+            for nei in graph[node]:
+                new_state = state | (1 << nei)
+                if dp[new_state][nei] == float("inf"):
+                    dp[new_state][nei] = steps+1
+                    q.append((new_state, nei))
+        return min(dp[-1])
 
-        full_mask = (1 << node_count) - 1
-        queue = deque((node, 1 << node, 0) for node in range(node_count))
-        seen = {(node, 1 << node) for node in range(node_count)}
-
-        while queue:
-            node, mask, distance = queue.popleft()
-            for neighbor in graph[node]:
-                next_mask = mask | (1 << neighbor)
-                if next_mask == full_mask:
-                    return distance + 1
-                state = (neighbor, next_mask)
-                if state not in seen:
-                    seen.add(state)
-                    queue.append((neighbor, next_mask, distance + 1))
-
-        return 0

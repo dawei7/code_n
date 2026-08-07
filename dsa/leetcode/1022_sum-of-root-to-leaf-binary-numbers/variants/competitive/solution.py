@@ -1,22 +1,28 @@
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
-        def visit(node: Optional[TreeNode], prefix: int) -> int:
-            if node is None:
+    def sumRootToLeaf(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        M = 10**9 + 7
+        def sumRootToLeafHelper(root, val):
+            if not root:
                 return 0
-
-            current = prefix * 2 + node.val
-            if node.left is None and node.right is None:
-                return current
-
-            return visit(node.left, current) + visit(node.right, current)
-
-        return visit(root, 0)
+            val = (val*2 + root.val) % M
+            if not root.left and not root.right:
+                return val
+            return (sumRootToLeafHelper(root.left, val) +
+                    sumRootToLeafHelper(root.right, val)) % M
+        
+        return sumRootToLeafHelper(root, 0)

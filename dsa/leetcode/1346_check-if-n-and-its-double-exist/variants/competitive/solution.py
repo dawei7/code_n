@@ -1,11 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def checkIfExist(self, arr: List[int]) -> bool:
-        seen = set()
-        for value in arr:
-            if 2 * value in seen or (value % 2 == 0 and value // 2 in seen):
+    def checkIfExist(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: bool
+        """
+        lookup = set()
+        for x in arr:
+            if 2*x in lookup or \
+               (x%2 == 0 and x//2 in lookup):
                 return True
-            seen.add(value)
+            lookup.add(x)
         return False

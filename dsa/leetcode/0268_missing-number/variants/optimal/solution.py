@@ -1,9 +1,3 @@
-from typing import List
-
-
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        missing = len(nums)
-        for index, value in enumerate(nums):
-            missing ^= index ^ value
-        return missing
+        return reduce(xor, (i ^ v for i, v in enumerate(nums, 1)))

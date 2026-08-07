@@ -1,12 +1,12 @@
 class Solution:
-    def shortestDistance(self, wordsDict: list[str], word1: str, word2: str) -> int:
-        latest1 = latest2 = -1
-        answer = len(wordsDict)
-        for index, word in enumerate(wordsDict):
-            if word == word1:
-                latest1 = index
-            elif word == word2:
-                latest2 = index
-            if latest1 >= 0 and latest2 >= 0:
-                answer = min(answer, abs(latest1 - latest2))
-        return answer
+    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
+        i = j = -1
+        ans = inf
+        for k, w in enumerate(wordsDict):
+            if w == word1:
+                i = k
+            if w == word2:
+                j = k
+            if i != -1 and j != -1:
+                ans = min(ans, abs(i - j))
+        return ans

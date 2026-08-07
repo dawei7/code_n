@@ -1,10 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        before_previous = 0
-        previous = 0
-        for amount in nums:
-            before_previous, previous = previous, max(previous, before_previous + amount)
-        return previous
+    # @param num, a list of integer
+    # @return an integer
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        last, now = 0, 0
+        for i in nums:
+            last, now = now, max(last + i, now)
+        return now
+
+

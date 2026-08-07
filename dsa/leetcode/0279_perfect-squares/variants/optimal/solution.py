@@ -1,17 +1,11 @@
-from math import isqrt
-
-
 class Solution:
     def numSquares(self, n: int) -> int:
-        if isqrt(n) ** 2 == n:
-            return 1
-        reduced = n
-        while reduced % 4 == 0:
-            reduced //= 4
-        if reduced % 8 == 7:
-            return 4
-        for first_root in range(1, isqrt(n) + 1):
-            remainder = n - first_root * first_root
-            if isqrt(remainder) ** 2 == remainder:
-                return 2
-        return 3
+        m = int(sqrt(n))
+        f = [[inf] * (n + 1) for _ in range(m + 1)]
+        f[0][0] = 0
+        for i in range(1, m + 1):
+            for j in range(n + 1):
+                f[i][j] = f[i - 1][j]
+                if j >= i * i:
+                    f[i][j] = min(f[i][j], f[i][j - i * i] + 1)
+        return f[m][n]

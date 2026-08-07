@@ -1,46 +1,29 @@
-from collections import Counter, defaultdict
-from typing import List
-
-
 class Solution:
     def numberOfGoodPaths(self, vals: List[int], edges: List[List[int]]) -> int:
-        size = len(vals)
-        adjacency = [[] for _ in range(size)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
+        def find(x):
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        nodes_by_value = defaultdict(list)
-        for node, value in enumerate(vals):
-            nodes_by_value[value].append(node)
+        g = defaultdict(list)
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
 
-        parent = list(range(size))
-        component_size = [1] * size
+        n = len(vals)
+        p = list(range(n))
+        size = defaultdict(Counter)
+        for i, v in enumerate(vals):
+            size[i][v] = 1
 
-        def find(node: int) -> int:
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        def union(first: int, second: int) -> None:
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
-                return
-            if component_size[first_root] < component_size[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            component_size[first_root] += component_size[second_root]
-
-        answer = 0
-        for value in sorted(nodes_by_value):
-            for node in nodes_by_value[value]:
-                for neighbor in adjacency[node]:
-                    if vals[neighbor] <= value:
-                        union(node, neighbor)
-
-            counts = Counter(find(node) for node in nodes_by_value[value])
-            answer += sum(count * (count + 1) // 2 for count in counts.values())
-
-        return answer
+        ans = n
+        for v, a in sorted(zip(vals, range(n))):
+            for b in g[a]:
+                if vals[b] > v:
+                    continue
+                pa, pb = find(a), find(b)
+                if pa != pb:
+                    ans += size[pa][v] * size[pb][v]
+                    p[pa] = pb
+                    size[pb][v] += size[pa][v]
+        return ans

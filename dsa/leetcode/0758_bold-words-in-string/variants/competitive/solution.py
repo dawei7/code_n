@@ -1,46 +1,67 @@
-from typing import List
+# Time:  O(n * l), n is the length of S, l is the average length of words
+# Space: O(t)    , t is the size of trie
+
+import collections
+import functools
 
 
 class Solution:
-    def boldWords(self, words: List[str], s: str) -> str:
-        terminal = "#"
-        trie = {}
-        longest = 0
+    def boldWords(self, words, S):
+        """
+        :type words: List[str]
+        :type S: str
+        :rtype: str
+        """
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
+        for i, word in enumerate(words):
+            functools.reduce(dict.__getitem__, word, trie).setdefault("_end")
 
-        for word in words:
-            node = trie
-            for character in word:
-                node = node.setdefault(character, {})
-            node[terminal] = {}
-            longest = max(longest, len(word))
-
-        difference = [0] * (len(s) + 1)
-        for start in range(len(s)):
-            node = trie
-            farthest_end = -1
-            for end in range(start, min(len(s), start + longest)):
-                node = node.get(s[end])
-                if node is None:
+        lookup = [False] * len(S)
+        for i in range(len(S)):
+            curr = trie
+            k = -1
+            for j in range(i, len(S)):
+                if S[j] not in curr:
                     break
-                if terminal in node:
-                    farthest_end = end + 1
-            if farthest_end >= 0:
-                difference[start] += 1
-                difference[farthest_end] -= 1
+                curr = curr[S[j]]
+                if "_end" in curr:
+                    k = j
+            for j in range(i, k+1):
+                lookup[j] = True
 
-        output = []
-        coverage = 0
-        bold_open = False
-        for index, character in enumerate(s):
-            coverage += difference[index]
-            if coverage > 0 and not bold_open:
-                output.append("<b>")
-                bold_open = True
-            elif coverage == 0 and bold_open:
-                output.append("</b>")
-                bold_open = False
-            output.append(character)
+        result = []
+        for i in range(len(S)):
+            if lookup[i] and (i == 0 or not lookup[i-1]):
+                result.append("<b>")
+            result.append(S[i])
+            if lookup[i] and (i == len(S)-1 or not lookup[i+1]):
+                result.append("</b>")
+        return "".join(result)
 
-        if bold_open:
-            output.append("</b>")
-        return "".join(output)
+
+# Time:  O(n * d * l), l is the average length of words
+# Space: O(n)
+class Solution2(object):
+    def boldWords(self, words, S):
+        """
+        :type words: List[str]
+        :type S: str
+        :rtype: str
+        """
+        lookup = [0] * len(S)
+        for d in words:
+            pos = S.find(d)
+            while pos != -1:
+                lookup[pos:pos+len(d)] = [1] * len(d)
+                pos = S.find(d, pos+1)
+
+        result = []
+        for i in range(len(S)):
+            if lookup[i] and (i == 0 or not lookup[i-1]):
+                result.append("<b>")
+            result.append(S[i])
+            if lookup[i] and (i == len(S)-1 or not lookup[i+1]):
+                result.append("</b>")
+        return "".join(result)
+

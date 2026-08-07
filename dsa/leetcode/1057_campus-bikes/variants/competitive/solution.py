@@ -1,28 +1,35 @@
-from typing import List
+# Time:  O((w * b) * log(w * b))
+# Space: O(w * b)
+
+import heapq
 
 
 class Solution:
-    def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> List[int]:
-        max_distance = 1998
-        pairs_by_distance = [[] for _ in range(max_distance + 1)]
-
-        for worker_index, (worker_x, worker_y) in enumerate(workers):
-            for bike_index, (bike_x, bike_y) in enumerate(bikes):
-                distance = abs(worker_x - bike_x) + abs(worker_y - bike_y)
-                pairs_by_distance[distance].append((worker_index, bike_index))
-
-        answer = [-1] * len(workers)
-        used_bikes = [False] * len(bikes)
-        assigned = 0
-
-        for pairs in pairs_by_distance:
-            for worker_index, bike_index in pairs:
-                if answer[worker_index] != -1 or used_bikes[bike_index]:
-                    continue
-                answer[worker_index] = bike_index
-                used_bikes[bike_index] = True
-                assigned += 1
-                if assigned == len(workers):
-                    return answer
-
-        return answer
+    def assignBikes(self, workers, bikes):
+        """
+        :type workers: List[List[int]]
+        :type bikes: List[List[int]]
+        :rtype: List[int]
+        """
+        def manhattan(p1, p2):
+            return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+        
+        distances = [[] for _ in range(len(workers))]
+        for i in range(len(workers)):
+            for j in range(len(bikes)):
+                distances[i].append((manhattan(workers[i], bikes[j]), i, j))
+            distances[i].sort(reverse = True)
+        
+        result = [None] * len(workers)
+        lookup = set()
+        min_heap = []
+        for i in range(len(workers)):
+            heapq.heappush(min_heap, distances[i].pop())
+        while len(lookup) < len(workers):
+            _, worker, bike = heapq.heappop(min_heap)
+            if bike not in lookup:
+                result[worker] = bike
+                lookup.add(bike)
+            else:
+                heapq.heappush(min_heap, distances[worker].pop())
+        return result

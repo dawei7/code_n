@@ -1,11 +1,9 @@
 class Solution:
     def makeGood(self, s: str) -> str:
-        stack = []
-
-        for character in s:
-            if stack and stack[-1] != character and stack[-1].lower() == character.lower():
-                stack.pop()
+        stk = []
+        for c in s:
+            if not stk or abs(ord(stk[-1]) - ord(c)) != 32:
+                stk.append(c)
             else:
-                stack.append(character)
-
-        return "".join(stack)
+                stk.pop()
+        return "".join(stk)

@@ -1,27 +1,25 @@
-from typing import List
-
-
 class Solution:
-    def leadsToDestination(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        graph = [[] for _ in range(n)]
-        for start, end in edges:
-            graph[start].append(end)
-        if graph[destination]:
-            return False
-        state = [0] * n
+    def leadsToDestination(
+        self, n: int, edges: List[List[int]], source: int, destination: int
+    ) -> bool:
+        def dfs(i: int) -> bool:
+            if st[i]:
+                return st[i] == 2
+            if not g[i]:
+                return i == destination
 
-        def dfs(node: int) -> bool:
-            if state[node] == 1:
-                return False
-            if state[node] == 2:
-                return True
-            if not graph[node]:
-                return node == destination
-            state[node] = 1
-            for neighbor in graph[node]:
-                if not dfs(neighbor):
+            st[i] = 1
+            for j in g[i]:
+                if not dfs(j):
                     return False
-            state[node] = 2
+            st[i] = 2
             return True
 
+        g = [[] for _ in range(n)]
+        for a, b in edges:
+            g[a].append(b)
+        if g[destination]:
+            return False
+
+        st = [0] * n
         return dfs(source)

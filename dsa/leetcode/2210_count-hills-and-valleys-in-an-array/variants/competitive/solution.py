@@ -1,16 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# simulation, array
 class Solution:
-    def countHillValley(self, nums: List[int]) -> int:
-        previous = nums[0]
-        features = 0
-
-        for current, following in zip(nums[1:], nums[2:]):
-            if current == following:
-                continue
-            if (current > previous and current > following) or (current < previous and current < following):
-                features += 1
-            previous = current
-
-        return features
+    def countHillValley(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result, inc = 0, -1
+        for i in range(len(nums)-1):
+            if nums[i] < nums[i+1]:
+                result += int(inc == 0)
+                inc = 1
+            elif nums[i] > nums[i+1]:
+                result += int(inc == 1)
+                inc = 0
+        return result

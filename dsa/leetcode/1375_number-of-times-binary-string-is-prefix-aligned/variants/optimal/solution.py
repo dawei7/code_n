@@ -1,14 +1,7 @@
-from typing import List
-
-
 class Solution:
     def numTimesAllBlue(self, flips: List[int]) -> int:
-        aligned = 0
-        rightmost = 0
-
-        for step, position in enumerate(flips, start=1):
-            rightmost = max(rightmost, position)
-            if rightmost == step:
-                aligned += 1
-
-        return aligned
+        ans = mx = 0
+        for i, x in enumerate(flips, 1):
+            mx = max(mx, x)
+            ans += mx == i
+        return ans

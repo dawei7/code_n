@@ -1,11 +1,21 @@
-class Solution:
-    def numSpecial(self, mat: List[List[int]]) -> int:
-        row_ones = [sum(row) for row in mat]
-        column_ones = [sum(mat[row][column] for row in range(len(mat))) for column in range(len(mat[0]))]
+# Time:  O(n^2)
+# Space: O(n)
 
-        total = 0
-        for row in range(len(mat)):
-            for column in range(len(mat[0])):
-                if mat[row][column] == 1 and row_ones[row] == 1 and column_ones[column] == 1:
-                    total += 1
-        return total
+class Solution:
+    def numSpecial(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        rows, cols = [0]*len(mat), [0]*len(mat[0])
+        for i in range(len(rows)):
+            for j in range(len(cols)):
+                if mat[i][j]:
+                    rows[i] += 1
+                    cols[j] += 1
+        result = 0
+        for i in range(len(rows)):
+            for j in range(len(cols)):
+                if mat[i][j] == rows[i] == cols[j] == 1:
+                    result += 1
+        return result

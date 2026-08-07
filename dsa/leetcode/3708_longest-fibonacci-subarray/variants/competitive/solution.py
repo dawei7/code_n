@@ -1,16 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def longestSubarray(self, nums: List[int]) -> int:
-        best = 2
-        current = 2
-
-        for index in range(2, len(nums)):
-            if nums[index] == nums[index - 1] + nums[index - 2]:
-                current += 1
-                best = max(best, current)
-            else:
-                current = 2
-
-        return best
+    def longestSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = cnt = 2
+        for i in range(2, len(nums)):
+            if nums[i] != nums[i-1]+nums[i-2]:
+                cnt = 2
+                continue
+            cnt += 1
+            result = max(result, cnt)
+        return result

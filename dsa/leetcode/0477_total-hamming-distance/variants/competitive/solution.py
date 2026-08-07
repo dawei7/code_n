@@ -1,13 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def totalHammingDistance(self, nums: List[int]) -> int:
-        total = 0
-        width = max(nums, default=0).bit_length()
-        for bit in range(width):
-            ones = 0
-            for value in nums:
-                ones += (value >> bit) & 1
-            total += ones * (len(nums) - ones)
-        return total
+    def totalHammingDistance(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in range(32):
+            counts = [0] * 2
+            for num in nums:
+                counts[(num >> i) & 1] += 1
+            result += counts[0] * counts[1]
+        return result
+
+

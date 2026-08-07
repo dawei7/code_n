@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     def minDistance(
         self,
@@ -10,20 +7,12 @@ class Solution:
         squirrel: List[int],
         nuts: List[List[int]],
     ) -> int:
-        del height, width
-
-        def distance(first: List[int], second: List[int]) -> int:
-            return abs(first[0] - second[0]) + abs(first[1] - second[1])
-
-        baseline = 0
-        best_saving = float("-inf")
-
-        for nut in nuts:
-            tree_distance = distance(tree, nut)
-            baseline += 2 * tree_distance
-            best_saving = max(
-                best_saving,
-                tree_distance - distance(squirrel, nut),
-            )
-
-        return int(baseline - best_saving)
+        tr, tc = tree
+        sr, sc = squirrel
+        s = sum(abs(r - tr) + abs(c - tc) for r, c in nuts) * 2
+        ans = inf
+        for r, c in nuts:
+            a = abs(r - tr) + abs(c - tc)
+            b = abs(r - sr) + abs(c - sc)
+            ans = min(ans, s - a + b)
+        return ans

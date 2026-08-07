@@ -1,16 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def getWinner(self, arr: List[int], k: int) -> int:
-        champion = arr[0]
-        streak = 0
-        for challenger in arr[1:]:
-            if champion > challenger:
-                streak += 1
-            else:
-                champion = challenger
-                streak = 1
-            if streak == k:
-                return champion
-        return champion
+    def getWinner(self, arr, k):
+        """
+        :type arr: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = arr[0]
+        count = 0
+        for i in range(1, len(arr)):
+            if arr[i] > result:
+                result = arr[i]
+                count = 0
+            count += 1
+            if (count == k):
+                break
+        return result

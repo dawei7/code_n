@@ -1,28 +1,33 @@
-class Solution:
-    def addPoly(self, poly1: "PolyNode", poly2: "PolyNode") -> "PolyNode":
-        dummy = PolyNode()
-        tail = dummy
+# Time:  O(m + n)
+# Space: O(1)
 
-        while poly1 is not None and poly2 is not None:
+class PolyNode:
+    def __init__(self, x=0, y=0, next=None):
+        pass
+
+
+class Solution:
+    def addPoly(self, poly1, poly2):
+        """
+        :type poly1: PolyNode
+        :type poly2: PolyNode
+        :rtype: PolyNode
+        """
+        curr = dummy = PolyNode()
+        while poly1 and poly2:
             if poly1.power > poly2.power:
-                tail.next = PolyNode(poly1.coefficient, poly1.power)
+                curr.next = poly1
+                curr = curr.next
                 poly1 = poly1.next
-            elif poly2.power > poly1.power:
-                tail.next = PolyNode(poly2.coefficient, poly2.power)
+            elif poly1.power < poly2.power:
+                curr.next = poly2
+                curr = curr.next
                 poly2 = poly2.next
             else:
-                coefficient = poly1.coefficient + poly2.coefficient
-                if coefficient != 0:
-                    tail.next = PolyNode(coefficient, poly1.power)
-                poly1 = poly1.next
-                poly2 = poly2.next
-                if coefficient == 0:
-                    continue
-            tail = tail.next
-
-        remaining = poly1 if poly1 is not None else poly2
-        while remaining is not None:
-            tail.next = PolyNode(remaining.coefficient, remaining.power)
-            tail = tail.next
-            remaining = remaining.next
+                coef = poly1.coefficient+poly2.coefficient
+                if coef:
+                    curr.next = PolyNode(coef, poly1.power)
+                    curr = curr.next
+                poly1, poly2 = poly1.next, poly2.next
+        curr.next = poly1 or poly2
         return dummy.next

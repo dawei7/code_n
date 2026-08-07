@@ -1,12 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def maxSubarrays(self, nums: List[int]) -> int:
-        segments = 0
-        running_and = -1
-
-        for value in nums:
-            running_and &= value
-            if running_and == 0:
-                segments += 1
-                running_and = -1
-
-        return max(segments, 1)
+    def maxSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = curr = 0
+        for x in nums:
+            curr = curr&x if curr else x
+            if not curr:
+                result += 1
+        return max(result, 1)

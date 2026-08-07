@@ -1,19 +1,54 @@
-from functools import cache
-from typing import List, Optional
+# Time:  O(4^n / n^(3/2)) ~= Catalan numbers
+# Space: O(4^n / n^(3/2)) ~= Catalan numbers
 
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+    def __repr__(self):
+        if self:
+            serial = []
+            queue = [self]
+
+            while queue:
+                cur = queue[0]
+
+                if cur:
+                    serial.append(cur.val)
+                    queue.append(cur.left)
+                    queue.append(cur.right)
+                else:
+                    serial.append("#")
+
+                queue = queue[1:]
+
+            while serial[-1] == "#":
+                serial.pop()
+
+            return repr(serial)
+
+        else:
+            return None
 
 class Solution:
-    def generateTrees(self, n: int) -> List[Optional["TreeNode"]]:
-        @cache
-        def build(left: int, right: int):
-            if left > right:
-                return (None,)
+    # @return a list of tree node
+    def generateTrees(self, n):
+        return self.generateTreesRecu(1, n)
 
-            trees = []
-            for root_value in range(left, right + 1):
-                for left_tree in build(left, root_value - 1):
-                    for right_tree in build(root_value + 1, right):
-                        trees.append(TreeNode(root_value, left_tree, right_tree))
-            return tuple(trees)
+    def generateTreesRecu(self, low, high):
+        result = []
+        if low > high:
+            result.append(None)
+        for i in range(low, high + 1):
+            left = self.generateTreesRecu(low, i - 1)
+            right = self.generateTreesRecu(i + 1, high)
+            for j in left:
+                for k in right:
+                    cur = TreeNode(i)
+                    cur.left = j
+                    cur.right = k
+                    result.append(cur)
+        return result
 
-        return list(build(1, n))

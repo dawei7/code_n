@@ -1,11 +1,18 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table, greedy
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        operations = 0
-        for frequency in Counter(nums).values():
-            if frequency == 1:
-                return -1
-            operations += (frequency + 2) // 3
-        return operations
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+
+        cnt = collections.Counter(nums)
+        return sum(ceil_divide(x, 3) for x in cnt.values()) if all(x >= 2 for x in cnt.values()) else -1

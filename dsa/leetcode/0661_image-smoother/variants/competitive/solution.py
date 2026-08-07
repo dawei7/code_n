@@ -1,14 +1,25 @@
+# Time:  O(m * n)
+# Space: O(1)
+
 class Solution:
-    def imageSmoother(self, img):
-        rows = len(img)
-        columns = len(img[0])
-        result = [[0] * columns for _ in range(rows)]
-        for row in range(rows):
-            for column in range(columns):
-                total = count = 0
-                for next_row in range(max(0, row - 1), min(rows, row + 2)):
-                    for next_column in range(max(0, column - 1), min(columns, column + 2)):
-                        total += img[next_row][next_column]
-                        count += 1
-                result[row][column] = total // count
+    def imageSmoother(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def getGray(M, i, j):
+            total, count = 0, 0.0
+            for r in range(-1, 2):
+                for c in range(-1, 2):
+                    ii, jj = i + r, j + c
+                    if 0 <= ii < len(M) and 0 <= jj < len(M[0]):
+                        total += M[ii][jj]
+                        count += 1.0
+            return int(total / count)
+
+        result = [[0 for _ in range(len(M[0]))] for _ in range(len(M))]
+        for i in range(len(M)):
+            for j in range(len(M[0])):
+                result[i][j] = getGray(M, i, j)
         return result
+

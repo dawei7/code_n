@@ -1,15 +1,11 @@
-from typing import List
-
-
 class Solution:
     def maxDistance(self, colors: List[int]) -> int:
-        last = len(colors) - 1
-        answer = 0
-
-        for index, color in enumerate(colors):
-            if color != colors[0]:
-                answer = max(answer, index)
-            if color != colors[last]:
-                answer = max(answer, last - index)
-
-        return answer
+        n = len(colors)
+        if colors[0] != colors[-1]:
+            return n - 1
+        i, j = 1, n - 2
+        while colors[i] == colors[0]:
+            i += 1
+        while colors[j] == colors[0]:
+            j -= 1
+        return max(n - i - 1, j)

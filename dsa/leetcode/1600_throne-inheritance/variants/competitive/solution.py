@@ -1,25 +1,53 @@
-from collections import defaultdict
-from typing import List
+# Time:  ctor:    O(1)
+#        birth:   O(1)
+#        death:   O(1)
+#        inherit: O(n)
+# Space: O(n)
+
+import collections
 
 
-class ThroneInheritance:
-    def __init__(self, kingName: str):
-        self.king = kingName
-        self.children = defaultdict(list)
-        self.dead = set()
+class ThroneInheritance(object):
 
-    def birth(self, parentName: str, childName: str) -> None:
-        self.children[parentName].append(childName)
+    def __init__(self, kingName):
+        """
+        :type kingName: str
+        """
+        self.__king = kingName
+        self.__family_tree = collections.defaultdict(list)
+        self.__dead = set()
+        
 
-    def death(self, name: str) -> None:
-        self.dead.add(name)
+    def birth(self, parentName, childName):
+        """
+        :type parentName: str
+        :type childName: str
+        :rtype: None
+        """
+        self.__family_tree[parentName].append(childName)
 
-    def getInheritanceOrder(self) -> List[str]:
-        order = []
-        stack = [self.king]
-        while stack:
-            person = stack.pop()
-            if person not in self.dead:
-                order.append(person)
-            stack.extend(reversed(self.children[person]))
-        return order
+
+    def death(self, name):
+        """
+        :type name: str
+        :rtype: None
+        """
+        self.__dead.add(name)
+        
+    
+    def getInheritanceOrder(self):
+        """
+        :rtype: List[str]
+        """
+        result = []
+        stk = [self.__king]
+        while stk:  # preorder traversal
+            node = stk.pop()
+            if node not in self.__dead:
+                result.append(node)
+            if node not in self.__family_tree:
+                continue
+            for child in reversed(self.__family_tree[node]):
+                stk.append(child)
+        return result
+

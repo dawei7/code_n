@@ -1,26 +1,13 @@
-from typing import List
-
-
 class Solution:
-    def maximumSubarrayXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        length = len(nums)
-        best = [[0] * length for _ in range(length)]
-
-        for index, value in enumerate(nums):
-            best[index][index] = value
-
-        scores = nums[:]
-        for width in range(2, length + 1):
-            next_scores = [scores[start] ^ scores[start + 1] for start in range(length - width + 1)]
-
-            for start, score in enumerate(next_scores):
-                end = start + width - 1
-                best[start][end] = max(
-                    score,
-                    best[start][end - 1],
-                    best[start + 1][end],
-                )
-
-            scores = next_scores
-
-        return [best[left][right] for left, right in queries]
+    def maximumSubarrayXor(
+        self, nums: List[int], queries: List[List[int]]
+    ) -> List[int]:
+        n = len(nums)
+        f = [[0] * n for _ in range(n)]
+        g = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            f[i][i] = g[i][i] = nums[i]
+            for j in range(i + 1, n):
+                f[i][j] = f[i][j - 1] ^ f[i + 1][j]
+                g[i][j] = max(f[i][j], g[i][j - 1], g[i + 1][j])
+        return [g[l][r] for l, r in queries]

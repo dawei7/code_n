@@ -1,14 +1,19 @@
+# Time:  O(n + 26)
+# Space: O(n + 26)
+
+# simulation, hash table, stack
 class Solution:
-    def calculateScore(self, s: str) -> int:
-        unmatched = [[] for _ in range(26)]
-        score = 0
-
-        for index, character in enumerate(s):
-            letter = ord(character) - ord("a")
-            mirror = 25 - letter
-            if unmatched[mirror]:
-                score += index - unmatched[mirror].pop()
+    def calculateScore(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = 0
+        lookup = [[] for _ in range(26)]
+        for i, x in enumerate(s):
+            x = ord(x)-ord('a')
+            if lookup[25-x]:
+                result += i-lookup[25-x].pop()
             else:
-                unmatched[letter].append(index)
-
-        return score
+                lookup[x].append(i)
+        return result

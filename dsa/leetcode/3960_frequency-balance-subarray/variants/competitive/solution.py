@@ -1,36 +1,66 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
 
-
+# sort, coordinate compression, freq table
 class Solution:
-    def getLength(self, nums: List[int]) -> int:
-        n = len(nums)
-        distinct = len(set(nums))
-        if distinct == 1:
-            return n
-        if distinct == n:
-            return 1
+    def getLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        val_to_idx = {x:i for i, x in enumerate(sorted(set(nums)))}
+        arr = [val_to_idx[x] for x in nums]
+        result = 0
+        for left in range(len(arr)):
+            cnt, cnt2 = [0]*len(arr), [0]*(len(arr)+1)
+            distinct = total = c = 0
+            for right in range(left, len(arr)):
+                if cnt[arr[right]]:
+                    cnt2[cnt[arr[right]]] -= 1
+                    if cnt2[cnt[arr[right]]] == 0:
+                        c -= 1
+                        total -= cnt[arr[right]]
+                cnt[arr[right]] += 1
+                if cnt[arr[right]] == 1:
+                    distinct += 1
+                cnt2[cnt[arr[right]]] += 1
+                if cnt2[cnt[arr[right]]] == 1:
+                    total += cnt[arr[right]]
+                    c += 1
+                if distinct == 1 or (c == 2 and total%3 == 0 and cnt2[total//3]):
+                    result = max(result, right-left+1)
+        return result
 
-        answer = 1
-        for left in range(n):
-            counts = {}
-            frequency_counts = {}
-            for right in range(left, n):
-                value = nums[right]
-                old_frequency = counts.get(value, 0)
-                if old_frequency:
-                    frequency_counts[old_frequency] -= 1
-                    if frequency_counts[old_frequency] == 0:
-                        del frequency_counts[old_frequency]
 
-                new_frequency = old_frequency + 1
-                counts[value] = new_frequency
-                frequency_counts[new_frequency] = frequency_counts.get(new_frequency, 0) + 1
+# Time:  O(n^2)
+# Space: O(n)
+import collections
 
-                if len(counts) == 1:
-                    answer = max(answer, right - left + 1)
-                elif len(frequency_counts) == 2:
-                    low, high = sorted(frequency_counts)
-                    if high == 2 * low:
-                        answer = max(answer, right - left + 1)
 
-        return answer
+# freq table
+class Solution2(object):
+    def getLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for left in range(len(nums)):
+            cnt, cnt2 = collections.defaultdict(int), collections.defaultdict(int)
+            distinct = total = c = 0
+            for right in range(left, len(nums)):
+                if cnt[nums[right]]:
+                    cnt2[cnt[nums[right]]] -= 1
+                    if cnt2[cnt[nums[right]]] == 0:
+                        c -= 1
+                        total -= cnt[nums[right]]
+                cnt[nums[right]] += 1
+                if cnt[nums[right]] == 1:
+                    distinct += 1
+                cnt2[cnt[nums[right]]] += 1
+                if cnt2[cnt[nums[right]]] == 1:
+                    total += cnt[nums[right]]
+                    c += 1
+                if distinct == 1 or (c == 2 and total%3 == 0 and cnt2[total//3]):
+                    result = max(result, right-left+1)
+        return result

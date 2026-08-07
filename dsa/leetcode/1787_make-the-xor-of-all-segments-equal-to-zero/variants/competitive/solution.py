@@ -1,30 +1,29 @@
-from collections import Counter
-from typing import List
+# Time:  O(n + k * m), m is the max number of nums
+# Space: O(min(k * m, n))
+
+import collections
 
 
 class Solution:
-    def minChanges(self, nums: List[int], k: int) -> int:
-        state_count = 1 << 10
-        infinity = len(nums) + 1
-        costs = [infinity] * state_count
-        costs[0] = 0
+    def minChanges(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def one_are_not_from_nums(nums, cnts):
+            mxs = [cnts[i].most_common(1)[0][1] for i in range(k)]
+            return len(nums) - (sum(mxs)-min(mxs))
 
-        for offset in range(k):
-            frequencies = Counter()
-            group_size = 0
-            for index in range(offset, len(nums), k):
-                frequencies[nums[index]] += 1
-                group_size += 1
-            change_everything = min(costs) + group_size
-            next_costs = [change_everything] * state_count
-
-            for previous_xor, previous_cost in enumerate(costs):
-                for value, frequency in frequencies.items():
-                    resulting_xor = previous_xor ^ value
-                    candidate = previous_cost + group_size - frequency
-                    if candidate < next_costs[resulting_xor]:
-                        next_costs[resulting_xor] = candidate
-
-            costs = next_costs
-
-        return costs[0]
+        def all_are_from_nums(nums, cnts):
+            dp = {0:0}
+            for cnt in cnts:
+                new_dp = collections.defaultdict(int)
+                for x in dp.keys():
+                    for y in cnt.keys():
+                        new_dp[x^y] = max(new_dp[x^y], dp[x]+cnt[y])
+                dp = new_dp
+            return len(nums)-dp[0]
+          
+        cnts = [collections.Counter(nums[j] for j in range(i, len(nums), k)) for i in range(k)]
+        return min(one_are_not_from_nums(nums, cnts), all_are_from_nums(nums, cnts))

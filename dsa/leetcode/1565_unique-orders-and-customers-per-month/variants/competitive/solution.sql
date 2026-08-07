@@ -1,7 +1,10 @@
-SELECT
-    strftime('%Y-%m', order_date) AS month,
-    COUNT(order_id) AS order_count,
-    COUNT(DISTINCT customer_id) AS customer_count
-FROM Orders
+# Time:  O(n)
+# Space: O(n)
+
+SELECT LEFT(order_date, 7) month,
+       COUNT(DISTINCT order_id) order_count,
+       COUNT(DISTINCT customer_id) customer_count
+FROM orders
 WHERE invoice > 20
-GROUP BY strftime('%Y-%m', order_date);
+GROUP BY 1
+ORDER BY NULL;

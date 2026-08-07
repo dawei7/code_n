@@ -1,23 +1,15 @@
-from typing import List
-
-
 class Solution:
     def advantageCount(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        available = sorted(nums1)
-        opponents = sorted(
-            ((value, index) for index, value in enumerate(nums2)),
-            reverse=True,
-        )
-        result = [0] * len(nums1)
-        smallest = 0
-        largest = len(available) - 1
-
-        for opponent, index in opponents:
-            if available[largest] > opponent:
-                result[index] = available[largest]
-                largest -= 1
+        nums1.sort()
+        t = sorted((v, i) for i, v in enumerate(nums2))
+        n = len(nums2)
+        ans = [0] * n
+        i, j = 0, n - 1
+        for v in nums1:
+            if v <= t[i][0]:
+                ans[t[j][1]] = v
+                j -= 1
             else:
-                result[index] = available[smallest]
-                smallest += 1
-
-        return result
+                ans[t[i][1]] = v
+                i += 1
+        return ans

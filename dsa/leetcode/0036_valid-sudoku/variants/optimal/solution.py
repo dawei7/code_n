@@ -1,20 +1,18 @@
-from typing import List
-
-
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        rows = [set() for _ in range(9)]
-        columns = [set() for _ in range(9)]
-        boxes = [set() for _ in range(9)]
-        for row in range(9):
-            for column in range(9):
-                digit = board[row][column]
-                if digit == ".":
+        row = [[False] * 9 for _ in range(9)]
+        col = [[False] * 9 for _ in range(9)]
+        sub = [[False] * 9 for _ in range(9)]
+        for i in range(9):
+            for j in range(9):
+                c = board[i][j]
+                if c == '.':
                     continue
-                box = (row // 3) * 3 + column // 3
-                if digit in rows[row] or digit in columns[column] or digit in boxes[box]:
+                num = int(c) - 1
+                k = i // 3 * 3 + j // 3
+                if row[i][num] or col[j][num] or sub[k][num]:
                     return False
-                rows[row].add(digit)
-                columns[column].add(digit)
-                boxes[box].add(digit)
+                row[i][num] = True
+                col[j][num] = True
+                sub[k][num] = True
         return True

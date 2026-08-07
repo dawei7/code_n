@@ -1,13 +1,20 @@
-from typing import List
+# Time:  O(n + r)
+# Space: O(r)
 
-
+# freq table
 class Solution:
-    def minimumOperations(self, nums: List[int]) -> int:
-        seen = set()
+    def minimumOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
 
-        for index in range(len(nums) - 1, -1, -1):
-            if nums[index] in seen:
-                return index // 3 + 1
-            seen.add(nums[index])
-
+        mx = max(nums)
+        cnt = [0]*mx
+        for i in reversed(range(len(nums))):
+            cnt[nums[i]-1] += 1
+            if cnt[nums[i]-1] == 2:
+                return ceil_divide(i+1, 3)
         return 0

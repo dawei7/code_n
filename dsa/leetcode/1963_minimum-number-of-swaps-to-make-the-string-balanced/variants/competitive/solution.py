@@ -1,14 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minSwaps(self, s: str) -> int:
-        balance = 0
-        minimum_balance = 0
-
-        for bracket in s:
-            if bracket == "[":
-                balance += 1
+    def minSwaps(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = curr = 0
+        for c in s:
+            if c == ']':
+                curr += 1
+                result = max(result, curr)
             else:
-                balance -= 1
-            minimum_balance = min(minimum_balance, balance)
-
-        deficit = -minimum_balance
-        return (deficit + 1) // 2
+                curr -= 1
+        return (result+1)//2

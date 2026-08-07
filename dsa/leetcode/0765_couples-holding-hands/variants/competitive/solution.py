@@ -1,26 +1,28 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def minSwapsCouples(self, row: List[int]) -> int:
-        seating = row[:]
-        position = [0] * len(seating)
-        for seat, person in enumerate(seating):
-            position[person] = seat
+    def minSwapsCouples(self, row):
+        """
+        :type row: List[int]
+        :rtype: int
+        """
+        N = len(row)//2
+        couples = [[] for _ in range(N)]
+        for seat, num in enumerate(row):
+            couples[num//2].append(seat//2)
+        adj = [[] for _ in range(N)]
+        for couch1, couch2 in couples:
+            adj[couch1].append(couch2)
+            adj[couch2].append(couch1)
 
-        swaps = 0
-        for first_seat in range(0, len(seating), 2):
-            person = seating[first_seat]
-            partner = person ^ 1
-            second_seat = first_seat + 1
-            if seating[second_seat] == partner:
-                continue
+        result = 0
+        for couch in range(N):
+            if not adj[couch]: continue
+            couch1, couch2 = couch, adj[couch].pop()
+            while couch2 != couch:
+                result += 1
+                adj[couch2].remove(couch1)
+                couch1, couch2 = couch2, adj[couch2].pop()
+        return result  # also equals to N - (# of cycles)
 
-            partner_seat = position[partner]
-            displaced = seating[second_seat]
-            seating[second_seat], seating[partner_seat] = partner, displaced
-            position[partner] = second_seat
-            position[displaced] = partner_seat
-            swaps += 1
-
-        return swaps

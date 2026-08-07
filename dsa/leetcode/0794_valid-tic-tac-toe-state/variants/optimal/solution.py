@@ -1,22 +1,19 @@
-from typing import List
-
-
 class Solution:
     def validTicTacToe(self, board: List[str]) -> bool:
-        x_count = sum(row.count("X") for row in board)
-        o_count = sum(row.count("O") for row in board)
-        if x_count not in (o_count, o_count + 1):
-            return False
+        def win(x):
+            for i in range(3):
+                if all(board[i][j] == x for j in range(3)):
+                    return True
+                if all(board[j][i] == x for j in range(3)):
+                    return True
+            if all(board[i][i] == x for i in range(3)):
+                return True
+            return all(board[i][2 - i] == x for i in range(3))
 
-        lines = list(board)
-        lines.extend("".join(board[row][column] for row in range(3)) for column in range(3))
-        lines.append("".join(board[index][index] for index in range(3)))
-        lines.append("".join(board[index][2 - index] for index in range(3)))
-        x_wins = "XXX" in lines
-        o_wins = "OOO" in lines
-
-        if x_wins and x_count != o_count + 1:
+        x = sum(board[i][j] == 'X' for i in range(3) for j in range(3))
+        o = sum(board[i][j] == 'O' for i in range(3) for j in range(3))
+        if x != o and x - 1 != o:
             return False
-        if o_wins and x_count != o_count:
+        if win('X') and x - 1 != o:
             return False
-        return True
+        return not (win('O') and x != o)

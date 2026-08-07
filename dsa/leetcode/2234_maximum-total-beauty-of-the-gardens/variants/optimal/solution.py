@@ -1,51 +1,25 @@
-from bisect import bisect_left
-from typing import List
-
-
 class Solution:
     def maximumBeauty(
-        self,
-        flowers: List[int],
-        newFlowers: int,
-        target: int,
-        full: int,
-        partial: int,
+        self, flowers: List[int], newFlowers: int, target: int, full: int, partial: int
     ) -> int:
-        flowers = sorted(min(value, target) for value in flowers)
-        count = len(flowers)
-        prefix = [0]
-        for value in flowers:
-            prefix.append(prefix[-1] + value)
-
-        already_complete = count - bisect_left(flowers, target)
-        answer = 0
-
-        for complete_count in range(already_complete, count + 1):
-            incomplete_count = count - complete_count
-            completion_cost = complete_count * target - (prefix[count] - prefix[incomplete_count])
-            if completion_cost > newFlowers:
+        flowers.sort()
+        n = len(flowers)
+        s = list(accumulate(flowers, initial=0))
+        ans, i = 0, n - bisect_left(flowers, target)
+        for x in range(i, n + 1):
+            newFlowers -= 0 if x == 0 else max(target - flowers[n - x], 0)
+            if newFlowers < 0:
                 break
-
-            beauty = complete_count * full
-            if incomplete_count:
-                remaining = newFlowers - completion_cost
-                low = flowers[0]
-                high = target - 1
-                while low <= high:
-                    level = (low + high) // 2
-                    raised_count = bisect_left(
-                        flowers,
-                        level,
-                        0,
-                        incomplete_count,
-                    )
-                    cost = level * raised_count - prefix[raised_count]
-                    if cost <= remaining:
-                        low = level + 1
-                    else:
-                        high = level - 1
-                beauty += high * partial
-
-            answer = max(answer, beauty)
-
-        return answer
+            l, r = 0, n - x - 1
+            while l < r:
+                mid = (l + r + 1) >> 1
+                if flowers[mid] * (mid + 1) - s[mid + 1] <= newFlowers:
+                    l = mid
+                else:
+                    r = mid - 1
+            y = 0
+            if r != -1:
+                cost = flowers[l] * (l + 1) - s[l + 1]
+                y = min(flowers[l] + (newFlowers - cost) // (l + 1), target - 1)
+            ans = max(ans, x * full + y * partial)
+        return ans

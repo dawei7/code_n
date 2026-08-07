@@ -1,23 +1,23 @@
-from functools import cache
+# Time:  O(n!)
+# Space: O(n)
 
 
 class Solution:
-    def countArrangement(self, n: int) -> int:
-        full_mask = (1 << n) - 1
-
-        @cache
-        def count_completions(used_mask: int) -> int:
-            if used_mask == full_mask:
+    def countArrangement(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        def countArrangementHelper(n, arr):
+            if n <= 0:
                 return 1
+            count = 0
+            for i in range(n):
+                if arr[i] % n == 0 or n % arr[i] == 0:
+                    arr[i], arr[n-1] = arr[n-1], arr[i]
+                    count += countArrangementHelper(n - 1, arr)
+                    arr[i], arr[n-1] = arr[n-1], arr[i]
+            return count
 
-            position = used_mask.bit_count() + 1
-            total = 0
-            for value in range(1, n + 1):
-                bit = 1 << (value - 1)
-                if used_mask & bit:
-                    continue
-                if value % position == 0 or position % value == 0:
-                    total += count_completions(used_mask | bit)
-            return total
+        return countArrangementHelper(N, range(1, N+1))
 
-        return count_completions(0)

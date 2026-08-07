@@ -1,22 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def canBeIncreasing(self, nums: List[int]) -> bool:
-        removed = False
-        previous = nums[0]
-
-        for index in range(1, len(nums)):
-            current = nums[index]
-            if current > previous:
-                previous = current
+    def canBeIncreasing(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        deleted = False
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i-1]:
                 continue
-
-            if removed:
+            if deleted:
                 return False
-            removed = True
-
-            if index == 1 or current > nums[index - 2]:
-                previous = current
-
+            deleted = True
+            if i >= 2 and nums[i-2] > nums[i]:  # delete nums[i] or nums[i-1]
+                nums[i] = nums[i-1]
         return True

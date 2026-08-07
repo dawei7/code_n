@@ -1,28 +1,26 @@
+# Time:  O(m + n)
+# Space: O(1)
+
+import itertools
+
+
 class Solution:
-    def backspaceCompare(self, s: str, t: str) -> bool:
-        def next_visible(text: str, index: int) -> int:
-            skipped = 0
-            while index >= 0:
-                if text[index] == "#":
-                    skipped += 1
-                elif skipped > 0:
-                    skipped -= 1
+    def backspaceCompare(self, S, T):
+        """
+        :type S: str
+        :type T: str
+        :rtype: bool
+        """
+        def findNextChar(S):
+            skip = 0
+            for i in reversed(range(len(S))):
+                if S[i] == '#':
+                    skip += 1
+                elif skip:
+                    skip -= 1
                 else:
-                    break
-                index -= 1
-            return index
+                    yield S[i]
 
-        left = len(s) - 1
-        right = len(t) - 1
+        return all(x == y for x, y in
+                   itertools.izip_longest(findNextChar(S), findNextChar(T)))
 
-        while left >= 0 or right >= 0:
-            left = next_visible(s, left)
-            right = next_visible(t, right)
-            if left < 0 or right < 0:
-                return left == right
-            if s[left] != t[right]:
-                return False
-            left -= 1
-            right -= 1
-
-        return True

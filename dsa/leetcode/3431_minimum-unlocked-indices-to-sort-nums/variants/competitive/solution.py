@@ -1,24 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# sort
 class Solution:
-    def minUnlockedIndices(self, nums: List[int], locked: List[int]) -> int:
-        n = len(nums)
-        first_two = n
-        first_three = n
-        last_one = -1
-        last_two = -1
-
-        for i, value in enumerate(nums):
-            if value == 1:
-                last_one = i
-            elif value == 2:
-                first_two = min(first_two, i)
-                last_two = i
-            else:
-                first_three = min(first_three, i)
-
-        if first_three < last_one:
-            return -1
-
-        return sum(locked[i] for i in range(n) if first_two <= i < last_one or first_three <= i < last_two)
+    def minUnlockedIndices(self, nums, locked):
+        """
+        :type nums: List[int]
+        :type locked: List[int]
+        :rtype: int
+        """
+        result = mx = cnt = 0
+        for i in range(len(nums)):
+            if mx < nums[i]:
+                mx = nums[i]
+                cnt = 0
+            elif mx > nums[i]:
+                if mx != nums[i]+1:
+                    return -1
+                result += cnt
+                cnt = 0
+            cnt += locked[i]
+        return result

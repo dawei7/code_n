@@ -1,15 +1,10 @@
-from typing import List
-
-
 class Solution:
     def numberOfArithmeticSlices(self, nums: List[int]) -> int:
-        endings = [{} for _ in nums]
-        answer = 0
-
-        for right in range(len(nums)):
-            for left in range(right):
-                difference = nums[right] - nums[left]
-                extensions = endings[left].get(difference, 0)
-                answer += extensions
-                endings[right][difference] = endings[right].get(difference, 0) + extensions + 1
-        return answer
+        f = [defaultdict(int) for _ in nums]
+        ans = 0
+        for i, x in enumerate(nums):
+            for j, y in enumerate(nums[:i]):
+                d = x - y
+                ans += f[j][d]
+                f[i][d] += f[j][d] + 1
+        return ans

@@ -1,12 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def numSub(self, s: str) -> int:
-        modulo = 1_000_000_007
-        run = 0
-        total = 0
-        for character in s:
-            if character == "1":
-                run += 1
-                total = (total + run) % modulo
-            else:
-                run = 0
-        return total
+    def numSub(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        result, count = 0, 0
+        for c in s:
+            count = count+1 if c == '1' else 0
+            result = (result+count)%MOD
+        return result

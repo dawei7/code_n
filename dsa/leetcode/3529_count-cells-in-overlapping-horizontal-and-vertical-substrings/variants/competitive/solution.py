@@ -1,49 +1,49 @@
+# Time:  O(n * m)
+# Space: O(n * m)
+
+# z-function
 class Solution:
-    def countCells(self, grid: List[List[str]], pattern: str) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        length = len(pattern)
+    def countCells(self, grid, pattern):
+        """
+        :type grid: List[List[str]]
+        :type pattern: str
+        :rtype: int
+        """
+        # Template: https://cp-algorithms.com/string/z-function.html
+        def z_function(s):  # Time: O(n), Space: O(n)
+            z = [0]*len(s)
+            l, r = 0, 0
+            for i in range(1, len(z)):
+                if i <= r:
+                    z[i] = min(r-i+1, z[i-l])
+                while i+z[i] < len(z) and s[z[i]] == s[i+z[i]]:
+                    z[i] += 1
+                if i+z[i]-1 > r:
+                    l, r = i, i+z[i]-1
+            return z
 
-        prefix = [0] * length
-        matched = 0
-        for index in range(1, length):
-            while matched and pattern[index] != pattern[matched]:
-                matched = prefix[matched - 1]
-            if pattern[index] == pattern[matched]:
-                matched += 1
-            prefix[index] = matched
+        def check(is_horizontal):
+            n, m = len(grid), len(grid[0])
+            if not is_horizontal:
+                n, m = m, n
+            p = len(pattern)
+            s = list(pattern)
+            if is_horizontal:
+                s.extend(grid[i][j] for i in range(n) for j in range(m))
+            else:
+                s.extend(grid[j][i] for i in range(n) for j in range(m))
+            lookup = [[False]*m for _ in range(n)]
+            z = z_function(s)
+            curr = 0
+            for i in range(p, len(s)):
+                if z[i] < p:
+                    continue
+                curr = max(curr, i-p)
+                while curr <= (i-p)+p-1:
+                    lookup[curr//m][curr%m] = True
+                    curr += 1
+            return lookup
 
-        def covered(text):
-            difference = [0] * (len(text) + 1)
-            matched = 0
-            for index, character in enumerate(text):
-                while matched and character != pattern[matched]:
-                    matched = prefix[matched - 1]
-                if character == pattern[matched]:
-                    matched += 1
-                if matched == length:
-                    start = index - length + 1
-                    difference[start] += 1
-                    difference[index + 1] -= 1
-                    matched = prefix[matched - 1]
-
-            result = [False] * len(text)
-            active = 0
-            for index in range(len(text)):
-                active += difference[index]
-                result[index] = active > 0
-            return result
-
-        horizontal = "".join("".join(row) for row in grid)
-        vertical = "".join(grid[row][column] for column in range(columns) for row in range(rows))
-        horizontal_cells = covered(horizontal)
-        vertical_cells = covered(vertical)
-
-        answer = 0
-        for row in range(rows):
-            for column in range(columns):
-                horizontal_index = row * columns + column
-                vertical_index = column * rows + row
-                if horizontal_cells[horizontal_index] and vertical_cells[vertical_index]:
-                    answer += 1
-        return answer
+        lookup1 = check(True)
+        lookup2 = check(False)
+        return sum(lookup1[i][j] and lookup2[j][i] for i in range(len(grid)) for j in range(len(grid[0])))

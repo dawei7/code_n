@@ -1,15 +1,10 @@
-from typing import List
-
-
 class Solution:
     def memLeak(self, memory1: int, memory2: int) -> List[int]:
-        second = 1
-
-        while max(memory1, memory2) >= second:
+        i = 1
+        while i <= max(memory1, memory2):
             if memory1 >= memory2:
-                memory1 -= second
+                memory1 -= i
             else:
-                memory2 -= second
-            second += 1
-
-        return [second, memory1, memory2]
+                memory2 -= i
+            i += 1
+        return [i, memory1, memory2]

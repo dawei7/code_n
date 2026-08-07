@@ -1,20 +1,23 @@
-WITH reaction_counts AS (
-    SELECT user_id, reaction, COUNT(*) AS reaction_count
+# Time:  O(nlogn)
+# Space: O(n)
+
+# window function
+WITH count_cte AS (
+    SELECT user_id,
+           reaction,
+           COUNT(*) AS cnt,
+           SUM(COUNT(*)) OVER (PARTITION BY user_id) AS total,
+           RANK() OVER (PARTITION BY user_id ORDER BY COUNT(*) DESC) AS rnk
     FROM reactions
-    GROUP BY user_id, reaction
-),
-user_totals AS (
-    SELECT user_id, COUNT(*) AS total_reactions
-    FROM reactions
-    GROUP BY user_id
-    HAVING COUNT(DISTINCT content_id) >= 5
+    GROUP BY 1, 2
+    ORDER BY NULL
 )
-SELECT
-    rc.user_id,
-    rc.reaction AS dominant_reaction,
-    ROUND(1.0 * rc.reaction_count / ut.total_reactions, 2) AS reaction_ratio
-FROM reaction_counts AS rc
-JOIN user_totals AS ut
-  ON ut.user_id = rc.user_id
-WHERE rc.reaction_count * 5 >= ut.total_reactions * 3
-ORDER BY reaction_ratio DESC, rc.user_id ASC;
+
+SELECT user_id,
+       reaction AS dominant_reaction,
+       ROUND(cnt / total, 2) AS reaction_ratio
+FROM count_cte
+WHERE rnk = 1
+AND total >= 5
+AND 5 * cnt >= 3 * total
+ORDER BY 3 DESC, 1;

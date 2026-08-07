@@ -1,31 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# dp
 class Solution:
-    def maxNonDecreasingLength(
-        self,
-        nums1: List[int],
-        nums2: List[int],
-    ) -> int:
-        ending_with_first = 1
-        ending_with_second = 1
-        answer = 1
-
-        for index in range(1, len(nums1)):
-            next_first = 1
-            next_second = 1
-
-            if nums1[index] >= nums1[index - 1]:
-                next_first = max(next_first, ending_with_first + 1)
-            if nums1[index] >= nums2[index - 1]:
-                next_first = max(next_first, ending_with_second + 1)
-            if nums2[index] >= nums1[index - 1]:
-                next_second = max(next_second, ending_with_first + 1)
-            if nums2[index] >= nums2[index - 1]:
-                next_second = max(next_second, ending_with_second + 1)
-
-            ending_with_first = next_first
-            ending_with_second = next_second
-            answer = max(answer, ending_with_first, ending_with_second)
-
-        return answer
+    def maxNonDecreasingLength(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        result = 1
+        dp = [1]*2
+        for i in range(len(nums1)-1):
+            dp = [max((dp[0]+1 if nums1[i] <= nums1[i+1] else 1), (dp[1]+1 if nums2[i] <= nums1[i+1] else 1)),
+                  max((dp[0]+1 if nums1[i] <= nums2[i+1] else 1), (dp[1]+1 if nums2[i] <= nums2[i+1] else 1))]
+            result = max(result, max(dp))
+        return result

@@ -1,12 +1,15 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# math, freq table
 class Solution:
-    def minimumRounds(self, tasks: List[int]) -> int:
-        rounds = 0
-        for frequency in Counter(tasks).values():
-            if frequency == 1:
-                return -1
-            rounds += (frequency + 2) // 3
-        return rounds
+    def minimumRounds(self, tasks):
+        """
+        :type tasks: List[int]
+        :rtype: int
+        """
+        cnt = collections.Counter(tasks)
+        return sum((x+2)//3 for x in cnt.values()) if 1 not in cnt.values() else -1

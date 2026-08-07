@@ -1,25 +1,30 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(log(max(t)) * logn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def isPossible(self, target: List[int]) -> bool:
-        if len(target) == 1:
-            return target[0] == 1
-
+    def isPossible(self, target):
+        """
+        :type target: List[int]
+        :rtype: bool
+        """
+        # (1) x + remain = y
+        # (2) y + remain = total
+        # (1) - (2) => x - y = y - total
+        #           => x = 2*y - total
         total = sum(target)
-        heap = [-value for value in target]
-        heapify(heap)
-
-        while True:
-            largest = -heappop(heap)
-            rest = total - largest
-            if largest == 1 or rest == 1:
-                return True
-            if rest == 0 or rest >= largest:
+        max_heap = [-x for x in target]
+        heapq.heapify(max_heap)
+        while total != len(target):
+            y = -heapq.heappop(max_heap)
+            remain = total-y
+            x = y-remain
+            if x <= 0:
                 return False
-            previous = largest % rest
-            if previous == 0:
-                return False
-            total = rest + previous
-            heappush(heap, -previous)
+            if x > remain:  # for case [1, 1000000000]
+                x = x%remain + remain
+            heapq.heappush(max_heap, -x)
+            total = x+remain
+        return True

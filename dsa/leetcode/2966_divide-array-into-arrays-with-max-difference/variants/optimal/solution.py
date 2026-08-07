@@ -1,14 +1,11 @@
-from typing import List
-
-
 class Solution:
     def divideArray(self, nums: List[int], k: int) -> List[List[int]]:
         nums.sort()
-        answer = []
-
-        for start in range(0, len(nums), 3):
-            if nums[start + 2] - nums[start] > k:
+        ans = []
+        n = len(nums)
+        for i in range(0, n, 3):
+            t = nums[i : i + 3]
+            if t[2] - t[0] > k:
                 return []
-            answer.append(nums[start : start + 3])
-
-        return answer
+            ans.append(t)
+        return ans

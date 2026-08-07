@@ -1,17 +1,18 @@
-from collections import Counter
-from math import gcd
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+import fractions
 
 
 class Solution:
-    def interchangeableRectangles(self, rectangles: List[List[int]]) -> int:
-        frequencies = Counter()
-        pairs = 0
-
-        for width, height in rectangles:
-            divisor = gcd(width, height)
-            ratio = (width // divisor, height // divisor)
-            pairs += frequencies[ratio]
-            frequencies[ratio] += 1
-
-        return pairs
+    def interchangeableRectangles(self, rectangles):
+        """
+        :type rectangles: List[List[int]]
+        :rtype: int
+        """
+        count = collections.defaultdict(int)
+        for w, h in rectangles:
+            g = fractions.gcd(w, h)  # Time: O(logx) ~= O(1)
+            count[(w//g, h//g)] += 1
+        return sum(c*(c-1)//2 for c in count.values())

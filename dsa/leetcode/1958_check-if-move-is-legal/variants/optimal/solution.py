@@ -1,31 +1,18 @@
-from typing import List
-
-
 class Solution:
     def checkMove(
-        self,
-        board: List[List[str]],
-        rMove: int,
-        cMove: int,
-        color: str,
+        self, board: List[List[str]], rMove: int, cMove: int, color: str
     ) -> bool:
-        opposite = "W" if color == "B" else "B"
-
-        for row_step in (-1, 0, 1):
-            for column_step in (-1, 0, 1):
-                if row_step == column_step == 0:
+        for a in range(-1, 2):
+            for b in range(-1, 2):
+                if a == 0 and b == 0:
                     continue
-
-                row = rMove + row_step
-                column = cMove + column_step
-                has_middle = False
-
-                while 0 <= row < 8 and 0 <= column < 8 and board[row][column] == opposite:
-                    has_middle = True
-                    row += row_step
-                    column += column_step
-
-                if has_middle and 0 <= row < 8 and 0 <= column < 8 and board[row][column] == color:
-                    return True
-
+                i, j = rMove, cMove
+                cnt = 0
+                while 0 <= i + a < 8 and 0 <= j + b < 8:
+                    cnt += 1
+                    i, j = i + a, j + b
+                    if cnt > 1 and board[i][j] == color:
+                        return True
+                    if board[i][j] in (color, "."):
+                        break
         return False

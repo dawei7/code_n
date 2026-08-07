@@ -1,28 +1,27 @@
+# Time:  O(k * n)
+# Space: O(n)
+
+# prefix sum, dp
 class Solution:
-    def maxSum(self, nums: List[int], k: int, m: int) -> int:
-        n = len(nums)
-        prefix = [0] * (n + 1)
-        for index, value in enumerate(nums):
-            prefix[index + 1] = prefix[index] + value
-
-        negative_infinity = -(10**30)
-        previous = [0] * (n + 1)
-
-        for chosen in range(1, k + 1):
-            current = [negative_infinity] * (n + 1)
-            best_start = negative_infinity
-
-            for end in range(chosen * m, n + 1):
-                start = end - m
-                best_start = max(
-                    best_start,
-                    previous[start] - prefix[start],
-                )
-                current[end] = max(
-                    current[end - 1],
-                    prefix[end] + best_start,
-                )
-
-            previous = current
-
-        return previous[n]
+    def maxSum(self, nums, k, m):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type m: int
+        :rtype: int
+        """
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        dp = [float("-inf")]*(len(nums)+1)
+        dp[0] = 0
+        for i in range(1, k+1):
+            new_dp = [float("-inf")]*(len(nums)+1)
+            mx = float("-inf")
+            for j in range(i*m-1, len(nums)):
+                mx = max(mx, dp[(j+1)-m])
+                new_dp[j+1] = (prefix[j+1]-prefix[(j+1)-m])+mx
+                if j+1 != i*m:
+                    new_dp[j+1] = max(new_dp[j+1], new_dp[j]+nums[j])
+            dp = new_dp
+        return max(dp)

@@ -1,11 +1,6 @@
-WITH extracted AS (
-    SELECT SUBSTR(email, INSTR(email, '@') + 1) AS email_domain
-    FROM Emails
-)
-SELECT
-    email_domain,
-    COUNT(*) AS count
-FROM extracted
-WHERE email_domain LIKE '%.com'
-GROUP BY email_domain
-ORDER BY email_domain ASC;
+# Write your MySQL query statement below
+SELECT SUBSTRING_INDEX(email, '@', -1) AS email_domain, COUNT(1) AS count
+FROM Emails
+WHERE email LIKE '%.com'
+GROUP BY 1
+ORDER BY 1;

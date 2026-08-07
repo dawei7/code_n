@@ -1,31 +1,34 @@
 class Solution:
     def lengthLongestPath(self, input: str) -> int:
-        prefix_lengths = [0]
-        longest = 0
-        index = 0
+        i, n = 0, len(input)
+        ans = 0
+        stk = []
+        while i < n:
+            ident = 0
+            while input[i] == '\t':
+                ident += 1
+                i += 1
 
-        while index < len(input):
-            depth = 0
-            while index < len(input) and input[index] == "\t":
-                depth += 1
-                index += 1
+            cur, isFile = 0, False
+            while i < n and input[i] != '\n':
+                cur += 1
+                if input[i] == '.':
+                    isFile = True
+                i += 1
+            i += 1
 
-            name_length = 0
-            is_file = False
-            while index < len(input) and input[index] != "\n":
-                is_file = is_file or input[index] == "."
-                name_length += 1
-                index += 1
+            # popd
+            while len(stk) > 0 and len(stk) > ident:
+                stk.pop()
 
-            if is_file:
-                longest = max(longest, prefix_lengths[depth] + name_length)
-            else:
-                child_prefix = prefix_lengths[depth] + name_length + 1
-                if len(prefix_lengths) == depth + 1:
-                    prefix_lengths.append(child_prefix)
-                else:
-                    prefix_lengths[depth + 1] = child_prefix
+            if len(stk) > 0:
+                cur += stk[-1] + 1
 
-            index += 1
+            # pushd
+            if not isFile:
+                stk.append(cur)
+                continue
 
-        return longest
+            ans = max(ans, cur)
+
+        return ans

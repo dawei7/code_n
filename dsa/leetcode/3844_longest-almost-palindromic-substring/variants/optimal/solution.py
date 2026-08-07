@@ -1,44 +1,23 @@
 class Solution:
     def almostPalindromic(self, s: str) -> int:
+        def f(l: int, r: int) -> int:
+            while l >= 0 and r < n and s[l] == s[r]:
+                l -= 1
+                r += 1
+            l1, r1 = l - 1, r
+            l2, r2 = l, r + 1
+            while l1 >= 0 and r1 < n and s[l1] == s[r1]:
+                l1 -= 1
+                r1 += 1
+            while l2 >= 0 and r2 < n and s[l2] == s[r2]:
+                l2 -= 1
+                r2 += 1
+            return min(n, max(r1 - l1 - 1, r2 - l2 - 1))
+
         n = len(s)
-        longest = 0
-
-        def expand(left: int, right: int) -> None:
-            nonlocal longest
-
-            while left >= 0 and right < n and s[left] == s[right]:
-                left -= 1
-                right += 1
-
-            palindrome_length = right - left - 1
-            longest = max(longest, palindrome_length)
-
-            if left >= 0 or right < n:
-                longest = max(longest, palindrome_length + 1)
-
-            if left < 0 or right >= n:
-                return
-
-            skip_left = left - 1
-            keep_right = right
-            candidate_length = palindrome_length + 1
-            while skip_left >= 0 and keep_right < n and s[skip_left] == s[keep_right]:
-                skip_left -= 1
-                keep_right += 1
-                candidate_length += 2
-            longest = max(longest, candidate_length)
-
-            keep_left = left
-            skip_right = right + 1
-            candidate_length = palindrome_length + 1
-            while keep_left >= 0 and skip_right < n and s[keep_left] == s[skip_right]:
-                keep_left -= 1
-                skip_right += 1
-                candidate_length += 2
-            longest = max(longest, candidate_length)
-
-        for center in range(n):
-            expand(center - 1, center + 1)
-            expand(center - 1, center)
-
-        return longest
+        ans = 0
+        for i in range(n):
+            a = f(i, i)
+            b = f(i, i + 1)
+            ans = max(ans, a, b)
+        return ans

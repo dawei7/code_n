@@ -1,39 +1,35 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def circularArrayLoop(self, nums: List[int]) -> bool:
-        length = len(nums)
+    def circularArrayLoop(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        def next_index(nums, i):
+            return (i + nums[i]) % len(nums)
 
-        def advance(index: int, forward: bool) -> int:
-            if nums[index] == 0 or (nums[index] > 0) != forward:
-                return -1
-            following = (index + nums[index]) % length
-            if following == index:
-                return -1
-            return following
-
-        for start in range(length):
-            if nums[start] == 0:
+        for i in range(len(nums)):
+            if nums[i] == 0:
                 continue
-            forward = nums[start] > 0
-            slow = fast = start
-            while True:
-                slow = advance(slow, forward)
-                if slow == -1:
-                    break
-                fast = advance(fast, forward)
-                if fast == -1:
-                    break
-                fast = advance(fast, forward)
-                if fast == -1:
-                    break
+
+            slow, fast = i, i
+            while nums[next_index(nums, slow)] * nums[i] > 0 and \
+                  nums[next_index(nums, fast)] * nums[i] > 0 and \
+                  nums[next_index(nums, next_index(nums, fast))] * nums[i] > 0:
+                slow = next_index(nums, slow)
+                fast = next_index(nums, next_index(nums, fast))
                 if slow == fast:
+                    if slow == next_index(nums, slow):
+                        break
                     return True
 
-            index = start
-            while nums[index] != 0 and (nums[index] > 0) == forward:
-                following = (index + nums[index]) % length
-                nums[index] = 0
-                index = following
+            slow, val = i, nums[i]
+            while nums[slow] * val > 0:
+                tmp = next_index(nums, slow)
+                nums[slow] = 0
+                slow = tmp
+
         return False
+

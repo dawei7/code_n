@@ -1,14 +1,43 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def numberOfBoomerangs(self, points: List[List[int]]) -> int:
-        answer = 0
-        for pivot_x, pivot_y in points:
-            frequencies = {}
-            for point_x, point_y in points:
-                distance = (point_x - pivot_x) ** 2 + (point_y - pivot_y) ** 2
-                previous = frequencies.get(distance, 0)
-                answer += 2 * previous
-                frequencies[distance] = previous + 1
-        return answer
+    def numberOfBoomerangs(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        result = 0
+
+        for i in range(len(points)):
+            group = collections.defaultdict(int)
+            for j in range(len(points)):
+                if j == i:
+                    continue
+                dx, dy =  points[i][0] - points[j][0], points[i][1] - points[j][1]
+                group[dx**2 + dy**2] += 1
+
+            for _, v in group.items():
+                if v > 1:
+                    result += v * (v-1)
+
+        return result
+
+    def numberOfBoomerangs2(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        cnt = 0
+        for a, i in enumerate(points):
+            dis_list = []
+            for b, k in enumerate(points[:a] + points[a + 1:]):
+                dis_list.append((k[0] - i[0]) ** 2 + (k[1] - i[1]) ** 2)
+            for z in collections.Counter(dis_list).values():
+                if z > 1:
+                    cnt += z * (z - 1)
+        return cnt
+

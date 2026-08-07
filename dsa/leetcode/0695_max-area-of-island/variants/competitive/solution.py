@@ -1,40 +1,30 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(m * n), the max depth of dfs may be m * n
 
 class Solution:
-    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        visited = set()
-        maximum_area = 0
+    def maxAreaOfIsland(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [[-1,  0], [ 1,  0], [ 0,  1], [ 0, -1]]
 
-        for start_row in range(rows):
-            for start_column in range(columns):
-                start = (start_row, start_column)
-                if grid[start_row][start_column] == 0 or start in visited:
-                    continue
+        def dfs(i, j, grid, area):
+            if not (0 <= i < len(grid) and \
+                    0 <= j < len(grid[0]) and \
+                    grid[i][j] > 0):
+                return False
+            grid[i][j] *= -1
+            area[0] += 1
+            for d in directions:
+                dfs(i+d[0], j+d[1], grid, area)
+            return True
 
-                visited.add(start)
-                stack = [start]
-                area = 0
+        result = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                area = [0]
+                if dfs(i, j, grid, area):
+                    result = max(result, area[0])
+        return result
 
-                while stack:
-                    row, column = stack.pop()
-                    area += 1
-
-                    for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        next_row = row + row_step
-                        next_column = column + column_step
-                        neighbor = (next_row, next_column)
-                        if (
-                            0 <= next_row < rows
-                            and 0 <= next_column < columns
-                            and grid[next_row][next_column] == 1
-                            and neighbor not in visited
-                        ):
-                            visited.add(neighbor)
-                            stack.append(neighbor)
-
-                maximum_area = max(maximum_area, area)
-
-        return maximum_area

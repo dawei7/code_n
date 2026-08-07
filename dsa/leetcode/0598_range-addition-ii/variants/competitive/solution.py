@@ -1,15 +1,16 @@
+# Time:  O(p), p is the number of ops
+# Space: O(1)
+
 class Solution:
-    def maxCount(
-        self,
-        m: int,
-        n: int,
-        ops: list[list[int]],
-    ) -> int:
-        common_rows = m
-        common_columns = n
+    def maxCount(self, m, n, ops):
+        """
+        :type m: int
+        :type n: int
+        :type ops: List[List[int]]
+        :rtype: int
+        """
+        for op in ops:
+            m = min(m, op[0])
+            n = min(n, op[1])
+        return m*n
 
-        for rows, columns in ops:
-            common_rows = min(common_rows, rows)
-            common_columns = min(common_columns, columns)
-
-        return common_rows * common_columns

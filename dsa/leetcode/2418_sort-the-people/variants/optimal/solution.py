@@ -1,12 +1,5 @@
-from typing import List
-
-
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
-        return [
-            name
-            for _, name in sorted(
-                zip(heights, names),
-                reverse=True,
-            )
-        ]
+        idx = list(range(len(heights)))
+        idx.sort(key=lambda i: -heights[i])
+        return [names[i] for i in idx]

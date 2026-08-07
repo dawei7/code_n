@@ -1,26 +1,40 @@
-from math import isqrt
-
+# Time:  O(n^0.25 * logn)
+# Space: O(logn)
 
 class Solution:
-    def superpalindromesInRange(self, left: str, right: str) -> int:
-        lower = int(left)
-        upper = int(right)
-        root_limit = isqrt(upper)
-        count = 0
+    def superpalindromesInRange(self, L, R):
+        """
+        :type L: str
+        :type R: str
+        :rtype: int
+        """
+        def is_palindrome(k):
+            return str(k) == str(k)[::-1]
 
-        for odd_length in (True, False):
-            seed = 1
-            while True:
-                digits = str(seed)
-                mirrored = digits[-2::-1] if odd_length else digits[::-1]
-                root = int(digits + mirrored)
-                if root > root_limit:
-                    break
+        K = int((10**((len(R)+1)*0.25)))
+        l, r = int(L), int(R)
 
-                square = root * root
-                square_digits = str(square)
-                if square >= lower and square_digits == square_digits[::-1]:
-                    count += 1
-                seed += 1
+        result = 0
 
-        return count
+        # count odd length
+        for k in range(K):
+            s = str(k)
+            t = s + s[-2::-1]
+            v = int(t)**2
+            if v > r:
+                break
+            if v >= l and is_palindrome(v):
+                result += 1
+
+        # count even length
+        for k in range(K):
+            s = str(k)
+            t = s + s[::-1]
+            v = int(t)**2
+            if v > r:
+                break
+            if v >= l and is_palindrome(v):
+                result += 1
+
+        return result
+

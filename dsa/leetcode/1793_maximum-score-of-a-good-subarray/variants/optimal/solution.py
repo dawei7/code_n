@@ -1,23 +1,25 @@
-from typing import List
-
-
 class Solution:
     def maximumScore(self, nums: List[int], k: int) -> int:
-        left = right = k
-        minimum = nums[k]
-        best = minimum
-
-        while left > 0 or right + 1 < len(nums):
-            if left == 0:
-                right += 1
-            elif right + 1 == len(nums):
-                left -= 1
-            elif nums[left - 1] < nums[right + 1]:
-                right += 1
-            else:
-                left -= 1
-
-            minimum = min(minimum, nums[left], nums[right])
-            best = max(best, minimum * (right - left + 1))
-
-        return best
+        n = len(nums)
+        left = [-1] * n
+        right = [n] * n
+        stk = []
+        for i, v in enumerate(nums):
+            while stk and nums[stk[-1]] >= v:
+                stk.pop()
+            if stk:
+                left[i] = stk[-1]
+            stk.append(i)
+        stk = []
+        for i in range(n - 1, -1, -1):
+            v = nums[i]
+            while stk and nums[stk[-1]] > v:
+                stk.pop()
+            if stk:
+                right[i] = stk[-1]
+            stk.append(i)
+        ans = 0
+        for i, v in enumerate(nums):
+            if left[i] + 1 <= k <= right[i] - 1:
+                ans = max(ans, v * (right[i] - left[i] - 1))
+        return ans

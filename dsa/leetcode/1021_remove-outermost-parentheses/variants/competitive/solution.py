@@ -1,16 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def removeOuterParentheses(self, s: str) -> str:
-        depth = 0
-        answer = []
-
-        for character in s:
-            if character == "(":
-                if depth > 0:
-                    answer.append(character)
-                depth += 1
-            else:
-                depth -= 1
-                if depth > 0:
-                    answer.append(character)
-
-        return "".join(answer)
+    def removeOuterParentheses(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+        deep = 1
+        result, cnt = [], 0
+        for c in S:
+            if c == '(' and cnt >= deep:
+                result.append(c)
+            if c == ')' and cnt > deep:
+                result.append(c)
+            cnt += 1 if c == '(' else -1
+        return "".join(result)

@@ -1,21 +1,16 @@
-from typing import List
-
-
 class Solution:
-    def maximizeSquareHoleArea(self, n: int, m: int, hBars: List[int], vBars: List[int]) -> int:
-        def maximum_opening(bars: List[int]) -> int:
-            removable = set(bars)
-            longest_run = 0
+    def maximizeSquareHoleArea(
+        self, n: int, m: int, hBars: List[int], vBars: List[int]
+    ) -> int:
+        def f(nums: List[int]) -> int:
+            nums.sort()
+            ans = cnt = 1
+            for i in range(1, len(nums)):
+                if nums[i] == nums[i - 1] + 1:
+                    cnt += 1
+                    ans = max(ans, cnt)
+                else:
+                    cnt = 1
+            return ans + 1
 
-            for bar in removable:
-                if bar - 1 in removable:
-                    continue
-                run = 1
-                while bar + run in removable:
-                    run += 1
-                longest_run = max(longest_run, run)
-
-            return longest_run + 1
-
-        side = min(maximum_opening(hBars), maximum_opening(vBars))
-        return side * side
+        return min(f(hBars), f(vBars)) ** 2

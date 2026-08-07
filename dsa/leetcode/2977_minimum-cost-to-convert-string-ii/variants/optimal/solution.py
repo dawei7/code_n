@@ -1,4 +1,9 @@
-from typing import List
+class Node:
+    __slots__ = ["children", "v"]
+
+    def __init__(self):
+        self.children: List[Node | None] = [None] * 26
+        self.v = -1
 
 
 class Solution:
@@ -10,69 +15,54 @@ class Solution:
         changed: List[str],
         cost: List[int],
     ) -> int:
-        identifiers = {}
-        for word in original + changed:
-            if word not in identifiers:
-                identifiers[word] = len(identifiers)
+        m = len(cost)
+        g = [[inf] * (m << 1) for _ in range(m << 1)]
+        for i in range(m << 1):
+            g[i][i] = 0
+        root = Node()
+        idx = 0
 
-        count = len(identifiers)
-        infinity = 10**30
-        distance = [[infinity] * count for _ in range(count)]
-        for word_id in range(count):
-            distance[word_id][word_id] = 0
+        def insert(w: str) -> int:
+            node = root
+            for c in w:
+                i = ord(c) - ord("a")
+                if node.children[i] is None:
+                    node.children[i] = Node()
+                node = node.children[i]
+            if node.v < 0:
+                nonlocal idx
+                node.v = idx
+                idx += 1
+            return node.v
 
-        for start, end, price in zip(original, changed, cost):
-            first = identifiers[start]
-            second = identifiers[end]
-            distance[first][second] = min(distance[first][second], price)
-
-        for middle in range(count):
-            for first in range(count):
-                through_middle = distance[first][middle]
-                if through_middle == infinity:
-                    continue
-                for second in range(count):
-                    candidate = through_middle + distance[middle][second]
-                    if candidate < distance[first][second]:
-                        distance[first][second] = candidate
-
-        children = [{}]
-        terminal = [-1]
-        for word, word_id in identifiers.items():
-            node = 0
-            for character in word:
-                next_node = children[node].get(character)
-                if next_node is None:
-                    next_node = len(children)
-                    children[node][character] = next_node
-                    children.append({})
-                    terminal.append(-1)
-                node = next_node
-            terminal[node] = word_id
-
-        n = len(source)
-        best = [infinity] * (n + 1)
-        best[0] = 0
-
-        for start in range(n):
-            if best[start] == infinity:
-                continue
-            if source[start] == target[start]:
-                best[start + 1] = min(best[start + 1], best[start])
-
-            source_node = 0
-            target_node = 0
-            for end in range(start, n):
-                source_node = children[source_node].get(source[end], -1)
-                target_node = children[target_node].get(target[end], -1)
-                if source_node == -1 or target_node == -1:
+        @cache
+        def dfs(i: int) -> int:
+            if i >= len(source):
+                return 0
+            res = dfs(i + 1) if source[i] == target[i] else inf
+            p = q = root
+            for j in range(i, len(source)):
+                p = p.children[ord(source[j]) - ord("a")]
+                q = q.children[ord(target[j]) - ord("a")]
+                if p is None or q is None:
                     break
+                if p.v < 0 or q.v < 0:
+                    continue
+                res = min(res, dfs(j + 1) + g[p.v][q.v])
+            return res
 
-                source_id = terminal[source_node]
-                target_id = terminal[target_node]
-                if source_id != -1 and target_id != -1:
-                    price = distance[source_id][target_id]
-                    if price != infinity:
-                        best[end + 1] = min(best[end + 1], best[start] + price)
+        for x, y, z in zip(original, changed, cost):
+            x = insert(x)
+            y = insert(y)
+            g[x][y] = min(g[x][y], z)
+        for k in range(idx):
+            for i in range(idx):
+                if g[i][k] >= inf:
+                    continue
+                for j in range(idx):
+                    # g[i][j] = min(g[i][j], g[i][k] + g[k][j])
+                    if g[i][k] + g[k][j] < g[i][j]:
+                        g[i][j] = g[i][k] + g[k][j]
 
-        return -1 if best[n] == infinity else best[n]
+        ans = dfs(0)
+        return -1 if ans >= inf else ans

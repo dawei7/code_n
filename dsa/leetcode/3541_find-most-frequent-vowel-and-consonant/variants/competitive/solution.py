@@ -1,10 +1,16 @@
-class Solution:
-    def maxFreqSum(self, s: str) -> int:
-        counts = [0] * 26
-        for char in s:
-            counts[ord(char) - ord("a")] += 1
+# Time:  O(n + 26)
+# Space: O(26)
 
-        vowels = {0, 4, 8, 14, 20}
-        max_vowel = max(counts[index] for index in vowels)
-        max_consonant = max(counts[index] for index in range(26) if index not in vowels)
-        return max_vowel + max_consonant
+# freq table
+class Solution:
+    def maxFreqSum(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        VOWELS = {'a', 'e', 'i', 'o', 'u'}
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        return max(cnt[i] for i in range(26) if chr(i+ord('a')) in VOWELS)+\
+               max(cnt[i] for i in range(26) if chr(i+ord('a')) not in VOWELS)

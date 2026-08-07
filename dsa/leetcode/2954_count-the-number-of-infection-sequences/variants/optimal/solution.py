@@ -1,28 +1,20 @@
-from typing import List
+mod = 10**9 + 7
+mx = 10**5
+fac = [1] * (mx + 1)
+for i in range(2, mx + 1):
+    fac[i] = fac[i - 1] * i % mod
 
 
 class Solution:
     def numberOfSequence(self, n: int, sick: List[int]) -> int:
-        modulus = 1_000_000_007
-        healthy = n - len(sick)
-
-        factorial = [1] * (healthy + 1)
-        for value in range(1, healthy + 1):
-            factorial[value] = factorial[value - 1] * value % modulus
-
-        inverse_factorial = [1] * (healthy + 1)
-        inverse_factorial[healthy] = pow(factorial[healthy], modulus - 2, modulus)
-        for value in range(healthy, 0, -1):
-            inverse_factorial[value - 1] = inverse_factorial[value] * value % modulus
-
-        answer = factorial[healthy]
-        answer = answer * inverse_factorial[sick[0]] % modulus
-        answer = answer * inverse_factorial[n - 1 - sick[-1]] % modulus
-
-        for left, right in zip(sick, sick[1:]):
-            gap = right - left - 1
-            answer = answer * inverse_factorial[gap] % modulus
-            if gap > 0:
-                answer = answer * pow(2, gap - 1, modulus) % modulus
-
-        return answer
+        nums = [b - a - 1 for a, b in pairwise([-1] + sick + [n])]
+        ans = 1
+        s = sum(nums)
+        ans = fac[s]
+        for x in nums:
+            if x:
+                ans = ans * pow(fac[x], mod - 2, mod) % mod
+        for x in nums[1:-1]:
+            if x > 1:
+                ans = ans * pow(2, x - 1, mod) % mod
+        return ans

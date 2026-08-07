@@ -1,24 +1,14 @@
 class Solution:
     def minimumBoxes(self, n: int) -> int:
-        low, high = 0, n
-        while low < high:
-            middle = (low + high + 1) // 2
-            boxes = middle * (middle + 1) * (middle + 2) // 6
-            if boxes <= n:
-                low = middle
-            else:
-                high = middle - 1
-
-        height = low
-        complete = height * (height + 1) * (height + 2) // 6
-        remainder = n - complete
-
-        low, high = 0, height + 1
-        while low < high:
-            middle = (low + high) // 2
-            if middle * (middle + 1) // 2 >= remainder:
-                high = middle
-            else:
-                low = middle + 1
-
-        return height * (height + 1) // 2 + low
+        s, k = 0, 1
+        while s + k * (k + 1) // 2 <= n:
+            s += k * (k + 1) // 2
+            k += 1
+        k -= 1
+        ans = k * (k + 1) // 2
+        k = 1
+        while s < n:
+            ans += 1
+            s += k
+            k += 1
+        return ans

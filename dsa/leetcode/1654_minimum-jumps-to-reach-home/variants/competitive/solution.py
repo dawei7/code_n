@@ -1,29 +1,37 @@
-from collections import deque
-from typing import List
-
+# Time:  O(max(x, max(forbidden)) + a + (b+a))
+# Space: O(max(x, max(forbidden)) + a + (b+a))
 
 class Solution:
-    def minimumJumps(self, forbidden: List[int], a: int, b: int, x: int) -> int:
-        blocked = set(forbidden)
-        limit = max(max(forbidden), x) + a + b
-        queue = deque([(0, False, 0)])
-        visited = {(0, False)}
-
-        while queue:
-            position, last_was_backward, jumps = queue.popleft()
-            if position == x:
-                return jumps
-
-            forward = position + a
-            forward_state = (forward, False)
-            if forward <= limit and forward not in blocked and forward_state not in visited:
-                visited.add(forward_state)
-                queue.append((forward, False, jumps + 1))
-
-            backward = position - b
-            backward_state = (backward, True)
-            if not last_was_backward and backward >= 0 and backward not in blocked and backward_state not in visited:
-                visited.add(backward_state)
-                queue.append((backward, True, jumps + 1))
-
+    def minimumJumps(self, forbidden, a, b, x):
+        """
+        :type forbidden: List[int]
+        :type a: int
+        :type b: int
+        :type x: int
+        :rtype: int
+        """
+        max_f = max(forbidden)
+        max_val = x+b if a >= b else max(x, max_f)+a+(b+a)  # a may be a non-periodic area, (a+b) is a periodic area which is divided by gcd(a, b) and all points are reachable
+        lookup = set()      
+        for pos in forbidden:
+            lookup.add((pos, True))
+            lookup.add((pos, False))
+        result = 0
+        q = [(0, True)]
+        lookup.add((0, True))
+        while q:
+            new_q = []
+            for pos, can_back in q:
+                if pos == x:
+                    return result
+                if pos+a <= max_val and (pos+a, True) not in lookup:
+                    lookup.add((pos+a, True))
+                    new_q.append((pos+a, True))
+                if not can_back:
+                    continue
+                if pos-b >= 0 and (pos-b, False) not in lookup:
+                    lookup.add((pos-b, False))
+                    new_q.append((pos-b, False))
+            q = new_q
+            result += 1
         return -1

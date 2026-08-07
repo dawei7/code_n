@@ -1,15 +1,22 @@
-from typing import List
+# Time:  O(n), n is the total number of the bricks
+# Space: O(m), m is the total number different widths
+
+import collections
 
 
 class Solution:
-    def leastBricks(self, wall: List[List[int]]) -> int:
-        edge_frequency = {}
-
+    def leastBricks(self, wall):
+        """
+        :type wall: List[List[int]]
+        :rtype: int
+        """
+        widths = collections.defaultdict(int)
+        result = len(wall)
         for row in wall:
-            position = 0
-            for width in row[:-1]:
-                position += width
-                edge_frequency[position] = edge_frequency.get(position, 0) + 1
+            width = 0
+            for i in range(len(row)-1):
+                width += row[i]
+                widths[width] += 1
+                result = min(result, len(wall) - widths[width])
+        return result
 
-        most_aligned = max(edge_frequency.values(), default=0)
-        return len(wall) - most_aligned

@@ -1,9 +1,8 @@
 class Solution:
     def makePalindrome(self, s: str) -> bool:
-        mismatches = 0
-        for left in range(len(s) // 2):
-            if s[left] != s[~left]:
-                mismatches += 1
-                if mismatches > 2:
-                    return False
-        return True
+        i, j = 0, len(s) - 1
+        cnt = 0
+        while i < j:
+            cnt += s[i] != s[j]
+            i, j = i + 1, j - 1
+        return cnt <= 2

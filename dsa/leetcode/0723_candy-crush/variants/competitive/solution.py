@@ -1,41 +1,38 @@
-from typing import List
-
+# Time:  O((R * C)^2)
+# Space: O(1)
 
 class Solution:
-    def candyCrush(self, board: List[List[int]]) -> List[List[int]]:
-        rows = len(board)
-        columns = len(board[0])
+    def candyCrush(self, board):
+        """
+        :type board: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        R, C = len(board), len(board[0])
+        changed = True
 
-        while True:
-            crushed = False
+        while changed:
+            changed = False
 
-            for row in range(rows):
-                for column in range(columns - 2):
-                    value = abs(board[row][column])
-                    if value and value == abs(board[row][column + 1]) == abs(board[row][column + 2]):
-                        board[row][column] = -value
-                        board[row][column + 1] = -value
-                        board[row][column + 2] = -value
-                        crushed = True
+            for r in range(R):
+                for c in range(C-2):
+                    if abs(board[r][c]) == abs(board[r][c+1]) == abs(board[r][c+2]) != 0:
+                        board[r][c] = board[r][c+1] = board[r][c+2] = -abs(board[r][c])
+                        changed = True
 
-            for row in range(rows - 2):
-                for column in range(columns):
-                    value = abs(board[row][column])
-                    if value and value == abs(board[row + 1][column]) == abs(board[row + 2][column]):
-                        board[row][column] = -value
-                        board[row + 1][column] = -value
-                        board[row + 2][column] = -value
-                        crushed = True
+            for r in range(R-2):
+                for c in range(C):
+                    if abs(board[r][c]) == abs(board[r+1][c]) == abs(board[r+2][c]) != 0:
+                        board[r][c] = board[r+1][c] = board[r+2][c] = -abs(board[r][c])
+                        changed = True
 
-            if not crushed:
-                return board
+            for c in range(C):
+                i = R-1
+                for r in reversed(range(R)):
+                    if board[r][c] > 0:
+                        board[i][c] = board[r][c]
+                        i -= 1
+                for r in reversed(range(i+1)):
+                    board[r][c] = 0
 
-            for column in range(columns):
-                write = rows - 1
-                for row in range(rows - 1, -1, -1):
-                    if board[row][column] > 0:
-                        board[write][column] = board[row][column]
-                        write -= 1
-                while write >= 0:
-                    board[write][column] = 0
-                    write -= 1
+        return board
+

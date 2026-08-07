@@ -1,20 +1,24 @@
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+
+
+# freq table, greedy
 class Solution:
-    def robotWithString(self, s: str) -> str:
-        remaining = [0] * 26
-        for character in s:
-            remaining[ord(character) - ord("a")] += 1
-
-        stack = []
-        written = []
-        smallest = 0
-
-        for character in s:
-            index = ord(character) - ord("a")
-            stack.append(character)
-            remaining[index] -= 1
-            while smallest < 26 and remaining[smallest] == 0:
-                smallest += 1
-            while stack and (smallest == 26 or ord(stack[-1]) - ord("a") <= smallest):
-                written.append(stack.pop())
-
-        return "".join(written)
+    def robotWithString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        cnt = collections.Counter(s)
+        result, stk = [], []
+        mn = 'a'
+        for c in s:
+            stk.append(c)
+            cnt[c] -= 1
+            while mn < 'z' and cnt[mn] == 0:
+                mn = chr(ord(mn)+1)
+            while stk and stk[-1] <= mn:
+                result.append(stk.pop())
+        return "".join(result) 

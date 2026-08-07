@@ -1,26 +1,56 @@
-from typing import List
+# Time:  O(n + r), r = max(nums)
+# Space: O(n + r)
 
-
+# combinatorics, stars and bars
 class Solution:
-    def countOfPairs(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        ways = [1] * (nums[0] + 1)
+    def countOfPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def nCr(n, k):
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+            return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
+    
+        def nHr(n, r):
+            return nCr(n+r-1, r)
 
-        for previous_value, current_value in zip(nums, nums[1:]):
-            prefix = []
-            running_sum = 0
-            for count in ways:
-                running_sum = (running_sum + count) % modulus
-                prefix.append(running_sum)
+        MOD = 10**9+7
+        # arr1 = [0+x1, arr1[0]+max(nums[1]-nums[0], 0)+x2, ..., arr[n-2]+max(nums[n-1]-nums[n-2], 0)+xn]
+        # => sum(max(nums[i]-nums[i-1], 0) for i in range(1, len(nums)))+(x1+x2+...+xn) <= nums[-1]
+        # => x1+x2+...+xn <= nums[-1]-sum(max(nums[i]-nums[i-1], 0) for i in range(1, len(nums))) = cnt <= min(nums)
+        # => the answer is the number of solutions s.t. x1+x2+...+xn <= cnt, where cnt >= 0
+        cnt = nums[-1]-sum(max(nums[i]-nums[i-1], 0) for i in range(1, len(nums)))
+        return nHr(len(nums)+1, cnt) if cnt >= 0 else 0
+    
 
-            minimum_increase = max(0, current_value - previous_value)
-            next_ways = [0] * (current_value + 1)
-            for current_first in range(minimum_increase, current_value + 1):
-                previous_limit = current_first - minimum_increase
-                if previous_limit < len(prefix):
-                    next_ways[current_first] = prefix[previous_limit]
-                else:
-                    next_ways[current_first] = prefix[-1]
-            ways = next_ways
-
-        return sum(ways) % modulus
+# Time:  O(n * r), r = max(nums)
+# Space: O(r)
+# dp, prefix sum
+class Solution2(object):
+    def countOfPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [int(i <= nums[0]) for i in range(max(nums)+1)]  # dp[j]: numbers of arr1, which is of length i+1 and arr1[i] is j
+        for i in range(1, len(nums)):
+            # arr1[i-1] <= arr1[i]
+            # => arr1[i]-arr1[i-1] >= 0 (1)
+            #
+            # arr2[i-1] >= arr2[i]
+            # => nums[i-1]-arr1[i-1] >= nums[i]-arr1[i] 
+            # => arr1[i]-arr1[i-1] >= nums[i]-nums[i-1] (2)
+            #
+            # (1)+(2): arr1[i]-arr1[i-1] >= max(nums[i]-nums[i-1], 0)
+            new_dp = [0]*len(dp)
+            diff = max(nums[i]-nums[i-1], 0)
+            for j in range(diff, nums[i]+1):
+                new_dp[j] = (new_dp[j-1]+dp[j-diff])%MOD
+            dp = new_dp
+        return reduce(lambda accu, x: (accu+x)%MOD, dp, 0)

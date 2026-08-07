@@ -1,24 +1,62 @@
-from math import gcd
-from typing import List
+# Time:  O(n * sqrt(k) * logk)
+# Space: O(sqrt(k))
+
+import collections
 
 
+# dp
 class Solution:
-    def subarrayLCM(self, nums: List[int], k: int) -> int:
-        states = {}
-        answer = 0
+    def subarrayLCM(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        for value in nums:
-            if k % value != 0:
-                states = {}
-                continue
+        def lcm(a, b):
+            return a//gcd(a, b)*b
 
-            next_states = {value: 1}
-            for previous, count in states.items():
-                combined = previous // gcd(previous, value) * value
-                if k % combined == 0:
-                    next_states[combined] = next_states.get(combined, 0) + count
+        result = 0
+        dp = collections.Counter()
+        for x in nums:
+            new_dp = collections.Counter()
+            if k%x == 0:
+                dp[x] += 1
+                for l, cnt in dp.items():
+                    new_dp[lcm(l, x)] += cnt
+            dp = new_dp
+            result += dp[k]
+        return result
 
-            states = next_states
-            answer += states.get(k, 0)
 
-        return answer
+# Time:  O(n^2)
+# Space: O(1)
+# brute force
+class Solution2(object):
+    def subarrayLCM(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+
+        def lcm(a, b):
+            return a//gcd(a, b)*b
+
+        result = 0
+        for i in range(len(nums)):
+            l = 1
+            for j in range(i, len(nums)):
+                if k%nums[j]:
+                    break
+                l = lcm(l, nums[j])
+                result += int(l == k)
+        return result

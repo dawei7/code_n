@@ -1,41 +1,50 @@
-from collections import deque
-
+# Time:  O((k + n) * n)
+# Space: O(n)
 
 class Solution:
-    def getMinSwaps(self, num: str, k: int) -> int:
-        target = list(num)
-        for _ in range(k):
-            pivot = len(target) - 2
-            while target[pivot] >= target[pivot + 1]:
-                pivot -= 1
+    def getMinSwaps(self, num, k):
+        """
+        :type num: str
+        :type k: int
+        :rtype: int
+        """
+        def next_permutation(nums, begin, end):
+            def reverse(nums, begin, end):
+                left, right = begin, end-1
+                while left < right:
+                    nums[left], nums[right] = nums[right], nums[left]
+                    left += 1
+                    right -= 1
 
-            successor = len(target) - 1
-            while target[successor] <= target[pivot]:
-                successor -= 1
-
-            target[pivot], target[successor] = target[successor], target[pivot]
-            target[pivot + 1 :] = reversed(target[pivot + 1 :])
-
-        positions = [deque() for _ in range(10)]
-        for index, digit in enumerate(num):
-            positions[int(digit)].append(index)
-
-        source_indices = [positions[int(digit)].popleft() for digit in target]
-        tree = [0] * (len(num) + 1)
-
-        def prefix_sum(index: int) -> int:
-            total = 0
-            while index:
-                total += tree[index]
-                index -= index & -index
-            return total
-
-        swaps = 0
-        for seen, source_index in enumerate(source_indices):
-            tree_index = source_index + 1
-            swaps += seen - prefix_sum(tree_index)
-            while tree_index < len(tree):
-                tree[tree_index] += 1
-                tree_index += tree_index & -tree_index
-
-        return swaps
+            k, l = begin-1, begin
+            for i in reversed(range(begin, end-1)):
+                if nums[i] < nums[i+1]:
+                    k = i
+                    break
+            else:
+                reverse(nums, begin, end)
+                return False
+            for i in reversed(range(k+1, end)):
+                if nums[i] > nums[k]:
+                    l = i
+                    break
+            nums[k], nums[l] = nums[l], nums[k]
+            reverse(nums, k+1, end)
+            return True
+        
+        new_num = list(num)
+        while k:
+            next_permutation(new_num, 0, len(new_num))
+            k -= 1
+        result = 0
+        for i in range(len(new_num)):
+            if new_num[i] == num[i]:
+                continue
+            #   // greedily move the one with the least cost from new_num to num without missing optimal cost
+            for j in range(i+1, len(new_num)):
+                if new_num[j] == num[i]:
+                    break
+            result += j-i
+            for j in reversed(range(i+1, j+1)):
+                new_num[j], new_num[j-1] = new_num[j-1], new_num[j]
+        return result

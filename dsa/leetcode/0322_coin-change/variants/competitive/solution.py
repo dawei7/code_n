@@ -1,16 +1,21 @@
-from typing import List
-
-
-def _coin_change(coins: List[int], amount: int) -> int:
-    unreachable = amount + 1
-    minimum = [0] + [unreachable] * amount
-    for total in range(1, amount + 1):
-        for coin in coins:
-            if coin <= total:
-                minimum[total] = min(minimum[total], minimum[total - coin] + 1)
-    return -1 if minimum[amount] == unreachable else minimum[amount]
-
+# Time:  O(n * k), n is the number of coins, k is the amount of money
+# Space: O(k)
 
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        return _coin_change(coins, amount)
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        INF = 0x7fffffff  # Using float("inf") would be slower.
+        dp = [INF] * (amount + 1)
+        dp[0] = 0
+        for i in range(amount + 1):
+            if dp[i] != INF:
+                for coin in coins:
+                    if i + coin <= amount:
+                        dp[i + coin] = min(dp[i + coin], dp[i] + 1)
+        return dp[amount] if dp[amount] != INF else -1
+
+

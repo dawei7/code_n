@@ -1,13 +1,16 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def minSubsequence(self, nums: List[int]) -> List[int]:
-        ordered = sorted(nums, reverse=True)
-        total = sum(ordered)
-        selected_sum = 0
-        for length, value in enumerate(ordered, start=1):
-            selected_sum += value
-            if selected_sum > total - selected_sum:
-                return ordered[:length]
-        return ordered
+    def minSubsequence(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result, total, curr = [], sum(nums), 0
+        nums.sort(reverse=True)
+        for i, x in enumerate(nums):
+            curr += x
+            if curr > total-curr:
+                break
+        return nums[:i+1]

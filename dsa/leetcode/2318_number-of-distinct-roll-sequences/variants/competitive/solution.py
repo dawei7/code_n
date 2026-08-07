@@ -1,28 +1,39 @@
-from math import gcd
+# Time:  O(6^3 * n)
+# Space: O(6^2)
+
+import collections
 
 
+# dp
 class Solution:
-    def distinctSequences(self, n: int) -> int:
-        modulus = 1_000_000_007
+    def distinctSequences(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+
         if n == 1:
             return 6
-
-        counts = [[0] * 7 for _ in range(7)]
-        for previous in range(1, 7):
-            for last in range(1, 7):
-                if previous != last and gcd(previous, last) == 1:
-                    counts[previous][last] = 1
-
-        for _ in range(3, n + 1):
-            next_counts = [[0] * 7 for _ in range(7)]
-            for previous in range(1, 7):
-                for last in range(1, 7):
-                    count = counts[previous][last]
-                    if count == 0:
+        MOD = 10**9 + 7
+        dp = [[0]*6 for _ in range(6)]
+        for i in range(6):
+            for j in range(6):
+                if i != j and gcd(i+1, j+1) == 1:
+                    dp[i][j] = 1
+        for _ in range(n-2):
+            new_dp = [[0]*6 for _ in range(6)]
+            for i in range(6):
+                for j in range(6):
+                    if not dp[i][j]:
                         continue
-                    for current in range(1, 7):
-                        if current != previous and current != last and gcd(last, current) == 1:
-                            next_counts[last][current] += count
-            counts = next_counts
-
-        return sum(map(sum, counts)) % modulus
+                    for k in range(6):
+                        if not dp[j][k]:
+                            continue
+                        if k != i:
+                            new_dp[i][j] = (new_dp[i][j]+dp[j][k]) % MOD
+            dp = new_dp
+        return sum(dp[i][j] for i in range(6) for j in range(6)) % MOD

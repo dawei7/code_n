@@ -1,30 +1,20 @@
 class Solution:
     def numberOfPermutations(self, n: int, requirements: List[List[int]]) -> int:
+        req = [-1] * n
+        for end, cnt in requirements:
+            req[end] = cnt
+        if req[0] > 0:
+            return 0
+        req[0] = 0
         mod = 10**9 + 7
-        required = [-1] * n
-        for end, count in requirements:
-            required[end] = count
-
-        max_inversions = max(count for _, count in requirements)
-        dp = [0] * (max_inversions + 1)
-        dp[0] = 1
-
-        for length in range(1, n + 1):
-            next_dp = [0] * (max_inversions + 1)
-            window = 0
-
-            for inversions in range(max_inversions + 1):
-                window += dp[inversions]
-                if inversions >= length:
-                    window -= dp[inversions - length]
-                next_dp[inversions] = window % mod
-
-            target = required[length - 1]
-            if target != -1:
-                ways = next_dp[target]
-                next_dp = [0] * (max_inversions + 1)
-                next_dp[target] = ways
-
-            dp = next_dp
-
-        return dp[required[n - 1]]
+        m = max(req)
+        f = [[0] * (m + 1) for _ in range(n)]
+        f[0][0] = 1
+        for i in range(1, n):
+            l, r = 0, m
+            if req[i] >= 0:
+                l = r = req[i]
+            for j in range(l, r + 1):
+                for k in range(min(i, j) + 1):
+                    f[i][j] = (f[i][j] + f[i - 1][j - k]) % mod
+        return f[n - 1][req[n - 1]]

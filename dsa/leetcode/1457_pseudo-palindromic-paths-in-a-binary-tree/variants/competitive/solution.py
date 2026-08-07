@@ -1,26 +1,45 @@
+# Time:  O(n)
+# Space: O(h)
+
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 class Solution:
-    def pseudoPalindromicPaths(self, root: Optional[TreeNode]) -> int:
-        total = 0
-        stack = [(root, 0)]
-
-        while stack:
-            node, mask = stack.pop()
-            mask ^= 1 << node.val
-
-            if node.left is None and node.right is None:
-                if mask & (mask - 1) == 0:
-                    total += 1
+    def pseudoPalindromicPaths (self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        result = 0
+        stk = [(root, 0)]
+        while stk:
+            node, count = stk.pop()
+            if not node:
                 continue
+            count ^= 1 << (node.val-1)
+            result += int(node.left == node.right and count&(count-1) == 0)
+            stk.append((node.right, count))
+            stk.append((node.left, count))
+        return result
+    
 
-            if node.left is not None:
-                stack.append((node.left, mask))
-            if node.right is not None:
-                stack.append((node.right, mask))
-
-        return total
+# Time:  O(n)
+# Space: O(h)
+class Solution2(object):
+    def pseudoPalindromicPaths (self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(node, count):
+            if not root:
+                return 0
+            count ^= 1 << (node.val-1)
+            return int(node.left == node.right and count&(count-1) == 0) + \
+                   dfs(node.left, count) + dfs(node.right, count)
+        return dfs(root, 0)

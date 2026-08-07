@@ -1,28 +1,24 @@
 class Solution:
     def minEdgeReversals(self, n: int, edges: List[List[int]]) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for source, target in edges:
-            graph[source].append((target, 0))
-            graph[target].append((source, 1))
+        ans = [0] * n
+        g = [[] for _ in range(n)]
+        for x, y in edges:
+            g[x].append((y, 1))
+            g[y].append((x, -1))
 
-        parent = [-2] * n
-        parent[0] = -1
-        incoming_cost = [0] * n
-        order = [0]
-        root_cost = 0
+        def dfs(i: int, fa: int):
+            for j, k in g[i]:
+                if j != fa:
+                    ans[0] += int(k < 0)
+                    dfs(j, i)
 
-        for node in order:
-            for neighbor, cost in graph[node]:
-                if parent[neighbor] != -2:
-                    continue
-                parent[neighbor] = node
-                incoming_cost[neighbor] = cost
-                root_cost += cost
-                order.append(neighbor)
+        dfs(0, -1)
 
-        answer = [0] * n
-        answer[0] = root_cost
-        for node in order[1:]:
-            answer[node] = answer[parent[node]] + 1 - 2 * incoming_cost[node]
+        def dfs2(i: int, fa: int):
+            for j, k in g[i]:
+                if j != fa:
+                    ans[j] = ans[i] + k
+                    dfs2(j, i)
 
-        return answer
+        dfs2(0, -1)
+        return ans

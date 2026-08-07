@@ -1,24 +1,32 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n)
 
 class Solution:
-    def largestDivisibleSubset(self, nums: List[int]) -> List[int]:
-        values = sorted(nums)
-        lengths = [1] * len(values)
-        previous = [-1] * len(values)
-        best_index = 0
+    def largestDivisibleSubset(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        if not nums:
+            return []
 
-        for current in range(len(values)):
-            for earlier in range(current):
-                if values[current] % values[earlier] == 0 and lengths[earlier] + 1 > lengths[current]:
-                    lengths[current] = lengths[earlier] + 1
-                    previous[current] = earlier
-            if lengths[current] > lengths[best_index]:
-                best_index = current
+        nums.sort()
+        dp = [1] * len(nums)
+        prev = [-1] * len(nums)
+        largest_idx = 0
+        for i in range(len(nums)):
+            for j in range(i):
+                if nums[i] % nums[j] == 0:
+                    if dp[i] < dp[j] + 1:
+                        dp[i] = dp[j] + 1
+                        prev[i] = j
+            if dp[largest_idx] < dp[i]:
+                largest_idx = i
 
-        subset = []
-        while best_index != -1:
-            subset.append(values[best_index])
-            best_index = previous[best_index]
-        subset.reverse()
-        return subset
+        result = []
+        i = largest_idx
+        while i != -1:
+            result.append(nums[i])
+            i = prev[i]
+        return result[::-1]
+

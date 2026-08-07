@@ -1,27 +1,81 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# bit, fenwick tree, combinatorics
 class Solution:
-    def getPermutationIndex(self, perm: List[int]) -> int:
-        mod = 1_000_000_007
-        n = len(perm)
-        tree = [0] * (n + 1)
+    def getPermutationIndex(self, perm):
+        """
+        :type perm: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        class BIT(object):  # 0-indexed.
+            def __init__(self, n):
+                self.__bit = [0]*(n+1)  # Extra one for dummy node.
 
-        def prefix_sum(index: int) -> int:
-            total = 0
-            while index > 0:
-                total += tree[index]
-                index -= index & -index
-            return total
+            def add(self, i, val):
+                i += 1  # Extra one for dummy node.
+                while i < len(self.__bit):
+                    self.__bit[i] = (self.__bit[i]+val) % MOD
+                    i += (i & -i)
 
-        def add(index: int) -> None:
-            while index <= n:
-                tree[index] += 1
-                index += index & -index
+            def query(self, i):
+                i += 1  # Extra one for dummy node.
+                ret = 0
+                while i > 0:
+                    ret = (ret+self.__bit[i]) % MOD
+                    i -= (i & -i)
+                return ret
 
-        rank = 0
-        factorial = 1
-        for index in range(n - 1, -1, -1):
-            value = perm[index]
-            rank = (rank + prefix_sum(value - 1) * factorial) % mod
-            add(value)
-            factorial = factorial * (n - index) % mod
+        fact = [0]*len(perm)
+        fact[0] = 1
+        for i in range(len(fact)-1):
+            fact[i+1] = ((i+1)*fact[i])%MOD
+        result = 0
+        bit = BIT(len(perm))
+        for i, x in enumerate(perm):
+            result = (result+(((((x-1)-bit.query((x-1)-1))%MOD)*fact[(len(perm)-1)-i])%MOD))%MOD
+            bit.add(x-1, +1)
+        return result
 
-        return rank
+
+# Time:  O(nlogn)
+# Space: O(n)
+# bit, fenwick tree, combinatorics
+class Solution2(object):
+    def getPermutationIndex(self, perm):
+        """
+        :type perm: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        fact = [1]*2            
+        def factorial(n):
+            while len(fact) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(fact) % MOD)
+            return fact[n]
+
+        class BIT(object):  # 0-indexed.
+            def __init__(self, n):
+                self.__bit = [0]*(n+1)  # Extra one for dummy node.
+
+            def add(self, i, val):
+                i += 1  # Extra one for dummy node.
+                while i < len(self.__bit):
+                    self.__bit[i] = (self.__bit[i]+val) % MOD
+                    i += (i & -i)
+
+            def query(self, i):
+                i += 1  # Extra one for dummy node.
+                ret = 0
+                while i > 0:
+                    ret = (ret+self.__bit[i]) % MOD
+                    i -= (i & -i)
+                return ret
+
+        result = 0
+        bit = BIT(len(perm))
+        for i, x in enumerate(perm):
+            result = (result+(((((x-1)-bit.query((x-1)-1))%MOD)*factorial((len(perm)-1)-i))%MOD))%MOD
+            bit.add(x-1, +1)
+        return result

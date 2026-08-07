@@ -1,45 +1,33 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def buildMatrix(
-        self,
-        k: int,
-        rowConditions: List[List[int]],
-        colConditions: List[List[int]],
+        self, k: int, rowConditions: List[List[int]], colConditions: List[List[int]]
     ) -> List[List[int]]:
-        def topological_order(conditions: List[List[int]]) -> List[int]:
-            adjacency = [[] for _ in range(k + 1)]
-            indegree = [0] * (k + 1)
+        def f(cond):
+            g = defaultdict(list)
+            indeg = [0] * (k + 1)
+            for a, b in cond:
+                g[a].append(b)
+                indeg[b] += 1
+            q = deque([i for i, v in enumerate(indeg[1:], 1) if v == 0])
+            res = []
+            while q:
+                for _ in range(len(q)):
+                    i = q.popleft()
+                    res.append(i)
+                    for j in g[i]:
+                        indeg[j] -= 1
+                        if indeg[j] == 0:
+                            q.append(j)
+            return None if len(res) != k else res
 
-            for before, after in conditions:
-                adjacency[before].append(after)
-                indegree[after] += 1
-
-            queue = deque(value for value in range(1, k + 1) if indegree[value] == 0)
-            order = []
-
-            while queue:
-                value = queue.popleft()
-                order.append(value)
-                for neighbor in adjacency[value]:
-                    indegree[neighbor] -= 1
-                    if indegree[neighbor] == 0:
-                        queue.append(neighbor)
-
-            return order if len(order) == k else []
-
-        row_order = topological_order(rowConditions)
-        column_order = topological_order(colConditions)
-        if not row_order or not column_order:
+        row = f(rowConditions)
+        col = f(colConditions)
+        if row is None or col is None:
             return []
-
-        row_position = {value: index for index, value in enumerate(row_order)}
-        column_position = {value: index for index, value in enumerate(column_order)}
-        matrix = [[0] * k for _ in range(k)]
-
-        for value in range(1, k + 1):
-            matrix[row_position[value]][column_position[value]] = value
-
-        return matrix
+        ans = [[0] * k for _ in range(k)]
+        m = [0] * (k + 1)
+        for i, v in enumerate(col):
+            m[v] = i
+        for i, v in enumerate(row):
+            ans[i][m[v]] = v
+        return ans

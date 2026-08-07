@@ -1,15 +1,17 @@
-from typing import List
-
-
 class OrderedStream:
     def __init__(self, n: int):
-        self.values: List[str | None] = [None] * (n + 1)
-        self.pointer = 1
+        self.ptr = 1
+        self.data = [None] * (n + 1)
 
     def insert(self, idKey: int, value: str) -> List[str]:
-        self.values[idKey] = value
-        chunk: List[str] = []
-        while self.pointer < len(self.values) and self.values[self.pointer] is not None:
-            chunk.append(self.values[self.pointer])
-            self.pointer += 1
-        return chunk
+        self.data[idKey] = value
+        ans = []
+        while self.ptr < len(self.data) and self.data[self.ptr]:
+            ans.append(self.data[self.ptr])
+            self.ptr += 1
+        return ans
+
+
+# Your OrderedStream object will be instantiated and called as such:
+# obj = OrderedStream(n)
+# param_1 = obj.insert(idKey,value)

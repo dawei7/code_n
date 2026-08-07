@@ -1,17 +1,24 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(1)
 
 class Solution:
-    def threeSumSmaller(self, nums: List[int], target: int) -> int:
+    # @param {integer[]} nums
+    # @param {integer} target
+    # @return {integer}
+    def threeSumSmaller(self, nums, target):
         nums.sort()
-        count = 0
-        for first in range(len(nums) - 2):
-            left = first + 1
-            right = len(nums) - 1
-            while left < right:
-                if nums[first] + nums[left] + nums[right] < target:
-                    count += right - left
-                    left += 1
+        n = len(nums)
+
+        count, k = 0, 2
+        while k < n:
+            i, j = 0, k - 1
+            while i < j:  # Two Pointers, linear time.
+                if nums[i] + nums[j] + nums[k] >= target:
+                    j -= 1
                 else:
-                    right -= 1
+                    count += j - i
+                    i += 1
+            k += 1
+
         return count
+

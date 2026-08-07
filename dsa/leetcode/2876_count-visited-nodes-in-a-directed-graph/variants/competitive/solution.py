@@ -1,41 +1,32 @@
-from collections import deque
+# Time:  O(n)
+# Space: O(n)
 
-
+# graph, hash table, stack
 class Solution:
-    def countVisitedNodes(self, edges: List[int]) -> List[int]:
-        n = len(edges)
-        indegree = [0] * n
-        for next_node in edges:
-            indegree[next_node] += 1
-
-        queue = deque(node for node in range(n) if indegree[node] == 0)
-        removed_order = []
-
-        while queue:
-            node = queue.popleft()
-            removed_order.append(node)
-            next_node = edges[node]
-            indegree[next_node] -= 1
-            if indegree[next_node] == 0:
-                queue.append(next_node)
-
-        answer = [0] * n
-
-        for node in range(n):
-            if indegree[node] == 0 or answer[node] != 0:
-                continue
-
-            cycle_nodes = [node]
-            current = edges[node]
-            while current != node:
-                cycle_nodes.append(current)
-                current = edges[current]
-
-            cycle_length = len(cycle_nodes)
-            for cycle_node in cycle_nodes:
-                answer[cycle_node] = cycle_length
-
-        for node in reversed(removed_order):
-            answer[node] = answer[edges[node]] + 1
-
-        return answer
+    def countVisitedNodes(self, edges):
+        """
+        :type edges: List[int]
+        :rtype: List[int]
+        """
+        def find_cycles(adj):
+            result = [0]*len(adj)
+            lookup = [0]*len(adj)
+            stk = []  # added
+            idx = 0
+            for u in range(len(adj)):
+                prev = idx
+                while not lookup[u]:
+                    idx += 1
+                    lookup[u] = idx
+                    stk.append(u)  # added
+                    u = adj[u]
+                if lookup[u] > prev:
+                    l = idx-lookup[u]+1
+                    for _ in range(l):  # added
+                        result[stk.pop()] = l
+                while stk:  # added
+                    result[stk[-1]] = result[adj[stk[-1]]]+1
+                    stk.pop()
+            return result
+        
+        return find_cycles(edges)

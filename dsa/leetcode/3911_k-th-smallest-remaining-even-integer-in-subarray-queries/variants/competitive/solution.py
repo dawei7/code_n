@@ -1,28 +1,24 @@
+# Time:  O(n + qlogn)
+# Space: O(n)
+
+# prefix sum, binary search
 class Solution:
-    def kthRemainingInteger(self, nums: list[int], queries: list[list[int]]) -> list[int]:
-        even_ranks = []
-        even_prefix = [0]
-        for value in nums:
-            if value % 2 == 0:
-                even_ranks.append(value // 2)
-            even_prefix.append(len(even_ranks))
-
-        answer = []
-        for left, right, k in queries:
-            even_left = even_prefix[left]
-            even_right = even_prefix[right + 1]
-
-            low = even_left
-            high = even_right
-            while low < high:
-                middle = (low + high) // 2
-                removed_before = middle - even_left
-                missing_before = even_ranks[middle] - 1 - removed_before
-                if missing_before >= k:
-                    high = middle
+    def kthRemainingInteger(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if not check(mid):
+                    right = mid-1
                 else:
-                    low = middle + 1
-
-            answer.append(2 * (k + low - even_left))
-
-        return answer
+                    left = mid+1
+            return right
+    
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+(1 if nums[i]%2 == 0 else 0)
+        return [2*(k+(prefix[binary_search_right(l, r, lambda x: nums[x]//2 < k+(prefix[x+1]-prefix[l]))+1]-prefix[l])) for i, (l, r, k) in enumerate(queries)]

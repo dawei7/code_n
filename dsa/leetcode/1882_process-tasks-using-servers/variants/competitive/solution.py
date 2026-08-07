@@ -1,29 +1,27 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(n + mlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def assignTasks(self, servers: List[int], tasks: List[int]) -> List[int]:
-        available = [(weight, index) for index, weight in enumerate(servers)]
-        heapify(available)
-        busy = []
-        assignments = []
-        current_time = 0
-
-        for arrival, duration in enumerate(tasks):
-            current_time = max(current_time, arrival)
-            while busy and busy[0][0] <= current_time:
-                _, weight, index = heappop(busy)
-                heappush(available, (weight, index))
-
-            if not available:
-                current_time = busy[0][0]
-                while busy and busy[0][0] <= current_time:
-                    _, weight, index = heappop(busy)
-                    heappush(available, (weight, index))
-
-            weight, index = heappop(available)
-            assignments.append(index)
-            heappush(busy, (current_time + duration, weight, index))
-
-        return assignments
+    def assignTasks(self, servers, tasks):
+        """
+        :type servers: List[int]
+        :type tasks: List[int]
+        :rtype: List[int]
+        """
+        idle = [(servers[i], i) for i in range(len(servers))]
+        working = []
+        heapq.heapify(idle)
+        result = []
+        t = 0
+        for i in range(len(tasks)):
+            t = max(t, i) if idle else working[0][0]
+            while working and working[0][0] <= t:
+                _, w, idx = heapq.heappop(working)
+                heapq.heappush(idle, (w, idx))
+            w, idx = heapq.heappop(idle)
+            heapq.heappush(working, (t+tasks[i], w, idx))
+            result.append(idx)
+        return result

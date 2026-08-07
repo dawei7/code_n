@@ -1,21 +1,47 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def sortString(self, s: str) -> str:
-        counts = [0] * 26
-        for char in s:
-            counts[ord(char) - ord("a")] += 1
+    def sortString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result, count = [], [0]*26
+        for c in s:
+            count[ord(c)-ord('a')] += 1
+        while len(result) != len(s):
+            for c in range(len(count)):
+                if not count[c]:
+                    continue
+                result.append(chr(ord('a')+c))
+                count[c] -= 1
+            for c in reversed(range(len(count))):
+                if not count[c]:
+                    continue
+                result.append(chr(ord('a')+c))
+                count[c] -= 1
+        return "".join(result)
 
-        answer = []
-        remaining = len(s)
-        while remaining:
-            for index in range(26):
-                if counts[index]:
-                    answer.append(chr(ord("a") + index))
-                    counts[index] -= 1
-                    remaining -= 1
-            for index in range(25, -1, -1):
-                if counts[index]:
-                    answer.append(chr(ord("a") + index))
-                    counts[index] -= 1
-                    remaining -= 1
 
-        return "".join(answer)
+# Time:  O(n)
+# Space: O(1)
+import collections
+
+
+class Solution2(object):
+    def sortString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result, count, desc = [], collections.Counter(s), False
+        while count:
+            for c in sorted(count.keys(), reverse=desc):
+                result.append(c)
+                count[c] -= 1
+                if not count[c]:
+                    del count[c]
+            desc = not desc
+        return "".join(result)
+

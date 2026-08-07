@@ -1,19 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def maxConsecutiveAnswers(self, answerKey: str, k: int) -> int:
-        def longest_after_replacing(replaced: str) -> int:
-            left = 0
-            replacements = 0
-            best = 0
-
-            for right, answer in enumerate(answerKey):
-                if answer == replaced:
-                    replacements += 1
-                while replacements > k:
-                    if answerKey[left] == replaced:
-                        replacements -= 1
-                    left += 1
-                best = max(best, right - left + 1)
-
-            return best
-
-        return max(longest_after_replacing("F"), longest_after_replacing("T"))
+    def maxConsecutiveAnswers(self, answerKey, k):
+        """
+        :type answerKey: str
+        :type k: int
+        :rtype: int
+        """
+        result = max_count = 0
+        count = collections.Counter()
+        for i in range(len(answerKey)):
+            count[answerKey[i]] += 1
+            max_count = max(max_count, count[answerKey[i]])
+            if result-max_count >= k:
+                count[answerKey[i-result]] -= 1
+            else:
+                result += 1
+        return result

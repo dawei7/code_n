@@ -1,33 +1,49 @@
-from typing import Optional
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
 
 class Codec:
-    def serialize(self, root: Optional["TreeNode"]) -> str:
-        values = []
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        """Encodes a tree to a single string."""
 
-        def preorder(node: Optional["TreeNode"]) -> None:
-            if node is None:
+        def dfs(root: Optional[TreeNode]):
+            if root is None:
                 return
-            values.append(str(node.val))
-            preorder(node.left)
-            preorder(node.right)
+            nums.append(root.val)
+            dfs(root.left)
+            dfs(root.right)
 
-        preorder(root)
-        return " ".join(values)
+        nums = []
+        dfs(root)
+        return " ".join(map(str, nums))
 
-    def deserialize(self, data: str) -> Optional["TreeNode"]:
-        values = [int(token) for token in data.split()]
-        index = 0
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        """Decodes your encoded data to tree."""
 
-        def build(lower: float, upper: float) -> Optional["TreeNode"]:
-            nonlocal index
-            if index == len(values) or not lower < values[index] < upper:
+        def dfs(mi: int, mx: int) -> Optional[TreeNode]:
+            nonlocal i
+            if i == len(nums) or not mi <= nums[i] <= mx:
                 return None
-            value = values[index]
-            index += 1
-            node = TreeNode(value)
-            node.left = build(lower, value)
-            node.right = build(value, upper)
-            return node
+            x = nums[i]
+            root = TreeNode(x)
+            i += 1
+            root.left = dfs(mi, x)
+            root.right = dfs(x, mx)
+            return root
 
-        return build(float("-inf"), float("inf"))
+        nums = list(map(int, data.split()))
+        i = 0
+        return dfs(-inf, inf)
+
+
+# Your Codec object will be instantiated and called as such:
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# tree = ser.serialize(root)
+# ans = deser.deserialize(tree)
+# return ans

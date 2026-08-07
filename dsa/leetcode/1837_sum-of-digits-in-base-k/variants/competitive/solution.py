@@ -1,7 +1,15 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def sumBase(self, n: int, k: int) -> int:
-        digit_sum = 0
-        while n > 0:
-            n, digit = divmod(n, k)
-            digit_sum += digit
-        return digit_sum
+    def sumBase(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        result = 0
+        while n:
+            n, r = divmod(n, k)
+            result += r
+        return result

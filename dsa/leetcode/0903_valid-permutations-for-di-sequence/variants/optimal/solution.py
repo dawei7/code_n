@@ -1,21 +1,16 @@
 class Solution:
     def numPermsDISequence(self, s: str) -> int:
-        modulo = 1_000_000_007
-        dp = [1] * (len(s) + 1)
-
-        for relation in s:
-            if relation == "I":
-                next_dp = []
-                running = 0
-                for value in dp[:-1]:
-                    running = (running + value) % modulo
-                    next_dp.append(running)
+        mod = 10**9 + 7
+        n = len(s)
+        f = [[0] * (n + 1) for _ in range(n + 1)]
+        f[0][0] = 1
+        for i, c in enumerate(s, 1):
+            if c == "D":
+                for j in range(i + 1):
+                    for k in range(j, i):
+                        f[i][j] = (f[i][j] + f[i - 1][k]) % mod
             else:
-                next_dp = [0] * (len(dp) - 1)
-                running = 0
-                for index in range(len(dp) - 1, 0, -1):
-                    running = (running + dp[index]) % modulo
-                    next_dp[index - 1] = running
-            dp = next_dp
-
-        return dp[0]
+                for j in range(i + 1):
+                    for k in range(j):
+                        f[i][j] = (f[i][j] + f[i - 1][k]) % mod
+        return sum(f[n][j] for j in range(n + 1)) % mod

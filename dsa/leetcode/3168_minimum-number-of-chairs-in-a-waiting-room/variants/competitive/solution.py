@@ -1,13 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+
+# simulation
 class Solution:
-    def minimumChairs(self, s: str) -> int:
-        occupied = 0
-        answer = 0
-
-        for event in s:
-            if event == "E":
-                occupied += 1
-                answer = max(answer, occupied)
-            else:
-                occupied -= 1
-
-        return answer
+    def minimumChairs(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = curr = 0
+        for x in s:
+            curr += +1 if x == "E" else -1
+            result = max(result, curr)
+        return result

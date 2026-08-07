@@ -4,17 +4,14 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
-        removed = set(nums)
-        dummy = ListNode(0, head)
-        previous = dummy
-        current = head
-
-        while current:
-            if current.val in removed:
-                previous.next = current.next
+    def modifiedList(
+        self, nums: List[int], head: Optional[ListNode]
+    ) -> Optional[ListNode]:
+        s = set(nums)
+        pre = dummy = ListNode(next=head)
+        while pre.next:
+            if pre.next.val in s:
+                pre.next = pre.next.next
             else:
-                previous = current
-            current = current.next
-
+                pre = pre.next
         return dummy.next

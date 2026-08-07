@@ -1,15 +1,11 @@
 class Solution:
     def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:
-        blocked = set(banned)
-        total = 0
-        count = 0
-
-        for value in range(1, n + 1):
-            if value in blocked:
-                continue
-            if total + value > maxSum:
+        ans = s = 0
+        ban = set(banned)
+        for i in range(1, n + 1):
+            if s + i > maxSum:
                 break
-            total += value
-            count += 1
-
-        return count
+            if i not in ban:
+                ans += 1
+                s += i
+        return ans

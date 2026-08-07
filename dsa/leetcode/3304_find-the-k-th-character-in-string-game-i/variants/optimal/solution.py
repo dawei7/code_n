@@ -1,3 +1,6 @@
 class Solution:
     def kthCharacter(self, k: int) -> str:
-        return chr(ord("a") + (k - 1).bit_count())
+        word = [0]
+        while len(word) < k:
+            word.extend([(x + 1) % 26 for x in word])
+        return chr(ord("a") + word[k - 1])

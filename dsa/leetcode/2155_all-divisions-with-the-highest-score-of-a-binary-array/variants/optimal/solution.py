@@ -1,18 +1,15 @@
-from typing import List
-
-
 class Solution:
     def maxScoreIndices(self, nums: List[int]) -> List[int]:
-        score = sum(nums)
-        best = score
-        answer = [0]
-
-        for index, value in enumerate(nums, start=1):
-            score += 1 if value == 0 else -1
-            if score > best:
-                best = score
-                answer = [index]
-            elif score == best:
-                answer.append(index)
-
-        return answer
+        l0, r1 = 0, sum(nums)
+        mx = r1
+        ans = [0]
+        for i, x in enumerate(nums, 1):
+            l0 += x ^ 1
+            r1 -= x
+            t = l0 + r1
+            if mx == t:
+                ans.append(i)
+            elif mx < t:
+                mx = t
+                ans = [i]
+        return ans

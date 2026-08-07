@@ -1,18 +1,20 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(1)
 
 class Solution:
-    def projectionArea(self, grid: List[List[int]]) -> int:
-        column_maxima = [0] * len(grid)
-        top_area = 0
-        row_area = 0
+    def projectionArea(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(grid)):
+            max_row, max_col = 0, 0
+            for j in range(len(grid)):
+                if grid[i][j]:
+                    result += 1
+                max_row = max(max_row, grid[i][j])
+                max_col = max(max_col, grid[j][i])
+            result += max_row + max_col
+        return result
 
-        for row in grid:
-            row_area += max(row)
-            for column, height in enumerate(row):
-                if height > 0:
-                    top_area += 1
-                if height > column_maxima[column]:
-                    column_maxima[column] = height
-
-        return top_area + row_area + sum(column_maxima)

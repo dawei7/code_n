@@ -1,18 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def isMonotonic(self, nums: List[int]) -> bool:
-        increasing = True
-        decreasing = True
+    def isMonotonic(self, A):
+        """
+        :type A: List[int]
+        :rtype: bool
+        """
+        inc, dec = False, False
+        for i in range(len(A)-1):
+            if A[i] < A[i+1]:
+                inc = True
+            elif A[i] > A[i+1]:
+                dec = True
+        return not inc or not dec
 
-        for previous, current in zip(nums, nums[1:]):
-            if previous < current:
-                decreasing = False
-            elif previous > current:
-                increasing = False
-
-            if not increasing and not decreasing:
-                return False
-
-        return True

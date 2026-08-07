@@ -1,12 +1,14 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minFlipsMonoIncr(self, s: str) -> int:
-        ones_seen = 0
-        flips = 0
-
-        for character in s:
-            if character == "1":
-                ones_seen += 1
-            else:
-                flips = min(flips + 1, ones_seen)
-
-        return flips
+    def minFlipsMonoIncr(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        flip0, flip1 = 0, 0
+        for c in S:
+            flip0 += int(c == '1')
+            flip1 = min(flip0, flip1 + int(c == '0'))
+        return flip1

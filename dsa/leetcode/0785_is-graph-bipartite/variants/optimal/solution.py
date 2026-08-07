@@ -1,21 +1,15 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
-        colors = [0] * len(graph)
-        for start in range(len(graph)):
-            if colors[start] != 0:
-                continue
-            colors[start] = 1
-            queue = deque([start])
-            while queue:
-                node = queue.popleft()
-                for neighbor in graph[node]:
-                    if colors[neighbor] == 0:
-                        colors[neighbor] = -colors[node]
-                        queue.append(neighbor)
-                    elif colors[neighbor] == colors[node]:
-                        return False
+        def dfs(a: int, c: int) -> bool:
+            color[a] = c
+            for b in graph[a]:
+                if color[b] == c or (color[b] == 0 and not dfs(b, -c)):
+                    return False
+            return True
+
+        n = len(graph)
+        color = [0] * n
+        for i in range(n):
+            if color[i] == 0 and not dfs(i, 1):
+                return False
         return True

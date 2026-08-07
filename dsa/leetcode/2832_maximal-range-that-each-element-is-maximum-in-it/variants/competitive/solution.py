@@ -1,25 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# mono stack
 class Solution:
-    def maximumLengthOfRanges(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        answer = [0] * n
-
-        stack = []
-        for index, value in enumerate(nums):
-            while stack and nums[stack[-1]] < value:
-                stack.pop()
-            left_boundary = stack[-1] + 1 if stack else 0
-            answer[index] = index - left_boundary + 1
-            stack.append(index)
-
-        stack.clear()
-        for index in range(n - 1, -1, -1):
-            while stack and nums[stack[-1]] < nums[index]:
-                stack.pop()
-            right_boundary = stack[-1] - 1 if stack else n - 1
-            answer[index] += right_boundary - index
-            stack.append(index)
-
-        return answer
+    def maximumLengthOfRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result = [0]*len(nums)
+        stk = [-1]
+        nums.append(float("inf"))
+        for i, x in enumerate(nums):
+            while stk[-1] != -1 and nums[stk[-1]] < x:
+                j = stk.pop()
+                result[j] = (i-1)-stk[-1]
+            stk.append(i)
+        return result

@@ -1,17 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minOperations(self, s: str) -> int:
-        if all(s[index - 1] <= s[index] for index in range(1, len(s))):
+    def minOperations(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if all(s[i] <= s[i+1] for i in range(len(s)-1)):
             return 0
-
-        minimum = min(s)
-        maximum = max(s)
-        if s[0] == minimum or s[-1] == maximum:
-            return 1
-
         if len(s) == 2:
             return -1
-
-        if s.find(minimum) == len(s) - 1 and s.rfind(maximum) == 0:
-            return 3
-
-        return 2
+        mn = min(s[i] for i in range(1, len(s)-1))
+        mx = max(s[i] for i in range(1, len(s)-1))
+        return 1 if s[0] == min(s) or s[-1] == max(s) else 2 if s[-1] >= mn or s[0] <= mx else 3

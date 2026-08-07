@@ -1,13 +1,18 @@
-class Solution:
-    def maxProduct(self, nums: list[int]) -> int:
-        largest = 0
-        second_largest = 0
-        for value in nums:
-            magnitude = abs(value)
-            if magnitude >= largest:
-                second_largest = largest
-                largest = magnitude
-            elif magnitude > second_largest:
-                second_largest = magnitude
+# Time:  O(n)
+# Space: O(1)
 
-        return 100000 * largest * second_largest
+# greedy
+class Solution:
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        L = 2
+        top = [0]*L
+        for x in nums:
+            x = abs(x)
+            for i in range(L):
+                if x > top[i]:
+                    x, top[i] = top[i], x
+        return top[0]*top[1]*10**5

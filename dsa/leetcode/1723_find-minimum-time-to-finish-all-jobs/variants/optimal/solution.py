@@ -1,31 +1,21 @@
-from typing import List
-
-
 class Solution:
     def minimumTimeRequired(self, jobs: List[int], k: int) -> int:
-        jobs.sort(reverse=True)
-        workloads = [0] * k
-        best = sum(jobs)
-
-        def search(index: int) -> None:
-            nonlocal best
-            if index == len(jobs):
-                best = min(best, max(workloads))
+        def dfs(i):
+            nonlocal ans
+            if i == len(jobs):
+                ans = min(ans, max(cnt))
                 return
-
-            duration = jobs[index]
-            seen_loads = set()
-            for worker in range(k):
-                if workloads[worker] in seen_loads:
+            for j in range(k):
+                if cnt[j] + jobs[i] >= ans:
                     continue
-                if workloads[worker] + duration >= best:
-                    continue
-                seen_loads.add(workloads[worker])
-                workloads[worker] += duration
-                search(index + 1)
-                workloads[worker] -= duration
-                if workloads[worker] == 0:
+                cnt[j] += jobs[i]
+                dfs(i + 1)
+                cnt[j] -= jobs[i]
+                if cnt[j] == 0:
                     break
 
-        search(0)
-        return best
+        cnt = [0] * k
+        jobs.sort(reverse=True)
+        ans = inf
+        dfs(0)
+        return ans

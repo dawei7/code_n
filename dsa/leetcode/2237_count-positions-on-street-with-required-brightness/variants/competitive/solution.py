@@ -1,24 +1,25 @@
-from typing import List
+# Time:  O(n + l)
+# Space: O(min(n, l))
+
+import collections
 
 
+# line sweep
 class Solution:
-    def meetRequirement(
-        self,
-        n: int,
-        lights: List[List[int]],
-        requirement: List[int],
-    ) -> int:
-        changes = [0] * (n + 1)
-        for position, radius in lights:
-            left = max(0, position - radius)
-            right = min(n - 1, position + radius)
-            changes[left] += 1
-            changes[right + 1] -= 1
-
-        answer = 0
-        brightness = 0
-        for index in range(n):
-            brightness += changes[index]
-            if brightness >= requirement[index]:
-                answer += 1
-        return answer
+    def meetRequirement(self, n, lights, requirement):
+        """
+        :type n: int
+        :type lights: List[List[int]]
+        :type requirement: List[int]
+        :rtype: int
+        """
+        cnt = collections.defaultdict(int)
+        for p, r in lights:
+            cnt[max(p-r, 0)] += 1
+            cnt[min(p+r, n-1)+1] -= 1
+        result = curr = 0
+        for i, r in enumerate(requirement):
+            curr += cnt.get(i, 0)
+            if curr >= r:
+                result += 1
+        return result

@@ -1,19 +1,17 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
+
+import itertools
 
 
+# greedy, sort
 class Solution:
-    def makeSimilar(self, nums: List[int], target: List[int]) -> int:
-        nums_even = sorted(value for value in nums if value % 2 == 0)
-        nums_odd = sorted(value for value in nums if value % 2 == 1)
-        target_even = sorted(value for value in target if value % 2 == 0)
-        target_odd = sorted(value for value in target if value % 2 == 1)
-
-        operations = 0
-        for source, destination in zip(nums_even, target_even):
-            if source > destination:
-                operations += (source - destination) // 2
-        for source, destination in zip(nums_odd, target_odd):
-            if source > destination:
-                operations += (source - destination) // 2
-
-        return operations
+    def makeSimilar(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: List[int]
+        :rtype: int
+        """
+        nums.sort(key=lambda x: (x%2, x))
+        target.sort(key=lambda x: (x%2, x))
+        return sum(abs(x-y)//2 for x, y in itertools.izip(nums, target))//2

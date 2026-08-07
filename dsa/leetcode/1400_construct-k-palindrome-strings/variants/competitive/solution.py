@@ -1,9 +1,16 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def canConstruct(self, s: str, k: int) -> bool:
-        if k > len(s):
-            return False
-        odd_count = sum(frequency % 2 for frequency in Counter(s).values())
-        return odd_count <= k
+    def canConstruct(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: bool
+        """
+        count = collections.Counter(s)
+        odd = sum(v%2 for v in count.values())
+        return odd <= k <= len(s)

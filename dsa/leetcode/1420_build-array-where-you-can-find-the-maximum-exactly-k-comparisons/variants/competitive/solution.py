@@ -1,19 +1,25 @@
+# Time:  O(n * m * k)
+# Space: O(m * k)
+
 class Solution:
-    def numOfArrays(self, n: int, m: int, k: int) -> int:
-        modulus = 1_000_000_007
-        if k > m:
-            return 0
-        current = [[0] * (m + 1) for _ in range(k + 1)]
-        for maximum in range(1, m + 1):
-            current[1][maximum] = 1
-
-        for _ in range(1, n):
-            following = [[0] * (m + 1) for _ in range(k + 1)]
-            for cost in range(1, k + 1):
-                smaller_prefix = 0
-                for maximum in range(1, m + 1):
-                    following[cost][maximum] = (current[cost][maximum] * maximum + smaller_prefix) % modulus
-                    smaller_prefix = (smaller_prefix + current[cost - 1][maximum]) % modulus
-            current = following
-
-        return sum(current[k]) % modulus
+    def numOfArrays(self, n, m, k):
+        """
+        :type n: int
+        :type m: int
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9 + 7
+        # dp[l][i][j] = number of ways of constructing array length l with max element i at search cost j
+        dp = [[[0]*(k+1) for _ in range(m+1)] for _ in range(2)]
+        # prefix_dp[l][i][j] = sum(dp[l][i][j] for i in [1..i])
+        prefix_dp = [[[0]*(k+1) for _ in range(m+1)] for _ in range(2)]
+        for i in range(1, m+1):
+            dp[1][i][1] = 1
+            prefix_dp[1][i][1] = (prefix_dp[1][i-1][1] + dp[1][i][1])%MOD
+        for l in range(2, n+1):
+            for i in range(1, m+1):
+                for j in range(1, k+1):
+                    dp[l%2][i][j] = (i*dp[(l-1)%2][i][j]%MOD + prefix_dp[(l-1)%2][i-1][j-1])%MOD
+                    prefix_dp[l%2][i][j] = (prefix_dp[l%2][i-1][j] + dp[l%2][i][j])%MOD
+        return prefix_dp[n%2][m][k]

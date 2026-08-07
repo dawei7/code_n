@@ -1,34 +1,18 @@
 class Solution:
     def countGoodSubarrays(self, nums: list[int]) -> int:
-        bit_count = 30
-        last_with_bit = [-1] * bit_count
-        left_blocker = [-1] * len(nums)
-
-        for index, value in enumerate(nums):
-            blocker = -1
-            for bit in range(bit_count):
-                if value & (1 << bit) == 0:
-                    blocker = max(blocker, last_with_bit[bit])
-                else:
-                    last_with_bit[bit] = index
-            left_blocker[index] = blocker
-
-        next_with_bit = [len(nums)] * bit_count
-        next_equal = {}
-        answer = 0
-
-        for index in range(len(nums) - 1, -1, -1):
-            value = nums[index]
-            blocker = len(nums)
-
-            for bit in range(bit_count):
-                if value & (1 << bit) == 0:
-                    blocker = min(blocker, next_with_bit[bit])
-                else:
-                    next_with_bit[bit] = index
-
-            right_limit = min(blocker, next_equal.get(value, len(nums)))
-            answer += (index - left_blocker[index]) * (right_limit - index)
-            next_equal[value] = index
-
-        return answer
+        n = len(nums)
+        l = [-1] * n
+        stk = []
+        for i, x in enumerate(nums):
+            while stk and nums[stk[-1]] < x and (nums[stk[-1]] | x) == x:
+                stk.pop()
+            l[i] = stk[-1] if stk else -1
+            stk.append(i)
+        r = [n] * n
+        stk = []
+        for i in range(n - 1, -1, -1):
+            while stk and (nums[stk[-1]] | nums[i]) == nums[i]:
+                stk.pop()
+            r[i] = stk[-1] if stk else n
+            stk.append(i)
+        return sum((i - l[i]) * (r[i] - i) for i in range(n))

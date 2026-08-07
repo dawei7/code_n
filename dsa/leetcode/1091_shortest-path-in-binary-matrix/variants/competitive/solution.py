@@ -1,26 +1,32 @@
-from collections import deque
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-        side = len(grid)
-        if grid[0][0] or grid[-1][-1]:
-            return -1
-
-        queue = deque([(0, 0, 1)])
-        grid[0][0] = 1
-        while queue:
-            row, column, distance = queue.popleft()
-            if row == side - 1 and column == side - 1:
-                return distance
-            for row_step in (-1, 0, 1):
-                for column_step in (-1, 0, 1):
-                    if row_step == 0 and column_step == 0:
-                        continue
-                    next_row = row + row_step
-                    next_column = column + column_step
-                    if 0 <= next_row < side and 0 <= next_column < side and grid[next_row][next_column] == 0:
-                        grid[next_row][next_column] = 1
-                        queue.append((next_row, next_column, distance + 1))
+    def shortestPathBinaryMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(-1, -1), (-1, 0), (-1, 1), \
+                      ( 0, -1), ( 0, 1), \
+                      ( 1, -1), ( 1, 0), ( 1, 1)]
+        result = 0
+        q = collections.deque([(0, 0)])
+        while q:
+            result += 1
+            next_depth = collections.deque()
+            while q:
+                i, j = q.popleft()
+                if 0 <= i < len(grid) and \
+                   0 <= j < len(grid[0]) and \
+                    not grid[i][j]:
+                    grid[i][j] = 1
+                    if i == len(grid)-1 and j == len(grid)-1:
+                        return result
+                    for d in directions:
+                        next_depth.append((i+d[0], j+d[1]))
+            q = next_depth
         return -1

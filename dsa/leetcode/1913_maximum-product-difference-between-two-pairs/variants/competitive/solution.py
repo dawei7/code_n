@@ -1,22 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxProductDifference(self, nums: List[int]) -> int:
-        smallest = second_smallest = float("inf")
-        largest = second_largest = float("-inf")
-
-        for value in nums:
-            if value <= smallest:
-                second_smallest = smallest
-                smallest = value
-            elif value < second_smallest:
-                second_smallest = value
-
-            if value >= largest:
-                second_largest = largest
-                largest = value
-            elif value > second_largest:
-                second_largest = value
-
-        return largest * second_largest - smallest * second_smallest
+    def maxProductDifference(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        largest, smallest = [0]*2, [float("inf")]*2
+        for x in nums:
+            if x >= largest[0]:
+                largest[:] = [x, largest[0]]
+            elif x > largest[1]:
+                largest[1] =x
+            if x <= smallest[0]:
+                smallest[:] = [x, smallest[0]]
+            elif x < smallest[1]:
+                smallest[1] = x
+        return largest[0]*largest[1] - smallest[0]*smallest[1]

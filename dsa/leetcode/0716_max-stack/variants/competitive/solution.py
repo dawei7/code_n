@@ -1,65 +1,79 @@
-import heapq
+# Time:  push:    O(1)
+#        pop:     O(n), there is no built-in SortedDict in python. If applied, it could be reduced to O(logn)
+#        popMax:  O(n)
+#        top:     O(1)
+#        peekMax: O(1)
+# Space: O(n), n is the number of values in the current stack
+
+import collections
 
 
-class _Node:
-    def __init__(self, value: int = 0, identifier: int = 0):
-        self.value = value
-        self.identifier = identifier
-        self.previous = None
-        self.next = None
+class MaxStack(object):
 
-
-class MaxStack:
     def __init__(self):
-        self.head = _Node()
-        self.tail = _Node()
-        self.head.next = self.tail
-        self.tail.previous = self.head
-        self.maximums = []
-        self.active = {}
-        self.next_identifier = 0
+        """
+        initialize your data structure here.
+        """
+        self.__idx_to_val = collections.defaultdict(int)
+        self.__val_to_idxs = collections.defaultdict(list)
+        self.__top = None
+        self.__max = None
 
-    def _append(self, node: _Node) -> None:
-        previous = self.tail.previous
-        previous.next = node
-        node.previous = previous
-        node.next = self.tail
-        self.tail.previous = node
 
-    @staticmethod
-    def _unlink(node: _Node) -> None:
-        node.previous.next = node.next
-        node.next.previous = node.previous
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: void
+        """
+        idx = self.__val_to_idxs[self.__top][-1]+1 if self.__val_to_idxs else 0
+        self.__idx_to_val[idx] = x
+        self.__val_to_idxs[x].append(idx)
+        self.__top = x
+        self.__max = max(self.__max, x)
 
-    def _discard_stale_maximums(self) -> None:
-        while self.maximums and -self.maximums[0][1] not in self.active:
-            heapq.heappop(self.maximums)
 
-    def push(self, x: int) -> None:
-        self.next_identifier += 1
-        identifier = self.next_identifier
-        node = _Node(x, identifier)
-        self._append(node)
-        self.active[identifier] = node
-        heapq.heappush(self.maximums, (-x, -identifier))
+    def pop(self):
+        """
+        :rtype: int
+        """
+        val = self.__top
+        self.__remove(val)
+        return val
 
-    def pop(self) -> int:
-        node = self.tail.previous
-        self._unlink(node)
-        del self.active[node.identifier]
-        return node.value
 
-    def top(self) -> int:
-        return self.tail.previous.value
+    def top(self):
+        """
+        :rtype: int
+        """
+        return self.__top
 
-    def peekMax(self) -> int:
-        self._discard_stale_maximums()
-        return -self.maximums[0][0]
 
-    def popMax(self) -> int:
-        self._discard_stale_maximums()
-        negative_value, negative_identifier = heapq.heappop(self.maximums)
-        identifier = -negative_identifier
-        node = self.active.pop(identifier)
-        self._unlink(node)
-        return -negative_value
+    def peekMax(self):
+        """
+        :rtype: int
+        """
+        return self.__max
+
+
+    def popMax(self):
+        """
+        :rtype: int
+        """
+        val = self.__max
+        self.__remove(val)
+        return val
+
+
+    def __remove(self, val):
+        idx = self.__val_to_idxs[val][-1]
+        self.__val_to_idxs[val].pop()
+        if not self.__val_to_idxs[val]:
+            del self.__val_to_idxs[val]
+        del self.__idx_to_val[idx]
+        if val == self.__top:
+            self.__top = self.__idx_to_val[max(self.__idx_to_val.keys())] if self.__idx_to_val else None
+        if val == self.__max:
+            self.__max = max(self.__val_to_idxs.keys()) if self.__val_to_idxs else None
+
+
+

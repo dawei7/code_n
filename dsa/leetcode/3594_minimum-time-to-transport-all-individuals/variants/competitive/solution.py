@@ -1,68 +1,54 @@
-from heapq import heappop, heappush
+# Time:  O((n * m * 2^n + m * 3^n) * log(n * m * 2^n + m * 3^n)) = O(m * 3^n * log(m * 3^n))
+# Space: O(n * m * 2^n + m * 3^n) = O(m * 3^n)
+
+import heapq
 
 
+# dijkstra's algorithm, submask enumeration
 class Solution:
-    def minTime(self, n: int, k: int, m: int, time: List[int], mul: List[float]) -> float:
-        if k == 1 and n > 1:
-            return -1.0
-
-        full_mask = (1 << n) - 1
-        maximum_time = [0] * (1 << n)
-
-        for mask in range(1, 1 << n):
-            lowest_bit = mask & -mask
-            person = lowest_bit.bit_length() - 1
-            maximum_time[mask] = max(
-                maximum_time[mask ^ lowest_bit],
-                time[person],
-            )
-
-        distances = [[float("inf")] * m for _ in range(1 << n)]
-        distances[full_mask][0] = 0.0
-        queue = [(0.0, full_mask, 0)]
-
-        while queue:
-            elapsed, mask, stage = heappop(queue)
-
-            if elapsed != distances[mask][stage]:
+    def minTime(self, n, k, m, time, mul):
+        """
+        :type n: int
+        :type k: int
+        :type m: int
+        :type time: List[int]
+        :type mul: List[float]
+        :rtype: float
+        """
+        def update(d, r, s, mask, submask):
+            t = lookup[submask]*mul[s]
+            nr = r^1
+            ns = (s+int(t))%m
+            new_mask = mask^submask
+            nd = d+t
+            if dist[nr][ns][new_mask] > nd:
+                dist[nr][ns][new_mask] = nd
+                heapq.heappush(min_heap, (nd, nr, ns, new_mask))
+    
+        popcount = [0]*(1<<n)  # for better performance
+        for i in range(1, (1<<n)):
+            popcount[i] = popcount[i>>1]+(i&1)
+        lookup = [max(time[i] for i in range(n) if mask&(1<<i)) if mask else 0 for mask in range(1<<n)]  # Time: O(n * 2^n)
+        INF = float("inf")
+        dist = [[[INF]*(1<<n) for _ in range(m)] for _ in range(2)]
+        dist[0][0][(1<<n)-1] = 0.0
+        min_heap = [(0.0, 0, 0, (1<<n)-1)]
+        while min_heap:
+            d, r, s, mask = heapq.heappop(min_heap)  # Total Time: O((n * m * 2^n + m * 3^n) * log(n * m * 2^n + m * 3^n))
+            if d != dist[r][s][mask]:
                 continue
-
             if mask == 0:
-                return elapsed
-
-            group = mask
-
-            while group:
-                if group.bit_count() <= k:
-                    crossing_time = maximum_time[group] * mul[stage]
-                    next_stage = (stage + int(crossing_time + 1e-9)) % m
-                    remaining = mask ^ group
-                    arrival_time = elapsed + crossing_time
-
-                    if remaining == 0:
-                        if arrival_time < distances[0][next_stage]:
-                            distances[0][next_stage] = arrival_time
-                            heappush(queue, (arrival_time, 0, next_stage))
-                    else:
-                        returners = full_mask ^ remaining
-
-                        while returners:
-                            returner_bit = returners & -returners
-                            person = returner_bit.bit_length() - 1
-                            return_time = time[person] * mul[next_stage]
-                            final_stage = (next_stage + int(return_time + 1e-9)) % m
-                            next_mask = remaining | returner_bit
-                            total_time = arrival_time + return_time
-
-                            if total_time < distances[next_mask][final_stage]:
-                                distances[next_mask][final_stage] = total_time
-                                heappush(
-                                    queue,
-                                    (total_time, next_mask, final_stage),
-                                )
-
-                            returners ^= returner_bit
-
-                group = (group - 1) & mask
-
+                assert(r == 1)
+                return d
+            if r == 0:
+                submask = mask
+                while submask:  # Total Time: O(m * 3^n)
+                    if popcount[submask] <= k:
+                        update(d, r, s, mask, submask)
+                    submask = (submask-1)&mask
+            else:
+                for i in range(n):  # Total Time: O(n * m * 2^n)
+                    if mask&(1<<i):
+                        continue
+                    update(d, r, s, mask, 1<<i)
         return -1.0

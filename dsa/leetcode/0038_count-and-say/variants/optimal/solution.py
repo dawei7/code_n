@@ -1,14 +1,15 @@
 class Solution:
     def countAndSay(self, n: int) -> str:
-        term = "1"
+        s = '1'
         for _ in range(n - 1):
-            described = []
-            index = 0
-            while index < len(term):
-                following = index + 1
-                while following < len(term) and term[following] == term[index]:
-                    following += 1
-                described.extend((str(following - index), term[index]))
-                index = following
-            term = "".join(described)
-        return term
+            i = 0
+            t = []
+            while i < len(s):
+                j = i
+                while j < len(s) and s[j] == s[i]:
+                    j += 1
+                t.append(str(j - i))
+                t.append(str(s[i]))
+                i = j
+            s = ''.join(t)
+        return s

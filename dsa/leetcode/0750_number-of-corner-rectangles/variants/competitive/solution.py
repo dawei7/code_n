@@ -1,25 +1,19 @@
-from typing import List
-
+# Time:  O(n * m^2), n is the number of rows with 1s, m is the number of cols with 1s
+# Space: O(n * m)
 
 class Solution:
-    def countCornerRectangles(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
+    def countCornerRectangles(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        rows = [[c for c, val in enumerate(row) if val]
+                for row in grid]
+        result = 0
+        for i in range(len(rows)):
+            lookup = set(rows[i])
+            for j in range(i):
+                count = sum(1 for c in rows[j] if c in lookup)
+                result += count*(count-1)/2
+        return result
 
-        if columns > rows:
-            grid = [list(column) for column in zip(*grid)]
-            rows, columns = columns, rows
-
-        pair_counts = [[0] * columns for _ in range(columns)]
-        rectangles = 0
-
-        for row in grid:
-            one_columns = [column for column, value in enumerate(row) if value == 1]
-            for left_index in range(len(one_columns)):
-                left = one_columns[left_index]
-                for right_index in range(left_index + 1, len(one_columns)):
-                    right = one_columns[right_index]
-                    rectangles += pair_counts[left][right]
-                    pair_counts[left][right] += 1
-
-        return rectangles

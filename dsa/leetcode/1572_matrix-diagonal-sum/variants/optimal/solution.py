@@ -1,16 +1,8 @@
-from typing import List
-
-
 class Solution:
     def diagonalSum(self, mat: List[List[int]]) -> int:
-        size = len(mat)
-        total = 0
-
-        for index in range(size):
-            total += mat[index][index]
-            total += mat[index][size - 1 - index]
-
-        if size % 2 == 1:
-            total -= mat[size // 2][size // 2]
-
-        return total
+        ans = 0
+        n = len(mat)
+        for i, row in enumerate(mat):
+            j = n - i - 1
+            ans += row[i] + (0 if j == i else row[j])
+        return ans

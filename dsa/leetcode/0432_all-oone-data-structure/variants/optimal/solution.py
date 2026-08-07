@@ -1,61 +1,75 @@
-class Bucket:
-    def __init__(self, count: int = 0):
-        self.count = count
-        self.keys = set()
+class Node:
+    def __init__(self, key='', cnt=0):
         self.prev = None
         self.next = None
+        self.cnt = cnt
+        self.keys = {key}
+
+    def insert(self, node):
+        node.prev = self
+        node.next = self.next
+        node.prev.next = node
+        node.next.prev = node
+        return node
+
+    def remove(self):
+        self.prev.next = self.next
+        self.next.prev = self.prev
 
 
 class AllOne:
     def __init__(self):
-        self.head = Bucket()
-        self.tail = Bucket()
-        self.head.next = self.tail
-        self.tail.prev = self.head
-        self.location = {}
-
-    def _insert_after(self, previous: Bucket, count: int) -> Bucket:
-        bucket = Bucket(count)
-        bucket.prev = previous
-        bucket.next = previous.next
-        previous.next.prev = bucket
-        previous.next = bucket
-        return bucket
-
-    def _remove(self, bucket: Bucket) -> None:
-        bucket.prev.next = bucket.next
-        bucket.next.prev = bucket.prev
+        self.root = Node()
+        self.root.next = self.root
+        self.root.prev = self.root
+        self.nodes = {}
 
     def inc(self, key: str) -> None:
-        current = self.location.get(key, self.head)
-        destination = current.next
-        target = current.count + 1
-        if destination is self.tail or destination.count != target:
-            destination = self._insert_after(current, target)
-        destination.keys.add(key)
-        self.location[key] = destination
-        if current is not self.head:
-            current.keys.remove(key)
-            if not current.keys:
-                self._remove(current)
+        root, nodes = self.root, self.nodes
+        if key not in nodes:
+            if root.next == root or root.next.cnt > 1:
+                nodes[key] = root.insert(Node(key, 1))
+            else:
+                root.next.keys.add(key)
+                nodes[key] = root.next
+        else:
+            curr = nodes[key]
+            next = curr.next
+            if next == root or next.cnt > curr.cnt + 1:
+                nodes[key] = curr.insert(Node(key, curr.cnt + 1))
+            else:
+                next.keys.add(key)
+                nodes[key] = next
+            curr.keys.discard(key)
+            if not curr.keys:
+                curr.remove()
 
     def dec(self, key: str) -> None:
-        current = self.location[key]
-        if current.count == 1:
-            del self.location[key]
+        root, nodes = self.root, self.nodes
+        curr = nodes[key]
+        if curr.cnt == 1:
+            nodes.pop(key)
         else:
-            destination = current.prev
-            target = current.count - 1
-            if destination is self.head or destination.count != target:
-                destination = self._insert_after(destination, target)
-            destination.keys.add(key)
-            self.location[key] = destination
-        current.keys.remove(key)
-        if not current.keys:
-            self._remove(current)
+            prev = curr.prev
+            if prev == root or prev.cnt < curr.cnt - 1:
+                nodes[key] = prev.insert(Node(key, curr.cnt - 1))
+            else:
+                prev.keys.add(key)
+                nodes[key] = prev
+        curr.keys.discard(key)
+        if not curr.keys:
+            curr.remove()
 
     def getMaxKey(self) -> str:
-        return "" if self.tail.prev is self.head else next(iter(self.tail.prev.keys))
+        return next(iter(self.root.prev.keys))
 
     def getMinKey(self) -> str:
-        return "" if self.head.next is self.tail else next(iter(self.head.next.keys))
+        return next(iter(self.root.next.keys))
+
+
+# Your AllOne object will be instantiated and called as such:
+# obj = AllOne()
+# obj.inc(key)
+# obj.dec(key)
+# param_3 = obj.getMaxKey()
+# param_4 = obj.getMinKey()

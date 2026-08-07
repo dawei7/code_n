@@ -1,19 +1,22 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n)
 
 class Solution:
-    def minHeightShelves(self, books: List[List[int]], shelfWidth: int) -> int:
-        book_count = len(books)
-        minimum_height = [0] + [10**18] * book_count
-
-        for end in range(1, book_count + 1):
-            width = 0
-            shelf_height = 0
-            for start in range(end - 1, -1, -1):
-                thickness, height = books[start]
-                width += thickness
-                if width > shelfWidth:
+    def minHeightShelves(self, books, shelf_width):
+        """
+        :type books: List[List[int]]
+        :type shelf_width: int
+        :rtype: int
+        """
+        dp = [float("inf") for _ in range(len(books)+1)]
+        dp[0] = 0
+        for i in range(1, len(books)+1):
+            max_width = shelf_width
+            max_height = 0
+            for j in reversed(range(i)):
+                if max_width-books[j][0] < 0:
                     break
-                shelf_height = max(shelf_height, height)
-                minimum_height[end] = min(minimum_height[end], minimum_height[start] + shelf_height)
-        return minimum_height[book_count]
+                max_width -= books[j][0]
+                max_height = max(max_height, books[j][1])
+                dp[i] = min(dp[i], dp[j]+max_height)
+        return dp[len(books)]

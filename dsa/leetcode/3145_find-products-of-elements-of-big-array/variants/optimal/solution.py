@@ -1,51 +1,47 @@
-from typing import List
+m = 50
+cnt = [0] * (m + 1)
+s = [0] * (m + 1)
+p = 1
+for i in range(1, m + 1):
+    cnt[i] = cnt[i - 1] * 2 + p
+    s[i] = s[i - 1] * 2 + p * (i - 1)
+    p *= 2
+
+
+def num_idx_and_sum(x: int) -> tuple:
+    idx = 0
+    total_sum = 0
+    while x:
+        i = x.bit_length() - 1
+        idx += cnt[i]
+        total_sum += s[i]
+        x -= 1 << i
+        total_sum += (x + 1) * i
+        idx += x + 1
+    return (idx, total_sum)
+
+
+def f(i: int) -> int:
+    l, r = 0, 1 << m
+    while l < r:
+        mid = (l + r + 1) >> 1
+        idx, _ = num_idx_and_sum(mid)
+        if idx < i:
+            l = mid
+        else:
+            r = mid - 1
+
+    total_sum = 0
+    idx, total_sum = num_idx_and_sum(l)
+    i -= idx
+    x = l + 1
+    for _ in range(i):
+        y = x & -x
+        total_sum += y.bit_length() - 1
+        x -= y
+    return total_sum
 
 
 class Solution:
     def findProductsOfElements(self, queries: List[List[int]]) -> List[int]:
-        def statistics(number: int) -> tuple[int, int]:
-            total_bits = 0
-            exponent_sum = 0
-            total_numbers = number + 1
-
-            for bit in range(number.bit_length()):
-                half = 1 << bit
-                period = half << 1
-                ones = (total_numbers // period) * half
-                ones += max(0, total_numbers % period - half)
-                total_bits += ones
-                exponent_sum += ones * bit
-
-            return total_bits, exponent_sum
-
-        def prefix_exponent(length: int) -> int:
-            if length == 0:
-                return 0
-
-            low, high = 1, length
-            while low < high:
-                middle = (low + high) // 2
-                if statistics(middle)[0] >= length:
-                    high = middle
-                else:
-                    low = middle + 1
-
-            number = low
-            used, exponent_sum = statistics(number - 1)
-            remaining = length - used
-
-            for bit in range(number.bit_length()):
-                if number & (1 << bit):
-                    if remaining == 0:
-                        break
-                    exponent_sum += bit
-                    remaining -= 1
-
-            return exponent_sum
-
-        answer = []
-        for start, end, modulus in queries:
-            exponent = prefix_exponent(end + 1) - prefix_exponent(start)
-            answer.append(pow(2, exponent, modulus))
-
-        return answer
+        return [pow(2, f(right + 1) - f(left), mod) for left, right, mod in queries]

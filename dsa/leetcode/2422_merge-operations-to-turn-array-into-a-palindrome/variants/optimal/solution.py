@@ -1,28 +1,18 @@
-from typing import List
-
-
 class Solution:
     def minimumOperations(self, nums: List[int]) -> int:
-        left = 0
-        right = len(nums) - 1
-        left_sum = nums[left]
-        right_sum = nums[right]
-        operations = 0
-
-        while left < right:
-            if left_sum == right_sum:
-                left += 1
-                right -= 1
-                if left < right:
-                    left_sum = nums[left]
-                    right_sum = nums[right]
-            elif left_sum < right_sum:
-                left += 1
-                left_sum += nums[left]
-                operations += 1
+        i, j = 0, len(nums) - 1
+        a, b = nums[i], nums[j]
+        ans = 0
+        while i < j:
+            if a < b:
+                i += 1
+                a += nums[i]
+                ans += 1
+            elif b < a:
+                j -= 1
+                b += nums[j]
+                ans += 1
             else:
-                right -= 1
-                right_sum += nums[right]
-                operations += 1
-
-        return operations
+                i, j = i + 1, j - 1
+                a, b = nums[i], nums[j]
+        return ans

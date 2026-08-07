@@ -1,11 +1,18 @@
+# Time:  O(n^2) = O(1), since n is at most 99
+# Space: O(n) = O(1)
+
 class Solution:
-    def champagneTower(self, poured: int, query_row: int, query_glass: int) -> float:
-        row = [float(poured)]
-        for _ in range(query_row):
-            next_row = [0.0] * (len(row) + 1)
-            for glass, amount in enumerate(row):
-                overflow = max(0.0, amount - 1.0) / 2.0
-                next_row[glass] += overflow
-                next_row[glass + 1] += overflow
-            row = next_row
-        return min(1.0, row[query_glass])
+    def champagneTower(self, poured, query_row, query_glass):
+        """
+        :type poured: int
+        :type query_row: int
+        :type query_glass: int
+        :rtype: float
+        """
+        result = [poured] + [0] * query_row
+        for i in range(1, query_row+1):
+            for j in reversed(range(i+1)):
+                result[j] = max(result[j]-1, 0)/2.0 + \
+                            max(result[j-1]-1, 0)/2.0
+        return min(result[query_glass], 1)
+

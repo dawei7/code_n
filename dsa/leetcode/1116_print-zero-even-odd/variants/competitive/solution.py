@@ -1,28 +1,51 @@
-from threading import Semaphore
+# Time:  O(n)
+# Space: O(1)
+
+import threading
 
 
-class ZeroEvenOdd:
+class ZeroEvenOdd(object):
     def __init__(self, n):
-        self.n = n
-        self.zero_turn = Semaphore(1)
-        self.odd_turn = Semaphore(0)
-        self.even_turn = Semaphore(0)
-
-    # printNumber(x) outputs "x", where x is an integer.
-    def zero(self, printNumber: "Callable[[int], None]") -> None:
-        for value in range(1, self.n + 1):
-            self.zero_turn.acquire()
-            printNumber(0)
-            (self.odd_turn if value % 2 else self.even_turn).release()
-
-    def even(self, printNumber: "Callable[[int], None]") -> None:
-        for value in range(2, self.n + 1, 2):
-            self.even_turn.acquire()
-            printNumber(value)
-            self.zero_turn.release()
-
-    def odd(self, printNumber: "Callable[[int], None]") -> None:
-        for value in range(1, self.n + 1, 2):
-            self.odd_turn.acquire()
-            printNumber(value)
-            self.zero_turn.release()
+        self.__n = n
+        self.__curr = 0
+        self.__cv = threading.Condition()
+        
+	# printNumber(x) outputs "x", where x is an integer.
+    def zero(self, printNumber):
+        """
+        :type printNumber: method
+        :rtype: void
+        """
+        for i in range(self.__n):
+            with self.__cv:
+                while self.__curr % 2 != 0:
+                    self.__cv.wait()
+                self.__curr += 1
+                printNumber(0)
+                self.__cv.notifyAll()
+        
+    def even(self, printNumber):
+        """
+        :type printNumber: method
+        :rtype: void
+        """
+        for i in range(2, self.__n+1, 2):
+            with self.__cv:
+                while self.__curr % 4 != 3:
+                    self.__cv.wait()
+                self.__curr += 1
+                printNumber(i)
+                self.__cv.notifyAll()
+        
+    def odd(self, printNumber):
+        """
+        :type printNumber: method
+        :rtype: void
+        """
+        for i in range(1, self.__n+1, 2):
+            with self.__cv:
+                while self.__curr % 4 != 1:
+                    self.__cv.wait()
+                self.__curr += 1
+                printNumber(i)
+                self.__cv.notifyAll()

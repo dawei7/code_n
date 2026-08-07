@@ -1,28 +1,23 @@
 class Solution:
     def findMaximumNumber(self, k: int, x: int) -> int:
-        def accumulated(number: int) -> int:
-            total = 0
-            position = x
+        @cache
+        def dfs(pos, limit, cnt):
+            if pos == 0:
+                return cnt
+            ans = 0
+            up = (self.num >> (pos - 1) & 1) if limit else 1
+            for i in range(up + 1):
+                ans += dfs(pos - 1, limit and i == up, cnt + (i == 1 and pos % x == 0))
+            return ans
 
-            while 1 << (position - 1) <= number:
-                half = 1 << (position - 1)
-                cycle = half << 1
-                total += (number + 1) // cycle * half
-                total += max(0, (number + 1) % cycle - half)
-                position += x
-
-            return total
-
-        lower = 0
-        upper = 1
-        while accumulated(upper) <= k:
-            upper *= 2
-
-        while lower + 1 < upper:
-            middle = (lower + upper) // 2
-            if accumulated(middle) <= k:
-                lower = middle
+        l, r = 1, 10**18
+        while l < r:
+            mid = (l + r + 1) >> 1
+            self.num = mid
+            v = dfs(mid.bit_length(), True, 0)
+            dfs.cache_clear()
+            if v <= k:
+                l = mid
             else:
-                upper = middle
-
-        return lower
+                r = mid - 1
+        return l

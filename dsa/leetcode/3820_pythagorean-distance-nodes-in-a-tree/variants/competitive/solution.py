@@ -1,43 +1,37 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# bfs
 class Solution:
-    def specialNodes(
-        self,
-        n: int,
-        edges: List[List[int]],
-        x: int,
-        y: int,
-        z: int,
-    ) -> int:
-        adjacency = [[] for _ in range(n)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
+    def specialNodes(self, n, edges, x, y, z):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type x: int
+        :type y: int
+        :type z: int
+        :rtype: int
+        """
+        def bfs(x):
+            dist = [-1]*n
+            dist[x] = 0
+            q = [x]
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if dist[v] != -1:
+                            continue
+                        dist[v] = dist[u]+1
+                        new_q.append(v)
+                q = new_q
+            return dist
 
-        def distances(start: int) -> List[int]:
-            result = [-1] * n
-            result[start] = 0
-            queue = deque([start])
-
-            while queue:
-                node = queue.popleft()
-                for neighbor in adjacency[node]:
-                    if result[neighbor] == -1:
-                        result[neighbor] = result[node] + 1
-                        queue.append(neighbor)
-
-            return result
-
-        distance_x = distances(x)
-        distance_y = distances(y)
-        distance_z = distances(z)
-
-        answer = 0
-        for node in range(n):
-            first, second, third = sorted((distance_x[node], distance_y[node], distance_z[node]))
-            if first * first + second * second == third * third:
-                answer += 1
-
-        return answer
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        dist1 = bfs(x)
+        dist2 = bfs(y)
+        dist3 = bfs(z)
+        return sum(dist1[u]**2+dist2[u]**2+dist3[u]**2 == 2*max(dist1[u], dist2[u], dist3[u])**2 for u in range(n))

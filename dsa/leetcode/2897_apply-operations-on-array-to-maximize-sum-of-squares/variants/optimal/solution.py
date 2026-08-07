@@ -1,22 +1,17 @@
-from typing import List
-
-
 class Solution:
     def maxSum(self, nums: List[int], k: int) -> int:
-        modulus = 1_000_000_007
-        bit_counts = [0] * 30
-
-        for value in nums:
-            for bit in range(30):
-                bit_counts[bit] += (value >> bit) & 1
-
-        answer = 0
+        mod = 10**9 + 7
+        cnt = [0] * 31
+        for x in nums:
+            for i in range(31):
+                if x >> i & 1:
+                    cnt[i] += 1
+        ans = 0
         for _ in range(k):
-            value = 0
-            for bit in range(30):
-                if bit_counts[bit]:
-                    value |= 1 << bit
-                    bit_counts[bit] -= 1
-            answer = (answer + value * value) % modulus
-
-        return answer
+            x = 0
+            for i in range(31):
+                if cnt[i]:
+                    x |= 1 << i
+                    cnt[i] -= 1
+            ans = (ans + x * x) % mod
+        return ans

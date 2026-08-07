@@ -1,20 +1,26 @@
-WITH RankedScores AS (
-    SELECT exam_id,
-           student_id,
-           RANK() OVER (PARTITION BY exam_id ORDER BY score) AS low_rank,
-           RANK() OVER (PARTITION BY exam_id ORDER BY score DESC) AS high_rank
-    FROM Exam
-),
-QuietStudents AS (
-    SELECT student_id
-    FROM RankedScores
-    GROUP BY student_id
-    HAVING MIN(low_rank) > 1
-       AND MIN(high_rank) > 1
-)
-SELECT s.student_id,
-       s.student_name
-FROM Student AS s
-JOIN QuietStudents AS q
-  ON q.student_id = s.student_id
-ORDER BY s.student_id;
+# Time:  O(m + nlogn)
+# Space: O(m + n)
+
+SELECT s.student_id, 
+       s.student_name 
+FROM   student s 
+       INNER JOIN (SELECT a.student_id, 
+                          Count(a.exam_id) AS total_exam, 
+                          Sum(CASE 
+                                WHEN a.score > min_score 
+                                     AND a.score < max_score THEN 1 
+                                ELSE 0 
+                              END)         AS quite_exam 
+                   FROM   exam a 
+                          INNER JOIN (SELECT exam_id, 
+                                             Min(score) AS min_score, 
+                                             Max(score) AS max_score 
+                                      FROM   exam 
+                                      GROUP  BY exam_id 
+                                      ORDER  BY NULL) b 
+                                  ON a.exam_id = b.exam_id 
+                   GROUP  BY a.student_id 
+                   ORDER  BY NULL) c 
+               ON s.student_id = c.student_id 
+WHERE  c.total_exam = c.quite_exam 
+ORDER  BY s.student_id; 

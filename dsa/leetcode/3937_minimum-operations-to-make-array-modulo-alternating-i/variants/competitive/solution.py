@@ -1,27 +1,37 @@
+# Time:  O(n + k)
+# Space: O(k)
+
+# freq table, sliding window
 class Solution:
-    def minOperations(self, nums: list[int], k: int) -> int:
-        costs = [[0] * k for _ in range(2)]
+    def minOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def topk(a, k):  # Time: O(k * n)
+            result = [(float("inf"), float("inf"))]*k
+            for idx, x in enumerate(a):
+                tmp = (x, idx)
+                for i in range(len(result)):
+                    if tmp < result[i]:
+                        result[i], tmp = tmp, result[i]
+            return result
 
-        for index, value in enumerate(nums):
-            remainder = value % k
-            for target in range(k):
-                difference = abs(remainder - target)
-                costs[index % 2][target] += min(difference, k - difference)
+        def distance(cnt):
+            total = sum(cnt)
+            c = sum(cnt[i] for i in range(1, k//2+1))
+            dist = [0]*k
+            dist[0] = sum(x*min(i, k-i) for i, x in enumerate(cnt))
+            for i in range(1, len(dist)):
+                dist[i] = dist[i-1]-c+(total-c)-(cnt[((i+k//2))%k] if k%2 else 0)
+                c += cnt[((i+k//2))%k]-cnt[i]
+            return dist
 
-        best_cost = float("inf")
-        best_remainder = -1
-        second_cost = float("inf")
-        for remainder, cost in enumerate(costs[1]):
-            if cost < best_cost:
-                second_cost = best_cost
-                best_cost = cost
-                best_remainder = remainder
-            elif cost < second_cost:
-                second_cost = cost
-
-        answer = float("inf")
-        for remainder, cost in enumerate(costs[0]):
-            odd_cost = second_cost if remainder == best_remainder else best_cost
-            answer = min(answer, cost + odd_cost)
-
-        return int(answer)
+        cnt = [[0]*k for _ in range(2)]
+        for i, x in enumerate(nums):
+            cnt[i%2][x%k] += 1
+        dist = [distance(cnt[i]) for i in range(2)]
+        top2 = [topk(dist[i], 2) for i in range(2)]
+        return min(top2[0][0][0]+top2[1][1][0], top2[0][1][0]+top2[1][0][0]) if top2[0][0][1] == top2[1][0][1] else top2[0][0][0]+top2[1][0
+][0]

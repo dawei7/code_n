@@ -1,21 +1,19 @@
 class MyHashSet:
-    BUCKET_COUNT = 1009
-
     def __init__(self):
-        self.buckets = [[] for _ in range(self.BUCKET_COUNT)]
+        self.data = [False] * 1000001
 
     def add(self, key: int) -> None:
-        bucket = self.buckets[key % self.BUCKET_COUNT]
-        if key not in bucket:
-            bucket.append(key)
+        self.data[key] = True
 
     def remove(self, key: int) -> None:
-        bucket = self.buckets[key % self.BUCKET_COUNT]
-        for index, stored in enumerate(bucket):
-            if stored == key:
-                bucket.pop(index)
-                return
+        self.data[key] = False
 
     def contains(self, key: int) -> bool:
-        bucket = self.buckets[key % self.BUCKET_COUNT]
-        return key in bucket
+        return self.data[key]
+
+
+# Your MyHashSet object will be instantiated and called as such:
+# obj = MyHashSet()
+# obj.add(key)
+# obj.remove(key)
+# param_3 = obj.contains(key)

@@ -1,17 +1,13 @@
 class Solution:
     def numberOfSubarrays(self, nums: List[int]) -> int:
-        stack = []
-        answer = 0
-
-        for value in nums:
-            while stack and stack[-1][0] < value:
-                stack.pop()
-
-            if stack and stack[-1][0] == value:
-                stack[-1][1] += 1
+        stk = []
+        ans = 0
+        for x in nums:
+            while stk and stk[-1][0] < x:
+                stk.pop()
+            if not stk or stk[-1][0] > x:
+                stk.append([x, 1])
             else:
-                stack.append([value, 1])
-
-            answer += stack[-1][1]
-
-        return answer
+                stk[-1][1] += 1
+            ans += stk[-1][1]
+        return ans

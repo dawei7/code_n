@@ -1,11 +1,9 @@
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
-        operations = 0
-        flipped = 0
-
-        for num in nums:
-            if (num ^ flipped) == 0:
-                operations += 1
-                flipped ^= 1
-
-        return operations
+        ans = v = 0
+        for x in nums:
+            x ^= v
+            if x == 0:
+                ans += 1
+                v ^= 1
+        return ans

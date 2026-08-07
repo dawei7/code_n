@@ -1,18 +1,7 @@
-from typing import List
-
-
 class Solution:
     def oddString(self, words: List[str]) -> str:
-        def difference(word: str) -> tuple[int, ...]:
-            return tuple(ord(word[index + 1]) - ord(word[index]) for index in range(len(word) - 1))
-
-        first = difference(words[0])
-        second = difference(words[1])
-        third = difference(words[2])
-        common = first if first == second or first == third else second
-
-        for word in words:
-            if difference(word) != common:
-                return word
-
-        return ""
+        d = defaultdict(list)
+        for s in words:
+            t = tuple(ord(b) - ord(a) for a, b in pairwise(s))
+            d[t].append(s)
+        return next(ss[0] for ss in d.values() if len(ss) == 1)

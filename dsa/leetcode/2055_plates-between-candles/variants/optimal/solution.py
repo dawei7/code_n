@@ -1,36 +1,24 @@
-from typing import List
-
-
 class Solution:
-    def platesBetweenCandles(
-        self,
-        s: str,
-        queries: List[List[int]],
-    ) -> List[int]:
-        length = len(s)
-        plates = [0] * (length + 1)
-        nearest_left = [-1] * length
-        last_candle = -1
+    def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
+        n = len(s)
+        presum = [0] * (n + 1)
+        for i, c in enumerate(s):
+            presum[i + 1] = presum[i] + (c == '*')
 
-        for index, character in enumerate(s):
-            plates[index + 1] = plates[index] + (character == "*")
-            if character == "|":
-                last_candle = index
-            nearest_left[index] = last_candle
+        left, right = [0] * n, [0] * n
+        l = r = -1
+        for i, c in enumerate(s):
+            if c == '|':
+                l = i
+            left[i] = l
+        for i in range(n - 1, -1, -1):
+            if s[i] == '|':
+                r = i
+            right[i] = r
 
-        nearest_right = [-1] * length
-        next_candle = -1
-        for index in range(length - 1, -1, -1):
-            if s[index] == "|":
-                next_candle = index
-            nearest_right[index] = next_candle
-
-        answer = []
-        for left, right in queries:
-            first_candle = nearest_right[left]
-            last_candle = nearest_left[right]
-            if first_candle == -1 or first_candle >= last_candle:
-                answer.append(0)
-            else:
-                answer.append(plates[last_candle] - plates[first_candle])
-        return answer
+        ans = [0] * len(queries)
+        for k, (l, r) in enumerate(queries):
+            i, j = right[l], left[r]
+            if i >= 0 and j >= 0 and i < j:
+                ans[k] = presum[j] - presum[i + 1]
+        return ans

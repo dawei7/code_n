@@ -1,8 +1,10 @@
-SELECT DISTINCT first_session.account_id
-FROM LogInfo AS first_session
-JOIN LogInfo AS second_session
-    ON second_session.account_id = first_session.account_id
-    AND second_session.ip_address <> first_session.ip_address
-    AND first_session.login <= second_session.logout
-    AND second_session.login <= first_session.logout
-ORDER BY first_session.account_id ASC;
+# Time:  O(n^2)
+# Space: O(n)
+
+SELECT DISTINCT l1.account_id
+FROM   loginfo l1
+       INNER JOIN loginfo l2
+               ON l1.account_id = l2.account_id
+                  AND l1.ip_address != l2.ip_address
+WHERE  NOT (l1.login > l2.logout
+            OR l1.logout < l2.login); 

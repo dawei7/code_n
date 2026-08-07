@@ -1,21 +1,23 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def brightestPosition(self, lights: List[List[int]]) -> int:
-        changes = defaultdict(int)
-        for position, radius in lights:
-            changes[position - radius] += 1
-            changes[position + radius + 1] -= 1
-
-        brightness = 0
-        maximum = 0
-        answer = 0
-        for position in sorted(changes):
-            brightness += changes[position]
-            if brightness > maximum:
-                maximum = brightness
-                answer = position
-
-        return answer
+    def brightestPosition(self, lights):
+        """
+        :type lights: List[List[int]]
+        :rtype: int
+        """
+        count = collections.Counter()
+        for i, r in lights:
+            count[i-r] += 1
+            count[i+r+1] -= 1
+        result = None
+        max_cnt = cnt = 0
+        for i, c in sorted(count.items()):
+            cnt += c
+            if cnt > max_cnt:
+                max_cnt, result = cnt, i
+        return result

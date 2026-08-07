@@ -1,20 +1,31 @@
-from heapq import heappush, heapreplace
-from typing import List
+# Time:  O(nlogk)
+# Space: O(k)
+
+import heapq
 
 
-class KthLargest:
-    def __init__(self, k: int, nums: List[int]):
-        self.k = k
-        self.heap = []
-        for value in nums:
-            self._offer(value)
+class KthLargest(object):
 
-    def _offer(self, value: int) -> None:
-        if len(self.heap) < self.k:
-            heappush(self.heap, value)
-        elif value > self.heap[0]:
-            heapreplace(self.heap, value)
+    def __init__(self, k, nums):
+        """
+        :type k: int
+        :type nums: List[int]
+        """
+        self.__k = k
+        self.__min_heap = []
+        for n in nums:
+            self.add(n)
+        
 
-    def add(self, val: int) -> int:
-        self._offer(val)
-        return self.heap[0]
+    def add(self, val):
+        """
+        :type val: int
+        :rtype: int
+        """
+        heapq.heappush(self.__min_heap, val)
+        if len(self.__min_heap) > self.__k:
+            heapq.heappop(self.__min_heap)
+        return self.__min_heap[0]
+
+
+

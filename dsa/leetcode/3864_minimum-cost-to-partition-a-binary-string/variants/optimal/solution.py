@@ -1,16 +1,15 @@
 class Solution:
     def minCost(self, s: str, encCost: int, flatCost: int) -> int:
-        def evaluate(left: int, length: int) -> tuple[int, int]:
-            if length % 2 == 1:
-                ones = s.count("1", left, left + length)
-                cost = flatCost if ones == 0 else length * ones * encCost
-                return ones, cost
+        def dfs(l: int, r: int) -> int:
+            x = pre[r] - pre[l]
+            res = (r - l) * x * encCost if x else flatCost
+            if (r - l) % 2 == 0:
+                m = (l + r) // 2
+                res = min(res, dfs(l, m) + dfs(m, r))
+            return res
 
-            half = length // 2
-            left_ones, left_cost = evaluate(left, half)
-            right_ones, right_cost = evaluate(left + half, half)
-            ones = left_ones + right_ones
-            unsplit_cost = flatCost if ones == 0 else length * ones * encCost
-            return ones, min(unsplit_cost, left_cost + right_cost)
-
-        return evaluate(0, len(s))[1]
+        n = len(s)
+        pre = [0] * (n + 1)
+        for i, c in enumerate(s, 1):
+            pre[i] = pre[i - 1] + int(c)
+        return dfs(0, n)

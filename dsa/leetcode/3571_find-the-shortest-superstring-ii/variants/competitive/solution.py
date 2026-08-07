@@ -1,27 +1,37 @@
-def _containment_and_overlap(first: str, second: str) -> tuple[bool, int]:
-    combined = second + "#" + first
-    prefix = [0] * len(combined)
-    contained = False
-    for index in range(1, len(combined)):
-        matched = prefix[index - 1]
-        while matched and combined[index] != combined[matched]:
-            matched = prefix[matched - 1]
-        if combined[index] == combined[matched]:
-            matched += 1
-        prefix[index] = matched
-        if index > len(second) and matched == len(second):
-            contained = True
-    return (contained, prefix[-1])
+# Time:  O(n + m)
+# Space: O(n + m)
 
-
+# kmp algorithm
 class Solution:
-    def shortestSuperstring(self, s1: str, s2: str) -> str:
-        second_in_first, first_to_second_overlap = _containment_and_overlap(s1, s2)
-        if second_in_first:
-            return s1
-        first_in_second, second_to_first_overlap = _containment_and_overlap(s2, s1)
-        if first_in_second:
-            return s2
-        first_then_second = s1 + s2[first_to_second_overlap:]
-        second_then_first = s2 + s1[second_to_first_overlap:]
-        return min((first_then_second, second_then_first), key=len)
+    def shortestSuperstring(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: str
+        """
+        def getPrefix(pattern):
+            prefix = [-1]*len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j+1 > 0 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
+
+        def KMP(text, pattern):
+            prefix = getPrefix(pattern)
+            j = -1
+            for i in range(len(text)):
+                while j+1 > 0 and pattern[j+1] != text[i]:
+                    j = prefix[j]
+                if pattern[j+1] == text[i]:
+                    j += 1
+                if j+1 == len(pattern):
+                    break
+            return text+pattern[j+1:]  # modified
+    
+        result1 = KMP(s1, s2)
+        result2 = KMP(s2, s1)
+        return result1 if len(result1) < len(result2) else result2

@@ -1,26 +1,56 @@
-from typing import List
-
+# Time:  O(n^2 ~ 2^n)
+# Space: O(n^2)
 
 class Solution:
-    def partition(self, s: str) -> List[List[str]]:
-        size = len(s)
-        palindrome = [[False] * size for _ in range(size)]
-        for right in range(size):
-            for left in range(right, -1, -1):
-                palindrome[left][right] = s[left] == s[right] and (right - left < 2 or palindrome[left + 1][right - 1])
+    def partition(self, s):
+        """
+        :type s: str
+        :rtype: List[List[str]]
+        """
+        is_palindrome = [[False] * len(s) for i in range(len(s))]
+        for i in reversed(range(len(s))):
+            for j in range(i, len(s)):
+                is_palindrome[i][j] = s[i] == s[j] and ((j - i < 2) or is_palindrome[i + 1][j - 1])
 
+        sub_partition = [[] for _ in range(len(s))]
+        for i in reversed(range(len(s))):
+            for j in range(i, len(s)):
+                if is_palindrome[i][j]:
+                    if j + 1 < len(s):
+                        for p in sub_partition[j + 1]:
+                            sub_partition[i].append([s[i:j + 1]] + p)
+                    else:
+                        sub_partition[i].append([s[i:j + 1]])
+
+        return sub_partition[0]
+
+
+# Time:  O(2^n)
+# Space: O(n)
+# recursive solution
+class Solution2(object):
+    def partition(self, s):
+        """
+        :type s: str
+        :rtype: List[List[str]]
+        """
         result = []
-        path = []
-
-        def search(start):
-            if start == size:
-                result.append(path.copy())
-                return
-            for end in range(start, size):
-                if palindrome[start][end]:
-                    path.append(s[start : end + 1])
-                    search(end + 1)
-                    path.pop()
-
-        search(0)
+        self.partitionRecu(result, [], s, 0)
         return result
+
+    def partitionRecu(self, result, cur, s, i):
+        if i == len(s):
+            result.append(list(cur))
+        else:
+            for j in range(i, len(s)):
+                if self.isPalindrome(s[i: j + 1]):
+                    cur.append(s[i: j + 1])
+                    self.partitionRecu(result, cur, s, j + 1)
+                    cur.pop()
+
+    def isPalindrome(self, s):
+        for i in range(len(s) / 2):
+            if s[i] != s[-(i + 1)]:
+                return False
+        return True
+

@@ -1,28 +1,23 @@
 class Solution:
     def minCostSetTime(
-        self,
-        startAt: int,
-        moveCost: int,
-        pushCost: int,
-        targetSeconds: int,
+        self, startAt: int, moveCost: int, pushCost: int, targetSeconds: int
     ) -> int:
-        def entry_cost(minutes: int, seconds: int) -> int:
-            digits = f"{minutes:02d}{seconds:02d}".lstrip("0")
-            finger = str(startAt)
-            cost = 0
+        def f(m, s):
+            if not 0 <= m < 100 or not 0 <= s < 100:
+                return inf
+            arr = [m // 10, m % 10, s // 10, s % 10]
+            i = 0
+            while i < 4 and arr[i] == 0:
+                i += 1
+            t = 0
+            prev = startAt
+            for v in arr[i:]:
+                if v != prev:
+                    t += moveCost
+                t += pushCost
+                prev = v
+            return t
 
-            for digit in digits:
-                if digit != finger:
-                    cost += moveCost
-                    finger = digit
-                cost += pushCost
-
-            return cost
-
-        best = float("inf")
-        for minutes in range(100):
-            seconds = targetSeconds - 60 * minutes
-            if 0 <= seconds <= 99:
-                best = min(best, entry_cost(minutes, seconds))
-
-        return int(best)
+        m, s = divmod(targetSeconds, 60)
+        ans = min(f(m, s), f(m - 1, s + 60))
+        return ans

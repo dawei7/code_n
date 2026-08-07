@@ -1,11 +1,17 @@
+# Time:  O(n)
+# Space: O(n)
+
+# stack
 class Solution:
-    def removeStars(self, s: str) -> str:
-        remaining = []
-
-        for character in s:
-            if character == "*":
-                remaining.pop()
+    def removeStars(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = []
+        for c in s:
+            if c == '*':
+                result.pop()
             else:
-                remaining.append(character)
-
-        return "".join(remaining)
+                result.append(c)
+        return "".join(result)

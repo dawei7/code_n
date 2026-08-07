@@ -1,41 +1,30 @@
-from functools import cache
-from typing import List
+# Time:  O((n-1)^2 * 2^(n-1))
+# Space: O((n-1) * 2^(n-1))
 
-
+# dp, backtracing
 class Solution:
-    def findPermutation(self, nums: List[int]) -> List[int]:
+    def findPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        INF = float("inf")
         n = len(nums)
-        full_mask = (1 << n) - 1
-
-        @cache
-        def best(mask: int, last: int) -> int:
-            if mask == full_mask:
-                return abs(last - nums[0])
-
-            answer = 10**18
-            for nxt in range(1, n):
-                bit = 1 << nxt
-                if mask & bit:
+        dp = [[(INF, -1) for _ in range(n-1)] for _ in range(1<<(n-1))]
+        for i in range(n-1):
+            dp[1<<i][i] = (abs((i+1)-nums[0]), -1)
+        for mask in range(1<<(n-1)):
+            for i in range(n-1):
+                if mask&(1<<i) == 0:
                     continue
-                candidate = abs(last - nums[nxt]) + best(mask | bit, nxt)
-                answer = min(answer, candidate)
-            return answer
-
-        permutation = [0]
-        mask = 1
-        last = 0
-
-        while mask != full_mask:
-            target = best(mask, last)
-            for nxt in range(1, n):
-                bit = 1 << nxt
-                if mask & bit:
-                    continue
-                candidate = abs(last - nums[nxt]) + best(mask | bit, nxt)
-                if candidate == target:
-                    permutation.append(nxt)
-                    mask |= bit
-                    last = nxt
-                    break
-
-        return permutation
+                for j in range(n-1):
+                    if j == i or mask&(1<<j) == 0:
+                        continue
+                    dp[mask][i] = min(dp[mask][i], (dp[mask^(1<<i)][j][0]+abs((i+1)-nums[j+1]), j))
+        _, i = min((dp[-1][i][0]+abs(0-nums[i+1]), i) for i in range(n-1))
+        result = [0]
+        mask = (1<<(n-1))-1
+        while i != -1:
+            result.append(i+1)
+            mask, i = mask^(1<<i), dp[mask][i][1]
+        return result

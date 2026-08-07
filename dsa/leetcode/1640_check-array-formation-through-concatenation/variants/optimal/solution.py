@@ -1,15 +1,13 @@
-from typing import List
-
-
 class Solution:
     def canFormArray(self, arr: List[int], pieces: List[List[int]]) -> bool:
-        piece_by_first = {piece[0]: piece for piece in pieces}
-        index = 0
-
-        while index < len(arr):
-            piece = piece_by_first.get(arr[index])
-            if piece is None or arr[index : index + len(piece)] != piece:
+        i = 0
+        while i < len(arr):
+            k = 0
+            while k < len(pieces) and pieces[k][0] != arr[i]:
+                k += 1
+            if k == len(pieces):
                 return False
-            index += len(piece)
-
+            j = 0
+            while j < len(pieces[k]) and arr[i] == pieces[k][j]:
+                i, j = i + 1, j + 1
         return True

@@ -1,11 +1,16 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def removeDuplicates(self, s: str) -> str:
-        stack = []
-
-        for character in s:
-            if stack and stack[-1] == character:
-                stack.pop()
+    def removeDuplicates(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+        result = []
+        for c in S:
+            if result and result[-1] == c:
+                result.pop()
             else:
-                stack.append(character)
-
-        return "".join(stack)
+                result.append(c)
+        return "".join(result)

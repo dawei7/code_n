@@ -1,23 +1,16 @@
-from typing import List
-
-
 class Solution:
     def missingElement(self, nums: List[int], k: int) -> int:
-        def missing(index: int) -> int:
-            return nums[index] - nums[0] - index
+        def missing(i: int) -> int:
+            return nums[i] - nums[0] - i
 
-        missing_before_end = missing(len(nums) - 1)
-        if k > missing_before_end:
-            return nums[-1] + k - missing_before_end
-
-        left = 0
-        right = len(nums) - 1
-        while left < right:
-            middle = (left + right) // 2
-            if missing(middle) < k:
-                left = middle + 1
+        n = len(nums)
+        if k > missing(n - 1):
+            return nums[n - 1] + k - missing(n - 1)
+        l, r = 0, n - 1
+        while l < r:
+            mid = (l + r) >> 1
+            if missing(mid) >= k:
+                r = mid
             else:
-                right = middle
-
-        previous = left - 1
-        return nums[previous] + k - missing(previous)
+                l = mid + 1
+        return nums[l - 1] + k - missing(l - 1)

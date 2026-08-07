@@ -1,14 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def getLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
-        answer = [words[0]]
-        last_group = groups[0]
-
-        for word, group in zip(words[1:], groups[1:]):
-            if group != last_group:
-                answer.append(word)
-                last_group = group
-
-        return answer
+    def getWordsInLongestSubsequence(self, n, words, groups):
+        """
+        :type n: int
+        :type words: List[str]
+        :type groups: List[int]
+        :rtype: List[str]
+        """
+        return [words[i] for i in range(n) if i == 0 or groups[i-1] != groups[i]]

@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     def minimumCost(
         self,
@@ -10,31 +7,22 @@ class Solution:
         changed: List[str],
         cost: List[int],
     ) -> int:
-        alphabet = 26
-        infinity = 10**30
-        distance = [[infinity] * alphabet for _ in range(alphabet)]
-        for letter in range(alphabet):
-            distance[letter][letter] = 0
-
-        for start, end, price in zip(original, changed, cost):
-            first = ord(start) - ord("a")
-            second = ord(end) - ord("a")
-            distance[first][second] = min(distance[first][second], price)
-
-        for middle in range(alphabet):
-            for first in range(alphabet):
-                through_middle = distance[first][middle]
-                if through_middle == infinity:
-                    continue
-                for second in range(alphabet):
-                    candidate = through_middle + distance[middle][second]
-                    if candidate < distance[first][second]:
-                        distance[first][second] = candidate
-
-        answer = 0
-        for start, end in zip(source, target):
-            price = distance[ord(start) - ord("a")][ord(end) - ord("a")]
-            if price == infinity:
-                return -1
-            answer += price
-        return answer
+        g = [[inf] * 26 for _ in range(26)]
+        for i in range(26):
+            g[i][i] = 0
+        for x, y, z in zip(original, changed, cost):
+            x = ord(x) - ord('a')
+            y = ord(y) - ord('a')
+            g[x][y] = min(g[x][y], z)
+        for k in range(26):
+            for i in range(26):
+                for j in range(26):
+                    g[i][j] = min(g[i][j], g[i][k] + g[k][j])
+        ans = 0
+        for a, b in zip(source, target):
+            if a != b:
+                x, y = ord(a) - ord('a'), ord(b) - ord('a')
+                if g[x][y] >= inf:
+                    return -1
+                ans += g[x][y]
+        return ans

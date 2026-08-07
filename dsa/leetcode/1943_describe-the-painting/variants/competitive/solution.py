@@ -1,24 +1,26 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def splitPainting(
-        self,
-        segments: List[List[int]],
-    ) -> List[List[int]]:
-        changes = defaultdict(int)
-        for start, end, color in segments:
-            changes[start] += color
-            changes[end] -= color
+    def splitPainting(self, segments):
+        """
+        :type segments: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        counts = collections.defaultdict(int)
+        for s, e, c in segments:
+            counts[s] += c
+            counts[e] -= c
+        points = sorted(x for x in counts.items())
 
-        painting = []
-        mixed_color = 0
-        previous = None
-        for coordinate in sorted(changes):
-            if previous is not None and mixed_color:
-                painting.append([previous, coordinate, mixed_color])
-            mixed_color += changes[coordinate]
-            previous = coordinate
-
-        return painting
+        result = []
+        overlap = prev = 0
+        for curr, cnt in points:
+            if overlap:
+                result.append([prev, curr, overlap])
+            overlap += cnt
+            prev = curr
+        return result

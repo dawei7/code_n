@@ -1,12 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def kLengthApart(self, nums: List[int], k: int) -> bool:
-        previous = None
-        for index, value in enumerate(nums):
-            if value == 1:
-                if previous is not None and index - previous <= k:
-                    return False
-                previous = index
+    def kLengthApart(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        prev = -k-1
+        for i in range(len(nums)):
+            if not nums[i]:
+                continue
+            if i-prev <= k:
+                return False
+            prev = i
         return True

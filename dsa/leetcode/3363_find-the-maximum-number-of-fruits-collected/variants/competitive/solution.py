@@ -1,37 +1,25 @@
+# Time:  O(n^2)
+# Space: O(1)
+
+# dp
 class Solution:
-    def maxCollectedFruits(self, fruits: List[List[int]]) -> int:
+    def maxCollectedFruits(self, fruits):
+        """
+        :type fruits: List[List[int]]
+        :rtype: int
+        """
         n = len(fruits)
-        answer = sum(fruits[index][index] for index in range(n))
-        negative = -(10**18)
-
-        previous = [negative] * n
-        previous[n - 1] = fruits[0][n - 1]
-
-        for row in range(1, n - 1):
-            current = [negative] * n
-            for column in range(row + 1, n):
-                best = previous[column]
-                if column > 0:
-                    best = max(best, previous[column - 1])
-                if column + 1 < n:
-                    best = max(best, previous[column + 1])
-                current[column] = best + fruits[row][column]
-            previous = current
-
-        answer += previous[n - 1]
-
-        previous = [negative] * n
-        previous[n - 1] = fruits[n - 1][0]
-
-        for column in range(1, n - 1):
-            current = [negative] * n
-            for row in range(column + 1, n):
-                best = previous[row]
-                if row > 0:
-                    best = max(best, previous[row - 1])
-                if row + 1 < n:
-                    best = max(best, previous[row + 1])
-                current[row] = best + fruits[row][column]
-            previous = current
-
-        return answer + previous[n - 1]
+        for i in range(n):
+            for j in range(i+1, n-(i+1)):
+                fruits[i][j] = 0
+        for i in range(1, n-1):
+            for j in range(i+1, n):
+                fruits[i][j] += max(fruits[i-1][j-1], fruits[i-1][j], fruits[i-1][j+1] if j+1 < n else 0)
+        for j in range(n):
+            for i in range(j+1, n-(j+1)):
+                fruits[i][j] = 0
+        for j in range(1, n-1):
+            for i in range(j+1, n):
+                fruits[i][j] += max(fruits[i-1][j-1], fruits[i][j-1], fruits[i+1][j-1] if i+1 < n else 0)
+        return sum(fruits[i][i] for i in range(n))+fruits[-2][-1]+fruits[-1][-2]
+    

@@ -1,8 +1,13 @@
-class Solution:
-    def areOccurrencesEqual(self, s: str) -> bool:
-        frequencies = [0] * 26
-        for character in s:
-            frequencies[ord(character) - ord("a")] += 1
+# Time:  O(n)
+# Space: O(1)
 
-        target = next(count for count in frequencies if count)
-        return all(count == 0 or count == target for count in frequencies)
+import collections
+
+
+class Solution:
+    def areOccurrencesEqual(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        return len(set(collections.Counter(s).itervalues())) == 1

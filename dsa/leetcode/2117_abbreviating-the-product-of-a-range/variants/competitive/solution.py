@@ -1,37 +1,31 @@
-from math import log10
+# Time:  O(r - l)
+# Space: O(1)
+
+import math
 
 
 class Solution:
-    def abbreviateProduct(self, left: int, right: int) -> str:
-        modulus = 10**12
-        suffix = 1
-        leading = 1.0
-        zeros = 0
-        logarithm = 0.0
-        compensation = 0.0
-
-        for value in range(left, right + 1):
-            increment = log10(value) - compensation
-            updated = logarithm + increment
-            compensation = (updated - logarithm) - increment
-            logarithm = updated
-
-            leading *= value
-            while leading >= modulus:
-                leading /= 10
-
-            suffix *= value
-            while suffix % 10 == 0:
-                suffix //= 10
+    def abbreviateProduct(self, left, right):
+        """
+        :type left: int
+        :type right: int
+        :rtype: str
+        """
+        PREFIX_LEN = SUFFIX_LEN = 5
+        MOD = 10**(PREFIX_LEN+SUFFIX_LEN)
+        curr, zeros = 1, 0
+        abbr = False
+        for i in range(left, right+1):
+            curr *= i
+            while not curr%10:
+                curr //= 10
                 zeros += 1
-            suffix %= modulus
-
-        significant_log = logarithm - zeros
-
-        if significant_log < 10:
-            return f"{suffix}e{zeros}"
-
-        while leading >= 100000:
-            leading /= 10
-        prefix = int(leading)
-        return f"{prefix}...{suffix % 100000:05d}e{zeros}"
+            q, curr = divmod(curr, MOD)
+            if q:
+                abbr = True
+        if not abbr:
+            return "%se%s" % (curr, zeros)
+        decimal = reduce(lambda x, y: (x+y)%1, (math.log10(i) for i in range(left, right+1)))
+        prefix = str(int(10**(decimal+(PREFIX_LEN-1))))
+        suffix = str(curr % 10**SUFFIX_LEN).zfill(SUFFIX_LEN)
+        return "%s...%se%s" % (prefix, suffix, zeros)

@@ -1,24 +1,23 @@
-from typing import List
+# Time:  O(n^2 * logn)
+# Space: O(n^2)
 
-
+# sort
 class Solution:
-    def sortMatrix(self, grid: List[List[int]]) -> List[List[int]]:
-        n = len(grid)
-
-        def sort_diagonal(row: int, col: int, reverse: bool) -> None:
-            cells = []
-            r, c = row, col
-            while r < n and c < n:
-                cells.append((r, c))
-                r += 1
-                c += 1
-            values = sorted((grid[r][c] for r, c in cells), reverse=reverse)
-            for (r, c), value in zip(cells, values):
-                grid[r][c] = value
-
-        for row in range(n):
-            sort_diagonal(row, 0, True)
-        for col in range(1, n):
-            sort_diagonal(0, col, False)
-
+    def sortMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        lookup = [[] for _ in range((len(grid)-1)+(len(grid[0])-1)-(0-(len(grid[0])-1))+1)]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                lookup[i-j].append(grid[i][j])
+        for i in range(0-(len(grid[0])-1), (len(grid)-1)+(len(grid[0])-1)+1):
+            if i < 0:
+                lookup[i].sort(reverse=True)
+            else:
+                lookup[i].sort()
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                grid[i][j] = lookup[i-j].pop()
         return grid

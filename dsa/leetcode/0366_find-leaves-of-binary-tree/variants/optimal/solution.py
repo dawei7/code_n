@@ -1,18 +1,21 @@
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
-        rounds = []
+        def dfs(root: Optional[TreeNode]) -> int:
+            if root is None:
+                return 0
+            l, r = dfs(root.left), dfs(root.right)
+            h = max(l, r)
+            if len(ans) == h:
+                ans.append([])
+            ans[h].append(root.val)
+            return h + 1
 
-        def leaf_height(node: Optional[TreeNode]) -> int:
-            if node is None:
-                return -1
-            height = 1 + max(leaf_height(node.left), leaf_height(node.right))
-            if height == len(rounds):
-                rounds.append([])
-            rounds[height].append(node.val)
-            return height
-
-        leaf_height(root)
-        return rounds
+        ans = []
+        dfs(root)
+        return ans

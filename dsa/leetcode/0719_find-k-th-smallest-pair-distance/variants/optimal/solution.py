@@ -1,25 +1,12 @@
-from typing import List
-
-
 class Solution:
     def smallestDistancePair(self, nums: List[int], k: int) -> int:
+        def count(dist):
+            cnt = 0
+            for i, b in enumerate(nums):
+                a = b - dist
+                j = bisect_left(nums, a, 0, i)
+                cnt += i - j
+            return cnt
+
         nums.sort()
-        low = 0
-        high = nums[-1] - nums[0]
-
-        while low < high:
-            middle = (low + high) // 2
-            count = 0
-            left = 0
-
-            for right, value in enumerate(nums):
-                while value - nums[left] > middle:
-                    left += 1
-                count += right - left
-
-            if count >= k:
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        return bisect_left(range(nums[-1] - nums[0]), k, key=count)

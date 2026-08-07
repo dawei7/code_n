@@ -1,21 +1,15 @@
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
     def mostFrequentIDs(self, nums: List[int], freq: List[int]) -> List[int]:
-        counts = {}
-        max_heap = []
-        answer = []
-
-        for identifier, change in zip(nums, freq):
-            current = counts.get(identifier, 0) + change
-            counts[identifier] = current
-            heappush(max_heap, (-current, identifier))
-
-            while max_heap and -max_heap[0][0] != counts[max_heap[0][1]]:
-                heappop(max_heap)
-
-            answer.append(-max_heap[0][0] if max_heap else 0)
-
-        return answer
+        cnt = Counter()
+        lazy = Counter()
+        ans = []
+        pq = []
+        for x, f in zip(nums, freq):
+            lazy[cnt[x]] += 1
+            cnt[x] += f
+            heappush(pq, -cnt[x])
+            while pq and lazy[-pq[0]] > 0:
+                lazy[-pq[0]] -= 1
+                heappop(pq)
+            ans.append(0 if not pq else -pq[0])
+        return ans

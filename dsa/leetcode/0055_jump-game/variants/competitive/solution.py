@@ -1,13 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def canJump(self, nums: List[int]) -> bool:
-        farthest = 0
-        for index, jump in enumerate(nums):
-            if index > farthest:
-                return False
-            farthest = max(farthest, index + jump)
-            if farthest >= len(nums) - 1:
-                return True
-        return True
+    # @param A, a list of integers
+    # @return a boolean
+    def canJump(self, A):
+        reachable = 0
+        for i, length in enumerate(A):
+            if i > reachable:
+                break
+            reachable = max(reachable, i + length)
+        return reachable >= len(A) - 1
+

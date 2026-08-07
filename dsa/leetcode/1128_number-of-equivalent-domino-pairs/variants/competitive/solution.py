@@ -1,12 +1,14 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def numEquivDominoPairs(self, dominoes: List[List[int]]) -> int:
-        counts = [0] * 100
-        pairs = 0
-        for left, right in dominoes:
-            key = 10 * min(left, right) + max(left, right)
-            pairs += counts[key]
-            counts[key] += 1
-        return pairs
+    def numEquivDominoPairs(self, dominoes):
+        """
+        :type dominoes: List[List[int]]
+        :rtype: int
+        """
+        counter = collections.Counter((min(x), max(x)) for x in dominoes)
+        return sum(v*(v-1)//2 for v in counter.values())

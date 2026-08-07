@@ -1,15 +1,23 @@
+# Time:  O(rlogr)
+# Space: O(r)
+
+# brute force, memoization
+MAX_R = 10**4
+LOOKUP = [-1]*MAX_R
 class Solution:
-    def countSymmetricIntegers(self, low: int, high: int) -> int:
-        answer = 0
+    def countSymmetricIntegers(self, low, high):
+        """
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        def check(x):
+            if LOOKUP[x-1] == -1:
+                digits = map(int, str(x))
+                if len(digits)%2:
+                    LOOKUP[x-1] = 0
+                else:
+                    LOOKUP[x-1] = int(sum(digits[i] for i in range(len(digits)//2)) == sum(digits[i] for i in range(len(digits)//2, len(digits))))
+            return LOOKUP[x-1]
 
-        for value in range(low, high + 1):
-            digits = str(value)
-            if len(digits) % 2 == 1:
-                continue
-
-            middle = len(digits) // 2
-            left_sum = sum(int(digit) for digit in digits[:middle])
-            right_sum = sum(int(digit) for digit in digits[middle:])
-            answer += left_sum == right_sum
-
-        return answer
+        return sum(check(x) for x in range(low, high+1))

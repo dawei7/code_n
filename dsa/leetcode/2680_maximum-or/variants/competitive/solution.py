@@ -1,13 +1,19 @@
-class Solution:
-    def maximumOr(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        suffix = [0] * (n + 1)
-        for index in range(n - 1, -1, -1):
-            suffix[index] = suffix[index + 1] | nums[index]
+# Time:  O(n)
+# Space: O(n)
 
-        answer = 0
-        prefix = 0
-        for index, value in enumerate(nums):
-            answer = max(answer, prefix | (value << k) | suffix[index + 1])
-            prefix |= value
-        return answer
+# prefix sum, greedy
+class Solution:
+    def maximumOr(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        right = [0]*(len(nums)+1)
+        for i in reversed(range(len(nums))):
+            right[i] = right[i+1]|nums[i]
+        result = left = 0
+        for i in range(len(nums)):
+            result = max(result, left|(nums[i]<<k)|right[i+1])
+            left |= nums[i]
+        return result

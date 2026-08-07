@@ -1,15 +1,42 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def findWords(self, words: List[str]) -> List[str]:
-        row_by_letter = {
-            letter: row_index for row_index, row in enumerate(("qwertyuiop", "asdfghjkl", "zxcvbnm")) for letter in row
-        }
-        answer = []
+    def findWords(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        rows = [set(['q', 'w', 'e', 'r', 't', 'y','u', 'i', 'o', 'p']),
+                set(['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l']),
+                set(['z', 'x', 'c', 'v', 'b' ,'n', 'm'])]
+
+        result = []
         for word in words:
-            lowered = word.lower()
-            row = row_by_letter[lowered[0]]
-            if all(row_by_letter[letter] == row for letter in lowered):
-                answer.append(word)
-        return answer
+            k = 0
+            for i in range(len(rows)):
+                if word[0].lower() in rows[i]:
+                    k = i
+                    break
+            for c in word:
+                if c.lower() not in rows[k]:
+                    break
+            else:
+                result.append(word)
+        return result
+
+
+class Solution2(object):
+    def findWords(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        keyboard_rows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']
+        single_row_words = []
+        for word in words:
+            for row in keyboard_rows:
+                if all(letter in row for letter in word.lower()):
+                    single_row_words.append(word)
+        return single_row_words
+

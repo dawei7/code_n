@@ -1,12 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minimumDeletions(self, s: str) -> int:
-        seen_b = 0
-        deletions = 0
-
-        for character in s:
-            if character == "b":
-                seen_b += 1
-            else:
-                deletions = min(deletions + 1, seen_b)
-
-        return deletions
+    def minimumDeletions(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = b_cnt = 0
+        for c in s:
+            if c == 'b':
+                b_cnt += 1
+            elif b_cnt:
+                b_cnt -= 1
+                result += 1
+        return result

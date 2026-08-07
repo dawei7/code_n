@@ -1,8 +1,10 @@
-SELECT
-    users.name,
-    SUM(transactions.amount) AS balance
-FROM Users AS users
-INNER JOIN Transactions AS transactions
-  ON transactions.account = users.account
-GROUP BY users.account, users.name
-HAVING SUM(transactions.amount) > 10000;
+# Time:  O(m + n)
+# Space: O(m + n)
+
+SELECT u.name,
+       SUM(amount) balance
+FROM users u
+INNER JOIN transactions t ON u.account = t.account
+GROUP BY u.name
+HAVING balance > 10000
+ORDER BY NULL;

@@ -1,51 +1,33 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O((m * n) * log(m * n))
+# Space: O(m * n)
 
-
+# dijkstra's algorithm
 class Solution:
-    def minCost(self, m: int, n: int, penalty: List[List[int]]) -> int:
-        cell_count = m * n
-        target_cell = cell_count - 1
-        infinity = 10**30
-        distance = [infinity] * (2 * cell_count)
-        distance[0] = 1
-        heap = [(1, 0)]
-        directions = ((0, 1, 0), (1, 0, 0), (0, -1, 1), (-1, 0, 1))
-
-        while heap:
-            cost, state = heappop(heap)
-            if cost != distance[state]:
+    def minCost(self, m, n, penalty):
+        """
+        :type m: int
+        :type n: int
+        :type penalty: List[List[int]]
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 1, 0), (1, 0, 1), (0, -1, 0), (0, 0, -1))
+        dist = [[[float("inf")]*n for _ in range(m)] for _ in range(2)]
+        np = ni = nj = 0
+        dist[np][ni][nj] = (ni+1)*(nj+1)
+        min_heap = [(dist[np][ni][nj], np, ni, nj)]
+        while min_heap:
+            w, p, i, j = heapq.heappop(min_heap)
+            if w != dist[p][i][j]:
                 continue
-
-            cell = state >> 1
-            if cell == target_cell:
-                return cost
-
-            row, column = divmod(cell, n)
-            parity = state & 1
-            next_parity = parity ^ 1
-            current_penalty = penalty[row][column]
-
-            wait_state = (cell << 1) | next_parity
-            wait_cost = cost + current_penalty
-            if wait_cost < distance[wait_state]:
-                distance[wait_state] = wait_cost
-                heappush(heap, (wait_cost, wait_state))
-
-            for row_step, column_step, allowed_parity in directions:
-                next_row = row + row_step
-                next_column = column + column_step
-                if not (0 <= next_row < m and 0 <= next_column < n):
+            if (i, j) == (m-1, n-1):
+                return w
+            if w+penalty[i][j] < dist[p^1][i][j]:
+                dist[p^1][i][j] = w+penalty[i][j]
+                heapq.heappush(min_heap, (dist[p^1][i][j], p^1, i, j))
+            for dp, di, dj in DIRECTIONS:
+                np, ni, nj = p^1, i+di, j+dj
+                if not (0 <= ni < m and 0 <= nj < n and w+(ni+1)*(nj+1)+(penalty[i][j] if np != dp else 0) < dist[np][ni][nj]):
                     continue
-
-                next_cell = next_row * n + next_column
-                next_state = (next_cell << 1) | next_parity
-                move_cost = cost + (next_row + 1) * (next_column + 1)
-                if parity != allowed_parity:
-                    move_cost += current_penalty
-
-                if move_cost < distance[next_state]:
-                    distance[next_state] = move_cost
-                    heappush(heap, (move_cost, next_state))
-
+                dist[np][ni][nj] = w+(ni+1)*(nj+1)+(penalty[i][j] if np != dp else 0)
+                heapq.heappush(min_heap, (dist[np][ni][nj], np, ni, nj))
         return -1

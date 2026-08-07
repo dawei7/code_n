@@ -1,30 +1,25 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def minSplitMerge(self, nums1: List[int], nums2: List[int]) -> int:
-        start = tuple(nums1)
-        target = tuple(nums2)
-        if start == target:
-            return 0
-
         n = len(nums1)
-        queue = deque([(start, 0)])
-        seen = {start}
+        target = tuple(nums2)
+        start = tuple(nums1)
 
-        while queue:
-            state, operations = queue.popleft()
-            for left in range(n):
-                for right in range(left + 1, n + 1):
-                    block = state[left:right]
-                    remaining = state[:left] + state[right:]
-                    for position in range(len(remaining) + 1):
-                        next_state = remaining[:position] + block + remaining[position:]
-                        if next_state == target:
-                            return operations + 1
-                        if next_state not in seen:
-                            seen.add(next_state)
-                            queue.append((next_state, operations + 1))
+        q = [start]
+        vis = set()
+        vis.add(start)
 
-        return -1
+        for ans in count(0):
+            t = q
+            q = []
+            for cur in t:
+                if cur == target:
+                    return ans
+                for l in range(n):
+                    for r in range(l, n):
+                        remain = list(cur[:l]) + list(cur[r + 1 :])
+                        sub = cur[l : r + 1]
+                        for i in range(len(remain) + 1):
+                            nxt = tuple(remain[:i] + list(sub) + remain[i:])
+                            if nxt not in vis:
+                                vis.add(nxt)
+                                q.append(nxt)

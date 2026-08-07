@@ -1,4 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def minLengthAfterRemovals(self, s: str) -> int:
-        count_a = s.count("a")
-        return abs(2 * count_a - len(s))
+    def minLengthAfterRemovals(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return abs(s.count('a')-s.count('b'))

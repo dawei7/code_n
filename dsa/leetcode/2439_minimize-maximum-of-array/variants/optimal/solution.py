@@ -1,13 +1,16 @@
-from typing import List
-
-
 class Solution:
     def minimizeArrayValue(self, nums: List[int]) -> int:
-        prefix_sum = 0
-        answer = 0
+        def check(mx):
+            d = 0
+            for x in nums[:0:-1]:
+                d = max(0, d + x - mx)
+            return nums[0] + d <= mx
 
-        for index, value in enumerate(nums):
-            prefix_sum += value
-            answer = max(answer, (prefix_sum + index) // (index + 1))
-
-        return answer
+        left, right = 0, max(nums)
+        while left < right:
+            mid = (left + right) >> 1
+            if check(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left

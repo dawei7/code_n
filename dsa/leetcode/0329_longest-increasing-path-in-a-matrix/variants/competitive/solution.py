@@ -1,46 +1,79 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n)
+# Space: O(m * n)
 
-
+# topological sort solution
 class Solution:
-    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        rows = len(matrix)
-        columns = len(matrix[0])
-        outdegree = [[0] * columns for _ in range(rows)]
+    def longestIncreasingPath(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-        for row in range(rows):
-            for column in range(columns):
-                for next_row, next_column in (
-                    (row - 1, column),
-                    (row + 1, column),
-                    (row, column - 1),
-                    (row, column + 1),
-                ):
-                    if (
-                        0 <= next_row < rows
-                        and 0 <= next_column < columns
-                        and matrix[next_row][next_column] > matrix[row][column]
-                    ):
-                        outdegree[row][column] += 1
+        if not matrix:
+            return 0
+        
+        in_degree = [[0]*len(matrix[0]) for _ in range(len(matrix))]
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                for di, dj in directions:
+                    ni, nj = i+di, j+dj
+                    if not (0 <= ni < len(matrix) and
+                            0 <= nj < len(matrix[0]) and
+                            matrix[ni][nj] > matrix[i][j]):
+                        continue
+                    in_degree[i][j] += 1
+        q = []
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if not in_degree[i][j]:
+                    q.append((i, j))
+        result = 0
+        while q:
+            new_q = []
+            for i, j in q:
+                for di, dj in directions:
+                    ni, nj = i+di, j+dj
+                    if not (0 <= ni < len(matrix) and
+                            0 <= nj < len(matrix[0]) and
+                            matrix[i][j] > matrix[ni][nj]):
+                        continue
+                    in_degree[ni][nj] -= 1
+                    if not in_degree[ni][nj]:
+                        new_q.append((ni, nj))
+            q = new_q
+            result += 1         
+        return result
 
-        queue = deque((row, column) for row in range(rows) for column in range(columns) if outdegree[row][column] == 0)
-        layers = 0
-        while queue:
-            layers += 1
-            for _ in range(len(queue)):
-                row, column = queue.popleft()
-                for next_row, next_column in (
-                    (row - 1, column),
-                    (row + 1, column),
-                    (row, column - 1),
-                    (row, column + 1),
-                ):
-                    if (
-                        0 <= next_row < rows
-                        and 0 <= next_column < columns
-                        and matrix[next_row][next_column] < matrix[row][column]
-                    ):
-                        outdegree[next_row][next_column] -= 1
-                        if outdegree[next_row][next_column] == 0:
-                            queue.append((next_row, next_column))
-        return layers
+
+# Time:  O(m * n)
+# Space: O(m * n)
+# dfs + memoization solution
+class Solution2(object):
+    def longestIncreasingPath(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+
+        def longestpath(matrix, i, j, max_lengths):
+            if max_lengths[i][j]:
+                return max_lengths[i][j]
+            max_depth = 0
+            for di, dj in directions:
+                x, y = i+di, j+dj
+                if 0 <= x < len(matrix) and 0 <= y < len(matrix[0]) and \
+                   matrix[x][y] < matrix[i][j]:
+                    max_depth = max(max_depth, longestpath(matrix, x, y, max_lengths))
+            max_lengths[i][j] = max_depth + 1
+            return max_lengths[i][j]
+
+        if not matrix:
+            return 0
+        result = 0
+        max_lengths = [[0 for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                result = max(result, longestpath(matrix, i, j, max_lengths))
+        return result

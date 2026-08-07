@@ -1,66 +1,34 @@
-from typing import List
-
-
 class Solution:
     def minCost(
-        self,
-        houses: List[int],
-        cost: List[List[int]],
-        m: int,
-        n: int,
-        target: int,
+        self, houses: List[int], cost: List[List[int]], m: int, n: int, target: int
     ) -> int:
-        infinity = 10**18
-
-        previous = [[infinity] * n for _ in range(target + 1)]
+        f = [[[inf] * (target + 1) for _ in range(n + 1)] for _ in range(m)]
         if houses[0] == 0:
-            for color in range(n):
-                previous[1][color] = cost[0][color]
+            for j, c in enumerate(cost[0], 1):
+                f[0][j][1] = c
         else:
-            previous[1][houses[0] - 1] = 0
-
-        for house_index in range(1, m):
-            best = [(infinity, infinity, -1)] * (target + 1)
-
-            for groups in range(1, min(target, house_index) + 1):
-                smallest = infinity
-                second_smallest = infinity
-                smallest_color = -1
-
-                for color, value in enumerate(previous[groups]):
-                    if value < smallest:
-                        second_smallest = smallest
-                        smallest = value
-                        smallest_color = color
-                    elif value < second_smallest:
-                        second_smallest = value
-
-                best[groups] = (smallest, second_smallest, smallest_color)
-
-            next_costs = [[infinity] * n for _ in range(target + 1)]
-            if houses[house_index] == 0:
-                available_colors = range(n)
+            f[0][houses[0]][1] = 0
+        for i in range(1, m):
+            if houses[i] == 0:
+                for j in range(1, n + 1):
+                    for k in range(1, min(target + 1, i + 2)):
+                        for j0 in range(1, n + 1):
+                            if j == j0:
+                                f[i][j][k] = min(
+                                    f[i][j][k], f[i - 1][j][k] + cost[i][j - 1]
+                                )
+                            else:
+                                f[i][j][k] = min(
+                                    f[i][j][k], f[i - 1][j0][k - 1] + cost[i][j - 1]
+                                )
             else:
-                available_colors = (houses[house_index] - 1,)
+                j = houses[i]
+                for k in range(1, min(target + 1, i + 2)):
+                    for j0 in range(1, n + 1):
+                        if j == j0:
+                            f[i][j][k] = min(f[i][j][k], f[i - 1][j][k])
+                        else:
+                            f[i][j][k] = min(f[i][j][k], f[i - 1][j0][k - 1])
 
-            for groups in range(1, min(target, house_index + 1) + 1):
-                for color in available_colors:
-                    predecessor = previous[groups][color]
-
-                    if groups > 1:
-                        smallest, second_smallest, smallest_color = best[groups - 1]
-                        different_color = smallest if smallest_color != color else second_smallest
-                        predecessor = min(predecessor, different_color)
-
-                    if predecessor == infinity:
-                        continue
-
-                    paint_cost = 0
-                    if houses[house_index] == 0:
-                        paint_cost = cost[house_index][color]
-                    next_costs[groups][color] = predecessor + paint_cost
-
-            previous = next_costs
-
-        answer = min(previous[target])
-        return -1 if answer == infinity else answer
+        ans = min(f[-1][j][target] for j in range(1, n + 1))
+        return -1 if ans >= inf else ans

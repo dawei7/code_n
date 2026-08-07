@@ -1,14 +1,5 @@
+# Write your MySQL query statement below
 SELECT
-    SUM(
-        CASE
-            WHEN CAST(strftime('%w', submit_date) AS INTEGER) IN (0, 6)
-            THEN 1 ELSE 0
-        END
-    ) AS weekend_cnt,
-    SUM(
-        CASE
-            WHEN CAST(strftime('%w', submit_date) AS INTEGER) BETWEEN 1 AND 5
-            THEN 1 ELSE 0
-        END
-    ) AS working_cnt
+    SUM(WEEKDAY(submit_date) IN (5, 6)) AS weekend_cnt,
+    SUM(WEEKDAY(submit_date) NOT IN (5, 6)) AS working_cnt
 FROM Tasks;

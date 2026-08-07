@@ -1,6 +1,12 @@
-from typing import List
+# Time:  O(n * l)
+# Space: O(1)
 
-
+# string
 class Solution:
-    def findWordsContaining(self, words: List[str], x: str) -> List[int]:
-        return [index for index, word in enumerate(words) if x in word]
+    def findWordsContaining(self, words, x):
+        """
+        :type words: List[str]
+        :type x: str
+        :rtype: List[int]
+        """
+        return [i for i, w in enumerate(words) if x in w]

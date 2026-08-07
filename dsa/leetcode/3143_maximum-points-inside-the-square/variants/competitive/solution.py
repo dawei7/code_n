@@ -1,19 +1,24 @@
-from typing import List
+# Time:  O(n + 26)
+# Space: O(26)
+
+import itertools
 
 
+# hash table
 class Solution:
-    def maxPointsInsideSquare(self, points: List[List[int]], s: str) -> int:
-        closest = [float("inf")] * 26
-        conflict_radius = float("inf")
-
-        for (x, y), tag in zip(points, s):
-            radius = max(abs(x), abs(y))
-            tag_index = ord(tag) - ord("a")
-
-            if radius < closest[tag_index]:
-                conflict_radius = min(conflict_radius, closest[tag_index])
-                closest[tag_index] = radius
-            else:
-                conflict_radius = min(conflict_radius, radius)
-
-        return sum(radius < conflict_radius for radius in closest)
+    def maxPointsInsideSquare(self, points, s):
+        """
+        :type points: List[List[int]]
+        :type s: str
+        :rtype: int
+        """
+        INF = float("inf")
+        lookup = [INF for _ in range(26)]
+        d = INF
+        for c, (x, y) in itertools.izip(s, points):
+            k = ord(c)-ord('a')
+            mn2 = max(abs(x), abs(y))
+            if mn2 < lookup[k]:
+                mn2, lookup[k] = lookup[k], mn2
+            d = min(d, mn2)
+        return sum(mn1 < d for mn1 in lookup)

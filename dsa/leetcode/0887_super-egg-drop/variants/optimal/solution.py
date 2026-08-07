@@ -1,20 +1,20 @@
 class Solution:
     def superEggDrop(self, k: int, n: int) -> int:
-        def covers(moves: int) -> bool:
-            combinations = 1
-            covered = 0
-            for used_eggs in range(1, min(k, moves) + 1):
-                combinations = combinations * (moves - used_eggs + 1) // used_eggs
-                covered += combinations
-                if covered >= n:
-                    return True
-            return False
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i < 1:
+                return 0
+            if j == 1:
+                return i
+            l, r = 1, i
+            while l < r:
+                mid = (l + r + 1) >> 1
+                a = dfs(mid - 1, j - 1)
+                b = dfs(i - mid, j)
+                if a <= b:
+                    l = mid
+                else:
+                    r = mid - 1
+            return max(dfs(l - 1, j - 1), dfs(i - l, j)) + 1
 
-        low, high = 1, n
-        while low < high:
-            moves = (low + high) // 2
-            if covers(moves):
-                high = moves
-            else:
-                low = moves + 1
-        return low
+        return dfs(n, k)

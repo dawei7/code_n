@@ -1,10 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def truncateSentence(self, s: str, k: int) -> str:
-        spaces = 0
-        for index, character in enumerate(s):
-            if character != " ":
-                continue
-            spaces += 1
-            if spaces == k:
-                return s[:index]
+    def truncateSentence(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        for i in range(len(s)):
+            if s[i] == ' ':
+                k -= 1
+                if not k:
+                    return s[:i]
         return s

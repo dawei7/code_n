@@ -1,12 +1,16 @@
+# Time:  O(n * k)
+# Space: O(k)
+
 class Solution:
-    def waysToDistribute(self, n: int, k: int) -> int:
-        modulus = 1_000_000_007
-        ways = [0] * (k + 1)
-        ways[0] = 1
-
-        for candies in range(1, n + 1):
-            for bags in range(min(candies, k), 0, -1):
-                ways[bags] = (ways[bags - 1] + bags * ways[bags]) % modulus
-            ways[0] = 0
-
-        return ways[k]
+    def waysToDistribute(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [1]*k
+        for i in range(1, n):
+            for j in reversed(range(1, min(i, k))):
+                dp[j] = ((j+1)*dp[j] + dp[j-1]) % MOD
+        return dp[k-1]

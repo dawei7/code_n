@@ -1,14 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def maxOperations(self, nums: List[int]) -> int:
-        score = nums[0] + nums[1]
-        operations = 0
-
-        for index in range(0, len(nums) - 1, 2):
-            if nums[index] + nums[index + 1] != score:
+    def maxOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 1
+        target = nums[0]+nums[1]
+        for i in range(2, len(nums)-1, 2):
+            if nums[i]+nums[i+1] != target:
                 break
-            operations += 1
-
-        return operations
+            result += 1
+        return result

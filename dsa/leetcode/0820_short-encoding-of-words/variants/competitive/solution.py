@@ -1,15 +1,24 @@
-from typing import List
+# Time:  O(n), n is the total sum of the lengths of words
+# Space: O(t), t is the number of nodes in trie
+
+import collections
+import functools
 
 
 class Solution:
-    def minimumLengthEncoding(self, words: List[str]) -> int:
-        root = {}
-        terminals = []
+    def minimumLengthEncoding(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        words = list(set(words))
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
 
-        for word in set(words):
-            node = root
-            for character in reversed(word):
-                node = node.setdefault(character, {})
-            terminals.append((node, len(word)))
+        nodes = [functools.reduce(dict.__getitem__, word[::-1], trie)
+                 for word in words]
 
-        return sum(length + 1 for node, length in terminals if not node)
+        return sum(len(word) + 1
+                   for i, word in enumerate(words)
+                   if len(nodes[i]) == 0)
+

@@ -1,16 +1,24 @@
-from typing import Optional
-
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def insertionSortList(self, head: Optional["ListNode"]) -> Optional["ListNode"]:
-        dummy = ListNode()
-        current = head
-        while current is not None:
-            following = current.next
-            position = dummy
-            while position.next is not None and position.next.val <= current.val:
-                position = position.next
-            current.next = position.next
-            position.next = current
-            current = following
+    def insertionSortList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        dummy = ListNode(head.val, head)
+        pre, cur = dummy, head
+        while cur:
+            if pre.val <= cur.val:
+                pre, cur = cur, cur.next
+                continue
+            p = dummy
+            while p.next.val <= cur.val:
+                p = p.next
+            t = cur.next
+            cur.next = p.next
+            p.next = cur
+            pre.next = t
+            cur = t
         return dummy.next

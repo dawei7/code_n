@@ -1,43 +1,70 @@
+# Time:  O(n + qlogn)
+# Space: O(n)
+
+# segment tree
 class Solution:
-    def maximumSumSubsequence(self, nums: List[int], queries: List[List[int]]) -> int:
-        mod = 10**9 + 7
-        n = len(nums)
-        tree = [(0, 0, 0, 0)] * (4 * n)
+    def maximumSumSubsequence(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        L0R0, L1R0, L0R1, L1R1 = range(4)
+        # Template:
+        # https://github.com/kamyu104/LeetCode-Solutions/blob/master/Python/block-placement-queries.py
+        class SegmentTree(object):
+            def __init__(self, N,
+                        build_fn=lambda _: None,
+                        query_fn=lambda x, y: y if x is None else x if y is None else max(x, y),
+                        update_fn=lambda x: x):
+                self.tree = [None]*(1<<((N-1).bit_length()+1))
+                self.base = len(self.tree)>>1
+                self.query_fn = query_fn
+                self.update_fn = update_fn
+                for i in range(self.base, self.base+N):
+                    self.tree[i] = build_fn(i-self.base)
+                for i in reversed(range(1, self.base)):
+                    self.tree[i] = query_fn(self.tree[i<<1], self.tree[(i<<1)+1])
 
-        def merge(left, right):
-            l00, l01, l10, l11 = left
-            r00, r01, r10, r11 = right
-            return (
-                max(l00 + r10, l01 + r00),
-                max(l00 + r11, l01 + r01),
-                max(l10 + r10, l11 + r00),
-                max(l10 + r11, l11 + r01),
-            )
+            def update(self, i, h):
+                x = self.base+i
+                self.tree[x] = self.update_fn(h)
+                while x > 1:
+                    x >>= 1
+                    self.tree[x] = self.query_fn(self.tree[x<<1], self.tree[(x<<1)+1])
 
-        def build(node, low, high):
-            if low == high:
-                tree[node] = (0, 0, 0, max(0, nums[low]))
-                return
-            mid = (low + high) // 2
-            build(node * 2, low, mid)
-            build(node * 2 + 1, mid + 1, high)
-            tree[node] = merge(tree[node * 2], tree[node * 2 + 1])
+            def query(self, L, R):
+                L += self.base
+                R += self.base
+                left = right = None
+                while L <= R:
+                    if L & 1:
+                        left = self.query_fn(left, self.tree[L])
+                        L += 1
+                    if R & 1 == 0:
+                        right = self.query_fn(self.tree[R], right)
+                        R -= 1
+                    L >>= 1
+                    R >>= 1
+                return self.query_fn(left, right)
+        
+        def build(i):
+            return [max(nums[i], 0), 0, 0, 0]
+        
+        def query(x, y):
+            if x is None:
+                return y
+            if y is None:
+                return x
+            return [max(x[L0R1]+y[L1R0], x[L0R0]+y[L1R0], x[L0R1]+y[L0R0]),
+                    max(x[L1R1]+y[L1R0], x[L1R0]+y[L1R0], x[L1R1]+y[L0R0]),
+                    max(x[L0R1]+y[L1R1], x[L0R0]+y[L1R1], x[L0R1]+y[L0R1]),
+                    max(x[L1R1]+y[L1R1], x[L1R0]+y[L1R1], x[L1R1]+y[L0R1])]
 
-        def update(node, low, high, index, value):
-            if low == high:
-                tree[node] = (0, 0, 0, max(0, value))
-                return
-            mid = (low + high) // 2
-            if index <= mid:
-                update(node * 2, low, mid, index, value)
-            else:
-                update(node * 2 + 1, mid + 1, high, index, value)
-            tree[node] = merge(tree[node * 2], tree[node * 2 + 1])
-
-        build(1, 0, n - 1)
-        answer = 0
-        for index, value in queries:
-            update(1, 0, n - 1, index, value)
-            answer = (answer + tree[1][3]) % mod
-
-        return answer
+        st = SegmentTree(len(nums), build_fn=build, query_fn=query)
+        result = 0
+        for i, x in queries:
+            st.update(i, [max(x, 0), 0, 0, 0])
+            result = (result+max(st.tree[1]))%MOD
+        return result

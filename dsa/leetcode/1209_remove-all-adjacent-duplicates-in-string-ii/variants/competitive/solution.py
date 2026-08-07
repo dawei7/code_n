@@ -1,11 +1,19 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def removeDuplicates(self, s: str, k: int) -> str:
-        stack = []
-        for character in s:
-            if stack and stack[-1][0] == character:
-                stack[-1][1] += 1
-                if stack[-1][1] == k:
-                    stack.pop()
+    def removeDuplicates(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        stk = [['^', 0]]
+        for c in s:
+            if stk[-1][0] == c:
+                stk[-1][1] += 1
+                if stk[-1][1] == k:
+                    stk.pop()
             else:
-                stack.append([character, 1])
-        return "".join(character * count for character, count in stack)
+                stk.append([c, 1])
+        return "".join(c*k for c, k in stk)

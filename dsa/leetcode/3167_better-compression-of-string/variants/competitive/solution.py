@@ -1,15 +1,21 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+# freq table, counting sort
 class Solution:
-    def betterCompression(self, compressed: str) -> str:
-        frequency = [0] * 26
-        index = 0
-
-        while index < len(compressed):
-            letter = compressed[index]
-            index += 1
-            count = 0
-            while index < len(compressed) and compressed[index].isdigit():
-                count = count * 10 + ord(compressed[index]) - ord("0")
-                index += 1
-            frequency[ord(letter) - ord("a")] += count
-
-        return "".join(chr(ord("a") + offset) + str(count) for offset, count in enumerate(frequency) if count)
+    def betterCompression(self, compressed):
+        """
+        :type compressed: str
+        :rtype: str
+        """
+        cnt = [0]*26
+        x, curr = -1, 0
+        for i in range(len(compressed)):
+            if not compressed[i].isdigit():
+                x = ord(compressed[i])-ord('a')
+                continue
+            curr = curr*10+int(compressed[i])
+            if i+1 == len(compressed) or not compressed[i+1].isdigit():
+                cnt[x] += curr
+                curr = 0
+        return "".join("%s%s" % (chr(ord('a')+i), x) for i, x in enumerate(cnt) if x)

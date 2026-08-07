@@ -1,23 +1,16 @@
-from typing import List
-
-
 class Solution:
     def lenLongestFibSubseq(self, arr: List[int]) -> int:
-        index_by_value = {value: index for index, value in enumerate(arr)}
-        lengths = {}
-        best = 0
-
-        for right in range(len(arr)):
-            for middle in range(right):
-                previous_value = arr[right] - arr[middle]
-                if previous_value >= arr[middle]:
-                    continue
-                left = index_by_value.get(previous_value)
-                if left is None:
-                    continue
-
-                length = lengths.get((left, middle), 2) + 1
-                lengths[(middle, right)] = length
-                best = max(best, length)
-
-        return best
+        n = len(arr)
+        f = [[0] * n for _ in range(n)]
+        d = {x: i for i, x in enumerate(arr)}
+        for i in range(n):
+            for j in range(i):
+                f[i][j] = 2
+        ans = 0
+        for i in range(2, n):
+            for j in range(1, i):
+                t = arr[i] - arr[j]
+                if t in d and (k := d[t]) < j:
+                    f[i][j] = max(f[i][j], f[j][k] + 1)
+                    ans = max(ans, f[i][j])
+        return ans

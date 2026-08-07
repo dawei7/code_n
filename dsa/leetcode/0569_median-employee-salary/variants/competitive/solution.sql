@@ -1,23 +1,15 @@
-WITH ranked AS (
-    SELECT
-        id,
-        company,
-        salary,
-        ROW_NUMBER() OVER (
-            PARTITION BY company
-            ORDER BY salary, id
-        ) AS salary_row,
-        COUNT(*) OVER (
-            PARTITION BY company
-        ) AS employee_count
-    FROM Employee
-)
-SELECT
-    id,
-    company,
-    salary
-FROM ranked
-WHERE employee_count <= 2 * salary_row
-  AND 2 * salary_row <= employee_count + 2
-ORDER BY company, salary, id;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT Id, Company, Salary FROM
+(
+SELECT e.Id, e.Salary, e.Company,  IF (@Prev = e.Company , @Rank := @Rank + 1, @Rank := 1) AS Rank, @Prev := e.Company
+FROM Employee e , (SELECT @Rank := 0, @prev := 0) AS Temp ORDER BY e.Company, e.Salary, e.Id
+) Ranking
+INNER JOIN
+(
+SELECT COUNT(*) AS TotalCount, Company AS Name FROM Employee e2 GROUP BY e2.Company
+) CompanyCount
+ON CompanyCount.Name = Ranking.Company
+WHERE Rank = floor((TotalCount+1)/2) OR Rank = floor((TotalCount+2)/2)
 

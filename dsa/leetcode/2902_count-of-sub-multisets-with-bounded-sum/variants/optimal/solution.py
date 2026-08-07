@@ -1,25 +1,21 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def countSubMultisets(self, nums: List[int], l: int, r: int) -> int:
-        modulus = 1_000_000_007
-        counts = Counter(nums)
-        zero_count = counts.pop(0, 0)
+        kMod = 1_000_000_007
+        # dp[i] := # of submultisets of nums with sum i
+        dp = [1] + [0] * r
+        count = collections.Counter(nums)
+        zeros = count.pop(0, 0)
 
-        dp = [0] * (r + 1)
-        dp[0] = zero_count + 1
+        for num, freq in count.items():
+            # stride[i] := dp[i] + dp[i - num] + dp[i - 2 * num] + ...
+            stride = dp.copy()
+            for i in range(num, r + 1):
+                stride[i] += stride[i - num]
+            for i in range(r, 0, -1):
+                if i >= num * (freq + 1):
+                    # dp[i] + dp[i - num] + dp[i - freq * num]
+                    dp[i] = stride[i] - stride[i - num * (freq + 1)]
+                else:
+                    dp[i] = stride[i]
 
-        for value, multiplicity in counts.items():
-            next_dp = dp.copy()
-            window_width = (multiplicity + 1) * value
-
-            for total in range(value, r + 1):
-                next_dp[total] = (next_dp[total] + next_dp[total - value]) % modulus
-                if total >= window_width:
-                    next_dp[total] = (next_dp[total] - dp[total - window_width]) % modulus
-
-            dp = next_dp
-
-        return sum(dp[l : r + 1]) % modulus
+        return (zeros + 1) * sum(dp[l : r + 1]) % kMod

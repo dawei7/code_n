@@ -1,22 +1,29 @@
+# Time:  O(logn + 10)
+# Space: O(10)
+
+# freq table
+FACT = [1]*2
+def factorial(n):
+    while len(FACT) <= n:
+        FACT.append(FACT[-1]*len(FACT))
+    return FACT[n]
+
 class Solution:
-    def isDigitorialPermutation(self, n: int) -> bool:
-        factorial = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
+    def isDigitorialPermutation(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        def f(x):
+            cnt = [0]*10
+            while x:
+                x, r = divmod(x, 10)
+                cnt[r] += 1
+            return cnt
 
-        original_counts = [0] * 10
-        factorial_sum = 0
-        remaining = n
-
-        while remaining > 0:
-            digit = remaining % 10
-            original_counts[digit] += 1
-            factorial_sum += factorial[digit]
-            remaining //= 10
-
-        sum_counts = [0] * 10
-        remaining = factorial_sum
-
-        while remaining > 0:
-            sum_counts[remaining % 10] += 1
-            remaining //= 10
-
-        return original_counts == sum_counts
+        total = 0
+        x = n
+        while x:
+            x, r = divmod(x, 10)
+            total += factorial(r)
+        return f(total) == f(n)

@@ -1,67 +1,60 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# sort, line sweep, segment tree
 class Solution:
-    def separateSquares(self, squares: List[List[int]]) -> float:
-        x_values = sorted({edge for x, _, side in squares for edge in (x, x + side)})
-        x_index = {value: index for index, value in enumerate(x_values)}
+    def separateSquares(self, squares):
+        """
+        :type squares: List[List[int]]
+        :rtype: float
+        """
+        class SegmentTreeRecu(object):
+            def __init__(self, sorted_x):
+                self.sorted_x = sorted_x
+                n = len(sorted_x)-1
+                l = 1<<((n-1).bit_length()+1)
+                self.tree = [0]*l
+                self.cnt = [0]*l
+        
+            def update(self, ql, qr, v, l, r, i):  # update [ql, qr) by v, interval [l, r) in sorted_x is covered by i
+                if ql >= r or qr <= l:
+                    return
+                if ql <= l and r <= qr:
+                    self.cnt[i] += v
+                else:
+                    m = l+(r-l)//2
+                    self.update(ql, qr, v, l, m, 2*i)
+                    self.update(ql, qr, v, m, r, 2*i+1)
+                if self.cnt[i] > 0:
+                    self.tree[i] = self.sorted_x[r]-self.sorted_x[l]
+                else:
+                    if r-l == 1:
+                        self.tree[i] = 0
+                    else:
+                        self.tree[i] = self.tree[2*i]+self.tree[2*i+1]
+    
         events = []
-        for x, y, side in squares:
-            left = x_index[x]
-            right = x_index[x + side]
-            events.append((y, 1, left, right))
-            events.append((y + side, -1, left, right))
-        events.sort()
-
-        cover_count = [0] * (4 * len(x_values))
-        covered_width = [0] * (4 * len(x_values))
-
-        def pull(node: int, left: int, right: int) -> None:
-            if cover_count[node] > 0:
-                covered_width[node] = x_values[right] - x_values[left]
-            elif right - left == 1:
-                covered_width[node] = 0
-            else:
-                covered_width[node] = covered_width[node * 2] + covered_width[node * 2 + 1]
-
-        def update(
-            node: int,
-            left: int,
-            right: int,
-            query_left: int,
-            query_right: int,
-            delta: int,
-        ) -> None:
-            if query_left <= left and right <= query_right:
-                cover_count[node] += delta
-                pull(node, left, right)
-                return
-            middle = (left + right) // 2
-            if query_left < middle:
-                update(node * 2, left, middle, query_left, query_right, delta)
-            if middle < query_right:
-                update(node * 2 + 1, middle, right, query_left, query_right, delta)
-            pull(node, left, right)
-
-        bands = []
-        total_area = 0
-        previous_y = events[0][0]
-        event_index = 0
-        while event_index < len(events):
-            y = events[event_index][0]
-            width = covered_width[1]
-            if y > previous_y and width > 0:
-                bands.append((previous_y, y, width, total_area))
-                total_area += width * (y - previous_y)
-            while event_index < len(events) and events[event_index][0] == y:
-                _, delta, left, right = events[event_index]
-                update(1, 0, len(x_values) - 1, left, right, delta)
-                event_index += 1
-            previous_y = y
-
-        target = total_area / 2.0
-        for bottom, top, width, area_before in bands:
-            band_area = width * (top - bottom)
-            if area_before + band_area >= target:
-                return bottom + (target - area_before) / width
-        return float(events[-1][0])
+        x_set = set()
+        for x, y, l in squares:
+            events.append((y, 1, x, x+l))
+            events.append((y+l, -1, x, x+l))
+            x_set.add(x)
+            x_set.add(x+l)
+        events.sort(key=lambda e: e[0])
+        sorted_x = sorted(x_set) 
+        x_to_idx = {x:i for i, x in enumerate(sorted_x)}
+        st = SegmentTreeRecu(sorted_x)
+        prev = events[0][0]
+        intervals = []
+        for y, v, x1, x2 in events:
+            if y != prev:
+                intervals.append([prev, y, st.tree[1]])
+                prev = y
+            st.update(x_to_idx[x1], x_to_idx[x2], v, 0, len(sorted_x)-1, 1)
+        expect = sum((y2-y1)*curr for y1, y2, curr in intervals)/2.0
+        total = 0.0
+        for y1, y2, curr in intervals:
+            if total+(y2-y1)*curr >= expect:
+                break
+            total += (y2-y1)*curr
+        return y1+(expect-total)/curr

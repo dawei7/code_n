@@ -1,63 +1,38 @@
-from collections import defaultdict
-
+# Time:  O(n^2)
+# Space: O(n^2)
 
 class Solution:
-    def evaluate(self, expression: str) -> int:
-        index = 0
-        values = defaultdict(list)
+    def evaluate(self, expression):
+        """
+        :type expression: str
+        :rtype: int
+        """
+        def getval(lookup, x):
+            return lookup.get(x, x)
 
-        def skip_spaces():
-            nonlocal index
-            while index < len(expression) and expression[index] == " ":
-                index += 1
+        def evaluate(tokens, lookup):
+            if tokens[0] in ('add', 'mult'):
+                a, b = map(int, map(lambda x: getval(lookup, x), tokens[1:]))
+                return str(a+b if tokens[0] == 'add' else a*b)
+            for i in range(1, len(tokens)-1, 2):
+                if tokens[i+1]:
+                    lookup[tokens[i]] = getval(lookup, tokens[i+1])
+            return getval(lookup, tokens[-1])
 
-        def read_token():
-            nonlocal index
-            start = index
-            while index < len(expression) and expression[index] not in " ()":
-                index += 1
-            return expression[start:index]
-
-        def parse():
-            nonlocal index
-            skip_spaces()
-
-            if expression[index] != "(":
-                token = read_token()
-                if token[0] == "-" or token[0].isdigit():
-                    return int(token)
-                return values[token][-1]
-
-            index += 1
-            operator = read_token()
-
-            if operator == "add":
-                result = parse() + parse()
-            elif operator == "mult":
-                result = parse() * parse()
+        tokens, lookup, stk = [''], {}, []
+        for c in expression:
+            if c == '(':
+                if tokens[0] == 'let':
+                    evaluate(tokens, lookup)
+                stk.append((tokens, dict(lookup)))
+                tokens =  ['']
+            elif c == ' ':
+                tokens.append('')
+            elif c == ')':
+                val = evaluate(tokens, lookup)
+                tokens, lookup = stk.pop()
+                tokens[-1] += val
             else:
-                bound_names = []
-                while True:
-                    skip_spaces()
-                    if expression[index] == "(" or expression[index] == "-" or expression[index].isdigit():
-                        result = parse()
-                        break
+                tokens[-1] += c
+        return int(tokens[0])
 
-                    name = read_token()
-                    skip_spaces()
-                    if expression[index] == ")":
-                        result = values[name][-1]
-                        break
-
-                    value = parse()
-                    values[name].append(value)
-                    bound_names.append(name)
-
-                for name in reversed(bound_names):
-                    values[name].pop()
-
-            skip_spaces()
-            index += 1
-            return result
-
-        return parse()

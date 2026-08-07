@@ -1,30 +1,52 @@
+# Time:  O(n + e + q)
+# Space: O(n)
+
+# union find
 class Solution:
-    def minimumCost(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]:
-        parent = list(range(n))
-        size = [1] * n
+    def minimumCost(self, n, edges, query):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type query: List[List[int]]
+        :rtype: List[int]
+        """
+        class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
+            def __init__(self, n):
+                self.set = list(range(n))
+                self.rank = [0]*n
+                self.w = [-1]*n  # added
 
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
+            def find_set(self, x):
+                stk = []
+                while self.set[x] != x:  # path compression
+                    stk.append(x)
+                    x = self.set[x]
+                while stk:
+                    self.set[stk.pop()] = x
+                return x
 
-        for u, v, _ in edges:
-            root_u = find(u)
-            root_v = find(v)
-            if root_u == root_v:
+            def union_set(self, x, y, w):  # modified
+                x, y = self.find_set(x), self.find_set(y)
+                if x == y:
+                    self.w[x] &= w  # added
+                    return False
+                if self.rank[x] > self.rank[y]:  # union by rank
+                    x, y = y, x
+                self.set[x] = self.set[y]
+                if self.rank[x] == self.rank[y]:
+                    self.rank[y] += 1
+                self.w[y] &= self.w[x]&w  # added
+                return True
+            
+            def cost(self, x):  # added
+                return self.w[self.find_set(x)]
+
+        uf = UnionFind(n)
+        for u, v, w in edges:
+            uf.union_set(u, v, w)
+        result = [-1]*(len(query))
+        for i, (s, t) in enumerate(query):
+            if uf.find_set(s) != uf.find_set(t):
                 continue
-            if size[root_u] < size[root_v]:
-                root_u, root_v = root_v, root_u
-            parent[root_v] = root_u
-            size[root_u] += size[root_v]
-
-        component_cost = [-1] * n
-        for u, _, weight in edges:
-            component_cost[find(u)] &= weight
-
-        answer = []
-        for start, target in query:
-            root = find(start)
-            answer.append(component_cost[root] if root == find(target) else -1)
-        return answer
+            result[i] = uf.cost(s) if s != t else 0
+        return result

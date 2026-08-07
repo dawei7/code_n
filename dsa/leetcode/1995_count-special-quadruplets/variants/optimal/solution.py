@@ -1,18 +1,10 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def countQuadruplets(self, nums: List[int]) -> int:
-        differences = Counter()
-        total = 0
-
-        for second in range(len(nums) - 3, 0, -1):
-            third = second + 1
-            for fourth in range(third + 1, len(nums)):
-                differences[nums[fourth] - nums[third]] += 1
-
-            for first in range(second):
-                total += differences[nums[first] + nums[second]]
-
-        return total
+        ans, n = 0, len(nums)
+        for a in range(n - 3):
+            for b in range(a + 1, n - 2):
+                for c in range(b + 1, n - 1):
+                    for d in range(c + 1, n):
+                        if nums[a] + nums[b] + nums[c] == nums[d]:
+                            ans += 1
+        return ans

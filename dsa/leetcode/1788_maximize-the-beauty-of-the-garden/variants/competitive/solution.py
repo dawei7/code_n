@@ -1,27 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def maximumBeauty(self, flowers: List[int]) -> int:
-        positive_sum = 0
-        best_start = {}
-        answer = float("-inf")
-
-        for beauty in flowers:
-            if beauty in best_start:
-                answer = max(
-                    answer,
-                    beauty + positive_sum + best_start[beauty],
-                )
-
-            positive_sum += max(beauty, 0)
-            start_score = beauty - positive_sum
-            if beauty not in best_start:
-                best_start[beauty] = start_score
-            else:
-                best_start[beauty] = max(
-                    best_start[beauty],
-                    start_score,
-                )
-
-        return answer
+    def maximumBeauty(self, flowers):
+        """
+        :type flowers: List[int]
+        :rtype: int
+        """
+        lookup = {}
+        prefix = [0]
+        result = float("-inf")
+        for i, f in enumerate(flowers):
+            prefix.append(prefix[-1]+f if f > 0 else prefix[-1])
+            if not f in lookup:
+                lookup[f] = i
+                continue
+            result = max(result, 2*f+prefix[i+1]-prefix[lookup[f]] if f < 0 else prefix[i+1]-prefix[lookup[f]])
+        return result

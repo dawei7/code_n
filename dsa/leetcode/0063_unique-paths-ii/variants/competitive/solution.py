@@ -1,14 +1,25 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(m + n)
 
 class Solution:
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        paths = [0] * len(obstacleGrid[0])
-        paths[0] = 1
-        for row in obstacleGrid:
-            for column, blocked in enumerate(row):
-                if blocked:
-                    paths[column] = 0
-                elif column > 0:
-                    paths[column] += paths[column - 1]
-        return paths[-1]
+    # @param obstacleGrid, a list of lists of integers
+    # @return an integer
+    def uniquePathsWithObstacles(self, obstacleGrid):
+        """
+        :type obstacleGrid: List[List[int]]
+        :rtype: int
+        """
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+
+        ways = [0]*n
+        ways[0] = 1
+        for i in range(m):
+            if obstacleGrid[i][0] == 1:
+                ways[0] = 0
+            for j in range(n):
+                if obstacleGrid[i][j] == 1:
+                    ways[j] = 0
+                elif j>0:
+                    ways[j] += ways[j-1]
+        return ways[-1]
+

@@ -1,24 +1,25 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def decrypt(self, code: List[int], k: int) -> List[int]:
-        length = len(code)
-        decrypted = [0] * length
+    def decrypt(self, code, k):
+        """
+        :type code: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        result = [0]*len(code)
         if k == 0:
-            return decrypted
-
-        if k > 0:
-            left, right = 1, k
-        else:
-            left, right = length + k, length - 1
-
-        window = sum(code[left : right + 1])
-        for index in range(length):
-            decrypted[index] = window
-            window -= code[left % length]
+            return result
+        left, right = 1, k
+        if k < 0:
+            k = -k
+            left, right = len(code)-k, len(code)-1
+        total = sum(code[i] for i in range(left, right+1))
+        for i in range(len(code)):
+            result[i] = total
+            total -= code[left%len(code)]
+            total += code[(right+1)%len(code)]
             left += 1
             right += 1
-            window += code[right % length]
-
-        return decrypted
+        return result

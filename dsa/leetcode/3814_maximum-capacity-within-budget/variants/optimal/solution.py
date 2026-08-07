@@ -1,32 +1,23 @@
-from bisect import bisect_left
-
-
 class Solution:
     def maxCapacity(self, costs: List[int], capacity: List[int], budget: int) -> int:
-        machines = sorted(zip(costs, capacity))
-        sorted_costs = [cost for cost, _ in machines]
-
-        prefix_best = []
-        best_capacity = 0
-        for _, machine_capacity in machines:
-            best_capacity = max(best_capacity, machine_capacity)
-            prefix_best.append(best_capacity)
-
-        answer = 0
-        for index, (cost, machine_capacity) in enumerate(machines):
-            if cost < budget:
-                answer = max(answer, machine_capacity)
-
-            partner_count = bisect_left(
-                sorted_costs,
-                budget - cost,
-                0,
-                index,
-            )
-            if partner_count:
-                answer = max(
-                    answer,
-                    machine_capacity + prefix_best[partner_count - 1],
-                )
-
-        return answer
+        arr = []
+        for a, b in zip(costs, capacity):
+            if a < budget:
+                arr.append((a, b))
+        if not arr:
+            return 0
+        arr.sort()
+        remain = SortedList()
+        for i, (_, b) in enumerate(arr):
+            remain.add((b, i))
+        i, j = 0, len(arr) - 1
+        ans = remain[-1][0]
+        while i < j:
+            remain.discard((arr[i][1], i))
+            while i < j and arr[i][0] + arr[j][0] >= budget:
+                remain.discard((arr[j][1], j))
+                j -= 1
+            if remain:
+                ans = max(ans, arr[i][1] + remain[-1][0])
+            i += 1
+        return ans

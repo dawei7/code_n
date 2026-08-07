@@ -1,19 +1,21 @@
-WITH company_rates AS (
-    SELECT
-        company_id,
-        CASE
-            WHEN MAX(salary) < 1000 THEN 100
-            WHEN MAX(salary) <= 10000 THEN 76
-            ELSE 51
-        END AS take_home_percent
-    FROM Salaries
-    GROUP BY company_id
-)
+# Write your MySQL query statement below
 SELECT
-    salaries.company_id,
-    salaries.employee_id,
-    salaries.employee_name,
-    ROUND(salaries.salary * company_rates.take_home_percent / 100.0) AS salary
-FROM Salaries AS salaries
-JOIN company_rates
-    ON company_rates.company_id = salaries.company_id;
+    s.company_id,
+    employee_id,
+    employee_name,
+    ROUND(
+        CASE
+            WHEN top < 1000 THEN salary
+            WHEN top >= 1000
+            AND top <= 10000 THEN salary * 0.76
+            ELSE salary * 0.51
+        END
+    ) AS salary
+FROM
+    Salaries AS s
+    JOIN (
+        SELECT company_id, MAX(salary) AS top
+        FROM Salaries
+        GROUP BY company_id
+    ) AS t
+        ON s.company_id = t.company_id;

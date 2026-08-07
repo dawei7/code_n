@@ -1,31 +1,18 @@
-from typing import List
-
-
 class Solution:
-    def maxNonDecreasingLength(
-        self,
-        nums1: List[int],
-        nums2: List[int],
-    ) -> int:
-        ending_with_first = 1
-        ending_with_second = 1
-        answer = 1
-
-        for index in range(1, len(nums1)):
-            next_first = 1
-            next_second = 1
-
-            if nums1[index] >= nums1[index - 1]:
-                next_first = max(next_first, ending_with_first + 1)
-            if nums1[index] >= nums2[index - 1]:
-                next_first = max(next_first, ending_with_second + 1)
-            if nums2[index] >= nums1[index - 1]:
-                next_second = max(next_second, ending_with_first + 1)
-            if nums2[index] >= nums2[index - 1]:
-                next_second = max(next_second, ending_with_second + 1)
-
-            ending_with_first = next_first
-            ending_with_second = next_second
-            answer = max(answer, ending_with_first, ending_with_second)
-
-        return answer
+    def maxNonDecreasingLength(self, nums1: List[int], nums2: List[int]) -> int:
+        n = len(nums1)
+        f = g = 1
+        ans = 1
+        for i in range(1, n):
+            ff = gg = 1
+            if nums1[i] >= nums1[i - 1]:
+                ff = max(ff, f + 1)
+            if nums1[i] >= nums2[i - 1]:
+                ff = max(ff, g + 1)
+            if nums2[i] >= nums1[i - 1]:
+                gg = max(gg, f + 1)
+            if nums2[i] >= nums2[i - 1]:
+                gg = max(gg, g + 1)
+            f, g = ff, gg
+            ans = max(ans, f, g)
+        return ans

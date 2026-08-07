@@ -1,17 +1,18 @@
+# Time:  O(n)
+# Space: O(f)
+
+# dp
 class Solution:
-    def peopleAwareOfSecret(self, n: int, delay: int, forget: int) -> int:
-        modulus = 1_000_000_007
-        learned = [0] * (n + 1)
-        learned[1] = 1
-        sharing = 0
-
-        for day in range(2, n + 1):
-            if day - delay >= 1:
-                sharing += learned[day - delay]
-            if day - forget >= 1:
-                sharing -= learned[day - forget]
-            sharing %= modulus
-            learned[day] = sharing
-
-        first_aware_day = max(1, n - forget + 1)
-        return sum(learned[first_aware_day : n + 1]) % modulus
+    def peopleAwareOfSecret(self, n, delay, forget):
+        """
+        :type n: int
+        :type delay: int
+        :type forget: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [0]*forget
+        dp[0] = 1
+        for i in range(1, n):
+            dp[i%forget] = ((dp[(i-1)%forget] if i-1 else 0)-dp[i%forget]+dp[(i-delay)%forget]) % MOD
+        return sum(dp)%MOD

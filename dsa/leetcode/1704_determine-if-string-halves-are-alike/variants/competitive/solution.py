@@ -1,11 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def halvesAreAlike(self, s: str) -> bool:
+    def halvesAreAlike(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
         vowels = set("aeiouAEIOU")
-        middle = len(s) // 2
-        balance = 0
-
-        for index, character in enumerate(s):
-            if character in vowels:
-                balance += 1 if index < middle else -1
-
-        return balance == 0
+        cnt1 = cnt2 = 0
+        left, right = 0, len(s)-1
+        while left < right:
+            cnt1 += s[left] in vowels
+            cnt2 += s[right] in vowels
+            left += 1
+            right -= 1
+        return cnt1 == cnt2

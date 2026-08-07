@@ -1,5 +1,8 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# regular expression
 SELECT product_id, name
 FROM Products
-WHERE ('x' || name || 'x')
-      GLOB '*[^0-9][0-9][0-9][0-9][^0-9]*'
-ORDER BY product_id;
+WHERE name REGEXP '(^|[^0-9])[0-9]{3}([^0-9]|$)'
+ORDER BY 1;

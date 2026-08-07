@@ -1,17 +1,12 @@
-from typing import List
-
-
 class Solution:
-    def matchPlayersAndTrainers(
-        self,
-        players: List[int],
-        trainers: List[int],
-    ) -> int:
+    def matchPlayersAndTrainers(self, players: List[int], trainers: List[int]) -> int:
         players.sort()
         trainers.sort()
-
-        player_index = 0
-        for capacity in trainers:
-            if player_index < len(players) and players[player_index] <= capacity:
-                player_index += 1
-        return player_index
+        j, n = 0, len(trainers)
+        for i, p in enumerate(players):
+            while j < n and trainers[j] < p:
+                j += 1
+            if j == n:
+                return i
+            j += 1
+        return len(players)

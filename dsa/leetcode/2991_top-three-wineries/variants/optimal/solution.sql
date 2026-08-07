@@ -1,20 +1,23 @@
-WITH winery_totals AS (
-    SELECT country, winery, SUM(points) AS total_points
-    FROM Wineries
-    GROUP BY country, winery
-),
-ranked_wineries AS (
-    SELECT country, winery, total_points,
-        ROW_NUMBER() OVER (
-            PARTITION BY country
-            ORDER BY total_points DESC, winery
-        ) AS winery_rank
-    FROM winery_totals
-)
-SELECT country,
-    MAX(CASE WHEN winery_rank = 1 THEN winery || ' (' || total_points || ')' END) AS top_winery,
-    COALESCE(MAX(CASE WHEN winery_rank = 2 THEN winery || ' (' || total_points || ')' END), 'No second winery') AS second_winery,
-    COALESCE(MAX(CASE WHEN winery_rank = 3 THEN winery || ' (' || total_points || ')' END), 'No third winery') AS third_winery
-FROM ranked_wineries
-GROUP BY country
-ORDER BY country;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            country,
+            CONCAT(winery, ' (', points, ')') AS winery,
+            RANK() OVER (
+                PARTITION BY country
+                ORDER BY points DESC, winery
+            ) AS rk
+        FROM (SELECT country, SUM(points) AS points, winery FROM Wineries GROUP BY 1, 3) AS t
+    )
+SELECT
+    t1.country,
+    t1.winery AS top_winery,
+    IFNULL(t2.winery, 'No second winery') AS second_winery,
+    IFNULL(t3.winery, 'No third winery') AS third_winery
+FROM
+    T AS t1
+    LEFT JOIN T AS t2 ON t1.country = t2.country AND t1.rk = t2.rk - 1
+    LEFT JOIN T AS t3 ON t2.country = t3.country AND t2.rk = t3.rk - 1
+WHERE t1.rk = 1
+ORDER BY 1;

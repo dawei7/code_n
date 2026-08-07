@@ -1,14 +1,10 @@
 class Solution:
-    def isSumEqual(
-        self,
-        firstWord: str,
-        secondWord: str,
-        targetWord: str,
-    ) -> bool:
-        def numerical_value(word: str) -> int:
-            value = 0
-            for character in word:
-                value = value * 10 + ord(character) - ord("a")
-            return value
+    def isSumEqual(self, firstWord: str, secondWord: str, targetWord: str) -> bool:
+        def f(s: str) -> int:
+            ans, a = 0, ord("a")
+            for c in map(ord, s):
+                x = c - a
+                ans = ans * 10 + x
+            return ans
 
-        return numerical_value(firstWord) + numerical_value(secondWord) == numerical_value(targetWord)
+        return f(firstWord) + f(secondWord) == f(targetWord)

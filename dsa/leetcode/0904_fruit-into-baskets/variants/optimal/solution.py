@@ -1,20 +1,14 @@
-from typing import List
-
-
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        counts = {}
-        left = 0
-        best = 0
-
-        for right, fruit in enumerate(fruits):
-            counts[fruit] = counts.get(fruit, 0) + 1
-            while len(counts) > 2:
-                left_fruit = fruits[left]
-                counts[left_fruit] -= 1
-                if counts[left_fruit] == 0:
-                    del counts[left_fruit]
-                left += 1
-            best = max(best, right - left + 1)
-
-        return best
+        cnt = Counter()
+        ans = j = 0
+        for i, x in enumerate(fruits):
+            cnt[x] += 1
+            while len(cnt) > 2:
+                y = fruits[j]
+                cnt[y] -= 1
+                if cnt[y] == 0:
+                    cnt.pop(y)
+                j += 1
+            ans = max(ans, i - j + 1)
+        return ans

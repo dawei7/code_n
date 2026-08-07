@@ -1,18 +1,19 @@
-from typing import List
-
-
 class Solution:
     def maxFrequency(self, nums: List[int], k: int) -> int:
+        def check(m: int) -> bool:
+            for i in range(m, n + 1):
+                if nums[i - 1] * m - (s[i] - s[i - m]) <= k:
+                    return True
+            return False
+
+        n = len(nums)
         nums.sort()
-        left = 0
-        window_sum = 0
-        best = 1
-
-        for right, target in enumerate(nums):
-            window_sum += target
-            while target * (right - left + 1) - window_sum > k:
-                window_sum -= nums[left]
-                left += 1
-            best = max(best, right - left + 1)
-
-        return best
+        s = list(accumulate(nums, initial=0))
+        l, r = 1, n
+        while l < r:
+            mid = (l + r + 1) >> 1
+            if check(mid):
+                l = mid
+            else:
+                r = mid - 1
+        return l

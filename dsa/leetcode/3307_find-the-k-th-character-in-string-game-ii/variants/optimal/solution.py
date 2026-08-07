@@ -1,13 +1,14 @@
 class Solution:
     def kthCharacter(self, k: int, operations: List[int]) -> str:
-        shift = 0
-        index = k - 1
-        operation = 0
-
-        while index:
-            if index & 1:
-                shift += operations[operation]
-            operation += 1
-            index >>= 1
-
-        return chr(ord("a") + shift % 26)
+        n, i = 1, 0
+        while n < k:
+            n *= 2
+            i += 1
+        d = 0
+        while n > 1:
+            if k > n // 2:
+                k -= n // 2
+                d += operations[i - 1]
+            n //= 2
+            i -= 1
+        return chr(d % 26 + ord("a"))

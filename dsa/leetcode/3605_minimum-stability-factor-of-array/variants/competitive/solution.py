@@ -1,57 +1,61 @@
-from math import gcd
-from typing import List
+# Time:  O(nlogn * logr)
+# Space: O(nlogn)
 
-
+# number theory, binary search, rmq, sparse table, greedy
 class Solution:
-    def minStable(self, nums: List[int], maxC: int) -> int:
-        n = len(nums)
+    def minStable(self, nums, maxC):
+        """
+        :type nums: List[int]
+        :type maxC: int
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        logarithm = [0] * (n + 1)
-        for length in range(2, n + 1):
-            logarithm[length] = logarithm[length // 2] + 1
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if not check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
 
-        sparse_table = [nums[:]]
-        power = 1
-        while (1 << power) <= n:
-            half = 1 << (power - 1)
-            width = 1 << power
-            previous = sparse_table[-1]
-            sparse_table.append([gcd(previous[left], previous[left + half]) for left in range(n - width + 1)])
-            power += 1
+        # RMQ - Sparse Table
+        # Template: https://github.com/kamyu104/GoogleCodeJam-Farewell-Rounds/blob/main/Round%20D/genetic_sequences2.py3
+        # Time:  ctor:  O(NlogN) * O(fn)
+        #        query: O(fn)
+        # Space: O(NlogN)
+        class SparseTable(object):
+            def __init__(self, arr, fn):
+                self.fn = fn
+                self.bit_length = [0]
+                n = len(arr)
+                k = n.bit_length()-1  # log2_floor(n)
+                for i in range(k+1):
+                    self.bit_length.extend(i+1 for _ in range(min(1<<i, (n+1)-len(self.bit_length))))
+                self.st = [[0]*n for _ in range(k+1)]
+                self.st[0] = arr[:]
+                for i in range(1, k+1):  # Time: O(NlogN) * O(fn)
+                    for j in range((n-(1<<i))+1):
+                        self.st[i][j] = fn(self.st[i-1][j], self.st[i-1][j+(1<<(i-1))])
+        
+            def query(self, L, R):  # Time: O(fn)
+                i = self.bit_length[R-L+1]-1  # log2_floor(R-L+1)
+                return self.fn(self.st[i][L], self.st[i][R-(1<<i)+1])
 
-        def range_gcd(left: int, right: int) -> int:
-            length = right - left + 1
-            level = logarithm[length]
-            width = 1 << level
-            return gcd(
-                sparse_table[level][left],
-                sparse_table[level][right - width + 1],
-            )
+        def check(l):
+            cnt = 0
+            i = 0
+            while i+l-1 < len(nums):
+                if rmq.query(i, i+l-1) >= 2:
+                    cnt += 1
+                    i += l
+                else:
+                    i += 1
+            return cnt > maxC
 
-        def feasible(limit: int) -> bool:
-            changes = 0
-            last_changed = -1
-            window = limit + 1
-
-            for left in range(n - window + 1):
-                if last_changed >= left:
-                    continue
-
-                right = left + limit
-                if range_gcd(left, right) > 1:
-                    changes += 1
-                    if changes > maxC:
-                        return False
-                    last_changed = right
-
-            return True
-
-        low, high = 0, n
-        while low < high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        rmq = SparseTable(nums, gcd)
+        return binary_search_right(1, len(nums), check)

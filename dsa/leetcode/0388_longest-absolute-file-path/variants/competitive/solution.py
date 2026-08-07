@@ -1,31 +1,29 @@
+# Time:  O(n)
+# Space: O(d), d is the max depth of the paths
+
 class Solution:
-    def lengthLongestPath(self, input: str) -> int:
-        prefix_lengths = [0]
-        longest = 0
-        index = 0
+    def lengthLongestPath(self, input):
+        """
+        :type input: str
+        :rtype: int
+        """
+        def split_iter(s, tok):
+            start = 0
+            for i in range(len(s)):
+                if s[i] == tok:
+                    yield s[start:i]
+                    start = i + 1
+            yield s[start:]
 
-        while index < len(input):
-            depth = 0
-            while index < len(input) and input[index] == "\t":
-                depth += 1
-                index += 1
 
-            name_length = 0
-            is_file = False
-            while index < len(input) and input[index] != "\n":
-                is_file = is_file or input[index] == "."
-                name_length += 1
-                index += 1
-
-            if is_file:
-                longest = max(longest, prefix_lengths[depth] + name_length)
+        max_len = 0
+        path_len = {0: 0}
+        for line in split_iter(input, '\n'):
+            name = line.lstrip('\t')
+            depth = len(line) - len(name)
+            if '.' in name:
+                max_len = max(max_len, path_len[depth] + len(name))
             else:
-                child_prefix = prefix_lengths[depth] + name_length + 1
-                if len(prefix_lengths) == depth + 1:
-                    prefix_lengths.append(child_prefix)
-                else:
-                    prefix_lengths[depth + 1] = child_prefix
+                path_len[depth + 1] = path_len[depth] + len(name) + 1
+        return max_len
 
-            index += 1
-
-        return longest

@@ -1,20 +1,15 @@
 class Solution:
     def baseUnitConversions(self, conversions: List[List[int]]) -> List[int]:
-        modulo = 1_000_000_007
-        unit_count = len(conversions) + 1
-        graph = [[] for _ in range(unit_count)]
+        def dfs(s: int, mul: int) -> None:
+            ans[s] = mul
+            for t, w in g[s]:
+                dfs(t, mul * w % mod)
 
-        for source, target, factor in conversions:
-            graph[source].append((target, factor))
-
-        result = [0] * unit_count
-        result[0] = 1
-        stack = [0]
-
-        while stack:
-            source = stack.pop()
-            for target, factor in graph[source]:
-                result[target] = result[source] * factor % modulo
-                stack.append(target)
-
-        return result
+        mod = 10**9 + 7
+        n = len(conversions) + 1
+        g = [[] for _ in range(n)]
+        for s, t, w in conversions:
+            g[s].append((t, w))
+        ans = [0] * n
+        dfs(0, 1)
+        return ans

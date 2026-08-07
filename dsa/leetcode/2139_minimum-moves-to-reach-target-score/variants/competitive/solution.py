@@ -1,13 +1,17 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minMoves(self, target: int, maxDoubles: int) -> int:
-        moves = 0
-
-        while target > 1 and maxDoubles > 0:
-            if target % 2:
-                target -= 1
-            else:
-                target //= 2
-                maxDoubles -= 1
-            moves += 1
-
-        return moves + target - 1
+    def minMoves(self, target, maxDoubles):
+        """
+        :type target: int
+        :type maxDoubles: int
+        :rtype: int
+        """
+        result = 0
+        while target > 1 and maxDoubles:
+            result += 1+target%2
+            target //= 2
+            maxDoubles -= 1
+        return result+(target-1)

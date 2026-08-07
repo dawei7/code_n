@@ -1,27 +1,35 @@
-from typing import List
+# Time:  O(n + e)
+# Space: O(n + e)
+
+import collections
 
 
 class Solution:
-    def leadsToDestination(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        graph = [[] for _ in range(n)]
-        for start, end in edges:
-            graph[start].append(end)
-        if graph[destination]:
-            return False
-        state = [0] * n
-
-        def dfs(node: int) -> bool:
-            if state[node] == 1:
-                return False
-            if state[node] == 2:
+    def leadsToDestination(self, n, edges, source, destination):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type source: int
+        :type destination: int
+        :rtype: bool
+        """
+        UNVISITED, VISITING, DONE = range(3)
+        def dfs(children, node, destination, status):
+            if status[node] == DONE:
                 return True
-            if not graph[node]:
-                return node == destination
-            state[node] = 1
-            for neighbor in graph[node]:
-                if not dfs(neighbor):
-                    return False
-            state[node] = 2
+            if status[node] == VISITING:
+                return False
+            status[node] = VISITING
+            if node not in children and node != destination:
+                return False
+            if node in children:
+                for child in children[node]:
+                    if not dfs(children, child, destination, status):
+                        return False
+            status[node] = DONE
             return True
-
-        return dfs(source)
+        
+        children = collections.defaultdict(list)
+        for parent, child in edges:
+            children[parent].append(child)
+        return dfs(children, source, destination, [0]*n)

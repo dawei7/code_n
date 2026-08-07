@@ -1,6 +1,7 @@
 class Solution:
     def longestString(self, x: int, y: int, z: int) -> int:
-        blocks = 2 * min(x, y) + z
-        if x != y:
-            blocks += 1
-        return 2 * blocks
+        if x < y:
+            return (x * 2 + z + 1) * 2
+        if x > y:
+            return (y * 2 + z + 1) * 2
+        return (x + y + z) * 2

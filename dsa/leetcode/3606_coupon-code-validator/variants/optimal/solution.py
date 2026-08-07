@@ -1,29 +1,19 @@
-from typing import List
-
-
 class Solution:
     def validateCoupons(
-        self,
-        code: List[str],
-        businessLine: List[str],
-        isActive: List[bool],
+        self, code: List[str], businessLine: List[str], isActive: List[bool]
     ) -> List[str]:
-        priority = {
-            "electronics": 0,
-            "grocery": 1,
-            "pharmacy": 2,
-            "restaurant": 3,
-        }
-        valid = []
+        def check(s: str) -> bool:
+            if not s:
+                return False
+            for c in s:
+                if not (c.isalpha() or c.isdigit() or c == "_"):
+                    return False
+            return True
 
-        for coupon, business, active in zip(code, businessLine, isActive):
-            if (
-                active
-                and business in priority
-                and coupon
-                and all(character.isalnum() or character == "_" for character in coupon)
-            ):
-                valid.append((priority[business], coupon))
-
-        valid.sort()
-        return [coupon for _, coupon in valid]
+        idx = []
+        bs = {"electronics", "grocery", "pharmacy", "restaurant"}
+        for i, (c, b, a) in enumerate(zip(code, businessLine, isActive)):
+            if a and b in bs and check(c):
+                idx.append(i)
+        idx.sort(key=lambda i: (businessLine[i], code[i]))
+        return [code[i] for i in idx]

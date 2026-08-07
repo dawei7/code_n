@@ -1,34 +1,15 @@
-from typing import List
-
-
 class Solution:
     def minDistance(self, houses: List[int], k: int) -> int:
-        positions = sorted(houses)
-        house_count = len(positions)
-
-        interval_cost = [[0] * house_count for _ in range(house_count)]
-        for length in range(2, house_count + 1):
-            for left in range(house_count - length + 1):
-                right = left + length - 1
-                inner_cost = 0
-                if left + 1 <= right - 1:
-                    inner_cost = interval_cost[left + 1][right - 1]
-                interval_cost[left][right] = inner_cost + positions[right] - positions[left]
-
-        infinity = 10**18
-        previous = [infinity] * (house_count + 1)
-        previous[0] = 0
-
-        for boxes in range(1, k + 1):
-            current = [infinity] * (house_count + 1)
-
-            for end in range(boxes, house_count + 1):
-                for start in range(boxes - 1, end):
-                    current[end] = min(
-                        current[end],
-                        previous[start] + interval_cost[start][end - 1],
-                    )
-
-            previous = current
-
-        return previous[house_count]
+        houses.sort()
+        n = len(houses)
+        g = [[0] * n for _ in range(n)]
+        for i in range(n - 2, -1, -1):
+            for j in range(i + 1, n):
+                g[i][j] = g[i + 1][j - 1] + houses[j] - houses[i]
+        f = [[inf] * (k + 1) for _ in range(n)]
+        for i in range(n):
+            f[i][1] = g[0][i]
+            for j in range(2, min(k + 1, i + 2)):
+                for p in range(i):
+                    f[i][j] = min(f[i][j], f[p][j - 1] + g[p + 1][i])
+        return f[-1][k]

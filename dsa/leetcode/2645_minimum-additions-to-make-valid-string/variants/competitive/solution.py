@@ -1,9 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def addMinimum(self, word: str) -> int:
-        groups = 1
-
-        for previous, current in zip(word, word[1:]):
-            if current <= previous:
-                groups += 1
-
-        return 3 * groups - len(word)
+    def addMinimum(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        return 3*(sum(i-1 < 0 or word[i-1] >= word[i] for i in range(len(word))))-len(word)
+ 

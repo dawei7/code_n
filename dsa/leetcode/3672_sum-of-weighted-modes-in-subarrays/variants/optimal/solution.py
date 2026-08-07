@@ -1,35 +1,27 @@
-from collections import Counter
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
     def modeWeight(self, nums: List[int], k: int) -> int:
-        frequency = Counter()
-        candidates = []
+        pq = []
+        cnt = defaultdict(int)
+        for x in nums[:k]:
+            cnt[x] += 1
+            heappush(pq, (-cnt[x], x))
 
-        def add(value: int) -> None:
-            frequency[value] += 1
-            heappush(candidates, (-frequency[value], value))
+        def get_mode() -> int:
+            while -pq[0][0] != cnt[pq[0][1]]:
+                heappop(pq)
+            freq, val = -pq[0][0], pq[0][1]
+            return freq * val
 
-        def remove(value: int) -> None:
-            frequency[value] -= 1
-            if frequency[value] > 0:
-                heappush(candidates, (-frequency[value], value))
+        ans = 0
+        ans += get_mode()
 
-        def weight() -> int:
-            while -candidates[0][0] != frequency[candidates[0][1]]:
-                heappop(candidates)
-            count, value = candidates[0]
-            return -count * value
+        for i in range(k, len(nums)):
+            x, y = nums[i], nums[i - k]
+            cnt[x] += 1
+            cnt[y] -= 1
+            heappush(pq, (-cnt[x], x))
+            heappush(pq, (-cnt[y], y))
 
-        for value in nums[:k]:
-            add(value)
+            ans += get_mode()
 
-        answer = weight()
-        for right in range(k, len(nums)):
-            remove(nums[right - k])
-            add(nums[right])
-            answer += weight()
-
-        return answer
+        return ans

@@ -1,12 +1,9 @@
-SELECT
-    LOWER(TRIM(product_name)) AS product_name,
-    strftime('%Y-%m', sale_date) AS sale_date,
-    COUNT(*) AS total
-FROM Sales
-GROUP BY
-    LOWER(TRIM(product_name)),
-    strftime('%Y-%m', sale_date)
-ORDER BY
-    product_name ASC,
-    sale_date ASC;
+# Time:  O(nlogn)
+# Space: O(n)
 
+SELECT LOWER(TRIM(product_name)) product_name,
+       substring(sale_date, 1, 7) sale_date,
+       count(sale_id) total
+FROM sales
+GROUP BY 1, 2
+ORDER BY 1, 2;

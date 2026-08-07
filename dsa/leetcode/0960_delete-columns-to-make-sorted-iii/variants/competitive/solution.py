@@ -1,14 +1,15 @@
-from typing import List
-
+# Time:  O(n * l^2)
+# Space: O(l)
 
 class Solution:
-    def minDeletionSize(self, strs: List[str]) -> int:
-        columns = len(strs[0])
-        best = [1] * columns
-
-        for right in range(columns):
-            for left in range(right):
-                if all(row[left] <= row[right] for row in strs):
-                    best[right] = max(best[right], best[left] + 1)
-
-        return columns - max(best)
+    def minDeletionSize(self, A):
+        """
+        :type A: List[str]
+        :rtype: int
+        """
+        dp = [1] * len(A[0])
+        for j in range(1, len(A[0])):
+            for i in range(j):
+                if all(A[k][i] <= A[k][j] for k in range(len(A))):
+                    dp[j] = max(dp[j], dp[i]+1)
+        return len(A[0]) - max(dp)

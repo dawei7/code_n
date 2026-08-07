@@ -1,27 +1,43 @@
-from collections import deque
-from threading import Lock, Semaphore
+# Time:  O(n)
+# Space: O(1)
+
+import threading
+import collections
 
 
 class BoundedBlockingQueue(object):
-    def __init__(self, capacity: int):
-        self.queue = deque()
-        self.slots = Semaphore(capacity)
-        self.items = Semaphore(0)
-        self.lock = Lock()
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.__cv = threading.Condition()
+        self.__q = collections.deque()
+        self.__cap = capacity
 
-    def enqueue(self, element: int) -> None:
-        self.slots.acquire()
-        with self.lock:
-            self.queue.appendleft(element)
-        self.items.release()
+    def enqueue(self, element):
+        """
+        :type element: int
+        :rtype: void
+        """
+        with self.__cv:
+            while len(self.__q) == self.__cap:
+                self.__cv.wait()
+            self.__q.append(element)
+            self.__cv.notifyAll()
 
-    def dequeue(self) -> int:
-        self.items.acquire()
-        with self.lock:
-            element = self.queue.pop()
-        self.slots.release()
-        return element
+    def dequeue(self):
+        """
+        :rtype: int
+        """
+        with self.__cv:
+            while not self.__q:
+                self.__cv.wait()
+            self.__cv.notifyAll()
+            return self.__q.popleft()
 
-    def size(self) -> int:
-        with self.lock:
-            return len(self.queue)
+    def size(self):
+        """
+        :rtype: int
+        """
+        with self.__cv:
+            return len(self.__q)

@@ -1,26 +1,18 @@
-from bisect import bisect_left
-from typing import List
-
-
 class Solution:
     def longestSubsequence(self, nums: List[int]) -> int:
-        tails = [[] for _ in range(30)]
-        answer = 0
-
-        for value in nums:
-            remaining_bits = value
-            while remaining_bits:
-                lowest_bit = remaining_bits & -remaining_bits
-                bit = lowest_bit.bit_length() - 1
-                bit_tails = tails[bit]
-                position = bisect_left(bit_tails, value)
-
-                if position == len(bit_tails):
-                    bit_tails.append(value)
+        def lis(arr: List[int]) -> int:
+            g = []
+            for x in arr:
+                j = bisect_left(g, x)
+                if j == len(g):
+                    g.append(x)
                 else:
-                    bit_tails[position] = value
+                    g[j] = x
+            return len(g)
 
-                answer = max(answer, position + 1)
-                remaining_bits -= lowest_bit
-
-        return answer
+        ans = 0
+        m = max(nums).bit_length()
+        for i in range(m):
+            arr = [x for x in nums if x >> i & 1]
+            ans = max(ans, lis(arr))
+        return ans

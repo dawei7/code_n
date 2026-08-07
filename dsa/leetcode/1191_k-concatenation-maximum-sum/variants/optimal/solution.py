@@ -1,24 +1,17 @@
-from typing import List
-
-
 class Solution:
     def kConcatenationMaxSum(self, arr: List[int], k: int) -> int:
-        modulo = 1_000_000_007
-
-        def best_over_copies(copy_count: int) -> int:
-            best = 0
-            current = 0
-            for _ in range(copy_count):
-                for value in arr:
-                    current = max(0, current + value)
-                    best = max(best, current)
-            return best
-
+        s = mx_pre = mi_pre = mx_sub = 0
+        for x in arr:
+            s += x
+            mx_pre = max(mx_pre, s)
+            mi_pre = min(mi_pre, s)
+            mx_sub = max(mx_sub, s - mi_pre)
+        ans = mx_sub
+        mod = 10**9 + 7
         if k == 1:
-            return best_over_copies(1) % modulo
-
-        best = best_over_copies(2)
-        total = sum(arr)
-        if total > 0:
-            best += (k - 2) * total
-        return best % modulo
+            return ans % mod
+        mx_suf = s - mi_pre
+        ans = max(ans, mx_pre + mx_suf)
+        if s > 0:
+            ans = max(ans, (k - 2) * s + mx_pre + mx_suf)
+        return ans % mod

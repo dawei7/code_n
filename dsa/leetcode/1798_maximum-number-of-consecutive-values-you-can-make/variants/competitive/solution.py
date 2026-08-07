@@ -1,11 +1,16 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
 class Solution:
-    def getMaximumConsecutive(self, coins: list[int]) -> int:
+    def getMaximumConsecutive(self, coins):
+        """
+        :type coins: List[int]
+        :rtype: int
+        """
         coins.sort()
-        reach = 1
-
-        for coin in coins:
-            if coin > reach:
+        result = 1
+        for c in coins:
+            if c > result:
                 break
-            reach += coin
-
-        return reach
+            result += c
+        return result

@@ -1,27 +1,23 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n^2)
 
-
+# dp
 class Solution:
-    def maximumProcessableQueries(self, nums: List[int], queries: List[int]) -> int:
-        query_count = len(queries)
-        current = [0]
-        answer = 0
-
-        for length in range(len(nums), 0, -1):
-            following = [-1] * (len(current) + 1)
-
-            for left, processed in enumerate(current):
-                if processed < 0:
-                    continue
-
-                right = left + length - 1
-                answer = max(answer, processed)
-                take_left = processed + int(processed < query_count and nums[left] >= queries[processed])
-                take_right = processed + int(processed < query_count and nums[right] >= queries[processed])
-
-                following[left + 1] = max(following[left + 1], processed, take_left)
-                following[left] = max(following[left], processed, take_right)
-
-            current = following
-
-        return max(answer, max(current))
+    def maximumProcessableQueries(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[int]
+        :rtype: int
+        """
+        dp = [[float("-inf")]*len(nums) for _ in range(len(nums))]
+        dp[0][-1] = 0
+        for l in reversed(range(1, len(nums))):
+            for i in range(len(nums)-(l-1)):
+                j = i+(l-1)
+                if i-1 >= 0:
+                    dp[i][j] = max(dp[i][j], dp[i-1][j]+(1 if nums[i-1] >= queries[dp[i-1][j]] else 0))
+                if j+1 < len(nums):
+                    dp[i][j] = max(dp[i][j], dp[i][j+1]+(1 if nums[j+1] >= queries[dp[i][j+1]] else 0))
+                if dp[i][j] == len(queries):
+                    return len(queries)
+        return max(dp[i][i]+(1 if nums[i] >= queries[dp[i][i]] else 0) for i in range(len(nums)))

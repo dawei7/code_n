@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     def cycleLengthQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        answer = []
+        ans = []
         for a, b in queries:
-            cycle_length = 1
+            t = 1
             while a != b:
                 if a > b:
-                    a //= 2
+                    a >>= 1
                 else:
-                    b //= 2
-                cycle_length += 1
-            answer.append(cycle_length)
-        return answer
+                    b >>= 1
+                t += 1
+            ans.append(t)
+        return ans

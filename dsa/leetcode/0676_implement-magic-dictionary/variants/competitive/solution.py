@@ -1,32 +1,51 @@
-class MagicDictionary:
-    _END = "$"
+# Time:  O(n), n is the length of the word
+# Space: O(d)
+
+import collections
+
+
+class MagicDictionary(object):
 
     def __init__(self):
-        self.root = {}
+        """
+        Initialize your data structure here.
+        """
+        _trie = lambda: collections.defaultdict(_trie)
+        self.trie = _trie()
 
-    def buildDict(self, dictionary: list[str]) -> None:
-        self.root = {}
+
+    def buildDict(self, dictionary):
+        """
+        Build a dictionary through a list of words
+        :type dictionary: List[str]
+        :rtype: void
+        """
         for word in dictionary:
-            node = self.root
-            for character in word:
-                node = node.setdefault(character, {})
-            node[self._END] = True
+            reduce(dict.__getitem__, word, self.trie).setdefault("_end")
 
-    def search(self, searchWord: str) -> bool:
-        def matches(node, index, changed):
-            if index == len(searchWord):
-                return changed and self._END in node
 
-            character = searchWord[index]
-            exact = node.get(character)
-            if exact is not None and matches(exact, index + 1, changed):
-                return True
+    def search(self, word):
+        """
+        Returns if there is any word in the trie that equals to the given word after modifying exactly one character
+        :type word: str
+        :rtype: bool
+        """
+        def find(word, curr, i, mistakeAllowed):
+            if i == len(word):
+                return "_end" in curr and not mistakeAllowed
 
-            if not changed:
-                for next_character, child in node.items():
-                    if next_character not in (self._END, character):
-                        if matches(child, index + 1, True):
-                            return True
-            return False
+            if word[i] not in curr:
+                return any(find(word, curr[c], i+1, False) for c in curr if c != "_end") \
+                           if mistakeAllowed else False
 
-        return matches(self.root, 0, False)
+            if mistakeAllowed:
+                return find(word, curr[word[i]], i+1, True) or \
+                       any(find(word, curr[c], i+1, False) \
+                           for c in curr if c not in ("_end", word[i]))
+            return find(word, curr[word[i]], i+1, False)
+
+        return find(word, self.trie, 0, True)
+
+
+
+

@@ -1,22 +1,15 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+# Time:  O(n)
+# Space: O(1)
+
+# linked list
 class Solution:
-    def gameResult(self, head: Optional[ListNode]) -> str:
-        score = 0
-        current = head
-
-        while current is not None:
-            if current.val > current.next.val:
-                score += 1
-            else:
-                score -= 1
-            current = current.next.next
-
-        if score > 0:
-            return "Even"
-        if score < 0:
-            return "Odd"
-        return "Tie"
+    def gameResult(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: str
+        """
+        cnt = 0
+        while head:
+            cnt += cmp(head.val, head.next.val)
+            head = head.next.next
+        return "Tie" if cnt == 0 else "Odd" if cnt < 0 else "Even"

@@ -1,23 +1,22 @@
-from functools import cmp_to_key
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# sort, greedy
 class Solution:
-    def minDamage(self, power: int, damage: List[int], health: List[int]) -> int:
-        enemies = [
-            ((enemy_health + power - 1) // power, enemy_damage) for enemy_damage, enemy_health in zip(damage, health)
-        ]
-
-        def compare(first: tuple[int, int], second: tuple[int, int]) -> int:
-            first_before = first[0] * second[1]
-            second_before = second[0] * first[1]
-            return (first_before > second_before) - (first_before < second_before)
-
-        enemies.sort(key=cmp_to_key(compare))
-
-        active_damage = sum(damage)
-        total_damage = 0
-        for attack_seconds, enemy_damage in enemies:
-            total_damage += active_damage * attack_seconds
-            active_damage -= enemy_damage
-
-        return total_damage
+    def minDamage(self, power, damage, health):
+        """
+        :type power: int
+        :type damage: List[int]
+        :type health: List[int]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+        
+        idxs = range(len(health))
+        idxs.sort(key=lambda i: float(ceil_divide(health[i], power))/damage[i])
+        result = t = 0
+        for i in idxs:
+            t += ceil_divide(health[i], power)
+            result += t*damage[i]
+        return result

@@ -1,34 +1,72 @@
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+
+
+# dp solution
 class Solution:
-    def countPairs(self, nums: list[int], low: int, high: int) -> int:
-        def count_less(limit: int) -> int:
-            root = [None, None, 0]
-            total = 0
+    def countPairs(self, nums, low, high):
+        """
+        :type nums: List[int]
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        def count(nums, x):
+            result = 0
+            dp = collections.Counter(nums)
+            while x:
+                if x&1:
+                    result += sum(dp[(x^1)^k]*dp[k] for k in dp.keys())//2  # current limit is xxxxx1*****, count xor pair with xxxxx0***** pattern
+                dp = collections.Counter({k>>1: dp[k]+dp[k^1] for k in dp.keys()})
+                x >>= 1
+            return result
+    
+        return count(nums, high+1)-count(nums, low)
 
-            for value in nums:
-                node = root
-                for bit in range(14, -1, -1):
-                    value_bit = (value >> bit) & 1
-                    limit_bit = (limit >> bit) & 1
 
-                    if limit_bit:
-                        same = node[value_bit]
-                        if same is not None:
-                            total += same[2]
-                        node = node[value_bit ^ 1]
-                    else:
-                        node = node[value_bit]
+# Time:  O(n)
+# Space: O(n)
+# trie solution
+class Trie(object):
+    def __init__(self):
+        self.__root = {}
+        
+    def insert(self, num):
+        node = self.__root
+        for i in reversed(range(32)):
+            curr = (num>>i) & 1
+            if curr not in node:
+                node[curr] = {"_count":0}
+            node = node[curr]
+            node["_count"] += 1
+                
+    def query(self, num, limit):
+        node, result = self.__root, 0
+        for i in reversed(range(32)):
+            curr = (num>>i) & 1
+            bit = (limit>>i) & 1
+            if bit:
+                if curr in node:
+                    result += node[0^curr]["_count"]  # current limit is xxxxx1*****, count xor pair with xxxxx0***** pattern
+            if bit^curr not in node:
+                break
+            node = node[bit^curr]
+        return result
 
-                    if node is None:
-                        break
 
-                node = root
-                for bit in range(14, -1, -1):
-                    value_bit = (value >> bit) & 1
-                    if node[value_bit] is None:
-                        node[value_bit] = [None, None, 0]
-                    node = node[value_bit]
-                    node[2] += 1
-
-            return total
-
-        return count_less(high + 1) - count_less(low)
+class Solution2(object):
+    def countPairs(self, nums, low, high):
+        """
+        :type nums: List[int]
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        result = 0
+        trie = Trie()
+        for x in nums:
+            result += trie.query(x, high+1)-trie.query(x, low)
+            trie.insert(x)
+        return result

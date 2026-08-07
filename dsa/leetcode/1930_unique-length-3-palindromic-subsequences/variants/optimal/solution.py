@@ -1,9 +1,8 @@
 class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
-        answer = 0
-        for outer in "abcdefghijklmnopqrstuvwxyz":
-            first = s.find(outer)
-            last = s.rfind(outer)
-            if first < last:
-                answer += len(set(s[first + 1 : last]))
-        return answer
+        ans = 0
+        for c in ascii_lowercase:
+            l, r = s.find(c), s.rfind(c)
+            if r - l > 1:
+                ans += len(set(s[l + 1 : r]))
+        return ans

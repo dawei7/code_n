@@ -1,13 +1,21 @@
-from typing import List
-
+# Time:  O(logn)
+# Space: O(1)
 
 class Solution:
-    def searchInsert(self, nums: List[int], target: int) -> int:
-        left, right = 0, len(nums)
-        while left < right:
-            middle = (left + right) // 2
-            if nums[middle] < target:
-                left = middle + 1
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = left + (right - left) / 2
+            if nums[mid] >= target:
+                right = mid - 1
             else:
-                right = middle
+                left = mid + 1
+
         return left
+
+

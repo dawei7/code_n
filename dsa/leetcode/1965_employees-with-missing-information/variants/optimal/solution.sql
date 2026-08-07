@@ -1,15 +1,9 @@
-SELECT employees.employee_id AS employee_id
-FROM Employees AS employees
-LEFT JOIN Salaries AS salaries
-  ON salaries.employee_id = employees.employee_id
-WHERE salaries.employee_id IS NULL
-
+# Write your MySQL query statement below
+SELECT employee_id
+FROM Employees
+WHERE employee_id NOT IN (SELECT employee_id FROM Salaries)
 UNION
-
-SELECT salaries.employee_id AS employee_id
-FROM Salaries AS salaries
-LEFT JOIN Employees AS employees
-  ON employees.employee_id = salaries.employee_id
-WHERE employees.employee_id IS NULL
-
-ORDER BY employee_id;
+SELECT employee_id
+FROM Salaries
+WHERE employee_id NOT IN (SELECT employee_id FROM Employees)
+ORDER BY 1;

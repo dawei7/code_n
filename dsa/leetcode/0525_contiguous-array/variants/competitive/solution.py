@@ -1,15 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def findMaxLength(self, nums: List[int]) -> int:
-        first_index = {0: -1}
-        balance = 0
-        longest = 0
-        for index, value in enumerate(nums):
-            balance += 1 if value == 1 else -1
-            if balance in first_index:
-                longest = max(longest, index - first_index[balance])
+    def findMaxLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result, count = 0, 0
+        lookup = {0: -1}
+        for i, num in enumerate(nums):
+            count += 1 if num == 1 else -1
+            if count in lookup:
+                result = max(result, i - lookup[count])
             else:
-                first_index[balance] = index
-        return longest
+                lookup[count] = i
+
+        return result
+

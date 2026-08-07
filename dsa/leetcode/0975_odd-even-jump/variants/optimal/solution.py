@@ -1,31 +1,20 @@
-from typing import List
-
-
 class Solution:
     def oddEvenJumps(self, arr: List[int]) -> int:
+        @cache
+        def dfs(i: int, k: int) -> bool:
+            if i == n - 1:
+                return True
+            if g[i][k] == -1:
+                return False
+            return dfs(g[i][k], k ^ 1)
+
         n = len(arr)
-
-        def destinations(order):
-            result = [-1] * n
-            stack = []
-            for index in order:
-                while stack and stack[-1] < index:
-                    result[stack.pop()] = index
-                stack.append(index)
-            return result
-
-        higher = destinations(sorted(range(n), key=lambda i: (arr[i], i)))
-        lower = destinations(sorted(range(n), key=lambda i: (-arr[i], i)))
-
-        odd = [False] * n
-        even = [False] * n
-        odd[-1] = True
-        even[-1] = True
-
-        for i in range(n - 2, -1, -1):
-            if higher[i] != -1:
-                odd[i] = even[higher[i]]
-            if lower[i] != -1:
-                even[i] = odd[lower[i]]
-
-        return sum(odd)
+        g = [[0] * 2 for _ in range(n)]
+        sd = SortedDict()
+        for i in range(n - 1, -1, -1):
+            j = sd.bisect_left(arr[i])
+            g[i][1] = sd.values()[j] if j < len(sd) else -1
+            j = sd.bisect_right(arr[i]) - 1
+            g[i][0] = sd.values()[j] if j >= 0 else -1
+            sd[arr[i]] = i
+        return sum(dfs(i, 1) for i in range(n))

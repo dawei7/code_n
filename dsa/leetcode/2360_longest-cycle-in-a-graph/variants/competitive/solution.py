@@ -1,21 +1,26 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# graph
 class Solution:
-    def longestCycle(self, edges: List[int]) -> int:
-        visited = [False] * len(edges)
-        answer = -1
-        for start in range(len(edges)):
-            if visited[start]:
+    def longestCycle(self, edges):
+        """
+        :type edges: List[int]
+        :rtype: int
+        """
+        result = -1
+        lookup = [-1]*len(edges)
+        idx = 0
+        for i in range(len(edges)):
+            if lookup[i] != -1:
                 continue
-            first_step = {}
-            node = start
-            step = 0
-            while node != -1 and not visited[node]:
-                visited[node] = True
-                first_step[node] = step
-                step += 1
-                node = edges[node]
-            if node in first_step:
-                answer = max(answer, step - first_step[node])
-        return answer
+            start = idx
+            while i != -1:
+                if lookup[i] != -1:
+                    break
+                lookup[i] = idx
+                idx += 1
+                i = edges[i]
+            if i != -1 and lookup[i] >= start:
+                result = max(result, idx-lookup[i])
+        return result

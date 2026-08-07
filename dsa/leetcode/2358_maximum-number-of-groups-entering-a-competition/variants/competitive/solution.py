@@ -1,7 +1,13 @@
-from math import isqrt
-from typing import List
+# Time:  O(1)
+# Space: O(1)
 
-
+# math
 class Solution:
-    def maximumGroups(self, grades: List[int]) -> int:
-        return (isqrt(8 * len(grades) + 1) - 1) // 2
+    def maximumGroups(self, grades):
+        """
+        :type grades: List[int]
+        :rtype: int
+        """
+        # (1+x)*x/2 <= len(grades)
+        # => x <= ((1+8*len(grades))**0.5-1)/2.0
+        return int(((1+8*len(grades))**0.5-1)/2.0)

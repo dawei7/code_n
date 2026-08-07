@@ -1,24 +1,39 @@
-from collections import deque
-from typing import Optional
-
-
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def findBottomLeftValue(self, root: Optional[TreeNode]) -> int:
-        queue = deque([root])
-        answer = root.val
-        while queue:
-            answer = queue[0].val
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
-        return answer
+    def findBottomLeftValue(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def findBottomLeftValueHelper(root, curr_depth, max_depth, bottom_left_value):
+            if not root:
+                return max_depth, bottom_left_value
+            if not root.left and not root.right and curr_depth+1 > max_depth:
+                return curr_depth+1, root.val
+            max_depth, bottom_left_value = findBottomLeftValueHelper(root.left, curr_depth+1, max_depth, bottom_left_value)
+            max_depth, bottom_left_value = findBottomLeftValueHelper(root.right, curr_depth+1, max_depth, bottom_left_value)
+            return max_depth, bottom_left_value
+
+        result, max_depth = 0, 0
+        return findBottomLeftValueHelper(root, 0, max_depth, result)[1]
+
+
+# Time:  O(n)
+# Space: O()
+import collections
+
+
+class Solution2(object):
+    def findBottomLeftValue(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        last_node, q = None, collections.deque([root])
+        while q:
+            last_node = q.popleft()
+            q.extend([n for n in [last_node.right, last_node.left] if n])
+        return last_node.val
+

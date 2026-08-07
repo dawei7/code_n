@@ -1,29 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def findLatestStep(self, arr: List[int], m: int) -> int:
-        n = len(arr)
-        length = [0] * (n + 2)
-        groups_of_size_m = 0
-        answer = -1
-
-        for step, position in enumerate(arr, 1):
-            left = length[position - 1]
-            right = length[position + 1]
-            merged = left + 1 + right
-
-            if left == m:
-                groups_of_size_m -= 1
-            if right == m:
-                groups_of_size_m -= 1
-            if merged == m:
-                groups_of_size_m += 1
-
-            length[position - left] = merged
-            length[position + right] = merged
-
-            if groups_of_size_m:
-                answer = step
-
-        return answer
+    def findLatestStep(self, arr, m):
+        """
+        :type arr: List[int]
+        :type m: int
+        :rtype: int
+        """
+        if m == len(arr):
+            return m
+        length = [0]*(len(arr)+2)
+        result = -1
+        for i, x in enumerate(arr):
+            left, right = length[x-1], length[x+1]
+            if left == m or right == m:
+                result = i
+            length[x-left] = length[x+right] = left+right+1
+        return result

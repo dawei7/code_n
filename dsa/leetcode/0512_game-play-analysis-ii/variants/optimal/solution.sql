@@ -1,13 +1,13 @@
+# Write your MySQL query statement below
 SELECT
-    activity.player_id,
-    activity.device_id
-FROM Activity AS activity
-JOIN (
-    SELECT
-        player_id,
-        MIN(event_date) AS first_login
-    FROM Activity
-    GROUP BY player_id
-) AS first_activity
-    ON first_activity.player_id = activity.player_id
-   AND first_activity.first_login = activity.event_date;
+    player_id,
+    device_id
+FROM Activity
+WHERE
+    (player_id, event_date) IN (
+        SELECT
+            player_id,
+            MIN(event_date) AS event_date
+        FROM Activity
+        GROUP BY 1
+    );

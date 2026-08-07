@@ -1,10 +1,10 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
-        for character in s:
-            stack.append(character)
-            if len(stack) >= 3 and stack[-3] == "a" and stack[-2] == "b" and stack[-1] == "c":
-                stack.pop()
-                stack.pop()
-                stack.pop()
-        return not stack
+        if len(s) % 3:
+            return False
+        t = []
+        for c in s:
+            t.append(c)
+            if ''.join(t[-3:]) == 'abc':
+                t[-3:] = []
+        return not t

@@ -1,22 +1,6 @@
-from typing import List
-
-
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        low = 1
-        high = max(piles)
+        def check(k: int) -> bool:
+            return sum((x + k - 1) // k for x in piles) <= h
 
-        while low < high:
-            speed = (low + high) // 2
-            required_hours = 0
-            for pile in piles:
-                required_hours += (pile + speed - 1) // speed
-                if required_hours > h:
-                    break
-
-            if required_hours <= h:
-                high = speed
-            else:
-                low = speed + 1
-
-        return low
+        return 1 + bisect_left(range(1, max(piles) + 1), True, key=check)

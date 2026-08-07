@@ -1,14 +1,16 @@
+# Time:  O(nlogr), r is the max of candidates
+# Space: O(logr)
+
+# bit manipulation, freq table
 class Solution:
-    def largestCombination(self, candidates: List[int]) -> int:
-        answer = 0
-        bit = 1
-        maximum = max(candidates)
-
-        while bit <= maximum:
-            answer = max(
-                answer,
-                sum(1 for value in candidates if value & bit),
-            )
-            bit <<= 1
-
-        return answer
+    def largestCombination(self, candidates):
+        """
+        :type candidates: List[int]
+        :rtype: int
+        """
+        cnt = []
+        base, mx = 1, max(candidates)
+        while base <= mx:
+            cnt.append(sum(x&base > 0 for x in candidates))
+            base <<= 1
+        return max(cnt)

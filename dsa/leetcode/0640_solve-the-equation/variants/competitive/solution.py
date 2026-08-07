@@ -1,34 +1,22 @@
+# Time:  O(n)
+# Space: O(n)
+
+import re
+
+
 class Solution:
-    def solveEquation(self, equation: str) -> str:
-        def parse(expression):
-            coefficient = 0
-            constant = 0
-            index = 0
-            while index < len(expression):
-                sign = 1
-                if expression[index] in "+-":
-                    sign = 1 if expression[index] == "+" else -1
-                    index += 1
+    def solveEquation(self, equation):
+        """
+        :type equation: str
+        :rtype: str
+        """
+        a, b, side = 0, 0, 1
+        for eq, sign, num, isx in re.findall('(=)|([-+]?)(\d*)(x?)', equation):
+            if eq:
+                side = -1
+            elif isx:
+                a += side * int(sign + '1') * int(num or 1)
+            elif num:
+                b -= side * int(sign + num)
+        return 'x=%d' % (b / a) if a else 'No solution' if b else 'Infinite solutions'
 
-                value = 0
-                has_digits = False
-                while index < len(expression) and expression[index].isdigit():
-                    value = value * 10 + int(expression[index])
-                    has_digits = True
-                    index += 1
-
-                if index < len(expression) and expression[index] == "x":
-                    coefficient += sign * (value if has_digits else 1)
-                    index += 1
-                else:
-                    constant += sign * value
-            return coefficient, constant
-
-        left, right = equation.split("=")
-        left_coefficient, left_constant = parse(left)
-        right_coefficient, right_constant = parse(right)
-        coefficient = left_coefficient - right_coefficient
-        constant = right_constant - left_constant
-        if coefficient == 0:
-            return "Infinite solutions" if constant == 0 else "No solution"
-        return f"x={constant // coefficient}"

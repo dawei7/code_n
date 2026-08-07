@@ -1,11 +1,12 @@
-from typing import List
+# Time:  O((m + n) * log(m + n))
+# Space: O(m + n)
 
-
+# freq table, sort
 class Solution:
-    def mergeSimilarItems(self, items1: List[List[int]], items2: List[List[int]]) -> List[List[int]]:
-        weights = [0] * 1001
-        for value, weight in items1:
-            weights[value] += weight
-        for value, weight in items2:
-            weights[value] += weight
-        return [[value, weights[value]] for value in range(1, 1001) if weights[value]]
+    def mergeSimilarItems(self, items1, items2):
+        """
+        :type items1: List[List[int]]
+        :type items2: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        return sorted((Counter(dict(items1))+Counter(dict(items2))).iteritems())

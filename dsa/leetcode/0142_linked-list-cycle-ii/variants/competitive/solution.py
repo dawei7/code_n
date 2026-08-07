@@ -1,16 +1,28 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+    def __str__(self):
+        if self:
+            return "{}".format(self.val)
+        else:
+            return None
 
 class Solution:
-    def detectCycle(self, head: Optional["ListNode"]) -> Optional["ListNode"]:
-        slow = fast = head
-        while fast is not None and fast.next is not None:
-            slow = slow.next
-            fast = fast.next.next
-            if slow is fast:
-                entry = head
-                while entry is not slow:
-                    entry = entry.next
-                    slow = slow.next
-                return entry
+    # @param head, a ListNode
+    # @return a list node
+    def detectCycle(self, head):
+        fast, slow = head, head
+        while fast and fast.next:
+            fast, slow = fast.next.next, slow.next
+            if fast is slow:
+                fast = head
+                while fast is not slow:
+                    fast, slow = fast.next, slow.next
+                return fast
         return None
+

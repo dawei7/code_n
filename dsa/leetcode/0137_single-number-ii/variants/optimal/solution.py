@@ -1,11 +1,11 @@
-from typing import List
-
-
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        ones = 0
-        twos = 0
-        for value in nums:
-            ones = (ones ^ value) & ~twos
-            twos = (twos ^ value) & ~ones
-        return ones
+        ans = 0
+        for i in range(32):
+            cnt = sum(num >> i & 1 for num in nums)
+            if cnt % 3:
+                if i == 31:
+                    ans -= 1 << i
+                else:
+                    ans |= 1 << i
+        return ans

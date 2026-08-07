@@ -1,11 +1,20 @@
+# Time:  O(n)
+# Space: O(26)
+
+# greedy, hash table
 class Solution:
-    def maxSubstrings(self, word: str) -> int:
-        selected = 0
-        first_position: dict[str, int] = {}
-        for index, character in enumerate(word):
-            if character in first_position and index - first_position[character] >= 3:
-                selected += 1
-                first_position = {}
-            else:
-                first_position.setdefault(character, index)
-        return selected
+    def maxSubstrings(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        L = 4
+        result = 0
+        lookup = {}
+        for i, c in enumerate(word):
+            if c not in lookup:
+                lookup[c] = i
+            elif i-lookup[c]+1 >= L:
+                result += 1
+                lookup.clear()
+        return result

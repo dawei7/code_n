@@ -1,19 +1,23 @@
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def binaryTreePaths(self, root: Optional["TreeNode"]) -> List[str]:
-        paths = []
-
-        def visit(node: Optional["TreeNode"], prefix: str) -> None:
-            if node is None:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        def dfs(root: Optional[TreeNode]):
+            if root is None:
                 return
-            path = f"{prefix}->{node.val}" if prefix else str(node.val)
-            if node.left is None and node.right is None:
-                paths.append(path)
-                return
-            visit(node.left, path)
-            visit(node.right, path)
+            t.append(str(root.val))
+            if root.left is None and root.right is None:
+                ans.append("->".join(t))
+            else:
+                dfs(root.left)
+                dfs(root.right)
+            t.pop()
 
-        visit(root, "")
-        return paths
+        ans = []
+        t = []
+        dfs(root)
+        return ans

@@ -1,24 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(k)
 
-
+# two pointers
 class Solution:
-    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
-        counts = {}
-        window_sum = 0
-        best = 0
-
-        for right, value in enumerate(nums):
-            counts[value] = counts.get(value, 0) + 1
-            window_sum += value
-
-            if right >= k:
-                outgoing = nums[right - k]
-                window_sum -= outgoing
-                counts[outgoing] -= 1
-                if counts[outgoing] == 0:
-                    del counts[outgoing]
-
-            if right >= k - 1 and len(counts) == k:
-                best = max(best, window_sum)
-
-        return best
+    def maximumSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = left = total = 0
+        lookup = set()
+        for right in range(len(nums)):
+            while nums[right] in lookup or len(lookup) == k:
+                lookup.remove(nums[left])
+                total -= nums[left]
+                left += 1
+            lookup.add(nums[right])
+            total += nums[right]
+            if len(lookup) == k:
+                result = max(result, total)
+        return result

@@ -1,18 +1,20 @@
 class Solution:
     def palindromePartition(self, s: str, k: int) -> int:
-        length = len(s)
-        cost = [[0] * length for _ in range(length)]
-        for span in range(2, length + 1):
-            for left in range(length - span + 1):
-                right = left + span - 1
-                inner = cost[left + 1][right - 1] if span > 2 else 0
-                cost[left][right] = inner + (s[left] != s[right])
+        n = len(s)
+        g = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                g[i][j] = int(s[i] != s[j])
+                if i + 1 < j:
+                    g[i][j] += g[i + 1][j - 1]
 
-        previous = [float("inf")] * (length + 1)
-        previous[0] = 0
-        for parts in range(1, k + 1):
-            current = [float("inf")] * (length + 1)
-            for end in range(parts, length + 1):
-                current[end] = min(previous[start] + cost[start][end - 1] for start in range(parts - 1, end))
-            previous = current
-        return previous[length]
+        f = [[0] * (k + 1) for _ in range(n + 1)]
+        for i in range(1, n + 1):
+            for j in range(1, min(i, k) + 1):
+                if j == 1:
+                    f[i][j] = g[0][i - 1]
+                else:
+                    f[i][j] = inf
+                    for h in range(j - 1, i):
+                        f[i][j] = min(f[i][j], f[h][j - 1] + g[h][i - 1])
+        return f[n][k]

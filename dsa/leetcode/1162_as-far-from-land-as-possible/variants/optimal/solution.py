@@ -1,29 +1,18 @@
-from collections import deque
-
-
 class Solution:
     def maxDistance(self, grid: List[List[int]]) -> int:
-        size = len(grid)
-        queue = deque()
-        seen = [[False] * size for _ in range(size)]
-        for row in range(size):
-            for column in range(size):
-                if grid[row][column] == 1:
-                    queue.append((row, column))
-                    seen[row][column] = True
-
-        if not queue or len(queue) == size * size:
-            return -1
-
-        distance = -1
-        while queue:
-            for _ in range(len(queue)):
-                row, column = queue.popleft()
-                for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row = row + row_step
-                    next_column = column + column_step
-                    if 0 <= next_row < size and 0 <= next_column < size and not seen[next_row][next_column]:
-                        seen[next_row][next_column] = True
-                        queue.append((next_row, next_column))
-            distance += 1
-        return distance
+        n = len(grid)
+        q = deque((i, j) for i in range(n) for j in range(n) if grid[i][j])
+        ans = -1
+        if len(q) in (0, n * n):
+            return ans
+        dirs = (-1, 0, 1, 0, -1)
+        while q:
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                for a, b in pairwise(dirs):
+                    x, y = i + a, j + b
+                    if 0 <= x < n and 0 <= y < n and grid[x][y] == 0:
+                        grid[x][y] = 1
+                        q.append((x, y))
+            ans += 1
+        return ans

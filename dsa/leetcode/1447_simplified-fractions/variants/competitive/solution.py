@@ -1,12 +1,17 @@
-from math import gcd
-from typing import List
+# Time:  O(n^2 * logn)
+# Space: O(n^2)
 
+import fractions
 
 class Solution:
-    def simplifiedFractions(self, n: int) -> List[str]:
-        fractions = []
-        for denominator in range(2, n + 1):
-            for numerator in range(1, denominator):
-                if gcd(numerator, denominator) == 1:
-                    fractions.append(f"{numerator}/{denominator}")
-        return fractions
+    def simplifiedFractions(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        lookup = set()
+        for b in range(1, n+1):
+            for a in range(1, b):
+                g = fractions.gcd(a, b)
+                lookup.add((a//g, b//g))
+        return map(lambda x: "{}/{}".format(*x), lookup)

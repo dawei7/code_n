@@ -1,28 +1,26 @@
-from bisect import bisect_left
-from itertools import combinations
-from typing import List
+# Time:  O(n * 2^n)
+# Space: O(2^n)
+
+import itertools
+import bisect
 
 
 class Solution:
-    def minimumDifference(self, nums: List[int]) -> int:
-        n = len(nums) // 2
-        left = nums[:n]
-        right = nums[n:]
-        right_sums = [sorted(sum(group) for group in combinations(right, count)) for count in range(n + 1)]
-
-        total = sum(nums)
-        answer = float("inf")
-
-        for left_count in range(n + 1):
-            compatible = right_sums[n - left_count]
-            for group in combinations(left, left_count):
-                left_sum = sum(group)
-                target = total / 2 - left_sum
-                index = bisect_left(compatible, target)
-
-                for candidate_index in (index - 1, index):
-                    if 0 <= candidate_index < len(compatible):
-                        chosen_sum = left_sum + compatible[candidate_index]
-                        answer = min(answer, abs(total - 2 * chosen_sum))
-
-        return int(answer)
+    def minimumDifference(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left, right = nums[:len(nums)//2], nums[len(nums)//2:]
+        total1, total2 = sum(left), sum(right)
+        result = float("inf")
+        for k in range(len(left)+1): 
+            sums = sorted(2*sum(comb)-total1 for comb in itertools.combinations(left, k))
+            for comb in itertools.combinations(right, len(left)-k): 
+                diff = 2*sum(comb)-total2
+                i = bisect.bisect_left(sums, -diff)
+                if i < len(sums):
+                    result = min(result, abs(sums[i]+diff))
+                if i > 0:
+                    result = min(result, abs(sums[i-1]+diff))
+        return result

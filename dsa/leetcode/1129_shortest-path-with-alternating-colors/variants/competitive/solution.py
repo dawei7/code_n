@@ -1,31 +1,31 @@
-from collections import deque
-from typing import List
+# Time:  O(n + e), e is the number of red and blue edges
+# Space: O(n + e)
+
+import collections
 
 
 class Solution:
-    def shortestAlternatingPaths(self, n: int, redEdges: List[List[int]], blueEdges: List[List[int]]) -> List[int]:
-        adjacency = [[[] for _ in range(n)] for _ in range(2)]
-        for source, target in redEdges:
-            adjacency[0][source].append(target)
-        for source, target in blueEdges:
-            adjacency[1][source].append(target)
-
-        distances = [[-1, -1] for _ in range(n)]
-        distances[0] = [0, 0]
-        queue = deque([(0, 0), (0, 1)])
-
-        while queue:
-            node, last_color = queue.popleft()
-            next_color = 1 - last_color
-            for neighbor in adjacency[next_color][node]:
-                if distances[neighbor][next_color] != -1:
+    def shortestAlternatingPaths(self, n, red_edges, blue_edges):
+        """
+        :type n: int
+        :type red_edges: List[List[int]]
+        :type blue_edges: List[List[int]]
+        :rtype: List[int]
+        """
+        neighbors = [[set() for _ in range(2)] for _ in range(n)]
+        for i, j in red_edges:
+            neighbors[i][0].add(j)
+        for i, j in blue_edges:
+            neighbors[i][1].add(j)
+        INF = max(2*n-3, 0)+1
+        dist = [[INF, INF] for i in range(n)]
+        dist[0] = [0, 0]
+        q = collections.deque([(0, 0), (0, 1)])
+        while q:
+            i, c = q.popleft()
+            for j in neighbors[i][c]:
+                if dist[j][c] != INF:
                     continue
-                distances[neighbor][next_color] = distances[node][last_color] + 1
-                queue.append((neighbor, next_color))
-
-        return [
-            max(red_distance, blue_distance)
-            if min(red_distance, blue_distance) == -1
-            else min(red_distance, blue_distance)
-            for red_distance, blue_distance in distances
-        ]
+                dist[j][c] = dist[i][1^c]+1
+                q.append((j, 1^c))
+        return [x if x != INF else -1 for x in map(min, dist)]

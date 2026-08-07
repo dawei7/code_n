@@ -1,14 +1,28 @@
-from typing import Optional
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
 
 
 class Solution:
-    def connect(self, root: Optional["Node"]) -> Optional["Node"]:
-        leftmost = root
-        while leftmost is not None and leftmost.left is not None:
-            node = leftmost
-            while node is not None:
-                node.left.next = node.right
-                node.right.next = node.next.left if node.next is not None else None
-                node = node.next
-            leftmost = leftmost.left
+    def connect(self, root: "Optional[Node]") -> "Optional[Node]":
+        if root is None:
+            return root
+        q = deque([root])
+        while q:
+            p = None
+            for _ in range(len(q)):
+                node = q.popleft()
+                if p:
+                    p.next = node
+                p = node
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
         return root

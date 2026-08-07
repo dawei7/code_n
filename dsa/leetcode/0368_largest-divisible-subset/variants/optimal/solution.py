@@ -1,24 +1,21 @@
-from typing import List
-
-
 class Solution:
     def largestDivisibleSubset(self, nums: List[int]) -> List[int]:
-        values = sorted(nums)
-        lengths = [1] * len(values)
-        previous = [-1] * len(values)
-        best_index = 0
-
-        for current in range(len(values)):
-            for earlier in range(current):
-                if values[current] % values[earlier] == 0 and lengths[earlier] + 1 > lengths[current]:
-                    lengths[current] = lengths[earlier] + 1
-                    previous[current] = earlier
-            if lengths[current] > lengths[best_index]:
-                best_index = current
-
-        subset = []
-        while best_index != -1:
-            subset.append(values[best_index])
-            best_index = previous[best_index]
-        subset.reverse()
-        return subset
+        nums.sort()
+        n = len(nums)
+        f = [1] * n
+        k = 0
+        for i in range(n):
+            for j in range(i):
+                if nums[i] % nums[j] == 0:
+                    f[i] = max(f[i], f[j] + 1)
+            if f[k] < f[i]:
+                k = i
+        m = f[k]
+        i = k
+        ans = []
+        while m:
+            if nums[k] % nums[i] == 0 and f[i] == m:
+                ans.append(nums[i])
+                k, m = i, m - 1
+            i -= 1
+        return ans

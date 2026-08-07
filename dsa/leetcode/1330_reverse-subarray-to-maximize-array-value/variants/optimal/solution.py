@@ -1,22 +1,15 @@
-from typing import List
-
-
 class Solution:
     def maxValueAfterReverse(self, nums: List[int]) -> int:
-        base = 0
-        best_gain = 0
-        greatest_lower = float("-inf")
-        least_upper = float("inf")
-
-        for index in range(1, len(nums)):
-            left = nums[index - 1]
-            right = nums[index]
-            edge = abs(left - right)
-            base += edge
-            best_gain = max(best_gain, abs(nums[0] - right) - edge)
-            best_gain = max(best_gain, abs(nums[-1] - left) - edge)
-            greatest_lower = max(greatest_lower, min(left, right))
-            least_upper = min(least_upper, max(left, right))
-
-        best_gain = max(best_gain, 2 * (greatest_lower - least_upper))
-        return base + best_gain
+        ans = s = sum(abs(x - y) for x, y in pairwise(nums))
+        for x, y in pairwise(nums):
+            ans = max(ans, s + abs(nums[0] - y) - abs(x - y))
+            ans = max(ans, s + abs(nums[-1] - x) - abs(x - y))
+        for k1, k2 in pairwise((1, -1, -1, 1, 1)):
+            mx, mi = -inf, inf
+            for x, y in pairwise(nums):
+                a = k1 * x + k2 * y
+                b = abs(x - y)
+                mx = max(mx, a - b)
+                mi = min(mi, a + b)
+            ans = max(ans, s + max(mx - mi, 0))
+        return ans

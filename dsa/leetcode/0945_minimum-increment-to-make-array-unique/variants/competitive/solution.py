@@ -1,18 +1,21 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def minIncrementForUnique(self, nums: List[int]) -> int:
-        limit = max(nums) + len(nums)
-        frequency = [0] * (limit + 1)
-        for value in nums:
-            frequency[value] += 1
-
-        moves = 0
-        for value in range(limit):
-            excess = frequency[value] - 1
-            if excess > 0:
-                frequency[value + 1] += excess
-                moves += excess
-
-        return moves
+    def minIncrementForUnique(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        A.sort()
+        A.append(float("inf"))
+        result, duplicate = 0, 0
+        for i in range(1, len(A)):
+            if A[i-1] == A[i]:
+                duplicate += 1
+                result -= A[i]
+            else:
+                move = min(duplicate, A[i]-A[i-1]-1)
+                duplicate -= move
+                result += move*A[i-1] + move*(move+1)//2
+        return result

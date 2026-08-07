@@ -1,41 +1,38 @@
-from typing import List
+# Time:  O(mlogm + nlogn + (m + n) * logr), r = 2*(max(max(hens), max(grains))-min(min(hens), min(grains))
+# Space: O(1)
 
-
+# binary search, greedy
 class Solution:
-    def minimumTime(self, hens: List[int], grains: List[int]) -> int:
+    def minimumTime(self, hens, grains):
+        """
+        :type hens: List[int]
+        :type grains: List[int]
+        :rtype: int
+        """
+        def check(x):
+            i = 0
+            for h in hens:
+                if h-grains[i] > x:
+                    return False
+                elif h-grains[i] > 0:
+                    d = h-grains[i]
+                    c = max(x-2*d, (x-d)//2)  # max(go left then right, go right then left)
+                else:
+                    c = x                   
+                while i < len(grains) and grains[i] <= h+c:
+                    i += 1
+                if i == len(grains):
+                    return True
+            return False
+    
         hens.sort()
         grains.sort()
-        grain_count = len(grains)
-
-        def can_eat_all(time: int) -> bool:
-            grain = 0
-            for hen in hens:
-                if grain == grain_count:
-                    return True
-
-                if grains[grain] < hen:
-                    left_distance = hen - grains[grain]
-                    if left_distance > time:
-                        return False
-                    right_reach = max(
-                        hen + time - 2 * left_distance,
-                        hen + (time - left_distance) // 2,
-                    )
-                else:
-                    right_reach = hen + time
-
-                while grain < grain_count and grains[grain] <= right_reach:
-                    grain += 1
-
-            return grain == grain_count
-
-        low = -1
-        high = 2 * 10**9
-        while high - low > 1:
-            middle = (low + high) // 2
-            if can_eat_all(middle):
-                high = middle
+        left, right = 0, 2*(max(grains[-1], hens[-1])-min(grains[0], hens[0]))
+        while left <= right:
+            mid = left+(right-left)//2
+            if check(mid):
+                right = mid-1
             else:
-                low = middle
-
-        return high
+                left = mid+1
+        return left
+    

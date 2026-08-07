@@ -1,3 +1,13 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# combinatorics
 class Solution:
-    def countDistinctStrings(self, s: str, k: int) -> int:
-        return pow(2, len(s) - k + 1, 1_000_000_007)
+    def countDistinctStrings(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        return pow(2, len(s)-k+1, MOD)

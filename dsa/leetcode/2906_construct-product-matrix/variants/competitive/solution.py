@@ -1,23 +1,44 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(m * n)
 
-
+# prefix sum
 class Solution:
-    def constructProductMatrix(self, grid: List[List[int]]) -> List[List[int]]:
-        modulus = 12345
-        rows = len(grid)
-        columns = len(grid[0])
-        product = [[1] * columns for _ in range(rows)]
+    def constructProductMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        MOD = 12345
+        right = [1]*(len(grid)*len(grid[0])+1)
+        for i in reversed(range(len(grid))):
+            for j in reversed(range(len(grid[0]))):
+                right[i*len(grid[0])+j] = (right[(i*len(grid[0])+j)+1]*grid[i][j])%MOD
+        left = 1
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                grid[i][j], left = (left*right[(i*len(grid[0])+j)+1])%MOD, (left*grid[i][j])%MOD
+        return grid
 
-        prefix = 1
-        for row in range(rows):
-            for column in range(columns):
-                product[row][column] = prefix
-                prefix = prefix * grid[row][column] % modulus
 
-        suffix = 1
-        for row in range(rows - 1, -1, -1):
-            for column in range(columns - 1, -1, -1):
-                product[row][column] = product[row][column] * suffix % modulus
-                suffix = suffix * grid[row][column] % modulus
-
-        return product
+# Time:  O(m * n)
+# Space: O(m * n)
+# prefix sum
+class Solution2(object):
+    def constructProductMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        MOD = 12345
+        left = [1]*(len(grid)*len(grid[0])+1)
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                left[(i*len(grid[0])+j)+1] = (left[i*len(grid[0])+j]*grid[i][j])%MOD
+        right = [1]*(len(grid)*len(grid[0])+1)
+        for i in reversed(range(len(grid))):
+            for j in reversed(range(len(grid[0]))):
+                right[i*len(grid[0])+j] = (right[(i*len(grid[0])+j)+1]*grid[i][j])%MOD
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                grid[i][j] = (left[i*len(grid[0])+j]*right[(i*len(grid[0])+j)+1])%MOD
+        return grid

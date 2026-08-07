@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     def rankTeams(self, votes: List[str]) -> str:
-        team_count = len(votes[0])
-        ranks = {team: [0] * team_count for team in votes[0]}
+        m = len(votes[0])
+        cnt = defaultdict(lambda: [0] * m)
         for vote in votes:
-            for position, team in enumerate(vote):
-                ranks[team][position] -= 1
-        return "".join(sorted(ranks, key=lambda team: (ranks[team], team)))
+            for i, c in enumerate(vote):
+                cnt[c][i] += 1
+        return "".join(sorted(cnt, key=lambda c: (cnt[c], -ord(c)), reverse=True))

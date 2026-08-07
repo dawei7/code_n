@@ -1,13 +1,10 @@
 class Solution:
     def winnerOfGame(self, colors: str) -> bool:
-        alice_moves = 0
-        bob_moves = 0
-
-        for index in range(1, len(colors) - 1):
-            if colors[index - 1] == colors[index] == colors[index + 1]:
-                if colors[index] == "A":
-                    alice_moves += 1
-                else:
-                    bob_moves += 1
-
-        return alice_moves > bob_moves
+        a = b = 0
+        for c, v in groupby(colors):
+            m = len(list(v)) - 2
+            if m > 0 and c == 'A':
+                a += m
+            elif m > 0 and c == 'B':
+                b += m
+        return a > b

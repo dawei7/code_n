@@ -1,39 +1,32 @@
-from collections import Counter
-from typing import List
+# Time:  O(nlogn + nlogr), r is max((abs(i-j) for i, j in itertools.izip(nums1, nums2))
+# Space: O(n)
+
+import itertools
 
 
+# binary search
 class Solution:
-    def minSumSquareDiff(
-        self,
-        nums1: List[int],
-        nums2: List[int],
-        k1: int,
-        k2: int,
-    ) -> int:
-        differences = [abs(first - second) for first, second in zip(nums1, nums2)]
-        operations = k1 + k2
-        if operations >= sum(differences):
-            return 0
+    def minSumSquareDiff(self, nums1, nums2, k1, k2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k1: int
+        :type k2: int
+        :rtype: int
+        """
+        def check(diffs, k, x):
+            return sum(max(d-x, 0) for d in diffs) <= k
 
-        frequency = Counter(differences)
-        levels = sorted(frequency, reverse=True)
-        leveled_count = 0
-
-        for level_index, level in enumerate(levels):
-            leveled_count += frequency[level]
-            next_level = levels[level_index + 1] if level_index + 1 < len(levels) else 0
-            cost = (level - next_level) * leveled_count
-            if operations >= cost:
-                operations -= cost
-                continue
-
-            full_steps, partially_reduced = divmod(operations, leveled_count)
-            final_level = level - full_steps
-            answer = (leveled_count - partially_reduced) * final_level * final_level + partially_reduced * (
-                final_level - 1
-            ) * (final_level - 1)
-            for lower_level in levels[level_index + 1 :]:
-                answer += frequency[lower_level] * lower_level * lower_level
-            return answer
-
-        return 0
+        diffs = sorted((abs(i-j) for i, j in itertools.izip(nums1, nums2)), reverse=True)
+        k = min(k1+k2, sum(diffs))
+        left, right = 0, diffs[0]
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(diffs, k, mid):
+                right = mid-1
+            else:
+                left = mid+1
+        k -= sum(max(d-left, 0) for d in diffs)
+        for i in range(len(diffs)):
+            diffs[i] = min(diffs[i], left)-int(i < k)
+        return sum(d**2 for d in diffs)

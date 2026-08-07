@@ -1,7 +1,14 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def complexNumberMultiply(self, num1: str, num2: str) -> str:
-        first_real, first_imaginary = map(int, num1[:-1].split("+"))
-        second_real, second_imaginary = map(int, num2[:-1].split("+"))
-        real = first_real * second_real - first_imaginary * second_imaginary
-        imaginary = first_real * second_imaginary + first_imaginary * second_real
-        return f"{real}+{imaginary}i"
+    def complexNumberMultiply(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        ra, ia = map(int, a[:-1].split('+'))
+        rb, ib = map(int, b[:-1].split('+'))
+        return '%d+%di' % (ra * rb - ia * ib, ra * ib + ia * rb)
+

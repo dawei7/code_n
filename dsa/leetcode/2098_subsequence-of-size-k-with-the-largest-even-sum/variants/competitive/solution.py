@@ -1,27 +1,51 @@
-from typing import List
+# Time:  O(n) on average
+# Space: O(1)
+
+import random
 
 
+# quick select solution
 class Solution:
-    def largestEvenSum(self, nums: List[int], k: int) -> int:
-        nums.sort(reverse=True)
-        total = sum(nums[:k])
-        if total % 2 == 0:
+    def largestEvenSum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def nth_element(nums, n, compare=lambda a, b: a < b):
+            def tri_partition(nums, left, right, target, compare):
+                mid = left
+                while mid <= right:
+                    if nums[mid] == target:
+                        mid += 1
+                    elif compare(nums[mid], target):
+                        nums[left], nums[mid] = nums[mid], nums[left]
+                        left += 1
+                        mid += 1
+                    else:
+                        nums[mid], nums[right] = nums[right], nums[mid]
+                        right -= 1
+                return left, right
+
+            left, right = 0, len(nums)-1
+            while left <= right:
+                pivot_idx = random.randint(left, right)
+                pivot_left, pivot_right = tri_partition(nums, left, right, nums[pivot_idx], compare)
+                if pivot_left <= n <= pivot_right:
+                    return
+                elif pivot_left > n:
+                    right = pivot_left-1
+                else:  # pivot_right < n.
+                    left = pivot_right+1
+
+        nth_element(nums, k-1, compare=lambda a, b: a > b)
+        total = sum(nums[i] for i in range(k))
+        if total%2 == 0:
             return total
-
-        smallest_selected = [None, None]
-        for value in nums[:k]:
-            smallest_selected[value % 2] = value
-
-        largest_unselected = [None, None]
-        for value in nums[k:]:
-            parity = value % 2
-            if largest_unselected[parity] is None:
-                largest_unselected[parity] = value
-
-        best = -1
-        for selected_parity in (0, 1):
-            selected = smallest_selected[selected_parity]
-            replacement = largest_unselected[1 - selected_parity]
-            if selected is not None and replacement is not None:
-                best = max(best, total - selected + replacement)
-        return best
+        min_k = [float("inf")]*2
+        for i in range(k):
+            min_k[nums[i]%2] = min(min_k[nums[i]%2], nums[i])
+        result = -1
+        for i in range(k, len(nums)):
+            result = max(result, total-min_k[not (nums[i]%2)]+nums[i])
+        return result

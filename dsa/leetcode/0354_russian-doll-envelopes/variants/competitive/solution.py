@@ -1,15 +1,31 @@
-from bisect import bisect_left
-from typing import List
-
+# Time:  O(nlogn + nlogk) = O(nlogn), k is the length of the result.
+# Space: O(1)
 
 class Solution:
-    def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
-        ordered = sorted(envelopes, key=lambda envelope: (envelope[0], -envelope[1]))
-        tails = []
-        for _, height in ordered:
-            position = bisect_left(tails, height)
-            if position == len(tails):
-                tails.append(height)
+    def maxEnvelopes(self, envelopes):
+        """
+        :type envelopes: List[List[int]]
+        :rtype: int
+        """
+        def insert(target):
+            left, right = 0, len(result) - 1
+            while left <= right:
+                mid = left + (right - left) / 2
+                if result[mid] >= target:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            if left == len(result):
+                result.append(target)
             else:
-                tails[position] = height
-        return len(tails)
+                result[left] = target
+
+        result = []
+
+        envelopes.sort(lambda x, y: y[1] - x[1] if x[0] == y[0] else \
+                                    x[0] - y[0])
+        for envelope in envelopes:
+            insert(envelope[1])
+
+        return len(result)
+

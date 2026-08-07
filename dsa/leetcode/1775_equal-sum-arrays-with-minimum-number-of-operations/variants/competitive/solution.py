@@ -1,29 +1,31 @@
-from typing import List
+# Time:  O(m + n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def minOperations(self, nums1: List[int], nums2: List[int]) -> int:
-        if len(nums1) * 6 < len(nums2) or len(nums2) * 6 < len(nums1):
+    def minOperations(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        if len(nums1)*6 < len(nums2) or len(nums1) > len(nums2)*6:
             return -1
-
-        sum1 = sum(nums1)
-        sum2 = sum(nums2)
-        if sum1 > sum2:
+        diff = sum(nums2)-sum(nums1)
+        if diff < 0:
             nums1, nums2 = nums2, nums1
-            sum1, sum2 = sum2, sum1
-
-        gains = [0] * 6
-        for value in nums1:
-            gains[6 - value] += 1
-        for value in nums2:
-            gains[value - 1] += 1
-
-        gap = sum2 - sum1
-        operations = 0
-        for gain in range(5, 0, -1):
-            used = min(gains[gain], (gap + gain - 1) // gain)
-            gap -= used * gain
-            operations += used
-            if gap <= 0:
-                return operations
-        return operations
+            diff = -diff
+        count = collections.Counter(6-num for num in nums1)
+        count += collections.Counter(num-1 for num in nums2)
+        result = 0
+        for i in reversed(range(1, 6)):
+            if not count[i]:
+                continue
+            cnt = min(count[i], (diff+i-1)//i)
+            result += cnt
+            diff -= i*cnt
+            if diff <= 0:
+                break
+        return result

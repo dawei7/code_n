@@ -1,15 +1,19 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, greedy
 class Solution:
-    def partitionArray(self, nums: List[int], k: int) -> int:
+    def partitionArray(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
         nums.sort()
-        groups = 1
-        minimum = nums[0]
-
-        for value in nums[1:]:
-            if value - minimum > k:
-                groups += 1
-                minimum = value
-
-        return groups
+        result, prev = 1, 0
+        for i in range(len(nums)):
+            if nums[i]-nums[prev] <= k:
+                continue
+            prev = i
+            result += 1
+        return result

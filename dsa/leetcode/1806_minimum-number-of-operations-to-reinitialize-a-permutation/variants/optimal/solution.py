@@ -1,14 +1,11 @@
 class Solution:
     def reinitializePermutation(self, n: int) -> int:
-        position = 1
-        operations = 0
-
-        while True:
-            if position % 2 == 0:
-                position //= 2
+        ans, i = 0, 1
+        while 1:
+            ans += 1
+            if i < n >> 1:
+                i <<= 1
             else:
-                position = n // 2 + (position - 1) // 2
-            operations += 1
-
-            if position == 1:
-                return operations
+                i = (i - (n >> 1)) << 1 | 1
+            if i == 1:
+                return ans

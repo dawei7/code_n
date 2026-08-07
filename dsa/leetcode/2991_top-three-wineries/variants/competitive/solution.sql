@@ -1,20 +1,21 @@
-WITH winery_totals AS (
-    SELECT country, winery, SUM(points) AS total_points
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH rank_cte AS (
+    SELECT country,
+           winery,
+           SUM(points) AS total,
+           ROW_NUMBER() OVER (PARTITION BY country ORDER BY SUM(points) DESC, winery) AS rnk
     FROM Wineries
-    GROUP BY country, winery
-),
-ranked_wineries AS (
-    SELECT country, winery, total_points,
-        ROW_NUMBER() OVER (
-            PARTITION BY country
-            ORDER BY total_points DESC, winery
-        ) AS winery_rank
-    FROM winery_totals
+    GROUP BY 1, 2
+    ORDER BY NULL
 )
+
 SELECT country,
-    MAX(CASE WHEN winery_rank = 1 THEN winery || ' (' || total_points || ')' END) AS top_winery,
-    COALESCE(MAX(CASE WHEN winery_rank = 2 THEN winery || ' (' || total_points || ')' END), 'No second winery') AS second_winery,
-    COALESCE(MAX(CASE WHEN winery_rank = 3 THEN winery || ' (' || total_points || ')' END), 'No third winery') AS third_winery
-FROM ranked_wineries
-GROUP BY country
-ORDER BY country;
+       MAX(CASE WHEN rnk = 1 THEN CONCAT(winery, ' (', total, ')') END) AS top_winery,
+       COALESCE(MAX(CASE WHEN rnk = 2 THEN CONCAT(winery, ' (', total, ')') END), 'No second winery') AS second_winery,
+       COALESCE(MAX(CASE WHEN rnk = 3 THEN CONCAT(winery, ' (', total, ')') END), 'No third winery') AS third_winery
+FROM  rank_cte
+WHERE rnk <= 3
+GROUP BY 1
+ORDER BY 1;

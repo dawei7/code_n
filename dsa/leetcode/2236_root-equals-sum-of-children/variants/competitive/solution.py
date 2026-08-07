@@ -1,6 +1,17 @@
-from typing import Optional
+# Time:  O(1)
+# Space: O(1)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        pass
 
 
+# tree
 class Solution:
-    def checkTree(self, root: Optional[TreeNode]) -> bool:
-        return root.val == root.left.val + root.right.val
+    def checkTree(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: bool
+        """
+        return root.val == root.left.val+root.right.val

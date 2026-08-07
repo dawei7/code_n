@@ -1,31 +1,32 @@
 class Solution:
-    def rootCount(self, edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
-        node_count = len(edges) + 1
-        graph = [[] for _ in range(node_count)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+    def rootCount(
+        self, edges: List[List[int]], guesses: List[List[int]], k: int
+    ) -> int:
+        def dfs1(i, fa):
+            nonlocal cnt
+            for j in g[i]:
+                if j != fa:
+                    cnt += gs[(i, j)]
+                    dfs1(j, i)
 
-        guess_set = {tuple(guess) for guess in guesses}
-        parent = [-2] * node_count
-        parent[0] = -1
-        order = [0]
+        def dfs2(i, fa):
+            nonlocal ans, cnt
+            ans += cnt >= k
+            for j in g[i]:
+                if j != fa:
+                    cnt -= gs[(i, j)]
+                    cnt += gs[(j, i)]
+                    dfs2(j, i)
+                    cnt -= gs[(j, i)]
+                    cnt += gs[(i, j)]
 
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor != parent[node]:
-                    parent[neighbor] = node
-                    order.append(neighbor)
-
-        correct = [0] * node_count
-        correct[0] = sum((parent[node], node) in guess_set for node in range(1, node_count))
-        answer = int(correct[0] >= k)
-
-        for node in order[1:]:
-            previous_root = parent[node]
-            correct[node] = (
-                correct[previous_root] - ((previous_root, node) in guess_set) + ((node, previous_root) in guess_set)
-            )
-            answer += correct[node] >= k
-
-        return answer
+        g = defaultdict(list)
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        gs = Counter((u, v) for u, v in guesses)
+        cnt = 0
+        dfs1(0, -1)
+        ans = 0
+        dfs2(0, -1)
+        return ans

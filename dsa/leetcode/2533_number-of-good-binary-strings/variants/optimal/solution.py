@@ -1,18 +1,13 @@
 class Solution:
-    def goodBinaryStrings(self, minLength: int, maxLength: int, oneGroup: int, zeroGroup: int) -> int:
-        modulus = 1_000_000_007
-        ways = [0] * (maxLength + 1)
-        ways[0] = 1
-        answer = 0
-
-        for length in range(1, maxLength + 1):
-            if length >= oneGroup:
-                ways[length] += ways[length - oneGroup]
-            if length >= zeroGroup:
-                ways[length] += ways[length - zeroGroup]
-            ways[length] %= modulus
-
-            if length >= minLength:
-                answer = (answer + ways[length]) % modulus
-
-        return answer
+    def goodBinaryStrings(
+        self, minLength: int, maxLength: int, oneGroup: int, zeroGroup: int
+    ) -> int:
+        mod = 10**9 + 7
+        f = [1] + [0] * maxLength
+        for i in range(1, len(f)):
+            if i - oneGroup >= 0:
+                f[i] += f[i - oneGroup]
+            if i - zeroGroup >= 0:
+                f[i] += f[i - zeroGroup]
+            f[i] %= mod
+        return sum(f[minLength:]) % mod

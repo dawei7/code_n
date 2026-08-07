@@ -1,7 +1,3 @@
-from collections import deque
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -9,37 +5,23 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def amountOfTime(
-        self,
-        root: Optional[TreeNode],
-        start: int,
-    ) -> int:
-        parent = {root: None}
-        queue = deque([root])
-        start_node = root
+    def amountOfTime(self, root: Optional[TreeNode], start: int) -> int:
+        def dfs(node: Optional[TreeNode], fa: Optional[TreeNode]):
+            if node is None:
+                return
+            if fa:
+                g[node.val].append(fa.val)
+                g[fa.val].append(node.val)
+            dfs(node.left, node)
+            dfs(node.right, node)
 
-        while queue:
-            node = queue.popleft()
-            if node.val == start:
-                start_node = node
-            if node.left is not None:
-                parent[node.left] = node
-                queue.append(node.left)
-            if node.right is not None:
-                parent[node.right] = node
-                queue.append(node.right)
+        def dfs2(node: int, fa: int) -> int:
+            ans = 0
+            for nxt in g[node]:
+                if nxt != fa:
+                    ans = max(ans, 1 + dfs2(nxt, node))
+            return ans
 
-        queue = deque([start_node])
-        infected = {start_node}
-        minutes = -1
-
-        while queue:
-            minutes += 1
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                for neighbor in (node.left, node.right, parent[node]):
-                    if neighbor is not None and neighbor not in infected:
-                        infected.add(neighbor)
-                        queue.append(neighbor)
-
-        return minutes
+        g = defaultdict(list)
+        dfs(root, None)
+        return dfs2(start, -1)

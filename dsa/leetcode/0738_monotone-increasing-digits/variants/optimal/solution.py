@@ -1,14 +1,15 @@
 class Solution:
     def monotoneIncreasingDigits(self, n: int) -> int:
-        digits = list(str(n))
-        suffix_start = len(digits)
-
-        for index in range(len(digits) - 1, 0, -1):
-            if digits[index - 1] > digits[index]:
-                digits[index - 1] = str(int(digits[index - 1]) - 1)
-                suffix_start = index
-
-        for index in range(suffix_start, len(digits)):
-            digits[index] = "9"
-
-        return int("".join(digits))
+        s = list(str(n))
+        i = 1
+        while i < len(s) and s[i - 1] <= s[i]:
+            i += 1
+        if i < len(s):
+            while i and s[i - 1] > s[i]:
+                s[i - 1] = str(int(s[i - 1]) - 1)
+                i -= 1
+            i += 1
+            while i < len(s):
+                s[i] = '9'
+                i += 1
+        return int(''.join(s))

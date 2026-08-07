@@ -1,12 +1,9 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def minimumRounds(self, tasks: List[int]) -> int:
-        rounds = 0
-        for frequency in Counter(tasks).values():
-            if frequency == 1:
+        cnt = Counter(tasks)
+        ans = 0
+        for v in cnt.values():
+            if v == 1:
                 return -1
-            rounds += (frequency + 2) // 3
-        return rounds
+            ans += v // 3 + (v % 3 != 0)
+        return ans

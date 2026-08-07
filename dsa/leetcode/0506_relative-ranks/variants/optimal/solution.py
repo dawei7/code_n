@@ -1,11 +1,10 @@
-from typing import List
-
-
 class Solution:
     def findRelativeRanks(self, score: List[int]) -> List[str]:
-        order = sorted(range(len(score)), key=score.__getitem__, reverse=True)
-        answer = [""] * len(score)
-        medals = ("Gold Medal", "Silver Medal", "Bronze Medal")
-        for rank, index in enumerate(order, start=1):
-            answer[index] = medals[rank - 1] if rank <= 3 else str(rank)
-        return answer
+        n = len(score)
+        idx = list(range(n))
+        idx.sort(key=lambda x: -score[x])
+        top3 = ["Gold Medal", "Silver Medal", "Bronze Medal"]
+        ans = [None] * n
+        for i, j in enumerate(idx):
+            ans[j] = top3[i] if i < 3 else str(i + 1)
+        return ans

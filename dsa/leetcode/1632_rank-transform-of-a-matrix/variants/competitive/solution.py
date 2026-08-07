@@ -1,50 +1,60 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(m * n * log(m * n) + m * n * α(m * n)) = O(m * n * log(m * n))
+# Space: O(m * n)
+
+import collections
+
+
+class UnionFind(object):  # Time: O(n * α(n)), Space: O(n)
+    def __init__(self, n, cb):
+        self.set = range(n)
+        self.rank = [0]*n
+        self.cb = cb
+
+    def find_set(self, x):
+        stk = []
+        while self.set[x] != x:  # path compression
+            stk.append(x)
+            x = self.set[x]
+        while stk:
+            self.set[stk.pop()] = x
+        return x
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
+            return False
+        if self.rank[x_root] < self.rank[y_root]:  # union by rank
+            self.set[x_root] = y_root
+            self.cb(y_root, x_root, y_root)
+        elif self.rank[x_root] > self.rank[y_root]:
+            self.set[y_root] = x_root
+            self.cb(x_root, x_root, y_root)
+        else:
+            self.set[y_root] = x_root
+            self.rank[x_root] += 1
+            self.cb(x_root, x_root, y_root)
+        return True
 
 
 class Solution:
-    def matrixRankTransform(self, matrix: List[List[int]]) -> List[List[int]]:
-        rows = len(matrix)
-        columns = len(matrix[0])
-        by_value = defaultdict(list)
-        for row in range(rows):
-            for column in range(columns):
-                by_value[matrix[row][column]].append((row, column))
+    def matrixRankTransform(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def cb(x, y, z):
+            new_rank[x] = max(new_rank[y], new_rank[z])
 
-        row_rank = [0] * rows
-        column_rank = [0] * columns
-        answer = [[0] * columns for _ in range(rows)]
-
-        for value in sorted(by_value):
-            parent = {}
-
-            def find(node):
-                parent.setdefault(node, node)
-                if parent[node] != node:
-                    parent[node] = find(parent[node])
-                return parent[node]
-
-            def union(left, right):
-                left_root = find(left)
-                right_root = find(right)
-                if left_root != right_root:
-                    parent[right_root] = left_root
-
-            for row, column in by_value[value]:
-                union((0, row), (1, column))
-
-            components = defaultdict(list)
-            for row, column in by_value[value]:
-                components[find((0, row))].append((row, column))
-
-            assignments = []
-            for cells in components.values():
-                rank = 1 + max(max(row_rank[row], column_rank[column]) for row, column in cells)
-                assignments.append((cells, rank))
-
-            for cells, rank in assignments:
-                for row, column in cells:
-                    answer[row][column] = rank
-                    row_rank[row] = max(row_rank[row], rank)
-                    column_rank[column] = max(column_rank[column], rank)
-        return answer
+        lookup = collections.defaultdict(list)
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                lookup[matrix[i][j]].append([i, j])
+        rank = [0]*(len(matrix)+len(matrix[0]))
+        for x in sorted(lookup):
+            new_rank = rank[:]
+            union_find = UnionFind(len(matrix)+len(matrix[0]), cb)
+            for i, j in lookup[x]:
+                union_find.union_set(i, j+len(matrix))
+            for i, j in lookup[x]:
+                matrix[i][j] = rank[i] = rank[j+len(matrix)] = new_rank[union_find.find_set(i)]+1
+        return matrix

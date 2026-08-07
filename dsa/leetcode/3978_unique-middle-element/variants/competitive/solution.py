@@ -1,12 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def isMiddleElementUnique(self, nums: list[int]) -> bool:
-        middle = nums[len(nums) // 2]
-        occurrences = 0
+    def isMiddleElementUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return sum(x == nums[len(nums)//2] for x in nums) == 1
 
-        for value in nums:
-            if value == middle:
-                occurrences += 1
-                if occurrences > 1:
-                    return False
 
-        return True
+# Time:  O(n)
+# Space: O(1)
+# array
+class Solution2(object):
+    def isMiddleElementUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return nums.count(nums[len(nums)//2]) == 1

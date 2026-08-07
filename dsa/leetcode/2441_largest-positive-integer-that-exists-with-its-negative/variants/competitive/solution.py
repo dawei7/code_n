@@ -1,7 +1,12 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def findMaxK(self, nums: List[int]) -> int:
-        values = set(nums)
-        return max((value for value in values if value > 0 and -value in values), default=-1)
+    def findMaxK(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        lookup = set(nums)
+        return max([x for x in lookup if x > 0 and -x in lookup] or [-1])

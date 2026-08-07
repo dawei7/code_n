@@ -1,33 +1,31 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# two pointers, sliding window, prefix sum, hash table
 class Solution:
-    def countKConstraintSubstrings(
-        self,
-        s: str,
-        k: int,
-        queries: List[List[int]],
-    ) -> List[int]:
-        length = len(s)
-        rightmost_valid = [length - 1] * length
-        valid_suffix_prefix = [0] * (length + 1)
+    def countKConstraintSubstrings(self, s, k, queries):
+        """
+        :type s: str
+        :type k: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def count(l):
+            return (l+1)*l//2
 
-        counts = [0, 0]
-        left = 0
-        for right, bit in enumerate(s):
-            counts[int(bit)] += 1
-            while counts[0] > k and counts[1] > k:
-                rightmost_valid[left] = right - 1
-                counts[int(s[left])] -= 1
+        result = cnt = left = 0
+        prefix = [0]*(len(s)+1)
+        lookup = [-1]*len(s)
+        for right in range(len(s)):
+            cnt += int(s[right] == '1')
+            while not (cnt <= k or (right-left+1)-cnt <= k):
+                cnt -= int(s[left] == '1')
                 left += 1
-            valid_suffix_prefix[right + 1] = valid_suffix_prefix[right] + right - left + 1
-
-        answer = []
-        for query_left, query_right in queries:
-            prefix_end = min(query_right, rightmost_valid[query_left])
-            prefix_length = prefix_end - query_left + 1
-            prefix_count = prefix_length * (prefix_length + 1) // 2
-            tail_count = valid_suffix_prefix[query_right + 1] - valid_suffix_prefix[prefix_end + 1]
-            answer.append(prefix_count + tail_count)
-
-        return answer
+            result += right-left+1
+            prefix[right+1] = prefix[right]+(right-left+1)
+            lookup[left] = right
+        assert(lookup[0] != -1)
+        for i in range(len(s)-1):
+            if lookup[i+1] == -1:
+                lookup[i+1] = lookup[i]
+        return [count(min(lookup[left], right)-left+1)+(prefix[right+1]-prefix[min(lookup[left], right)+1]) for left, right in queries]

@@ -1,26 +1,14 @@
-from typing import List
-
-
 class Solution:
     def numberOfSubmatrices(self, grid: List[List[str]]) -> int:
-        columns = len(grid[0])
-        column_balance = [0] * columns
-        column_x_count = [0] * columns
-        answer = 0
-
-        for row in grid:
-            prefix_balance = 0
-            prefix_x_count = 0
-            for column, value in enumerate(row):
-                if value == "X":
-                    column_balance[column] += 1
-                    column_x_count[column] += 1
-                elif value == "Y":
-                    column_balance[column] -= 1
-
-                prefix_balance += column_balance[column]
-                prefix_x_count += column_x_count[column]
-                if prefix_balance == 0 and prefix_x_count > 0:
-                    answer += 1
-
-        return answer
+        m, n = len(grid), len(grid[0])
+        s = [[[0] * 2 for _ in range(n + 1)] for _ in range(m + 1)]
+        ans = 0
+        for i, row in enumerate(grid, 1):
+            for j, x in enumerate(row, 1):
+                s[i][j][0] = s[i - 1][j][0] + s[i][j - 1][0] - s[i - 1][j - 1][0]
+                s[i][j][1] = s[i - 1][j][1] + s[i][j - 1][1] - s[i - 1][j - 1][1]
+                if x != ".":
+                    s[i][j][ord(x) & 1] += 1
+                if s[i][j][0] > 0 and s[i][j][0] == s[i][j][1]:
+                    ans += 1
+        return ans

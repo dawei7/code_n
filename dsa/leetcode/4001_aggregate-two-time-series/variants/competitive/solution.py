@@ -1,27 +1,25 @@
+# Time:  O(n + m)
+# Space: O(1)
+
+# two pointers
 class Solution:
-    def aggregateTimeSeries(self, series1: list[list[int]], series2: list[list[int]]) -> list[list[int]]:
-        index1 = len(series1) - 1
-        index2 = len(series2) - 1
-        next_value1 = 0
-        next_value2 = 0
-        answer = []
-
-        while index1 >= 0 or index2 >= 0:
-            if index2 < 0 or (index1 >= 0 and series1[index1][0] > series2[index2][0]):
-                timestamp = series1[index1][0]
-            elif index1 < 0 or series2[index2][0] > series1[index1][0]:
-                timestamp = series2[index2][0]
+    def aggregateTimeSeries(self, series1, series2):
+        """
+        :type series1: List[List[int]]
+        :type series2: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        result = []
+        i = j = 0
+        while i != len(series1) or j != len(series2):
+            if j == len(series2) or (i != len(series1) and series1[i][0] < series2[j][0]):
+                result.append([series1[i][0], series1[i][1]+(series2[j][1] if j != len(series2) else 0)])
+                i += 1
+            elif i == len(series1) or (j != len(series2) and series2[j][0] < series1[i][0]):
+                result.append([series2[j][0], series2[j][1]+(series1[i][1] if i != len(series1) else 0)])
+                j += 1
             else:
-                timestamp = series1[index1][0]
-
-            if index1 >= 0 and series1[index1][0] == timestamp:
-                next_value1 = series1[index1][1]
-                index1 -= 1
-            if index2 >= 0 and series2[index2][0] == timestamp:
-                next_value2 = series2[index2][1]
-                index2 -= 1
-
-            answer.append([timestamp, next_value1 + next_value2])
-
-        answer.reverse()
-        return answer
+                result.append([series1[i][0], series1[i][1]+series2[j][1]])
+                i += 1
+                j += 1
+        return result

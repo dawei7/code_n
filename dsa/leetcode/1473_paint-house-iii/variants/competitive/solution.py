@@ -1,66 +1,52 @@
-from typing import List
-
+# Time:  O(m * t * n^2)
+# Space: O(t * n)
 
 class Solution:
-    def minCost(
-        self,
-        houses: List[int],
-        cost: List[List[int]],
-        m: int,
-        n: int,
-        target: int,
-    ) -> int:
-        infinity = 10**18
-
-        previous = [[infinity] * n for _ in range(target + 1)]
-        if houses[0] == 0:
-            for color in range(n):
-                previous[1][color] = cost[0][color]
-        else:
-            previous[1][houses[0] - 1] = 0
-
-        for house_index in range(1, m):
-            best = [(infinity, infinity, -1)] * (target + 1)
-
-            for groups in range(1, min(target, house_index) + 1):
-                smallest = infinity
-                second_smallest = infinity
-                smallest_color = -1
-
-                for color, value in enumerate(previous[groups]):
-                    if value < smallest:
-                        second_smallest = smallest
-                        smallest = value
-                        smallest_color = color
-                    elif value < second_smallest:
-                        second_smallest = value
-
-                best[groups] = (smallest, second_smallest, smallest_color)
-
-            next_costs = [[infinity] * n for _ in range(target + 1)]
-            if houses[house_index] == 0:
-                available_colors = range(n)
-            else:
-                available_colors = (houses[house_index] - 1,)
-
-            for groups in range(1, min(target, house_index + 1) + 1):
-                for color in available_colors:
-                    predecessor = previous[groups][color]
-
-                    if groups > 1:
-                        smallest, second_smallest, smallest_color = best[groups - 1]
-                        different_color = smallest if smallest_color != color else second_smallest
-                        predecessor = min(predecessor, different_color)
-
-                    if predecessor == infinity:
+    def minCost(self, houses, cost, m, n, target):
+        """
+        :type houses: List[int]
+        :type cost: List[List[int]]
+        :type m: int
+        :type n: int
+        :type target: int
+        :rtype: int
+        """
+        # dp[i][j][k]: cost of covering i+1 houses with j+1 neighbor groups and the (k+1)th color
+        dp = [[[float("inf") for _ in range(n)] for _ in range(target)] for _ in range(2)]
+        for i in range(m):
+            dp[i%2] = [[float("inf") for _ in range(n)] for _ in range(target)]
+            for j in range(min(target, i+1)):
+                for k in range(n):
+                    if houses[i] and houses[i]-1 != k:
                         continue
+                    same = dp[(i-1)%2][j][k] if i-1 >= 0 else 0
+                    diff = (min([dp[(i-1)%2][j-1][nk] for nk in range(n) if nk != k] or [float("inf")]) if j-1 >= 0 else float("inf")) if i-1 >= 0 else 0
+                    paint = cost[i][k] if not houses[i] else 0
+                    dp[i%2][j][k] = min(same, diff)+paint
+        result = min(dp[(m-1)%2][-1])
+        return result if result != float("inf") else -1
 
-                    paint_cost = 0
-                    if houses[house_index] == 0:
-                        paint_cost = cost[house_index][color]
-                    next_costs[groups][color] = predecessor + paint_cost
 
-            previous = next_costs
-
-        answer = min(previous[target])
-        return -1 if answer == infinity else answer
+# Time:  O(m * t * n^2)
+# Space: O(t * n)
+class Solution2(object):
+    def minCost(self, houses, cost, m, n, target):
+        """
+        :type houses: List[int]
+        :type cost: List[List[int]]
+        :type m: int
+        :type n: int
+        :type target: int
+        :rtype: int
+        """
+        dp = {(0, 0): 0}
+        for i, p in enumerate(houses):
+            new_dp = {}
+            for nk in (range(1, n+1) if not p else [p]):
+                for j, k in dp:
+                    nj = j + (k != nk)
+                    if nj > target:
+                        continue
+                    new_dp[nj, nk] = min(new_dp.get((nj, nk), float("inf")), dp[j, k] + (cost[i][nk-1] if nk != p else 0))
+            dp = new_dp
+        return min([dp[j, k] for j, k in dp if j == target] or [-1])

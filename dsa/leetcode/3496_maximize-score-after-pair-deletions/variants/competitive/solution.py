@@ -1,11 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def maxScore(self, nums: List[int]) -> int:
-        total = sum(nums)
-        if len(nums) % 2 == 1:
-            return total - min(nums)
-
-        minimum_pair = min(nums[index] + nums[index + 1] for index in range(len(nums) - 1))
-        return total - minimum_pair
+    def maxScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(nums)-min(nums) if len(nums)%2 else sum(nums)-min(nums[i]+nums[i+1] for i in range(len(nums)-1))

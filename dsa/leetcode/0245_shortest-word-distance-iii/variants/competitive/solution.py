@@ -1,21 +1,26 @@
-class Solution:
-    def shortestWordDistance(self, wordsDict: list[str], word1: str, word2: str) -> int:
-        answer = len(wordsDict)
-        if word1 == word2:
-            previous = -1
-            for index, word in enumerate(wordsDict):
-                if word == word1:
-                    if previous >= 0:
-                        answer = min(answer, index - previous)
-                    previous = index
-            return answer
+# Time:  O(n)
+# Space: O(1)
 
-        latest1 = latest2 = -1
-        for index, word in enumerate(wordsDict):
-            if word == word1:
-                latest1 = index
-            elif word == word2:
-                latest2 = index
-            if latest1 >= 0 and latest2 >= 0:
-                answer = min(answer, abs(latest1 - latest2))
-        return answer
+class Solution:
+    # @param {string[]} words
+    # @param {string} word1
+    # @param {string} word2
+    # @return {integer}
+    def shortestWordDistance(self, words, word1, word2):
+        dist = float("inf")
+        is_same = (word1 == word2)
+        i, index1, index2 = 0, None, None
+        while i < len(words):
+            if words[i] == word1:
+                if is_same and index1 is not None:
+                    dist = min(dist, abs(index1 - i))
+                index1 = i
+            elif words[i] == word2:
+                index2 = i
+
+            if index1 is not None and index2 is not None:
+                dist = min(dist, abs(index1 - index2))
+            i += 1
+
+        return dist
+

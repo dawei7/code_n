@@ -1,19 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def simulationResult(
-        self,
-        windows: List[int],
-        queries: List[int],
-    ) -> List[int]:
-        seen = set()
+    def simulationResult(self, windows, queries):
+        """
+        :type windows: List[int]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
+        lookup = [False]*len(windows)
         result = []
-
-        for window in reversed(queries):
-            if window not in seen:
-                seen.add(window)
-                result.append(window)
-
-        result.extend(window for window in windows if window not in seen)
+        for x in reversed(queries):
+            if lookup[x-1]:
+                continue
+            lookup[x-1] = True
+            result.append(x)
+        result.extend(x for x in windows if not lookup[x-1])
         return result

@@ -1,9 +1,17 @@
+# Time:  O(1)
+# Space: O(1)
+
+# simulation
 class Solution:
-    def trafficSignal(self, timer: int) -> str:
+    def trafficSignal(self, timer):
+        """
+        :type timer: int
+        :rtype: str
+        """
         if timer == 0:
             return "Green"
-        if timer == 30:
+        elif timer == 30:
             return "Orange"
-        if 30 < timer <= 90:
+        elif 30 < timer <= 90:
             return "Red"
         return "Invalid"

@@ -1,51 +1,30 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# array, greedy
 class Solution:
-    def minFlips(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        flips = 0
-
-        for top in range(rows // 2):
-            for left in range(columns // 2):
-                ones = (
-                    grid[top][left]
-                    + grid[top][columns - 1 - left]
-                    + grid[rows - 1 - top][left]
-                    + grid[rows - 1 - top][columns - 1 - left]
-                )
-                flips += min(ones, 4 - ones)
-
-        mismatched_pairs = 0
-        matched_pair_ones = 0
-
-        if rows % 2:
-            middle_row = rows // 2
-            for left in range(columns // 2):
-                first = grid[middle_row][left]
-                second = grid[middle_row][columns - 1 - left]
-                if first != second:
-                    mismatched_pairs += 1
-                else:
-                    matched_pair_ones += first + second
-
-        if columns % 2:
-            middle_column = columns // 2
-            for top in range(rows // 2):
-                first = grid[top][middle_column]
-                second = grid[rows - 1 - top][middle_column]
-                if first != second:
-                    mismatched_pairs += 1
-                else:
-                    matched_pair_ones += first + second
-
-        flips += mismatched_pairs
-
-        if rows % 2 and columns % 2:
-            flips += grid[rows // 2][columns // 2]
-
-        if mismatched_pairs == 0 and matched_pair_ones % 4 == 2:
-            flips += 2
-
-        return flips
+    def minFlips(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        m, n = len(grid), len(grid[0])
+        result = 0
+        for i in range(m//2):
+            for j in range(n//2):
+                c = grid[i][j]+grid[i][~j]+grid[~i][j]+grid[~i][~j]
+                result += min(c, 4-c)
+        diff = cnt1 = 0
+        if m%2:
+            for j in range(n//2):
+                diff += grid[m//2][j]^grid[m//2][~j]
+                cnt1 += grid[m//2][j]+grid[m//2][~j]
+        if n%2:
+            for i in range(m//2):
+                diff += grid[i][n//2]^grid[~i][n//2]
+                cnt1 += grid[i][n//2]+grid[~i][n//2]
+        if m%2 and n%2:
+            result += grid[m//2][n//2]
+        if diff == 0:
+            result += (-cnt1)%4
+        return result+diff

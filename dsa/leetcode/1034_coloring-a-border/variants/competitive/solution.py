@@ -1,30 +1,41 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(m + n)
+
+import collections
 
 
 class Solution:
-    def colorBorder(self, grid: List[List[int]], row: int, col: int, color: int) -> List[List[int]]:
-        rows, cols = len(grid), len(grid[0])
-        original = grid[row][col]
-        seen = {(row, col)}
-        stack = [(row, col)]
-        border = []
+    def colorBorder(self, grid, r0, c0, color):
+        """
+        :type grid: List[List[int]]
+        :type r0: int
+        :type c0: int
+        :type color: int
+        :rtype: List[List[int]]
+        """
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-        while stack:
-            current_row, current_col = stack.pop()
-            is_border = current_row in (0, rows - 1) or current_col in (0, cols - 1)
-            for row_step, col_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = current_row + row_step
-                next_col = current_col + col_step
-                if not (0 <= next_row < rows and 0 <= next_col < cols):
+        lookup, q, borders = set([(r0, c0)]), collections.deque([(r0, c0)]), []
+        while q:
+            r, c = q.popleft()
+            is_border = False
+
+            for direction in directions:
+                nr, nc = r+direction[0], c+direction[1]
+                if not ((0 <= nr < len(grid)) and \
+                        (0 <= nc < len(grid[0])) and \
+                        grid[nr][nc] == grid[r][c]):
                     is_border = True
-                elif grid[next_row][next_col] != original:
-                    is_border = True
-                elif (next_row, next_col) not in seen:
-                    seen.add((next_row, next_col))
-                    stack.append((next_row, next_col))
+                    continue
+                if (nr, nc) in lookup:
+                    continue
+                lookup.add((nr, nc))
+                q.append((nr, nc))
+
             if is_border:
-                border.append((current_row, current_col))
+                borders.append((r, c))
 
-        for border_row, border_col in border:
-            grid[border_row][border_col] = color
+        for r, c in borders:
+            grid[r][c] = color
         return grid
+    

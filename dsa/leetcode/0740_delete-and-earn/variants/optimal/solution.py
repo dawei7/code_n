@@ -1,15 +1,15 @@
-from typing import List
-
-
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
-        points = [0] * (max(nums) + 1)
-        for value in nums:
-            points[value] += value
-
-        skip = 0
-        take = 0
-        for total in points:
-            skip, take = max(skip, take), skip + total
-
-        return max(skip, take)
+        mx = -inf
+        for num in nums:
+            mx = max(mx, num)
+        total = [0] * (mx + 1)
+        for num in nums:
+            total[num] += num
+        first = total[0]
+        second = max(total[0], total[1])
+        for i in range(2, mx + 1):
+            cur = max(first + total[i], second)
+            first = second
+            second = cur
+        return second

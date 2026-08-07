@@ -1,16 +1,12 @@
-from typing import List
-
-
 class Solution:
     def getDescentPeriods(self, prices: List[int]) -> int:
-        ending_here = 1
-        total = 1
-
-        for index in range(1, len(prices)):
-            if prices[index - 1] - prices[index] == 1:
-                ending_here += 1
-            else:
-                ending_here = 1
-            total += ending_here
-
-        return total
+        ans = 0
+        i, n = 0, len(prices)
+        while i < n:
+            j = i + 1
+            while j < n and prices[j - 1] - prices[j] == 1:
+                j += 1
+            cnt = j - i
+            ans += (1 + cnt) * cnt // 2
+            i = j
+        return ans

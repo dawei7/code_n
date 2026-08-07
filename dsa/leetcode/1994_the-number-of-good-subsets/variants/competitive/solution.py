@@ -1,38 +1,47 @@
-from collections import Counter
-from typing import List
+# Time:  O(n * 2^p), p is the number of primes in [1, n]
+# Space: O(2^p)
+
+import collections
 
 
 class Solution:
-    def numberOfGoodSubsets(self, nums: List[int]) -> int:
-        modulo = 1_000_000_007
-        primes = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29)
-        frequencies = Counter(nums)
-        masks = [0] * 31
+    def numberOfGoodSubsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def sieve_of_eratosthenes(n):  # Time: O(n * log(logn)), Space: O(n)
+            if n < 2:
+                return []
+            primes = [2]
+            is_prime = [True]*((n+1)//2)
+            for i in range(1, len(is_prime)):
+                if not is_prime[i]:
+                    continue
+                primes.append(2*i+1)
+                for j in range(2*i*(i+1), len(is_prime), (2*i+1)):
+                    is_prime[j] = False
+            return primes
 
-        for value in range(2, 31):
-            mask = 0
-            valid = True
-            for index, prime in enumerate(primes):
-                if value % (prime * prime) == 0:
-                    valid = False
-                    break
-                if value % prime == 0:
-                    mask |= 1 << index
-            if valid:
-                masks[value] = mask
+        def to_mask(primes, x):
+            mask, basis = 0, 1
+            for p in primes:
+                if x%p == 0:
+                    mask |= basis
+                basis <<= 1
+            return mask
 
-        ways = [0] * (1 << len(primes))
-        ways[0] = 1
-
-        for value in range(2, 31):
-            count = frequencies[value]
-            value_mask = masks[value]
-            if count == 0 or value_mask == 0:
+        MOD = 10**9+7
+        primes = sieve_of_eratosthenes(max(nums))
+        dp = [0]*(1<<len(primes))  # dp[i] = the number of different good subsets of which the total product equals to the product of the primes in bitset i
+        dp[0] = 1
+        cnts = collections.Counter(nums)
+        for x, cnt in cnts.items():
+            if x == 1 or any(x%(p*p) == 0 for p in primes if p*p <= x):
                 continue
-            for used_mask in range(len(ways) - 1, -1, -1):
-                if used_mask & value_mask == 0:
-                    combined = used_mask | value_mask
-                    ways[combined] = (ways[combined] + ways[used_mask] * count) % modulo
-
-        nonempty_products = sum(ways[1:]) % modulo
-        return nonempty_products * pow(2, frequencies[1], modulo) % modulo
+            mask = to_mask(primes, x)
+            for i in range(len(dp)-1):
+                if i&mask:
+                    continue
+                dp[i|mask] = (dp[i|mask]+cnt*dp[i])%MOD
+        return (pow(2, cnts[1], MOD))*(reduce(lambda total, x: (total+x)%MOD, dp, 0)-1)%MOD

@@ -1,24 +1,19 @@
-from typing import List
-
-
 class Solution:
     def minUnlockedIndices(self, nums: List[int], locked: List[int]) -> int:
         n = len(nums)
-        first_two = n
-        first_three = n
-        last_one = -1
-        last_two = -1
-
-        for i, value in enumerate(nums):
-            if value == 1:
-                last_one = i
-            elif value == 2:
-                first_two = min(first_two, i)
-                last_two = i
+        first2 = first3 = n
+        last1 = last2 = -1
+        for i, x in enumerate(nums):
+            if x == 1:
+                last1 = i
+            elif x == 2:
+                first2 = min(first2, i)
+                last2 = i
             else:
-                first_three = min(first_three, i)
-
-        if first_three < last_one:
+                first3 = min(first3, i)
+        if first3 < last1:
             return -1
-
-        return sum(locked[i] for i in range(n) if first_two <= i < last_one or first_three <= i < last_two)
+        return sum(
+            st and (first2 <= i < last1 or first3 <= i < last2)
+            for i, st in enumerate(locked)
+        )

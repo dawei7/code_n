@@ -1,20 +1,13 @@
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
-        best = opened = closed = 0
-        for char in s:
-            opened += char == "("
-            closed += char == ")"
-            if opened == closed:
-                best = max(best, 2 * closed)
-            elif closed > opened:
-                opened = closed = 0
-
-        opened = closed = 0
-        for char in reversed(s):
-            opened += char == "("
-            closed += char == ")"
-            if opened == closed:
-                best = max(best, 2 * opened)
-            elif opened > closed:
-                opened = closed = 0
-        return best
+        n = len(s)
+        f = [0] * (n + 1)
+        for i, c in enumerate(s, 1):
+            if c == ")":
+                if i > 1 and s[i - 2] == "(":
+                    f[i] = f[i - 2] + 2
+                else:
+                    j = i - f[i - 1] - 1
+                    if j and s[j - 1] == "(":
+                        f[i] = f[i - 1] + 2 + f[j - 1]
+        return max(f)

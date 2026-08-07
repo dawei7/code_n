@@ -1,18 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def checkRecord(self, s: str) -> bool:
-        absences = 0
-        late_streak = 0
-
-        for status in s:
-            if status == "A":
-                absences += 1
-
-            if status == "L":
-                late_streak += 1
-            else:
-                late_streak = 0
-
-            if absences >= 2 or late_streak >= 3:
+    def checkRecord(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        count_A = 0
+        for i in range(len(s)):
+            if s[i] == 'A':
+                count_A += 1
+                if count_A == 2:
+                    return False
+            if i < len(s) - 2 and s[i] == s[i+1] == s[i+2] == 'L':
                 return False
-
         return True
+
+

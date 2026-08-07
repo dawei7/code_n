@@ -1,14 +1,37 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def find132pattern(self, nums: List[int]) -> bool:
-        stack = []
-        middle = float("-inf")
-        for value in reversed(nums):
-            if value < middle:
+    def find132pattern(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        ak = float("-inf")
+        stk = []
+        for i in reversed(range(len(nums))):
+            if nums[i] < ak:
                 return True
-            while stack and value > stack[-1]:
-                middle = stack.pop()
-            stack.append(value)
+            while stk and stk[-1] < nums[i]:
+                ak = stk.pop()
+            stk.append(nums[i])
+        return False
+
+
+# Time:  O(n^2)
+# Space: O(1)
+class Solution_TLE(object):
+    def find132pattern(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        for k in range(len(nums)):
+            valid = False
+            for j in range(k):
+                if nums[j] < nums[k]:
+                    valid = True
+                elif nums[j] > nums[k]:
+                    if valid:
+                        return True
         return False

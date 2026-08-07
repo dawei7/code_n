@@ -1,12 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def check(self, nums: List[int]) -> bool:
-        descents = 0
-        for index, value in enumerate(nums):
-            if value > nums[(index + 1) % len(nums)]:
-                descents += 1
-                if descents > 1:
+    def check(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        count = 0
+        for i in range(len(nums)):
+            if nums[i] > nums[(i+1)%len(nums)]:
+                count += 1
+                if count > 1:
                     return False
         return True

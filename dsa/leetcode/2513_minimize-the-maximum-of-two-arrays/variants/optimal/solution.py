@@ -1,27 +1,16 @@
-from math import gcd
-
-
 class Solution:
     def minimizeSet(
-        self,
-        divisor1: int,
-        divisor2: int,
-        uniqueCnt1: int,
-        uniqueCnt2: int,
+        self, divisor1: int, divisor2: int, uniqueCnt1: int, uniqueCnt2: int
     ) -> int:
-        common_multiple = divisor1 // gcd(divisor1, divisor2) * divisor2
-        low = 1
-        high = 2 * (uniqueCnt1 + uniqueCnt2)
+        def f(x):
+            cnt1 = x // divisor1 * (divisor1 - 1) + x % divisor1
+            cnt2 = x // divisor2 * (divisor2 - 1) + x % divisor2
+            cnt = x // divisor * (divisor - 1) + x % divisor
+            return (
+                cnt1 >= uniqueCnt1
+                and cnt2 >= uniqueCnt2
+                and cnt >= uniqueCnt1 + uniqueCnt2
+            )
 
-        while low < high:
-            middle = (low + high) // 2
-            enough_for_first = middle - middle // divisor1 >= uniqueCnt1
-            enough_for_second = middle - middle // divisor2 >= uniqueCnt2
-            enough_in_union = middle - middle // common_multiple >= uniqueCnt1 + uniqueCnt2
-
-            if enough_for_first and enough_for_second and enough_in_union:
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        divisor = lcm(divisor1, divisor2)
+        return bisect_left(range(10**10), True, key=f)

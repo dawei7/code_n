@@ -1,32 +1,65 @@
+# Time:  O(n * m)
+# Space: O(n * m)
+
+# bfs, flood fill
 class Solution:
-    def colorGrid(self, n: int, m: int, sources: list[list[int]]) -> list[list[int]]:
-        grid = [[0] * m for _ in range(n)]
-        frontier = []
-
-        for row, column, color in sources:
-            grid[row][column] = color
-            frontier.append((row, column))
-
-        directions = ((-1, 0), (1, 0), (0, -1), (0, 1))
-
-        while frontier:
-            next_colors = {}
-
-            for row, column in frontier:
-                color = grid[row][column]
-                for row_delta, column_delta in directions:
-                    next_row = row + row_delta
-                    next_column = column + column_delta
-
-                    if not (0 <= next_row < n and 0 <= next_column < m and grid[next_row][next_column] == 0):
+    def colorGrid(self, n, m, sources):
+        """
+        :type n: int
+        :type m: int
+        :type sources: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+        result = [[0]*m for _ in range(n)]
+        q = []
+        for r, c, color in sources:
+            result[r][c] = color
+            q.append((r, c))
+        while q:
+            new_q = []
+            for r, c in q:
+                for dr, dc in DIRECTIONS:
+                    nr, nc = r+dr, c+dc
+                    if not (0 <= nr < n and 0 <= nc < m):
                         continue
+                    if result[nr][nc] == 0:
+                        result[nr][nc] = -result[r][c]
+                        new_q.append((nr, nc))
+                    elif result[nr][nc] < 0:
+                        result[nr][nc] = min(result[nr][nc], -result[r][c])
+            for nr, nc in new_q:
+                result[nr][nc] = -result[nr][nc]
+            q = new_q
+        return result
 
-                    cell = (next_row, next_column)
-                    next_colors[cell] = max(next_colors.get(cell, 0), color)
 
-            frontier = []
-            for (row, column), color in next_colors.items():
-                grid[row][column] = color
-                frontier.append((row, column))
-
-        return grid
+# Time:  O(slogs + n * m) = O((n * m) * log(n * m))
+# Space: O(n * m)
+# sort, bfs, flood fill
+class Solution2(object):
+    def colorGrid(self, n, m, sources):
+        """
+        :type n: int
+        :type m: int
+        :type sources: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+        sources.sort(key=lambda x: -x[2])
+        result = [[0]*m for _ in range(n)]
+        q = []
+        for r, c, color in sources:
+            result[r][c] = color
+            q.append((r, c))
+        while q:
+            new_q = []
+            for r, c in q:
+                for dr, dc in DIRECTIONS:
+                    nr, nc = r+dr, c+dc
+                    if not (0 <= nr < n and 0 <= nc < m and result[nr][nc] == 0):
+                        continue
+                    result[nr][nc] = result[r][c]
+                    new_q.append((nr, nc))
+            q = new_q
+        return result

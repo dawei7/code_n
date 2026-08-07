@@ -1,16 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:
-        diff = [0] * (n + 1)
-        for first, last, seats in bookings:
-            diff[first - 1] += seats
-            diff[last] -= seats
-
-        answer = []
-        current = 0
-        for index in range(n):
-            current += diff[index]
-            answer.append(current)
-        return answer
+    def corpFlightBookings(self, bookings, n):
+        """
+        :type bookings: List[List[int]]
+        :type n: int
+        :rtype: List[int]
+        """
+        result = [0]*(n+1)
+        for i, j, k in bookings:
+            result[i-1] += k
+            result[j] -= k
+        for i in range(1, len(result)):
+            result[i] += result[i-1]
+        result.pop()
+        return result

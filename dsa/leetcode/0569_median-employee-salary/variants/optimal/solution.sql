@@ -1,23 +1,18 @@
-WITH ranked AS (
-    SELECT
-        id,
-        company,
-        salary,
-        ROW_NUMBER() OVER (
-            PARTITION BY company
-            ORDER BY salary, id
-        ) AS salary_row,
-        COUNT(*) OVER (
-            PARTITION BY company
-        ) AS employee_count
-    FROM Employee
-)
+# Write your MySQL query statement below
+WITH
+    t AS (
+        SELECT
+            *,
+            ROW_NUMBER() OVER (
+                PARTITION BY company
+                ORDER BY salary ASC
+            ) AS rk,
+            COUNT(id) OVER (PARTITION BY company) AS n
+        FROM Employee
+    )
 SELECT
     id,
     company,
     salary
-FROM ranked
-WHERE employee_count <= 2 * salary_row
-  AND 2 * salary_row <= employee_count + 2
-ORDER BY company, salary, id;
-
+FROM t
+WHERE rk >= n / 2 AND rk <= n / 2 + 1;

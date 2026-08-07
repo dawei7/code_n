@@ -1,24 +1,29 @@
-class Solution:
-    def validIPAddress(self, queryIP: str) -> str:
-        if "." in queryIP:
-            parts = queryIP.split(".")
-            if len(parts) == 4 and all(
-                part
-                and len(part) <= 3
-                and part.isascii()
-                and part.isdigit()
-                and (len(part) == 1 or part[0] != "0")
-                and int(part) <= 255
-                for part in parts
-            ):
-                return "IPv4"
-            return "Neither"
+# Time:  O(1)
+# Space: O(1)
 
-        if ":" in queryIP:
-            parts = queryIP.split(":")
-            hexadecimal = set("0123456789abcdefABCDEF")
-            if len(parts) == 8 and all(
-                1 <= len(part) <= 4 and all(character in hexadecimal for character in part) for part in parts
-            ):
-                return "IPv6"
+import string
+
+
+class Solution:
+    def validIPAddress(self, IP):
+        """
+        :type IP: str
+        :rtype: str
+        """
+        blocks = IP.split('.')
+        if len(blocks) == 4:
+            for i in range(len(blocks)):
+                if not blocks[i].isdigit() or not 0 <= int(blocks[i]) < 256 or \
+                   (blocks[i][0] == '0' and len(blocks[i]) > 1):
+                    return "Neither"
+            return "IPv4"
+
+        blocks = IP.split(':')
+        if len(blocks) == 8:
+            for i in range(len(blocks)):
+                if not (1 <= len(blocks[i]) <= 4) or \
+                   not all(c in string.hexdigits for c in blocks[i]):
+                    return "Neither"
+            return "IPv6"
         return "Neither"
+

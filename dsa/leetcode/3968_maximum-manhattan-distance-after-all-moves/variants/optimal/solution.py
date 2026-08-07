@@ -1,19 +1,15 @@
 class Solution:
     def maxDistance(self, moves: str) -> int:
-        horizontal = 0
-        vertical = 0
-        wildcards = 0
-
-        for move in moves:
-            if move == "U":
-                vertical += 1
-            elif move == "D":
-                vertical -= 1
-            elif move == "L":
-                horizontal -= 1
-            elif move == "R":
-                horizontal += 1
+        x = y = z = 0
+        for c in moves:
+            if c == "U":
+                x -= 1
+            elif c == "D":
+                x += 1
+            elif c == "L":
+                y -= 1
+            elif c == "R":
+                y += 1
             else:
-                wildcards += 1
-
-        return abs(horizontal) + abs(vertical) + wildcards
+                z += 1
+        return abs(x) + abs(y) + z

@@ -1,41 +1,35 @@
-from typing import List
-
-
 class Solution:
     def candyCrush(self, board: List[List[int]]) -> List[List[int]]:
-        rows = len(board)
-        columns = len(board[0])
-
-        while True:
-            crushed = False
-
-            for row in range(rows):
-                for column in range(columns - 2):
-                    value = abs(board[row][column])
-                    if value and value == abs(board[row][column + 1]) == abs(board[row][column + 2]):
-                        board[row][column] = -value
-                        board[row][column + 1] = -value
-                        board[row][column + 2] = -value
-                        crushed = True
-
-            for row in range(rows - 2):
-                for column in range(columns):
-                    value = abs(board[row][column])
-                    if value and value == abs(board[row + 1][column]) == abs(board[row + 2][column]):
-                        board[row][column] = -value
-                        board[row + 1][column] = -value
-                        board[row + 2][column] = -value
-                        crushed = True
-
-            if not crushed:
-                return board
-
-            for column in range(columns):
-                write = rows - 1
-                for row in range(rows - 1, -1, -1):
-                    if board[row][column] > 0:
-                        board[write][column] = board[row][column]
-                        write -= 1
-                while write >= 0:
-                    board[write][column] = 0
-                    write -= 1
+        m, n = len(board), len(board[0])
+        run = True
+        while run:
+            run = False
+            for i in range(m):
+                for j in range(2, n):
+                    if board[i][j] and abs(board[i][j]) == abs(board[i][j - 1]) == abs(
+                        board[i][j - 2]
+                    ):
+                        run = True
+                        board[i][j] = board[i][j - 1] = board[i][j - 2] = -abs(
+                            board[i][j]
+                        )
+            for j in range(n):
+                for i in range(2, m):
+                    if board[i][j] and abs(board[i][j]) == abs(board[i - 1][j]) == abs(
+                        board[i - 2][j]
+                    ):
+                        run = True
+                        board[i][j] = board[i - 1][j] = board[i - 2][j] = -abs(
+                            board[i][j]
+                        )
+            if run:
+                for j in range(n):
+                    k = m - 1
+                    for i in range(m - 1, -1, -1):
+                        if board[i][j] > 0:
+                            board[k][j] = board[i][j]
+                            k -= 1
+                    while k >= 0:
+                        board[k][j] = 0
+                        k -= 1
+        return board

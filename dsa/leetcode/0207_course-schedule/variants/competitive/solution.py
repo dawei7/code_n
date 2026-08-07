@@ -1,21 +1,61 @@
-from collections import deque
-from typing import List
+# Time:  O(|V| + |E|)
+# Space: O(|E|)
+
+import collections
 
 
+# Khan's algorithm (bfs solution)
 class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        graph = [[] for _ in range(numCourses)]
-        indegree = [0] * numCourses
-        for course, prerequisite in prerequisites:
-            graph[prerequisite].append(course)
-            indegree[course] += 1
-        queue = deque(course for course in range(numCourses) if indegree[course] == 0)
-        completed = 0
-        while queue:
-            prerequisite = queue.popleft()
-            completed += 1
-            for course in graph[prerequisite]:
-                indegree[course] -= 1
-                if indegree[course] == 0:
-                    queue.append(course)
-        return completed == numCourses
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        adj = collections.defaultdict(list)
+        in_degree = collections.Counter()
+        for u, v in prerequisites:
+            in_degree[u] += 1
+            adj[v].append(u)
+        result = []
+        q = [u for u in range(numCourses) if u not in in_degree]
+        while q:
+            new_q = []
+            for u in q:
+                result.append(u)
+                for v in adj[u]:
+                    in_degree[v] -= 1
+                    if in_degree[v] == 0:
+                        new_q.append(v)
+            q = new_q
+        return len(result) == numCourses
+
+
+# Time:  O(|V| + |E|)
+# Space: O(|E|)
+import collections
+
+
+# dfs solution
+class Solution2(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        adj = collections.defaultdict(list)
+        in_degree = collections.Counter()
+        for u, v in prerequisites:
+            in_degree[u] += 1
+            adj[v].append(u)
+        result = []
+        stk = [u for u in range(numCourses) if u not in in_degree]
+        while stk:
+            u = stk.pop()
+            result.append(u)
+            for v in adj[u]:
+                in_degree[v] -= 1
+                if in_degree[v] == 0:
+                    stk.append(v)
+        return len(result) == numCourses

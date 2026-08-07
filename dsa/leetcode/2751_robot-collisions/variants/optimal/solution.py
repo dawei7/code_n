@@ -1,25 +1,25 @@
 class Solution:
-    def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
-        order = sorted(range(len(positions)), key=positions.__getitem__)
-        right_movers = []
+    def survivedRobotsHealths(self, positions, healths, directions):
+        idx = sorted(range(len(positions)), key=lambda i: positions[i])
+        stk = []
 
-        for robot in order:
-            if directions[robot] == "R":
-                right_movers.append(robot)
+        for i in idx:
+            if directions[i] == "R":
+                stk.append(i)
                 continue
 
-            while right_movers and healths[robot] > 0:
-                opponent = right_movers[-1]
-                if healths[opponent] < healths[robot]:
-                    healths[opponent] = 0
-                    healths[robot] -= 1
-                    right_movers.pop()
-                elif healths[opponent] == healths[robot]:
-                    healths[opponent] = 0
-                    healths[robot] = 0
-                    right_movers.pop()
+            while stk and healths[i]:
+                j = stk[-1]
+                if healths[j] > healths[i]:
+                    healths[j] -= 1
+                    healths[i] = 0
+                elif healths[j] < healths[i]:
+                    healths[i] -= 1
+                    healths[j] = 0
+                    stk.pop()
                 else:
-                    healths[opponent] -= 1
-                    healths[robot] = 0
+                    healths[i] = healths[j] = 0
+                    stk.pop()
+                    break
 
-        return [health for health in healths if health > 0]
+        return [h for h in healths if h > 0]
