@@ -11,6 +11,15 @@
       "summary": "Uses prefix dynamic programming to choose whether each final tile stays visible or belongs to the last carpet.",
       "time_complexity": "O(cn)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(cn)",
+      "space_complexity": "O(n)"
     }
   ]
 }

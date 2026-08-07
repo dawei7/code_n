@@ -11,6 +11,15 @@
       "summary": "Binary-searches the repair threshold and uses breadth-first search to enforce the edge limit.",
       "time_complexity": "O((N + M) log M)",
       "space_complexity": "O(N + M)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((N + M) log M)",
+      "space_complexity": "O(N + M)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Evaluates the fixed-score interval recurrence by length while retaining only two dynamic-programming layers.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n)"
     }
   ]
 }

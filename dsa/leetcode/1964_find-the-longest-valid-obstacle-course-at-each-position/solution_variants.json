@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Find the Longest Valid Obstacle Course at Each Position and meets the required complexity bound.",
       "time_complexity": "O(N\\log N)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N\\log N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

@@ -2,7 +2,8 @@
   "schema_version": 1,
   "challenge_id": "lc_3298",
   "default_variant": "optimal",
-  "variants": [{
+  "variants": [
+    {
       "id": "optimal",
       "label": "Optimal",
       "kind": "optimal",
@@ -10,5 +11,15 @@
       "summary": "Uses a two-pointer deficit window to meet the problem's linear-time and constant-space limits.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(1)"
-    }]
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(1)"
+    }
+  ]
 }

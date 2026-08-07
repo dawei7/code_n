@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_2701","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Marks every broken date-or-amount transition, assigns islands with a running sum, and aggregates qualifying runs.","time_complexity":"O(R log R)","space_complexity":"O(R)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2701",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Marks every broken date-or-amount transition, assigns islands with a running sum, and aggregates qualifying runs.",
+      "time_complexity": "O(R log R)",
+      "space_complexity": "O(R)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(R log R)",
+      "space_complexity": "O(R)"
+    }
+  ]
+}

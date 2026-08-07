@@ -11,6 +11,15 @@
       "summary": "Compresses subarrays ending at each index by their distinct AND value and accumulated frequency.",
       "time_complexity": "O(n log M)",
       "space_complexity": "O(log M)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(log M)"
     }
   ]
 }

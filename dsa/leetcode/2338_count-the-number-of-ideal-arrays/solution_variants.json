@@ -11,6 +11,15 @@
       "summary": "Factors every possible final value and independently distributes each prime exponent among the array positions.",
       "time_complexity": "O(M log M)",
       "space_complexity": "O(M)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(M log M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

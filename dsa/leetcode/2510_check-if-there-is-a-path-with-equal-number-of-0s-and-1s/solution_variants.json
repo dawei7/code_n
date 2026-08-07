@@ -11,6 +11,15 @@
       "summary": "Uses rolling dynamic-programming sets to retain every reachable count of ones at each cell.",
       "time_complexity": "O(rc(r + c))",
       "space_complexity": "O(c(r + c))"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(rc(r + c))",
+      "space_complexity": "O(c(r + c))"
     }
   ]
 }

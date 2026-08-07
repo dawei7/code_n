@@ -11,6 +11,15 @@
       "summary": "Counts prefixes by their final value and evaluates every non-decreasing transition with one prefix scan.",
       "time_complexity": "O(nU)",
       "space_complexity": "O(U)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(nU)",
+      "space_complexity": "O(U)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for People Whose List of Favorite Companies Is Not a Subset of Another List and meets the required complexity bound.",
       "time_complexity": "O(P^2C)",
       "space_complexity": "O(PC)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(P^2C)",
+      "space_complexity": "O(PC)"
     }
   ]
 }

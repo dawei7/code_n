@@ -11,6 +11,15 @@
       "summary": "Left-joins rides to every user, aggregates distance, substitutes zero for missing totals, and orders by user identifier.",
       "time_complexity": "O((U + R) log (U + R))",
       "space_complexity": "O(U + R)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((U + R) log (U + R))",
+      "space_complexity": "O(U + R)"
     }
   ]
 }

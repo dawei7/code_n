@@ -11,6 +11,15 @@
       "summary": "Carries only distinct running AND states for every target position and merges equivalent states by minimum completed endpoint cost.",
       "time_complexity": "O(n m log V)",
       "space_complexity": "O(m log V)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n m log V)",
+      "space_complexity": "O(m log V)"
     }
   ]
 }

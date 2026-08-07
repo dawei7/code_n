@@ -11,6 +11,15 @@
       "summary": "Groups equal values and applies a sliding-window bounded-knapsack transition for each positive value.",
       "time_complexity": "O(n + Dr)",
       "space_complexity": "O(r)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + Dr)",
+      "space_complexity": "O(r)"
     }
   ]
 }

@@ -2,7 +2,8 @@
   "schema_version": 1,
   "challenge_id": "lc_3304",
   "default_variant": "optimal",
-  "variants": [{
+  "variants": [
+    {
       "id": "optimal",
       "label": "Optimal",
       "kind": "optimal",
@@ -10,5 +11,15 @@
       "summary": "Maps the zero-based position to its accumulated shifts using the set-bit count.",
       "time_complexity": "O(log k)",
       "space_complexity": "O(1)"
-    }]
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log k)",
+      "space_complexity": "O(1)"
+    }
+  ]
 }

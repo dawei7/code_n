@@ -11,6 +11,15 @@
       "summary": "Groups access minutes by employee, sorts each timeline, and checks every consecutive triple for a span below sixty minutes.",
       "time_complexity": "O(n log(n))",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log(n))",
+      "space_complexity": "O(n)"
     }
   ]
 }

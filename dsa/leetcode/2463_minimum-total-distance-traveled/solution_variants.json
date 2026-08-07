@@ -11,6 +11,15 @@
       "summary": "Optimizes the sorted capacity DP with a monotonic deque for each factory.",
       "time_complexity": "O(R\\log R+F\\log F+RF)",
       "space_complexity": "O(R+F)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(R\\log R+F\\log F+RF)",
+      "space_complexity": "O(R+F)"
     }
   ]
 }

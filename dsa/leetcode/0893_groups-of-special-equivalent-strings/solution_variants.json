@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Groups of Special-Equivalent Strings and meets the required complexity bound.",
       "time_complexity": "O(NL)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(NL)",
+      "space_complexity": "O(N)"
     }
   ]
 }

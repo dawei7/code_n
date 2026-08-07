@@ -11,6 +11,15 @@
       "summary": "Deduplicate the positive values, sort them descending, and return the first k entries, which are exactly the maximum-sum distinct choice.",
       "time_complexity": "O(n + U log U)",
       "space_complexity": "O(U)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + U log U)",
+      "space_complexity": "O(U)"
     }
   ]
 }

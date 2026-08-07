@@ -11,6 +11,15 @@
       "summary": "Sorts the values, binary-searches the maximum allowed difference, and greedily counts disjoint adjacent pairs under each threshold.",
       "time_complexity": "O(n\\log n+n\\log D)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n\\log n+n\\log D)",
+      "space_complexity": "O(n)"
     }
   ]
 }

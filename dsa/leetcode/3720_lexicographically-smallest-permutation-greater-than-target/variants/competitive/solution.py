@@ -1,0 +1,34 @@
+class Solution:
+    def lexGreaterPermutation(self, s: str, target: str) -> str:
+        counts = [0] * 26
+        for character in s:
+            counts[ord(character) - ord("a")] += 1
+
+        prefix = []
+        position = 0
+        while position < len(target):
+            index = ord(target[position]) - ord("a")
+            if counts[index] == 0:
+                break
+            prefix.append(target[position])
+            counts[index] -= 1
+            position += 1
+
+        while True:
+            if position < len(target):
+                target_index = ord(target[position]) - ord("a")
+                for index in range(target_index + 1, 26):
+                    if counts[index] == 0:
+                        continue
+
+                    counts[index] -= 1
+                    suffix = "".join(chr(ord("a") + letter) * counts[letter] for letter in range(26))
+                    return "".join(prefix) + chr(ord("a") + index) + suffix
+
+            if not prefix:
+                break
+            position -= 1
+            restored = prefix.pop()
+            counts[ord(restored) - ord("a")] += 1
+
+        return ""

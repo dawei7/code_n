@@ -11,6 +11,15 @@
       "summary": "Uses a visited-city bitmask and current endpoint to merge trips with the same future possibilities.",
       "time_complexity": "O(2^n n^2)",
       "space_complexity": "O(2^n n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(2^n n^2)",
+      "space_complexity": "O(2^n n)"
     }
   ]
 }

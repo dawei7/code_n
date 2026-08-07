@@ -11,6 +11,15 @@
       "summary": "Counts one-operation divisibility relationships by factoring distinct values and enumerating their divisors, then scores only targets already present.",
       "time_complexity": "O(P + U sqrt(V) + D)",
       "space_complexity": "O(sqrt(V) + U)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(P + U sqrt(V) + D)",
+      "space_complexity": "O(sqrt(V) + U)"
     }
   ]
 }

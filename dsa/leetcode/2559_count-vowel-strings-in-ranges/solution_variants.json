@@ -11,6 +11,15 @@
       "summary": "Builds a prefix count of words whose first and last characters are vowels, then answers every inclusive range by subtraction.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + q)",
+      "space_complexity": "O(n)"
     }
   ]
 }

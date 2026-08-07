@@ -11,6 +11,15 @@
       "summary": "Uses subset dynamic programming where each transition chooses the next monster at the gain determined by the subset size.",
       "time_complexity": "O(n 2^n)",
       "space_complexity": "O(2^n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n 2^n)",
+      "space_complexity": "O(2^n)"
     }
   ]
 }

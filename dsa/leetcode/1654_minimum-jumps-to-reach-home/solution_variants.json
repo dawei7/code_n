@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Minimum Jumps to Reach Home and meets the required complexity bound.",
       "time_complexity": "O(f+L)",
       "space_complexity": "O(f+L)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(f+L)",
+      "space_complexity": "O(f+L)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Streams the values while counting each decimal digit previously seen at every position.",
       "time_complexity": "O(nD)",
       "space_complexity": "O(D)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(nD)",
+      "space_complexity": "O(D)"
     }
   ]
 }

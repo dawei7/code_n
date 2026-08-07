@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_3750","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Compares mirrored positions of the binary representation and counts the required pair flips.","time_complexity":"O(B)","space_complexity":"O(B)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3750",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Compares mirrored positions of the binary representation and counts the required pair flips.",
+      "time_complexity": "O(B)",
+      "space_complexity": "O(B)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(B)",
+      "space_complexity": "O(B)"
+    }
+  ]
+}

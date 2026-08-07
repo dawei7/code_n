@@ -11,6 +11,15 @@
       "summary": "Counts black pixels per row and column, then tests both uniqueness conditions in one final scan.",
       "time_complexity": "O(rows \\cdot cols)",
       "space_complexity": "O(rows + cols)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(rows \\cdot cols)",
+      "space_complexity": "O(rows + cols)"
     }
   ]
 }

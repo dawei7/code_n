@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_2735","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Enumerate the number of rotations while incrementally maintaining the cheapest source seen for every target type.","time_complexity":"O(n^2)","space_complexity":"O(n)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2735",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Enumerate the number of rotations while incrementally maintaining the cheapest source seen for every target type.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

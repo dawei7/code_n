@@ -11,6 +11,15 @@
       "summary": "Sums every adjacency-matrix row so each incident edge contributes exactly one to its vertex's degree.",
       "time_complexity": "O(N^2)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N^2)",
+      "space_complexity": "O(N)"
     }
   ]
 }

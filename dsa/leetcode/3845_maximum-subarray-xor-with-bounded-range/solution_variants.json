@@ -11,6 +11,15 @@
       "summary": "Combines a min/max monotonic sliding window with a counted binary trie of eligible prefix XOR values.",
       "time_complexity": "O(N log V)",
       "space_complexity": "O(N log V)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N log V)",
+      "space_complexity": "O(N log V)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Filters February rows, extracts one hashtag token per tweet, aggregates counts once, and applies the required two-key descending ranking.",
       "time_complexity": "O(S + n log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(S + n log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

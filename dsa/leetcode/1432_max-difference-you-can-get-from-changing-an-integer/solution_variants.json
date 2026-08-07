@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Max Difference You Can Get From Changing an Integer and meets the required complexity bound.",
       "time_complexity": "O(d)",
       "space_complexity": "O(d)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(d)",
+      "space_complexity": "O(d)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Returns a univalue summary from each postorder call and counts roots whose child subtrees match.",
       "time_complexity": "O(n)",
       "space_complexity": "O(h)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(h)"
     }
   ]
 }

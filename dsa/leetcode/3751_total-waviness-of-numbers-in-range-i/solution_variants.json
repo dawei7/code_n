@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_3751","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Enumerates the legal range and tests every interior decimal digit against its two neighbors.","time_complexity":"O(RD)","space_complexity":"O(D)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3751",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Enumerates the legal range and tests every interior decimal digit against its two neighbors.",
+      "time_complexity": "O(RD)",
+      "space_complexity": "O(D)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(RD)",
+      "space_complexity": "O(D)"
+    }
+  ]
+}

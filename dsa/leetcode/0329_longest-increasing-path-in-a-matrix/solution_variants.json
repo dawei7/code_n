@@ -11,6 +11,15 @@
       "summary": "Peels local maxima from the implicit increasing DAG; the number of topological layers is the longest path.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(mn)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(mn)"
     }
   ]
 }

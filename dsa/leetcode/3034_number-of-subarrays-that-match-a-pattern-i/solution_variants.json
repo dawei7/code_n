@@ -11,6 +11,15 @@
       "summary": "Checks each candidate start against the pattern and stops at its first mismatching adjacent relation.",
       "time_complexity": "O((n-m)m)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((n-m)m)",
+      "space_complexity": "O(1)"
     }
   ]
 }

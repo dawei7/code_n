@@ -11,6 +11,15 @@
       "summary": "Finds each window's inversion core, measures its extrema, and expands only across values that cannot remain outside the sorted segment.",
       "time_complexity": "O((n-k+1)k)",
       "space_complexity": "O(k)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((n-k+1)k)",
+      "space_complexity": "O(k)"
     }
   ]
 }

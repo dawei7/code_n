@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Minimum Cost to Reach Destination in Time and meets the required complexity bound.",
       "time_complexity": "O(\\texttt{maxTime}\\,E)",
       "space_complexity": "O(\\texttt{maxTime}\\,V)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(\\texttt{maxTime}\\,E)",
+      "space_complexity": "O(\\texttt{maxTime}\\,V)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Stores all word prefixes in a trie and relaxes every matching target segment from each reachable position.",
       "time_complexity": "O(S + T^2)",
       "space_complexity": "O(S + T)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(S + T^2)",
+      "space_complexity": "O(S + T)"
     }
   ]
 }

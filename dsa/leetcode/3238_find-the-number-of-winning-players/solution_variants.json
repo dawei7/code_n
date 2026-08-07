@@ -11,6 +11,15 @@
       "summary": "Counts player-color picks online and records each player at the first winning threshold.",
       "time_complexity": "O(p)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(p)",
+      "space_complexity": "O(n)"
     }
   ]
 }

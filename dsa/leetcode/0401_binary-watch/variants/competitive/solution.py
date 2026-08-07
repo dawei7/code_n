@@ -1,0 +1,8 @@
+class Solution:
+    def readBinaryWatch(self, turnedOn: int) -> List[str]:
+        return [
+            f"{hour}:{minute:02d}"
+            for hour in range(12)
+            for minute in range(60)
+            if hour.bit_count() + minute.bit_count() == turnedOn
+        ]

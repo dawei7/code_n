@@ -11,6 +11,15 @@
       "summary": "Scans each tweet once, counts marker characters through replacement-length differences, and orders the qualifying identifiers.",
       "time_complexity": "O(S + R log R)",
       "space_complexity": "O(R)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(S + R log R)",
+      "space_complexity": "O(R)"
     }
   ]
 }

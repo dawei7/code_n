@@ -11,6 +11,15 @@
       "summary": "Slides the fixed seven-cell mask across every legal top-left position and retains the largest sum.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(1)"
     }
   ]
 }

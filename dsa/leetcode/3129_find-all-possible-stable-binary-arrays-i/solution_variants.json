@@ -11,6 +11,15 @@
       "summary": "Builds counts by the final bit and removes exactly the extensions that would create an overlong trailing run.",
       "time_complexity": "O(zo)",
       "space_complexity": "O(zo)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(zo)",
+      "space_complexity": "O(zo)"
     }
   ]
 }

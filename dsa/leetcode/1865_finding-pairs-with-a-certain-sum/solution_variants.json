@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Finding Pairs With a Certain Sum and meets the required complexity bound.",
       "time_complexity": "O(n_2+a+cn_1)",
       "space_complexity": "O(n_1+n_2)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n_2+a+cn_1)",
+      "space_complexity": "O(n_1+n_2)"
     }
   ]
 }

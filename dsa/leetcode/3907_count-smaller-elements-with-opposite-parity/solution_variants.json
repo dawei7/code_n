@@ -11,6 +11,15 @@
       "summary": "Scans from right to left and uses one coordinate-compressed Fenwick tree per parity to count smaller suffix values.",
       "time_complexity": "O(N log N)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N log N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

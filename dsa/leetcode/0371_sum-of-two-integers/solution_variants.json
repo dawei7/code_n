@@ -11,6 +11,15 @@
       "summary": "Propagates XOR partial sums and shifted AND carries inside a masked 32-bit two's-complement word.",
       "time_complexity": "O(w)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(w)",
+      "space_complexity": "O(1)"
     }
   ]
 }

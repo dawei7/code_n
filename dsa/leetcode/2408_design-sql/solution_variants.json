@@ -11,6 +11,15 @@
       "summary": "Maps table names and surviving row IDs directly while retaining an independent monotone counter for every table.",
       "time_complexity": "O(n + q + E)",
       "space_complexity": "O(n + S)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + q + E)",
+      "space_complexity": "O(n + S)"
     }
   ]
 }

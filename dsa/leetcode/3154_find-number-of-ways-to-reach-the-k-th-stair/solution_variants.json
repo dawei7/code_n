@@ -11,6 +11,15 @@
       "summary": "Counts legal placements of downward moves around each feasible number of power-of-two upward jumps.",
       "time_complexity": "O(log(k + 2))",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log(k + 2))",
+      "space_complexity": "O(1)"
     }
   ]
 }

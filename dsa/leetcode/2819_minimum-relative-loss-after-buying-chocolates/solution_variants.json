@@ -11,6 +11,15 @@
       "summary": "Sorts prices once, represents each optimum as a low-price prefix plus high-price suffix, and binary-searches the convex split for every query.",
       "time_complexity": "O((n + q) \\log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((n + q) \\log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

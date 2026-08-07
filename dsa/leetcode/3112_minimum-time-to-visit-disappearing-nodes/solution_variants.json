@@ -11,6 +11,15 @@
       "summary": "Runs Dijkstra's algorithm while discarding every relaxation that reaches a node at or after its disappearance time.",
       "time_complexity": "O((n + m) log n)",
       "space_complexity": "O(n + m)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((n + m) log n)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

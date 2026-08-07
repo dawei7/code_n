@@ -11,6 +11,15 @@
       "summary": "Converts each right boundary to row-suffix widths and sums vertical interval minima with monotonic stacks.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(mn)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(mn)"
     }
   ]
 }

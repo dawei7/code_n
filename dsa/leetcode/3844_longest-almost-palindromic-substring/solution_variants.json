@@ -11,6 +11,15 @@
       "summary": "Expands around every odd and even center, then spends the one deletion on either side of the first mismatch.",
       "time_complexity": "O(N^2)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N^2)",
+      "space_complexity": "O(1)"
     }
   ]
 }

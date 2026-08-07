@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_2746","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Tracks the minimum length for each attainable pair of first and last characters while processing the words once.","time_complexity":"O(n)","space_complexity":"O(1)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2746",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Tracks the minimum length for each attainable pair of first and last characters while processing the words once.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

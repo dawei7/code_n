@@ -11,6 +11,15 @@
       "summary": "Sweeps ordered start and end events and sums the active earlier shifts at every start event.",
       "time_complexity": "O(m log m)",
       "space_complexity": "O(m)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(m log m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Checks the defining divisibility relation once for every ordered index pair.",
       "time_complexity": "O(nm)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(nm)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Find Cutoff Score for Each School and meets the required complexity bound.",
       "time_complexity": "O(SE)",
       "space_complexity": "O(S)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(SE)",
+      "space_complexity": "O(S)"
     }
   ]
 }

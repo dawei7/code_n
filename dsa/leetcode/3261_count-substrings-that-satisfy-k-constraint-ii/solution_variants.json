@@ -11,6 +11,15 @@
       "summary": "Precomputes each start's valid reach and a prefix sum of valid suffix counts for constant-time queries.",
       "time_complexity": "O(n+q)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n+q)",
+      "space_complexity": "O(n)"
     }
   ]
 }

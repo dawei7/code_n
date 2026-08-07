@@ -11,6 +11,15 @@
       "summary": "Counts available and per-copy letter frequencies, then uses the tightest frequency quotient.",
       "time_complexity": "O(S + T)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(S + T)",
+      "space_complexity": "O(1)"
     }
   ]
 }

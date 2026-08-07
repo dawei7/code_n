@@ -2,13 +2,24 @@
   "schema_version": 1,
   "challenge_id": "lc_3296",
   "default_variant": "optimal",
-  "variants": [{
-    "id": "optimal",
-    "label": "Optimal",
-    "kind": "optimal",
-    "directory": "variants/optimal",
-    "summary": "Binary-searches completion time and inverts each worker's triangular cost with an exact integer square root.",
-    "time_complexity": "O(w log U)",
-    "space_complexity": "O(1)"
-  }]
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Binary-searches completion time and inverts each worker's triangular cost with an exact integer square root.",
+      "time_complexity": "O(w log U)",
+      "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(w log U)",
+      "space_complexity": "O(1)"
+    }
+  ]
 }

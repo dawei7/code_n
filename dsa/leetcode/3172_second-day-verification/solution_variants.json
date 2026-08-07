@@ -11,6 +11,15 @@
       "summary": "Joins texts to their signup rows, filters verified actions by a one-day calendar difference, deduplicates users, and sorts the result.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(r log r)",
+      "space_complexity": "O(r)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Counts values, counts how many distinct values share each frequency, then preserves the array's left-to-right order.",
       "time_complexity": "O(N)",
       "space_complexity": "O(D)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(D)"
     }
   ]
 }

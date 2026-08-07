@@ -11,6 +11,15 @@
       "summary": "Enumerates each circle's integer bounding square and inserts exactly its covered lattice points into a union set.",
       "time_complexity": "O(sum r_i^2)",
       "space_complexity": "O(P)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(sum r_i^2)",
+      "space_complexity": "O(P)"
     }
   ]
 }

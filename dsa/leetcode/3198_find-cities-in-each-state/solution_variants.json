@@ -11,6 +11,15 @@
       "summary": "Orders state-city pairs once, groups by state, and concatenates each state's cities with the required separator.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(r log r)",
+      "space_complexity": "O(r)"
     }
   ]
 }

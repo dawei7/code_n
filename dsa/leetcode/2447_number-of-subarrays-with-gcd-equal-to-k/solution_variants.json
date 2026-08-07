@@ -11,6 +11,15 @@
       "summary": "Compresses all subarrays ending at each index by their distinct GCD and multiplicity.",
       "time_complexity": "O(n log^2 V)",
       "space_complexity": "O(log V)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log^2 V)",
+      "space_complexity": "O(log V)"
     }
   ]
 }

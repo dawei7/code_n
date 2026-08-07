@@ -11,6 +11,15 @@
       "summary": "Maintains a reduced prefix as a stack and immediately propagates every new least-common-multiple merge to the left.",
       "time_complexity": "O(n log V)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log V)",
+      "space_complexity": "O(n)"
     }
   ]
 }

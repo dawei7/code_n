@@ -11,6 +11,15 @@
       "summary": "Binary-searches the common level and compares transferable surplus with the total deficit.",
       "time_complexity": "O(n \\log(R / \\varepsilon))",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n \\log(R / \\varepsilon))",
+      "space_complexity": "O(1)"
     }
   ]
 }

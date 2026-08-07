@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_3742","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Carries the maximum reachable score for every cell and exact cost up to the useful path-length cap.","time_complexity":"O(mnL)","space_complexity":"O(nL)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3742",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Carries the maximum reachable score for every cell and exact cost up to the useful path-length cap.",
+      "time_complexity": "O(mnL)",
+      "space_complexity": "O(nL)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(mnL)",
+      "space_complexity": "O(nL)"
+    }
+  ]
+}

@@ -11,6 +11,15 @@
       "summary": "Computes diagonal alternating suffixes, then adds the best optional clockwise turn with a second directional dynamic program.",
       "time_complexity": "O(nm)",
       "space_complexity": "O(nm)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(nm)",
+      "space_complexity": "O(nm)"
     }
   ]
 }

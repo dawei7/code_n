@@ -11,6 +11,15 @@
       "summary": "Tests only lengths that divide the string and compares a fixed 26-letter frequency vector for every aligned block.",
       "time_complexity": "O(n sqrt(n))",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n sqrt(n))",
+      "space_complexity": "O(1)"
     }
   ]
 }

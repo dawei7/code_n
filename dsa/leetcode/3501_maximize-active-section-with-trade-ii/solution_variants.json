@@ -11,6 +11,15 @@
       "summary": "Run-length encodes the string, handles the two query-boundary candidates exactly, and range-maxes fully covered interior trades with a segment tree.",
       "time_complexity": "O(n + q log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + q log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

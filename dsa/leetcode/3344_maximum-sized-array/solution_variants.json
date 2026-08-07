@@ -11,6 +11,15 @@
       "summary": "Counts each OR bit over ordered index pairs and binary-searches the largest affordable dimension.",
       "time_complexity": "O(log^2 n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log^2 n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

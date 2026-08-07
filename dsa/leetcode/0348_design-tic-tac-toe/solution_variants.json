@@ -11,6 +11,15 @@
       "summary": "Tracks signed row, column, and diagonal totals so each valid move checks only four counters.",
       "time_complexity": "O(m)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(m)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Uses a bytearray Sieve of Eratosthenes and marks each prime's multiples from its square.",
       "time_complexity": "O(n \\log \\log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n \\log \\log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_2744","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Matches each word with an earlier unmatched reversal using a hash set.","time_complexity":"O(n)","space_complexity":"O(n)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2744",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Matches each word with an earlier unmatched reversal using a hash set.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

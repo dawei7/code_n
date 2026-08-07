@@ -11,6 +11,15 @@
       "summary": "Uses rolling exact-count prefix DP with skip-left, skip-right, and ordered-pair transitions.",
       "time_complexity": "O(N M K)",
       "space_complexity": "O(K min(N,M))"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N M K)",
+      "space_complexity": "O(K min(N,M))"
     }
   ]
 }

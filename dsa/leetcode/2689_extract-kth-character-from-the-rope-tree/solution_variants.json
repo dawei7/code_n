@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_2689","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Uses stored subtree lengths to descend only into the child containing the requested position.","time_complexity":"O(h)","space_complexity":"O(1)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2689",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses stored subtree lengths to descend only into the child containing the requested position.",
+      "time_complexity": "O(h)",
+      "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(h)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

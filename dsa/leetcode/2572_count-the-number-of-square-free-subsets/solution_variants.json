@@ -11,6 +11,15 @@
       "summary": "Compresses equal values and counts compatible prime-factor masks with dynamic programming.",
       "time_complexity": "O(n + U * 2^P)",
       "space_complexity": "O(2^P)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + U * 2^P)",
+      "space_complexity": "O(2^P)"
     }
   ]
 }

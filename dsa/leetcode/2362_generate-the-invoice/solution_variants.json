@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_2362","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Aggregates invoice totals once, selects the highest-valued smallest-ID invoice, and returns its priced lines.","time_complexity":"O((P+R)\\log(P+R))","space_complexity":"O(P+R)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2362",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Aggregates invoice totals once, selects the highest-valued smallest-ID invoice, and returns its priced lines.",
+      "time_complexity": "O((P+R)\\log(P+R))",
+      "space_complexity": "O(P+R)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((P+R)\\log(P+R))",
+      "space_complexity": "O(P+R)"
+    }
+  ]
+}

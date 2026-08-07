@@ -11,6 +11,15 @@
       "summary": "Enumerates quantities of the more expensive item and counts all affordable quantities of the other item arithmetically.",
       "time_complexity": "O(T / max(c1, c2))",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(T / max(c1, c2))",
+      "space_complexity": "O(1)"
     }
   ]
 }

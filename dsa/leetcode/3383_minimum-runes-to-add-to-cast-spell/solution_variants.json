@@ -11,6 +11,15 @@
       "summary": "Contracts strongly connected components and counts source components not reachable from any crystal.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n + m)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

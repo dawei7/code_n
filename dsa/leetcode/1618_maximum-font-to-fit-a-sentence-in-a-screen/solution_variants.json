@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Maximum Font to Fit a Sentence in a Screen and meets the required complexity bound.",
       "time_complexity": "O(n+\\sigma\\log f)",
       "space_complexity": "O(\\sigma)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n+\\sigma\\log f)",
+      "space_complexity": "O(\\sigma)"
     }
   ]
 }

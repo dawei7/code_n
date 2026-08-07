@@ -2,13 +2,24 @@
   "schema_version": 1,
   "challenge_id": "lc_3223",
   "default_variant": "optimal",
-  "variants": [{
-    "id": "optimal",
-    "label": "Optimal",
-    "kind": "optimal",
-    "directory": "variants/optimal",
-    "summary": "Counts each letter and reduces every positive odd count to one and every positive even count to two.",
-    "time_complexity": "O(n)",
-    "space_complexity": "O(1)"
-  }]
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Counts each letter and reduces every positive odd count to one and every positive even count to two.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    }
+  ]
 }

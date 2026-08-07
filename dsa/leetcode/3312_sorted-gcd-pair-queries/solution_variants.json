@@ -11,6 +11,15 @@
       "summary": "Counts pairs by exact GCD with a divisor sieve, builds cumulative multiplicities, and binary-searches each query rank.",
       "time_complexity": "O(n + M log M + q log M)",
       "space_complexity": "O(M)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + M log M + q log M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

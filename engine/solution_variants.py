@@ -11,7 +11,7 @@ from typing import Any
 from engine.languages import app_solution_filename, language_extension, leetcode_solution_filename, normalize_language
 
 
-VARIANT_KINDS = {"optimal", "simplified", "alternative"}
+VARIANT_KINDS = {"optimal", "competitive", "simplified", "alternative"}
 APPROACH_HEADINGS = ("General", "Complexity detail", "Alternatives and edge cases")
 DEFAULT_SIMPLIFIED_ELO_CEILING = 1500.0
 COMPLEXITY_BOUND_RE = re.compile(r"^O(?:\(|\\left\()")

@@ -11,6 +11,15 @@
       "summary": "Runs longest-path dynamic programming over compatible earlier words and reconstructs one optimum with parent indices.",
       "time_complexity": "O(n^2 L)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n^2 L)",
+      "space_complexity": "O(n)"
     }
   ]
 }

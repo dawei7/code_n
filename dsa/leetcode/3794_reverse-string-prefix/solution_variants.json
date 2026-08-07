@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_3794","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Reverses the selected prefix once and concatenates it with the untouched suffix.","time_complexity":"O(N)","space_complexity":"O(N)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3794",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Reverses the selected prefix once and concatenates it with the untouched suffix.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(N)"
+    }
+  ]
+}

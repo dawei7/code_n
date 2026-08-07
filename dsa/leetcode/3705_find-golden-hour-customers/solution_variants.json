@@ -11,6 +11,15 @@
       "summary": "Aggregates exact peak-hour and rating metrics once per customer, filters all four thresholds, and applies the required ordering.",
       "time_complexity": "O(R log R + C log C)",
       "space_complexity": "O(R + C)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(R log R + C log C)",
+      "space_complexity": "O(R + C)"
     }
   ]
 }

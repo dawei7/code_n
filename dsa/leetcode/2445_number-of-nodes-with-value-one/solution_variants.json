@@ -11,6 +11,15 @@
       "summary": "Combines query parity at each label with inherited flip parity from its parent.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + q)",
+      "space_complexity": "O(n)"
     }
   ]
 }

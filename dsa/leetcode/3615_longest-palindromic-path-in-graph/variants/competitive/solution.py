@@ -1,0 +1,73 @@
+from collections import Counter, deque
+from typing import List
+
+
+class Solution:
+    def maxLen(self, n: int, edges: List[List[int]], label: str) -> int:
+        if len(edges) == n * (n - 1) // 2:
+            odd_counts = sum(count % 2 for count in Counter(label).values())
+            return n - max(0, odd_counts - 1)
+
+        adjacency = [0] * n
+        for u, v in edges:
+            adjacency[u] |= 1 << v
+            adjacency[v] |= 1 << u
+
+        label_masks = {}
+        for node, character in enumerate(label):
+            label_masks[character] = label_masks.get(character, 0) | (1 << node)
+
+        queue = deque()
+        seen = set()
+
+        for node in range(n):
+            mask = 1 << node
+            state = (mask * n + node) * n + node
+            seen.add(state)
+            queue.append((mask, node, node))
+
+        answer = 1
+        for u, v in edges:
+            if label[u] != label[v]:
+                continue
+            if u > v:
+                u, v = v, u
+            mask = (1 << u) | (1 << v)
+            state = (mask * n + u) * n + v
+            if state not in seen:
+                seen.add(state)
+                queue.append((mask, u, v))
+            answer = 2
+
+        while queue:
+            mask, left_endpoint, right_endpoint = queue.popleft()
+            unused_left = adjacency[left_endpoint] & ~mask
+
+            while unused_left:
+                left_bit = unused_left & -unused_left
+                left_node = left_bit.bit_length() - 1
+                unused_left -= left_bit
+
+                unused_right = adjacency[right_endpoint] & ~mask & label_masks[label[left_node]] & ~left_bit
+                while unused_right:
+                    right_bit = unused_right & -unused_right
+                    right_node = right_bit.bit_length() - 1
+                    unused_right -= right_bit
+
+                    if left_node > right_node:
+                        first, second = right_node, left_node
+                    else:
+                        first, second = left_node, right_node
+                    new_mask = mask | left_bit | right_bit
+                    state = (new_mask * n + first) * n + second
+                    if state in seen:
+                        continue
+
+                    seen.add(state)
+                    queue.append((new_mask, first, second))
+                    length = new_mask.bit_count()
+                    if length == n:
+                        return n
+                    answer = max(answer, length)
+
+        return answer

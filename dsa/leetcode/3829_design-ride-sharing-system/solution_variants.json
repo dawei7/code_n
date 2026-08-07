@@ -11,6 +11,15 @@
       "summary": "Maintains FIFO rider and driver queues while lazily invalidating canceled riders through an active-ID set.",
       "time_complexity": "O(Q)",
       "space_complexity": "O(Q)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(Q)",
+      "space_complexity": "O(Q)"
     }
   ]
 }

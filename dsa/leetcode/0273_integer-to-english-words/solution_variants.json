@@ -11,6 +11,15 @@
       "summary": "Converts nonzero base-1000 chunks locally, attaches scale names, and joins them from largest to smallest.",
       "time_complexity": "O(\\log num)",
       "space_complexity": "O(\\log num)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(\\log num)",
+      "space_complexity": "O(\\log num)"
     }
   ]
 }

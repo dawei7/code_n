@@ -1,0 +1,92 @@
+from bisect import bisect_left, bisect_right
+from math import isqrt
+from typing import List
+
+
+class Solution:
+    def subarrayMajority(
+        self,
+        nums: List[int],
+        queries: List[List[int]],
+    ) -> List[int]:
+        n = len(nums)
+        values = sorted(set(nums))
+        value_to_rank = {value: rank for rank, value in enumerate(values)}
+        ranked = [value_to_rank[value] for value in nums]
+        unique_count = len(values)
+
+        positions = [[] for _ in values]
+        for index, rank in enumerate(ranked):
+            positions[rank].append(index)
+
+        block_size = isqrt(n) + 1
+        block_count = (n + block_size - 1) // block_size
+        block_modes = [[-1] * block_count for _ in range(block_count)]
+
+        for start_block in range(block_count):
+            frequencies = [0] * unique_count
+            best_rank = -1
+            best_frequency = 0
+            start = start_block * block_size
+            for index in range(start, n):
+                rank = ranked[index]
+                frequencies[rank] += 1
+                frequency = frequencies[rank]
+                if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
+                    best_rank = rank
+                    best_frequency = frequency
+                if (index + 1) % block_size == 0 or index == n - 1:
+                    block_modes[start_block][index // block_size] = best_rank
+
+        def range_frequency(rank: int, left: int, right: int) -> int:
+            indices = positions[rank]
+            return bisect_right(indices, right) - bisect_left(indices, left)
+
+        answers = []
+        for left, right, threshold in queries:
+            left_block = left // block_size
+            right_block = right // block_size
+
+            if right_block - left_block <= 1:
+                frequencies = {}
+                best_rank = -1
+                best_frequency = 0
+                for index in range(left, right + 1):
+                    rank = ranked[index]
+                    frequency = frequencies.get(rank, 0) + 1
+                    frequencies[rank] = frequency
+                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
+                        best_rank = rank
+                        best_frequency = frequency
+            else:
+                middle_start = left_block + 1
+                middle_end = right_block - 1
+                best_rank = block_modes[middle_start][middle_end]
+                best_frequency = range_frequency(best_rank, left, right)
+                seen = {best_rank}
+
+                left_boundary_end = middle_start * block_size
+                right_boundary_start = (middle_end + 1) * block_size
+                for index in range(left, left_boundary_end):
+                    rank = ranked[index]
+                    if rank in seen:
+                        continue
+                    seen.add(rank)
+                    frequency = range_frequency(rank, left, right)
+                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
+                        best_rank = rank
+                        best_frequency = frequency
+
+                for index in range(right_boundary_start, right + 1):
+                    rank = ranked[index]
+                    if rank in seen:
+                        continue
+                    seen.add(rank)
+                    frequency = range_frequency(rank, left, right)
+                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
+                        best_rank = rank
+                        best_frequency = frequency
+
+            answers.append(values[best_rank] if best_frequency >= threshold else -1)
+
+        return answers

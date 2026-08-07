@@ -11,6 +11,15 @@
       "summary": "Accumulates integer totals by depth in one DFS, then applies weights derived from the deepest integer level.",
       "time_complexity": "O(N)",
       "space_complexity": "O(D)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(D)"
     }
   ]
 }

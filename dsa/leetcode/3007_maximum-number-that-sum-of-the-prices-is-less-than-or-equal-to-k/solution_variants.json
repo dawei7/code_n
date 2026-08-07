@@ -11,6 +11,15 @@
       "summary": "Counts selected set bits over complete cycles and binary-searches the greatest affordable number.",
       "time_complexity": "O(log^2 K)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log^2 K)",
+      "space_complexity": "O(1)"
     }
   ]
 }

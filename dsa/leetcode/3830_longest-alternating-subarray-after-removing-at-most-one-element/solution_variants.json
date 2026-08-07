@@ -11,6 +11,15 @@
       "summary": "Combines direction-specific alternating runs on the two sides of every possible removed element.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

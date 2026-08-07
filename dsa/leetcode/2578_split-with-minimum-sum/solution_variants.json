@@ -11,6 +11,15 @@
       "summary": "Sorts the digits and appends them alternately to two balanced numbers so the smallest digits receive the largest place values.",
       "time_complexity": "O(d log d)",
       "space_complexity": "O(d)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(d log d)",
+      "space_complexity": "O(d)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Groups task profits by exact skill, assigns each group greedily through max-heaps, then takes the best remaining task for the extra worker.",
       "time_complexity": "O(w + t + a log t)",
       "space_complexity": "O(w + t)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(w + t + a log t)",
+      "space_complexity": "O(w + t)"
     }
   ]
 }

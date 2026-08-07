@@ -11,6 +11,15 @@
       "summary": "Precomputes full-block range modes and checks only exact boundary candidates for each query.",
       "time_complexity": "O(n sqrt(n) + q sqrt(n) log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n sqrt(n) + q sqrt(n) log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

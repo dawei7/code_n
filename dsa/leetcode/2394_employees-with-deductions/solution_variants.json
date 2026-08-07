@@ -11,6 +11,15 @@
       "summary": "Left-joins every employee to their sessions, totals independently rounded durations, and filters groups below the required minutes.",
       "time_complexity": "O((E + L)\\log(E + L))",
       "space_complexity": "O(E + L)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((E + L)\\log(E + L))",
+      "space_complexity": "O(E + L)"
     }
   ]
 }
