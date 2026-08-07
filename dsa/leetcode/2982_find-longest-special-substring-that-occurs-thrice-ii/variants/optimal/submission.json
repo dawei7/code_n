@@ -7,7 +7,7 @@
   "title_slug": "find-longest-special-substring-that-occurs-thrice-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumLength",
   "verified_submission_id": "2078539844",
   "verified_at": "2026-07-23T15:01:38.339203+00:00"

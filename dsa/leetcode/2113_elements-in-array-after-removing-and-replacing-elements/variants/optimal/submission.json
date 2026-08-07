@@ -7,7 +7,7 @@
   "title_slug": "elements-in-array-after-removing-and-replacing-elements",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.elementInNums",
   "verified_submission_id": "2073329829",
   "verified_at": "2026-07-19T10:08:25.900128+00:00"

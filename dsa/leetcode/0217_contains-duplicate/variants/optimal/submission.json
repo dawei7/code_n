@@ -7,7 +7,7 @@
   "title_slug": "contains-duplicate",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064214306",
   "verified_at": "2026-07-11T18:46:54.366386+00:00"
 }

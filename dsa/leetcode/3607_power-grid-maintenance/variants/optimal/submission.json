@@ -7,7 +7,7 @@
   "title_slug": "power-grid-maintenance",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.processQueries",
   "verified_submission_id": "2083565073",
   "verified_at": "2026-07-27T15:34:00Z"

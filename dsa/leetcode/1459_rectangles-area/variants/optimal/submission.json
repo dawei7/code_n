@@ -7,7 +7,7 @@
   "title_slug": "rectangles-area",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2069173889",
   "verified_at": "2026-07-15T23:39:23.482161+00:00"

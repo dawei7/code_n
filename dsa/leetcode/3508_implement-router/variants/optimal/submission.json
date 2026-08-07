@@ -7,7 +7,7 @@
   "title_slug": "implement-router",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Router",
   "verified_submission_id": "2082524123",
   "verified_at": "2026-07-26T19:40:00Z"

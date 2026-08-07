@@ -7,7 +7,7 @@
   "title_slug": "new-users-daily-count",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "verified_submission_id": "2065563810",
   "verified_at": "2026-07-12T22:46:11.800026+00:00",
   "review_scope": "solution_only",

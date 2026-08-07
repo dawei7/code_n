@@ -7,7 +7,7 @@
   "title_slug": "maximum-total-from-optimal-activation-order",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxTotal",
   "verified_submission_id": "2083943949",
   "verified_at": "2026-07-27T21:01:06.397261+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "count-nodes-that-are-great-enough",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countGreatEnoughNodes",
   "verified_submission_id": "2076864699",
   "verified_at": "2026-07-22T08:46:00+00:00"

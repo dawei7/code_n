@@ -14,9 +14,8 @@ def test_accepted_replacement_candidate_does_not_mutate_verified_evidence(
     tmp_path: Path,
 ) -> None:
     branch = tmp_path / "optimal"
-    solutions = branch / "solutions"
-    solutions.mkdir(parents=True)
-    canonical = solutions / "solution.py"
+    canonical = branch / "solution.py"
+    branch.mkdir(parents=True, exist_ok=True)
     canonical.write_text("verified source\n", encoding="utf-8")
     candidate = tmp_path / "candidate.py"
     candidate.write_text("replacement source\n", encoding="utf-8")
@@ -26,7 +25,7 @@ def test_accepted_replacement_candidate_does_not_mutate_verified_evidence(
         "question_id": "1",
         "title_slug": "two-sum",
         "language": "python3",
-        "source": "solutions/solution.py",
+        "source": "solution.py",
         "verified_submission_id": "old-submission",
     }
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")

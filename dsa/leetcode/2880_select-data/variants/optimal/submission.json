@@ -7,7 +7,7 @@
   "title_slug": "select-data",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "selectData",
   "verified_submission_id": "2077858260",
   "verified_at": "2026-07-23T04:33:39+00:00"

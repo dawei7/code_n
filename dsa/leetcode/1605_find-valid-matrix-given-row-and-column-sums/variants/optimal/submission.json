@@ -7,7 +7,7 @@
   "title_slug": "find-valid-matrix-given-row-and-column-sums",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.restoreMatrix",
   "verified_submission_id": "2070097822",
   "verified_at": "2026-07-16T16:02:54.096843+00:00"

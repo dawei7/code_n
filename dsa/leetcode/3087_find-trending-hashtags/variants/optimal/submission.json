@@ -7,7 +7,7 @@
   "title_slug": "find-trending-hashtags",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2079153891",
   "verified_at": "2026-07-24T07:50:00+02:00"

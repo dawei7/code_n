@@ -7,7 +7,7 @@
   "title_slug": "create-binary-tree-from-descriptions",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.createBinaryTree",
   "verified_submission_id": "2073829030",
   "verified_at": "2026-07-19T18:42:06.110971+00:00"

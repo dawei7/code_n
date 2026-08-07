@@ -7,7 +7,7 @@
   "title_slug": "calculate-salaries",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2074749008",
   "verified_at": "2026-07-20T15:35:56.904681+00:00"

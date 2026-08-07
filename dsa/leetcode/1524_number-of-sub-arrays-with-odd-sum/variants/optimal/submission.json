@@ -7,7 +7,7 @@
   "title_slug": "number-of-sub-arrays-with-odd-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numOfSubarrays",
   "verified_submission_id": "2069552475",
   "verified_at": "2026-07-16T07:41:50.837857+00:00"

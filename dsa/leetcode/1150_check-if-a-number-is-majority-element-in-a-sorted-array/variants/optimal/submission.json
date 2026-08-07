@@ -7,7 +7,7 @@
   "title_slug": "check-if-a-number-is-majority-element-in-a-sorted-array",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065585810",
   "verified_at": "2026-07-12T23:08:11.800026+00:00",
   "review_scope": "solution_only",

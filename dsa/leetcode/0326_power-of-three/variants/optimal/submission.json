@@ -7,7 +7,7 @@
   "title_slug": "power-of-three",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064387096",
   "verified_at": "2026-07-12T02:29:19.540843+00:00"
 }

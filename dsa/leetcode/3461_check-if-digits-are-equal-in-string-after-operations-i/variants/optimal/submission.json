@@ -7,7 +7,7 @@
   "title_slug": "check-if-digits-are-equal-in-string-after-operations-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.hasSameDigits",
   "verified_submission_id": "2082009651",
   "verified_at": "2026-07-26T12:25:11Z"

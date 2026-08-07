@@ -7,7 +7,7 @@
   "title_slug": "maximum-gcd-sum-of-a-subarray",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxGcdSum",
   "verified_submission_id": "2078315407",
   "verified_at": "2026-07-23T11:23:05.366151+00:00"

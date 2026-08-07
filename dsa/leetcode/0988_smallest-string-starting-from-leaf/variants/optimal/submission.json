@@ -7,7 +7,7 @@
   "title_slug": "smallest-string-starting-from-leaf",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.smallestFromLeaf",
   "verified_submission_id": "2067207950",
   "verified_at": "2026-07-14T09:59:57.321109+00:00"

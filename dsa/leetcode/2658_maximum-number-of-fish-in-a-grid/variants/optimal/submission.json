@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-fish-in-a-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findMaxFish",
   "verified_submission_id": "2076291024",
   "verified_at": "2026-07-21T18:53:00+00:00"

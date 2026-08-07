@@ -7,7 +7,7 @@
   "title_slug": "find-the-array-concatenation-value",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findTheArrayConcVal",
   "verified_submission_id": "2075481552",
   "verified_at": "2026-07-21T07:18:00+00:00"

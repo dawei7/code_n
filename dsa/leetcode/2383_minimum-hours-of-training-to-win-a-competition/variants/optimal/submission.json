@@ -7,7 +7,7 @@
   "title_slug": "minimum-hours-of-training-to-win-a-competition",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minNumberOfHours",
   "verified_submission_id": "2074514340",
   "verified_at": "2026-07-20T11:49:55.391797+00:00"

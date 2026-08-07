@@ -7,7 +7,7 @@
   "title_slug": "substring-with-concatenation-of-all-words",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2063763471",
   "verified_at": "2026-07-11T10:36:42.101Z"
 }

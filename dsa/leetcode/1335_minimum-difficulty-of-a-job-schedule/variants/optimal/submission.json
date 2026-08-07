@@ -7,7 +7,7 @@
   "title_slug": "minimum-difficulty-of-a-job-schedule",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minDifficulty",
   "verified_submission_id": "2068607058",
   "verified_at": "2026-07-15T12:46:17.778238+00:00"

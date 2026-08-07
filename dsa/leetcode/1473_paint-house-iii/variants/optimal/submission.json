@@ -7,7 +7,7 @@
   "title_slug": "paint-house-iii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minCost",
   "verified_submission_id": "2074753281",
   "verified_at": "2026-07-20T15:39:17.325655+00:00"

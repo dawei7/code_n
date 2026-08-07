@@ -7,7 +7,7 @@
   "title_slug": "the-employee-that-worked-on-the-longest-task",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.hardestWorker",
   "verified_submission_id": "2074858259",
   "verified_at": "2026-07-20T16:57:18.451163+00:00"

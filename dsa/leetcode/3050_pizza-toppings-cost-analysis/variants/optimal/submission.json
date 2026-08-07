@@ -7,7 +7,7 @@
   "title_slug": "pizza-toppings-cost-analysis",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2078952357",
   "verified_at": "2026-07-24T01:11:06.8095375Z"

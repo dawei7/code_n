@@ -7,7 +7,7 @@
   "title_slug": "maximum-weighted-k-edge-path",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxWeight",
   "verified_submission_id": "2082638616",
   "verified_at": "2026-07-27T00:28:00Z"

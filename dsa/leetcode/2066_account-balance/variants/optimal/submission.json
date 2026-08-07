@@ -7,7 +7,7 @@
   "title_slug": "account-balance",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2072969345",
   "verified_at": "2026-07-19T03:19:29.531028+00:00"

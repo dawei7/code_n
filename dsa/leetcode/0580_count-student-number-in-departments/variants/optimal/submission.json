@@ -7,7 +7,7 @@
   "title_slug": "count-student-number-in-departments",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "verified_submission_id": "2065430800",
   "verified_at": "2026-07-12T20:23:09.112423+00:00",
   "review_scope": "solution_only",

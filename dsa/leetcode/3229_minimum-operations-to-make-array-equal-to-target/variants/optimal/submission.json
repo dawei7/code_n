@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-make-array-equal-to-target",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minimumOperations",
   "verified_submission_id": "2080178072",
   "verified_at": "2026-07-25T02:59:51.887208+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "sort-array-by-absolute-value",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sortByAbsoluteValue",
   "verified_submission_id": "2083985480",
   "verified_at": "2026-07-27T22:59:18.913829+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "alternating-groups-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numberOfAlternatingGroups",
   "verified_submission_id": "2080137767",
   "verified_at": "2026-07-25T00:56:12.231104+00:00"

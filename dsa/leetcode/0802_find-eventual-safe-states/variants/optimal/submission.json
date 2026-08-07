@@ -7,7 +7,7 @@
   "title_slug": "find-eventual-safe-states",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.eventualSafeNodes",
   "verified_submission_id": "2066220024",
   "verified_at": "2026-07-13T14:14:10.066792+00:00"

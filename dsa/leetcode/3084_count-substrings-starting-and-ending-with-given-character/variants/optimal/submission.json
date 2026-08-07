@@ -7,7 +7,7 @@
   "title_slug": "count-substrings-starting-and-ending-with-given-character",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countSubstrings",
   "verified_submission_id": "2079120270",
   "verified_at": "2026-07-24T07:22:16+02:00"

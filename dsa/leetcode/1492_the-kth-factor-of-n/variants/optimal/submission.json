@@ -7,7 +7,7 @@
   "title_slug": "the-kth-factor-of-n",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.kthFactor",
   "verified_submission_id": "2074767444",
   "verified_at": "2026-07-20T15:50:40.566736+00:00"

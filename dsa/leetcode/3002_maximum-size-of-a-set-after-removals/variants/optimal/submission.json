@@ -7,7 +7,7 @@
   "title_slug": "maximum-size-of-a-set-after-removals",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumSetSize",
   "verified_submission_id": "2078663106",
   "verified_at": "2026-07-23T16:39:36.509828+00:00"

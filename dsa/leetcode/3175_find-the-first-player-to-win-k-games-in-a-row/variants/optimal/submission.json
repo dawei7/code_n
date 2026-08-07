@@ -7,7 +7,7 @@
   "title_slug": "find-the-first-player-to-win-k-games-in-a-row",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findWinningPlayer",
   "verified_submission_id": "2080038863",
   "verified_at": "2026-07-24T21:55:00+02:00"

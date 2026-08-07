@@ -7,7 +7,7 @@
   "title_slug": "connecting-cities-with-minimum-cost",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minimumCost",
   "verified_submission_id": "2067815450",
   "verified_at": "2026-07-14T19:11:45.175355+00:00",

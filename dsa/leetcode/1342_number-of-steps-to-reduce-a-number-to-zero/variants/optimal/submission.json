@@ -7,7 +7,7 @@
   "title_slug": "number-of-steps-to-reduce-a-number-to-zero",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numberOfSteps",
   "verified_submission_id": "2068632131",
   "verified_at": "2026-07-15T13:11:03.362879+00:00"

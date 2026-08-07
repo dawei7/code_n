@@ -7,7 +7,7 @@
   "title_slug": "transform-array-to-all-equal-elements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.canMakeEqual",
   "verified_submission_id": "2083237363",
   "verified_at": "2026-07-27T10:48:00Z"

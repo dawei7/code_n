@@ -7,7 +7,7 @@
   "title_slug": "count-ways-to-build-good-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countGoodStrings",
   "verified_submission_id": "2075086270",
   "verified_at": "2026-07-20T20:59:00+00:00"

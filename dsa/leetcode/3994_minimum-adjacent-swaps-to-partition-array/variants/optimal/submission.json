@@ -7,7 +7,7 @@
   "title_slug": "minimum-adjacent-swaps-to-partition-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minAdjacentSwaps",
   "verified_submission_id": "2088159291",
   "verified_at": "2026-07-31T02:29:00Z"

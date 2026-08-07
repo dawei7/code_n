@@ -7,7 +7,7 @@
   "title_slug": "fair-candy-swap",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.fairCandySwap",
   "verified_submission_id": "2066768303",
   "verified_at": "2026-07-14T02:29:03.580312+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "binary-tree-pruning",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.pruneTree",
   "verified_submission_id": "2066298200",
   "verified_at": "2026-07-13T15:23:40.405980+00:00"

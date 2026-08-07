@@ -7,7 +7,7 @@
   "title_slug": "find-the-lexicographically-smallest-valid-sequence",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.validSequence",
   "verified_submission_id": "2080800652",
   "verified_at": "2026-07-25T13:50:05.4123364Z"

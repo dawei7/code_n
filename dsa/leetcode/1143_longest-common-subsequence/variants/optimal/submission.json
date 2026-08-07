@@ -7,7 +7,7 @@
   "title_slug": "longest-common-subsequence",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.longestCommonSubsequence",
   "verified_submission_id": "2067833146",
   "verified_at": "2026-07-14T19:38:09.366562+00:00"

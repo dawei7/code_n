@@ -7,7 +7,7 @@
   "title_slug": "largest-sum-of-averages",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.largestSumOfAverages",
   "verified_submission_id": "2066283701",
   "verified_at": "2026-07-13T15:11:07.649036+00:00"

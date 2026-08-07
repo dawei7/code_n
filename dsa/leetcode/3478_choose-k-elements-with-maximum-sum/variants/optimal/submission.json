@@ -7,7 +7,7 @@
   "title_slug": "choose-k-elements-with-maximum-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findMaxSum",
   "verified_submission_id": "2082186243",
   "verified_at": "2026-07-26T15:00:00Z"

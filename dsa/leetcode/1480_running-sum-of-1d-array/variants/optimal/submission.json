@@ -7,7 +7,7 @@
   "title_slug": "running-sum-of-1d-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.runningSum",
   "verified_submission_id": "2074757470",
   "verified_at": "2026-07-20T15:42:37.302910+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-coins-for-fruits-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minimumCoins",
   "verified_submission_id": "2078455461",
   "verified_at": "2026-07-23T13:48:36.165281+00:00"

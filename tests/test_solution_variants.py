@@ -129,7 +129,7 @@ def test_submission_source_requires_canonical_leetcode_filename(tmp_path: Path) 
     branch = package / "variants" / "optimal"
     submission_path = branch / "submission.json"
     submission = json.loads(submission_path.read_text(encoding="utf-8"))
-    submission["source"] = "solutions/solution.py"
+    submission["source"] = "solution.py"
     submission_path.write_text(json.dumps(submission, indent=2) + "\n", encoding="utf-8")
 
     status = validate_solution_variants(

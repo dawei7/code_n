@@ -7,7 +7,7 @@
   "title_slug": "count-square-sum-triples",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countTriples",
   "verified_submission_id": "2072433901",
   "verified_at": "2026-07-18T15:13:28.555612+00:00"

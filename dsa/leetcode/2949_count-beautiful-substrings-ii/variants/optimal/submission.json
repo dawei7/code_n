@@ -7,7 +7,7 @@
   "title_slug": "count-beautiful-substrings-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.beautifulSubstrings",
   "verified_submission_id": "2078351917",
   "verified_at": "2026-07-23T12:05:06.232699+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "take-gifts-from-the-richest-pile",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.pickGifts",
   "verified_submission_id": "2075456936",
   "verified_at": "2026-07-21T06:55:00+00:00"

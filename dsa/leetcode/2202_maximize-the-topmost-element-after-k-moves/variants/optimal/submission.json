@@ -7,7 +7,7 @@
   "title_slug": "maximize-the-topmost-element-after-k-moves",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumTop",
   "verified_submission_id": "2073852607",
   "verified_at": "2026-07-19T19:15:35.980137+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximum-xor-of-two-non-overlapping-subtrees",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxXor",
   "verified_submission_id": "2075117654",
   "verified_at": "2026-07-20T22:30:00+00:00"

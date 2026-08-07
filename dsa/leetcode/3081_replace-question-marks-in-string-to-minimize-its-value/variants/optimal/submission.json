@@ -7,7 +7,7 @@
   "title_slug": "replace-question-marks-in-string-to-minimize-its-value",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minimizeStringValue",
   "verified_submission_id": "2079087042",
   "verified_at": "2026-07-24T06:52:07+02:00"

@@ -7,7 +7,7 @@
   "title_slug": "kth-largest-sum-in-a-binary-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.kthLargestLevelSum",
   "verified_submission_id": "2075672312",
   "verified_at": "2026-07-21T10:16:00+00:00"

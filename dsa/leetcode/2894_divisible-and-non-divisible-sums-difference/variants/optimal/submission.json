@@ -7,7 +7,7 @@
   "title_slug": "divisible-and-non-divisible-sums-difference",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.differenceOfSums",
   "verified_submission_id": "2077976551",
   "verified_at": "2026-07-23T06:11:38.835213+00:00"

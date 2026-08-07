@@ -7,7 +7,7 @@
   "title_slug": "best-time-to-buy-and-sell-stock-with-cooldown",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064367340",
   "verified_at": "2026-07-12T01:24:21.833525+00:00"
 }

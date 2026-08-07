@@ -7,7 +7,7 @@
   "title_slug": "generalized-abbreviation",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064380349",
   "verified_at": "2026-07-12T02:10:43.646421+00:00",
   "review_scope": "solution_only",

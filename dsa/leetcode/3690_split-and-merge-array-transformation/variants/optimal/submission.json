@@ -7,7 +7,7 @@
   "title_slug": "split-and-merge-array-transformation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minSplitMerge",
   "verified_submission_id": "2084028188",
   "verified_at": "2026-07-28T01:12:34.555610+00:00"

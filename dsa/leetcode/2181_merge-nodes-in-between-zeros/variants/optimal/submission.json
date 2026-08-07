@@ -7,7 +7,7 @@
   "title_slug": "merge-nodes-in-between-zeros",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.mergeNodes",
   "verified_submission_id": "2073735768",
   "verified_at": "2026-07-19T17:15:07.027643+00:00"

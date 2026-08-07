@@ -7,7 +7,7 @@
   "title_slug": "maximum-points-activated-with-one-addition",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxActivated",
   "verified_submission_id": "2086505507",
   "verified_at": "2026-07-29T17:34:32.158670+00:00"

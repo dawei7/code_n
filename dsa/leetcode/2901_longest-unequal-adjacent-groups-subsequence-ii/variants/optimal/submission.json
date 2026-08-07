@@ -7,7 +7,7 @@
   "title_slug": "longest-unequal-adjacent-groups-subsequence-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.getWordsInLongestSubsequence",
   "verified_submission_id": "2078039213",
   "verified_at": "2026-07-23T06:58:42.230066+00:00"

@@ -420,9 +420,12 @@ def leetcode_variant_solution_path(
         return None
     language_id = normalize_language(language)
     ext = language_extension(language_id)
-    path = variant_dir / "solutions" / f"solution.{ext}"
+    path = variant_dir / f"solution.{ext}"
     if path.exists():
         return path
+    nested_path = variant_dir / "solutions" / f"solution.{ext}"
+    if nested_path.exists():
+        return nested_path
     for legacy_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
         legacy_path = variant_dir / "solutions" / legacy_name
         if legacy_path.exists():
@@ -436,9 +439,12 @@ def leetcode_solution_path(challenge_id: str, language: str | None = "python") -
     if default_variant is None:
         return None
     ext = language_extension(language_id)
-    path = default_variant / "solutions" / f"solution.{ext}"
+    path = default_variant / f"solution.{ext}"
     if path.exists():
         return path
+    nested_path = default_variant / "solutions" / f"solution.{ext}"
+    if nested_path.exists():
+        return nested_path
     for legacy_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
         legacy_path = default_variant / "solutions" / legacy_name
         if legacy_path.exists():

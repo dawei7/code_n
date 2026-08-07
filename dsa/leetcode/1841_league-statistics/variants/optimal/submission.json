@@ -7,7 +7,7 @@
   "title_slug": "league-statistics",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2071660127",
   "verified_at": "2026-07-18T02:01:13.848085+00:00"

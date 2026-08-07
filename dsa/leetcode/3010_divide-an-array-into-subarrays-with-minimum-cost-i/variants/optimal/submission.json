@@ -7,7 +7,7 @@
   "title_slug": "divide-an-array-into-subarrays-with-minimum-cost-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minimumCost",
   "verified_submission_id": "2078718302",
   "verified_at": "2026-07-23T17:17:56.839103+00:00"

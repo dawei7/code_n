@@ -7,7 +7,7 @@
   "title_slug": "maximum-square-area-by-removing-fences-from-a-field",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximizeSquareArea",
   "verified_submission_id": "2078494271",
   "verified_at": "2026-07-23T14:21:51.475393+00:00"

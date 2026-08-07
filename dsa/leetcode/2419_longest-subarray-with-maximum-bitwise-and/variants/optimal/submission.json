@@ -7,7 +7,7 @@
   "title_slug": "longest-subarray-with-maximum-bitwise-and",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.longestSubarray",
   "verified_submission_id": "2074716494",
   "verified_at": "2026-07-20T15:08:50.821306+00:00"

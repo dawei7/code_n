@@ -7,7 +7,7 @@
   "title_slug": "find-the-sum-of-the-power-of-all-subsequences",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sumOfPower",
   "verified_submission_id": "2079097944",
   "verified_at": "2026-07-24T07:02:05+02:00"

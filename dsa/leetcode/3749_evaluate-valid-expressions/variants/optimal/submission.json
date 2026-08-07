@@ -7,7 +7,7 @@
   "title_slug": "evaluate-valid-expressions",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.evaluateExpression",
   "verified_submission_id": "2085292625",
   "verified_at": "2026-07-28T19:29:13.096538+00:00"

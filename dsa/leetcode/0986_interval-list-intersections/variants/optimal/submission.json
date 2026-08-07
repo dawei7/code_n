@@ -7,7 +7,7 @@
   "title_slug": "interval-list-intersections",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.intervalIntersection",
   "verified_submission_id": "2067201464",
   "verified_at": "2026-07-14T09:54:08.974601+00:00"

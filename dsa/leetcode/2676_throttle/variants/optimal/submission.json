@@ -7,7 +7,7 @@
   "title_slug": "throttle",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/solution.js",
+  "source": "solution.js",
   "native_entrypoint": "throttle",
   "verified_submission_id": "2076363262",
   "verified_at": "2026-07-21T20:35:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "student-attendance-record-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065356679",
   "verified_at": "2026-07-12T18:39:10.500190+00:00"
 }

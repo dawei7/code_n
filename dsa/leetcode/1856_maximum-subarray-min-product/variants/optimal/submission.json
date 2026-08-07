@@ -7,7 +7,7 @@
   "title_slug": "maximum-subarray-min-product",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxSumMinProduct",
   "verified_submission_id": "2071730638",
   "verified_at": "2026-07-18T04:21:55.410391+00:00"

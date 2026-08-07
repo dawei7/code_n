@@ -7,7 +7,7 @@
   "title_slug": "incremental-even-weighted-cycle-queries",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numberOfEdgesAdded",
   "verified_submission_id": "2086696745",
   "verified_at": "2026-07-29T20:46:58.431273+00:00"

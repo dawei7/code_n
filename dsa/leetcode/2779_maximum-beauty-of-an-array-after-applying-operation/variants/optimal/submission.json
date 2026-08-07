@@ -7,7 +7,7 @@
   "title_slug": "maximum-beauty-of-an-array-after-applying-operation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumBeauty",
   "verified_submission_id": "2076700269",
   "verified_at": "2026-07-22T06:13:00+00:00"

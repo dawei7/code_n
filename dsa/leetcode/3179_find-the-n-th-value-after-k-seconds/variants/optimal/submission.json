@@ -7,7 +7,7 @@
   "title_slug": "find-the-n-th-value-after-k-seconds",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.valueAfterKSeconds",
   "verified_submission_id": "2080059447",
   "verified_at": "2026-07-24T22:32:00+02:00"

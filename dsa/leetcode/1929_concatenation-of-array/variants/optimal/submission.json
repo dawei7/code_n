@@ -7,7 +7,7 @@
   "title_slug": "concatenation-of-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.getConcatenation",
   "verified_submission_id": "2072487916",
   "verified_at": "2026-07-18T15:39:36.006870+00:00"

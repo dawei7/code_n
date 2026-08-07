@@ -7,7 +7,7 @@
   "title_slug": "maximum-value-of-k-coins-from-piles",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "class Solution.maxValueOfCoins",
   "verified_submission_id": "2073890512",
   "verified_at": "2026-07-19T20:39:13.898319+00:00"

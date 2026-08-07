@@ -7,7 +7,7 @@
   "title_slug": "maximum-product-of-word-lengths",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064377312",
   "verified_at": "2026-07-12T02:01:00.789621+00:00"
 }

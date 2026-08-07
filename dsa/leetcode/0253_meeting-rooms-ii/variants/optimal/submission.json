@@ -7,7 +7,7 @@
   "title_slug": "meeting-rooms-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064274695",
   "verified_at": "2026-07-11T20:15:09.526409+00:00",
   "review_scope": "solution_only",

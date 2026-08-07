@@ -7,7 +7,7 @@
   "title_slug": "island-perimeter",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064947898",
   "verified_at": "2026-07-12T11:56:32.816293+00:00"
 }

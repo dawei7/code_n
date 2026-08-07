@@ -7,7 +7,7 @@
   "title_slug": "binary-tree-longest-consecutive-sequence",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064356391",
   "verified_at": "2026-07-12T00:42:01.469963+00:00",
   "review_scope": "solution_only",

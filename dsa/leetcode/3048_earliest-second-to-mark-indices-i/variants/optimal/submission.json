@@ -7,7 +7,7 @@
   "title_slug": "earliest-second-to-mark-indices-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.earliestSecondToMarkIndices",
   "verified_submission_id": "2078943084",
   "verified_at": "2026-07-24T00:41:46.603708+00:00"

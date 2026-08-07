@@ -7,7 +7,7 @@
   "title_slug": "shortest-uncommon-substring-in-an-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.shortestSubstrings",
   "verified_submission_id": "2079042763",
   "verified_at": "2026-07-24T06:07:13+02:00"

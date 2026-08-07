@@ -7,7 +7,7 @@
   "title_slug": "analyze-subscription-conversion",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2082417151",
   "verified_at": "2026-07-26T17:57:00Z"

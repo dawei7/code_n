@@ -7,7 +7,7 @@
   "title_slug": "count-complete-tree-nodes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064218912",
   "verified_at": "2026-07-11T18:52:23.460947+00:00"
 }

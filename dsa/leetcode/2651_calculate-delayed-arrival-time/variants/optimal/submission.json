@@ -7,7 +7,7 @@
   "title_slug": "calculate-delayed-arrival-time",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findDelayedArrivalTime",
   "verified_submission_id": "2076258596",
   "verified_at": "2026-07-21T18:24:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "sum-of-square-numbers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065497109",
   "verified_at": "2026-07-12T23:44:04.518656+00:00"
 }

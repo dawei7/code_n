@@ -7,7 +7,7 @@
   "title_slug": "minimum-path-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064134730",
   "verified_at": "2026-07-11T17:33:38.906225+00:00"
 }

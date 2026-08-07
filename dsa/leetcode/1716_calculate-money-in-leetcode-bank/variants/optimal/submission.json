@@ -7,7 +7,7 @@
   "title_slug": "calculate-money-in-leetcode-bank",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.totalMoney",
   "verified_submission_id": "2070714410",
   "verified_at": "2026-07-17T06:06:22.163804+00:00"

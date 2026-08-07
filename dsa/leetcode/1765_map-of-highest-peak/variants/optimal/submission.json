@@ -7,7 +7,7 @@
   "title_slug": "map-of-highest-peak",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.highestPeak",
   "verified_submission_id": "2071052641",
   "verified_at": "2026-07-17T11:34:30.224779+00:00"

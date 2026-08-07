@@ -7,7 +7,7 @@
   "title_slug": "the-users-that-are-eligible-for-discount",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "procedure",
   "verified_submission_id": "2073907565",
   "verified_at": "2026-07-19T21:39:15.234932+00:00"

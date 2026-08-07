@@ -7,7 +7,7 @@
   "title_slug": "binary-string-with-substrings-representing-1-to-n",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.queryString",
   "verified_submission_id": "2067299574",
   "verified_at": "2026-07-14T11:37:39.097072+00:00"

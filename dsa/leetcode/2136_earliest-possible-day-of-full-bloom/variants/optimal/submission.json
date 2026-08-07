@@ -7,7 +7,7 @@
   "title_slug": "earliest-possible-day-of-full-bloom",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.earliestFullBloom",
   "verified_submission_id": "2073437924",
   "verified_at": "2026-07-19T12:15:48.107661+00:00"

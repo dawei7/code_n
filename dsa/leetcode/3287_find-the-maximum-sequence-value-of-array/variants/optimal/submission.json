@@ -7,7 +7,7 @@
   "title_slug": "find-the-maximum-sequence-value-of-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxValue",
   "verified_submission_id": "2080734794",
   "verified_at": "2026-07-25T12:43:29.7129544Z"

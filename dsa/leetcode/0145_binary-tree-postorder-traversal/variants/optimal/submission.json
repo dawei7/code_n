@@ -7,7 +7,7 @@
   "title_slug": "binary-tree-postorder-traversal",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064169835",
   "verified_at": "2026-07-11T18:04:12.030606+00:00"
 }

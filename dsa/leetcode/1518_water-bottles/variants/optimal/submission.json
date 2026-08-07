@@ -7,7 +7,7 @@
   "title_slug": "water-bottles",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numWaterBottles",
   "verified_submission_id": "2069522926",
   "verified_at": "2026-07-16T07:11:47.182507+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "find-x-sum-of-all-k-long-subarrays-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findXSum",
   "verified_submission_id": "2080892550",
   "verified_at": "2026-07-25T15:19:00Z"

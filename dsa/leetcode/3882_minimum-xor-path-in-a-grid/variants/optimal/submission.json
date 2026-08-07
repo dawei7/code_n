@@ -7,7 +7,7 @@
   "title_slug": "minimum-xor-path-in-a-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minCost",
   "verified_submission_id": "2086645958",
   "verified_at": "2026-07-29T19:26:38.329807+00:00"

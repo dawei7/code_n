@@ -7,7 +7,7 @@
   "title_slug": "number-of-self-divisible-permutations",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.selfDivisiblePermutationCount",
   "verified_submission_id": "2078592693",
   "verified_at": "2026-07-23T15:46:05.439571+00:00"

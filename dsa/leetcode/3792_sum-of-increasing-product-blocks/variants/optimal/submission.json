@@ -7,7 +7,7 @@
   "title_slug": "sum-of-increasing-product-blocks",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sumOfBlocks",
   "verified_submission_id": "2085416609",
   "verified_at": "2026-07-29T00:35:09.114814+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-upgradable-servers",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxUpgrades",
   "verified_submission_id": "2079836882",
   "verified_at": "2026-07-24T18:46:00+02:00"

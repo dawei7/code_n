@@ -7,7 +7,7 @@
   "title_slug": "tasks-count-in-the-weekend",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "verified_submission_id": "2080689220",
   "verified_at": "2026-07-25T11:53:05.9417566Z"
 }

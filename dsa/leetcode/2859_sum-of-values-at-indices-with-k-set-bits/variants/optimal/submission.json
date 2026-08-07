@@ -7,7 +7,7 @@
   "title_slug": "sum-of-values-at-indices-with-k-set-bits",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sumIndicesWithKSetBits",
   "verified_submission_id": "2077610800",
   "verified_at": "2026-07-22T19:29:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "apply-operations-to-maximize-frequency-score",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxFrequencyScore",
   "verified_submission_id": "2078449091",
   "verified_at": "2026-07-23T13:43:00.263400+00:00"

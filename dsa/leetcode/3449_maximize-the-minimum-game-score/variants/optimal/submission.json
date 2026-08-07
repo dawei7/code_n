@@ -7,7 +7,7 @@
   "title_slug": "maximize-the-minimum-game-score",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxScore",
   "verified_submission_id": "2081902283",
   "verified_at": "2026-07-26T10:38:00Z"

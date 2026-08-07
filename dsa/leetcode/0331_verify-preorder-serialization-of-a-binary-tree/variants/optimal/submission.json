@@ -7,7 +7,7 @@
   "title_slug": "verify-preorder-serialization-of-a-binary-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064412258",
   "verified_at": "2026-07-12T02:46:25.470397+00:00"
 }

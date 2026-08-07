@@ -7,7 +7,7 @@
   "title_slug": "odd-string-difference",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.oddString",
   "verified_submission_id": "2075023299",
   "verified_at": "2026-07-20T19:11:53.1076756+00:00"

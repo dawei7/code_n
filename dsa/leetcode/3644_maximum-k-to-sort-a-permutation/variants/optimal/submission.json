@@ -7,7 +7,7 @@
   "title_slug": "maximum-k-to-sort-a-permutation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sortPermutation",
   "verified_submission_id": "2083940998",
   "verified_at": "2026-07-27T20:54:55.661580+00:00"

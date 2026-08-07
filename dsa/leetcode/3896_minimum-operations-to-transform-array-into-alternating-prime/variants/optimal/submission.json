@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-transform-array-into-alternating-prime",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minOperations",
   "verified_submission_id": "2086744631",
   "verified_at": "2026-07-29T23:01:46.724482+00:00"

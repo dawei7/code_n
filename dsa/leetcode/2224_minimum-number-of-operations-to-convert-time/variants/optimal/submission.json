@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-operations-to-convert-time",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "class Solution.convertTime",
   "verified_submission_id": "2073899481",
   "verified_at": "2026-07-19T21:07:38.683680+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "remove-max-number-of-edges-to-keep-graph-fully-traversable",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxNumEdgesToRemove",
   "verified_submission_id": "2069902982",
   "verified_at": "2026-07-16T13:24:56.530617+00:00"

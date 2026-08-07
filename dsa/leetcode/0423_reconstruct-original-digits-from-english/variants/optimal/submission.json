@@ -7,7 +7,7 @@
   "title_slug": "reconstruct-original-digits-from-english",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064771052",
   "verified_at": "2026-07-12T08:21:08.203665+00:00"
 }

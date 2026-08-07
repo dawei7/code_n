@@ -7,7 +7,7 @@
   "title_slug": "check-if-an-array-is-consecutive",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.isConsecutive",
   "verified_submission_id": "2073906739",
   "verified_at": "2026-07-19T21:35:32.968063+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "implement-trie-ii-prefix-tree",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Trie",
   "verified_submission_id": "2071466128",
   "verified_at": "2026-07-17T18:15:26.988525+00:00"

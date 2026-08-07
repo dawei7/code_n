@@ -7,7 +7,7 @@
   "title_slug": "find-if-digit-game-can-be-won",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.canAliceWin",
   "verified_submission_id": "2080188010",
   "verified_at": "2026-07-25T03:20:51.339695+00:00"

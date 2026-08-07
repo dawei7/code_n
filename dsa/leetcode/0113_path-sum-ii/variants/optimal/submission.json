@@ -7,7 +7,7 @@
   "title_slug": "path-sum-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064149368",
   "verified_at": "2026-07-11T17:46:30.678701+00:00"
 }

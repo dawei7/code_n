@@ -7,7 +7,7 @@
   "title_slug": "design-an-ordered-stream",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "OrderedStream",
   "verified_submission_id": "2070479516",
   "verified_at": "2026-07-17T01:01:05.121298+00:00"

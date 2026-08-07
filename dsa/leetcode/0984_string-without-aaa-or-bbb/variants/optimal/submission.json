@@ -7,7 +7,7 @@
   "title_slug": "string-without-aaa-or-bbb",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.strWithout3a3b",
   "verified_submission_id": "2067196437",
   "verified_at": "2026-07-14T09:49:32.663752+00:00"

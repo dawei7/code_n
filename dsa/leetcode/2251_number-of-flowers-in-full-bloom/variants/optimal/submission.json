@@ -7,7 +7,7 @@
   "title_slug": "number-of-flowers-in-full-bloom",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.fullBloomFlowers",
   "verified_submission_id": "2073933351",
   "verified_at": "2026-07-19T23:29:06.451379+00:00"

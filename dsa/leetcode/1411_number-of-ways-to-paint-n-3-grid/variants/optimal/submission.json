@@ -7,7 +7,7 @@
   "title_slug": "number-of-ways-to-paint-n-3-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numOfWays",
   "verified_submission_id": "2068939568",
   "verified_at": "2026-07-15T17:23:52.941452+00:00"

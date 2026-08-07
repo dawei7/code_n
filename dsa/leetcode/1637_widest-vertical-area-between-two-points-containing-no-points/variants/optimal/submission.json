@@ -7,7 +7,7 @@
   "title_slug": "widest-vertical-area-between-two-points-containing-no-points",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxWidthOfVerticalArea",
   "verified_submission_id": "2070454921",
   "verified_at": "2026-07-16T23:33:05.572330+00:00"

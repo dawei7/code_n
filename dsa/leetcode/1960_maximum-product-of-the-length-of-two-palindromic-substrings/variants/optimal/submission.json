@@ -7,7 +7,7 @@
   "title_slug": "maximum-product-of-the-length-of-two-palindromic-substrings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxProduct",
   "verified_submission_id": "2072721673",
   "verified_at": "2026-07-18T18:56:01.516217+00:00"

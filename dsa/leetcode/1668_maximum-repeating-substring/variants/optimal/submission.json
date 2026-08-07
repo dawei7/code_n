@@ -7,7 +7,7 @@
   "title_slug": "maximum-repeating-substring",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxRepeating",
   "verified_submission_id": "2070504209",
   "verified_at": "2026-07-17T02:09:22.074142+00:00"

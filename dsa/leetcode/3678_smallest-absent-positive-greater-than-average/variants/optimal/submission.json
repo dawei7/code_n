@@ -7,7 +7,7 @@
   "title_slug": "smallest-absent-positive-greater-than-average",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.smallestAbsent",
   "verified_submission_id": "2084003037",
   "verified_at": "2026-07-28T00:01:34.687386+00:00"

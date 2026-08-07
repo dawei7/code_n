@@ -7,7 +7,7 @@
   "title_slug": "count-different-palindromic-subsequences",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065781896",
   "verified_at": "2026-07-13T06:49:05.617689+00:00"
 }

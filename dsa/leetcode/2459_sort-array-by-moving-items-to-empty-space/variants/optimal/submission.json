@@ -7,7 +7,7 @@
   "title_slug": "sort-array-by-moving-items-to-empty-space",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sortArray",
   "verified_submission_id": "2075063398",
   "verified_at": "2026-07-20T20:08:00+00:00"

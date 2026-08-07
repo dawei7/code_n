@@ -7,7 +7,7 @@
   "title_slug": "check-if-there-is-a-valid-partition-for-the-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.validPartition",
   "verified_submission_id": "2074445923",
   "verified_at": "2026-07-20T10:31:24.591946+00:00"

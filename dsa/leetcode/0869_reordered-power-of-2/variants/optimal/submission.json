@@ -7,7 +7,7 @@
   "title_slug": "reordered-power-of-2",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.reorderedPowerOf2",
   "verified_submission_id": "2066735374",
   "verified_at": "2026-07-14T01:08:04.767900+00:00"

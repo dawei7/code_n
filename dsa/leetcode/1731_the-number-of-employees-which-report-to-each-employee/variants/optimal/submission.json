@@ -7,7 +7,7 @@
   "title_slug": "the-number-of-employees-which-report-to-each-employee",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2070852487",
   "verified_at": "2026-07-17T08:16:27.883756+00:00"

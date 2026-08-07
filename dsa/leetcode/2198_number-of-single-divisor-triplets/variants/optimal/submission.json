@@ -7,7 +7,7 @@
   "title_slug": "number-of-single-divisor-triplets",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.singleDivisorTriplet",
   "verified_submission_id": "2073838814",
   "verified_at": "2026-07-19T18:54:15.908439+00:00"

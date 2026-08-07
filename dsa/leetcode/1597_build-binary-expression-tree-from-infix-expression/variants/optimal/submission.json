@@ -7,7 +7,7 @@
   "title_slug": "build-binary-expression-tree-from-infix-expression",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.expTree",
   "verified_submission_id": "2070039849",
   "verified_at": "2026-07-16T15:19:03.694707+00:00"

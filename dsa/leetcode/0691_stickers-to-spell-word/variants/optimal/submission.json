@@ -7,7 +7,7 @@
   "title_slug": "stickers-to-spell-word",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065579808",
   "verified_at": "2026-07-13T03:23:55.602283+00:00"
 }

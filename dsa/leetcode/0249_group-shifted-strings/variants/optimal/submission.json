@@ -7,7 +7,7 @@
   "title_slug": "group-shifted-strings",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064267191",
   "verified_at": "2026-07-11T20:02:05.959557+00:00",
   "review_scope": "solution_only",

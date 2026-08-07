@@ -7,7 +7,7 @@
   "title_slug": "number-of-unique-categories",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numberOfCategories",
   "verified_submission_id": "2076731064",
   "verified_at": "2026-07-22T06:36:00+00:00"

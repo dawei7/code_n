@@ -7,7 +7,7 @@
   "title_slug": "get-the-size-of-a-dataframe",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "getDataframeSize",
   "verified_submission_id": "2077846666",
   "verified_at": "2026-07-23T04:22:14+00:00"

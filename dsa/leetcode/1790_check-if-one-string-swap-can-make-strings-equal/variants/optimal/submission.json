@@ -7,7 +7,7 @@
   "title_slug": "check-if-one-string-swap-can-make-strings-equal",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.areAlmostEqual",
   "verified_submission_id": "2071179054",
   "verified_at": "2026-07-17T13:59:07.075960+00:00"

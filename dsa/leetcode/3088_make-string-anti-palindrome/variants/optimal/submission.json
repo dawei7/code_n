@@ -7,7 +7,7 @@
   "title_slug": "make-string-anti-palindrome",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.makeAntiPalindrome",
   "verified_submission_id": "2079166322",
   "verified_at": "2026-07-24T08:01:00+02:00"

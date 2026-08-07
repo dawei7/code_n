@@ -7,7 +7,7 @@
   "title_slug": "longest-substring-with-at-most-two-distinct-characters",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064180583",
   "verified_at": "2026-07-11T18:13:34.868619+00:00",
   "review_scope": "solution_only",

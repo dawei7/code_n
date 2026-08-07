@@ -7,7 +7,7 @@
   "title_slug": "maximize-the-number-of-partitions-after-operations",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxPartitionsAfterOperations",
   "verified_submission_id": "2078670669",
   "verified_at": "2026-07-23T16:45:01.894329+00:00"

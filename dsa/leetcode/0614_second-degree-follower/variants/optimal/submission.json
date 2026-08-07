@@ -7,7 +7,7 @@
   "title_slug": "second-degree-follower",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "verified_submission_id": "2065453890",
   "verified_at": "2026-07-12T20:53:14.205791+00:00",
   "review_scope": "solution_only",

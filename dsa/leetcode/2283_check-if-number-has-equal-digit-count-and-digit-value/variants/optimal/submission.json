@@ -7,7 +7,7 @@
   "title_slug": "check-if-number-has-equal-digit-count-and-digit-value",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.digitCount",
   "verified_submission_id": "2073988905",
   "verified_at": "2026-07-20T02:28:34.046835+00:00"

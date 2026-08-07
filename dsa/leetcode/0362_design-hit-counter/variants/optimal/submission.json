@@ -7,7 +7,7 @@
   "title_slug": "design-hit-counter",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064603055",
   "verified_at": "2026-07-12T05:16:49.264147+00:00",
   "review_scope": "solution_only",

@@ -7,7 +7,7 @@
   "title_slug": "count-number-of-ways-to-place-houses",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countHousePlacements",
   "verified_submission_id": "2074397205",
   "verified_at": "2026-07-20T09:47:04.361141+00:00"
