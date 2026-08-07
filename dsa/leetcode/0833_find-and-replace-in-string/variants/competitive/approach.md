@@ -1,6 +1,21 @@
 ## General
-Given a **0-indexed** string `s` that you must perform `k` replacement operations on. The replacement operations are given as three **0-indexed** parallel arrays, `indices`, `sources`, and `targets`, all of length `k`, the algorithm executes a single-pass linear scan through input elements.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Find And Replace in String** is to a **0-indexed** string `s` that you must perform `k` replacement operations on. The replacement operations are given as three **0-indexed** parallel arrays, `indices`, `sources`, and `targets`, all of length `k`. The algorithm processes the input using a single-pass linear iteration, maintaining state variables that update as each element is inspected to produce the result cleanly.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(C)$ — Operation count bound.
-- **Space Complexity**: $O(C)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(C)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(C)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

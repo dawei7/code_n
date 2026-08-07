@@ -1,6 +1,15 @@
 ## General
-Given Enhance all functions to have the `callPolyfill` method. The method accepts an object `obj` as its first parameter and any number of additional arguments. The `obj` becomes the `this` context for the function. The add..., the JavaScript algorithm implements the solution for **Call Function with Custom Context**.
+### Beginner-Friendly Strategy
+To Enhance all functions to have the `callPolyfill` method. The method accepts an object `obj` as its first parameter and any number of additional arguments. The `obj` becomes the `this` context for the function. The additional arguments are passed to the function (that the `call..., the JavaScript solution uses clean ES6+ techniques.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup** — Initializes fast lookup structures such as `Map` or `Set` for $O(1)$ fast lookups.  
+**Step 2: Processing** — Uses built-in array methods (`map`, `filter`, `reduce`) or clean loops to process data.  
+
+### Edge Case Handling
+- **Empty Arrays / Edge Cases:** Checked via `length` guards to prevent runtime crashes.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(a)$ — Operation count bound.
-- **Space Complexity**: $O(a)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(a)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(a)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

@@ -1,6 +1,22 @@
 ## General
-Given There is an `m x n` matrix that is initialized to all `0`'s. There is also a 2D array `indices` where each $\text{indices}[i] = [r_{i}, c_{i}]$ represents a **0-indexed location** to perform some increment operations ..., the algorithm executes a single-pass linear scan through input elements. Edge case handling: applies modulo arithmetic to prevent integer overflow.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Cells with Odd Values in a Matrix** is to There is an `m x n` matrix that is initialized to all `0`'s. There is also a 2D array `indices` where each $\text{indices}[i] = [r_{i}, c_{i}]$ represents a **0-indexed location** to perform some increment operations on the matrix. The algorithm processes the input using a single-pass linear iteration, maintaining state variables that update as each element is inspected to produce the result cleanly.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Large Numbers:** Modulo arithmetic prevents numerical overflow.
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(m+n+k)$ — Operation count bound.
-- **Space Complexity**: $O(m+n)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(m+n+k)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(m+n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

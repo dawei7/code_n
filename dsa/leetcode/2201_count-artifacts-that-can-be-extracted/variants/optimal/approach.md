@@ -1,6 +1,21 @@
 ## General
-Given There is an `n x n` **0-indexed** grid with some artifacts buried in it. You are given the integer `n` and a **0-indexed **2D integer array `artifacts` describing the positions of the rectangular artifacts where $\tex..., the algorithm executes a single-pass linear scan through input elements.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Count Artifacts That Can Be Extracted** is to There is an `n x n` **0-indexed** grid with some artifacts buried in it. You are given the integer `n` and a **0-indexed **2D integer array `artifacts` describing the positions of the rectangular artifacts where $\text{artifacts}[i] = [\text{r1}_{i}, \text{c1}_{i}, \text{r2}_{.... The algorithm processes the input using a single-pass linear iteration, maintaining state variables that update as each element is inspected to produce the result cleanly.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(a + d)$ — Operation count bound.
-- **Space Complexity**: $O(d)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(a + d)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(d)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

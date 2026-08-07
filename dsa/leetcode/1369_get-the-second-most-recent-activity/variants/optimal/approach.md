@@ -1,6 +1,15 @@
 ## General
-Given Table: `UserActivity`, the database query executes a relational pipeline using window functions for positional ranking and partition analytical operations.
+### Beginner-Friendly Relational Pipeline Strategy
+To Table: `UserActivity`, this database query builds a step-by-step SQL pipeline.
+
+### Step-by-Step Query Execution
+**Step 3: PostgreSQL Window Functions**  
+Analytical functions (`ROW_NUMBER()`, `RANK()`, `LAG()`, etc.) calculate relative rankings or running totals within specified partitions without collapsing individual rows.  
+
+### Edge Case Handling & PostgreSQL Standards
+- **ANSI SQL Standard:** Follows PostgreSQL standards for cross-platform reliability.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(A\log A)$ — Operation count bound.
-- **Space Complexity**: $O(A)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(A\log A)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(A)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

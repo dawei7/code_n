@@ -1,6 +1,23 @@
 ## General
-Given an **undirected tree** with `n` nodes, numbered from 0 to $n - 1$. It is represented by a 2D integer array `edges`​​​​​​​ of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge bet..., the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: applies modulo arithmetic to prevent integer overflow.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Minimum Edge Toggles on a Tree** is to an **undirected tree** with `n` nodes, numbered from 0 to $n - 1$. It is represented by a 2D integer array `edges`​​​​​​​ of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree. The algorithm processes the input using a single-pass linear iteration, maintaining state variables that update as each element is inspected to produce the result cleanly.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates for set operations in $O(1)$ hardware instructions.  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Large Numbers:** Modulo arithmetic prevents numerical overflow.
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(N)$ — Operation count bound.
-- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(N)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(N)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

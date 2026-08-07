@@ -1,6 +1,24 @@
 ## General
-Given a **0-indexed** array of positive integers `nums`. A triplet of three **distinct** indices `(i, j, k)` is called a **single divisor triplet** of `nums` if $\text{nums}[i] + \text{nums}[j] + \text{nums}[k]$ is divisibl..., the algorithm executes a single-pass linear scan through input elements. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: applies modulo arithmetic to prevent integer overflow.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Number of Single Divisor Triplets** is to a **0-indexed** array of positive integers `nums`. A triplet of three **distinct** indices `(i, j, k)` is called a **single divisor triplet** of `nums` if $\text{nums}[i] + \text{nums}[j] + \text{nums}[k]$ is divisible by **exactly one** of $\text{nums}[i]$, $\text{nums}[j]$, .... To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We initialize an empty hash map (`dict`). This map will act as our fast memory bank, storing elements and their corresponding indices or frequencies as we scan through the data.  
+**Step 2: Core Processing & Decisions**  
+1. Loop through each item in the input.  
+2. Calculate the required complement (e.g. `target - current_value`).  
+3. Check if the complement is already in our hash map. If yes, we immediately return the matching pair!  
+4. If no, store the current value and index in the hash map and move to the next item.  
+**Step 3: Completion & Result Return**  
+Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates for set operations in $O(1)$ hardware instructions.  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Large Numbers:** Modulo arithmetic prevents numerical overflow.
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(n + U^3)$ — Operation count bound.
-- **Space Complexity**: $O(U)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(n + U^3)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(U)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

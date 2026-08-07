@@ -1,6 +1,15 @@
 ## General
-Given Table: `Terms`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
+### Beginner-Friendly Relational Pipeline Strategy
+To Table: `Terms`, this database query builds a step-by-step SQL pipeline.
+
+### Step-by-Step Query Execution
+**Step 1: Common Table Expressions (CTEs)**  
+The query uses `WITH` clauses to break complex database transformations into small, easy-to-read virtual tables. This makes the query modular and simple to understand.  
+
+### Edge Case Handling & PostgreSQL Standards
+- **ANSI SQL Standard:** Follows PostgreSQL standards for cross-platform reliability.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(N log N)$ — Operation count bound.
-- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(N log N)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(N)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

@@ -1,6 +1,25 @@
 ## General
-Given an undirected tree rooted at node 0 with `n` nodes numbered from 0 to $n - 1$. Each node `i` has an integer value $\text{vals}[i]$, and its parent is given by $\text{par}[i]$, the algorithm executes a single-pass linear scan through input elements. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access, a dynamic programming memoization table to cache intermediate subproblem states. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Maximum Good Subtree Score** is to an undirected tree rooted at node 0 with `n` nodes numbered from 0 to $n - 1$. Each node `i` has an integer value $\text{vals}[i]$, and its parent is given by $\text{par}[i]$. Instead of recalculating the exact same subproblems over and over again, this solution uses **Dynamic Programming**. We break the larger problem down into smaller overlapping subproblems, solve each subproblem once, and store its result in a memory table. When building the final answer, we simply look up previously calculated answers.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We initialize an empty hash map (`dict`). This map will act as our fast memory bank, storing elements and their corresponding indices or frequencies as we scan through the data.  
+**Step 2: Core Processing & Decisions**  
+1. Loop through each item in the input.  
+2. Calculate the required complement (e.g. `target - current_value`).  
+3. Check if the complement is already in our hash map. If yes, we immediately return the matching pair!  
+4. If no, store the current value and index in the hash map and move to the next item.  
+**Step 3: Completion & Result Return**  
+Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates for set operations in $O(1)$ hardware instructions.  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Empty / Null Inputs:** Early guard checks return empty results immediately without crashing.
+- **Large Numbers:** Modulo arithmetic prevents numerical overflow.
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(n * 3^D)$ — Operation count bound.
-- **Space Complexity**: $O(n * 2^D)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(n * 3^D)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(n * 2^D)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

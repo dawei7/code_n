@@ -1,6 +1,13 @@
 ## General
-Given Table: `Activity`, the database query executes a relational database query for **Game Play Analysis II**.
+### Beginner-Friendly Relational Pipeline Strategy
+To Table: `Activity`, this database query builds a step-by-step SQL pipeline.
+
+### Step-by-Step Query Execution
+
+### Edge Case Handling & PostgreSQL Standards
+- **ANSI SQL Standard:** Follows PostgreSQL standards for cross-platform reliability.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(A)$ — Operation count bound.
-- **Space Complexity**: $O(P)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(A)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(P)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

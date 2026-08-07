@@ -1,6 +1,23 @@
 ## General
-Given Serialization is converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same..., the algorithm executes breadth-first search (BFS) level-order traversal using a queue. It utilizes a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends, binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies. Edge case handling: guards against empty/null inputs via early returns, uses infinity sentinels for safe boundary initialization.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Serialize and Deserialize BST** is to Serialization is converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment. The data is structured as a **Binary Tree** made of connected nodes. The algorithm traverses the tree recursively, visiting each node's left and right child pointers (`val`, `left`, `right`) to inspect or transform the tree structure.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We initialize a double-ended queue (`collections.deque`) to keep track of active window bounds or nodes waiting to be processed in order.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Empty / Null Inputs:** Early guard checks return empty results immediately without crashing.
+- **Extreme Boundaries:** Infinity sentinels prevent invalid initial minimum/maximum comparisons.
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operation count bound.
-- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

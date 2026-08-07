@@ -1,6 +1,16 @@
 ## General
-Given Table: `Students`, the database query executes a relational pipeline using window functions for positional ranking and partition analytical operations. Edge case handling: replaces `NULL` values using `COALESCE` guards.
+### Beginner-Friendly Relational Pipeline Strategy
+To Table: `Students`, this database query builds a step-by-step SQL pipeline.
+
+### Step-by-Step Query Execution
+**Step 3: PostgreSQL Window Functions**  
+Analytical functions (`ROW_NUMBER()`, `RANK()`, `LAG()`, etc.) calculate relative rankings or running totals within specified partitions without collapsing individual rows.  
+
+### Edge Case Handling & PostgreSQL Standards
+- **Handling NULL Values:** Uses `COALESCE(column, 0)` so missing database values automatically turn into `0` or empty strings rather than causing `NULL` calculation errors.
+- **ANSI SQL Standard:** Follows PostgreSQL standards for cross-platform reliability.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(n log n)$ — Operation count bound.
-- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(n log n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

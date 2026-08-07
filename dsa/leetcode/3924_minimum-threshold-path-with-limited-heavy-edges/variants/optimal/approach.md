@@ -1,6 +1,25 @@
 ## General
-Given There is an undirected weighted graph with `n` nodes labeled from 0 to $n - 1$, the algorithm executes binary search over the search space to achieve logarithmic reduction. It utilizes a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends. Edge case handling: guards against empty/null inputs via early returns.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Minimum Threshold Path With Limited Heavy Edges** is to There is an undirected weighted graph with `n` nodes labeled from 0 to $n - 1$. Instead of scanning every element one by one in $O(n)$ time, this solution uses **Binary Search**. Think of looking up a word in a dictionary: you open it in the middle, see if your word comes before or after, and discard half of the remaining pages. By halving the candidate window at each step, we find the answer in fast logarithmic $O(\log n)$ time.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We initialize a double-ended queue (`collections.deque`) to keep track of active window bounds or nodes waiting to be processed in order.  
+**Step 2: Core Processing & Decisions**  
+1. Calculate `mid = (left + right) // 2`.  
+2. Compare `array[mid]` with our target value.  
+3. If `array[mid] == target`, we have found our answer!  
+4. If `array[mid] < target`, the target must lie in the right half, so we set `left = mid + 1`.  
+5. If `array[mid] > target`, the target must lie in the left half, so we set `right = mid - 1`.  
+6. Repeat until `left > right`.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Empty / Null Inputs:** Early guard checks return empty results immediately without crashing.
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(n log m + m log m)$ — Operation count bound.
-- **Space Complexity**: $O(n + m)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(n log m + m log m)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(n + m)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

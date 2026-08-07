@@ -1,6 +1,22 @@
 ## General
-Given an integer array `coins` (**1-indexed**) of length `n` and an integer `maxJump`. You can jump to any index `i` of the array `coins` if $\text{coins}[i] \neq -1$ and you have to pay $\text{coins}[i]$ when you visit ind..., the algorithm executes a single-pass linear scan through input elements. It utilizes a dynamic programming memoization table to cache intermediate subproblem states. Edge case handling: guards against empty/null inputs via early returns.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Coin Path** is to an integer array `coins` (**1-indexed**) of length `n` and an integer `maxJump`. You can jump to any index `i` of the array `coins` if $\text{coins}[i] \neq -1$ and you have to pay $\text{coins}[i]$ when you visit index `i`. In addition to that, if you are currently at index `.... Instead of recalculating the exact same subproblems over and over again, this solution uses **Dynamic Programming**. We break the larger problem down into smaller overlapping subproblems, solve each subproblem once, and store its result in a memory table. When building the final answer, we simply look up previously calculated answers.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We create a Dynamic Programming table (array or matrix) and fill in the known base cases (e.g. 0 for empty sets or 1 for single steps).  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Empty / Null Inputs:** Early guard checks return empty results immediately without crashing.
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(N \cdot B)$ — Operation count bound.
-- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(N \cdot B)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(N)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

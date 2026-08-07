@@ -1,6 +1,21 @@
 ## General
-Given There is an **undirected** graph with `n` nodes numbered from `0` to $n - 1$ (**inclusive**). You are given a **0-indexed** integer array `values` where $\text{values}[i]$ is the **value **of the $$i^{\text{th}}$$ nod..., the algorithm executes depth-first search (DFS) recursion to explore valid decision branches.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Maximum Path Quality of a Graph** is to There is an **undirected** graph with `n` nodes numbered from `0` to $n - 1$ (**inclusive**). You are given a **0-indexed** integer array `values` where $\text{values}[i]$ is the **value **of the $$i^{\text{th}}$$ node. You are also given a **0-indexed** 2D integer array `edge.... The algorithm processes the input using a single-pass linear iteration, maintaining state variables that update as each element is inspected to produce the result cleanly.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(n+e+4^L)$ — Operation count bound.
-- **Space Complexity**: $O(n+e+L)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(n+e+4^L)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(n+e+L)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

@@ -1,6 +1,21 @@
 ## General
-Given There are some robots and factories on the X-axis. You are given an integer array `robot` where $\text{robot}[i]$ is the position of the $$i^{\text{th}}$$ robot. You are also given a 2D integer array `factory` where $..., the algorithm executes breadth-first search (BFS) level-order traversal using a queue. It utilizes a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends, a dynamic programming memoization table to cache intermediate subproblem states.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Minimum Total Distance Traveled** is to There are some robots and factories on the X-axis. You are given an integer array `robot` where $\text{robot}[i]$ is the position of the $$i^{\text{th}}$$ robot. You are also given a 2D integer array `factory` where $\text{factory}[j] = [\text{position}_{j}, \text{limit}_{j}]$.... Instead of recalculating the exact same subproblems over and over again, this solution uses **Dynamic Programming**. We break the larger problem down into smaller overlapping subproblems, solve each subproblem once, and store its result in a memory table. When building the final answer, we simply look up previously calculated answers.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We initialize a double-ended queue (`collections.deque`) to keep track of active window bounds or nodes waiting to be processed in order.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(R\log R+F\log F+RF)$ — Operation count bound.
-- **Space Complexity**: $O(R+F)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(R\log R+F\log F+RF)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(R+F)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

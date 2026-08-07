@@ -1,6 +1,21 @@
 ## General
-Given There are `n` **availabe **seats and `n` students **standing** in a room. You are given an array `seats` of length `n`, where $\text{seats}[i]$ is the position of the $$i^{\text{th}}$$ seat. You are also given the arr..., the algorithm executes a single-pass linear scan through input elements.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Minimum Number of Moves to Seat Everyone** is to There are `n` **availabe **seats and `n` students **standing** in a room. You are given an array `seats` of length `n`, where $\text{seats}[i]$ is the position of the $$i^{\text{th}}$$ seat. You are also given the array `students` of length `n`, where $\text{students}[j]$ is t.... The algorithm processes the input using a single-pass linear iteration, maintaining state variables that update as each element is inspected to produce the result cleanly.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(N\log N)$ — Operation count bound.
-- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(N\log N)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(N)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

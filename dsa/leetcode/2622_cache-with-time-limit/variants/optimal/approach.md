@@ -1,6 +1,15 @@
 ## General
-Given Write a class that allows getting and setting key-value pairs, however a **time until expiration** is associated with each key, the JavaScript algorithm uses ES6 `Map`/`Set` collections for $O(1)$ fast key lookups. Edge case handling: guards against empty inputs using array/string length checks.
+### Beginner-Friendly Strategy
+To Write a class that allows getting and setting key-value pairs, however a **time until expiration** is associated with each key, the JavaScript solution uses clean ES6+ techniques.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup** — Initializes fast lookup structures such as `Map` or `Set` for $O(1)$ fast lookups.  
+**Step 2: Processing** — Uses built-in array methods (`map`, `filter`, `reduce`) or clean loops to process data.  
+
+### Edge Case Handling
+- **Empty Arrays / Edge Cases:** Checked via `length` guards to prevent runtime crashes.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(1)$ — Operation count bound.
-- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(1)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

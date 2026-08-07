@@ -1,6 +1,24 @@
 ## General
-Given an **even** integer `n` representing the number of houses arranged in a straight line, and a 2D array `cost` of size `n x 3`, where $\text{cost}[i][j]$ represents the cost of painting house `i` with color $j + 1$, the algorithm executes binary search over the search space to achieve logarithmic reduction. It utilizes a dynamic programming memoization table to cache intermediate subproblem states.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Paint House IV** is to an **even** integer `n` representing the number of houses arranged in a straight line, and a 2D array `cost` of size `n x 3`, where $\text{cost}[i][j]$ represents the cost of painting house `i` with color $j + 1$. Instead of recalculating the exact same subproblems over and over again, this solution uses **Dynamic Programming**. We break the larger problem down into smaller overlapping subproblems, solve each subproblem once, and store its result in a memory table. When building the final answer, we simply look up previously calculated answers.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We create a Dynamic Programming table (array or matrix) and fill in the known base cases (e.g. 0 for empty sets or 1 for single steps).  
+**Step 2: Core Processing & Decisions**  
+1. Calculate `mid = (left + right) // 2`.  
+2. Compare `array[mid]` with our target value.  
+3. If `array[mid] == target`, we have found our answer!  
+4. If `array[mid] < target`, the target must lie in the right half, so we set `left = mid + 1`.  
+5. If `array[mid] > target`, the target must lie in the left half, so we set `right = mid - 1`.  
+6. Repeat until `left > right`.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operation count bound.
-- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(1)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

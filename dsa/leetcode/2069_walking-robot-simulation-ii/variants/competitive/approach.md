@@ -1,6 +1,22 @@
 ## General
-Given A `width x height` grid is on an XY-plane with the **bottom-left** cell at `(0, 0)` and the **top-right** cell at $(width - 1, height - 1)$. The grid is aligned with the four cardinal directions (`"North"`, `"East"`, ..., the algorithm solves **Walking Robot Simulation II** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Walking Robot Simulation II** is to A `width x height` grid is on an XY-plane with the **bottom-left** cell at `(0, 0)` and the **top-right** cell at $(width - 1, height - 1)$. The grid is aligned with the four cardinal directions (`"North"`, `"East"`, `"South"`, and `"West"`). A robot is **initially** at cell `.... The algorithm processes the input using a single-pass linear iteration, maintaining state variables that update as each element is inspected to produce the result cleanly.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
+**Step 2: Core Processing & Decisions**  
+1. Iterate sequentially through each element in the input.  
+2. Apply the operational rules to update running state variables.  
+3. Continue until all elements are evaluated.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Large Numbers:** Modulo arithmetic prevents numerical overflow.
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(Q)$ — Operation count bound.
-- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(Q)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(1)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

@@ -1,6 +1,22 @@
 ## General
-Given There is an undirected graph of `n` nodes. You are given a 2D array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, \text{length}_{i}]$ describes an edge between node $u_{i}$ and node $v_{i}$ with a traversal time of..., the algorithm executes a single-pass linear scan through input elements. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access, a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering.
+### Beginner-Friendly Intuition & Strategy
+The core task in **Minimum Time to Visit Disappearing Nodes** is to There is an undirected graph of `n` nodes. You are given a 2D array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, \text{length}_{i}]$ describes an edge between node $u_{i}$ and node $v_{i}$ with a traversal time of $\text{length}_{i}$ units. To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
+
+### Step-by-Step Execution Guide
+**Step 1: Setup & Initial State**  
+We initialize an empty hash map (`dict`). This map will act as our fast memory bank, storing elements and their corresponding indices or frequencies as we scan through the data.  
+**Step 2: Core Processing & Decisions**  
+1. Loop through each item in the input.  
+2. Calculate the required complement (e.g. `target - current_value`).  
+3. Check if the complement is already in our hash map. If yes, we immediately return the matching pair!  
+4. If no, store the current value and index in the hash map and move to the next item.  
+**Step 3: Completion & Result Return**  
+When processing finishes, the algorithm outputs the final validated solution.
+
+### Why This Handles Edge Cases Gracefully
+- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+
 
 ## Complexity detail
-- **Time Complexity**: $O((n + m) log n)$ — Operation count bound.
-- **Space Complexity**: $O(n + m)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O((n + m) log n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(n + m)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

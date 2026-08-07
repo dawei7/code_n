@@ -1,6 +1,13 @@
 ## General
-Given Table: $\text{user}_{permissions}$, the database query executes a relational database query for **Bitwise User Permissions Analysis**.
+### Beginner-Friendly Relational Pipeline Strategy
+To Table: $\text{user}_{permissions}$, this database query builds a step-by-step SQL pipeline.
+
+### Step-by-Step Query Execution
+
+### Edge Case Handling & PostgreSQL Standards
+- **ANSI SQL Standard:** Follows PostgreSQL standards for cross-platform reliability.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(r log r)$ — Operation count bound.
-- **Space Complexity**: $O(r)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(r log r)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(r)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

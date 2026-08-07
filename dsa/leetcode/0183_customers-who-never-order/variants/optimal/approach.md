@@ -1,6 +1,13 @@
 ## General
-Given Table: `Customers`, the database query executes a relational database query for **Customers Who Never Order**.
+### Beginner-Friendly Relational Pipeline Strategy
+To Table: `Customers`, this database query builds a step-by-step SQL pipeline.
+
+### Step-by-Step Query Execution
+
+### Edge Case Handling & PostgreSQL Standards
+- **ANSI SQL Standard:** Follows PostgreSQL standards for cross-platform reliability.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(c + o)$ — Operation count bound.
-- **Space Complexity**: $O(c + o)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(c + o)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(c + o)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.

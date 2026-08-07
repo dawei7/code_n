@@ -1,6 +1,14 @@
 ## General
-Given Table: `Activity`, the database query executes a relational database query for **User Activity for the Past 30 Days II**. Edge case handling: replaces `NULL` values using `COALESCE` guards.
+### Beginner-Friendly Relational Pipeline Strategy
+To Table: `Activity`, this database query builds a step-by-step SQL pipeline.
+
+### Step-by-Step Query Execution
+
+### Edge Case Handling & PostgreSQL Standards
+- **Handling NULL Values:** Uses `COALESCE(column, 0)` so missing database values automatically turn into `0` or empty strings rather than causing `NULL` calculation errors.
+- **ANSI SQL Standard:** Follows PostgreSQL standards for cross-platform reliability.
+
 
 ## Complexity detail
-- **Time Complexity**: $O(R\log R)$ — Operation count bound.
-- **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
+- **Time Complexity**: $O(R\log R)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
+- **Space Complexity**: $O(R)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
