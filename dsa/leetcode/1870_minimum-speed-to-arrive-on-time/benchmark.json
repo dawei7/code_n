@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1870",
+  "measurement_note": "Size is N, the number of rides. Binary search with one direct feasibility scan takes O(N log U) time. A correct implementation that recomputes every rounded prefix during each feasibility check takes O(N^2 log U), completes all tiers, and fails only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: evaluate 4 rides","kind":"benchmark","visible":false,"size":4,"input":{"dist":[1,1,1,1],"hour":4},"expected":1,"tags":["benchmark","binary-search","linear-feasibility"]},
+    {"id":"benchmark-scale-2","name":"benchmark: evaluate 16 rides","kind":"benchmark","visible":false,"size":16,"input":{"dist":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"hour":16},"expected":1,"tags":["benchmark","binary-search","linear-feasibility"]},
+    {"id":"benchmark-scale-3","name":"benchmark: evaluate 64 rides","kind":"benchmark","visible":false,"size":64,"input":{"dist":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"hour":64},"expected":1,"tags":["benchmark","binary-search","linear-feasibility"]}
+  ]
+}

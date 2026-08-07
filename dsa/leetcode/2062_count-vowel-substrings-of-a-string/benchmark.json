@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2062",
+  "measurement_note": "Size is n, the length of an all-vowel string formed by repeating aeiou. Every substring of length at least five contains all five vowels, so the workload exercises the growing set of valid ranges. The reference counts legal starts per ending in linear time. A correct implementation that extends a range from every start completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 10-character repeating vowel string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {"word": "aeiouaeiou"},
+      "expected": 21,
+      "tags": ["benchmark", "scale-small", "overlapping-ranges"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 40-character repeating vowel string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {"word": "aeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiou"},
+      "expected": 666,
+      "tags": ["benchmark", "scale-medium", "overlapping-ranges"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100-character repeating vowel string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"word": "aeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiou"},
+      "expected": 4656,
+      "tags": ["benchmark", "scale-large", "overlapping-ranges"]
+    }
+  ]
+}

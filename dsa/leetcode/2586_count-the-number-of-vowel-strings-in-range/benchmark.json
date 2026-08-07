@@ -1,0 +1,47 @@
+{
+  "challenge_id": "lc_2586",
+  "cases": [
+    {
+      "id": "benchmark-longer-range",
+      "name": "benchmark: longer range with many short words",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "b",
+          "b",
+          "b",
+          "b",
+          "b",
+          "u"
+        ],
+        "left": 10,
+        "right": 25
+      },
+      "expected": 11,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

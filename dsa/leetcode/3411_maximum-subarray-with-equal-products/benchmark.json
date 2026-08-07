@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3411",
+  "measurement_note": "Size is n, the array length. The legal all-one tiers at lengths 10, 40, and 100 span 10x. Every subarray remains product equivalent, so a quadratic endpoint enumerator executes its full nested loops while the accepted factor-mask window scans once.",
+  "cases": [
+    {"id":"benchmark-all-ones-10","name":"benchmark: all-one array at n=10","kind":"benchmark","visible":false,"size":10,"input":{"nums":[1,1,1,1,1,1,1,1,1,1]},"expected":10,"tags":["benchmark","scale-small","all-ones"]},
+    {"id":"benchmark-all-ones-40","name":"benchmark: all-one array at n=40","kind":"benchmark","visible":false,"size":40,"input":{"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":40,"tags":["benchmark","scale-medium","all-ones"]},
+    {"id":"benchmark-all-ones-100","name":"benchmark: all-one array at n=100","kind":"benchmark","visible":false,"size":100,"input":{"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":100,"tags":["benchmark","scale-large","all-ones"]}
+  ]
+}

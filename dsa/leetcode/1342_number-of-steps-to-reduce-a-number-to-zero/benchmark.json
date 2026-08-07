@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1342",
+  "measurement_note": "Size is num, the input integer. Following the mandated parity operation halves every even positive state and takes O(log num) time. A correct slower alternative fills a dynamic-programming table for every integer from zero through num before returning the final entry, taking O(num) time; every tier completes with the same step count.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reduce 128 to zero",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "num": 128
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reduce 1024 to zero",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "num": 1024
+      },
+      "expected": 11,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reduce 4096 to zero",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "num": 4096
+      },
+      "expected": 13,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "power-of-two"
+      ]
+    }
+  ]
+}

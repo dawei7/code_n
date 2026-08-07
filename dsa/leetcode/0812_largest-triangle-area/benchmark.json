@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_812",
+  "measurement_note": "Size is the number of points. Enumerating three-point combinations once takes O(size^3); recomputing the exhaustive maximum for every growing prefix takes O(size^4).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 3 collinear points", "kind": "benchmark", "visible": false, "size": 3, "input": {"points": [[0, 0], [1, 0], [2, 0]]}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "collinear"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 6 collinear points", "kind": "benchmark", "visible": false, "size": 6, "input": {"points": [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0]]}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "collinear"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 12 collinear points", "kind": "benchmark", "visible": false, "size": 12, "input": {"points": [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0], [11, 0]]}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "collinear"]}
+  ]
+}

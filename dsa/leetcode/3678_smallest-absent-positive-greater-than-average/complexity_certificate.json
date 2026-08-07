@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3678",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The legal array length is capped at 100 elements, which is too small for a stable runtime-scaling distinction between hash membership and repeated linear membership checks.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 100,
+    "unit": "input elements",
+    "source_constraint": "1 <= n == nums.length <= 100, with every element between -100 and 100"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation scans at most 100 values to compute the sum and build a set, then skips at most n distinct present candidates, establishing O(n) expected time over the complete legal workload bound."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression checks all 37,448 arrays over values -3 through 4 at lengths 1 through 5, then checks 5,000 deterministic legal arrays spanning every length through 100 and explicit extrema against an exact rational oracle."
+    }
+  ]
+}

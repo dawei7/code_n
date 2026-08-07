@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1980",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(N)",
+  "summary": "Any valid result contains N output bits, giving an output-size lower bound of Omega(N), and the diagonal reference writes exactly one certified-different bit per input row.",
+  "optimality": {
+    "symbol": "N",
+    "lower_bound": "Omega(N)",
+    "upper_bound": "O(N)",
+    "argument": "A solution must materialize a binary string of exactly N characters, which requires writing N output positions. The reference reads one diagonal position and writes one complemented character for each of the N rows."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "The required return value itself has length N, so no algorithm can produce it in o(N) time under the ordinary explicit-string model."},
+    {"kind": "upper_bound_proof", "evidence": "The accepted reference performs one constant-time diagonal read and one output write per row, then joins exactly N characters."},
+    {"kind": "boundary_property_cases", "evidence": "Authored cases cover both one-bit inputs, homogeneous and mixed diagonals, multiple valid answers, and the maximum legal length; the semantic validator enforces binary length and absence rather than one exact string."}
+  ]
+}

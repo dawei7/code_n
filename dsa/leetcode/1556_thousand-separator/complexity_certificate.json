@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1556",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The source contract caps n at 2^31 - 1, so every legal decimal representation has at most ten digits and cannot support an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 10,
+    "unit": "decimal digits",
+    "source_constraint": "n is between 0 and 2^31 - 1 inclusive, so its decimal representation has at most ten digits"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted grouping loop removes three of at most ten digits per iteration, creates at most four groups, and inserts at most three separators."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares a large deterministic input set with an independent forward-grouping oracle and explicitly covers every legal digit width and each power-of-thousand transition."
+    }
+  ]
+}

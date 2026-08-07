@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_122",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Any adjacent price change can affect the maximum profit, so a correct algorithm must inspect all n prices in the worst case. The greedy scan processes each adjacent pair once.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "If an algorithm leaves some price unread, changing that value can create or remove a profitable adjacent rise while all inspected values remain fixed. Exact computation therefore requires Omega(n) price inspections in the worst case. The candidate evaluates each of the n - 1 adjacent differences once, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An unseen price can change one or two adjacent contributions and therefore change the optimum, so arbitrary input positions cannot be skipped."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The candidate performs constant work for each adjacent price pair."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover separated rises, one continuous rise, and no profitable rise; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

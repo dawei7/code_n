@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_433",
+  "measurement_note": "Size is the bank length within the canonical maximum of ten. Candidate generation uses hash membership for each fixed-length mutation, while prebuilding the complete mutation graph compares every ordered gene pair and performs quadratic work in bank size.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: search a 2-gene mutation bank",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {"startGene":"AAAAAAAA","endGene":"CCAAAAAA","bank":["CAAAAAAA","CCAAAAAA"]},
+      "expected": 2,
+      "tags": ["benchmark", "scaling", "mutation-chain"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: search a 5-gene mutation bank",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {"startGene":"AAAAAAAA","endGene":"CCCCCAAA","bank":["CAAAAAAA","CCAAAAAA","CCCAAAAA","CCCCAAAA","CCCCCAAA"]},
+      "expected": 5,
+      "tags": ["benchmark", "scaling", "mutation-chain"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: search a 10-gene mutation bank",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {"startGene":"AAAAAAAA","endGene":"GGCCCCCC","bank":["CAAAAAAA","CCAAAAAA","CCCAAAAA","CCCCAAAA","CCCCCAAA","CCCCCCAA","CCCCCCCA","CCCCCCCC","GCCCCCCC","GGCCCCCC"]},
+      "expected": 10,
+      "tags": ["benchmark", "scaling", "mutation-chain"]
+    }
+  ]
+}

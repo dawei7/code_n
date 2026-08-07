@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2405",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The greedy scan reads each character once, matching the worst-case input-inspection lower bound; the fixed 26-letter alphabet also prevents the natural partition DP from defining a genuinely slower scalable class.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Changing an unread late character can introduce or remove a forced duplicate boundary and alter the answer, so every character may need inspection. The accepted scan performs a constant number of bit operations per character and therefore matches this lower bound."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An adversary can change an unread character to duplicate a letter in the current part or avoid that duplicate, changing the minimum partition count."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The greedy reference processes each character once and stores only a 26-bit used-letter mask."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhaustively compares all strings over a three-letter alphabet through length eight and deterministic long strings against an independent partition dynamic program."
+    }
+  ]
+}

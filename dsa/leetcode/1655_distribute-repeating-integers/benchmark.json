@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1655",
+  "measurement_note": "Size is S=2^m, the number of customer-subset masks. Each tier has m-1 capacities of three and one capacity of one for m demands of two: total inventory is ample, but only m-1 capacities can serve a customer, so the answer is false after broad state exploration. The Accepted iterative subset DP and an independent memoized subset DP take O(f*3^m) time. A correct implementation that enumerates all customer-to-frequency assignments takes O(f^m), completes the legal m=2/4/6 tiers (S=4/16/64), and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 2 customers across 2 fragmented frequencies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "quantity": [
+          2,
+          2
+        ]
+      },
+      "expected": false
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 4 customers across 4 fragmented frequencies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4
+        ],
+        "quantity": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": false
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 6 customers across 6 fragmented frequencies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          5,
+          5,
+          5,
+          6
+        ],
+        "quantity": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": false
+    }
+  ]
+}

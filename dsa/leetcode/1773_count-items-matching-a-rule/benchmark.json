@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1773",
+  "measurement_note": "Size is n, the number of items. No item matches the name rule. One mapped-column scan is O(n); a correct implementation that recomputes the prefix count after each new item completes every tier and is rejected by O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 nonmatching items",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "items": [["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"]],
+        "ruleKey": "name",
+        "ruleValue": "z"
+      },
+      "expected": 0,
+      "tags": ["benchmark", "scaling", "no-match"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 nonmatching items",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "items": [
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"]
+        ],
+        "ruleKey": "name",
+        "ruleValue": "z"
+      },
+      "expected": 0,
+      "tags": ["benchmark", "scaling", "no-match"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 nonmatching items",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "items": [
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],
+          ["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"],["a","b","c"]
+        ],
+        "ruleKey": "name",
+        "ruleValue": "z"
+      },
+      "expected": 0,
+      "tags": ["benchmark", "scaling", "no-match"]
+    }
+  ]
+}

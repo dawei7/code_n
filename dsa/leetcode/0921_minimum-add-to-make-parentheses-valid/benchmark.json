@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_921",
+  "measurement_note": "Size is n, the string length. Each tier is a deeply nested valid string, so every prefix must be considered by a method that recomputes the balance of each prefix from scratch. The one-pass unmatched-parenthesis counter is linear, while that correct prefix-rescan implementation performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: nested valid string at n=8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "(((())))"
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "prefix-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: nested valid string at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "(((((((((((((((())))))))))))))))"
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "prefix-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: nested valid string at n=128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))"
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "prefix-rescan"
+      ]
+    }
+  ]
+}
+

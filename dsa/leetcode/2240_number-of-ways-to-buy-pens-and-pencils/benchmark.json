@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2240",
+  "measurement_note": "Size is total T with both item costs equal to one. Arithmetic counting over one quantity uses O(T) time, while explicit nested quantity enumeration completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: unit costs with budget 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "total": 8,
+        "cost1": 1,
+        "cost2": 1
+      },
+      "expected": 45,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "unit-costs"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: unit costs with budget 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "total": 32,
+        "cost1": 1,
+        "cost2": 1
+      },
+      "expected": 561,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "unit-costs"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: unit costs with budget 96",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "total": 96,
+        "cost1": 1,
+        "cost2": 1
+      },
+      "expected": 4753,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "unit-costs"
+      ]
+    }
+  ]
+}

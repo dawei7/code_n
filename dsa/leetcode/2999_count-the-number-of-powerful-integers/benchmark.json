@@ -1,0 +1,5 @@
+{"challenge_id":"lc_2999","cases":[
+{"id":"benchmark-digits-3","name":"benchmark: three-digit bound","kind":"benchmark","visible":false,"size":3,"input":{"start":1,"finish":999,"limit":1,"s":"1"},"expected":4,"tags":["benchmark","scaling","decimal-digits","prefix-enumeration-baseline"]},
+{"id":"benchmark-digits-7","name":"benchmark: seven-digit bound","kind":"benchmark","visible":false,"size":7,"input":{"start":1,"finish":9999999,"limit":1,"s":"1"},"expected":64,"tags":["benchmark","scaling","decimal-digits","prefix-enumeration-baseline"]},
+{"id":"benchmark-digits-15","name":"benchmark: fifteen-digit bound","kind":"benchmark","visible":false,"size":15,"input":{"start":1,"finish":999999999999999,"limit":1,"s":"1"},"expected":16384,"tags":["benchmark","scaling","decimal-digits","prefix-enumeration-baseline"]}
+]}

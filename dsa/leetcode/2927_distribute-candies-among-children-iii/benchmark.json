@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_2927",
+  "cases": [
+    {
+      "id": "benchmark-cap-8",
+      "name": "benchmark: count distributions with cap 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "n": 12,
+        "limit": 8
+      },
+      "expected": 61,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "limit",
+        "linear-enumeration-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-cap-32",
+      "name": "benchmark: count distributions with cap 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 48,
+        "limit": 32
+      },
+      "expected": 817,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "limit",
+        "linear-enumeration-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-cap-128",
+      "name": "benchmark: count distributions with cap 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 192,
+        "limit": 128
+      },
+      "expected": 12481,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "limit",
+        "linear-enumeration-baseline"
+      ]
+    }
+  ]
+}

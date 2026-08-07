@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2094",
+  "measurement_note": "Size is n, the number of input positions. Each tier has one digit 2 and all remaining digits 1, so the only valid number is 112. Counting followed by fixed-universe enumeration is linear in n. A correct implementation that enumerates every ordered triple of distinct indices completes all legal tiers and fails only by cubic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 positions with repeated ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"digits": [1, 1, 1, 2]},
+      "expected": [112],
+      "tags": ["benchmark", "scale-small", "duplicate-permutations"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 20 positions with repeated ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {"digits": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]},
+      "expected": [112],
+      "tags": ["benchmark", "scale-medium", "duplicate-permutations"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 positions with repeated ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "digits": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]
+      },
+      "expected": [112],
+      "tags": ["benchmark", "scale-large", "duplicate-permutations"]
+    }
+  ]
+}

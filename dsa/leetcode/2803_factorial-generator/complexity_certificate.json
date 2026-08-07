@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2803",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "Each generator advance must return one factorial and the accepted source computes it with one multiplication and constant persistent state, matching the per-yield lower bound.",
+  "optimality": {
+    "symbol": "yield",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Producing the next required value takes at least constant work. The generator retains only the running product and loop index, performs one multiplication, and yields once per advance, establishing O(1) time and space per yielded value."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Every successful generator advance must produce and return one observable sequence value, requiring Omega(1) work."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "One multiplication and a constant-size state update derive each factorial from its predecessor."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression independently derives every authored sequence, distinguishes zero from positive inputs, checks generator exhaustion, and covers the maximum n = 18."
+    }
+  ]
+}

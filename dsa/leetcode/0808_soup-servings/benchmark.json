@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_808",
+  "measurement_note": "Size is the number of 25-milliliter units per soup. Hash memoization evaluates O(size^2) states; row-list memoization adds linear cache searches as size grows.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2 soup units", "kind": "benchmark", "visible": false, "size": 2, "input": {"n": 50}, "expected": 0.625, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "probability"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 4 soup units", "kind": "benchmark", "visible": false, "size": 4, "input": {"n": 100}, "expected": 0.71875, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "probability"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 8 soup units", "kind": "benchmark", "visible": false, "size": 8, "input": {"n": 200}, "expected": 0.796875, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "probability"]}
+  ]
+}

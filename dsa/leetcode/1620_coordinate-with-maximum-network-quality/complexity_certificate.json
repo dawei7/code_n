@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1620",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(T)",
+  "summary": "The source contract fixes every coordinate to the 51 by 51 grid and limits the scalable tower list to 50 entries, so a runtime trend cannot honestly separate algorithms across a larger spatial domain.",
+  "workload_bound": {
+    "symbol": "T",
+    "maximum": 50,
+    "unit": "network towers over at most 2601 integral candidate coordinates",
+    "source_constraint": "towers contains 1 through 50 entries and every x and y coordinate is between 0 and 50"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference evaluates at most 51 squared times 50, or 130050, tower-coordinate contributions while storing only scalar state."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares the bounding-box implementation with an independent exhaustive 51 by 51 oracle across deterministic random fixtures and explicit zero-quality, radius-boundary, tie, overlap, and coordinate-boundary cases."
+    }
+  ]
+}

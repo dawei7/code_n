@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1226",
+  "status": "verified",
+  "method": "bounded_concurrency",
+  "required_time": "O(1)",
+  "summary": "There are always five philosophers and five callbacks per request, with at most three hundred requests, so safety and progress checks replace an inapplicable per-call scaling regression.",
+  "workload_bound": {
+    "symbol": "R",
+    "maximum": 300,
+    "unit": "wantsToEat invocations",
+    "source_constraint": "five philosophers each request food n times for 1 through 60"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Every invocation performs exactly two pick, one eat, and two put callbacks."},
+    {"kind": "scheduler_stress", "evidence": "Authored cases cover reversed, adjacent-first, repeated-philosopher, randomized, and maximum-round starts."},
+    {"kind": "semantic_validator", "evidence": "Instrumentation verifies fork ownership, callback order, exactly-once events, and completed request counts."},
+    {"kind": "deadlock_timeout", "evidence": "All worker threads execute inside an isolated subprocess with bounded joins and a hard wall timeout."}
+  ]
+}

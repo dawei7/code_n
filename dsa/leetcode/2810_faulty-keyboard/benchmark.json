@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2810",
+  "measurement_note": "Size is the input length n. The first half builds a long displayed prefix and the second half repeatedly reverses it. Literal string reversal is correct but performs quadratic copied-character work and fails scaling; the reviewed deque/parity method is linear.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 letters followed by repeated reversals",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "aaaaaaaaiiiiiiii"
+      },
+      "expected": "aaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "growing-prefix-reversals"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 letters followed by repeated reversals",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "growing-prefix-reversals"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 50 letters followed by repeated reversals",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "growing-prefix-reversals"
+      ]
+    }
+  ]
+}

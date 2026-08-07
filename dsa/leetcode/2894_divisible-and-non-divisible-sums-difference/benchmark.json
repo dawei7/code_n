@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2894",
+  "cases": [
+    {
+      "id": "benchmark-range-64",
+      "name": "benchmark: arithmetic partition through 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"n": 64, "m": 7},
+      "expected": 1450,
+      "tags": ["benchmark", "range-size", "enumeration-path"]
+    },
+    {
+      "id": "benchmark-range-256",
+      "name": "benchmark: arithmetic partition through 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"n": 256, "m": 7},
+      "expected": 23572,
+      "tags": ["benchmark", "range-size", "enumeration-path"]
+    },
+    {
+      "id": "benchmark-range-1000",
+      "name": "benchmark: arithmetic partition through 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"n": 1000, "m": 7},
+      "expected": 358358,
+      "tags": ["benchmark", "range-size", "enumeration-path"]
+    }
+  ]
+}

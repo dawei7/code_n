@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3438",
+  "measurement_note": "Size is the legal string length n. Tiers 4, 20, and 100 span 25x and force inspection of every alternating adjacent pair without producing a match. The accepted count-then-scan method is linear; a correct method that recounts the full string for every pair must fail only scaling.",
+  "cases": [
+    {"id":"benchmark-alternating-4","name":"benchmark: four alternating digits","kind":"benchmark","visible":false,"size":4,"input":{"s":"9898"},"expected":"","tags":["benchmark","scale-small"]},
+    {"id":"benchmark-alternating-20","name":"benchmark: twenty alternating digits","kind":"benchmark","visible":false,"size":20,"input":{"s":"98989898989898989898"},"expected":"","tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-alternating-100","name":"benchmark: one hundred alternating digits","kind":"benchmark","visible":false,"size":100,"input":{"s":"9898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898"},"expected":"","tags":["benchmark","scale-large"]}
+  ]
+}

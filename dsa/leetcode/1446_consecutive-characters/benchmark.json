@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1446",
+  "measurement_note": "Size is n, the length of s. The 25/100/500 tiers span 20x and use one all-identical run, which is legal and exercises the longest comparison path. The reference scan and an independent run-boundary scan take O(n). A correct implementation that expands a run from every starting index takes O(n^2), completes normally at n = 500, and is rejected by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: one run of 25 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "single-run"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: one run of 100 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "single-run"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one run of 500 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 500,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 500,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "single-run"
+      ]
+    }
+  ]
+}

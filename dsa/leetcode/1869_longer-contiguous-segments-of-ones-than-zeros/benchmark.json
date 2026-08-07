@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1869",
+  "measurement_note": "Size is N, the binary string length. Each workload contains one long ones segment followed by a slightly shorter zeros segment, exercising the complete O(N) scan. A correct implementation that restarts a forward run scan from every position completes all legal tiers and fails only by O(N^2) scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: compare runs in a 6-character string","kind":"benchmark","visible":false,"size":6,"input":{"s":"111100"},"expected":true,"tags":["benchmark","linear-scan","long-runs"]},
+    {"id":"benchmark-scale-2","name":"benchmark: compare runs in a 24-character string","kind":"benchmark","visible":false,"size":24,"input":{"s":"111111111111100000000000"},"expected":true,"tags":["benchmark","linear-scan","long-runs"]},
+    {"id":"benchmark-scale-3","name":"benchmark: compare runs in a 96-character string","kind":"benchmark","visible":false,"size":96,"input":{"s":"111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000"},"expected":true,"tags":["benchmark","linear-scan","long-runs"]}
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3882",
+  "measurement_note": "Size is m*n, the number of cells. The tiers are all-zero square grids, so the bounded-state DP keeps one XOR state per cell while a correct path enumerator must still visit every right/down path.",
+  "cases": [
+    {
+      "id": "benchmark-3x3-zero-grid",
+      "name": "benchmark: 3 by 3 all-zero grid",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "zero-grid",
+        "path-enumeration"
+      ],
+      "size": 9
+    },
+    {
+      "id": "benchmark-5x5-zero-grid",
+      "name": "benchmark: 5 by 5 all-zero grid",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "zero-grid",
+        "path-enumeration"
+      ],
+      "size": 25
+    },
+    {
+      "id": "benchmark-9x9-zero-grid",
+      "name": "benchmark: 9 by 9 all-zero grid",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "zero-grid",
+        "path-enumeration"
+      ],
+      "size": 81
+    }
+  ]
+}

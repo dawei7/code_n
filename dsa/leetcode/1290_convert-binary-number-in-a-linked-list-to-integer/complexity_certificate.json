@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1290",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The legal linked list contains at most 30 nodes, which is too narrow to support an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 30,
+    "unit": "linked-list nodes",
+    "source_constraint": "the nonempty linked list contains no more than 30 nodes"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The implementation advances to the next node exactly once per iteration and performs one constant-time accumulator update per node."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhaustively checks every bit pattern through length 12 and independently checks maximum-length boundary patterns against base-two conversion."
+    }
+  ]
+}

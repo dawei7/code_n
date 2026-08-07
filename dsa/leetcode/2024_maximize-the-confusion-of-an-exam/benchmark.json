@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2024",
+  "measurement_note": "Size is N, the length of an alternating answer key, with k = N/4. Each sliding-window pass is linear. A correct start-by-start expansion explores a valid prefix proportional to N from most starting positions, completes all tiers, and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: alternating key of length 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "answerKey": "TFTFTFTF",
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: alternating key of length 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "answerKey": "TFTFTFTFTFTFTFTF",
+        "k": 4
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: alternating key of length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "answerKey": "TFTFTFTFTFTFTFTFTFTFTFTFTFTFTFTF",
+        "k": 8
+      },
+      "expected": 17,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "alternating"
+      ]
+    }
+  ]
+}

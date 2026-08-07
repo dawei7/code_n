@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1667",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Every user row must be returned and any name may require correction; an ordered primary-key scan with constant-bounded scalar string work matches this linear output and input lower bound.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "The result contains one row for each of the R users, and changing any input name can change its corresponding output, so exact production requires Omega(R) work. Scanning the primary-key index in order and applying bounded-length scalar string functions once per row takes O(R) work."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"The query must emit R rows, and every input name independently influences one required output value, establishing an Omega(R) worst-case lower bound."},
+    {"kind":"upper_bound_proof","evidence":"An ascending primary-key scan supplies the required order while uppercase, lowercase, substring, and concatenation perform constant-bounded work once per row."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover the public sample, one-character names, already normalized names, all-uppercase and all-lowercase names, arbitrary internal capitalization, identifier gaps, and input-order independence."}
+  ]
+}

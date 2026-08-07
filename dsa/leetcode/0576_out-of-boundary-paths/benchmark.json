@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_576",
+  "measurement_note": "Size is maxMove on a fixed 10 by 10 grid. Rolling dynamic programming processes each move layer once; recomputing all layers separately for every exact exit length repeats prefixes and grows quadratically in maxMove.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 move layers on a 10-by-10 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "m": 10,
+        "n": 10,
+        "maxMove": 4,
+        "startRow": 0,
+        "startColumn": 0
+      },
+      "expected": 22,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "move-layers"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 move layers on a 10-by-10 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "m": 10,
+        "n": 10,
+        "maxMove": 16,
+        "startRow": 0,
+        "startColumn": 0
+      },
+      "expected": 26448024,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "move-layers"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 move layers on a 10-by-10 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "m": 10,
+        "n": 10,
+        "maxMove": 32,
+        "startRow": 0,
+        "startColumn": 0
+      },
+      "expected": 634090420,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "move-layers"
+      ]
+    }
+  ]
+}

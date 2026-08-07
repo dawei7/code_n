@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2178",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(\\sqrt{S})",
+  "summary": "An optimal split of an even total S can contain Theta(sqrt(S)) integers, so materializing a valid maximum-cardinality answer already matches the greedy algorithm's O(sqrt(S)) work.",
+  "optimality": {
+    "symbol": "S",
+    "lower_bound": "Omega(sqrt(S))",
+    "upper_bound": "O(sqrt(S))",
+    "argument": "The smallest q distinct positive evens sum to q(q+1), so maximum-cardinality outputs have q = Theta(sqrt(S)) terms on an infinite family of totals; writing those terms is an Omega(sqrt(S)) lower bound, and the greedy method emits each term once."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Totals S=q(q+1) require an optimal output containing q=Theta(sqrt(S)) distinct integers, each of which must be written."},
+    {"kind":"upper_bound_proof","evidence":"The greedy loop emits ascending evens once and adjusts only the last term, using O(sqrt(S)) time and output storage."},
+    {"kind":"boundary_property_cases","evidence":"Regression checks every legal total through 10000 and deterministic full-width totals against validity, uniqueness, sum, and the exact cardinality formula."}
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_129",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Every node digit contributes to at least one root-to-leaf number, so a correct algorithm must inspect all n nodes in the worst case. The iterative depth-first traversal processes each node once.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Consider a tree whose digits are all zero. If an algorithm leaves any node unread, changing only that digit to one changes at least one represented root-to-leaf number and therefore changes the sum while preserving all inspected values. Exact computation requires Omega(n) node inspections in the worst case. The current traversal pops each node once and performs constant work, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Every node lies on a root-to-leaf path; on an all-zero tree, changing any unseen node to one changes the requested sum."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each node is pushed and popped once, with one base-ten prefix update per traversed edge."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover two-leaf and uneven three-leaf trees, including a zero digit; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

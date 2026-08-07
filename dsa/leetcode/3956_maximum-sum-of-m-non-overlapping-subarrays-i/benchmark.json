@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3956",
+  "cases": [
+    {
+      "id": "benchmark-wide-length-range-16",
+      "name": "benchmark: two layers across 16 positive values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "m": 2, "l": 1, "r": 16},
+      "expected": 16,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "scale-small", "monotonic-deque", "wide-length-range"]
+    },
+    {
+      "id": "benchmark-wide-length-range-64",
+      "name": "benchmark: two layers across 64 positive values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "m": 2, "l": 1, "r": 64},
+      "expected": 64,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "scale-medium", "monotonic-deque", "wide-length-range"]
+    },
+    {
+      "id": "benchmark-wide-length-range-256",
+      "name": "benchmark: two layers across 256 positive values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "m": 2, "l": 1, "r": 256},
+      "expected": 256,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "scale-large", "monotonic-deque", "wide-length-range"]
+    }
+  ]
+}

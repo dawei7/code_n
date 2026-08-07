@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1433",
+  "measurement_note": "Size is n, the common string length. The 24/96/384 tiers span 16x and use identical descending strings. The 26-count prefix method takes O(n) time. A correct implementation that explicitly insertion-sorts both descending character arrays takes O(n squared) time, completes normally, and is rejected by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: compare 24 descending characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "s1": "zyxwvutsrqponmlkjihgfedc",
+        "s2": "zyxwvutsrqponmlkjihgfedc"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "counting"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: compare 96 descending characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "s1": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkji",
+        "s2": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkji"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "counting"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: compare 384 descending characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "s1": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihg",
+        "s2": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihg"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "counting"
+      ]
+    }
+  ]
+}

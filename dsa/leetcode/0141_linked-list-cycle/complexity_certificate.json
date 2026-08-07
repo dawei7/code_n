@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_141",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The last reachable next pointer can distinguish an acyclic n-node chain from a cycle, so a correct detector must follow all n nodes in the worst case. Floyd's two-pointer scan matches that bound with constant space.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Consider an n-node chain whose final next field is either null or points back to the head. The two lists agree along every earlier edge but require different answers. An algorithm must therefore reach and inspect the final node in the worst case, taking Omega(n) pointer traversals. Floyd's pointers traverse only a constant multiple of the noncyclic prefix and cycle length before terminating or meeting, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Changing only the final reachable next field from null to the head changes the answer, so the tail cannot be skipped."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The slow pointer advances once and the fast pointer twice per iteration; they either reach null or meet after linear total progress through the prefix and cycle."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a prefixed cycle, a cycle through the head, and an acyclic singleton; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

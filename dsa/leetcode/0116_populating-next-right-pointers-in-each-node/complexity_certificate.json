@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_116",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "A perfect tree requires a linear number of horizontal next links to be established. Traversing each completed level through those links matches the bound with constant auxiliary storage.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Across all levels of an n-node perfect tree, the result contains n minus the number of levels non-null horizontal next links, which is Theta(n). Establishing those links requires Omega(n) pointer assignments. The current algorithm visits every internal parent once through an already completed next chain and performs constant sibling and cross-parent assignments, for O(n) time and O(1) auxiliary pointers."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "All but the rightmost node of each level receive non-null next pointers, yielding Theta(n) required pointer mutations."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each internal parent is traversed once and performs at most two next assignments using a fixed set of pointers."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover cross-parent links and the empty tree; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

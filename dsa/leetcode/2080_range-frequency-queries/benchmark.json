@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2080",
+  "measurement_note": "Size is S with n = Q = S. Every array entry is 1 and every query asks for value 1 across the full legal range, so the indexed reference performs construction plus two binary searches per query. A correct implementation that rescans the requested subarray for every query completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 values and queries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "operations": ["RangeFreqQuery", "query", "query", "query", "query"],
+        "arguments": [
+          [[1, 1, 1, 1]],
+          [0, 3, 1], [0, 3, 1], [0, 3, 1], [0, 3, 1]
+        ]
+      },
+      "expected": [null, 4, 4, 4, 4],
+      "tags": ["benchmark", "scale-small", "range-rescan"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 20 values and queries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "operations": [
+          "RangeFreqQuery",
+          "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query"
+        ],
+        "arguments": [
+          [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]],
+          [0, 19, 1], [0, 19, 1], [0, 19, 1], [0, 19, 1], [0, 19, 1],
+          [0, 19, 1], [0, 19, 1], [0, 19, 1], [0, 19, 1], [0, 19, 1],
+          [0, 19, 1], [0, 19, 1], [0, 19, 1], [0, 19, 1], [0, 19, 1],
+          [0, 19, 1], [0, 19, 1], [0, 19, 1], [0, 19, 1], [0, 19, 1]
+        ]
+      },
+      "expected": [
+        null,
+        20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+        20, 20, 20, 20, 20, 20, 20, 20, 20, 20
+      ],
+      "tags": ["benchmark", "scale-medium", "range-rescan"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 values and queries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "operations": [
+          "RangeFreqQuery",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query",
+          "query", "query", "query", "query", "query", "query", "query", "query", "query", "query"
+        ],
+        "arguments": [
+          [[
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+          ]],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1],
+          [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1], [0, 99, 1]
+        ]
+      },
+      "expected": [
+        null,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100, 100, 100, 100, 100, 100
+      ],
+      "tags": ["benchmark", "scale-large", "range-rescan"]
+    }
+  ]
+}

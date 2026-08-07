@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1092",
+  "measurement_note": "Size is the dynamic-programming state count m times n. The strings use disjoint letters, so every shortest answer has length m plus n. The optimal table stores integer LCS lengths, while a correct slower implementation stores a complete supersequence at every state and explicitly copies each growing candidate string.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 by 8 disjoint strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "str1": "aaaaaaaa",
+        "str2": "bbbbbbbb"
+      },
+      "expected": "aaaaaaaabbbbbbbb",
+      "validator": {
+        "kind": "shortest_common_supersequence"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "explicit-full-string-dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 by 16 disjoint strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "str1": "aaaaaaaaaaaaaaaa",
+        "str2": "bbbbbbbbbbbbbbbb"
+      },
+      "expected": "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbb",
+      "validator": {
+        "kind": "shortest_common_supersequence"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "explicit-full-string-dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 by 32 disjoint strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "str1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "str2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "validator": {
+        "kind": "shortest_common_supersequence"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "explicit-full-string-dp"
+      ]
+    }
+  ]
+}

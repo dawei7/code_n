@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1678",
+  "measurement_note": "Size is n, the command length. Each tier contains only one-character G tokens, so the Accepted indexed scan and an independent constant-pass replacement implementation take O(n) time. A correct implementation that redundantly reparses the entire valid command once per input character takes O(n^2), completes the legal 8/32/100-character tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: decode 8 one-character tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "command": "GGGGGGGG"
+      },
+      "expected": "GGGGGGGG",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "one-character-tokens"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: decode 32 one-character tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "command": "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+      },
+      "expected": "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "one-character-tokens"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: decode 100 one-character tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "command": "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+      },
+      "expected": "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "one-character-tokens"
+      ]
+    }
+  ]
+}

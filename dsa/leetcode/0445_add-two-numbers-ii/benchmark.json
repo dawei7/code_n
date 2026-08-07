@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_445",
+  "measurement_note": "Size is the digit count of each operand within the canonical maximum of 100. Stack-based addition visits each digit once, while rescanning each forward list from its head to retrieve every next right-side digit performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: add two 16-digit operands",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"l1":[1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],"l2":[3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},
+      "expected": [4, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+      "tags": ["benchmark", "scaling", "long-operands"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: add two 40-digit operands",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {"l1":[1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],"l2":[3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},
+      "expected": [4, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+      "tags": ["benchmark", "scaling", "long-operands"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: add two 100-digit operands",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"l1":[1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],"l2":[3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},
+      "expected": [4, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+      "tags": ["benchmark", "scaling", "long-operands"]
+    }
+  ]
+}

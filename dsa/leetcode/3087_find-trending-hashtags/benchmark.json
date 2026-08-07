@@ -1,0 +1,4164 @@
+{
+  "challenge_id": "lc_3087",
+  "cases": [
+    {
+      "id": "benchmark-unique-hashtags-small",
+      "name": "benchmark: 32 February tweets with distinct hashtags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 1,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0001 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 2,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0002 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 3,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0003 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 4,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0004 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 5,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0005 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 6,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0006 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 7,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0007 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 8,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0008 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 9,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0009 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 10,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0010 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 11,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0011 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 12,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0012 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 13,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0013 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 14,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0014 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 15,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0015 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 16,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0016 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 17,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0017 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 18,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0018 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 19,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0019 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 20,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0020 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 21,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0021 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 22,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0022 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 23,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0023 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 24,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0024 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 25,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0025 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 26,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0026 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 27,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0027 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 28,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0028 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 29,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0029 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 30,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0030 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 31,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0031 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 32,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0032 trailing words"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#Tag0032",
+            1
+          ],
+          [
+            "#Tag0031",
+            1
+          ],
+          [
+            "#Tag0030",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "unique-hashtags",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "benchmark-unique-hashtags-medium",
+      "name": "benchmark: 128 February tweets with distinct hashtags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 1,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0001 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 2,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0002 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 3,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0003 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 4,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0004 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 5,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0005 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 6,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0006 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 7,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0007 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 8,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0008 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 9,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0009 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 10,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0010 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 11,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0011 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 12,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0012 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 13,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0013 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 14,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0014 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 15,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0015 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 16,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0016 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 17,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0017 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 18,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0018 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 19,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0019 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 20,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0020 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 21,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0021 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 22,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0022 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 23,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0023 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 24,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0024 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 25,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0025 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 26,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0026 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 27,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0027 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 28,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0028 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 29,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0029 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 30,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0030 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 31,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0031 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 32,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0032 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 33,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0033 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 34,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0034 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 35,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0035 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 36,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0036 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 37,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0037 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 38,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0038 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 39,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0039 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 40,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0040 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 41,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0041 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 42,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0042 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 43,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0043 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 44,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0044 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 45,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0045 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 46,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0046 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 47,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0047 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 48,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0048 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 49,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0049 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 50,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0050 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 51,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0051 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 52,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0052 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 53,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0053 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 54,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0054 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 55,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0055 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 56,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0056 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 57,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0057 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 58,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0058 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 59,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0059 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 60,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0060 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 61,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0061 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 62,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0062 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 63,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0063 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 64,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0064 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 65,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0065 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 66,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0066 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 67,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0067 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 68,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0068 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 69,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0069 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 70,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0070 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 71,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0071 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 72,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0072 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 73,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0073 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 74,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0074 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 75,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0075 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 76,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0076 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 77,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0077 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 78,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0078 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 79,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0079 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 80,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0080 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 81,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0081 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 82,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0082 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 83,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0083 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 84,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0084 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 85,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0085 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 86,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0086 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 87,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0087 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 88,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0088 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 89,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0089 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 90,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0090 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 91,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0091 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 92,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0092 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 93,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0093 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 94,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0094 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 95,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0095 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 96,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0096 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 97,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0097 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 98,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0098 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 99,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0099 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 100,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0100 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 101,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0101 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 102,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0102 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 103,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0103 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 104,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0104 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 105,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0105 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 106,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0106 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 107,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0107 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 108,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0108 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 109,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0109 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 110,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0110 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 111,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0111 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 112,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0112 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 113,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0113 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 114,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0114 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 115,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0115 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 116,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0116 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 117,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0117 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 118,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0118 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 119,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0119 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 120,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0120 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 121,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0121 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 122,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0122 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 123,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0123 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 124,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0124 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 125,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0125 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 126,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0126 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 127,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0127 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 128,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0128 trailing words"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#Tag0128",
+            1
+          ],
+          [
+            "#Tag0127",
+            1
+          ],
+          [
+            "#Tag0126",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "unique-hashtags",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "benchmark-unique-hashtags-large",
+      "name": "benchmark: 512 February tweets with distinct hashtags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 1,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0001 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 2,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0002 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 3,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0003 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 4,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0004 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 5,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0005 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 6,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0006 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 7,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0007 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 8,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0008 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 9,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0009 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 10,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0010 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 11,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0011 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 12,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0012 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 13,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0013 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 14,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0014 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 15,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0015 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 16,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0016 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 17,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0017 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 18,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0018 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 19,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0019 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 20,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0020 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 21,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0021 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 22,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0022 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 23,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0023 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 24,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0024 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 25,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0025 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 26,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0026 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 27,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0027 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 28,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0028 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 29,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0029 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 30,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0030 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 31,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0031 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 32,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0032 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 33,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0033 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 34,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0034 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 35,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0035 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 36,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0036 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 37,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0037 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 38,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0038 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 39,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0039 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 40,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0040 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 41,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0041 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 42,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0042 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 43,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0043 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 44,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0044 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 45,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0045 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 46,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0046 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 47,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0047 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 48,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0048 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 49,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0049 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 50,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0050 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 51,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0051 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 52,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0052 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 53,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0053 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 54,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0054 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 55,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0055 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 56,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0056 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 57,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0057 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 58,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0058 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 59,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0059 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 60,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0060 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 61,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0061 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 62,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0062 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 63,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0063 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 64,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0064 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 65,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0065 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 66,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0066 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 67,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0067 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 68,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0068 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 69,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0069 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 70,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0070 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 71,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0071 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 72,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0072 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 73,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0073 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 74,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0074 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 75,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0075 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 76,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0076 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 77,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0077 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 78,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0078 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 79,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0079 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 80,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0080 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 81,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0081 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 82,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0082 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 83,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0083 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 84,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0084 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 85,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0085 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 86,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0086 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 87,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0087 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 88,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0088 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 89,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0089 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 90,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0090 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 91,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0091 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 92,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0092 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 93,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0093 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 94,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0094 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 95,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0095 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 96,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0096 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 97,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0097 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 98,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0098 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 99,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0099 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 100,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0100 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 101,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0101 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 102,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0102 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 103,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0103 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 104,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0104 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 105,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0105 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 106,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0106 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 107,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0107 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 108,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0108 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 109,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0109 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 110,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0110 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 111,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0111 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 112,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0112 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 113,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0113 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 114,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0114 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 115,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0115 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 116,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0116 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 117,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0117 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 118,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0118 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 119,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0119 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 120,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0120 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 121,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0121 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 122,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0122 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 123,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0123 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 124,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0124 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 125,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0125 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 126,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0126 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 127,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0127 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 128,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0128 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 129,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0129 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 130,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0130 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 131,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0131 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 132,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0132 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 133,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0133 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 134,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0134 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 135,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0135 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 136,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0136 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 137,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0137 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 138,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0138 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 139,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0139 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 140,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0140 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 141,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0141 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 142,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0142 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 143,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0143 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 144,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0144 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 145,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0145 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 146,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0146 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 147,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0147 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 148,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0148 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 149,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0149 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 150,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0150 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 151,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0151 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 152,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0152 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 153,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0153 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 154,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0154 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 155,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0155 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 156,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0156 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 157,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0157 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 158,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0158 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 159,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0159 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 160,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0160 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 161,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0161 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 162,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0162 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 163,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0163 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 164,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0164 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 165,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0165 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 166,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0166 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 167,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0167 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 168,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0168 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 169,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0169 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 170,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0170 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 171,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0171 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 172,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0172 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 173,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0173 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 174,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0174 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 175,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0175 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 176,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0176 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 177,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0177 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 178,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0178 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 179,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0179 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 180,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0180 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 181,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0181 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 182,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0182 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 183,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0183 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 184,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0184 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 185,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0185 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 186,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0186 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 187,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0187 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 188,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0188 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 189,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0189 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 190,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0190 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 191,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0191 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 192,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0192 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 193,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0193 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 194,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0194 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 195,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0195 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 196,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0196 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 197,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0197 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 198,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0198 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 199,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0199 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 200,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0200 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 201,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0201 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 202,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0202 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 203,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0203 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 204,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0204 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 205,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0205 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 206,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0206 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 207,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0207 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 208,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0208 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 209,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0209 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 210,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0210 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 211,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0211 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 212,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0212 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 213,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0213 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 214,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0214 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 215,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0215 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 216,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0216 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 217,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0217 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 218,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0218 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 219,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0219 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 220,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0220 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 221,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0221 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 222,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0222 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 223,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0223 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 224,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0224 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 225,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0225 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 226,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0226 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 227,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0227 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 228,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0228 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 229,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0229 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 230,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0230 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 231,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0231 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 232,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0232 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 233,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0233 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 234,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0234 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 235,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0235 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 236,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0236 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 237,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0237 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 238,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0238 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 239,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0239 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 240,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0240 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 241,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0241 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 242,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0242 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 243,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0243 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 244,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0244 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 245,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0245 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 246,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0246 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 247,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0247 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 248,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0248 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 249,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0249 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 250,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0250 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 251,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0251 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 252,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0252 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 253,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0253 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 254,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0254 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 255,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0255 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 256,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0256 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 257,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0257 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 258,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0258 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 259,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0259 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 260,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0260 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 261,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0261 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 262,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0262 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 263,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0263 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 264,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0264 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 265,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0265 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 266,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0266 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 267,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0267 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 268,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0268 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 269,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0269 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 270,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0270 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 271,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0271 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 272,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0272 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 273,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0273 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 274,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0274 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 275,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0275 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 276,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0276 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 277,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0277 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 278,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0278 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 279,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0279 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 280,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0280 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 281,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0281 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 282,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0282 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 283,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0283 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 284,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0284 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 285,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0285 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 286,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0286 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 287,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0287 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 288,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0288 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 289,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0289 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 290,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0290 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 291,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0291 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 292,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0292 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 293,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0293 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 294,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0294 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 295,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0295 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 296,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0296 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 297,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0297 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 298,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0298 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 299,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0299 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 300,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0300 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 301,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0301 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 302,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0302 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 303,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0303 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 304,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0304 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 305,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0305 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 306,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0306 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 307,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0307 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 308,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0308 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 309,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0309 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 310,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0310 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 311,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0311 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 312,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0312 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 313,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0313 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 314,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0314 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 315,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0315 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 316,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0316 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 317,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0317 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 318,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0318 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 319,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0319 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 320,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0320 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 321,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0321 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 322,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0322 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 323,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0323 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 324,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0324 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 325,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0325 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 326,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0326 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 327,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0327 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 328,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0328 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 329,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0329 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 330,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0330 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 331,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0331 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 332,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0332 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 333,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0333 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 334,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0334 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 335,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0335 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 336,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0336 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 337,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0337 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 338,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0338 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 339,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0339 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 340,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0340 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 341,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0341 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 342,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0342 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 343,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0343 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 344,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0344 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 345,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0345 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 346,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0346 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 347,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0347 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 348,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0348 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 349,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0349 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 350,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0350 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 351,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0351 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 352,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0352 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 353,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0353 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 354,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0354 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 355,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0355 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 356,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0356 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 357,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0357 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 358,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0358 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 359,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0359 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 360,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0360 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 361,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0361 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 362,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0362 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 363,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0363 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 364,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0364 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 365,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0365 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 366,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0366 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 367,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0367 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 368,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0368 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 369,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0369 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 370,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0370 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 371,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0371 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 372,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0372 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 373,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0373 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 374,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0374 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 375,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0375 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 376,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0376 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 377,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0377 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 378,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0378 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 379,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0379 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 380,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0380 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 381,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0381 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 382,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0382 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 383,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0383 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 384,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0384 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 385,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0385 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 386,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0386 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 387,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0387 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 388,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0388 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 389,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0389 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 390,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0390 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 391,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0391 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 392,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0392 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 393,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0393 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 394,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0394 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 395,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0395 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 396,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0396 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 397,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0397 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 398,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0398 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 399,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0399 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 400,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0400 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 401,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0401 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 402,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0402 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 403,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0403 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 404,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0404 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 405,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0405 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 406,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0406 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 407,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0407 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 408,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0408 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 409,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0409 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 410,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0410 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 411,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0411 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 412,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0412 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 413,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0413 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 414,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0414 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 415,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0415 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 416,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0416 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 417,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0417 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 418,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0418 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 419,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0419 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 420,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0420 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 421,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0421 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 422,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0422 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 423,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0423 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 424,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0424 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 425,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0425 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 426,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0426 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 427,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0427 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 428,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0428 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 429,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0429 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 430,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0430 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 431,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0431 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 432,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0432 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 433,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0433 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 434,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0434 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 435,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0435 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 436,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0436 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 437,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0437 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 438,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0438 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 439,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0439 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 440,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0440 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 441,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0441 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 442,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0442 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 443,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0443 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 444,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0444 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 445,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0445 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 446,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0446 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 447,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0447 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 448,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0448 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 449,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0449 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 450,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0450 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 451,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0451 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 452,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0452 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 453,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0453 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 454,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0454 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 455,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0455 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 456,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0456 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 457,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0457 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 458,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0458 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 459,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0459 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 460,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0460 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 461,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0461 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 462,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0462 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 463,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0463 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 464,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0464 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 465,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0465 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 466,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0466 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 467,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0467 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 468,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0468 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 469,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0469 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 470,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0470 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 471,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0471 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 472,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0472 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 473,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0473 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 474,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0474 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 475,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0475 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 476,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0476 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 477,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0477 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 478,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0478 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 479,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0479 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 480,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0480 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 481,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0481 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 482,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0482 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 483,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0483 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 484,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark row #Tag0484 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 485,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark row #Tag0485 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 486,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark row #Tag0486 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 487,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark row #Tag0487 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 488,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark row #Tag0488 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 489,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark row #Tag0489 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 490,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark row #Tag0490 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 491,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark row #Tag0491 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 492,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark row #Tag0492 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 493,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark row #Tag0493 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 494,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark row #Tag0494 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 495,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark row #Tag0495 trailing words"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 496,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark row #Tag0496 trailing words"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 497,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark row #Tag0497 trailing words"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 498,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark row #Tag0498 trailing words"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 499,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark row #Tag0499 trailing words"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 500,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark row #Tag0500 trailing words"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 501,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark row #Tag0501 trailing words"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 502,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark row #Tag0502 trailing words"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 503,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark row #Tag0503 trailing words"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 504,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark row #Tag0504 trailing words"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 505,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark row #Tag0505 trailing words"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 506,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark row #Tag0506 trailing words"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 507,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark row #Tag0507 trailing words"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 508,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark row #Tag0508 trailing words"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 509,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark row #Tag0509 trailing words"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 510,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark row #Tag0510 trailing words"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 511,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark row #Tag0511 trailing words"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 512,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark row #Tag0512 trailing words"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#Tag0512",
+            1
+          ],
+          [
+            "#Tag0511",
+            1
+          ],
+          [
+            "#Tag0510",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "unique-hashtags",
+        "tie-break"
+      ]
+    }
+  ]
+}
+

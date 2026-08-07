@@ -1,0 +1,5 @@
+{"challenge_id":"lc_956","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: unit rods at S=4","kind":"benchmark","visible":false,"size":4,"input":{"rods":[1,1,1,1]},"expected":2,"tags":["benchmark","scale-small"]},
+{"id":"benchmark-scale-2","name":"benchmark: unit rods at S=10","kind":"benchmark","visible":false,"size":10,"input":{"rods":[1,1,1,1,1,1,1,1,1,1]},"expected":5,"tags":["benchmark","scale-medium"]},
+{"id":"benchmark-scale-3","name":"benchmark: unit rods at S=20","kind":"benchmark","visible":false,"size":20,"input":{"rods":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":10,"tags":["benchmark","scale-large"]}
+]}

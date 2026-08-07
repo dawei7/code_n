@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3684",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n + U log U)",
+  "summary": "The legal array length is capped at 100 elements, which is too small for a stable runtime-scaling distinction among sorting and alternative top-k selection methods.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 100,
+    "unit": "input elements",
+    "source_constraint": "1 <= n == nums.length <= 100, with 1 <= k <= n and every value positive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs at most 100 expected-time set insertions, sorts at most U <= 100 distinct values, and slices at most k <= 100 outputs, establishing O(n + U log U) time."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression checks 112,305 exhaustive array-and-k cases over values 1 through 5 at lengths 1 through 6, then 5,000 deterministic legal arrays spanning every length through 100 and explicit extrema against repeated maximum selection."
+    }
+  ]
+}

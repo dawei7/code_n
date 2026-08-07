@@ -1,0 +1,802 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1907",
+  "measurement_note": "Size is A, the number of Accounts rows. Three fixed conditional aggregates scan the table in O(A) time. A correct query that cross-joins a padding copy of Accounts and uses distinct account ids completes all tiers but fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: classify 8 account rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "account_id": 1,
+              "income": 10000
+            },
+            {
+              "account_id": 2,
+              "income": 30000
+            },
+            {
+              "account_id": 3,
+              "income": 60000
+            },
+            {
+              "account_id": 4,
+              "income": 10000
+            },
+            {
+              "account_id": 5,
+              "income": 30000
+            },
+            {
+              "account_id": 6,
+              "income": 60000
+            },
+            {
+              "account_id": 7,
+              "income": 10000
+            },
+            {
+              "account_id": 8,
+              "income": 30000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "category",
+          "accounts_count"
+        ],
+        "rows": [
+          [
+            "Low Salary",
+            3
+          ],
+          [
+            "Average Salary",
+            3
+          ],
+          [
+            "High Salary",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "all-categories",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: classify 32 account rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "account_id": 1,
+              "income": 10000
+            },
+            {
+              "account_id": 2,
+              "income": 30000
+            },
+            {
+              "account_id": 3,
+              "income": 60000
+            },
+            {
+              "account_id": 4,
+              "income": 10000
+            },
+            {
+              "account_id": 5,
+              "income": 30000
+            },
+            {
+              "account_id": 6,
+              "income": 60000
+            },
+            {
+              "account_id": 7,
+              "income": 10000
+            },
+            {
+              "account_id": 8,
+              "income": 30000
+            },
+            {
+              "account_id": 9,
+              "income": 60000
+            },
+            {
+              "account_id": 10,
+              "income": 10000
+            },
+            {
+              "account_id": 11,
+              "income": 30000
+            },
+            {
+              "account_id": 12,
+              "income": 60000
+            },
+            {
+              "account_id": 13,
+              "income": 10000
+            },
+            {
+              "account_id": 14,
+              "income": 30000
+            },
+            {
+              "account_id": 15,
+              "income": 60000
+            },
+            {
+              "account_id": 16,
+              "income": 10000
+            },
+            {
+              "account_id": 17,
+              "income": 30000
+            },
+            {
+              "account_id": 18,
+              "income": 60000
+            },
+            {
+              "account_id": 19,
+              "income": 10000
+            },
+            {
+              "account_id": 20,
+              "income": 30000
+            },
+            {
+              "account_id": 21,
+              "income": 60000
+            },
+            {
+              "account_id": 22,
+              "income": 10000
+            },
+            {
+              "account_id": 23,
+              "income": 30000
+            },
+            {
+              "account_id": 24,
+              "income": 60000
+            },
+            {
+              "account_id": 25,
+              "income": 10000
+            },
+            {
+              "account_id": 26,
+              "income": 30000
+            },
+            {
+              "account_id": 27,
+              "income": 60000
+            },
+            {
+              "account_id": 28,
+              "income": 10000
+            },
+            {
+              "account_id": 29,
+              "income": 30000
+            },
+            {
+              "account_id": 30,
+              "income": 60000
+            },
+            {
+              "account_id": 31,
+              "income": 10000
+            },
+            {
+              "account_id": 32,
+              "income": 30000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "category",
+          "accounts_count"
+        ],
+        "rows": [
+          [
+            "Low Salary",
+            11
+          ],
+          [
+            "Average Salary",
+            11
+          ],
+          [
+            "High Salary",
+            10
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "all-categories",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: classify 128 account rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "account_id": 1,
+              "income": 10000
+            },
+            {
+              "account_id": 2,
+              "income": 30000
+            },
+            {
+              "account_id": 3,
+              "income": 60000
+            },
+            {
+              "account_id": 4,
+              "income": 10000
+            },
+            {
+              "account_id": 5,
+              "income": 30000
+            },
+            {
+              "account_id": 6,
+              "income": 60000
+            },
+            {
+              "account_id": 7,
+              "income": 10000
+            },
+            {
+              "account_id": 8,
+              "income": 30000
+            },
+            {
+              "account_id": 9,
+              "income": 60000
+            },
+            {
+              "account_id": 10,
+              "income": 10000
+            },
+            {
+              "account_id": 11,
+              "income": 30000
+            },
+            {
+              "account_id": 12,
+              "income": 60000
+            },
+            {
+              "account_id": 13,
+              "income": 10000
+            },
+            {
+              "account_id": 14,
+              "income": 30000
+            },
+            {
+              "account_id": 15,
+              "income": 60000
+            },
+            {
+              "account_id": 16,
+              "income": 10000
+            },
+            {
+              "account_id": 17,
+              "income": 30000
+            },
+            {
+              "account_id": 18,
+              "income": 60000
+            },
+            {
+              "account_id": 19,
+              "income": 10000
+            },
+            {
+              "account_id": 20,
+              "income": 30000
+            },
+            {
+              "account_id": 21,
+              "income": 60000
+            },
+            {
+              "account_id": 22,
+              "income": 10000
+            },
+            {
+              "account_id": 23,
+              "income": 30000
+            },
+            {
+              "account_id": 24,
+              "income": 60000
+            },
+            {
+              "account_id": 25,
+              "income": 10000
+            },
+            {
+              "account_id": 26,
+              "income": 30000
+            },
+            {
+              "account_id": 27,
+              "income": 60000
+            },
+            {
+              "account_id": 28,
+              "income": 10000
+            },
+            {
+              "account_id": 29,
+              "income": 30000
+            },
+            {
+              "account_id": 30,
+              "income": 60000
+            },
+            {
+              "account_id": 31,
+              "income": 10000
+            },
+            {
+              "account_id": 32,
+              "income": 30000
+            },
+            {
+              "account_id": 33,
+              "income": 60000
+            },
+            {
+              "account_id": 34,
+              "income": 10000
+            },
+            {
+              "account_id": 35,
+              "income": 30000
+            },
+            {
+              "account_id": 36,
+              "income": 60000
+            },
+            {
+              "account_id": 37,
+              "income": 10000
+            },
+            {
+              "account_id": 38,
+              "income": 30000
+            },
+            {
+              "account_id": 39,
+              "income": 60000
+            },
+            {
+              "account_id": 40,
+              "income": 10000
+            },
+            {
+              "account_id": 41,
+              "income": 30000
+            },
+            {
+              "account_id": 42,
+              "income": 60000
+            },
+            {
+              "account_id": 43,
+              "income": 10000
+            },
+            {
+              "account_id": 44,
+              "income": 30000
+            },
+            {
+              "account_id": 45,
+              "income": 60000
+            },
+            {
+              "account_id": 46,
+              "income": 10000
+            },
+            {
+              "account_id": 47,
+              "income": 30000
+            },
+            {
+              "account_id": 48,
+              "income": 60000
+            },
+            {
+              "account_id": 49,
+              "income": 10000
+            },
+            {
+              "account_id": 50,
+              "income": 30000
+            },
+            {
+              "account_id": 51,
+              "income": 60000
+            },
+            {
+              "account_id": 52,
+              "income": 10000
+            },
+            {
+              "account_id": 53,
+              "income": 30000
+            },
+            {
+              "account_id": 54,
+              "income": 60000
+            },
+            {
+              "account_id": 55,
+              "income": 10000
+            },
+            {
+              "account_id": 56,
+              "income": 30000
+            },
+            {
+              "account_id": 57,
+              "income": 60000
+            },
+            {
+              "account_id": 58,
+              "income": 10000
+            },
+            {
+              "account_id": 59,
+              "income": 30000
+            },
+            {
+              "account_id": 60,
+              "income": 60000
+            },
+            {
+              "account_id": 61,
+              "income": 10000
+            },
+            {
+              "account_id": 62,
+              "income": 30000
+            },
+            {
+              "account_id": 63,
+              "income": 60000
+            },
+            {
+              "account_id": 64,
+              "income": 10000
+            },
+            {
+              "account_id": 65,
+              "income": 30000
+            },
+            {
+              "account_id": 66,
+              "income": 60000
+            },
+            {
+              "account_id": 67,
+              "income": 10000
+            },
+            {
+              "account_id": 68,
+              "income": 30000
+            },
+            {
+              "account_id": 69,
+              "income": 60000
+            },
+            {
+              "account_id": 70,
+              "income": 10000
+            },
+            {
+              "account_id": 71,
+              "income": 30000
+            },
+            {
+              "account_id": 72,
+              "income": 60000
+            },
+            {
+              "account_id": 73,
+              "income": 10000
+            },
+            {
+              "account_id": 74,
+              "income": 30000
+            },
+            {
+              "account_id": 75,
+              "income": 60000
+            },
+            {
+              "account_id": 76,
+              "income": 10000
+            },
+            {
+              "account_id": 77,
+              "income": 30000
+            },
+            {
+              "account_id": 78,
+              "income": 60000
+            },
+            {
+              "account_id": 79,
+              "income": 10000
+            },
+            {
+              "account_id": 80,
+              "income": 30000
+            },
+            {
+              "account_id": 81,
+              "income": 60000
+            },
+            {
+              "account_id": 82,
+              "income": 10000
+            },
+            {
+              "account_id": 83,
+              "income": 30000
+            },
+            {
+              "account_id": 84,
+              "income": 60000
+            },
+            {
+              "account_id": 85,
+              "income": 10000
+            },
+            {
+              "account_id": 86,
+              "income": 30000
+            },
+            {
+              "account_id": 87,
+              "income": 60000
+            },
+            {
+              "account_id": 88,
+              "income": 10000
+            },
+            {
+              "account_id": 89,
+              "income": 30000
+            },
+            {
+              "account_id": 90,
+              "income": 60000
+            },
+            {
+              "account_id": 91,
+              "income": 10000
+            },
+            {
+              "account_id": 92,
+              "income": 30000
+            },
+            {
+              "account_id": 93,
+              "income": 60000
+            },
+            {
+              "account_id": 94,
+              "income": 10000
+            },
+            {
+              "account_id": 95,
+              "income": 30000
+            },
+            {
+              "account_id": 96,
+              "income": 60000
+            },
+            {
+              "account_id": 97,
+              "income": 10000
+            },
+            {
+              "account_id": 98,
+              "income": 30000
+            },
+            {
+              "account_id": 99,
+              "income": 60000
+            },
+            {
+              "account_id": 100,
+              "income": 10000
+            },
+            {
+              "account_id": 101,
+              "income": 30000
+            },
+            {
+              "account_id": 102,
+              "income": 60000
+            },
+            {
+              "account_id": 103,
+              "income": 10000
+            },
+            {
+              "account_id": 104,
+              "income": 30000
+            },
+            {
+              "account_id": 105,
+              "income": 60000
+            },
+            {
+              "account_id": 106,
+              "income": 10000
+            },
+            {
+              "account_id": 107,
+              "income": 30000
+            },
+            {
+              "account_id": 108,
+              "income": 60000
+            },
+            {
+              "account_id": 109,
+              "income": 10000
+            },
+            {
+              "account_id": 110,
+              "income": 30000
+            },
+            {
+              "account_id": 111,
+              "income": 60000
+            },
+            {
+              "account_id": 112,
+              "income": 10000
+            },
+            {
+              "account_id": 113,
+              "income": 30000
+            },
+            {
+              "account_id": 114,
+              "income": 60000
+            },
+            {
+              "account_id": 115,
+              "income": 10000
+            },
+            {
+              "account_id": 116,
+              "income": 30000
+            },
+            {
+              "account_id": 117,
+              "income": 60000
+            },
+            {
+              "account_id": 118,
+              "income": 10000
+            },
+            {
+              "account_id": 119,
+              "income": 30000
+            },
+            {
+              "account_id": 120,
+              "income": 60000
+            },
+            {
+              "account_id": 121,
+              "income": 10000
+            },
+            {
+              "account_id": 122,
+              "income": 30000
+            },
+            {
+              "account_id": 123,
+              "income": 60000
+            },
+            {
+              "account_id": 124,
+              "income": 10000
+            },
+            {
+              "account_id": 125,
+              "income": 30000
+            },
+            {
+              "account_id": 126,
+              "income": 60000
+            },
+            {
+              "account_id": 127,
+              "income": 10000
+            },
+            {
+              "account_id": 128,
+              "income": 30000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "category",
+          "accounts_count"
+        ],
+        "rows": [
+          [
+            "Low Salary",
+            43
+          ],
+          [
+            "Average Salary",
+            43
+          ],
+          [
+            "High Salary",
+            42
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "all-categories",
+        "aggregation"
+      ]
+    }
+  ]
+}

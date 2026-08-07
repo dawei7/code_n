@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_14",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16-character near-match",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "strs": [
+          "aaaaaaaaaaaaaaaa",
+          "aaaaaaaabaaaaaaa"
+        ]
+      },
+      "expected": "aaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "near-match"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64-character near-match",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "strs": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ]
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "near-match"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 192-character near-match",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {
+        "strs": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ]
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "near-match"
+      ]
+    }
+  ]
+}

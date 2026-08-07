@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_124",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Any node can change the maximum path sum, so a correct algorithm must inspect all n nodes in the worst case. The postorder traversal processes each node once.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Consider a tree whose node values are all zero. If an algorithm leaves any node unread, changing only that node to one changes the maximum path sum from zero to one while preserving all inspected values. Exact computation therefore requires Omega(n) node inspections in the worst case. The current postorder algorithm performs constant work at each node, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "On an all-zero tree, any unseen node can be changed to one and alter the answer, forcing inspection of all n nodes in the worst case."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The recursive gain function visits each node once and combines two child results in constant time."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a root-turning path and a non-root optimum containing negative values; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

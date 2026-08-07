@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2047",
+  "measurement_note": "Size is L, the sentence length. Each workload is one valid lowercase token, so the reference scans it once. A correct validator that recomputes whole-token hyphen and punctuation counts at every character completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: one 32-character word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "sentence": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "repeated-token-counts"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: one 128-character word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "sentence": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "repeated-token-counts"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one 512-character word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "sentence": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "repeated-token-counts"
+      ]
+    }
+  ]
+}

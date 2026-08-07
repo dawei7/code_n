@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3393",
+  "measurement_note": "Size is mn, the number of grid cells. The legal 4-by-4, 6-by-6, and 8-by-8 all-zero grids produce sizes 16, 36, and 64, spanning 4x. The accepted-class DP processes every cell's fixed 16-state XOR domain; the correct slower baseline recursively enumerates every right/down path.",
+  "cases": [
+    {
+      "id": "benchmark-zero-grid-4",
+      "name": "benchmark: 4 by 4 zero grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "path-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-zero-grid-6",
+      "name": "benchmark: 6 by 6 zero grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 252,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "path-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-zero-grid-8",
+      "name": "benchmark: 8 by 8 zero grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 3432,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "path-enumeration"
+      ]
+    }
+  ]
+}

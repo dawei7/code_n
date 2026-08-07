@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_555",
+  "measurement_note": "Size is the total character count, using distinct one-character strings. The greedy split search is quadratic in output construction, while enumerating every orientation vector still explores 2^L choices even when reversals happen to match.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 circular characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "strs": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "expected": "cab",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "circular-strings"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 circular characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "strs": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
+        ]
+      },
+      "expected": "fabcde",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "circular-strings"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 12 circular characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "strs": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l"
+        ]
+      },
+      "expected": "labcdefghijk",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "circular-strings"
+      ]
+    }
+  ]
+}
+

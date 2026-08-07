@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1888",
+  "measurement_note": "Size is N, the binary-string length. A virtual doubled-index sliding window evaluates all rotations in O(N) time and O(1) space. A correct implementation that rebuilds and compares every rotation completes all tiers and fails only by O(N^2) scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: optimize all rotations of a 32-bit mixed string","kind":"benchmark","visible":false,"size":32,"input":{"s":"10110001001111011101111000010000"},"expected":14,"tags":["benchmark","mixed-bits","all-rotations"]},
+    {"id":"benchmark-scale-2","name":"benchmark: optimize all rotations of a 128-bit mixed string","kind":"benchmark","visible":false,"size":128,"input":{"s":"10110001001111011101111000010000011100100111000001000011110111011110010001101001110110000110111001011000100111101110111100001000"},"expected":61,"tags":["benchmark","mixed-bits","all-rotations"]},
+    {"id":"benchmark-scale-3","name":"benchmark: optimize all rotations of a 512-bit mixed string","kind":"benchmark","visible":false,"size":512,"input":{"s":"10110001001111011101111000010000011100100111000001000011110111011110010001101001110110000110111001011000100111101110111100001000001110010011100000100001111011101111001000110100111011000011011100101100010011110111011110000100000111001001110000010000111101110111100100011010011101100001101110010110001001111011101111000010000011100100111000001000011110111011110010001101001110110000110111001011000100111101110111100001000001110010011100000100001111011101111001000110100111011000011011100101100010011110111011110000"},"expected":252,"tags":["benchmark","mixed-bits","all-rotations"]}
+  ]
+}

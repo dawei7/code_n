@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_461",
+  "measurement_note": "Size is the relevant bit width within the problem's 31-bit input domain. Clearing or shifting one bit per iteration is linear in that width, while rebuilding each successive mask from bit zero repeats earlier shifts and performs quadratic bit-step work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count 4 differing low bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "x": 0,
+        "y": 15
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dense-bits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count 16 differing low bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "x": 0,
+        "y": 65535
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dense-bits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count 31 differing low bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 31,
+      "input": {
+        "x": 0,
+        "y": 2147483647
+      },
+      "expected": 31,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dense-bits"
+      ]
+    }
+  ]
+}
+

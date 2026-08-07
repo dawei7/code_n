@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_459",
+  "measurement_note": "Size is the string length. KMP builds prefix information in linear time, while trying every shorter prefix and comparing it across the entire near-repeated string performs quadratic character checks before the final mismatch.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reject a length-31 near repetition",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 31,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "near-repeat"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reject a length-127 near repetition",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 127,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "near-repeat"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reject a length-511 near repetition",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 511,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "near-repeat"
+      ]
+    }
+  ]
+}
+

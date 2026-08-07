@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_666",
+  "measurement_note": "Size is the number of encoded nodes. Complete trees at the three legal nontrivial scales exercise every leaf. Structural lookup traversal and bottom-up propagation are linear, while rebuilding each leaf path by scanning all encodings repeats work across paths.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: complete depth-2 encoding",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "nums": [
+          111,
+          211,
+          221
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "complete-tree"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: complete depth-3 encoding",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {
+        "nums": [
+          111,
+          211,
+          221,
+          311,
+          321,
+          331,
+          341
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "complete-tree"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: complete depth-4 encoding",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 15,
+      "input": {
+        "nums": [
+          111,
+          211,
+          221,
+          311,
+          321,
+          331,
+          341,
+          411,
+          421,
+          431,
+          441,
+          451,
+          461,
+          471,
+          481
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "complete-tree"
+      ]
+    }
+  ]
+}

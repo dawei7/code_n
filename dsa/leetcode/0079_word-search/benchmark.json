@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_79",
+  "measurement_note": "Each target ends in a character absent from an otherwise repetitive board; inventory pruning rejects linearly, while unpruned backtracking explores many repeated prefixes.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: absent one-character word", "kind": "benchmark", "visible": false, "size": 1, "input": {"board": [["A"]], "word": "B"}, "expected": false, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: absent suffix at length four", "kind": "benchmark", "visible": false, "size": 4, "input": {"board": [["A","A"],["A","A"]], "word": "AAAB"}, "expected": false, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: absent suffix at length twelve", "kind": "benchmark", "visible": false, "size": 12, "input": {"board": [["A","A","A","A"],["A","A","A","A"],["A","A","A","A"]], "word": "AAAAAAAAAAAB"}, "expected": false, "tags": ["benchmark", "scale-large"]}
+  ]
+}

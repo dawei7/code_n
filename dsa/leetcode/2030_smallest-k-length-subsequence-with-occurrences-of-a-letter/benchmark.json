@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2030",
+  "measurement_note": "Size is N, the source length, with N copies of the required letter and k = repetition = N/2. The monotonic-stack reference is linear. A correct greedy implementation that scans every feasible next source index for each of the k output positions examines Theta(Nk) candidates, completes all tiers, and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: choose 4 required letters from 8 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "aaaaaaaa",
+        "k": 4,
+        "letter": "a",
+        "repetition": 4
+      },
+      "expected": "aaaa",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "suffix-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: choose 8 required letters from 16 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaa",
+        "k": 8,
+        "letter": "a",
+        "repetition": 8
+      },
+      "expected": "aaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "suffix-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: choose 16 required letters from 32 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "k": 16,
+        "letter": "a",
+        "repetition": 16
+      },
+      "expected": "aaaaaaaaaaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "suffix-rescan"
+      ]
+    }
+  ]
+}

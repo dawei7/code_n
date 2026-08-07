@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_591",
+  "measurement_note": "Size is the total code-string length. One root encloses a long plain-text run. Index-based parsing advances without copying, while a suffix-slicing parser removes one text character at a time and repeatedly copies the remaining string.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: validate 64 characters of wrapped text",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "code": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</A>"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "plain-text"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: validate 256 characters of wrapped text",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "code": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</A>"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "plain-text"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: validate 500 characters of wrapped text",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 500,
+      "input": {
+        "code": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</A>"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "plain-text"
+      ]
+    }
+  ]
+}

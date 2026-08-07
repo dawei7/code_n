@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1952",
+  "measurement_note": "Size is N, the integer value. Every tier is the square of a prime, so each input has exactly three positive divisors and forces the reference to complete its primality check. The reference tests divisors only through the square root of sqrt(N). A correct slower implementation counts divisors by testing every integer from 1 through N, completes all legal tiers, and fails by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: test eleven squared","kind":"benchmark","visible":false,"size":121,"input":{"n":121},"expected":true,"tags":["benchmark","scale-small","prime-square"]},
+    {"id":"benchmark-scale-2","name":"benchmark: test forty-seven squared","kind":"benchmark","visible":false,"size":2209,"input":{"n":2209},"expected":true,"tags":["benchmark","scale-medium","prime-square"]},
+    {"id":"benchmark-scale-3","name":"benchmark: test ninety-seven squared","kind":"benchmark","visible":false,"size":9409,"input":{"n":9409},"expected":true,"tags":["benchmark","scale-large","prime-square"]}
+  ]
+}

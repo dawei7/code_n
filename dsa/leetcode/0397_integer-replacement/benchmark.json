@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_397",
+  "measurement_note": "Size is the starting integer's bit length; benchmark values alternate one and zero bits so odd decisions recur as the value shrinks. Constant-time low-bit tests take linear work in bit length, while rebuilding and scanning the full binary representation at each odd step takes quadratic bit work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reduce alternating 5-bit value",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "n": 21
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "bit-length"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reduce alternating 15-bit value",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 15,
+      "input": {
+        "n": 21845
+      },
+      "expected": 21,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "bit-length"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reduce alternating 29-bit value",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 29,
+      "input": {
+        "n": 357913941
+      },
+      "expected": 42,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "bit-length"
+      ]
+    }
+  ]
+}

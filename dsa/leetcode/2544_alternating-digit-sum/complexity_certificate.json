@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2544",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(d)",
+  "summary": "Every legal input has at most ten decimal digits, which is too narrow to produce an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 10,
+    "unit": "decimal digits",
+    "source_constraint": "n is between 1 and 10^9 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each loop iteration removes exactly one decimal digit and performs constant-time arithmetic, so the loop stops after d iterations."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression checks every positive integer through 100000 against an independent string-based oracle, then checks representative nine-digit patterns and the ten-digit upper boundary 1000000000."
+    }
+  ]
+}

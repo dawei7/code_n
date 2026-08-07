@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3579",
+  "measurement_note": "Size S is n, the common string length. Legal tiers 12, 24, and 48 span 4x. Every source character is a and every target character is b, so all candidate segments contain only unmatched directed pairs and the minimum answer is S replacements. The accepted center-expansion precomputation and partition DP are O(S^2). A correct calibrated alternative rebuilds mismatch counts by scanning every direct and reversed candidate segment in O(S^3), so it must pass all outputs and fail only the scaling verdict.",
+  "cases": [
+    {
+      "id": "benchmark-all-replacements-12",
+      "name": "benchmark: every one of 12 positions requires replacement",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "word1": "aaaaaaaaaaaa",
+        "word2": "bbbbbbbbbbbb"
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "quadratic-interval-precomputation",
+        "cubic-segment-rescan",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-all-replacements-24",
+      "name": "benchmark: every one of 24 positions requires replacement",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaaaaaaaaaa",
+        "word2": "bbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "quadratic-interval-precomputation",
+        "cubic-segment-rescan",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-all-replacements-48",
+      "name": "benchmark: every one of 48 positions requires replacement",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "word2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": 48,
+      "tags": [
+        "benchmark",
+        "quadratic-interval-precomputation",
+        "cubic-segment-rescan",
+        "scale-large"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1594",
+  "measurement_note": "Size is S = MN, the number of cells in a square matrix. The 3-by-3, 6-by-6, and 9-by-9 all-negative tiers exercise sign tracking and have 9/36/81 cells. The Accepted full-table DP and an independent rolling-row DP use O(S) time. Correct path enumeration explores every one of the binomially many right/down routes, completes all tiers, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 3-by-3 negative matrix","kind":"benchmark","visible":false,"size":9,"input":{"grid":[[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]},"expected":-1,"tags":["benchmark","scale-small","negative"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 6-by-6 negative matrix","kind":"benchmark","visible":false,"size":36,"input":{"grid":[[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1]]},"expected":-1,"tags":["benchmark","scale-medium","negative"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 9-by-9 negative matrix","kind":"benchmark","visible":false,"size":81,"input":{"grid":[[-1,-1,-1,-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1,-1,-1,-1]]},"expected":-1,"tags":["benchmark","scale-large","negative"]}
+  ]
+}

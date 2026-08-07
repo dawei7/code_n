@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1668",
+  "measurement_note": "Size is n, the length of sequence. The one-character word is repeated across the entire legal sequence, so every occurrence extends the maximum chain. KMP endpoint dynamic programming and an independent run counter take O(n) time. A correct implementation that tests every repetition count by rescanning all characters in that repeated candidate performs quadratic total work, completes all 20/50/100-character tiers, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 20-character repeated run","kind":"benchmark","visible":false,"size":20,"input":{"sequence":"aaaaaaaaaaaaaaaaaaaa","word":"a"},"expected":20},
+    {"id":"benchmark-scale-2","name":"benchmark: 50-character repeated run","kind":"benchmark","visible":false,"size":50,"input":{"sequence":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","word":"a"},"expected":50},
+    {"id":"benchmark-scale-3","name":"benchmark: 100-character repeated run","kind":"benchmark","visible":false,"size":100,"input":{"sequence":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","word":"a"},"expected":100}
+  ]
+}

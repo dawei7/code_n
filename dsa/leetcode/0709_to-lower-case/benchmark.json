@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_709",
+  "measurement_note": "Size is the string length. Every character is uppercase and must be transformed. A one-pass conversion touches each position once, while retrieving every position through a fresh full-string scan performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 20 uppercase letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {"s": "AAAAAAAAAAAAAAAAAAAA"},
+      "expected": "aaaaaaaaaaaaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "uppercase"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 50 uppercase letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {"s": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "uppercase"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 uppercase letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"s": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "uppercase"]
+    }
+  ]
+}

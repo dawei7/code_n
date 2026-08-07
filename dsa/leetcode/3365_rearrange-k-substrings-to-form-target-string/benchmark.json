@@ -1,0 +1,47 @@
+{
+  "challenge_id": "lc_3365",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 distinct blocks in reverse order",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "aaabacadaeafagahaiajakalamanaoapaqarasatauavawaxayazbabbbcbdbebf",
+        "t": "bfbebdbcbbbaazayaxawavauatasaraqapaoanamalakajaiahagafaeadacabaa",
+        "k": 32
+      },
+      "expected": true,
+      "tags": ["benchmark", "scale-small", "quadratic-direct-matching-baseline"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 distinct blocks in reverse order",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "aaabacadaeafagahaiajakalamanaoapaqarasatauavawaxayazbabbbcbdbebfbgbhbibjbkblbmbnbobpbqbrbsbtbubvbwbxbybzcacbcccdcecfcgchcicjckclcmcncocpcqcrcsctcucvcwcxcyczdadbdcdddedfdgdhdidjdkdldmdndodpdqdrdsdtdudvdwdxdydzeaebecedeeefegeheiejekelemeneoepeqereseteuevewex",
+        "t": "exeweveuetesereqepeoenemelekejeiehegefeeedecebeadzdydxdwdvdudtdsdrdqdpdodndmdldkdjdidhdgdfdedddcdbdaczcycxcwcvcuctcscrcqcpcocncmclckcjcichcgcfcecdcccbcabzbybxbwbvbubtbsbrbqbpbobnbmblbkbjbibhbgbfbebdbcbbbaazayaxawavauatasaraqapaoanamalakajaiahagafaeadacabaa",
+        "k": 128
+      },
+      "expected": true,
+      "tags": ["benchmark", "scale-medium", "quadratic-direct-matching-baseline"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 distinct blocks in reverse order",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "s": "aaabacadaeafagahaiajakalamanaoapaqarasatauavawaxayazbabbbcbdbebfbgbhbibjbkblbmbnbobpbqbrbsbtbubvbwbxbybzcacbcccdcecfcgchcicjckclcmcncocpcqcrcsctcucvcwcxcyczdadbdcdddedfdgdhdidjdkdldmdndodpdqdrdsdtdudvdwdxdydzeaebecedeeefegeheiejekelemeneoepeqereseteuevewexeyezfafbfcfdfefffgfhfifjfkflfmfnfofpfqfrfsftfufvfwfxfyfzgagbgcgdgegfggghgigjgkglgmgngogpgqgrgsgtgugvgwgxgygzhahbhchdhehfhghhhihjhkhlhmhnhohphqhrhshthuhvhwhxhyhziaibicidieifigihiiijikiliminioipiqirisitiuiviwixiyizjajbjcjdjejfjgjhjijjjkjljmjnjojpjqjrjsjtjujvjwjxjyjzkakbkckdkekfkgkhkikjkkklkmknkokpkqkrksktkukvkwkxkykzlalblcldlelflglhliljlklllmlnlolplqlrlsltlulvlwlxlylzmambmcmdmemfmgmhmimjmkmlmmmnmompmqmrmsmtmumvmwmxmymznanbncndnenfngnhninjnknlnmnnnonpnqnrnsntnunvnwnxnynzoaobocodoeofogohoiojokolomonooopoqorosotouovowoxoyozpapbpcpdpepfpgphpipjpkplpmpnpopppqprpsptpupvpwpxpypzqaqbqcqdqeqfqgqhqiqjqkqlqmqnqoqpqqqrqsqtquqvqwqxqyqzrarbrcrdrerfrgrhrirjrkrlrmrnrorprqrrrsrtrurvrwrxryrzsasbscsdsesfsgshsisjskslsmsnsospsqsrssstsusvswsxsysztatbtctdtetftgthtitjtktltmtntotptqtr",
+        "t": "trtqtptotntmtltktjtithtgtftetdtctbtaszsysxswsvsustsssrsqspsosnsmslsksjsishsgsfsesdscsbsarzryrxrwrvrurtrsrrrqrprornrmrlrkrjrirhrgrfrerdrcrbraqzqyqxqwqvquqtqsqrqqqpqoqnqmqlqkqjqiqhqgqfqeqdqcqbqapzpypxpwpvpuptpsprpqpppopnpmplpkpjpiphpgpfpepdpcpbpaozoyoxowovouotosoroqopooonomolokojoiohogofoeodocoboanznynxnwnvnuntnsnrnqnpnonnnmnlnknjninhngnfnendncnbnamzmymxmwmvmumtmsmrmqmpmomnmmmlmkmjmimhmgmfmemdmcmbmalzlylxlwlvlultlslrlqlplolnlmlllkljlilhlglfleldlclblakzkykxkwkvkuktkskrkqkpkoknkmklkkkjkikhkgkfkekdkckbkajzjyjxjwjvjujtjsjrjqjpjojnjmjljkjjjijhjgjfjejdjcjbjaiziyixiwiviuitisiriqipioinimilikijiiihigifieidicibiahzhyhxhwhvhuhthshrhqhphohnhmhlhkhjhihhhghfhehdhchbhagzgygxgwgvgugtgsgrgqgpgogngmglgkgjgighgggfgegdgcgbgafzfyfxfwfvfuftfsfrfqfpfofnfmflfkfjfifhfgfffefdfcfbfaezeyexeweveuetesereqepeoenemelekejeiehegefeeedecebeadzdydxdwdvdudtdsdrdqdpdodndmdldkdjdidhdgdfdedddcdbdaczcycxcwcvcuctcscrcqcpcocncmclckcjcichcgcfcecdcccbcabzbybxbwbvbubtbsbrbqbpbobnbmblbkbjbibhbgbfbebdbcbbbaazayaxawavauatasaraqapaoanamalakajaiahagafaeadacabaa",
+        "k": 512
+      },
+      "expected": true,
+      "tags": ["benchmark", "scale-large", "quadratic-direct-matching-baseline"]
+    }
+  ]
+}

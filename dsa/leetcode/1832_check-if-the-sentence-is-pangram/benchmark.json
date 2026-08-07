@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1832",
+  "measurement_note": "Size is n, the sentence length. Every tier repeats the complete lowercase alphabet and is therefore a pangram. Inserting characters into a hash set takes O(n) time and fixed alphabet space. A correct slower implementation that bubble-sorts all characters before counting distinct adjacent values takes O(n^2), completes all tiers, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two alphabet copies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 52,
+      "input": {"sentence":"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"},
+      "expected": true,
+      "tags": ["benchmark","scale-small","pangram"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: eight alphabet copies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 208,
+      "input": {"sentence":"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"},
+      "expected": true,
+      "tags": ["benchmark","scale-medium","pangram"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixteen alphabet copies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 416,
+      "input": {"sentence":"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"},
+      "expected": true,
+      "tags": ["benchmark","scale-large","pangram"]
+    }
+  ]
+}

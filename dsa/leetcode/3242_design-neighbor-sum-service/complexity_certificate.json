@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3242",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n^2+q)",
+  "summary": "The matrix has at most 100 cells and the trace at most 200 queries, which is too little legal scaling range for a stable runtime-class verdict.",
+  "workload_bound": {
+    "symbol": "W",
+    "maximum": 300,
+    "unit": "matrix cells plus service queries",
+    "source_constraint": "3 <= n <= 10 and at most 2 * n^2 calls are made to adjacentSum and diagonalSum"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs at most eight boundary checks per cell during construction and one array access per query."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression checks every query value across affine permutation grids for every legal side length and deterministic random permutations against an independent coordinate oracle."
+    }
+  ]
+}

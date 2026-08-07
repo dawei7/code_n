@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1880",
+  "measurement_note": "Size is S, the total number of characters in all three words. Horner evaluation takes O(S) time. A correct implementation that recomputes each digit's decimal place by a nested loop completes all legal tiers and fails only by O(S^2) scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: evaluate 3 total characters","kind":"benchmark","visible":false,"size":3,"input":{"firstWord":"b","secondWord":"b","targetWord":"c"},"expected":true,"tags":["benchmark","place-value"]},
+    {"id":"benchmark-scale-2","name":"benchmark: evaluate 12 total characters","kind":"benchmark","visible":false,"size":12,"input":{"firstWord":"bcde","secondWord":"baaa","targetWord":"ccde"},"expected":true,"tags":["benchmark","place-value"]},
+    {"id":"benchmark-scale-3","name":"benchmark: evaluate 24 total characters","kind":"benchmark","visible":false,"size":24,"input":{"firstWord":"bcdefghi","secondWord":"baaaaaaa","targetWord":"ccdefghi"},"expected":true,"tags":["benchmark","place-value"]}
+  ]
+}

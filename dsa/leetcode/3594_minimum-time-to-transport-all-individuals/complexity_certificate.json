@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3594",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(m n 3^n log(m 2^n))",
+  "summary": "The exponential population parameter is legally capped at 12 and the stage count at 5, so the complete source domain is too tightly bounded for an honest runtime-scaling verdict over fourfold growth in n.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 12,
+    "unit": "individuals",
+    "source_constraint": "n is from 1 through 12, k is at most 5, and m is at most 5"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "There are at most m*2^n mask-stage states. Across masks, forward submask enumeration is bounded by 3^n; pairing each forward move with at most n possible returners and m stages yields O(m*n*3^n) positive transitions for Dijkstra."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover n=1 and n=12, k=1 and k=5, m=1 and m=5, neutral and extreme multipliers, maximum neutral time, fractional floor advances, direct completion, multiple returners, cyclic states, and impossibility."
+    }
+  ]
+}

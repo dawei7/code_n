@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_343",
+  "measurement_note": "Each tier exercises the full optimization for n; size is n. Split-enumerating dynamic programming considers quadratically many candidate splits while the mathematical solution evaluates one remainder case.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: optimize n = 8","kind":"benchmark","visible":false,"size":8,"input":{"n":8},"expected":18,"tags":["benchmark","scale-small"]},
+    {"id":"benchmark-scale-2","name":"benchmark: optimize n = 24","kind":"benchmark","visible":false,"size":24,"input":{"n":24},"expected":6561,"tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-scale-3","name":"benchmark: optimize n = 58","kind":"benchmark","visible":false,"size":58,"input":{"n":58},"expected":1549681956,"tags":["benchmark","scale-large"]}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3813",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(N)",
+  "summary": "The legal string contains at most 100 characters, which is too little scaling range for stable runtime separation between a single scan and plausible slower counting strategies.",
+  "workload_bound": {
+    "symbol": "N",
+    "maximum": 100,
+    "unit": "string characters",
+    "source_constraint": "s has length from 1 through 100 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation examines each character exactly once, performs constant work for its classification, and therefore makes at most 100 character examinations."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares the accepted adapter with an independent ASCII-classification oracle on 19,530 exhaustive representative strings, 5,000 deterministic strings spanning every legal length, explicit maximum-length boundaries, and every authored case."
+    }
+  ]
+}

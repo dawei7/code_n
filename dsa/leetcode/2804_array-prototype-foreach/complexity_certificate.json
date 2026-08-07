@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2804",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The method must invoke the callback for all n elements, giving a linear lower bound that the accepted single index traversal matches.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Every array position requires one observable callback invocation, so any correct implementation performs Omega(n) work. The accepted source visits each index exactly once and performs constant work besides the user callback, establishing O(n) traversal overhead."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Skipping any position would omit its required callback invocation and can change observable mutations or callback effects."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "One monotone index loop makes exactly one callback.call invocation per array element and stores only the index."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Node regression verifies callback values, indices, array identity, context binding, undefined return, empty input, live mutation, and 100000 callback invocations."
+    }
+  ]
+}

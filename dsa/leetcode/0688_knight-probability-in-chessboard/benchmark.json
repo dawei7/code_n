@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_688",
+  "measurement_note": "Size is the number of knight moves on a 3 by 3 board from a corner. Exactly two on-board continuations recur at each layer; board dynamic programming is linear in move count for fixed n, while unmemoized enumeration explores a doubling tree of valid paths.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 2 corner moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "n": 3,
+        "k": 2,
+        "row": 0,
+        "column": 0
+      },
+      "expected": 0.0625,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "corner-branching"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 corner moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "n": 3,
+        "k": 6,
+        "row": 0,
+        "column": 0
+      },
+      "expected": 0.000244140625,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "corner-branching"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 10 corner moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "n": 3,
+        "k": 10,
+        "row": 0,
+        "column": 0
+      },
+      "expected": 9.5367431640625e-7,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "corner-branching"
+      ]
+    }
+  ]
+}
+

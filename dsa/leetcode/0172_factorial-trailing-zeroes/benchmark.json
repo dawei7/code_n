@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_172",
+  "measurement_note": "Growing factorial indices require only one division per power of five; factorial construction or per-value scans separate sharply.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: n equals 5",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "n": 5
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: n equals 625",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 625,
+      "input": {
+        "n": 625
+      },
+      "expected": 156,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: n equals 10000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "n": 10000
+      },
+      "expected": 2499,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

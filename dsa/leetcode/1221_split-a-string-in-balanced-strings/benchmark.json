@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1221",
+  "measurement_note": "Size is the string length. A single balance scan is linear, while repeatedly extracting the earliest two-character balanced prefix and manually copying the remaining suffix performs quadratic total work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-50",
+      "name": "benchmark: 50-character alternating string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "s": "LRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLR"
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-200",
+      "name": "benchmark: 200-character alternating string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 200,
+      "input": {
+        "s": "LRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLR"
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-800",
+      "name": "benchmark: 800-character alternating string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 800,
+      "input": {
+        "s": "LRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLRLR"
+      },
+      "expected": 400,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "alternating"
+      ]
+    }
+  ]
+}

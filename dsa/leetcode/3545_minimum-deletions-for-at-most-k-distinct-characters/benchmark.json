@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3545",
+  "measurement_note": "Size is the string length with every character distinct. Fixed-alphabet counting takes O(n) time, while a correct baseline that recounts the complete string separately for every position takes O(n^2) time.",
+  "cases": [
+    {
+      "id": "benchmark-recount-1",
+      "name": "benchmark: one distinct character",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {"s": "a", "k": 1},
+      "expected": 0,
+      "tags": ["benchmark", "frequency-counting", "scale-small"]
+    },
+    {
+      "id": "benchmark-recount-4",
+      "name": "benchmark: four distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"s": "abcd", "k": 1},
+      "expected": 3,
+      "tags": ["benchmark", "frequency-counting", "scale-medium"]
+    },
+    {
+      "id": "benchmark-recount-16",
+      "name": "benchmark: sixteen distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "abcdefghijklmnop", "k": 1},
+      "expected": 15,
+      "tags": ["benchmark", "frequency-counting", "scale-large"]
+    }
+  ]
+}

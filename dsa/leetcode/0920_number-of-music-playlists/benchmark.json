@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_920",
+  "measurement_note": "Size is n, with goal equal to n and k equal to floor(n/2). The optimized dynamic program combines symmetric song choices by multiplication in O(size squared) time. A correct slower dynamic program that explicitly materializes and sums one identical contribution per eligible song performs cubic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 songs and 16 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 16,
+        "goal": 16,
+        "k": 8
+      },
+      "expected": 789741546,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "explicit-choice-sums"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 songs and 32 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32,
+        "goal": 32,
+        "k": 16
+      },
+      "expected": 486580460,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "explicit-choice-sums"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 songs and 64 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64,
+        "goal": 64,
+        "k": 32
+      },
+      "expected": 331333826,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "explicit-choice-sums"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2434",
+  "measurement_note": "Size is n, the input-string length. Every character is z, so each operation remains semantically valid while a repeated scan for the smallest unread character examines every suffix. Frequency tracking takes O(n) time; repeated suffix scans take O(n^2).",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: sixteen equal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "zzzzzzzzzzzzzzzz"},
+      "expected": "zzzzzzzzzzzzzzzz",
+      "tags": ["benchmark", "suffix-minimum"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: sixty-four equal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"s": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"},
+      "expected": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+      "tags": ["benchmark", "suffix-minimum"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two hundred forty equal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 240,
+      "input": {"s": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"},
+      "expected": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+      "tags": ["benchmark", "suffix-minimum"]
+    }
+  ]
+}

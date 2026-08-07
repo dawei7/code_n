@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_650",
+  "measurement_note": "Size is the target character count n. Prime targets force trial division through sqrt(n) without early factor reductions, while a divisor dynamic program scans candidate divisors for every intermediate target and exhibits quadratic growth.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: prime target 59",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 59,
+      "input": {
+        "n": 59
+      },
+      "expected": 59,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "prime"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: prime target 239",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 239,
+      "input": {
+        "n": 239
+      },
+      "expected": 239,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "prime"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: prime target 953",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 953,
+      "input": {
+        "n": 953
+      },
+      "expected": 953,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "prime"
+      ]
+    }
+  ]
+}

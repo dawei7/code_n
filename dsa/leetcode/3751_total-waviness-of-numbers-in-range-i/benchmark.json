@@ -1,0 +1,5 @@
+{"schema_version":1,"challenge_id":"lc_3751","cases":[
+{"id":"benchmark-range-16","name":"benchmark: scan 16 five-digit numbers","kind":"benchmark","visible":false,"size":16,"input":{"num1":10000,"num2":10015},"expected":1,"validator":{"kind":"exact"},"tags":["benchmark","scale-small","fixed-digit-width"]},
+{"id":"benchmark-range-64","name":"benchmark: scan 64 five-digit numbers","kind":"benchmark","visible":false,"size":64,"input":{"num1":10000,"num2":10063},"expected":19,"validator":{"kind":"exact"},"tags":["benchmark","scale-medium","fixed-digit-width"]},
+{"id":"benchmark-range-256","name":"benchmark: scan 256 five-digit numbers","kind":"benchmark","visible":false,"size":256,"input":{"num1":10000,"num2":10255},"expected":313,"validator":{"kind":"exact"},"tags":["benchmark","scale-large","fixed-digit-width"]}
+]}

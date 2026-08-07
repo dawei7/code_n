@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_99",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Any correct recovery must inspect every node in the worst case because either swapped value can occur at the final unexamined position. Morris inorder traversal visits each node in linear time and uses constant auxiliary space.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Consider valid inputs whose swapped nodes are indistinguishable until the last node reached by a proposed traversal. Skipping any node cannot rule out that its value is one of the misplaced pair, so a correct algorithm must inspect all n node values in the worst case, giving Omega(n) time. Morris traversal creates and removes each predecessor thread once and visits each node once, so it performs O(n) work while retaining only a fixed number of pointers."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An uninspected node could contain either swapped value, so worst-case recovery requires examining all n nodes."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each Morris thread is created once and removed once, and each node is processed once, for O(n) time and O(1) auxiliary space."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover adjacent and separated inorder inversions; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

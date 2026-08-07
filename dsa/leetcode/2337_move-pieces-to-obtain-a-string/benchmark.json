@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2337",
+  "measurement_note": "Size is n, the common string length. Each target equals its start and alternates R pieces with blanks, forcing a full successful scan. A linear two-pointer implementation fits the required O(n) bound. A correct implementation that repeatedly searches a stored position list for each coordinate completes all tiers but scales quadratically.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: alternating pieces and blanks at length 16","kind":"benchmark","visible":false,"size":16,"input":{"start":"R_R_R_R_R_R_R_R_","target":"R_R_R_R_R_R_R_R_"},"expected":true},
+    {"id":"benchmark-scale-2","name":"benchmark: alternating pieces and blanks at length 32","kind":"benchmark","visible":false,"size":32,"input":{"start":"R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_","target":"R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_"},"expected":true},
+    {"id":"benchmark-scale-3","name":"benchmark: alternating pieces and blanks at length 64","kind":"benchmark","visible":false,"size":64,"input":{"start":"R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_","target":"R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_"},"expected":true}
+  ]
+}

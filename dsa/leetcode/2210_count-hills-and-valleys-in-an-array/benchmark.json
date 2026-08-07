@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2210",
+  "measurement_note": "Size is the legal array length n. Every tier is one equal plateau, forcing outward neighbor searches to traverse the array. The streaming plateau scan is O(n), while a correct per-index outward search completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 8 equal values","kind":"benchmark","visible":false,"size":8,"input":{"nums":[7,7,7,7,7,7,7,7]},"expected":0,"tags":["benchmark","scale-small","all-equal"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 32 equal values","kind":"benchmark","visible":false,"size":32,"input":{"nums":[7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7]},"expected":0,"tags":["benchmark","scale-medium","all-equal"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 100 equal values","kind":"benchmark","visible":false,"size":100,"input":{"nums":[7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7]},"expected":0,"tags":["benchmark","scale-large","all-equal"]}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2309",
+  "measurement_note": "Size is n, the string length. Each tier contains n - 1 lowercase a characters followed by one uppercase A, so A is the answer and every position matters. Set construction is linear. A correct implementation that manually searches the whole string for the opposite case of every position completes all tiers and fails through quadratic scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 32 characters with the partner last","kind":"benchmark","visible":false,"size":32,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaA"},"expected":"A"},
+    {"id":"benchmark-scale-2","name":"benchmark: 128 characters with the partner last","kind":"benchmark","visible":false,"size":128,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaA"},"expected":"A"},
+    {"id":"benchmark-scale-3","name":"benchmark: 256 characters with the partner last","kind":"benchmark","visible":false,"size":256,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaA"},"expected":"A"}
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2063",
+  "measurement_note": "Size is n, the length of an all-vowel string. Every character contributes to every substring containing it, so the workload exercises the complete set of substring-occurrence pairs. The reference sums one combinatorial contribution per position in linear time. A correct implementation that extends every substring from every start completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 vowel positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"word": "aaaaaaaaaaaaaaaa"},
+      "expected": 816,
+      "tags": ["benchmark", "scale-small", "all-vowels"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 vowel positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": 45760,
+      "tags": ["benchmark", "scale-medium", "all-vowels"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 vowel positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": 2829056,
+      "tags": ["benchmark", "scale-large", "all-vowels"]
+    }
+  ]
+}

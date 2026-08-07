@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_698",
+  "measurement_note": "Size is the number of elements. Each tier has target sum three and is impossible because more value-two elements remain than target-sized buckets that can accept them. Bitmask memoization shares equivalent chosen sets, while bucket backtracking without equal-bucket symmetry pruning revisits many equivalent placements.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: four-element symmetric failure",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"nums": [3,2,2,2], "k": 3},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "symmetric-failure"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: eight-element symmetric failure",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [3,3,2,2,2,2,2,2], "k": 6},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "symmetric-failure"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixteen-element symmetric failure",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums": [3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2], "k": 13},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "symmetric-failure"]
+    }
+  ]
+}

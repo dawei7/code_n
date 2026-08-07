@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_827",
+  "measurement_note": "Size is the total number of grid cells. Labeling all components and checking four neighbors per water cell takes O(size) time; flipping every water cell and rescanning the complete grid takes O(size^2). Checkerboards force every possible flip to be considered.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 3 by 3 checkerboard", "kind": "benchmark", "visible": false, "size": 9, "input": {"grid": [[0, 1, 0], [1, 0, 1], [0, 1, 0]]}, "expected": 5, "tags": ["benchmark", "scale-small", "checkerboard"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 4 by 4 checkerboard", "kind": "benchmark", "visible": false, "size": 16, "input": {"grid": [[0, 1, 0, 1], [1, 0, 1, 0], [0, 1, 0, 1], [1, 0, 1, 0]]}, "expected": 5, "tags": ["benchmark", "scale-medium", "checkerboard"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 6 by 6 checkerboard", "kind": "benchmark", "visible": false, "size": 36, "input": {"grid": [[0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0]]}, "expected": 5, "tags": ["benchmark", "scale-large", "checkerboard"]}
+  ]
+}

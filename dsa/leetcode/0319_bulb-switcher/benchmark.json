@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_319",
+  "measurement_note": "Increasing n distinguishes direct integer square root from enumerating every square root up to the answer; size is the bulb count.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count squares through n=10000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "n": 10000
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "square-counting"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count squares through n=1000000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000000,
+      "input": {
+        "n": 1000000
+      },
+      "expected": 1000,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "square-counting"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count squares through n=100000000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100000000,
+      "input": {
+        "n": 100000000
+      },
+      "expected": 10000,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "square-counting"
+      ]
+    }
+  ]
+}

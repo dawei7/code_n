@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2621",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(m)",
+  "summary": "The contract requires the promise to remain pending for the requested duration m, imposing a matching elapsed-time lower bound, while one host timer reaches that bound with constant JavaScript scheduling work.",
+  "optimality": {
+    "symbol": "m",
+    "lower_bound": "Omega(m)",
+    "upper_bound": "O(m)",
+    "argument": "A valid promise cannot complete materially before the requested m-millisecond interval, so its elapsed completion time is Omega(m). Scheduling one host timer resolves it after approximately m milliseconds, giving O(m) elapsed time while performing only O(1) JavaScript work."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "Resolving materially before m milliseconds would directly violate the required sleep interval, establishing the elapsed-time lower bound."},
+    {"kind": "upper_bound_proof", "evidence": "One setTimeout registration invokes the promise resolver after the host timer reaches the requested delay, with no polling loop."},
+    {"kind": "boundary_property_cases", "evidence": "Cases exercise the 1-millisecond minimum, the 1000-millisecond maximum, both public examples, and an odd intermediate duration."}
+  ]
+}

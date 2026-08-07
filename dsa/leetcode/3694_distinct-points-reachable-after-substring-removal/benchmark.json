@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3694",
+  "cases": [
+    {
+      "id": "benchmark-direction-blocks-8",
+      "name": "benchmark: slide across 8 blocked directions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"s": "UURRDDLL", "k": 2},
+      "expected": 7,
+      "tags": ["benchmark", "sliding-window", "direct-simulation-pressure"]
+    },
+    {
+      "id": "benchmark-direction-blocks-32",
+      "name": "benchmark: slide across 32 blocked directions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s": "UUUUUUUURRRRRRRRDDDDDDDDLLLLLLLL", "k": 8},
+      "expected": 25,
+      "tags": ["benchmark", "sliding-window", "direct-simulation-pressure"]
+    },
+    {
+      "id": "benchmark-direction-blocks-128",
+      "name": "benchmark: slide across 128 blocked directions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"s": "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL", "k": 32},
+      "expected": 97,
+      "tags": ["benchmark", "sliding-window", "direct-simulation-pressure"]
+    }
+  ]
+}

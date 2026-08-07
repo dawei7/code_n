@@ -1,0 +1,149 @@
+{
+  "challenge_id": "lc_2934",
+  "cases": [
+    {
+      "id": "benchmark-length-2",
+      "name": "benchmark: evaluate 2 vertical pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "nums1": [
+          1000000,
+          1000000
+        ],
+        "nums2": [
+          999999,
+          999999
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "array-length",
+        "quadratic-prefix-validation-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-length-8",
+      "name": "benchmark: evaluate 8 vertical pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums1": [
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000
+        ],
+        "nums2": [
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "array-length",
+        "quadratic-prefix-validation-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-length-32",
+      "name": "benchmark: evaluate 32 vertical pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "nums1": [
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000
+        ],
+        "nums2": [
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999,
+          999999
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "array-length",
+        "quadratic-prefix-validation-baseline"
+      ]
+    }
+  ]
+}

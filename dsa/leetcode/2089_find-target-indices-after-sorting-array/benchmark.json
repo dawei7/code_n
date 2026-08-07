@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2089",
+  "measurement_note": "Size is n, the array length. Each tier is strictly descending, the worst case for insertion sort, and contains the target once. Direct counting is linear. A correct implementation that explicitly insertion-sorts before scanning completes all legal tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 descending values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"nums": [4, 3, 2, 1], "target": 2},
+      "expected": [1],
+      "tags": ["benchmark", "scale-small", "descending"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 20 descending values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "nums": [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+        "target": 10
+      },
+      "expected": [9],
+      "tags": ["benchmark", "scale-medium", "descending"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 descending values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "nums": [100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+        "target": 50
+      },
+      "expected": [49],
+      "tags": ["benchmark", "scale-large", "descending"]
+    }
+  ]
+}

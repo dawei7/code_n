@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1879",
+  "measurement_note": "Size is N, the common array length. Bitmask assignment DP takes O(N * 2^N) time. A correct implementation that evaluates every permutation and its full XOR sum completes all three legal tiers and fails only by O(N! * N) scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: assign 1 second-array occurrence","kind":"benchmark","visible":false,"size":1,"input":{"nums1":[11],"nums2":[7]},"expected":12,"tags":["benchmark","bitmask-assignment"]},
+    {"id":"benchmark-scale-2","name":"benchmark: assign 2 second-array occurrences","kind":"benchmark","visible":false,"size":2,"input":{"nums1":[1,2],"nums2":[2,3]},"expected":2,"tags":["benchmark","bitmask-assignment"]},
+    {"id":"benchmark-scale-3","name":"benchmark: assign 5 second-array occurrences","kind":"benchmark","visible":false,"size":5,"input":{"nums1":[1,7,12,3,19],"nums2":[6,2,9,14,21]},"expected":18,"tags":["benchmark","bitmask-assignment"]}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_95",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n C_n)",
+  "summary": "The legal domain ends at n = 8 while the Catalan output changes sharply, making three-tier runtime classification unreliable. A direct cached-interval construction proof verifies the required O(n C_n) upper bound.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 8,
+    "unit": "distinct ordered keys",
+    "source_constraint": "The verified source constraint is 1 <= n <= 8."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "For each cached interval, the loops create one root for every Cartesian-product pair of left and right BSTs for every root value, enumerating the Catalan recurrence without recomputing interval forests. There are C_n returned trees, and materializing or structurally validating their n-node representations costs O(n C_n); the cached shared graph and recursion remain within that upper bound."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover all five structures for n = 3 and the n = 1 boundary; black-box real-test execution verifies all existing ordinary structural checks without inspecting their definitions."
+    }
+  ]
+}

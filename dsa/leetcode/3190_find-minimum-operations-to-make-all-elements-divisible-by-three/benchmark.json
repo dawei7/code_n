@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3190",
+  "measurement_note": "Size is n, the number of array elements. Counting nonzero remainders takes O(n) time. A correct comparison implementation that recomputes the nondivisible count for every growing prefix completes all legal tiers and exhibits O(n^2) growth.",
+  "cases": [
+    {
+      "id": "benchmark-divisible-three-3",
+      "name": "benchmark: 3 legal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "prefix-recount"
+      ]
+    },
+    {
+      "id": "benchmark-divisible-three-12",
+      "name": "benchmark: 12 legal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "nums": [
+          1,
+          8,
+          15,
+          22,
+          29,
+          36,
+          43,
+          50,
+          7,
+          14,
+          21,
+          28
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "prefix-recount"
+      ]
+    },
+    {
+      "id": "benchmark-divisible-three-50",
+      "name": "benchmark: 50 legal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "prefix-recount"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2025",
+  "measurement_note": "Size is N, the length of a repeating mixed-sign array, with replacement value 3. The balance-map sweep is linear. A correct implementation that tries leaving the array unchanged and then recomputes all pivots after each possible replacement completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 mixed-sign values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1,
+          0
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "replacement-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 mixed-sign values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "replacement-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 mixed-sign values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          -2,
+          -1
+        ],
+        "k": 3
+      },
+      "expected": 11,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "replacement-rescan"
+      ]
+    }
+  ]
+}

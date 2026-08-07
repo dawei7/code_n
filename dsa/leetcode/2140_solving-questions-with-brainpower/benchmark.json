@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2140",
+  "measurement_note": "Size is the number n of questions. Every question has one point and brainpower one, so both decisions remain competitive throughout the array. Bottom-up suffix dynamic programming takes O(n) time, while correct uncached recursion completes all tiers and fails only by exponential scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 6 unit questions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"questions": [[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]},
+      "expected": 3,
+      "tags": ["benchmark", "scale-small", "branching"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 12 unit questions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"questions": [[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]},
+      "expected": 6,
+      "tags": ["benchmark", "scale-medium", "branching"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 24 unit questions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"questions": [[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]},
+      "expected": 12,
+      "tags": ["benchmark", "scale-large", "branching"]
+    }
+  ]
+}

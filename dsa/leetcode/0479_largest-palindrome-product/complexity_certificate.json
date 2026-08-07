@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_479",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The source permits only n from 1 through 8 and the optimal implementation is the complete eight-value residue table, leaving no unbounded workload for runtime scaling.",
+  "workload_bound": {
+    "symbol": "N",
+    "maximum": 8,
+    "unit": "legal input values",
+    "source_constraint": "n is an integer from 1 through 8"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "The optimal lookup reads one entry from the exhaustive eight-result table."},
+    {"kind": "exhaustive_domain", "evidence": "The ordinary case suite contains and verifies every legal value of n from 1 through 8."}
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_730",
+  "measurement_note": "Size is n squared, the number of interval-DP states in the required complexity. Repeated alphabet blocks create same-endpoint states across all lengths. Precomputed occurrence links make each state constant-time; rebuilding and scanning inner substrings at every matching-endpoint state adds another length factor.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16-character repeated alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "abcdabcdabcdabcd"
+      },
+      "expected": 244,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distinct-subsequences"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32-character repeated alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "s": "abcdabcdabcdabcdabcdabcdabcdabcd"
+      },
+      "expected": 29348,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distinct-subsequences"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64-character repeated alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "s": "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
+      },
+      "expected": 415576084,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distinct-subsequences"
+      ]
+    }
+  ]
+}

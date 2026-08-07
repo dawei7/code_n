@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_420",
+  "measurement_note": "Size is the password length. A single repeated run makes the optimal run scan linear, while walking backward from every character to rediscover the run head performs quadratic work. All tiers remain within the official maximum length of 50.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: repair one 10-character run",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "password": "aaaaaaaaaa"
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "long-run"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: repair one 25-character run",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {
+        "password": "aaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 11,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "long-run"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: repair one 50-character run",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "password": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 36,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "long-run"
+      ]
+    }
+  ]
+}

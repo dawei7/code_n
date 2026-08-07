@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1772",
+  "measurement_note": "Size is F, with F equally unpopular features and F one-word responses that mention none. One-pass token counting plus sorting is O(F log F); a correct per-feature rescan retokenizes all F responses for each feature, completes every tier, and is rejected by O(F^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 tied features and responses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "features": ["a","b","c","d"],
+        "responses": ["none","none","none","none"]
+      },
+      "expected": ["a","b","c","d"],
+      "tags": ["benchmark", "scaling", "all-tied"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 tied features and responses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "features": ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"],
+        "responses": ["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]
+      },
+      "expected": ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"],
+      "tags": ["benchmark", "scaling", "all-tied"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 tied features and responses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "features": [
+          "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+          "aa","ab","ac","ad","ae","af","ag","ah","ai","aj","ak","al","am","an","ao","ap","aq","ar","as","at","au","av","aw","ax","ay","az",
+          "ba","bb","bc","bd","be","bf","bg","bh","bi","bj","bk","bl"
+        ],
+        "responses": [
+          "none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",
+          "none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",
+          "none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",
+          "none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"
+        ]
+      },
+      "expected": [
+        "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+        "aa","ab","ac","ad","ae","af","ag","ah","ai","aj","ak","al","am","an","ao","ap","aq","ar","as","at","au","av","aw","ax","ay","az",
+        "ba","bb","bc","bd","be","bf","bg","bh","bi","bj","bk","bl"
+      ],
+      "tags": ["benchmark", "scaling", "all-tied"]
+    }
+  ]
+}

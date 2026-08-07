@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3869",
+  "measurement_note": "Size is W, the inclusive width of the prefix range [1, W]. Digit DP depends on the endpoint digit count rather than enumerating W values. A correct slower control classifies every integer separately in O(WD) time and returns the same outputs.",
+  "cases": [
+    {
+      "id": "benchmark-prefix-256",
+      "name": "benchmark: classify the prefix through 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "l": 1,
+        "r": 256
+      },
+      "expected": 246,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "prefix-range",
+        "per-integer-scan"
+      ]
+    },
+    {
+      "id": "benchmark-prefix-2048",
+      "name": "benchmark: classify the prefix through 2048",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "l": 1,
+        "r": 2048
+      },
+      "expected": 1892,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "prefix-range",
+        "per-integer-scan"
+      ]
+    },
+    {
+      "id": "benchmark-prefix-16384",
+      "name": "benchmark: classify the prefix through 16384",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16384,
+      "input": {
+        "l": 1,
+        "r": 16384
+      },
+      "expected": 14960,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "prefix-range",
+        "per-integer-scan"
+      ]
+    }
+  ]
+}

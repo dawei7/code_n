@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3619",
+  "measurement_note": "Size S is the total cell count mn. All-land square grids of 3x3, 6x6, and 12x12 cells give sizes 9, 36, and 144 across a 16x span. Each grid is one island of S ones with k = S, so it qualifies. The accepted traversal visits the component once; a correct alternative that rediscovers it from every cell performs O(S^2) work and must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-solid-island-9",
+      "name": "benchmark: one 3 by 3 all-land island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 9
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "single-island",
+        "cells-9"
+      ]
+    },
+    {
+      "id": "benchmark-solid-island-36",
+      "name": "benchmark: one 6 by 6 all-land island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 36
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "single-island",
+        "cells-36"
+      ]
+    },
+    {
+      "id": "benchmark-solid-island-144",
+      "name": "benchmark: one 12 by 12 all-land island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 144,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 144
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "single-island",
+        "cells-144"
+      ]
+    }
+  ]
+}

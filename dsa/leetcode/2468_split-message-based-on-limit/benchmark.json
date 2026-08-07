@@ -1,0 +1,9 @@
+{
+  "challenge_id": "lc_2468",
+  "measurement_note": "Size is m, the message length. Incrementally maintaining the sum of numerator digit lengths checks every candidate in O(m), while recomputing that prefix sum for every candidate takes O(m^2). Limit 6 makes every benchmark split impossible only after all candidates are examined.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: impossible 32-character message","kind":"benchmark","visible":false,"size":32,"input":{"message":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","limit":6},"expected":[],"tags":["benchmark","impossible"]},
+    {"id":"benchmark-scale-2","name":"benchmark: impossible 128-character message","kind":"benchmark","visible":false,"size":128,"input":{"message":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","limit":6},"expected":[],"tags":["benchmark","impossible"]},
+    {"id":"benchmark-scale-3","name":"benchmark: impossible 384-character message","kind":"benchmark","visible":false,"size":384,"input":{"message":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","limit":6},"expected":[],"tags":["benchmark","impossible"]}
+  ]
+}

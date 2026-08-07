@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2231",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The legal value is at most 10^9 and therefore has no more than ten decimal digits, leaving too little legal digit-count range for an honest scaling verdict.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 10,
+    "unit": "decimal digits",
+    "source_constraint": "num is at most 10^9, so its ordinary decimal representation contains at most ten digits"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference partitions, sorts, and reconstructs at most ten decimal characters."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares every value through 100,000 plus 20,000 deterministic values across the full legal magnitude and explicit boundaries against an independent digit-frequency oracle."
+    }
+  ]
+}

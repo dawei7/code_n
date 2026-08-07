@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1411",
+  "measurement_note": "Size is n, the number of grid rows. The 125/1000/5000 tiers span 40x and exercise the complete recurrence. The two-state transition takes O(n) time and O(1) auxiliary space. A correct implementation that repeatedly rebuilds its growing row-total history takes O(n^2) time and completes normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 125 rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 125,
+      "input": {
+        "n": 125
+      },
+      "expected": 779502179,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 1000 rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "n": 1000
+      },
+      "expected": 650420578,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 5000 rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5000,
+      "input": {
+        "n": 5000
+      },
+      "expected": 30228214,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

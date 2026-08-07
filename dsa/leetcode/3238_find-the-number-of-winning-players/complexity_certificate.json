@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3238",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(p)",
+  "summary": "The game has at most 10 players, 11 colors, and 100 pick events, too little legal scaling range for a stable runtime-class verdict.",
+  "workload_bound": {
+    "symbol": "p",
+    "maximum": 100,
+    "unit": "pick events",
+    "source_constraint": "2 <= n <= 10, pick has 1 through 100 rows, and every color is from 0 through 10"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs one table increment and constant threshold checks per event, with a fixed 11 counters per player."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhausts all event sequences through length four for three players and three colors, checks all legal singleton events and every legal length, and compares deterministic random games with an independent grouped-frequency oracle."
+    }
+  ]
+}

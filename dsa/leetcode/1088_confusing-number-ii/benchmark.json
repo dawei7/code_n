@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1088",
+  "measurement_note": "Size is the inclusive upper bound n. Valid-digit DFS visits only rotatable candidates, while a correct brute-force implementation scans and validates every positive integer through n. The largest tier completes below the execution safety cap.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: upper bound 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "scan-every-integer"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: upper bound 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 512
+      },
+      "expected": 40,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "scan-every-integer"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: upper bound 4096",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "n": 4096
+      },
+      "expected": 226,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "scan-every-integer"
+      ]
+    }
+  ]
+}
+

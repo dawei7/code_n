@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_836",
+  "measurement_note": "Size is U, the positive overlap width and height in these square inputs. Direct interval comparison takes O(1) time; counting each integer unit interval on both axes takes O(size) time. Identical squares force the slower implementation to traverse both full spans.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: overlap span 16", "kind": "benchmark", "visible": false, "size": 16, "input": {"rec1": [0, 0, 16, 16], "rec2": [0, 0, 16, 16]}, "expected": true, "tags": ["benchmark", "scale-small", "identical"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: overlap span 64", "kind": "benchmark", "visible": false, "size": 64, "input": {"rec1": [0, 0, 64, 64], "rec2": [0, 0, 64, 64]}, "expected": true, "tags": ["benchmark", "scale-medium", "identical"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: overlap span 256", "kind": "benchmark", "visible": false, "size": 256, "input": {"rec1": [0, 0, 256, 256], "rec2": [0, 0, 256, 256]}, "expected": true, "tags": ["benchmark", "scale-large", "identical"]}
+  ]
+}

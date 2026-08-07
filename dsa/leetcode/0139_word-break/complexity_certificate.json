@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_139",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(S + n)",
+  "summary": "The legal source domain caps the input string at 300 characters and every dictionary word at 20 characters. Trie construction reads S dictionary characters, and the candidate explores at most 20 trie edges from each reachable string boundary.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 300,
+    "unit": "input string characters",
+    "source_constraint": "The verified source constraints are 1 <= s.length <= 300, 1 <= wordDict.length <= 1000, and 1 <= wordDict[i].length <= 20."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Building the trie performs one insertion per dictionary character, for O(S) work. From each of n string boundaries, traversal examines no more than the source-bounded maximum of 20 characters, so the complete segmentation scan is O(n) on the legal domain and total time is O(S + n)."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover dictionary-word reuse, multiple boundaries, and an ambiguous prefix with no complete segmentation; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

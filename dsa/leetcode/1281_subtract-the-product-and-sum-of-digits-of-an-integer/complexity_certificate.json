@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1281",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(d)",
+  "summary": "Every legal input has at most six decimal digits, which is too narrow to produce an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 6,
+    "unit": "decimal digits",
+    "source_constraint": "n is an integer between 1 and 100000 inclusive"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"Each loop iteration removes exactly one decimal digit, performs constant-time accumulator updates, and the loop stops after d iterations."},
+    {"kind":"boundary_property_cases","evidence":"Regression exhaustively checks all 100000 legal integers against an independent string-based digit oracle, including the six-digit upper boundary."}
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1404",
+  "measurement_note": "Size is n, the binary-string length. Alternating bits ending in one trigger repeated odd increments and even divisions; the 125/250/500-bit tiers span the full 4x legal range. Carry scanning takes O(n) time. A correct immutable-string simulation repeatedly copies the remaining representation during additions and divisions, taking O(n^2) character work and completing normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 125-bit alternating value",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 125,
+      "input": {
+        "s": "10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"
+      },
+      "expected": 188,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "alternating-bits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 250-bit alternating value",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 250,
+      "input": {
+        "s": "1010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101011"
+      },
+      "expected": 375,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "alternating-bits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 500-bit alternating value",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 500,
+      "input": {
+        "s": "10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101011"
+      },
+      "expected": 750,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "alternating-bits"
+      ]
+    }
+  ]
+}

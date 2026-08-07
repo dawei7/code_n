@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3271",
+  "measurement_note": "String length n is the workload size and k = 4 at every tier. Mixed deterministic letters require every character contribution; the direct group scan is linear, while rescanning the complete prefix before extracting each successive group is quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-prefix-rescan-scale-1",
+      "name": "benchmark: hash 16 characters in groups of four",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "fyrkdwpibungzsle",
+        "k": 4
+      },
+      "expected": "ewog",
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-prefix-rescan-scale-2",
+      "name": "benchmark: hash 64 characters in groups of four",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "fyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibung",
+        "k": 4
+      },
+      "expected": "ewogyqiaskcumewo",
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-prefix-rescan-scale-3",
+      "name": "benchmark: hash 256 characters in groups of four",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "fyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvohatmfyrkdwpibungzslexqjcvo",
+        "k": 4
+      },
+      "expected": "ewogyqiaskcumewogyqiaskcumewogyqiaskcumewogyqiaskcumewogyqiaskcu",
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

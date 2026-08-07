@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1946",
+  "measurement_note": "Size is N, the number of digits. Every tier contains only zeroes and maps zero to one while leaving all other digits unchanged, so mutating the entire string produces N ones. The reference finds and applies the one optimal interval in a single scan. A correct slower implementation constructs and compares the result for every possible substring, performs Theta(N cubed) character work, completes all legal tiers, and fails by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: mutate 4 zeroes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "num": "0000",
+        "change": [1,1,2,3,4,5,6,7,8,9]
+      },
+      "expected": "1111",
+      "tags": ["benchmark", "scale-small", "whole-string"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: mutate 16 zeroes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "num": "0000000000000000",
+        "change": [1,1,2,3,4,5,6,7,8,9]
+      },
+      "expected": "1111111111111111",
+      "tags": ["benchmark", "scale-medium", "whole-string"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: mutate 64 zeroes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "num": "0000000000000000000000000000000000000000000000000000000000000000",
+        "change": [1,1,2,3,4,5,6,7,8,9]
+      },
+      "expected": "1111111111111111111111111111111111111111111111111111111111111111",
+      "tags": ["benchmark", "scale-large", "whole-string"]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_809",
+  "measurement_note": "Size is the common length of one alternating target and candidate. Index-based run encoding takes O(size); repeatedly copying the remaining suffix after each one-character run takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 alternating characters", "kind": "benchmark", "visible": false, "size": 4, "input": {"s": "abab", "words": ["abab"]}, "expected": 1, "tags": ["benchmark", "scaling", "exact", "alternating"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 alternating characters", "kind": "benchmark", "visible": false, "size": 16, "input": {"s": "abababababababab", "words": ["abababababababab"]}, "expected": 1, "tags": ["benchmark", "scaling", "exact", "alternating"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 24 alternating characters", "kind": "benchmark", "visible": false, "size": 24, "input": {"s": "abababababababababababab", "words": ["abababababababababababab"]}, "expected": 1, "tags": ["benchmark", "scaling", "exact", "alternating"]}
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1790",
+  "measurement_note": "Size is n, the common string length. The only two mismatches are the final reversed characters, so a linear mismatch scan reaches the end. A correct implementation that tries every index pair before finding the final swap completes all tiers and is rejected by O(n^2) pair-enumeration scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: final swap in length 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"s1": "aabc", "s2": "aacb"},
+      "expected": true,
+      "tags": ["benchmark", "scaling", "late-swap"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: final swap in length 20",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {"s1": "aaaaaaaaaaaaaaaaaabc", "s2": "aaaaaaaaaaaaaaaaaacb"},
+      "expected": true,
+      "tags": ["benchmark", "scaling", "late-swap"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: final swap in length 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc", "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacb"},
+      "expected": true,
+      "tags": ["benchmark", "scaling", "late-swap"]
+    }
+  ]
+}

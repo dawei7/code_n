@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3591",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The legal array has at most 100 entries, so the complete source domain is too tightly bounded for a reliable runtime-scaling verdict between linear counting and slower frequency recomputation.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 100,
+    "unit": "array elements",
+    "source_constraint": "nums has length from 1 through 100 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs one Counter update per array entry, then one constant-time prime-set lookup for each of at most 101 distinct values. Every legal execution therefore has at most 100 count updates and 101 lookups."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover length one, all-unique values, prime and composite counts, multiple distinct composite counts, value bounds 0 and 100, the largest legal prime frequency 97, and the maximum length and frequency 100."
+    }
+  ]
+}

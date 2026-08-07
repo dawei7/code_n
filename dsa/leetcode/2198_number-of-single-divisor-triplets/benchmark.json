@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2198",
+  "measurement_note": "Size is the array length n. Each tier contains one-third ones and two-thirds twos. Only selections with one 1 and two 2s qualify. Frequency enumeration is linear in n for this fixed two-value domain, while direct enumeration of all index triples completes all tiers and fails by cubic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 12 entries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"nums":[1,1,1,1,2,2,2,2,2,2,2,2]},
+      "expected": 672,
+      "tags": ["benchmark","scale-small","duplicates"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 24 entries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"nums":[1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]},
+      "expected": 5760,
+      "tags": ["benchmark","scale-medium","duplicates"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 48 entries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]},
+      "expected": 47616,
+      "tags": ["benchmark","scale-large","duplicates"]
+    }
+  ]
+}

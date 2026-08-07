@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_828",
+  "measurement_note": "Size is the string length. Occurrence contributions take O(size) time, while extending every positional substring with frequency counts takes O(size^2). Every tier requires processing all start/end pairs.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 7 distinct letters", "kind": "benchmark", "visible": false, "size": 7, "input": {"s": "ABCDEFG"}, "expected": 84, "tags": ["benchmark", "scale-small", "substring-pairs"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 14 distinct letters", "kind": "benchmark", "visible": false, "size": 14, "input": {"s": "ABCDEFGHIJKLMN"}, "expected": 560, "tags": ["benchmark", "scale-medium", "substring-pairs"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 28 letters with repeated prefix", "kind": "benchmark", "visible": false, "size": 28, "input": {"s": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB"}, "expected": 4052, "tags": ["benchmark", "scale-large", "substring-pairs"]}
+  ]
+}

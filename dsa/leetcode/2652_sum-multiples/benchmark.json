@@ -1,0 +1,9 @@
+{
+  "challenge_id": "lc_2652",
+  "measurement_note": "Size is n, the inclusive upper bound. The reference evaluates a fixed seven-term inclusion-exclusion formula in O(1), while a correct scan checks every integer through n in O(n); all tiers are legal and the scan completes before failing by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: upper bound 50","kind":"benchmark","visible":false,"size":50,"input":{"n":50},"expected":691,"tags":["benchmark","scale-small"]},
+    {"id":"benchmark-scale-2","name":"benchmark: upper bound 250","kind":"benchmark","visible":false,"size":250,"input":{"n":250},"expected":17152,"tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-scale-3","name":"benchmark: upper bound 1000","kind":"benchmark","visible":false,"size":1000,"input":{"n":1000},"expected":272066,"tags":["benchmark","scale-large"]}
+  ]
+}

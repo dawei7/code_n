@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1625",
+  "measurement_note": "Size is n, the even string length. With b=1, all n rotations are reachable; a=5 gives two additive residues independently on the two index parities, producing a state family proportional to n. The Accepted hash-set graph search and an independent queue-based search take O(n^2) time. A correct search using linear state lookup with full-string comparisons completes all 20/40/100 tiers and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 20-digit odd-rotation state graph","kind":"benchmark","visible":false,"size":20,"input":{"s":"54854732563884401127","a":5,"b":1},"expected":"01127548547325638844","tags":["benchmark","scale-small","odd-rotation","state-graph"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 40-digit odd-rotation state graph","kind":"benchmark","visible":false,"size":40,"input":{"s":"8825762812634527595686847414991988009390","a":5,"b":1},"expected":"0093908825762812634527595686847414991988","tags":["benchmark","scale-medium","odd-rotation","state-graph"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 100-digit odd-rotation state graph","kind":"benchmark","visible":false,"size":100,"input":{"s":"8502074896500789756132162726601320152884369559869898080190208248628223328512370562963144172413549077","a":5,"b":1},"expected":"0043143435356457537931737788730678250174186996279680945223057529341055234201687617271156875607339814","tags":["benchmark","scale-large","odd-rotation","state-graph"]}
+  ]
+}

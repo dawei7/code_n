@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3295",
+  "measurement_note": "Size is m+b, the total number of words. The second match is last, forcing complete set construction and message scanning.",
+  "cases": [
+    {"id":"benchmark-words-64","name":"benchmark: 32 banned and 32 message words","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 32\nbanned = [chr(97 + i // 26) + chr(97 + i % 26) for i in range(n)]\ncase = {'message': ['safe'] * (n - 2) + [banned[0], banned[-1]], 'bannedWords': banned}\nexpected = True"},"size":64,"tags":["benchmark","hash-set","full-scan"]},
+    {"id":"benchmark-words-256","name":"benchmark: 128 banned and 128 message words","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 128\nbanned = [chr(97 + i // 26) + chr(97 + i % 26) for i in range(n)]\ncase = {'message': ['safe'] * (n - 2) + [banned[0], banned[-1]], 'bannedWords': banned}\nexpected = True"},"size":256,"tags":["benchmark","hash-set","full-scan"]},
+    {"id":"benchmark-words-1024","name":"benchmark: 512 banned and 512 message words","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 512\nbanned = [chr(97 + i // 26) + chr(97 + i % 26) for i in range(n)]\ncase = {'message': ['safe'] * (n - 2) + [banned[0], banned[-1]], 'bannedWords': banned}\nexpected = True"},"size":1024,"tags":["benchmark","hash-set","full-scan"]}
+  ]
+}

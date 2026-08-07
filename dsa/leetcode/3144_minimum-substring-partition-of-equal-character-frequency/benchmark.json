@@ -1,0 +1,53 @@
+{
+  "challenge_id": "lc_3144",
+  "cases": [
+    {
+      "id": "benchmark-52-characters",
+      "name": "benchmark: 52-character balanced cyclic string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 52,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced-whole-string"
+      ]
+    },
+    {
+      "id": "benchmark-104-characters",
+      "name": "benchmark: 104-character balanced cyclic string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 104,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced-whole-string"
+      ]
+    },
+    {
+      "id": "benchmark-208-characters",
+      "name": "benchmark: 208-character balanced cyclic string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 208,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced-whole-string"
+      ]
+    }
+  ]
+}

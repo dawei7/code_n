@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1999",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(2^D)",
+  "summary": "The signed 32-bit result ceiling fixes decimal length at ten, so the complete two-digit search contains at most 2046 non-leading strings and cannot support unbounded asymptotic runtime scaling.",
+  "workload_bound": {
+    "symbol": "C",
+    "maximum": 2046,
+    "unit": "non-leading candidate strings",
+    "source_constraint": "Every result must be at most 2^31 - 1 and may use at most two distinct decimal digits."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "At each of at most ten positions there are at most two digit choices, and excluding leading zero only lowers the sum below 2^1 + ... + 2^10 = 2046."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover zero-only input, duplicate digits, leading-zero exclusion, strict comparison with k, digit ordering, deeper breadth-first answers, divisibility, and exhaustion at the signed limit."
+    }
+  ]
+}

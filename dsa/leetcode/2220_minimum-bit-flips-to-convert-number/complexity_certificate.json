@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2220",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Both inputs are at most 10^9, so every legal instance occupies no more than 30 relevant bit positions and cannot provide an honest asymptotic scaling axis.",
+  "workload_bound": {
+    "symbol": "w",
+    "maximum": 30,
+    "unit": "binary positions",
+    "source_constraint": "start and goal are each between 0 and 10^9 inclusive, so their binary representations require at most 30 positions"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference performs one XOR and one population count over a value with at most 30 relevant bits."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Deterministic randomized regression compares the reference with independent padded-binary disagreement counting, including zero, equality, alternating masks, and the 10^9 boundary."
+    }
+  ]
+}

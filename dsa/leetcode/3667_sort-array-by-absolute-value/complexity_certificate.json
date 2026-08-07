@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3667",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The legal array has at most 100 elements from a fixed 201-value domain, so complete-domain runtime scaling cannot reliably distinguish bounded counting from optimized native comparison sorting.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 100,
+    "unit": "array elements",
+    "source_constraint": "nums has length from 1 through 100 inclusive, and every value is between -100 and 100"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs one frequency update per input element, visits exactly 201 fixed value buckets, and emits each of the n occurrences once, for O(n + 201) work."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover one element, zero, duplicate values, all-equal magnitudes, opposite signs, arbitrary tie order through a property validator, reverse magnitudes, and both -100 and 100."
+    }
+  ]
+}

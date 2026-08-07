@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1183",
+  "measurement_note": "Size is both matrix dimensions; sideLength is half that dimension and maxOnes is half the residue classes. Direct residue arithmetic scales with the tile, while repeatedly selecting a maximum rescans the tile.",
+  "cases": [
+    {
+      "id": "benchmark-scale-8",
+      "name": "benchmark: 8 by 8 matrix with side 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "width": 8,
+        "height": 8,
+        "sideLength": 4,
+        "maxOnes": 8
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-16",
+      "name": "benchmark: 16 by 16 matrix with side 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "width": 16,
+        "height": 16,
+        "sideLength": 8,
+        "maxOnes": 32
+      },
+      "expected": 128,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-32",
+      "name": "benchmark: 32 by 32 matrix with side 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "width": 32,
+        "height": 32,
+        "sideLength": 16,
+        "maxOnes": 128
+      },
+      "expected": 512,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_728",
+  "measurement_note": "Size is the inclusive interval width. Ranges begin at one and grow across tiers, so every candidate is tested. Direct digit extraction performs digit-count work per candidate; enumerating all divisors before checking the digits performs work proportional to the candidate values.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: inclusive range through 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "left": 1,
+        "right": 8
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "wide-interval"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: inclusive range through 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "left": 1,
+        "right": 16
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        15
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "wide-interval"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: inclusive range through 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "left": 1,
+        "right": 32
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        15,
+        22,
+        24
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "wide-interval"
+      ]
+    }
+  ]
+}

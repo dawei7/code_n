@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1645",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(d+r+a)",
+  "summary": "Exact monthly active and distinct-working-driver percentages require accounting for every driver, ride, and acceptance row; the fixed twelve-month spine adds only constant work, matching the linear input lower bound.",
+  "optimality": {
+    "symbol": "d+r+a",
+    "lower_bound": "Omega(d+r+a)",
+    "upper_bound": "O(d+r+a)",
+    "argument": "Any Drivers row can change an active denominator, any Rides row can change the request month of an accepted ride, and any AcceptedRides row can change a distinct working-driver numerator. Exact results therefore require Omega(d+r+a) input work. A join/group scan plus twelve fixed cutoff counts meets O(d+r+a)."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Changing one row in any input relation can alter a required monthly percentage, so all d+r+a rows must be accounted for."},
+    {"kind":"upper_bound_proof","evidence":"The query scans and groups the ride/acceptance join, evaluates twelve fixed driver cutoffs, and joins a constant-size month spine in O(d+r+a) total work."},
+    {"kind":"boundary_property_cases","evidence":"Regression compares every authored fixture with an independent calendar oracle covering distinct-driver counting, month-end joins, zero denominators, rounding, rejected requests, and out-of-year rides."}
+  ]
+}

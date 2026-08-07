@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_747",
+  "measurement_note": "Size is the number of array elements. Values rise gradually before an exactly dominant final maximum. Tracking the greatest two values is linear, while directly testing candidates against the array performs quadratically many comparisons before finding the last candidate.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 10 ascending values", "kind": "benchmark", "visible": false, "size": 10, "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 18]}, "expected": 9, "tags": ["benchmark", "scaling", "late-maximum"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 20 ascending values", "kind": "benchmark", "visible": false, "size": 20, "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 38]}, "expected": 19, "tags": ["benchmark", "scaling", "late-maximum"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 40 ascending values", "kind": "benchmark", "visible": false, "size": 40, "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 78]}, "expected": 39, "tags": ["benchmark", "scaling", "late-maximum"]}
+  ]
+}

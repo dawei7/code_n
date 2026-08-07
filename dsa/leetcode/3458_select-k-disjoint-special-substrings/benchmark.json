@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3458",
+  "measurement_note": "Size is n, the string length. Tiers 8, 32, and 128 span 16x and use periodic lowercase strings with k = 26. The accepted implementation computes first and last occurrences and expands at most one candidate per alphabet letter in O(n) time. A correct implementation that enumerates every substring and checks its character closure with prefix counts is quadratic and must finish every output but fail scaling.",
+  "cases": [
+    {
+      "id": "benchmark-periodic-8",
+      "name": "benchmark: 8 distinct letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"s": "abcdefgh", "k": 26},
+      "expected": false,
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-periodic-32",
+      "name": "benchmark: 32 periodic letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyzabcdef", "k": 26},
+      "expected": false,
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-periodic-128",
+      "name": "benchmark: 128 periodic letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx", "k": 26},
+      "expected": false,
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

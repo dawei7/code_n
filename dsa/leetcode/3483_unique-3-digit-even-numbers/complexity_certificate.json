@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3483",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Every digit copy must be inspected, establishing an Omega(n) input-reading lower bound, and the accepted frequency algorithm matches it before scanning a fixed decimal candidate domain.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Changing any unread input digit can create or remove valid numbers, so a correct algorithm must inspect all n positions. The reference builds ten frequencies in one pass and performs only 450 fixed-value candidate checks afterward."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"An adversary can change an uninspected digit copy and alter whether a required hundreds, tens, or units value is available, so all n entries must be read."},
+    {"kind":"upper_bound_proof","evidence":"The accepted source performs one O(n) frequency pass followed by at most 9 * 10 * 5 constant-domain digit triples using constant storage."},
+    {"kind":"boundary_property_cases","evidence":"Authored cases cover leading zeroes, zero as an even units digit, insufficient and excess duplicate copies, no even digits, every decimal digit, and maximum input length; the certificate regression checks every legal digit multiset."}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_861",
+  "measurement_note": "Size is the number of columns n in a fixed two-row matrix. Direct effective-bit counting takes O(n) work for these tiers, while a correct solver that enumerates every column-flip mask considers 2^n configurations. The 3-, 6-, and 12-column tiers span the bounded official domain without approaching the runtime safety cap.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 3 columns and 8 flip masks", "kind": "benchmark", "visible": false, "size": 3, "input": {"grid": [[0, 1, 0], [1, 0, 1]]}, "expected": 14, "tags": ["benchmark", "scale-small", "column-masks"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 6 columns and 64 flip masks", "kind": "benchmark", "visible": false, "size": 6, "input": {"grid": [[0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0]]}, "expected": 126, "tags": ["benchmark", "scale-medium", "column-masks"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 12 columns and 4096 flip masks", "kind": "benchmark", "visible": false, "size": 12, "input": {"grid": [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]]}, "expected": 8190, "tags": ["benchmark", "scale-large", "column-masks"]}
+  ]
+}

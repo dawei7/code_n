@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1416",
+  "measurement_note": "Size is n, the digit-string length. Every digit is 1 and k is 10^9, so many split prefixes remain valid; the 3/6/12 tiers span 4x. Suffix dynamic programming examines at most the decimal digit count of k per index, taking O(n log k) time. Correct backtracking without memoization revisits identical suffixes exponentially often and completes normally on all tiers.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 one digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "s": "111",
+        "k": 1000000000
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "many-splits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 one digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "s": "111111",
+        "k": 1000000000
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "many-splits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 12 one digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "s": "111111111111",
+        "k": 1000000000
+      },
+      "expected": 2040,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "many-splits"
+      ]
+    }
+  ]
+}

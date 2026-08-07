@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3821",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(B)",
+  "summary": "The answer is strictly below 2^50, so every legal execution decides at most 50 binary positions and rank magnitude cannot produce an honest scaling workload for the required algorithm.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 50,
+    "unit": "binary positions",
+    "source_constraint": "The answer is guaranteed to be strictly less than 2^50"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The unranking loop visits positions 49 through 0 once and performs one bounded binomial block decision per position."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression coverage exhausts all 4095 positive 12-bit ranks and verifies first, middle, and final 50-bit ranks for every k from 1 through 50."
+    }
+  ]
+}

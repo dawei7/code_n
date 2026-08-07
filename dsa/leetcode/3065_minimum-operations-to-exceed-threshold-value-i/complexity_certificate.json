@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3065",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Every array position can change the required removal count and must be inspected; the accepted one-pass counting source meets this linear lower bound with constant storage.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "If any position is not inspected, its value can be changed between one below k and one at least k while preserving the guarantee that another value meets k, changing the answer by one. Counting qualifying removals once per element therefore achieves the necessary linear work."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An unread value may lie on either side of k and changes the minimum operation count accordingly."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The reference performs one comparison and one conditional count contribution for each array value."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover zero removals, one remaining element, equality with k, maximum values, unsorted input, and the maximum length."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3881",
+  "measurement_note": "Size is n, the number of people. Each tier places the observer near the center and chooses k=floor((n-1)/2), so the multiplicative formula performs Theta(n) iterations while a correct Pascal recurrence performs Theta(n^2) updates.",
+  "cases": [
+    {
+      "id": "benchmark-32-central-k",
+      "name": "benchmark: n 32 with central k 15",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 32,
+        "pos": 16,
+        "k": 15
+      },
+      "expected": 601080390,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "central-k",
+        "pascal-dp"
+      ],
+      "size": 32
+    },
+    {
+      "id": "benchmark-128-central-k",
+      "name": "benchmark: n 128 with central k 63",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 128,
+        "pos": 64,
+        "k": 63
+      },
+      "expected": 664462886,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "central-k",
+        "pascal-dp"
+      ],
+      "size": 128
+    },
+    {
+      "id": "benchmark-512-central-k",
+      "name": "benchmark: n 512 with central k 255",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 512,
+        "pos": 256,
+        "k": 255
+      },
+      "expected": 393478079,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "central-k",
+        "pascal-dp"
+      ],
+      "size": 512
+    }
+  ]
+}

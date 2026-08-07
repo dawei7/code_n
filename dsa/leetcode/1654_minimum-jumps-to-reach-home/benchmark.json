@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1654",
+  "measurement_note": "Size is n, the target distance and the number of forward states reached before the answer on this workload. Each tier uses unit forward/backward jumps and a distant irrelevant forbidden position. The Accepted hash-set BFS and an independent boolean-array BFS take O(n) time. A correct BFS that stores visited direction states in a linear list takes O(n^2), completes all 32/128/512 tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: unit jumps to target 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "forbidden": [
+          2000
+        ],
+        "a": 1,
+        "b": 1,
+        "x": 32
+      },
+      "expected": 32
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: unit jumps to target 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "forbidden": [
+          2000
+        ],
+        "a": 1,
+        "b": 1,
+        "x": 128
+      },
+      "expected": 128
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: unit jumps to target 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "forbidden": [
+          2000
+        ],
+        "a": 1,
+        "b": 1,
+        "x": 512
+      },
+      "expected": 512
+    }
+  ]
+}

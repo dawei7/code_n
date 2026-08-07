@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_367",
+  "measurement_note": "Size is the input magnitude, with each tested value one below a large square power of ten. Binary search grows logarithmically, while subtracting successive odd numbers performs roughly sqrt(size) iterations before proving the value is not square.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: nonsquare just below 10000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "num": 9999
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "near-square"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: nonsquare just below 1000000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000000,
+      "input": {
+        "num": 999999
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "near-square"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: nonsquare just below 100000000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100000000,
+      "input": {
+        "num": 99999999
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "near-square"
+      ]
+    }
+  ]
+}
+

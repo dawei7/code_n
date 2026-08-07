@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_69",
+  "measurement_note": "Candidate ranges span the complete 32-bit domain, distinguishing logarithmic binary search from sequential square-root candidate testing.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one", "kind": "benchmark", "visible": false, "size": 1, "input": {"x": 1}, "expected": 1, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: one million", "kind": "benchmark", "visible": false, "size": 1000000, "input": {"x": 1000000}, "expected": 1000, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: maximum signed integer", "kind": "benchmark", "visible": false, "size": 2147483647, "input": {"x": 2147483647}, "expected": 46340, "tags": ["benchmark", "scale-large"]}
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1754",
+  "measurement_note": "Size is S, the total input length. Equal repeated-character words force every greedy suffix comparison to inspect a long common prefix, exercising the accepted O(S^2) implementation. A correct memoized two-index search materializes strings for O(mn) states, completes every tier, and is rejected by its steeper scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"word1": "aaaaaaaa", "word2": "aaaaaaaa"},
+      "expected": "aaaaaaaaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "equal-prefix"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"word1": "aaaaaaaaaaaaaaaa", "word2": "aaaaaaaaaaaaaaaa"},
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "equal-prefix"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"word1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "word2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "equal-prefix"]
+    }
+  ]
+}

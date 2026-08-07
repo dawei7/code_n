@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1659",
+  "measurement_note": "Size is C = m * n, the number of grid cells, across legal 2-by-1, 2-by-2, and 3-by-3 grids. Resident counts are saturated to exercise the ternary frontier and both remaining-count dimensions. The Accepted base-three profile DP and an independent precomputed-interaction profile DP take O(r c 3^c (I+1)(E+1)) time. A correct tuple-frontier implementation that reconstructs positional neighbors through c repeated full frontier scans per state takes an additional factor of c^2, completes all 2/4/9-cell tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: saturated two-by-one grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {"m":2,"n":1,"introvertsCount":2,"extrovertsCount":2},
+      "expected": 180
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: saturated two-by-two grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"m":2,"n":2,"introvertsCount":4,"extrovertsCount":4},
+      "expected": 320
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: saturated three-by-three grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {"m":3,"n":3,"introvertsCount":6,"extrovertsCount":6},
+      "expected": 780
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_816",
+  "measurement_note": "Size is the number of interior digits, within the official 2-to-10 range. Each workload has one valid coordinate: boundary-aware generation rejects impossible fragments before pairing, while exhaustive marker placement constructs and validates every comma-and-decimal combination.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2 zero-heavy digits", "kind": "benchmark", "visible": false, "size": 2, "input": {"s": "(00)"}, "expected": ["(0, 0)"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "zero-heavy"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 5 zero-heavy digits", "kind": "benchmark", "visible": false, "size": 5, "input": {"s": "(00001)"}, "expected": ["(0, 0.001)"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "zero-heavy"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 10 zero-heavy digits", "kind": "benchmark", "visible": false, "size": 10, "input": {"s": "(0000000001)"}, "expected": ["(0, 0.00000001)"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "zero-heavy"]}
+  ]
+}

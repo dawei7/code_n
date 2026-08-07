@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3001",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The board is permanently fixed at 64 squares, so the 249984 ordered placements of three distinct pieces form the complete legal input domain and cannot support asymptotic runtime scaling.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 249984,
+    "unit": "ordered legal rook-bishop-queen placements",
+    "source_constraint": "all three pieces occupy distinct squares of a fixed 8 by 8 board"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "The solution evaluates only fixed row, column, diagonal, and strict-betweenness relations for one placement."},
+    {"kind": "exhaustive_domain", "evidence": "The certificate regression compares all 64 times 63 times 62 legal placements with an independent directional ray oracle."}
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3855",
+  "measurement_note": "Size is B, the bit length of K. Every tier permits digits 0 through 9, including leading zeros. The accepted contribution formula uses O(B) binary modular exponentiation; the correct slower control recomputes each selected power-of-two factor from the base in O(B^2) time while supporting the full legal K domain.",
+  "cases": [
+    {
+      "id": "benchmark-4-bit-exponent",
+      "name": "benchmark: every digit with a 4-bit exponent",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"l": 0, "r": 9, "k": 15},
+      "expected": 3328500,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "full-digit-range", "leading-zeros"],
+      "size": 4
+    },
+    {
+      "id": "benchmark-16-bit-exponent",
+      "name": "benchmark: every digit with a 16-bit exponent",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"l": 0, "r": 9, "k": 65535},
+      "expected": 905168315,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "full-digit-range", "leading-zeros"],
+      "size": 16
+    },
+    {
+      "id": "benchmark-30-bit-exponent",
+      "name": "benchmark: every digit with the maximum 30-bit exponent",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"l": 0, "r": 9, "k": 1000000000},
+      "expected": 224500073,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "full-digit-range", "leading-zeros"],
+      "size": 30
+    }
+  ]
+}

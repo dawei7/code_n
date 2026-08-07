@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2312",
+  "measurement_note": "Size is d for a square d by d board. Only a 1 by 1 piece is priced, so every legal state is useful and the answer is d squared. The required dynamic program examines O(d^3) one-axis cuts. A correct slower formulation that additionally evaluates every paired horizontal-and-vertical cut completes all tiers but performs O(d^4) work.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 6 by 6 unit-priced board","kind":"benchmark","visible":false,"size":6,"input":{"m":6,"n":6,"prices":[[1,1,1]]},"expected":36},
+    {"id":"benchmark-scale-2","name":"benchmark: 12 by 12 unit-priced board","kind":"benchmark","visible":false,"size":12,"input":{"m":12,"n":12,"prices":[[1,1,1]]},"expected":144},
+    {"id":"benchmark-scale-3","name":"benchmark: 24 by 24 unit-priced board","kind":"benchmark","visible":false,"size":24,"input":{"m":24,"n":24,"prices":[[1,1,1]]},"expected":576}
+  ]
+}

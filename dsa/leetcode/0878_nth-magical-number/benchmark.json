@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_878",
+  "measurement_note": "Size is the requested position n with fixed divisors a = 2 and b = 3. Inclusion-exclusion binary search takes O(log n) time, while a correct two-stream merge emits and deduplicates every magical number through position n in O(n) time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: locate magical number 128 for divisors two and three",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128,
+        "a": 2,
+        "b": 3
+      },
+      "expected": 192,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "linear-merge"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: locate magical number 2048 for divisors two and three",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "n": 2048,
+        "a": 2,
+        "b": 3
+      },
+      "expected": 3072,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "linear-merge"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: locate magical number 32768 for divisors two and three",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32768,
+      "input": {
+        "n": 32768,
+        "a": 2,
+        "b": 3
+      },
+      "expected": 49152,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "linear-merge"
+      ]
+    }
+  ]
+}

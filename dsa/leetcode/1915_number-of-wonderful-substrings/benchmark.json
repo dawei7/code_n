@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1915",
+  "measurement_note": "Size is N, the word length. Every substring of an all-a word is wonderful, so a correct nested-boundary enumerator must visit all N(N+1)/2 intervals and cannot exit early. Prefix parity counting is linear; the enumerator completes all tiers but fails only by quadratic scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: count all intervals of 16 a characters","kind":"benchmark","visible":false,"size":16,"input":{"word":"aaaaaaaaaaaaaaaa"},"expected":136,"tags":["benchmark","all-wonderful","quadratic-enumeration"]},
+    {"id":"benchmark-scale-2","name":"benchmark: count all intervals of 64 a characters","kind":"benchmark","visible":false,"size":64,"input":{"word":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":2080,"tags":["benchmark","all-wonderful","quadratic-enumeration"]},
+    {"id":"benchmark-scale-3","name":"benchmark: count all intervals of 200 a characters","kind":"benchmark","visible":false,"size":200,"input":{"word":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":20100,"tags":["benchmark","all-wonderful","quadratic-enumeration"]}
+  ]
+}

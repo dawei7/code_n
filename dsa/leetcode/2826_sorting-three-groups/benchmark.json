@@ -1,0 +1,38 @@
+{
+  "challenge_id": "lc_2826",
+  "measurement_note": "Size is the array length. Repeated descending triples force a quadratic longest-subsequence implementation to inspect every earlier position, while the three-state dynamic program performs constant work per value.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: descending triples at n=6",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"nums": [3, 2, 1, 3, 2, 1]},
+      "expected": 4,
+      "tags": ["benchmark", "scaling", "descending-triples"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: descending triples at n=24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"nums": [3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1]},
+      "expected": 16,
+      "tags": ["benchmark", "scaling", "descending-triples"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: descending triples at n=96",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "nums": [3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1]
+      },
+      "expected": 64,
+      "tags": ["benchmark", "scaling", "descending-triples"]
+    }
+  ]
+}

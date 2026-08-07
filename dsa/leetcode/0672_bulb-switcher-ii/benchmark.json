@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_672",
+  "measurement_note": "Size is the exact press count with the bulb count fixed at 1000. The closed-form state table takes constant time, while breadth-first simulation processes one bounded state layer per requested press.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 presses", "kind": "benchmark", "visible": false, "size": 8, "input": {"n": 1000, "presses": 8}, "expected": 8, "tags": ["benchmark", "scaling", "saturated"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 64 presses", "kind": "benchmark", "visible": false, "size": 64, "input": {"n": 1000, "presses": 64}, "expected": 8, "tags": ["benchmark", "scaling", "saturated"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 512 presses", "kind": "benchmark", "visible": false, "size": 512, "input": {"n": 1000, "presses": 512}, "expected": 8, "tags": ["benchmark", "scaling", "saturated"]}
+  ]
+}

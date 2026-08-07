@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3042",
+  "cases": [
+    {
+      "id": "benchmark-prefix-suffix-small",
+      "name": "benchmark: 8 words of length 2",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"words": ["aa", "aa", "aa", "aa", "aa", "aa", "aa", "aa"]},
+      "expected": 28,
+      "size": 56,
+      "tags": ["benchmark", "scaling", "scale-1"]
+    },
+    {
+      "id": "benchmark-prefix-suffix-medium",
+      "name": "benchmark: 20 words of length 5",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"words": ["aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa", "aaaaa"]},
+      "expected": 190,
+      "size": 950,
+      "tags": ["benchmark", "scaling", "scale-2"]
+    },
+    {
+      "id": "benchmark-prefix-suffix-large",
+      "name": "benchmark: 50 words of length 10",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"words": ["aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa", "aaaaaaaaaa"]},
+      "expected": 1225,
+      "size": 12250,
+      "tags": ["benchmark", "scaling", "scale-3"]
+    }
+  ]
+}

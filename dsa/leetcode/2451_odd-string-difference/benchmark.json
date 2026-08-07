@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2451",
+  "measurement_note": "Size is p, the number of length-20 words. The outlier is last, forcing the linear scan through every word. Comparing each vector against every other vector performs quadratic repeated work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: four length-twenty words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"words": ["abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrtt"]},
+      "expected": "abcdefghijklmnopqrtt",
+      "tags": ["benchmark", "pairwise-comparison"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: sixteen length-twenty words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"words": ["abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrtt"]},
+      "expected": "abcdefghijklmnopqrtt",
+      "tags": ["benchmark", "pairwise-comparison"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixty-four length-twenty words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"words": ["abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrst", "abcdefghijklmnopqrtt"]},
+      "expected": "abcdefghijklmnopqrtt",
+      "tags": ["benchmark", "pairwise-comparison"]
+    }
+  ]
+}

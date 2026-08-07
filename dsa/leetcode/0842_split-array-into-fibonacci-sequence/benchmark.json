@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_842",
+  "measurement_note": "Size is the digit-string length. The bounded initial-pair search and direct forced-token matching take O(size) time. Rebuilding the entire parsed decimal prefix after every appended term takes O(size squared) time on these long unique zero-one Fibonacci encodings.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 13-digit Fibonacci encoding", "kind": "benchmark", "visible": false, "size": 13, "input": {"num": "0112358132134"}, "expected": [0, 1, 1, 2, 3, 5, 8, 13, 21, 34], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["benchmark", "scale-small", "valid-sequence"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 48-digit Fibonacci encoding", "kind": "benchmark", "visible": false, "size": 48, "input": {"num": "011235813213455891442333776109871597258441816765"}, "expected": [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["benchmark", "scale-medium", "valid-sequence"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 197-digit Fibonacci encoding", "kind": "benchmark", "visible": false, "size": 197, "input": {"num": "01123581321345589144233377610987159725844181676510946177112865746368750251213931964183178115142298320401346269217830935245785702887922746514930352241578173908816963245986102334155165580141267914296"}, "expected": [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["benchmark", "scale-large", "valid-sequence"]}
+  ]
+}

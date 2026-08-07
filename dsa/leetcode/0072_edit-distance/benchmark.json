@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_72",
+  "measurement_note": "Equal-length disjoint strings grow across the legal domain; two-row dynamic programming remains quadratic while memoized recursion over sliced suffix strings incurs an additional linear copying and hashing factor.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: disjoint length four",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "word1": "aaaa",
+        "word2": "bbbb"
+      },
+      "expected": 4,
+      "tags": ["benchmark", "scale-small", "disjoint-strings"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: disjoint length thirty-two",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "word2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": 32,
+      "tags": ["benchmark", "scale-medium", "disjoint-strings"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: disjoint length one hundred twenty-eight",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "word2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": 128,
+      "tags": ["benchmark", "scale-large", "disjoint-strings"]
+    }
+  ]
+}

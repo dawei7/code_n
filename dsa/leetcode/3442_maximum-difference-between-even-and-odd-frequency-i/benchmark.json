@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3442",
+  "measurement_note": "Size is n, the legal string length. Tiers 4, 20, and 100 span 25x and contain two high odd counts plus one even count. Counting once is linear; recounting the full string separately at every position must fail only scaling.",
+  "cases": [
+    {"id":"benchmark-4","name":"benchmark: four characters","kind":"benchmark","visible":false,"size":4,"input":{"s":"abbc"},"expected":-1,"tags":["benchmark","scale-small"]},
+    {"id":"benchmark-20","name":"benchmark: twenty characters","kind":"benchmark","visible":false,"size":20,"input":{"s":"aaaaaaaaabbccccccccc"},"expected":7,"tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-100","name":"benchmark: one hundred characters","kind":"benchmark","visible":false,"size":100,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbccccccccccccccccccccccccccccccccccccccccccccccccc"},"expected":47,"tags":["benchmark","scale-large"]}
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_2917",
+  "cases": [
+    {
+      "id": "benchmark-bit-counts-3",
+      "name": "benchmark: count 31 bit positions across 3 legal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "nums": [
+          715827882,
+          715827907,
+          715827832
+        ],
+        "k": 2
+      },
+      "expected": 715827946,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "array-length",
+        "quadratic-rescan-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-bit-counts-12",
+      "name": "benchmark: count 31 bit positions across 12 legal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "nums": [
+          715827882,
+          715827907,
+          715827832,
+          715827729,
+          715827982,
+          715828071,
+          715828188,
+          715828149,
+          715827682,
+          715827483,
+          715827504,
+          715827433
+        ],
+        "k": 7
+      },
+      "expected": 715828000,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "array-length",
+        "quadratic-rescan-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-bit-counts-48",
+      "name": "benchmark: count 31 bit positions across 48 legal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "nums": [
+          715827882,
+          715827907,
+          715827832,
+          715827729,
+          715827982,
+          715828071,
+          715828188,
+          715828149,
+          715827682,
+          715827483,
+          715827504,
+          715827433,
+          715827270,
+          715827391,
+          715827348,
+          715829005,
+          715828282,
+          715828307,
+          715828680,
+          715828641,
+          715828638,
+          715828727,
+          715828780,
+          715828933,
+          715829106,
+          715828907,
+          715828864,
+          715828857,
+          715828950,
+          715825487,
+          715825636,
+          715825565,
+          715827082,
+          715827171,
+          715827032,
+          715826993,
+          715826286,
+          715826311,
+          715826364,
+          715826517,
+          715826370,
+          715826235,
+          715826192,
+          715826057,
+          715826086,
+          715826143,
+          715825780,
+          715825709
+        ],
+        "k": 25
+      },
+      "expected": 715828864,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "array-length",
+        "quadratic-rescan-baseline"
+      ]
+    }
+  ]
+}

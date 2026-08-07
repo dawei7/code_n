@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1641",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The complete source domain contains only the 50 scalar inputs from 1 through 50, and the stars-and-bars closed form evaluates a fixed four-factor expression, so this domain cannot support an honest asymptotic runtime trend.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 50,
+    "unit": "legal string-length values",
+    "source_constraint": "n is an integer from 1 through 50"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference evaluates C(n+4,4) with four additions, three multiplications, and one integer division for every legal n."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "Regression checks all 50 legal n values against an independent five-state dynamic program."
+    }
+  ]
+}

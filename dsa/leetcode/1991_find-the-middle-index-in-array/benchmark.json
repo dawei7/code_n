@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1991",
+  "measurement_note": "Size is the array length N. Even-length all-one arrays have no middle index, forcing every candidate to be checked. One total plus a running prefix is linear, while independently summing both slices at every position performs quadratic work.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: no middle among 6 unit values","kind":"benchmark","visible":false,"size":6,"input":{"nums":[1,1,1,1,1,1]},"expected":-1,"tags":["benchmark","scale-small","repeated-slicing"]},
+    {"id":"benchmark-scale-2","name":"benchmark: no middle among 24 unit values","kind":"benchmark","visible":false,"size":24,"input":{"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":-1,"tags":["benchmark","scale-medium","repeated-slicing"]},
+    {"id":"benchmark-scale-3","name":"benchmark: no middle among 96 unit values","kind":"benchmark","visible":false,"size":96,"input":{"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":-1,"tags":["benchmark","scale-large","repeated-slicing"]}
+  ]
+}

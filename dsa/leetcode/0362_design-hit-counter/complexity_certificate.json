@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_362",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The source contract permits at most 300 method calls and fixes the active window at 300 seconds, so the legal domain cannot support an honest asymptotic runtime-scaling verdict.",
+  "workload_bound": {
+    "symbol": "Q",
+    "maximum": 300,
+    "unit": "method calls",
+    "source_constraint": "At most 300 total calls are made to hit and getHits."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each hit reads and writes one ring slot, each query examines exactly 300 slots, and the two arrays contain exactly 600 entries regardless of call distribution or same-second burst size."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression checks the app-local and native implementations with no hits, every possible hit age from 0 through 300 seconds, slot reuse, and 299 same-second hits followed by a query at the 300-call limit."
+    }
+  ]
+}

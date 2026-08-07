@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1646",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The complete source domain contains only n=0 through n=100 and generates at most 101 array entries, which is too small for an honest asymptotic runtime trend.",
+  "workload_bound": {
+    "symbol": "n+1",
+    "maximum": 101,
+    "unit": "generated array entries",
+    "source_constraint": "n is an integer from 0 through 100"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"The reference initializes at most 101 entries and performs one constant-work recurrence update for each index from 2 through n."},
+    {"kind":"exhaustive_domain","evidence":"Regression compares all 101 legal n values with an independently memoized recurrence oracle."}
+  ]
+}

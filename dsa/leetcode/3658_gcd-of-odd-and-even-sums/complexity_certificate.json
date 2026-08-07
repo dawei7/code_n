@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3658",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The legal scalar input ends at 1000, and measured legal tiers cannot reliably distinguish the direct constant-time identity from explicit linear summation once execution overhead is included.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 1000,
+    "unit": "terms requested from each odd and even sequence",
+    "source_constraint": "n is an integer from 1 through 1000 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation returns n directly. The identities sumOdd = n^2 and sumEven = n(n + 1), together with gcd(n, n + 1) = 1, prove that no sequence generation, loop, or GCD iteration is needed."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover n = 1, both official samples, small even and odd values, a two-digit value, the large prime 997, and the maximum legal input 1000."
+    }
+  ]
+}

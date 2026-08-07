@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2065",
+  "measurement_note": "Size is n + e + S, where S is the exact number of feasible DFS calls in a four-leaf, ten-second star and remaining nodes are isolated. The three tiers have S = 9, 169, and 2729 for one, three, and five possible round trips. The reference maintains quality incrementally in O(n + e + S) work. A correct implementation that rescans all n visit counts at every return to node zero completes all tiers and fails by superlinear scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: one round trip and 5 nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 18,
+      "input": {"values":[0,1,1,1,1],"edges":[[0,1,10],[0,2,10],[0,3,10],[0,4,10]],"maxTime":20},
+      "expected": 1,
+      "tags": ["benchmark","scale-small","bounded-walks"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: three round trips and 20 nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 193,
+      "input": {"values":[0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"edges":[[0,1,10],[0,2,10],[0,3,10],[0,4,10]],"maxTime":60},
+      "expected": 3,
+      "tags": ["benchmark","scale-medium","bounded-walks"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: five round trips and 80 nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2813,
+      "input": {"values":[0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"edges":[[0,1,10],[0,2,10],[0,3,10],[0,4,10]],"maxTime":100},
+      "expected": 4,
+      "tags": ["benchmark","scale-large","bounded-walks"]
+    }
+  ]
+}

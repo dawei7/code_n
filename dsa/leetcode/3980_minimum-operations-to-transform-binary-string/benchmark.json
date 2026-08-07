@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_3980",
+  "measurement_note": "Size is n, the common string length. Every tier transforms an even run of ones into zeros, so the optimal dynamic program must process every position while choosing disjoint pair clears. A generic repeated-relaxation shortest-path formulation performs quadratic work on the same legal state graph.",
+  "cases": [
+    {
+      "id": "benchmark-clear-run-small",
+      "name": "benchmark: clear eight consecutive ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"s1": "11111111", "s2": "00000000"},
+      "expected": 4,
+      "tags": ["benchmark", "scale-small", "pair-clears", "full-scan"]
+    },
+    {
+      "id": "benchmark-clear-run-medium",
+      "name": "benchmark: clear 32 consecutive ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s1": "11111111111111111111111111111111", "s2": "00000000000000000000000000000000"},
+      "expected": 16,
+      "tags": ["benchmark", "scale-medium", "pair-clears", "full-scan"]
+    },
+    {
+      "id": "benchmark-clear-run-large",
+      "name": "benchmark: clear 128 consecutive ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"s1": "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", "s2": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"},
+      "expected": 64,
+      "tags": ["benchmark", "scale-large", "pair-clears", "full-scan"]
+    }
+  ]
+}

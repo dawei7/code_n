@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3842",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(N)",
+  "summary": "The legal input contains at most 100 toggle operations over exactly 100 bulb states, which is too small for an honest runtime-scaling verdict; the accepted implementation scans each operation once and then scans the fixed state array.",
+  "workload_bound": {
+    "symbol": "N",
+    "maximum": 100,
+    "unit": "toggle operations",
+    "source_constraint": "1 <= bulbs.length <= 100, with every bulb number from 1 through 100"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs one constant-time boolean negation for each of at most 100 operations and then inspects exactly 100 fixed bulb states, establishing O(N) time across the complete legal workload bound."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression checks all 488,280 arrays over bulb numbers 1 through 5 at lengths 1 through 8, deterministic legal arrays at every length through 100, and explicit lower-, upper-, and complete-domain boundaries against an odd-frequency oracle."
+    }
+  ]
+}

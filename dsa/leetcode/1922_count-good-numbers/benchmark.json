@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1922",
+  "measurement_note": "Size is n, the digit-string length and exponent scale. The reference uses binary modular exponentiation. A correct slower implementation multiplies one position factor at a time; it completes all three legal inputs and fails only because its runtime grows linearly rather than logarithmically.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: count strings of length 256","kind":"benchmark","visible":false,"size":256,"input":{"n":256},"expected":132124309,"tags":["benchmark","scale-small","even-length"]},
+    {"id":"benchmark-scale-2","name":"benchmark: count strings of length 4096","kind":"benchmark","visible":false,"size":4096,"input":{"n":4096},"expected":422031379,"tags":["benchmark","scale-medium","even-length"]},
+    {"id":"benchmark-scale-3","name":"benchmark: count strings of length 65536","kind":"benchmark","visible":false,"size":65536,"input":{"n":65536},"expected":939406318,"tags":["benchmark","scale-large","even-length"]}
+  ]
+}

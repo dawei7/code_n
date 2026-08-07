@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3047",
+  "cases": [
+    {
+      "id": "benchmark-pair-scan-scale-1",
+      "name": "benchmark: 4 rectangles with the qualifying pair last",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "bottomLeft": [
+          [
+            1,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            1,
+            10000
+          ],
+          [
+            1,
+            10000
+          ]
+        ],
+        "topRight": [
+          [
+            2,
+            2
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            5,
+            10004
+          ],
+          [
+            5,
+            10004
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "scale-1"
+      ]
+    },
+    {
+      "id": "benchmark-pair-scan-scale-2",
+      "name": "benchmark: 8 rectangles with the qualifying pair last",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 28,
+      "input": {
+        "bottomLeft": [
+          [
+            1,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            21,
+            1
+          ],
+          [
+            31,
+            1
+          ],
+          [
+            41,
+            1
+          ],
+          [
+            51,
+            1
+          ],
+          [
+            1,
+            10000
+          ],
+          [
+            1,
+            10000
+          ]
+        ],
+        "topRight": [
+          [
+            2,
+            2
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            22,
+            2
+          ],
+          [
+            32,
+            2
+          ],
+          [
+            42,
+            2
+          ],
+          [
+            52,
+            2
+          ],
+          [
+            9,
+            10008
+          ],
+          [
+            9,
+            10008
+          ]
+        ]
+      },
+      "expected": 64,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "scale-2"
+      ]
+    },
+    {
+      "id": "benchmark-pair-scan-scale-3",
+      "name": "benchmark: 12 rectangles with the qualifying pair last",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 66,
+      "input": {
+        "bottomLeft": [
+          [
+            1,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            21,
+            1
+          ],
+          [
+            31,
+            1
+          ],
+          [
+            41,
+            1
+          ],
+          [
+            51,
+            1
+          ],
+          [
+            61,
+            1
+          ],
+          [
+            71,
+            1
+          ],
+          [
+            81,
+            1
+          ],
+          [
+            91,
+            1
+          ],
+          [
+            1,
+            10000
+          ],
+          [
+            1,
+            10000
+          ]
+        ],
+        "topRight": [
+          [
+            2,
+            2
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            22,
+            2
+          ],
+          [
+            32,
+            2
+          ],
+          [
+            42,
+            2
+          ],
+          [
+            52,
+            2
+          ],
+          [
+            62,
+            2
+          ],
+          [
+            72,
+            2
+          ],
+          [
+            82,
+            2
+          ],
+          [
+            92,
+            2
+          ],
+          [
+            13,
+            10012
+          ],
+          [
+            13,
+            10012
+          ]
+        ]
+      },
+      "expected": 144,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "scale-3"
+      ]
+    }
+  ]
+}

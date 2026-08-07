@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1614",
+  "measurement_note": "Size is n, the length of the valid parentheses string. Each tier is a fully nested parentheses-only string, so the maximum depth is n/2. The Accepted counter scan and an independent stack scan take O(n) time. A correct repeated-prefix counter rescans every prefix in O(n^2), completes all legal 16/40/100 tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: eight nested pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "(((((((())))))))"},
+      "expected": 8,
+      "tags": ["benchmark", "scale-small", "fully-nested"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: twenty nested pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {"s": "(((((((((((((((((((())))))))))))))))))))"},
+      "expected": 20,
+      "tags": ["benchmark", "scale-medium", "fully-nested"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: fifty nested pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"s": "(((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))"},
+      "expected": 50,
+      "tags": ["benchmark", "scale-large", "fully-nested"]
+    }
+  ]
+}

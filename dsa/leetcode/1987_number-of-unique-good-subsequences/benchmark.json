@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1987",
+  "measurement_note": "Size is the binary-string length N. All-one strings have only N unique good results, but a correct index-subset enumerator still constructs all 2^N - 1 nonempty subsequences, while the ending-state recurrence performs one constant-time update per bit.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: unique all-one subsequences at length 3","kind":"benchmark","visible":false,"size":3,"input":{"binary":"111"},"expected":3,"tags":["benchmark","scale-small","subset-enumeration"]},
+    {"id":"benchmark-scale-2","name":"benchmark: unique all-one subsequences at length 6","kind":"benchmark","visible":false,"size":6,"input":{"binary":"111111"},"expected":6,"tags":["benchmark","scale-medium","subset-enumeration"]},
+    {"id":"benchmark-scale-3","name":"benchmark: unique all-one subsequences at length 12","kind":"benchmark","visible":false,"size":12,"input":{"binary":"111111111111"},"expected":12,"tags":["benchmark","scale-large","subset-enumeration"]}
+  ]
+}

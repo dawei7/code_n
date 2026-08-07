@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2264",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "A qualifying run may begin at the final possible window, while the fixed ten-digit alphabet and fixed window length leave no meaningful intermediate asymptotic class between direct inspection and linear time.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "On an input with no three-equal run, changing any uninspected region, including the last three positions, can introduce the only qualifying triple or a larger triple than all earlier candidates. A correct worst-case algorithm must therefore inspect linearly many characters. Directly checking each constant-size window performs O(n) work and meets this adversarial inspection lower bound."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"The only or largest good integer can occur in the final length-three window, so an algorithm cannot certify the answer from a proper fixed prefix."},
+    {"kind":"upper_bound_proof","evidence":"The reference examines each of n-2 windows with a constant number of character comparisons and stores one best digit."},
+    {"kind":"boundary_property_cases","evidence":"Authored cases cover no candidate, zero with leading zeroes, exact length, overlapping windows, longer runs, multiple candidate digits, late maxima, and repeated maxima."}
+  ]
+}

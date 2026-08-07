@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3399",
+  "measurement_note": "Size is n, the binary-string length. The legal 28-, 56-, and 112-character tiers span 4x. Each string contains a zero prefix of length n/2 and an alternating suffix, with no flips allowed, so the answer is n/2. The accepted method binary-searches the answer over a precomputed run list; a correct slower baseline tests candidate limits consecutively from one.",
+  "cases": [
+    {
+      "id": "benchmark-long-prefix-28",
+      "name": "benchmark: 28-character long prefix and alternating suffix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 28,
+      "input": {
+        "s": "0000000000000010101010101010",
+        "numOps": 0
+      },
+      "expected": 14,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "linear-answer-search"
+      ]
+    },
+    {
+      "id": "benchmark-long-prefix-56",
+      "name": "benchmark: 56-character long prefix and alternating suffix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 56,
+      "input": {
+        "s": "00000000000000000000000000001010101010101010101010101010",
+        "numOps": 0
+      },
+      "expected": 28,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "linear-answer-search"
+      ]
+    },
+    {
+      "id": "benchmark-long-prefix-112",
+      "name": "benchmark: 112-character long prefix and alternating suffix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 112,
+      "input": {
+        "s": "0000000000000000000000000000000000000000000000000000000010101010101010101010101010101010101010101010101010101010",
+        "numOps": 0
+      },
+      "expected": 56,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "linear-answer-search"
+      ]
+    }
+  ]
+}

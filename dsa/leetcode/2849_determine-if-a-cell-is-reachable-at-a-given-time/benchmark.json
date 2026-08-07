@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2849",
+  "measurement_note": "Size is the Chebyshev distance between start and finish. Each tier permits exactly that many seconds. The optimal formula is constant-time, while a correct direct simulation takes one diagonal step per unit of distance before applying the same exact-time rule.",
+  "cases": [
+    {
+      "id": "benchmark-diagonal-distance-64",
+      "name": "benchmark: diagonal distance 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"sx": 1, "sy": 1, "fx": 65, "fy": 65, "t": 64},
+      "expected": true,
+      "tags": ["benchmark", "small", "diagonal"]
+    },
+    {
+      "id": "benchmark-diagonal-distance-256",
+      "name": "benchmark: diagonal distance 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"sx": 1, "sy": 1, "fx": 257, "fy": 257, "t": 256},
+      "expected": true,
+      "tags": ["benchmark", "medium", "diagonal"]
+    },
+    {
+      "id": "benchmark-diagonal-distance-1024",
+      "name": "benchmark: diagonal distance 1,024",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {"sx": 1, "sy": 1, "fx": 1025, "fy": 1025, "t": 1024},
+      "expected": true,
+      "tags": ["benchmark", "large", "diagonal"]
+    }
+  ]
+}

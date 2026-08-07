@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1750",
+  "measurement_note": "Size is n, the string length. Each tier has alternating single-character boundary runs around a short center, forcing nearly every layer to be exposed. The accepted two-pointer scan is O(n); a correct implementation that rebuilds the remaining substring after every maximal-run deletion completes all tiers and is rejected by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 25 nested characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {"s": "abcabcabcabcbcbacbacbacba"},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "nested-layers"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 97 nested characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 97,
+      "input": {"s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcbcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacba"},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "nested-layers"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 382 nested characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 382,
+      "input": {"s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcbcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacba"},
+      "expected": 4,
+      "tags": ["benchmark", "scaling", "nested-layers"]
+    }
+  ]
+}

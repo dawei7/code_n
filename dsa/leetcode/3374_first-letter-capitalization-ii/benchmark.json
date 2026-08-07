@@ -1,0 +1,3112 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3374",
+  "measurement_note": "Size is n, the number of fixed-length text rows. Rows use valid and malformed hyphens and arrive in descending identifier order. The accepted-class query normalizes their characters and orders completed rows; a correct baseline that performs an identifier-prefix scan during every token transition repeatedly scans the table and is quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-capitalization-16-rows",
+      "name": "benchmark: normalize 16 descending text rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 16,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 15,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 14,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 13,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 12,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 11,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 10,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 9,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 8,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 7,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 6,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 5,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 4,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 3,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 2,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 1,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            1,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            2,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            3,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            4,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            5,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            6,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            7,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            8,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            9,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            10,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            11,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            12,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            13,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            14,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            15,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            16,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "correlated-prefix-scan-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-capitalization-64-rows",
+      "name": "benchmark: normalize 64 descending text rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 64,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 63,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 62,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 61,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 60,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 59,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 58,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 57,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 56,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 55,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 54,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 53,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 52,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 51,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 50,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 49,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 48,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 47,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 46,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 45,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 44,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 43,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 42,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 41,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 40,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 39,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 38,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 37,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 36,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 35,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 34,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 33,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 32,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 31,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 30,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 29,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 28,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 27,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 26,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 25,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 24,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 23,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 22,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 21,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 20,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 19,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 18,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 17,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 16,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 15,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 14,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 13,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 12,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 11,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 10,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 9,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 8,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 7,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 6,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 5,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 4,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 3,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 2,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 1,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            1,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            2,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            3,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            4,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            5,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            6,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            7,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            8,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            9,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            10,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            11,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            12,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            13,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            14,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            15,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            16,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            17,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            18,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            19,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            20,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            21,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            22,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            23,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            24,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            25,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            26,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            27,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            28,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            29,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            30,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            31,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            32,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            33,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            34,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            35,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            36,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            37,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            38,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            39,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            40,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            41,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            42,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            43,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            44,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            45,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            46,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            47,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            48,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            49,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            50,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            51,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            52,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            53,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            54,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            55,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            56,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            57,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            58,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            59,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            60,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            61,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            62,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            63,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            64,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "correlated-prefix-scan-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-capitalization-256-rows",
+      "name": "benchmark: normalize 256 descending text rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 256,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 255,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 254,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 253,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 252,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 251,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 250,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 249,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 248,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 247,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 246,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 245,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 244,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 243,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 242,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 241,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 240,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 239,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 238,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 237,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 236,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 235,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 234,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 233,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 232,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 231,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 230,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 229,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 228,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 227,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 226,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 225,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 224,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 223,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 222,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 221,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 220,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 219,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 218,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 217,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 216,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 215,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 214,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 213,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 212,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 211,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 210,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 209,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 208,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 207,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 206,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 205,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 204,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 203,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 202,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 201,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 200,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 199,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 198,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 197,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 196,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 195,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 194,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 193,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 192,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 191,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 190,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 189,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 188,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 187,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 186,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 185,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 184,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 183,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 182,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 181,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 180,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 179,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 178,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 177,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 176,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 175,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 174,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 173,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 172,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 171,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 170,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 169,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 168,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 167,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 166,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 165,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 164,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 163,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 162,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 161,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 160,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 159,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 158,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 157,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 156,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 155,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 154,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 153,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 152,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 151,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 150,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 149,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 148,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 147,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 146,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 145,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 144,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 143,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 142,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 141,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 140,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 139,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 138,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 137,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 136,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 135,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 134,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 133,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 132,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 131,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 130,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 129,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 128,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 127,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 126,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 125,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 124,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 123,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 122,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 121,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 120,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 119,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 118,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 117,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 116,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 115,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 114,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 113,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 112,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 111,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 110,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 109,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 108,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 107,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 106,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 105,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 104,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 103,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 102,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 101,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 100,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 99,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 98,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 97,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 96,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 95,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 94,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 93,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 92,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 91,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 90,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 89,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 88,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 87,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 86,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 85,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 84,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 83,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 82,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 81,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 80,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 79,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 78,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 77,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 76,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 75,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 74,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 73,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 72,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 71,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 70,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 69,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 68,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 67,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 66,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 65,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 64,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 63,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 62,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 61,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 60,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 59,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 58,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 57,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 56,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 55,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 54,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 53,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 52,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 51,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 50,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 49,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 48,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 47,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 46,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 45,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 44,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 43,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 42,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 41,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 40,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 39,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 38,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 37,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 36,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 35,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 34,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 33,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 32,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 31,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 30,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 29,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 28,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 27,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 26,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 25,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 24,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 23,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 22,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 21,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 20,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 19,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 18,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 17,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 16,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 15,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 14,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 13,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 12,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 11,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 10,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 9,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 8,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 7,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 6,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 5,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 4,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 3,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 2,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            },
+            {
+              "content_id": 1,
+              "content_text": "mIXED case  QUICK-brown foo--BAR /ABC"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            1,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            2,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            3,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            4,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            5,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            6,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            7,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            8,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            9,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            10,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            11,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            12,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            13,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            14,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            15,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            16,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            17,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            18,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            19,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            20,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            21,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            22,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            23,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            24,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            25,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            26,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            27,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            28,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            29,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            30,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            31,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            32,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            33,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            34,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            35,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            36,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            37,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            38,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            39,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            40,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            41,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            42,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            43,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            44,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            45,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            46,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            47,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            48,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            49,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            50,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            51,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            52,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            53,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            54,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            55,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            56,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            57,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            58,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            59,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            60,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            61,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            62,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            63,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            64,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            65,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            66,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            67,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            68,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            69,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            70,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            71,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            72,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            73,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            74,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            75,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            76,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            77,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            78,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            79,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            80,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            81,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            82,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            83,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            84,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            85,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            86,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            87,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            88,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            89,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            90,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            91,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            92,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            93,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            94,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            95,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            96,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            97,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            98,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            99,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            100,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            101,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            102,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            103,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            104,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            105,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            106,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            107,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            108,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            109,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            110,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            111,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            112,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            113,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            114,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            115,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            116,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            117,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            118,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            119,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            120,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            121,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            122,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            123,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            124,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            125,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            126,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            127,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            128,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            129,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            130,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            131,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            132,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            133,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            134,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            135,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            136,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            137,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            138,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            139,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            140,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            141,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            142,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            143,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            144,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            145,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            146,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            147,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            148,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            149,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            150,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            151,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            152,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            153,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            154,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            155,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            156,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            157,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            158,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            159,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            160,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            161,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            162,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            163,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            164,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            165,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            166,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            167,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            168,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            169,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            170,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            171,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            172,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            173,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            174,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            175,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            176,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            177,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            178,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            179,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            180,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            181,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            182,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            183,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            184,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            185,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            186,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            187,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            188,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            189,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            190,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            191,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            192,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            193,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            194,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            195,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            196,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            197,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            198,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            199,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            200,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            201,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            202,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            203,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            204,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            205,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            206,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            207,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            208,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            209,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            210,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            211,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            212,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            213,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            214,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            215,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            216,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            217,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            218,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            219,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            220,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            221,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            222,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            223,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            224,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            225,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            226,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            227,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            228,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            229,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            230,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            231,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            232,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            233,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            234,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            235,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            236,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            237,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            238,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            239,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            240,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            241,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            242,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            243,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            244,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            245,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            246,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            247,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            248,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            249,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            250,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            251,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            252,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            253,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            254,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            255,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ],
+          [
+            256,
+            "mIXED case  QUICK-brown foo--BAR /ABC",
+            "Mixed Case  Quick-Brown Foo--bar /abc"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "correlated-prefix-scan-baseline"
+      ]
+    }
+  ]
+}

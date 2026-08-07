@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1137",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "Although the recurrence is linear in n, the source restricts n to 0 through 37, so the reference performs at most 35 updates and timing cannot expose an asymptotic trend reliably.",
+  "workload_bound": {
+    "symbol": "U",
+    "maximum": 35,
+    "unit": "recurrence updates",
+    "source_constraint": "n is an integer from 0 through 37"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "After the three base values, the rolling recurrence performs exactly n minus 2 updates."},
+    {"kind": "exhaustive_domain", "evidence": "The certificate regression verifies every legal n from 0 through 37 against an independent recurrence."}
+  ]
+}

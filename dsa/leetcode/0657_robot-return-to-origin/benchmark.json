@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_657",
+  "measurement_note": "Size is the number of move commands. Single-pass simulation and opposing-count comparison are linear, while recomputing the displacement of every prefix from its beginning repeats an increasing amount of work and grows quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 64 balanced moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "moves": "UDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLR"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 256 balanced moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "moves": "UDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLR"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 balanced moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "moves": "UDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLRUDLR"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced"
+      ]
+    }
+  ]
+}

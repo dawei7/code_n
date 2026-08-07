@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3690",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n! * n^4)",
+  "summary": "The legal array length is restricted to 2 through 6, whose total 3x span cannot support the required 4x runtime-scaling comparison; the complete distinct state space is at most 6! = 720 tuples.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 6,
+    "unit": "array elements",
+    "source_constraint": "2 <= n == nums1.length == nums2.length <= 6, and nums2 is a permutation of nums1"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Breadth-first search visits at most n! <= 720 distinct tuples; each tuple enumerates O(n^3) block-and-gap choices and constructs O(n)-length successors, establishing O(n! n^4) time and O(n! n) space."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression compares the accepted solver with an independently constructed shortest-path oracle for every one of the 872 distinct target permutations at lengths 2 through 6 and for every equal-multiset pair of binary arrays through length 6, covering duplicate-state collapse."
+    }
+  ]
+}

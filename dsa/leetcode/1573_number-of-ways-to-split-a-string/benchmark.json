@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1573",
+  "measurement_note": "Size is N, the binary-string length. Every legal benchmark string is all zeros, so all C(N-1,2) cut pairs are valid and the expected result is known directly. The remotely Accepted combinatorial boundary algorithm and an independent one-position formulation are O(N). A correct prefix-count implementation that explicitly tests every pair of cuts performs O(N^2) work, completes every 32/128/512 tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32-character all-zero string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "00000000000000000000000000000000"
+      },
+      "expected": 465,
+      "tags": [
+        "benchmark",
+        "all-zero",
+        "cut-pair-enumeration",
+        "n-32"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128-character all-zero string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": 8001,
+      "tags": [
+        "benchmark",
+        "all-zero",
+        "cut-pair-enumeration",
+        "n-128"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512-character all-zero string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": 130305,
+      "tags": [
+        "benchmark",
+        "all-zero",
+        "cut-pair-enumeration",
+        "n-512"
+      ]
+    }
+  ]
+}

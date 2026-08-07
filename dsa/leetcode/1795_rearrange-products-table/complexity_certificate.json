@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1795",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Every product row contains three nullable prices that can independently create output rows, so an exact unpivot requires a linear source scan; three fixed UNION ALL branches match that lower bound.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "Changing any uninspected product row from all NULL prices to one non-NULL store price changes the required output. An exact query must therefore inspect all R rows and their fixed three price fields. The three UNION ALL branches each perform one filtered scan, for 3R constant-time field checks and O(R) logical time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Any source row can independently contribute zero through three result rows, so skipping it cannot distinguish inputs with different required outputs."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each of the three fixed store branches scans Products once, tests one field for NULL, and emits at most one row per source product; UNION ALL performs no duplicate elimination."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover all-null products, every individual store branch, all stores present, repeated equal prices, zero and negative non-null values, sparse products, and nonconsecutive identifiers."
+    }
+  ]
+}

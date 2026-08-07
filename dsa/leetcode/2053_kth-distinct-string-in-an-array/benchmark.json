@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2053",
+  "measurement_note": "Size is n, the array length. Every entry is the same repeated string, so the reference builds one frequency and scans once. A correct implementation that explicitly scans the whole array to recount each position completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 repeated strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"arr": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"], "k": 1},
+      "expected": "",
+      "tags": ["benchmark", "scale-small", "repeated-linear-count"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 repeated strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"arr": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"], "k": 1},
+      "expected": "",
+      "tags": ["benchmark", "scale-medium", "repeated-linear-count"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 250 repeated strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 250,
+      "input": {"arr": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"], "k": 1},
+      "expected": "",
+      "tags": ["benchmark", "scale-large", "repeated-linear-count"]
+    }
+  ]
+}

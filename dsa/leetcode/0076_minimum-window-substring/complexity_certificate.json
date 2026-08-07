@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_76",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(|s| + |t|)",
+  "summary": "The scaling benchmark accepted a correct implementation that materializes all suffixes before running the sliding window. Matching input-inspection and monotone-pointer bounds directly certify the current solution's linear-time optimality.",
+  "optimality": {
+    "symbol": "|s| + |t|",
+    "lower_bound": "Omega(|s| + |t|)",
+    "upper_bound": "O(|s| + |t|)",
+    "argument": "A correct algorithm must read t to know every required multiplicity, and an unchecked final character of s can determine whether a covering window exists or improve the minimum. Thus the worst case requires Omega(|s| + |t|) input inspection. The current solution builds the requirement counter once and moves each window boundary only forward through s, giving O(|s| + |t|) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Changing an unread character in t changes the required multiset, while changing the final unread character in s can create the only valid cover, so both inputs are material in the worst case."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Counter construction visits t once; the right boundary visits each character of s once and the left boundary never retreats, so each source character leaves the window at most once."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a contracted cover, a one-character exact match, and insufficient multiplicity; black-box real-test execution passed all five existing ordinary correctness checks."
+    }
+  ]
+}

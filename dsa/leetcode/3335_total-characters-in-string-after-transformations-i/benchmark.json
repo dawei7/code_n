@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3335",
+  "measurement_note": "Size is m with an m-character all-z string and t = m. Aggregating identical letters makes the required O(n + t) work O(m), while evolving a separate frequency vector for every input occurrence takes O(m^2).",
+  "cases": [
+    {
+      "id": "benchmark-6-z-values-6-rounds",
+      "name": "benchmark: 6 z values over 6 transformations",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "zzzzzz",
+        "t": 6
+      },
+      "expected": 12,
+      "size": 6,
+      "tags": [
+        "benchmark",
+        "frequency-dp",
+        "per-character-recomputation"
+      ]
+    },
+    {
+      "id": "benchmark-24-z-values-24-rounds",
+      "name": "benchmark: 24 z values over 24 transformations",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "zzzzzzzzzzzzzzzzzzzzzzzz",
+        "t": 24
+      },
+      "expected": 48,
+      "size": 24,
+      "tags": [
+        "benchmark",
+        "frequency-dp",
+        "per-character-recomputation"
+      ]
+    },
+    {
+      "id": "benchmark-96-z-values-96-rounds",
+      "name": "benchmark: 96 z values over 96 transformations",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+        "t": 96
+      },
+      "expected": 1536,
+      "size": 96,
+      "tags": [
+        "benchmark",
+        "frequency-dp",
+        "per-character-recomputation"
+      ]
+    }
+  ]
+}

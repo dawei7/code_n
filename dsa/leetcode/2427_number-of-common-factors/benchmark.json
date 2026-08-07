@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2427",
+  "measurement_note": "Size is g, the shared value and therefore gcd when a=b=g. Complementary divisor-pair enumeration tests only through sqrt(g), while scanning every candidate through g takes O(g) time. The 60/240/960 tiers remain within the complete legal domain.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: equal inputs with gcd 60",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 60,
+      "input": {
+        "a": 60,
+        "b": 60
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "equal-inputs",
+        "linear-divisor-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: equal inputs with gcd 240",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 240,
+      "input": {
+        "a": 240,
+        "b": 240
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark",
+        "equal-inputs",
+        "linear-divisor-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: equal inputs with gcd 960",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 960,
+      "input": {
+        "a": 960,
+        "b": 960
+      },
+      "expected": 28,
+      "tags": [
+        "benchmark",
+        "equal-inputs",
+        "linear-divisor-scan"
+      ]
+    }
+  ]
+}

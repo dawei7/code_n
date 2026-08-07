@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_1065",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: five shared-prefix words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaa",
+        "words": [
+          "aaaab",
+          "aaaac",
+          "aaaad",
+          "aaaae",
+          "aaaaf"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "per-start-per-word-matching"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: ten shared-prefix words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "words": [
+          "aaaab",
+          "aaaac",
+          "aaaad",
+          "aaaae",
+          "aaaaf",
+          "aaaag",
+          "aaaah",
+          "aaaai",
+          "aaaaj",
+          "aaaak"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "per-start-per-word-matching"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: twenty shared-prefix words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "words": [
+          "aaaab",
+          "aaaac",
+          "aaaad",
+          "aaaae",
+          "aaaaf",
+          "aaaag",
+          "aaaah",
+          "aaaai",
+          "aaaaj",
+          "aaaak",
+          "aaaal",
+          "aaaam",
+          "aaaan",
+          "aaaao",
+          "aaaap",
+          "aaaaq",
+          "aaaar",
+          "aaaas",
+          "aaaat",
+          "aaaau"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "per-start-per-word-matching"
+      ]
+    }
+  ]
+}

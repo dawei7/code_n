@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1986",
+  "measurement_note": "Size is the task count N. Distinct durations make permutation enumeration visit all N! positional orders before returning its best next-fit packing, while bitmask DP merges orders that complete the same task subset into O(N * 2^N) transitions.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: schedule 1 distinct task",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {"tasks": [1], "sessionTime": 15},
+      "expected": 1,
+      "tags": ["benchmark", "scale-small", "permutation-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: schedule 3 distinct tasks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {"tasks": [1, 2, 3], "sessionTime": 15},
+      "expected": 1,
+      "tags": ["benchmark", "scale-medium", "permutation-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: schedule 7 distinct tasks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {"tasks": [1, 2, 3, 4, 5, 6, 7], "sessionTime": 15},
+      "expected": 2,
+      "tags": ["benchmark", "scale-large", "permutation-enumeration"]
+    }
+  ]
+}

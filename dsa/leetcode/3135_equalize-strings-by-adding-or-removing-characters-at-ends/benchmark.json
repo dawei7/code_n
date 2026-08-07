@@ -1,0 +1,8 @@
+{
+  "challenge_id": "lc_3135",
+  "cases": [
+    {"id":"benchmark-dp-cells-256","name":"benchmark: 16 by 16 repeated strings","kind":"benchmark","visible":false,"size":256,"input":{"initial":"aaaaaaaaaaaaaaaa","target":"aaaaaaaaaaaaaaaa"},"expected":0,"tags":["benchmark","dynamic-programming","long-match"]},
+    {"id":"benchmark-dp-cells-1024","name":"benchmark: 32 by 32 repeated strings","kind":"benchmark","visible":false,"size":1024,"input":{"initial":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","target":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":0,"tags":["benchmark","dynamic-programming","long-match"]},
+    {"id":"benchmark-dp-cells-4096","name":"benchmark: 64 by 64 repeated strings","kind":"benchmark","visible":false,"size":4096,"input":{"initial":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","target":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":0,"tags":["benchmark","dynamic-programming","long-match"]}
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3749",
+  "cases": [
+    {
+      "id": "benchmark-left-nested-113",
+      "name": "benchmark: evaluate a 113-character left-nested addition",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 113,
+      "input": {
+        "expression": "add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(1,1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1)"
+      },
+      "expected": 17,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "deep-left-nesting"
+      ]
+    },
+    {
+      "id": "benchmark-left-nested-449",
+      "name": "benchmark: evaluate a 449-character left-nested addition",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 449,
+      "input": {
+        "expression": "add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(1,1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1)"
+      },
+      "expected": 65,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "deep-left-nesting"
+      ]
+    },
+    {
+      "id": "benchmark-left-nested-1793",
+      "name": "benchmark: evaluate a 1793-character left-nested addition",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1793,
+      "input": {
+        "expression": "add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(add(1,1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1),1)"
+      },
+      "expected": 257,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "deep-left-nesting"
+      ]
+    }
+  ]
+}

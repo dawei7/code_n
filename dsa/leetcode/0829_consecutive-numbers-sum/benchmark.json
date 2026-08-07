@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_829",
+  "measurement_note": "Size is the input integer n. Testing only lengths whose smallest positive sequence fits takes O(sqrt(size)) time; checking every length through n takes O(size). The three inputs share the same odd part and expected count while increasing fourfold overall.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: n equals 45", "kind": "benchmark", "visible": false, "size": 45, "input": {"n": 45}, "expected": 6, "tags": ["benchmark", "scale-small", "length-enumeration"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: n equals 90", "kind": "benchmark", "visible": false, "size": 90, "input": {"n": 90}, "expected": 6, "tags": ["benchmark", "scale-medium", "length-enumeration"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: n equals 180", "kind": "benchmark", "visible": false, "size": 180, "input": {"n": 180}, "expected": 6, "tags": ["benchmark", "scale-large", "length-enumeration"]}
+  ]
+}

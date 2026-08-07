@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_750",
+  "measurement_note": "Size is the number of cells in an all-one square matrix. Column-pair frequency counting performs cubic work in the side length, while explicitly enumerating every row pair and column pair performs quartic work.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: all-one 3 by 3 grid", "kind": "benchmark", "visible": false, "size": 9, "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]}, "expected": 9, "tags": ["benchmark", "scaling", "dense"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: all-one 6 by 6 grid", "kind": "benchmark", "visible": false, "size": 36, "input": {"grid": [[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1]]}, "expected": 225, "tags": ["benchmark", "scaling", "dense"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: all-one 12 by 12 grid", "kind": "benchmark", "visible": false, "size": 144, "input": {"grid": [[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1]]}, "expected": 4356, "tags": ["benchmark", "scaling", "dense"]}
+  ]
+}

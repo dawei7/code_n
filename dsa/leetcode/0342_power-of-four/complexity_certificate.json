@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_342",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The signed 32-bit input contract fixes the integer width, while the protected source performs one comparison and three bitwise operations for every value.",
+  "workload_bound": {
+    "symbol": "w",
+    "maximum": 32,
+    "unit": "signed integer bits",
+    "source_constraint": "The source-fidelity-verified constraint bounds n to the signed 32-bit interval from -2^31 through 2^31 - 1."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The source checks positivity, clears the lowest set bit once, and applies one fixed 32-bit mask. Under the fixed-width contract, this is a constant number of constant-width operations, proving O(1) time and O(1) auxiliary space."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "An independent repeated-division oracle agrees with the app-local predicate over -100,000 through 100,000, every in-range power of four and its immediate neighbors, and both signed 32-bit boundaries."
+    }
+  ]
+}

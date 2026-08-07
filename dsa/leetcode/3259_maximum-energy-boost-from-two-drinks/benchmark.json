@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3259",
+  "measurement_note": "Hour count n is the workload size. Equal positive arrays keep both continue and switch branches viable at every state; rolling DP is linear, while uncached schedule enumeration grows exponentially. Staying on one drink yields the exact answer n.",
+  "cases": [
+    {
+      "id": "benchmark-schedule-enumeration-scale-1",
+      "name": "benchmark: 5 equal-energy hours",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "energyDrinkA": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "energyDrinkB": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "equal-drinks",
+        "scale-1"
+      ]
+    },
+    {
+      "id": "benchmark-schedule-enumeration-scale-2",
+      "name": "benchmark: 10 equal-energy hours",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "energyDrinkA": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "energyDrinkB": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark",
+        "equal-drinks",
+        "scale-2"
+      ]
+    },
+    {
+      "id": "benchmark-schedule-enumeration-scale-3",
+      "name": "benchmark: 20 equal-energy hours",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "energyDrinkA": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "energyDrinkB": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark",
+        "equal-drinks",
+        "scale-3"
+      ]
+    }
+  ]
+}

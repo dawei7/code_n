@@ -1,0 +1,2199 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_569",
+  "measurement_note": "Size is the Employee row count in one company with distinct salaries supplied in descending order. Window ranking sorts once, while correlated rank and count subqueries rescan the company for every employee.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: median among 32 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "company": "Scale",
+              "salary": 32
+            },
+            {
+              "id": 2,
+              "company": "Scale",
+              "salary": 31
+            },
+            {
+              "id": 3,
+              "company": "Scale",
+              "salary": 30
+            },
+            {
+              "id": 4,
+              "company": "Scale",
+              "salary": 29
+            },
+            {
+              "id": 5,
+              "company": "Scale",
+              "salary": 28
+            },
+            {
+              "id": 6,
+              "company": "Scale",
+              "salary": 27
+            },
+            {
+              "id": 7,
+              "company": "Scale",
+              "salary": 26
+            },
+            {
+              "id": 8,
+              "company": "Scale",
+              "salary": 25
+            },
+            {
+              "id": 9,
+              "company": "Scale",
+              "salary": 24
+            },
+            {
+              "id": 10,
+              "company": "Scale",
+              "salary": 23
+            },
+            {
+              "id": 11,
+              "company": "Scale",
+              "salary": 22
+            },
+            {
+              "id": 12,
+              "company": "Scale",
+              "salary": 21
+            },
+            {
+              "id": 13,
+              "company": "Scale",
+              "salary": 20
+            },
+            {
+              "id": 14,
+              "company": "Scale",
+              "salary": 19
+            },
+            {
+              "id": 15,
+              "company": "Scale",
+              "salary": 18
+            },
+            {
+              "id": 16,
+              "company": "Scale",
+              "salary": 17
+            },
+            {
+              "id": 17,
+              "company": "Scale",
+              "salary": 16
+            },
+            {
+              "id": 18,
+              "company": "Scale",
+              "salary": 15
+            },
+            {
+              "id": 19,
+              "company": "Scale",
+              "salary": 14
+            },
+            {
+              "id": 20,
+              "company": "Scale",
+              "salary": 13
+            },
+            {
+              "id": 21,
+              "company": "Scale",
+              "salary": 12
+            },
+            {
+              "id": 22,
+              "company": "Scale",
+              "salary": 11
+            },
+            {
+              "id": 23,
+              "company": "Scale",
+              "salary": 10
+            },
+            {
+              "id": 24,
+              "company": "Scale",
+              "salary": 9
+            },
+            {
+              "id": 25,
+              "company": "Scale",
+              "salary": 8
+            },
+            {
+              "id": 26,
+              "company": "Scale",
+              "salary": 7
+            },
+            {
+              "id": 27,
+              "company": "Scale",
+              "salary": 6
+            },
+            {
+              "id": 28,
+              "company": "Scale",
+              "salary": 5
+            },
+            {
+              "id": 29,
+              "company": "Scale",
+              "salary": 4
+            },
+            {
+              "id": 30,
+              "company": "Scale",
+              "salary": 3
+            },
+            {
+              "id": 31,
+              "company": "Scale",
+              "salary": 2
+            },
+            {
+              "id": 32,
+              "company": "Scale",
+              "salary": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            17,
+            "Scale",
+            16
+          ],
+          [
+            16,
+            "Scale",
+            17
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-company"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: median among 128 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "company": "Scale",
+              "salary": 128
+            },
+            {
+              "id": 2,
+              "company": "Scale",
+              "salary": 127
+            },
+            {
+              "id": 3,
+              "company": "Scale",
+              "salary": 126
+            },
+            {
+              "id": 4,
+              "company": "Scale",
+              "salary": 125
+            },
+            {
+              "id": 5,
+              "company": "Scale",
+              "salary": 124
+            },
+            {
+              "id": 6,
+              "company": "Scale",
+              "salary": 123
+            },
+            {
+              "id": 7,
+              "company": "Scale",
+              "salary": 122
+            },
+            {
+              "id": 8,
+              "company": "Scale",
+              "salary": 121
+            },
+            {
+              "id": 9,
+              "company": "Scale",
+              "salary": 120
+            },
+            {
+              "id": 10,
+              "company": "Scale",
+              "salary": 119
+            },
+            {
+              "id": 11,
+              "company": "Scale",
+              "salary": 118
+            },
+            {
+              "id": 12,
+              "company": "Scale",
+              "salary": 117
+            },
+            {
+              "id": 13,
+              "company": "Scale",
+              "salary": 116
+            },
+            {
+              "id": 14,
+              "company": "Scale",
+              "salary": 115
+            },
+            {
+              "id": 15,
+              "company": "Scale",
+              "salary": 114
+            },
+            {
+              "id": 16,
+              "company": "Scale",
+              "salary": 113
+            },
+            {
+              "id": 17,
+              "company": "Scale",
+              "salary": 112
+            },
+            {
+              "id": 18,
+              "company": "Scale",
+              "salary": 111
+            },
+            {
+              "id": 19,
+              "company": "Scale",
+              "salary": 110
+            },
+            {
+              "id": 20,
+              "company": "Scale",
+              "salary": 109
+            },
+            {
+              "id": 21,
+              "company": "Scale",
+              "salary": 108
+            },
+            {
+              "id": 22,
+              "company": "Scale",
+              "salary": 107
+            },
+            {
+              "id": 23,
+              "company": "Scale",
+              "salary": 106
+            },
+            {
+              "id": 24,
+              "company": "Scale",
+              "salary": 105
+            },
+            {
+              "id": 25,
+              "company": "Scale",
+              "salary": 104
+            },
+            {
+              "id": 26,
+              "company": "Scale",
+              "salary": 103
+            },
+            {
+              "id": 27,
+              "company": "Scale",
+              "salary": 102
+            },
+            {
+              "id": 28,
+              "company": "Scale",
+              "salary": 101
+            },
+            {
+              "id": 29,
+              "company": "Scale",
+              "salary": 100
+            },
+            {
+              "id": 30,
+              "company": "Scale",
+              "salary": 99
+            },
+            {
+              "id": 31,
+              "company": "Scale",
+              "salary": 98
+            },
+            {
+              "id": 32,
+              "company": "Scale",
+              "salary": 97
+            },
+            {
+              "id": 33,
+              "company": "Scale",
+              "salary": 96
+            },
+            {
+              "id": 34,
+              "company": "Scale",
+              "salary": 95
+            },
+            {
+              "id": 35,
+              "company": "Scale",
+              "salary": 94
+            },
+            {
+              "id": 36,
+              "company": "Scale",
+              "salary": 93
+            },
+            {
+              "id": 37,
+              "company": "Scale",
+              "salary": 92
+            },
+            {
+              "id": 38,
+              "company": "Scale",
+              "salary": 91
+            },
+            {
+              "id": 39,
+              "company": "Scale",
+              "salary": 90
+            },
+            {
+              "id": 40,
+              "company": "Scale",
+              "salary": 89
+            },
+            {
+              "id": 41,
+              "company": "Scale",
+              "salary": 88
+            },
+            {
+              "id": 42,
+              "company": "Scale",
+              "salary": 87
+            },
+            {
+              "id": 43,
+              "company": "Scale",
+              "salary": 86
+            },
+            {
+              "id": 44,
+              "company": "Scale",
+              "salary": 85
+            },
+            {
+              "id": 45,
+              "company": "Scale",
+              "salary": 84
+            },
+            {
+              "id": 46,
+              "company": "Scale",
+              "salary": 83
+            },
+            {
+              "id": 47,
+              "company": "Scale",
+              "salary": 82
+            },
+            {
+              "id": 48,
+              "company": "Scale",
+              "salary": 81
+            },
+            {
+              "id": 49,
+              "company": "Scale",
+              "salary": 80
+            },
+            {
+              "id": 50,
+              "company": "Scale",
+              "salary": 79
+            },
+            {
+              "id": 51,
+              "company": "Scale",
+              "salary": 78
+            },
+            {
+              "id": 52,
+              "company": "Scale",
+              "salary": 77
+            },
+            {
+              "id": 53,
+              "company": "Scale",
+              "salary": 76
+            },
+            {
+              "id": 54,
+              "company": "Scale",
+              "salary": 75
+            },
+            {
+              "id": 55,
+              "company": "Scale",
+              "salary": 74
+            },
+            {
+              "id": 56,
+              "company": "Scale",
+              "salary": 73
+            },
+            {
+              "id": 57,
+              "company": "Scale",
+              "salary": 72
+            },
+            {
+              "id": 58,
+              "company": "Scale",
+              "salary": 71
+            },
+            {
+              "id": 59,
+              "company": "Scale",
+              "salary": 70
+            },
+            {
+              "id": 60,
+              "company": "Scale",
+              "salary": 69
+            },
+            {
+              "id": 61,
+              "company": "Scale",
+              "salary": 68
+            },
+            {
+              "id": 62,
+              "company": "Scale",
+              "salary": 67
+            },
+            {
+              "id": 63,
+              "company": "Scale",
+              "salary": 66
+            },
+            {
+              "id": 64,
+              "company": "Scale",
+              "salary": 65
+            },
+            {
+              "id": 65,
+              "company": "Scale",
+              "salary": 64
+            },
+            {
+              "id": 66,
+              "company": "Scale",
+              "salary": 63
+            },
+            {
+              "id": 67,
+              "company": "Scale",
+              "salary": 62
+            },
+            {
+              "id": 68,
+              "company": "Scale",
+              "salary": 61
+            },
+            {
+              "id": 69,
+              "company": "Scale",
+              "salary": 60
+            },
+            {
+              "id": 70,
+              "company": "Scale",
+              "salary": 59
+            },
+            {
+              "id": 71,
+              "company": "Scale",
+              "salary": 58
+            },
+            {
+              "id": 72,
+              "company": "Scale",
+              "salary": 57
+            },
+            {
+              "id": 73,
+              "company": "Scale",
+              "salary": 56
+            },
+            {
+              "id": 74,
+              "company": "Scale",
+              "salary": 55
+            },
+            {
+              "id": 75,
+              "company": "Scale",
+              "salary": 54
+            },
+            {
+              "id": 76,
+              "company": "Scale",
+              "salary": 53
+            },
+            {
+              "id": 77,
+              "company": "Scale",
+              "salary": 52
+            },
+            {
+              "id": 78,
+              "company": "Scale",
+              "salary": 51
+            },
+            {
+              "id": 79,
+              "company": "Scale",
+              "salary": 50
+            },
+            {
+              "id": 80,
+              "company": "Scale",
+              "salary": 49
+            },
+            {
+              "id": 81,
+              "company": "Scale",
+              "salary": 48
+            },
+            {
+              "id": 82,
+              "company": "Scale",
+              "salary": 47
+            },
+            {
+              "id": 83,
+              "company": "Scale",
+              "salary": 46
+            },
+            {
+              "id": 84,
+              "company": "Scale",
+              "salary": 45
+            },
+            {
+              "id": 85,
+              "company": "Scale",
+              "salary": 44
+            },
+            {
+              "id": 86,
+              "company": "Scale",
+              "salary": 43
+            },
+            {
+              "id": 87,
+              "company": "Scale",
+              "salary": 42
+            },
+            {
+              "id": 88,
+              "company": "Scale",
+              "salary": 41
+            },
+            {
+              "id": 89,
+              "company": "Scale",
+              "salary": 40
+            },
+            {
+              "id": 90,
+              "company": "Scale",
+              "salary": 39
+            },
+            {
+              "id": 91,
+              "company": "Scale",
+              "salary": 38
+            },
+            {
+              "id": 92,
+              "company": "Scale",
+              "salary": 37
+            },
+            {
+              "id": 93,
+              "company": "Scale",
+              "salary": 36
+            },
+            {
+              "id": 94,
+              "company": "Scale",
+              "salary": 35
+            },
+            {
+              "id": 95,
+              "company": "Scale",
+              "salary": 34
+            },
+            {
+              "id": 96,
+              "company": "Scale",
+              "salary": 33
+            },
+            {
+              "id": 97,
+              "company": "Scale",
+              "salary": 32
+            },
+            {
+              "id": 98,
+              "company": "Scale",
+              "salary": 31
+            },
+            {
+              "id": 99,
+              "company": "Scale",
+              "salary": 30
+            },
+            {
+              "id": 100,
+              "company": "Scale",
+              "salary": 29
+            },
+            {
+              "id": 101,
+              "company": "Scale",
+              "salary": 28
+            },
+            {
+              "id": 102,
+              "company": "Scale",
+              "salary": 27
+            },
+            {
+              "id": 103,
+              "company": "Scale",
+              "salary": 26
+            },
+            {
+              "id": 104,
+              "company": "Scale",
+              "salary": 25
+            },
+            {
+              "id": 105,
+              "company": "Scale",
+              "salary": 24
+            },
+            {
+              "id": 106,
+              "company": "Scale",
+              "salary": 23
+            },
+            {
+              "id": 107,
+              "company": "Scale",
+              "salary": 22
+            },
+            {
+              "id": 108,
+              "company": "Scale",
+              "salary": 21
+            },
+            {
+              "id": 109,
+              "company": "Scale",
+              "salary": 20
+            },
+            {
+              "id": 110,
+              "company": "Scale",
+              "salary": 19
+            },
+            {
+              "id": 111,
+              "company": "Scale",
+              "salary": 18
+            },
+            {
+              "id": 112,
+              "company": "Scale",
+              "salary": 17
+            },
+            {
+              "id": 113,
+              "company": "Scale",
+              "salary": 16
+            },
+            {
+              "id": 114,
+              "company": "Scale",
+              "salary": 15
+            },
+            {
+              "id": 115,
+              "company": "Scale",
+              "salary": 14
+            },
+            {
+              "id": 116,
+              "company": "Scale",
+              "salary": 13
+            },
+            {
+              "id": 117,
+              "company": "Scale",
+              "salary": 12
+            },
+            {
+              "id": 118,
+              "company": "Scale",
+              "salary": 11
+            },
+            {
+              "id": 119,
+              "company": "Scale",
+              "salary": 10
+            },
+            {
+              "id": 120,
+              "company": "Scale",
+              "salary": 9
+            },
+            {
+              "id": 121,
+              "company": "Scale",
+              "salary": 8
+            },
+            {
+              "id": 122,
+              "company": "Scale",
+              "salary": 7
+            },
+            {
+              "id": 123,
+              "company": "Scale",
+              "salary": 6
+            },
+            {
+              "id": 124,
+              "company": "Scale",
+              "salary": 5
+            },
+            {
+              "id": 125,
+              "company": "Scale",
+              "salary": 4
+            },
+            {
+              "id": 126,
+              "company": "Scale",
+              "salary": 3
+            },
+            {
+              "id": 127,
+              "company": "Scale",
+              "salary": 2
+            },
+            {
+              "id": 128,
+              "company": "Scale",
+              "salary": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            65,
+            "Scale",
+            64
+          ],
+          [
+            64,
+            "Scale",
+            65
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-company"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: median among 256 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "company": "Scale",
+              "salary": 256
+            },
+            {
+              "id": 2,
+              "company": "Scale",
+              "salary": 255
+            },
+            {
+              "id": 3,
+              "company": "Scale",
+              "salary": 254
+            },
+            {
+              "id": 4,
+              "company": "Scale",
+              "salary": 253
+            },
+            {
+              "id": 5,
+              "company": "Scale",
+              "salary": 252
+            },
+            {
+              "id": 6,
+              "company": "Scale",
+              "salary": 251
+            },
+            {
+              "id": 7,
+              "company": "Scale",
+              "salary": 250
+            },
+            {
+              "id": 8,
+              "company": "Scale",
+              "salary": 249
+            },
+            {
+              "id": 9,
+              "company": "Scale",
+              "salary": 248
+            },
+            {
+              "id": 10,
+              "company": "Scale",
+              "salary": 247
+            },
+            {
+              "id": 11,
+              "company": "Scale",
+              "salary": 246
+            },
+            {
+              "id": 12,
+              "company": "Scale",
+              "salary": 245
+            },
+            {
+              "id": 13,
+              "company": "Scale",
+              "salary": 244
+            },
+            {
+              "id": 14,
+              "company": "Scale",
+              "salary": 243
+            },
+            {
+              "id": 15,
+              "company": "Scale",
+              "salary": 242
+            },
+            {
+              "id": 16,
+              "company": "Scale",
+              "salary": 241
+            },
+            {
+              "id": 17,
+              "company": "Scale",
+              "salary": 240
+            },
+            {
+              "id": 18,
+              "company": "Scale",
+              "salary": 239
+            },
+            {
+              "id": 19,
+              "company": "Scale",
+              "salary": 238
+            },
+            {
+              "id": 20,
+              "company": "Scale",
+              "salary": 237
+            },
+            {
+              "id": 21,
+              "company": "Scale",
+              "salary": 236
+            },
+            {
+              "id": 22,
+              "company": "Scale",
+              "salary": 235
+            },
+            {
+              "id": 23,
+              "company": "Scale",
+              "salary": 234
+            },
+            {
+              "id": 24,
+              "company": "Scale",
+              "salary": 233
+            },
+            {
+              "id": 25,
+              "company": "Scale",
+              "salary": 232
+            },
+            {
+              "id": 26,
+              "company": "Scale",
+              "salary": 231
+            },
+            {
+              "id": 27,
+              "company": "Scale",
+              "salary": 230
+            },
+            {
+              "id": 28,
+              "company": "Scale",
+              "salary": 229
+            },
+            {
+              "id": 29,
+              "company": "Scale",
+              "salary": 228
+            },
+            {
+              "id": 30,
+              "company": "Scale",
+              "salary": 227
+            },
+            {
+              "id": 31,
+              "company": "Scale",
+              "salary": 226
+            },
+            {
+              "id": 32,
+              "company": "Scale",
+              "salary": 225
+            },
+            {
+              "id": 33,
+              "company": "Scale",
+              "salary": 224
+            },
+            {
+              "id": 34,
+              "company": "Scale",
+              "salary": 223
+            },
+            {
+              "id": 35,
+              "company": "Scale",
+              "salary": 222
+            },
+            {
+              "id": 36,
+              "company": "Scale",
+              "salary": 221
+            },
+            {
+              "id": 37,
+              "company": "Scale",
+              "salary": 220
+            },
+            {
+              "id": 38,
+              "company": "Scale",
+              "salary": 219
+            },
+            {
+              "id": 39,
+              "company": "Scale",
+              "salary": 218
+            },
+            {
+              "id": 40,
+              "company": "Scale",
+              "salary": 217
+            },
+            {
+              "id": 41,
+              "company": "Scale",
+              "salary": 216
+            },
+            {
+              "id": 42,
+              "company": "Scale",
+              "salary": 215
+            },
+            {
+              "id": 43,
+              "company": "Scale",
+              "salary": 214
+            },
+            {
+              "id": 44,
+              "company": "Scale",
+              "salary": 213
+            },
+            {
+              "id": 45,
+              "company": "Scale",
+              "salary": 212
+            },
+            {
+              "id": 46,
+              "company": "Scale",
+              "salary": 211
+            },
+            {
+              "id": 47,
+              "company": "Scale",
+              "salary": 210
+            },
+            {
+              "id": 48,
+              "company": "Scale",
+              "salary": 209
+            },
+            {
+              "id": 49,
+              "company": "Scale",
+              "salary": 208
+            },
+            {
+              "id": 50,
+              "company": "Scale",
+              "salary": 207
+            },
+            {
+              "id": 51,
+              "company": "Scale",
+              "salary": 206
+            },
+            {
+              "id": 52,
+              "company": "Scale",
+              "salary": 205
+            },
+            {
+              "id": 53,
+              "company": "Scale",
+              "salary": 204
+            },
+            {
+              "id": 54,
+              "company": "Scale",
+              "salary": 203
+            },
+            {
+              "id": 55,
+              "company": "Scale",
+              "salary": 202
+            },
+            {
+              "id": 56,
+              "company": "Scale",
+              "salary": 201
+            },
+            {
+              "id": 57,
+              "company": "Scale",
+              "salary": 200
+            },
+            {
+              "id": 58,
+              "company": "Scale",
+              "salary": 199
+            },
+            {
+              "id": 59,
+              "company": "Scale",
+              "salary": 198
+            },
+            {
+              "id": 60,
+              "company": "Scale",
+              "salary": 197
+            },
+            {
+              "id": 61,
+              "company": "Scale",
+              "salary": 196
+            },
+            {
+              "id": 62,
+              "company": "Scale",
+              "salary": 195
+            },
+            {
+              "id": 63,
+              "company": "Scale",
+              "salary": 194
+            },
+            {
+              "id": 64,
+              "company": "Scale",
+              "salary": 193
+            },
+            {
+              "id": 65,
+              "company": "Scale",
+              "salary": 192
+            },
+            {
+              "id": 66,
+              "company": "Scale",
+              "salary": 191
+            },
+            {
+              "id": 67,
+              "company": "Scale",
+              "salary": 190
+            },
+            {
+              "id": 68,
+              "company": "Scale",
+              "salary": 189
+            },
+            {
+              "id": 69,
+              "company": "Scale",
+              "salary": 188
+            },
+            {
+              "id": 70,
+              "company": "Scale",
+              "salary": 187
+            },
+            {
+              "id": 71,
+              "company": "Scale",
+              "salary": 186
+            },
+            {
+              "id": 72,
+              "company": "Scale",
+              "salary": 185
+            },
+            {
+              "id": 73,
+              "company": "Scale",
+              "salary": 184
+            },
+            {
+              "id": 74,
+              "company": "Scale",
+              "salary": 183
+            },
+            {
+              "id": 75,
+              "company": "Scale",
+              "salary": 182
+            },
+            {
+              "id": 76,
+              "company": "Scale",
+              "salary": 181
+            },
+            {
+              "id": 77,
+              "company": "Scale",
+              "salary": 180
+            },
+            {
+              "id": 78,
+              "company": "Scale",
+              "salary": 179
+            },
+            {
+              "id": 79,
+              "company": "Scale",
+              "salary": 178
+            },
+            {
+              "id": 80,
+              "company": "Scale",
+              "salary": 177
+            },
+            {
+              "id": 81,
+              "company": "Scale",
+              "salary": 176
+            },
+            {
+              "id": 82,
+              "company": "Scale",
+              "salary": 175
+            },
+            {
+              "id": 83,
+              "company": "Scale",
+              "salary": 174
+            },
+            {
+              "id": 84,
+              "company": "Scale",
+              "salary": 173
+            },
+            {
+              "id": 85,
+              "company": "Scale",
+              "salary": 172
+            },
+            {
+              "id": 86,
+              "company": "Scale",
+              "salary": 171
+            },
+            {
+              "id": 87,
+              "company": "Scale",
+              "salary": 170
+            },
+            {
+              "id": 88,
+              "company": "Scale",
+              "salary": 169
+            },
+            {
+              "id": 89,
+              "company": "Scale",
+              "salary": 168
+            },
+            {
+              "id": 90,
+              "company": "Scale",
+              "salary": 167
+            },
+            {
+              "id": 91,
+              "company": "Scale",
+              "salary": 166
+            },
+            {
+              "id": 92,
+              "company": "Scale",
+              "salary": 165
+            },
+            {
+              "id": 93,
+              "company": "Scale",
+              "salary": 164
+            },
+            {
+              "id": 94,
+              "company": "Scale",
+              "salary": 163
+            },
+            {
+              "id": 95,
+              "company": "Scale",
+              "salary": 162
+            },
+            {
+              "id": 96,
+              "company": "Scale",
+              "salary": 161
+            },
+            {
+              "id": 97,
+              "company": "Scale",
+              "salary": 160
+            },
+            {
+              "id": 98,
+              "company": "Scale",
+              "salary": 159
+            },
+            {
+              "id": 99,
+              "company": "Scale",
+              "salary": 158
+            },
+            {
+              "id": 100,
+              "company": "Scale",
+              "salary": 157
+            },
+            {
+              "id": 101,
+              "company": "Scale",
+              "salary": 156
+            },
+            {
+              "id": 102,
+              "company": "Scale",
+              "salary": 155
+            },
+            {
+              "id": 103,
+              "company": "Scale",
+              "salary": 154
+            },
+            {
+              "id": 104,
+              "company": "Scale",
+              "salary": 153
+            },
+            {
+              "id": 105,
+              "company": "Scale",
+              "salary": 152
+            },
+            {
+              "id": 106,
+              "company": "Scale",
+              "salary": 151
+            },
+            {
+              "id": 107,
+              "company": "Scale",
+              "salary": 150
+            },
+            {
+              "id": 108,
+              "company": "Scale",
+              "salary": 149
+            },
+            {
+              "id": 109,
+              "company": "Scale",
+              "salary": 148
+            },
+            {
+              "id": 110,
+              "company": "Scale",
+              "salary": 147
+            },
+            {
+              "id": 111,
+              "company": "Scale",
+              "salary": 146
+            },
+            {
+              "id": 112,
+              "company": "Scale",
+              "salary": 145
+            },
+            {
+              "id": 113,
+              "company": "Scale",
+              "salary": 144
+            },
+            {
+              "id": 114,
+              "company": "Scale",
+              "salary": 143
+            },
+            {
+              "id": 115,
+              "company": "Scale",
+              "salary": 142
+            },
+            {
+              "id": 116,
+              "company": "Scale",
+              "salary": 141
+            },
+            {
+              "id": 117,
+              "company": "Scale",
+              "salary": 140
+            },
+            {
+              "id": 118,
+              "company": "Scale",
+              "salary": 139
+            },
+            {
+              "id": 119,
+              "company": "Scale",
+              "salary": 138
+            },
+            {
+              "id": 120,
+              "company": "Scale",
+              "salary": 137
+            },
+            {
+              "id": 121,
+              "company": "Scale",
+              "salary": 136
+            },
+            {
+              "id": 122,
+              "company": "Scale",
+              "salary": 135
+            },
+            {
+              "id": 123,
+              "company": "Scale",
+              "salary": 134
+            },
+            {
+              "id": 124,
+              "company": "Scale",
+              "salary": 133
+            },
+            {
+              "id": 125,
+              "company": "Scale",
+              "salary": 132
+            },
+            {
+              "id": 126,
+              "company": "Scale",
+              "salary": 131
+            },
+            {
+              "id": 127,
+              "company": "Scale",
+              "salary": 130
+            },
+            {
+              "id": 128,
+              "company": "Scale",
+              "salary": 129
+            },
+            {
+              "id": 129,
+              "company": "Scale",
+              "salary": 128
+            },
+            {
+              "id": 130,
+              "company": "Scale",
+              "salary": 127
+            },
+            {
+              "id": 131,
+              "company": "Scale",
+              "salary": 126
+            },
+            {
+              "id": 132,
+              "company": "Scale",
+              "salary": 125
+            },
+            {
+              "id": 133,
+              "company": "Scale",
+              "salary": 124
+            },
+            {
+              "id": 134,
+              "company": "Scale",
+              "salary": 123
+            },
+            {
+              "id": 135,
+              "company": "Scale",
+              "salary": 122
+            },
+            {
+              "id": 136,
+              "company": "Scale",
+              "salary": 121
+            },
+            {
+              "id": 137,
+              "company": "Scale",
+              "salary": 120
+            },
+            {
+              "id": 138,
+              "company": "Scale",
+              "salary": 119
+            },
+            {
+              "id": 139,
+              "company": "Scale",
+              "salary": 118
+            },
+            {
+              "id": 140,
+              "company": "Scale",
+              "salary": 117
+            },
+            {
+              "id": 141,
+              "company": "Scale",
+              "salary": 116
+            },
+            {
+              "id": 142,
+              "company": "Scale",
+              "salary": 115
+            },
+            {
+              "id": 143,
+              "company": "Scale",
+              "salary": 114
+            },
+            {
+              "id": 144,
+              "company": "Scale",
+              "salary": 113
+            },
+            {
+              "id": 145,
+              "company": "Scale",
+              "salary": 112
+            },
+            {
+              "id": 146,
+              "company": "Scale",
+              "salary": 111
+            },
+            {
+              "id": 147,
+              "company": "Scale",
+              "salary": 110
+            },
+            {
+              "id": 148,
+              "company": "Scale",
+              "salary": 109
+            },
+            {
+              "id": 149,
+              "company": "Scale",
+              "salary": 108
+            },
+            {
+              "id": 150,
+              "company": "Scale",
+              "salary": 107
+            },
+            {
+              "id": 151,
+              "company": "Scale",
+              "salary": 106
+            },
+            {
+              "id": 152,
+              "company": "Scale",
+              "salary": 105
+            },
+            {
+              "id": 153,
+              "company": "Scale",
+              "salary": 104
+            },
+            {
+              "id": 154,
+              "company": "Scale",
+              "salary": 103
+            },
+            {
+              "id": 155,
+              "company": "Scale",
+              "salary": 102
+            },
+            {
+              "id": 156,
+              "company": "Scale",
+              "salary": 101
+            },
+            {
+              "id": 157,
+              "company": "Scale",
+              "salary": 100
+            },
+            {
+              "id": 158,
+              "company": "Scale",
+              "salary": 99
+            },
+            {
+              "id": 159,
+              "company": "Scale",
+              "salary": 98
+            },
+            {
+              "id": 160,
+              "company": "Scale",
+              "salary": 97
+            },
+            {
+              "id": 161,
+              "company": "Scale",
+              "salary": 96
+            },
+            {
+              "id": 162,
+              "company": "Scale",
+              "salary": 95
+            },
+            {
+              "id": 163,
+              "company": "Scale",
+              "salary": 94
+            },
+            {
+              "id": 164,
+              "company": "Scale",
+              "salary": 93
+            },
+            {
+              "id": 165,
+              "company": "Scale",
+              "salary": 92
+            },
+            {
+              "id": 166,
+              "company": "Scale",
+              "salary": 91
+            },
+            {
+              "id": 167,
+              "company": "Scale",
+              "salary": 90
+            },
+            {
+              "id": 168,
+              "company": "Scale",
+              "salary": 89
+            },
+            {
+              "id": 169,
+              "company": "Scale",
+              "salary": 88
+            },
+            {
+              "id": 170,
+              "company": "Scale",
+              "salary": 87
+            },
+            {
+              "id": 171,
+              "company": "Scale",
+              "salary": 86
+            },
+            {
+              "id": 172,
+              "company": "Scale",
+              "salary": 85
+            },
+            {
+              "id": 173,
+              "company": "Scale",
+              "salary": 84
+            },
+            {
+              "id": 174,
+              "company": "Scale",
+              "salary": 83
+            },
+            {
+              "id": 175,
+              "company": "Scale",
+              "salary": 82
+            },
+            {
+              "id": 176,
+              "company": "Scale",
+              "salary": 81
+            },
+            {
+              "id": 177,
+              "company": "Scale",
+              "salary": 80
+            },
+            {
+              "id": 178,
+              "company": "Scale",
+              "salary": 79
+            },
+            {
+              "id": 179,
+              "company": "Scale",
+              "salary": 78
+            },
+            {
+              "id": 180,
+              "company": "Scale",
+              "salary": 77
+            },
+            {
+              "id": 181,
+              "company": "Scale",
+              "salary": 76
+            },
+            {
+              "id": 182,
+              "company": "Scale",
+              "salary": 75
+            },
+            {
+              "id": 183,
+              "company": "Scale",
+              "salary": 74
+            },
+            {
+              "id": 184,
+              "company": "Scale",
+              "salary": 73
+            },
+            {
+              "id": 185,
+              "company": "Scale",
+              "salary": 72
+            },
+            {
+              "id": 186,
+              "company": "Scale",
+              "salary": 71
+            },
+            {
+              "id": 187,
+              "company": "Scale",
+              "salary": 70
+            },
+            {
+              "id": 188,
+              "company": "Scale",
+              "salary": 69
+            },
+            {
+              "id": 189,
+              "company": "Scale",
+              "salary": 68
+            },
+            {
+              "id": 190,
+              "company": "Scale",
+              "salary": 67
+            },
+            {
+              "id": 191,
+              "company": "Scale",
+              "salary": 66
+            },
+            {
+              "id": 192,
+              "company": "Scale",
+              "salary": 65
+            },
+            {
+              "id": 193,
+              "company": "Scale",
+              "salary": 64
+            },
+            {
+              "id": 194,
+              "company": "Scale",
+              "salary": 63
+            },
+            {
+              "id": 195,
+              "company": "Scale",
+              "salary": 62
+            },
+            {
+              "id": 196,
+              "company": "Scale",
+              "salary": 61
+            },
+            {
+              "id": 197,
+              "company": "Scale",
+              "salary": 60
+            },
+            {
+              "id": 198,
+              "company": "Scale",
+              "salary": 59
+            },
+            {
+              "id": 199,
+              "company": "Scale",
+              "salary": 58
+            },
+            {
+              "id": 200,
+              "company": "Scale",
+              "salary": 57
+            },
+            {
+              "id": 201,
+              "company": "Scale",
+              "salary": 56
+            },
+            {
+              "id": 202,
+              "company": "Scale",
+              "salary": 55
+            },
+            {
+              "id": 203,
+              "company": "Scale",
+              "salary": 54
+            },
+            {
+              "id": 204,
+              "company": "Scale",
+              "salary": 53
+            },
+            {
+              "id": 205,
+              "company": "Scale",
+              "salary": 52
+            },
+            {
+              "id": 206,
+              "company": "Scale",
+              "salary": 51
+            },
+            {
+              "id": 207,
+              "company": "Scale",
+              "salary": 50
+            },
+            {
+              "id": 208,
+              "company": "Scale",
+              "salary": 49
+            },
+            {
+              "id": 209,
+              "company": "Scale",
+              "salary": 48
+            },
+            {
+              "id": 210,
+              "company": "Scale",
+              "salary": 47
+            },
+            {
+              "id": 211,
+              "company": "Scale",
+              "salary": 46
+            },
+            {
+              "id": 212,
+              "company": "Scale",
+              "salary": 45
+            },
+            {
+              "id": 213,
+              "company": "Scale",
+              "salary": 44
+            },
+            {
+              "id": 214,
+              "company": "Scale",
+              "salary": 43
+            },
+            {
+              "id": 215,
+              "company": "Scale",
+              "salary": 42
+            },
+            {
+              "id": 216,
+              "company": "Scale",
+              "salary": 41
+            },
+            {
+              "id": 217,
+              "company": "Scale",
+              "salary": 40
+            },
+            {
+              "id": 218,
+              "company": "Scale",
+              "salary": 39
+            },
+            {
+              "id": 219,
+              "company": "Scale",
+              "salary": 38
+            },
+            {
+              "id": 220,
+              "company": "Scale",
+              "salary": 37
+            },
+            {
+              "id": 221,
+              "company": "Scale",
+              "salary": 36
+            },
+            {
+              "id": 222,
+              "company": "Scale",
+              "salary": 35
+            },
+            {
+              "id": 223,
+              "company": "Scale",
+              "salary": 34
+            },
+            {
+              "id": 224,
+              "company": "Scale",
+              "salary": 33
+            },
+            {
+              "id": 225,
+              "company": "Scale",
+              "salary": 32
+            },
+            {
+              "id": 226,
+              "company": "Scale",
+              "salary": 31
+            },
+            {
+              "id": 227,
+              "company": "Scale",
+              "salary": 30
+            },
+            {
+              "id": 228,
+              "company": "Scale",
+              "salary": 29
+            },
+            {
+              "id": 229,
+              "company": "Scale",
+              "salary": 28
+            },
+            {
+              "id": 230,
+              "company": "Scale",
+              "salary": 27
+            },
+            {
+              "id": 231,
+              "company": "Scale",
+              "salary": 26
+            },
+            {
+              "id": 232,
+              "company": "Scale",
+              "salary": 25
+            },
+            {
+              "id": 233,
+              "company": "Scale",
+              "salary": 24
+            },
+            {
+              "id": 234,
+              "company": "Scale",
+              "salary": 23
+            },
+            {
+              "id": 235,
+              "company": "Scale",
+              "salary": 22
+            },
+            {
+              "id": 236,
+              "company": "Scale",
+              "salary": 21
+            },
+            {
+              "id": 237,
+              "company": "Scale",
+              "salary": 20
+            },
+            {
+              "id": 238,
+              "company": "Scale",
+              "salary": 19
+            },
+            {
+              "id": 239,
+              "company": "Scale",
+              "salary": 18
+            },
+            {
+              "id": 240,
+              "company": "Scale",
+              "salary": 17
+            },
+            {
+              "id": 241,
+              "company": "Scale",
+              "salary": 16
+            },
+            {
+              "id": 242,
+              "company": "Scale",
+              "salary": 15
+            },
+            {
+              "id": 243,
+              "company": "Scale",
+              "salary": 14
+            },
+            {
+              "id": 244,
+              "company": "Scale",
+              "salary": 13
+            },
+            {
+              "id": 245,
+              "company": "Scale",
+              "salary": 12
+            },
+            {
+              "id": 246,
+              "company": "Scale",
+              "salary": 11
+            },
+            {
+              "id": 247,
+              "company": "Scale",
+              "salary": 10
+            },
+            {
+              "id": 248,
+              "company": "Scale",
+              "salary": 9
+            },
+            {
+              "id": 249,
+              "company": "Scale",
+              "salary": 8
+            },
+            {
+              "id": 250,
+              "company": "Scale",
+              "salary": 7
+            },
+            {
+              "id": 251,
+              "company": "Scale",
+              "salary": 6
+            },
+            {
+              "id": 252,
+              "company": "Scale",
+              "salary": 5
+            },
+            {
+              "id": 253,
+              "company": "Scale",
+              "salary": 4
+            },
+            {
+              "id": 254,
+              "company": "Scale",
+              "salary": 3
+            },
+            {
+              "id": 255,
+              "company": "Scale",
+              "salary": 2
+            },
+            {
+              "id": 256,
+              "company": "Scale",
+              "salary": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            129,
+            "Scale",
+            128
+          ],
+          [
+            128,
+            "Scale",
+            129
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-company"
+      ]
+    }
+  ]
+}
+

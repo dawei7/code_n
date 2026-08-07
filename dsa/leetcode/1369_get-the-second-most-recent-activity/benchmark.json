@@ -1,0 +1,2611 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1369",
+  "measurement_note": "Size is A, the number of UserActivity rows. Every benchmark user has four chronologically ordered activities, so the selected row is the third month. The window query partitions and sorts all rows in O(A log A) time. A correct slower query runs de-indexed correlated counts of later and total activities for every candidate row, taking O(A^2) time; the 16/64/256-row tiers complete normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 users with four activities each",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "User 001",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "User 001",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 002",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 003",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 004",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "four-activities"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 users with four activities each",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "User 001",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 005",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 005",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 005",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 005",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 006",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 006",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 006",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 006",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 007",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 007",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 007",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 007",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 008",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 008",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 008",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 008",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 009",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 009",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 009",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 009",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 010",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 010",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 010",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 010",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 011",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 011",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 011",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 011",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 012",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 012",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 012",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 012",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 013",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 013",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 013",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 013",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 014",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 014",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 014",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 014",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 015",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 015",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 015",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 015",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 016",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 016",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 016",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 016",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "User 001",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 002",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 003",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 004",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 005",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 006",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 007",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 008",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 009",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 010",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 011",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 012",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 013",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 014",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 015",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 016",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "four-activities"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 users with four activities each",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "User 001",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 001",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 002",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 003",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 004",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 005",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 005",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 005",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 005",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 006",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 006",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 006",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 006",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 007",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 007",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 007",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 007",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 008",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 008",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 008",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 008",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 009",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 009",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 009",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 009",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 010",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 010",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 010",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 010",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 011",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 011",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 011",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 011",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 012",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 012",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 012",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 012",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 013",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 013",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 013",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 013",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 014",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 014",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 014",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 014",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 015",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 015",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 015",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 015",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 016",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 016",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 016",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 016",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 017",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 017",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 017",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 017",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 018",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 018",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 018",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 018",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 019",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 019",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 019",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 019",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 020",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 020",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 020",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 020",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 021",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 021",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 021",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 021",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 022",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 022",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 022",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 022",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 023",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 023",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 023",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 023",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 024",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 024",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 024",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 024",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 025",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 025",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 025",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 025",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 026",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 026",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 026",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 026",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 027",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 027",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 027",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 027",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 028",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 028",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 028",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 028",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 029",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 029",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 029",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 029",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 030",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 030",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 030",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 030",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 031",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 031",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 031",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 031",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 032",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 032",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 032",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 032",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 033",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 033",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 033",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 033",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 034",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 034",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 034",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 034",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 035",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 035",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 035",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 035",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 036",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 036",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 036",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 036",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 037",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 037",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 037",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 037",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 038",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 038",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 038",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 038",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 039",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 039",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 039",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 039",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 040",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 040",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 040",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 040",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 041",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 041",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 041",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 041",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 042",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 042",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 042",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 042",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 043",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 043",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 043",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 043",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 044",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 044",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 044",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 044",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 045",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 045",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 045",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 045",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 046",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 046",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 046",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 046",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 047",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 047",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 047",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 047",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 048",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 048",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 048",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 048",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 049",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 049",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 049",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 049",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 050",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 050",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 050",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 050",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 051",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 051",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 051",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 051",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 052",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 052",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 052",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 052",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 053",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 053",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 053",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 053",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 054",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 054",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 054",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 054",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 055",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 055",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 055",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 055",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 056",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 056",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 056",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 056",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 057",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 057",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 057",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 057",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 058",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 058",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 058",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 058",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 059",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 059",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 059",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 059",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 060",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 060",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 060",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 060",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 061",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 061",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 061",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 061",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 062",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 062",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 062",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 062",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 063",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 063",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 063",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 063",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "User 064",
+              "activity": "Activity 1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "User 064",
+              "activity": "Activity 2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "User 064",
+              "activity": "Activity 3",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            },
+            {
+              "username": "User 064",
+              "activity": "Activity 4",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "User 001",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 002",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 003",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 004",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 005",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 006",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 007",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 008",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 009",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 010",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 011",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 012",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 013",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 014",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 015",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 016",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 017",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 018",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 019",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 020",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 021",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 022",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 023",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 024",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 025",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 026",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 027",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 028",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 029",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 030",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 031",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 032",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 033",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 034",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 035",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 036",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 037",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 038",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 039",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 040",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 041",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 042",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 043",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 044",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 045",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 046",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 047",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 048",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 049",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 050",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 051",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 052",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 053",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 054",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 055",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 056",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 057",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 058",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 059",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 060",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 061",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 062",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 063",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ],
+          [
+            "User 064",
+            "Activity 3",
+            "2020-03-01",
+            "2020-03-02"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "four-activities"
+      ]
+    }
+  ]
+}

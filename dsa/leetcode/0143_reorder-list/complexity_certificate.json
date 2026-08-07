@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_143",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The reordered list must place the original tail immediately after the head, and finding that tail in a singly linked list requires Omega(n) traversal. Split, reverse, and weave match that bound with constant auxiliary space.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "For a singly linked list, the only way to identify the original tail is to follow next pointers from the head through all n nodes in the worst case. That tail must become the second node of the required order, so it cannot be skipped, giving an Omega(n) lower bound. The current midpoint search, half reversal, and weave each traverse at most n nodes, giving O(n) total time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "The output requires the original final node immediately after the head, and a singly linked input offers no direct tail access."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Midpoint discovery, second-half reversal, and alternating merge are three linear passes with constant work per visited node."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover even and odd list lengths; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

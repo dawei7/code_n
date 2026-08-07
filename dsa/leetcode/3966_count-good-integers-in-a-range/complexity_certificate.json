@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3966",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(D)",
+  "summary": "The endpoints contain at most 16 decimal digits, which is too narrow for a stable runtime scaling verdict; exhaustive small-prefix checks and independent maximum-bound recurrence checks verify the linear-state digit DP.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 16,
+    "unit": "decimal digits in the upper endpoint",
+    "source_constraint": "10 <= l <= r <= 10^15"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each endpoint DP has at most D * 11 * 2 * 2 memoized states and tests at most ten next digits per state, so the fixed decimal alphabet leaves O(D) work."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression compares both stored source forms with direct enumeration for every prefix endpoint through 2,000 and every legal k, then checks large and maximum endpoints against an independent iterative digit recurrence."
+    }
+  ]
+}

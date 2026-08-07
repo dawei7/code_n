@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_664",
+  "measurement_note": "Size is the compressed string length. Alternating strings preserve every character and create many equal-character merge choices. Memoized interval DP solves each state once, while the same recurrence without memoization repeatedly expands overlapping intervals.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 alternating characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "s": "abab"
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 alternating characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "abababab"
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 alternating characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "abababababababab"
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "alternating"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "challenge_id": "lc_2781",
+  "measurement_note": "The fixed length-ten forbidden pattern never occurs, so the optimal window scans only ten suffixes per right endpoint while a correct implementation that starts a bounded scan at every possible left endpoint performs quadratic work. The compact tiers keep that slower implementation below the execution-step safety cap so it can fail specifically by measured scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16-character valid word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaa",
+        "forbidden": [
+          "bbbbbbbbbb"
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64-character valid word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "forbidden": [
+          "bbbbbbbbbb"
+        ]
+      },
+      "expected": 64,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128-character valid word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "forbidden": [
+          "bbbbbbbbbb"
+        ]
+      },
+      "expected": 128,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

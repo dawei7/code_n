@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3082",
+  "cases": [
+    {
+      "id": "benchmark-weighted-dp-small",
+      "name": "benchmark: 9 values and target 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1], "k": 4},
+      "expected": 4032,
+      "tags": ["benchmark", "scale-small", "weighted-sum-dp"]
+    },
+    {
+      "id": "benchmark-weighted-dp-medium",
+      "name": "benchmark: 18 values and target 9",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 162,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "k": 9},
+      "expected": 24893440,
+      "tags": ["benchmark", "scale-medium", "weighted-sum-dp"]
+    },
+    {
+      "id": "benchmark-weighted-dp-large",
+      "name": "benchmark: 36 values and target 18",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 648,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "k": 18},
+      "expected": 251430256,
+      "tags": ["benchmark", "scale-large", "weighted-sum-dp"]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3120",
+  "cases": [
+    {
+      "id": "benchmark-pairwise-search-3",
+      "name": "benchmark: mixed case word of length 3",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": { "word": "aAz" },
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "case-presence"]
+    },
+    {
+      "id": "benchmark-pairwise-search-12",
+      "name": "benchmark: mixed case word of length 12",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": { "word": "aAbBcCdDeEfZ" },
+      "expected": 5,
+      "tags": ["benchmark", "scaling", "case-presence"]
+    },
+    {
+      "id": "benchmark-pairwise-search-48",
+      "name": "benchmark: mixed case word of length 48",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": { "word": "abcdefghijklmnopqrstuvwxABCDEFGHIJKLMNOPQRSTUVWX" },
+      "expected": 24,
+      "tags": ["benchmark", "scaling", "case-presence"]
+    }
+  ]
+}

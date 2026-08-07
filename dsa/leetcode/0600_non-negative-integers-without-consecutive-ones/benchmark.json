@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_600",
+  "measurement_note": "Size is the inclusive integer upper bound n. Fibonacci bit-prefix counting depends on the bit length, while enumerating every candidate from zero through n performs linear work in the numeric bound.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count valid integers through 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 512
+      },
+      "expected": 90,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "power-of-two-bound"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count valid integers through 2048",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "n": 2048
+      },
+      "expected": 234,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "power-of-two-bound"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count valid integers through 4096",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "n": 4096
+      },
+      "expected": 378,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "power-of-two-bound"
+      ]
+    }
+  ]
+}

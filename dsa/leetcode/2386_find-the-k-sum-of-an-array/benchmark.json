@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2386",
+  "measurement_note": "Size is n, the number of values; k grows legally from 8 to the cap of 2000. Sorting absolute values and exploring only k heap states follows O(n log n + k log k), while materializing all 2^n subsequence sums is exponential.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 values and rank 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "k": 8
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark",
+        "exhaustive-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 values and rank 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3,
+          -4,
+          5,
+          -6,
+          7,
+          -8
+        ],
+        "k": 128
+      },
+      "expected": -2,
+      "tags": [
+        "benchmark",
+        "exhaustive-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 values and rank 2000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3,
+          -4,
+          5,
+          -6,
+          7,
+          -8,
+          9,
+          -10,
+          11,
+          -12,
+          13,
+          -14,
+          15,
+          -16
+        ],
+        "k": 2000
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "exhaustive-contrast"
+      ]
+    }
+  ]
+}

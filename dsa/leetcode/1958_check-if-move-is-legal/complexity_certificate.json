@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1958",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The board is always 8 by 8, so a move has exactly eight rays and each ray contains at most seven cells; the complete legal contract has no scalable runtime dimension.",
+  "workload_bound": {
+    "symbol": "C",
+    "maximum": 56,
+    "unit": "directional cell inspections",
+    "source_constraint": "board has exactly 8 rows and 8 columns"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Eight directions with at most seven cells per direction impose a fixed upper bound of 56 cell inspections."},
+    {"kind": "boundary_property_cases", "evidence": "The certificate regression constructs every direction and every endpoint span from two through seven, and also removes each closing endpoint to verify rejection."}
+  ]
+}

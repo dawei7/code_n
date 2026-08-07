@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_201",
+  "measurement_note": "Size is the right endpoint r. Each interval retains one high bit and spans a width proportional to r, so common-prefix shifting is logarithmic while exhaustive range AND is linear.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: right endpoint 2047",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2047,
+      "input": {
+        "left": 1147,
+        "right": 2047
+      },
+      "expected": 1024,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: right endpoint 32767",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32767,
+      "input": {
+        "left": 16507,
+        "right": 32767
+      },
+      "expected": 16384,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: right endpoint 524287",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 524287,
+      "input": {
+        "left": 262267,
+        "right": 524287
+      },
+      "expected": 262144,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

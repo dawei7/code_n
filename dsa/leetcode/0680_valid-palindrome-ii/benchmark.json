@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_680",
+  "measurement_note": "Size is the string length. Each mostly uniform tier contains two separated asymmetric mutations, so no single deletion works; trying every deletion and rescanning the candidate performs quadratic work, while the first-mismatch two-pointer method scans linearly.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two mismatches in length 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "two-mismatches"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: two mismatches in length 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "two-mismatches"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two mismatches in length 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "two-mismatches"
+      ]
+    }
+  ]
+}
+

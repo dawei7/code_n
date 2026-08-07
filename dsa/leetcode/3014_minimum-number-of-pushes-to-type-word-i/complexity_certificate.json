@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3014",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The word contains at most the 26 distinct lowercase English letters, and the closed-form solution performs fixed arithmetic on its length, so legal inputs cannot support an honest asymptotic runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "N",
+    "maximum": 26,
+    "unit": "distinct letters",
+    "source_constraint": "word has length from 1 through 26, contains lowercase English letters, and all of its letters are distinct."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Eight keys provide eight slots at each push depth; at most four depths are needed for 26 letters, and divmod plus the arithmetic-series formula evaluates their total with fixed work."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "Regression checks every legal length from 1 through 26 against an independent sorted keypad-slot cost oracle."
+    }
+  ]
+}

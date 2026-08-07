@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_917",
+  "measurement_note": "Size is n, the string length. Alternating letters and fixed hyphens force the two-pointer reference to inspect the whole string. A correct slower implementation that rescans from the right to locate each successive replacement letter performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: alternating letters and hyphens at n=20",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "s": "A-B-C-D-E-F-G-H-I-J-"
+      },
+      "expected": "J-I-H-G-F-E-D-C-B-A-",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "repeated-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: alternating letters and hyphens at n=50",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "s": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-"
+      },
+      "expected": "Y-X-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A-",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "repeated-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: alternating letters and hyphens at n=100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "s": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z-A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-"
+      },
+      "expected": "X-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A-Z-Y-X-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A-",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "repeated-rescan"
+      ]
+    }
+  ]
+}
+

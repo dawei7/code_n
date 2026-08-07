@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_670",
+  "measurement_note": "Size is the number of decimal digits. Last-occurrence scanning is linear in the digit count, while testing every possible swap is quadratic; the legal two-, four-, and eight-digit tiers span the bounded problem domain.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2 digits", "kind": "benchmark", "visible": false, "size": 2, "input": {"num": 19}, "expected": 91, "tags": ["benchmark", "scaling", "leading-swap"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 4 digits", "kind": "benchmark", "visible": false, "size": 4, "input": {"num": 1099}, "expected": 9091, "tags": ["benchmark", "scaling", "leading-swap"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 8 digits", "kind": "benchmark", "visible": false, "size": 8, "input": {"num": 10234599}, "expected": 90234591, "tags": ["benchmark", "scaling", "leading-swap"]}
+  ]
+}

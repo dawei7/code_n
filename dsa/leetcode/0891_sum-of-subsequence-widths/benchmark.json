@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_891",
+  "measurement_note": "Size is n, the number of array elements. Sorting plus contribution counting is O(n log n). A correct baseline explicitly materializes all subsequences and computes every width, causing exponential growth on these distinct-value inputs.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: enumerate subsequences of 4 distinct values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 23,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "subsequence-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: enumerate subsequences of 8 distinct values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1291,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "subsequence-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: enumerate subsequences of 16 distinct values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          16,
+          15,
+          14,
+          13,
+          12,
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 851987,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "subsequence-enumeration"
+      ]
+    }
+  ]
+}

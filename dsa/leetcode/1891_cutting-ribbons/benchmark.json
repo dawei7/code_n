@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1891",
+  "measurement_note": "Size is M, the material-based upper bound on the candidate length. Each workload uses ribbons [4S, S] and k = 4, so M = 5S / 4 while the answer is S. Binary search takes O(N log M) time. A correct descending implementation that tests every candidate until it reaches S completes all tiers and fails only by O(NM) scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: search an 80-length upper range with fragmentation","kind":"benchmark","visible":false,"size":80,"input":{"ribbons":[256,64],"k":4},"expected":64,"tags":["benchmark","candidate-range","fragmentation"]},
+    {"id":"benchmark-scale-2","name":"benchmark: search a 1280-length upper range with fragmentation","kind":"benchmark","visible":false,"size":1280,"input":{"ribbons":[4096,1024],"k":4},"expected":1024,"tags":["benchmark","candidate-range","fragmentation"]},
+    {"id":"benchmark-scale-3","name":"benchmark: search a 20480-length upper range with fragmentation","kind":"benchmark","visible":false,"size":20480,"input":{"ribbons":[65536,16384],"k":4},"expected":16384,"tags":["benchmark","candidate-range","fragmentation"]}
+  ]
+}

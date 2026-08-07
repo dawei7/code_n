@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2441",
+  "measurement_note": "Size is n, the array length. Repeated positive values have no negative counterpart, forcing every candidate check. Hash membership takes O(n) expected time overall, while scanning the entire array for each value takes O(n^2) time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: eight unmatched positives",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [1,1,1,1,1,1,1,1]},
+      "expected": -1,
+      "tags": ["benchmark", "pair-scan"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: thirty-two unmatched positives",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": -1,
+      "tags": ["benchmark", "pair-scan"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixty-four unmatched positives",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": -1,
+      "tags": ["benchmark", "pair-scan"]
+    }
+  ]
+}

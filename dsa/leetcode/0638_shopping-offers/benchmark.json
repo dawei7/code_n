@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_638",
+  "measurement_note": "Size is the number of possible remaining-needs states. Three independent one-item offers create many purchase orders leading to the same state. Memoization evaluates each state once, while correct uncached backtracking repeats the same suffix for every order and grows exponentially.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 remaining states", "kind": "benchmark", "visible": false, "size": 8, "input": {"price": [10,10,10], "special": [[1,0,0,1],[0,1,0,1],[0,0,1,1]], "needs": [1,1,1]}, "expected": 3, "tags": ["benchmark", "scaling", "overlapping-paths"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 27 remaining states", "kind": "benchmark", "visible": false, "size": 27, "input": {"price": [10,10,10], "special": [[1,0,0,1],[0,1,0,1],[0,0,1,1]], "needs": [2,2,2]}, "expected": 6, "tags": ["benchmark", "scaling", "overlapping-paths"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 64 remaining states", "kind": "benchmark", "visible": false, "size": 64, "input": {"price": [10,10,10], "special": [[1,0,0,1],[0,1,0,1],[0,0,1,1]], "needs": [3,3,3]}, "expected": 9, "tags": ["benchmark", "scaling", "overlapping-paths"]}
+  ]
+}

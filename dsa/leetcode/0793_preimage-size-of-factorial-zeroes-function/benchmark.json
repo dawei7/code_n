@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_793",
+  "measurement_note": "Size is the target zero count k. Binary search takes polylogarithmic work in size; incrementing candidate factorial indices until the target is reached takes O(size log size).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: target 4", "kind": "benchmark", "visible": false, "size": 4, "input": {"k": 4}, "expected": 5, "tags": ["benchmark", "scaling", "present"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: target 8", "kind": "benchmark", "visible": false, "size": 8, "input": {"k": 8}, "expected": 5, "tags": ["benchmark", "scaling", "present"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: target 16", "kind": "benchmark", "visible": false, "size": 16, "input": {"k": 16}, "expected": 5, "tags": ["benchmark", "scaling", "present"]}
+  ]
+}

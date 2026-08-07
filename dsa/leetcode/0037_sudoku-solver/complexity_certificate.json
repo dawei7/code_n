@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_37",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(9^E)",
+  "summary": "The source contract fixes the puzzle at 81 cells, so the empty-cell count E is bounded by 81 and puzzle difficulty cannot provide an honest unbounded runtime-scaling axis.",
+  "workload_bound": {
+    "symbol": "E",
+    "maximum": 81,
+    "unit": "empty cells",
+    "source_constraint": "The board always has nine rows of nine cells and is guaranteed to have exactly one solution."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each recursive level assigns one of at most E empty cells and branches over at most nine candidate digits; masks and minimum-remaining-values selection prune this finite O(9^E) search without enlarging it."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression solves 324 near-complete boards covering every one-cell hole plus same-row, same-column, and same-box two-cell holes, then verifies every authored source, solved, sparse, and digit-remapped puzzle in both app-local and immutable native sources."
+    }
+  ]
+}

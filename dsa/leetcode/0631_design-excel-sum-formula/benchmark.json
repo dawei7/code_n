@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_631",
+  "measurement_note": "Size is the number of two-cell dependency layers. Each formula in a layer references both cells in the previous layer, so a final source update has exponentially many dependency paths but only linear distinct cells and edges. A topologically scheduled update processes each affected formula once in O(N + F) time, while recursive path-by-path propagation grows exponentially. The largest tier makes 27 set, get, and sum calls, within the source limit of 100.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3-layer reconverging dependency graph",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "operations": ["Excel", "set", "sum", "sum", "sum", "sum", "sum", "sum", "set", "get"],
+        "arguments": [[1, "G"], [1, "A", 1], [1, "B", ["A1"]], [1, "C", ["A1"]], [1, "D", ["B1", "C1"]], [1, "E", ["B1", "C1"]], [1, "F", ["D1", "E1"]], [1, "G", ["D1", "E1"]], [1, "A", 2], [1, "G"]]
+      },
+      "expected": [null, null, 1, 1, 2, 2, 4, 4, null, 8],
+      "tags": ["benchmark", "scaling", "reconverging-dependencies", "source-update", "legal-call-limit"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6-layer reconverging dependency graph",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "operations": ["Excel", "set", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "set", "get"],
+        "arguments": [[1, "M"], [1, "A", 1], [1, "B", ["A1"]], [1, "C", ["A1"]], [1, "D", ["B1", "C1"]], [1, "E", ["B1", "C1"]], [1, "F", ["D1", "E1"]], [1, "G", ["D1", "E1"]], [1, "H", ["F1", "G1"]], [1, "I", ["F1", "G1"]], [1, "J", ["H1", "I1"]], [1, "K", ["H1", "I1"]], [1, "L", ["J1", "K1"]], [1, "M", ["J1", "K1"]], [1, "A", 2], [1, "M"]]
+      },
+      "expected": [null, null, 1, 1, 2, 2, 4, 4, 8, 8, 16, 16, 32, 32, null, 64],
+      "tags": ["benchmark", "scaling", "reconverging-dependencies", "source-update", "legal-call-limit"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 12-layer reconverging dependency graph",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "operations": ["Excel", "set", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "sum", "set", "get"],
+        "arguments": [[1, "Y"], [1, "A", 1], [1, "B", ["A1"]], [1, "C", ["A1"]], [1, "D", ["B1", "C1"]], [1, "E", ["B1", "C1"]], [1, "F", ["D1", "E1"]], [1, "G", ["D1", "E1"]], [1, "H", ["F1", "G1"]], [1, "I", ["F1", "G1"]], [1, "J", ["H1", "I1"]], [1, "K", ["H1", "I1"]], [1, "L", ["J1", "K1"]], [1, "M", ["J1", "K1"]], [1, "N", ["L1", "M1"]], [1, "O", ["L1", "M1"]], [1, "P", ["N1", "O1"]], [1, "Q", ["N1", "O1"]], [1, "R", ["P1", "Q1"]], [1, "S", ["P1", "Q1"]], [1, "T", ["R1", "S1"]], [1, "U", ["R1", "S1"]], [1, "V", ["T1", "U1"]], [1, "W", ["T1", "U1"]], [1, "X", ["V1", "W1"]], [1, "Y", ["V1", "W1"]], [1, "A", 2], [1, "Y"]]
+      },
+      "expected": [null, null, 1, 1, 2, 2, 4, 4, 8, 8, 16, 16, 32, 32, 64, 64, 128, 128, 256, 256, 512, 512, 1024, 1024, 2048, 2048, null, 4096],
+      "tags": ["benchmark", "scaling", "reconverging-dependencies", "source-update", "legal-call-limit"]
+    }
+  ]
+}

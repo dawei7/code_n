@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1259",
+  "measurement_note": "Size is the pair count p = numPeople / 2. The factorial Catalan formula scans through 2p and performs one modular inverse; the direct split recurrence performs quadratic work in p while returning the same modular count.",
+  "cases": [
+    {
+      "id": "benchmark-scale-50",
+      "name": "benchmark: 50 handshake pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"numPeople": 100},
+      "expected": 265470434,
+      "tags": ["benchmark", "scale-small", "catalan"],
+      "size": 50
+    },
+    {
+      "id": "benchmark-scale-200",
+      "name": "benchmark: 200 handshake pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"numPeople": 400},
+      "expected": 868596491,
+      "tags": ["benchmark", "scale-medium", "catalan"],
+      "size": 200
+    },
+    {
+      "id": "benchmark-scale-500",
+      "name": "benchmark: maximum 500 handshake pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"numPeople": 1000},
+      "expected": 591137401,
+      "tags": ["benchmark", "scale-large", "maximum", "catalan"],
+      "size": 500
+    }
+  ]
+}

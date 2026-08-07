@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_949",
+  "measurement_note": "Size is q, the number of clock candidates a correct descending-minute scan examines before finding the latest matching digit multiset. The permutation solution always checks at most 24 arrangements, while the slower scan checks exactly 16, 64, and 256 successive minutes.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reverse scan examines q=16 times",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "arr": [
+          2,
+          3,
+          4,
+          4
+        ]
+      },
+      "expected": "23:44",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "reverse-minute-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reverse scan examines q=64 times",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "arr": [
+          2,
+          2,
+          5,
+          6
+        ]
+      },
+      "expected": "22:56",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "reverse-minute-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reverse scan examines q=256 times",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "arr": [
+          1,
+          4,
+          4,
+          9
+        ]
+      },
+      "expected": "19:44",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "reverse-minute-scan"
+      ]
+    }
+  ]
+}

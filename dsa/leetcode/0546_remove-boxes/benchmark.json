@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_546",
+  "measurement_note": "Size is the number of boxes in an alternating two-color array. Memoization bounds the interval-and-carry states polynomially, while the same correct recurrence without caching repeatedly explores overlapping merge choices.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 alternating boxes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "boxes": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 alternating boxes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "boxes": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 alternating boxes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "boxes": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 72,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "alternating"
+      ]
+    }
+  ]
+}
+

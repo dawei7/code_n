@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1777",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "An exact pivot must inspect all R source rows to distinguish every present product-store price; one hash-aggregation pass matches this linear lower bound.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "Changing the price or store label of any one input row can change one output cell, so an exact query must inspect all R rows in the worst case. Conditional hash aggregation examines each row once and updates one fixed-size product group, giving O(R) logical time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Every source row may supply the only value for one product-store output cell, so skipping any row can produce an incorrect pivot."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The query performs one grouped aggregation pass with three constant-count conditional aggregate slots per product."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover sparse and dense products, each individual store boundary, unsorted and interleaved source rows, multiple products, and NULL output cells."
+    }
+  ]
+}

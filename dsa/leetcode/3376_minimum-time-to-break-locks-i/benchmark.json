@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3376",
+  "measurement_note": "Size is n * 2^n, the number of mask-to-lock inspections available to the subset DP. The legal four-, six-, and eight-lock tiers are order-sensitive. The reference is linear in this measure, while a correct naive bitmask baseline recomputes the mask population in O(n) time for every candidate transition.",
+  "cases": [
+    {
+      "id": "benchmark-subset-dp-4-locks",
+      "name": "benchmark: 4 order-sensitive locks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "strength": [
+          999983,
+          450001,
+          720337,
+          120011
+        ],
+        "k": 7
+      },
+      "expected": 269739,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "repeated-popcount-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-subset-dp-6-locks",
+      "name": "benchmark: 6 order-sensitive locks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "strength": [
+          999983,
+          450001,
+          720337,
+          120011,
+          880003,
+          650009
+        ],
+        "k": 7
+      },
+      "expected": 310462,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "repeated-popcount-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-subset-dp-8-locks",
+      "name": "benchmark: 8 order-sensitive locks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "strength": [
+          999983,
+          450001,
+          720337,
+          120011,
+          880003,
+          650009,
+          330017,
+          510031
+        ],
+        "k": 7
+      },
+      "expected": 297340,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "repeated-popcount-baseline"
+      ]
+    }
+  ]
+}

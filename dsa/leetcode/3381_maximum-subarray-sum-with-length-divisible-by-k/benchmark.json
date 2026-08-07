@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3381",
+  "measurement_note": "Size is n, the array length. The legal 16-, 32-, and 64-element tiers use k = 7 and repeat a mixed-sign block. Prefix minima process each element once, while the correct slower baseline enumerates all boundary pairs and tests each eligible length.",
+  "cases": [
+    {
+      "id": "benchmark-prefix-remainders-16",
+      "name": "benchmark: 16 mixed values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums": [-7, 4, 9, -12, 6, 3, -2, 8, -10, 5, 1, -4, 11, -8, 2, -1], "k": 7},
+      "expected": 16,
+      "tags": ["benchmark", "scale-small", "quadratic-enumeration"]
+    },
+    {
+      "id": "benchmark-prefix-remainders-32",
+      "name": "benchmark: 32 mixed values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"nums": [-7, 4, 9, -12, 6, 3, -2, 8, -10, 5, 1, -4, 11, -8, 2, -1, -7, 4, 9, -12, 6, 3, -2, 8, -10, 5, 1, -4, 11, -8, 2, -1], "k": 7},
+      "expected": 24,
+      "tags": ["benchmark", "scale-medium", "quadratic-enumeration"]
+    },
+    {
+      "id": "benchmark-prefix-remainders-64",
+      "name": "benchmark: 64 mixed values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [-7, 4, 9, -12, 6, 3, -2, 8, -10, 5, 1, -4, 11, -8, 2, -1, -7, 4, 9, -12, 6, 3, -2, 8, -10, 5, 1, -4, 11, -8, 2, -1, -7, 4, 9, -12, 6, 3, -2, 8, -10, 5, 1, -4, 11, -8, 2, -1, -7, 4, 9, -12, 6, 3, -2, 8, -10, 5, 1, -4, 11, -8, 2, -1], "k": 7},
+      "expected": 27,
+      "tags": ["benchmark", "scale-large", "quadratic-enumeration"]
+    }
+  ]
+}

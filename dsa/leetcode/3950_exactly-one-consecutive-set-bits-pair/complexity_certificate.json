@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3950",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every legal input occupies at most 17 binary positions, while the remotely accepted implementation performs a fixed sequence of machine-integer operations, leaving no honest runtime scaling range.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 17,
+    "unit": "binary digits",
+    "source_constraint": "n is an integer between 0 and 100000 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The remotely accepted implementation performs one right shift, two bitwise AND operations, one subtraction, two comparisons, and fixed Boolean composition; it has no loop, recursion, or input-sized allocation."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression exhaustively checks all 100001 legal values against an independent binary-string sliding-window oracle; authored cases cover zero, no pair, exactly one pair, overlapping pairs, separated pairs, and the upper boundary."
+    }
+  ]
+}

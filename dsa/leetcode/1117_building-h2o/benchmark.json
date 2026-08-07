@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1117",
+  "measurement_note": "Size is the molecule count. The semaphore/barrier design coordinates three callbacks per molecule; a correct coordinator that scans all prior molecule records on every atom adds a linear factor.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: concurrency workload 1",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "water": "OHH",
+        "stagger": false
+      },
+      "expected": "HHO",
+      "tags": [
+        "benchmark",
+        "concurrency"
+      ],
+      "size": 1,
+      "timeout_ms": 8000,
+      "validator": {
+        "kind": "h2o_groups"
+      }
+    },
+    {
+      "id": "benchmark-scale-5",
+      "name": "benchmark: concurrency workload 5",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "water": "OOOOOHHHHHHHHHH",
+        "stagger": false
+      },
+      "expected": "HHOHHOHHOHHOHHO",
+      "tags": [
+        "benchmark",
+        "concurrency"
+      ],
+      "size": 5,
+      "timeout_ms": 8000,
+      "validator": {
+        "kind": "h2o_groups"
+      }
+    },
+    {
+      "id": "benchmark-scale-20",
+      "name": "benchmark: concurrency workload 20",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "water": "OOOOOOOOOOOOOOOOOOOOHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+        "stagger": false
+      },
+      "expected": "HHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHOHHO",
+      "tags": [
+        "benchmark",
+        "concurrency"
+      ],
+      "size": 20,
+      "timeout_ms": 8000,
+      "validator": {
+        "kind": "h2o_groups"
+      }
+    }
+  ]
+}

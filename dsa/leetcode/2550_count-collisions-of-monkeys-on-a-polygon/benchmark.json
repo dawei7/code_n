@@ -1,0 +1,54 @@
+{
+  "challenge_id": "lc_2550",
+  "measurement_note": "Size is n, the exponent and polygon size. Binary modular exponentiation takes O(log n), while multiplying by two once per monkey takes O(n).",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: exponent 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128
+      },
+      "expected": 279632275,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "linear-multiplication-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: exponent 1024",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "n": 1024
+      },
+      "expected": 812734590,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "linear-multiplication-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: exponent 8192",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8192,
+      "input": {
+        "n": 8192
+      },
+      "expected": 112754239,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "linear-multiplication-contrast"
+      ]
+    }
+  ]
+}

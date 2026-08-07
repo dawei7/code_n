@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_927",
+  "measurement_note": "Size is n, the array length. Each tier contains one leading 1 followed by zeros, so no valid three-part split exists and a brute-force method must examine every pair of cut positions and evaluate all three binary parts. The anchor comparison is linear, while that correct exhaustive implementation performs cubic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: single one at n=8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "arr": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "exhaustive-cuts"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: single one at n=16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "arr": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "exhaustive-cuts"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: single one at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "arr": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "exhaustive-cuts"
+      ]
+    }
+  ]
+}
+

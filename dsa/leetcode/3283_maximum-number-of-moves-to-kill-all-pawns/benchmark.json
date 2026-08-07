@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3283",
+  "measurement_note": "Pawn count p is the workload size. Pawns form an expanding cluster around a central knight, keeping bounded-board BFS local while exercising alternating capture subsets. Memoized minimax solves p times 2^p states; uncached minimax revisits the same states across capture orders and grows factorially.",
+  "cases": [
+    {
+      "id": "benchmark-uncached-minimax-scale-1",
+      "name": "benchmark: solve a 1-pawn game",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {"kx":20,"ky":20,"positions":[[21,22]]},
+      "expected": 1,
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-uncached-minimax-scale-2",
+      "name": "benchmark: solve a 3-pawn game",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {"kx":20,"ky":20,"positions":[[21,22],[22,21],[19,18]]},
+      "expected": 5,
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-uncached-minimax-scale-3",
+      "name": "benchmark: solve a 7-pawn game",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {"kx":20,"ky":20,"positions":[[21,22],[22,21],[19,18],[18,19],[23,24],[24,23],[17,16]]},
+      "expected": 19,
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

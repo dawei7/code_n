@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_775",
+  "measurement_note": "Size is the permutation length. A running prefix maximum detects nonlocal inversions in O(size); explicitly counting every global inversion takes O(size^2) on these adjacent-swap permutations.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 values in adjacent swaps", "kind": "benchmark", "visible": false, "size": 8, "input": {"nums": [1, 0, 3, 2, 5, 4, 7, 6]}, "expected": true, "tags": ["benchmark", "scaling", "local-only"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 32 values in adjacent swaps", "kind": "benchmark", "visible": false, "size": 32, "input": {"nums": [1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14, 17, 16, 19, 18, 21, 20, 23, 22, 25, 24, 27, 26, 29, 28, 31, 30]}, "expected": true, "tags": ["benchmark", "scaling", "local-only"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 36 values in adjacent swaps", "kind": "benchmark", "visible": false, "size": 36, "input": {"nums": [1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14, 17, 16, 19, 18, 21, 20, 23, 22, 25, 24, 27, 26, 29, 28, 31, 30, 33, 32, 35, 34]}, "expected": true, "tags": ["benchmark", "scaling", "local-only"]}
+  ]
+}

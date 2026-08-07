@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_123",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Any price can change the best one- or two-transaction schedule, so a correct algorithm must inspect all n prices in the worst case. The four-state dynamic program processes each price once.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "If an algorithm leaves some price unread, changing it can create a uniquely favorable buy or sale endpoint while all inspected values remain fixed. Exact computation therefore requires Omega(n) inspections in the worst case. The current algorithm applies four constant-time state transitions to each price, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An unseen price can become an endpoint of the uniquely optimal one- or two-transaction schedule, so arbitrary positions cannot be skipped."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The implementation updates the four transaction-stage balances once for each price."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover two transactions, one transaction, and no profitable transaction; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

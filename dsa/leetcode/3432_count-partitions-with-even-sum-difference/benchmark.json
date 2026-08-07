@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3432",
+  "measurement_note": "Size is the legal array length n. Tiers 4, 16, and 64 span 16x and have even total sums. The parity method is linear; a correct implementation that re-sums both slices at every boundary must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-increasing-4",
+      "name": "benchmark: four increasing values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": 3,
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-increasing-16",
+      "name": "benchmark: sixteen increasing values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]},
+      "expected": 15,
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-increasing-64",
+      "name": "benchmark: sixty-four increasing values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]},
+      "expected": 63,
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

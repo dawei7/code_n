@@ -1,0 +1,5 @@
+{"schema_version":1,"challenge_id":"lc_3792","measurement_note":"Size is n, the number of blocks. The first n blocks contain n(n + 1) / 2 factors, so the required direct simulation takes O(size^2) time; rescanning the complete used-integer prefix for every block takes O(size^3) time.","cases":[
+{"id":"benchmark-twenty-blocks","name":"benchmark: twenty product blocks","kind":"benchmark","visible":false,"size":20,"input":{"n":20},"expected":477591773,"validator":{"kind":"exact"},"tags":["benchmark","scale-small"]},
+{"id":"benchmark-forty-blocks","name":"benchmark: forty product blocks","kind":"benchmark","visible":false,"size":40,"input":{"n":40},"expected":225450143,"validator":{"kind":"exact"},"tags":["benchmark","scale-medium"]},
+{"id":"benchmark-eighty-blocks","name":"benchmark: eighty product blocks","kind":"benchmark","visible":false,"size":80,"input":{"n":80},"expected":725225964,"validator":{"kind":"exact"},"tags":["benchmark","scale-large"]}
+]}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3726",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(D)",
+  "summary": "The legal integer has at most 16 decimal digits, which is too narrow for an honest runtime-scaling verdict; the accepted implementation performs one bounded decimal conversion, one zero filter, and one parse.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 16,
+    "unit": "decimal digits",
+    "source_constraint": "1 <= n <= 10^15"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted source converts at most 16 digits to text, filters each character once, and parses at most 16 retained digits, establishing O(D) time over the complete legal width bound."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The dedicated regression compares the accepted adapter with an independent arithmetic oracle for the first 1,000,000 positive integers, deterministic full-range values, and every decimal-width boundary through 10^15."
+    }
+  ]
+}

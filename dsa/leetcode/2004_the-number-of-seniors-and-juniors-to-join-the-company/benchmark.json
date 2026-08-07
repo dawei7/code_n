@@ -1,0 +1,1798 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2004",
+  "measurement_note": "Size is the candidate-row count N. The window query sorts once and computes cumulative salaries in O(N log N). A correct control recomputes each candidate's cheaper-prefix salary with a correlated subquery, producing quadratic row comparisons.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: rank 16 affordable seniors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "employee_id": 1,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 2,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 3,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 4,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 5,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 6,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 7,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 8,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 9,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 10,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 11,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 12,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 13,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 14,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 15,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 16,
+              "experience": "Senior",
+              "salary": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "experience",
+          "accepted_candidates"
+        ],
+        "rows": [
+          [
+            "Senior",
+            16
+          ],
+          [
+            "Junior",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "window-prefix"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: rank 64 affordable seniors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "employee_id": 1,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 2,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 3,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 4,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 5,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 6,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 7,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 8,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 9,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 10,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 11,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 12,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 13,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 14,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 15,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 16,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 17,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 18,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 19,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 20,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 21,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 22,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 23,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 24,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 25,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 26,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 27,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 28,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 29,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 30,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 31,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 32,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 33,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 34,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 35,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 36,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 37,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 38,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 39,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 40,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 41,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 42,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 43,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 44,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 45,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 46,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 47,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 48,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 49,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 50,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 51,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 52,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 53,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 54,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 55,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 56,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 57,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 58,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 59,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 60,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 61,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 62,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 63,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 64,
+              "experience": "Senior",
+              "salary": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "experience",
+          "accepted_candidates"
+        ],
+        "rows": [
+          [
+            "Senior",
+            64
+          ],
+          [
+            "Junior",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "window-prefix"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: rank 256 affordable seniors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "employee_id": 1,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 2,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 3,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 4,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 5,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 6,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 7,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 8,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 9,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 10,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 11,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 12,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 13,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 14,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 15,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 16,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 17,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 18,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 19,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 20,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 21,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 22,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 23,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 24,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 25,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 26,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 27,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 28,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 29,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 30,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 31,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 32,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 33,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 34,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 35,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 36,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 37,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 38,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 39,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 40,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 41,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 42,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 43,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 44,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 45,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 46,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 47,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 48,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 49,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 50,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 51,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 52,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 53,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 54,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 55,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 56,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 57,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 58,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 59,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 60,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 61,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 62,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 63,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 64,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 65,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 66,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 67,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 68,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 69,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 70,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 71,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 72,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 73,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 74,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 75,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 76,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 77,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 78,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 79,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 80,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 81,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 82,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 83,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 84,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 85,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 86,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 87,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 88,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 89,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 90,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 91,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 92,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 93,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 94,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 95,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 96,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 97,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 98,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 99,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 100,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 101,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 102,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 103,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 104,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 105,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 106,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 107,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 108,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 109,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 110,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 111,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 112,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 113,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 114,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 115,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 116,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 117,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 118,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 119,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 120,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 121,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 122,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 123,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 124,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 125,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 126,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 127,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 128,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 129,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 130,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 131,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 132,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 133,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 134,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 135,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 136,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 137,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 138,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 139,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 140,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 141,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 142,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 143,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 144,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 145,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 146,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 147,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 148,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 149,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 150,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 151,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 152,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 153,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 154,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 155,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 156,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 157,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 158,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 159,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 160,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 161,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 162,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 163,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 164,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 165,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 166,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 167,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 168,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 169,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 170,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 171,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 172,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 173,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 174,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 175,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 176,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 177,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 178,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 179,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 180,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 181,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 182,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 183,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 184,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 185,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 186,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 187,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 188,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 189,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 190,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 191,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 192,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 193,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 194,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 195,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 196,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 197,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 198,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 199,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 200,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 201,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 202,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 203,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 204,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 205,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 206,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 207,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 208,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 209,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 210,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 211,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 212,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 213,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 214,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 215,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 216,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 217,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 218,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 219,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 220,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 221,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 222,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 223,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 224,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 225,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 226,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 227,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 228,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 229,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 230,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 231,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 232,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 233,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 234,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 235,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 236,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 237,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 238,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 239,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 240,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 241,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 242,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 243,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 244,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 245,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 246,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 247,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 248,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 249,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 250,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 251,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 252,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 253,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 254,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 255,
+              "experience": "Senior",
+              "salary": 1
+            },
+            {
+              "employee_id": 256,
+              "experience": "Senior",
+              "salary": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "experience",
+          "accepted_candidates"
+        ],
+        "rows": [
+          [
+            "Senior",
+            256
+          ],
+          [
+            "Junior",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "window-prefix"
+      ]
+    }
+  ]
+}

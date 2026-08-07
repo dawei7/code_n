@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1908",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(N)",
+  "summary": "The legal domain contains at most seven piles, which is too small for honest runtime scaling, while deciding the nim-sum has a worst-case linear input-inspection lower bound that the reference matches.",
+  "optimality": {
+    "symbol": "N",
+    "lower_bound": "Omega(N)",
+    "upper_bound": "O(N)",
+    "argument": "If an algorithm leaves any pile unread, two legal inputs can agree at every inspected position but choose different positive values at the unread position so that one total XOR is zero and the other is nonzero. The correct winner differs, so every pile may need inspection. The reference performs one constant-time XOR per pile."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An adversary can set the final unread legal pile value to make the complete XOR either zero or nonzero without changing any value the algorithm inspected."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The reference scans the list once, accumulates one integer XOR, and returns whether that value is nonzero."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover one and seven piles, values at both bounds, equal-pile cancellation, distinct zero-XOR configurations, and nonzero configurations."
+    }
+  ]
+}

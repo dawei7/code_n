@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1789",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Every membership row can determine an employee's selected department, so exact reporting requires a linear scan; one conditional hash aggregation pass matches that lower bound.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "Any membership row may be an employee's only row or the row marked as primary, so omitting it can change the output. An exact algorithm must therefore inspect all R rows. Grouped conditional aggregation processes each row once and maintains one state per employee, giving O(R) expected logical time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Changing or removing any uninspected row can change an implicit single-department result or the explicit primary department."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "One hash aggregation pass updates a conditional primary maximum and a fallback department maximum for exactly one employee group per source row."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover single implicit departments, explicit primaries before and after other rows, a primary smaller than nonprimary department IDs, interleaved employees, unsorted IDs, and mixed membership counts."
+    }
+  ]
+}

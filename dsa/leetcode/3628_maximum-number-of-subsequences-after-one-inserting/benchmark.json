@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3628",
+  "measurement_note": "Size S is s.length. Tiers 16, 64, and 256 span 16x and repeat LCTX so existing LCT counts and all three insertion gains remain active. The accepted prefix/suffix counting method is O(S); trying every insertion position and rescanning the resulting string is correct but O(S^2), completes every tier, and must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-pattern-16",
+      "name": "benchmark: evaluate 16 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "LCTXLCTXLCTXLCTX"
+      },
+      "expected": 30,
+      "tags": [
+        "benchmark",
+        "mixed-pattern",
+        "length-16"
+      ]
+    },
+    {
+      "id": "benchmark-pattern-64",
+      "name": "benchmark: evaluate 64 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "LCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTX"
+      },
+      "expected": 952,
+      "tags": [
+        "benchmark",
+        "mixed-pattern",
+        "length-64"
+      ]
+    },
+    {
+      "id": "benchmark-pattern-256",
+      "name": "benchmark: evaluate 256 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "LCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTXLCTX"
+      },
+      "expected": 47840,
+      "tags": [
+        "benchmark",
+        "mixed-pattern",
+        "length-256"
+      ]
+    }
+  ]
+}

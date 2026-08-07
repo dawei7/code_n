@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1737",
+  "measurement_note": "Size is N, the total input length. Frequency counting is O(N). A correct insertion-sort implementation completes all tiers on descending alphabet cycles and is rejected only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: identical descending distributions at N=64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "a": "zyxwvutsrqponmlkjihgfedcbazyxwvu",
+        "b": "zyxwvutsrqponmlkjihgfedcbazyxwvu"
+      },
+      "expected": 32,
+      "tags": ["benchmark", "scaling", "descending-cycles"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: identical descending distributions at N=256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "a": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedc",
+        "b": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedc"
+      },
+      "expected": 128,
+      "tags": ["benchmark", "scaling", "descending-cycles"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: descending distributions at N=998",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 998,
+      "input": {
+        "a": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkji",
+        "b": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkji"
+      },
+      "expected": 487,
+      "tags": ["benchmark", "scaling", "descending-cycles"]
+    }
+  ]
+}

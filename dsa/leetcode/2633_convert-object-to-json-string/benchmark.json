@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2633",
+  "measurement_note": "Size is n, the number of zero values in a flat array; the required JSON length is S = 2n + 1. The shared token buffer appends in linear total work. A correct serializer that replaces its token list with a spread copy for every token performs quadratic copying but completes every legal tier and returns the same compact summary.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: serialize 256 zero values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"value": null, "valuePlan": {"kind": "zeroArray", "count": 256}},
+      "expected": {"length": 513, "checksum": 23692},
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: serialize 1024 zero values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {"value": null, "valuePlan": {"kind": "zeroArray", "count": 1024}},
+      "expected": {"length": 2049, "checksum": 94348},
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: serialize 4096 zero values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {"value": null, "valuePlan": {"kind": "zeroArray", "count": 4096}},
+      "expected": {"length": 8193, "checksum": 376972},
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

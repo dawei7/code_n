@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3663",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(d)",
+  "summary": "Every legal positive 32-bit input has at most ten decimal digits, which is too small a domain for a stable runtime-scaling verdict between digit-counting strategies.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 10,
+    "unit": "decimal digits",
+    "source_constraint": "n is from 1 through 2^31 - 1, so its decimal representation has at most 10 digits"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs one Counter update for each of at most ten decimal characters, then compares at most ten present-digit entries using the exact frequency and digit tie-break key."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover one digit, all equal digits, all unique digits, digit zero, tied minima, frequency priority over digit value, a ten-digit power-of-ten form, and the maximum signed 32-bit input."
+    }
+  ]
+}

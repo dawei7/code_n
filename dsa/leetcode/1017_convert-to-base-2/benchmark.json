@@ -1,0 +1,5 @@
+{"challenge_id":"lc_1017","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: 7-digit base negative two power","kind":"benchmark","visible":false,"size":7,"input":{"n":64},"expected":"1000000","tags":["benchmark","scale-small","recomputed-quotients"]},
+{"id":"benchmark-scale-2","name":"benchmark: 15-digit base negative two power","kind":"benchmark","visible":false,"size":15,"input":{"n":16384},"expected":"100000000000000","tags":["benchmark","scale-medium","recomputed-quotients"]},
+{"id":"benchmark-scale-3","name":"benchmark: 29-digit base negative two power","kind":"benchmark","visible":false,"size":29,"input":{"n":268435456},"expected":"10000000000000000000000000000","tags":["benchmark","scale-large","recomputed-quotients"]}
+]}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3402",
+  "measurement_note": "Size is m, the number of rows, while the benchmark fixes n = 1. The legal 12-, 24-, and 48-row tiers span 4x. Every original value is zero, so the accepted direct-arithmetic method performs one constant-time adjustment per row, whereas a correct slower simulation applies every required unit increment separately.",
+  "cases": [
+    {
+      "id": "benchmark-flat-column-12",
+      "name": "benchmark: raise a flat 12-row column",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"grid": [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]},
+      "expected": 66,
+      "tags": ["benchmark", "scale-small", "unit-increment-simulation"]
+    },
+    {
+      "id": "benchmark-flat-column-24",
+      "name": "benchmark: raise a flat 24-row column",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"grid": [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]},
+      "expected": 276,
+      "tags": ["benchmark", "scale-medium", "unit-increment-simulation"]
+    },
+    {
+      "id": "benchmark-flat-column-48",
+      "name": "benchmark: raise a flat 48-row column",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {"grid": [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]},
+      "expected": 1128,
+      "tags": ["benchmark", "scale-large", "unit-increment-simulation"]
+    }
+  ]
+}

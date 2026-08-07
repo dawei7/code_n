@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_171",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The verified source contract caps every legal column title at seven characters, which is too small for an honest runtime-scaling verdict by input length.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 7,
+    "unit": "input title characters",
+    "source_constraint": "The source-fidelity-verified constraint is 1 <= columnTitle.length <= 7 with titles no larger than FXSHRXW."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The loop visits each of the n title characters once and performs one character-to-digit conversion plus one Horner update. It stores only the running total and current character, proving O(n) time and O(1) auxiliary space."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Black-box real-test execution verifies every existing ordinary check without inspecting its definition, including the app-local conversion and integer return path."
+    }
+  ]
+}
