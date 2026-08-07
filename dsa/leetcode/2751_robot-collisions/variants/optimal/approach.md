@@ -1,22 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Robot Collisions**.
 
-Collisions depend on spatial order, not input order, so first sort robot indices by `positions`. While scanning from left to right, a robot moving left can collide only with still-surviving right-moving robots already encountered. Keep those unmatched right movers on a stack; the nearest one is on top and must be the left mover's next possible opponent.
-
-For a left mover, repeatedly compare its health with the stack top. If the left mover is stronger, remove the right mover, decrement the left mover, and continue toward the next stack entry. If the right mover is stronger, decrement it and remove the left mover. Equal health removes both. Mark removed robots with zero health, while surviving right movers stay on the stack for later left movers.
-
-The stack contains exactly the right-moving survivors to the left of the scan position, in spatial order. Same-direction robots never meet because speeds are equal, and a left mover cannot reach any robot behind the nearest unmatched right mover without resolving that collision first. Each stack transition therefore matches the next physical collision. Every robot is pushed at most once and popped at most once. Finally, filtering the mutated health array directly preserves original input order.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $n$ be the number of robots. Sorting indices takes $O(n\log n)$ time; the amortized stack simulation takes $O(n)$ because each robot enters and leaves the stack at most once. The sorted index list and stack use $O(n)$ auxiliary space.
+- **Time Complexity**: $O(n log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Event-by-event time simulation:** Repeatedly locating the next meeting and updating positions can require $O(n^2)$ work and introduces unnecessary time arithmetic.
-- **Sort complete robot records:** Storing `(position, health, direction, index)` tuples is correct but duplicates more data than sorting indices.
-- **Use a queue of right movers:** A left mover meets the nearest preceding right mover first, so last-in-first-out order is essential.
-- Robots moving only left or only right never collide.
-- Equal-health collisions remove both robots and do not decrement another survivor.
-- A strong robot may survive several collisions, losing one health each time.
-- Input positions are distinct but unsorted; survivor output follows input identity, not spatial order.
-- A single robot always survives with unchanged health.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

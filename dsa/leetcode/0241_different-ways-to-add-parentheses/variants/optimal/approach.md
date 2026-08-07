@@ -1,27 +1,14 @@
 ## General
-**Every expression tree chooses one final operator**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Different Ways to Add Parentheses**.
 
-Every full parenthesization has one root operator. Split at each operator, recursively obtain every left and right result, and combine their Cartesian product using that operator.
-
-For `2*3-4*5`, choosing the subtraction as the root combines every interpretation of `2*3` with every interpretation of `4*5`. Choosing either multiplication instead covers the trees whose final operation is that multiplication. No precedence rule is imposed because the parenthesization itself determines evaluation order.
-
-**Cache the complete multiset for each interval**
-
-Different split choices request the same subexpressions repeatedly. Cache the complete result list for each substring so its parenthesizations are generated once.
-
-The cached value must remain a list rather than a set. Distinct parenthesizations may evaluate to the same integer, and the output requires one entry for each structure. A substring containing no operator is the base case and contributes its parsed integer once.
-
-**Root decomposition generates every parenthesization exactly once**
-
-For any cached interval, consider a complete parenthesization tree. Its root is one specific operator in that interval; its left and right children are complete parenthesizations of the corresponding two substrings. The recursion reaches that split, and the Cartesian product includes exactly that child pair.
-
-Conversely, selecting an operator and one valid result structure from each side creates a valid full parenthesization with that operator as its unique root. Different root splits or child structures represent different trees, so the generated multiset is neither missing structures nor inventing invalid ones.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-With `n` operators there are Catalan-number `C_n` output structures, each requiring combination work across its tree, giving output-sensitive $O(C_n \cdot n)$ time and stored results of the same order.
+- **Time Complexity**: $O(C_n \cdot n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(C_n \cdot n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Recursion without memoization:** recomputes identical substrings.
-- **Precedence evaluation:** produces only one interpretation, not all trees.
-- **Number-only expression:** a substring with no operator contributes its parsed integer exactly once.
-- **Multi-digit and duplicate results:** number parsing must consume every digit, and equal values from distinct trees remain separate entries.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

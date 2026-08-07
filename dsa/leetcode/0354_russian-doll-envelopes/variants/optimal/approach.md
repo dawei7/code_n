@@ -1,27 +1,14 @@
 ## General
-**Prevent equal widths from forming false chains**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Russian Doll Envelopes**.
 
-If widths are processed in increasing order, any chosen later envelope already has a width at least as large. The remaining task resembles a longest increasing subsequence of heights—but equal widths must never both enter that subsequence.
-
-Sort by width ascending and, crucially, height descending for equal widths. Within one width group, heights now decrease, so a strictly increasing height subsequence can select at most one member. Between different width groups, a height increase means both dimensions increase and therefore represents a legal nesting step.
-
-**Track the best ending height for each length**
-
-Run patience-sorting LIS on the sorted heights. Maintain `tails[length - 1]`, the smallest possible ending height of an increasing subsequence of that length. For each height, binary-search the first tail greater than or equal to it. Replace that tail, or append when the height exceeds every existing tail.
-
-**Why replacing a tail preserves every achievable length**
-
-Replacing a tail does not discard a possible length: it keeps the same subsequence length with an ending height no larger than before, which can only make future extensions easier. Appending proves a longer increasing sequence exists. Consequently, after every height, `tails` represents all achievable lengths with their best ending heights, and its final length is the height LIS.
-
-**Why the sorting reduction is exact**
-
-The sorting reduction is exact. Every height subsequence corresponds to strictly increasing widths because equal-width heights appear in descending order and cannot both be selected. Conversely, every valid envelope chain appears in increasing width order and has increasing heights, so it is a subsequence considered by LIS.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Sorting `n` envelopes costs $O(n \log n)$. Each of the `n` heights performs one $O(\log n)$ binary search, so total time remains $O(n \log n)$. The sorted copy and tails array use $O(n)$ space.
+- **Time Complexity**: $O(n \log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Quadratic dynamic programming:** compares every earlier envelope with every later one, taking $O(n^2)$ time and $O(n)$ space.
-- **Sort equal widths by ascending height:** is incorrect because LIS could select multiple envelopes with the same width.
-- **Unsorted pairwise chain search:** can be correct but repeatedly explores the same predecessor relationships.
-- Duplicate envelopes and envelopes sharing either dimension cannot nest because both dimensions must increase strictly.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

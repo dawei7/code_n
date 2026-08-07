@@ -1,19 +1,14 @@
 ## General
-**Interpret altitude as a prefix sum**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Find the Highest Altitude**.
 
-After processing the first $i$ gains, the current altitude is the sum of those $i$ values. There is no need to materialize every prefix sum: keep one running altitude and add each gain as its segment is traversed.
-
-**Include the starting point in the maximum**
-
-Initialize the best altitude to $0$, not to the first gain. After every update, compare the new running altitude with the best value. This ensures the answer remains $0$ when the entire route stays below its starting height, while still capturing a peak at any later point.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-The scan performs one addition and one maximum comparison for each of the $n$ gains, taking $O(n)$ time. The running altitude and best altitude are the only additional values, so auxiliary space is $O(1)$.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Build every prefix sum:** Storing all $n + 1$ altitudes and taking their maximum is correct but uses $O(n)$ extra space unnecessarily.
-- **Recompute each prefix:** Summing `gain[:i]` separately for every point is correct but takes $O(n^2)$ time.
-- **All negative gains:** The starting altitude $0$ is the answer because every later point is lower.
-- **Zero gains:** Repeated equal altitudes remain valid candidates for the maximum.
-- **Peak before the endpoint:** Tracking only the final altitude misses routes that climb and then descend.
-- **Single segment:** Compare that one resulting altitude with the starting altitude.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

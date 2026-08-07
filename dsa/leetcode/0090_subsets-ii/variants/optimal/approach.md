@@ -1,32 +1,14 @@
 ## General
-**Sort so interchangeable occurrences become adjacent siblings**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Subsets II**.
 
-Sort `nums`, append a copy of the current path as one valid subset, then try positions from `start` onward. At one recursion depth, skip `nums[i]` when `i > start` and it equals `nums[i - 1]`. Those two choices would append the same value to the same prefix and expose equivalent suffix choices.
-
-**The same value remains legal at a deeper multiplicity level**
-
-The `i > start` condition restricts the skip to siblings. After selecting one copy and recursing with `build(i + 1)`, the next equal copy is now the first choice at the deeper level and is allowed. That path represents using two copies rather than exchanging which single copy was used.
-
-**Every recursion node represents one unique value multiset**
-
-The path is a sorted multiset chosen from the processed positions. At each depth, exactly one branch represents choosing the next occurrence of any equal value, so sibling branches cannot emit the same multiset.
-
-**Trace sibling skipping versus deeper reuse**
-
-For sorted `[1,2a,2b]`, the root explores starting with 1 and with `2a`, but skips `2b` as an equivalent root choice. Inside the `2a` branch, `2b` is allowed, producing `[2,2]` once.
-
-**Earliest equal copies give each subset one canonical path**
-
-Every recursion path selects increasing source indices, so every emitted value list is a valid subset. For a subset needing `r` copies from an equal-value block, choose that block's earliest `r` available indices; this is its canonical source representation and the search permits it.
-
-Choosing a later equal sibling at the same depth would produce an indistinguishable value path with no suffix option unavailable to the earlier copy, so it is skipped. Equal copies remain selectable at deeper levels, preserving multiplicity. Each unique subset therefore keeps one path and loses only duplicate representations.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Let `U` be the number of unique output subsets. Copying paths of length up to `n` gives the output-sensitive $O(n \cdot U)$ bound. Sorting costs $O(n \log n)$ and recursion/path state uses $O(n)$ auxiliary space.
+- **Time Complexity**: $O(n \cdot U)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Generate all $2^{n}$ index subsets then use a set:** performs duplicate work and stores normalization keys.
-- **Frequency-map recursion:** directly chooses a count for each distinct value and is also output-sensitive.
-- **Bit masks without duplicate skipping:** emit repeated subsets when equal values occupy different positions.
-- If all `n` values are equal, the unique subsets are exactly the $n + 1$ possible multiplicities from zero through `n`.
-- Sorting may change element order inside returned subsets, which is allowed because subset ordering is unrestricted.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,40 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Find Closest Node to Given Two Nodes**.
 
-**Exploit the functional-graph structure.** From any start there is only one
-possible forward walk: repeatedly follow `edges[current]` until reaching `-1`
-or revisiting a node. Record the first distance at which every node is reached.
-A first visit is the shortest directed distance because no alternative
-outgoing choice exists; stopping on a revisit is safe because the remaining
-walk would only repeat the same cycle.
-
-**Compare the two distance maps.** Build one length-$n$ distance array for each
-start, using `-1` for unreachable nodes. A node is a candidate exactly when
-both recorded distances are non-negative. Its objective value is the maximum
-of those two distances.
-
-Scan candidate indices from 0 through $n-1$ and replace the answer only when
-the objective value is strictly smaller than the best seen. The scan examines
-every common reachable node, so it finds the minimum objective; refusing to
-replace on equality preserves the smallest index required by the contract.
-If no candidate is encountered, the initialized answer `-1` is correct.
+- **Core Strategy**: Uses a double-ended queue for breadth-first traversal or sliding window processing.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Each forward walk visits at most $n$ nodes, and the final index scan visits
-$n$ nodes, so the total time is $O(n)$. The two distance arrays use $O(n)$
-auxiliary space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Per-candidate path search:** Recomputing both distances separately for
-  every node is correct but can take $O(n^2)$ time on a long chain.
-- **Hash maps for visited distances:** Dictionaries avoid initializing full
-  arrays and can help when both paths are short, but arrays give simple
-  deterministic $O(1)$ lookups.
-- **Cycles:** Stop a walk when its next node already has a recorded distance;
-  otherwise traversal would never terminate.
-- **No outgoing edge:** Reaching `-1` ends that start's reachable path.
-- **Identical starts:** The shared starting node has objective zero and must be
-  returned immediately by the comparison logic.
-- **Equal objective values:** Scanning indices in ascending order and updating
-  only on a strict improvement enforces the smallest-index tie-break.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

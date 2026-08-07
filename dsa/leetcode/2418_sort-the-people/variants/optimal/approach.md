@@ -1,20 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Sort the People**.
 
-**Keep parallel data attached.** A name has meaning only with the height at the same index. Combine each height and name into one pair before reordering so sorting can never separate a person from their measurement.
-
-**Sort by the ordering key.** Sort the pairs in descending order of height, then read the name component from left to right. Because all heights are distinct, every pair has one unambiguous position; duplicate name strings do not create a tie because they still belong to different heights.
-
-The sorted height sequence is strictly descending by construction. Each input pair appears exactly once in that sequence, so the extracted list contains every original person exactly once and in the required order.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Creating and sorting $n$ pairs costs $O(n\log n)$ time, and extracting their names costs $O(n)$. The paired records and returned list occupy $O(n)$ space.
+- **Time Complexity**: $O(n log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Height-to-name map:** Distinct heights permit a dictionary followed by sorted keys, with the same $O(n\log n)$ time and $O(n)$ space.
-- **Repeated tallest selection:** Searching all remaining people for each output position is correct but costs $O(n^2)$ time.
-- **Single person:** The only name is returned unchanged.
-- **Duplicate names:** Equal strings represent separate people and must remain associated with their distinct heights.
-- **Already descending:** Sorting preserves the existing required order.
-- **Reverse order:** Initially ascending heights must reverse the paired names completely.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

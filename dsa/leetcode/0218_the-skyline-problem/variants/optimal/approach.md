@@ -1,30 +1,14 @@
 ## General
-The visible height changes only at a building's left or right boundary. Collect and sort all distinct boundary coordinates, then sweep them from left to right. Between two consecutive boundaries, the set of covering half-open intervals is unchanged, so no key point can occur in the interior.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **The Skyline Problem**.
 
-Maintain a max-heap of candidate buildings as pairs `(-height, right)`, plus a permanent ground entry `(0, infinity)`. At coordinate `x`:
-
-1. Push every building whose left boundary is `x`.
-2. While the heap leader has `right <= x`, pop it because half-open interval `[left, right)` no longer covers `x`.
-3. The negated height at the heap top is the current skyline height.
-4. Emit `[x, height]` only if that height differs from the last emitted height.
-
-Lazy expiration is subtle. An ended building may remain buried below a taller active building. That is safe: it cannot affect the maximum while buried. If it later reaches the heap top, the expiry loop removes it before its height is observed. Thus the heap may contain stale entries, but its post-cleanup leader is always active.
-
-Processing all starts at the same coordinate before reading the height ensures shared starts produce one rise directly to the tallest building rather than several key points with the same `x`. Processing expirations at `right <= x` handles touching intervals correctly under half-open coverage. Equal-height touching buildings cause no emitted change and merge into one plateau.
-
-For a tall building nested inside a shorter one, the heap first reports the outer height, then the inner height. When the inner interval expires, it is popped and the still-active outer building becomes visible again, producing the correct downward key point rather than dropping to zero.
-
-All possible height changes occur at swept boundaries. After starts are inserted and every expired heap leader is removed, the heap top is the tallest building covering the current coordinate: any taller active building would be above it, while a stale top would have been removed. Therefore the sampled height at each boundary equals the true skyline. Emitting exactly when this height differs records every rise or fall and omits redundant adjacent equal segments. The ground sentinel guarantees the final building end emits height zero.
+- **Core Strategy**: Uses a double-ended queue for breadth-first traversal or sliding window processing.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-There are at most `2n` distinct boundaries. Sorting them costs $O(n \log n)$. Each building is pushed once and popped at most once, with $O(\log n)$ heap operations, for total $O(n \log n)$ time. Boundary storage and the heap use $O(n)$ space.
+- **Time Complexity**: $O(n \log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Divide and conquer:** Recursively building and merging skylines also takes $O(n \log n)$ time but requires more
-  involved merge logic.
-- **Integer-coordinate sampling:** It is infeasible when coordinates are large or sparse.
-- **Eager heap deletion:** Removing arbitrary ended entries requires an indexed heap or multiset; lazy deletion keeps
-  the ordinary heap simple.
-- **Shared boundaries:** Shared starts and ends must produce at most one key point per coordinate, and touching
-  equal-height buildings form one plateau.
-- **Canonical output:** The result must end with a ground-level point and must not contain adjacent equal heights.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

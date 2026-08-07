@@ -1,35 +1,14 @@
 ## General
-**Compute the cost of every salary prefix.** Partition candidates by
-`experience`, order each partition by `salary`, and use a windowed cumulative
-sum. A candidate's `running_salary` is therefore the exact cost of hiring that
-candidate together with every cheaper candidate from the same category.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **The Number of Seniors and Juniors to Join the Company II**.
 
-**Reserve the senior spending before filtering juniors.** Among senior rows
-whose cumulative salary does not exceed $70{,}000$, the maximum cumulative
-value is the amount committed to seniors; use zero when no senior qualifies.
-Return all such senior rows. A junior qualifies when its own cumulative salary
-does not exceed `70000 - senior_spending`.
-
-Because salaries are unique, ascending order defines one unambiguous prefix
-per category. The company rules hire exactly the longest affordable senior
-prefix, then the longest junior prefix under the remainder. The two cumulative
-conditions select precisely those prefixes, so every returned ID is hired and
-every omitted candidate is either beyond the first unaffordable prefix or
-belongs to no affordable prefix.
+- **Core Strategy**: Uses Common Table Expressions (CTEs) and window functions to structure table aggregations.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Here $R$ is the number of candidate rows. Partitioned ordering for the window
-sum takes $O(R\log R)$ time; the remaining aggregation and filtering are
-linear. The ranked intermediate relation contains $R$ rows and uses $O(R)$
-space.
+- **Time Complexity**: $O(R\log R)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Correlated prefix sums:** Recomputing the total of every cheaper candidate
-  for each row is correct but can require $O(R^2)$ row comparisons.
-- **Procedural salary loop:** Repeatedly querying the next cheapest candidate
-  mirrors the story but introduces unnecessary iterative database round trips.
-- If no senior fits, senior spending is zero and juniors use the entire
-  budget.
-- If seniors spend exactly $70{,}000$, no junior can be returned.
-- The result may be empty when neither category has an affordable first
-  candidate.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

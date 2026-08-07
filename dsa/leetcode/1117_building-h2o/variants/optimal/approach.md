@@ -1,18 +1,14 @@
 ## General
-**Reserve exactly one molecule's atom permits:** Initialize a hydrogen semaphore with two permits and an oxygen semaphore with one. A thread acquires its element's permit before joining a molecule, so no generation can contain a third hydrogen or second oxygen.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Building H2O**.
 
-**Wait for a complete three-party group:** After acquiring a permit, every thread waits at one reusable barrier with three parties. No callback runs until two hydrogen threads and one oxygen thread have all arrived, because those are the only threads able to hold the three available permits.
-
-**Release permits only after bonding:** Once the barrier opens, each thread invokes its callback and then releases its permit. A later generation cannot acquire all two hydrogen permits and the oxygen permit until all three callbacks from the current generation have returned. Therefore no next-generation barrier can open early. Each emitted block is a complete `HHO` multiset, and generations cannot overlap.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-For $m$ molecules, $3m$ threads each perform constant semaphore, barrier, and callback work, giving $O(m)$ total work. The fixed semaphores and one three-party reusable barrier use $O(1)$ shared state. Blocking duration depends on arrivals but adds no polling iterations.
+- **Time Complexity**: $O(m)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Condition variable with waiting counts:** It can admit two hydrogens and one oxygen per generation but requires careful generation state and wake-up predicates.
-- **Semaphores without a barrier:** Capacity alone limits simultaneous element counts but may let callbacks run before a complete molecule has arrived.
-- **Barrier without element permits:** Any three threads could pass, including three hydrogens, violating the required ratio.
-- **Release permits before callbacks finish:** That can allow the next molecule to begin bonding before the current one completes.
-- **Oxygen arrives first:** It holds the oxygen permit and waits at the barrier until two hydrogens arrive.
-- **Many hydrogens arrive first:** Only two reach the barrier; all others block on the hydrogen semaphore.
-- **Internal output order:** `HHO`, `HOH`, and `OHH` are equally valid for one molecule.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

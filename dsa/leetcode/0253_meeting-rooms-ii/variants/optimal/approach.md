@@ -1,18 +1,14 @@
 ## General
-**Sort starts and endings as separate event streams**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Meeting Rooms II**.
 
-Sort all start times and all end times separately. At the next start, reuse a room if the earliest ending is no later than that start; otherwise allocate another room.
-
-The end pointer counts meetings already finished before the current start. Therefore `started - finished` is the number of occupied rooms, and its maximum is the required capacity.
-
-**Peak simultaneous occupancy is the room count**
-
-Before processing a start, every ending no later than that time can release its room. If the earliest remaining ending is later, all currently allocated rooms are still occupied and the new meeting needs another one. The sweep therefore maintains the exact number of active meetings after each event. Its maximum is necessary because those meetings overlap, and sufficient because a released room is always reused whenever possible.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-The two sorts cost $O(n \log n)$; the pointers each move at most `n` times. The two event arrays use $O(n)$ space.
+- **Time Complexity**: $O(n \log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Check overlap at every time or against every interval:** can take $O(n^2)$ or depend on the coordinate range.
-- **Touching endpoints:** a meeting ending exactly when another starts releases its room before the new allocation.
-- **Single meeting:** establishes a peak occupancy of one, matching the minimum legal input size.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

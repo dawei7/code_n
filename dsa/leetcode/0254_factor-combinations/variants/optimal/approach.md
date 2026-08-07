@@ -1,18 +1,14 @@
 ## General
-**Canonical order removes permutation duplicates**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Factor Combinations**.
 
-Backtrack with a remaining product and a minimum allowed factor. Try divisors only through the square root of the remainder. For every divisor `f`, emit the completed pair `f, remainder / f`, then recurse so that the quotient may be split further.
-
-The current path is nondecreasing, every chosen value divides the previous remainder, and `product(path) * remainder = n`. Passing `f` as the next minimum preserves canonical order.
-
-**The smallest remaining factor is always discoverable**
-
-In any nontrivial factorization of `remainder`, its smallest factor cannot exceed `sqrt(remainder)`. The divisor loop therefore reaches the first factor of every valid continuation. Emitting its paired quotient covers the two-factor completion; recursing covers decompositions of that quotient. Since factors may only be appended in nondecreasing order, every factor multiset follows one canonical path and cannot reappear as a permutation.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Divisor exploration is output-sensitive, with a top-level $O(\sqrt{n})$ scan and work proportional to generated combinations. Recursion depth is at most $O(\log n)$ because every selected factor is at least two, excluding returned output storage.
+- **Time Complexity**: $O(\sqrt{n} + output)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(\log n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Generate ordered factor sequences:** repeats permutations and requires expensive deduplication.
-- **Prime or tiny inputs:** prime numbers and values below four have no valid nontrivial combination.
-- **Repeated factors:** remain valid because recursion passes the chosen factor, rather than the next larger value, as its minimum.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

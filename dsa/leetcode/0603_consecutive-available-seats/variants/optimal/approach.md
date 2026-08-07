@@ -1,26 +1,14 @@
 ## General
-**Expose each row's immediate neighbors**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Consecutive Available Seats**.
 
-Order by `seat_id` and use `LAG` and `LEAD` to attach the preceding and following identifiers and availability flags to every seat.
-
-**Require a truly consecutive free neighbor**
-
-Keep the current row only when it is free and either the previous row is free with identifier `seat_id - 1`, or the next row is free with identifier `seat_id + 1`. Checking identifiers makes the logic robust even if a data set has a gap.
-
-**Why every qualifying seat is returned**
-
-A seat belongs to a consecutive available pair exactly when one of its numeric neighbors exists and is free. The two window comparisons test those two possibilities directly. Runs longer than two satisfy the condition at their endpoints through one neighbor and at interior seats through both, so every run member appears exactly once.
+- **Core Strategy**: Employs relational JOIN operations and grouped aggregations to evaluate target conditions.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-For `n` seats, the window ordering generally costs $O(n \log n)$ time and $O(n)$ working space. Filtering and final output ordering fit within that bound.
+- **Time Complexity**: $O(n \log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Self-join adjacent identifiers:** join free seats on an absolute identifier difference of one and union both endpoints; it is correct but requires deduplication.
-- **Windowed three-row sum:** works when seat identifiers are guaranteed gapless, but explicit identifier checks are more robust.
-- **Correlated neighbor existence:** is direct but may rescan the table for every seat and take $O(n^2)$ time without an index.
-- **Isolated free seat:** is excluded.
-- **Exactly two free seats:** both are returned.
-- **Long free run:** every seat in the run is returned.
-- **Occupied seat between free seats:** breaks adjacency.
-- **Identifier gap:** does not create a consecutive pair.
-- **Output order:** must be ascending by seat identifier.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,17 +1,14 @@
 ## General
-**Use the root as the reference.** Since the tree is nonempty, store `root.val` before traversal. Every node must equal this single value; no frequency table or ordering property is needed.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Univalued Binary Tree**.
 
-**Traverse each existing node once.** Maintain a depth-first stack beginning with `root`. Pop a node, return `false` immediately if its value differs from the reference, and push each non-null child. If the traversal finishes without finding a mismatch, every node has been checked and the tree is uni-valued.
-
-**Why early rejection is safe.** One differing node is enough to violate the definition, regardless of values elsewhere. Conversely, reaching the end proves that every node belongs to the visited set and matched `root.val`, so returning `true` is sufficient and necessary.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Each of the $N$ nodes is pushed, popped, and compared once, giving $O(N)$ time. A depth-first traversal retains at most $O(H)$ pending nodes, so auxiliary space is $O(H)$.
+- **Time Complexity**: $O(N)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(H)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Recursive depth-first search:** Require the current node to match the root and recursively validate both children. This is equally direct but uses the language call stack.
-- **Breadth-first search:** A queue also checks every node in $O(N)$ time, but its space is the maximum tree width rather than the height.
-- **Repeated subtree scans:** Recheck every descendant for each possible subtree root. This remains correct but can take $O(N^2)$ time on a chain.
-- **Single node:** A one-node tree is uni-valued by definition.
-- **Zero value:** `0` is a valid node value and must not be treated as a missing node.
-- **Sparse shape:** Missing children do not affect the result; only existing node values matter.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

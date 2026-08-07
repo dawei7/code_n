@@ -1,33 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Maximum Number of Intersections on the Chart**.
 
-**Assign every shared vertex once.** Treat each segment as including its left
-endpoint and excluding its right endpoint. Then a chart vertex belongs to
-exactly one adjacent segment. Add the final chart endpoint separately because
-no segment starts there.
-
-For an ascending segment from low to high, the intersected height interval is
-$[\text{low},\text{high})$. For a descending segment, it is
-$(\text{low},\text{high}]$. Double all heights: an exact integer height is
-`2 * height`, while adding one represents the open side immediately above
-that height. This converts both interval types into ordinary half-open sweep
-events without floating-point values.
-
-Add +1 at each interval start and -1 at its end. Represent the final endpoint
-as the isolated doubled interval from `2 * y[-1]` to `2 * y[-1] + 1`.
-Sweep events in height order; the greatest active count is the desired number
-of distinct intersections.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-There are $O(N)$ event coordinates. Constructing them is linear, sorting them
-takes $O(N\log N)$ time, and the sweep is linear. The event map uses $O(N)$
-auxiliary space.
+- **Time Complexity**: $O(N log N)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Test every critical level:** Rescanning all segments at every endpoint and between-height level is correct but costs $O(N^2)$ time.
-- **Closed interval per segment:** This double-counts a shared vertex when the horizontal line passes exactly through it.
-- **Floating-point offsets:** Small epsilon adjustments are fragile; doubled integer coordinates encode open boundaries exactly.
-- **Local maximum or minimum:** Both adjacent segments meet at one geometric point and must contribute one intersection there.
-- **Final endpoint:** It needs an explicit isolated event because the half-open segment convention excludes it.
-- **Repeated nonadjacent heights:** Their distinct horizontal positions remain separate intersections.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

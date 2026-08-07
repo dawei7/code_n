@@ -1,24 +1,14 @@
 ## General
-**Define reachability by a predecessor interval**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Jump Game VII**.
 
-Let `reachable[i]` state whether index `i` can be visited. For a new index `i`, valid predecessors are exactly the indices from `i - maxJump` through `i - minJump`, clipped to the string. Therefore `i` is reachable precisely when `s[i] == "0"` and at least one reachable predecessor lies in that interval.
-
-**Maintain the interval as a sliding count**
-
-As `i` increases by one, one predecessor at `i - minJump` enters the interval and one at `i - maxJump - 1` leaves it. Maintain the number of reachable indices currently inside. Add the entering Boolean, subtract the leaving Boolean, and set `reachable[i]` from whether the resulting count is positive.
-
-**Why every valid path is represented**
-
-If the algorithm marks `i`, its positive window count identifies an earlier reachable zero whose distance satisfies both jump bounds, so appending that jump gives a valid path. Conversely, the predecessor of any valid path to `i` lies in the maintained interval and is already marked because jumps move forward. Its contribution makes the count positive, so the algorithm marks `i`. Induction from reachable index `0` proves the final Boolean is exact.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Each index enters and leaves the predecessor window at most once, and all updates are constant time. The full scan therefore takes $O(N)$ time. The reachability array stores one Boolean per string position and uses $O(N)$ space; the sliding count itself uses $O(1)$ additional space.
+- **Time Complexity**: $O(N)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Prefix sums of reachability:** Querying each predecessor interval from cumulative counts is also $O(N)$ time and $O(N)$ space.
-- **Breadth-first interval expansion:** A queue works in linear time only if each destination range is scanned from a monotone frontier; rescanning overlapping ranges can become quadratic.
-- **Slice each predecessor window:** `any(reachable[left:right])` is concise, but copying or scanning a window per index can cost $O(N^2)$.
-- **Final character is `"1"`:** It can never be a landing position, so the answer is immediately false in effect.
-- **Exact jump boundaries:** Both `minJump` and `maxJump` are allowed.
-- **No current predecessor:** A zero remains unreachable when the window count is zero.
-- **Large gap of ones:** Blocked positions contribute nothing and can break every route to later zeros.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

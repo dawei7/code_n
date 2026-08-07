@@ -1,24 +1,14 @@
 ## General
-**Reduce the multiset to single values**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Biggest Single Number**.
 
-Group rows by `num` and retain only groups whose `COUNT(*)` equals one. Each surviving group represents exactly one value that occurs once in the complete table.
-
-**Select the greatest survivor**
-
-Apply an outer `MAX(num)` to the filtered groups. Since every eligible value appears once in that derived relation, the maximum is precisely the greatest single number.
-
-**Preserve the empty-result contract**
-
-An aggregate without `GROUP BY` always emits one row. Therefore, when the filtered relation is empty, `MAX` yields null rather than omitting the result row. This distinguishes the required answer from simply sorting the filtered groups and taking a row.
+- **Core Strategy**: Executes relational projection, filtering, and aggregation queries.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-For `R` rows, grouping distinct values takes $O(R \log R)$ time in the comparison-based database model and $O(R)$ execution space in the worst case where every value is distinct. The outer maximum scans at most `R` groups and does not increase those bounds.
+- **Time Complexity**: $O(R \log R)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Window frequency:** attach `COUNT(*) OVER (PARTITION BY num)` to each row, filter frequency one, and take `MAX`; it has the same asymptotic bound and retains row-level data longer.
-- **Correlated frequency count:** count matching rows separately for every input row; it is correct but can take $O(R^2)$ time.
-- **Order and limit:** sorting single groups descending with `LIMIT 1` returns no row when no single exists unless another outer aggregate or null-producing wrapper is added.
-- Negative values are compared normally; the greatest may still be negative.
-- Zero is a valid single number.
-- A value appearing two or more times is excluded regardless of how large it is.
-- When exactly one row exists, its value is the answer.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

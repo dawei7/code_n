@@ -1,18 +1,14 @@
 ## General
-**Attach product names to purchases:** Join `Sales` with `Product` on `product_id`. Filtering by numeric identifiers alone would assume which rows represent `S8` and `iPhone`; the contract identifies them by `product_name`.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Sales Analysis II**.
 
-**Summarize both conditions per buyer:** Group the joined rows by `buyer_id`. A conditional sum counts rows named `S8`, and another counts rows named `iPhone`. Keep a group only when the first count is positive and the second equals zero.
-
-Every retained buyer has witnessed at least one `S8` row and no `iPhone` row by the two `HAVING` predicates. Conversely, any buyer satisfying the requested purchase history has a positive first count and zero second count, so that buyer's group is retained exactly once. Other product names contribute zero to both counts and cannot change eligibility.
+- **Core Strategy**: Employs relational JOIN operations and grouped aggregations to evaluate target conditions.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-A hash join can build a $P$-row product lookup and process $R$ sales in expected $O(P+R)$ time. Sort-based grouping and deterministic output ordering can add $O(R\log R)$ time. Join, grouping, and sort state use up to $O(P+R)$ execution space; indexes and the optimizer may choose another plan.
+- **Time Complexity**: $O(P+R\log R)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(P+R)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Set difference:** Select distinct `S8` buyers and subtract distinct `iPhone` buyers. It directly models the condition but may require two scans or engine-specific set syntax.
-- **Correlated anti-subquery:** Start with `S8` purchases and test separately for an `iPhone` purchase per buyer. It is correct but can repeatedly rescan sales without a suitable index.
-- **Filter out iPhone rows before grouping:** It is incorrect because deleting the disqualifying evidence can make an iPhone buyer appear eligible.
-- **Several S8 purchases:** Return the buyer once, not once per sale.
-- **S8 plus other products:** The buyer remains eligible unless one of those products is `iPhone`.
-- **iPhone without S8:** The buyer does not qualify.
-- **Product identifiers:** Resolve names through `Product`; do not assume fixed IDs for the named products.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,21 +1,14 @@
 ## General
-**Reuse the consumed prefix as the ancestor stack**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Verify Preorder Sequence in Binary Search Tree**.
 
-Maintain `top`, the last occupied position of a decreasing stack stored inside the already consumed prefix of `preorder`. A new value greater than the stack top closes left subtrees; pop until the active ancestor path can accept it, and let the last popped value become the strict lower bound for all later values.
-
-After each value, `preorder[0:top + 1]` represents the unfinished root-to-current path, and every future value must exceed `lower_bound` because traversal has already entered that ancestor's right subtree.
-
-**Entering a right subtree creates a permanent lower bound**
-
-Whenever `x` exceeds an ancestor on the stack, preorder has finished that ancestor's left subtree and entered its right subtree. Any later value below the last popped ancestor would violate BST ordering. Otherwise, popping exactly the smaller ancestors identifies the valid active path, and writing `x` at the next stack position preserves the decreasing-stack invariant.
-
-Each input position is read before that position can be overwritten. Stack writes affect only the consumed prefix, so reusing the array does not change any future value that remains to be validated.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Each value is pushed once and popped at most once, giving $O(n)$ time. The input array itself stores the monotonic stack, while `top` and `lower_bound` use $O(1)$ auxiliary space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Separate monotonic stack:** preserves the input and uses the same recurrence, but requires $O(n)$ auxiliary space in the worst case.
-- **Recursively partition each range:** mirrors the tree definition but repeatedly scans skewed ranges and can take $O(n^2)$.
-- **Input mutation:** is the tradeoff that achieves the source follow-up's constant-extra-space target.
-- **Singleton sequence:** is always a valid preorder under the minimum legal input size.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

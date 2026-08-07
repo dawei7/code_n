@@ -1,27 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Manager of the Largest Department**.
 
-**Measure each department.** Group all employee rows by `dep_id`; `COUNT(*)`
-is the department's workforce because every row represents one employee.
-Apply `DENSE_RANK` to those grouped counts in descending order. Every
-department tied for the maximum receives rank `1`.
-
-**Recover the manager identity.** Join the rank-one department IDs back to
-`Employees` and retain the row whose `position` is `"Manager"`. Project
-`emp_name` under the required `manager_name` alias, then sort by department ID.
-The grouped rank includes all and only maximum-size departments, and the join
-selects the manager belonging to each, which proves the result condition.
+- **Core Strategy**: Uses Common Table Expressions (CTEs) and window functions to structure table aggregations.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $R$ be the number of employees. Grouping, ranking, and ordered output take
-$O(R\log R)$ time in the general comparison-based model. Group and window
-state can use $O(R)$ auxiliary space.
+- **Time Complexity**: $O(R log R)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Maximum-size CTE:** Aggregate sizes, compute their maximum, and join equal sizes; this is equivalent but uses another aggregate stage.
-- **Correlated department count:** Counting a department separately for every manager is correct but may rescan the table quadratically.
-- **Tied largest departments:** A tie-preserving rank or equality with the maximum is required; `ROW_NUMBER` would discard valid departments.
-- **Position filtering:** Count every employee first, then choose the `Manager` row; filtering managers before counting would make all departments appear equal.
-- **Single department:** It is necessarily the largest and its manager is returned.
-- **Ordering:** Sort by numeric `dep_id` ascending after resolving ties.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

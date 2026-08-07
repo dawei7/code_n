@@ -1,18 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **The Employee That Worked on the Longest Task**.
 
-Let $m=\lvert\texttt{logs}\rvert$. The end of the preceding task is exactly the start of the current task. Maintain `previous_end`, initially zero, and compute each duration as `end_time - previous_end`.
-
-Also retain the greatest duration seen and its selected employee. Replace that selection when the current duration is larger, or when the duration ties and the current employee identifier is smaller. This pairwise rule preserves exactly the best task among every prefix of the log. After the final record, the retained employee therefore satisfies both the maximum-duration requirement and its tie break.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Every one of the $m$ log entries is examined once, giving $O(m)$ time. The previous end time, best duration, and selected identifier use $O(1)$ auxiliary space.
+- **Time Complexity**: $O(m)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Build and sort all durations:** Sorting by descending duration and ascending employee produces the same result but costs $O(m\log m)$ time and $O(m)$ space.
-- **Compare every task with every other task:** Directly proving each candidate is best takes $O(m^2)$ time.
-- **Single log:** Its duration is its leave time because it starts at zero.
-- **Duration tie:** Compare employee identifiers, not task positions.
-- **Repeated employee:** The same employee may appear in nonconsecutive records; the task duration, rather than accumulated employee time, is being maximized.
-- **Employee count:** `n` defines valid identifiers but does not affect duration calculation.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,18 +1,14 @@
 ## General
-**Sort starts so one adjacent conflict is enough**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Meeting Rooms**.
 
-Sort by start time. Any overlap must then appear between a meeting and its immediate predecessor; there is no need to compare every pair.
-
-Before inspecting index `i`, all meetings through $i - 1$ are mutually compatible. The invariant continues exactly when `intervals[i].start >= intervals[i - 1].end`.
-
-**A compatible prefix needs only its last meeting checked**
-
-If the next meeting overlaps the previous sorted meeting, the schedule is immediately impossible. Otherwise, assume the earlier prefix was compatible. Its meetings finish in the same nonoverlapping sequence before the previous meeting starts, and the previous meeting finishes no later than the new start. The extended prefix is therefore also compatible. Induction makes the adjacent checks sufficient for the entire schedule.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Sorting costs $O(n \log n)$ and the scan costs $O(n)$. Python's in-place list sort may use $O(n)$ temporary workspace in the worst case.
+- **Time Complexity**: $O(n \log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Compare every pair:** is correct but takes $O(n^2)$ time.
-- **Empty or singleton schedules:** are valid because no pair can overlap.
-- **Touching endpoints:** are compatible, so equality between the previous end and next start must be accepted.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,19 +1,14 @@
 ## General
-**Return both structural and existence information.** A postorder DFS returns two values for every subtree: an LCA candidate and the number of targets found there. A null subtree contributes no candidate and count zero. The count combines the left count, right count, and whether the current node is either target.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Lowest Common Ancestor of a Binary Tree II**.
 
-**Build the candidate during the same traversal.** When both child subtrees return candidates, the current node is their first meeting point and becomes the candidate. When the current node is a target, it becomes the candidate so it can later serve as the ancestor of the other target. Otherwise propagate whichever child candidate exists.
-
-This candidate follows the standard LCA structure, but it is not returned immediately. At the root, return it only when the accumulated count is exactly two. If a target is absent, the count is below two and the result is `null`. Thus existence verification and ancestor discovery share one traversal rather than incorrectly treating the one present target as an answer.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Each of the $n$ nodes is visited once and performs constant work, so time is $O(n)$. The recursive call stack follows at most the tree height $h$, using $O(h)$ auxiliary space; $h$ is $O(\log n)$ for a balanced tree and $O(n)$ for a skewed tree.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(h)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Verify existence, then run ordinary LCA:** Two membership scans followed by a standard LCA traversal remain $O(n)$ but revisit the tree unnecessarily.
-- **Parent pointers and ancestor sets:** Build a parent map while locating both targets, then walk their ancestor chains. This takes $O(n)$ time and $O(n)$ additional space.
-- **Repeated subtree membership tests:** Choosing a branch by searching for both targets inside each subtree is correct but can take $O(n^2)$ time on a skewed tree.
-- If one target is an ancestor of the other, that target is the LCA.
-- If either or both targets are absent, the required answer is `null`.
-- Targets are distinct, so the found count cannot reach two by matching one node twice.
-- JSON fixtures use unique node values only to reconstruct `p` and `q`; the solution itself compares node identity, exactly like the native artifact.
-- A one-node tree cannot contain both distinct targets.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

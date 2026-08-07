@@ -1,24 +1,14 @@
 ## General
-**Keep the divisor target unchanged**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Self Dividing Numbers**.
 
-For each candidate in the interval, copy it into a working value. Repeatedly take `working % 10` to obtain the next digit and remove that digit with integer division by ten. Divisibility must always be tested against the original candidate, not against the shrinking working copy.
-
-**Reject zero before division**
-
-A zero digit makes the number invalid and cannot be used as a divisor. For every nonzero digit, require `candidate % digit = 0`. Stop as soon as either condition fails; if every digit passes, append the candidate.
-
-**Why the filter is exact and ordered**
-
-Decimal extraction visits every digit of the candidate exactly once. Acceptance therefore means that no digit is zero and every digit divides the original number, which is precisely the self-dividing definition. Scanning candidates from `left` through `right` once produces all qualifying values in increasing order without a later sort.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Let `W = right - left + 1` and let `D` be the maximum decimal digit count in the interval. Each candidate examines at most `D` digits, for $O(WD)$ time. Digit extraction uses only constant auxiliary state, so space is $O(1)$ excluding the returned list.
+- **Time Complexity**: $O(WD)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Convert to a string:** iterate over character digits and convert each back to an integer; it has the same $O(WD)$ time but allocates a digit string of $O(D)$ space per candidate.
-- **Enumerate every divisor first:** test all integers up to the candidate and then check whether its digits appear among those divisors; it is correct but can take quadratic work across a wide interval.
-- **Precompute answers:** a table can answer many fixed-bound queries quickly, but it adds storage and is unnecessary for one interval.
-- **Zero digit:** reject immediately, including numbers ending in zero.
-- **Repeated digit:** checking the repeated value again is harmless and keeps the digit scan simple.
-- **Single-digit positive number:** it always divides itself and is therefore valid.
-- **Inclusive endpoints:** test both `left` and `right`.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

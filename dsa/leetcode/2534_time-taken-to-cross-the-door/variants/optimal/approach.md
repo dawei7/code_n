@@ -1,21 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Time Taken to Cross the Door**.
 
-Maintain one FIFO queue for entering people and one for exiting people. Because arrivals are non-decreasing and people are inserted in index order, each queue's front is always the smallest-index waiting person for that direction.
-
-At the start of a simulated second, enqueue every person whose arrival time is at most the current time. Prefer the direction used in the immediately previous second; if its queue is empty, use the other direction. Initialize the preference to exiting, which represents an unused door. After a person crosses, record the current second, remember that direction, and advance by one.
-
-If both queues are empty before the next arrival, no crossing can occur in the gap. Jump directly to that arrival time and reset the preferred direction to exiting because the door was unused during the preceding second. This reset is essential even when the last actual crossing used a different direction. Each person is enqueued and removed exactly once, and every choice follows the stated direction and index priorities.
+- **Core Strategy**: Uses a double-ended queue for breadth-first traversal or sliding window processing.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $n$ be the number of people. The arrival pointer advances $n$ times, and each person undergoes one constant-time queue insertion and removal, so the total time is $O(n)$. The two queues and returned answer hold $O(n)$ indices or timestamps, giving $O(n)$ space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **One unsorted waiting list:** Searching it for the preferred direction and smallest index every second can cost $O(n^2)$ time.
-- **Second-by-second idle simulation:** Walking through empty time gaps is unnecessary; jumping to the next arrival preserves all decisions.
-- **Unused previous second:** Any idle gap resets preference to exiting, regardless of the last non-idle direction.
-- **Same-second arrivals:** Enqueue all of them before choosing who crosses.
-- **Same-direction tie:** FIFO order is index order because the input is aligned and arrivals are non-decreasing.
-- **Preferred queue empty:** The other direction crosses even if it lacks nominal priority.
-- **Continuous backlog:** With no idle second, the last crossing direction continues to control priority.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

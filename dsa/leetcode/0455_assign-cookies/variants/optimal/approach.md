@@ -1,24 +1,14 @@
 ## General
-**Consider the least demanding child first**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Assign Cookies**.
 
-Sort greed requirements and cookie sizes. Maintain one pointer to the smallest unsatisfied greed. Scan cookies from smallest to largest, discarding a cookie when it is too small and assigning it when it meets the current requirement.
-
-**Use the smallest cookie that can work**
-
-When a cookie can satisfy the least greedy remaining child, assigning it is safe. Any feasible assignment that gives this child a larger cookie can swap in the current smaller cookie; the larger cookie remains available for a child with an equal or greater requirement. Thus the greedy assignment cannot reduce the number achievable by an optimum.
-
-**Why an undersized cookie can be skipped**
-
-If a cookie is smaller than the least remaining greed, it is also too small for every later child because the requirements are sorted. No future assignment can use it, so advancing only the cookie pointer loses nothing.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Sorting takes $O(g \log g + s \log s)$ time for `g` children and `s` cookies. The two-pointer scan is $O(g + s)$. The reference sorts both inputs in place; Python's sorting implementation can still use $O(g + s)$ auxiliary memory.
+- **Time Complexity**: $O(g \log g + s \log s)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(g + s)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Match from largest to largest:** satisfying the greediest child with the largest adequate cookie is the symmetric greedy strategy.
-- **Repeatedly search for the smallest adequate cookie:** is correct but removing one match at a time can cost $O(g \cdot s)$.
-- **Maximum bipartite matching:** models all valid assignments but is unnecessary because the threshold relation is totally ordered.
-- **No children or no cookies:** the answer is zero.
-- **Extra cookies:** once every child is satisfied, remaining cookies do not change the result.
-- **Equal sizes and requirements:** each cookie can satisfy only one child, so duplicates retain their multiplicity.
-- **Exact boundary:** a cookie whose size equals the greed requirement is sufficient.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

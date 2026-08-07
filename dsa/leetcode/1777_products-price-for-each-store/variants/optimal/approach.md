@@ -1,23 +1,14 @@
 ## General
-**Form one group per product**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Product's Price for Each Store**.
 
-Group the source rows by `product_id`. Every output row then corresponds to exactly one product, regardless of the order in which that product's store records appeared.
-
-**Route each store into its own aggregate**
-
-For column `store1`, a `CASE` expression returns `price` only when `store = 'store1'` and returns `NULL` otherwise. `MAX` ignores those `NULL` values. Because the primary key permits at most one row for a given product and store, the remaining value is exactly the desired price rather than a maximum chosen among duplicates. Apply the same conditional aggregate to `"store2"` and `"store3"`.
-
-**Preserve missing prices as NULL**
-
-If a product has no row for one store, every value supplied to that store's aggregate is `NULL`, so the aggregate result is also `NULL`. This distinguishes an unavailable product-store pair from any actual stored price. The contract accepts the grouped rows in any order, so the query does not impose an unnecessary sort.
+- **Core Strategy**: Executes relational projection, filtering, and aggregation queries.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-A hash-aggregation plan examines each of the $R$ source rows once, giving $O(R)$ logical time. It keeps three fixed aggregate slots for each of the $P$ product groups, so its auxiliary grouping state is $O(P)$. A database may choose a sort-based physical plan with different implementation costs.
+- **Time Complexity**: $O(R)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(P)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Three correlated subqueries:** Look up each store separately for every product. This is correct with suitable indexes but can repeatedly scan the source table without them.
-- **Database-specific `PIVOT`:** Some SQL systems provide a pivot operator, but conditional aggregation works in both MySQL and the app-local SQLite runtime.
-- A product can be absent from one or two stores; those result cells must be `NULL`.
-- Input row order has no effect on the grouped result.
-- The composite primary key guarantees that no store column combines multiple prices for the same product.
-- A product represented by only one source row must still appear exactly once.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

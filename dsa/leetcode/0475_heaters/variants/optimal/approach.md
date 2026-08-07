@@ -1,30 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Heaters**.
 
-**Reduce the global radius to nearest-heater distances**
-
-For each house, the smallest radius that covers it is its distance to the nearest heater. A common radius covers every house exactly when it is at least all of those local distances, so the answer is their maximum.
-
-**Find neighboring heaters by binary search**
-
-Sort heater positions. For a house, binary-search the first heater not left of it. Only that heater and its immediate predecessor can be nearest; every other heater lies still farther in the same direction. Take the smaller available distance and update the maximum.
-
-**Why the maximum is both necessary and sufficient**
-
-Any radius below the largest nearest-heater distance leaves that particular house uncovered. Choosing the largest distance covers each house by the heater that established its local minimum, so no larger radius is necessary.
+- **Core Strategy**: Applies binary search / divide-and-conquer to narrow down search spaces in logarithmic time.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $h = \lvert \texttt{houses} \rvert$ and $t = \lvert \texttt{heaters} \rvert$. Sorting the heater list in place
-costs $O(t \log t)$ time, and the $h$ binary searches cost $O(h \log t)$ time. This is within the manifest bound
-$O((h + t) \log(h + t))$. Python's sorting implementation can use $O(t)$ auxiliary space; each search otherwise
-uses constant extra state.
+- **Time Complexity**: $O((h + t) \log(h + t))$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(t)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Sort houses and use two pointers:** advances a heater pointer toward the nearest position in $O(h \log h + t \log t)$ total time.
-- **Binary-search the radius:** checks coverage for each candidate but adds a coordinate-range logarithm.
-- **Scan every heater per house:** is correct but costs $O(h \cdot t)$ time.
-- **House on a heater:** contributes distance zero.
-- **House outside heater range:** only the nearest endpoint heater is available.
-- **Duplicate coordinates:** do not affect nearest distances.
-- **One heater:** the answer is the farther distance to the extreme houses.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

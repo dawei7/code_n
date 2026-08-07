@@ -1,19 +1,14 @@
 ## General
-**Represent only the previous value.** After a prefix of `arr1` has been processed, a state maps its final value to the fewest replacements used to reach a strictly increasing prefix ending there. The initial state has previous value `-1` and cost zero, which is safe because every input value is nonnegative.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Make Array Strictly Increasing**.
 
-**Keep or replace the current element.** From state `(previous, operations)`, retain the current `arr1` value only when `value > previous`. For a replacement, sort and deduplicate `arr2`, then use binary search to find its smallest value strictly greater than `previous`. No larger replacement with the same operation count can be better: it leaves fewer choices for every later element. Record the lower cost whenever multiple paths produce the same final value.
-
-**Discard dominated states.** Process the next states by increasing final value while tracking the smallest operation count seen. If an earlier state has both a smaller final value and no greater cost, any later state with the same or higher cost can never lead to a better continuation. Removing it preserves every potentially optimal path while limiting the frontier to at most the number of distinct replacement values plus the current original value. If the frontier becomes empty, no strictly increasing construction exists; otherwise the minimum final cost is the answer.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Let $m$ also denote the number of distinct values remaining after deduplicating `arr2`; this can only decrease the original length. Sorting costs $O(m\log m)$. At most $m+1$ live states are processed for each of the $n$ positions, and each replacement transition uses an $O(\log m)$ binary search. The overall bound is $O(nm\log m)$ time. The current and next frontiers plus the sorted candidates use $O(m)$ space.
+- **Time Complexity**: $O(nm\log m)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(m)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Linear replacement search:** Scanning sorted `arr2` from the beginning for every state is correct but raises a transition from $O(\log m)$ to $O(m)$.
-- **Two-dimensional dynamic programming:** A table indexed by prefix and replacement count can derive compatible replacement runs, but it uses $O(n^2)$ storage without rolling-array optimization.
-- **Already strictly increasing:** Keeping every original element leaves the answer at zero.
-- **Duplicate replacement values:** Equal values are interchangeable and cannot appear consecutively in a strictly increasing result, so deduplicating `arr2` is safe.
-- **Reuse semantics:** An `arr2` value is not consumed, although strict increase usually prevents choosing the same value for two positions in one result.
-- **Single-element `arr1`:** It is already strictly increasing, so zero operations are sufficient.
-- **No compatible successor:** A state with neither a larger original value nor a larger replacement disappears; an empty frontier means the answer is `-1`.
-- **Strict comparison:** Equality is invalid. Both the keep test and binary search must require a value strictly greater than the previous one.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

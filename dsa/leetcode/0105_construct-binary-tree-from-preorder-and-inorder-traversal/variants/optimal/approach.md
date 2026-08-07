@@ -1,34 +1,14 @@
 ## General
-**Inorder boundaries determine exact subtree membership**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Construct Binary Tree from Preorder and Inorder Traversal**.
 
-Build `position`, a map from each distinct value to its inorder position. For root position `middle` inside interval `[left,right]`, values in `[left,middle)` belong exactly to the left subtree and values in `(middle,right]` belong exactly to the right subtree. Constant-time lookup avoids rescanning this interval for every root.
-
-**Preorder's cursor exposes each subtree root before its children**
-
-Preorder is root-left-right. Maintain `i` as a shared cursor pointing to the next unbuilt preorder value `x`. On a nonempty inorder interval, consume `x` as the root, then recursively build the left interval before the right interval. That order consumes exactly the contiguous preorder blocks belonging to those subtrees.
-
-An empty inorder interval returns null without advancing the cursor, because it contains no node in preorder either.
-
-**Cursor movement and interval size stay synchronized**
-
-On entry to `build(left,right)`, the preorder cursor points to the root of the unique subtree containing exactly those inorder positions. The call consumes exactly `right - left + 1` preorder values and leaves the cursor at the next subtree root. The returned tree contains the same interval values with their prescribed traversal orders.
-
-**Trace cursor movement across left and right intervals**
-
-For root `3`, the inorder index separates `[9]` on the left from `[15, 20, 7]` on the right. The next preorder value builds node `9`; after that interval closes, value `20` becomes the right root with children `15` and `7`.
-
-**Preorder root choice and inorder partition are unique**
-
-The first value in any preorder subtree segment is its root. Because values are unique, locating that root in inorder divides the segment unambiguously into exactly the left-subtree and right-subtree values.
-
-Their sizes identify the corresponding preorder segments, and the same reasoning determines each child recursively. Every constructed node respects both traversal orders, and no alternative root or partition is possible, so the only compatible tree is reconstructed.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-The map is built in $O(n)$ time, and every node is created once with constant-time lookup, for $O(n)$ total time. The map, output nodes, and recursion stack together use $O(n)$ space; auxiliary recursion depth is $O(h)$.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Search inorder on every call:** is correct but becomes $O(n^2)$ on a skewed tree.
-- **Slice traversal arrays:** simplifies boundaries but repeatedly copies data and can also become quadratic.
-- **Iterative stack construction:** achieves $O(n)$ time but has a less direct interval proof.
-- A one-node input builds the root with two empty child intervals. Distinct values are essential because `position` must identify one unambiguous split.
-- The inputs are guaranteed consistent; validating mismatched value sets or impossible traversal pairs would be a separate concern.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

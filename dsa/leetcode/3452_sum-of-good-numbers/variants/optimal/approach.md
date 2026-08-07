@@ -1,17 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Sum of Good Numbers**.
 
-The definition asks about only two possible comparison positions for each index: `index - k` and `index + k`. There is no need to search a range or maintain a window because values at every other distance are irrelevant.
-
-Scan `nums` once. The left requirement passes when the left comparison index is outside the array or the current value is strictly larger than `nums[index - k]`. The right requirement is symmetric. Add the current value only when both requirements pass. These conditions exactly match the contract: every existing required neighbor is checked, and every nonexistent neighbor is deliberately ignored. Consequently the accumulator contains precisely the sum of the good elements when the scan ends.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $n$ be the length of `nums`. Each index performs at most two constant-time array lookups and comparisons, so the running time is $O(n)$. The scan uses only the accumulator and a few scalar values, giving $O(1)$ auxiliary space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Searching for comparison indices:** Scanning the whole array to rediscover positions `i - k` and `i + k` for every element is correct but takes $O(n^2)$ time unnecessarily.
-- **Slicing or shifted copies:** Building left- and right-shifted arrays can express the same comparisons but uses $O(n)$ extra space.
-- **Equality:** A value equal to either existing comparison element is not good because the relation must be strictly greater.
-- **One-sided comparison:** Within `k` positions of an array end, only the in-bounds comparison is required.
-- **Maximum permitted distance:** When $k = \lfloor n/2 \rfloor$, the same direct boundary tests continue to handle all indices correctly.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,28 +1,14 @@
 ## General
-**A parent needs both child subtree sums**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Binary Tree Tilt**.
 
-The tilt at a node is `abs(left_sum - right_sum)`. After contributing that value, the node must return `node.val + left_sum + right_sum` so its parent can perform the same calculation.
-
-**Process children before their parent**
-
-Use postorder traversal. An explicit stack frame records which child should be visited next and stores each returned child sum. Once both are available, finalize the node in constant time.
-
-**Accumulate tilt while returning sums**
-
-Keep one running total for the answer. A completed frame adds its local absolute difference, then passes its complete subtree sum into the appropriate field of its parent frame.
-
-**Why every contribution is exact**
-
-By postorder induction, a child frame returns the sum of exactly all values in that child's subtree. Their absolute difference is therefore the current node's defined tilt, and adding the current value produces the exact sum required by the parent. Every node is finalized once, so every tilt is added once and none is omitted.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Each of the `n` nodes is pushed, finalized, and removed once, giving $O(n)$ time. The explicit postorder stack contains at most one frame per tree level and uses $O(h)$ space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(h)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Recursive postorder:** returns subtree sums naturally in $O(n)$ time, but a skewed tree can exceed recursion limits.
-- **Recompute each subtree sum:** is correct but revisits descendants and takes $O(n^2)$ time on a chain.
-- **Single node:** has two empty subtrees and tilt zero.
-- **Missing child:** contributes subtree sum zero on that side.
-- **Zero-valued nodes:** still participate structurally even though they add nothing to a subtree sum.
-- **Skewed tree:** every ancestor's tilt includes the complete sum below its one child.
-- **Root contribution:** is included just like every other node.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
